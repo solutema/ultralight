@@ -40,7 +40,6 @@ namespace Lfx.Components
         /// </summary>
         public enum FunctionTypes
         {
-                RegisteredType,
                 Executable,
                 Loadable,
                 NormalWindow,

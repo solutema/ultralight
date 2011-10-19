@@ -39,7 +39,7 @@ namespace Lfc
         public partial class FormularioEdicion : Lui.Forms.ChildForm
         {
                 public Form FormOpener;
-                public System.Windows.Forms.Control ControlDestino;
+                public System.Windows.Forms.Control ControlDestino { get; set; }
                 public Lbl.IElementoDeDatos Elemento;
                 public Type ElementoTipo = null;
 

@@ -84,6 +84,7 @@ namespace Lbl.Articulos
 
                         if (this.Existe == false) {
                                 Comando = new qGen.Insert(this.Connection, this.TablaDatos);
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
                                 Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);

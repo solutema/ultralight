@@ -42,7 +42,8 @@ namespace Lbl.Componentes
         [Lbl.Atributos.NombreItem("Componente")]
         public class Componente : ElementoDeDatos, Lfx.Components.IComponent
         {
-                public IDictionary<string, Lfx.Components.FunctionInfo> Funciones { get; set; }
+                public Lfx.Components.FunctionInfoCollection Funciones { get; set; }
+                public Lfx.Components.RegisteredTypeCollection TiposRegistrados { get; set; }
                 public System.Reflection.Assembly Assembly { get; set; }
                 public IList<Lfx.Components.MenuEntry> MenuEntries { get; set; }
                 public string CifFileName { get; set; }
@@ -214,6 +215,17 @@ namespace Lbl.Componentes
 
                 public void LoadCif()
                 {
+                        // Cargo el archivo CIF
+                        using (System.IO.Stream CifXml = this.Assembly.GetManifestResourceStream(this.EspacioNombres + ".cif.xml")) {
+                                if (CifXml != null) {
+                                        // FIXME: puedo cargarlo con un lector de texto
+                                        using (System.IO.StreamReader Lector = new System.IO.StreamReader(CifXml)) {
+                                                this.Cif = Lector.ReadToEnd();
+                                                Lector.Close();
+                                        }
+                                }
+                        }
+
                         if (this.Cif == null)
                                 return;
 
@@ -222,50 +234,36 @@ namespace Lbl.Componentes
                         System.Xml.XmlNodeList ListaComponentes = DocumentoCif.GetElementsByTagName("Component");
                         //Abro el/los nodo(s) de componentes
                         foreach (System.Xml.XmlNode Componente in ListaComponentes) {
-                                if (Componente.Attributes["Disabled"] == null || Componente.Attributes["Disabled"].Value != "1") {
-                                        System.Xml.XmlNodeList NodosMenu = DocumentoCif.GetElementsByTagName("MenuItem");
-                                        foreach (System.Xml.XmlNode NodoMenu in NodosMenu) {
-                                                if (this.MenuEntries == null)
-                                                        this.MenuEntries = new List<Lfx.Components.MenuEntry>();
+                                System.Xml.XmlNodeList NodosMenu = DocumentoCif.GetElementsByTagName("MenuItem");
+                                foreach (System.Xml.XmlNode NodoMenu in NodosMenu) {
+                                        if (this.MenuEntries == null)
+                                                this.MenuEntries = new List<Lfx.Components.MenuEntry>();
 
-                                                Lfx.Components.MenuEntry Menu = new Lfx.Components.MenuEntry();
-                                                Menu.Name = NodoMenu.Attributes["name"].Value;
-                                                if (NodoMenu.Attributes["position"] == null)
-                                                        Menu.Parent = "Componentes";
-                                                else
-                                                        Menu.Parent = NodoMenu.Attributes["position"].Value;
+                                        Lfx.Components.MenuEntry Menu = new Lfx.Components.MenuEntry();
+                                        Menu.Name = NodoMenu.Attributes["name"].Value;
+                                        if (NodoMenu.Attributes["position"] == null)
+                                                Menu.Parent = "Componentes";
+                                        else
+                                                Menu.Parent = NodoMenu.Attributes["position"].Value;
 
-                                                if (NodoMenu.Attributes["function"] != null)
-                                                        Menu.Function = NodoMenu.Attributes["function"].Value;
+                                        if (NodoMenu.Attributes["function"] != null)
+                                                Menu.Function = NodoMenu.Attributes["function"].Value;
 
-                                                this.MenuEntries.Add(Menu);
-                                        }
-
-                                        System.Xml.XmlNodeList NodosFunciones = DocumentoCif.GetElementsByTagName("Function");
-                                        //Abro los nodos de funciones
-                                        foreach (System.Xml.XmlNode NodoFuncion in NodosFunciones) {
-                                                if (this.Funciones == null) {
-                                                        this.Funciones = new Dictionary<string, Lfx.Components.FunctionInfo>();
-
-                                                        // Creo la función Try, que la tienen que definir todos los componentes
-                                                        Lfx.Components.FunctionInfo TryFunc = new Lfx.Components.FunctionInfo(this);
-                                                        TryFunc.Nombre = "Try";
-                                                        this.Funciones.Add(TryFunc.Nombre, TryFunc);
-                                                }
-
-                                                Lfx.Components.FunctionInfo Func = new Lfx.Components.FunctionInfo(this);
-                                                Func.Nombre = NodoFuncion.Attributes["name"].Value;
-                                                if (Func.Nombre != null && Func.Nombre.Length > 0 && Func.Nombre != "-") {
-                                                        if (NodoFuncion.Attributes["autorun"] != null && NodoFuncion.Attributes["autorun"].Value == "1")
-                                                                Func.AutoRun = true;
-
-                                                        this.Funciones.Add(Func.Nombre, Func);
-                                                }
-                                        }
-                                } else {
-                                        this.Disabled = true;
+                                        this.MenuEntries.Add(Menu);
                                 }
 
+                                // Cargo las funciones personalizadas
+                                System.Xml.XmlNodeList NodosFunciones = DocumentoCif.GetElementsByTagName("Function");
+                                foreach (System.Xml.XmlNode NodoFuncion in NodosFunciones) {
+                                        Lfx.Components.FunctionInfo Func = new Lfx.Components.FunctionInfo(this);
+                                        Func.Nombre = NodoFuncion.Attributes["name"].Value;
+                                        if (Func.Nombre != null && Func.Nombre.Length > 0 && Func.Nombre != "-") {
+                                                if (NodoFuncion.Attributes["autorun"] != null && NodoFuncion.Attributes["autorun"].Value == "1")
+                                                        Func.AutoRun = true;
+
+                                                this.Funciones.Add(Func);
+                                        }
+                                }
                         }
                 }
 
@@ -274,7 +272,7 @@ namespace Lbl.Componentes
                         if (this.Assembly == null) {
                                 string[] WhereToLook;
 
-                                if (Lfx.Environment.SystemInformation.DesignMode) {
+                                if (Lfx.Workspace.Master.DebugMode) {
                                         WhereToLook = new string[] {
                                                 System.IO.Path.Combine(Lfx.Environment.Folders.ApplicationFolder, @"../../Componentes/bin/" + this.EspacioNombres + ".dll"),
                                                 System.IO.Path.Combine(Lfx.Environment.Folders.ComponentsFolder, this.EspacioNombres + System.IO.Path.DirectorySeparatorChar + this.EspacioNombres + ".dll"),
@@ -315,18 +313,25 @@ namespace Lbl.Componentes
                                         }
                                 }
 
-                                // Cargo el archivo CIF
-                                using (System.IO.Stream CifXml = this.Assembly.GetManifestResourceStream(this.EspacioNombres + ".cif.xml")) {
-                                        if (CifXml != null) {
-                                                // FIXME: puedo cargarlo con un lector de texto
-                                                using (System.IO.StreamReader Lector = new System.IO.StreamReader(CifXml)) {
-                                                        this.Cif = Lector.ReadToEnd();
-                                                        Lector.Close();
-                                                }
-                                        }
-                                }
+                                this.TiposRegistrados = new Lfx.Components.RegisteredTypeCollection();
+                                this.Funciones = new Lfx.Components.FunctionInfoCollection();
+
+                                // Creo la función Try, que la tienen que definir todos los componentes
+                                Lfx.Components.FunctionInfo TryFunc = new Lfx.Components.FunctionInfo(this);
+                                TryFunc.Nombre = "Try";
+                                this.Funciones.Add(TryFunc);
+
+                                // Creo la función GetTypes, que la tienen que definir todos los componentes
+                                Lfx.Components.FunctionInfo GetTypesFunc = new Lfx.Components.FunctionInfo(this);
+                                GetTypesFunc.Nombre = "GetTypes";
+                                this.Funciones.Add(GetTypesFunc);
 
                                 this.LoadCif();
+
+                                // Agrego los tipos registrados
+                                Lfx.Components.RegisteredTypeCollection Col = this.Funciones["GetTypes"].Run() as Lfx.Components.RegisteredTypeCollection;
+                                if (Col != null)
+                                        this.TiposRegistrados.AddRange(Col);
 
                                 return new Lfx.Types.SuccessOperationResult();
                         }

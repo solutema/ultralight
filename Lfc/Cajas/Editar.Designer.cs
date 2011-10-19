@@ -34,7 +34,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lfc.Cajas.Admin
+namespace Lfc.Cajas
 {
         public partial class Editar
         {

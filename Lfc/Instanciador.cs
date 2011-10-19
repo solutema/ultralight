@@ -44,8 +44,9 @@ namespace Lfc
                 /// <returns>Un formulario derivado de Lfc.FormularioEdicion.</returns>
                 public static Lfc.FormularioEdicion InstanciarFormularioEdicion(Lbl.IElementoDeDatos elemento)
                 {
-                        Lfc.FormularioEdicion Res = InstanciarFormularioEdicion(elemento.GetType().ToString());
-                        Res.Connection = elemento.Connection;
+                        Lfc.FormularioEdicion Res = new Lfc.FormularioEdicion();
+                        Type TipoControlEdicion = InferirControlEdicion(elemento.GetType());
+                        Res.ControlUnico = InstanciarControlEdicion(TipoControlEdicion);
                         Res.FromRow(elemento);
 
                         return Res;
@@ -61,87 +62,31 @@ namespace Lfc
                 }
 
 
-                private static Type InferirFormularioListado(Type tipo)
+                public static Type InferirFormularioListado(Type tipo)
                 {
                         // Primero busco en los tipos registrados por los componentes
-                        Lfx.Components.FunctionInfo Func = Lfx.Components.Manager.TiposRegistrados.GetByLblType(tipo);
-                        if(Func != null && Func.Instancia.RegisteredType is Lfc.ITipoRegistrado)
-                                return ((Lfc.ITipoRegistrado)(Func.Instancia.RegisteredType)).Listado;
+                        Lfc.TipoRegistrado Func = Lfx.Components.Manager.TiposRegistrados.GetByLblType(tipo) as Lfc.TipoRegistrado;
+                        if(Func != null && Func.Listado != null)
+                                return Func.Listado;
+
+                        // Busco en las tipos derivados
+                        foreach (Lfx.Components.IRegisteredType Regt in Lfx.Components.Manager.TiposRegistrados) {
+                                if (Regt.LblType == tipo.BaseType)
+                                        return ((Lfc.ITipoRegistrado)tipo).Listado;
+                        }
 
                         return InferirFormularioListado(tipo.ToString());
                 }
 
-                private static Type InferirFormularioListado(string tipoOTabla)
+                public static Type InferirFormularioListado(string tipoOTabla)
                 {
+                        // Primero busco en los tipos registrados por los componentes
+                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados) {
+                                if (tipo.LblType.ToString() == tipoOTabla)
+                                        return ((Lfc.ITipoRegistrado)tipo).Listado;
+                        }
+
                         switch (tipoOTabla) {
-                                case "ALICUOTAS":
-                                case "Lbl.Impuestos.ObtenerAlicuota":
-                                        return typeof(Lfc.Alicuotas.Inicio);
-
-                                case "CHEQUERAS":
-                                case "Lbl.Bancos.Chequera":
-                                        return typeof(Lfc.Bancos.Chequeras.Inicio);
-
-                                case "CHEQUES":
-                                case "Lbl.Bancos.Cheque":
-                                        return typeof(Lfc.Bancos.Cheques.Inicio);
-
-                                case "CAJA":
-                                case "CAJAS":
-                                case "Lbl.Cajas.Caja":
-                                        return typeof(Lfc.Cajas.Admin.Inicio);
-
-                                case "CLIENTE":
-                                case "CLIENTES":
-                                case "Lbl.Personas.Persona":
-                                case "Lbl.Personas.Usuario":
-                                        return typeof(Lfc.Personas.Inicio);
-
-                                case "personas_grupos":
-                                case "PERSONAS_GRUPOS":
-                                case "Lbl.Personas.Grupo":
-                                        return typeof(Lfc.Personas.Grupos.Inicio);
-
-                                case "SUCURSAL":
-                                case "SUCURSALES":
-                                case "sucursales":
-                                case "Lbl.Entidades.Sucursal":
-                                        return typeof(Lfc.Sucursales.Inicio);
-
-                                case "PLANTILLA":
-                                case "PLANTILLAS":
-                                case "sys_plantillas":
-                                case "Lbl.Impresion.Plantilla":
-                                        return typeof(Lfc.Comprobantes.Plantillas.Inicio);
-
-                                case "PROVEEDOR":
-                                case "PROVEEDORES":
-                                case "Lbl.Personas.Proveedor":
-                                        return typeof(Lfc.Personas.Inicio);
-
-                                case "PV":
-                                case "PVS":
-                                case "pvs":
-                                case "Lbl.Comprobantes.PuntoDeVenta":
-                                        return typeof(Lfc.Pvs.Inicio);
-
-                                case "ARTICULO":
-                                case "ARTICULOS":
-                                case "Lbl.Articulos.Articulo":
-                                        return typeof(Lfc.Articulos.Inicio);
-
-                                case "ARTICULO_CATEG":
-                                case "ARTICULOS_CATEG":
-                                case "Lbl.Articulos.Categoria":
-                                        return typeof(Lfc.Articulos.Categorias.Inicio);
-
-                                case "ARTICULO_RUBRO":
-                                case "ARTICULO_RUBROS":
-                                case "ARTICULOS_RUBRO":
-                                case "ARTICULOS_RUBROS":
-                                case "Lbl.Articulos.Rubro":
-                                        return typeof(Lfc.Articulos.Rubros.Inicio);
-
                                 case "COMPROBANTE":
                                 case "COMPROBANTES":
                                 case "Lbl.Comprobantes.ComprobanteConArticulos":
@@ -211,15 +156,17 @@ namespace Lfc
 
                                 case "Lbl.Pagos.Cupon":
                                         return typeof(Lfc.Tarjetas.Cupones.Editar);
+                                
                                 default:
-                                        throw new NotImplementedException();
+                                        throw new NotImplementedException("Lfc.InferirFormularioListado: no se reconoce el tipo o tabla " + tipoOTabla);
                         }
                 }
 
                 public static Lfc.FormularioListado InstanciarFormularioListado(Type tipo)
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(tipo, Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                return Activator.CreateInstance(tipo, null) as Lfc.FormularioListado;
+                                object Res = Activator.CreateInstance(tipo, null);
+                                return Res as Lfc.FormularioListado;
                         } else {
                                 return null;
                         }
@@ -231,25 +178,31 @@ namespace Lfc
                         return Res as Lcc.Edicion.ControlEdicion;
                 }
 
+
+                private static Type InferirControlEdicion(Type tipo)
+                {
+                        Lfc.TipoRegistrado Func = Lfx.Components.Manager.TiposRegistrados.GetByLblType(tipo) as Lfc.TipoRegistrado;
+                        if (Func != null && Func.Editor != null)
+                                return Func.Editor;
+
+                        return InferirControlEdicion(tipo.ToString());
+                }
+
                 /// <summary>
                 /// Infiere el tipo de control de edición a partir del nombre de la tabla o del tipo.
                 /// </summary>
                 private static Type InferirControlEdicion(string nombreTablaOTipo)
                 {
                         // Primero busco en los tipos registrados por los componentes
-                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados.Keys) {
-                                if (tipo.LblType.ToString() == nombreTablaOTipo && tipo is Lfc.ITipoRegistrado) {
+                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados) {
+                                if (tipo.LblType.ToString() == nombreTablaOTipo)
                                         return ((Lfc.ITipoRegistrado)tipo).Editor;
-                                }
                         }
 
                         switch (nombreTablaOTipo) {
                                 case "alicuotas":
                                 case "Lbl.Impuestos.ObtenerAlicuota":
                                         return typeof(Lfc.Alicuotas.Editar);
-                                case "articulos":
-                                case "Lbl.Articulos.Articulo":
-                                        return typeof(Lfc.Articulos.Editar);
                                 case "articulos_categorias":
                                 case "articulo_categ":
                                 case "Lbl.Articulos.Categoria":
@@ -264,9 +217,6 @@ namespace Lfc
                                 case "bancos_cheques":
                                 case "Lbl.Bancos.Cheque":
                                         return typeof(Lfc.Bancos.Cheques.Editar);
-                                case "cajas":
-                                case "Lbl.Cajas.Caja":
-                                        return typeof(Lfc.Cajas.Admin.Editar);
                                 case "chequeras":
                                 case "Lbl.Bancos.Chequera":
                                         return typeof(Lfc.Bancos.Chequeras.Editar);
@@ -309,18 +259,9 @@ namespace Lfc
                                 //        return typeof(Lfc.Articulos.Margenes.Editar);
                                 //case "moneda":
                                 //        return typeof(Lbl);
-                                case "personas":
-                                case "Lbl.Personas.Persona":
-                                case "Lbl.Personas.Proveedor":
-                                        return typeof(Lfc.Personas.Editar);
-                                case "Lbl.Personas.Usuario":
-                                        return typeof(Lfc.Personas.Usuario);
                                 case "tarjetas_cupon":
                                 case "Lbl.Pagos.Cupon":
                                         return typeof(Lfc.Tarjetas.Cupones.Editar);
-                                case "personas_grupos":
-                                case "Lbl.Personas.Grupo":
-                                        return typeof(Lfc.Personas.Grupos.Editar);
                                 case "pvs":
                                 case "Lbl.Comprobantes.PuntoDeVenta":
                                         return typeof(Lfc.Pvs.Editar);
@@ -334,22 +275,9 @@ namespace Lfc
                                 case "sucursales":
                                 case "Lbl.Entidades.Sucursal":
                                         return typeof(Lfc.Sucursales.Editar);
-                                //case "sys_log":
-                                //        return typeof(Lbl.Sys.Log.Entry);
                                 case "sys_plantillas":
                                 case "Lbl.Impresion.Plantilla":
                                         return typeof(Lfc.Comprobantes.Plantillas.Editar);
-                                case "tickets":
-                                case "Lbl.Tareas.Tarea":
-                                        return typeof(Lfc.Tareas.Editar);
-                                case "tickets_tipos":
-                                case "Lbl.Tareas.Tipo":
-                                        return typeof(Lfc.Tareas.Tipos.Editar);
-                                case "tickets_estados":
-                                case "Lbl.Tareas.Estado":
-                                        return typeof(Lfc.Tareas.Estados.Editar);
-                                //case "tipo_doc":
-                                //        return typeof(Lbl);
                                 default:
                                         throw new NotImplementedException("Lfc.Instanciador.InferirControlEdicion(): No se reconoce la tabla o el tipo " + nombreTablaOTipo);
                         }

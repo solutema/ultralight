@@ -137,8 +137,11 @@ namespace Lfx
 
                         System.Threading.Thread.CurrentThread.CurrentCulture = this.CultureInfo;
                         System.Threading.Thread.CurrentThread.CurrentUICulture = this.CultureInfo;
+                }
 
-                        if (Lfx.Updates.Updater.Master == null && this.WebAppMode == false && Lfx.Environment.SystemInformation.DesignMode == false) {
+                public void InitUpdater()
+                {
+                        if (Lfx.Updates.Updater.Master == null && this.WebAppMode == false && this.DebugMode == false) {
                                 string Nivel = this.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Actualizaciones.Nivel", "stable");
                                 Lfx.Updates.Updater.Master = new Updates.Updater(Nivel);
                                 Lfx.Updates.Updater.Master.Path = Lfx.Environment.Folders.ApplicationFolder;
@@ -150,7 +153,6 @@ namespace Lfx
                                 Lfx.Updates.Updater.Master.Packages.Add(LazaroPkg);
                                 Lfx.Updates.Updater.Master.Start();
                         }
-
                 }
 
                 public string Name
@@ -275,7 +277,7 @@ namespace Lfx
                                 Progreso.Blocking = true;
                                 Progreso.Begin();
 
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "*");
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()), "*");
                                 Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
 
                                 if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
@@ -291,7 +293,7 @@ namespace Lfx
                                         Progreso.ChangeStatus("Verificando estructuras");
                                         this.CheckAndUpdateDataBaseStructure(Conn, false);
                                         if (noTocarDatos == false)
-                                                this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe));
+                                                this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe.ToUniversalTime()));
                                 }
 
                                 if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {

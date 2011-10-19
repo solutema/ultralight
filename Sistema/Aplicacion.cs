@@ -63,7 +63,7 @@ namespace Lazaro
                 public static DateTime BuildDate()
                 {
                         System.IO.FileInfo InfoArchivo = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                        return InfoArchivo.CreationTime;
+                        return InfoArchivo.LastWriteTime;
                 }
 
                 /// <summary>
@@ -74,7 +74,7 @@ namespace Lazaro
                 {
                         System.Threading.Thread.CurrentThread.Name = "Lazaro";
 
-                        bool ReconfigDB = false, IgnoreUpdates = false, DebugMode = Lfx.Environment.SystemInformation.DesignMode;
+                        bool ReconfigDB = false, DebugMode = false, IgnoreUpdates = false;
                         bool MostrarAsistenteConfig = false, ClearCache = false;
 
                         string NombreConfig = "default";
@@ -93,23 +93,29 @@ namespace Lazaro
                                                         break;
 
                                                 case "/ignoreupdates":
+                                                case "--ignoreupdates":
                                                         IgnoreUpdates = true;
                                                         break;
 
                                                 case "/clearcache":
+                                                case "--clearcache":
                                                         ClearCache = true;
                                                         break;
 
                                                 case "/help":
                                                 case "--help":
                                                 case "/?":
-                                                        System.Windows.Forms.MessageBox.Show(System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + @" [/config] [/ignoreupdates] [EspacioTrabajo]", "Ayuda");
+                                                        if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows)
+                                                                System.Windows.Forms.MessageBox.Show(System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + @" [/config] [/ignoreupdates] [/debug] [/clearcache] [/ignoreupdates] [EspacioTrabajo]", "Ayuda");
+                                                        else
+                                                                System.Windows.Forms.MessageBox.Show(System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + @" [--config] [--ignoreupdates] [--debug] [--clearcache] [--ignoreupdates] [EspacioTrabajo]", "Ayuda");
                                                         System.Environment.Exit(0);
                                                         break;
 
                                                 case "/debug":
                                                 case "--debug":
                                                         DebugMode = true;
+                                                        IgnoreUpdates = true;
                                                         break;
 
                                                 default:
@@ -121,7 +127,7 @@ namespace Lazaro
 
                         // Manejadores de excepciones
                         Application.EnableVisualStyles();
-                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
+                        if (DebugMode == false) {
                                 Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
                                 AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
                                 Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
@@ -221,30 +227,15 @@ namespace Lazaro
 
                         IniciarDatos();
 
+                        Lfx.Workspace.Master.InitUpdater();
+
                         CargarComponentes();
 
-                        // Verifico la versión de Lázaro requerida por la BD
-                        DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
-                        DateTime MinVersion = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionMinima", "2000-01-01 00:00:00"));
-                        if (FechaLazaroExe < MinVersion) {
-                                Misc.ActualizarAhora Act = new Misc.ActualizarAhora();
-                                DialogResult Res = Act.ShowDialog();
-                                switch (Res) {
-                                        case DialogResult.OK:
-                                                Lfx.Environment.Shell.Reboot();
-                                                break;
-                                        default:
-                                                Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar");
-                                                break;
-                                }
-                                System.Environment.Exit(1);
-                        } else {
-                                // Cumple con la versión requerida, pero de todos modos verifico si es necesario actualizar Lázaro
-                                DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
-                                TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
-
-                                if (Diferencia.TotalHours < -12) {
-                                        // Lázaro es más viejo que la bd por al menos 12 horas
+                        if (IgnoreUpdates == false) {
+                                // Verifico la versión de Lázaro requerida por la BD
+                                DateTime FechaLazaroExe = System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                                DateTime MinVersion = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionMinima", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
+                                if (FechaLazaroExe < MinVersion) {
                                         Misc.ActualizarAhora Act = new Misc.ActualizarAhora();
                                         DialogResult Res = Act.ShowDialog();
                                         switch (Res) {
@@ -252,13 +243,32 @@ namespace Lazaro
                                                         Lfx.Environment.Shell.Reboot();
                                                         break;
                                                 default:
-                                                        Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Puede continuar trabajando, pero es recomendable que descargue e instale la última versión.");
+                                                        Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar");
                                                         break;
+                                        }
+                                        System.Environment.Exit(1);
+                                } else {
+                                        // Cumple con la versión requerida, pero de todos modos verifico si es necesario actualizar Lázaro
+                                        DateTime VersionEstructura = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
+                                        TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
+
+                                        if (Diferencia.TotalHours < -12) {
+                                                // Lázaro es más viejo que la bd por al menos 12 horas
+                                                Misc.ActualizarAhora Act = new Misc.ActualizarAhora();
+                                                DialogResult Res = Act.ShowDialog();
+                                                switch (Res) {
+                                                        case DialogResult.OK:
+                                                                Lfx.Environment.Shell.Reboot();
+                                                                break;
+                                                        default:
+                                                                Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Puede continuar trabajando, pero es recomendable que descargue e instale la última versión.");
+                                                                break;
+                                                }
                                         }
                                 }
                         }
 
-                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
+                        if (Lfx.Environment.SystemInformation.DesignMode == false == false) {
                                 // Si es necesario, actualizo la estructura de la base de datos
                                 Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(false, false);
                         }
@@ -277,6 +287,17 @@ namespace Lazaro
                 /// </summary>
                 private static void CargarComponentes()
                 {
+                        // Cargo el componente Core
+                        Lbl.Componentes.Componente CoreComp = new Lbl.Componentes.Componente(Lfx.Workspace.Master.MasterConnection);
+                        CoreComp.Crear();
+
+                        CoreComp.Nombre = "Core";
+                        CoreComp.EspacioNombres = "Lfc";
+                        CoreComp.Assembly = System.Reflection.Assembly.LoadFrom("Lfc.dll");
+                        Lfx.Components.Manager.ComponentesCargados.Add("Core", CoreComp);
+
+                        Lfx.Components.Manager.RegisterComponent(CoreComp);
+
                         Lbl.ColeccionGenerica<Lbl.Componentes.Componente> Comps = Lbl.Componentes.Componente.Todos();
                         foreach (Lbl.Componentes.Componente Comp in Comps) {
                                 // Cargar todos los componentes en memoria
@@ -718,15 +739,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         }
                 }
 
-                /* public static void ExecDelegate(object param)
-                {
-                        if (param is Lfx.Services.Task) {
-                                Lfx.Services.Task Tsk = param as Lfx.Services.Task;
-                                Exec(Tsk.Command, Tsk.CreatorComputerName);
-                        } else {
-                                Exec(param.ToString(), null);
-                        }
-                } */
 
                 public static object Exec(string comando, string estacion)
                 {
@@ -1064,7 +1076,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Caja, Lbl.Sys.Permisos.Operaciones.Ver)) {
                                                 string SubComandoCaja = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
 
-                                                Lfc.Cajas.Inicio FormularioCaja = new Lfc.Cajas.Inicio();
+                                                Lfc.Cajas.Movimientos FormularioCaja = new Lfc.Cajas.Movimientos();
                                                 if (!Aplicacion.Flotante)
                                                         FormularioCaja.MdiParent = Aplicacion.FormularioPrincipal;
                                                 FormularioCaja.Caja = Caja;
@@ -1121,7 +1133,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         string SubComandoVerCaja = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
                                         Lbl.Cajas.Caja VerCaja = new Lbl.Cajas.Caja(Lfx.Workspace.Master.MasterConnection, Lfx.Types.Parsing.ParseInt(SubComandoVerCaja));
                                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(VerCaja, Lbl.Sys.Permisos.Operaciones.Ver)) {
-                                                Lfc.Cajas.Inicio FormularioCaja = new Lfc.Cajas.Inicio();
+                                                Lfc.Cajas.Movimientos FormularioCaja = new Lfc.Cajas.Movimientos();
                                                 if (!Aplicacion.Flotante)
                                                         FormularioCaja.MdiParent = Aplicacion.FormularioPrincipal;
                                                 FormularioCaja.Caja = VerCaja;
@@ -1145,8 +1157,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
 
                                         break;
 
-                                case "RUNCOMPONENT":
-                                        string Componente = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
+                                case "RUN":
+                                        string Componente = Lfx.Types.Strings.GetNextToken(ref comando, ".").Trim();
                                         string Funcion = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
                                         Lfx.Components.Manager.Run(Aplicacion.Flotante ? null : Aplicacion.FormularioPrincipal, Componente, Funcion);
                                         break;
@@ -1158,9 +1170,10 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 default:
-                                        if (Lfx.Environment.SystemInformation.DesignMode)
+                                        if (Lfx.Workspace.Master.DebugMode)
                                                 throw new NotImplementedException(comando);
-                                        return new Lfx.Types.OperationResult(false);
+                                        else
+                                                return new Lfx.Types.OperationResult(false);
                         }
 
                         return null;
@@ -1230,9 +1243,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                 case "CAJAS":
                                 case "Lbl.Cajas.Caja":
                                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Cajas.Admin.Inicio");
+                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Cajas.Inicio");
                                                 if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Cajas.Admin.Inicio();
+                                                        FormularioListado = new Lfc.Cajas.Inicio();
                                         }
                                         break;
 
@@ -1492,8 +1505,11 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 default:
-                                        if (Lfx.Environment.SystemInformation.DesignMode)
+                                        Type TipoListado = Lfc.Instanciador.InferirFormularioListado(SubComando);
+                                        if (TipoListado == null && Lfx.Workspace.Master.DebugMode)
                                                 throw new NotImplementedException(SubComando);
+                                        else
+                                                FormularioListado = Lfc.Instanciador.InstanciarFormularioListado(TipoListado);
                                         break;
                         }
 
@@ -1523,7 +1539,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         if(crear) {
                                 Elemento = Lbl.Instanciador.Instanciar(TipoElemento, DataBase);
                                 Elemento.Crear();
-                                
                         } else { 
                                 int ItemId = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
                                 Elemento = Lbl.Instanciador.Instanciar(TipoElemento, DataBase, ItemId);

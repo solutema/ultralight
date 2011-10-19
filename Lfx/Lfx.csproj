@@ -92,10 +92,12 @@
   <ItemGroup>
     <Compile Include="Components\FunctionInfo.cs" />
     <Compile Include="Components\FunctionTypes.cs" />
+    <Compile Include="Components\GetTypesFunction.cs" />
     <Compile Include="Components\IComponent.cs" />
     <Compile Include="Components\IRegisteredType.cs" />
     <Compile Include="Components\MenuEntry.cs" />
     <Compile Include="Components\FunctionInfoCollection.cs" />
+    <Compile Include="Components\RegisteredTypeCollection.cs" />
     <Compile Include="Components\TryFunction.cs" />
     <Compile Include="Data\Filters\DateRangeFilter.cs" />
     <Compile Include="Data\Filters\Filter.cs" />

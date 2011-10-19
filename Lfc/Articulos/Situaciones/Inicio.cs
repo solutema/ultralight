@@ -29,21 +29,34 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lfc.Cajas
+namespace Lfc.Articulos.Situaciones
 {
-        public partial class Filtros : Lui.Forms.DialogForm
+        public partial class Inicio : Lfc.FormularioListado
         {
-                public Filtros()
-                        : base()
+                public Inicio()
                 {
-                        InitializeComponent();
+                        this.Definicion = new Lfx.Data.Listing()
+                        {
+                                ElementoTipo = typeof(Lbl.Articulos.Situacion),
+
+                                TableName = "articulos_situaciones",
+                                KeyColumnName = new Lfx.Data.FormField("articulos_situaciones.id_situacion", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                DetailColumnName = "nombre",
+                                OrderBy = "articulos_situaciones.nombre",
+                                Columns = new Lfx.Data.FormFieldCollection()
+                                {
+				        new Lfx.Data.FormField("articulos_situaciones.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lfx.Data.FormField("articulos_situaciones.cuenta_stock", "Suma Stock", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
+				        new Lfx.Data.FormField("articulos_situaciones.facturable", "Facturable", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
+				        new Lfx.Data.FormField("articulos_situaciones.deposito", "Depósito", Lfx.Data.InputFieldTypes.Numeric, 96),
+			        },
+                        };
+
+                        this.HabilitarFiltrar = false;
                 }
         }
 }

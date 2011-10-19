@@ -40,50 +40,9 @@ namespace Lfx.Components
 	public static class Manager
 	{
                 public static Dictionary<string, IComponent> ComponentesCargados = new Dictionary<string, IComponent>();
-                public static FunctionInfoCollection TiposRegistrados = new FunctionInfoCollection();
+                public static FunctionInfoCollection Functiones = new FunctionInfoCollection();
+                public static RegisteredTypeCollection TiposRegistrados = new RegisteredTypeCollection();
 
-                /* public static Lfx.Components.Component Load(string nameSpace)
-                {
-                        string CifName = Lfx.Environment.Folders.ComponentsFolder + nameSpace + ".cif";
-                        if (System.IO.File.Exists(CifName)) {
-                                Lfx.Components.Component CompInfo = new Lfx.Components.Component(CifName);
-                                if (CompInfo.Disabled == false) {
-                                        if (Lfx.Environment.SystemInformation.DesignMode) {
-                                                RegisterComponent(CompInfo);
-                                        } else {
-                                                try {
-                                                        RegisterComponent(CompInfo);
-                                                } catch {
-                                                        if (Lfx.Workspace.Master != null)
-                                                                Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componente " + CompInfo.Nombre);
-                                                }
-                                        }
-                                        return CompInfo;
-                                }
-                        }
-                        return null;
-                }
-
-
-                public static void LoadAll()
-                {
-                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.ComponentsFolder);
-                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles("*.cif")) {
-                                Lfx.Components.Component CompInfo = new Lfx.Components.Component(DirItem.FullName);
-                                if (CompInfo.Disabled == false) {
-                                        if (Lfx.Environment.SystemInformation.DesignMode) {
-                                                RegisterComponent(CompInfo);
-                                        } else {
-                                                try {
-                                                        RegisterComponent(CompInfo);
-                                                } catch {
-                                                        if (Lfx.Workspace.Master != null)
-                                                                Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componente " + CompInfo.Nombre);
-                                                }
-                                        }
-                                }
-                        }
-                } */
 
                 public static Lfx.Types.OperationResult RegisterComponent(IComponent componentInfo)
                 {
@@ -99,10 +58,15 @@ namespace Lfx.Components
                                 if (TryResult != null && TryResult.Success) {
                                         ComponentesCargados.Add(componentInfo.EspacioNombres, componentInfo);
                                         if (componentInfo.Funciones != null) {
-                                                foreach (FunctionInfo Func in componentInfo.Funciones.Values) {
+                                                foreach (FunctionInfo Func in componentInfo.Funciones) {
                                                         Func.Load();
-                                                        if (Func.TipoRegistrado != null)
-                                                                TiposRegistrados.Add(Func.TipoRegistrado, Func);
+                                                        Functiones.Add(Func);
+                                                }
+                                        }
+
+                                        if (componentInfo.TiposRegistrados != null) {
+                                                foreach (IRegisteredType Regt in componentInfo.TiposRegistrados) {
+                                                        TiposRegistrados.Add(Regt);
                                                 }
                                         }
                                 } else {
@@ -151,7 +115,7 @@ namespace Lfx.Components
                 public static Lfx.Components.Function LoadComponent(string componentName, string functionName)
 		{
 			string[] WhereToLook;
-			if(Lfx.Environment.SystemInformation.DesignMode) {
+			if(Lfx.Workspace.Master.DebugMode) {
 				WhereToLook = new string[] {
                                         Lfx.Environment.Folders.ApplicationFolder + @"../../Componentes/bin/" + componentName + ".dll",
 					Lfx.Environment.Folders.ApplicationFolder + @"../../Componentes/" + componentName + @"/bin/" + componentName + ".dll",

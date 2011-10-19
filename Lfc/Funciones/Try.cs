@@ -29,32 +29,14 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
 
-namespace Lfx.Updates
+namespace Lfc
 {
-        public class FileCollection : List<File>
+        public class Try : Lfx.Components.TryFunction
         {
-                public File this[string fileName]
+                public override object Create()
                 {
-                        get
-                        {
-                                foreach (File Fil in this) {
-                                        if (string.Compare(Fil.Name, fileName, true) == 0)
-                                                return Fil;
-                                }
-                                throw new IndexOutOfRangeException();
-                        }
-                }
-
-                public bool ContainsKey(string fileName)
-                {
-                        foreach (File Fil in this) {
-                                if (string.Compare(Fil.Name, fileName, true) == 0)
-                                        return true;
-                        }
-                        return false;
+                        return new Lfx.Types.SuccessOperationResult();
                 }
         }
 }

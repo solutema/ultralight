@@ -31,7 +31,7 @@
 
 namespace Lfc.Comprobantes
 {
-        public partial class FormComprobantesListado
+        public partial class Listado
         {
                 #region Código generado por el Diseñador de Windows Forms
 

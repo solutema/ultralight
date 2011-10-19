@@ -537,7 +537,7 @@ namespace Lbl
                                         }
                                 }
                         } catch {
-                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                if (Lfx.Workspace.Master.DebugMode)
                                         throw;
                         }
 
@@ -545,7 +545,7 @@ namespace Lbl
                                 //System.Console.WriteLine(Extra1);
                                 Lbl.Sys.Config.ActionLog(this.Connection, Sys.Log.Acciones.Save, this, Extra1 == null ? null : Extra1.ToString());
                         } catch {
-                                if (Lfx.Environment.SystemInformation.DesignMode)
+                                if (Lfx.Workspace.Master.DebugMode)
                                         throw;
                         }
                 }

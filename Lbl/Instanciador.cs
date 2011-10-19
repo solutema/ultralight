@@ -30,8 +30,7 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Reflection;
 
 namespace Lbl
 {
@@ -40,6 +39,8 @@ namespace Lbl
         /// </summary>
         public static class Instanciador
         {
+                private static Assembly Ensablado;
+
                 /// <summary>
                 /// Crea una instancia de un Lbl.ElementoDeDatos nuevo.
                 /// </summary>
@@ -86,9 +87,9 @@ namespace Lbl
                 public static Type InferirTipo(string tablaOTipo)
                 {
                         // Primero busco en los tipos registrados por los componentes
-                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados.Keys) {
+                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados) {
                                 if (tipo.LblType.ToString() == tablaOTipo)
-                                        return Lfx.Components.Manager.TiposRegistrados[tipo].TipoRegistrado.LblType;
+                                        return tipo.LblType;
                         }
 
                         switch(tablaOTipo) {
@@ -241,6 +242,14 @@ namespace Lbl
                                 //case "tipo_doc":
                                 //        return typeof(Lbl);
                                 default:
+                                        // Intento cargarlo mediante reflexión
+                                        if (Ensablado == null)
+                                                Ensablado = System.Reflection.Assembly.LoadFrom("Lbl.dll");
+
+                                        Type Tipo = Ensablado.GetType(tablaOTipo);
+                                        if (Tipo != null)
+                                                return Tipo;
+
                                         throw new NotImplementedException("Lbl.Instanciador.InferirTipo(): No se reconoce la tabla o tipo " + tablaOTipo);
                         }
                 }

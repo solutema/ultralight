@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,39 +29,21 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lfc.Cajas
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Lfx.Components
 {
-        partial class Diaria
+        /// <summary>
+        /// Esta función debe ser implementada por todos los componentes, y se utiliza para obtener una lista de los tipos que registra el componente.
+        /// </summary>
+        public class GetTypesFunction : Function
         {
-                /// <summary>
-                /// Variable del diseñador requerida.
-                /// </summary>
-                private System.ComponentModel.IContainer components = null;
-
-                /// <summary>
-                /// Limpiar los recursos que se estén utilizando.
-                /// </summary>
-                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
-                protected override void Dispose(bool disposing)
+                public GetTypesFunction()
                 {
-                        if (disposing && (components != null)) {
-                                components.Dispose();
-                        }
-                        base.Dispose(disposing);
+                        this.FunctionType = FunctionTypes.Executable;
                 }
-
-                #region Código generado por el Diseñador de Windows Forms
-
-                /// <summary>
-                /// Método necesario para admitir el Diseñador. No se puede modificar
-                /// el contenido del método con el editor de código.
-                /// </summary>
-                private void InitializeComponent()
-                {
-                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.Text = "Diaria";
-                }
-
-                #endregion
         }
 }

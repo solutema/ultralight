@@ -62,10 +62,10 @@ namespace Lazaro.Errores
                         this.BotonCerrar = new System.Windows.Forms.Button();
                         this.EtiquetaDescripcion = new System.Windows.Forms.Label();
                         this.EtiquetaTitulo = new System.Windows.Forms.Label();
-                        this.pictureBox1 = new System.Windows.Forms.PictureBox();
                         this.EtiquetaMasInformacion = new System.Windows.Forms.Label();
                         this.label1 = new System.Windows.Forms.Label();
                         this.BotonAmpliar = new System.Windows.Forms.Button();
+                        this.pictureBox1 = new System.Windows.Forms.PictureBox();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
@@ -105,16 +105,6 @@ namespace Lazaro.Errores
                         this.EtiquetaTitulo.Text = "Informe de Error";
                         this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // pictureBox1
-                        // 
-                        this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-                        this.pictureBox1.Location = new System.Drawing.Point(36, 32);
-                        this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.pictureBox1.Name = "pictureBox1";
-                        this.pictureBox1.Size = new System.Drawing.Size(33, 33);
-                        this.pictureBox1.TabIndex = 4;
-                        this.pictureBox1.TabStop = false;
-                        // 
                         // EtiquetaMasInformacion
                         // 
                         this.EtiquetaMasInformacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -151,18 +141,28 @@ namespace Lazaro.Errores
                         this.BotonAmpliar.Visible = false;
                         this.BotonAmpliar.Click += new System.EventHandler(this.BotonAmpliar_Click);
                         // 
+                        // pictureBox1
+                        // 
+                        this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+                        this.pictureBox1.Location = new System.Drawing.Point(36, 32);
+                        this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.pictureBox1.Name = "pictureBox1";
+                        this.pictureBox1.Size = new System.Drawing.Size(33, 33);
+                        this.pictureBox1.TabIndex = 12;
+                        this.pictureBox1.TabStop = false;
+                        // 
                         // ExcepcionControlada
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(634, 222);
                         this.ControlBox = false;
+                        this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.BotonAmpliar);
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.BotonCerrar);
                         this.Controls.Add(this.EtiquetaDescripcion);
                         this.Controls.Add(this.EtiquetaTitulo);
-                        this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.EtiquetaMasInformacion);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -183,9 +183,9 @@ namespace Lazaro.Errores
                 public System.Windows.Forms.Button BotonCerrar;
                 public System.Windows.Forms.Label EtiquetaDescripcion;
                 private System.Windows.Forms.Label EtiquetaTitulo;
-                private System.Windows.Forms.PictureBox pictureBox1;
                 public System.Windows.Forms.Label EtiquetaMasInformacion;
                 public System.Windows.Forms.Label label1;
                 public System.Windows.Forms.Button BotonAmpliar;
+                private System.Windows.Forms.PictureBox pictureBox1;
         }
 }

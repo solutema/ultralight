@@ -56,7 +56,7 @@ namespace Lfx.Data
 
                 public Connection(Lfx.Workspace workspace, string ownerName)
                 {
-                        this.RequiresTransaction = Lfx.Environment.SystemInformation.DesignMode;
+                        this.RequiresTransaction = true;
                         this.Workspace = workspace;
                         this.Workspace.ActiveConnections.Add(this);
                         this.Handle = LastHandle++;
@@ -879,7 +879,7 @@ LEFT JOIN pg_attribute
                                         if (DbConnection.State == System.Data.ConnectionState.Open)
                                                 DbConnection.Close();
                                 } catch {
-                                        if (Lfx.Environment.SystemInformation.DesignMode)
+                                        if (Lfx.Workspace.Master.DebugMode)
                                                 throw;
                                 }
                                 m_Closing = false;
@@ -970,7 +970,7 @@ LEFT JOIN pg_attribute
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
 
                         // TODO: esto debería hacerlo no sólo en DesignMode
-                        if (this.RequiresTransaction && m_InTransaction == false && Lfx.Environment.SystemInformation.DesignMode)
+                        if (this.RequiresTransaction && m_InTransaction == false && Lfx.Workspace.Master.DebugMode)
                                 throw new InvalidOperationException("No se permite la ejecución de comandos fuera de una transacción en la conexión " + this.Name);
 
                         sqlCommand = sqlCommand.Trim(new char[] { ' ', (char)13, (char)10, (char)9 });
@@ -987,7 +987,7 @@ LEFT JOIN pg_attribute
 
                         if (sqlCommand is qGen.Update || sqlCommand is qGen.Insert || sqlCommand is qGen.Delete) {
                                 // TODO: esto debería hacerlo no sólo en DesignMode
-                                if (this.RequiresTransaction && this.m_InTransaction == false && Lfx.Environment.SystemInformation.DesignMode)
+                                if (this.RequiresTransaction && this.m_InTransaction == false && Lfx.Workspace.Master.DebugMode)
                                         throw new InvalidOperationException("No se permite la ejecución de comandos fuera de una transacción en la conexión " + this.Name);
                         }
                         sqlCommand.SqlMode = this.SqlMode;
@@ -1325,7 +1325,7 @@ LEFT JOIN pg_attribute
 
                 public System.Data.IDbTransaction BeginTransaction(System.Data.IsolationLevel il)
                 {
-                        if (this.Handle == 0 && Lfx.Environment.SystemInformation.DesignMode)
+                        if (this.Handle == 0 && Lfx.Workspace.Master.DebugMode)
                                 throw new InvalidOperationException("No se pueden realizar transacciones en el espacio de trabajo maestro");
 
                         if (this.ReadOnly)

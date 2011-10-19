@@ -52,7 +52,7 @@ namespace Lazaro.Principal
 
                         ShowProgress = new Lfx.Types.ShowProgressDelegate(ShowProgressRoutine);
 
-                        if (Lfx.Environment.SystemInformation.DesignMode) {
+                        if (Lfx.Workspace.Master.DebugMode) {
                                 PanelDebug.Visible = true;
                                 TimerProgramador.Interval = 1000;
                         }
@@ -108,7 +108,7 @@ namespace Lazaro.Principal
                         }
                         MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para activar el menú.");
 
-                        if (Lfx.Environment.SystemInformation.DesignMode)
+                        if (Lfx.Workspace.Master.DebugMode)
                                 this.Text += " - Versión " + Aplicacion.Version();
                 }
 
@@ -145,7 +145,7 @@ namespace Lazaro.Principal
                                         new System.Threading.Thread(ParamInicio).Start();
                                 }
 
-                                if (YaSubiEstadisticas == false && Lfx.Environment.SystemInformation.DesignMode == false) {
+                                if (YaSubiEstadisticas == false && Lfx.Workspace.Master.DebugMode == false) {
                                         YaSubiEstadisticas = true;
                                         System.Threading.ThreadStart ParamInicio = delegate { Aplicacion.EnviarEstadisticas(); };
                                         new System.Threading.Thread(ParamInicio).Start();
@@ -348,7 +348,7 @@ namespace Lazaro.Principal
                                                 MenuItem Itm = new MenuItem(MenuItem.Name, new System.EventHandler(MnuClick));
                                                 ItmInfo = new MenuItemInfo();
                                                 ItmInfo.Item = Itm;
-                                                ItmInfo.Funcion = "RUNCOMPONENT " + CompInfo.EspacioNombres + " " + MenuItem.Function;
+                                                ItmInfo.Funcion = MenuItem.Function;
                                                 ItmInfo.ParentText = "Menu." + MenuItem.Parent.QuitarAcentos();
                                                 ItmInfo.Text = MenuItem.Name.QuitarAcentos();
                                                 AgregarAlMenu(ColgarDe, Itm, ItmInfo);

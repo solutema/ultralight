@@ -95,8 +95,11 @@ namespace Lazaro.Misc
                 {
                         TimerBuscarActualizaciones.Stop();
 
-                        if (Lfx.Updates.Updater.Master == null)
+                        if (Lfx.Updates.Updater.Master == null) {
+                                if (Lfx.Workspace.Master.DebugMode)
+                                        EtiquetaActualizar.Text = "Modo de depuración activado.";
                                 return;
+                        }
 
                         if (YaBusqueActualizaciones == false) {
                                 YaBusqueActualizaciones = true;

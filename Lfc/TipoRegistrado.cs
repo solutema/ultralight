@@ -49,5 +49,10 @@ namespace Lfc
                         this.Listado = listado;
                         this.Editor = editor;
                 }
+
+                public override string ToString()
+                {
+                        return this.LblType.ToString();
+                }
         }
 }

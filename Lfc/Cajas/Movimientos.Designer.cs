@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Lfc.Cajas
 {
-        public partial class Inicio
+        public partial class Movimientos
         {
                 #region Código generado por el Diseñador de Windows Forms
 

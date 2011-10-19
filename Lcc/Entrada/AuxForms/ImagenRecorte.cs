@@ -68,10 +68,10 @@ namespace Lcc.Entrada.AuxForms
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
-                                if (components != null) {
+                                if (components != null)
                                         components.Dispose();
-                                }
-                                SelectionBrush.Dispose();
+                                if (SelectionBrush != null)
+                                        SelectionBrush.Dispose();
                         }
                         base.Dispose(disposing);
                 }

@@ -80,7 +80,7 @@ namespace Lcc.Entrada
                                         Lui.Forms.ComboBox EntradaSet = new Lui.Forms.ComboBox();
                                         EntradaSet.SetData = FiltroSet.SetData;
                                         EntradaSet.TextKey = FiltroSet.CurrentValue;
-                                        EntradaSet.AlwaysExpanded = EntradaSet.SetData != null && EntradaSet.SetData.Length <= 4;
+                                        EntradaSet.AlwaysExpanded = false; // EntradaSet.SetData != null && EntradaSet.SetData.Length <= 4;
                                         EntradaSet.AutoSize = !EntradaSet.AlwaysExpanded;
                                         Entrada = EntradaSet;
                                 } else if (Filtro is Lfx.Data.Filters.DateRangeFilter) {

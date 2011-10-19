@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Ernesto N. Carrea
+// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,30 +31,31 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Diagnostics;
+using System.Windows.Forms;
 
-namespace Lfx.Updates
+namespace Lfc.Articulos.Margenes
 {
-        public class FileCollection : List<File>
-        {
-                public File this[string fileName]
-                {
-                        get
+	public class Inicio : Lfc.FormularioListado
+	{
+		public Inicio()
+		{
+                        this.Definicion = new Lfx.Data.Listing()
                         {
-                                foreach (File Fil in this) {
-                                        if (string.Compare(Fil.Name, fileName, true) == 0)
-                                                return Fil;
-                                }
-                                throw new IndexOutOfRangeException();
-                        }
-                }
+                                ElementoTipo = typeof(Lbl.Articulos.Margen),
 
-                public bool ContainsKey(string fileName)
-                {
-                        foreach (File Fil in this) {
-                                if (string.Compare(Fil.Name, fileName, true) == 0)
-                                        return true;
-                        }
-                        return false;
-                }
-        }
+                                TableName = "margenes",
+                                OrderBy = "nombre",
+                                KeyColumnName = new Lfx.Data.FormField("id_margen", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lfx.Data.FormFieldCollection()
+			        {
+				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),
+                                        new Lfx.Data.FormField("porcentaje", "Porcentaje", Lfx.Data.InputFieldTypes.Numeric, 120),
+                                        new Lfx.Data.FormField("predet", "Predeterminado", Lfx.Data.InputFieldTypes.Bool, 120)
+			        }
+                        };
+		}
+	}
 }

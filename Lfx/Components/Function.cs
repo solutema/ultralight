@@ -43,7 +43,7 @@ namespace Lfx.Components
 		public string ExecutableName = null;
 		public string[] CommandLineArgs = null;
                 public Lfx.Components.FunctionTypes FunctionType = FunctionTypes.MdiChildren;
-                public IRegisteredType RegisteredType;
+                //public IRegisteredType RegisteredType;
 
 		public Function()
 		{

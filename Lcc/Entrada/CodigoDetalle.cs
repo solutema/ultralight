@@ -330,25 +330,28 @@ namespace Lcc.Entrada
 
                 private void MostrarBuscador(string valorIncial)
                 {
-                        if (Statics.DetailBoxQuickSelect == null)
-                                Statics.DetailBoxQuickSelect = new AuxForms.DetailBoxQuickSelect();
+                        using (Statics.DetailBoxQuickSelect = new AuxForms.DetailBoxQuickSelect()) {
 
-                        Statics.DetailBoxQuickSelect.Owner = this.ParentForm;
-                        Statics.DetailBoxQuickSelect.Table = this.Relation.ReferenceTable;
-                        Statics.DetailBoxQuickSelect.CanCreate = m_CanCreate;
-                        Statics.DetailBoxQuickSelect.DetailField = this.Relation.DetailColumn;
-                        Statics.DetailBoxQuickSelect.KeyField = this.Relation.ReferenceColumn;
-                        Statics.DetailBoxQuickSelect.Filter = m_Filter;
-                        Statics.DetailBoxQuickSelect.ExtraDetailFields = m_ExtraDetailFields;
-                        Statics.DetailBoxQuickSelect.ControlDestino = TextBox1;
-                        Statics.DetailBoxQuickSelect.Top = System.Convert.ToInt32((this.DisplayRectangle.Top + this.DisplayRectangle.Height / 2) - (Statics.DetailBoxQuickSelect.Height / 2));
-                        Statics.DetailBoxQuickSelect.Left = System.Convert.ToInt32((this.DisplayRectangle.Left + this.DisplayRectangle.Width / 2) - (Statics.DetailBoxQuickSelect.Width / 2));
-                        Statics.DetailBoxQuickSelect.Buscar(valorIncial);
-                        if (Statics.DetailBoxQuickSelect.DialogResult != DialogResult.Retry) {
-                                if (TextBox1.Text.Length > 0)
-                                        System.Windows.Forms.SendKeys.Send(m_TeclaDespuesDeEnter);
+                                Statics.DetailBoxQuickSelect.Owner = this.ParentForm;
+                                Statics.DetailBoxQuickSelect.ElementoTipo = this.ElementoTipo;
+                                Statics.DetailBoxQuickSelect.Table = this.Relation.ReferenceTable;
+                                Statics.DetailBoxQuickSelect.CanCreate = this.CanCreate;
+                                Statics.DetailBoxQuickSelect.DetailField = this.Relation.DetailColumn;
+                                Statics.DetailBoxQuickSelect.KeyField = this.Relation.ReferenceColumn;
+                                Statics.DetailBoxQuickSelect.Filter = m_Filter;
+                                Statics.DetailBoxQuickSelect.ExtraDetailFields = m_ExtraDetailFields;
+                                Statics.DetailBoxQuickSelect.ControlDestino = this;
+                                Statics.DetailBoxQuickSelect.Top = System.Convert.ToInt32((this.DisplayRectangle.Top + this.DisplayRectangle.Height / 2) - (Statics.DetailBoxQuickSelect.Height / 2));
+                                Statics.DetailBoxQuickSelect.Left = System.Convert.ToInt32((this.DisplayRectangle.Left + this.DisplayRectangle.Width / 2) - (Statics.DetailBoxQuickSelect.Width / 2));
+                                Statics.DetailBoxQuickSelect.Buscar(valorIncial);
+                                if (Statics.DetailBoxQuickSelect.DialogResult != DialogResult.Retry) {
+                                        if (TextBox1.Text.Length > 0)
+                                                System.Windows.Forms.SendKeys.Send(m_TeclaDespuesDeEnter);
+                                }
+
+                                Statics.DetailBoxQuickSelect.Dispose();
+                                Statics.DetailBoxQuickSelect = null;
                         }
-                        Statics.DetailBoxQuickSelect = null;
                 }
 
 

@@ -31,30 +31,20 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Lfx.Updates
+namespace Lfx.Components
 {
-        public class FileCollection : List<File>
+        public class RegisteredTypeCollection : List<IRegisteredType>
         {
-                public File this[string fileName]
+                public IRegisteredType GetByLblType(Type tipo)
                 {
-                        get
-                        {
-                                foreach (File Fil in this) {
-                                        if (string.Compare(Fil.Name, fileName, true) == 0)
-                                                return Fil;
-                                }
-                                throw new IndexOutOfRangeException();
+                        foreach (IRegisteredType ti in this) {
+                                if (ti.LblType == tipo)
+                                        return ti;
                         }
-                }
-
-                public bool ContainsKey(string fileName)
-                {
-                        foreach (File Fil in this) {
-                                if (string.Compare(Fil.Name, fileName, true) == 0)
-                                        return true;
-                        }
-                        return false;
+                        return null;
                 }
         }
 }

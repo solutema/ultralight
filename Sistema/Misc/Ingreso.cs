@@ -61,7 +61,7 @@ namespace Lazaro.Misc
 
 		private void BotonAceptar_Click(object sender, System.EventArgs e)
 		{
-                        if (EntradaUsuario.TextInt == 1 && Lfx.Environment.SystemInformation.DesignMode == false) {
+                        if (EntradaUsuario.TextInt == 1 && Lfx.Workspace.Master.DebugMode == false) {
                                 string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 bool Puede = false;
                                 if (EstacionesAdministrador.Length == 0) {

@@ -9,14 +9,19 @@
             Enumera los tipos de componentes.
             </summary>
         </member>
-        <member name="T:Lfx.Components.TryFunction">
+        <member name="T:Lfx.Components.GetTypesFunction">
             <summary>
-            Esta función debe ser implementada por todos los componentes, y se utiliza para decidir si el componente se carga o no al inicio de la aplicación.
+            Esta función debe ser implementada por todos los componentes, y se utiliza para obtener una lista de los tipos que registra el componente.
             </summary>
         </member>
         <member name="T:Lfx.Components.Function">
             <summary>
             Esqueleto del componente.
+            </summary>
+        </member>
+        <member name="T:Lfx.Components.TryFunction">
+            <summary>
+            Esta función debe ser implementada por todos los componentes, y se utiliza para decidir si el componente se carga o no al inicio de la aplicación.
             </summary>
         </member>
         <member name="P:Lfx.Data.Filters.Filter.Value">

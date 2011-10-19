@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Ernesto N. Carrea
+// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,31 +30,40 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 
-namespace Lfx.Updates
+namespace Lfc.Articulos.Situaciones
 {
-        public class FileCollection : List<File>
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
-                public File this[string fileName]
+                public Editar()
                 {
-                        get
-                        {
-                                foreach (File Fil in this) {
-                                        if (string.Compare(Fil.Name, fileName, true) == 0)
-                                                return Fil;
-                                }
-                                throw new IndexOutOfRangeException();
-                        }
+                        ElementoTipo = typeof(Lbl.Articulos.Situacion);
+
+                        InitializeComponent();
                 }
 
-                public bool ContainsKey(string fileName)
+                public override void ActualizarControl()
                 {
-                        foreach (File Fil in this) {
-                                if (string.Compare(Fil.Name, fileName, true) == 0)
-                                        return true;
-                        }
-                        return false;
+                        Lbl.Articulos.Situacion Item = this.Elemento as Lbl.Articulos.Situacion;
+
+                        EntradaNombre.Text = Item.Nombre;
+                        EntradaCuentaStock.TextKey = Item.CuentaStock ? "1" : "0";
+                        EntradaCuentaStock.TextKey = Item.CuentaStock ? "1" : "0";
+                        EntradaDeposito.ValueInt = Item.Deposito;
+
+                        base.ActualizarControl();
+                }
+
+                public override void ActualizarElemento()
+                {
+                        Lbl.Articulos.Situacion Item = this.Elemento as Lbl.Articulos.Situacion;
+
+                        Item.Nombre = EntradaNombre.Text;
+                        Item.CuentaStock = EntradaCuentaStock.TextKey == "1";
+                        Item.CuentaStock = EntradaCuentaStock.TextKey == "1";
+                        Item.Deposito = EntradaDeposito.ValueInt;
+
+                        base.ActualizarElemento();
                 }
         }
 }

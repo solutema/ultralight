@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Ernesto N. Carrea
+// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,31 +30,38 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 
-namespace Lfx.Updates
+namespace Lfc.Articulos.Margenes
 {
-        public class FileCollection : List<File>
+        public partial class Editar : Lcc.Edicion.ControlEdicion
         {
-                public File this[string fileName]
+                public Editar()
                 {
-                        get
-                        {
-                                foreach (File Fil in this) {
-                                        if (string.Compare(Fil.Name, fileName, true) == 0)
-                                                return Fil;
-                                }
-                                throw new IndexOutOfRangeException();
-                        }
+                        ElementoTipo = typeof(Lbl.Articulos.Margen);
+
+                        InitializeComponent();
                 }
 
-                public bool ContainsKey(string fileName)
+                public override void ActualizarControl()
                 {
-                        foreach (File Fil in this) {
-                                if (string.Compare(Fil.Name, fileName, true) == 0)
-                                        return true;
-                        }
-                        return false;
+                        Lbl.Articulos.Margen Item = this.Elemento as Lbl.Articulos.Margen;
+
+                        EntradaNombre.Text = Item.Nombre;
+                        EntradaPorcentaje.ValueDecimal = Item.Porcentaje;
+                        EntradaPredet.TextKey = Item.Predeterminado ? "1" : "0";
+
+                        base.ActualizarControl();
+                }
+
+                public override void ActualizarElemento()
+                {
+                        Lbl.Articulos.Margen Item = this.Elemento as Lbl.Articulos.Margen;
+
+                        Item.Nombre = EntradaNombre.Text;
+                        Item.Porcentaje = EntradaPorcentaje.ValueDecimal;
+                        Item.Predeterminado = EntradaPredet.TextKey == "1";
+
+                        base.ActualizarElemento();
                 }
         }
 }

@@ -52,7 +52,9 @@ namespace Lfx.Updates
                 internal void DownloadUpdatesInformation()
                 {
                         this.Updater.Progress.ChangeStatus("Descargando información de versiones de " + this.Name);
-                        this.Files = new FileCollection();
+
+                        if (this.Files == null)
+                                this.Files = new FileCollection();
 
                         try {
                                 using (WebClient Cliente = new WebClient()) {
@@ -71,8 +73,17 @@ namespace Lfx.Updates
                                                 foreach (System.Xml.XmlNode FileVers in Comp.ChildNodes) {
                                                         if (FileVers.Name == "File") {
                                                                 if (FileVers.Attributes["name"] != null && FileVers.Attributes["name"].Value != null) {
-                                                                        File FileVersionInfo = new File(this);
-                                                                        FileVersionInfo.Name = FileVers.Attributes["name"].Value;
+                                                                        File FileVersionInfo;
+                                                                        string FileName = FileVers.Attributes["name"].Value;
+                                                                        if (this.Files.ContainsKey(FileName)) {
+                                                                                // Ya existe en la lista de archivos
+                                                                                FileVersionInfo = this.Files[FileName];
+                                                                        } else {
+                                                                                // Lo agrego
+                                                                                FileVersionInfo = new File(this);
+                                                                                this.Files.Add(FileVersionInfo);
+                                                                        }
+                                                                        FileVersionInfo.Name = FileName;
                                                                         DateTime Fecha;
                                                                         try {
                                                                                 DateTime.TryParseExact(FileVers.Attributes["version"].Value, Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out Fecha);
@@ -100,7 +111,6 @@ namespace Lfx.Updates
                                                                                 FileVersionInfo.NewSize = int.Parse(FileVers.Attributes["size"].Value);
                                                                         if (FileVers.Attributes["compsize"] != null && FileVers.Attributes["compsize"].Value != null)
                                                                                 FileVersionInfo.NewCompSize = int.Parse(FileVers.Attributes["compsize"].Value);
-                                                                        this.Files.Add(FileVersionInfo);
                                                                 }
                                                         }
                                                 }

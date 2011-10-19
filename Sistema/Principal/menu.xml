@@ -14,8 +14,6 @@
       <Opcion Nombre="Artículos Pedidos" Funcion="LISTADO ARTICULOS PEDIDOS" />
     </Opcion>
     <Opcion Nombre="-" Funcion="" />
-    <Opcion Nombre="&amp;Ticker" Funcion="TICKER MOSTRADOR" />
-    <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="&amp;Rubros" Funcion="LISTADO Lbl.Articulos.Rubro" />
       <Opcion Nombre="&amp;Categorías" Funcion="LISTADO Lbl.Articulos.Categoria" />

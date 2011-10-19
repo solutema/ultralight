@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes
 {
-        public partial class FormComprobantesListado : Lfc.FormularioListadoTexto
+        public partial class Listado : Lfc.FormularioListadoTexto
         {
                 internal string m_Tipo = "F", m_Letra = "*";
                 internal Lfx.Types.DateRange m_Fechas = null;
@@ -48,7 +48,7 @@ namespace Lfc.Comprobantes
                 internal string m_Agrupar = "";
                 internal Lfx.FileFormats.Office.Spreadsheet.Sheet ReportSheet;
 
-                public FormComprobantesListado()
+                public Listado()
                 {
                         InitializeComponent();
                 }

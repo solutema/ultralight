@@ -83,7 +83,9 @@ namespace Lfx.Environment
                                 Res = Res.Replace("Microsoft Windows NT 6.0.6000", "Windows Vista");
                                 Res = Res.Replace("Microsoft Windows NT 6.0.6001", "Windows Vista");
                                 Res = Res.Replace("Microsoft Windows NT 6.0.6002", "Windows Vista");
+                                Res = Res.Replace("Microsoft Windows NT 6.1.7600", "Windows 7");
                                 Res = Res.Replace("Microsoft Windows NT 6.1.7601", "Windows 7");
+                                Res = Res.Replace("Microsoft Windows NT 6.1.7602", "Windows 7");
                                 Res = Res.Replace("Microsoft Windows NT 6.2", "Windows 8");
                                 return Res;
                         }

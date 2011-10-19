@@ -94,27 +94,28 @@ namespace Lcc.Entrada
                 private void BotonSeleccionarImagen_Click(object sender, EventArgs e)
                 {
                         if (this.Elemento != null) {
-                                System.Windows.Forms.OpenFileDialog Abrir = new System.Windows.Forms.OpenFileDialog();
-                                Abrir.Filter = "Archivos JPEG|*.jpg";
-                                Abrir.Multiselect = false;
-                                Abrir.ValidateNames = true;
+                                using (System.Windows.Forms.OpenFileDialog Abrir = new System.Windows.Forms.OpenFileDialog()) {
+                                        Abrir.Filter = "Archivos JPEG|*.jpg";
+                                        Abrir.Multiselect = false;
+                                        Abrir.ValidateNames = true;
 
-                                if (Abrir.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                                        EntradaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+                                        if (Abrir.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                                                EntradaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 
-                                        using (Lcc.Entrada.AuxForms.ImagenRecorte Recorte = new AuxForms.ImagenRecorte()) {
-                                                if (Arch != null)
-                                                        Arch.Close();
+                                                using (Lcc.Entrada.AuxForms.ImagenRecorte Recorte = new AuxForms.ImagenRecorte()) {
+                                                        if (Arch != null)
+                                                                Arch.Close();
 
-                                                Arch = new System.IO.FileStream(Abrir.FileName, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read);
-                                                Recorte.Imagen = System.Drawing.Image.FromStream(Arch);
-                                                if (Recorte.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                                                        EntradaImagen.Image = Recorte.Imagen;
-                                                        this.Changed = true;
+                                                        Arch = new System.IO.FileStream(Abrir.FileName, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read);
+                                                        Recorte.Imagen = System.Drawing.Image.FromStream(Arch);
+                                                        if (Recorte.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                                                                EntradaImagen.Image = Recorte.Imagen;
+                                                                this.Changed = true;
+                                                        }
+
+                                                        // No puedo cerrar el archivo ahora... lo hago en Dispose()
+                                                        //Arch.Close();
                                                 }
-                                                
-                                                // No puedo cerrar el archivo ahora... lo hago en Dispose()
-                                                //Arch.Close();
                                         }
                                 }
                         }

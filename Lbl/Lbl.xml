@@ -408,6 +408,21 @@
             Describe una instancia de un permiso en particular.
             </summary>
         </member>
+        <member name="P:Lbl.Articulos.Situacion.CuentaStock">
+            <summary>
+            Indica si los artículos en esta situación suman al stock.
+            </summary>
+        </member>
+        <member name="P:Lbl.Articulos.Situacion.Facturable">
+            <summary>
+            Indica si los artículos en esta situación pueden ser facturados.
+            </summary>
+        </member>
+        <member name="P:Lbl.Articulos.Situacion.Deposito">
+            <summary>
+            Indica -si esta situación es un depósito- el número de depósito. Si es 0, no es un depósito.
+            </summary>
+        </member>
         <member name="T:Lbl.Entidades.Moneda">
             <summary>
             Representa una moneda (divisa).

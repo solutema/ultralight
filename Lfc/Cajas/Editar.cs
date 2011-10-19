@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lfc.Cajas.Admin
+namespace Lfc.Cajas
 {
 	public partial class Editar : Lcc.Edicion.ControlEdicion
 	{

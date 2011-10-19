@@ -437,6 +437,7 @@ namespace Lfc
                                 Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
                                 FormNuevo.DisposeConnection = true;
                                 FormNuevo.MdiParent = this.MdiParent;
+                                FormNuevo.FromRow(Elem);
                                 FormNuevo.Show();
 
                                 return new Lfx.Types.SuccessOperationResult();
@@ -470,6 +471,10 @@ namespace Lfc
                                 NuevoOrden = Listado.Columns[e.Column].Name;
 
                         if (NuevoOrden != null) {
+                                // quito la cláusula AS
+                                if (NuevoOrden.IndexOf(" AS ") > 0)
+                                        NuevoOrden = NuevoOrden.Substring(0, NuevoOrden.IndexOf(" AS ")).Trim();
+
                                 if (this.Definicion.OrderBy == NuevoOrden)
                                         this.Definicion.OrderBy = NuevoOrden + " DESC";
                                 else if (this.Definicion.OrderBy == NuevoOrden + " DESC")

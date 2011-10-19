@@ -107,7 +107,7 @@ namespace Lfx.Updates
                         if (System.IO.File.Exists(TempFileName))
                                 TempVersion = System.IO.File.GetLastWriteTime(TempFileName);
                         
-                        if (System.IO.File.Exists(FileName)) 
+                        if (System.IO.File.Exists(FileName))
                                 CurrentVersion = System.IO.File.GetLastWriteTime(FileName);
 
                         Res = CurrentVersion;
@@ -182,7 +182,6 @@ namespace Lfx.Updates
                                         break;
                         }
 
-                        System.IO.File.SetCreationTime(NewFileName, this.NewVersion);
                         System.IO.File.SetLastWriteTime(NewFileName, this.NewVersion);
 
                         this.FileContents = null;

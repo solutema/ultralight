@@ -62,13 +62,54 @@ namespace Lbl.Articulos
 			}
 		}
 
+
+                /// <summary>
+                /// Indica si los artículos en esta situación suman al stock.
+                /// </summary>
 		public bool CuentaStock
 		{
 			get
 			{
-				return System.Convert.ToBoolean(Registro["cuenta_stock"]);
+				return this.GetFieldValue<bool>("cuenta_stock");
 			}
+                        set
+                        {
+                                this.SetFieldValue("cuenta_stock", value ? 1 : 0);
+                        }
 		}
+
+
+                /// <summary>
+                /// Indica si los artículos en esta situación pueden ser facturados.
+                /// </summary>
+                public bool Facturable
+                {
+                        get
+                        {
+                                return this.GetFieldValue<bool>("facturable");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("facturable", value ? 1 : 0);
+                        }
+                }
+
+
+                /// <summary>
+                /// Indica -si esta situación es un depósito- el número de depósito. Si es 0, no es un depósito.
+                /// </summary>
+                public int Deposito
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("deposito");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("deposito", value);
+                        }
+                }
+
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
@@ -79,12 +120,15 @@ namespace Lbl.Articulos
 					Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
 				} else {
 					Comando = new qGen.Insert(this.Connection, this.TablaDatos);
-				}
+                                        Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                                }
 
                                 Comando.Fields.AddWithValue("nombre", this.Registro["nombre"].ToString());
                                 Comando.Fields.AddWithValue("cuenta_stock", this.CuentaStock ? 1 : 0);
-                                Comando.Fields.AddWithValue("deposito", System.Convert.ToInt32(this.Registro["deposito"]));
-                                Comando.Fields.AddWithValue("facturable", System.Convert.ToInt32(this.Registro["facturable"]));
+                                Comando.Fields.AddWithValue("deposito", this.Deposito);
+                                Comando.Fields.AddWithValue("facturable", this.Facturable ? 1 : 0);
+                                Comando.Fields.AddWithValue("estado", this.Estado);
+                                Comando.Fields.AddWithValue("obs", this.Obs);
 				
 				this.AgregarTags(Comando);
 

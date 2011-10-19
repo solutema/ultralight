@@ -29,6 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -44,7 +45,9 @@ namespace Lcc.Entrada.AuxForms
                 private string m_Filter = "";
                 private bool m_Changed = false;
                 private bool f_IgnoreEvents;
-                public System.Windows.Forms.Control ControlDestino;
+
+                public System.Windows.Forms.Control ControlDestino { get; set; }
+                public Type ElementoTipo { get; set; }
 
                 public DetailBoxQuickSelect()
                 {
@@ -423,7 +426,14 @@ namespace Lcc.Entrada.AuxForms
                 private void BotonNuevo_Click(object sender, System.EventArgs e)
                 {
                         this.Hide();
-                        object Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { m_Table });
+                        object Resultado = null;
+
+                        if (this.ElementoTipo != null)
+                                Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { ElementoTipo.ToString() });
+
+                        if (Resultado == null)
+                                Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { m_Table });
+                        
                         if (Resultado == null) {
                                 // No se puede crear
                                 this.Show();

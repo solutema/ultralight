@@ -34,15 +34,28 @@ using System.Collections.Generic;
 
 namespace Lfx.Components
 {
-        public class FunctionInfoCollection : Dictionary<IRegisteredType, FunctionInfo>
+        public class FunctionInfoCollection : List<FunctionInfo>
         {
-                public FunctionInfo GetByLblType(Type tipo)
+                public FunctionInfo this[string functionName]
                 {
-                        foreach (IRegisteredType ti in this.Keys) {
-                                if (ti.LblType == tipo)
-                                        return this[ti];
+                        get
+                        {
+                                foreach (FunctionInfo ti in this) {
+                                        if (ti.Nombre == functionName)
+                                                return ti;
+                                }
+                                return null;
                         }
-                        return null;
+                }
+
+
+                public bool ContainsKey(string functionName)
+                {
+                        foreach (FunctionInfo ti in this) {
+                                if (ti.Nombre == functionName)
+                                        return true;
+                        }
+                        return false;
                 }
         }
 }
