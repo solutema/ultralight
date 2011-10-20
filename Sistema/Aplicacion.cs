@@ -1485,13 +1485,13 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "Lbl.Tareas.Estado":
-                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Tareas.Estados.Iniciio");
+                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Tareas.Estados.Inicio");
                                         if (FormularioListado == null)
                                                 FormularioListado = new Lfc.Tareas.Estados.Inicio();
                                         break;
 
                                 case "Lbl.Tareas.Tipo":
-                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Tareas.Tipos.Iniciio");
+                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Tareas.Tipos.Inicio");
                                         if (FormularioListado == null)
                                                 FormularioListado = new Lfc.Tareas.Tipos.Inicio();
                                         break;
@@ -1505,12 +1505,17 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 default:
-                                        Type TipoListado = Lfc.Instanciador.InferirFormularioListado(SubComando);
-                                        if (TipoListado == null && Lfx.Workspace.Master.DebugMode)
-                                                throw new NotImplementedException(SubComando);
-                                        else
-                                                FormularioListado = Lfc.Instanciador.InstanciarFormularioListado(TipoListado);
-                                        break;
+                                        Type TipoLbl = Lbl.Instanciador.InferirTipo(SubComando);
+                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(TipoLbl, Lbl.Sys.Permisos.Operaciones.Listar)) {
+                                                Type TipoListado = Lfc.Instanciador.InferirFormularioListado(TipoLbl);
+                                                if (TipoListado == null && Lfx.Workspace.Master.DebugMode)
+                                                        throw new NotImplementedException("LISTADO " + SubComando);
+                                                else
+                                                        FormularioListado = Lfc.Instanciador.InstanciarFormularioListado(TipoListado);
+                                                break;
+                                        } else {
+                                                return new Lfx.Types.NoAccessOperationResult();
+                                        }
                         }
 
                         if (FormularioListado == null)

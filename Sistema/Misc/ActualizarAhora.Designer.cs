@@ -131,16 +131,16 @@ namespace Lazaro.Misc
                         // 
                         this.EtiquetaEstado.Location = new System.Drawing.Point(136, 148);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
-                        this.EtiquetaEstado.Size = new System.Drawing.Size(176, 20);
+                        this.EtiquetaEstado.Size = new System.Drawing.Size(380, 20);
                         this.EtiquetaEstado.TabIndex = 58;
                         this.EtiquetaEstado.Text = "Iniciando...";
                         this.EtiquetaEstado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EtiquetaProgreso
                         // 
-                        this.EtiquetaProgreso.Location = new System.Drawing.Point(560, 148);
+                        this.EtiquetaProgreso.Location = new System.Drawing.Point(520, 148);
                         this.EtiquetaProgreso.Name = "EtiquetaProgreso";
-                        this.EtiquetaProgreso.Size = new System.Drawing.Size(40, 20);
+                        this.EtiquetaProgreso.Size = new System.Drawing.Size(80, 20);
                         this.EtiquetaProgreso.TabIndex = 59;
                         this.EtiquetaProgreso.Text = "0%";
                         this.EtiquetaProgreso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
