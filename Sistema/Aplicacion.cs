@@ -268,7 +268,7 @@ namespace Lazaro
                                 }
                         }
 
-                        if (Lfx.Environment.SystemInformation.DesignMode == false == false) {
+                        if (Lfx.Environment.SystemInformation.DesignMode == false) {
                                 // Si es necesario, actualizo la estructura de la base de datos
                                 Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(false, false);
                         }
@@ -298,34 +298,36 @@ namespace Lazaro
 
                         Lfx.Components.Manager.RegisterComponent(CoreComp);
 
-                        Lbl.ColeccionGenerica<Lbl.Componentes.Componente> Comps = Lbl.Componentes.Componente.Todos();
-                        foreach (Lbl.Componentes.Componente Comp in Comps) {
-                                // Cargar todos los componentes en memoria
-                                Comp.UrlActualizaciones = Comp.UrlActualizaciones;
-                                try {
-                                        Lfx.Components.Manager.RegisterComponent(Comp);
-                                        if (Comp.Estructura != null) {
-                                                System.Xml.XmlDocument Doc = new System.Xml.XmlDocument();
-                                                Doc.LoadXml(Comp.Estructura);
-                                                Lfx.Workspace.Master.Structure.AddToBuiltIn(Doc);
-                                        }
-                                        if (Lfx.Environment.SystemInformation.DesignMode == false && Comp.ObtenerVersionActual() > Comp.Version) {
-                                                // Actualizo el CIF y la estrucutra en la BD
-                                                Comp.Version = Comp.ObtenerVersionActual();
-                                                Comp.Guardar();
-                                        }
+                        if (Lfx.Workspace.Master.MasterConnection.Tables.ContainsKey("sys_components")) {
+                                Lbl.ColeccionGenerica<Lbl.Componentes.Componente> Comps = Lbl.Componentes.Componente.Todos();
+                                foreach (Lbl.Componentes.Componente Comp in Comps) {
+                                        // Cargar todos los componentes en memoria
+                                        Comp.UrlActualizaciones = Comp.UrlActualizaciones;
+                                        try {
+                                                Lfx.Components.Manager.RegisterComponent(Comp);
+                                                if (Comp.Estructura != null) {
+                                                        System.Xml.XmlDocument Doc = new System.Xml.XmlDocument();
+                                                        Doc.LoadXml(Comp.Estructura);
+                                                        Lfx.Workspace.Master.Structure.AddToBuiltIn(Doc);
+                                                }
+                                                if (Lfx.Environment.SystemInformation.DesignMode == false && Comp.ObtenerVersionActual() > Comp.Version) {
+                                                        // Actualizo el CIF y la estrucutra en la BD
+                                                        Comp.Version = Comp.ObtenerVersionActual();
+                                                        Comp.Guardar();
+                                                }
 
-                                        Lfx.Updates.Package Pkg = new Lfx.Updates.Package();
-                                        Pkg.Name = Comp.EspacioNombres;
-                                        Pkg.RelativePath = "Components" + System.IO.Path.DirectorySeparatorChar + Comp.EspacioNombres + System.IO.Path.DirectorySeparatorChar;
-                                        Pkg.Url = Comp.UrlActualizaciones;
+                                                Lfx.Updates.Package Pkg = new Lfx.Updates.Package();
+                                                Pkg.Name = Comp.EspacioNombres;
+                                                Pkg.RelativePath = "Components" + System.IO.Path.DirectorySeparatorChar + Comp.EspacioNombres + System.IO.Path.DirectorySeparatorChar;
+                                                Pkg.Url = Comp.UrlActualizaciones;
 
-                                        if (Lfx.Updates.Updater.Master != null)
-                                                Lfx.Updates.Updater.Master.Packages.Add(Pkg);
-                                } catch (Exception ex) {
-                                        if (Lfx.Workspace.Master != null) {
-                                                Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componente " + Comp.Nombre + "." + ex.Message);
-                                                UnknownExceptionHandler(ex);
+                                                if (Lfx.Updates.Updater.Master != null)
+                                                        Lfx.Updates.Updater.Master.Packages.Add(Pkg);
+                                        } catch (Exception ex) {
+                                                if (Lfx.Workspace.Master != null) {
+                                                        Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componente " + Comp.Nombre + "." + ex.Message);
+                                                        UnknownExceptionHandler(ex);
+                                                }
                                         }
                                 }
                         }
@@ -790,8 +792,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         Lfx.Lic.Licenciar(@"..\..\Lui");
                                         Lfx.Lic.Licenciar(@"..\..\Lcc");
                                         Lfx.Lic.Licenciar(@"..\..\Lfc");
-                                        Lfx.Lic.Licenciar(@"..\..\Lazaro.Impresion");
-                                        Lfx.Lic.Licenciar(@"..\..\Cargador");
+                                        Lfx.Lic.Licenciar(@"..\..\Impresion");
+                                        Lfx.Lic.Licenciar(@"..\..\Forms");
+                                        Lfx.Lic.Licenciar(@"..\..\Actualizador");
                                         break;
 
                                 case "HISTORIAL":
