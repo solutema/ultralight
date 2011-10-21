@@ -71,6 +71,12 @@ namespace Lazaro.Misc
 
 		private void BotonActualizar_LinkClicked(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
 		{
+                        this.AplicarActualizacion();
+		}
+
+
+                private void AplicarActualizacion()
+                {
                         this.Close();
                         if (Lfx.Updates.Updater.Master != null && Lfx.Updates.Updater.Master.UpdatesPending()) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Se descargó una nueva versión de Lázaro. Debe reiniciar la aplicación para instalar la actualización.", "¿Desea reiniciar ahora?");
@@ -79,7 +85,7 @@ namespace Lazaro.Misc
                                 if (Respuesta == DialogResult.OK)
                                         Aplicacion.Exec("REBOOT");
                         }
-		}
+                }
 
 		private void OkButton_Click(object sender, System.EventArgs e)
 		{
@@ -120,6 +126,11 @@ namespace Lazaro.Misc
                         }
 
                         TimerBuscarActualizaciones.Start();
+                }
+
+                private void EtiquetaActualizar_Click(object sender, EventArgs e)
+                {
+                        this.AplicarActualizacion();
                 }
 	}
 }

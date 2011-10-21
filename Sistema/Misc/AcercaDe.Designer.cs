@@ -89,6 +89,7 @@ namespace Lazaro.Misc
                         this.EtiquetaActualizar.Text = "Buscar actualizaciones ahora";
                         this.EtiquetaActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.EtiquetaActualizar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonActualizar_LinkClicked);
+                        this.EtiquetaActualizar.Click += new System.EventHandler(this.EtiquetaActualizar_Click);
                         // 
                         // Label5
                         // 
