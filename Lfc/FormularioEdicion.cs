@@ -141,7 +141,7 @@ namespace Lfc
 
                         bool WasNew = !this.Elemento.Existe;
                         this.Elemento = this.ToRow();
-                        if (this.GetControlsChanged(this.Controls, false) || this.Elemento.Modificado) {
+                        if (this.GetControlsChanged(this.Controls) || this.Elemento.Modificado) {
                                 // Guardo sólo si hubo cambios
                                 IDbTransaction Trans = null;
                                 if (this.Elemento.Connection.InTransaction == false)
@@ -225,13 +225,17 @@ namespace Lfc
 
                 private void EditForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
                 {
-                        if (this.GetControlsChanged(this.Controls, true)) {
+                        if (this.GetControlsChanged(this.Controls)) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Si cierra el formulario en este momento, no se guardarán los cambios realizados (subrayados en color rojo). ¿Desea cerrar el formulario de todos modos y perder los cambios realizados?", "Hay cambios sin guardar");
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 
-                                if (Pregunta.ShowDialog() == DialogResult.Cancel) {
+                                this.ShowChanged = true;
+                                DialogResult Res = Pregunta.ShowDialog();
+                                this.ShowChanged = false;
+
+                                if (Res == DialogResult.Cancel) {
                                         e.Cancel = true;
-                                        this.GetControlsChanged(this.Controls, false);
+                                        this.GetControlsChanged(this.Controls);
                                 } else {
                                         e.Cancel = false;
                                 }

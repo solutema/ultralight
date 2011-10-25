@@ -250,7 +250,7 @@ namespace Lfx
                                 int VersionActual = this.CurrentConfig.ReadGlobalSetting<int>("Sistema", "DB.Version", 0);
 
                                 if (VersionUltima < VersionActual) {
-                                        this.RunTime.Message("Es necesario actualizar Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.");
+                                        this.RunTime.Toast("Es necesario actualizar Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.", "Aviso");
                                         return;
                                 }
 

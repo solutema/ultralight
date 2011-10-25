@@ -1200,7 +1200,7 @@ namespace Lazaro.Reportes
 
                 private void EntradaFacturacion_GotFocus(object sender, System.EventArgs e)
                 {
-                        EntradaFacturacion.ShowBalloon(System.Convert.ToString(EntradaFacturacion.Tag));
+                        // TODO: EntradaFacturacion.ShowBalloon(System.Convert.ToString(EntradaFacturacion.Tag));
                 }
 
 

@@ -53,21 +53,6 @@ namespace Lui.Forms
 			InitializeComponent();
 		}
 
-		/* private void SetControlsFont(System.Windows.Forms.Control.ControlCollection controles)
-		{
-			this.Font = Lfx.Config.Display.DefaultFont;
-			//Cambio la fuente de todos los controles en el formulario
-                        foreach (System.Windows.Forms.Control ctl in controles) {
-                                if (ctl == null) {
-                                        //Nada
-                                } else if (ctl is Lui.Forms.Frame || ctl is System.Windows.Forms.Panel) {
-                                        SetControlsFont(ctl.Controls);
-                                } else {
-                                        //Cambiar fuente
-                                        ctl.Font = Lfx.Config.Display.DefaultFont;
-                                }
-                        }
-		}*/
 
 		private void Form_Load(object sender, System.EventArgs e)
 		{
@@ -79,6 +64,7 @@ namespace Lui.Forms
                                 WorkspaceChangedHandler(this, null);
 		}
 
+
                 protected override void OnTextChanged(EventArgs e)
                 {
                         if (m_Connection != null && this.Text != "Form")
@@ -86,6 +72,7 @@ namespace Lui.Forms
 
                         base.OnTextChanged(e);
                 }
+
 
                 /// <summary>
                 /// IDataControl
@@ -143,6 +130,7 @@ namespace Lui.Forms
                         }
                 }
 
+
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -150,7 +138,7 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                return GetControlsChanged(this.Controls, false);
+                                return GetControlsChanged(this.Controls);
                         }
                         set
                         {
@@ -158,8 +146,39 @@ namespace Lui.Forms
                         }
                 }
 
+
+                public bool ShowChanged
+                {
+                        set
+                        {
+                                this.ShowControlsChanged(this.Controls, value);
+                        }
+                }
+
+
+                private void ShowControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                {
+                        if (controles == null)
+                                return;
+
+                        // Pongo los Changed en newValue
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is IEditableControl) {
+                                        ((IEditableControl)ctl).ShowChanged = newValue;
+                                } else if (ctl.Controls.Count > 0) {
+                                        ShowControlsChanged(ctl.Controls, newValue);
+                                }
+                        }  
+                }
+
+
                 protected void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
                 {
+                        if (controles == null)
+                                return;
+
                         // Pongo los Changed en newValue
                         foreach (System.Windows.Forms.Control ctl in controles) {
                                 if (ctl == null) {
@@ -174,7 +193,8 @@ namespace Lui.Forms
                         }
                 }
 
-                protected bool GetControlsChanged(System.Windows.Forms.Control.ControlCollection controls, bool showChanges)
+
+                protected bool GetControlsChanged(System.Windows.Forms.Control.ControlCollection controls)
                 {
                         bool Result = false;
                         // Ver si algo cambió
@@ -184,14 +204,13 @@ namespace Lui.Forms
                                 } else if (ctl is IEditableControl) {
                                         if (((IEditableControl)ctl).Changed) {
                                                 Result = true;
-                                                ((Lui.Forms.Control)ctl).ShowChanged = showChanges;
+                                                break;
                                         }
-                                } else if (ctl is IDataControl) {
-                                        if (((IDataControl)ctl).Changed)
-                                                Result = true;
                                 } else if (ctl.Controls.Count > 0) {
-                                        if (GetControlsChanged(ctl.Controls, showChanges))
+                                        if (GetControlsChanged(ctl.Controls)) {
                                                 Result = true;
+                                                break;
+                                        }
                                 }
                         }
                         return Result;

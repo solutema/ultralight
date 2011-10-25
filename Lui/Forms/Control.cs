@@ -49,10 +49,9 @@ namespace Lui.Forms
                 protected bool m_Changed, m_ReadOnly = false, m_TemporaryReadOnly = false, m_ShowChanged, m_AutoHeight = false;
 		protected int m_IgnoreChanges;
 		protected string m_ToolTipText = "";
-		protected System.Windows.Forms.ToolTip ToolTipBalloon;
 		protected string m_Error = "";
 
-                [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
+                [EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
                 new public event System.EventHandler TextChanged;
 
                 // IDataControl
@@ -85,8 +84,6 @@ namespace Lui.Forms
 			set
 			{
 				m_Error = value;
-				if (m_Error != null)
-					this.ShowBalloon(m_Error);
 				Invalidate();
 			}
 		}
@@ -252,32 +249,6 @@ namespace Lui.Forms
 		private void Control_Leave(object sender, System.EventArgs e)
 		{
 			this.Highlighted = false;
-                        if (ToolTipBalloon != null) {
-                                ToolTipBalloon.Dispose();
-                                ToolTipBalloon = null;
-                        }
-		}
-
-
-		public void ShowBalloon(string Texto)
-		{
-			ShowBalloon(Texto, "Información", 8);
-		}
-
-
-		public void ShowBalloon(string Texto, string Titulo, int Duracion)
-		{
-			if (this.Visible)
-			{
-				if (ToolTipBalloon == null)
-					ToolTipBalloon = new ToolTip();
-				ToolTipBalloon.ToolTipIcon = ToolTipIcon.Info;
-				ToolTipBalloon.ToolTipTitle = Titulo;
-				if(Duracion == 0)
-					Duracion = 5;
-				
-				ToolTipBalloon.Show(Texto, this, new Point(0, this.Height + 2), Duracion * 1000);
-			}
 		}
 
 
@@ -287,15 +258,37 @@ namespace Lui.Forms
 		}
 
 
-		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		[EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DefaultValue(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		virtual public bool ShowChanged
 		{
 			set
 			{
 				m_ShowChanged = value;
+                                this.ShowControlsChanged(this.Controls, value);
 				Invalidate();
 			}
 		}
+
+
+                private void ShowControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
+                {
+                        if (controles == null)
+                                return;
+
+                        // Pongo los Changed en newValue
+                        foreach (System.Windows.Forms.Control ctl in controles) {
+                                if (ctl == null) {
+                                        //Nada
+                                } else if (ctl is IEditableControl) {
+                                        ((IEditableControl)ctl).ShowChanged = newValue;
+                                } else if (ctl.Controls.Count > 0) {
+                                        ShowControlsChanged(ctl.Controls, newValue);
+                                }
+                        }
+                }
 
 
 		protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)

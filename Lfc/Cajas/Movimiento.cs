@@ -422,7 +422,7 @@ namespace Lfc.Cajas
                                         EntradaImporteDestino.Text = Lfx.Types.Formatting.FormatCurrency(EntradaImporte.ValueDecimal * System.Convert.ToDecimal(MonedaDestino["cotizacion"]) / System.Convert.ToDecimal(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales);
                                         EntradaImporteDestino.Visible = true;
                                         lblImporteDestino.Visible = true;
-                                        EntradaImporteDestino.ShowBalloon("Se realiza una conversin de moneda segn la cotización " + System.Convert.ToString(MonedaOrigen["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales) + " = " + System.Convert.ToString(MonedaDestino["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(MonedaDestino["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales));
+                                        // TODO: EntradaImporteDestino.ShowBalloon("Se realiza una conversión de moneda según la cotización " + System.Convert.ToString(MonedaOrigen["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(MonedaOrigen["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales) + " = " + System.Convert.ToString(MonedaDestino["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(MonedaDestino["cotizacion"]), this.Workspace.CurrentConfig.Moneda.Decimales));
                                 } else {
                                         EntradaImporteDestino.Visible = false;
                                         lblImporteDestino.Visible = false;

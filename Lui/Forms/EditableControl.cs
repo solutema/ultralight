@@ -72,6 +72,9 @@ namespace Lui.Forms
 
                 protected void SetControlsChanged(System.Windows.Forms.Control.ControlCollection controles, bool newValue)
                 {
+                        if (controles == null)
+                                return;
+
                         // Pongo los Changed en newValue
                         foreach (System.Windows.Forms.Control ctl in controles) {
                                 if (ctl == null) {
@@ -96,7 +99,7 @@ namespace Lui.Forms
                                                 Result = true;
                                 } else if (ctl.Controls.Count > 0) {
                                         if (GetControlsChanged(ctl.Controls, showChanges)) {
-                                                this.Changed = true;
+                                                //this.Changed = true;
                                                 Result = true;
                                         }
                                 }

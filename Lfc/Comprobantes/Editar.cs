@@ -320,7 +320,7 @@ namespace Lfc.Comprobantes
 
                         if (Descuento > 0 && EntradaDescuento.ValueDecimal == 0) {
                                 EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Descuento, 2);
-                                EntradaDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
+                                // TODO: EntradaDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
                         }
 
                         if (this.Tipo != null && this.Tipo.EsFacturaNCoND && this.Elemento.Existe == false && EntradaCliente.TextInt > 0) {
@@ -412,7 +412,7 @@ namespace Lfc.Comprobantes
                                 } else {
                                         EntradaInteres.ValueDecimal = (Descuento - 1) * 100m;
                                         EntradaDescuento.ValueDecimal = 0m;
-                                        EntradaInteres.ShowBalloon("Se aplicó un recargo.");
+                                        // TODO: EntradaInteres.ShowBalloon("Se aplicó un recargo.");
                                 }
                         }
                         IgnorarEventos = false;

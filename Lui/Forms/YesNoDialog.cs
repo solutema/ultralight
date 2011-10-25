@@ -52,8 +52,8 @@ namespace Lui.Forms
                 Exclamation = 2,
         }
 
-	public partial class YesNoDialog : DialogForm
-	{
+        public partial class YesNoDialog : DialogForm
+        {
                 public YesNoDialog(string messageText, string messageCaption)
                 {
                         InitializeComponent();
@@ -62,106 +62,102 @@ namespace Lui.Forms
                         this.MessageCaption = messageCaption;
                 }
 
-		public DialogIcons DialogIcon
-		{
-			get
-			{
-				return m_Icono;
-			}
-			set
-			{
-				m_Icono = value;
-				pctInformation.Visible = m_Icono == DialogIcons.Information;
-				pctExclamation.Visible = m_Icono == DialogIcons.Exclamation;
-				pctQuestion.Visible = m_Icono == DialogIcons.Question;
-			}
-		}
+                public DialogIcons DialogIcon
+                {
+                        get
+                        {
+                                return m_Icono;
+                        }
+                        set
+                        {
+                                m_Icono = value;
+                                pctInformation.Visible = m_Icono == DialogIcons.Information;
+                                pctExclamation.Visible = m_Icono == DialogIcons.Exclamation;
+                                pctQuestion.Visible = m_Icono == DialogIcons.Question;
+                        }
+                }
 
-		public DialogButtons DialogButtons
-		{
-			get
-			{
-				return m_DialogButtons;
-			}
-			set
-			{
-				m_DialogButtons = value;
 
-				switch (m_DialogButtons)
-				{
-					case DialogButtons.YesNo:
-						OkButton.Text = "Si";
-						CancelCommandButton.Text = "No";
-						CancelCommandButton.Visible = true;
-						this.DialogIcon = DialogIcons.Question;
-						break;
+                public DialogButtons DialogButtons
+                {
+                        get
+                        {
+                                return m_DialogButtons;
+                        }
+                        set
+                        {
+                                m_DialogButtons = value;
 
-					case DialogButtons.AcceptCancel:
-						OkButton.Text = "Aceptar";
-						CancelCommandButton.Text = "Cancelar";
-						CancelCommandButton.Visible = true;
-						this.DialogIcon = DialogIcons.Question;
-						break;
+                                switch (m_DialogButtons) {
+                                        case DialogButtons.YesNo:
+                                                OkButton.Text = "Si";
+                                                CancelCommandButton.Text = "No";
+                                                CancelCommandButton.Visible = true;
+                                                this.DialogIcon = DialogIcons.Question;
+                                                break;
 
-					case DialogButtons.OkOnly:
-						OkButton.Text = "Aceptar";
-						OkButton.Left = CancelCommandButton.Left;
-						CancelCommandButton.Visible = false;
-						OkButton.Left = CancelCommandButton.Left;
-						this.DialogIcon = DialogIcons.Information;
-						break;
-				}
-			}
-		}
+                                        case DialogButtons.AcceptCancel:
+                                                OkButton.Text = "Aceptar";
+                                                CancelCommandButton.Text = "Cancelar";
+                                                CancelCommandButton.Visible = true;
+                                                this.DialogIcon = DialogIcons.Question;
+                                                break;
 
-		public string MessageCaption
-		{
-			get
-			{
-				return DialogCaption.Text;
-			}
-			set
-			{
-				DialogCaption.Text = value;
-			}
-		}
+                                        case DialogButtons.OkOnly:
+                                                OkButton.Text = "Aceptar";
+                                                OkButton.Left = CancelCommandButton.Left;
+                                                CancelCommandButton.Visible = false;
+                                                OkButton.Left = CancelCommandButton.Left;
+                                                this.DialogIcon = DialogIcons.Information;
+                                                break;
+                                }
+                        }
+                }
 
-		public string MessageText
-		{
-			get
-			{
-				return DialogText.Text;
-			}
-			set
-			{
-				if (value != null && value.Length > 5 && value.Substring(0, 5) == @"{\rtf")
-				{
-					//Es RTF
-					DialogText.Rtf = value;
-				}
-				else
-				{
-					//Es texto plano
-					DialogText.Text = value;
-				}
-			}
-		}
 
-		private void YesNoDialogForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			if (e.Control == true && e.Alt == false && e.Shift == false && e.KeyCode == Keys.C)
-				Clipboard.SetDataObject(DialogText.Text);
-		}
+                public string MessageCaption
+                {
+                        get
+                        {
+                                return DialogCaption.Text;
+                        }
+                        set
+                        {
+                                DialogCaption.Text = value;
+                        }
+                }
 
-		private void YesNoDialog_Load(object sender, System.EventArgs e)
-		{
-			this.Size = new Size(480, 320);
-			this.CenterToParent();
-		}
 
-		private void YesNoDialog_BackColorChanged(object sender, System.EventArgs e)
-		{
-			DialogText.BackColor = this.BackColor;
-		}
-	}
+                public string MessageText
+                {
+                        get
+                        {
+                                return DialogText.Text;
+                        }
+                        set
+                        {
+                                DialogText.Text = value;
+                        }
+                }
+
+
+                private void YesNoDialogForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                {
+                        if (e.Control == true && e.Alt == false && e.Shift == false && e.KeyCode == Keys.C)
+                                Clipboard.SetDataObject(DialogText.Text);
+                }
+
+
+                private void YesNoDialog_Load(object sender, System.EventArgs e)
+                {
+                        this.Size = new Size(480, 320);
+                        this.CenterToParent();
+                }
+
+
+                private void YesNoDialog_BackColorChanged(object sender, System.EventArgs e)
+                {
+                        DialogText.BackColor = this.BackColor;
+                }
+        }
 }

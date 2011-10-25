@@ -35,35 +35,35 @@ namespace Lui.Forms
 	{
 		#region Código generado por el Diseñador de Windows Forms
 
-		internal System.Windows.Forms.PictureBox pctQuestion;
-		internal System.Windows.Forms.PictureBox pctExclamation;
-		internal System.Windows.Forms.PictureBox pctInformation;
-                protected internal DialogButtons m_DialogButtons = DialogButtons.YesNo;
-                internal System.Windows.Forms.Label DialogCaption;
-                private System.Windows.Forms.RichTextBox DialogText;
-                protected internal DialogIcons m_Icono = DialogIcons.Question;
-
-
 		private void InitializeComponent()
 		{
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YesNoDialog));
-                        this.DialogCaption = new System.Windows.Forms.Label();
+                        this.DialogCaption = new Lui.Forms.Label();
                         this.pctQuestion = new System.Windows.Forms.PictureBox();
                         this.pctExclamation = new System.Windows.Forms.PictureBox();
                         this.pctInformation = new System.Windows.Forms.PictureBox();
-                        this.DialogText = new System.Windows.Forms.RichTextBox();
+                        this.DialogText = new System.Windows.Forms.TextBox();
                         ((System.ComponentModel.ISupportInitialize)(this.pctQuestion)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pctExclamation)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pctInformation)).BeginInit();
                         this.SuspendLayout();
                         // 
+                        // OkButton
+                        // 
+                        this.OkButton.Location = new System.Drawing.Point(354, 8);
+                        // 
+                        // CancelCommandButton
+                        // 
+                        this.CancelCommandButton.Location = new System.Drawing.Point(474, 8);
+                        // 
                         // DialogCaption
                         // 
                         this.DialogCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.DialogCaption.Location = new System.Drawing.Point(12, 8);
+                        this.DialogCaption.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.DialogCaption.Location = new System.Drawing.Point(20, 24);
                         this.DialogCaption.Name = "DialogCaption";
-                        this.DialogCaption.Size = new System.Drawing.Size(452, 28);
+                        this.DialogCaption.Size = new System.Drawing.Size(552, 28);
                         this.DialogCaption.TabIndex = 0;
                         this.DialogCaption.Text = "Pregunta";
                         this.DialogCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -71,7 +71,7 @@ namespace Lui.Forms
                         // pctQuestion
                         // 
                         this.pctQuestion.Image = ((System.Drawing.Image)(resources.GetObject("pctQuestion.Image")));
-                        this.pctQuestion.Location = new System.Drawing.Point(24, 44);
+                        this.pctQuestion.Location = new System.Drawing.Point(24, 72);
                         this.pctQuestion.Name = "pctQuestion";
                         this.pctQuestion.Size = new System.Drawing.Size(52, 52);
                         this.pctQuestion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -81,7 +81,7 @@ namespace Lui.Forms
                         // pctExclamation
                         // 
                         this.pctExclamation.Image = ((System.Drawing.Image)(resources.GetObject("pctExclamation.Image")));
-                        this.pctExclamation.Location = new System.Drawing.Point(24, 44);
+                        this.pctExclamation.Location = new System.Drawing.Point(24, 72);
                         this.pctExclamation.Name = "pctExclamation";
                         this.pctExclamation.Size = new System.Drawing.Size(52, 52);
                         this.pctExclamation.TabIndex = 55;
@@ -91,7 +91,7 @@ namespace Lui.Forms
                         // pctInformation
                         // 
                         this.pctInformation.Image = ((System.Drawing.Image)(resources.GetObject("pctInformation.Image")));
-                        this.pctInformation.Location = new System.Drawing.Point(24, 44);
+                        this.pctInformation.Location = new System.Drawing.Point(24, 72);
                         this.pctInformation.Name = "pctInformation";
                         this.pctInformation.Size = new System.Drawing.Size(52, 52);
                         this.pctInformation.TabIndex = 56;
@@ -103,24 +103,19 @@ namespace Lui.Forms
                         this.DialogText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.DialogText.BackColor = System.Drawing.SystemColors.Control;
                         this.DialogText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.DialogText.BulletIndent = 8;
-                        this.DialogText.Cursor = System.Windows.Forms.Cursors.Default;
-                        this.DialogText.DetectUrls = false;
-                        this.DialogText.Location = new System.Drawing.Point(84, 42);
+                        this.DialogText.Location = new System.Drawing.Point(88, 72);
+                        this.DialogText.Multiline = true;
                         this.DialogText.Name = "DialogText";
                         this.DialogText.ReadOnly = true;
-                        this.DialogText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-                        this.DialogText.Size = new System.Drawing.Size(380, 182);
-                        this.DialogText.TabIndex = 1;
+                        this.DialogText.Size = new System.Drawing.Size(480, 224);
+                        this.DialogText.TabIndex = 57;
                         this.DialogText.TabStop = false;
-                        this.DialogText.Text = "Texto explicativo.";
                         // 
                         // YesNoDialog
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(474, 294);
+                        this.ClientSize = new System.Drawing.Size(594, 372);
                         this.Controls.Add(this.DialogText);
                         this.Controls.Add(this.DialogCaption);
                         this.Controls.Add(this.pctQuestion);
@@ -128,15 +123,30 @@ namespace Lui.Forms
                         this.Controls.Add(this.pctExclamation);
                         this.Name = "YesNoDialog";
                         this.Load += new System.EventHandler(this.YesNoDialog_Load);
-                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.YesNoDialogForm_KeyDown);
                         this.BackColorChanged += new System.EventHandler(this.YesNoDialog_BackColorChanged);
+                        this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.YesNoDialogForm_KeyDown);
+                        this.Controls.SetChildIndex(this.pctExclamation, 0);
+                        this.Controls.SetChildIndex(this.pctInformation, 0);
+                        this.Controls.SetChildIndex(this.pctQuestion, 0);
+                        this.Controls.SetChildIndex(this.DialogCaption, 0);
+                        this.Controls.SetChildIndex(this.DialogText, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.pctQuestion)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pctExclamation)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pctInformation)).EndInit();
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
 		}
 
 		#endregion
+
+                private Lui.Forms.Label DialogCaption;
+                private System.Windows.Forms.TextBox DialogText;
+                private System.Windows.Forms.PictureBox pctQuestion;
+                private System.Windows.Forms.PictureBox pctExclamation;
+                private System.Windows.Forms.PictureBox pctInformation;
+                protected internal DialogButtons m_DialogButtons = DialogButtons.YesNo;
+                protected internal DialogIcons m_Icono = DialogIcons.Question;
+
 	}
 }

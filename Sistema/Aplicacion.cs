@@ -243,7 +243,7 @@ namespace Lazaro
                                                         Lfx.Environment.Shell.Reboot();
                                                         break;
                                                 default:
-                                                        Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar");
+                                                        Lfx.Workspace.Master.RunTime.Toast("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar", "Toast");
                                                         break;
                                         }
                                         System.Environment.Exit(1);
@@ -261,7 +261,7 @@ namespace Lazaro
                                                                 Lfx.Environment.Shell.Reboot();
                                                                 break;
                                                         default:
-                                                                Lfx.Workspace.Master.RunTime.Message("La versión de Lázaro que está utilizando es demasiado antigua. Puede continuar trabajando, pero es recomendable que descargue e instale la última versión.");
+                                                                Lfx.Workspace.Master.RunTime.Toast("La versión de Lázaro que está utilizando es demasiado antigua. Puede continuar trabajando, pero es recomendable que descargue e instale la última versión.", "Aviso");
                                                                 break;
                                                 }
                                         }
@@ -325,7 +325,7 @@ namespace Lazaro
                                                         Lfx.Updates.Updater.Master.Packages.Add(Pkg);
                                         } catch (Exception ex) {
                                                 if (Lfx.Workspace.Master != null) {
-                                                        Lfx.Workspace.Master.RunTime.Message("No se puede registrar el componente " + Comp.Nombre + "." + ex.Message);
+                                                        Lfx.Workspace.Master.RunTime.Toast("No se puede registrar el componente " + Comp.Nombre + "." + ex.Message, "Error");
                                                         UnknownExceptionHandler(ex);
                                                 }
                                         }
@@ -445,10 +445,10 @@ namespace Lazaro
                                                                         }
                                                                 }
                                                                 break;
-                                                        case "MESSAGE":
-                                                                Lui.Forms.MessageBox.Show(e.Arguments[0].ToString(), "Aviso");
-                                                                break;
                                                 }
+                                                break;
+                                        case Lfx.RunTimeServices.IpcEventArgs.EventTypes.Toast:
+                                                Lui.Forms.MessageBox.Show(e.Arguments[0].ToString(), e.Arguments[1].ToString());
                                                 break;
                                 }
                         }
@@ -619,7 +619,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                 else
                                         DiferenciaExplicada = Math.Ceiling(Math.Abs(Diferencia.TotalMinutes)).ToString() + " minutos";
 
-                                Lui.Forms.MessageBox.Show("Existe una diferencia de " + DiferenciaExplicada + " entre el reloj del servidor SQL y el reloj de este equipo. Es necesario que revise y ajuste el reloj de ambos equipos a la brevedad.", "Error de fecha y hora");
+                                Lfx.Workspace.Master.RunTime.Toast("Existe una diferencia de " + DiferenciaExplicada + " entre el reloj del servidor SQL y el reloj de este equipo. Es necesario que revise y ajuste el reloj de ambos equipos a la brevedad.", "Error de fecha y hora");
                         }
 
                         Lazaro.Misc.Ingreso FormIngreso = new Lazaro.Misc.Ingreso();
@@ -677,7 +677,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         Whatsnew.BaseStream.Close();
                                         Whatsnew.Close();
                                         if (Mostrar != null && Mostrar.Length > 0) {
-                                                Lui.Forms.MessageBox.Show(Mostrar.ToString(), "Novedades");
+                                                Lfx.Workspace.Master.RunTime.Toast(Mostrar.ToString(), "Novedades");
                                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), "Whatsnew.Ultimo", FechaWhatsnew);
                                         }
                                 }

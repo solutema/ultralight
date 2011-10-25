@@ -35,11 +35,17 @@ namespace Lui.Forms
 {
         public interface IEditableControl : IControl
         {
-
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 bool Changed
                 {
                         get;
+                        set;
+                }
+
+                bool ShowChanged
+                {
                         set;
                 }
         }

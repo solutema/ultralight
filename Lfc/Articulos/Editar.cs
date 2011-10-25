@@ -206,7 +206,7 @@ namespace Lfc.Articulos
                                         Res += "Promedio de las últimas " + UltimasCompras.Rows.Count.ToString() + " compras (sin gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUlt5Comps, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
                                 }
 
-                                EntradaCosto.ShowBalloon(Res, "Precio de Compra", 60);
+                                // TODO: EntradaCosto.ShowBalloon(Res, "Precio de Compra", 60);
                         }
                 }
 
@@ -242,7 +242,7 @@ namespace Lfc.Articulos
                 private void EntradaPvp_Enter(object sender, EventArgs e)
                 {
                         if (EntradaUnidad.TextKey.Length > 0 && UnidadRendimiento != null && UnidadRendimiento.Length > 0) {
-                                EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Rendimiento.ToString() + " " + UnidadRendimiento + " a razón de " + Lbl.Sys.Config.Actual.Moneda.Simbolo + Lfx.Types.Formatting.FormatCurrency(EntradaPvp.ValueDecimal / Rendimiento, this.Workspace.CurrentConfig.Moneda.Decimales) + " (PVP) el " + UnidadRendimiento + ".");
+                                // TODO: EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Rendimiento.ToString() + " " + UnidadRendimiento + " a razón de " + Lbl.Sys.Config.Actual.Moneda.Simbolo + Lfx.Types.Formatting.FormatCurrency(EntradaPvp.ValueDecimal / Rendimiento, this.Workspace.CurrentConfig.Moneda.Decimales) + " (PVP) el " + UnidadRendimiento + ".");
                         }
                 }
 
