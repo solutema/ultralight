@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -70,7 +70,6 @@ namespace Lfc
                         this.ControlFiltros.AutoScroll = true;
                         this.ControlFiltros.AutoSize = true;
                         this.ControlFiltros.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.ControlFiltros.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ControlFiltros.Location = new System.Drawing.Point(0, 0);
                         this.ControlFiltros.Margin = new System.Windows.Forms.Padding(8);
                         this.ControlFiltros.Name = "ControlFiltros";

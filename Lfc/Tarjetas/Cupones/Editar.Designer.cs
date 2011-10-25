@@ -54,14 +54,14 @@ namespace Lfc.Tarjetas.Cupones
                 private void InitializeComponent()
                 {
                         this.EntradaNumero = new Lui.Forms.TextBox();
-                        this.Label3 = new System.Windows.Forms.Label();
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.EntradaTarjeta = new Lcc.Entrada.CodigoDetalle();
-                        this.label10 = new System.Windows.Forms.Label();
+                        this.label10 = new Lui.Forms.Label();
                         this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.EntradaFechaPresentacion = new Lui.Forms.TextBox();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaFechaAcreditacion = new Lui.Forms.TextBox();
                         this.SuspendLayout();
                         // 
@@ -71,20 +71,14 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
-                        this.EntradaNumero.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNumero.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNumero.Location = new System.Drawing.Point(160, 0);
-                        this.EntradaNumero.MaxLenght = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PasswordChar = '\0';
-                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 1;
                         this.EntradaNumero.PlaceholderText = "";
                         this.EntradaNumero.ToolTipText = "";
@@ -118,8 +112,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaTarjeta.DataValueField = "id_tarjeta";
                         this.EntradaTarjeta.ExtraDetailFields = null;
                         this.EntradaTarjeta.Filter = "";
-                        this.EntradaTarjeta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTarjeta.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTarjeta.FreeTextCode = "";
                         this.EntradaTarjeta.Location = new System.Drawing.Point(160, 28);
                         this.EntradaTarjeta.MaxLength = 200;
@@ -155,8 +147,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.DataValueField = "id_plan";
                         this.EntradaPlan.ExtraDetailFields = null;
                         this.EntradaPlan.Filter = "";
-                        this.EntradaPlan.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaPlan.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.Location = new System.Drawing.Point(160, 56);
                         this.EntradaPlan.MaxLength = 200;
@@ -187,20 +177,14 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechaPresentacion.AutoTab = true;
                         this.EntradaFechaPresentacion.DataType = Lui.Forms.DataTypes.DateTime;
                         this.EntradaFechaPresentacion.DecimalPlaces = -1;
-                        this.EntradaFechaPresentacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFechaPresentacion.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFechaPresentacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFechaPresentacion.Location = new System.Drawing.Point(160, 84);
-                        this.EntradaFechaPresentacion.MaxLenght = 32767;
                         this.EntradaFechaPresentacion.MultiLine = false;
                         this.EntradaFechaPresentacion.Name = "EntradaFechaPresentacion";
                         this.EntradaFechaPresentacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaPresentacion.PasswordChar = '\0';
-                        this.EntradaFechaPresentacion.Prefijo = "";
                         this.EntradaFechaPresentacion.ReadOnly = false;
                         this.EntradaFechaPresentacion.SelectOnFocus = true;
                         this.EntradaFechaPresentacion.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaFechaPresentacion.Sufijo = "";
                         this.EntradaFechaPresentacion.TabIndex = 7;
                         this.EntradaFechaPresentacion.PlaceholderText = "";
                         this.EntradaFechaPresentacion.ToolTipText = "";
@@ -220,20 +204,14 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechaAcreditacion.AutoTab = true;
                         this.EntradaFechaAcreditacion.DataType = Lui.Forms.DataTypes.DateTime;
                         this.EntradaFechaAcreditacion.DecimalPlaces = -1;
-                        this.EntradaFechaAcreditacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFechaAcreditacion.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFechaAcreditacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFechaAcreditacion.Location = new System.Drawing.Point(160, 112);
-                        this.EntradaFechaAcreditacion.MaxLenght = 32767;
                         this.EntradaFechaAcreditacion.MultiLine = false;
                         this.EntradaFechaAcreditacion.Name = "EntradaFechaAcreditacion";
                         this.EntradaFechaAcreditacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaAcreditacion.PasswordChar = '\0';
-                        this.EntradaFechaAcreditacion.Prefijo = "";
                         this.EntradaFechaAcreditacion.ReadOnly = false;
                         this.EntradaFechaAcreditacion.SelectOnFocus = true;
                         this.EntradaFechaAcreditacion.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaFechaAcreditacion.Sufijo = "";
                         this.EntradaFechaAcreditacion.TabIndex = 9;
                         this.EntradaFechaAcreditacion.PlaceholderText = "";
                         this.EntradaFechaAcreditacion.ToolTipText = "";
@@ -269,14 +247,14 @@ namespace Lfc.Tarjetas.Cupones
                 #endregion
 
                 internal Lui.Forms.TextBox EntradaNumero;
-                internal System.Windows.Forms.Label Label3;
-                internal System.Windows.Forms.Label label4;
+                internal Lui.Forms.Label Label3;
+                internal Lui.Forms.Label label4;
                 internal Lcc.Entrada.CodigoDetalle EntradaTarjeta;
-                internal System.Windows.Forms.Label label10;
+                internal Lui.Forms.Label label10;
                 internal Lcc.Entrada.CodigoDetalle EntradaPlan;
-                internal System.Windows.Forms.Label label1;
+                internal Lui.Forms.Label label1;
                 internal Lui.Forms.TextBox EntradaFechaPresentacion;
-                internal System.Windows.Forms.Label label2;
+                internal Lui.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaFechaAcreditacion;
         }
 }

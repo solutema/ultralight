@@ -38,14 +38,6 @@ namespace Lfx.Config.Templates
 {
         public class Template
         {
-                public System.Drawing.Font DefaultFont = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                public System.Drawing.Font SmallFont = new System.Drawing.Font("Bitstream Vera Sans", 8F);
-                public System.Drawing.Font SmallerFont = new System.Drawing.Font("Bitstream Vera Sans", 6.75F);
-                public System.Drawing.Font TitleFont = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold);
-                public System.Drawing.Font DefaultHeaderFont = new System.Drawing.Font("Bitstream Vera Sans", 16F, System.Drawing.FontStyle.Bold);
-                public System.Drawing.Font DefaultHeader2Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold);
-                public System.Drawing.Font DefaultMonospaced = new System.Drawing.Font("Bitstream Vera Sans Mono", 10F);
-
                 public System.Drawing.Color WindowBackground = System.Drawing.SystemColors.Control;
                 public System.Drawing.Color WindowText = System.Drawing.SystemColors.ControlText;
                 public System.Drawing.Color ButtonBorder = System.Drawing.SystemColors.ControlDark;
@@ -57,6 +49,7 @@ namespace Lfx.Config.Templates
                 public System.Drawing.Color ControlBackground = System.Drawing.SystemColors.Control;
                 public System.Drawing.Color ControlDataarea = System.Drawing.SystemColors.Window;
                 public System.Drawing.Color ControlText = System.Drawing.SystemColors.ControlText;
+                public System.Drawing.Color ControlGrayText = System.Drawing.SystemColors.GrayText;
                 public System.Drawing.Color ControlBorder = System.Drawing.SystemColors.ControlDark;
                 public System.Drawing.Color ControlDataareaActive = System.Drawing.SystemColors.Window;
                 public System.Drawing.Color ControlDataareaError = System.Drawing.SystemColors.Info;
@@ -87,6 +80,7 @@ namespace Lfx.Config.Templates
                         ControlBackground = System.Drawing.SystemColors.Control;
                         ControlDataarea = System.Drawing.SystemColors.Window;
                         ControlText = System.Drawing.SystemColors.ControlText;
+                        ControlGrayText = System.Drawing.SystemColors.GrayText;
                         ControlBorder = System.Drawing.SystemColors.ControlDark;
                         ControlDataareaActive = System.Drawing.SystemColors.Window;
                         ControlDataareaError = System.Drawing.SystemColors.Info;
@@ -159,6 +153,7 @@ namespace Lfx.Config.Templates
                         this.ControlBackground = System.Drawing.Color.FromArgb(238, 238, 238);
                         this.ControlDataarea = System.Drawing.Color.FromArgb(250, 250, 250);
                         this.ControlText = System.Drawing.Color.FromArgb(7, 2, 25);
+                        this.ControlGrayText = System.Drawing.SystemColors.GrayText;
                         this.ControlBorder = System.Drawing.Color.FromArgb(193, 200, 219);
                         this.ControlDataareaActive = System.Drawing.Color.FromArgb(238, 241, 250);
                         this.ControlDataareaError = System.Drawing.Color.FromArgb(254, 245, 12);

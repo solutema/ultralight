@@ -81,17 +81,17 @@ namespace Lfc.Comprobantes.Compra
                 // No lo modifique con el editor de código.
                 internal Lui.Forms.TextBox EntradaReporte;
                 internal Lui.Forms.ComboBox EntradaMostrar;
-                internal System.Windows.Forms.Label Label2;
+                internal Lui.Forms.Label Label2;
                 internal Lui.Forms.ComboBox EntradaAgrupar;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
 
                 private void InitializeComponent()
                 {
                         this.EntradaReporte = new Lui.Forms.TextBox();
                         this.EntradaMostrar = new Lui.Forms.ComboBox();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaAgrupar = new Lui.Forms.ComboBox();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaReporte
@@ -103,10 +103,8 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaReporte.AutoTab = true;
                         this.EntradaReporte.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaReporte.DockPadding.All = 2;
-                        this.EntradaReporte.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaReporte.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EntradaReporte.CustomFont = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
                         this.EntradaReporte.Location = new System.Drawing.Point(4, 32);
-                        this.EntradaReporte.MaxLenght = 32767;
                         this.EntradaReporte.MultiLine = true;
                         this.EntradaReporte.Name = "EntradaReporte";
                         this.EntradaReporte.TemporaryReadOnly = true;
@@ -120,10 +118,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaMostrar.AutoNav = true;
                         this.EntradaMostrar.AutoTab = true;
                         this.EntradaMostrar.DockPadding.All = 2;
-                        this.EntradaMostrar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaMostrar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMostrar.Location = new System.Drawing.Point(360, 4);
-                        this.EntradaMostrar.MaxLenght = 32767;
                         this.EntradaMostrar.Name = "EntradaMostrar";
                         this.EntradaMostrar.TemporaryReadOnly = false;
                         this.EntradaMostrar.SetData = new string[] {
@@ -150,10 +145,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaAgrupar.AutoNav = true;
                         this.EntradaAgrupar.AutoTab = true;
                         this.EntradaAgrupar.DockPadding.All = 2;
-                        this.EntradaAgrupar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaAgrupar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaAgrupar.Location = new System.Drawing.Point(96, 4);
-                        this.EntradaAgrupar.MaxLenght = 32767;
                         this.EntradaAgrupar.Name = "EntradaAgrupar";
                         this.EntradaAgrupar.TemporaryReadOnly = false;
                         this.EntradaAgrupar.SetData = new string[] {

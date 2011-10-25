@@ -97,21 +97,21 @@ namespace Lfc.Comprobantes.Compra
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        item.SubItems["pv"].Text = row.Fields["pv"].ValueInt.ToString("0000");
-                        item.SubItems["numero"].Text = row.Fields["numero"].ValueInt.ToString("00000000");
+                        item.SubItems["comprob.pv"].Text = row.Fields["comprob.pv"].ValueInt.ToString("0000");
+                        item.SubItems["comprob.numero"].Text = row.Fields["comprob.numero"].ValueInt.ToString("00000000");
 
-                        Lfx.Data.Row Persona = this.Connection.Tables["personas"].FastRows[row.Fields["id_cliente"].ValueInt];
+                        Lfx.Data.Row Persona = this.Connection.Tables["personas"].FastRows[row.Fields["comprob.id_cliente"].ValueInt];
                         if (Persona != null)
-                                item.SubItems["id_cliente"].Text = Persona.Fields["nombre_visible"].ToString();
+                                item.SubItems["comprob.id_cliente"].Text = Persona.Fields["personas.nombre_visible"].ToString();
 
-                        switch (row.Fields["estado"].ValueInt) {
+                        switch (row.Fields["comprob.estado"].ValueInt) {
                                 case 50:
                                         item.ForeColor = System.Drawing.Color.DarkOrange;
-                                        this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
+                                        this.Contadores[0].AddValue(row.Fields["comprob.total"].ValueDecimal);
                                         break;
                                 case 100:
                                         item.ForeColor = System.Drawing.Color.DarkGreen;
-                                        this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
+                                        this.Contadores[0].AddValue(row.Fields["comprob.total"].ValueDecimal);
                                         break;
                                 case 200:
                                         item.ForeColor = System.Drawing.Color.DarkRed;
@@ -119,13 +119,13 @@ namespace Lfc.Comprobantes.Compra
                                         break;
                         }
 
-                        if (row.Fields["id_formapago"] != null) {
+                        if (row.Fields["comprob.id_formapago"] != null) {
                                 switch (row.Fields["id_formapago"].ValueInt) {
                                         case 3:
                                                 //Controla Pago
                                                 break;
                                         default:
-                                                item.SubItems["pendiente"].Text = "";
+                                                item.SubItems["comprob.pendiente"].Text = "";
                                                 break;
                                 }
                         }

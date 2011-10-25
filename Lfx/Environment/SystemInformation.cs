@@ -34,33 +34,6 @@ using System.Security.Permissions;
 
 namespace Lfx.Environment
 {
-	public class Threading
-	{
-		public static void Sleep(int millisecondsTimeout)
-		{
-			Sleep(millisecondsTimeout, false);
-		}
-
-		public static void Sleep(int millisecondsTimeout, bool doingEvents)
-		{
-			if(doingEvents)
-			{
-				System.DateTime Meta = System.DateTime.Now.AddMilliseconds(millisecondsTimeout);
-
-				while(System.DateTime.Now < Meta)
-				{
-					System.Windows.Forms.Application.DoEvents();
-					//Hago un thread.sleep para no atorar la CPU
-					System.Threading.Thread.Sleep(10);
-				}
-			}
-			else
-			{
-				System.Threading.Thread.Sleep(millisecondsTimeout);
-			}
-		}
-	}
-
 	/// <summary>
 	/// Provee información sobre el sistema
 	/// </summary>
@@ -84,6 +57,7 @@ namespace Lfx.Environment
                                 Res = Res.Replace("Microsoft Windows NT 6.0.6001", "Windows Vista");
                                 Res = Res.Replace("Microsoft Windows NT 6.0.6002", "Windows Vista");
                                 Res = Res.Replace("Microsoft Windows NT 6.1.7600", "Windows 7");
+                                Res = Res.Replace("Microsoft Windows NT 6.1.7600.0", "Windows 7");
                                 Res = Res.Replace("Microsoft Windows NT 6.1.7601", "Windows 7");
                                 Res = Res.Replace("Microsoft Windows NT 6.1.7602", "Windows 7");
                                 Res = Res.Replace("Microsoft Windows NT 6.2", "Windows 8");

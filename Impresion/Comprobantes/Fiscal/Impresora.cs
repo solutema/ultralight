@@ -843,7 +843,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                 private void SendToPrinter(byte[] command)
                 {
                         PuertoSerie.Write(command, 0, command.Length);
-                        Lfx.Environment.Threading.Sleep(150, true);
+                        System.Threading.Thread.Sleep(150);
                         if (Modelo == Lbl.Impresion.ModelosFiscales.EpsonGenerico)
                                 PuertoSerie.DtrEnable = true;
                 }
@@ -931,7 +931,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                                 if (NotifHandler != null)
                                                                         NotifHandler(this, new ImpresoraEventArgs("Reenviando"));
 
-                                                                Lfx.Environment.Threading.Sleep(250, true);
+                                                                System.Threading.Thread.Sleep(250);
                                                                 SendToPrinter(BytesCadena);
                                                                 IntentosEnviar++;
                                                                 CaracteresRecibidos = "";
@@ -990,7 +990,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 //colgarse respondiendo a un comando viejo
                                                 if (IntentosRecibir++ < 5) {
                                                         //Respuesta recibida
-                                                        Lfx.Environment.Threading.Sleep(100, true);
+                                                        System.Threading.Thread.Sleep(100);
 
                                                         //No es respuesta a este comando o a este número de secuencia
                                                         //Envío un NAK

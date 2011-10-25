@@ -53,8 +53,8 @@ namespace Lfc
                         this.BotonCancelar = new Lui.Forms.Button();
                         this.LowerPanel = new System.Windows.Forms.Panel();
                         this.BotonImprimir = new Lui.Forms.Button();
-                        this.BotonComentarios = new System.Windows.Forms.LinkLabel();
-                        this.BotonHistorial = new System.Windows.Forms.LinkLabel();
+                        this.BotonComentarios = new Lui.Forms.LinkLabel();
+                        this.BotonHistorial = new Lui.Forms.LinkLabel();
                         this.SplitContainer = new System.Windows.Forms.SplitContainer();
                         this.TablaElementosEstandar = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaImagen = new Lcc.Entrada.Imagen();
@@ -70,8 +70,6 @@ namespace Lfc
                         // 
                         this.BotonGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonGuardar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonGuardar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonGuardar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonGuardar.Image = null;
                         this.BotonGuardar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonGuardar.Location = new System.Drawing.Point(568, 8);
@@ -89,8 +87,6 @@ namespace Lfc
                         // 
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = null;
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCancelar.Location = new System.Drawing.Point(680, 8);
@@ -121,8 +117,6 @@ namespace Lfc
                         // 
                         this.BotonImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonImprimir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonImprimir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonImprimir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonImprimir.Image = null;
                         this.BotonImprimir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonImprimir.Location = new System.Drawing.Point(456, 8);
@@ -139,7 +133,6 @@ namespace Lfc
                         // BotonComentarios
                         // 
                         this.BotonComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonComentarios.Location = new System.Drawing.Point(12, 32);
                         this.BotonComentarios.Name = "BotonComentarios";
                         this.BotonComentarios.Size = new System.Drawing.Size(88, 16);
@@ -153,7 +146,6 @@ namespace Lfc
                         // BotonHistorial
                         // 
                         this.BotonHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonHistorial.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonHistorial.Location = new System.Drawing.Point(12, 16);
                         this.BotonHistorial.Name = "BotonHistorial";
                         this.BotonHistorial.Size = new System.Drawing.Size(88, 16);
@@ -210,7 +202,6 @@ namespace Lfc
                         // EntradaImagen
                         // 
                         this.EntradaImagen.AutoNav = true;
-                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImagen.Location = new System.Drawing.Point(0, 0);
                         this.EntradaImagen.Margin = new System.Windows.Forms.Padding(0);
                         this.EntradaImagen.MaximumSize = new System.Drawing.Size(320, 240);
@@ -225,7 +216,6 @@ namespace Lfc
                         // EntradaTags
                         // 
                         this.EntradaTags.AutoNav = true;
-                        this.EntradaTags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaTags.Location = new System.Drawing.Point(0, 312);
                         this.EntradaTags.Margin = new System.Windows.Forms.Padding(0);
                         this.EntradaTags.MaximumSize = new System.Drawing.Size(320, 480);
@@ -243,7 +233,6 @@ namespace Lfc
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComentarios.AutoNav = true;
-                        this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaComentarios.Location = new System.Drawing.Point(0, 160);
                         this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(0);
                         this.EntradaComentarios.MaximumSize = new System.Drawing.Size(320, 480);
@@ -279,9 +268,9 @@ namespace Lfc
                 private Lui.Forms.Button BotonGuardar;
                 private Lui.Forms.Button BotonCancelar;
                 private System.Windows.Forms.Panel LowerPanel;
-                private System.Windows.Forms.LinkLabel BotonHistorial;
+                private Lui.Forms.LinkLabel BotonHistorial;
                 private System.Windows.Forms.SplitContainer SplitContainer;
-                private System.Windows.Forms.LinkLabel BotonComentarios;
+                private Lui.Forms.LinkLabel BotonComentarios;
                 private Lui.Forms.Button BotonImprimir;
                 private System.Windows.Forms.TableLayoutPanel TablaElementosEstandar;
                 private Lcc.Entrada.Imagen EntradaImagen;

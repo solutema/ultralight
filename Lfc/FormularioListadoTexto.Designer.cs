@@ -96,8 +96,6 @@ namespace Lfc
 			// BotonCopiar
 			// 
 			this.BotonCopiar.DockPadding.All = 2;
-			this.BotonCopiar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.BotonCopiar.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.BotonCopiar.Image = null;
 			this.BotonCopiar.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.BotonCopiar.Location = new System.Drawing.Point(8, 8);
@@ -114,8 +112,6 @@ namespace Lfc
 			// PrintButton
 			// 
 			this.PrintButton.DockPadding.All = 2;
-			this.PrintButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.PrintButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.PrintButton.Image = null;
 			this.PrintButton.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.PrintButton.Location = new System.Drawing.Point(116, 8);
@@ -132,8 +128,6 @@ namespace Lfc
 			// 
 			this.BotonMostrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.BotonMostrar.DockPadding.All = 2;
-			this.BotonMostrar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.BotonMostrar.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.BotonMostrar.Image = null;
 			this.BotonMostrar.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.BotonMostrar.Location = new System.Drawing.Point(472, 8);
@@ -151,8 +145,6 @@ namespace Lfc
 			// 
 			this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.CancelCommandButton.DockPadding.All = 2;
-			this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.CancelCommandButton.Image = null;
 			this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.CancelCommandButton.Location = new System.Drawing.Point(580, 8);

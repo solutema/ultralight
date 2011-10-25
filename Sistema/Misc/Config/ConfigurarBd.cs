@@ -69,10 +69,14 @@ namespace Lazaro.Misc.Config
                         else
                                 EntradaBD.Text = BD;
 
-                        if (Usuario == null)
-                                EntradaUsuario.Text = "lazaro";
-                        else
+                        if (Usuario == null) {
+                                if (EntradaServidor.Text == "localhost")
+                                        EntradaUsuario.Text = "root";
+                                else
+                                        EntradaUsuario.Text = "lazaro";
+                        } else {
                                 EntradaUsuario.Text = Usuario;
+                        }
 
                         if (Contrasena == null)
                                 EntradaContrasena.Text = "";
@@ -179,12 +183,21 @@ namespace Lazaro.Misc.Config
 
                 private void EntradaServidor_Leave(object sender, EventArgs e)
                 {
+                        if (EntradaServidor.Text == "localhost" || EntradaServidor.Text == "127.0.0.1") {
+                                if (EntradaUsuario.Text == "lazaro" && EntradaContrasena.Text == "") {
+                                        EntradaUsuario.Text = "root";
+                                }
+                        } else {
+                                if (EntradaUsuario.Text == "root" && EntradaContrasena.Text == "") {
+                                        EntradaUsuario.Text = "lazaro";
+                                }
+                        }
+
                         Regex IpLocal1 = new Regex(@"^192\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
                         Regex IpLocal2 = new Regex(@"^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
                         if (EntradaServidor.Text.Contains(".") == false || IpLocal1.IsMatch(EntradaServidor.Text) || IpLocal2.IsMatch(EntradaServidor.Text)) {
                                 EntradaSlowLink.TextKey = "0";
-                        }
-                        else {
+                        } else {
                                 EntradaSlowLink.TextKey = "1";
                         }
                 }

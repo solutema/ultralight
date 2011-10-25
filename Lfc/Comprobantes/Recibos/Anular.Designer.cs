@@ -58,19 +58,19 @@ namespace Lfc.Comprobantes.Recibos
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.Label7 = new System.Windows.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
                         this.EntradaPV = new Lui.Forms.TextBox();
                         this.EntradaNumero = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
-                        this.Label1 = new System.Windows.Forms.Label();
-                        this.EtiquetaAviso = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
+                        this.EtiquetaAviso = new Lui.Forms.Label();
                         this.EntradaCliente = new Lui.Forms.TextBox();
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.EntradaImporte = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaFecha = new Lui.Forms.TextBox();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -96,19 +96,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.AutoTab = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
-                        this.EntradaPV.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaPV.Location = new System.Drawing.Point(108, 84);
-                        this.EntradaPV.MaxLenght = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPV.PasswordChar = '\0';
-                        this.EntradaPV.Prefijo = "";
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(60, 24);
-                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
                         this.EntradaPV.PlaceholderText = "";
@@ -121,19 +115,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaNumero.DecimalPlaces = -1;
-                        this.EntradaNumero.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNumero.Location = new System.Drawing.Point(184, 84);
-                        this.EntradaNumero.MaxLenght = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PasswordChar = '\0';
-                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 5;
                         this.EntradaNumero.Text = "0";
                         this.EntradaNumero.PlaceholderText = "";
@@ -155,10 +143,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTipo.Location = new System.Drawing.Point(108, 24);
-                        this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
@@ -197,19 +182,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCliente.DecimalPlaces = -1;
-                        this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCliente.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCliente.Location = new System.Drawing.Point(108, 204);
-                        this.EntradaCliente.MaxLenght = 32767;
                         this.EntradaCliente.MultiLine = false;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCliente.PasswordChar = '\0';
-                        this.EntradaCliente.Prefijo = "";
                         this.EntradaCliente.SelectOnFocus = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(476, 24);
-                        this.EntradaCliente.Sufijo = "";
                         this.EntradaCliente.TabIndex = 11;
                         this.EntradaCliente.TabStop = false;
                         this.EntradaCliente.PlaceholderText = "";
@@ -230,19 +209,14 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
-                        this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaImporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaImporte.Location = new System.Drawing.Point(108, 176);
-                        this.EntradaImporte.MaxLenght = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImporte.PasswordChar = '\0';
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
-                        this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 9;
                         this.EntradaImporte.TabStop = false;
                         this.EntradaImporte.Text = "0.00";
@@ -264,19 +238,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFecha.AutoTab = true;
                         this.EntradaFecha.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaFecha.DecimalPlaces = -1;
-                        this.EntradaFecha.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFecha.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFecha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaFecha.Location = new System.Drawing.Point(108, 148);
-                        this.EntradaFecha.MaxLenght = 32767;
                         this.EntradaFecha.MultiLine = false;
                         this.EntradaFecha.Name = "EntradaFecha";
                         this.EntradaFecha.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFecha.PasswordChar = '\0';
-                        this.EntradaFecha.Prefijo = "";
                         this.EntradaFecha.SelectOnFocus = true;
                         this.EntradaFecha.Size = new System.Drawing.Size(128, 24);
-                        this.EntradaFecha.Sufijo = "";
                         this.EntradaFecha.TabIndex = 7;
                         this.EntradaFecha.TabStop = false;
                         this.EntradaFecha.PlaceholderText = "";
@@ -332,18 +300,18 @@ namespace Lfc.Comprobantes.Recibos
 
                 #endregion
 
-                internal System.Windows.Forms.Label Label7;
+                internal Lui.Forms.Label Label7;
                 internal Lui.Forms.TextBox EntradaPV;
                 internal Lui.Forms.TextBox EntradaNumero;
-                internal System.Windows.Forms.Label Label2;
+                internal Lui.Forms.Label Label2;
                 public Lui.Forms.ComboBox EntradaTipo;
-                internal System.Windows.Forms.Label Label1;
-                internal System.Windows.Forms.Label EtiquetaAviso;
+                internal Lui.Forms.Label Label1;
+                internal Lui.Forms.Label EtiquetaAviso;
                 internal Lui.Forms.TextBox EntradaCliente;
-                internal System.Windows.Forms.Label Label4;
+                internal Lui.Forms.Label Label4;
                 internal Lui.Forms.TextBox EntradaImporte;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label5;
                 internal Lui.Forms.TextBox EntradaFecha;
-                internal System.Windows.Forms.Label Label3;
+                internal Lui.Forms.Label Label3;
         }
 }

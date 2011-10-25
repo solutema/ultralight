@@ -704,7 +704,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                                 "runtime=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.RuntimeName),
                                                                 "empresa=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Nombre),
                                                                 "email=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Email),
-                                                                "build=" + System.Uri.EscapeUriString(Aplicacion.BuildDate().ToString(Lfx.Types.Formatting.DateTime.SqlDateTimeFormat)),
+                                                                "canal=" + System.Uri.EscapeUriString(Lfx.Updates.Updater.Master != null ? Lfx.Updates.Updater.Master.Channel : ""),
                                                                 "version=" + System.Uri.EscapeUriString(Aplicacion.Version())
                                                         };
                                 System.Net.WebRequest webRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
@@ -1161,9 +1161,27 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "RUN":
-                                        string Componente = Lfx.Types.Strings.GetNextToken(ref comando, ".").Trim();
-                                        string Funcion = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
-                                        Lfx.Components.Manager.Run(Aplicacion.Flotante ? null : Aplicacion.FormularioPrincipal, Componente, Funcion);
+                                        string NombreComponente = Lfx.Types.Strings.GetNextToken(ref comando, ".").Trim();
+                                        string NombreFuncion = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
+
+                                        if(Lfx.Components.Manager.ComponentesCargados.ContainsKey(NombreComponente) == false) {
+                                                return new Lfx.Types.FailureOperationResult("No se encuentra el componente " + NombreComponente);
+                                        } else {
+                                                Lfx.Components.IComponent Componente = Lfx.Components.Manager.ComponentesCargados[NombreComponente];
+                                                if(Componente.Funciones.ContainsKey(NombreFuncion) == false){
+                                                        return new Lfx.Types.FailureOperationResult("No se encuentra el la función " + NombreComponente + "." + NombreFuncion);
+                                                } else {
+                                                        Lfx.Components.FunctionInfo Funcion = Componente.Funciones[NombreFuncion];
+                                                        object ResForm = Funcion.Run();
+
+                                                        if (ResForm is System.Windows.Forms.Form) {
+                                                                if (Funcion.Instancia.FunctionType == Lfx.Components.FunctionTypes.MdiChildren)
+                                                                        ((System.Windows.Forms.Form)(ResForm)).MdiParent = Aplicacion.Flotante ? null : Aplicacion.FormularioPrincipal;
+                                                                ((System.Windows.Forms.Form)(ResForm)).Show();
+                                                        }
+
+                                                }
+                                        }
                                         break;
 
                                 case "QUIT":

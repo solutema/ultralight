@@ -49,9 +49,9 @@ namespace Lfc.Comprobantes
 
                         InitializeComponent();
 
-                        lblTitulo.Font = Lfx.Config.Display.CurrentTemplate.DefaultHeaderFont;
-                        lblTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        lblTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
+                        EntradaTotal.CustomFont = new System.Drawing.Font(this.Font.Name, 15);
+                        EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                        EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
                 }
 
 
@@ -236,7 +236,7 @@ namespace Lfc.Comprobantes
                                         NuevoTitulo += " PV " + Registro.PV.ToString("0000");
                         }
 
-                        this.lblTitulo.Text = NuevoTitulo;
+                        this.EtiquetaTitulo.Text = NuevoTitulo;
                         this.Text = "Comprob: " + NuevoTitulo;
                 }
 

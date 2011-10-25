@@ -74,29 +74,29 @@ namespace Lfc.Comprobantes
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Label Label6;
-                internal System.Windows.Forms.Label Label7;
-                internal System.Windows.Forms.Label lblInfo;
+                internal Lui.Forms.Label Label6;
+                internal Lui.Forms.Label Label7;
+                internal Lui.Forms.Label lblInfo;
                 internal System.Windows.Forms.PictureBox PictureBox1;
                 internal System.Windows.Forms.PictureBox PictureBox2;
                 internal System.Windows.Forms.PictureBox PictureBox3;
                 internal Lui.Forms.ComboBox EntradaDestinoTipo;
-                internal System.Windows.Forms.Label lblOrigenTipo;
-                internal System.Windows.Forms.Label lblDestinoTipo;
-                internal System.Windows.Forms.Label lblDuplicado;
+                internal Lui.Forms.Label lblOrigenTipo;
+                internal Lui.Forms.Label lblDestinoTipo;
+                internal Lui.Forms.Label lblDuplicado;
                 internal Lui.Forms.TextBox EntradaOrigen;
 
                 private void InitializeComponent()
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Convertir));
                         this.EntradaOrigen = new Lui.Forms.TextBox();
-                        this.Label6 = new System.Windows.Forms.Label();
-                        this.Label7 = new System.Windows.Forms.Label();
+                        this.Label6 = new Lui.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
                         this.EntradaDestinoTipo = new Lui.Forms.ComboBox();
-                        this.lblInfo = new System.Windows.Forms.Label();
-                        this.lblOrigenTipo = new System.Windows.Forms.Label();
-                        this.lblDestinoTipo = new System.Windows.Forms.Label();
-                        this.lblDuplicado = new System.Windows.Forms.Label();
+                        this.lblInfo = new Lui.Forms.Label();
+                        this.lblOrigenTipo = new Lui.Forms.Label();
+                        this.lblDestinoTipo = new Lui.Forms.Label();
+                        this.lblDuplicado = new Lui.Forms.Label();
                         this.PictureBox2 = new System.Windows.Forms.PictureBox();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.PictureBox3 = new System.Windows.Forms.PictureBox();
@@ -121,19 +121,13 @@ namespace Lfc.Comprobantes
                         this.EntradaOrigen.AutoTab = true;
                         this.EntradaOrigen.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaOrigen.DecimalPlaces = -1;
-                        this.EntradaOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaOrigen.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaOrigen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaOrigen.Location = new System.Drawing.Point(300, 20);
-                        this.EntradaOrigen.MaxLenght = 32767;
                         this.EntradaOrigen.MultiLine = false;
                         this.EntradaOrigen.Name = "EntradaOrigen";
                         this.EntradaOrigen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaOrigen.PasswordChar = '\0';
-                        this.EntradaOrigen.Prefijo = "";
                         this.EntradaOrigen.SelectOnFocus = true;
                         this.EntradaOrigen.Size = new System.Drawing.Size(312, 24);
-                        this.EntradaOrigen.Sufijo = "";
                         this.EntradaOrigen.TabIndex = 1;
                         this.EntradaOrigen.TabStop = false;
                         this.EntradaOrigen.PlaceholderText = "";
@@ -165,10 +159,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDestinoTipo.AutoNav = true;
                         this.EntradaDestinoTipo.AutoSize = true;
                         this.EntradaDestinoTipo.AutoTab = true;
-                        this.EntradaDestinoTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaDestinoTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaDestinoTipo.Location = new System.Drawing.Point(300, 48);
-                        this.EntradaDestinoTipo.MaxLenght = 32767;
                         this.EntradaDestinoTipo.Name = "EntradaDestinoTipo";
                         this.EntradaDestinoTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDestinoTipo.SetData = new string[] {
@@ -196,7 +186,6 @@ namespace Lfc.Comprobantes
                         // lblOrigenTipo
                         // 
                         this.lblOrigenTipo.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblOrigenTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblOrigenTipo.Location = new System.Drawing.Point(62, 180);
                         this.lblOrigenTipo.Name = "lblOrigenTipo";
                         this.lblOrigenTipo.Size = new System.Drawing.Size(84, 36);
@@ -207,7 +196,6 @@ namespace Lfc.Comprobantes
                         // lblDestinoTipo
                         // 
                         this.lblDestinoTipo.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDestinoTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblDestinoTipo.Location = new System.Drawing.Point(194, 180);
                         this.lblDestinoTipo.Name = "lblDestinoTipo";
                         this.lblDestinoTipo.Size = new System.Drawing.Size(84, 36);

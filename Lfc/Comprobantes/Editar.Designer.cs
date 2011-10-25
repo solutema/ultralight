@@ -38,32 +38,32 @@ namespace Lfc.Comprobantes
                 private void InitializeComponent()
                 {
                         this.ProductArray = new Lcc.Entrada.Articulos.MatrizDetalleComprobante();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaTotal = new Lui.Forms.TextBox();
-                        this.Label4 = new System.Windows.Forms.Label();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaSubTotal = new Lui.Forms.TextBox();
                         this.EntradaDescuento = new Lui.Forms.TextBox();
-                        this.Label6 = new System.Windows.Forms.Label();
+                        this.Label6 = new Lui.Forms.Label();
                         this.EntradaInteres = new Lui.Forms.TextBox();
-                        this.Label7 = new System.Windows.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
                         this.EntradaCuotas = new Lui.Forms.TextBox();
-                        this.Label8 = new System.Windows.Forms.Label();
+                        this.Label8 = new Lui.Forms.Label();
                         this.EntradaValorCuota = new Lui.Forms.TextBox();
-                        this.Label9 = new System.Windows.Forms.Label();
+                        this.Label9 = new Lui.Forms.Label();
                         this.BotonObs = new Lui.Forms.Button();
                         this.BotonConvertir = new Lui.Forms.Button();
                         this.EntradaComprobanteId = new System.Windows.Forms.TextBox();
                         this.BotonMasDatos = new Lui.Forms.Button();
-                        this.lblTitulo = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaPV = new Lui.Forms.TextBox();
                         this.PnlCuotas = new System.Windows.Forms.Panel();
                         this.EntradaIva = new Lui.Forms.TextBox();
-                        this.EtiquetaIva = new System.Windows.Forms.Label();
+                        this.EtiquetaIva = new Lui.Forms.Label();
                         this.PnlCuotas.SuspendLayout();
                         this.SuspendLayout();
                         // 
@@ -75,7 +75,6 @@ namespace Lfc.Comprobantes
                         this.ProductArray.AutoNav = true;
                         this.ProductArray.AutoScroll = true;
                         this.ProductArray.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.ProductArray.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ProductArray.FreeTextCode = "*";
                         this.ProductArray.Location = new System.Drawing.Point(0, 100);
                         this.ProductArray.LockPrice = false;
@@ -94,7 +93,6 @@ namespace Lfc.Comprobantes
                         // 
                         // Label3
                         // 
-                        this.Label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label3.Location = new System.Drawing.Point(248, 44);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(56, 24);
@@ -112,8 +110,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "";
-                        this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.Location = new System.Drawing.Point(304, 44);
@@ -132,7 +128,6 @@ namespace Lfc.Comprobantes
                         // 
                         // Label1
                         // 
-                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label1.Location = new System.Drawing.Point(0, 44);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(72, 24);
@@ -148,8 +143,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.ExtraDetailFields = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
-                        this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.DataValueField = "id_persona";
                         this.EntradaVendedor.Location = new System.Drawing.Point(72, 44);
@@ -172,19 +165,14 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.AutoTab = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
-                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTotal.Location = new System.Drawing.Point(456, 336);
-                        this.EntradaTotal.MaxLenght = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTotal.PasswordChar = '\0';
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
-                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 41;
                         this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.PlaceholderText = "";
@@ -194,7 +182,6 @@ namespace Lfc.Comprobantes
                         // Label4
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label4.Location = new System.Drawing.Point(392, 336);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(64, 32);
@@ -219,19 +206,14 @@ namespace Lfc.Comprobantes
                         this.EntradaSubTotal.AutoTab = true;
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaSubTotal.DecimalPlaces = -1;
-                        this.EntradaSubTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaSubTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaSubTotal.Location = new System.Drawing.Point(64, 312);
-                        this.EntradaSubTotal.MaxLenght = 32767;
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSubTotal.PasswordChar = '\0';
                         this.EntradaSubTotal.Prefijo = "$";
                         this.EntradaSubTotal.SelectOnFocus = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(92, 24);
-                        this.EntradaSubTotal.Sufijo = "";
                         this.EntradaSubTotal.TabIndex = 22;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
@@ -246,16 +228,11 @@ namespace Lfc.Comprobantes
                         this.EntradaDescuento.AutoTab = true;
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaDescuento.DecimalPlaces = -1;
-                        this.EntradaDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDescuento.Location = new System.Drawing.Point(224, 312);
-                        this.EntradaDescuento.MaxLenght = 32767;
                         this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescuento.PasswordChar = '\0';
-                        this.EntradaDescuento.Prefijo = "";
                         this.EntradaDescuento.SelectOnFocus = true;
                         this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
                         this.EntradaDescuento.Sufijo = "%";
@@ -282,16 +259,11 @@ namespace Lfc.Comprobantes
                         this.EntradaInteres.AutoTab = true;
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaInteres.DecimalPlaces = -1;
-                        this.EntradaInteres.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaInteres.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaInteres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaInteres.Location = new System.Drawing.Point(224, 340);
-                        this.EntradaInteres.MaxLenght = 32767;
                         this.EntradaInteres.MultiLine = false;
                         this.EntradaInteres.Name = "EntradaInteres";
                         this.EntradaInteres.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaInteres.PasswordChar = '\0';
-                        this.EntradaInteres.Prefijo = "";
                         this.EntradaInteres.SelectOnFocus = true;
                         this.EntradaInteres.Size = new System.Drawing.Size(76, 24);
                         this.EntradaInteres.Sufijo = "%";
@@ -318,19 +290,14 @@ namespace Lfc.Comprobantes
                         this.EntradaCuotas.AutoTab = true;
                         this.EntradaCuotas.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCuotas.DecimalPlaces = -1;
-                        this.EntradaCuotas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCuotas.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCuotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCuotas.Location = new System.Drawing.Point(52, 0);
-                        this.EntradaCuotas.MaxLenght = 2;
+                        this.EntradaCuotas.MaxLength = 2;
                         this.EntradaCuotas.MultiLine = false;
                         this.EntradaCuotas.Name = "EntradaCuotas";
                         this.EntradaCuotas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuotas.PasswordChar = '\0';
-                        this.EntradaCuotas.Prefijo = "";
                         this.EntradaCuotas.SelectOnFocus = true;
                         this.EntradaCuotas.Size = new System.Drawing.Size(32, 24);
-                        this.EntradaCuotas.Sufijo = "";
                         this.EntradaCuotas.TabIndex = 28;
                         this.EntradaCuotas.Text = "0";
                         this.EntradaCuotas.PlaceholderText = "";
@@ -354,19 +321,14 @@ namespace Lfc.Comprobantes
                         this.EntradaValorCuota.AutoTab = true;
                         this.EntradaValorCuota.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaValorCuota.DecimalPlaces = -1;
-                        this.EntradaValorCuota.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaValorCuota.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaValorCuota.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaValorCuota.Location = new System.Drawing.Point(108, 0);
-                        this.EntradaValorCuota.MaxLenght = 32767;
                         this.EntradaValorCuota.MultiLine = false;
                         this.EntradaValorCuota.Name = "EntradaValorCuota";
                         this.EntradaValorCuota.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaValorCuota.PasswordChar = '\0';
                         this.EntradaValorCuota.Prefijo = "$";
                         this.EntradaValorCuota.SelectOnFocus = true;
                         this.EntradaValorCuota.Size = new System.Drawing.Size(80, 24);
-                        this.EntradaValorCuota.Sufijo = "";
                         this.EntradaValorCuota.TabIndex = 30;
                         this.EntradaValorCuota.TabStop = false;
                         this.EntradaValorCuota.Text = "0.00";
@@ -387,8 +349,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.BotonObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonObs.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonObs.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonObs.Image = null;
                         this.BotonObs.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonObs.Location = new System.Drawing.Point(224, 372);
@@ -406,8 +366,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.BotonConvertir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonConvertir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonConvertir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonConvertir.Image = null;
                         this.BotonConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonConvertir.Location = new System.Drawing.Point(0, 372);
@@ -433,8 +391,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.BotonMasDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonMasDatos.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonMasDatos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonMasDatos.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonMasDatos.Image = null;
                         this.BotonMasDatos.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonMasDatos.Location = new System.Drawing.Point(112, 372);
@@ -450,21 +406,19 @@ namespace Lfc.Comprobantes
                         // 
                         // lblTitulo
                         // 
-                        this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblTitulo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.lblTitulo.Location = new System.Drawing.Point(0, 0);
-                        this.lblTitulo.Name = "lblTitulo";
-                        this.lblTitulo.Size = new System.Drawing.Size(600, 36);
-                        this.lblTitulo.TabIndex = 0;
-                        this.lblTitulo.Text = "Comprobante";
-                        this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header1;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(0, 0);
+                        this.EtiquetaTitulo.Name = "lblTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(600, 36);
+                        this.EtiquetaTitulo.TabIndex = 0;
+                        this.EtiquetaTitulo.Text = "Comprobante";
+                        this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
                         // label2
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label2.Location = new System.Drawing.Point(544, 44);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(24, 24);
@@ -479,19 +433,14 @@ namespace Lfc.Comprobantes
                         this.EntradaPV.AutoTab = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
-                        this.EntradaPV.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaPV.Location = new System.Drawing.Point(568, 44);
-                        this.EntradaPV.MaxLenght = 2;
+                        this.EntradaPV.MaxLength = 2;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPV.PasswordChar = '\0';
-                        this.EntradaPV.Prefijo = "";
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
-                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 6;
                         this.EntradaPV.Text = "0";
                         this.EntradaPV.PlaceholderText = "";
@@ -516,19 +465,14 @@ namespace Lfc.Comprobantes
                         this.EntradaIva.AutoTab = true;
                         this.EntradaIva.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaIva.DecimalPlaces = -1;
-                        this.EntradaIva.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaIva.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaIva.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaIva.Location = new System.Drawing.Point(64, 340);
-                        this.EntradaIva.MaxLenght = 32767;
                         this.EntradaIva.MultiLine = false;
                         this.EntradaIva.Name = "EntradaIva";
                         this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaIva.PasswordChar = '\0';
                         this.EntradaIva.Prefijo = "$";
                         this.EntradaIva.SelectOnFocus = true;
                         this.EntradaIva.Size = new System.Drawing.Size(92, 24);
-                        this.EntradaIva.Sufijo = "";
                         this.EntradaIva.TabIndex = 54;
                         this.EntradaIva.TabStop = false;
                         this.EntradaIva.Text = "0.00";
@@ -557,7 +501,7 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.PnlCuotas);
                         this.Controls.Add(this.EntradaPV);
                         this.Controls.Add(this.label2);
-                        this.Controls.Add(this.lblTitulo);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.EntradaCliente);
                         this.Controls.Add(this.EntradaComprobanteId);
                         this.Controls.Add(this.EntradaInteres);
@@ -589,7 +533,7 @@ namespace Lfc.Comprobantes
                         this.Controls.SetChildIndex(this.EntradaInteres, 0);
                         this.Controls.SetChildIndex(this.EntradaComprobanteId, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
-                        this.Controls.SetChildIndex(this.lblTitulo, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.Controls.SetChildIndex(this.label2, 0);
                         this.Controls.SetChildIndex(this.EntradaPV, 0);
                         this.Controls.SetChildIndex(this.PnlCuotas, 0);
@@ -607,31 +551,31 @@ namespace Lfc.Comprobantes
                 #endregion
 
                 public Lcc.Entrada.Articulos.MatrizDetalleComprobante ProductArray;
-                internal System.Windows.Forms.Label Label3;
+                internal Lui.Forms.Label Label3;
                 public Lcc.Entrada.CodigoDetalle EntradaCliente;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
                 internal Lui.Forms.TextBox EntradaTotal;
-                internal System.Windows.Forms.Label Label4;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label4;
+                internal Lui.Forms.Label Label5;
                 internal Lui.Forms.TextBox EntradaSubTotal;
                 internal Lui.Forms.TextBox EntradaDescuento;
-                internal System.Windows.Forms.Label Label6;
+                internal Lui.Forms.Label Label6;
                 internal Lui.Forms.TextBox EntradaInteres;
-                internal System.Windows.Forms.Label Label7;
+                internal Lui.Forms.Label Label7;
                 internal Lui.Forms.TextBox EntradaCuotas;
-                internal System.Windows.Forms.Label Label8;
+                internal Lui.Forms.Label Label8;
                 internal Lui.Forms.TextBox EntradaValorCuota;
-                internal System.Windows.Forms.Label Label9;
+                internal Lui.Forms.Label Label9;
                 internal Lui.Forms.Button BotonObs;
                 internal Lui.Forms.Button BotonConvertir;
                 internal System.Windows.Forms.TextBox EntradaComprobanteId;
                 internal Lui.Forms.Button BotonMasDatos;
-                internal System.Windows.Forms.Label lblTitulo;
-                internal System.Windows.Forms.Label label2;
+                internal Lui.Forms.Label EtiquetaTitulo;
+                internal Lui.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaPV;
                 private System.Windows.Forms.Panel PnlCuotas;
                 internal Lui.Forms.TextBox EntradaIva;
-                internal System.Windows.Forms.Label EtiquetaIva;
+                internal Lui.Forms.Label EtiquetaIva;
         }
 }

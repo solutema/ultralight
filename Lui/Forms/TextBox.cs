@@ -59,10 +59,14 @@ namespace Lui.Forms
                         this.BackColor = TextBox1.BackColor;
                         TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                         TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+
+                        EtiquetaPrefijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8f);
+                        EtiquetaSufijo.Font = EtiquetaPrefijo.Font;
                         EtiquetaPrefijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         EtiquetaPrefijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                         EtiquetaSufijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         EtiquetaSufijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        
                         this.SizeChanged += new System.EventHandler(this.TextBox_SizeChanged);
                         this.TextBox1.ContextMenu = this.MiContextMenu;
                         this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
@@ -147,9 +151,7 @@ namespace Lui.Forms
 			}
 		}
 
-		[EditorBrowsable(EditorBrowsableState.Never),
-                        Browsable(false), 
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public int SelectionLength
 		{
 			get
@@ -595,11 +597,6 @@ namespace Lui.Forms
                         }
                 }
 
-                private void TextBox_FontChanged(object sender, System.EventArgs e)
-                {
-                        EtiquetaPrefijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8F);
-                        EtiquetaSufijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8F);
-                }
 
                 private void TextBox_SizeChanged(object sender, System.EventArgs e)
                 {
@@ -620,6 +617,37 @@ namespace Lui.Forms
                         TextBox1.Top = 4;
                         TextBox1.Width = this.Width - TextBox1.Left - SufijoWidth;
                         TextBox1.Height = this.Height - (TextBox1.Top * 2);
+                }
+
+
+                private void TextBox1_FontChanged(object sender, System.EventArgs e)
+                {
+                        EtiquetaPrefijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8f);
+                        EtiquetaSufijo.Font = EtiquetaPrefijo.Font;
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Font Font
+                {
+                        get
+                        {
+                                return TextBox1.Font;
+                        }
+                }
+
+                
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Font CustomFont
+                {
+                        get
+                        {
+                                return TextBox1.Font;
+                        }
+                        set
+                        {
+                                TextBox1.Font = value;
+                        }
                 }
 	}
 }

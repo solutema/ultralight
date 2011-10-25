@@ -56,10 +56,12 @@ namespace Lcc.Entrada
                                 if (this.TextInt == 0) {
                                         return null;
                                 } else if (base.Elemento == null || base.Elemento.Id != this.TextInt) {
-                                        if (this.TextInt != 0 && this.CurrentRow != null) {
+                                        if (this.CurrentRow != null) {
                                                 if (this.ElementoTipo == null || this.ElementoTipo == typeof(Lbl.ElementoDeDatos))
                                                         this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.Table);
-                                                base.Elemento = Lbl.Instanciador.Instanciar(this.ElementoTipo, this.Connection, CurrentRow);
+                                                Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.ElementoTipo, this.Connection, CurrentRow);
+                                                if (Elem != null && Elem.Existe)
+                                                        base.Elemento = Elem;
                                         } else {
                                                 base.Elemento = null;
                                         }

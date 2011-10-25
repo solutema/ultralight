@@ -73,20 +73,20 @@ namespace Lfc.Comprobantes
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Label lblHaciaSituacion;
+                internal Lui.Forms.Label lblHaciaSituacion;
                 internal Lcc.Entrada.CodigoDetalle EntradaHaciaSituacion;
-                internal System.Windows.Forms.Label lblDesdeSituacion;
-                internal System.Windows.Forms.Label label1;
+                internal Lui.Forms.Label lblDesdeSituacion;
+                internal Lui.Forms.Label label1;
                 internal Lui.Forms.ComboBox EntradaBloqueada;
                 internal Lcc.Entrada.CodigoDetalle EntradaDesdeSituacion;
 
                 private void InitializeComponent()
                 {
-                        this.lblHaciaSituacion = new System.Windows.Forms.Label();
+                        this.lblHaciaSituacion = new Lui.Forms.Label();
                         this.EntradaHaciaSituacion = new Lcc.Entrada.CodigoDetalle();
-                        this.lblDesdeSituacion = new System.Windows.Forms.Label();
+                        this.lblDesdeSituacion = new Lui.Forms.Label();
                         this.EntradaDesdeSituacion = new Lcc.Entrada.CodigoDetalle();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.EntradaBloqueada = new Lui.Forms.ComboBox();
                         this.SuspendLayout();
                         // 
@@ -100,7 +100,6 @@ namespace Lfc.Comprobantes
                         // 
                         // lblHaciaSituacion
                         // 
-                        this.lblHaciaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblHaciaSituacion.Location = new System.Drawing.Point(16, 48);
                         this.lblHaciaSituacion.Name = "lblHaciaSituacion";
                         this.lblHaciaSituacion.Size = new System.Drawing.Size(124, 24);
@@ -116,8 +115,6 @@ namespace Lfc.Comprobantes
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
                         this.EntradaHaciaSituacion.ExtraDetailFields = null;
-                        this.EntradaHaciaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaHaciaSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaHaciaSituacion.FreeTextCode = "";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(140, 48);
@@ -137,7 +134,6 @@ namespace Lfc.Comprobantes
                         // 
                         // lblDesdeSituacion
                         // 
-                        this.lblDesdeSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblDesdeSituacion.Location = new System.Drawing.Point(16, 20);
                         this.lblDesdeSituacion.Name = "lblDesdeSituacion";
                         this.lblDesdeSituacion.Size = new System.Drawing.Size(124, 24);
@@ -154,8 +150,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion.DataTextField = "nombre";
                         this.EntradaDesdeSituacion.ExtraDetailFields = null;
                         this.EntradaDesdeSituacion.Filter = "facturable=1";
-                        this.EntradaDesdeSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaDesdeSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaDesdeSituacion.FreeTextCode = "";
                         this.EntradaDesdeSituacion.DataValueField = "id_situacion";
                         this.EntradaDesdeSituacion.Location = new System.Drawing.Point(140, 20);
@@ -175,7 +169,6 @@ namespace Lfc.Comprobantes
                         // 
                         // label1
                         // 
-                        this.label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label1.Location = new System.Drawing.Point(16, 280);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(124, 24);
@@ -187,10 +180,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaBloqueada.AutoNav = true;
                         this.EntradaBloqueada.AutoTab = true;
-                        this.EntradaBloqueada.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaBloqueada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaBloqueada.Location = new System.Drawing.Point(140, 280);
-                        this.EntradaBloqueada.MaxLenght = 32767;
                         this.EntradaBloqueada.Name = "EntradaBloqueada";
                         this.EntradaBloqueada.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBloqueada.TemporaryReadOnly = false;

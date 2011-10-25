@@ -59,17 +59,17 @@ namespace Lfc.Comprobantes.Tipo
                 private void InitializeComponent()
                 {
                         this.EntradaImpresora = new Lcc.Entrada.CodigoDetalle();
-                        this.Label16 = new System.Windows.Forms.Label();
+                        this.Label16 = new Lui.Forms.Label();
                         this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
-                        this.label1 = new System.Windows.Forms.Label();
-                        this.Label3 = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.cmdEstacionSeleccionar = new Lui.Forms.Button();
                         this.EntradaEstacion = new Lui.Forms.TextBox();
                         this.EntradaPuntoDeVenta = new Lui.Forms.TextBox();
-                        this.label4 = new System.Windows.Forms.Label();
-                        this.label5 = new System.Windows.Forms.Label();
-                        this.label6 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -90,8 +90,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImpresora.DataTextField = "nombre";
                         this.EntradaImpresora.ExtraDetailFields = null;
                         this.EntradaImpresora.Filter = "";
-                        this.EntradaImpresora.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaImpresora.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaImpresora.FreeTextCode = "";
                         this.EntradaImpresora.DataValueField = "id_impresora";
                         this.EntradaImpresora.Location = new System.Drawing.Point(152, 52);
@@ -126,8 +124,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.Filter = "";
-                        this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.Location = new System.Drawing.Point(152, 120);
@@ -174,8 +170,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.cmdEstacionSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.cmdEstacionSeleccionar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdEstacionSeleccionar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.cmdEstacionSeleccionar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.cmdEstacionSeleccionar.Image = null;
                         this.cmdEstacionSeleccionar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.cmdEstacionSeleccionar.Location = new System.Drawing.Point(352, 184);
@@ -195,19 +189,13 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaEstacion.AutoTab = true;
                         this.EntradaEstacion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEstacion.DecimalPlaces = -1;
-                        this.EntradaEstacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
-                        this.EntradaEstacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaEstacion.Location = new System.Drawing.Point(152, 184);
-                        this.EntradaEstacion.MaxLenght = 32767;
                         this.EntradaEstacion.MultiLine = false;
                         this.EntradaEstacion.Name = "EntradaEstacion";
                         this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstacion.PasswordChar = '\0';
-                        this.EntradaEstacion.Prefijo = "";
                         this.EntradaEstacion.SelectOnFocus = true;
                         this.EntradaEstacion.Size = new System.Drawing.Size(196, 24);
-                        this.EntradaEstacion.Sufijo = "";
                         this.EntradaEstacion.TabIndex = 7;
                         this.EntradaEstacion.PlaceholderText = "";
                         this.EntradaEstacion.ToolTipText = "";
@@ -218,19 +206,13 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaPuntoDeVenta.AutoTab = true;
                         this.EntradaPuntoDeVenta.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPuntoDeVenta.DecimalPlaces = -1;
-                        this.EntradaPuntoDeVenta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPuntoDeVenta.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPuntoDeVenta.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPuntoDeVenta.Location = new System.Drawing.Point(152, 152);
-                        this.EntradaPuntoDeVenta.MaxLenght = 32767;
                         this.EntradaPuntoDeVenta.MultiLine = false;
                         this.EntradaPuntoDeVenta.Name = "EntradaPuntoDeVenta";
                         this.EntradaPuntoDeVenta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPuntoDeVenta.PasswordChar = '\0';
-                        this.EntradaPuntoDeVenta.Prefijo = "";
                         this.EntradaPuntoDeVenta.SelectOnFocus = true;
                         this.EntradaPuntoDeVenta.Size = new System.Drawing.Size(72, 24);
-                        this.EntradaPuntoDeVenta.Sufijo = "";
                         this.EntradaPuntoDeVenta.TabIndex = 5;
                         this.EntradaPuntoDeVenta.Text = "0";
                         this.EntradaPuntoDeVenta.PlaceholderText = "";
@@ -256,7 +238,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label6
                         // 
-                        this.label6.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label6.Location = new System.Drawing.Point(228, 152);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(316, 24);
@@ -302,16 +283,16 @@ namespace Lfc.Comprobantes.Tipo
                 #endregion
 
                 internal Lcc.Entrada.CodigoDetalle EntradaImpresora;
-                internal System.Windows.Forms.Label Label16;
+                internal Lui.Forms.Label Label16;
                 internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
-                internal System.Windows.Forms.Label label1;
-                internal System.Windows.Forms.Label Label3;
-                internal System.Windows.Forms.Label label2;
+                internal Lui.Forms.Label label1;
+                internal Lui.Forms.Label Label3;
+                internal Lui.Forms.Label label2;
                 internal Lui.Forms.Button cmdEstacionSeleccionar;
                 internal Lui.Forms.TextBox EntradaEstacion;
                 internal Lui.Forms.TextBox EntradaPuntoDeVenta;
-                internal System.Windows.Forms.Label label4;
-                internal System.Windows.Forms.Label label5;
-                internal System.Windows.Forms.Label label6;
+                internal Lui.Forms.Label label4;
+                internal Lui.Forms.Label label5;
+                internal Lui.Forms.Label label6;
         }
 }

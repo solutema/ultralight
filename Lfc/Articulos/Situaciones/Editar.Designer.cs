@@ -37,9 +37,9 @@ namespace Lfc.Articulos.Situaciones
 {
         public partial class Editar
         {
-                internal System.Windows.Forms.Label label9;
+                internal Lui.Forms.Label label9;
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label5;
 
                 #region Código generado por el diseñador
 
@@ -57,13 +57,13 @@ namespace Lfc.Articulos.Situaciones
 
                 private void InitializeComponent()
                 {
-                        this.label9 = new System.Windows.Forms.Label();
+                        this.label9 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaCuentaStock = new Lui.Forms.ComboBox();
                         this.EntradaFacturable = new Lui.Forms.ComboBox();
-                        this.label1 = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaDeposito = new Lui.Forms.TextBox();
                         this.SuspendLayout();
                         // 
@@ -84,21 +84,15 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(136, 16);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(336, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.ToolTipText = "";
                         // 
@@ -116,10 +110,7 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaCuentaStock.AlwaysExpanded = false;
                         this.EntradaCuentaStock.AutoNav = true;
                         this.EntradaCuentaStock.AutoTab = true;
-                        this.EntradaCuentaStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCuentaStock.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCuentaStock.Location = new System.Drawing.Point(136, 48);
-                        this.EntradaCuentaStock.MaxLenght = 32767;
                         this.EntradaCuentaStock.Name = "EntradaCuentaStock";
                         this.EntradaCuentaStock.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuentaStock.PlaceholderText = "";
@@ -137,10 +128,7 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaFacturable.AlwaysExpanded = false;
                         this.EntradaFacturable.AutoNav = true;
                         this.EntradaFacturable.AutoTab = true;
-                        this.EntradaFacturable.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaFacturable.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFacturable.Location = new System.Drawing.Point(136, 80);
-                        this.EntradaFacturable.MaxLenght = 32767;
                         this.EntradaFacturable.Name = "EntradaFacturable";
                         this.EntradaFacturable.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFacturable.PlaceholderText = "";
@@ -177,21 +165,14 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaDeposito.AutoTab = true;
                         this.EntradaDeposito.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDeposito.DecimalPlaces = -1;
-                        this.EntradaDeposito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaDeposito.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDeposito.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaDeposito.Location = new System.Drawing.Point(136, 112);
-                        this.EntradaDeposito.MaxLenght = 32767;
                         this.EntradaDeposito.MultiLine = false;
                         this.EntradaDeposito.Name = "EntradaDeposito";
                         this.EntradaDeposito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDeposito.PasswordChar = '\0';
                         this.EntradaDeposito.PlaceholderText = "";
-                        this.EntradaDeposito.Prefijo = "";
                         this.EntradaDeposito.ReadOnly = false;
                         this.EntradaDeposito.SelectOnFocus = false;
                         this.EntradaDeposito.Size = new System.Drawing.Size(52, 24);
-                        this.EntradaDeposito.Sufijo = "";
                         this.EntradaDeposito.TabIndex = 7;
                         this.EntradaDeposito.Text = "0";
                         this.EntradaDeposito.ToolTipText = "";
@@ -225,8 +206,8 @@ namespace Lfc.Articulos.Situaciones
 
                 internal Lui.Forms.ComboBox EntradaCuentaStock;
                 internal Lui.Forms.ComboBox EntradaFacturable;
-                internal System.Windows.Forms.Label label1;
-                internal System.Windows.Forms.Label label2;
+                internal Lui.Forms.Label label1;
+                internal Lui.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaDeposito;
         }
 }

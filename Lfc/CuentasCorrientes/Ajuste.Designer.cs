@@ -58,14 +58,14 @@ namespace Lfc.CuentasCorrientes
                 {
                         this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaImporte = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaObs = new Lui.Forms.TextBox();
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.EntradaDireccion = new Lui.Forms.ComboBox();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.EntradaNuevoSaldo = new Lui.Forms.TextBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -86,8 +86,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.ExtraDetailFields = null;
                         this.EntradaConcepto.Filter = "";
-                        this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaConcepto.FreeTextCode = "*";
                         this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.Location = new System.Drawing.Point(120, 24);
@@ -113,20 +111,15 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
-                        this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaImporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaImporte.Location = new System.Drawing.Point(120, 56);
-                        this.EntradaImporte.MaxLenght = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImporte.PasswordChar = '\0';
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.TemporaryReadOnly = false;
                         this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
-                        this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.Text = "0.00";
                         this.EntradaImporte.PlaceholderText = "";
@@ -160,20 +153,14 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaObs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaObs.Location = new System.Drawing.Point(120, 120);
-                        this.EntradaObs.MaxLenght = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.PasswordChar = '\0';
-                        this.EntradaObs.Prefijo = "";
                         this.EntradaObs.TemporaryReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(496, 92);
-                        this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 7;
                         this.EntradaObs.PlaceholderText = "";
                         this.EntradaObs.ToolTipText = "";
@@ -192,10 +179,7 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaDireccion.AutoSize = false;
                         this.EntradaDireccion.AutoNav = true;
                         this.EntradaDireccion.AutoTab = true;
-                        this.EntradaDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaDireccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDireccion.Location = new System.Drawing.Point(120, 88);
-                        this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDireccion.TemporaryReadOnly = false;
@@ -225,20 +209,15 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaNuevoSaldo.AutoTab = true;
                         this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaNuevoSaldo.DecimalPlaces = -1;
-                        this.EntradaNuevoSaldo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNuevoSaldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNuevoSaldo.Location = new System.Drawing.Point(376, 56);
-                        this.EntradaNuevoSaldo.MaxLenght = 32767;
                         this.EntradaNuevoSaldo.MultiLine = false;
                         this.EntradaNuevoSaldo.Name = "EntradaNuevoSaldo";
                         this.EntradaNuevoSaldo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNuevoSaldo.PasswordChar = '\0';
                         this.EntradaNuevoSaldo.Prefijo = "$";
                         this.EntradaNuevoSaldo.TemporaryReadOnly = true;
                         this.EntradaNuevoSaldo.SelectOnFocus = true;
                         this.EntradaNuevoSaldo.Size = new System.Drawing.Size(128, 24);
-                        this.EntradaNuevoSaldo.Sufijo = "";
                         this.EntradaNuevoSaldo.TabIndex = 52;
                         this.EntradaNuevoSaldo.TabStop = false;
                         this.EntradaNuevoSaldo.Text = "0.00";
@@ -287,13 +266,13 @@ namespace Lfc.CuentasCorrientes
 
                 internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
                 internal Lui.Forms.TextBox EntradaImporte;
-                internal System.Windows.Forms.Label Label2;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label2;
+                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.TextBox EntradaObs;
-                internal System.Windows.Forms.Label Label4;
-                internal System.Windows.Forms.Label label5;
+                internal Lui.Forms.Label Label4;
+                internal Lui.Forms.Label label5;
                 internal Lui.Forms.ComboBox EntradaDireccion;
                 internal Lui.Forms.TextBox EntradaNuevoSaldo;
-                internal System.Windows.Forms.Label label3;
+                internal Lui.Forms.Label label3;
         }
 }

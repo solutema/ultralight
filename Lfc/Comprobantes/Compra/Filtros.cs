@@ -73,10 +73,10 @@ namespace Lfc.Comprobantes.Compra
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
                 internal Lui.Forms.ComboBox EntradaTipo;
-                internal System.Windows.Forms.Label Label4;
-                internal System.Windows.Forms.Label Label2;
-                internal System.Windows.Forms.Label Label1;
-                internal System.Windows.Forms.Label label3;
+                internal Lui.Forms.Label Label4;
+                internal Lui.Forms.Label Label2;
+                internal Lui.Forms.Label Label1;
+                internal Lui.Forms.Label label3;
                 internal Lui.Forms.ComboBox EntradaEstado;
                 private TableLayoutPanel tableLayoutPanel1;
                 internal Lcc.Entrada.RangoFechas EntradaFechas;
@@ -85,12 +85,12 @@ namespace Lfc.Comprobantes.Compra
                 private void InitializeComponent()
                 {
                         this.EntradaTipo = new Lui.Forms.ComboBox();
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.EntradaProveedor = new Lcc.Entrada.CodigoDetalle();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.tableLayoutPanel1.SuspendLayout();
@@ -111,10 +111,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTipo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTipo.Location = new System.Drawing.Point(137, 3);
-                        this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.TemporaryReadOnly = false;
@@ -155,8 +152,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.ExtraDetailFields = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
-                        this.EntradaProveedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaProveedor.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.Location = new System.Drawing.Point(137, 63);
@@ -199,10 +194,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEstado.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaEstado.Location = new System.Drawing.Point(137, 33);
-                        this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.TemporaryReadOnly = false;
@@ -254,7 +246,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFechas.AutoSize = true;
-                        this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechas.Location = new System.Drawing.Point(137, 94);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";

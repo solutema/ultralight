@@ -50,7 +50,7 @@ namespace Lcc.Entrada.AuxForms
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.ListView ListaItem;
+		internal Lui.Forms.ListView ListaItem;
 		internal System.Windows.Forms.ColumnHeader id;
 		internal System.Windows.Forms.ColumnHeader nombre;
 		internal Lui.Forms.TextBox EntradaBuscar;
@@ -64,7 +64,7 @@ namespace Lcc.Entrada.AuxForms
 		private void InitializeComponent()
 		{
                         this.components = new System.ComponentModel.Container();
-                        this.ListaItem = new System.Windows.Forms.ListView();
+                        this.ListaItem = new Lui.Forms.ListView();
                         this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.extra1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -144,19 +144,13 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaBuscar.Cursor = System.Windows.Forms.Cursors.Default;
                         this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaBuscar.DecimalPlaces = -1;
-                        this.EntradaBuscar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaBuscar.Location = new System.Drawing.Point(4, 344);
-                        this.EntradaBuscar.MaxLenght = 32767;
                         this.EntradaBuscar.MultiLine = false;
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBuscar.PasswordChar = '\0';
-                        this.EntradaBuscar.Prefijo = "";
                         this.EntradaBuscar.SelectOnFocus = false;
                         this.EntradaBuscar.Size = new System.Drawing.Size(524, 24);
-                        this.EntradaBuscar.Sufijo = "";
                         this.EntradaBuscar.TabIndex = 0;
                         this.EntradaBuscar.PlaceholderText = "";
                         this.EntradaBuscar.ToolTipText = "";
@@ -168,8 +162,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.BotonNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonNuevo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonNuevo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonNuevo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonNuevo.Image = null;
                         this.BotonNuevo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNuevo.Location = new System.Drawing.Point(532, 340);
@@ -195,7 +187,6 @@ namespace Lcc.Entrada.AuxForms
                         this.Controls.Add(this.BotonNuevo);
                         this.Controls.Add(this.EntradaBuscar);
                         this.Controls.Add(this.ListaItem);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                         this.KeyPreview = true;
                         this.Name = "DetailBoxQuickSelect";

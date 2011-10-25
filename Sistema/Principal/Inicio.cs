@@ -560,13 +560,6 @@ namespace Lazaro.Principal
                         MenuItemInfoTable.Add(Itm.Tag.ToString(), ItmInfo);
                 }
 
-                // Las siguientes constantes y funciones (Menu_Select, Menu_MeasureItem, Menu_DrawItem)
-                // dibujan los mens de la aplicación (mediante OwnerDraw)
-                // Se utilizan exclusivamente para poder dibujar mens con la fuetne Bitstream
-                private const string FONT_NAME = "Bitstream Vera Sans";
-                private const float FONT_SIZE = 9;
-                private const FontStyle FONT_STYLE = FontStyle.Regular;
-
                 private void Menu_Select(object sender, System.EventArgs e)
                 {
                         //NodoMenu MiItem = ((NodoMenu)(sender));
@@ -580,8 +573,7 @@ namespace Lazaro.Principal
                                 e.ItemHeight = 4;
                                 e.ItemWidth = 24;
                         } else {
-                                Font ItemFont = new Font(FONT_NAME, FONT_SIZE, FONT_STYLE);
-                                SizeF ItemSize = e.Graphics.MeasureString(MiItem.Text.Replace("&", ""), ItemFont);
+                                SizeF ItemSize = e.Graphics.MeasureString(MiItem.Text.Replace("&", ""), Lfx.Config.Display.MenuFont);
 
                                 if (MiItem.Parent == this.MainMenu) {
                                         e.ItemHeight = System.Convert.ToInt32(ItemSize.Height + 2);
@@ -598,7 +590,6 @@ namespace Lazaro.Principal
 
                 private void Menu_DrawItem(System.Object sender, System.Windows.Forms.DrawItemEventArgs e)
                 {
-                        Font ItemFont = new Font(FONT_NAME, FONT_SIZE, FONT_STYLE);
                         MenuItem MiItem = ((MenuItem)(sender));
                         float MargenX = 12;
                         float MargenY = 4;
@@ -624,17 +615,17 @@ namespace Lazaro.Principal
                                 e.Graphics.FillRectangle(Resalte, e.Bounds.X + 1, e.Bounds.Y, e.Bounds.Width - 2, e.Bounds.Height - 1);
                                 // e.Graphics.FillRectangle(New SolidBrush(PaletaCambiarBrillo(SystemColors.Highlight, 40)), e.Bounds.X + 1, e.Bounds.Y, 20, e.Bounds.Height - 1)
                                 e.Graphics.DrawRectangle(Recuadro, e.Bounds.X + 1, e.Bounds.Y, e.Bounds.Width - 2, e.Bounds.Height - 1);
-                                e.Graphics.DrawString(MiItem.Text, ItemFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
+                                e.Graphics.DrawString(MiItem.Text, Lfx.Config.Display.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
                                     FormatoTexto);
                         } else if ((e.State & DrawItemState.Disabled) == DrawItemState.Disabled) {
                                 SolidBrush Texto = new SolidBrush(System.Drawing.SystemColors.GrayText);
                                 // e.Graphics.SmoothingMode = Drawing2D.SmoothingMode.None
-                                e.Graphics.DrawString(MiItem.Text, ItemFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
+                                e.Graphics.DrawString(MiItem.Text, Lfx.Config.Display.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
                                     FormatoTexto);
                         } else {
                                 SolidBrush Texto = new SolidBrush(System.Drawing.SystemColors.MenuText);
                                 // e.Graphics.SmoothingMode = Drawing2D.SmoothingMode.None
-                                e.Graphics.DrawString(MiItem.Text, ItemFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
+                                e.Graphics.DrawString(MiItem.Text, Lfx.Config.Display.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
                                     FormatoTexto);
                         }
                 }

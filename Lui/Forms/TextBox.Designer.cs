@@ -79,6 +79,11 @@ namespace Lui.Forms
                         this.EtiquetaSufijo = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
+                        // TextBox1
+                        // 
+                        this.TextBox1.Size = new System.Drawing.Size(376, 16);
+                        this.TextBox1.FontChanged += new System.EventHandler(this.TextBox1_FontChanged);
+                        // 
                         // MiContextMenu
                         // 
                         this.MiContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
@@ -165,26 +170,23 @@ namespace Lui.Forms
                         this.MenuItemPegadoRapidoAgregar.Text = "&Agregar al menú de Pegado Rápido";
                         this.MenuItemPegadoRapidoAgregar.Click += new System.EventHandler(this.MenuItemPegadoRapidoAgregar_Click);
                         // 
-                        // lblPrefijo
+                        // EtiquetaPrefijo
                         // 
                         this.EtiquetaPrefijo.AutoSize = true;
-                        this.EtiquetaPrefijo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-                        this.EtiquetaPrefijo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaPrefijo.Location = new System.Drawing.Point(4, 2);
-                        this.EtiquetaPrefijo.Name = "lblPrefijo";
-                        this.EtiquetaPrefijo.Size = new System.Drawing.Size(0, 13);
+                        this.EtiquetaPrefijo.Location = new System.Drawing.Point(4, 4);
+                        this.EtiquetaPrefijo.Name = "EtiquetaPrefijo";
+                        this.EtiquetaPrefijo.Size = new System.Drawing.Size(0, 16);
                         this.EtiquetaPrefijo.TabIndex = 3;
                         this.EtiquetaPrefijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.EtiquetaPrefijo.UseMnemonic = false;
                         this.EtiquetaPrefijo.Visible = false;
                         // 
-                        // lblSufijo
+                        // EtiquetaSufijo
                         // 
                         this.EtiquetaSufijo.AutoSize = true;
-                        this.EtiquetaSufijo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaSufijo.Location = new System.Drawing.Point(368, 4);
-                        this.EtiquetaSufijo.Name = "lblSufijo";
-                        this.EtiquetaSufijo.Size = new System.Drawing.Size(0, 13);
+                        this.EtiquetaSufijo.Location = new System.Drawing.Point(372, 4);
+                        this.EtiquetaSufijo.Name = "EtiquetaSufijo";
+                        this.EtiquetaSufijo.Size = new System.Drawing.Size(0, 16);
                         this.EtiquetaSufijo.TabIndex = 4;
                         this.EtiquetaSufijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.EtiquetaSufijo.UseMnemonic = false;
@@ -192,11 +194,13 @@ namespace Lui.Forms
                         // 
                         // TextBox
                         // 
-			this.FontChanged += new System.EventHandler(this.TextBox_FontChanged);
                         this.Controls.Add(this.EtiquetaPrefijo);
                         this.Controls.Add(this.EtiquetaSufijo);
                         this.Name = "TextBox";
-                        this.Size = new System.Drawing.Size(384, 40);
+                        this.Size = new System.Drawing.Size(384, 24);
+                        this.Controls.SetChildIndex(this.EtiquetaSufijo, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaPrefijo, 0);
+                        this.Controls.SetChildIndex(this.TextBox1, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

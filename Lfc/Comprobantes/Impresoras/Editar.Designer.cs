@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ namespace Lfc.Comprobantes.Impresoras
         public partial class Editar
         {
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label5;
                 private System.ComponentModel.IContainer components = null;
 
                 protected override void Dispose(bool disposing)
@@ -56,26 +56,26 @@ namespace Lfc.Comprobantes.Impresoras
                 private void InitializeComponent()
                 {
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaUbicacion = new Lui.Forms.TextBox();
-                        this.label10 = new System.Windows.Forms.Label();
+                        this.label10 = new Lui.Forms.Label();
                         this.EntradaTalonario = new Lui.Forms.ComboBox();
-                        this.label9 = new System.Windows.Forms.Label();
+                        this.label9 = new Lui.Forms.Label();
                         this.EntradaFiscalBps = new Lui.Forms.ComboBox();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaFiscalPuerto = new Lui.Forms.ComboBox();
                         this.EntradaFiscalModelo = new Lui.Forms.ComboBox();
-                        this.label7 = new System.Windows.Forms.Label();
-                        this.label6 = new System.Windows.Forms.Label();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
-                        this.Label16 = new System.Windows.Forms.Label();
+                        this.Label16 = new Lui.Forms.Label();
                         this.EntradaCarga = new Lui.Forms.ComboBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.EntradaEstacion = new Lui.Forms.TextBox();
                         this.BotonSeleccionarEstacion = new Lui.Forms.Button();
                         this.EntradaDispositivo = new Lui.Forms.TextBox();
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.BotonSeleccionarDispositivo = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
@@ -87,19 +87,13 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(519, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
@@ -121,19 +115,13 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaUbicacion.AutoTab = true;
                         this.EntradaUbicacion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaUbicacion.DecimalPlaces = -1;
-                        this.EntradaUbicacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaUbicacion.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaUbicacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaUbicacion.Location = new System.Drawing.Point(120, 112);
-                        this.EntradaUbicacion.MaxLenght = 32767;
                         this.EntradaUbicacion.MultiLine = false;
                         this.EntradaUbicacion.Name = "EntradaUbicacion";
                         this.EntradaUbicacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUbicacion.PasswordChar = '\0';
-                        this.EntradaUbicacion.Prefijo = "";
                         this.EntradaUbicacion.SelectOnFocus = false;
                         this.EntradaUbicacion.Size = new System.Drawing.Size(519, 24);
-                        this.EntradaUbicacion.Sufijo = "";
                         this.EntradaUbicacion.TabIndex = 10;
                         this.EntradaUbicacion.PlaceholderText = "";
                         this.EntradaUbicacion.ToolTipText = "";
@@ -151,10 +139,7 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaTalonario.AutoNav = true;
                         this.EntradaTalonario.AutoTab = true;
-                        this.EntradaTalonario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTalonario.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTalonario.Location = new System.Drawing.Point(244, 148);
-                        this.EntradaTalonario.MaxLenght = 32767;
                         this.EntradaTalonario.Name = "EntradaTalonario";
                         this.EntradaTalonario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTalonario.SetData = new string[] {
@@ -181,10 +166,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalBps.AutoNav = true;
                         this.EntradaFiscalBps.AutoTab = true;
                         this.EntradaFiscalBps.Enabled = false;
-                        this.EntradaFiscalBps.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaFiscalBps.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFiscalBps.Location = new System.Drawing.Point(244, 268);
-                        this.EntradaFiscalBps.MaxLenght = 32767;
                         this.EntradaFiscalBps.Name = "EntradaFiscalBps";
                         this.EntradaFiscalBps.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFiscalBps.SetData = new string[] {
@@ -210,10 +192,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalPuerto.AutoNav = true;
                         this.EntradaFiscalPuerto.AutoTab = true;
                         this.EntradaFiscalPuerto.Enabled = false;
-                        this.EntradaFiscalPuerto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaFiscalPuerto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFiscalPuerto.Location = new System.Drawing.Point(244, 240);
-                        this.EntradaFiscalPuerto.MaxLenght = 32767;
                         this.EntradaFiscalPuerto.Name = "EntradaFiscalPuerto";
                         this.EntradaFiscalPuerto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFiscalPuerto.SetData = new string[] {
@@ -231,10 +210,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalModelo.AutoNav = true;
                         this.EntradaFiscalModelo.AutoTab = true;
                         this.EntradaFiscalModelo.Enabled = false;
-                        this.EntradaFiscalModelo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaFiscalModelo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFiscalModelo.Location = new System.Drawing.Point(244, 212);
-                        this.EntradaFiscalModelo.MaxLenght = 32767;
                         this.EntradaFiscalModelo.Name = "EntradaFiscalModelo";
                         this.EntradaFiscalModelo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFiscalModelo.SetData = new string[] {
@@ -279,10 +255,7 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTipo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTipo.Location = new System.Drawing.Point(120, 28);
-                        this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
@@ -310,10 +283,7 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaCarga.AutoNav = true;
                         this.EntradaCarga.AutoTab = true;
-                        this.EntradaCarga.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCarga.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCarga.Location = new System.Drawing.Point(244, 176);
-                        this.EntradaCarga.MaxLenght = 32767;
                         this.EntradaCarga.Name = "EntradaCarga";
                         this.EntradaCarga.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCarga.SetData = new string[] {
@@ -341,19 +311,13 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaEstacion.AutoTab = true;
                         this.EntradaEstacion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEstacion.DecimalPlaces = -1;
-                        this.EntradaEstacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
-                        this.EntradaEstacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaEstacion.Location = new System.Drawing.Point(120, 56);
-                        this.EntradaEstacion.MaxLenght = 32767;
                         this.EntradaEstacion.MultiLine = false;
                         this.EntradaEstacion.Name = "EntradaEstacion";
                         this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstacion.PasswordChar = '\0';
-                        this.EntradaEstacion.Prefijo = "";
                         this.EntradaEstacion.SelectOnFocus = true;
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
-                        this.EntradaEstacion.Sufijo = "";
                         this.EntradaEstacion.TabIndex = 4;
                         this.EntradaEstacion.PlaceholderText = "";
                         this.EntradaEstacion.ToolTipText = "";
@@ -362,8 +326,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // BotonSeleccionarEstacion
                         // 
                         this.BotonSeleccionarEstacion.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonSeleccionarEstacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonSeleccionarEstacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSeleccionarEstacion.Image = null;
                         this.BotonSeleccionarEstacion.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSeleccionarEstacion.Location = new System.Drawing.Point(460, 56);
@@ -383,19 +345,13 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaDispositivo.AutoTab = true;
                         this.EntradaDispositivo.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDispositivo.DecimalPlaces = -1;
-                        this.EntradaDispositivo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDispositivo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDispositivo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaDispositivo.Location = new System.Drawing.Point(120, 84);
-                        this.EntradaDispositivo.MaxLenght = 32767;
                         this.EntradaDispositivo.MultiLine = false;
                         this.EntradaDispositivo.Name = "EntradaDispositivo";
                         this.EntradaDispositivo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDispositivo.PasswordChar = '\0';
-                        this.EntradaDispositivo.Prefijo = "";
                         this.EntradaDispositivo.SelectOnFocus = false;
                         this.EntradaDispositivo.Size = new System.Drawing.Size(336, 24);
-                        this.EntradaDispositivo.Sufijo = "";
                         this.EntradaDispositivo.TabIndex = 7;
                         this.EntradaDispositivo.PlaceholderText = "";
                         this.EntradaDispositivo.ToolTipText = "";
@@ -412,8 +368,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // BotonSeleccionarDispositivo
                         // 
                         this.BotonSeleccionarDispositivo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonSeleccionarDispositivo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonSeleccionarDispositivo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSeleccionarDispositivo.Image = null;
                         this.BotonSeleccionarDispositivo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSeleccionarDispositivo.Location = new System.Drawing.Point(460, 84);
@@ -483,24 +437,24 @@ namespace Lfc.Comprobantes.Impresoras
                 #endregion
 
                 internal Lui.Forms.TextBox EntradaUbicacion;
-                internal System.Windows.Forms.Label label10;
+                internal Lui.Forms.Label label10;
                 internal Lui.Forms.ComboBox EntradaTalonario;
-                internal System.Windows.Forms.Label label9;
+                internal Lui.Forms.Label label9;
                 internal Lui.Forms.ComboBox EntradaFiscalBps;
-                internal System.Windows.Forms.Label label2;
+                internal Lui.Forms.Label label2;
                 internal Lui.Forms.ComboBox EntradaFiscalPuerto;
                 internal Lui.Forms.ComboBox EntradaFiscalModelo;
-                internal System.Windows.Forms.Label label7;
-                internal System.Windows.Forms.Label label6;
-                internal System.Windows.Forms.Label label1;
+                internal Lui.Forms.Label label7;
+                internal Lui.Forms.Label label6;
+                internal Lui.Forms.Label label1;
                 internal Lui.Forms.ComboBox EntradaTipo;
-                internal System.Windows.Forms.Label Label16;
+                internal Lui.Forms.Label Label16;
                 internal Lui.Forms.ComboBox EntradaCarga;
-                internal System.Windows.Forms.Label label3;
+                internal Lui.Forms.Label label3;
                 internal Lui.Forms.TextBox EntradaEstacion;
                 internal Lui.Forms.Button BotonSeleccionarEstacion;
                 internal Lui.Forms.TextBox EntradaDispositivo;
-                internal System.Windows.Forms.Label label4;
+                internal Lui.Forms.Label label4;
                 internal Lui.Forms.Button BotonSeleccionarDispositivo;
         }
 }

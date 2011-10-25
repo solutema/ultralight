@@ -39,12 +39,12 @@ namespace Lfc.Cajas.Conceptos
         {
                 private System.ComponentModel.IContainer components = null;
 
-                internal System.Windows.Forms.Label Label1;
-                internal System.Windows.Forms.Label Label2;
-                internal System.Windows.Forms.Label Label3;
+                internal Lui.Forms.Label Label1;
+                internal Lui.Forms.Label Label2;
+                internal Lui.Forms.Label Label3;
                 internal Lui.Forms.TextBox EntradaNombre;
                 internal Lui.Forms.ComboBox EntradaDireccion;
-                internal System.Windows.Forms.Label label4;
+                internal Lui.Forms.Label label4;
                 internal Lui.Forms.TextBox EntradaCodigo;
                 internal Lui.Forms.ComboBox EntradaGrupo;
 
@@ -62,14 +62,14 @@ namespace Lfc.Cajas.Conceptos
 
                 private void InitializeComponent()
                 {
-                        this.Label1 = new System.Windows.Forms.Label();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
                         this.EntradaDireccion = new Lui.Forms.ComboBox();
                         this.EntradaGrupo = new Lui.Forms.ComboBox();
                         this.EntradaCodigo = new Lui.Forms.TextBox();
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Label1
@@ -108,20 +108,14 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(84, 32);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.TemporaryReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(536, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 5;
                         this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
@@ -131,10 +125,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaDireccion.AutoSize = false;
                         this.EntradaDireccion.AutoNav = true;
                         this.EntradaDireccion.AutoTab = true;
-                        this.EntradaDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaDireccion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaDireccion.Location = new System.Drawing.Point(84, 64);
-                        this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDireccion.TemporaryReadOnly = false;
@@ -153,10 +144,7 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaGrupo.AutoSize = false;
                         this.EntradaGrupo.AutoNav = true;
                         this.EntradaGrupo.AutoTab = true;
-                        this.EntradaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaGrupo.Location = new System.Drawing.Point(84, 96);
-                        this.EntradaGrupo.MaxLenght = 32767;
                         this.EntradaGrupo.Name = "EntradaGrupo";
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGrupo.TemporaryReadOnly = false;
@@ -187,20 +175,14 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaCodigo.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCodigo.DecimalPlaces = -1;
                         this.EntradaCodigo.Enabled = false;
-                        this.EntradaCodigo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCodigo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCodigo.Location = new System.Drawing.Point(84, 0);
-                        this.EntradaCodigo.MaxLenght = 32767;
                         this.EntradaCodigo.MultiLine = false;
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo.PasswordChar = '\0';
-                        this.EntradaCodigo.Prefijo = "";
                         this.EntradaCodigo.TemporaryReadOnly = false;
                         this.EntradaCodigo.SelectOnFocus = true;
                         this.EntradaCodigo.Size = new System.Drawing.Size(76, 24);
-                        this.EntradaCodigo.Sufijo = "";
                         this.EntradaCodigo.TabIndex = 3;
                         this.EntradaCodigo.Text = "0";
                         this.EntradaCodigo.PlaceholderText = "";

@@ -76,9 +76,7 @@ namespace Lfc.Articulos
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.ProductArray.AutoScroll = true;
                         this.ProductArray.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.ProductArray.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.ProductArray.Count = 0;
-                        this.ProductArray.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ProductArray.FreeTextCode = "*";
                         this.ProductArray.Location = new System.Drawing.Point(12, 12);
                         this.ProductArray.LockPrice = true;

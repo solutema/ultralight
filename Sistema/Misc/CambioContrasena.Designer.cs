@@ -55,18 +55,18 @@ namespace Lazaro.Misc
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CambioContrasena));
                         this.EntradaContrasena = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.OkButton = new Lui.Forms.Button();
                         this.LowerPanel = new System.Windows.Forms.Panel();
                         this.panel1 = new System.Windows.Forms.Panel();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.EntradaContrasenaNueva1 = new Lui.Forms.TextBox();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.EntradaContrasenaNueva2 = new Lui.Forms.TextBox();
-                        this.label4 = new System.Windows.Forms.Label();
-                        this.Titulo = new Lui.Forms.LabelH1();
+                        this.label4 = new Lui.Forms.Label();
+                        this.Titulo = new Lui.Forms.Label();
                         this.LowerPanel.SuspendLayout();
                         this.panel1.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
@@ -74,17 +74,15 @@ namespace Lazaro.Misc
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaContrasena.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasena.AutoNav = true;
                         this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasena.DecimalPlaces = -1;
-                        this.EntradaContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContrasena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaContrasena.Location = new System.Drawing.Point(312, 136);
-                        this.EntradaContrasena.MaxLenght = 32767;
+                        this.EntradaContrasena.MaxLength = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
@@ -101,8 +99,7 @@ namespace Lazaro.Misc
                         // Label2
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(152, 136);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(164, 24);
@@ -114,8 +111,6 @@ namespace Lazaro.Misc
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.CancelCommandButton.Location = new System.Drawing.Point(424, 16);
@@ -134,9 +129,6 @@ namespace Lazaro.Misc
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.OkButton.Enabled = true;
-                        this.OkButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.OkButton.Location = new System.Drawing.Point(304, 16);
@@ -184,29 +176,27 @@ namespace Lazaro.Misc
                         // 
                         // label3
                         // 
-                        this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.label3.Location = new System.Drawing.Point(136, 72);
+                        this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.Location = new System.Drawing.Point(136, 68);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(380, 56);
                         this.label3.TabIndex = 54;
                         this.label3.Text = "Por favor escriba su Contraseña actual y a continuación escriba la Contraseña nue" +
-    "va. Por su seguridad, debe escribir la contraseña nueva dos veces.";
+                            "va. Por su seguridad, debe escribir la contraseña nueva dos veces.";
                         // 
                         // EntradaContrasenaNueva1
                         // 
-                        this.EntradaContrasenaNueva1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaContrasenaNueva1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasenaNueva1.AutoNav = true;
                         this.EntradaContrasenaNueva1.AutoTab = true;
                         this.EntradaContrasenaNueva1.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasenaNueva1.DecimalPlaces = -1;
-                        this.EntradaContrasenaNueva1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContrasenaNueva1.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContrasenaNueva1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaContrasenaNueva1.Location = new System.Drawing.Point(312, 167);
-                        this.EntradaContrasenaNueva1.MaxLenght = 32767;
+                        this.EntradaContrasenaNueva1.MaxLength = 32767;
                         this.EntradaContrasenaNueva1.MultiLine = false;
                         this.EntradaContrasenaNueva1.Name = "EntradaContrasenaNueva1";
                         this.EntradaContrasenaNueva1.Padding = new System.Windows.Forms.Padding(2);
@@ -223,8 +213,7 @@ namespace Lazaro.Misc
                         // label1
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label1.Location = new System.Drawing.Point(152, 167);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(164, 24);
@@ -234,17 +223,15 @@ namespace Lazaro.Misc
                         // 
                         // EntradaContrasenaNueva2
                         // 
-                        this.EntradaContrasenaNueva2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaContrasenaNueva2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasenaNueva2.AutoNav = true;
                         this.EntradaContrasenaNueva2.AutoTab = true;
                         this.EntradaContrasenaNueva2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasenaNueva2.DecimalPlaces = -1;
-                        this.EntradaContrasenaNueva2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContrasenaNueva2.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContrasenaNueva2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaContrasenaNueva2.Location = new System.Drawing.Point(312, 196);
-                        this.EntradaContrasenaNueva2.MaxLenght = 32767;
+                        this.EntradaContrasenaNueva2.MaxLength = 32767;
                         this.EntradaContrasenaNueva2.MultiLine = false;
                         this.EntradaContrasenaNueva2.Name = "EntradaContrasenaNueva2";
                         this.EntradaContrasenaNueva2.Padding = new System.Windows.Forms.Padding(2);
@@ -261,8 +248,7 @@ namespace Lazaro.Misc
                         // label4
                         // 
                         this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label4.Location = new System.Drawing.Point(152, 196);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(164, 24);
@@ -272,14 +258,11 @@ namespace Lazaro.Misc
                         // 
                         // Titulo
                         // 
-                        this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Titulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(202)))), ((int)(((byte)(174)))));
-                        this.Titulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 11F, System.Drawing.FontStyle.Bold);
-                        this.Titulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Titulo.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.Titulo.Location = new System.Drawing.Point(136, 32);
                         this.Titulo.Name = "Titulo";
-                        this.Titulo.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
                         this.Titulo.Size = new System.Drawing.Size(380, 24);
                         this.Titulo.TabIndex = 59;
                         this.Titulo.Text = "Cambio de Contraseña";
@@ -300,8 +283,6 @@ namespace Lazaro.Misc
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.LowerPanel);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "CambioContrasena";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -317,18 +298,18 @@ namespace Lazaro.Misc
 
                 #endregion
 
-                private System.Windows.Forms.Label Label2;
+                private Lui.Forms.Label Label2;
                 private Lui.Forms.Button OkButton;
                 private Lui.Forms.TextBox EntradaContrasena;
                 private Lui.Forms.Button CancelCommandButton;
                 private System.Windows.Forms.Panel LowerPanel;
                 private System.Windows.Forms.Panel panel1;
                 private System.Windows.Forms.PictureBox PictureBox1;
-                private System.Windows.Forms.Label label3;
+                private Lui.Forms.Label label3;
                 private Lui.Forms.TextBox EntradaContrasenaNueva1;
-                private System.Windows.Forms.Label label1;
+                private Lui.Forms.Label label1;
                 private Lui.Forms.TextBox EntradaContrasenaNueva2;
-                private System.Windows.Forms.Label label4;
-                private Lui.Forms.LabelH1 Titulo;
+                private Lui.Forms.Label label4;
+                private Lui.Forms.Label Titulo;
         }
 }

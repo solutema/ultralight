@@ -29,9 +29,63 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace Lui.Forms
 {
+        public enum LabelStyles
+        {
+                Small,
+                Default,
+                Title,
+                Header1,
+                Header2
+        }
+
         public class Label : System.Windows.Forms.Label, IControl
         {
+                private LabelStyles m_LabelStyle = LabelStyles.Default;
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Font Font
+                {
+                        get
+                        {
+                                return base.Font;
+                        }
+                }
+
+                public LabelStyles LabelStyle
+                {
+                        get
+                        {
+                                return m_LabelStyle;
+                        }
+                        set
+                        {
+                                m_LabelStyle = value;
+                                switch(m_LabelStyle) {
+                                        case LabelStyles.Title:
+                                                base.Font = Lfx.Config.Display.TitleFont;
+                                                break;
+                                        case LabelStyles.Small:
+                                                base.Font = Lfx.Config.Display.SmallFont;
+                                                break;
+                                        case LabelStyles.Default:
+                                                base.Font = Lfx.Config.Display.DefaultFont;
+                                                break;
+                                        case LabelStyles.Header1:
+                                                base.Font = Lfx.Config.Display.HeaderFont;
+                                                break;
+                                        case LabelStyles.Header2:
+                                                base.Font = Lfx.Config.Display.Header2Font;
+                                                break;
+                                }
+                        }
+                }
         }
 }

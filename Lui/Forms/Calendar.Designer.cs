@@ -37,14 +37,14 @@ namespace Lui.Forms
 {
         public partial class Calendar
         {
-                internal System.Windows.Forms.Label lblMes;
-                internal System.Windows.Forms.Label lblDia7;
-                internal System.Windows.Forms.Label lblDia6;
-                internal System.Windows.Forms.Label lblDia5;
-                internal System.Windows.Forms.Label lblDia4;
-                internal System.Windows.Forms.Label lblDia3;
-                internal System.Windows.Forms.Label lblDia2;
-                internal System.Windows.Forms.Label lblDia1;
+                internal Lui.Forms.Label lblMes;
+                internal Lui.Forms.Label lblDia7;
+                internal Lui.Forms.Label lblDia6;
+                internal Lui.Forms.Label lblDia5;
+                internal Lui.Forms.Label lblDia4;
+                internal Lui.Forms.Label lblDia3;
+                internal Lui.Forms.Label lblDia2;
+                internal Lui.Forms.Label lblDia1;
                 internal System.Windows.Forms.PictureBox pctFondo;
 
                 #region Código generado por el Diseñador de Windows Forms
@@ -64,14 +64,14 @@ namespace Lui.Forms
 
                 private void InitializeComponent()
                 {
-                        this.lblMes = new System.Windows.Forms.Label();
-                        this.lblDia7 = new System.Windows.Forms.Label();
-                        this.lblDia6 = new System.Windows.Forms.Label();
-                        this.lblDia5 = new System.Windows.Forms.Label();
-                        this.lblDia4 = new System.Windows.Forms.Label();
-                        this.lblDia3 = new System.Windows.Forms.Label();
-                        this.lblDia2 = new System.Windows.Forms.Label();
-                        this.lblDia1 = new System.Windows.Forms.Label();
+                        this.lblMes = new Lui.Forms.Label();
+                        this.lblDia7 = new Lui.Forms.Label();
+                        this.lblDia6 = new Lui.Forms.Label();
+                        this.lblDia5 = new Lui.Forms.Label();
+                        this.lblDia4 = new Lui.Forms.Label();
+                        this.lblDia3 = new Lui.Forms.Label();
+                        this.lblDia2 = new Lui.Forms.Label();
+                        this.lblDia1 = new Lui.Forms.Label();
                         this.pctFondo = new System.Windows.Forms.PictureBox();
                         this.SuspendLayout();
                         // 

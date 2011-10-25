@@ -48,16 +48,16 @@ namespace Lfc.Sucursales
 		}
 
 		private System.ComponentModel.IContainer components = null;
-		internal System.Windows.Forms.Label Label1;
-		internal System.Windows.Forms.Label label2;
-		internal System.Windows.Forms.Label label3;
+		internal Lui.Forms.Label Label1;
+		internal Lui.Forms.Label label2;
+		internal Lui.Forms.Label label3;
 		internal Lcc.Entrada.CodigoDetalle EntradaLocalidad;
-		internal System.Windows.Forms.Label Label9;
+		internal Lui.Forms.Label Label9;
                 internal Lui.Forms.TextBox EntradaDireccion;
 		internal Lcc.Entrada.CodigoDetalle EntradaSituacionOrigen;
-		internal System.Windows.Forms.Label label4;
-		internal System.Windows.Forms.Label label5;
-		internal System.Windows.Forms.Label label6;
+		internal Lui.Forms.Label label4;
+		internal Lui.Forms.Label label5;
+		internal Lui.Forms.Label label6;
 		internal Lcc.Entrada.CodigoDetalle EntradaCajaDiaria;
 		internal Lcc.Entrada.CodigoDetalle EntradaCajaCheques;
 		internal Lui.Forms.TextBox EntradaNombre;
@@ -66,19 +66,19 @@ namespace Lfc.Sucursales
                 
                 private void InitializeComponent()
 		{
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
                         this.EntradaDireccion = new Lui.Forms.TextBox();
-                        this.label2 = new System.Windows.Forms.Label();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.EntradaLocalidad = new Lcc.Entrada.CodigoDetalle();
-                        this.Label9 = new System.Windows.Forms.Label();
+                        this.Label9 = new Lui.Forms.Label();
                         this.EntradaSituacionOrigen = new Lcc.Entrada.CodigoDetalle();
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.EntradaCajaDiaria = new Lcc.Entrada.CodigoDetalle();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.EntradaCajaCheques = new Lcc.Entrada.CodigoDetalle();
-                        this.label6 = new System.Windows.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
                         this.EntradaTelefono = new Lcc.Entrada.MatrizTelefonos();
                         this.SuspendLayout();
                         // 
@@ -100,19 +100,13 @@ namespace Lfc.Sucursales
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(96, 0);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(544, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
@@ -125,19 +119,13 @@ namespace Lfc.Sucursales
                         this.EntradaDireccion.AutoTab = true;
                         this.EntradaDireccion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDireccion.DecimalPlaces = -1;
-                        this.EntradaDireccion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDireccion.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDireccion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaDireccion.Location = new System.Drawing.Point(96, 32);
-                        this.EntradaDireccion.MaxLenght = 32767;
                         this.EntradaDireccion.MultiLine = false;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDireccion.PasswordChar = '\0';
-                        this.EntradaDireccion.Prefijo = "";
                         this.EntradaDireccion.SelectOnFocus = false;
                         this.EntradaDireccion.Size = new System.Drawing.Size(544, 24);
-                        this.EntradaDireccion.Sufijo = "";
                         this.EntradaDireccion.TabIndex = 3;
                         this.EntradaDireccion.PlaceholderText = "";
                         this.EntradaDireccion.ToolTipText = "";
@@ -169,8 +157,6 @@ namespace Lfc.Sucursales
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = null;
                         this.EntradaLocalidad.Filter = "";
-                        this.EntradaLocalidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaLocalidad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(96, 64);
                         this.EntradaLocalidad.MaxLength = 200;
@@ -204,8 +190,6 @@ namespace Lfc.Sucursales
                         this.EntradaSituacionOrigen.DataValueField = "id_situacion";
                         this.EntradaSituacionOrigen.ExtraDetailFields = null;
                         this.EntradaSituacionOrigen.Filter = "";
-                        this.EntradaSituacionOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaSituacionOrigen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSituacionOrigen.FreeTextCode = "";
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(148, 240);
                         this.EntradaSituacionOrigen.MaxLength = 200;
@@ -240,8 +224,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaDiaria.DataValueField = "id_caja";
                         this.EntradaCajaDiaria.ExtraDetailFields = null;
                         this.EntradaCajaDiaria.Filter = "";
-                        this.EntradaCajaDiaria.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCajaDiaria.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCajaDiaria.FreeTextCode = "";
                         this.EntradaCajaDiaria.Location = new System.Drawing.Point(148, 268);
                         this.EntradaCajaDiaria.MaxLength = 200;
@@ -276,8 +258,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaCheques.DataValueField = "id_caja";
                         this.EntradaCajaCheques.ExtraDetailFields = null;
                         this.EntradaCajaCheques.Filter = "";
-                        this.EntradaCajaCheques.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCajaCheques.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCajaCheques.FreeTextCode = "";
                         this.EntradaCajaCheques.Location = new System.Drawing.Point(148, 296);
                         this.EntradaCajaCheques.MaxLength = 200;
@@ -309,7 +289,6 @@ namespace Lfc.Sucursales
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTelefono.AutoNav = true;
                         this.EntradaTelefono.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.EntradaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTelefono.Location = new System.Drawing.Point(96, 96);
                         this.EntradaTelefono.Name = "EntradaTelefono";
                         this.EntradaTelefono.Padding = new System.Windows.Forms.Padding(2);

@@ -48,7 +48,7 @@ namespace Lui.Forms
                         // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
 
-                        ControlCaption.Font = Lfx.Config.Display.CurrentTemplate.TitleFont;
+                        ControlCaption.Font = Lfx.Config.Display.TitleFont;
                         ControlCaption.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
                         //ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
                         this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;

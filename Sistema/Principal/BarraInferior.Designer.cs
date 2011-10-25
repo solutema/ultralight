@@ -64,40 +64,40 @@ namespace Lazaro.Principal
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BarraInferior));
                         this.PanelReloj = new System.Windows.Forms.Panel();
-                        this.RelojFecha = new System.Windows.Forms.Label();
-                        this.RelojHora = new System.Windows.Forms.Label();
+                        this.RelojFecha = new Lui.Forms.Label();
+                        this.RelojHora = new Lui.Forms.Label();
                         this.PanelArticulo = new System.Windows.Forms.Panel();
-                        this.ArticuloNombre = new System.Windows.Forms.LinkLabel();
-                        this.ArticuloStock = new System.Windows.Forms.Label();
-                        this.label5 = new System.Windows.Forms.Label();
-                        this.ArticuloPvp = new System.Windows.Forms.Label();
-                        this.ArticuloPrecio = new System.Windows.Forms.Label();
-                        this.ArticuloDescripcion = new System.Windows.Forms.Label();
-                        this.ArticuloCodigos = new System.Windows.Forms.Label();
+                        this.ArticuloNombre = new Lui.Forms.LinkLabel();
+                        this.ArticuloStock = new Lui.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
+                        this.ArticuloPvp = new Lui.Forms.Label();
+                        this.ArticuloPrecio = new Lui.Forms.Label();
+                        this.ArticuloDescripcion = new Lui.Forms.Label();
+                        this.ArticuloCodigos = new Lui.Forms.Label();
                         this.PanelAyuda = new System.Windows.Forms.Panel();
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.AyudaTitulo = new System.Windows.Forms.Label();
-                        this.AyudaTexto = new System.Windows.Forms.Label();
+                        this.AyudaTitulo = new Lui.Forms.Label();
+                        this.AyudaTexto = new Lui.Forms.Label();
                         this.ProgressBar = new System.Windows.Forms.ProgressBar();
                         this.TimerReloj = new System.Windows.Forms.Timer(this.components);
                         this.PanelPersona = new System.Windows.Forms.Panel();
                         this.PersonaImagen = new System.Windows.Forms.PictureBox();
-                        this.EnlaceComentarios = new System.Windows.Forms.LinkLabel();
-                        this.PersonaNombre = new System.Windows.Forms.LinkLabel();
-                        this.label3 = new System.Windows.Forms.Label();
-                        this.PersonaGrupo = new System.Windows.Forms.Label();
-                        this.PersonaComentario = new System.Windows.Forms.Label();
-                        this.label1 = new System.Windows.Forms.Label();
-                        this.PersonaEmail = new System.Windows.Forms.Label();
-                        this.label4 = new System.Windows.Forms.Label();
-                        this.PersonaDomicilio = new System.Windows.Forms.Label();
-                        this.PersonaTelefono = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.EnlaceComentarios = new Lui.Forms.LinkLabel();
+                        this.PersonaNombre = new Lui.Forms.LinkLabel();
+                        this.label3 = new Lui.Forms.Label();
+                        this.PersonaGrupo = new Lui.Forms.Label();
+                        this.PersonaComentario = new Lui.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.PersonaEmail = new Lui.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
+                        this.PersonaDomicilio = new Lui.Forms.Label();
+                        this.PersonaTelefono = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.TimerSlowLink = new System.Windows.Forms.Timer(this.components);
                         this.PanelProgreso = new System.Windows.Forms.Panel();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
-                        this.EtiquetaOperacion = new System.Windows.Forms.Label();
-                        this.EtiquetaDescripcion = new System.Windows.Forms.Label();
+                        this.EtiquetaOperacion = new Lui.Forms.Label();
+                        this.EtiquetaDescripcion = new Lui.Forms.Label();
                         this.PanelReloj.SuspendLayout();
                         this.PanelArticulo.SuspendLayout();
                         this.PanelAyuda.SuspendLayout();
@@ -115,7 +115,6 @@ namespace Lazaro.Principal
                         this.PanelReloj.BackColor = System.Drawing.SystemColors.ControlDark;
                         this.PanelReloj.Controls.Add(this.RelojFecha);
                         this.PanelReloj.Controls.Add(this.RelojHora);
-                        this.PanelReloj.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.PanelReloj.Location = new System.Drawing.Point(724, 2);
                         this.PanelReloj.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelReloj.Name = "PanelReloj";
@@ -127,7 +126,7 @@ namespace Lazaro.Principal
                         this.RelojFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.RelojFecha.BackColor = System.Drawing.SystemColors.Control;
-                        this.RelojFecha.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.RelojFecha.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.RelojFecha.Location = new System.Drawing.Point(2, 30);
                         this.RelojFecha.Name = "RelojFecha";
                         this.RelojFecha.Size = new System.Drawing.Size(70, 16);
@@ -142,7 +141,7 @@ namespace Lazaro.Principal
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.RelojHora.BackColor = System.Drawing.SystemColors.Control;
-                        this.RelojHora.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.RelojHora.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         this.RelojHora.Location = new System.Drawing.Point(2, 2);
                         this.RelojHora.Name = "RelojHora";
                         this.RelojHora.Size = new System.Drawing.Size(70, 26);
@@ -163,7 +162,6 @@ namespace Lazaro.Principal
                         this.PanelArticulo.Controls.Add(this.ArticuloPrecio);
                         this.PanelArticulo.Controls.Add(this.ArticuloDescripcion);
                         this.PanelArticulo.Controls.Add(this.ArticuloCodigos);
-                        this.PanelArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.PanelArticulo.Location = new System.Drawing.Point(2, 2);
                         this.PanelArticulo.Name = "PanelArticulo";
                         this.PanelArticulo.Size = new System.Drawing.Size(720, 48);
@@ -185,7 +183,7 @@ namespace Lazaro.Principal
                         // ArticuloStock
                         // 
                         this.ArticuloStock.AutoEllipsis = true;
-                        this.ArticuloStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.ArticuloStock.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.ArticuloStock.Location = new System.Drawing.Point(536, 0);
                         this.ArticuloStock.Name = "ArticuloStock";
                         this.ArticuloStock.Size = new System.Drawing.Size(80, 16);
@@ -196,6 +194,7 @@ namespace Lazaro.Principal
                         // label5
                         // 
                         this.label5.AutoEllipsis = true;
+                        this.label5.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.label5.Location = new System.Drawing.Point(496, 0);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(42, 16);
@@ -206,7 +205,7 @@ namespace Lazaro.Principal
                         // ArticuloPvp
                         // 
                         this.ArticuloPvp.AutoEllipsis = true;
-                        this.ArticuloPvp.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.ArticuloPvp.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.ArticuloPvp.Location = new System.Drawing.Point(416, 0);
                         this.ArticuloPvp.Name = "ArticuloPvp";
                         this.ArticuloPvp.Size = new System.Drawing.Size(80, 16);
@@ -217,6 +216,7 @@ namespace Lazaro.Principal
                         // ArticuloPrecio
                         // 
                         this.ArticuloPrecio.AutoEllipsis = true;
+                        this.ArticuloPrecio.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.ArticuloPrecio.Location = new System.Drawing.Point(388, 0);
                         this.ArticuloPrecio.Name = "ArticuloPrecio";
                         this.ArticuloPrecio.Size = new System.Drawing.Size(30, 16);
@@ -230,6 +230,7 @@ namespace Lazaro.Principal
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.ArticuloDescripcion.AutoEllipsis = true;
+                        this.ArticuloDescripcion.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.ArticuloDescripcion.Location = new System.Drawing.Point(70, 16);
                         this.ArticuloDescripcion.Name = "ArticuloDescripcion";
                         this.ArticuloDescripcion.Size = new System.Drawing.Size(650, 32);
@@ -241,7 +242,7 @@ namespace Lazaro.Principal
                         // 
                         this.ArticuloCodigos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)));
-                        this.ArticuloCodigos.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.ArticuloCodigos.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.ArticuloCodigos.Location = new System.Drawing.Point(0, 0);
                         this.ArticuloCodigos.Name = "ArticuloCodigos";
                         this.ArticuloCodigos.Size = new System.Drawing.Size(68, 48);
@@ -275,7 +276,7 @@ namespace Lazaro.Principal
                         // 
                         // AyudaTitulo
                         // 
-                        this.AyudaTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.AyudaTitulo.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.AyudaTitulo.Location = new System.Drawing.Point(52, 0);
                         this.AyudaTitulo.Name = "AyudaTitulo";
                         this.AyudaTitulo.Size = new System.Drawing.Size(670, 20);
@@ -288,7 +289,7 @@ namespace Lazaro.Principal
                         this.AyudaTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.AyudaTexto.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.AyudaTexto.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.AyudaTexto.Location = new System.Drawing.Point(52, 18);
                         this.AyudaTexto.Name = "AyudaTexto";
                         this.AyudaTexto.Size = new System.Drawing.Size(670, 30);
@@ -343,7 +344,6 @@ namespace Lazaro.Principal
                         // EnlaceComentarios
                         // 
                         this.EnlaceComentarios.AutoEllipsis = true;
-                        this.EnlaceComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EnlaceComentarios.Location = new System.Drawing.Point(612, 32);
                         this.EnlaceComentarios.Name = "EnlaceComentarios";
                         this.EnlaceComentarios.Size = new System.Drawing.Size(106, 16);
@@ -357,7 +357,6 @@ namespace Lazaro.Principal
                         // PersonaNombre
                         // 
                         this.PersonaNombre.AutoEllipsis = true;
-                        this.PersonaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.PersonaNombre.Location = new System.Drawing.Point(54, 2);
                         this.PersonaNombre.Name = "PersonaNombre";
                         this.PersonaNombre.Size = new System.Drawing.Size(250, 16);
@@ -370,7 +369,7 @@ namespace Lazaro.Principal
                         // label3
                         // 
                         this.label3.AutoEllipsis = true;
-                        this.label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.label3.Location = new System.Drawing.Point(304, 34);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(62, 16);
@@ -381,7 +380,7 @@ namespace Lazaro.Principal
                         // PersonaGrupo
                         // 
                         this.PersonaGrupo.AutoEllipsis = true;
-                        this.PersonaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.PersonaGrupo.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.PersonaGrupo.Location = new System.Drawing.Point(364, 32);
                         this.PersonaGrupo.Name = "PersonaGrupo";
                         this.PersonaGrupo.Size = new System.Drawing.Size(232, 16);
@@ -393,7 +392,7 @@ namespace Lazaro.Principal
                         // 
                         this.PersonaComentario.AutoEllipsis = true;
                         this.PersonaComentario.BackColor = System.Drawing.SystemColors.Control;
-                        this.PersonaComentario.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.PersonaComentario.Location = new System.Drawing.Point(54, 16);
                         this.PersonaComentario.Name = "PersonaComentario";
                         this.PersonaComentario.Size = new System.Drawing.Size(248, 32);
@@ -406,7 +405,7 @@ namespace Lazaro.Principal
                         // label1
                         // 
                         this.label1.AutoEllipsis = true;
-                        this.label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.label1.Location = new System.Drawing.Point(304, 18);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(62, 16);
@@ -417,7 +416,7 @@ namespace Lazaro.Principal
                         // PersonaEmail
                         // 
                         this.PersonaEmail.AutoEllipsis = true;
-                        this.PersonaEmail.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.PersonaEmail.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.PersonaEmail.Location = new System.Drawing.Point(364, 18);
                         this.PersonaEmail.Name = "PersonaEmail";
                         this.PersonaEmail.Size = new System.Drawing.Size(232, 16);
@@ -428,7 +427,7 @@ namespace Lazaro.Principal
                         // label4
                         // 
                         this.label4.AutoEllipsis = true;
-                        this.label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.label4.Location = new System.Drawing.Point(304, 2);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(62, 16);
@@ -439,7 +438,7 @@ namespace Lazaro.Principal
                         // PersonaDomicilio
                         // 
                         this.PersonaDomicilio.AutoEllipsis = true;
-                        this.PersonaDomicilio.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.PersonaDomicilio.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.PersonaDomicilio.Location = new System.Drawing.Point(364, 2);
                         this.PersonaDomicilio.Name = "PersonaDomicilio";
                         this.PersonaDomicilio.Size = new System.Drawing.Size(232, 16);
@@ -452,7 +451,7 @@ namespace Lazaro.Principal
                         this.PersonaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.PersonaTelefono.AutoEllipsis = true;
-                        this.PersonaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.PersonaTelefono.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.PersonaTelefono.Location = new System.Drawing.Point(654, 2);
                         this.PersonaTelefono.Name = "PersonaTelefono";
                         this.PersonaTelefono.Size = new System.Drawing.Size(110, 16);
@@ -463,7 +462,7 @@ namespace Lazaro.Principal
                         // label2
                         // 
                         this.label2.AutoEllipsis = true;
-                        this.label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.label2.Location = new System.Drawing.Point(596, 2);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(64, 16);
@@ -503,7 +502,7 @@ namespace Lazaro.Principal
                         // 
                         // EtiquetaOperacion
                         // 
-                        this.EtiquetaOperacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaOperacion.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.EtiquetaOperacion.Location = new System.Drawing.Point(284, 0);
                         this.EtiquetaOperacion.Name = "EtiquetaOperacion";
                         this.EtiquetaOperacion.Size = new System.Drawing.Size(437, 20);
@@ -516,7 +515,7 @@ namespace Lazaro.Principal
                         this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaDescripcion.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.EtiquetaDescripcion.Location = new System.Drawing.Point(284, 18);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
                         this.EtiquetaDescripcion.Size = new System.Drawing.Size(437, 30);
@@ -527,12 +526,11 @@ namespace Lazaro.Principal
                         // BarraInferior
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-                        this.Controls.Add(this.PanelReloj);
                         this.Controls.Add(this.PanelProgreso);
-                        this.Controls.Add(this.PanelAyuda);
+                        this.Controls.Add(this.PanelReloj);
                         this.Controls.Add(this.PanelArticulo);
                         this.Controls.Add(this.PanelPersona);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.Controls.Add(this.PanelAyuda);
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "BarraInferior";
                         this.Size = new System.Drawing.Size(800, 52);
@@ -551,39 +549,39 @@ namespace Lazaro.Principal
 		#endregion
 
 		private System.Windows.Forms.Panel PanelReloj;
-		private System.Windows.Forms.Label RelojFecha;
-		private System.Windows.Forms.Label RelojHora;
+		private Lui.Forms.Label RelojFecha;
+		private Lui.Forms.Label RelojHora;
 		private System.Windows.Forms.Panel PanelArticulo;
-		private System.Windows.Forms.Label ArticuloCodigos;
-		private System.Windows.Forms.LinkLabel ArticuloNombre;
-		private System.Windows.Forms.Label ArticuloStock;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label ArticuloPvp;
-		private System.Windows.Forms.Label ArticuloPrecio;
-		private System.Windows.Forms.Label ArticuloDescripcion;
+		private Lui.Forms.Label ArticuloCodigos;
+		private Lui.Forms.LinkLabel ArticuloNombre;
+		private Lui.Forms.Label ArticuloStock;
+		private Lui.Forms.Label label5;
+		private Lui.Forms.Label ArticuloPvp;
+		private Lui.Forms.Label ArticuloPrecio;
+		private Lui.Forms.Label ArticuloDescripcion;
 		private System.Windows.Forms.Timer TimerReloj;
 		private System.Windows.Forms.Panel PanelAyuda;
-		private System.Windows.Forms.Label AyudaTexto;
-		private System.Windows.Forms.Label AyudaTitulo;
-		private System.Windows.Forms.Label PersonaTelefono;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label PersonaDomicilio;
-		private System.Windows.Forms.Label label4;
+		private Lui.Forms.Label AyudaTexto;
+		private Lui.Forms.Label AyudaTitulo;
+		private Lui.Forms.Label PersonaTelefono;
+		private Lui.Forms.Label label2;
+		private Lui.Forms.Label PersonaDomicilio;
+		private Lui.Forms.Label label4;
 		private System.Windows.Forms.Panel PanelPersona;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label PersonaEmail;
-		private System.Windows.Forms.Label PersonaComentario;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label PersonaGrupo;
+		private Lui.Forms.Label label1;
+		private Lui.Forms.Label PersonaEmail;
+		private Lui.Forms.Label PersonaComentario;
+		private Lui.Forms.Label label3;
+		private Lui.Forms.Label PersonaGrupo;
 		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.LinkLabel PersonaNombre;
+		private Lui.Forms.LinkLabel PersonaNombre;
                 private System.Windows.Forms.Timer TimerSlowLink;
-        private System.Windows.Forms.LinkLabel EnlaceComentarios;
+        private Lui.Forms.LinkLabel EnlaceComentarios;
         private System.Windows.Forms.PictureBox PersonaImagen;
         internal System.Windows.Forms.ProgressBar ProgressBar;
         private System.Windows.Forms.Panel PanelProgreso;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label EtiquetaOperacion;
-        private System.Windows.Forms.Label EtiquetaDescripcion;
+        private Lui.Forms.Label EtiquetaOperacion;
+        private Lui.Forms.Label EtiquetaDescripcion;
 	}
 }

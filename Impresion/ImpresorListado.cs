@@ -128,11 +128,11 @@ namespace Lazaro.Impresion
                 {
                         Graphics g = e.Graphics;
 
-                        this.TitleFont = new Font("Bitstream Vera Sans", 12, FontStyle.Bold);
-                        this.HeaderFont = new Font("Bitstream Vera Sans", 8, FontStyle.Bold);
-                        this.RowFont = new Font("Bitstream Vera Sans", 8);
-                        this.TotalsFont = new Font("Bitstream Vera Sans", 8, FontStyle.Bold);
-                        this.FooterFont = new Font("Bitstream Vera Sans", 7);
+                        this.TitleFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 12, FontStyle.Bold);
+                        this.HeaderFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 8, FontStyle.Bold);
+                        this.RowFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 8);
+                        this.TotalsFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 8, FontStyle.Bold);
+                        this.FooterFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 7);
 
                         // Rectángulo que incluye toda el área imprimible
                         FullBodyRect = new RectangleF(e.MarginBounds.Left - (e.PageBounds.Width - g.VisibleClipBounds.Width) / 2,

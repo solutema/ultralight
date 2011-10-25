@@ -51,21 +51,13 @@ namespace Lui.Forms
                 private void InitializeComponent()
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkspaceSelectorForm));
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.Espacios = new System.Windows.Forms.ListBox();
                         this.panel1 = new System.Windows.Forms.Panel();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.panel1.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(266, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(386, 8);
                         // 
                         // label1
                         // 
@@ -84,10 +76,11 @@ namespace Lui.Forms
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.Espacios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.Espacios.IntegralHeight = false;
                         this.Espacios.ItemHeight = 15;
                         this.Espacios.Location = new System.Drawing.Point(124, 48);
                         this.Espacios.Name = "Espacios";
-                        this.Espacios.Size = new System.Drawing.Size(400, 180);
+                        this.Espacios.Size = new System.Drawing.Size(400, 160);
                         this.Espacios.Sorted = true;
                         this.Espacios.TabIndex = 1;
                         this.Espacios.SelectedValueChanged += new System.EventHandler(this.Espacios_SelectedValueChanged);
@@ -135,7 +128,7 @@ namespace Lui.Forms
                 }
                 #endregion
 
-                private System.Windows.Forms.Label label1;
+                private Lui.Forms.Label label1;
                 private System.Windows.Forms.ListBox Espacios;
                 private Panel panel1;
                 internal PictureBox PictureBox1;

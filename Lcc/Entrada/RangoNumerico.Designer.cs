@@ -60,8 +60,8 @@ namespace Lcc.Entrada
                 {
                         this.EntradaValor1 = new Lui.Forms.TextBox();
                         this.EntradaValor2 = new Lui.Forms.TextBox();
-                        this.label8 = new System.Windows.Forms.Label();
-                        this.label7 = new System.Windows.Forms.Label();
+                        this.label8 = new Lui.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaValor1
@@ -70,21 +70,15 @@ namespace Lcc.Entrada
                         this.EntradaValor1.AutoTab = true;
                         this.EntradaValor1.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaValor1.DecimalPlaces = 2;
-                        this.EntradaValor1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaValor1.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaValor1.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaValor1.Location = new System.Drawing.Point(56, 0);
-                        this.EntradaValor1.MaxLenght = 32767;
                         this.EntradaValor1.MultiLine = false;
                         this.EntradaValor1.Name = "EntradaValor1";
                         this.EntradaValor1.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaValor1.PasswordChar = '\0';
                         this.EntradaValor1.PlaceholderText = "";
-                        this.EntradaValor1.Prefijo = "";
                         this.EntradaValor1.ReadOnly = false;
                         this.EntradaValor1.SelectOnFocus = true;
                         this.EntradaValor1.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaValor1.Sufijo = "";
                         this.EntradaValor1.TabIndex = 5;
                         this.EntradaValor1.Text = "0.00";
                         this.EntradaValor1.ToolTipText = "";
@@ -95,21 +89,15 @@ namespace Lcc.Entrada
                         this.EntradaValor2.AutoTab = true;
                         this.EntradaValor2.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaValor2.DecimalPlaces = 2;
-                        this.EntradaValor2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaValor2.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaValor2.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaValor2.Location = new System.Drawing.Point(196, 0);
-                        this.EntradaValor2.MaxLenght = 32767;
                         this.EntradaValor2.MultiLine = false;
                         this.EntradaValor2.Name = "EntradaValor2";
                         this.EntradaValor2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaValor2.PasswordChar = '\0';
                         this.EntradaValor2.PlaceholderText = "";
-                        this.EntradaValor2.Prefijo = "";
                         this.EntradaValor2.ReadOnly = false;
                         this.EntradaValor2.SelectOnFocus = true;
                         this.EntradaValor2.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaValor2.Sufijo = "";
                         this.EntradaValor2.TabIndex = 7;
                         this.EntradaValor2.Text = "0.00";
                         this.EntradaValor2.ToolTipText = "";
@@ -155,7 +143,7 @@ namespace Lcc.Entrada
 
                 internal Lui.Forms.TextBox EntradaValor1;
                 internal Lui.Forms.TextBox EntradaValor2;
-                internal System.Windows.Forms.Label label8;
-                internal System.Windows.Forms.Label label7;
+                internal Lui.Forms.Label label8;
+                internal Lui.Forms.Label label7;
         }
 }

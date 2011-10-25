@@ -55,13 +55,13 @@ namespace Lfc.Articulos.Marcas
                 private void InitializeComponent()
                 {
                         this.EntradaProveedor = new Lcc.Entrada.CodigoDetalle();
-                        this.Label14 = new System.Windows.Forms.Label();
+                        this.Label14 = new Lui.Forms.Label();
                         this.EntradaUrl = new Lui.Forms.TextBox();
-                        this.Label12 = new System.Windows.Forms.Label();
+                        this.Label12 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaObs = new Lui.Forms.TextBox();
-                        this.Label13 = new System.Windows.Forms.Label();
+                        this.Label13 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaProveedor
@@ -73,8 +73,6 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.ExtraDetailFields = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
-                        this.EntradaProveedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaProveedor.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.Location = new System.Drawing.Point(96, 76);
@@ -108,10 +106,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaUrl.AutoNav = true;
                         this.EntradaUrl.AutoTab = true;
                         this.EntradaUrl.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaUrl.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaUrl.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaUrl.Location = new System.Drawing.Point(96, 44);
-                        this.EntradaUrl.MaxLenght = 32767;
                         this.EntradaUrl.Name = "EntradaURL";
                         this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUrl.TemporaryReadOnly = false;
@@ -137,10 +132,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(96, 12);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -167,10 +159,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaObs.AutoNav = true;
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaObs.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaObs.Location = new System.Drawing.Point(96, 108);
-                        this.EntradaObs.MaxLenght = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
@@ -209,12 +198,12 @@ namespace Lfc.Articulos.Marcas
                 #endregion
 
                 internal Lcc.Entrada.CodigoDetalle EntradaProveedor;
-                internal System.Windows.Forms.Label Label14;
+                internal Lui.Forms.Label Label14;
                 internal Lui.Forms.TextBox EntradaUrl;
-                internal System.Windows.Forms.Label Label12;
+                internal Lui.Forms.Label Label12;
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label5;
                 internal Lui.Forms.TextBox EntradaObs;
-                internal System.Windows.Forms.Label Label13;
+                internal Lui.Forms.Label Label13;
         }
 }

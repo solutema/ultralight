@@ -307,7 +307,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lazaro.Impresion\Lazaro.Impresion.csproj">
+    <ProjectReference Include="..\Impresion\Impresion.csproj">
       <Project>{EBF39B24-DF1A-4C99-8FC8-F9A24E9CB8FF}</Project>
       <Name>Lazaro.Impresion</Name>
     </ProjectReference>
@@ -370,6 +370,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lazaro.ico" />
+    <None Include="Resources\ajax-loader.gif" />
     <None Include="Resources\drive-harddisk.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -77,40 +77,12 @@ namespace Lfx.Components
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                public static object Run(System.Windows.Forms.Form parentForm, string componentName, string functionName)
-                {
-                        if (ComponentesCargados.ContainsKey(componentName)) {
-                                //Ya fue cargado
-                                IComponent Componente = ComponentesCargados[componentName];
-
-                                if (Componente.Funciones.ContainsKey(functionName)) {
-                                        Lfx.Components.FunctionInfo Func = Componente.Funciones[functionName];
-
-                                        object Result = Func.Run();
-
-                                        if (Result != null && Result is System.Windows.Forms.Form) {
-                                                System.Windows.Forms.Form ResultForm = Result as System.Windows.Forms.Form;
-                                                if (Func.Instancia.FunctionType == Lfx.Components.FunctionTypes.MdiChildren) {
-                                                        ResultForm.MdiParent = parentForm;
-                                                        ResultForm.Show();
-                                                } else if (Func.Instancia.FunctionType == Lfx.Components.FunctionTypes.NormalWindow) {
-                                                        ResultForm.Show();
-                                                }
-                                        }
-
-                                        return Result;
-                                } else {
-                                        return new Types.FailureOperationResult("El componente " + componentName + " no tiene la función " + functionName);
-                                }
-                        } else {
-                                return new Types.FailureOperationResult("El componente " + componentName + " no está cargado.");
-                        }
-                }
 
                 public static Lfx.Components.Function LoadComponent(string componentName)
 		{
 			return LoadComponent(componentName, componentName);
 		}
+
 
                 public static Lfx.Components.Function LoadComponent(string componentName, string functionName)
 		{

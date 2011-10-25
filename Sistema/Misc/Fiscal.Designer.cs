@@ -59,13 +59,13 @@ namespace Lazaro.Misc
                         this.components = new System.ComponentModel.Container();
                         this.BotonCierreZ = new Lui.Forms.Button();
                         this.Timer1 = new System.Windows.Forms.Timer(this.components);
-                        this.lblCierreZ = new System.Windows.Forms.Label();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.lblCierreZ = new Lui.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.EntradaPv = new Lui.Forms.ComboBox();
                         this.BotonReiniciar = new Lui.Forms.Button();
-                        this.label2 = new System.Windows.Forms.Label();
-                        this.lblEstadoServidor = new System.Windows.Forms.Label();
-                        this.lblUltimoCierreZ = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
+                        this.lblEstadoServidor = new Lui.Forms.Label();
+                        this.lblUltimoCierreZ = new Lui.Forms.Label();
                         this.BotonIniciarDetener = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
@@ -80,11 +80,9 @@ namespace Lazaro.Misc
                         // BotonCierreZ
                         // 
                         this.BotonCierreZ.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCierreZ.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonCierreZ.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCierreZ.Image = null;
                         this.BotonCierreZ.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCierreZ.Location = new System.Drawing.Point(188, 172);
+                        this.BotonCierreZ.Location = new System.Drawing.Point(188, 176);
                         this.BotonCierreZ.Name = "BotonCierreZ";
                         this.BotonCierreZ.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonCierreZ.ReadOnly = false;
@@ -106,6 +104,7 @@ namespace Lazaro.Misc
                         // 
                         this.lblCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lblCierreZ.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.lblCierreZ.Location = new System.Drawing.Point(24, 144);
                         this.lblCierreZ.Name = "lblCierreZ";
                         this.lblCierreZ.Size = new System.Drawing.Size(164, 24);
@@ -115,6 +114,7 @@ namespace Lazaro.Misc
                         // 
                         // label1
                         // 
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label1.Location = new System.Drawing.Point(24, 24);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(164, 24);
@@ -128,10 +128,8 @@ namespace Lazaro.Misc
                         this.EntradaPv.AutoNav = true;
                         this.EntradaPv.AutoSize = true;
                         this.EntradaPv.AutoTab = true;
-                        this.EntradaPv.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaPv.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPv.Location = new System.Drawing.Point(188, 24);
-                        this.EntradaPv.MaxLenght = 32767;
+                        this.EntradaPv.MaxLength = 32767;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPv.PlaceholderText = "";
@@ -147,8 +145,6 @@ namespace Lazaro.Misc
                         // 
                         this.BotonReiniciar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonReiniciar.Enabled = false;
-                        this.BotonReiniciar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonReiniciar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonReiniciar.Image = null;
                         this.BotonReiniciar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonReiniciar.Location = new System.Drawing.Point(296, 260);
@@ -167,6 +163,7 @@ namespace Lazaro.Misc
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label2.Location = new System.Drawing.Point(24, 228);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(164, 24);
@@ -178,6 +175,7 @@ namespace Lazaro.Misc
                         // 
                         this.lblEstadoServidor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lblEstadoServidor.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.lblEstadoServidor.Location = new System.Drawing.Point(184, 228);
                         this.lblEstadoServidor.Name = "lblEstadoServidor";
                         this.lblEstadoServidor.Size = new System.Drawing.Size(416, 24);
@@ -190,6 +188,7 @@ namespace Lazaro.Misc
                         // 
                         this.lblUltimoCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lblUltimoCierreZ.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.lblUltimoCierreZ.Location = new System.Drawing.Point(188, 144);
                         this.lblUltimoCierreZ.Name = "lblUltimoCierreZ";
                         this.lblUltimoCierreZ.Size = new System.Drawing.Size(412, 24);
@@ -200,8 +199,6 @@ namespace Lazaro.Misc
                         // BotonIniciarDetener
                         // 
                         this.BotonIniciarDetener.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonIniciarDetener.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonIniciarDetener.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonIniciarDetener.Image = null;
                         this.BotonIniciarDetener.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonIniciarDetener.Location = new System.Drawing.Point(188, 260);
@@ -249,14 +246,14 @@ namespace Lazaro.Misc
 
                 internal Lui.Forms.Button BotonCierreZ;
                 internal System.Windows.Forms.Timer Timer1;
-                private System.Windows.Forms.Label label1;
+                private Lui.Forms.Label label1;
                 internal Lui.Forms.ComboBox EntradaPv;
-                internal System.Windows.Forms.Label label2;
+                internal Lui.Forms.Label label2;
                 internal Lui.Forms.Button BotonReiniciar;
                 internal Lui.Forms.Button BotonIniciarDetener;
-                internal System.Windows.Forms.Label lblEstadoServidor;
-                internal System.Windows.Forms.Label lblUltimoCierreZ;
-                internal System.Windows.Forms.Label lblCierreZ;
+                internal Lui.Forms.Label lblEstadoServidor;
+                internal Lui.Forms.Label lblUltimoCierreZ;
+                internal Lui.Forms.Label lblCierreZ;
 
         }
 }

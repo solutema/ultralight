@@ -78,7 +78,7 @@ namespace Lui.Forms
                 private void InitializeComponent()
                 {
                         this.ChartPic = new System.Windows.Forms.PictureBox();
-                        this.TitleLabel = new System.Windows.Forms.Label();
+                        this.TitleLabel = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.ChartPic)).BeginInit();
                         this.SuspendLayout();
                         // 
@@ -111,7 +111,6 @@ namespace Lui.Forms
                         this.BackColor = System.Drawing.Color.White;
                         this.Controls.Add(this.TitleLabel);
                         this.Controls.Add(this.ChartPic);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Name = "Chart";
                         this.Size = new System.Drawing.Size(448, 240);
                         this.Resize += new System.EventHandler(this.ChartPic_Resize);
@@ -132,7 +131,7 @@ namespace Lui.Forms
                 private System.Windows.Forms.PictureBox ChartPic;
                 public System.Collections.Generic.List<Lbl.Charts.Serie> Series = null;
 
-                private System.Windows.Forms.Label TitleLabel;
+                private Lui.Forms.Label TitleLabel;
                 private decimal CacheMax;
 
                 public string Title

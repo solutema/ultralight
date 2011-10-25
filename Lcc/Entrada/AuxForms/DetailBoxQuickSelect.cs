@@ -36,15 +36,14 @@ using System.Windows.Forms;
 
 namespace Lcc.Entrada.AuxForms
 {
-        public partial class DetailBoxQuickSelect : System.Windows.Forms.Form, Lui.Forms.IDataForm
+        public partial class DetailBoxQuickSelect : Lui.Forms.Form, Lui.Forms.IDataForm
         {
                 private string m_Table = "";
                 private string m_KeyField = "";
                 private string m_DetailField = "";
                 private string m_ExtraDetailFields = "";
                 private string m_Filter = "";
-                private bool m_Changed = false;
-                private bool f_IgnoreEvents;
+                private bool m_IgnoreEvents;
 
                 public System.Windows.Forms.Control ControlDestino { get; set; }
                 public Type ElementoTipo { get; set; }
@@ -108,18 +107,6 @@ namespace Lcc.Entrada.AuxForms
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public bool Changed
-                {
-                        get
-                        {
-                                return m_Changed;
-                        }
-                        set
-                        {
-                                m_Changed = value;
-                        }
-                }
 
                 [System.ComponentModel.Category("Datos")]
                 public string ExtraDetailFields
@@ -189,9 +176,9 @@ namespace Lcc.Entrada.AuxForms
                 public void Buscar(string valorInicial)
                 {
                         Refrescar();
-                        f_IgnoreEvents = true;
+                        m_IgnoreEvents = true;
                         EntradaBuscar.Text = valorInicial.Trim();
-                        f_IgnoreEvents = false;
+                        m_IgnoreEvents = false;
                         EntradaBuscar.SelectionLength = 0;
                         EntradaBuscar.SelectionStart = EntradaBuscar.Text.Length;
                         this.Refrescar();
@@ -261,40 +248,41 @@ namespace Lcc.Entrada.AuxForms
                                                         TextoSql += " LIMIT 100";
                                         }
 
-                                        System.Data.DataTable dt = this.Connection.Select(TextoSql);
+                                        System.Data.DataTable TableRes = this.Connection.Select(TextoSql);
                                         ListaItem.SuspendLayout();
                                         ListaItem.BeginUpdate();
-                                        foreach (System.Data.DataRow row in dt.Rows) {
-                                                ListViewItem itm = ListaItem.Items.Add(System.Convert.ToInt32(row[m_KeyField]).ToString("00000"));
-                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row[m_DetailField])));
+                                        foreach (System.Data.DataRow OrgRow in TableRes.Rows) {
+                                                Lfx.Data.Row RowRes = (Lfx.Data.Row)OrgRow;
+                                                ListViewItem itm = ListaItem.Items.Add(RowRes.Fields[m_KeyField].ValueInt.ToString("00000"));
+                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, RowRes.Fields[m_DetailField].ValueString));
                                                 if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0) {
                                                         string TempExtraDetailFields = m_ExtraDetailFields;
                                                         string Campo = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",").Trim();
                                                         while (Campo.Length > 0) {
-                                                                switch (row[Campo].GetType().ToString()) {
-                                                                        case "System.Single":
-                                                                        case "System.Double":
-                                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row[Campo]))));
-                                                                                break;
+                                                                if (RowRes.Fields[Campo].Value == null) {
+                                                                        itm.SubItems.Add("");
+                                                                } else {
+                                                                        switch (RowRes[Campo].GetType().ToString()) {
+                                                                                case "System.Single":
+                                                                                case "System.Double":
+                                                                                case "System.Decimal":
+                                                                                        itm.SubItems.Add(Lfx.Types.Formatting.FormatNumber(RowRes.Fields[Campo].ValueDecimal, 4));
+                                                                                        break;
 
-                                                                        case "System.Decimal":
-                                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(row[Campo]), 4)));
-                                                                                break;
-
-                                                                        default:
-                                                                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(row[Campo])));
-                                                                                break;
+                                                                                default:
+                                                                                        itm.SubItems.Add(System.Convert.ToString(RowRes.Fields[Campo].Value));
+                                                                                        break;
+                                                                        }
                                                                 }
-
 
                                                                 Campo = Lfx.Types.Strings.GetNextToken(ref TempExtraDetailFields, ",").Trim();
                                                         }
                                                 }
                                                 // TODO: que tome m_ExtraDetailFields esto en cuenta
                                                 if (m_Table == "articulos") {
-                                                        if (System.Convert.ToInt32(row["control_stock"]) != 0 && System.Convert.ToDouble(row["stock_actual"]) <= 0) {
+                                                        if (System.Convert.ToInt32(RowRes["control_stock"]) != 0 && System.Convert.ToDouble(RowRes["stock_actual"]) <= 0) {
                                                                 // No hay stock.
-                                                                if (System.Convert.ToDouble(row["pedido"]) + System.Convert.ToDouble(row["stock_actual"]) > 0) {
+                                                                if (System.Convert.ToDouble(RowRes["pedido"]) + System.Convert.ToDouble(RowRes["stock_actual"]) > 0) {
                                                                         // Pero hay pedido suficiente para cubrir un stock negativo y sobra
                                                                         itm.ForeColor = System.Drawing.Color.OrangeRed;
                                                                         itm.Font = new Font(itm.Font, FontStyle.Regular);
@@ -302,7 +290,7 @@ namespace Lcc.Entrada.AuxForms
                                                                         itm.ForeColor = System.Drawing.Color.Red;
                                                                         itm.Font = new Font(itm.Font, FontStyle.Strikeout);
                                                                 }
-                                                        } else if (System.Convert.ToInt32(row["destacado"]) != 0) {
+                                                        } else if (System.Convert.ToInt32(RowRes["destacado"]) != 0) {
                                                                 itm.ForeColor = System.Drawing.Color.DarkGreen;
                                                                 itm.Font = new Font(itm.Font, FontStyle.Regular);
                                                         }
@@ -320,7 +308,7 @@ namespace Lcc.Entrada.AuxForms
 
                 private void EntradaBuscar_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (f_IgnoreEvents == false && this.HasWorkspace)
+                        if (m_IgnoreEvents == false && this.HasWorkspace)
                                 Timer1.Start();
                 }
 
@@ -489,45 +477,6 @@ namespace Lcc.Entrada.AuxForms
                         DarleEnter();
                 }
 
-                /// <summary>
-                /// IDataControl
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Workspace Workspace
-                {
-                        get
-                        {
-                                return Lfx.Workspace.Master;
-                        }
-                }
-
-
-                /// <summary>
-                /// IDataControl
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public bool HasWorkspace
-                {
-                        get
-                        {
-                                return this.Workspace != null;
-                        }
-                }
-
-                /// <summary>
-                /// IDataControl
-                /// </summary>
-                public Lfx.Data.Connection Connection
-                {
-                        get
-                        {
-                                if (this.Parent is Lui.Forms.IDataControl) {
-                                        return ((Lui.Forms.IDataControl)(this.Parent)).Connection;
-                                } else {
-                                        return this.Workspace.MasterConnection;
-                                }
-                        }
-                }
 
                 private void DetailBoxQuickSelect_KeyDown(object sender, KeyEventArgs e)
                 {

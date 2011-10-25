@@ -59,14 +59,14 @@ namespace Lfc.Bancos.Cheques
                 private void InitializeComponent()
                 {
                         this.EntradaEstado = new Lui.Forms.ComboBox();
-                        this.Label7 = new System.Windows.Forms.Label();
-                        this.LabelCaja = new System.Windows.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
+                        this.LabelCaja = new Lui.Forms.Label();
                         this.EntradaPersona = new Lcc.Entrada.CodigoDetalle();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
                         this.SuspendLayout();
                         // 
@@ -82,10 +82,7 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaEstado.Location = new System.Drawing.Point(108, 20);
-                        this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.TemporaryReadOnly = false;
@@ -128,8 +125,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.CanCreate = true;
                         this.EntradaPersona.DataTextField = "nombre_visible";
                         this.EntradaPersona.ExtraDetailFields = null;
-                        this.EntradaPersona.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaPersona.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPersona.FreeTextCode = "";
                         this.EntradaPersona.DataValueField = "id_persona";
                         this.EntradaPersona.Location = new System.Drawing.Point(108, 116);
@@ -164,8 +159,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.ExtraDetailFields = null;
-                        this.EntradaBanco.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaBanco.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.Location = new System.Drawing.Point(108, 84);
@@ -196,7 +189,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechas.Location = new System.Drawing.Point(108, 148);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
@@ -223,8 +215,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.ExtraDetailFields = null;
-                        this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.Location = new System.Drawing.Point(108, 52);
@@ -264,15 +254,15 @@ namespace Lfc.Bancos.Cheques
                 #endregion
 
                 internal Lui.Forms.ComboBox EntradaEstado;
-                private System.Windows.Forms.Label Label7;
-                private System.Windows.Forms.Label LabelCaja;
+                private Lui.Forms.Label Label7;
+                private Lui.Forms.Label LabelCaja;
                 internal Lcc.Entrada.CodigoDetalle EntradaPersona;
-                private System.Windows.Forms.Label Label1;
+                private Lui.Forms.Label Label1;
                 internal Lcc.Entrada.CodigoDetalle EntradaBanco;
                 private System.ComponentModel.IContainer components = null;
-                private System.Windows.Forms.Label label2;
+                private Lui.Forms.Label label2;
                 internal Lcc.Entrada.RangoFechas EntradaFechas;
-                private System.Windows.Forms.Label label3;
+                private Lui.Forms.Label label3;
                 internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
         }
 }

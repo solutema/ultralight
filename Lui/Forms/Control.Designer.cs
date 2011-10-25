@@ -67,7 +67,7 @@ namespace Lui.Forms
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
                         this.Controls.Add(this.ControlCaption);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.Font = Lfx.Config.Display.DefaultFont;
                         this.Name = "Control";
                         this.Padding = new System.Windows.Forms.Padding(2);
                         this.Size = new System.Drawing.Size(460, 84);

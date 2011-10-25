@@ -73,12 +73,12 @@ namespace Lfc.Cupones.Cupones
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Label Label16;
-                internal System.Windows.Forms.Label Label11;
-                internal System.Windows.Forms.Label Label14;
-                internal System.Windows.Forms.Label lblFecha1;
-                internal System.Windows.Forms.Label Label15;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label16;
+                internal Lui.Forms.Label Label11;
+                internal Lui.Forms.Label Label14;
+                internal Lui.Forms.Label lblFecha1;
+                internal Lui.Forms.Label Label15;
+                internal Lui.Forms.Label Label1;
                 internal Lcc.Entrada.CodigoDetalle EntradaFormaDePago;
                 internal Lui.Forms.TextBox txtPlanInteres;
                 internal Lui.Forms.TextBox txtPlanCuotas;
@@ -93,18 +93,18 @@ namespace Lfc.Cupones.Cupones
                 private void InitializeComponent()
                 {
                         this.EntradaFormaDePago = new Lcc.Entrada.CodigoDetalle();
-                        this.Label16 = new System.Windows.Forms.Label();
-                        this.Label11 = new System.Windows.Forms.Label();
+                        this.Label16 = new Lui.Forms.Label();
+                        this.Label11 = new Lui.Forms.Label();
                         this.txtPlanInteres = new Lui.Forms.TextBox();
-                        this.Label14 = new System.Windows.Forms.Label();
+                        this.Label14 = new Lui.Forms.Label();
                         this.txtPlanCuotas = new Lui.Forms.TextBox();
-                        this.lblFecha1 = new System.Windows.Forms.Label();
+                        this.lblFecha1 = new Lui.Forms.Label();
                         this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
-                        this.Label15 = new System.Windows.Forms.Label();
+                        this.Label15 = new Lui.Forms.Label();
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.panel1 = new System.Windows.Forms.Panel();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
@@ -130,8 +130,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaFormaDePago.DataTextField = "nombre";
                         this.EntradaFormaDePago.ExtraDetailFields = null;
                         this.EntradaFormaDePago.Filter = "tipo=4";
-                        this.EntradaFormaDePago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaFormaDePago.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFormaDePago.FreeTextCode = "";
                         this.EntradaFormaDePago.DataValueField = "id_formapago";
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(85, 3);
@@ -153,7 +151,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // Label16
                         // 
-                        this.Label16.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label16.Location = new System.Drawing.Point(3, 0);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(76, 24);
@@ -163,7 +160,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // Label11
                         // 
-                        this.Label11.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label11.Location = new System.Drawing.Point(3, 90);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(76, 24);
@@ -178,20 +174,14 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlanInteres.AutoTab = true;
                         this.txtPlanInteres.DataType = Lui.Forms.DataTypes.Float;
                         this.txtPlanInteres.DecimalPlaces = -1;
-                        this.txtPlanInteres.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtPlanInteres.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtPlanInteres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtPlanInteres.Location = new System.Drawing.Point(200, 0);
-                        this.txtPlanInteres.MaxLenght = 32767;
                         this.txtPlanInteres.MultiLine = false;
                         this.txtPlanInteres.Name = "txtPlanInteres";
                         this.txtPlanInteres.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtPlanInteres.PasswordChar = '\0';
-                        this.txtPlanInteres.Prefijo = "";
                         this.txtPlanInteres.TemporaryReadOnly = true;
                         this.txtPlanInteres.SelectOnFocus = true;
                         this.txtPlanInteres.Size = new System.Drawing.Size(56, 24);
-                        this.txtPlanInteres.Sufijo = "";
                         this.txtPlanInteres.TabIndex = 3;
                         this.txtPlanInteres.TabStop = false;
                         this.txtPlanInteres.Text = "0.00";
@@ -200,7 +190,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // Label14
                         // 
-                        this.Label14.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label14.Location = new System.Drawing.Point(144, 0);
                         this.Label14.Name = "Label14";
                         this.Label14.Size = new System.Drawing.Size(56, 24);
@@ -215,20 +204,14 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlanCuotas.AutoTab = true;
                         this.txtPlanCuotas.DataType = Lui.Forms.DataTypes.Integer;
                         this.txtPlanCuotas.DecimalPlaces = -1;
-                        this.txtPlanCuotas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.txtPlanCuotas.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtPlanCuotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.txtPlanCuotas.Location = new System.Drawing.Point(76, 0);
-                        this.txtPlanCuotas.MaxLenght = 32767;
                         this.txtPlanCuotas.MultiLine = false;
                         this.txtPlanCuotas.Name = "txtPlanCuotas";
                         this.txtPlanCuotas.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtPlanCuotas.PasswordChar = '\0';
-                        this.txtPlanCuotas.Prefijo = "";
                         this.txtPlanCuotas.TemporaryReadOnly = true;
                         this.txtPlanCuotas.SelectOnFocus = true;
                         this.txtPlanCuotas.Size = new System.Drawing.Size(56, 24);
-                        this.txtPlanCuotas.Sufijo = "";
                         this.txtPlanCuotas.TabIndex = 1;
                         this.txtPlanCuotas.TabStop = false;
                         this.txtPlanCuotas.Text = "1";
@@ -237,7 +220,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // lblFecha1
                         // 
-                        this.lblFecha1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblFecha1.Location = new System.Drawing.Point(20, 0);
                         this.lblFecha1.Name = "lblFecha1";
                         this.lblFecha1.Size = new System.Drawing.Size(56, 24);
@@ -255,8 +237,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaPlan.DataTextField = "nombre";
                         this.EntradaPlan.ExtraDetailFields = null;
                         this.EntradaPlan.Filter = "";
-                        this.EntradaPlan.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaPlan.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.DataValueField = "id_plan";
                         this.EntradaPlan.Location = new System.Drawing.Point(85, 33);
@@ -278,7 +258,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // Label15
                         // 
-                        this.Label15.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label15.Location = new System.Drawing.Point(3, 30);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(76, 24);
@@ -296,8 +275,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "";
-                        this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.Location = new System.Drawing.Point(85, 123);
@@ -318,7 +295,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         // Label1
                         // 
-                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label1.Location = new System.Drawing.Point(3, 120);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(76, 24);
@@ -331,10 +307,7 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaEstado.Location = new System.Drawing.Point(85, 93);
-                        this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.TemporaryReadOnly = false;
@@ -407,7 +380,6 @@ namespace Lfc.Cupones.Cupones
                         // EntradaFechas
                         // 
                         this.EntradaFechas.AutoSize = true;
-                        this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechas.Location = new System.Drawing.Point(85, 153);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";

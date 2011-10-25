@@ -62,22 +62,21 @@ namespace Lui.Forms
                         this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 234);
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 312);
                         this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(474, 60);
+                        this.LowerPanel.Size = new System.Drawing.Size(634, 60);
                         this.LowerPanel.TabIndex = 50;
                         // 
                         // OkButton
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.OkButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(220, 8);
+                        this.OkButton.Location = new System.Drawing.Point(379, 8);
                         this.OkButton.Name = "OkButton";
-                        this.OkButton.Padding = new System.Windows.Forms.Padding(2);
+                        this.OkButton.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(116, 44);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.OkButton.Subtext = "F9";
@@ -90,13 +89,12 @@ namespace Lui.Forms
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(348, 8);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(507, 8);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
+                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.CancelCommandButton.ReadOnly = false;
                         this.CancelCommandButton.Size = new System.Drawing.Size(116, 44);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.CancelCommandButton.Subtext = "Esc";
@@ -108,11 +106,10 @@ namespace Lui.Forms
                         // DialogForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(474, 294);
+                        this.ClientSize = new System.Drawing.Size(634, 372);
                         this.ControlBox = false;
                         this.Controls.Add(this.LowerPanel);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-                        this.KeyPreview = true;
                         this.Name = "DialogForm";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Diálogo";

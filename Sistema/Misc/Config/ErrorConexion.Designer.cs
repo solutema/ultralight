@@ -52,7 +52,7 @@ namespace Lazaro.Misc.Config
                 private void InitializeComponent()
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorConexion));
-                        this.EtiquetaEncab = new Lui.Forms.LabelH1();
+                        this.EtiquetaEncab = new Lui.Forms.Label();
                         this.BotonConfigurar = new Lui.Forms.Button();
                         this.BotonReintentar = new Lui.Forms.Button();
                         this.BotonSalir = new Lui.Forms.Button();
@@ -60,7 +60,7 @@ namespace Lazaro.Misc.Config
                         this.EtiquetaErrorOriginal = new Lui.Forms.Note();
                         this.panel1 = new System.Windows.Forms.Panel();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
-                        this.EtiquetaAyuda = new System.Windows.Forms.Label();
+                        this.EtiquetaAyuda = new Lui.Forms.Label();
                         this.pictureBox3 = new System.Windows.Forms.PictureBox();
                         this.LowerPanel.SuspendLayout();
                         this.panel1.SuspendLayout();
@@ -72,12 +72,9 @@ namespace Lazaro.Misc.Config
                         // 
                         this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEncab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(202)))), ((int)(((byte)(174)))));
-                        this.EtiquetaEncab.Font = new System.Drawing.Font("Bitstream Vera Sans", 11F, System.Drawing.FontStyle.Bold);
-                        this.EtiquetaEncab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.EtiquetaEncab.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.EtiquetaEncab.Location = new System.Drawing.Point(172, 28);
                         this.EtiquetaEncab.Name = "EtiquetaEncab";
-                        this.EtiquetaEncab.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
                         this.EtiquetaEncab.Size = new System.Drawing.Size(440, 24);
                         this.EtiquetaEncab.TabIndex = 0;
                         this.EtiquetaEncab.Text = "No se puede establecer conexión con el servidor";
@@ -86,13 +83,12 @@ namespace Lazaro.Misc.Config
                         // BotonConfigurar
                         // 
                         this.BotonConfigurar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonConfigurar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonConfigurar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonConfigurar.Image = null;
                         this.BotonConfigurar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonConfigurar.Location = new System.Drawing.Point(116, 16);
                         this.BotonConfigurar.Name = "BotonConfigurar";
                         this.BotonConfigurar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonConfigurar.ReadOnly = false;
                         this.BotonConfigurar.Size = new System.Drawing.Size(116, 32);
                         this.BotonConfigurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonConfigurar.Subtext = "F8";
@@ -104,13 +100,12 @@ namespace Lazaro.Misc.Config
                         // BotonReintentar
                         // 
                         this.BotonReintentar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonReintentar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonReintentar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonReintentar.Image = null;
                         this.BotonReintentar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonReintentar.Location = new System.Drawing.Point(484, 16);
                         this.BotonReintentar.Name = "BotonReintentar";
                         this.BotonReintentar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonReintentar.ReadOnly = false;
                         this.BotonReintentar.Size = new System.Drawing.Size(132, 32);
                         this.BotonReintentar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonReintentar.Subtext = "F8";
@@ -123,13 +118,12 @@ namespace Lazaro.Misc.Config
                         // 
                         this.BotonSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonSalir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonSalir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonSalir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSalir.Image = null;
                         this.BotonSalir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSalir.Location = new System.Drawing.Point(16, 16);
                         this.BotonSalir.Name = "BotonSalir";
                         this.BotonSalir.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonSalir.ReadOnly = false;
                         this.BotonSalir.Size = new System.Drawing.Size(88, 32);
                         this.BotonSalir.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSalir.Subtext = "F8";
@@ -151,12 +145,12 @@ namespace Lazaro.Misc.Config
                         // 
                         // EtiquetaErrorOriginal
                         // 
-                        this.EtiquetaErrorOriginal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EtiquetaErrorOriginal.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.EtiquetaErrorOriginal.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
                         this.EtiquetaErrorOriginal.Location = new System.Drawing.Point(124, 200);
                         this.EtiquetaErrorOriginal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EtiquetaErrorOriginal.Name = "EtiquetaErrorOriginal";
                         this.EtiquetaErrorOriginal.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.EtiquetaErrorOriginal.ReadOnly = false;
                         this.EtiquetaErrorOriginal.Size = new System.Drawing.Size(488, 100);
                         this.EtiquetaErrorOriginal.TabIndex = 21;
                         this.EtiquetaErrorOriginal.Text = "No hay más información sobre el error.";
@@ -188,6 +182,7 @@ namespace Lazaro.Misc.Config
                         // 
                         this.EtiquetaAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaAyuda.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaAyuda.Location = new System.Drawing.Point(172, 64);
                         this.EtiquetaAyuda.Name = "EtiquetaAyuda";
                         this.EtiquetaAyuda.Size = new System.Drawing.Size(440, 120);
@@ -232,12 +227,12 @@ namespace Lazaro.Misc.Config
                 private Lui.Forms.Button BotonConfigurar;
                 private Lui.Forms.Button BotonReintentar;
                 private Lui.Forms.Button BotonSalir;
-                private Lui.Forms.LabelH1 EtiquetaEncab;
+                private Lui.Forms.Label EtiquetaEncab;
                 private Lui.Forms.Note EtiquetaErrorOriginal;
                 private Panel panel1;
                 private PictureBox pictureBox2;
                 private System.Windows.Forms.Panel LowerPanel;
-                private Label EtiquetaAyuda;
                 private PictureBox pictureBox3;
+                private Lui.Forms.Label EtiquetaAyuda;
         }
 }

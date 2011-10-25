@@ -34,7 +34,7 @@ using System.Windows.Forms;
 
 namespace Lazaro.Misc.Config
 {
-        public partial class Inicial : Form
+        public partial class Inicial : Lui.Forms.Form
         {
                 private int Paso = 1;
                 private readonly int Pasos = 4;
@@ -90,17 +90,19 @@ namespace Lazaro.Misc.Config
                         if (PanelPruebaServidor.Visible) {
                                 // Probar la conexión al servidor
 
-                                if (CheckEsteEquipo.Checked)
+                                if (CheckEsteEquipo.Checked) {
                                         Lfx.Data.DataBaseCache.DefaultCache.ServerName = "localhost";
-                                else
+                                        Lfx.Data.DataBaseCache.DefaultCache.UserName = "root";
+                                        Lfx.Data.DataBaseCache.DefaultCache.Password = "";
+                                } else {
                                         Lfx.Data.DataBaseCache.DefaultCache.ServerName = EntradaServidor.Text;
+                                        Lfx.Data.DataBaseCache.DefaultCache.UserName = "lazaro";
+                                        Lfx.Data.DataBaseCache.DefaultCache.Password = "";
+                                }
                                 
                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
-
                                 Lfx.Data.DataBaseCache.DefaultCache.SlowLink = false;
-                                Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "lazaro";
-                                Lfx.Data.DataBaseCache.DefaultCache.UserName = "lazaro";
-                                Lfx.Data.DataBaseCache.DefaultCache.Password = "";
+                                Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "";
 
                                 try {
                                         EtiquetaPruebaResultado.Text = "Probando la conexión...";
@@ -109,13 +111,39 @@ namespace Lazaro.Misc.Config
 
                                         Lfx.Workspace.Master.MasterConnection.Open();
 
-                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DataSource", Lfx.Data.DataBaseCache.DefaultCache.ServerName);
-                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
-                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", Lfx.Data.DataBaseCache.DefaultCache.DataBaseName);
-                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "User", Lfx.Data.DataBaseCache.DefaultCache.UserName);
-                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "Password", Lfx.Data.DataBaseCache.DefaultCache.Password);
-                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "SlowLink", Lfx.Data.DataBaseCache.DefaultCache.SlowLink ? "1" : "0");
-                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Company", "Branch", 1);
+                                        bool TengoDb = false;
+                                        try {
+                                                Lfx.Workspace.Master.MasterConnection.ExecuteSql("USE lazaro");
+                                                TengoDb = true;
+                                        } catch {
+                                                try {
+                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("CREATE DATABASE lazaro");
+                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("USE lazaro");
+                                                        TengoDb = true;
+                                                } catch {
+                                                        TengoDb = false;
+                                                }
+                                        }
+
+                                        if (TengoDb) {
+                                                Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "lazaro";
+
+                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DataSource", Lfx.Data.DataBaseCache.DefaultCache.ServerName);
+                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
+                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", Lfx.Data.DataBaseCache.DefaultCache.DataBaseName);
+                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "User", Lfx.Data.DataBaseCache.DefaultCache.UserName);
+                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "Password", Lfx.Data.DataBaseCache.DefaultCache.Password);
+                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "SlowLink", Lfx.Data.DataBaseCache.DefaultCache.SlowLink ? "1" : "0");
+                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Company", "Branch", 1);
+
+                                                try {
+                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("GRANT ALL ON lazaro.* TO 'lazaro'@'localhost' IDENTIFIED BY ''");
+                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("GRANT ALL ON lazaro.* TO 'lazaro'@'%' IDENTIFIED BY ''");
+                                                } catch {
+                                                        // No pude crear el acceso para otros usuarios... supongo que no importa
+                                                }
+                                        } else {
+                                        }
 
                                         EtiquetaPruebaResultado.Text = "Se realizó una prueba de la configuración del almacén de datos. Todo parece estar en orden. Haga clic en 'Siguiente' para continuar.";
                                         if (CheckEsteEquipo.Checked)

@@ -57,7 +57,7 @@ namespace Lcc.Entrada
                 private void InitializeComponent()
                 {
                         this.components = new System.ComponentModel.Container();
-                        this.TextBox1 = new System.Windows.Forms.TextBox();
+                        this.EntradaCodigo = new System.Windows.Forms.TextBox();
                         this.MiContextMenu = new System.Windows.Forms.ContextMenu();
                         this.MenuItemBuscadorRapido = new System.Windows.Forms.MenuItem();
                         this.MenuItem2 = new System.Windows.Forms.MenuItem();
@@ -67,31 +67,29 @@ namespace Lcc.Entrada
                         this.MenuItemPegar = new System.Windows.Forms.MenuItem();
                         this.MenuItem5 = new System.Windows.Forms.MenuItem();
                         this.MenuItemEditar = new System.Windows.Forms.MenuItem();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaFreeText = new System.Windows.Forms.TextBox();
                         this.TimerActualizar = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
                         // 
-                        // TextBox1
+                        // EntradaCodigo
                         // 
-                        this.TextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EntradaCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)));
-                        this.TextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-                        this.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.TextBox1.ContextMenu = this.MiContextMenu;
-                        this.TextBox1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.TextBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-                        this.TextBox1.Location = new System.Drawing.Point(4, 4);
-                        this.TextBox1.MaxLength = 32;
-                        this.TextBox1.Name = "TextBox1";
-                        this.TextBox1.Size = new System.Drawing.Size(51, 16);
-                        this.TextBox1.TabIndex = 0;
-                        this.TextBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
-                        this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
-                        this.TextBox1.GotFocus += new System.EventHandler(this.TextBox1_GotFocus);
-                        this.TextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
-                        this.TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox1_KeyPress);
-                        this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
+                        this.EntradaCodigo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.EntradaCodigo.ContextMenu = this.MiContextMenu;
+                        this.EntradaCodigo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+                        this.EntradaCodigo.Location = new System.Drawing.Point(4, 4);
+                        this.EntradaCodigo.MaxLength = 32;
+                        this.EntradaCodigo.Name = "EntradaCodigo";
+                        this.EntradaCodigo.Size = new System.Drawing.Size(52, 16);
+                        this.EntradaCodigo.TabIndex = 0;
+                        this.EntradaCodigo.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
+                        this.EntradaCodigo.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
+                        this.EntradaCodigo.GotFocus += new System.EventHandler(this.TextBox1_GotFocus);
+                        this.EntradaCodigo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
+                        this.EntradaCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox1_KeyPress);
+                        this.EntradaCodigo.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
                         // 
                         // MiContextMenu
                         // 
@@ -157,13 +155,14 @@ namespace Lcc.Entrada
                         this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+                        this.Label1.AutoEllipsis = true;
                         this.Label1.ContextMenu = this.MiContextMenu;
-                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.Label1.Location = new System.Drawing.Point(58, 4);
+                        this.Label1.Location = new System.Drawing.Point(60, 4);
+                        this.Label1.Margin = new System.Windows.Forms.Padding(3);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(280, 21);
+                        this.Label1.Size = new System.Drawing.Size(466, 16);
                         this.Label1.TabIndex = 50;
+                        this.Label1.UseMnemonic = false;
                         this.Label1.Click += new System.EventHandler(this.Label1_Click);
                         this.Label1.DoubleClick += new System.EventHandler(this.Label1_DoubleClick);
                         // 
@@ -172,14 +171,12 @@ namespace Lcc.Entrada
                         this.EntradaFreeText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFreeText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
                         this.EntradaFreeText.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.EntradaFreeText.ContextMenu = this.MiContextMenu;
-                        this.EntradaFreeText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaFreeText.Location = new System.Drawing.Point(58, 4);
+                        this.EntradaFreeText.Location = new System.Drawing.Point(60, 4);
                         this.EntradaFreeText.MaxLength = 200;
                         this.EntradaFreeText.Name = "EntradaFreeText";
-                        this.EntradaFreeText.Size = new System.Drawing.Size(280, 16);
+                        this.EntradaFreeText.Size = new System.Drawing.Size(466, 16);
                         this.EntradaFreeText.TabIndex = 1;
                         this.EntradaFreeText.Visible = false;
                         this.EntradaFreeText.WordWrap = false;
@@ -191,22 +188,20 @@ namespace Lcc.Entrada
                         // 
                         this.TimerActualizar.Interval = 200;
                         this.TimerActualizar.Tick += new System.EventHandler(this.TimerActualizar_Tick);
-                        this.TimerActualizar.Enabled = false;
                         // 
                         // CodigoDetalle
                         // 
-                        this.Controls.Add(this.TextBox1);
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+                        this.Controls.Add(this.EntradaCodigo);
                         this.Controls.Add(this.EntradaFreeText);
                         this.Controls.Add(this.Label1);
                         this.Name = "CodigoDetalle";
-                        this.Size = new System.Drawing.Size(343, 29);
-                        this.FontChanged += new System.EventHandler(this.DetailBox_FontChanged);
-                        this.ForeColorChanged += new System.EventHandler(this.DetailBox_ForeColorChanged);
+                        this.Size = new System.Drawing.Size(530, 24);
                         this.Enter += new System.EventHandler(this.DetailBox_Enter);
                         this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DetailBox_KeyPress);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.EntradaFreeText, 0);
-                        this.Controls.SetChildIndex(this.TextBox1, 0);
+                        this.Controls.SetChildIndex(this.EntradaCodigo, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -214,8 +209,8 @@ namespace Lcc.Entrada
 
                 #endregion
 
-                protected System.Windows.Forms.TextBox TextBox1;
-                internal System.Windows.Forms.Label Label1;
+                protected System.Windows.Forms.TextBox EntradaCodigo;
+                internal Lui.Forms.Label Label1;
                 internal System.Windows.Forms.TextBox EntradaFreeText;
                 internal System.Windows.Forms.MenuItem MenuItemCopiarCodigo;
                 internal System.Windows.Forms.MenuItem MenuItemCopiarNombre;

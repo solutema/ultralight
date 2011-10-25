@@ -86,7 +86,7 @@ namespace Lui.Forms
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.lstItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lstItems.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.lstItems.Font = Lfx.Config.Display.SmallFont;
                         this.lstItems.ForeColor = System.Drawing.SystemColors.InfoText;
                         this.lstItems.IntegralHeight = false;
                         this.lstItems.Location = new System.Drawing.Point(4, 4);
@@ -119,7 +119,7 @@ namespace Lui.Forms
                         this.ControlBox = false;
                         this.Controls.Add(this.lstItems);
                         this.Controls.Add(this.Panel1);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.Font = Lfx.Config.Display.SmallFont;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.MaximizeBox = false;

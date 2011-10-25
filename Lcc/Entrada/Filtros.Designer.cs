@@ -99,7 +99,6 @@ namespace Lcc.Entrada
                         // BotonAplicar
                         // 
                         this.BotonAplicar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAplicar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonAplicar.Image = null;
                         this.BotonAplicar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAplicar.Location = new System.Drawing.Point(304, 3);
@@ -122,7 +121,6 @@ namespace Lcc.Entrada
                         this.AutoSize = true;
                         this.Controls.Add(this.TablaFiltros);
                         this.Controls.Add(this.PanelInferior);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Name = "Filtros";
                         this.Padding = new System.Windows.Forms.Padding(4);
                         this.Size = new System.Drawing.Size(399, 279);

@@ -29,6 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.Windows.Forms;
 
 namespace Lui.Forms
@@ -38,6 +39,8 @@ namespace Lui.Forms
         /// </summary>
         public class ListView : System.Windows.Forms.ListView
         {
+                private ListViewItem ItemUnderMouse = null;
+
                 protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
                 {
                         if (e.Alt == false && e.Control == false) {
@@ -66,6 +69,35 @@ namespace Lui.Forms
                         base.OnKeyDown(e);
                 }
 
+                protected override void OnMouseHover(System.EventArgs e)
+                {
+                        System.Drawing.Point localPoint = this.PointToClient(Cursor.Position);
+                        ListViewItem NewItem = this.GetItemAt(localPoint.X, localPoint.Y);
+
+                        if (NewItem != this.ItemUnderMouse) {
+                                if (this.ItemUnderMouse != null)
+                                        this.ItemUnderMouse.BackColor = this.BackColor;
+
+                                this.ItemUnderMouse = NewItem;
+                                if (this.ItemUnderMouse != null) {
+                                        this.ItemUnderMouse.BackColor = System.Drawing.Color.LemonChiffon;
+                                }
+                        }
+                        base.OnMouseHover(e);
+                }
+
+
+                protected override void OnMouseLeave(System.EventArgs e)
+                {
+                        if (this.ItemUnderMouse != null) {
+                                this.ItemUnderMouse.BackColor = this.BackColor;
+                                this.ItemUnderMouse = null;
+                        }
+
+                        base.OnMouseLeave(e);
+                }
+
+
                 public ListView()
                 {
                         this.DoubleBuffered = true;
@@ -82,5 +114,114 @@ namespace Lui.Forms
                                 base.OnNotifyMessage(m);
                         }
                 } */
+
+
+                public static Lui.Forms.ListView NewListViewFromSheet(Lfx.FileFormats.Office.Spreadsheet.Sheet sheet)
+                {
+                        Lui.Forms.ListView Result = new Lui.Forms.ListView();
+                        Result.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+                        Result.LabelEdit = false;
+                        Result.LabelWrap = false;
+                        Result.FromSheet(sheet);
+
+                        return Result;
+                }
+
+                public void FromSheet(Lfx.FileFormats.Office.Spreadsheet.Sheet sheet)
+                {
+                        this.SuspendLayout();
+                        this.BeginUpdate();
+
+                        this.Items.Clear();
+                        this.View = System.Windows.Forms.View.Details;
+                        this.FullRowSelect = true;
+                        this.GridLines = true;
+                        this.Groups.Clear();
+
+                        if (sheet.BackColor != System.Drawing.Color.Empty)
+                                this.BackColor = sheet.BackColor;
+                        if (sheet.ForeColor != System.Drawing.Color.Empty)
+                                this.ForeColor = sheet.ForeColor;
+
+                        if (sheet.ColumnHeaders != null) {
+                                this.Columns.Clear();
+                                foreach (Lfx.FileFormats.Office.Spreadsheet.ColumnHeader ch in sheet.ColumnHeaders) {
+                                        System.Windows.Forms.ColumnHeader Col = this.Columns.Add(ch.Text, ch.Width);
+                                        switch (ch.TextAlignment) {
+                                                case Lfx.Types.StringAlignment.Near:
+                                                        Col.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+                                                        break;
+                                                case Lfx.Types.StringAlignment.Far:
+                                                        Col.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                                                        break;
+                                        }
+                                }
+                        }
+
+                        System.Windows.Forms.ListViewGroup LastGroup = null;
+
+                        foreach (Lfx.FileFormats.Office.Spreadsheet.Row rw in sheet.Rows) {
+                                if (rw is Lfx.FileFormats.Office.Spreadsheet.HeaderRow) {
+                                        LastGroup = new System.Windows.Forms.ListViewGroup(rw.Cells[0].Content.ToString());
+                                        this.Groups.Add(LastGroup);
+                                } else {
+                                        System.Windows.Forms.ListViewItem Itm = new System.Windows.Forms.ListViewItem();
+
+                                        if (rw is Lfx.FileFormats.Office.Spreadsheet.AggregationRow) {
+                                                //Itm.BackColor = System.Drawing.Color.LightGray;
+                                                Itm.Font = new System.Drawing.Font(Itm.Font, System.Drawing.FontStyle.Bold);
+                                        }
+
+                                        if (LastGroup != null) {
+                                                Itm.Group = LastGroup;
+                                        }
+
+                                        if (rw.BackColor != System.Drawing.Color.Empty)
+                                                Itm.BackColor = rw.BackColor;
+                                        if (rw.ForeColor != System.Drawing.Color.Empty)
+                                                Itm.ForeColor = rw.ForeColor;
+
+                                        int i = 0;
+                                        foreach (Lfx.FileFormats.Office.Spreadsheet.Cell cl in rw.Cells) {
+                                                string CellString = "";
+                                                if (cl.Content != null) {
+                                                        switch (cl.Content.GetType().ToString()) {
+                                                                case "System.Single":
+                                                                case "System.Double":
+                                                                        CellString += Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cl.Content), 2);
+                                                                        break;
+                                                                case "System.Decimal":
+                                                                        CellString += Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(cl.Content), 4);
+                                                                        break;
+                                                                case "System.Integer":
+                                                                case "System.Int16":
+                                                                case "System.Int32":
+                                                                case "System.Int64":
+                                                                        CellString += cl.Content.ToString();
+                                                                        break;
+                                                                case "System.DateTime":
+                                                                        DateTime clContent = (DateTime)cl.Content;
+                                                                        if (clContent.Hour == 0 && clContent.Minute == 0 && clContent.Second == 0)
+                                                                                CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
+                                                                        else
+                                                                                CellString += clContent.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
+                                                                        break;
+                                                                case "System.String":
+                                                                        CellString += cl.Content.ToString();
+                                                                        break;
+                                                        }
+                                                }
+                                                if (i == 0)
+                                                        Itm.Text = CellString;
+                                                else
+                                                        Itm.SubItems.Add(CellString);
+                                                i++;
+                                        }
+                                        this.Items.Add(Itm);
+                                }
+                        }
+                        this.EndUpdate();
+                        this.ResumeLayout();
+                }
         }
 }

@@ -39,13 +39,13 @@ namespace Lfc.Personas
 {
 	public class AltaDuplicada : Lui.Forms.Form
 	{
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
+		private Lui.Forms.Label label1;
+		private Lui.Forms.Label label2;
                 public Lui.Forms.ListView ListaComparacion;
 		private System.Windows.Forms.ColumnHeader NombreColumna;
 		private System.Windows.Forms.ColumnHeader ColumnaActual;
 		private System.Windows.Forms.ColumnHeader ColumnaNueva;
-		private System.Windows.Forms.Label label3;
+		private Lui.Forms.Label label3;
 		private Lui.Forms.Button BotonContinuar;
 		private Lui.Forms.Button BotonCorregir;
 		private Lui.Forms.Button BotonCancelar;
@@ -81,13 +81,13 @@ namespace Lfc.Personas
 		{
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaDuplicada));
-                        this.label1 = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.ListaComparacion = new Lui.Forms.ListView();
                         this.NombreColumna = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnaActual = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnaNueva = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.BotonCancelar = new Lui.Forms.Button();
                         this.BotonContinuar = new Lui.Forms.Button();
                         this.BotonCorregir = new Lui.Forms.Button();
@@ -96,7 +96,6 @@ namespace Lfc.Personas
                         // 
                         // label1
                         // 
-                        this.label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label1.Location = new System.Drawing.Point(20, 20);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(552, 24);
@@ -165,8 +164,6 @@ namespace Lfc.Personas
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCancelar.Enabled = false;
-                        this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BotonCancelar.Image")));
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCancelar.Location = new System.Drawing.Point(20, 332);
@@ -186,8 +183,6 @@ namespace Lfc.Personas
                         this.BotonContinuar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonContinuar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonContinuar.Enabled = false;
-                        this.BotonContinuar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonContinuar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonContinuar.Image = ((System.Drawing.Image)(resources.GetObject("BotonContinuar.Image")));
                         this.BotonContinuar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonContinuar.Location = new System.Drawing.Point(20, 256);
@@ -207,8 +202,6 @@ namespace Lfc.Personas
                         this.BotonCorregir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCorregir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCorregir.Enabled = false;
-                        this.BotonCorregir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonCorregir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCorregir.Image = ((System.Drawing.Image)(resources.GetObject("BotonCorregir.Image")));
                         this.BotonCorregir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCorregir.Location = new System.Drawing.Point(20, 408);

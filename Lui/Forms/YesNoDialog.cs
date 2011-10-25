@@ -54,11 +54,6 @@ namespace Lui.Forms
 
 	public partial class YesNoDialog : DialogForm
 	{
-		protected internal DialogButtons m_DialogButtons = DialogButtons.YesNo;
-		internal System.Windows.Forms.Label DialogCaption;
-		private System.Windows.Forms.RichTextBox DialogText;
-		protected internal DialogIcons m_Icono = DialogIcons.Question;
-
                 public YesNoDialog(string messageText, string messageCaption)
                 {
                         InitializeComponent();

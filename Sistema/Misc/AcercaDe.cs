@@ -102,6 +102,7 @@ namespace Lazaro.Misc
                         TimerBuscarActualizaciones.Stop();
 
                         if (Lfx.Updates.Updater.Master == null) {
+                                PicEsperar.Visible = false;
                                 if (Lfx.Workspace.Master.DebugMode)
                                         EtiquetaActualizar.Text = "Modo de depuración activado.";
                                 return;
@@ -113,13 +114,16 @@ namespace Lazaro.Misc
                         }
 
                         if (Lfx.Updates.Updater.Master.Progress.IsRunning) {
+                                PicEsperar.Visible = true;
                                 EtiquetaActualizar.Text = "Descargando " + Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
                                 EtiquetaActualizar.LinkArea = new LinkArea(0, 0);
                         } else {
                                 if (Lfx.Updates.Updater.Master.UpdatesPending()) {
+                                        PicEsperar.Visible = false;
                                         EtiquetaActualizar.Text = "Hay una actualización lista para aplicarse";
                                         EtiquetaActualizar.LinkArea = new LinkArea(0, EtiquetaActualizar.Text.Length);
                                 } else {
+                                        PicEsperar.Visible = false;
                                         EtiquetaActualizar.Text = "Lázaro está actualizado";
                                         EtiquetaActualizar.LinkArea = new LinkArea(0, 0);
                                 }

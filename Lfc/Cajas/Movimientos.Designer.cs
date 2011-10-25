@@ -64,8 +64,6 @@ namespace Lfc.Cajas
                         this.BotonIngreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonIngreso.AutoSize = false;
                         this.BotonIngreso.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonIngreso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonIngreso.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonIngreso.Image = null;
                         this.BotonIngreso.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonIngreso.Location = new System.Drawing.Point(12, 352);
@@ -85,8 +83,6 @@ namespace Lfc.Cajas
                         this.BotonEgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonEgreso.AutoSize = false;
                         this.BotonEgreso.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonEgreso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonEgreso.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonEgreso.Image = null;
                         this.BotonEgreso.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonEgreso.Location = new System.Drawing.Point(120, 352);
@@ -106,8 +102,6 @@ namespace Lfc.Cajas
                         this.BotonMovim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonMovim.AutoSize = false;
                         this.BotonMovim.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonMovim.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonMovim.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonMovim.Image = null;
                         this.BotonMovim.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonMovim.Location = new System.Drawing.Point(12, 388);
@@ -127,8 +121,6 @@ namespace Lfc.Cajas
                         this.BotonArqueo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonArqueo.AutoSize = false;
                         this.BotonArqueo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonArqueo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonArqueo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonArqueo.Image = null;
                         this.BotonArqueo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonArqueo.Location = new System.Drawing.Point(120, 388);

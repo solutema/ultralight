@@ -65,7 +65,7 @@ namespace Lcc.Edicion
                         this.ColComentario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EntradaComentario = new Lui.Forms.TextBox();
                         this.BotonAgregar = new Lui.Forms.Button();
-                        this.GroupLabel = new System.Windows.Forms.Label();
+                        this.GroupLabel = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // ListaComentarios
@@ -79,7 +79,6 @@ namespace Lcc.Edicion
             this.ColFecha,
             this.ColPersona,
             this.ColComentario});
-                        this.ListaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ListaComentarios.FullRowSelect = true;
                         this.ListaComentarios.GridLines = true;
                         this.ListaComentarios.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -123,19 +122,14 @@ namespace Lcc.Edicion
                         this.EntradaComentario.AutoTab = true;
                         this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaComentario.DecimalPlaces = -1;
-                        this.EntradaComentario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
                         this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaComentario.MaxLenght = 32767;
                         this.EntradaComentario.MultiLine = false;
                         this.EntradaComentario.Name = "EntradaComentario";
                         this.EntradaComentario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaComentario.PasswordChar = '\0';
-                        this.EntradaComentario.Prefijo = "";
                         this.EntradaComentario.SelectOnFocus = true;
                         this.EntradaComentario.Size = new System.Drawing.Size(464, 24);
-                        this.EntradaComentario.Sufijo = "";
                         this.EntradaComentario.TabIndex = 0;
                         this.EntradaComentario.PlaceholderText = null;
                         this.EntradaComentario.ToolTipText = null;
@@ -147,7 +141,6 @@ namespace Lcc.Edicion
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregar.Enabled = false;
-                        this.BotonAgregar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(468, 236);
@@ -166,7 +159,6 @@ namespace Lcc.Edicion
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(553, 24);
@@ -202,6 +194,6 @@ namespace Lcc.Edicion
                 private System.Windows.Forms.ColumnHeader ColFecha;
                 private System.Windows.Forms.ColumnHeader ColPersona;
                 private System.Windows.Forms.ColumnHeader ColComentario;
-                private System.Windows.Forms.Label GroupLabel;
+                private Lui.Forms.Label GroupLabel;
         }
 }

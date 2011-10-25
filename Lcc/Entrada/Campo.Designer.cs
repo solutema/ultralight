@@ -58,7 +58,7 @@ namespace Lcc.Entrada
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.FieldLabel = new System.Windows.Forms.Label();
+                        this.FieldLabel = new Lui.Forms.Label();
                         this.FieldData = new Lui.Forms.TextBox();
                         this.SuspendLayout();
                         // 
@@ -80,19 +80,14 @@ namespace Lcc.Entrada
                         this.FieldData.AutoTab = true;
                         this.FieldData.DataType = Lui.Forms.DataTypes.FreeText;
                         this.FieldData.DecimalPlaces = -1;
-                        this.FieldData.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FieldData.ForceCase = Lui.Forms.TextCasing.None;
                         this.FieldData.Location = new System.Drawing.Point(60, 0);
-                        this.FieldData.MaxLenght = 32767;
                         this.FieldData.MultiLine = false;
                         this.FieldData.Name = "FieldData";
                         this.FieldData.Padding = new System.Windows.Forms.Padding(2);
-                        this.FieldData.PasswordChar = '\0';
-                        this.FieldData.Prefijo = "";
                         this.FieldData.TemporaryReadOnly = false;
                         this.FieldData.SelectOnFocus = true;
                         this.FieldData.Size = new System.Drawing.Size(366, 24);
-                        this.FieldData.Sufijo = "";
                         this.FieldData.TabIndex = 0;
                         this.FieldData.Text = "0";
                         this.FieldData.PlaceholderText = "";
@@ -117,7 +112,7 @@ namespace Lcc.Entrada
 
                 #endregion
 
-                private System.Windows.Forms.Label FieldLabel;
+                private Lui.Forms.Label FieldLabel;
                 private Lui.Forms.TextBox FieldData;
         }
 }

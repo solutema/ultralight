@@ -52,24 +52,24 @@ namespace Lfc.Personas
 
                 private void InitializeComponent()
                 {
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.EntradaTipo = new Lcc.Entrada.CodigoDetalle();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaSituacion = new Lcc.Entrada.CodigoDetalle();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaGrupo = new Lcc.Entrada.CodigoDetalle();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.EntradaLocalidad = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaEstadoCredito = new Lui.Forms.ComboBox();
-                        this.label21 = new System.Windows.Forms.Label();
+                        this.label21 = new Lui.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.EntradaFechaAUsar = new Lui.Forms.ComboBox();
-                        this.label7 = new System.Windows.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
                         this.EntradaSubGrupo = new Lcc.Entrada.CodigoDetalle();
-                        this.label6 = new System.Windows.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
                         this.EntradaEtiquetas = new Lui.Forms.ComboBox();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.SuspendLayout();
@@ -102,8 +102,6 @@ namespace Lfc.Personas
                         this.EntradaTipo.DataValueField = "id_tipo_persona";
                         this.EntradaTipo.ExtraDetailFields = null;
                         this.EntradaTipo.Filter = "";
-                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTipo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTipo.FreeTextCode = "";
                         this.EntradaTipo.Location = new System.Drawing.Point(137, 3);
                         this.EntradaTipo.MaxLength = 200;
@@ -139,8 +137,6 @@ namespace Lfc.Personas
                         this.EntradaSituacion.DataValueField = "id_situacion";
                         this.EntradaSituacion.ExtraDetailFields = null;
                         this.EntradaSituacion.Filter = "";
-                        this.EntradaSituacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaSituacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSituacion.FreeTextCode = "";
                         this.EntradaSituacion.Location = new System.Drawing.Point(137, 93);
                         this.EntradaSituacion.MaxLength = 200;
@@ -176,8 +172,6 @@ namespace Lfc.Personas
                         this.EntradaGrupo.DataValueField = "id_grupo";
                         this.EntradaGrupo.ExtraDetailFields = null;
                         this.EntradaGrupo.Filter = "";
-                        this.EntradaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaGrupo.FreeTextCode = "";
                         this.EntradaGrupo.Location = new System.Drawing.Point(137, 33);
                         this.EntradaGrupo.MaxLength = 200;
@@ -214,8 +208,6 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = null;
                         this.EntradaLocalidad.Filter = "nivel=2";
-                        this.EntradaLocalidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaLocalidad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(137, 123);
                         this.EntradaLocalidad.MaxLength = 200;
@@ -239,10 +231,7 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.AutoNav = true;
                         this.EntradaEstadoCredito.AutoSize = true;
                         this.EntradaEstadoCredito.AutoTab = true;
-                        this.EntradaEstadoCredito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEstadoCredito.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaEstadoCredito.Location = new System.Drawing.Point(137, 184);
-                        this.EntradaEstadoCredito.MaxLenght = 32767;
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
                         this.EntradaEstadoCredito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstadoCredito.PlaceholderText = "";
@@ -312,7 +301,6 @@ namespace Lfc.Personas
                         this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFechas.AutoSize = true;
-                        this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechas.Location = new System.Drawing.Point(137, 246);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
@@ -330,10 +318,7 @@ namespace Lfc.Personas
                         this.EntradaFechaAUsar.AutoNav = true;
                         this.EntradaFechaAUsar.AutoSize = true;
                         this.EntradaFechaAUsar.AutoTab = true;
-                        this.EntradaFechaAUsar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaFechaAUsar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFechaAUsar.Location = new System.Drawing.Point(3, 246);
-                        this.EntradaFechaAUsar.MaxLenght = 32767;
                         this.EntradaFechaAUsar.Name = "EntradaFechaAUsar";
                         this.EntradaFechaAUsar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaAUsar.PlaceholderText = "";
@@ -366,8 +351,6 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.DataValueField = "id_grupo";
                         this.EntradaSubGrupo.ExtraDetailFields = null;
                         this.EntradaSubGrupo.Filter = "";
-                        this.EntradaSubGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaSubGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSubGrupo.FreeTextCode = "";
                         this.EntradaSubGrupo.Location = new System.Drawing.Point(137, 63);
                         this.EntradaSubGrupo.MaxLength = 200;
@@ -400,10 +383,7 @@ namespace Lfc.Personas
                         this.EntradaEtiquetas.AutoNav = true;
                         this.EntradaEtiquetas.AutoSize = true;
                         this.EntradaEtiquetas.AutoTab = true;
-                        this.EntradaEtiquetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEtiquetas.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaEtiquetas.Location = new System.Drawing.Point(137, 215);
-                        this.EntradaEtiquetas.MaxLenght = 32767;
                         this.EntradaEtiquetas.Name = "EntradaEtiquetas";
                         this.EntradaEtiquetas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEtiquetas.PlaceholderText = "";
@@ -433,10 +413,7 @@ namespace Lfc.Personas
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEstado.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaEstado.Location = new System.Drawing.Point(137, 153);
-                        this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = "";
@@ -466,9 +443,9 @@ namespace Lfc.Personas
 
                 #endregion
 
-                private System.Windows.Forms.Label Label4;
-                private System.Windows.Forms.Label Label1;
-                private System.Windows.Forms.Label Label2;
+                private Lui.Forms.Label Label4;
+                private Lui.Forms.Label Label1;
+                private Lui.Forms.Label Label2;
                 internal Lcc.Entrada.CodigoDetalle EntradaTipo;
                 internal Lcc.Entrada.CodigoDetalle EntradaSituacion;
                 internal Lcc.Entrada.CodigoDetalle EntradaLocalidad;
@@ -482,7 +459,7 @@ namespace Lfc.Personas
                 private Label label6;
                 private Label label7;
                 internal Lui.Forms.ComboBox EntradaEstado;
-                private System.Windows.Forms.Label Label3;
+                private Lui.Forms.Label Label3;
                 internal Lui.Forms.ComboBox EntradaFechaAUsar;
                 internal Lcc.Entrada.RangoFechas EntradaFechas;
         }

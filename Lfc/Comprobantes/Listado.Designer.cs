@@ -37,7 +37,7 @@ namespace Lfc.Comprobantes
 
                 private void InitializeComponent()
                 {
-                    this.Label1 = new System.Windows.Forms.Label();
+                    this.Label1 = new Lui.Forms.Label();
                     this.EntradaAgrupar = new Lui.Forms.ComboBox();
                     this.ReportListView = new Lui.Forms.ListView();
                     this.SuspendLayout();
@@ -58,10 +58,7 @@ namespace Lfc.Comprobantes
                     this.EntradaAgrupar.AutoSize = false;
                     this.EntradaAgrupar.AutoNav = true;
                     this.EntradaAgrupar.AutoTab = true;
-                    this.EntradaAgrupar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    this.EntradaAgrupar.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.EntradaAgrupar.Location = new System.Drawing.Point(400, 4);
-                    this.EntradaAgrupar.MaxLenght = 32767;
                     this.EntradaAgrupar.Name = "EntradaAgrupar";
                     this.EntradaAgrupar.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaAgrupar.TemporaryReadOnly = false;
@@ -115,7 +112,7 @@ namespace Lfc.Comprobantes
                     this.ResumeLayout(false);
 
                 }
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.ComboBox EntradaAgrupar;
 
                 #endregion

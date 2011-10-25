@@ -75,44 +75,44 @@ namespace ServidorFiscal
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.Label Label1;
-		internal System.Windows.Forms.Label Label2;
-		internal System.Windows.Forms.Label Label3;
-		internal System.Windows.Forms.Label Label5;
-		internal System.Windows.Forms.Label Label6;
-		internal System.Windows.Forms.Label lblError;
-		internal System.Windows.Forms.Label lblLugar;
-		internal System.Windows.Forms.Label lblMensaje;
-		internal System.Windows.Forms.Label lblEstadoImpresora;
-		internal System.Windows.Forms.Label lblEstadoFiscal;
-		internal System.Windows.Forms.Label Label8;
-		internal System.Windows.Forms.Label lblCampos;
-		internal System.Windows.Forms.Label lblComando;
-		internal System.Windows.Forms.Label Label4;
+		internal Lui.Forms.Label Label1;
+		internal Lui.Forms.Label Label2;
+		internal Lui.Forms.Label Label3;
+		internal Lui.Forms.Label Label5;
+		internal Lui.Forms.Label Label6;
+		internal Lui.Forms.Label lblError;
+		internal Lui.Forms.Label lblLugar;
+		internal Lui.Forms.Label lblMensaje;
+		internal Lui.Forms.Label lblEstadoImpresora;
+		internal Lui.Forms.Label lblEstadoFiscal;
+		internal Lui.Forms.Label Label8;
+		internal Lui.Forms.Label lblCampos;
+		internal Lui.Forms.Label lblComando;
+		internal Lui.Forms.Label Label4;
 		private PictureBox pictureBox1;
-		internal Label DialogCaption;
-		internal System.Windows.Forms.Label Label7;
+		internal Lui.Forms.Label DialogCaption;
+		internal Lui.Forms.Label Label7;
 
 		private void InitializeComponent()
 		{
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFiscalError));
-                        this.Label1 = new System.Windows.Forms.Label();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.Label3 = new System.Windows.Forms.Label();
-                        this.Label5 = new System.Windows.Forms.Label();
-                        this.Label6 = new System.Windows.Forms.Label();
-                        this.lblError = new System.Windows.Forms.Label();
-                        this.lblLugar = new System.Windows.Forms.Label();
-                        this.lblMensaje = new System.Windows.Forms.Label();
-                        this.lblEstadoImpresora = new System.Windows.Forms.Label();
-                        this.lblEstadoFiscal = new System.Windows.Forms.Label();
-                        this.lblCampos = new System.Windows.Forms.Label();
-                        this.Label8 = new System.Windows.Forms.Label();
-                        this.lblComando = new System.Windows.Forms.Label();
-                        this.Label4 = new System.Windows.Forms.Label();
-                        this.Label7 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
+                        this.Label6 = new Lui.Forms.Label();
+                        this.lblError = new Lui.Forms.Label();
+                        this.lblLugar = new Lui.Forms.Label();
+                        this.lblMensaje = new Lui.Forms.Label();
+                        this.lblEstadoImpresora = new Lui.Forms.Label();
+                        this.lblEstadoFiscal = new Lui.Forms.Label();
+                        this.lblCampos = new Lui.Forms.Label();
+                        this.Label8 = new Lui.Forms.Label();
+                        this.lblComando = new Lui.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.DialogCaption = new System.Windows.Forms.Label();
+                        this.DialogCaption = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
@@ -128,7 +128,6 @@ namespace ServidorFiscal
                         // 
                         // Label1
                         // 
-                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label1.Location = new System.Drawing.Point(76, 56);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(92, 20);
@@ -139,7 +138,6 @@ namespace ServidorFiscal
                         // 
                         // Label2
                         // 
-                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label2.Location = new System.Drawing.Point(76, 80);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(92, 20);
@@ -150,7 +148,6 @@ namespace ServidorFiscal
                         // 
                         // Label3
                         // 
-                        this.Label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label3.Location = new System.Drawing.Point(76, 104);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(92, 20);
@@ -162,7 +159,6 @@ namespace ServidorFiscal
                         // Label5
                         // 
                         this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label5.Location = new System.Drawing.Point(188, 162);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(156, 20);
@@ -174,7 +170,6 @@ namespace ServidorFiscal
                         // Label6
                         // 
                         this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label6.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label6.Location = new System.Drawing.Point(396, 162);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(124, 20);
@@ -219,7 +214,6 @@ namespace ServidorFiscal
                         // 
                         this.lblEstadoImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.lblEstadoImpresora.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblEstadoImpresora.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblEstadoImpresora.Location = new System.Drawing.Point(188, 182);
                         this.lblEstadoImpresora.Name = "lblEstadoImpresora";
                         this.lblEstadoImpresora.Size = new System.Drawing.Size(200, 128);
@@ -231,7 +225,6 @@ namespace ServidorFiscal
                         this.lblEstadoFiscal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.lblEstadoFiscal.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblEstadoFiscal.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblEstadoFiscal.Location = new System.Drawing.Point(396, 182);
                         this.lblEstadoFiscal.Name = "lblEstadoFiscal";
                         this.lblEstadoFiscal.Size = new System.Drawing.Size(216, 128);
@@ -242,7 +235,6 @@ namespace ServidorFiscal
                         // 
                         this.lblCampos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.lblCampos.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblCampos.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblCampos.Location = new System.Drawing.Point(76, 182);
                         this.lblCampos.Name = "lblCampos";
                         this.lblCampos.Size = new System.Drawing.Size(104, 128);
@@ -252,7 +244,6 @@ namespace ServidorFiscal
                         // Label8
                         // 
                         this.Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label8.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label8.Location = new System.Drawing.Point(76, 162);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(92, 20);
@@ -274,7 +265,6 @@ namespace ServidorFiscal
                         // 
                         // Label4
                         // 
-                        this.Label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label4.Location = new System.Drawing.Point(368, 56);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(108, 20);
@@ -287,7 +277,6 @@ namespace ServidorFiscal
                         // 
                         this.Label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label7.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label7.ForeColor = System.Drawing.Color.DarkRed;
                         this.Label7.Location = new System.Drawing.Point(76, 318);
                         this.Label7.Name = "Label7";
@@ -309,7 +298,7 @@ namespace ServidorFiscal
                         // 
                         this.DialogCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.DialogCaption.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.DialogCaption.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         this.DialogCaption.Location = new System.Drawing.Point(76, 16);
                         this.DialogCaption.Name = "DialogCaption";
                         this.DialogCaption.Size = new System.Drawing.Size(376, 24);
@@ -337,7 +326,6 @@ namespace ServidorFiscal
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "FormFiscalError";
                         this.Text = "Error de Impresora Fiscal";

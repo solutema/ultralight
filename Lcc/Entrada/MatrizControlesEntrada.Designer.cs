@@ -78,7 +78,6 @@ namespace Lcc.Entrada
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.AutoScrollMargin = new System.Drawing.Size(4, 4);
                         this.Controls.Add(this.PanelGrilla);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Name = "MatrizControlesEntrada";
                         this.Size = new System.Drawing.Size(536, 180);
                         this.Controls.SetChildIndex(this.PanelGrilla, 0);

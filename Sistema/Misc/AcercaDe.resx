@@ -167,11 +167,8 @@
         W5TJaWAfqRlmVdY5hbrwk68wqarFczwVLzC9hc/+UOi6XJ/7L67pb75NSWJEAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="Label5.Text" xml:space="preserve">
-    <value>Incluye o utiliza fuentes "Bitstream Vera", Copyright  2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is a trademark of Bitstream, Inc.
-Incluye o utiliza SharpZipLib, Copyright ©2000-2009 IC#Code.
-Incluye o utiliza MySQL Connector/NET, Copyright © 2004, 2010, Oracle y/o sus afiliados. 
-Incluye gráficos del Tango Desktop Project. Más información en tango.freedesktop.org.</value>
+  <data name="EtiquetaCreditos.Text" xml:space="preserve">
+    <value>Incluye o utiliza fuentes "Bitstream Vera", Copyright  2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is a trademark of Bitstream, Inc. Incluye o utiliza SharpZipLib, Copyright ©2000-2009 IC#Code. Incluye o utiliza MySQL Connector/NET, Copyright © 2004, 2010, Oracle y/o sus afiliados. Incluye gráficos del Tango Desktop Project. Más información en tango.freedesktop.org.</value>
   </data>
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -225,6 +222,9 @@ Incluye gráficos del Tango Desktop Project. Más información en tango.freedesk
   </data>
   <metadata name="TimerBuscarActualizaciones.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>44</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

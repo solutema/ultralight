@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public partial class MessageBoxForm : Form
+        public partial class MessageBoxForm : Lui.Forms.Form
         {
                 public MessageBoxForm()
                 {

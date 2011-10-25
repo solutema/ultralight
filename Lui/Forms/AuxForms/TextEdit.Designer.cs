@@ -63,10 +63,7 @@ namespace Lui.Forms.AuxForms
                         this.EntradaTexto.AutoNav = false;
                         this.EntradaTexto.AutoTab = true;
                         this.EntradaTexto.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaTexto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTexto.Location = new System.Drawing.Point(4, 4);
-                        this.EntradaTexto.MaxLenght = 32767;
                         this.EntradaTexto.MultiLine = true;
                         this.EntradaTexto.Name = "txtText";
                         this.EntradaTexto.Padding = new System.Windows.Forms.Padding(1);
@@ -80,8 +77,6 @@ namespace Lui.Forms.AuxForms
                         // 
                         this.BotonAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAceptar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAceptar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonAceptar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAceptar.Image = null;
                         this.BotonAceptar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAceptar.Location = new System.Drawing.Point(252, 211);
@@ -99,8 +94,6 @@ namespace Lui.Forms.AuxForms
                         // 
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = null;
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Middle;
                         this.BotonCancelar.Location = new System.Drawing.Point(356, 211);

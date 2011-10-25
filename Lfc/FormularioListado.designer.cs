@@ -52,8 +52,10 @@ namespace Lfc
 
                 private void InitializeComponent()
                 {
+                        this.components = new System.ComponentModel.Container();
                         this.EntradaBuscar = new Lui.Forms.TextBox();
                         this.BotonCrear = new Lui.Forms.Button();
+                        this.TimerBuscar = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
                         // 
                         // Listado
@@ -66,35 +68,34 @@ namespace Lfc
                         this.EntradaBuscar.AutoTab = false;
                         this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaBuscar.DecimalPlaces = -1;
-                        this.EntradaBuscar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaBuscar.Location = new System.Drawing.Point(8, 8);
-                        this.EntradaBuscar.MaxLenght = 32767;
+                        this.EntradaBuscar.MaxLength = 32767;
                         this.EntradaBuscar.MultiLine = false;
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBuscar.PasswordChar = '\0';
+                        this.EntradaBuscar.PlaceholderText = "buscar";
                         this.EntradaBuscar.Prefijo = "";
+                        this.EntradaBuscar.ReadOnly = false;
                         this.EntradaBuscar.SelectOnFocus = true;
                         this.EntradaBuscar.Size = new System.Drawing.Size(212, 24);
                         this.EntradaBuscar.Sufijo = "";
                         this.EntradaBuscar.TabIndex = 1;
-                        this.EntradaBuscar.PlaceholderText = "buscar";
                         this.EntradaBuscar.ToolTipText = "Escriba el texto o parte del texto a buscar y pulse <Intro>";
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
+                        this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
                         // 
                         // BotonCrear
                         // 
                         this.BotonCrear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCrear.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCrear.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonCrear.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCrear.Image = null;
                         this.BotonCrear.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCrear.Location = new System.Drawing.Point(120, 236);
                         this.BotonCrear.Name = "BotonCrear";
                         this.BotonCrear.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCrear.ReadOnly = false;
                         this.BotonCrear.Size = new System.Drawing.Size(96, 28);
                         this.BotonCrear.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonCrear.Subtext = "F6";
@@ -102,6 +103,11 @@ namespace Lfc
                         this.BotonCrear.Text = "Crear";
                         this.BotonCrear.ToolTipText = "";
                         this.BotonCrear.Click += new System.EventHandler(this.BotonCrear_Click);
+                        // 
+                        // TimerBuscar
+                        // 
+                        this.TimerBuscar.Interval = 500;
+                        this.TimerBuscar.Tick += new System.EventHandler(this.TimerBuscar_Tick);
                         // 
                         // FormularioListado
                         // 
@@ -127,6 +133,7 @@ namespace Lfc
 
                 private Lui.Forms.TextBox EntradaBuscar;
                 protected internal Lui.Forms.Button BotonCrear;
+                private System.Windows.Forms.Timer TimerBuscar;
 
         }
 }

@@ -40,6 +40,32 @@ namespace Lfx
         /// </summary>
         public static class Lic
         {
+                public static void QuitarBasura()
+                {
+                        string[] Archivos = System.IO.Directory.GetFiles(@"C:\Projects\Lazaro\", "*.cs", System.IO.SearchOption.AllDirectories);
+                        foreach (string Archivo in Archivos) {
+                                StringBuilder Salida = new StringBuilder();
+                                bool Encontre = false;
+                                using (System.IO.StreamReader Lector = System.IO.File.OpenText(Archivo)) {
+                                        while (Lector.EndOfStream == false) {
+                                                string Contenido = Lector.ReadLine();
+                                                if (Contenido.IndexOf(".Sufijo = \"\";") >= 0)
+                                                        Encontre = true;
+                                                else
+                                                        Salida.AppendLine(Contenido);
+                                        }
+                                        Lector.Close();
+                                }
+
+                                if (Encontre) {
+                                        using (System.IO.StreamWriter Escritor = System.IO.File.CreateText(Archivo)) {
+                                                Escritor.Write(Salida.ToString());
+                                                Escritor.Close();
+                                        }
+                                }
+                        }
+                }
+
                 public static void Licenciar(string path)
                 {
                         string[] Archivos = System.IO.Directory.GetFiles(path, "*.cs", System.IO.SearchOption.AllDirectories);

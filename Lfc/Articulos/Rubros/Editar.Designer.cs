@@ -37,9 +37,9 @@ namespace Lfc.Articulos.Rubros
 {
         public partial class Editar
         {
-                internal System.Windows.Forms.Label label9;
+                internal Lui.Forms.Label label9;
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label5;
                 private Lcc.Entrada.CodigoDetalle EntradaAlicuota;
 
                 #region Código generado por el diseñador
@@ -58,10 +58,10 @@ namespace Lfc.Articulos.Rubros
 
                 private void InitializeComponent()
                 {
-                        this.label9 = new System.Windows.Forms.Label();
+                        this.label9 = new Lui.Forms.Label();
                         this.EntradaAlicuota = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // label9
@@ -83,8 +83,6 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaAlicuota.DataTextField = "nombre";
                         this.EntradaAlicuota.ExtraDetailFields = "";
                         this.EntradaAlicuota.Filter = "";
-                        this.EntradaAlicuota.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaAlicuota.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaAlicuota.FreeTextCode = "";
                         this.EntradaAlicuota.DataValueField = "id_alicuota";
                         this.EntradaAlicuota.Location = new System.Drawing.Point(116, 48);
@@ -108,19 +106,13 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 16);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(356, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";

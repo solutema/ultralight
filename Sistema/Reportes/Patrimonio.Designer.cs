@@ -58,38 +58,38 @@ namespace Lazaro.Reportes
                 /// </summary>
                 private void InitializeComponent()
                 {
-                    this.label1 = new System.Windows.Forms.Label();
+                    this.label1 = new Lui.Forms.Label();
                     this.note1 = new Lui.Forms.Note();
                     this.EntradaActivosCajas = new Lui.Forms.TextBox();
                     this.EntradaFuturosTarjetas = new Lui.Forms.TextBox();
-                    this.label2 = new System.Windows.Forms.Label();
+                    this.label2 = new Lui.Forms.Label();
                     this.EntradaActivosStock = new Lui.Forms.TextBox();
-                    this.label3 = new System.Windows.Forms.Label();
+                    this.label3 = new Lui.Forms.Label();
                     this.EntradaFuturosPedidos = new Lui.Forms.TextBox();
-                    this.label4 = new System.Windows.Forms.Label();
+                    this.label4 = new Lui.Forms.Label();
                     this.EntradaPasivosCheques = new Lui.Forms.TextBox();
-                    this.label7 = new System.Windows.Forms.Label();
+                    this.label7 = new Lui.Forms.Label();
                     this.EntradaPasivosCajas = new Lui.Forms.TextBox();
                     this.note2 = new Lui.Forms.Note();
-                    this.label8 = new System.Windows.Forms.Label();
+                    this.label8 = new Lui.Forms.Label();
                     this.note3 = new Lui.Forms.Note();
                     this.EntradaActivosSubtotal = new Lui.Forms.TextBox();
-                    this.label5 = new System.Windows.Forms.Label();
+                    this.label5 = new Lui.Forms.Label();
                     this.EntradaPasivosSubtotal = new Lui.Forms.TextBox();
-                    this.label6 = new System.Windows.Forms.Label();
+                    this.label6 = new Lui.Forms.Label();
                     this.EntradaFuturosSubtotal = new Lui.Forms.TextBox();
-                    this.label9 = new System.Windows.Forms.Label();
+                    this.label9 = new Lui.Forms.Label();
                     this.EntradaPatrimonioActual = new Lui.Forms.TextBox();
-                    this.label10 = new System.Windows.Forms.Label();
+                    this.label10 = new Lui.Forms.Label();
                     this.note4 = new Lui.Forms.Note();
                     this.EntradaPatrimonioFuturo = new Lui.Forms.TextBox();
-                    this.label11 = new System.Windows.Forms.Label();
+                    this.label11 = new Lui.Forms.Label();
                     this.EntradaActivosActualesFuturos = new Lui.Forms.TextBox();
-                    this.label12 = new System.Windows.Forms.Label();
+                    this.label12 = new Lui.Forms.Label();
                     this.EntradaPasivosStock = new Lui.Forms.TextBox();
-                    this.label13 = new System.Windows.Forms.Label();
+                    this.label13 = new Lui.Forms.Label();
                     this.EntradaCC = new Lui.Forms.TextBox();
-                    this.label14 = new System.Windows.Forms.Label();
+                    this.label14 = new Lui.Forms.Label();
                     this.SuspendLayout();
                     // 
                     // label1
@@ -105,8 +105,6 @@ namespace Lazaro.Reportes
                     // note1
                     // 
                     this.note1.AutoSize = false;
-                    this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.note1.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.note1.Location = new System.Drawing.Point(16, 16);
                     this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note1.Name = "note1";
@@ -125,20 +123,15 @@ namespace Lazaro.Reportes
                     this.EntradaActivosCajas.AutoTab = true;
                     this.EntradaActivosCajas.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosCajas.DecimalPlaces = -1;
-                    this.EntradaActivosCajas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaActivosCajas.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaActivosCajas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaActivosCajas.Location = new System.Drawing.Point(268, 52);
-                    this.EntradaActivosCajas.MaxLenght = 32767;
                     this.EntradaActivosCajas.MultiLine = false;
                     this.EntradaActivosCajas.Name = "EntradaActivosCajas";
                     this.EntradaActivosCajas.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaActivosCajas.PasswordChar = '\0';
                     this.EntradaActivosCajas.Prefijo = "$";
                     this.EntradaActivosCajas.TemporaryReadOnly = true;
                     this.EntradaActivosCajas.SelectOnFocus = true;
                     this.EntradaActivosCajas.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaActivosCajas.Sufijo = "";
                     this.EntradaActivosCajas.TabIndex = 2;
                     this.EntradaActivosCajas.Text = "0.00";
                     this.EntradaActivosCajas.PlaceholderText = "";
@@ -151,20 +144,15 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosTarjetas.AutoTab = true;
                     this.EntradaFuturosTarjetas.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaFuturosTarjetas.DecimalPlaces = -1;
-                    this.EntradaFuturosTarjetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaFuturosTarjetas.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaFuturosTarjetas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaFuturosTarjetas.Location = new System.Drawing.Point(640, 52);
-                    this.EntradaFuturosTarjetas.MaxLenght = 32767;
                     this.EntradaFuturosTarjetas.MultiLine = false;
                     this.EntradaFuturosTarjetas.Name = "txtFuturosTarjetas";
                     this.EntradaFuturosTarjetas.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaFuturosTarjetas.PasswordChar = '\0';
                     this.EntradaFuturosTarjetas.Prefijo = "$";
                     this.EntradaFuturosTarjetas.TemporaryReadOnly = true;
                     this.EntradaFuturosTarjetas.SelectOnFocus = true;
                     this.EntradaFuturosTarjetas.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaFuturosTarjetas.Sufijo = "";
                     this.EntradaFuturosTarjetas.TabIndex = 4;
                     this.EntradaFuturosTarjetas.Text = "0.00";
                     this.EntradaFuturosTarjetas.PlaceholderText = "";
@@ -187,20 +175,15 @@ namespace Lazaro.Reportes
                     this.EntradaActivosStock.AutoTab = true;
                     this.EntradaActivosStock.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosStock.DecimalPlaces = -1;
-                    this.EntradaActivosStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaActivosStock.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaActivosStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaActivosStock.Location = new System.Drawing.Point(268, 80);
-                    this.EntradaActivosStock.MaxLenght = 32767;
                     this.EntradaActivosStock.MultiLine = false;
                     this.EntradaActivosStock.Name = "txtActivosStock";
                     this.EntradaActivosStock.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaActivosStock.PasswordChar = '\0';
                     this.EntradaActivosStock.Prefijo = "$";
                     this.EntradaActivosStock.TemporaryReadOnly = true;
                     this.EntradaActivosStock.SelectOnFocus = true;
                     this.EntradaActivosStock.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaActivosStock.Sufijo = "";
                     this.EntradaActivosStock.TabIndex = 6;
                     this.EntradaActivosStock.Text = "0.00";
                     this.EntradaActivosStock.PlaceholderText = "";
@@ -223,20 +206,15 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosPedidos.AutoTab = true;
                     this.EntradaFuturosPedidos.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaFuturosPedidos.DecimalPlaces = -1;
-                    this.EntradaFuturosPedidos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaFuturosPedidos.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaFuturosPedidos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaFuturosPedidos.Location = new System.Drawing.Point(640, 114);
-                    this.EntradaFuturosPedidos.MaxLenght = 32767;
                     this.EntradaFuturosPedidos.MultiLine = false;
                     this.EntradaFuturosPedidos.Name = "txtFuturosPedidos";
                     this.EntradaFuturosPedidos.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaFuturosPedidos.PasswordChar = '\0';
                     this.EntradaFuturosPedidos.Prefijo = "$";
                     this.EntradaFuturosPedidos.TemporaryReadOnly = true;
                     this.EntradaFuturosPedidos.SelectOnFocus = true;
                     this.EntradaFuturosPedidos.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaFuturosPedidos.Sufijo = "";
                     this.EntradaFuturosPedidos.TabIndex = 8;
                     this.EntradaFuturosPedidos.Text = "0.00";
                     this.EntradaFuturosPedidos.PlaceholderText = "";
@@ -259,20 +237,15 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCheques.AutoTab = true;
                     this.EntradaPasivosCheques.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosCheques.DecimalPlaces = -1;
-                    this.EntradaPasivosCheques.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaPasivosCheques.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaPasivosCheques.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaPasivosCheques.Location = new System.Drawing.Point(268, 260);
-                    this.EntradaPasivosCheques.MaxLenght = 32767;
                     this.EntradaPasivosCheques.MultiLine = false;
                     this.EntradaPasivosCheques.Name = "txtPasivosCheques";
                     this.EntradaPasivosCheques.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaPasivosCheques.PasswordChar = '\0';
                     this.EntradaPasivosCheques.Prefijo = "$";
                     this.EntradaPasivosCheques.TemporaryReadOnly = true;
                     this.EntradaPasivosCheques.SelectOnFocus = true;
                     this.EntradaPasivosCheques.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaPasivosCheques.Sufijo = "";
                     this.EntradaPasivosCheques.TabIndex = 13;
                     this.EntradaPasivosCheques.Text = "0.00";
                     this.EntradaPasivosCheques.PlaceholderText = "";
@@ -295,20 +268,15 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCajas.AutoTab = true;
                     this.EntradaPasivosCajas.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosCajas.DecimalPlaces = -1;
-                    this.EntradaPasivosCajas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaPasivosCajas.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaPasivosCajas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaPasivosCajas.Location = new System.Drawing.Point(268, 204);
-                    this.EntradaPasivosCajas.MaxLenght = 32767;
                     this.EntradaPasivosCajas.MultiLine = false;
                     this.EntradaPasivosCajas.Name = "EntradaPasivosCajas";
                     this.EntradaPasivosCajas.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaPasivosCajas.PasswordChar = '\0';
                     this.EntradaPasivosCajas.Prefijo = "$";
                     this.EntradaPasivosCajas.TemporaryReadOnly = true;
                     this.EntradaPasivosCajas.SelectOnFocus = true;
                     this.EntradaPasivosCajas.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaPasivosCajas.Sufijo = "";
                     this.EntradaPasivosCajas.TabIndex = 11;
                     this.EntradaPasivosCajas.Text = "0.00";
                     this.EntradaPasivosCajas.PlaceholderText = "";
@@ -317,8 +285,6 @@ namespace Lazaro.Reportes
                     // note2
                     // 
                     this.note2.AutoSize = false;
-                    this.note2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.note2.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.note2.Location = new System.Drawing.Point(16, 168);
                     this.note2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note2.Name = "note2";
@@ -343,8 +309,6 @@ namespace Lazaro.Reportes
                     // note3
                     // 
                     this.note3.AutoSize = false;
-                    this.note3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.note3.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.note3.Location = new System.Drawing.Point(388, 16);
                     this.note3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note3.Name = "note3";
@@ -363,20 +327,15 @@ namespace Lazaro.Reportes
                     this.EntradaActivosSubtotal.AutoTab = true;
                     this.EntradaActivosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosSubtotal.DecimalPlaces = -1;
-                    this.EntradaActivosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaActivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaActivosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaActivosSubtotal.Location = new System.Drawing.Point(268, 112);
-                    this.EntradaActivosSubtotal.MaxLenght = 32767;
                     this.EntradaActivosSubtotal.MultiLine = false;
                     this.EntradaActivosSubtotal.Name = "txtActivosSubtotal";
                     this.EntradaActivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaActivosSubtotal.PasswordChar = '\0';
                     this.EntradaActivosSubtotal.Prefijo = "$";
                     this.EntradaActivosSubtotal.TemporaryReadOnly = true;
                     this.EntradaActivosSubtotal.SelectOnFocus = true;
                     this.EntradaActivosSubtotal.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaActivosSubtotal.Sufijo = "";
                     this.EntradaActivosSubtotal.TabIndex = 20;
                     this.EntradaActivosSubtotal.Text = "0.00";
                     this.EntradaActivosSubtotal.PlaceholderText = "";
@@ -384,7 +343,6 @@ namespace Lazaro.Reportes
                     // 
                     // label5
                     // 
-                    this.label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     this.label5.Location = new System.Drawing.Point(32, 112);
                     this.label5.Name = "label5";
                     this.label5.Size = new System.Drawing.Size(232, 24);
@@ -400,20 +358,15 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosSubtotal.AutoTab = true;
                     this.EntradaPasivosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosSubtotal.DecimalPlaces = -1;
-                    this.EntradaPasivosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaPasivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaPasivosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaPasivosSubtotal.Location = new System.Drawing.Point(268, 292);
-                    this.EntradaPasivosSubtotal.MaxLenght = 32767;
                     this.EntradaPasivosSubtotal.MultiLine = false;
                     this.EntradaPasivosSubtotal.Name = "txtPasivosSubtotal";
                     this.EntradaPasivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaPasivosSubtotal.PasswordChar = '\0';
                     this.EntradaPasivosSubtotal.Prefijo = "$";
                     this.EntradaPasivosSubtotal.TemporaryReadOnly = true;
                     this.EntradaPasivosSubtotal.SelectOnFocus = true;
                     this.EntradaPasivosSubtotal.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaPasivosSubtotal.Sufijo = "";
                     this.EntradaPasivosSubtotal.TabIndex = 22;
                     this.EntradaPasivosSubtotal.Text = "0.00";
                     this.EntradaPasivosSubtotal.PlaceholderText = "";
@@ -421,7 +374,6 @@ namespace Lazaro.Reportes
                     // 
                     // label6
                     // 
-                    this.label6.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     this.label6.Location = new System.Drawing.Point(32, 292);
                     this.label6.Name = "label6";
                     this.label6.Size = new System.Drawing.Size(232, 24);
@@ -437,20 +389,15 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosSubtotal.AutoTab = true;
                     this.EntradaFuturosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaFuturosSubtotal.DecimalPlaces = -1;
-                    this.EntradaFuturosSubtotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaFuturosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaFuturosSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaFuturosSubtotal.Location = new System.Drawing.Point(640, 146);
-                    this.EntradaFuturosSubtotal.MaxLenght = 32767;
                     this.EntradaFuturosSubtotal.MultiLine = false;
                     this.EntradaFuturosSubtotal.Name = "txtFuturosSubtotal";
                     this.EntradaFuturosSubtotal.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaFuturosSubtotal.PasswordChar = '\0';
                     this.EntradaFuturosSubtotal.Prefijo = "$";
                     this.EntradaFuturosSubtotal.TemporaryReadOnly = true;
                     this.EntradaFuturosSubtotal.SelectOnFocus = true;
                     this.EntradaFuturosSubtotal.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaFuturosSubtotal.Sufijo = "";
                     this.EntradaFuturosSubtotal.TabIndex = 24;
                     this.EntradaFuturosSubtotal.Text = "0.00";
                     this.EntradaFuturosSubtotal.PlaceholderText = "";
@@ -458,7 +405,6 @@ namespace Lazaro.Reportes
                     // 
                     // label9
                     // 
-                    this.label9.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     this.label9.Location = new System.Drawing.Point(404, 146);
                     this.label9.Name = "label9";
                     this.label9.Size = new System.Drawing.Size(232, 24);
@@ -474,20 +420,15 @@ namespace Lazaro.Reportes
                     this.EntradaPatrimonioActual.AutoTab = true;
                     this.EntradaPatrimonioActual.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPatrimonioActual.DecimalPlaces = -1;
-                    this.EntradaPatrimonioActual.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaPatrimonioActual.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaPatrimonioActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaPatrimonioActual.Location = new System.Drawing.Point(644, 266);
-                    this.EntradaPatrimonioActual.MaxLenght = 32767;
                     this.EntradaPatrimonioActual.MultiLine = false;
                     this.EntradaPatrimonioActual.Name = "txtPatrimonioActual";
                     this.EntradaPatrimonioActual.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaPatrimonioActual.PasswordChar = '\0';
                     this.EntradaPatrimonioActual.Prefijo = "$";
                     this.EntradaPatrimonioActual.TemporaryReadOnly = true;
                     this.EntradaPatrimonioActual.SelectOnFocus = true;
                     this.EntradaPatrimonioActual.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaPatrimonioActual.Sufijo = "";
                     this.EntradaPatrimonioActual.TabIndex = 26;
                     this.EntradaPatrimonioActual.Text = "0.00";
                     this.EntradaPatrimonioActual.PlaceholderText = "";
@@ -495,7 +436,6 @@ namespace Lazaro.Reportes
                     // 
                     // label10
                     // 
-                    this.label10.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     this.label10.Location = new System.Drawing.Point(408, 266);
                     this.label10.Name = "label10";
                     this.label10.Size = new System.Drawing.Size(232, 24);
@@ -507,8 +447,6 @@ namespace Lazaro.Reportes
                     // note4
                     // 
                     this.note4.AutoSize = false;
-                    this.note4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                    this.note4.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.note4.Location = new System.Drawing.Point(392, 230);
                     this.note4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note4.Name = "note4";
@@ -527,20 +465,15 @@ namespace Lazaro.Reportes
                     this.EntradaPatrimonioFuturo.AutoTab = true;
                     this.EntradaPatrimonioFuturo.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPatrimonioFuturo.DecimalPlaces = -1;
-                    this.EntradaPatrimonioFuturo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaPatrimonioFuturo.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaPatrimonioFuturo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaPatrimonioFuturo.Location = new System.Drawing.Point(644, 294);
-                    this.EntradaPatrimonioFuturo.MaxLenght = 32767;
                     this.EntradaPatrimonioFuturo.MultiLine = false;
                     this.EntradaPatrimonioFuturo.Name = "txtPatrimonioFuturo";
                     this.EntradaPatrimonioFuturo.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaPatrimonioFuturo.PasswordChar = '\0';
                     this.EntradaPatrimonioFuturo.Prefijo = "$";
                     this.EntradaPatrimonioFuturo.TemporaryReadOnly = true;
                     this.EntradaPatrimonioFuturo.SelectOnFocus = true;
                     this.EntradaPatrimonioFuturo.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaPatrimonioFuturo.Sufijo = "";
                     this.EntradaPatrimonioFuturo.TabIndex = 29;
                     this.EntradaPatrimonioFuturo.Text = "0.00";
                     this.EntradaPatrimonioFuturo.PlaceholderText = "";
@@ -548,7 +481,6 @@ namespace Lazaro.Reportes
                     // 
                     // label11
                     // 
-                    this.label11.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     this.label11.Location = new System.Drawing.Point(408, 294);
                     this.label11.Name = "label11";
                     this.label11.Size = new System.Drawing.Size(232, 24);
@@ -564,20 +496,15 @@ namespace Lazaro.Reportes
                     this.EntradaActivosActualesFuturos.AutoTab = true;
                     this.EntradaActivosActualesFuturos.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosActualesFuturos.DecimalPlaces = -1;
-                    this.EntradaActivosActualesFuturos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaActivosActualesFuturos.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaActivosActualesFuturos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaActivosActualesFuturos.Location = new System.Drawing.Point(640, 178);
-                    this.EntradaActivosActualesFuturos.MaxLenght = 32767;
                     this.EntradaActivosActualesFuturos.MultiLine = false;
                     this.EntradaActivosActualesFuturos.Name = "txtActivosActualesFuturos";
                     this.EntradaActivosActualesFuturos.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaActivosActualesFuturos.PasswordChar = '\0';
                     this.EntradaActivosActualesFuturos.Prefijo = "$";
                     this.EntradaActivosActualesFuturos.TemporaryReadOnly = true;
                     this.EntradaActivosActualesFuturos.SelectOnFocus = true;
                     this.EntradaActivosActualesFuturos.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaActivosActualesFuturos.Sufijo = "";
                     this.EntradaActivosActualesFuturos.TabIndex = 33;
                     this.EntradaActivosActualesFuturos.Text = "0.00";
                     this.EntradaActivosActualesFuturos.PlaceholderText = "";
@@ -585,7 +512,6 @@ namespace Lazaro.Reportes
                     // 
                     // label12
                     // 
-                    this.label12.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     this.label12.Location = new System.Drawing.Point(404, 178);
                     this.label12.Name = "label12";
                     this.label12.Size = new System.Drawing.Size(232, 24);
@@ -601,20 +527,15 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosStock.AutoTab = true;
                     this.EntradaPasivosStock.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosStock.DecimalPlaces = -1;
-                    this.EntradaPasivosStock.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaPasivosStock.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaPasivosStock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaPasivosStock.Location = new System.Drawing.Point(268, 232);
-                    this.EntradaPasivosStock.MaxLenght = 32767;
                     this.EntradaPasivosStock.MultiLine = false;
                     this.EntradaPasivosStock.Name = "txtPasivosStock";
                     this.EntradaPasivosStock.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaPasivosStock.PasswordChar = '\0';
                     this.EntradaPasivosStock.Prefijo = "$";
                     this.EntradaPasivosStock.TemporaryReadOnly = true;
                     this.EntradaPasivosStock.SelectOnFocus = true;
                     this.EntradaPasivosStock.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaPasivosStock.Sufijo = "";
                     this.EntradaPasivosStock.TabIndex = 35;
                     this.EntradaPasivosStock.Text = "0.00";
                     this.EntradaPasivosStock.PlaceholderText = "";
@@ -637,20 +558,15 @@ namespace Lazaro.Reportes
                     this.EntradaCC.AutoTab = true;
                     this.EntradaCC.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaCC.DecimalPlaces = -1;
-                    this.EntradaCC.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                     this.EntradaCC.ForceCase = Lui.Forms.TextCasing.None;
-                    this.EntradaCC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                     this.EntradaCC.Location = new System.Drawing.Point(640, 83);
-                    this.EntradaCC.MaxLenght = 32767;
                     this.EntradaCC.MultiLine = false;
                     this.EntradaCC.Name = "txtCC";
                     this.EntradaCC.Padding = new System.Windows.Forms.Padding(2);
-                    this.EntradaCC.PasswordChar = '\0';
                     this.EntradaCC.Prefijo = "$";
                     this.EntradaCC.TemporaryReadOnly = true;
                     this.EntradaCC.SelectOnFocus = true;
                     this.EntradaCC.Size = new System.Drawing.Size(100, 24);
-                    this.EntradaCC.Sufijo = "";
                     this.EntradaCC.TabIndex = 37;
                     this.EntradaCC.Text = "0.00";
                     this.EntradaCC.ToolTipText = "";
@@ -710,37 +626,37 @@ namespace Lazaro.Reportes
 
                 #endregion
 
-                private System.Windows.Forms.Label label1;
+                private Lui.Forms.Label label1;
                 private Lui.Forms.Note note1;
                 private Lui.Forms.TextBox EntradaActivosCajas;
                 private Lui.Forms.TextBox EntradaFuturosTarjetas;
-                private System.Windows.Forms.Label label2;
+                private Lui.Forms.Label label2;
                 private Lui.Forms.TextBox EntradaActivosStock;
-                private System.Windows.Forms.Label label3;
+                private Lui.Forms.Label label3;
                 private Lui.Forms.TextBox EntradaFuturosPedidos;
-                private System.Windows.Forms.Label label4;
+                private Lui.Forms.Label label4;
                 private Lui.Forms.TextBox EntradaPasivosCheques;
-                private System.Windows.Forms.Label label7;
+                private Lui.Forms.Label label7;
                 private Lui.Forms.TextBox EntradaPasivosCajas;
                 private Lui.Forms.Note note2;
-                private System.Windows.Forms.Label label8;
+                private Lui.Forms.Label label8;
                 private Lui.Forms.Note note3;
                 private Lui.Forms.TextBox EntradaActivosSubtotal;
-                private System.Windows.Forms.Label label5;
+                private Lui.Forms.Label label5;
                 private Lui.Forms.TextBox EntradaPasivosSubtotal;
-                private System.Windows.Forms.Label label6;
+                private Lui.Forms.Label label6;
                 private Lui.Forms.TextBox EntradaFuturosSubtotal;
-                private System.Windows.Forms.Label label9;
+                private Lui.Forms.Label label9;
                 private Lui.Forms.TextBox EntradaPatrimonioActual;
-                private System.Windows.Forms.Label label10;
+                private Lui.Forms.Label label10;
                 private Lui.Forms.Note note4;
                 private Lui.Forms.TextBox EntradaPatrimonioFuturo;
-                private System.Windows.Forms.Label label11;
+                private Lui.Forms.Label label11;
                 private Lui.Forms.TextBox EntradaActivosActualesFuturos;
-                private System.Windows.Forms.Label label12;
+                private Lui.Forms.Label label12;
                 private Lui.Forms.TextBox EntradaPasivosStock;
-                private System.Windows.Forms.Label label13;
+                private Lui.Forms.Label label13;
                 private Lui.Forms.TextBox EntradaCC;
-                private System.Windows.Forms.Label label14;
+                private Lui.Forms.Label label14;
         }
 }

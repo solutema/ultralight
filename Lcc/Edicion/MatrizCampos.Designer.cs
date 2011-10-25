@@ -58,7 +58,7 @@ namespace Lcc.Edicion
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.GroupLabel = new System.Windows.Forms.Label();
+                        this.GroupLabel = new Lui.Forms.Label();
                         this.FieldContainer = new System.Windows.Forms.Panel();
                         this.SuspendLayout();
                         // 
@@ -66,7 +66,6 @@ namespace Lcc.Edicion
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(460, 24);
@@ -103,7 +102,7 @@ namespace Lcc.Edicion
 
                 #endregion
 
-                private System.Windows.Forms.Label GroupLabel;
+                private Lui.Forms.Label GroupLabel;
                 protected System.Windows.Forms.Panel FieldContainer;
         }
 }

@@ -67,7 +67,7 @@ namespace Lcc.Entrada
                         this.BotonQuitarImagen = new Lui.Forms.Button();
                         this.BotonSeleccionarImagen = new Lui.Forms.Button();
                         this.BotonCapturarImagen = new Lui.Forms.Button();
-                        this.GroupLabel = new System.Windows.Forms.Label();
+                        this.GroupLabel = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).BeginInit();
                         this.MenuImagen.SuspendLayout();
                         this.SuspendLayout();
@@ -113,8 +113,6 @@ namespace Lcc.Entrada
                         this.BotonQuitarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitarImagen.AutoSize = false;
                         this.BotonQuitarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonQuitarImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonQuitarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitarImagen.Image = null;
                         this.BotonQuitarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitarImagen.Location = new System.Drawing.Point(143, 133);
@@ -133,8 +131,6 @@ namespace Lcc.Entrada
                         // 
                         this.BotonSeleccionarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonSeleccionarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonSeleccionarImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonSeleccionarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSeleccionarImagen.Image = null;
                         this.BotonSeleccionarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSeleccionarImagen.Location = new System.Drawing.Point(143, 82);
@@ -154,8 +150,6 @@ namespace Lcc.Entrada
                         this.BotonCapturarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCapturarImagen.AutoSize = false;
                         this.BotonCapturarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCapturarImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonCapturarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCapturarImagen.Image = null;
                         this.BotonCapturarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCapturarImagen.Location = new System.Drawing.Point(143, 38);
@@ -174,7 +168,6 @@ namespace Lcc.Entrada
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(236, 24);
@@ -207,6 +200,6 @@ namespace Lcc.Entrada
                 private System.Windows.Forms.ContextMenuStrip MenuImagen;
                 private System.Windows.Forms.ToolStripMenuItem guardarEnarchivoToolStripMenuItem;
                 private System.Windows.Forms.ToolStripMenuItem copiarAlPortapapelesToolStripMenuItem;
-                private System.Windows.Forms.Label GroupLabel;
+                private Lui.Forms.Label GroupLabel;
         }
 }

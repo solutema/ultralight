@@ -58,8 +58,8 @@ namespace Lfc.Comprobantes.Facturas
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.label2 = new System.Windows.Forms.Label();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.BotonCancelar = new Lui.Forms.Button();
                         this.BotonContinuar = new Lui.Forms.Button();
                         this.BotonCorregir = new Lui.Forms.Button();
@@ -78,7 +78,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label1
                         // 
-                        this.label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label1.Location = new System.Drawing.Point(20, 24);
                         this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label1.Name = "label1";
@@ -91,8 +90,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCancelar.AutoSize = false;
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCancelar.Location = new System.Drawing.Point(20, 288);
                         this.BotonCancelar.Name = "BotonCancelar";
@@ -112,8 +109,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonContinuar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonContinuar.AutoSize = false;
                         this.BotonContinuar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonContinuar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonContinuar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonContinuar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonContinuar.Location = new System.Drawing.Point(20, 212);
                         this.BotonContinuar.Name = "BotonContinuar";
@@ -134,8 +129,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCorregir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCorregir.AutoSize = false;
                         this.BotonCorregir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCorregir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonCorregir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCorregir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCorregir.Location = new System.Drawing.Point(20, 136);
                         this.BotonCorregir.Name = "BotonCorregir";
@@ -160,7 +153,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.BotonCorregir);
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.label1);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "SaldoEnCuentaCorriente";
@@ -172,8 +164,8 @@ namespace Lfc.Comprobantes.Facturas
 
                 #endregion
 
-                private System.Windows.Forms.Label label2;
-                private System.Windows.Forms.Label label1;
+                private Lui.Forms.Label label2;
+                private Lui.Forms.Label label1;
                 private Lui.Forms.Button BotonCancelar;
                 private Lui.Forms.Button BotonContinuar;
                 private Lui.Forms.Button BotonCorregir;

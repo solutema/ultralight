@@ -58,26 +58,26 @@ namespace Lfc.Bancos.Cheques
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
                 internal Lui.Forms.TextBox EntradaSubTotal;
-                internal System.Windows.Forms.Label lblLabel1;
-                internal System.Windows.Forms.Label Label2;
+                internal Lui.Forms.Label lblLabel1;
+                internal Lui.Forms.Label Label2;
                 internal Lui.Forms.TextBox EntradaTotal;
-                internal System.Windows.Forms.Label Label8;
-                internal System.Windows.Forms.Label Label3;
+                internal Lui.Forms.Label Label8;
+                internal Lui.Forms.Label Label3;
                 internal Lcc.Entrada.CodigoDetalle EntradaCajaDestino;
 
                 private void InitializeComponent()
                 {
                         this.EntradaSubTotal = new Lui.Forms.TextBox();
-                        this.lblLabel1 = new System.Windows.Forms.Label();
+                        this.lblLabel1 = new Lui.Forms.Label();
                         this.EntradaGestionDeCobro = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaTotal = new Lui.Forms.TextBox();
-                        this.Label8 = new System.Windows.Forms.Label();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label8 = new Lui.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.EntradaCajaDestino = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaImpuestos = new Lui.Forms.TextBox();
-                        this.label4 = new System.Windows.Forms.Label();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -94,20 +94,15 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSubTotal.AutoTab = true;
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaSubTotal.DecimalPlaces = -1;
-                        this.EntradaSubTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaSubTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaSubTotal.Location = new System.Drawing.Point(332, 68);
-                        this.EntradaSubTotal.MaxLenght = 32767;
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSubTotal.PasswordChar = '\0';
                         this.EntradaSubTotal.Prefijo = "$";
                         this.EntradaSubTotal.TemporaryReadOnly = true;
                         this.EntradaSubTotal.SelectOnFocus = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaSubTotal.Sufijo = "";
                         this.EntradaSubTotal.TabIndex = 4;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
@@ -117,7 +112,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // lblLabel1
                         // 
-                        this.lblLabel1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.lblLabel1.Location = new System.Drawing.Point(60, 68);
                         this.lblLabel1.Name = "lblLabel1";
                         this.lblLabel1.Size = new System.Drawing.Size(296, 24);
@@ -131,20 +125,15 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaGestionDeCobro.AutoTab = true;
                         this.EntradaGestionDeCobro.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaGestionDeCobro.DecimalPlaces = -1;
-                        this.EntradaGestionDeCobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaGestionDeCobro.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaGestionDeCobro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaGestionDeCobro.Location = new System.Drawing.Point(332, 100);
-                        this.EntradaGestionDeCobro.MaxLenght = 32767;
                         this.EntradaGestionDeCobro.MultiLine = false;
                         this.EntradaGestionDeCobro.Name = "EntradaGestionDeCobro";
                         this.EntradaGestionDeCobro.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaGestionDeCobro.PasswordChar = '\0';
                         this.EntradaGestionDeCobro.Prefijo = "$";
                         this.EntradaGestionDeCobro.TemporaryReadOnly = false;
                         this.EntradaGestionDeCobro.SelectOnFocus = true;
                         this.EntradaGestionDeCobro.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaGestionDeCobro.Sufijo = "";
                         this.EntradaGestionDeCobro.TabIndex = 6;
                         this.EntradaGestionDeCobro.Text = "0.00";
                         this.EntradaGestionDeCobro.PlaceholderText = "";
@@ -153,7 +142,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label2
                         // 
-                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label2.Location = new System.Drawing.Point(188, 100);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(132, 24);
@@ -167,20 +155,15 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaTotal.AutoTab = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
-                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 196);
-                        this.EntradaTotal.MaxLenght = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTotal.PasswordChar = '\0';
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.TemporaryReadOnly = false;
                         this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
-                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 10;
                         this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.PlaceholderText = "";
@@ -188,7 +171,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label8
                         // 
-                        this.Label8.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label8.Location = new System.Drawing.Point(60, 196);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(160, 28);
@@ -198,7 +180,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label3
                         // 
-                        this.Label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label3.Location = new System.Drawing.Point(60, 232);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(160, 24);
@@ -216,8 +197,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCajaDestino.DataTextField = "nombre";
                         this.EntradaCajaDestino.ExtraDetailFields = null;
                         this.EntradaCajaDestino.Filter = "";
-                        this.EntradaCajaDestino.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCajaDestino.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCajaDestino.FreeTextCode = "";
                         this.EntradaCajaDestino.DataValueField = "id_caja";
                         this.EntradaCajaDestino.Location = new System.Drawing.Point(212, 232);
@@ -240,20 +219,15 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaImpuestos.AutoTab = true;
                         this.EntradaImpuestos.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImpuestos.DecimalPlaces = -1;
-                        this.EntradaImpuestos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImpuestos.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaImpuestos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaImpuestos.Location = new System.Drawing.Point(332, 128);
-                        this.EntradaImpuestos.MaxLenght = 32767;
                         this.EntradaImpuestos.MultiLine = false;
                         this.EntradaImpuestos.Name = "EntradaImpuestos";
                         this.EntradaImpuestos.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImpuestos.PasswordChar = '\0';
                         this.EntradaImpuestos.Prefijo = "$";
                         this.EntradaImpuestos.TemporaryReadOnly = false;
                         this.EntradaImpuestos.SelectOnFocus = true;
                         this.EntradaImpuestos.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaImpuestos.Sufijo = "";
                         this.EntradaImpuestos.TabIndex = 8;
                         this.EntradaImpuestos.Text = "0.00";
                         this.EntradaImpuestos.PlaceholderText = "";
@@ -262,7 +236,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // label4
                         // 
-                        this.label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label4.Location = new System.Drawing.Point(188, 128);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(132, 24);
@@ -274,7 +247,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label5.Location = new System.Drawing.Point(20, 16);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(596, 36);
@@ -317,7 +289,7 @@ namespace Lfc.Bancos.Cheques
 
                 internal Lui.Forms.TextBox EntradaGestionDeCobro;
                 internal Lui.Forms.TextBox EntradaImpuestos;
-                internal System.Windows.Forms.Label label4;
-                internal System.Windows.Forms.Label label5;
+                internal Lui.Forms.Label label4;
+                internal Lui.Forms.Label label5;
         }
 }

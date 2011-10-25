@@ -51,8 +51,8 @@ namespace Lcc.Entrada
                         this.EntradaDesde = new Lui.Forms.TextBox();
                         this.EntradaHasta = new Lui.Forms.TextBox();
                         this.EntradaRango = new Lui.Forms.ComboBox();
-                        this.EtiquetaDesde = new System.Windows.Forms.Label();
-                        this.EtiquetaHasta = new System.Windows.Forms.Label();
+                        this.EtiquetaDesde = new Lui.Forms.Label();
+                        this.EtiquetaHasta = new Lui.Forms.Label();
                         this.PanelCombos = new System.Windows.Forms.Panel();
                         this.PanelFechas = new System.Windows.Forms.Panel();
                         this.PanelCombos.SuspendLayout();
@@ -65,10 +65,7 @@ namespace Lcc.Entrada
                         this.EntradaTipoDeRango.AutoNav = true;
                         this.EntradaTipoDeRango.AutoSize = true;
                         this.EntradaTipoDeRango.AutoTab = true;
-                        this.EntradaTipoDeRango.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaTipoDeRango.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTipoDeRango.Location = new System.Drawing.Point(0, 0);
-                        this.EntradaTipoDeRango.MaxLenght = 32767;
                         this.EntradaTipoDeRango.Name = "EntradaTipoDeRango";
                         this.EntradaTipoDeRango.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipoDeRango.SetData = new string[] {
@@ -91,19 +88,13 @@ namespace Lcc.Entrada
                         this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaDesde.DecimalPlaces = -1;
-                        this.EntradaDesde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDesde.Location = new System.Drawing.Point(120, 8);
-                        this.EntradaDesde.MaxLenght = 32767;
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.PasswordChar = '\0';
-                        this.EntradaDesde.Prefijo = "";
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 1;
                         this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ToolTipText = "";
@@ -115,19 +106,13 @@ namespace Lcc.Entrada
                         this.EntradaHasta.AutoTab = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaHasta.DecimalPlaces = -1;
-                        this.EntradaHasta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaHasta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 8);
-                        this.EntradaHasta.MaxLenght = 32767;
                         this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaHasta.PasswordChar = '\0';
-                        this.EntradaHasta.Prefijo = "";
                         this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 3;
                         this.EntradaHasta.PlaceholderText = "";
                         this.EntradaHasta.ToolTipText = "";
@@ -141,10 +126,7 @@ namespace Lcc.Entrada
                         this.EntradaRango.AutoNav = true;
                         this.EntradaRango.AutoSize = true;
                         this.EntradaRango.AutoTab = true;
-                        this.EntradaRango.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaRango.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaRango.Location = new System.Drawing.Point(128, 0);
-                        this.EntradaRango.MaxLenght = 32767;
                         this.EntradaRango.Name = "EntradaRango";
                         this.EntradaRango.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRango.SetData = new string[] {
@@ -224,8 +206,8 @@ namespace Lcc.Entrada
                 private Lui.Forms.TextBox EntradaDesde;
                 private Lui.Forms.TextBox EntradaHasta;
                 private Lui.Forms.ComboBox EntradaRango;
-                private System.Windows.Forms.Label EtiquetaDesde;
-                private System.Windows.Forms.Label EtiquetaHasta;
+                private Lui.Forms.Label EtiquetaDesde;
+                private Lui.Forms.Label EtiquetaHasta;
                 private System.Windows.Forms.Panel PanelCombos;
                 private System.Windows.Forms.Panel PanelFechas;
         }

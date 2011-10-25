@@ -58,12 +58,12 @@ namespace Lfc.Comprobantes
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
-                        this.Label7 = new System.Windows.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
                         this.EntradaPv = new Lui.Forms.TextBox();
                         this.EntradaDesde = new Lui.Forms.TextBox();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.LabelAyuda = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
@@ -90,10 +90,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTipo.Location = new System.Drawing.Point(152, 24);
-                        this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = "";
@@ -126,21 +123,15 @@ namespace Lfc.Comprobantes
                         this.EntradaPv.AutoTab = true;
                         this.EntradaPv.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPv.DecimalPlaces = -1;
-                        this.EntradaPv.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaPv.Location = new System.Drawing.Point(448, 24);
-                        this.EntradaPv.MaxLenght = 32767;
                         this.EntradaPv.MultiLine = false;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPv.PasswordChar = '\0';
                         this.EntradaPv.PlaceholderText = "";
-                        this.EntradaPv.Prefijo = "";
                         this.EntradaPv.ReadOnly = false;
                         this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(52, 24);
-                        this.EntradaPv.Sufijo = "";
                         this.EntradaPv.TabIndex = 3;
                         this.EntradaPv.Text = "1";
                         this.EntradaPv.ToolTipText = "";
@@ -152,21 +143,15 @@ namespace Lfc.Comprobantes
                         this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDesde.DecimalPlaces = -1;
-                        this.EntradaDesde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDesde.Location = new System.Drawing.Point(448, 56);
-                        this.EntradaDesde.MaxLenght = 32767;
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.PasswordChar = '\0';
                         this.EntradaDesde.PlaceholderText = "";
-                        this.EntradaDesde.Prefijo = "";
                         this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
                         this.EntradaDesde.ToolTipText = "";
@@ -220,12 +205,12 @@ namespace Lfc.Comprobantes
 
                 #endregion
 
-                internal System.Windows.Forms.Label label4;
+                internal Lui.Forms.Label label4;
                 public Lui.Forms.ComboBox EntradaTipo;
-                internal System.Windows.Forms.Label Label7;
+                internal Lui.Forms.Label Label7;
                 internal Lui.Forms.TextBox EntradaPv;
                 internal Lui.Forms.TextBox EntradaDesde;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 private Lui.Forms.Label LabelAyuda;
         }
 }

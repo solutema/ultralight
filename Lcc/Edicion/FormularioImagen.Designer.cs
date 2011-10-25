@@ -76,7 +76,6 @@ namespace Lcc.Edicion
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImagen.AutoSize = true;
                         this.EntradaImagen.AutoNav = true;
-                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaImagen.Location = new System.Drawing.Point(8, 8);
                         this.EntradaImagen.Name = "EntradaImagen";
                         this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);

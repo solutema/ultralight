@@ -47,9 +47,6 @@ namespace Lfc.CuentasCorrientes
                         this.BotonNotaDeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonNotaDeb.AutoSize = false;
                         this.BotonNotaDeb.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonNotaDeb.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonNotaDeb.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonNotaDeb.Image = null;
                         this.BotonNotaDeb.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNotaDeb.Location = new System.Drawing.Point(12, 272);
                         this.BotonNotaDeb.Name = "BotonNotaDeb";
@@ -68,8 +65,6 @@ namespace Lfc.CuentasCorrientes
                         this.BotonNotaCred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonNotaCred.AutoSize = false;
                         this.BotonNotaCred.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonNotaCred.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonNotaCred.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonNotaCred.Image = null;
                         this.BotonNotaCred.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNotaCred.Location = new System.Drawing.Point(120, 236);
@@ -89,8 +84,6 @@ namespace Lfc.CuentasCorrientes
                         this.BotonAjuste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonAjuste.AutoSize = false;
                         this.BotonAjuste.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAjuste.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonAjuste.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAjuste.Image = null;
                         this.BotonAjuste.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAjuste.Location = new System.Drawing.Point(120, 272);

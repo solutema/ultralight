@@ -44,7 +44,6 @@ namespace Lfc.Comprobantes.Recibos
 
                         InitializeComponent();
 
-                        EtiquetaTitulo.Font = Lfx.Config.Display.CurrentTemplate.DefaultHeaderFont;
                         EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
                         EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
                         ListaValores.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;

@@ -38,17 +38,17 @@ namespace Lfc.Cajas
 {
         public partial class Editar
         {
-                internal System.Windows.Forms.Label Label3;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label3;
+                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.TextBox EntradaNumero;
                 internal Lcc.Entrada.CodigoDetalle EntradaBanco;
-                internal System.Windows.Forms.Label Label7;
+                internal Lui.Forms.Label Label7;
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label Label2;
+                internal Lui.Forms.Label Label2;
                 internal Lui.Forms.ComboBox EntradaTipo;
-                internal System.Windows.Forms.Label Label4;
+                internal Lui.Forms.Label Label4;
                 internal Lui.Forms.TextBox EntradaCbu;
-                internal System.Windows.Forms.Label label5;
+                internal Lui.Forms.Label label5;
                 internal Lui.Forms.TextBox EntradaTitular;
                 internal Label label6;
                 internal Lui.Forms.ComboBox EntradaEstado;
@@ -72,21 +72,21 @@ namespace Lfc.Cajas
                 private void InitializeComponent()
                 {
                         this.EntradaNumero = new Lui.Forms.TextBox();
-                        this.Label3 = new System.Windows.Forms.Label();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
-                        this.Label7 = new System.Windows.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.EntradaMoneda = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaCbu = new Lui.Forms.TextBox();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.EntradaTitular = new Lui.Forms.TextBox();
-                        this.label6 = new System.Windows.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
-                        this.label8 = new System.Windows.Forms.Label();
+                        this.label8 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaNumero
@@ -95,21 +95,15 @@ namespace Lfc.Cajas
                         this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
-                        this.EntradaNumero.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNumero.Location = new System.Drawing.Point(124, 128);
-                        this.EntradaNumero.MaxLenght = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PasswordChar = '\0';
                         this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(228, 24);
-                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 9;
                         this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.NumeroBanco_TextChanged);
@@ -143,8 +137,6 @@ namespace Lfc.Cajas
                         this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
-                        this.EntradaBanco.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaBanco.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(124, 96);
                         this.EntradaBanco.MaxLength = 200;
@@ -166,10 +158,7 @@ namespace Lfc.Cajas
                         this.EntradaTipo.AlwaysExpanded = false;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTipo.Location = new System.Drawing.Point(124, 64);
-                        this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = "";
@@ -201,21 +190,15 @@ namespace Lfc.Cajas
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNombre.Location = new System.Drawing.Point(124, 0);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(491, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.ToolTipText = "";
                         this.EntradaNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaNombre_KeyPress);
@@ -247,8 +230,6 @@ namespace Lfc.Cajas
                         this.EntradaMoneda.DataValueField = "id_moneda";
                         this.EntradaMoneda.ExtraDetailFields = null;
                         this.EntradaMoneda.Filter = "";
-                        this.EntradaMoneda.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaMoneda.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMoneda.FreeTextCode = "";
                         this.EntradaMoneda.Location = new System.Drawing.Point(124, 160);
                         this.EntradaMoneda.MaxLength = 200;
@@ -270,21 +251,16 @@ namespace Lfc.Cajas
                         this.EntradaCbu.AutoTab = true;
                         this.EntradaCbu.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCbu.DecimalPlaces = -1;
-                        this.EntradaCbu.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCbu.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCbu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCbu.Location = new System.Drawing.Point(124, 192);
-                        this.EntradaCbu.MaxLenght = 23;
+                        this.EntradaCbu.MaxLength = 23;
                         this.EntradaCbu.MultiLine = false;
                         this.EntradaCbu.Name = "EntradaCbu";
                         this.EntradaCbu.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCbu.PasswordChar = '\0';
                         this.EntradaCbu.PlaceholderText = "";
-                        this.EntradaCbu.Prefijo = "";
                         this.EntradaCbu.ReadOnly = false;
                         this.EntradaCbu.SelectOnFocus = false;
                         this.EntradaCbu.Size = new System.Drawing.Size(228, 24);
-                        this.EntradaCbu.Sufijo = "";
                         this.EntradaCbu.TabIndex = 13;
                         this.EntradaCbu.ToolTipText = "";
                         // 
@@ -303,21 +279,15 @@ namespace Lfc.Cajas
                         this.EntradaTitular.AutoTab = true;
                         this.EntradaTitular.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaTitular.DecimalPlaces = -1;
-                        this.EntradaTitular.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTitular.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTitular.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTitular.Location = new System.Drawing.Point(124, 32);
-                        this.EntradaTitular.MaxLenght = 32767;
                         this.EntradaTitular.MultiLine = false;
                         this.EntradaTitular.Name = "EntradaTitular";
                         this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTitular.PasswordChar = '\0';
                         this.EntradaTitular.PlaceholderText = "";
-                        this.EntradaTitular.Prefijo = "";
                         this.EntradaTitular.ReadOnly = false;
                         this.EntradaTitular.SelectOnFocus = true;
                         this.EntradaTitular.Size = new System.Drawing.Size(436, 24);
-                        this.EntradaTitular.Sufijo = "";
                         this.EntradaTitular.TabIndex = 3;
                         this.EntradaTitular.ToolTipText = "";
                         // 
@@ -335,10 +305,7 @@ namespace Lfc.Cajas
                         this.EntradaEstado.AlwaysExpanded = false;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaEstado.Location = new System.Drawing.Point(124, 224);
-                        this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = "";

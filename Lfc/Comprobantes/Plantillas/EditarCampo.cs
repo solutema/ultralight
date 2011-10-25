@@ -39,13 +39,13 @@ namespace Lfc.Comprobantes.Plantillas
 {
 	public class EditarCampo : Lui.Forms.DialogForm
 	{
-		internal System.Windows.Forms.Label Label15;
-		internal System.Windows.Forms.Label label1;
-		internal System.Windows.Forms.Label label2;
-		internal System.Windows.Forms.Label label3;
-		internal System.Windows.Forms.Label label4;
-		internal System.Windows.Forms.Label label5;
-		internal System.Windows.Forms.Label label6;
+		internal Lui.Forms.Label Label15;
+		internal Lui.Forms.Label label1;
+		internal Lui.Forms.Label label2;
+		internal Lui.Forms.Label label3;
+		internal Lui.Forms.Label label4;
+		internal Lui.Forms.Label label5;
+		internal Lui.Forms.Label label6;
                 internal Lui.Forms.ComboBox EntradaTipo;
 		internal Lui.Forms.TextBox EntradaTexto;
 		internal Lui.Forms.TextBox EntradaX;
@@ -54,7 +54,7 @@ namespace Lfc.Comprobantes.Plantillas
 		internal Lui.Forms.TextBox EntradaAlto;
 		internal Lui.Forms.TextBox EntradaAncho;
 		internal Lui.Forms.TextBox EntradaFuenteTamano;
-		internal System.Windows.Forms.Label label7;
+		internal Lui.Forms.Label label7;
                 internal Lui.Forms.ComboBox txtAlign;
                 internal Lui.Forms.ComboBox txtLineAlign;
                 internal Lui.Forms.TextBox EntradaAnchoBorde;
@@ -94,30 +94,30 @@ namespace Lfc.Comprobantes.Plantillas
 		private void InitializeComponent()
 		{
                         this.EntradaTipo = new Lui.Forms.ComboBox();
-                        this.Label15 = new System.Windows.Forms.Label();
+                        this.Label15 = new Lui.Forms.Label();
                         this.EntradaTexto = new Lui.Forms.TextBox();
-                        this.label1 = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaX = new Lui.Forms.TextBox();
                         this.EntradaY = new Lui.Forms.TextBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.EntradaFuenteNombre = new Lui.Forms.ComboBox();
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.EntradaAlto = new Lui.Forms.TextBox();
                         this.EntradaAncho = new Lui.Forms.TextBox();
-                        this.label5 = new System.Windows.Forms.Label();
-                        this.label6 = new System.Windows.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
                         this.EntradaFuenteTamano = new Lui.Forms.TextBox();
                         this.txtAlign = new Lui.Forms.ComboBox();
-                        this.label7 = new System.Windows.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
                         this.txtLineAlign = new Lui.Forms.ComboBox();
                         this.EntradaAnchoBorde = new Lui.Forms.TextBox();
-                        this.label8 = new System.Windows.Forms.Label();
+                        this.label8 = new Lui.Forms.Label();
                         this.ColorFondo = new System.Windows.Forms.Button();
                         this.ColorTexto = new System.Windows.Forms.Button();
                         this.ColorBorde = new System.Windows.Forms.Button();
                         this.txtWrap = new Lui.Forms.ComboBox();
-                        this.label9 = new System.Windows.Forms.Label();
+                        this.label9 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -134,10 +134,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.Enabled = false;
-                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTipo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.EntradaTipo.Location = new System.Drawing.Point(108, 24);
-                        this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
@@ -176,19 +172,13 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaTexto.AutoTab = true;
                         this.EntradaTexto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaTexto.DecimalPlaces = -1;
-                        this.EntradaTexto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTexto.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTexto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTexto.Location = new System.Drawing.Point(108, 56);
-                        this.EntradaTexto.MaxLenght = 32767;
                         this.EntradaTexto.MultiLine = false;
                         this.EntradaTexto.Name = "EntradaTexto";
                         this.EntradaTexto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTexto.PasswordChar = '\0';
-                        this.EntradaTexto.Prefijo = "";
                         this.EntradaTexto.SelectOnFocus = false;
                         this.EntradaTexto.Size = new System.Drawing.Size(408, 24);
-                        this.EntradaTexto.Sufijo = "";
                         this.EntradaTexto.TabIndex = 3;
                         this.EntradaTexto.PlaceholderText = "";
                         this.EntradaTexto.ToolTipText = "";
@@ -217,16 +207,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaX.AutoTab = true;
                         this.EntradaX.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaX.DecimalPlaces = -1;
-                        this.EntradaX.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaX.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaX.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaX.Location = new System.Drawing.Point(108, 88);
-                        this.EntradaX.MaxLenght = 32767;
                         this.EntradaX.MultiLine = false;
                         this.EntradaX.Name = "EntradaX";
                         this.EntradaX.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaX.PasswordChar = '\0';
-                        this.EntradaX.Prefijo = "";
                         this.EntradaX.SelectOnFocus = true;
                         this.EntradaX.Size = new System.Drawing.Size(56, 24);
                         this.EntradaX.Sufijo = "x";
@@ -240,16 +225,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaY.AutoTab = true;
                         this.EntradaY.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaY.DecimalPlaces = -1;
-                        this.EntradaY.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaY.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaY.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaY.Location = new System.Drawing.Point(176, 88);
-                        this.EntradaY.MaxLenght = 32767;
                         this.EntradaY.MultiLine = false;
                         this.EntradaY.Name = "EntradaY";
                         this.EntradaY.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaY.PasswordChar = '\0';
-                        this.EntradaY.Prefijo = "";
                         this.EntradaY.SelectOnFocus = true;
                         this.EntradaY.Size = new System.Drawing.Size(56, 24);
                         this.EntradaY.Sufijo = "y";
@@ -271,10 +251,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteNombre.AlwaysExpanded = false;
                         this.EntradaFuenteNombre.AutoNav = true;
                         this.EntradaFuenteNombre.AutoTab = true;
-                        this.EntradaFuenteNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaFuenteNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFuenteNombre.Location = new System.Drawing.Point(108, 120);
-                        this.EntradaFuenteNombre.MaxLenght = 32767;
                         this.EntradaFuenteNombre.Name = "EntradaFuenteNombre";
                         this.EntradaFuenteNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuenteNombre.SetData = new string[] {
@@ -305,16 +282,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlto.AutoTab = true;
                         this.EntradaAlto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAlto.DecimalPlaces = -1;
-                        this.EntradaAlto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaAlto.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaAlto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaAlto.Location = new System.Drawing.Point(396, 88);
-                        this.EntradaAlto.MaxLenght = 32767;
                         this.EntradaAlto.MultiLine = false;
                         this.EntradaAlto.Name = "EntradaAlto";
                         this.EntradaAlto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAlto.PasswordChar = '\0';
-                        this.EntradaAlto.Prefijo = "";
                         this.EntradaAlto.SelectOnFocus = true;
                         this.EntradaAlto.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAlto.Sufijo = "v";
@@ -328,16 +300,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAncho.AutoTab = true;
                         this.EntradaAncho.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAncho.DecimalPlaces = -1;
-                        this.EntradaAncho.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaAncho.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaAncho.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaAncho.Location = new System.Drawing.Point(324, 88);
-                        this.EntradaAncho.MaxLenght = 32767;
                         this.EntradaAncho.MultiLine = false;
                         this.EntradaAncho.Name = "EntradaAncho";
                         this.EntradaAncho.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAncho.PasswordChar = '\0';
-                        this.EntradaAncho.Prefijo = "";
                         this.EntradaAncho.SelectOnFocus = true;
                         this.EntradaAncho.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAncho.Sufijo = "h";
@@ -369,16 +336,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.AutoTab = true;
                         this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaFuenteTamano.DecimalPlaces = -1;
-                        this.EntradaFuenteTamano.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFuenteTamano.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFuenteTamano.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(372, 120);
-                        this.EntradaFuenteTamano.MaxLenght = 32767;
                         this.EntradaFuenteTamano.MultiLine = false;
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFuenteTamano.PasswordChar = '\0';
-                        this.EntradaFuenteTamano.Prefijo = "";
                         this.EntradaFuenteTamano.SelectOnFocus = true;
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(92, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
@@ -393,10 +355,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtAlign.AlwaysExpanded = false;
                         this.txtAlign.AutoNav = true;
                         this.txtAlign.AutoTab = true;
-                        this.txtAlign.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtAlign.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtAlign.Location = new System.Drawing.Point(108, 152);
-                        this.txtAlign.MaxLenght = 32767;
                         this.txtAlign.Name = "txtAlign";
                         this.txtAlign.Padding = new System.Windows.Forms.Padding(2);
                         this.txtAlign.SetData = new string[] {
@@ -423,10 +382,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtLineAlign.AlwaysExpanded = false;
                         this.txtLineAlign.AutoNav = true;
                         this.txtLineAlign.AutoTab = true;
-                        this.txtLineAlign.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtLineAlign.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtLineAlign.Location = new System.Drawing.Point(256, 152);
-                        this.txtLineAlign.MaxLenght = 32767;
                         this.txtLineAlign.Name = "txtLineAlign";
                         this.txtLineAlign.Padding = new System.Windows.Forms.Padding(2);
                         this.txtLineAlign.SetData = new string[] {
@@ -445,19 +401,12 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAnchoBorde.AutoTab = true;
                         this.EntradaAnchoBorde.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAnchoBorde.DecimalPlaces = -1;
-                        this.EntradaAnchoBorde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaAnchoBorde.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaAnchoBorde.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaAnchoBorde.Location = new System.Drawing.Point(108, 216);
-                        this.EntradaAnchoBorde.MaxLenght = 32767;
                         this.EntradaAnchoBorde.MultiLine = false;
                         this.EntradaAnchoBorde.Name = "EntradaAnchoBorde";
                         this.EntradaAnchoBorde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAnchoBorde.PasswordChar = '\0';
-                        this.EntradaAnchoBorde.Prefijo = "";
                         this.EntradaAnchoBorde.SelectOnFocus = true;
                         this.EntradaAnchoBorde.Size = new System.Drawing.Size(88, 24);
-                        this.EntradaAnchoBorde.Sufijo = "";
                         this.EntradaAnchoBorde.TabIndex = 21;
                         this.EntradaAnchoBorde.PlaceholderText = "";
                         this.EntradaAnchoBorde.ToolTipText = "";
@@ -506,10 +455,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtWrap.AlwaysExpanded = false;
                         this.txtWrap.AutoNav = true;
                         this.txtWrap.AutoTab = true;
-                        this.txtWrap.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtWrap.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.txtWrap.Location = new System.Drawing.Point(108, 184);
-                        this.txtWrap.MaxLenght = 32767;
                         this.txtWrap.Name = "txtWrap";
                         this.txtWrap.Padding = new System.Windows.Forms.Padding(2);
                         this.txtWrap.SetData = new string[] {

@@ -52,24 +52,24 @@ namespace Lfc.Tareas
                 private System.ComponentModel.IContainer components = null;
 
                 internal Lcc.Entrada.Articulos.MatrizDetalleComprobante MatrizArticulos;
-                internal System.Windows.Forms.Label EtiquetaTitulo;
-                internal System.Windows.Forms.Label Label4;
+                internal Lui.Forms.Label EtiquetaTitulo;
+                internal Lui.Forms.Label Label4;
                 internal Lui.Forms.TextBox EntradaTotal;
                 internal Lui.Forms.TextBox EntradaDescuento;
-                internal System.Windows.Forms.Label Label6;
+                internal Lui.Forms.Label Label6;
                 internal Lui.Forms.TextBox EntradaSubTotal;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label5;
 
                 private void InitializeComponent()
                 {
                         this.MatrizArticulos = new Lcc.Entrada.Articulos.MatrizDetalleComprobante();
-                        this.EtiquetaTitulo = new System.Windows.Forms.Label();
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.EntradaTotal = new Lui.Forms.TextBox();
                         this.EntradaDescuento = new Lui.Forms.TextBox();
-                        this.Label6 = new System.Windows.Forms.Label();
+                        this.Label6 = new Lui.Forms.Label();
                         this.EntradaSubTotal = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -88,7 +88,6 @@ namespace Lfc.Tareas
                         this.MatrizArticulos.AutoNav = true;
                         this.MatrizArticulos.AutoScroll = true;
                         this.MatrizArticulos.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.MatrizArticulos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.MatrizArticulos.FreeTextCode = "*";
                         this.MatrizArticulos.Location = new System.Drawing.Point(8, 56);
                         this.MatrizArticulos.LockPrice = false;
@@ -109,7 +108,6 @@ namespace Lfc.Tareas
                         // 
                         this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaTitulo.ForeColor = System.Drawing.Color.White;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(8, 8);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
@@ -121,7 +119,6 @@ namespace Lfc.Tareas
                         // Label4
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label4.Location = new System.Drawing.Point(364, 280);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(76, 32);
@@ -136,21 +133,16 @@ namespace Lfc.Tareas
                         this.EntradaTotal.AutoTab = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
-                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTotal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTotal.Location = new System.Drawing.Point(440, 280);
-                        this.EntradaTotal.MaxLenght = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTotal.PasswordChar = '\0';
                         this.EntradaTotal.PlaceholderText = "";
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.ReadOnly = false;
                         this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
-                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 54;
                         this.EntradaTotal.TabStop = false;
                         this.EntradaTotal.Text = "0.00";
@@ -163,17 +155,12 @@ namespace Lfc.Tareas
                         this.EntradaDescuento.AutoTab = true;
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaDescuento.DecimalPlaces = -1;
-                        this.EntradaDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDescuento.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaDescuento.Location = new System.Drawing.Point(244, 280);
-                        this.EntradaDescuento.MaxLenght = 32767;
                         this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescuento.PasswordChar = '\0';
                         this.EntradaDescuento.PlaceholderText = "";
-                        this.EntradaDescuento.Prefijo = "";
                         this.EntradaDescuento.ReadOnly = false;
                         this.EntradaDescuento.SelectOnFocus = true;
                         this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
@@ -200,21 +187,16 @@ namespace Lfc.Tareas
                         this.EntradaSubTotal.AutoTab = true;
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaSubTotal.DecimalPlaces = -1;
-                        this.EntradaSubTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaSubTotal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(72, 280);
-                        this.EntradaSubTotal.MaxLenght = 32767;
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSubTotal.PasswordChar = '\0';
                         this.EntradaSubTotal.PlaceholderText = "";
                         this.EntradaSubTotal.Prefijo = "$";
                         this.EntradaSubTotal.ReadOnly = false;
                         this.EntradaSubTotal.SelectOnFocus = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(84, 24);
-                        this.EntradaSubTotal.Sufijo = "";
                         this.EntradaSubTotal.TabIndex = 56;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";

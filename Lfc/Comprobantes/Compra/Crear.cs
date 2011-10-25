@@ -95,8 +95,6 @@ namespace Lfc.Comprobantes.Compra
 			// 
 			// BotonRemito
 			// 
-			this.BotonRemito.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BotonRemito.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.BotonRemito.Image = null;
 			this.BotonRemito.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.BotonRemito.Location = new System.Drawing.Point(16, 132);
@@ -113,8 +111,6 @@ namespace Lfc.Comprobantes.Compra
 			// 
 			// BotonPedido
 			// 
-			this.BotonPedido.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BotonPedido.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.BotonPedido.Image = null;
 			this.BotonPedido.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.BotonPedido.Location = new System.Drawing.Point(16, 76);
@@ -131,8 +127,6 @@ namespace Lfc.Comprobantes.Compra
 			// 
 			// BotonRequerimiento
 			// 
-			this.BotonRequerimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BotonRequerimiento.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.BotonRequerimiento.Image = null;
 			this.BotonRequerimiento.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.BotonRequerimiento.Location = new System.Drawing.Point(16, 20);
@@ -149,8 +143,6 @@ namespace Lfc.Comprobantes.Compra
 			// 
 			// BotonFactura
 			// 
-			this.BotonFactura.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BotonFactura.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.BotonFactura.Image = null;
 			this.BotonFactura.ImagePos = Lui.Forms.ImagePositions.Top;
 			this.BotonFactura.Location = new System.Drawing.Point(16, 188);

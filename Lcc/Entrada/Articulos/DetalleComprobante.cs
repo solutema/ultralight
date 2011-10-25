@@ -445,7 +445,6 @@ namespace Lcc.Entrada.Articulos
                                         if (this.Articulo.Unidad != "u")
                                                 EntradaCantidad.Sufijo = Articulo.Unidad;
                                         else
-                                                EntradaCantidad.Sufijo = "";
 
                                         if (m_Precio == Precios.Costo)
                                                 EntradaUnitario.ValueDecimal = Articulo.Costo;
@@ -464,7 +463,6 @@ namespace Lcc.Entrada.Articulos
                                         if (this.Cantidad == 0)
                                                 this.Cantidad = 1;
                                 } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.TextInt == 0)) {
-                                        EntradaCantidad.Sufijo = "";
                                         EntradaCantidad.ValueDecimal = 0;
                                         EntradaImporte.ValueDecimal = 0;
                                         EntradaUnitario.ValueDecimal = 0;
@@ -493,18 +491,18 @@ namespace Lcc.Entrada.Articulos
                         if (m_MostrarStock && Articulo != null) {
                                 if (this.TemporaryReadOnly == false && this.Articulo.ControlStock != Lbl.Articulos.ControlStock.No && this.Articulo.StockActual < this.Cantidad) {
                                         if (this.Articulo.StockActual + this.Articulo.Pedido >= this.Cantidad) {
-                                                EntradaArticulo.Font = null;
+                                                //EntradaArticulo.Font = null;
                                                 EntradaArticulo.ForeColor = Color.OrangeRed;
                                         } else {
-                                                EntradaArticulo.Font = new Font(this.Font, FontStyle.Strikeout);
+                                                //EntradaArticulo.Font = new Font(this.Font, FontStyle.Strikeout);
                                                 EntradaArticulo.ForeColor = Color.Red;
                                         }
                                 } else {
-                                        EntradaArticulo.Font = null;
+                                        //EntradaArticulo.Font = null;
                                         EntradaArticulo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                                 }
                         } else {
-                                EntradaArticulo.Font = null;
+                                //EntradaArticulo.Font = null;
                                 EntradaArticulo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         }
                 }
@@ -635,11 +633,6 @@ namespace Lcc.Entrada.Articulos
                         }
 
                         EntradaArticulo.Filter = Filtros;
-                }
-
-                private void Product_FontChanged(object sender, System.EventArgs e)
-                {
-                        EntradaArticulo.Font = this.Font;
                 }
 
 

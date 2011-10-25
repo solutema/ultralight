@@ -52,22 +52,22 @@ namespace Lfc.Bancos.Chequeras
 
                 private void InitializeComponent()
                 {
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaDesde = new Lui.Forms.TextBox();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.EntradaHasta = new Lui.Forms.TextBox();
-                        this.label2 = new System.Windows.Forms.Label();
-                        this.LabelCaja = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
+                        this.LabelCaja = new Lui.Forms.Label();
                         this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
-                        this.Label7 = new System.Windows.Forms.Label();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.EntradaTitular = new Lui.Forms.TextBox();
-                        this.label4 = new System.Windows.Forms.Label();
-                        this.label8 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
+                        this.label8 = new Lui.Forms.Label();
                         this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
-                        this.label6 = new System.Windows.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Label1
@@ -90,8 +90,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
-                        this.EntradaBanco.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaBanco.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(120, 32);
                         this.EntradaBanco.MaxLength = 200;
@@ -112,19 +110,13 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDesde.DecimalPlaces = -1;
-                        this.EntradaDesde.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDesde.Location = new System.Drawing.Point(172, 64);
-                        this.EntradaDesde.MaxLenght = 32767;
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.PasswordChar = '\0';
-                        this.EntradaDesde.Prefijo = "";
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 8;
                         this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ToolTipText = "";
@@ -144,19 +136,13 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaHasta.AutoTab = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaHasta.DecimalPlaces = -1;
-                        this.EntradaHasta.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaHasta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaHasta.Location = new System.Drawing.Point(344, 64);
-                        this.EntradaHasta.MaxLenght = 32767;
                         this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaHasta.PasswordChar = '\0';
-                        this.EntradaHasta.Prefijo = "";
                         this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 10;
                         this.EntradaHasta.PlaceholderText = "";
                         this.EntradaHasta.ToolTipText = "";
@@ -190,8 +176,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.Filter = "";
-                        this.EntradaCaja.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCaja.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(120, 128);
                         this.EntradaCaja.MaxLength = 200;
@@ -211,10 +195,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado.AlwaysExpanded = false;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaEstado.Location = new System.Drawing.Point(120, 160);
-                        this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
@@ -252,19 +233,13 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaTitular.AutoTab = true;
                         this.EntradaTitular.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaTitular.DecimalPlaces = -1;
-                        this.EntradaTitular.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaTitular.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTitular.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTitular.Location = new System.Drawing.Point(120, 0);
-                        this.EntradaTitular.MaxLenght = 32767;
                         this.EntradaTitular.MultiLine = false;
                         this.EntradaTitular.Name = "EntradaTitular";
                         this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTitular.PasswordChar = '\0';
-                        this.EntradaTitular.Prefijo = "";
                         this.EntradaTitular.SelectOnFocus = true;
                         this.EntradaTitular.Size = new System.Drawing.Size(539, 24);
-                        this.EntradaTitular.Sufijo = "";
                         this.EntradaTitular.TabIndex = 1;
                         this.EntradaTitular.PlaceholderText = "";
                         this.EntradaTitular.ToolTipText = "Estado para esta chequera.";
@@ -298,8 +273,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.Filter = "";
-                        this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(120, 96);
                         this.EntradaSucursal.MaxLength = 200;
@@ -365,17 +338,17 @@ namespace Lfc.Bancos.Chequeras
                 }
                 #endregion
 
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 internal Lcc.Entrada.CodigoDetalle EntradaBanco;
-                internal System.Windows.Forms.Label Label3;
-                internal System.Windows.Forms.Label label2;
-                internal System.Windows.Forms.Label Label7;
+                internal Lui.Forms.Label Label3;
+                internal Lui.Forms.Label label2;
+                internal Lui.Forms.Label Label7;
                 internal Lui.Forms.TextBox EntradaDesde;
                 internal Lui.Forms.TextBox EntradaHasta;
                 internal Lcc.Entrada.CodigoDetalle EntradaCaja;
                 internal Lui.Forms.ComboBox EntradaEstado;
-                internal System.Windows.Forms.Label label5;
-                internal System.Windows.Forms.Label LabelCaja;
+                internal Lui.Forms.Label label5;
+                internal Lui.Forms.Label LabelCaja;
                 internal Lui.Forms.TextBox EntradaTitular;
                 internal Label label4;
                 internal Label label8;

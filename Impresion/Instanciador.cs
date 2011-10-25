@@ -63,12 +63,6 @@ namespace Lazaro.Impresion
 
                 private static Type InferirImpresor(string tipoOTabla)
                 {
-                        // Primero busco en los tipos registrados por los componentes
-                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados) {
-                                if (tipo.LblType.ToString() == tipoOTabla)
-                                        return ((Lbl.ITipoRegistrado)tipo).Impresor;
-                        }
-
                         switch (tipoOTabla) {
                                 case "Lbl.Comprobantes.Comprobante":
                                         return typeof(Impresion.Comprobantes.ImpresorComprobante);

@@ -43,22 +43,22 @@ namespace Lazaro.Reportes
                 internal Lui.Forms.Button PorMes;
                 internal Lui.Forms.Button PorRentabilidad;
                 private System.Windows.Forms.PictureBox pictureBox1;
-                private System.Windows.Forms.Label label1;
-                private System.Windows.Forms.Label label2;
+                private Lui.Forms.Label label1;
+                private Lui.Forms.Label label2;
                 private System.Windows.Forms.PictureBox pictureBox2;
-                private System.Windows.Forms.Label label3;
+                private Lui.Forms.Label label3;
                 private System.Windows.Forms.PictureBox pictureBox3;
-                private System.Windows.Forms.Label label4;
+                private Lui.Forms.Label label4;
                 private System.Windows.Forms.PictureBox pictureBox4;
                 private Lui.Forms.Chart ChartRent;
-                private Lui.Forms.ListView lvAnual;
+                private Lui.Forms.ListView ListadoAnual;
                 private System.Windows.Forms.ColumnHeader lvAnualMes;
                 private System.Windows.Forms.ColumnHeader lvAnualMonto;
-                private System.Windows.Forms.Label label7;
+                private Lui.Forms.Label label7;
                 private System.Windows.Forms.PictureBox pictureBox7;
-                private System.Windows.Forms.Label label8;
+                private Lui.Forms.Label label8;
                 private System.Windows.Forms.PictureBox pictureBox8;
-                private System.Windows.Forms.Label label9;
+                private Lui.Forms.Label label9;
                 private System.Windows.Forms.PictureBox pictureBox9;
                 internal Lui.Forms.Button BotonPorDiaDelMes;
                 private Lui.Forms.Chart ChartMes;
@@ -101,29 +101,29 @@ namespace Lazaro.Reportes
                         this.PorRentabilidad = new Lui.Forms.Button();
                         this.ChartRent = new Lui.Forms.Chart();
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.label1 = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.pictureBox3 = new System.Windows.Forms.PictureBox();
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.pictureBox4 = new System.Windows.Forms.PictureBox();
-                        this.lvAnual = new Lui.Forms.ListView();
+                        this.ListadoAnual = new Lui.Forms.ListView();
                         this.lvAnualMes = new System.Windows.Forms.ColumnHeader();
                         this.lvAnualMonto = new System.Windows.Forms.ColumnHeader();
-                        this.label7 = new System.Windows.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
                         this.pictureBox7 = new System.Windows.Forms.PictureBox();
-                        this.label8 = new System.Windows.Forms.Label();
+                        this.label8 = new Lui.Forms.Label();
                         this.pictureBox8 = new System.Windows.Forms.PictureBox();
                         this.ChartMes = new Lui.Forms.Chart();
                         this.BotonPorDiaDelMes = new Lui.Forms.Button();
-                        this.label9 = new System.Windows.Forms.Label();
+                        this.label9 = new Lui.Forms.Label();
                         this.pictureBox9 = new System.Windows.Forms.PictureBox();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.pictureBox5 = new System.Windows.Forms.PictureBox();
-                        this.label6 = new System.Windows.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
                         this.pictureBox6 = new System.Windows.Forms.PictureBox();
-                        this.label10 = new System.Windows.Forms.Label();
+                        this.label10 = new Lui.Forms.Label();
                         this.pictureBox10 = new System.Windows.Forms.PictureBox();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -140,7 +140,6 @@ namespace Lazaro.Reportes
                         // Chart
                         // 
                         this.Chart.BackColor = System.Drawing.Color.White;
-                        this.Chart.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Chart.Location = new System.Drawing.Point(156, 8);
                         this.Chart.Name = "Chart";
                         this.Chart.Size = new System.Drawing.Size(420, 164);
@@ -151,8 +150,6 @@ namespace Lazaro.Reportes
                         // PorMes
                         // 
                         this.PorMes.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.PorMes.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PorMes.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.PorMes.Image = null;
                         this.PorMes.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.PorMes.Location = new System.Drawing.Point(48, 136);
@@ -170,8 +167,6 @@ namespace Lazaro.Reportes
                         // PorRentabilidad
                         // 
                         this.PorRentabilidad.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.PorRentabilidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.PorRentabilidad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.PorRentabilidad.Image = null;
                         this.PorRentabilidad.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.PorRentabilidad.Location = new System.Drawing.Point(48, 308);
@@ -189,7 +184,6 @@ namespace Lazaro.Reportes
                         // ChartRent
                         // 
                         this.ChartRent.BackColor = System.Drawing.Color.White;
-                        this.ChartRent.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ChartRent.Location = new System.Drawing.Point(156, 180);
                         this.ChartRent.Name = "ChartRent";
                         this.ChartRent.Size = new System.Drawing.Size(420, 164);
@@ -208,7 +202,6 @@ namespace Lazaro.Reportes
                         // 
                         // label1
                         // 
-                        this.label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label1.Location = new System.Drawing.Point(40, 76);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(108, 16);
@@ -218,7 +211,6 @@ namespace Lazaro.Reportes
                         // 
                         // label2
                         // 
-                        this.label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label2.Location = new System.Drawing.Point(40, 56);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(108, 16);
@@ -237,7 +229,6 @@ namespace Lazaro.Reportes
                         // 
                         // label3
                         // 
-                        this.label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label3.Location = new System.Drawing.Point(40, 16);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(108, 16);
@@ -256,7 +247,6 @@ namespace Lazaro.Reportes
                         // 
                         // label4
                         // 
-                        this.label4.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label4.Location = new System.Drawing.Point(60, 36);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(88, 16);
@@ -275,23 +265,21 @@ namespace Lazaro.Reportes
                         // 
                         // lvAnual
                         // 
-                        this.lvAnual.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lvAnual.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                        this.ListadoAnual.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.ListadoAnual.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lvAnualMes,
             this.lvAnualMonto});
-                        this.lvAnual.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lvAnual.FullRowSelect = true;
-                        this.lvAnual.GridLines = true;
-                        this.lvAnual.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-                        this.lvAnual.LabelWrap = false;
-                        this.lvAnual.Location = new System.Drawing.Point(584, 8);
-                        this.lvAnual.MultiSelect = false;
-                        this.lvAnual.Name = "lvAnual";
-                        this.lvAnual.Scrollable = false;
-                        this.lvAnual.Size = new System.Drawing.Size(176, 336);
-                        this.lvAnual.TabIndex = 16;
-                        this.lvAnual.UseCompatibleStateImageBehavior = false;
-                        this.lvAnual.View = System.Windows.Forms.View.Details;
+                        this.ListadoAnual.FullRowSelect = true;
+                        this.ListadoAnual.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+                        this.ListadoAnual.LabelWrap = false;
+                        this.ListadoAnual.Location = new System.Drawing.Point(584, 8);
+                        this.ListadoAnual.MultiSelect = false;
+                        this.ListadoAnual.Name = "lvAnual";
+                        this.ListadoAnual.Scrollable = false;
+                        this.ListadoAnual.Size = new System.Drawing.Size(176, 336);
+                        this.ListadoAnual.TabIndex = 16;
+                        this.ListadoAnual.UseCompatibleStateImageBehavior = false;
+                        this.ListadoAnual.View = System.Windows.Forms.View.Details;
                         // 
                         // lvAnualMes
                         // 
@@ -306,7 +294,6 @@ namespace Lazaro.Reportes
                         // 
                         // label7
                         // 
-                        this.label7.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label7.Location = new System.Drawing.Point(40, 380);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(108, 16);
@@ -325,7 +312,6 @@ namespace Lazaro.Reportes
                         // 
                         // label8
                         // 
-                        this.label8.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label8.Location = new System.Drawing.Point(40, 360);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(108, 16);
@@ -345,7 +331,6 @@ namespace Lazaro.Reportes
                         // ChartMes
                         // 
                         this.ChartMes.BackColor = System.Drawing.Color.White;
-                        this.ChartMes.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ChartMes.Location = new System.Drawing.Point(156, 352);
                         this.ChartMes.Name = "ChartMes";
                         this.ChartMes.Size = new System.Drawing.Size(604, 124);
@@ -356,8 +341,6 @@ namespace Lazaro.Reportes
                         // BotonPorDiaDelMes
                         // 
                         this.BotonPorDiaDelMes.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonPorDiaDelMes.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonPorDiaDelMes.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonPorDiaDelMes.Image = null;
                         this.BotonPorDiaDelMes.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonPorDiaDelMes.Location = new System.Drawing.Point(48, 480);
@@ -374,7 +357,6 @@ namespace Lazaro.Reportes
                         // 
                         // label9
                         // 
-                        this.label9.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label9.Location = new System.Drawing.Point(40, 400);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(108, 16);
@@ -393,7 +375,6 @@ namespace Lazaro.Reportes
                         // 
                         // label5
                         // 
-                        this.label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label5.Location = new System.Drawing.Point(36, 228);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(108, 16);
@@ -412,7 +393,6 @@ namespace Lazaro.Reportes
                         // 
                         // label6
                         // 
-                        this.label6.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label6.Location = new System.Drawing.Point(36, 208);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(108, 16);
@@ -431,7 +411,6 @@ namespace Lazaro.Reportes
                         // 
                         // label10
                         // 
-                        this.label10.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label10.Location = new System.Drawing.Point(36, 188);
                         this.label10.Name = "label10";
                         this.label10.Size = new System.Drawing.Size(108, 16);
@@ -466,7 +445,7 @@ namespace Lazaro.Reportes
                         this.Controls.Add(this.pictureBox8);
                         this.Controls.Add(this.ChartMes);
                         this.Controls.Add(this.BotonPorDiaDelMes);
-                        this.Controls.Add(this.lvAnual);
+                        this.Controls.Add(this.ListadoAnual);
                         this.Controls.Add(this.label4);
                         this.Controls.Add(this.pictureBox4);
                         this.Controls.Add(this.label3);
@@ -672,10 +651,10 @@ namespace Lazaro.Reportes
                         Chart.Series[3].Color = System.Drawing.Color.Green;
                         Chart.Series[3].Elements = FacturacionAnual(System.DateTime.Now.Year, false, 0);
 
-                        lvAnual.Items.Clear();
+                        ListadoAnual.Items.Clear();
                         lvAnualMonto.Text = System.DateTime.Now.Year.ToString();
                         for (int mes = 1; mes <= 12; mes++) {
-                                ListViewItem Item = lvAnual.Items.Add(new System.DateTime(System.DateTime.Now.Year, mes, 1).ToString("MMMM"));
+                                ListViewItem Item = ListadoAnual.Items.Add(new System.DateTime(System.DateTime.Now.Year, mes, 1).ToString("MMMM"));
                                 if (Chart.Series[3].Elements[mes - 1] != null) {
                                         Item.SubItems.Add(Lfx.Types.Formatting.FormatCurrencyForPrint(Chart.Series[3].Elements[mes - 1].Value, 0));
                                 }

@@ -81,7 +81,6 @@ namespace Lfc.Comprobantes
                         this.VariacionesCantidades.AutoNav = true;
                         this.VariacionesCantidades.AutoScrollMargin = new System.Drawing.Size(4, 4);
                         this.VariacionesCantidades.EsNumeroDeSerie = false;
-                        this.VariacionesCantidades.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.VariacionesCantidades.Location = new System.Drawing.Point(16, 40);
                         this.VariacionesCantidades.Name = "VariacionesCantidades";
                         this.VariacionesCantidades.Padding = new System.Windows.Forms.Padding(2);

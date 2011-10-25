@@ -71,7 +71,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Pago
                         // 
-                        this.Pago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Pago.FormaDePagoEditable = true;
                         this.Pago.FormaDePagoVisible = true;
                         this.Pago.ImporteEditable = true;

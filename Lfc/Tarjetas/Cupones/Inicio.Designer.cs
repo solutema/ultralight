@@ -50,8 +50,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         this.BotonAnular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonAnular.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAnular.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonAnular.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAnular.Image = null;
                         this.BotonAnular.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAnular.Location = new System.Drawing.Point(12, 348);
@@ -69,8 +67,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         this.BotonAcreditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonAcreditar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAcreditar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonAcreditar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAcreditar.Image = null;
                         this.BotonAcreditar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAcreditar.Location = new System.Drawing.Point(12, 312);
@@ -88,8 +84,6 @@ namespace Lfc.Cupones.Cupones
                         // 
                         this.BotonPresentar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonPresentar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonPresentar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonPresentar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonPresentar.Image = null;
                         this.BotonPresentar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonPresentar.Location = new System.Drawing.Point(12, 276);

@@ -52,7 +52,7 @@ namespace Lazaro.Misc
 			InitializeComponent();
 
 			// agregar código de constructor después de llamar a InitializeComponent
-			txtHistorial.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+			EntradaHistorial.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
 
 		}
 
@@ -74,36 +74,36 @@ namespace Lazaro.Misc
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.TextBox txtHistorial;
+		internal System.Windows.Forms.TextBox EntradaHistorial;
 		internal Lui.Forms.TextBox EntradaFormula;
 		internal System.Windows.Forms.Panel Panel1;
-		internal System.Windows.Forms.Label lblResultado;
+                internal System.Windows.Forms.Label EtiquetaResultado;
 
 		private void InitializeComponent()
 		{
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calculadora));
-                        this.txtHistorial = new System.Windows.Forms.TextBox();
+                        this.EntradaHistorial = new System.Windows.Forms.TextBox();
                         this.EntradaFormula = new Lui.Forms.TextBox();
                         this.Panel1 = new System.Windows.Forms.Panel();
-                        this.lblResultado = new System.Windows.Forms.Label();
+                        this.EtiquetaResultado = new Lui.Forms.Label();
                         this.Panel1.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // txtHistorial
                         // 
-                        this.txtHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EntradaHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtHistorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.txtHistorial.Font = new System.Drawing.Font("Bitstream Vera Sans Mono", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.txtHistorial.Location = new System.Drawing.Point(11, 54);
-                        this.txtHistorial.Multiline = true;
-                        this.txtHistorial.Name = "txtHistorial";
-                        this.txtHistorial.Size = new System.Drawing.Size(199, 182);
-                        this.txtHistorial.TabIndex = 0;
-                        this.txtHistorial.TabStop = false;
-                        this.txtHistorial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                        this.txtHistorial.WordWrap = false;
+                        this.EntradaHistorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.EntradaHistorial.Font = Lfx.Config.Display.MonospacedFont;
+                        this.EntradaHistorial.Location = new System.Drawing.Point(11, 54);
+                        this.EntradaHistorial.Multiline = true;
+                        this.EntradaHistorial.Name = "txtHistorial";
+                        this.EntradaHistorial.Size = new System.Drawing.Size(199, 182);
+                        this.EntradaHistorial.TabIndex = 0;
+                        this.EntradaHistorial.TabStop = false;
+                        this.EntradaHistorial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.EntradaHistorial.WordWrap = false;
                         // 
                         // EntradaFormula
                         // 
@@ -113,19 +113,13 @@ namespace Lazaro.Misc
                         this.EntradaFormula.AutoTab = false;
                         this.EntradaFormula.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaFormula.DecimalPlaces = -1;
-                        this.EntradaFormula.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFormula.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFormula.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFormula.Location = new System.Drawing.Point(6, 239);
-                        this.EntradaFormula.MaxLenght = 32767;
                         this.EntradaFormula.MultiLine = false;
                         this.EntradaFormula.Name = "EntradaFormula";
                         this.EntradaFormula.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFormula.PasswordChar = '\0';
-                        this.EntradaFormula.Prefijo = "";
                         this.EntradaFormula.SelectOnFocus = true;
                         this.EntradaFormula.Size = new System.Drawing.Size(223, 29);
-                        this.EntradaFormula.Sufijo = "";
                         this.EntradaFormula.TabIndex = 1;
                         this.EntradaFormula.PlaceholderText = "";
                         this.EntradaFormula.ToolTipText = "";
@@ -136,7 +130,7 @@ namespace Lazaro.Misc
                         this.Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-                        this.Panel1.Controls.Add(this.lblResultado);
+                        this.Panel1.Controls.Add(this.EtiquetaResultado);
                         this.Panel1.Location = new System.Drawing.Point(11, 10);
                         this.Panel1.Name = "Panel1";
                         this.Panel1.Size = new System.Drawing.Size(210, 39);
@@ -144,16 +138,16 @@ namespace Lazaro.Misc
                         // 
                         // lblResultado
                         // 
-                        this.lblResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EtiquetaResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblResultado.Font = new System.Drawing.Font("Bitstream Vera Sans Mono", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblResultado.Location = new System.Drawing.Point(-59, 2);
-                        this.lblResultado.Name = "lblResultado";
-                        this.lblResultado.Size = new System.Drawing.Size(258, 32);
-                        this.lblResultado.TabIndex = 3;
-                        this.lblResultado.Text = "0.00 ";
-                        this.lblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        this.EtiquetaResultado.Font = Lfx.Config.Display.MonospacedFont;
+                        this.EtiquetaResultado.Location = new System.Drawing.Point(-59, 2);
+                        this.EtiquetaResultado.Name = "lblResultado";
+                        this.EtiquetaResultado.Size = new System.Drawing.Size(258, 32);
+                        this.EtiquetaResultado.TabIndex = 3;
+                        this.EtiquetaResultado.Text = "0.00 ";
+                        this.EtiquetaResultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                         // 
                         // Calculadora
                         // 
@@ -161,7 +155,7 @@ namespace Lazaro.Misc
                         this.ClientSize = new System.Drawing.Size(232, 272);
                         this.Controls.Add(this.Panel1);
                         this.Controls.Add(this.EntradaFormula);
-                        this.Controls.Add(this.txtHistorial);
+                        this.Controls.Add(this.EntradaHistorial);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "Calculadora";
@@ -185,15 +179,15 @@ namespace Lazaro.Misc
 
 		public void Imprimir(string Texto)
 		{
-			string Temp = txtHistorial.Text + Environment.NewLine + Texto;
+			string Temp = EntradaHistorial.Text + Environment.NewLine + Texto;
 			if(Temp.Length > 32000) {
-				txtHistorial.Text = Temp.Substring(0, 32000);
+				EntradaHistorial.Text = Temp.Substring(0, 32000);
 			} else {
-				txtHistorial.Text = Temp;
+				EntradaHistorial.Text = Temp;
 			}
-			txtHistorial.SelectionStart = txtHistorial.Text.Length;
-			txtHistorial.SelectionLength = 0;
-			txtHistorial.ScrollToCaret();
+			EntradaHistorial.SelectionStart = EntradaHistorial.Text.Length;
+			EntradaHistorial.SelectionLength = 0;
+			EntradaHistorial.ScrollToCaret();
 		}
 
 
@@ -242,7 +236,7 @@ namespace Lazaro.Misc
 			EntradaFormula.Text = "";
 			Imprimir(Texto + " =");
 			EntradaFormula.Text = sResultado;
-			lblResultado.Text = sResultado2;
+			EtiquetaResultado.Text = sResultado2;
 			Imprimir(sResultado2);
 
 			EntradaFormula.SelectionStart = EntradaFormula.Text.Length;
@@ -260,7 +254,7 @@ namespace Lazaro.Misc
 
 		private void FormCalculadora_Resize(object sender, System.EventArgs e)
 		{
-			txtHistorial.ScrollToCaret();
+			EntradaHistorial.ScrollToCaret();
 		}
 
 

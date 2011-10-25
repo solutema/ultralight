@@ -299,7 +299,7 @@ namespace Lfc.Comprobantes
 
                         if (row.Fields["anulada"].ValueInt != 0) {
                                 // Si está anulada, la tacho
-                                item.Font = new Font("Bitstream Vera Sans", 10, FontStyle.Strikeout);
+                                item.Font = new Font(item.Font, FontStyle.Strikeout);
                         } else if (row.Fields["impresa"].ValueInt == 0) {
                                 // No impresa, en gris
                                 item.ForeColor = System.Drawing.Color.Gray;

@@ -38,5 +38,19 @@ namespace Lfx.Config
         public static class Display
         {
                 public static Templates.Template CurrentTemplate = new Lfx.Config.Templates.Default();
+
+                // Microsoft Sans Serif, Segoe UI, Bitstream Vera Sans
+                public static string DefaultFontName = "Bitstream Vera Sans";
+                public static string DefaultPrintFontName = "Bitstream Vera Sans";
+                public static string DefaultMonoFontName = "Bitstream Vera Sans Mono";
+                public static System.Drawing.Font DefaultFont = new System.Drawing.Font(DefaultFontName, 9.75F);
+                public static System.Drawing.Font MenuFont = new System.Drawing.Font(DefaultFontName, 9.75F);
+                public static System.Drawing.Font SmallFont = new System.Drawing.Font(DefaultFontName, 8F);
+                public static System.Drawing.Font SmallerFont = new System.Drawing.Font(DefaultFontName, 6.75F);
+                public static System.Drawing.Font TitleFont = new System.Drawing.Font(DefaultFontName, 10.5F, System.Drawing.FontStyle.Bold);
+                public static System.Drawing.Font HeaderFont = new System.Drawing.Font(DefaultFontName, 16F, System.Drawing.FontStyle.Bold);
+                public static System.Drawing.Font Header2Font = new System.Drawing.Font(DefaultFontName, 12F, System.Drawing.FontStyle.Bold);
+                public static System.Drawing.Font MonospacedFont = new System.Drawing.Font(DefaultMonoFontName, 10F);
+
         }
 }

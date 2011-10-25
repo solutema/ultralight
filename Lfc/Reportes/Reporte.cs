@@ -53,7 +53,7 @@ namespace Lfc.Reportes
                         this.ReporteAMostrar.ExpandGroups = EntradaExpandirGrupos.TextKey == "1";
                         Lfx.FileFormats.Office.Spreadsheet.Sheet ReportSheet = this.ReporteAMostrar.ToWorkbookSheet();
                         ReportSheet.Sort(2, false);
-                        ReportSheet.ToListView(ListViewReporte);
+                        ListViewReporte.FromSheet(ReportSheet);
                 }
         }
 }

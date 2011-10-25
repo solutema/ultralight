@@ -86,8 +86,6 @@ namespace Lui.Printing
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.CancelCommandButton.DockPadding.All = 2;
-                        this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.CancelCommandButton.Location = new System.Drawing.Point(524, 6);
@@ -105,8 +103,6 @@ namespace Lui.Printing
                         // 
                         this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.SaveButton.DockPadding.All = 2;
-                        this.SaveButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.SaveButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.SaveButton.Image = null;
                         this.SaveButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.SaveButton.Location = new System.Drawing.Point(432, 6);
@@ -133,8 +129,6 @@ namespace Lui.Printing
                         // BotonZoom
                         // 
                         this.BotonZoom.DockPadding.All = 2;
-                        this.BotonZoom.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.BotonZoom.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonZoom.Image = null;
                         this.BotonZoom.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonZoom.Location = new System.Drawing.Point(8, 6);

@@ -38,9 +38,9 @@ namespace Lfc.Alicuotas
         public partial class Editar
         {
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label Label5;
-                internal System.Windows.Forms.Label label1;
-                internal System.Windows.Forms.Label label2;
+                internal Lui.Forms.Label Label5;
+                internal Lui.Forms.Label label1;
+                internal Lui.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaPorcentaje;
                 internal Lui.Forms.TextBox EntradaImporteMinimo;
                 private System.ComponentModel.IContainer components = null;
@@ -60,10 +60,10 @@ namespace Lfc.Alicuotas
                 private void InitializeComponent()
                 {
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaPorcentaje = new Lui.Forms.TextBox();
-                        this.label1 = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaImporteMinimo = new Lui.Forms.TextBox();
                         this.SuspendLayout();
                         // 
@@ -75,21 +75,15 @@ namespace Lfc.Alicuotas
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(408, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.ToolTipText = "";
                         // 
@@ -108,17 +102,12 @@ namespace Lfc.Alicuotas
                         this.EntradaPorcentaje.AutoTab = true;
                         this.EntradaPorcentaje.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaPorcentaje.DecimalPlaces = -1;
-                        this.EntradaPorcentaje.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPorcentaje.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPorcentaje.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPorcentaje.Location = new System.Drawing.Point(120, 32);
-                        this.EntradaPorcentaje.MaxLenght = 32767;
                         this.EntradaPorcentaje.MultiLine = false;
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPorcentaje.PasswordChar = '\0';
                         this.EntradaPorcentaje.PlaceholderText = "";
-                        this.EntradaPorcentaje.Prefijo = "";
                         this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.SelectOnFocus = true;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(100, 24);
@@ -151,21 +140,15 @@ namespace Lfc.Alicuotas
                         this.EntradaImporteMinimo.AutoTab = true;
                         this.EntradaImporteMinimo.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporteMinimo.DecimalPlaces = -1;
-                        this.EntradaImporteMinimo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaImporteMinimo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaImporteMinimo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaImporteMinimo.Location = new System.Drawing.Point(120, 64);
-                        this.EntradaImporteMinimo.MaxLenght = 32767;
                         this.EntradaImporteMinimo.MultiLine = false;
                         this.EntradaImporteMinimo.Name = "EntradaImporteMinimo";
                         this.EntradaImporteMinimo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImporteMinimo.PasswordChar = '\0';
                         this.EntradaImporteMinimo.PlaceholderText = "";
-                        this.EntradaImporteMinimo.Prefijo = "";
                         this.EntradaImporteMinimo.ReadOnly = false;
                         this.EntradaImporteMinimo.SelectOnFocus = true;
                         this.EntradaImporteMinimo.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaImporteMinimo.Sufijo = "";
                         this.EntradaImporteMinimo.TabIndex = 5;
                         this.EntradaImporteMinimo.Text = "0.00";
                         this.EntradaImporteMinimo.ToolTipText = "";

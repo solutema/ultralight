@@ -46,7 +46,6 @@ namespace Lcc.Edicion
                         InitializeComponent();
 
                         this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                        this.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
                         GroupLabel.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
                         GroupLabel.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
                 }

@@ -60,10 +60,10 @@ namespace Lazaro.Errores
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExcepcionControlada));
                         this.BotonCerrar = new System.Windows.Forms.Button();
-                        this.EtiquetaDescripcion = new System.Windows.Forms.Label();
-                        this.EtiquetaTitulo = new System.Windows.Forms.Label();
-                        this.EtiquetaMasInformacion = new System.Windows.Forms.Label();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.EtiquetaDescripcion = new Lui.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
+                        this.EtiquetaMasInformacion = new Lui.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.BotonAmpliar = new System.Windows.Forms.Button();
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -72,9 +72,10 @@ namespace Lazaro.Errores
                         // BotonCerrar
                         // 
                         this.BotonCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonCerrar.Location = new System.Drawing.Point(496, 161);
+                        this.BotonCerrar.Location = new System.Drawing.Point(372, 140);
+                        this.BotonCerrar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.BotonCerrar.Name = "BotonCerrar";
-                        this.BotonCerrar.Size = new System.Drawing.Size(108, 32);
+                        this.BotonCerrar.Size = new System.Drawing.Size(81, 28);
                         this.BotonCerrar.TabIndex = 7;
                         this.BotonCerrar.Text = "Continuar";
                         this.BotonCerrar.UseVisualStyleBackColor = true;
@@ -86,21 +87,22 @@ namespace Lazaro.Errores
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaDescripcion.BackColor = System.Drawing.SystemColors.ControlLightLight;
                         this.EtiquetaDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(96, 64);
+                        this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(72, 55);
+                        this.EtiquetaDescripcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
-                        this.EtiquetaDescripcion.Padding = new System.Windows.Forms.Padding(4);
-                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(508, 44);
+                        this.EtiquetaDescripcion.Padding = new System.Windows.Forms.Padding(3);
+                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(382, 38);
                         this.EtiquetaDescripcion.TabIndex = 6;
                         this.EtiquetaDescripcion.Text = "Lázaro encontró un problema.";
                         // 
                         // EtiquetaTitulo
                         // 
                         this.EtiquetaTitulo.BackColor = System.Drawing.SystemColors.ButtonFace;
-                        this.EtiquetaTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 24);
-                        this.EtiquetaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(72, 21);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
-                        this.EtiquetaTitulo.Size = new System.Drawing.Size(508, 32);
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(381, 28);
                         this.EtiquetaTitulo.TabIndex = 5;
                         this.EtiquetaTitulo.Text = "Informe de Error";
                         this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -109,10 +111,11 @@ namespace Lazaro.Errores
                         // 
                         this.EtiquetaMasInformacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaMasInformacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EtiquetaMasInformacion.Location = new System.Drawing.Point(96, 116);
+                        this.EtiquetaMasInformacion.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaMasInformacion.Location = new System.Drawing.Point(72, 101);
+                        this.EtiquetaMasInformacion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
                         this.EtiquetaMasInformacion.Name = "EtiquetaMasInformacion";
-                        this.EtiquetaMasInformacion.Size = new System.Drawing.Size(508, 128);
+                        this.EtiquetaMasInformacion.Size = new System.Drawing.Size(381, 111);
                         this.EtiquetaMasInformacion.TabIndex = 9;
                         this.EtiquetaMasInformacion.Text = ".";
                         this.EtiquetaMasInformacion.Visible = false;
@@ -122,9 +125,11 @@ namespace Lazaro.Errores
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label1.Location = new System.Drawing.Point(96, 114);
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.Location = new System.Drawing.Point(72, 99);
+                        this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(508, 40);
+                        this.label1.Size = new System.Drawing.Size(381, 35);
                         this.label1.TabIndex = 10;
                         this.label1.Text = "La operación ha sido cancelada. Si no puede solucionar el problema, póngase en co" +
                             "ntacto con el administrador.";
@@ -132,9 +137,10 @@ namespace Lazaro.Errores
                         // BotonAmpliar
                         // 
                         this.BotonAmpliar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonAmpliar.Location = new System.Drawing.Point(96, 161);
+                        this.BotonAmpliar.Location = new System.Drawing.Point(72, 140);
+                        this.BotonAmpliar.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.BotonAmpliar.Name = "BotonAmpliar";
-                        this.BotonAmpliar.Size = new System.Drawing.Size(132, 32);
+                        this.BotonAmpliar.Size = new System.Drawing.Size(99, 28);
                         this.BotonAmpliar.TabIndex = 11;
                         this.BotonAmpliar.Text = "Más información";
                         this.BotonAmpliar.UseVisualStyleBackColor = true;
@@ -144,18 +150,17 @@ namespace Lazaro.Errores
                         // pictureBox1
                         // 
                         this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-                        this.pictureBox1.Location = new System.Drawing.Point(36, 32);
-                        this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.pictureBox1.Location = new System.Drawing.Point(27, 28);
                         this.pictureBox1.Name = "pictureBox1";
-                        this.pictureBox1.Size = new System.Drawing.Size(33, 33);
+                        this.pictureBox1.Size = new System.Drawing.Size(37, 40);
                         this.pictureBox1.TabIndex = 12;
                         this.pictureBox1.TabStop = false;
                         // 
                         // ExcepcionControlada
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(634, 222);
+                        this.ClientSize = new System.Drawing.Size(476, 192);
                         this.ControlBox = false;
                         this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.BotonAmpliar);
@@ -164,10 +169,8 @@ namespace Lazaro.Errores
                         this.Controls.Add(this.EtiquetaDescripcion);
                         this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.EtiquetaMasInformacion);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.MaximizeBox = false;
                         this.MinimizeBox = false;
                         this.Name = "ExcepcionControlada";
@@ -181,10 +184,10 @@ namespace Lazaro.Errores
                 #endregion
 
                 public System.Windows.Forms.Button BotonCerrar;
-                public System.Windows.Forms.Label EtiquetaDescripcion;
-                private System.Windows.Forms.Label EtiquetaTitulo;
-                public System.Windows.Forms.Label EtiquetaMasInformacion;
-                public System.Windows.Forms.Label label1;
+                public Lui.Forms.Label EtiquetaDescripcion;
+                private Lui.Forms.Label EtiquetaTitulo;
+                public Lui.Forms.Label EtiquetaMasInformacion;
+                public Lui.Forms.Label label1;
                 public System.Windows.Forms.Button BotonAmpliar;
                 private System.Windows.Forms.PictureBox pictureBox1;
         }

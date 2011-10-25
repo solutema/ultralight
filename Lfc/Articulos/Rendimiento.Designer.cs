@@ -59,10 +59,10 @@ namespace Lfc.Articulos
 		/// </summary>
 		private void InitializeComponent()
 		{
-                        this.label19 = new System.Windows.Forms.Label();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label19 = new Lui.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.EntradaRendimiento = new Lui.Forms.TextBox();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaUnidad = new Lui.Forms.ComboBox();
                         this.EntradaUnidadRend = new Lui.Forms.ComboBox();
                         this.SuspendLayout();
@@ -99,21 +99,15 @@ namespace Lfc.Articulos
                         this.EntradaRendimiento.AutoTab = true;
                         this.EntradaRendimiento.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaRendimiento.DecimalPlaces = -1;
-                        this.EntradaRendimiento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaRendimiento.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaRendimiento.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaRendimiento.Location = new System.Drawing.Point(100, 120);
-                        this.EntradaRendimiento.MaxLenght = 32767;
                         this.EntradaRendimiento.MultiLine = false;
                         this.EntradaRendimiento.Name = "EntradaRendimiento";
                         this.EntradaRendimiento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaRendimiento.PasswordChar = '\0';
                         this.EntradaRendimiento.PlaceholderText = "";
-                        this.EntradaRendimiento.Prefijo = "";
                         this.EntradaRendimiento.ReadOnly = false;
                         this.EntradaRendimiento.SelectOnFocus = true;
                         this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
-                        this.EntradaRendimiento.Sufijo = "";
                         this.EntradaRendimiento.TabIndex = 3;
                         this.EntradaRendimiento.Text = "0.00";
                         this.EntradaRendimiento.ToolTipText = "Precio de costo o de compra.";
@@ -133,10 +127,7 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.AutoNav = true;
                         this.EntradaUnidad.AutoSize = true;
                         this.EntradaUnidad.AutoTab = true;
-                        this.EntradaUnidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaUnidad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaUnidad.Location = new System.Drawing.Point(200, 24);
-                        this.EntradaUnidad.MaxLenght = 32767;
                         this.EntradaUnidad.Name = "EntradaUnidad";
                         this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUnidad.PlaceholderText = "";
@@ -167,10 +158,7 @@ namespace Lfc.Articulos
                         this.EntradaUnidadRend.AutoNav = true;
                         this.EntradaUnidadRend.AutoSize = true;
                         this.EntradaUnidadRend.AutoTab = true;
-                        this.EntradaUnidadRend.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaUnidadRend.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaUnidadRend.Location = new System.Drawing.Point(200, 120);
-                        this.EntradaUnidadRend.MaxLenght = 32767;
                         this.EntradaUnidadRend.Name = "EntradaUnidadRend";
                         this.EntradaUnidadRend.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUnidadRend.PlaceholderText = "";
@@ -221,10 +209,10 @@ namespace Lfc.Articulos
 
 		#endregion
 
-		internal System.Windows.Forms.Label label19;
-		internal System.Windows.Forms.Label label1;
+		internal Lui.Forms.Label label19;
+		internal Lui.Forms.Label label1;
 		internal Lui.Forms.TextBox EntradaRendimiento;
-		internal System.Windows.Forms.Label label2;
+		internal Lui.Forms.Label label2;
                 internal Lui.Forms.ComboBox EntradaUnidad;
                 internal Lui.Forms.ComboBox EntradaUnidadRend;
 	}

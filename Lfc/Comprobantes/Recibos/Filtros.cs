@@ -73,11 +73,11 @@ namespace Lfc.Comprobantes.Recibos
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
                 internal Lcc.Entrada.CodigoDetalle EntradaCliente;
-                internal System.Windows.Forms.Label Label2;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label2;
+                internal Lui.Forms.Label Label1;
                 internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
-                internal System.Windows.Forms.Label Label5;
-                internal System.Windows.Forms.Label label7;
+                internal Lui.Forms.Label Label5;
+                internal Lui.Forms.Label label7;
                 internal Lui.Forms.ComboBox EntradaTipo;
                 internal Label label3;
                 private TableLayoutPanel tableLayoutPanel1;
@@ -87,14 +87,14 @@ namespace Lfc.Comprobantes.Recibos
                 private void InitializeComponent()
                 {
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
-                        this.label7 = new System.Windows.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.tableLayoutPanel1.SuspendLayout();
@@ -119,8 +119,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "";
-                        this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.Location = new System.Drawing.Point(133, 63);
@@ -166,8 +164,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.ExtraDetailFields = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
-                        this.EntradaVendedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaVendedor.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.DataValueField = "id_persona";
                         this.EntradaVendedor.Location = new System.Drawing.Point(133, 93);
@@ -204,8 +200,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.Filter = "";
-                        this.EntradaSucursal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaSucursal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.Location = new System.Drawing.Point(133, 33);
@@ -236,10 +230,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaTipo.Location = new System.Drawing.Point(133, 3);
-                        this.EntradaTipo.MaxLenght = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.TemporaryReadOnly = false;
@@ -295,7 +286,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFechas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFechas.AutoSize = true;
-                        this.EntradaFechas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaFechas.Location = new System.Drawing.Point(133, 123);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";

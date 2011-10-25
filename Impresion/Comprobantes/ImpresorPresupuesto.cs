@@ -178,7 +178,7 @@ namespace Lazaro.Impresion.Comprobantes
                         AlturaPie += 24;
 
                         // Detalle
-                        Fuente = new Font("Bitstream Vera Sans", 10);
+                        Fuente = new Font(Lfx.Config.Display.DefaultPrintFontName, 10);
                         int RowNumber = 0;
 
                         foreach (Lbl.Comprobantes.DetalleArticulo Detalle in this.Presupuesto.Articulos) {

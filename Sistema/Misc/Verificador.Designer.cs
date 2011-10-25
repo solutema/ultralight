@@ -60,13 +60,13 @@ namespace Lazaro.Misc
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Verificador));
                         this.ProgressBar = new System.Windows.Forms.ProgressBar();
-                        this.label7 = new System.Windows.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.Label27 = new System.Windows.Forms.Label();
+                        this.Label27 = new Lui.Forms.Label();
                         this.LowerPanel = new System.Windows.Forms.Panel();
                         this.OkButton = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
-                        this.EtiquetaEstado = new System.Windows.Forms.Label();
+                        this.EtiquetaEstado = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.LowerPanel.SuspendLayout();
                         this.SuspendLayout();
@@ -75,8 +75,6 @@ namespace Lazaro.Misc
                         // 
                         this.ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ProgressBar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.ProgressBar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.ProgressBar.Location = new System.Drawing.Point(76, 112);
                         this.ProgressBar.Name = "ProgressBar";
                         this.ProgressBar.Size = new System.Drawing.Size(378, 20);
@@ -87,7 +85,6 @@ namespace Lazaro.Misc
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label7.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label7.Location = new System.Drawing.Point(80, 52);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(372, 52);
@@ -131,8 +128,6 @@ namespace Lazaro.Misc
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.OkButton.AutoSize = false;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.OkButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.OkButton.Location = new System.Drawing.Point(248, 8);
@@ -152,8 +147,6 @@ namespace Lazaro.Misc
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.CancelCommandButton.AutoSize = false;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.CancelCommandButton.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.CancelCommandButton.Location = new System.Drawing.Point(360, 8);
@@ -200,13 +193,13 @@ namespace Lazaro.Misc
                 #endregion
 
                 public System.Windows.Forms.ProgressBar ProgressBar;
-                internal System.Windows.Forms.Label label7;
+                internal Lui.Forms.Label label7;
                 internal System.Windows.Forms.PictureBox PictureBox1;
-                internal System.Windows.Forms.Label Label27;
+                internal Lui.Forms.Label Label27;
                 internal System.Windows.Forms.Panel LowerPanel;
                 internal Lui.Forms.Button OkButton;
                 internal Lui.Forms.Button CancelCommandButton;
-                private System.Windows.Forms.Label EtiquetaEstado;
+                private Lui.Forms.Label EtiquetaEstado;
 
         }
 }

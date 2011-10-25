@@ -52,17 +52,14 @@ namespace Lfc
 
 		private void InitializeComponent()
 		{
-                        this.lblTitulo = new System.Windows.Forms.Label();
+                        this.lblTitulo = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EtiquetaCantidad
                         // 
-                        this.EtiquetaCantidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         // 
                         // lblTitulo
                         // 
-                        this.lblTitulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.lblTitulo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.lblTitulo.Location = new System.Drawing.Point(8, 8);
                         this.lblTitulo.Name = "lblTitulo";
                         this.lblTitulo.Size = new System.Drawing.Size(208, 72);
@@ -92,7 +89,7 @@ namespace Lfc
 
 		#endregion
 
-                internal System.Windows.Forms.Label lblTitulo;
+                internal Lui.Forms.Label lblTitulo;
 
         }
 }

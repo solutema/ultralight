@@ -125,7 +125,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         System.DateTime FinEsperaFiscal = System.DateTime.Now.AddSeconds(90);
                                         int NumeroFiscal = 0;
                                         while (System.DateTime.Now < FinEsperaFiscal && NumeroFiscal == 0) {
-                                                Lfx.Environment.Threading.Sleep(1000, true);
+                                                System.Threading.Thread.Sleep(1000);
                                                 NumeroFiscal = this.Connection.FieldInt("SELECT numero FROM comprob WHERE impresa<>0 AND id_comprob=" + this.Elemento.Id.ToString());
                                         }
                                         if (NumeroFiscal == 0) {
@@ -185,7 +185,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                         System.DateTime FinEspera = System.DateTime.Now.AddSeconds(90);
                                                         int Impreso = 0;
                                                         while (System.DateTime.Now < FinEspera && Impreso == 0) {
-                                                                Lfx.Environment.Threading.Sleep(1000, true);
+                                                                System.Threading.Thread.Sleep(1000);
                                                                 Impreso = this.Connection.FieldInt("SELECT impresa FROM comprob WHERE impresa<>0 AND id_comprob=" + this.Elemento.Id.ToString());
                                                         }
                                                         if (Impreso == 0) {

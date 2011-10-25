@@ -61,7 +61,6 @@ namespace Lui.Forms
                         // MainText
                         // 
                         this.MainText.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(231)), ((System.Byte)(226)), ((System.Byte)(222)));
-                        this.MainText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.MainText.ForeColor = System.Drawing.Color.Black;
                         this.MainText.Location = new System.Drawing.Point(4, 4);
                         this.MainText.Name = "MainText";
@@ -76,7 +75,6 @@ namespace Lui.Forms
                         // SubText
                         // 
                         this.SubText.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(198)), ((System.Byte)(190)), ((System.Byte)(176)));
-                        this.SubText.Font = new System.Drawing.Font("Bitstream Vera Sans", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
                         this.SubText.Location = new System.Drawing.Point(4, 68);
                         this.SubText.Name = "SubText";
                         this.SubText.Size = new System.Drawing.Size(312, 8);

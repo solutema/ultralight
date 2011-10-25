@@ -66,8 +66,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Core">
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\Bracket.cs">
@@ -107,13 +105,13 @@
     <Compile Include="Forms\IDataControl.cs" />
     <Compile Include="Forms\IDataForm.cs" />
     <Compile Include="Forms\IEditableControl.cs" />
+    <Compile Include="Forms\InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Label.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\LabelH1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Forms\LabelH2.cs">
+    <Compile Include="Forms\LinkLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\ListView.cs">
@@ -170,6 +168,9 @@
     <Compile Include="Forms\ProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\ScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\TextBox.Designer.cs">
       <DependentUpon>TextBox.cs</DependentUpon>
     </Compile>
@@ -179,6 +180,7 @@
     <Compile Include="Forms\TextBoxBase.Designer.cs">
       <DependentUpon>TextBoxBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Threads.cs" />
     <Compile Include="Forms\WorkspaceSelectorForm.Designer.cs">
       <DependentUpon>WorkspaceSelectorForm.cs</DependentUpon>
     </Compile>
@@ -387,9 +389,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lazaro.Impresion\Lazaro.Impresion.csproj">
+    <ProjectReference Include="..\Impresion\Impresion.csproj">
       <Project>{EBF39B24-DF1A-4C99-8FC8-F9A24E9CB8FF}</Project>
-      <Name>Lazaro.Impresion</Name>
+      <Name>Impresion</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
       <Project>{56F39851-6542-405C-9F47-E8414B757EF6}</Project>

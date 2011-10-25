@@ -266,7 +266,7 @@ namespace Lfc.Comprobantes
                         RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Diferencia));
                         ReportSheet.Rows.Add(RengTotal);
 
-                        ReportSheet.ToListView(ReportListView);
+                        ReportListView.FromSheet(ReportSheet);
                         this.Report = new Lfx.FileFormats.Office.Spreadsheet.Workbook();
                         this.Report.Sheets.Add(ReportSheet);
 
@@ -451,7 +451,7 @@ namespace Lfc.Comprobantes
                         Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
                         ReportSheet.Rows.Add(Total1);
 
-                        ReportSheet.ToListView(ReportListView);
+                        ReportListView.FromSheet(ReportSheet);
                         this.Report = new Lfx.FileFormats.Office.Spreadsheet.Workbook();
                         this.Report.Sheets.Add(ReportSheet);
 

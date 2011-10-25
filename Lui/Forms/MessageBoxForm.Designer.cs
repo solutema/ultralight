@@ -71,13 +71,13 @@ namespace Lui.Forms
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.OkButton.Location = new System.Drawing.Point(369, 8);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.OkButton.Size = new System.Drawing.Size(104, 44);
+                        this.OkButton.ReadOnly = false;
+                        this.OkButton.Size = new System.Drawing.Size(104, 41);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "F9";
                         this.OkButton.TabIndex = 3;
@@ -89,17 +89,17 @@ namespace Lui.Forms
                         // 
                         this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 221);
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 207);
                         this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(484, 61);
+                        this.LowerPanel.Size = new System.Drawing.Size(484, 57);
                         this.LowerPanel.TabIndex = 4;
                         // 
                         // pictureBox1
                         // 
                         this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-                        this.pictureBox1.Location = new System.Drawing.Point(16, 20);
+                        this.pictureBox1.Location = new System.Drawing.Point(16, 19);
                         this.pictureBox1.Name = "pictureBox1";
-                        this.pictureBox1.Size = new System.Drawing.Size(52, 52);
+                        this.pictureBox1.Size = new System.Drawing.Size(52, 49);
                         this.pictureBox1.TabIndex = 5;
                         this.pictureBox1.TabStop = false;
                         // 
@@ -108,27 +108,24 @@ namespace Lui.Forms
                         this.MessageText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.MessageText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.MessageText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.MessageText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.MessageText.Location = new System.Drawing.Point(84, 16);
+                        this.MessageText.Location = new System.Drawing.Point(84, 15);
                         this.MessageText.Multiline = true;
                         this.MessageText.Name = "MessageText";
                         this.MessageText.ReadOnly = true;
                         this.MessageText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-                        this.MessageText.Size = new System.Drawing.Size(386, 188);
+                        this.MessageText.Size = new System.Drawing.Size(386, 176);
                         this.MessageText.TabIndex = 999;
                         this.MessageText.TabStop = false;
                         // 
                         // MessageBoxForm
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(484, 282);
+                        this.ClientSize = new System.Drawing.Size(484, 264);
                         this.Controls.Add(this.MessageText);
                         this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.LowerPanel);
-                        this.KeyPreview = true;
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "MessageBoxForm";
                         this.ShowIcon = false;

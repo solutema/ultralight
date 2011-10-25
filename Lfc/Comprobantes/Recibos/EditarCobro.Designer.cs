@@ -72,7 +72,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Cobro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Cobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Cobro.FormaDePagoEditable = true;
                         this.Cobro.FormaDePagoVisible = true;
                         this.Cobro.ImporteEditable = true;

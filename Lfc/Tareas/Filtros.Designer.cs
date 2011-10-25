@@ -55,14 +55,14 @@ namespace Lfc.Tareas
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Label Label2;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label2;
+                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.ComboBox EntradaOrden;
                 internal Lcc.Entrada.CodigoDetalle EntradaCliente;
                 internal Lcc.Entrada.CodigoDetalle EntradaTarea;
-                internal System.Windows.Forms.Label Label4;
+                internal Lui.Forms.Label Label4;
                 internal Lcc.Entrada.CodigoDetalle EntradaLocalidad;
-                internal System.Windows.Forms.Label label5;
+                internal Lui.Forms.Label label5;
                 private TableLayoutPanel tableLayoutPanel1;
                 internal Label label3;
                 internal Lcc.Entrada.CodigoDetalle EntradaGrupo;
@@ -72,18 +72,18 @@ namespace Lfc.Tareas
                 private void InitializeComponent()
                 {
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaOrden = new Lui.Forms.ComboBox();
                         this.EntradaTarea = new Lcc.Entrada.CodigoDetalle();
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.EntradaLocalidad = new Lcc.Entrada.CodigoDetalle();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaGrupo = new Lcc.Entrada.CodigoDetalle();
-                        this.label6 = new System.Windows.Forms.Label();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.SuspendLayout();
                         // 
@@ -106,8 +106,6 @@ namespace Lfc.Tareas
                         this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "(tipo&1)=1";
-                        this.EntradaCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCliente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(97, 3);
                         this.EntradaCliente.MaxLength = 200;
@@ -146,10 +144,7 @@ namespace Lfc.Tareas
                         this.EntradaOrden.AutoNav = true;
                         this.EntradaOrden.AutoSize = true;
                         this.EntradaOrden.AutoTab = true;
-                        this.EntradaOrden.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaOrden.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaOrden.Location = new System.Drawing.Point(97, 210);
-                        this.EntradaOrden.MaxLenght = 32767;
                         this.EntradaOrden.Name = "EntradaOrden";
                         this.EntradaOrden.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaOrden.SetData = new string[] {
@@ -173,8 +168,6 @@ namespace Lfc.Tareas
                         this.EntradaTarea.DataValueField = "id_tipo_ticket";
                         this.EntradaTarea.ExtraDetailFields = null;
                         this.EntradaTarea.Filter = "";
-                        this.EntradaTarea.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaTarea.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTarea.FreeTextCode = "";
                         this.EntradaTarea.Location = new System.Drawing.Point(97, 93);
                         this.EntradaTarea.MaxLength = 200;
@@ -204,10 +197,7 @@ namespace Lfc.Tareas
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaEstado.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaEstado.Location = new System.Drawing.Point(97, 123);
-                        this.EntradaEstado.MaxLenght = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
@@ -232,8 +222,6 @@ namespace Lfc.Tareas
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = null;
                         this.EntradaLocalidad.Filter = "";
-                        this.EntradaLocalidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaLocalidad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(97, 33);
                         this.EntradaLocalidad.MaxLength = 200;
@@ -298,8 +286,6 @@ namespace Lfc.Tareas
                         this.EntradaGrupo.DataValueField = "id_grupo";
                         this.EntradaGrupo.ExtraDetailFields = null;
                         this.EntradaGrupo.Filter = "";
-                        this.EntradaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaGrupo.FreeTextCode = "";
                         this.EntradaGrupo.Location = new System.Drawing.Point(97, 63);
                         this.EntradaGrupo.MaxLength = 200;

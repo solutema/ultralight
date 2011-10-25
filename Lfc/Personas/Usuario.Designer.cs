@@ -38,8 +38,8 @@ namespace Lfc.Personas
         public partial class Usuario
         {
                 private Lui.Forms.ComboBox EntradaAcceso;
-                internal System.Windows.Forms.Label Label6;
-                internal System.Windows.Forms.Label label1;
+                internal Lui.Forms.Label Label6;
+                internal Lui.Forms.Label label1;
                 private Lui.Forms.TextBox EntradaContrasena;
                 private Lui.Forms.ListView Listado;
                 private System.Windows.Forms.ColumnHeader ColCod;
@@ -67,9 +67,9 @@ namespace Lfc.Personas
                 private void InitializeComponent()
                 {
                         this.EntradaAcceso = new Lui.Forms.ComboBox();
-                        this.Label6 = new System.Windows.Forms.Label();
+                        this.Label6 = new Lui.Forms.Label();
                         this.EntradaContrasena = new Lui.Forms.TextBox();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.Listado = new Lui.Forms.ListView();
                         this.ColCod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColNombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -85,10 +85,7 @@ namespace Lfc.Personas
                         this.EntradaAcceso.AutoNav = true;
                         this.EntradaAcceso.AutoSize = true;
                         this.EntradaAcceso.AutoTab = true;
-                        this.EntradaAcceso.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaAcceso.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
-                        this.EntradaAcceso.MaxLenght = 32767;
                         this.EntradaAcceso.Name = "EntradaAcceso";
                         this.EntradaAcceso.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAcceso.PlaceholderText = "";
@@ -116,21 +113,16 @@ namespace Lfc.Personas
                         this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasena.DecimalPlaces = -1;
-                        this.EntradaContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContrasena.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaContrasena.Location = new System.Drawing.Point(348, 0);
-                        this.EntradaContrasena.MaxLenght = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
                         this.EntradaContrasena.PlaceholderText = "";
-                        this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = false;
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
-                        this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 3;
                         this.EntradaContrasena.ToolTipText = "";
                         // 
@@ -192,8 +184,6 @@ namespace Lfc.Personas
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAgregar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(532, 368);
@@ -212,8 +202,6 @@ namespace Lfc.Personas
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonQuitar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(420, 368);

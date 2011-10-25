@@ -58,7 +58,7 @@ namespace Lfc.Reportes
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.ListViewReporte = new System.Windows.Forms.ListView();
+                        this.ListViewReporte = new Lui.Forms.ListView();
                         this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
                         this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
                         this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -92,7 +92,6 @@ namespace Lfc.Reportes
                         this.BotonActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonActualizar.AutoSize = false;
                         this.BotonActualizar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonActualizar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonActualizar.Image = null;
                         this.BotonActualizar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonActualizar.Location = new System.Drawing.Point(668, 12);
@@ -112,10 +111,6 @@ namespace Lfc.Reportes
                         this.EntradaExpandirGrupos.AutoSize = false;
                         this.EntradaExpandirGrupos.AutoNav = true;
                         this.EntradaExpandirGrupos.AutoTab = true;
-                        this.EntradaExpandirGrupos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaExpandirGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
-                        this.EntradaExpandirGrupos.Location = new System.Drawing.Point(124, 12);
-                        this.EntradaExpandirGrupos.MaxLenght = 32767;
                         this.EntradaExpandirGrupos.Name = "EntradaExpandirGrupos";
                         this.EntradaExpandirGrupos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaExpandirGrupos.TemporaryReadOnly = false;
@@ -144,7 +139,7 @@ namespace Lfc.Reportes
 
                 #endregion
 
-                private System.Windows.Forms.ListView ListViewReporte;
+                private Lui.Forms.ListView ListViewReporte;
                 private Lui.Forms.Button BotonActualizar;
                 private System.Windows.Forms.ColumnHeader columnHeader1;
                 private System.Windows.Forms.ColumnHeader columnHeader2;

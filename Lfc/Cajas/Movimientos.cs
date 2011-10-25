@@ -72,7 +72,7 @@ namespace Lfc.Cajas
 
                                 Filters = new Lfx.Data.Filters.FilterCollection() {
                                         new Lfx.Data.Filters.RelationFilter("Caja", new Lfx.Data.Relation("cajas_movim.id_caja", "cajas", "cajas.id_caja")),
-                                        new Lfx.Data.Filters.RelationFilter("Persona", new Lfx.Data.Relation("cajas_movim.id_cliente", "personas", "personas.id_persona")),
+                                        new Lfx.Data.Filters.RelationFilter("Persona", new Lfx.Data.Relation("cajas_movim.id_cliente", "personas", "personas.id_persona", "nombre_visible")),
                                         new Lfx.Data.Filters.RelationFilter("Concepto", new Lfx.Data.Relation("cajas_movim.id_concepto", "conceptos", "conceptos.id_concepto")),
                                         new Lfx.Data.Filters.SetFilter("Tipo", "conceptos.grupo", new string[] { 
                                                 "Todos|0",
@@ -207,6 +207,9 @@ namespace Lfc.Cajas
                         m_Direccion = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["conceptos.es"].Value.ToString());
                         this.Fechas = this.Definicion.Filters["cajas_movim.fecha"].Value as Lfx.Types.DateRange;
 
+
+                        BotonArqueo.Visible = !(this.Caja == null || this.Cliente != null || m_Concepto != null || m_Direccion != 0 || this.Fechas.To < System.DateTime.Now);
+
                         base.FiltersChanged(filters);
                 }
 
@@ -253,8 +256,8 @@ namespace Lfc.Cajas
 
                 private void BotonArqueo_Click(object sender, System.EventArgs e)
                 {
-                        if(this.Caja == null || this.Cliente != null || m_Concepto == null || m_Direccion != 0) {
-                                Lui.Forms.MessageBox.Show("Sólo pueden realizar arqueos cuando está visualizando una sola caja y no está utilizando filtros.", "Arqueo");
+                        if(this.Caja == null || this.Cliente != null || m_Concepto != null || m_Direccion != 0 || this.Fechas.To < System.DateTime.Now) {
+                                Lui.Forms.MessageBox.Show("Sólo pueden realizar arqueos cuando está visualizando una sola caja y no están utilizando filtros.", "Arqueo");
                                 return;
                         }
 
@@ -269,6 +272,7 @@ namespace Lfc.Cajas
                                 Lui.Forms.MessageBox.Show("Verifique el saldo de la cuenta y si es necesario realice un ajuste.", "Arqueo");
                         }
                 }
+                
 
                 protected override Lfx.Types.OperationResult OnEdit(int itemId)
                 {

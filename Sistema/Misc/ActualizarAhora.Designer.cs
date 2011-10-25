@@ -66,7 +66,7 @@ namespace Lazaro.Misc
                         this.BarraProgreso = new Lui.Forms.ProgressBar();
                         this.panel1 = new System.Windows.Forms.Panel();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
-                        this.labelH11 = new Lui.Forms.LabelH1();
+                        this.labelH11 = new Lui.Forms.Label();
                         this.label1 = new Lui.Forms.Label();
                         this.EtiquetaEstado = new Lui.Forms.Label();
                         this.EtiquetaProgreso = new Lui.Forms.Label();
@@ -107,12 +107,9 @@ namespace Lazaro.Misc
                         // 
                         // labelH11
                         // 
-                        this.labelH11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(202)))), ((int)(((byte)(174)))));
-                        this.labelH11.Font = new System.Drawing.Font("Bitstream Vera Sans", 11F, System.Drawing.FontStyle.Bold);
-                        this.labelH11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
+                        this.labelH11.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.labelH11.Location = new System.Drawing.Point(136, 32);
                         this.labelH11.Name = "labelH11";
-                        this.labelH11.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
                         this.labelH11.Size = new System.Drawing.Size(464, 24);
                         this.labelH11.TabIndex = 56;
                         this.labelH11.Text = "Actualizar sistema ahora";
@@ -120,6 +117,7 @@ namespace Lazaro.Misc
                         // 
                         // label1
                         // 
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label1.Location = new System.Drawing.Point(136, 68);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(464, 40);
@@ -129,6 +127,7 @@ namespace Lazaro.Misc
                         // 
                         // EtiquetaEstado
                         // 
+                        this.EtiquetaEstado.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(136, 148);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(380, 20);
@@ -138,6 +137,7 @@ namespace Lazaro.Misc
                         // 
                         // EtiquetaProgreso
                         // 
+                        this.EtiquetaProgreso.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaProgreso.Location = new System.Drawing.Point(520, 148);
                         this.EtiquetaProgreso.Name = "EtiquetaProgreso";
                         this.EtiquetaProgreso.Size = new System.Drawing.Size(80, 20);
@@ -148,7 +148,6 @@ namespace Lazaro.Misc
                         // BotonInstalar
                         // 
                         this.BotonInstalar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonInstalar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.BotonInstalar.Image = null;
                         this.BotonInstalar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonInstalar.Location = new System.Drawing.Point(488, 324);
@@ -165,6 +164,7 @@ namespace Lazaro.Misc
                         // 
                         // EtiquetaAyuda
                         // 
+                        this.EtiquetaAyuda.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaAyuda.Location = new System.Drawing.Point(136, 228);
                         this.EtiquetaAyuda.Name = "EtiquetaAyuda";
                         this.EtiquetaAyuda.Size = new System.Drawing.Size(464, 68);
@@ -207,7 +207,7 @@ namespace Lazaro.Misc
                 private Lui.Forms.ProgressBar BarraProgreso;
                 private Panel panel1;
                 internal PictureBox pictureBox2;
-                private Lui.Forms.LabelH1 labelH11;
+                private Lui.Forms.Label labelH11;
                 private Lui.Forms.Label label1;
                 private Lui.Forms.Label EtiquetaEstado;
                 private Lui.Forms.Label EtiquetaProgreso;

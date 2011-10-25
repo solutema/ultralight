@@ -190,5 +190,23 @@ namespace Lfc
                                         break;
                         }
                 }
+
+                private void EntradaBuscar_TextChanged(object sender, System.EventArgs e)
+                {
+                        TimerBuscar.Stop();
+                        TimerBuscar.Start();
+                }
+
+                private string UltimoBuscar = "";
+                private void TimerBuscar_Tick(object sender, System.EventArgs e)
+                {
+                        TimerBuscar.Stop();
+                        if (EntradaBuscar.Text.Length == 0 || EntradaBuscar.Text.Length > 5) {
+                                if (EntradaBuscar.Text != UltimoBuscar) {
+                                        this.Search(EntradaBuscar.Text);
+                                        UltimoBuscar = EntradaBuscar.Text;
+                                }
+                        }
+                }
         }
 }

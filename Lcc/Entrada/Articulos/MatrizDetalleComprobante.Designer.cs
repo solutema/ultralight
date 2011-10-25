@@ -56,17 +56,15 @@ namespace Lcc.Entrada.Articulos
 
                 private void InitializeComponent()
                 {
-                        this.EtiquetaHeaderDetalle = new System.Windows.Forms.Label();
-                        this.EtiquetaHeaderUnitario = new System.Windows.Forms.Label();
-                        this.EtiquetaHeaderCantidad = new System.Windows.Forms.Label();
-                        this.EtiquetaHeaderImporte = new System.Windows.Forms.Label();
+                        this.EtiquetaHeaderDetalle = new Lui.Forms.Label();
+                        this.EtiquetaHeaderUnitario = new Lui.Forms.Label();
+                        this.EtiquetaHeaderCantidad = new Lui.Forms.Label();
+                        this.EtiquetaHeaderImporte = new Lui.Forms.Label();
 
                         this.SuspendLayout();
                         // 
                         // lblHeaderDetalle
                         // 
-                        this.EtiquetaHeaderDetalle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-                        this.EtiquetaHeaderDetalle.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaHeaderDetalle.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaHeaderDetalle.Name = "lblHeaderDetalle";
                         this.EtiquetaHeaderDetalle.Size = new System.Drawing.Size(176, 18);
@@ -76,8 +74,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // lblHeaderUnitario
                         // 
-                        this.EtiquetaHeaderUnitario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-                        this.EtiquetaHeaderUnitario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaHeaderUnitario.Location = new System.Drawing.Point(180, 0);
                         this.EtiquetaHeaderUnitario.Name = "lblHeaderUnitario";
                         this.EtiquetaHeaderUnitario.Size = new System.Drawing.Size(64, 18);
@@ -87,8 +83,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // lblHeaderCantidad
                         // 
-                        this.EtiquetaHeaderCantidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-                        this.EtiquetaHeaderCantidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaHeaderCantidad.Location = new System.Drawing.Point(248, 0);
                         this.EtiquetaHeaderCantidad.Name = "lblHeaderCantidad";
                         this.EtiquetaHeaderCantidad.Size = new System.Drawing.Size(72, 18);
@@ -98,8 +92,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // lblHeaderImporte
                         // 
-                        this.EtiquetaHeaderImporte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-                        this.EtiquetaHeaderImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EtiquetaHeaderImporte.Location = new System.Drawing.Point(324, 0);
                         this.EtiquetaHeaderImporte.Name = "lblHeaderImporte";
                         this.EtiquetaHeaderImporte.Size = new System.Drawing.Size(80, 18);
@@ -137,9 +129,9 @@ namespace Lcc.Entrada.Articulos
 
                 }
 
-                private System.Windows.Forms.Label EtiquetaHeaderDetalle;
-                private System.Windows.Forms.Label EtiquetaHeaderUnitario;
-                private System.Windows.Forms.Label EtiquetaHeaderCantidad;
-                private System.Windows.Forms.Label EtiquetaHeaderImporte;
+                private Lui.Forms.Label EtiquetaHeaderDetalle;
+                private Lui.Forms.Label EtiquetaHeaderUnitario;
+                private Lui.Forms.Label EtiquetaHeaderCantidad;
+                private Lui.Forms.Label EtiquetaHeaderImporte;
         }
 }

@@ -53,9 +53,9 @@ namespace Lui.Forms
 			InitializeComponent();
 		}
 
-		private void SetControlsFont(System.Windows.Forms.Control.ControlCollection controles)
+		/* private void SetControlsFont(System.Windows.Forms.Control.ControlCollection controles)
 		{
-			this.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
+			this.Font = Lfx.Config.Display.DefaultFont;
 			//Cambio la fuente de todos los controles en el formulario
                         foreach (System.Windows.Forms.Control ctl in controles) {
                                 if (ctl == null) {
@@ -64,16 +64,15 @@ namespace Lui.Forms
                                         SetControlsFont(ctl.Controls);
                                 } else {
                                         //Cambiar fuente
-                                        ctl.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
+                                        ctl.Font = Lfx.Config.Display.DefaultFont;
                                 }
                         }
-		}
+		}*/
 
 		private void Form_Load(object sender, System.EventArgs e)
 		{
 			if(this.BackColor == SystemColors.Control)
 				this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-			this.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
 
                         EventHandler WorkspaceChangedHandler = this.WorkspaceChanged;
                         if (WorkspaceChangedHandler != null)

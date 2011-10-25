@@ -231,7 +231,6 @@ namespace Lfc.Comprobantes.Facturas
                         } else {
                                 // Si está anulada, la tacho
                                 item.SubItems["nombre_visible"].Text = "Anulada";
-                                item.Font = new System.Drawing.Font("Bitstream Vera Sans", 10, System.Drawing.FontStyle.Strikeout);
                         }
 
                         base.OnItemAdded(item, row);

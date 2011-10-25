@@ -140,7 +140,7 @@ namespace Lui.Forms
                         }
                 }
 
-                public override bool AutoSize
+                new public bool AutoSize
                 {
                         get
                         {

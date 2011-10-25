@@ -49,20 +49,20 @@ namespace Lui.Forms
 
 		private System.ComponentModel.IContainer components = null;
 
-                private System.Windows.Forms.Label EtiquetaNombreOperacion;
+                private Lui.Forms.Label EtiquetaNombreOperacion;
                 private System.Windows.Forms.ProgressBar ProgressBar;
                 private System.Windows.Forms.PictureBox PictureBox1;
-                private System.Windows.Forms.Label EtiquetaDescripcion;
-		private System.Windows.Forms.Label EtiquetaEstado;
+                private Lui.Forms.Label EtiquetaDescripcion;
+		private Lui.Forms.Label EtiquetaEstado;
 
 		private void InitializeComponent()
 		{
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressForm));
-                        this.EtiquetaNombreOperacion = new System.Windows.Forms.Label();
-                        this.EtiquetaDescripcion = new System.Windows.Forms.Label();
+                        this.EtiquetaNombreOperacion = new Lui.Forms.Label();
+                        this.EtiquetaDescripcion = new Lui.Forms.Label();
                         this.ProgressBar = new System.Windows.Forms.ProgressBar();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.EtiquetaEstado = new System.Windows.Forms.Label();
+                        this.EtiquetaEstado = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
@@ -71,7 +71,7 @@ namespace Lui.Forms
                         this.EtiquetaNombreOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaNombreOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                        this.EtiquetaNombreOperacion.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaNombreOperacion.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.EtiquetaNombreOperacion.Location = new System.Drawing.Point(88, 24);
                         this.EtiquetaNombreOperacion.Name = "EtiquetaNombreOperacion";
                         this.EtiquetaNombreOperacion.Size = new System.Drawing.Size(364, 60);
@@ -84,9 +84,10 @@ namespace Lui.Forms
                         this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaDescripcion.Location = new System.Drawing.Point(88, 88);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
-                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(364, 100);
+                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(364, 98);
                         this.EtiquetaDescripcion.TabIndex = 2;
                         this.EtiquetaDescripcion.Text = "Por favor aguarde mientras se completan las operaciones.";
                         // 
@@ -94,9 +95,7 @@ namespace Lui.Forms
                         // 
                         this.ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ProgressBar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.ProgressBar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.ProgressBar.Location = new System.Drawing.Point(84, 248);
+                        this.ProgressBar.Location = new System.Drawing.Point(84, 246);
                         this.ProgressBar.Name = "ProgressBar";
                         this.ProgressBar.Size = new System.Drawing.Size(368, 20);
                         this.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -116,6 +115,7 @@ namespace Lui.Forms
                         // 
                         this.EtiquetaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaEstado.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(88, 196);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(364, 44);
@@ -124,7 +124,7 @@ namespace Lui.Forms
                         // ProgressForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(474, 294);
+                        this.ClientSize = new System.Drawing.Size(474, 292);
                         this.ControlBox = false;
                         this.Controls.Add(this.ProgressBar);
                         this.Controls.Add(this.EtiquetaEstado);
@@ -132,10 +132,11 @@ namespace Lui.Forms
                         this.Controls.Add(this.EtiquetaDescripcion);
                         this.Controls.Add(this.EtiquetaNombreOperacion);
                         this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "ProgressForm";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Progreso";
+                        this.TopMost = true;
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
                         this.ResumeLayout(false);
 

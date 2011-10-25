@@ -50,7 +50,7 @@ namespace Lfc
 		private void InitializeComponent()
 		{
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioListadoExportar));
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.BotonImprimir = new Lui.Forms.Button();
                         this.BotonExcel = new Lui.Forms.Button();
                         this.BotonHtml = new Lui.Forms.Button();
@@ -73,8 +73,6 @@ namespace Lfc
                         this.BotonImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonImprimir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonImprimir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonImprimir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonImprimir.Image = ((System.Drawing.Image)(resources.GetObject("BotonImprimir.Image")));
                         this.BotonImprimir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonImprimir.Location = new System.Drawing.Point(24, 52);
@@ -93,8 +91,6 @@ namespace Lfc
                         this.BotonExcel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonExcel.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonExcel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonExcel.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonExcel.Image = ((System.Drawing.Image)(resources.GetObject("BotonExcel.Image")));
                         this.BotonExcel.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonExcel.Location = new System.Drawing.Point(24, 140);
@@ -114,8 +110,6 @@ namespace Lfc
                         this.BotonHtml.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonHtml.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonHtml.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonHtml.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonHtml.Image = ((System.Drawing.Image)(resources.GetObject("BotonHtml.Image")));
                         this.BotonHtml.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonHtml.Location = new System.Drawing.Point(24, 244);
@@ -135,8 +129,6 @@ namespace Lfc
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCancelar.Location = new System.Drawing.Point(24, 360);
@@ -167,7 +159,7 @@ namespace Lfc
 
         	#endregion
 
-                internal System.Windows.Forms.Label label1;
+                internal Lui.Forms.Label label1;
                 private System.ComponentModel.Container components = null;
                 internal Lui.Forms.Button BotonHtml;
                 internal Lui.Forms.Button BotonExcel;

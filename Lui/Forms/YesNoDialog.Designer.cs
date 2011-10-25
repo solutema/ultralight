@@ -38,6 +38,11 @@ namespace Lui.Forms
 		internal System.Windows.Forms.PictureBox pctQuestion;
 		internal System.Windows.Forms.PictureBox pctExclamation;
 		internal System.Windows.Forms.PictureBox pctInformation;
+                protected internal DialogButtons m_DialogButtons = DialogButtons.YesNo;
+                internal System.Windows.Forms.Label DialogCaption;
+                private System.Windows.Forms.RichTextBox DialogText;
+                protected internal DialogIcons m_Icono = DialogIcons.Question;
+
 
 		private void InitializeComponent()
 		{
@@ -56,7 +61,6 @@ namespace Lui.Forms
                         // 
                         this.DialogCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.DialogCaption.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.DialogCaption.Location = new System.Drawing.Point(12, 8);
                         this.DialogCaption.Name = "DialogCaption";
                         this.DialogCaption.Size = new System.Drawing.Size(452, 28);
@@ -104,7 +108,6 @@ namespace Lui.Forms
                         this.DialogText.BulletIndent = 8;
                         this.DialogText.Cursor = System.Windows.Forms.Cursors.Default;
                         this.DialogText.DetectUrls = false;
-                        this.DialogText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.DialogText.Location = new System.Drawing.Point(84, 42);
                         this.DialogText.Name = "DialogText";
                         this.DialogText.ReadOnly = true;

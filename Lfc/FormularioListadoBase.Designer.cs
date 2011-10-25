@@ -60,19 +60,19 @@ namespace Lfc
                 {
                         this.components = new System.ComponentModel.Container();
                         this.Listado = new Lui.Forms.ListView();
-                        this.EtiquetaContador2 = new System.Windows.Forms.Label();
+                        this.EtiquetaContador2 = new Lui.Forms.Label();
                         this.EntradaContador2 = new Lui.Forms.TextBox();
-                        this.EtiquetaContador1 = new System.Windows.Forms.Label();
+                        this.EtiquetaContador1 = new Lui.Forms.Label();
                         this.EntradaContador1 = new Lui.Forms.TextBox();
-                        this.EtiquetaCantidad = new System.Windows.Forms.Label();
+                        this.EtiquetaCantidad = new Lui.Forms.Label();
                         this.BotonImprimir = new Lui.Forms.Button();
                         this.BotonFiltrar = new Lui.Forms.Button();
                         this.BotonCancelar = new Lui.Forms.Button();
                         this.PanelContadores = new System.Windows.Forms.Panel();
                         this.EntradaContador4 = new Lui.Forms.TextBox();
-                        this.EtiquetaContador4 = new System.Windows.Forms.Label();
+                        this.EtiquetaContador4 = new Lui.Forms.Label();
                         this.EntradaContador3 = new Lui.Forms.TextBox();
-                        this.EtiquetaContador3 = new System.Windows.Forms.Label();
+                        this.EtiquetaContador3 = new Lui.Forms.Label();
                         this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
                         this.PicEsperar = new System.Windows.Forms.PictureBox();
                         this.PanelContadores.SuspendLayout();
@@ -85,10 +85,7 @@ namespace Lfc
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.Listado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.Listado.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Listado.FullRowSelect = true;
-                        this.Listado.GridLines = true;
                         this.Listado.Location = new System.Drawing.Point(228, 0);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
@@ -104,7 +101,7 @@ namespace Lfc
                         // 
                         this.EtiquetaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaContador2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaContador2.Location = new System.Drawing.Point(0, 28);
                         this.EtiquetaContador2.Name = "EtiquetaContador2";
                         this.EtiquetaContador2.Size = new System.Drawing.Size(100, 24);
@@ -121,11 +118,9 @@ namespace Lfc
                         this.EntradaContador2.AutoTab = true;
                         this.EntradaContador2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador2.DecimalPlaces = -1;
-                        this.EntradaContador2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContador2.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContador2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaContador2.Location = new System.Drawing.Point(100, 28);
-                        this.EntradaContador2.MaxLenght = 32767;
+                        this.EntradaContador2.MaxLength = 32767;
                         this.EntradaContador2.MultiLine = false;
                         this.EntradaContador2.Name = "EntradaContador2";
                         this.EntradaContador2.Padding = new System.Windows.Forms.Padding(2);
@@ -145,7 +140,7 @@ namespace Lfc
                         // 
                         this.EtiquetaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaContador1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaContador1.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaContador1.Name = "EtiquetaContador1";
                         this.EtiquetaContador1.Size = new System.Drawing.Size(100, 24);
@@ -162,11 +157,9 @@ namespace Lfc
                         this.EntradaContador1.AutoTab = true;
                         this.EntradaContador1.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador1.DecimalPlaces = -1;
-                        this.EntradaContador1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContador1.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContador1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaContador1.Location = new System.Drawing.Point(100, 0);
-                        this.EntradaContador1.MaxLenght = 32767;
+                        this.EntradaContador1.MaxLength = 32767;
                         this.EntradaContador1.MultiLine = false;
                         this.EntradaContador1.Name = "EntradaContador1";
                         this.EntradaContador1.Padding = new System.Windows.Forms.Padding(2);
@@ -184,10 +177,10 @@ namespace Lfc
                         // 
                         // EtiquetaCantidad
                         // 
-                        this.EtiquetaCantidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaCantidad.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaCantidad.Location = new System.Drawing.Point(28, 204);
                         this.EtiquetaCantidad.Name = "EtiquetaCantidad";
-                        this.EtiquetaCantidad.Size = new System.Drawing.Size(188, 20);
+                        this.EtiquetaCantidad.Size = new System.Drawing.Size(200, 20);
                         this.EtiquetaCantidad.TabIndex = 59;
                         this.EtiquetaCantidad.Text = "Cargando...";
                         this.EtiquetaCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,8 +189,6 @@ namespace Lfc
                         // 
                         this.BotonImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonImprimir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonImprimir.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonImprimir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonImprimir.Image = null;
                         this.BotonImprimir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonImprimir.Location = new System.Drawing.Point(12, 432);
@@ -215,8 +206,6 @@ namespace Lfc
                         // BotonFiltrar
                         // 
                         this.BotonFiltrar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonFiltrar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonFiltrar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonFiltrar.Image = null;
                         this.BotonFiltrar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonFiltrar.Location = new System.Drawing.Point(12, 236);
@@ -236,8 +225,6 @@ namespace Lfc
                         // 
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCancelar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = null;
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCancelar.Location = new System.Drawing.Point(120, 432);
@@ -275,11 +262,9 @@ namespace Lfc
                         this.EntradaContador4.AutoTab = true;
                         this.EntradaContador4.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador4.DecimalPlaces = -1;
-                        this.EntradaContador4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContador4.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContador4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaContador4.Location = new System.Drawing.Point(100, 84);
-                        this.EntradaContador4.MaxLenght = 32767;
+                        this.EntradaContador4.MaxLength = 32767;
                         this.EntradaContador4.MultiLine = false;
                         this.EntradaContador4.Name = "EntradaContador4";
                         this.EntradaContador4.Padding = new System.Windows.Forms.Padding(2);
@@ -299,7 +284,7 @@ namespace Lfc
                         // 
                         this.EtiquetaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador4.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaContador4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaContador4.Location = new System.Drawing.Point(0, 84);
                         this.EtiquetaContador4.Name = "EtiquetaContador4";
                         this.EtiquetaContador4.Size = new System.Drawing.Size(100, 24);
@@ -316,11 +301,9 @@ namespace Lfc
                         this.EntradaContador3.AutoTab = true;
                         this.EntradaContador3.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador3.DecimalPlaces = -1;
-                        this.EntradaContador3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaContador3.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContador3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaContador3.Location = new System.Drawing.Point(100, 56);
-                        this.EntradaContador3.MaxLenght = 32767;
+                        this.EntradaContador3.MaxLength = 32767;
                         this.EntradaContador3.MultiLine = false;
                         this.EntradaContador3.Name = "EntradaContador3";
                         this.EntradaContador3.Padding = new System.Windows.Forms.Padding(2);
@@ -340,7 +323,7 @@ namespace Lfc
                         // 
                         this.EtiquetaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.EtiquetaContador3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaContador3.Location = new System.Drawing.Point(0, 56);
                         this.EtiquetaContador3.Name = "EtiquetaContador3";
                         this.EtiquetaContador3.Size = new System.Drawing.Size(100, 24);
@@ -390,19 +373,19 @@ namespace Lfc
                 #endregion
 
                 public Lui.Forms.ListView Listado;
-                protected System.Windows.Forms.Label EtiquetaContador2;
+                protected Lui.Forms.Label EtiquetaContador2;
                 protected Lui.Forms.TextBox EntradaContador2;
-                protected System.Windows.Forms.Label EtiquetaContador1;
+                protected Lui.Forms.Label EtiquetaContador1;
                 protected Lui.Forms.TextBox EntradaContador1;
-                protected System.Windows.Forms.Label EtiquetaCantidad;
+                protected Lui.Forms.Label EtiquetaCantidad;
                 protected Lui.Forms.Button BotonImprimir;
                 protected Lui.Forms.Button BotonFiltrar;
                 protected Lui.Forms.Button BotonCancelar;
                 private System.Windows.Forms.Panel PanelContadores;
                 protected Lui.Forms.TextBox EntradaContador4;
-                protected System.Windows.Forms.Label EtiquetaContador4;
+                protected Lui.Forms.Label EtiquetaContador4;
                 protected Lui.Forms.TextBox EntradaContador3;
-                protected System.Windows.Forms.Label EtiquetaContador3;
+                protected Lui.Forms.Label EtiquetaContador3;
                 private System.Windows.Forms.Timer RefreshTimer;
                 private System.Windows.Forms.PictureBox PicEsperar;
         }

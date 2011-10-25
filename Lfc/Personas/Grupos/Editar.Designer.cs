@@ -61,13 +61,13 @@ namespace Lfc.Personas.Grupos
                 private void InitializeComponent()
                 {
                         this.EntradaDescuento = new Lui.Forms.TextBox();
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaPredet = new Lui.Forms.ComboBox();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaGrupo = new Lcc.Entrada.CodigoDetalle();
-                        this.Label16 = new System.Windows.Forms.Label();
+                        this.Label16 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaDescuento
@@ -77,16 +77,11 @@ namespace Lfc.Personas.Grupos
                         this.EntradaDescuento.AutoTab = true;
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaDescuento.DecimalPlaces = -1;
-                        this.EntradaDescuento.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaDescuento.Location = new System.Drawing.Point(120, 64);
-                        this.EntradaDescuento.MaxLenght = 32767;
                         this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescuento.PasswordChar = '\0';
-                        this.EntradaDescuento.Prefijo = "";
                         this.EntradaDescuento.TemporaryReadOnly = false;
                         this.EntradaDescuento.SelectOnFocus = true;
                         this.EntradaDescuento.Size = new System.Drawing.Size(84, 24);
@@ -114,20 +109,14 @@ namespace Lfc.Personas.Grupos
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 32);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.TemporaryReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(432, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 3;
                         this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ToolTipText = "";
@@ -146,10 +135,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaPredet.AutoSize = false;
                         this.EntradaPredet.AutoNav = true;
                         this.EntradaPredet.AutoTab = true;
-                        this.EntradaPredet.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaPredet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaPredet.Location = new System.Drawing.Point(120, 96);
-                        this.EntradaPredet.MaxLenght = 32767;
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPredet.TemporaryReadOnly = false;
@@ -181,8 +167,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaGrupo.DataTextField = "nombre";
                         this.EntradaGrupo.ExtraDetailFields = null;
                         this.EntradaGrupo.Filter = "";
-                        this.EntradaGrupo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaGrupo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaGrupo.FreeTextCode = "";
                         this.EntradaGrupo.DataValueField = "id_grupo";
                         this.EntradaGrupo.Location = new System.Drawing.Point(120, 0);
@@ -236,9 +220,9 @@ namespace Lfc.Personas.Grupos
                 #endregion
 
 
-                internal System.Windows.Forms.Label label4;
+                internal Lui.Forms.Label label4;
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.TextBox EntradaDescuento;
                 internal Lui.Forms.ComboBox EntradaPredet;
                 internal Label label2;

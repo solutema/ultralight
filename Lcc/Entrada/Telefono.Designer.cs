@@ -57,16 +57,16 @@ namespace Lcc.Entrada
                 private Lui.Forms.TextBox EntradaNombre;
                 private Lui.Forms.TextBox EntradaCaracteristica;
                 private Lui.Forms.TextBox EntradaNumero;
-                private System.Windows.Forms.Label label1;
-                private System.Windows.Forms.Label label2;
+                private Lui.Forms.Label label1;
+                private Lui.Forms.Label label2;
 
                 private void InitializeComponent()
                 {
                         this.EntradaNombre = new Lui.Forms.TextBox();
                         this.EntradaCaracteristica = new Lui.Forms.TextBox();
                         this.EntradaNumero = new Lui.Forms.TextBox();
-                        this.label1 = new System.Windows.Forms.Label();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaNombre
@@ -77,18 +77,13 @@ namespace Lcc.Entrada
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNombre.Location = new System.Drawing.Point(352, 0);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.SelectOnFocus = true;
                         this.EntradaNombre.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 4;
                         this.EntradaNombre.PlaceholderText = "Lugar";
                         this.EntradaNombre.ToolTipText = "";
@@ -102,18 +97,13 @@ namespace Lcc.Entrada
                         this.EntradaCaracteristica.AutoTab = true;
                         this.EntradaCaracteristica.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCaracteristica.DecimalPlaces = -1;
-                        this.EntradaCaracteristica.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCaracteristica.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCaracteristica.Location = new System.Drawing.Point(12, 0);
-                        this.EntradaCaracteristica.MaxLenght = 32767;
                         this.EntradaCaracteristica.MultiLine = false;
                         this.EntradaCaracteristica.Name = "EntradaCaracteristica";
                         this.EntradaCaracteristica.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCaracteristica.PasswordChar = '\0';
-                        this.EntradaCaracteristica.Prefijo = "";
                         this.EntradaCaracteristica.SelectOnFocus = true;
                         this.EntradaCaracteristica.Size = new System.Drawing.Size(60, 24);
-                        this.EntradaCaracteristica.Sufijo = "";
                         this.EntradaCaracteristica.TabIndex = 1;
                         this.EntradaCaracteristica.PlaceholderText = "Característica";
                         this.EntradaCaracteristica.ToolTipText = "";
@@ -128,18 +118,13 @@ namespace Lcc.Entrada
                         this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
-                        this.EntradaNumero.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(84, 0);
-                        this.EntradaNumero.MaxLenght = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PasswordChar = '\0';
-                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(268, 24);
-                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 3;
                         this.EntradaNumero.PlaceholderText = "Número Telefónico";
                         this.EntradaNumero.ToolTipText = "";

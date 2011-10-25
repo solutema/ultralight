@@ -72,8 +72,6 @@ namespace Lui.Forms
 			this.Calendar1.CurrentDate = new System.DateTime(2006, 7, 22, 0, 0, 0, 0);
 			this.Calendar1.DateFormat = "dd/MM/yyyy";
 			this.Calendar1.DockPadding.All = 2;
-			this.Calendar1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-			this.Calendar1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Calendar1.Location = new System.Drawing.Point(8, 4);
 			this.Calendar1.MultiSelect = false;
 			this.Calendar1.Name = "Calendar1";

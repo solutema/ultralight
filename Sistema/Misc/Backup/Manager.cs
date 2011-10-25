@@ -52,13 +52,13 @@ namespace Lazaro.Misc.Backup
                         List<string> Backups = Misc.Backup.Services.ListaBackups();
                         string BackupMasNuevo = Misc.Backup.Services.BackupMasNuevo();
 
-                        lvItems.BeginUpdate();
-                        lvItems.Items.Clear();
+                        Listado.BeginUpdate();
+                        Listado.Items.Clear();
                         int i = 1;
                         foreach (string NombreCarpeta in Backups) {
                                 string ArchivoIni = Lfx.Types.Strings.ReadTextFile(Misc.Backup.Services.BackupPath + NombreCarpeta + System.IO.Path.DirectorySeparatorChar + "info.txt");
                                 ListViewItem Itm = new ListViewItem();
-                                Itm = lvItems.Items.Add(NombreCarpeta);
+                                Itm = Listado.Items.Add(NombreCarpeta);
                                 if (BackupMasNuevo == NombreCarpeta) {
                                         Itm.Font = new Font(Itm.Font, FontStyle.Bold);
                                         Itm.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
@@ -68,9 +68,9 @@ namespace Lazaro.Misc.Backup
                                 Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "Usuario"));
                                 i++;
                         }
-                        lvItems.Sorting = SortOrder.Descending;
-                        lvItems.Sort();
-                        lvItems.EndUpdate();
+                        Listado.Sorting = SortOrder.Descending;
+                        Listado.Sort();
+                        Listado.EndUpdate();
                 }
 
 
@@ -84,8 +84,8 @@ namespace Lazaro.Misc.Backup
 
                 private void BotonEliminar_Click(object sender, System.EventArgs e)
                 {
-                        if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0] != null) {
-                                string NombreCarpeta = lvItems.SelectedItems[0].Text;
+                        if (Listado.SelectedItems.Count > 0 && Listado.SelectedItems[0] != null) {
+                                string NombreCarpeta = Listado.SelectedItems[0].Text;
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Puede eliminar una copia de respaldo antigua o que ya no sea de utilidad. Al eliminar una copia de respaldo no se modifican los datos actualmente almacenados en el sistema, ni tampoco se impide que el sistema haga nuevas copias de respaldo.", "¿Desea eliminar la copia de respaldo seleccionada?");
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (Pregunta.ShowDialog() == DialogResult.OK) {
@@ -98,9 +98,9 @@ namespace Lazaro.Misc.Backup
 
                 private void BotonRestaurar_Click(object sender, System.EventArgs e)
                 {
-                        if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0] != null) {
-                                string NombreCarpeta = lvItems.SelectedItems[0].Text;
-                                string FechaYHora = lvItems.SelectedItems[0].SubItems[2].Text;
+                        if (Listado.SelectedItems.Count > 0 && Listado.SelectedItems[0] != null) {
+                                string NombreCarpeta = Listado.SelectedItems[0].Text;
+                                string FechaYHora = Listado.SelectedItems[0].SubItems[2].Text;
 
                                 Misc.Backup.Restore OPregunta = new Misc.Backup.Restore();
                                 OPregunta.lblFecha.Text = FechaYHora;

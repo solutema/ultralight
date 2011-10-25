@@ -59,7 +59,7 @@ namespace Lfc.Personas
                 private void InitializeComponent()
                 {
                         this.EntradaObjeto = new Lcc.Entrada.CodigoDetalle();
-                        this.Label16 = new System.Windows.Forms.Label();
+                        this.Label16 = new Lui.Forms.Label();
                         this.CheckNivelListar = new System.Windows.Forms.CheckBox();
                         this.CheckNivelVer = new System.Windows.Forms.CheckBox();
                         this.CheckNivelImprimir = new System.Windows.Forms.CheckBox();
@@ -75,9 +75,9 @@ namespace Lfc.Personas
                         this.CheckNivelExtraB = new System.Windows.Forms.CheckBox();
                         this.CheckNivelExtraA = new System.Windows.Forms.CheckBox();
                         this.EntradaItems = new Lui.Forms.TextBox();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.CheckNivelMover = new System.Windows.Forms.CheckBox();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.CheckNivelAdministrar = new System.Windows.Forms.CheckBox();
                         this.SuspendLayout();
                         // 
@@ -99,8 +99,6 @@ namespace Lfc.Personas
                         this.EntradaObjeto.DataTextField = "nombre";
                         this.EntradaObjeto.ExtraDetailFields = null;
                         this.EntradaObjeto.Filter = "";
-                        this.EntradaObjeto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaObjeto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaObjeto.FreeTextCode = "";
                         this.EntradaObjeto.DataValueField = "id_objeto";
                         this.EntradaObjeto.Location = new System.Drawing.Point(120, 20);
@@ -296,19 +294,13 @@ namespace Lfc.Personas
                         this.EntradaItems.AutoTab = true;
                         this.EntradaItems.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaItems.DecimalPlaces = -1;
-                        this.EntradaItems.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaItems.ForceCase = Lui.Forms.TextCasing.Caption;
-                        this.EntradaItems.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaItems.Location = new System.Drawing.Point(120, 272);
-                        this.EntradaItems.MaxLenght = 32767;
                         this.EntradaItems.MultiLine = false;
                         this.EntradaItems.Name = "EntradaItems";
                         this.EntradaItems.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaItems.PasswordChar = '\0';
-                        this.EntradaItems.Prefijo = "";
                         this.EntradaItems.SelectOnFocus = true;
                         this.EntradaItems.Size = new System.Drawing.Size(488, 24);
-                        this.EntradaItems.Sufijo = "";
                         this.EntradaItems.TabIndex = 20;
                         this.EntradaItems.PlaceholderText = "";
                         this.EntradaItems.ToolTipText = "";
@@ -412,7 +404,7 @@ namespace Lfc.Personas
                 #endregion
 
                 internal Lcc.Entrada.CodigoDetalle EntradaObjeto;
-                internal System.Windows.Forms.Label Label16;
+                internal Lui.Forms.Label Label16;
                 private System.Windows.Forms.CheckBox CheckNivelListar;
                 private System.Windows.Forms.CheckBox CheckNivelVer;
                 private System.Windows.Forms.CheckBox CheckNivelImprimir;
@@ -428,9 +420,9 @@ namespace Lfc.Personas
                 private System.Windows.Forms.CheckBox CheckNivelExtraB;
                 private System.Windows.Forms.CheckBox CheckNivelExtraA;
                 internal Lui.Forms.TextBox EntradaItems;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 private System.Windows.Forms.CheckBox CheckNivelMover;
-                internal System.Windows.Forms.Label label2;
+                internal Lui.Forms.Label label2;
                 private System.Windows.Forms.CheckBox CheckNivelAdministrar;
         }
 }

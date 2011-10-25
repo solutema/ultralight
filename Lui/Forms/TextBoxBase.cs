@@ -30,9 +30,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Lui.Forms
@@ -236,7 +235,7 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                if (TextBox1.ForeColor == System.Drawing.SystemColors.GrayText)
+                                if (TextBox1.ForeColor == Lfx.Config.Display.CurrentTemplate.ControlGrayText)
                                         return "";
                                 else
                                         return TextBox1.Text;
@@ -249,7 +248,7 @@ namespace Lui.Forms
                         }
                 }
 
-                public int MaxLenght
+                public int MaxLength
                 {
                         get
                         {
@@ -289,7 +288,7 @@ namespace Lui.Forms
                 private void SetTipIfBlank()
                 {
                         if (TextBox1.Text == "" && this.PlaceholderText != null && this.PlaceholderText.Length > 0) {
-                                TextBox1.ForeColor = System.Drawing.SystemColors.GrayText;
+                                TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
                                 TextBox1.Text = m_PlaceholderText;
                                 TextBox1.SelectionStart = 0;
                                 TextBox1.SelectionLength = 0;
@@ -305,7 +304,7 @@ namespace Lui.Forms
                                 if (m_TemporaryReadOnly == false && m_ReadOnly == false) {
                                         TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
 
-                                        if (TextBox1.ForeColor == System.Drawing.SystemColors.GrayText) {
+                                        if (TextBox1.ForeColor == Lfx.Config.Display.CurrentTemplate.ControlGrayText) {
                                                 this.TextBox1.Text = "";
                                                 TextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
                                         }
@@ -333,6 +332,46 @@ namespace Lui.Forms
                 {
                         TextBox1.Width = this.Width - (TextBox1.Left * 2);
                         TextBox1.Height = this.Height - (TextBox1.Top * 2);
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Font Font
+                {
+                        get
+                        {
+                                return base.Font;
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Font CustomFont
+                {
+                        get
+                        {
+                                return this.Font;
+                        }
+                        set
+                        {
+                                base.Font = value;
+                        }
+                }
+
+
+                new public Color ForeColor
+                {
+                        get
+                        {
+                                return TextBox1.ForeColor;
+                        }
+                        set
+                        {
+                                TextBox1.ForeColor = value;
+                        }
                 }
         }
 }

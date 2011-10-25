@@ -65,16 +65,15 @@ namespace Lui.Forms
                         // 
                         // TextBox1
                         // 
-                        this.TextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
                         this.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.TextBox1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.TextBox1.Location = new System.Drawing.Point(4, 4);
                         this.TextBox1.Name = "TextBox1";
-                        this.TextBox1.Size = new System.Drawing.Size(452, 16);
+                        this.TextBox1.Size = new System.Drawing.Size(452, 13);
                         this.TextBox1.TabIndex = 0;
                         // 
                         // TextBoxBase
                         // 
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
                         this.Controls.Add(this.TextBox1);
                         this.Name = "TextBoxBase";
                         this.Size = new System.Drawing.Size(460, 24);

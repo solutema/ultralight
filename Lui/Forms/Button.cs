@@ -106,6 +106,45 @@ namespace Lui.Forms
                         }
                 }
 
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Font Font
+                {
+                        get
+                        {
+                                return base.Font;
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Color ForeColor
+                {
+                        get
+                        {
+                                return base.ForeColor;
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new protected Color BackColor
+                {
+                        get
+                        {
+                                return base.BackColor;
+                        }
+                        set
+                        {
+                                base.BackColor = value;
+                        }
+                }
+
+
                 public SubLabelPositions SubLabelPos
                 {
                         get
@@ -150,7 +189,7 @@ namespace Lui.Forms
                                         //No hay subtexto, el texto ocupa todo
                                         MainText.Width = this.Width - MainText.Left - HorizontalMargin;
                                         MainText.Height = this.Height - (VerticalMargin * 2);
-                                        MainText.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
+                                        MainText.Font = Lfx.Config.Display.DefaultFont;
 
                                         SubText.Visible = false;
                                         break;
@@ -159,14 +198,14 @@ namespace Lui.Forms
                                         MainText.Width = this.Width - MainText.Left - HorizontalMargin;
                                         MainText.Height = this.Height - SmallSubTextHeight - (VerticalMargin * 2);
                                         MainText.TextAlign = ContentAlignment.MiddleCenter;
-                                        MainText.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
+                                        MainText.Font = Lfx.Config.Display.DefaultFont;
 
                                         SubText.Left = MainText.Left;
                                         SubText.Width = MainText.Width;
                                         SubText.Height = SmallSubTextHeight;
                                         SubText.Top = MainText.Top + MainText.Height;
                                         SubText.TextAlign = ContentAlignment.MiddleCenter;
-                                        SubText.Font = Lfx.Config.Display.CurrentTemplate.SmallerFont;
+                                        SubText.Font = Lfx.Config.Display.SmallerFont;
 
                                         SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
                                         SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
@@ -177,12 +216,12 @@ namespace Lui.Forms
                                         MainText.Width = this.Width - MainText.Left - HorizontalMargin - SmallSubTextWidth;
                                         MainText.Height = this.Height - VerticalMargin * 2;
                                         MainText.TextAlign = ContentAlignment.MiddleCenter;
-                                        MainText.Font = Lfx.Config.Display.CurrentTemplate.DefaultFont;
+                                        MainText.Font = Lfx.Config.Display.DefaultFont;
 
                                         SubText.Size = new Size(SmallSubTextWidth, this.Height - VerticalMargin * 2);
                                         SubText.Location = new Point(this.Width - SubText.Width - HorizontalMargin, MainText.Top);
                                         SubText.TextAlign = ContentAlignment.MiddleCenter;
-                                        SubText.Font = Lfx.Config.Display.CurrentTemplate.SmallerFont;
+                                        SubText.Font = Lfx.Config.Display.SmallerFont;
 
                                         SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
                                         SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
@@ -196,7 +235,7 @@ namespace Lui.Forms
                                         else
                                                 MainText.Height = 22;
                                         MainText.TextAlign = ContentAlignment.MiddleLeft;
-                                        MainText.Font = Lfx.Config.Display.CurrentTemplate.TitleFont;
+                                        MainText.Font = Lfx.Config.Display.TitleFont;
 
                                         SubText.Left = MainText.Left;
                                         SubText.Width = MainText.Width;
@@ -205,7 +244,7 @@ namespace Lui.Forms
                                         SubText.TextAlign = ContentAlignment.TopLeft;
                                         SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonFace;
                                         SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonText;
-                                        SubText.Font = Lfx.Config.Display.CurrentTemplate.SmallFont;
+                                        SubText.Font = Lfx.Config.Display.SmallFont;
 
                                         SubText.Visible = true;
                                         break;

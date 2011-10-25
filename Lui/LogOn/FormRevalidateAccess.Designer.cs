@@ -59,13 +59,13 @@ namespace Lui.LogOn
 		private void InitializeComponent()
 		{
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRevalidateAccess));
-                        this.Titulo = new System.Windows.Forms.Label();
+                        this.Titulo = new Lui.Forms.Label();
                         this.EntradaContrasena = new Lui.Forms.TextBox();
                         this.PictureBox2 = new System.Windows.Forms.PictureBox();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaUsuario = new Lui.Forms.TextBox();
-                        this.label3 = new System.Windows.Forms.Label();
-                        this.LabelExplain = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
+                        this.LabelExplain = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
                         this.SuspendLayout();
                         // 
@@ -87,6 +87,7 @@ namespace Lui.LogOn
                         this.Titulo.TabIndex = 0;
                         this.Titulo.Text = "Para continuar, por favor escriba su contraseña.";
                         this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.Titulo.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         // 
                         // EntradaContrasena
                         // 
@@ -94,20 +95,14 @@ namespace Lui.LogOn
                         this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasena.DecimalPlaces = -1;
-                        this.EntradaContrasena.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaContrasena.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaContrasena.Location = new System.Drawing.Point(160, 148);
-                        this.EntradaContrasena.MaxLenght = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.TemporaryReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
-                        this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 4;
                         this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.ToolTipText = "";
@@ -124,8 +119,6 @@ namespace Lui.LogOn
                         // 
                         // Label2
                         // 
-                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Label2.Location = new System.Drawing.Point(72, 148);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(88, 24);
@@ -140,20 +133,14 @@ namespace Lui.LogOn
                         this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaUsuario.DecimalPlaces = -1;
                         this.EntradaUsuario.Enabled = false;
-                        this.EntradaUsuario.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaUsuario.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaUsuario.Location = new System.Drawing.Point(160, 116);
-                        this.EntradaUsuario.MaxLenght = 32767;
                         this.EntradaUsuario.MultiLine = false;
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUsuario.PasswordChar = '\0';
-                        this.EntradaUsuario.Prefijo = "";
                         this.EntradaUsuario.TemporaryReadOnly = true;
                         this.EntradaUsuario.SelectOnFocus = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(288, 24);
-                        this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 2;
                         this.EntradaUsuario.Text = "0";
                         this.EntradaUsuario.PlaceholderText = "";
@@ -161,8 +148,6 @@ namespace Lui.LogOn
                         // 
                         // label3
                         // 
-                        this.label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.label3.Location = new System.Drawing.Point(72, 116);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(88, 24);
@@ -210,12 +195,12 @@ namespace Lui.LogOn
 
 		#endregion
 
-		private System.Windows.Forms.Label Titulo;
+		private Lui.Forms.Label Titulo;
 		internal Lui.Forms.TextBox EntradaContrasena;
 		internal System.Windows.Forms.PictureBox PictureBox2;
-		internal System.Windows.Forms.Label Label2;
+		internal Lui.Forms.Label Label2;
 		internal Lui.Forms.TextBox EntradaUsuario;
-		internal System.Windows.Forms.Label label3;
-		protected internal System.Windows.Forms.Label LabelExplain;
+		internal Lui.Forms.Label label3;
+		protected internal Lui.Forms.Label LabelExplain;
 	}
 }

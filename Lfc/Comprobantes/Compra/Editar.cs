@@ -52,7 +52,7 @@ namespace Lfc.Comprobantes.Compra
 
 			InitializeComponent();
 
-			EtiquetaTitulo.Font = Lfx.Config.Display.CurrentTemplate.DefaultHeaderFont;
+                        EntradaTotal.CustomFont = new System.Drawing.Font(this.Font.Name, 15);
 			EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
 			EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
 		}

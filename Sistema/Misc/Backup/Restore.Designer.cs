@@ -59,12 +59,12 @@ namespace Lazaro.Misc.Backup
                 private System.ComponentModel.IContainer components = null;
 
                 internal System.Windows.Forms.PictureBox pctExclamation;
-                internal System.Windows.Forms.Label Label1;
-                internal System.Windows.Forms.Label Label2;
-                internal System.Windows.Forms.Label Label3;
-                internal System.Windows.Forms.Label lblFecha;
-                internal System.Windows.Forms.Label Label4;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label1;
+                internal Lui.Forms.Label Label2;
+                internal Lui.Forms.Label Label3;
+                internal Lui.Forms.Label lblFecha;
+                internal Lui.Forms.Label Label4;
+                internal Lui.Forms.Label Label5;
                 internal Lui.Forms.TextBox EntradaConfirmar;
                 internal System.Windows.Forms.PictureBox PictureBox1;
 
@@ -72,12 +72,12 @@ namespace Lazaro.Misc.Backup
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Restore));
                         this.pctExclamation = new System.Windows.Forms.PictureBox();
-                        this.Label1 = new System.Windows.Forms.Label();
-                        this.Label2 = new System.Windows.Forms.Label();
-                        this.Label3 = new System.Windows.Forms.Label();
-                        this.lblFecha = new System.Windows.Forms.Label();
-                        this.Label4 = new System.Windows.Forms.Label();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
+                        this.lblFecha = new Lui.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaConfirmar = new Lui.Forms.TextBox();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         ((System.ComponentModel.ISupportInitialize)(this.pctExclamation)).BeginInit();
@@ -98,7 +98,7 @@ namespace Lazaro.Misc.Backup
                         this.pctExclamation.Image = ((System.Drawing.Image)(resources.GetObject("pctExclamation.Image")));
                         this.pctExclamation.Location = new System.Drawing.Point(80, 84);
                         this.pctExclamation.Name = "pctExclamation";
-                        this.pctExclamation.Size = new System.Drawing.Size(52, 52);
+                        this.pctExclamation.Size = new System.Drawing.Size(56, 56);
                         this.pctExclamation.TabIndex = 56;
                         this.pctExclamation.TabStop = false;
                         // 
@@ -106,10 +106,10 @@ namespace Lazaro.Misc.Backup
                         // 
                         this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.Label1.Location = new System.Drawing.Point(80, 20);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(496, 24);
+                        this.Label1.Size = new System.Drawing.Size(496, 20);
                         this.Label1.TabIndex = 57;
                         this.Label1.Text = "Restaurar Copia de Seguridad";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,8 +117,8 @@ namespace Lazaro.Misc.Backup
                         // Label2
                         // 
                         this.Label2.BackColor = System.Drawing.Color.Red;
-                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.Label2.ForeColor = System.Drawing.Color.Snow;
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(80, 60);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(112, 20);
@@ -130,9 +130,10 @@ namespace Lazaro.Misc.Backup
                         // 
                         this.Label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label3.Location = new System.Drawing.Point(136, 88);
+                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label3.Location = new System.Drawing.Point(144, 88);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(444, 32);
+                        this.Label3.Size = new System.Drawing.Size(436, 32);
                         this.Label3.TabIndex = 59;
                         this.Label3.Text = "Si continúa con esta acción, llevará el estado del sistema completo atrás en el t" +
                             "iempo al:";
@@ -140,6 +141,7 @@ namespace Lazaro.Misc.Backup
                         // lblFecha
                         // 
                         this.lblFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.lblFecha.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.lblFecha.Location = new System.Drawing.Point(344, 124);
                         this.lblFecha.Name = "lblFecha";
                         this.lblFecha.Size = new System.Drawing.Size(236, 15);
@@ -150,6 +152,7 @@ namespace Lazaro.Misc.Backup
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(80, 152);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(500, 52);
@@ -162,6 +165,7 @@ namespace Lazaro.Misc.Backup
                         // 
                         this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(80, 216);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(500, 20);
@@ -171,26 +175,24 @@ namespace Lazaro.Misc.Backup
                         // EntradaConfirmar
                         // 
                         this.EntradaConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaConfirmar.AutoSize = false;
                         this.EntradaConfirmar.AutoNav = true;
                         this.EntradaConfirmar.AutoTab = false;
                         this.EntradaConfirmar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaConfirmar.DecimalPlaces = -1;
-                        this.EntradaConfirmar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaConfirmar.ForceCase = Lui.Forms.TextCasing.LowerCase;
-                        this.EntradaConfirmar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaConfirmar.Location = new System.Drawing.Point(500, 236);
-                        this.EntradaConfirmar.MaxLenght = 32767;
+                        this.EntradaConfirmar.MaxLength = 32767;
                         this.EntradaConfirmar.MultiLine = false;
                         this.EntradaConfirmar.Name = "EntradaConfirmar";
                         this.EntradaConfirmar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConfirmar.PasswordChar = '\0';
+                        this.EntradaConfirmar.PlaceholderText = "";
                         this.EntradaConfirmar.Prefijo = "";
+                        this.EntradaConfirmar.ReadOnly = false;
                         this.EntradaConfirmar.SelectOnFocus = true;
                         this.EntradaConfirmar.Size = new System.Drawing.Size(80, 24);
                         this.EntradaConfirmar.Sufijo = "";
                         this.EntradaConfirmar.TabIndex = 0;
-                        this.EntradaConfirmar.PlaceholderText = "";
                         this.EntradaConfirmar.ToolTipText = "Escriba el texto de confirmación para poder continuar";
                         this.EntradaConfirmar.TextChanged += new System.EventHandler(this.EntradaConfirmar_TextChanged);
                         // 

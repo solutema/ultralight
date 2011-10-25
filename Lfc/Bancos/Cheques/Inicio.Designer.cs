@@ -63,8 +63,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.DepositarPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.DepositarPagar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.DepositarPagar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.DepositarPagar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.DepositarPagar.Image = null;
                         this.DepositarPagar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.DepositarPagar.Location = new System.Drawing.Point(12, 283);

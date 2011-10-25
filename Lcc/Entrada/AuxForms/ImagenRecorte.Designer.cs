@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -52,9 +52,9 @@ namespace Lcc.Entrada.AuxForms
                         this.copiarAlPortapapelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
                         this.guardarEnUnArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
                         this.BotonGuardar = new Lui.Forms.Button();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.EntradaRatio = new Lui.Forms.ComboBox();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.BotonSinRecorte = new Lui.Forms.Button();
                         this.panel1 = new System.Windows.Forms.Panel();
                         ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).BeginInit();
@@ -103,8 +103,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.BotonGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonGuardar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonGuardar.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonGuardar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonGuardar.Image = null;
                         this.BotonGuardar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonGuardar.Location = new System.Drawing.Point(471, 10);
@@ -123,7 +121,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label1.Location = new System.Drawing.Point(12, 12);
                         this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label1.Name = "label1";
@@ -137,10 +134,8 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaRatio.AutoNav = true;
                         this.EntradaRatio.AutoSize = true;
                         this.EntradaRatio.AutoTab = true;
-                        this.EntradaRatio.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaRatio.Location = new System.Drawing.Point(96, 4);
                         this.EntradaRatio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaRatio.MaxLenght = 32767;
                         this.EntradaRatio.Name = "EntradaRatio";
                         this.EntradaRatio.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaRatio.SetData = new string[] {
@@ -157,7 +152,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         // label2
                         // 
-                        this.label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.label2.Location = new System.Drawing.Point(8, 4);
                         this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label2.Name = "label2";
@@ -170,8 +164,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.BotonSinRecorte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonSinRecorte.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonSinRecorte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonSinRecorte.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSinRecorte.Image = null;
                         this.BotonSinRecorte.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSinRecorte.Location = new System.Drawing.Point(362, 10);
@@ -228,9 +220,9 @@ namespace Lcc.Entrada.AuxForms
 
                 private System.Windows.Forms.PictureBox EntradaImagen;
                 internal Lui.Forms.Button BotonGuardar;
-                private System.Windows.Forms.Label label1;
+                private Lui.Forms.Label label1;
                 private Lui.Forms.ComboBox EntradaRatio;
-                private System.Windows.Forms.Label label2;
+                private Lui.Forms.Label label2;
                 internal Lui.Forms.Button BotonSinRecorte;
                 private System.Windows.Forms.ContextMenuStrip MenuEntradImagen;
                 private System.Windows.Forms.ToolStripMenuItem copiarAlPortapapelesToolStripMenuItem;

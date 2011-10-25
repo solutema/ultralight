@@ -54,9 +54,9 @@ namespace Lfc.Tareas.Estados
                 private void InitializeComponent()
                 {
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaObs = new Lui.Forms.TextBox();
-                        this.Label13 = new System.Windows.Forms.Label();
+                        this.Label13 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaNombre
@@ -67,21 +67,15 @@ namespace Lfc.Tareas.Estados
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(524, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.ToolTipText = "";
                         // 
@@ -102,21 +96,15 @@ namespace Lfc.Tareas.Estados
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaObs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaObs.Location = new System.Drawing.Point(116, 28);
-                        this.EntradaObs.MaxLenght = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.PasswordChar = '\0';
                         this.EntradaObs.PlaceholderText = "";
-                        this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(524, 72);
-                        this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 3;
                         this.EntradaObs.ToolTipText = "Descripción larga";
                         // 
@@ -148,9 +136,9 @@ namespace Lfc.Tareas.Estados
                 #endregion
 
                 private Lui.Forms.TextBox EntradaNombre;
-                private System.Windows.Forms.Label Label1;
+                private Lui.Forms.Label Label1;
                 internal Lui.Forms.TextBox EntradaObs;
-                internal System.Windows.Forms.Label Label13;
+                internal Lui.Forms.Label Label13;
 
         }
 }

@@ -43,7 +43,7 @@ namespace Lfc.Cajas
                 public int iMonedaOrigen;
                 public int iMonedaDestino;
                 public Lfx.Data.Row MonedaOrigen, MonedaDestino;
-                internal System.Windows.Forms.Label label7;
+                internal Lui.Forms.Label label7;
 
                 #region Código generado por el Diseñador de Windows Forms
 
@@ -77,38 +77,38 @@ namespace Lfc.Cajas
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Label Label3;
+                internal Lui.Forms.Label Label3;
                 internal Lui.Forms.TextBox EntradaImporte;
-                internal System.Windows.Forms.Label Label2;
+                internal Lui.Forms.Label Label2;
                 internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.TextBox EntradaObs;
-                internal System.Windows.Forms.Label Label4;
+                internal Lui.Forms.Label Label4;
                 internal Lui.Forms.TextBox EntradaComprob;
-                internal System.Windows.Forms.Label Label5;
-                internal System.Windows.Forms.Label Label6;
+                internal Lui.Forms.Label Label5;
+                internal Lui.Forms.Label Label6;
                 internal Lcc.Entrada.CodigoDetalle EntradaDestino;
                 internal Lcc.Entrada.CodigoDetalle EntradaOrigen;
                 internal Lui.Forms.TextBox EntradaImporteDestino;
-                internal System.Windows.Forms.Label lblImporteDestino;
+                internal Lui.Forms.Label lblImporteDestino;
 
                 private void InitializeComponent()
                 {
                         this.EntradaDestino = new Lcc.Entrada.CodigoDetalle();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.EntradaImporte = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaObs = new Lui.Forms.TextBox();
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.EntradaComprob = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaOrigen = new Lcc.Entrada.CodigoDetalle();
-                        this.Label6 = new System.Windows.Forms.Label();
+                        this.Label6 = new Lui.Forms.Label();
                         this.EntradaImporteDestino = new Lui.Forms.TextBox();
-                        this.lblImporteDestino = new System.Windows.Forms.Label();
-                        this.label7 = new System.Windows.Forms.Label();
+                        this.lblImporteDestino = new Lui.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -128,8 +128,6 @@ namespace Lfc.Cajas
                         this.EntradaDestino.DataTextField = "nombre";
                         this.EntradaDestino.DockPadding.All = 2;
                         this.EntradaDestino.ExtraDetailFields = null;
-                        this.EntradaDestino.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaDestino.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaDestino.FreeTextCode = "";
                         this.EntradaDestino.DataValueField = "id_caja";
                         this.EntradaDestino.Location = new System.Drawing.Point(112, 100);
@@ -161,10 +159,7 @@ namespace Lfc.Cajas
                         this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DockPadding.All = 2;
-                        this.EntradaImporte.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaImporte.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaImporte.Location = new System.Drawing.Point(112, 132);
-                        this.EntradaImporte.MaxLenght = 32767;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.TemporaryReadOnly = false;
@@ -190,8 +185,6 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.DockPadding.All = 2;
                         this.EntradaConcepto.ExtraDetailFields = null;
-                        this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaConcepto.FreeTextCode = "*";
                         this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.Location = new System.Drawing.Point(112, 164);
@@ -222,10 +215,7 @@ namespace Lfc.Cajas
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DockPadding.All = 2;
-                        this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaObs.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaObs.Location = new System.Drawing.Point(112, 228);
-                        this.EntradaObs.MaxLenght = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.TemporaryReadOnly = false;
@@ -250,10 +240,7 @@ namespace Lfc.Cajas
                         this.EntradaComprob.AutoTab = true;
                         this.EntradaComprob.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaComprob.DockPadding.All = 2;
-                        this.EntradaComprob.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaComprob.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaComprob.Location = new System.Drawing.Point(112, 196);
-                        this.EntradaComprob.MaxLenght = 32767;
                         this.EntradaComprob.Name = "EntradaComprob";
                         this.EntradaComprob.TemporaryReadOnly = false;
                         this.EntradaComprob.Size = new System.Drawing.Size(240, 24);
@@ -276,8 +263,6 @@ namespace Lfc.Cajas
                         this.EntradaOrigen.DataTextField = "nombre";
                         this.EntradaOrigen.DockPadding.All = 2;
                         this.EntradaOrigen.ExtraDetailFields = null;
-                        this.EntradaOrigen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaOrigen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaOrigen.FreeTextCode = "";
                         this.EntradaOrigen.DataValueField = "id_caja";
                         this.EntradaOrigen.Location = new System.Drawing.Point(112, 68);
@@ -310,10 +295,7 @@ namespace Lfc.Cajas
                         this.EntradaImporteDestino.AutoTab = true;
                         this.EntradaImporteDestino.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporteDestino.DockPadding.All = 2;
-                        this.EntradaImporteDestino.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaImporteDestino.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaImporteDestino.Location = new System.Drawing.Point(244, 132);
-                        this.EntradaImporteDestino.MaxLenght = 32767;
                         this.EntradaImporteDestino.Name = "EntradaImporteDestino";
                         this.EntradaImporteDestino.Prefijo = "$";
                         this.EntradaImporteDestino.TemporaryReadOnly = false;
@@ -335,7 +317,6 @@ namespace Lfc.Cajas
                         // 
                         // label7
                         // 
-                        this.label7.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
                         this.label7.Location = new System.Drawing.Point(16, 16);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(560, 36);

@@ -55,11 +55,11 @@ namespace Lfc.Articulos.Margenes
                 private void InitializeComponent()
                 {
                         this.EntradaPorcentaje = new Lui.Forms.TextBox();
-                        this.Label12 = new System.Windows.Forms.Label();
+                        this.Label12 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.EntradaPredet = new Lui.Forms.ComboBox();
-                        this.Label7 = new System.Windows.Forms.Label();
+                        this.Label7 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaPorcentaje
@@ -69,21 +69,15 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPorcentaje.AutoTab = true;
                         this.EntradaPorcentaje.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaPorcentaje.DecimalPlaces = -1;
-                        this.EntradaPorcentaje.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaPorcentaje.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPorcentaje.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPorcentaje.Location = new System.Drawing.Point(148, 44);
-                        this.EntradaPorcentaje.MaxLenght = 32767;
                         this.EntradaPorcentaje.MultiLine = false;
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPorcentaje.PasswordChar = '\0';
                         this.EntradaPorcentaje.PlaceholderText = "";
-                        this.EntradaPorcentaje.Prefijo = "";
                         this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.SelectOnFocus = false;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaPorcentaje.Sufijo = "";
                         this.EntradaPorcentaje.TabIndex = 3;
                         this.EntradaPorcentaje.Text = "0.0000";
                         this.EntradaPorcentaje.ToolTipText = "";
@@ -105,21 +99,15 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(148, 12);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(392, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.ToolTipText = "";
                         // 
@@ -137,10 +125,7 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPredet.AlwaysExpanded = false;
                         this.EntradaPredet.AutoNav = true;
                         this.EntradaPredet.AutoTab = true;
-                        this.EntradaPredet.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaPredet.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPredet.Location = new System.Drawing.Point(148, 76);
-                        this.EntradaPredet.MaxLenght = 32767;
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPredet.PlaceholderText = "";
@@ -186,10 +171,10 @@ namespace Lfc.Articulos.Margenes
                 #endregion
 
                 internal Lui.Forms.TextBox EntradaPorcentaje;
-                internal System.Windows.Forms.Label Label12;
+                internal Lui.Forms.Label Label12;
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label5;
                 internal Lui.Forms.ComboBox EntradaPredet;
-                internal System.Windows.Forms.Label Label7;
+                internal Lui.Forms.Label Label7;
         }
 }

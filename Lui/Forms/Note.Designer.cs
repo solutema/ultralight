@@ -58,76 +58,80 @@ namespace Lui.Forms
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.LabelTitle = new System.Windows.Forms.Label();
-			this.LabelText = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.SuspendLayout();
-			// 
-			// LabelTitle
-			// 
-			this.LabelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-				    | System.Windows.Forms.AnchorStyles.Right)));
-			this.LabelTitle.AutoEllipsis = true;
-			this.LabelTitle.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.LabelTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.LabelTitle.Location = new System.Drawing.Point(4, 4);
-			this.LabelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.LabelTitle.Name = "LabelTitle";
-			this.LabelTitle.Size = new System.Drawing.Size(312, 24);
-			this.LabelTitle.TabIndex = 0;
-			this.LabelTitle.Text = "Title";
-			this.LabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.LabelTitle.UseMnemonic = false;
-			// 
-			// LabelText
-			// 
-			this.LabelText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-				    | System.Windows.Forms.AnchorStyles.Left)
-				    | System.Windows.Forms.AnchorStyles.Right)));
-			this.LabelText.AutoEllipsis = true;
-			this.LabelText.Font = new System.Drawing.Font("Bitstream Vera Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.LabelText.Location = new System.Drawing.Point(16, 36);
-			this.LabelText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.LabelText.Name = "LabelText";
-			this.LabelText.Size = new System.Drawing.Size(297, 120);
-			this.LabelText.TabIndex = 1;
-			this.LabelText.Text = "Text";
-			this.LabelText.UseMnemonic = false;
-			// 
-			// label1
-			// 
-			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-				    | System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.AutoEllipsis = true;
-			this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.label1.Location = new System.Drawing.Point(4, 30);
-			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(313, 1);
-			this.label1.TabIndex = 2;
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.label1.UseMnemonic = false;
-			// 
-			// Note
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.LabelTitle);
-			this.Controls.Add(this.LabelText);
-			this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.Name = "Note";
-			this.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.Size = new System.Drawing.Size(320, 160);
-			this.ResumeLayout(false);
-			this.PerformLayout();
+                        this.LabelTitle = new Lui.Forms.Label();
+                        this.LabelText = new Lui.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.SuspendLayout();
+                        // 
+                        // LabelTitle
+                        // 
+                        this.LabelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.LabelTitle.AutoEllipsis = true;
+                        this.LabelTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.LabelTitle.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.LabelTitle.Location = new System.Drawing.Point(4, 4);
+                        this.LabelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.LabelTitle.Name = "LabelTitle";
+                        this.LabelTitle.Size = new System.Drawing.Size(312, 24);
+                        this.LabelTitle.TabIndex = 0;
+                        this.LabelTitle.Text = "Title";
+                        this.LabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.LabelTitle.UseMnemonic = false;
+                        // 
+                        // LabelText
+                        // 
+                        this.LabelText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                    | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.LabelText.AutoEllipsis = true;
+                        this.LabelText.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.LabelText.Location = new System.Drawing.Point(16, 36);
+                        this.LabelText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.LabelText.Name = "LabelText";
+                        this.LabelText.Size = new System.Drawing.Size(297, 120);
+                        this.LabelText.TabIndex = 1;
+                        this.LabelText.Text = "Text";
+                        this.LabelText.UseMnemonic = false;
+                        // 
+                        // label1
+                        // 
+                        this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label1.AutoEllipsis = true;
+                        this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.Location = new System.Drawing.Point(4, 30);
+                        this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(313, 1);
+                        this.label1.TabIndex = 2;
+                        this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label1.UseMnemonic = false;
+                        // 
+                        // Note
+                        // 
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                        this.Controls.Add(this.label1);
+                        this.Controls.Add(this.LabelTitle);
+                        this.Controls.Add(this.LabelText);
+                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.Name = "Note";
+                        this.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.Size = new System.Drawing.Size(320, 160);
+                        this.Controls.SetChildIndex(this.LabelText, 0);
+                        this.Controls.SetChildIndex(this.LabelTitle, 0);
+                        this.Controls.SetChildIndex(this.label1, 0);
+                        this.ResumeLayout(false);
+                        this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.Label LabelTitle;
-		private System.Windows.Forms.Label LabelText;
-		private System.Windows.Forms.Label label1;
+		private Lui.Forms.Label LabelTitle;
+		private Lui.Forms.Label LabelText;
+		private Lui.Forms.Label label1;
 	}
 }

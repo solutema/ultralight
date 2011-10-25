@@ -39,16 +39,16 @@ namespace Lfc.Bancos.Cheques
 {
 	public class Entregar : Lui.Forms.DialogForm
 	{
-		internal System.Windows.Forms.Label label3;
+		internal Lui.Forms.Label label3;
 		internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
 		internal Lui.Forms.TextBox EntradaObs;
-		internal System.Windows.Forms.Label Label4;
-		internal System.Windows.Forms.Label label5;
+		internal Lui.Forms.Label Label4;
+		internal Lui.Forms.Label label5;
 		internal Lui.Forms.TextBox EntradaSubTotal;
-		internal System.Windows.Forms.Label Label1;
+		internal Lui.Forms.Label Label1;
 		internal Lui.Forms.TextBox EntradaCantidad;
-		internal System.Windows.Forms.Label lblLabel1;
-		internal System.Windows.Forms.Label label2;
+		internal Lui.Forms.Label lblLabel1;
+		internal Lui.Forms.Label label2;
 		internal Lcc.Entrada.CodigoDetalle gDetailBox1;
 		private System.ComponentModel.IContainer components = null;
 
@@ -79,16 +79,16 @@ namespace Lfc.Bancos.Cheques
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.label3 = new System.Windows.Forms.Label();
+			this.label3 = new Lui.Forms.Label();
 			this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
 			this.EntradaObs = new Lui.Forms.TextBox();
-			this.Label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
+			this.Label4 = new Lui.Forms.Label();
+			this.label5 = new Lui.Forms.Label();
 			this.EntradaSubTotal = new Lui.Forms.TextBox();
-			this.Label1 = new System.Windows.Forms.Label();
+			this.Label1 = new Lui.Forms.Label();
 			this.EntradaCantidad = new Lui.Forms.TextBox();
-			this.lblLabel1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
+			this.lblLabel1 = new Lui.Forms.Label();
+			this.label2 = new Lui.Forms.Label();
 			this.gDetailBox1 = new Lcc.Entrada.CodigoDetalle();
 			this.SuspendLayout();
 			// 
@@ -122,8 +122,6 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaConcepto.DataTextField = "nombre";
 			this.EntradaConcepto.DockPadding.All = 2;
 			this.EntradaConcepto.ExtraDetailFields = null;
-			this.EntradaConcepto.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.EntradaConcepto.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.EntradaConcepto.FreeTextCode = "";
 			this.EntradaConcepto.DataValueField = "id_concepto";
 			this.EntradaConcepto.Location = new System.Drawing.Point(128, 136);
@@ -145,10 +143,7 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaObs.AutoTab = true;
 			this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
 			this.EntradaObs.DockPadding.All = 2;
-			this.EntradaObs.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.EntradaObs.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.EntradaObs.Location = new System.Drawing.Point(128, 172);
-			this.EntradaObs.MaxLenght = 32767;
 			this.EntradaObs.MultiLine = true;
 			this.EntradaObs.Name = "EntradaObs";
 			this.EntradaObs.TemporaryReadOnly = false;
@@ -168,7 +163,6 @@ namespace Lfc.Bancos.Cheques
 			// 
 			// label5
 			// 
-			this.label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.label5.Location = new System.Drawing.Point(20, 16);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(508, 32);
@@ -182,10 +176,7 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaSubTotal.AutoTab = true;
 			this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
 			this.EntradaSubTotal.DockPadding.All = 2;
-			this.EntradaSubTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.EntradaSubTotal.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.EntradaSubTotal.Location = new System.Drawing.Point(368, 68);
-			this.EntradaSubTotal.MaxLenght = 32767;
 			this.EntradaSubTotal.Name = "EntradaSubTotal";
 			this.EntradaSubTotal.Prefijo = "$";
 			this.EntradaSubTotal.TemporaryReadOnly = true;
@@ -197,7 +188,6 @@ namespace Lfc.Bancos.Cheques
 			// 
 			// Label1
 			// 
-			this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.Label1.Location = new System.Drawing.Point(192, 68);
 			this.Label1.Name = "Label1";
 			this.Label1.Size = new System.Drawing.Size(176, 24);
@@ -211,10 +201,7 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaCantidad.AutoTab = true;
 			this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Integer;
 			this.EntradaCantidad.DockPadding.All = 2;
-			this.EntradaCantidad.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.EntradaCantidad.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.EntradaCantidad.Location = new System.Drawing.Point(128, 68);
-			this.EntradaCantidad.MaxLenght = 32767;
 			this.EntradaCantidad.Name = "EntradaCantidad";
 			this.EntradaCantidad.TemporaryReadOnly = true;
 			this.EntradaCantidad.Size = new System.Drawing.Size(56, 24);
@@ -225,7 +212,6 @@ namespace Lfc.Bancos.Cheques
 			// 
 			// lblLabel1
 			// 
-			this.lblLabel1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblLabel1.Location = new System.Drawing.Point(16, 68);
 			this.lblLabel1.Name = "lblLabel1";
 			this.lblLabel1.Size = new System.Drawing.Size(112, 24);
@@ -251,8 +237,6 @@ namespace Lfc.Bancos.Cheques
 			this.gDetailBox1.DataTextField = "nombre_visible";
 			this.gDetailBox1.DockPadding.All = 2;
 			this.gDetailBox1.ExtraDetailFields = null;
-			this.gDetailBox1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.gDetailBox1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.gDetailBox1.FreeTextCode = "";
 			this.gDetailBox1.DataValueField = "id_persona";
 			this.gDetailBox1.Location = new System.Drawing.Point(128, 104);

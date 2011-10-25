@@ -53,20 +53,20 @@ namespace Lfc.Articulos
 
                 private void InitializeComponent()
                 {
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaFechaCreado = new Lui.Forms.TextBox();
                         this.EntradaFechaPrecio = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaCostoUltimaCompra = new Lui.Forms.TextBox();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.EntradaCostoUltimas5Compras = new Lui.Forms.TextBox();
-                        this.Label4 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
                         this.lvItems = new Lui.Forms.ListView();
                         this.fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.costo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.pvp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.usuario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -93,20 +93,14 @@ namespace Lfc.Articulos
                         this.EntradaFechaCreado.AutoTab = true;
                         this.EntradaFechaCreado.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaFechaCreado.DecimalPlaces = -1;
-                        this.EntradaFechaCreado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFechaCreado.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFechaCreado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaFechaCreado.Location = new System.Drawing.Point(144, 12);
-                        this.EntradaFechaCreado.MaxLenght = 32767;
                         this.EntradaFechaCreado.MultiLine = false;
                         this.EntradaFechaCreado.Name = "EntradaFechaCreado";
                         this.EntradaFechaCreado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaCreado.PasswordChar = '\0';
-                        this.EntradaFechaCreado.Prefijo = "";
                         this.EntradaFechaCreado.TemporaryReadOnly = true;
                         this.EntradaFechaCreado.SelectOnFocus = true;
                         this.EntradaFechaCreado.Size = new System.Drawing.Size(140, 24);
-                        this.EntradaFechaCreado.Sufijo = "";
                         this.EntradaFechaCreado.TabIndex = 51;
                         this.EntradaFechaCreado.PlaceholderText = "";
                         this.EntradaFechaCreado.ToolTipText = "";
@@ -118,20 +112,14 @@ namespace Lfc.Articulos
                         this.EntradaFechaPrecio.AutoTab = true;
                         this.EntradaFechaPrecio.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaFechaPrecio.DecimalPlaces = -1;
-                        this.EntradaFechaPrecio.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFechaPrecio.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFechaPrecio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaFechaPrecio.Location = new System.Drawing.Point(144, 40);
-                        this.EntradaFechaPrecio.MaxLenght = 32767;
                         this.EntradaFechaPrecio.MultiLine = false;
                         this.EntradaFechaPrecio.Name = "EntradaFechaPrecio";
                         this.EntradaFechaPrecio.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaPrecio.PasswordChar = '\0';
-                        this.EntradaFechaPrecio.Prefijo = "";
                         this.EntradaFechaPrecio.TemporaryReadOnly = true;
                         this.EntradaFechaPrecio.SelectOnFocus = true;
                         this.EntradaFechaPrecio.Size = new System.Drawing.Size(140, 24);
-                        this.EntradaFechaPrecio.Sufijo = "";
                         this.EntradaFechaPrecio.TabIndex = 53;
                         this.EntradaFechaPrecio.PlaceholderText = "";
                         this.EntradaFechaPrecio.ToolTipText = "";
@@ -153,20 +141,14 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.AutoTab = true;
                         this.EntradaCostoUltimaCompra.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCostoUltimaCompra.DecimalPlaces = -1;
-                        this.EntradaCostoUltimaCompra.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCostoUltimaCompra.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCostoUltimaCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCostoUltimaCompra.Location = new System.Drawing.Point(368, 251);
-                        this.EntradaCostoUltimaCompra.MaxLenght = 32767;
                         this.EntradaCostoUltimaCompra.MultiLine = false;
                         this.EntradaCostoUltimaCompra.Name = "EntradaCostoUlt";
                         this.EntradaCostoUltimaCompra.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCostoUltimaCompra.PasswordChar = '\0';
-                        this.EntradaCostoUltimaCompra.Prefijo = "";
                         this.EntradaCostoUltimaCompra.TemporaryReadOnly = false;
                         this.EntradaCostoUltimaCompra.SelectOnFocus = true;
                         this.EntradaCostoUltimaCompra.Size = new System.Drawing.Size(92, 24);
-                        this.EntradaCostoUltimaCompra.Sufijo = "";
                         this.EntradaCostoUltimaCompra.TabIndex = 55;
                         this.EntradaCostoUltimaCompra.Text = "0.00";
                         this.EntradaCostoUltimaCompra.PlaceholderText = "";
@@ -190,20 +172,14 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.AutoTab = true;
                         this.EntradaCostoUltimas5Compras.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCostoUltimas5Compras.DecimalPlaces = -1;
-                        this.EntradaCostoUltimas5Compras.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCostoUltimas5Compras.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCostoUltimas5Compras.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(2)))), ((int)(((byte)(25)))));
                         this.EntradaCostoUltimas5Compras.Location = new System.Drawing.Point(368, 279);
-                        this.EntradaCostoUltimas5Compras.MaxLenght = 32767;
                         this.EntradaCostoUltimas5Compras.MultiLine = false;
                         this.EntradaCostoUltimas5Compras.Name = "EntradaCostoProm";
                         this.EntradaCostoUltimas5Compras.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCostoUltimas5Compras.PasswordChar = '\0';
-                        this.EntradaCostoUltimas5Compras.Prefijo = "";
                         this.EntradaCostoUltimas5Compras.TemporaryReadOnly = false;
                         this.EntradaCostoUltimas5Compras.SelectOnFocus = true;
                         this.EntradaCostoUltimas5Compras.Size = new System.Drawing.Size(92, 24);
-                        this.EntradaCostoUltimas5Compras.Sufijo = "";
                         this.EntradaCostoUltimas5Compras.TabIndex = 57;
                         this.EntradaCostoUltimas5Compras.Text = "0.00";
                         this.EntradaCostoUltimas5Compras.PlaceholderText = "";
@@ -307,16 +283,16 @@ namespace Lfc.Articulos
                 #endregion
 
 
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.TextBox EntradaFechaCreado;
-                internal System.Windows.Forms.Label Label2;
-                internal System.Windows.Forms.Label Label3;
-                internal System.Windows.Forms.Label Label4;
+                internal Lui.Forms.Label Label2;
+                internal Lui.Forms.Label Label3;
+                internal Lui.Forms.Label Label4;
                 internal Lui.Forms.TextBox EntradaFechaPrecio;
                 internal Lui.Forms.TextBox EntradaCostoUltimaCompra;
                 internal Lui.Forms.TextBox EntradaCostoUltimas5Compras;
                 internal Lui.Forms.ListView lvItems;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label5;
                 internal System.Windows.Forms.ColumnHeader fecha;
                 internal System.Windows.Forms.ColumnHeader costo;
                 internal System.Windows.Forms.ColumnHeader pvp;

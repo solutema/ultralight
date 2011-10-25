@@ -87,8 +87,8 @@ namespace Lfc.Articulos
 		internal System.Windows.Forms.ColumnHeader ColumnHeader2;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader3;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader4;
-		internal System.Windows.Forms.Label Label1;
-		internal System.Windows.Forms.Label Label2;
+		internal Lui.Forms.Label Label1;
+		internal Lui.Forms.Label Label2;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader5;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader6;
 		internal System.Windows.Forms.ColumnHeader desde;
@@ -111,8 +111,8 @@ namespace Lfc.Articulos
                         this.ColumnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.Label1 = new System.Windows.Forms.Label();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // lvItems

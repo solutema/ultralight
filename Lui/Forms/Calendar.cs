@@ -197,7 +197,6 @@ namespace Lui.Forms
                         for (int i = 1; i <= DiasDelMes; i++) {
                                 lblDia = ((Label)(Dias[PrimerDia + i - 1]));
                                 lblDia.Text = i.ToString();
-                                lblDia.ForeColor = System.Drawing.SystemColors.ControlText;
 
                                 if (IsSelected(new DateTime(m_CurrentDate.Year, m_CurrentDate.Month, i))) {
                                         lblDia.BackColor = Lfx.Config.Display.CurrentTemplate.Selection;

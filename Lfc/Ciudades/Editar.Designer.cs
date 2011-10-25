@@ -51,16 +51,16 @@ namespace Lfc.Ciudades
 
                 private void InitializeComponent()
                 {
-                        this.Label1 = new System.Windows.Forms.Label();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
                         this.EntradaCp = new Lui.Forms.TextBox();
                         this.EntradaParent = new Lcc.Entrada.CodigoDetalle();
-                        this.EtiquetaParent = new System.Windows.Forms.Label();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.EtiquetaParent = new Lui.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.EntradaNivel = new Lui.Forms.ComboBox();
                         this.EntradaIva = new Lui.Forms.ComboBox();
-                        this.label4 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Label1
@@ -89,21 +89,15 @@ namespace Lfc.Ciudades
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
                         this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(670, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.ToolTipText = "";
                         // 
@@ -113,21 +107,15 @@ namespace Lfc.Ciudades
                         this.EntradaCp.AutoTab = true;
                         this.EntradaCp.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCp.DecimalPlaces = -1;
-                        this.EntradaCp.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCp.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCp.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCp.Location = new System.Drawing.Point(116, 92);
-                        this.EntradaCp.MaxLenght = 32767;
                         this.EntradaCp.MultiLine = false;
                         this.EntradaCp.Name = "EntradaCp";
                         this.EntradaCp.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCp.PasswordChar = '\0';
                         this.EntradaCp.PlaceholderText = "";
-                        this.EntradaCp.Prefijo = "";
                         this.EntradaCp.ReadOnly = false;
                         this.EntradaCp.SelectOnFocus = false;
                         this.EntradaCp.Size = new System.Drawing.Size(172, 24);
-                        this.EntradaCp.Sufijo = "";
                         this.EntradaCp.TabIndex = 5;
                         this.EntradaCp.ToolTipText = "";
                         // 
@@ -142,8 +130,6 @@ namespace Lfc.Ciudades
                         this.EntradaParent.DataValueField = "id_ciudad";
                         this.EntradaParent.ExtraDetailFields = null;
                         this.EntradaParent.Filter = "parent IS NULL";
-                        this.EntradaParent.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaParent.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaParent.FreeTextCode = "";
                         this.EntradaParent.Location = new System.Drawing.Point(116, 124);
                         this.EntradaParent.MaxLength = 200;
@@ -183,9 +169,7 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.AutoNav = true;
                         this.EntradaNivel.AutoSize = true;
                         this.EntradaNivel.AutoTab = true;
-                        this.EntradaNivel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaNivel.Location = new System.Drawing.Point(116, 32);
-                        this.EntradaNivel.MaxLenght = 32767;
                         this.EntradaNivel.Name = "EntradaNivel";
                         this.EntradaNivel.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNivel.PlaceholderText = "";
@@ -206,9 +190,7 @@ namespace Lfc.Ciudades
                         this.EntradaIva.AutoNav = true;
                         this.EntradaIva.AutoSize = true;
                         this.EntradaIva.AutoTab = true;
-                        this.EntradaIva.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaIva.Location = new System.Drawing.Point(116, 156);
-                        this.EntradaIva.MaxLenght = 32767;
                         this.EntradaIva.Name = "EntradaIva";
                         this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaIva.PlaceholderText = "";
@@ -263,8 +245,8 @@ namespace Lfc.Ciudades
 
                 #endregion
 
-                private System.Windows.Forms.Label Label1;
-                private System.Windows.Forms.Label Label2;
+                private Lui.Forms.Label Label1;
+                private Lui.Forms.Label Label2;
                 private Lui.Forms.TextBox EntradaNombre;
                 private Lcc.Entrada.CodigoDetalle EntradaParent;
                 private Label EtiquetaParent;

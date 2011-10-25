@@ -60,7 +60,7 @@ namespace Lui.Forms
 
         #endregion
 
-        public class OrientedTextLabel2 : System.Windows.Forms.Label
+        public class OrientedTextLabel2 : Lui.Forms.Label
         {
                 #region Variables
 

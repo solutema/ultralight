@@ -73,27 +73,27 @@ namespace Lfc.Comprobantes
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal System.Windows.Forms.Label Label1;
+                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.TextBox EntradaTotal;
                 internal Lui.Forms.TextBox EntradaPago;
-                internal System.Windows.Forms.Label Label2;
+                internal Lui.Forms.Label Label2;
                 internal Lui.Forms.TextBox EntradaCambio;
-                internal System.Windows.Forms.Label Label3;
+                internal Lui.Forms.Label Label3;
                 internal System.Windows.Forms.PictureBox PictureBox1;
-                internal System.Windows.Forms.Label Label4;
-                internal System.Windows.Forms.Label Label5;
+                internal Lui.Forms.Label Label4;
+                internal Lui.Forms.Label Label5;
 
                 private void InitializeComponent()
                 {
-                        this.Label1 = new System.Windows.Forms.Label();
+                        this.Label1 = new Lui.Forms.Label();
                         this.EntradaTotal = new Lui.Forms.TextBox();
                         this.EntradaPago = new Lui.Forms.TextBox();
-                        this.Label2 = new System.Windows.Forms.Label();
+                        this.Label2 = new Lui.Forms.Label();
                         this.EntradaCambio = new Lui.Forms.TextBox();
-                        this.Label3 = new System.Windows.Forms.Label();
+                        this.Label3 = new Lui.Forms.Label();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.Label4 = new System.Windows.Forms.Label();
-                        this.Label5 = new System.Windows.Forms.Label();
+                        this.Label4 = new Lui.Forms.Label();
+                        this.Label5 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -111,7 +111,6 @@ namespace Lfc.Comprobantes
                         // Label1
                         // 
                         this.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
                         this.Label1.Location = new System.Drawing.Point(48, 92);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(164, 32);
@@ -126,10 +125,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.AutoTab = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DockPadding.All = 2;
-                        this.EntradaTotal.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaTotal.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 92);
-                        this.EntradaTotal.MaxLenght = 32767;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.TemporaryReadOnly = true;
@@ -146,10 +142,7 @@ namespace Lfc.Comprobantes
                         this.EntradaPago.AutoTab = true;
                         this.EntradaPago.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaPago.DockPadding.All = 2;
-                        this.EntradaPago.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaPago.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPago.Location = new System.Drawing.Point(212, 140);
-                        this.EntradaPago.MaxLenght = 32767;
                         this.EntradaPago.Name = "EntradaPago";
                         this.EntradaPago.Prefijo = "$";
                         this.EntradaPago.TemporaryReadOnly = false;
@@ -162,7 +155,6 @@ namespace Lfc.Comprobantes
                         // Label2
                         // 
                         this.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
                         this.Label2.Location = new System.Drawing.Point(48, 140);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(164, 32);
@@ -177,10 +169,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCambio.AutoTab = true;
                         this.EntradaCambio.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCambio.DockPadding.All = 2;
-                        this.EntradaCambio.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.EntradaCambio.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCambio.Location = new System.Drawing.Point(212, 216);
-                        this.EntradaCambio.MaxLenght = 32767;
                         this.EntradaCambio.Name = "EntradaCambio";
                         this.EntradaCambio.Prefijo = "$";
                         this.EntradaCambio.TemporaryReadOnly = true;
@@ -194,8 +183,6 @@ namespace Lfc.Comprobantes
                         // Label3
                         // 
                         this.Label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-                        this.Label3.Location = new System.Drawing.Point(48, 216);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(164, 32);
                         this.Label3.TabIndex = 5;
@@ -224,7 +211,6 @@ namespace Lfc.Comprobantes
                         // Label5
                         // 
                         this.Label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label5.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
                         this.Label5.Location = new System.Drawing.Point(24, 48);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(372, 20);

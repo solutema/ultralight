@@ -61,7 +61,7 @@ namespace Lcc.Edicion
                         this.Lista = new Lui.Forms.ListView();
                         this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.Nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.GroupLabel = new System.Windows.Forms.Label();
+                        this.GroupLabel = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Lista
@@ -99,7 +99,6 @@ namespace Lcc.Edicion
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(240, 24);
@@ -128,6 +127,6 @@ namespace Lcc.Edicion
                 private Lui.Forms.ListView Lista;
                 private System.Windows.Forms.ColumnHeader Id;
                 private System.Windows.Forms.ColumnHeader Nombre;
-                private System.Windows.Forms.Label GroupLabel;
+                private Lui.Forms.Label GroupLabel;
         }
 }

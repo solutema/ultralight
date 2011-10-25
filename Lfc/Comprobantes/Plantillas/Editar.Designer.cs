@@ -44,13 +44,13 @@ namespace Lfc.Comprobantes.Plantillas
                 private System.Windows.Forms.TabControl TabControl;
                 private System.Windows.Forms.TabPage TabGeneral;
                 private System.Windows.Forms.TabPage TabCampos;
-                internal System.Windows.Forms.Label label1;
+                internal Lui.Forms.Label label1;
                 internal Lui.Forms.TextBox EntradaCopias;
-                internal System.Windows.Forms.Label label6;
-                internal System.Windows.Forms.Label label7;
+                internal Lui.Forms.Label label6;
+                internal Lui.Forms.Label label7;
                 internal Lui.Forms.TextBox EntradaCodigo;
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal System.Windows.Forms.Label label8;
+                internal Lui.Forms.Label label8;
                 internal Lui.Forms.ComboBox EntradaMembrete;
                 internal Lui.Forms.ComboBox EntradaPapelTamano;
                 private System.ComponentModel.IContainer components = null;
@@ -72,27 +72,27 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenArriba = new Lui.Forms.TextBox();
                         this.EntradaMargenDerecha = new Lui.Forms.TextBox();
                         this.EntradaMargenIzquierda = new Lui.Forms.TextBox();
-                        this.label3 = new System.Windows.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.EntradaLandscape = new Lui.Forms.ComboBox();
                         this.BotonCargarDesdeArchivo = new Lui.Forms.Button();
                         this.BotonGuardarEnArchivo = new Lui.Forms.Button();
                         this.EntradaFuenteTamano = new Lui.Forms.TextBox();
                         this.EntradaFuente = new Lui.Forms.ComboBox();
-                        this.label4 = new System.Windows.Forms.Label();
-                        this.label5 = new System.Windows.Forms.Label();
+                        this.label4 = new Lui.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.EntradaPapelTamano = new Lui.Forms.ComboBox();
-                        this.label8 = new System.Windows.Forms.Label();
+                        this.label8 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.label7 = new System.Windows.Forms.Label();
+                        this.label7 = new Lui.Forms.Label();
                         this.EntradaCodigo = new Lui.Forms.TextBox();
-                        this.label6 = new System.Windows.Forms.Label();
+                        this.label6 = new Lui.Forms.Label();
                         this.EntradaMembrete = new Lui.Forms.ComboBox();
                         this.EntradaCopias = new Lui.Forms.TextBox();
-                        this.label1 = new System.Windows.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
                         this.TabCampos = new System.Windows.Forms.TabPage();
                         this.button1 = new Lui.Forms.Button();
                         this.button2 = new Lui.Forms.Button();
-                        this.label2 = new System.Windows.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.ZoomBar = new System.Windows.Forms.TrackBar();
                         this.ImagePreview = new System.Windows.Forms.PictureBox();
                         this.BotonQuitar = new Lui.Forms.Button();
@@ -111,7 +111,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ListaCampos.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaCampos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColCampo});
-                        this.ListaCampos.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.ListaCampos.FullRowSelect = true;
                         this.ListaCampos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaCampos.HideSelection = false;
@@ -181,10 +180,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenes.AutoNav = true;
                         this.EntradaMargenes.AutoSize = true;
                         this.EntradaMargenes.AutoTab = true;
-                        this.EntradaMargenes.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaMargenes.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMargenes.Location = new System.Drawing.Point(168, 156);
-                        this.EntradaMargenes.MaxLenght = 32767;
                         this.EntradaMargenes.Name = "EntradaMargenes";
                         this.EntradaMargenes.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenes.SetData = new string[] {
@@ -203,16 +199,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenAbajo.AutoTab = true;
                         this.EntradaMargenAbajo.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaMargenAbajo.DecimalPlaces = -1;
-                        this.EntradaMargenAbajo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaMargenAbajo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaMargenAbajo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMargenAbajo.Location = new System.Drawing.Point(388, 172);
-                        this.EntradaMargenAbajo.MaxLenght = 32767;
                         this.EntradaMargenAbajo.MultiLine = false;
                         this.EntradaMargenAbajo.Name = "EntradaMargenAbajo";
                         this.EntradaMargenAbajo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenAbajo.PasswordChar = '\0';
-                        this.EntradaMargenAbajo.Prefijo = "";
                         this.EntradaMargenAbajo.SelectOnFocus = true;
                         this.EntradaMargenAbajo.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenAbajo.Sufijo = "aba.";
@@ -227,16 +218,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenArriba.AutoTab = true;
                         this.EntradaMargenArriba.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaMargenArriba.DecimalPlaces = -1;
-                        this.EntradaMargenArriba.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaMargenArriba.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaMargenArriba.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMargenArriba.Location = new System.Drawing.Point(388, 140);
-                        this.EntradaMargenArriba.MaxLenght = 32767;
                         this.EntradaMargenArriba.MultiLine = false;
                         this.EntradaMargenArriba.Name = "EntradaMargenArriba";
                         this.EntradaMargenArriba.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenArriba.PasswordChar = '\0';
-                        this.EntradaMargenArriba.Prefijo = "";
                         this.EntradaMargenArriba.SelectOnFocus = true;
                         this.EntradaMargenArriba.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenArriba.Sufijo = "arr.";
@@ -251,16 +237,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenDerecha.AutoTab = true;
                         this.EntradaMargenDerecha.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaMargenDerecha.DecimalPlaces = -1;
-                        this.EntradaMargenDerecha.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaMargenDerecha.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaMargenDerecha.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMargenDerecha.Location = new System.Drawing.Point(488, 156);
-                        this.EntradaMargenDerecha.MaxLenght = 32767;
                         this.EntradaMargenDerecha.MultiLine = false;
                         this.EntradaMargenDerecha.Name = "EntradaMargenDerecha";
                         this.EntradaMargenDerecha.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenDerecha.PasswordChar = '\0';
-                        this.EntradaMargenDerecha.Prefijo = "";
                         this.EntradaMargenDerecha.SelectOnFocus = true;
                         this.EntradaMargenDerecha.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenDerecha.Sufijo = "der.";
@@ -275,16 +256,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenIzquierda.AutoTab = true;
                         this.EntradaMargenIzquierda.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaMargenIzquierda.DecimalPlaces = -1;
-                        this.EntradaMargenIzquierda.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaMargenIzquierda.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaMargenIzquierda.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMargenIzquierda.Location = new System.Drawing.Point(292, 156);
-                        this.EntradaMargenIzquierda.MaxLenght = 32767;
                         this.EntradaMargenIzquierda.MultiLine = false;
                         this.EntradaMargenIzquierda.Name = "EntradaMargenIzquierda";
                         this.EntradaMargenIzquierda.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenIzquierda.PasswordChar = '\0';
-                        this.EntradaMargenIzquierda.Prefijo = "";
                         this.EntradaMargenIzquierda.SelectOnFocus = true;
                         this.EntradaMargenIzquierda.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenIzquierda.Sufijo = "izq.";
@@ -308,10 +284,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaLandscape.AutoNav = true;
                         this.EntradaLandscape.AutoSize = true;
                         this.EntradaLandscape.AutoTab = true;
-                        this.EntradaLandscape.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaLandscape.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaLandscape.Location = new System.Drawing.Point(264, 68);
-                        this.EntradaLandscape.MaxLenght = 32767;
                         this.EntradaLandscape.Name = "EntradaLandscape";
                         this.EntradaLandscape.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLandscape.SetData = new string[] {
@@ -327,8 +300,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // BotonCargarDesdeArchivo
                         // 
                         this.BotonCargarDesdeArchivo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCargarDesdeArchivo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonCargarDesdeArchivo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCargarDesdeArchivo.Image = null;
                         this.BotonCargarDesdeArchivo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCargarDesdeArchivo.Location = new System.Drawing.Point(488, 76);
@@ -345,8 +316,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // BotonGuardarEnArchivo
                         // 
                         this.BotonGuardarEnArchivo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonGuardarEnArchivo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.BotonGuardarEnArchivo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonGuardarEnArchivo.Image = null;
                         this.BotonGuardarEnArchivo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonGuardarEnArchivo.Location = new System.Drawing.Point(488, 40);
@@ -366,16 +335,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.AutoTab = true;
                         this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaFuenteTamano.DecimalPlaces = -1;
-                        this.EntradaFuenteTamano.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaFuenteTamano.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFuenteTamano.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(428, 268);
-                        this.EntradaFuenteTamano.MaxLenght = 32767;
                         this.EntradaFuenteTamano.MultiLine = false;
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFuenteTamano.PasswordChar = '\0';
-                        this.EntradaFuenteTamano.Prefijo = "";
                         this.EntradaFuenteTamano.SelectOnFocus = true;
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(92, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
@@ -391,10 +355,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuente.AutoNav = true;
                         this.EntradaFuente.AutoSize = true;
                         this.EntradaFuente.AutoTab = true;
-                        this.EntradaFuente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaFuente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaFuente.Location = new System.Drawing.Point(168, 268);
-                        this.EntradaFuente.MaxLenght = 32767;
                         this.EntradaFuente.Name = "EntradaFuente";
                         this.EntradaFuente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuente.SetData = new string[] {
@@ -434,10 +395,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaPapelTamano.AutoNav = true;
                         this.EntradaPapelTamano.AutoSize = true;
                         this.EntradaPapelTamano.AutoTab = true;
-                        this.EntradaPapelTamano.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaPapelTamano.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaPapelTamano.Location = new System.Drawing.Point(168, 68);
-                        this.EntradaPapelTamano.MaxLenght = 32767;
                         this.EntradaPapelTamano.Name = "EntradaPapelTamano";
                         this.EntradaPapelTamano.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPapelTamano.SetData = new string[] {
@@ -468,19 +426,13 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaNombre.Location = new System.Drawing.Point(168, 40);
-                        this.EntradaNombre.MaxLenght = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.SelectOnFocus = true;
                         this.EntradaNombre.Size = new System.Drawing.Size(284, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 3;
                         this.EntradaNombre.Text = "Factura A";
                         this.EntradaNombre.PlaceholderText = "";
@@ -501,19 +453,13 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCodigo.AutoTab = true;
                         this.EntradaCodigo.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCodigo.DecimalPlaces = -1;
-                        this.EntradaCodigo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCodigo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCodigo.Location = new System.Drawing.Point(168, 12);
-                        this.EntradaCodigo.MaxLenght = 32767;
                         this.EntradaCodigo.MultiLine = false;
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo.PasswordChar = '\0';
-                        this.EntradaCodigo.Prefijo = "";
                         this.EntradaCodigo.SelectOnFocus = true;
                         this.EntradaCodigo.Size = new System.Drawing.Size(284, 24);
-                        this.EntradaCodigo.Sufijo = "";
                         this.EntradaCodigo.TabIndex = 1;
                         this.EntradaCodigo.Text = "A";
                         this.EntradaCodigo.PlaceholderText = "";
@@ -534,10 +480,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMembrete.AutoNav = true;
                         this.EntradaMembrete.AutoSize = true;
                         this.EntradaMembrete.AutoTab = true;
-                        this.EntradaMembrete.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaMembrete.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaMembrete.Location = new System.Drawing.Point(168, 208);
-                        this.EntradaMembrete.MaxLenght = 32767;
                         this.EntradaMembrete.Name = "EntradaMembrete";
                         this.EntradaMembrete.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMembrete.SetData = new string[] {
@@ -556,19 +499,12 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCopias.AutoTab = true;
                         this.EntradaCopias.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCopias.DecimalPlaces = -1;
-                        this.EntradaCopias.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.EntradaCopias.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCopias.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.EntradaCopias.Location = new System.Drawing.Point(168, 356);
-                        this.EntradaCopias.MaxLenght = 32767;
                         this.EntradaCopias.MultiLine = false;
                         this.EntradaCopias.Name = "EntradaCopias";
                         this.EntradaCopias.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCopias.PasswordChar = '\0';
-                        this.EntradaCopias.Prefijo = "";
                         this.EntradaCopias.SelectOnFocus = true;
                         this.EntradaCopias.Size = new System.Drawing.Size(56, 24);
-                        this.EntradaCopias.Sufijo = "";
                         this.EntradaCopias.TabIndex = 19;
                         this.EntradaCopias.Text = "1";
                         this.EntradaCopias.PlaceholderText = "";
@@ -603,8 +539,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.button1.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.button1.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.button1.Image = null;
                         this.button1.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.button1.Location = new System.Drawing.Point(8, 284);
@@ -621,8 +555,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.button2.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.button2.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.button2.Image = null;
                         this.button2.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.button2.Location = new System.Drawing.Point(80, 284);
@@ -680,8 +612,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonQuitar.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(8, 256);
@@ -699,8 +629,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAgregar.Font = new System.Drawing.Font("Bitstream Vera Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(80, 256);
