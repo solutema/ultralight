@@ -165,7 +165,7 @@ namespace Lfx.Updates
 
                         this.Progress.Begin();
                         this.Progress.ChangeStatus("Buscando versiones nuevas...");
-                        this.Progress.Max = this.Packages.Count;
+                        this.Progress.Max = 0;
                         this.Progress.Value = 0;
 
                         foreach (Package Pkg in this.Packages) {
@@ -174,7 +174,6 @@ namespace Lfx.Updates
                                         System.IO.Directory.CreateDirectory(DestDir);
 
                                 Pkg.DownloadUpdatesInformation();
-                                this.Progress.Advance(1);
                         }
 
                         this.Progress.End();

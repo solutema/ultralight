@@ -101,36 +101,36 @@ namespace Lfc.Bancos.Chequeras
                         this.CustomFilters = new qGen.Where();
 
                         if (m_Estado != Estados.Todos)
-                                this.CustomFilters.AddWithValue("estado", (int)m_Estado);
+                                this.CustomFilters.AddWithValue("chequeras.estado", (int)m_Estado);
 
                         if (m_Banco > 0)
-                                this.CustomFilters.AddWithValue("id_banco", m_Banco);
+                                this.CustomFilters.AddWithValue("chequeras.id_banco", m_Banco);
 
                         if (m_Caja > 0)
-                                this.CustomFilters.AddWithValue("id_caja", m_Caja);
+                                this.CustomFilters.AddWithValue("chequeras.id_caja", m_Caja);
                 }
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
 		{
-			switch(row.Fields["estado"].ValueInt)
+			switch(row.Fields["chequeras.estado"].ValueInt)
 			{
 				case 0:
-                                        item.SubItems["estado"].Text = "Fuera de uso";
+                                        item.SubItems["chequeras.estado"].Text = "Fuera de uso";
                                         break;
 				case 1:
-                                        item.SubItems["estado"].Text = "Activa";
+                                        item.SubItems["chequeras.estado"].Text = "Activa";
 					break;
 				default:
-                                        item.SubItems["estado"].Text = "???";
+                                        item.SubItems["chequeras.estado"].Text = "???";
 					break;
 			}
 
-                        item.SubItems["id_banco"].Text = this.Connection.Tables["bancos"].FastRows[System.Convert.ToInt32(row["id_banco"])].Fields["nombre"].ToString();
-                        item.SubItems["desde"].Text = row.Fields["desde"].ValueInt.ToString("00000000");
-                        item.SubItems["hasta"].Text = row.Fields["hasta"].ValueInt.ToString("00000000");
+                        item.SubItems["chequeras.id_banco"].Text = this.Connection.Tables["bancos"].FastRows[System.Convert.ToInt32(row["chequeras.id_banco"])].Fields["nombre"].ToString();
+                        item.SubItems["chequeras.desde"].Text = row.Fields["chequeras.desde"].ValueInt.ToString("00000000");
+                        item.SubItems["chequeras.hasta"].Text = row.Fields["chequeras.hasta"].ValueInt.ToString("00000000");
                         int IdCaja = row.Fields["id_caja"].ValueInt;
                         if (IdCaja > 0)
-                                item.SubItems["id_caja"].Text = this.Connection.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
+                                item.SubItems["chequeras.id_caja"].Text = this.Connection.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
 		}
 	}
 

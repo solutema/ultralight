@@ -64,28 +64,16 @@ namespace Lfc
 
                 public static Type InferirFormularioListado(Type tipo)
                 {
-                        // Primero busco en los tipos registrados por los componentes
-                        Lfc.TipoRegistrado Func = Lfx.Components.Manager.TiposRegistrados.GetByLblType(tipo) as Lfc.TipoRegistrado;
-                        if(Func != null && Func.Listado != null)
-                                return Func.Listado;
+                        Type Res = Lfx.Components.Manager.RegisteredTypes.GetHandler(tipo, "list");
 
-                        // Busco en las tipos derivados
-                        foreach (Lfx.Components.IRegisteredType Regt in Lfx.Components.Manager.TiposRegistrados) {
-                                if (Regt.LblType == tipo.BaseType)
-                                        return ((Lfc.ITipoRegistrado)tipo).Listado;
-                        }
-
-                        return InferirFormularioListado(tipo.ToString());
+                        if (Res != null)
+                                return Res;
+                        else
+                                return InferirFormularioListado(tipo.ToString());
                 }
 
                 public static Type InferirFormularioListado(string tipoOTabla)
                 {
-                        // Primero busco en los tipos registrados por los componentes
-                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados) {
-                                if (tipo.LblType.ToString() == tipoOTabla)
-                                        return ((Lfc.ITipoRegistrado)tipo).Listado;
-                        }
-
                         switch (tipoOTabla) {
                                 case "COMPROBANTE":
                                 case "COMPROBANTES":
@@ -164,12 +152,8 @@ namespace Lfc
 
                 public static Lfc.FormularioListado InstanciarFormularioListado(Type tipo)
                 {
-                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(tipo, Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                object Res = Activator.CreateInstance(tipo, null);
-                                return Res as Lfc.FormularioListado;
-                        } else {
-                                return null;
-                        }
+                        object Res = Activator.CreateInstance(tipo, null);
+                        return Res as Lfc.FormularioListado;
                 }
 
                 private static Lcc.Edicion.ControlEdicion InstanciarControlEdicion(Type tipo)
@@ -181,11 +165,12 @@ namespace Lfc
 
                 private static Type InferirControlEdicion(Type tipo)
                 {
-                        Lfc.TipoRegistrado Func = Lfx.Components.Manager.TiposRegistrados.GetByLblType(tipo) as Lfc.TipoRegistrado;
-                        if (Func != null && Func.Editor != null)
-                                return Func.Editor;
+                        Type Res = Lfx.Components.Manager.RegisteredTypes.GetHandler(tipo, "edit");
 
-                        return InferirControlEdicion(tipo.ToString());
+                        if (Res != null)
+                                return Res;
+                        else
+                                return InferirControlEdicion(tipo.ToString());
                 }
 
                 /// <summary>
@@ -193,12 +178,6 @@ namespace Lfc
                 /// </summary>
                 private static Type InferirControlEdicion(string nombreTablaOTipo)
                 {
-                        // Primero busco en los tipos registrados por los componentes
-                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados) {
-                                if (tipo.LblType.ToString() == nombreTablaOTipo)
-                                        return ((Lfc.ITipoRegistrado)tipo).Editor;
-                        }
-
                         switch (nombreTablaOTipo) {
                                 case "alicuotas":
                                 case "Lbl.Impuestos.ObtenerAlicuota":

@@ -78,7 +78,10 @@ namespace Lazaro.Misc
                                 EtiquetaEstado.Text = "Descargando...";
                                 BarraProgreso.Maximum = Lfx.Updates.Updater.Master.Progress.Max;
                                 BarraProgreso.Value = Lfx.Updates.Updater.Master.Progress.Value;
-                                EtiquetaProgreso.Text = Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
+                                if (Lfx.Updates.Updater.Master.Progress.Max == 0)
+                                        EtiquetaProgreso.Text = "Buscando...";
+                                else
+                                        EtiquetaProgreso.Text = Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
                                 EtiquetaAyuda.Text = @"Si no desea instalar la actualización ahora, haga clic en el botón 'Cancelar'. La descarga continuará en segundo plano y se instalará en otro momento.";
                         } else {
                                 if (Lfx.Updates.Updater.Master.UpdatesPending()) {

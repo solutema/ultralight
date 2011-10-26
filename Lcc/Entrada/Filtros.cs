@@ -94,6 +94,8 @@ namespace Lcc.Entrada
                                         Lcc.Entrada.CodigoDetalle EntradaRelacion = new Lcc.Entrada.CodigoDetalle();
                                         EntradaRelacion.Size = new System.Drawing.Size(160, 24);
                                         EntradaRelacion.Relation = FiltroRelacion.Relation;
+                                        if (FiltroRelacion.Filter != null)
+                                                EntradaRelacion.Filter = FiltroRelacion.Filter.ToString();
                                         EntradaRelacion.Elemento = (Lbl.IElementoDeDatos)FiltroRelacion.Elemento;
                                         EntradaRelacion.Dock = DockStyle.Top;
                                         Entrada = EntradaRelacion;

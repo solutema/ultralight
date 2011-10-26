@@ -46,5 +46,21 @@ namespace Lfx.Components
                         }
                         return null;
                 }
+
+
+                public Type GetHandler(Type lblType, string verb)
+                {
+                        // Primero busco en los tipos registrados por los componentes
+                        Lfx.Components.IRegisteredType Func = Lfx.Components.Manager.RegisteredTypes.GetByLblType(lblType);
+                        if (Func != null && Func.Actions.ContainsKey(verb))
+                                return Func.Actions[verb].Handler;
+
+                        // Busco recursivamente hacia abajo en las herencias
+                        if (lblType.BaseType.ToString() != "Lbl.ElementoDeDatos") {
+                                return GetHandler(lblType.BaseType, verb);
+                        }
+
+                        return null;
+                }
         }
 }

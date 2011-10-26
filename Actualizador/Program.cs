@@ -35,12 +35,17 @@ namespace Cargador
 {
         static class Program
         {
+                private static bool Portable = false;
+
                 /// <summary>
                 /// Punto de entrada principal para la aplicación.
                 /// </summary>
                 static void Main()
                 {
                         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+
+                        if (System.IO.File.Exists(ApplicationFolder + "portable.lwf"))
+                                Portable = true;
 
                         string CarpetaTrabajo = ApplicationFolder;
                         if (System.IO.Directory.Exists(CarpetaTrabajo) == false)
@@ -52,7 +57,7 @@ namespace Cargador
 
                         string[] ArchivosNuevos = System.IO.Directory.GetFiles(CarpetaDescarga, "*.new", System.IO.SearchOption.AllDirectories);
                         if (ArchivosNuevos.Length > 0) {
-                                if (IsUacActive && IsAdministrator == false) {
+                                if (IsUacActive && IsAdministrator == false && FolderWritable(CarpetaTrabajo) == false) {
                                         System.Console.WriteLine("Ejecutando como Administrador.");
                                         Elevate();
                                         return;
@@ -61,23 +66,6 @@ namespace Cargador
                                 }
                         }
 
-
-                        if (System.IO.File.Exists(CarpetaDescarga + "InstalarLazaro.exe")) {
-                                System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
-                                NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(CarpetaDescarga + "InstalarLazaro.exe", "/SILENT /NOCANCEL /NORESTART");
-                                NuevoProceso.StartInfo.UseShellExecute = true;
-                                NuevoProceso.StartInfo.Verb = "runas";
-                                NuevoProceso.Start();
-
-                                NuevoProceso.WaitForExit();
-
-                                System.Threading.Thread.Sleep(500);
-
-                                System.IO.File.Delete(CarpetaDescarga + "InstalarLazaro.exe");
-
-                                EjecutarLazaro();
-                                return;
-                        }
 
                         foreach (string ArchivoNuevo in ArchivosNuevos) {
                                 if (ArchivoNuevo.Length > 4) {
@@ -94,7 +82,7 @@ namespace Cargador
                                         }
 
                                         // Y ahora renombro el nuevo a .bak
-                                        System.Console.WriteLine("  en " + NombreFinal);
+                                        System.Console.WriteLine(" en " + NombreFinal);
 
                                         try {
                                                 string CarpetaDestino = System.IO.Path.GetDirectoryName(NombreFinal);
@@ -111,6 +99,22 @@ namespace Cargador
                         
                         EjecutarLazaro();
                 }
+
+
+                public static bool FolderWritable(string folder)
+                {
+                        try {
+                                string FileName = new Random().Next(1000000, 9999999).ToString();
+                                using (System.IO.Stream Str = System.IO.File.Create(folder + FileName)) {
+                                        Str.Close();
+                                }
+                                System.IO.File.Delete(folder + FileName);
+                                return true;
+                        } catch {
+                                return false;
+                        }
+                }
+
 
                 public static void EjecutarLazaro()
                 {
@@ -172,6 +176,9 @@ namespace Cargador
                 {
                         get
                         {
+                                if (Portable)
+                                        return ApplicationFolder;
+
                                 string CompletePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)
                                         + System.IO.Path.DirectorySeparatorChar + "Lazaro" + System.IO.Path.DirectorySeparatorChar;
                                 if (!System.IO.Directory.Exists(CompletePath))

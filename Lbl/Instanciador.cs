@@ -87,7 +87,7 @@ namespace Lbl
                 public static Type InferirTipo(string tablaOTipo)
                 {
                         // Primero busco en los tipos registrados por los componentes
-                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.TiposRegistrados) {
+                        foreach (Lfx.Components.IRegisteredType tipo in Lfx.Components.Manager.RegisteredTypes) {
                                 if (tipo.LblType.ToString() == tablaOTipo)
                                         return tipo.LblType;
                         }

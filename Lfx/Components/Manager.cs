@@ -41,7 +41,7 @@ namespace Lfx.Components
 	{
                 public static Dictionary<string, IComponent> ComponentesCargados = new Dictionary<string, IComponent>();
                 public static FunctionInfoCollection Functiones = new FunctionInfoCollection();
-                public static RegisteredTypeCollection TiposRegistrados = new RegisteredTypeCollection();
+                public static RegisteredTypeCollection RegisteredTypes = new RegisteredTypeCollection();
 
 
                 public static Lfx.Types.OperationResult RegisterComponent(IComponent componentInfo)
@@ -66,7 +66,7 @@ namespace Lfx.Components
 
                                         if (componentInfo.TiposRegistrados != null) {
                                                 foreach (IRegisteredType Regt in componentInfo.TiposRegistrados) {
-                                                        TiposRegistrados.Add(Regt);
+                                                        RegisteredTypes.Add(Regt);
                                                 }
                                         }
                                 } else {

@@ -60,8 +60,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Core">
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulos\Margenes\Editar.cs">
@@ -344,7 +342,6 @@
     <Compile Include="FormularioListadoExportar.Designer.cs">
       <DependentUpon>FormularioListadoExportar.cs</DependentUpon>
     </Compile>
-    <Compile Include="ITipoRegistrado.cs" />
     <Compile Include="Log\Editar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -648,12 +645,11 @@
     <Compile Include="FormularioListadoTexto.Designer.cs">
       <DependentUpon>FormularioListadoTexto.cs</DependentUpon>
     </Compile>
-    <Compile Include="TipoRegistrado.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lazaro.Impresion\Lazaro.Impresion.csproj">
+    <ProjectReference Include="..\Impresion\Impresion.csproj">
       <Project>{EBF39B24-DF1A-4C99-8FC8-F9A24E9CB8FF}</Project>
-      <Name>Lazaro.Impresion</Name>
+      <Name>Impresion</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
       <Project>{56F39851-6542-405C-9F47-E8414B757EF6}</Project>

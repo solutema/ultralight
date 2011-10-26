@@ -671,10 +671,5 @@
             Define una plantilla que se utiliza para imprimir un ElementoDeDatos.
             </summary>
         </member>
-        <member name="T:Lbl.TipoRegistrado">
-            <summary>
-            Define un tipo de elemento, con su editor, su impresor, etc.
-            </summary>
-        </member>
     </members>
 </doc>

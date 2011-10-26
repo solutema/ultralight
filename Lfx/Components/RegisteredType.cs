@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
@@ -30,24 +30,29 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
-namespace Lbl
+namespace Lfx.Components
 {
-        /// <summary>
-        /// Define un tipo de elemento, con su editor, su impresor, etc.
-        /// </summary>
-        public class TipoRegistrado : ITipoRegistrado
+        public class RegisteredType : IRegisteredType
         {
+                public ActionCollection Actions { get; set; }
                 public Type LblType { get; set; }
-                public Type Impresor { get; set; }
 
-                public TipoRegistrado(Type tipo, Type impresor)
+                public RegisteredType(Type tipo, Lfx.Components.ActionCollection actions)
                 {
                         if (tipo.GetInterface("Lbl.IElementoDeDatos", false) == null)
-                                throw new ArgumentException("tipo debe ser un derivado de ElementoDeDatos");
+                                throw new ArgumentException("tipo debe ser un derivado de Lbl.ElementoDeDatos");
 
-                        this.LblType = tipo;        
-                        this.Impresor = impresor;
+                        this.LblType = tipo;
+                        this.Actions = new ActionCollection();
+                        if (actions != null)
+                                this.Actions.AddRange(actions);
+                }
+
+                public override string ToString()
+                {
+                        return this.LblType.ToString();
                 }
         }
 }

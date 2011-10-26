@@ -86,6 +86,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Action.cs" />
+    <Compile Include="Components\ActionCollection.cs" />
     <Compile Include="Components\FunctionInfo.cs" />
     <Compile Include="Components\FunctionTypes.cs" />
     <Compile Include="Components\GetTypesFunction.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Components\IRegisteredType.cs" />
     <Compile Include="Components\MenuEntry.cs" />
     <Compile Include="Components\FunctionInfoCollection.cs" />
+    <Compile Include="Components\RegisteredType.cs" />
     <Compile Include="Components\RegisteredTypeCollection.cs" />
     <Compile Include="Components\TryFunction.cs" />
     <Compile Include="Data\Filters\DateRangeFilter.cs" />

@@ -214,23 +214,22 @@ namespace Lfc.Comprobantes.Facturas
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        if (row.Fields["anulada"].ValueInt == 0) {
-                                switch(row.Fields["tipo_fac"].ValueString)
-                                {
+                        if (row.Fields["comprob.anulada"].ValueInt == 0) {
+                                switch (row.Fields["comprob.tipo_fac"].ValueString) {
                                         case "NCA":
                                         case "NCB":
                                         case "NCC":
                                         case "NCE":
                                         case "NCM":
-                                                this.Contadores[0].AddValue(-row.Fields["total"].ValueDecimal);
+                                                this.Contadores[0].AddValue(-row.Fields["comprob.total"].ValueDecimal);
                                                 break;
                                         default:
-                                                this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
+                                                this.Contadores[0].AddValue(row.Fields["comprob.total"].ValueDecimal);
                                                 break;
                                 }
                         } else {
                                 // Si está anulada, la tacho
-                                item.SubItems["nombre_visible"].Text = "Anulada";
+                                item.SubItems["comprob.nombre_visible"].Text = "Anulada";
                         }
 
                         base.OnItemAdded(item, row);

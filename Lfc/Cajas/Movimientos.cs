@@ -41,9 +41,10 @@ namespace Lfc.Cajas
         public partial class Movimientos : Lfc.FormularioCuenta
         {
                 private Lbl.Cajas.Caja m_Caja = null;
-                private Lbl.Cajas.Concepto m_Concepto = null;
-                public int m_TipoConcepto = 0, m_Direccion = 0;
-                protected decimal Transporte = 0;
+                private Lbl.Cajas.Concepto Concepto { get; set; }
+                private int TipoConcepto { get; set; }
+                private int Direccion { get; set; }
+                private decimal Transporte = 0;
 
                 public Movimientos()
                 {
@@ -122,6 +123,7 @@ namespace Lfc.Cajas
                         base.OnItemAdded(item, row);
                 }
 
+
                 public Lbl.Cajas.Caja Caja
                 {
                         get
@@ -147,7 +149,7 @@ namespace Lfc.Cajas
                                 // Es para todas las cajas
                                 Transporte = 0;
 
-                                if (this.Cliente == null && m_Concepto == null && m_TipoConcepto == 0) {
+                                if (this.Cliente == null && Concepto == null && TipoConcepto == 0) {
                                         // Calculo el transporte combinado de todas las cajas
                                         DataTable Cajas = this.Connection.Select("SELECT id_caja FROM cajas");
                                         foreach (System.Data.DataRow Caja in Cajas.Rows) {
@@ -160,9 +162,9 @@ namespace Lfc.Cajas
                                 Transporte = Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.Definicion.TableName + " WHERE  id_caja=" + this.Caja.Id.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
 
-                        if (m_Direccion == 1)
+                        if (Direccion == 1)
                                 this.CustomFilters.AddWithValue("cajas_movim.importe", qGen.ComparisonOperators.GreaterThan, 0);
-                        else if (m_Direccion == 2)
+                        else if (Direccion == 2)
                                 this.CustomFilters.AddWithValue("cajas_movim.importe", qGen.ComparisonOperators.LessThan, 0);
 
                         if (this.Caja != null) {
@@ -177,11 +179,11 @@ namespace Lfc.Cajas
                         if (this.Cliente != null)
                                 this.CustomFilters.AddWithValue("cajas_movim.id_cliente", this.Cliente.Id);
 
-                        if (m_Concepto != null)
-                                this.CustomFilters.AddWithValue("cajas_movim.id_concepto", m_Concepto.Id);
+                        if (Concepto != null)
+                                this.CustomFilters.AddWithValue("cajas_movim.id_concepto", Concepto.Id);
 
-                        if (m_TipoConcepto > 0)
-                                this.CustomFilters.AddWithValue("conceptos.grupo", m_TipoConcepto);
+                        if (TipoConcepto > 0)
+                                this.CustomFilters.AddWithValue("conceptos.grupo", TipoConcepto);
 
                         if (Fechas.HasRange)
                                 this.CustomFilters.AddWithValue("cajas_movim.fecha", Fechas.From, Fechas.To);
@@ -203,12 +205,13 @@ namespace Lfc.Cajas
                 {
                         this.Caja = this.Definicion.Filters["cajas_movim.id_caja"].Value as Lbl.Cajas.Caja;
                         this.Cliente = this.Definicion.Filters["cajas_movim.id_cliente"].Value as Lbl.Personas.Persona;
-                        m_TipoConcepto = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["conceptos.grupo"].Value.ToString());
-                        m_Direccion = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["conceptos.es"].Value.ToString());
+                        this.Concepto = this.Definicion.Filters["cajas_movim.id_concepto"].Value as Lbl.Cajas.Concepto;
+                        TipoConcepto = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["conceptos.grupo"].Value.ToString());
+                        Direccion = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["conceptos.es"].Value.ToString());
                         this.Fechas = this.Definicion.Filters["cajas_movim.fecha"].Value as Lfx.Types.DateRange;
 
 
-                        BotonArqueo.Visible = !(this.Caja == null || this.Cliente != null || m_Concepto != null || m_Direccion != 0 || this.Fechas.To < System.DateTime.Now);
+                        BotonArqueo.Visible = !(this.Caja == null || this.Cliente != null || Concepto != null || Direccion != 0 || this.Fechas.To < System.DateTime.Now);
 
                         base.FiltersChanged(filters);
                 }
@@ -256,7 +259,7 @@ namespace Lfc.Cajas
 
                 private void BotonArqueo_Click(object sender, System.EventArgs e)
                 {
-                        if(this.Caja == null || this.Cliente != null || m_Concepto != null || m_Direccion != 0 || this.Fechas.To < System.DateTime.Now) {
+                        if(this.Caja == null || this.Cliente != null || Concepto != null || Direccion != 0 || this.Fechas.To < System.DateTime.Now) {
                                 Lui.Forms.MessageBox.Show("Sólo pueden realizar arqueos cuando está visualizando una sola caja y no están utilizando filtros.", "Arqueo");
                                 return;
                         }

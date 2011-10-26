@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
@@ -30,29 +30,28 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
-namespace Lfc
+namespace Lui.Forms
 {
-        public class TipoRegistrado : Lbl.TipoRegistrado, Lfc.ITipoRegistrado
+        public class LinkLabel : System.Windows.Forms.LinkLabel
         {
-                public Type Listado { get; set; }
-                public Type Editor { get; set; }
-
-                public TipoRegistrado(Type tipo, Type listado, Type editor)
-                        : this(tipo, listado, editor, null)
+                protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
                 {
-                }
-
-                public TipoRegistrado(Type tipo, Type listado, Type editor, Type impresor)
-                        : base(tipo, impresor)
-                {
-                        this.Listado = listado;
-                        this.Editor = editor;
-                }
-
-                public override string ToString()
-                {
-                        return this.LblType.ToString();
+                        if (e.Alt == false && e.Shift == false && e.Control == false) {
+                                switch (e.KeyCode) {
+                                        case Keys.Up:
+                                                e.Handled = true;
+                                                System.Windows.Forms.SendKeys.Send("+{tab}");
+                                                break;
+                                        case Keys.Down:
+                                                e.Handled = true;
+                                                System.Windows.Forms.SendKeys.Send("{tab}");
+                                                break;
+                                }
+                        }
+                        base.OnKeyDown(e);
                 }
         }
 }

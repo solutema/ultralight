@@ -177,7 +177,7 @@ namespace Lfx.Environment
                                         // Es Windows
                                         if (System.Environment.OSVersion.Version.Major >= 6) {
                                                 // Es Windows Vista o superior
-                                                int Uac = System.Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", 0));
+                                                int Uac = System.Convert.ToInt32(Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", 0));
                                                 return Uac != 0;
                                         } else {
                                                 return false;

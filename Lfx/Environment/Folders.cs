@@ -33,11 +33,13 @@ using System;
 
 namespace Lfx.Environment
 {
-	/// <summary>
-	/// Summary description for Folders.
-	/// </summary>
-	public class Folders
-	{
+        /// <summary>
+        /// Summary description for Folders.
+        /// </summary>
+        public static class Folders
+        {
+                public static bool PortableMode = false;
+
                 public static void EnsurePathExists(string path)
                 {
                         if (!System.IO.Directory.Exists(path))
@@ -53,62 +55,64 @@ namespace Lfx.Environment
                         }
                 }
 
-		public static string TemporaryFolder
-		{
-			get
-			{
-				string CompletePath = ApplicationDataFolder + "Temp" + System.IO.Path.DirectorySeparatorChar;
-				if(!System.IO.Directory.Exists(CompletePath))
-					System.IO.Directory.CreateDirectory(CompletePath);
-				return CompletePath;
-			}
-		}
+                public static string TemporaryFolder
+                {
+                        get
+                        {
+                                string CompletePath = ApplicationDataFolder + "Temp" + System.IO.Path.DirectorySeparatorChar;
+                                if (!System.IO.Directory.Exists(CompletePath))
+                                        System.IO.Directory.CreateDirectory(CompletePath);
+                                return CompletePath;
+                        }
+                }
 
-		public static string CacheFolder
-		{
-			get
-			{
-				string CompletePath = ApplicationDataFolder + "Cache" + System.IO.Path.DirectorySeparatorChar;
-				if(!System.IO.Directory.Exists(CompletePath))
-					System.IO.Directory.CreateDirectory(CompletePath);
-				return CompletePath;
-			}
-		}
+                public static string CacheFolder
+                {
+                        get
+                        {
+                                string CompletePath = ApplicationDataFolder + "Cache" + System.IO.Path.DirectorySeparatorChar;
+                                if (!System.IO.Directory.Exists(CompletePath))
+                                        System.IO.Directory.CreateDirectory(CompletePath);
+                                return CompletePath;
+                        }
+                }
 
-		public static string ComponentsFolder
-		{
-			get
-			{
-				if(!System.IO.Directory.Exists(ApplicationFolder + @"Components" + System.IO.Path.DirectorySeparatorChar))
-					System.IO.Directory.CreateDirectory(ApplicationFolder + "Components");
-				return ApplicationFolder + @"Components" + System.IO.Path.DirectorySeparatorChar;
-			}
-		}
+                public static string ComponentsFolder
+                {
+                        get
+                        {
+                                if (!System.IO.Directory.Exists(ApplicationFolder + @"Components" + System.IO.Path.DirectorySeparatorChar))
+                                        System.IO.Directory.CreateDirectory(ApplicationFolder + "Components");
+                                return ApplicationFolder + @"Components" + System.IO.Path.DirectorySeparatorChar;
+                        }
+                }
 
                 private static string m_ApplicationFolder = null;
-		public static string ApplicationFolder
-		{
-			get
-			{
+                public static string ApplicationFolder
+                {
+                        get
+                        {
                                 if (m_ApplicationFolder == null) {
                                         m_ApplicationFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                                         if (m_ApplicationFolder[m_ApplicationFolder.Length - 1] != System.IO.Path.DirectorySeparatorChar)
                                                 m_ApplicationFolder += System.IO.Path.DirectorySeparatorChar;
                                 }
                                 return m_ApplicationFolder;
-			}
+                        }
                         set
                         {
                                 m_ApplicationFolder = value;
                         }
-		}
+                }
 
                 public static string m_ApplicationDataFolder = null;
-		public static string ApplicationDataFolder
-		{
-			get
-			{
-                                if (m_ApplicationDataFolder == null) {
+                public static string ApplicationDataFolder
+                {
+                        get
+                        {
+                                if (PortableMode) {
+                                        return ApplicationFolder;
+                                } else if (m_ApplicationDataFolder == null) {
                                         m_ApplicationDataFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)
                                                 + System.IO.Path.DirectorySeparatorChar + "Lazaro" + System.IO.Path.DirectorySeparatorChar;
                                         if (!System.IO.Directory.Exists(m_ApplicationDataFolder))
@@ -116,12 +120,12 @@ namespace Lfx.Environment
                                         return m_ApplicationDataFolder;
                                 }
                                 return m_ApplicationDataFolder;
-			}
+                        }
                         set
                         {
                                 m_ApplicationDataFolder = value;
                         }
-		}
+                }
 
                 public static string UpdatesFolder
                 {
@@ -147,5 +151,5 @@ namespace Lfx.Environment
                                 return Res;
                         }
                 }
-	}
+        }
 }

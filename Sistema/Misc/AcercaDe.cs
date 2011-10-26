@@ -115,7 +115,10 @@ namespace Lazaro.Misc
 
                         if (Lfx.Updates.Updater.Master.Progress.IsRunning) {
                                 PicEsperar.Visible = true;
-                                EtiquetaActualizar.Text = "Descargando " + Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
+                                if (Lfx.Updates.Updater.Master.Progress.Max == 0)
+                                        EtiquetaActualizar.Text = "Buscando...";
+                                else
+                                        EtiquetaActualizar.Text = "Descargando " + Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
                                 EtiquetaActualizar.LinkArea = new LinkArea(0, 0);
                         } else {
                                 if (Lfx.Updates.Updater.Master.UpdatesPending()) {

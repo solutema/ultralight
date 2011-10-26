@@ -30,15 +30,25 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Lfc
+
+namespace Lui.Forms
 {
-        public interface ITipoRegistrado : Lbl.ITipoRegistrado
+        public class Threads
         {
-                Type Listado { get; set; }
-                Type Editor { get; set; }
+                public static void Sleep(int millisecondsTimeout, bool doingEvents)
+                {
+                        if (doingEvents) {
+                                System.DateTime Meta = System.DateTime.Now.AddMilliseconds(millisecondsTimeout);
+
+                                while (System.DateTime.Now < Meta) {
+                                        System.Windows.Forms.Application.DoEvents();
+                                        //Hago un thread.sleep para no atorar la CPU
+                                        System.Threading.Thread.Sleep(10);
+                                }
+                        } else {
+                                System.Threading.Thread.Sleep(millisecondsTimeout);
+                        }
+                }
         }
 }

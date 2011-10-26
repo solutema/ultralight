@@ -133,20 +133,20 @@ namespace Lfc.Tareas
                 {
                         Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
 
-                        if (EntradaTecnico.TextInt == 0) {
+                        if (EntradaTecnico.Elemento == null) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Debe seleccionar el Encargado." + Environment.NewLine;
                         }
-                        if (EntradaCliente.TextInt == 0) {
+                        if (EntradaCliente.Elemento == null) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Debe seleccionar el Cliente." + Environment.NewLine;
                         }
-                        if (EntradaTarea.TextInt == 0) {
+                        if (EntradaTarea.Elemento == null) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Debe seleccionar el tipo de Tarea." + Environment.NewLine;
                         }
-                        
-                        return base.ValidarControl();;
+
+                        return base.ValidarControl(); ;
                 }
 
 

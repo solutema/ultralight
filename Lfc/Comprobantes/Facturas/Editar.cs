@@ -459,13 +459,14 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         NuevoRecibo.Show();
                 }
 
+
                 internal bool EsCancelable()
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         if (Registro == null || Registro.ImporteImpago == 0) {
                                 return false;
                         } else {
-                                return (Registro.Impreso && Registro.Existe && (Registro.FormaDePago.Tipo != Lbl.Pagos.TiposFormasDePago.Efectivo));
+                                return (Registro.Impreso && Registro.Existe && Registro.FormaDePago != null && (Registro.FormaDePago.Tipo != Lbl.Pagos.TiposFormasDePago.Efectivo));
                         }
                 }
 

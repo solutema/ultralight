@@ -47,17 +47,17 @@ namespace Lazaro.Impresion
 
                 public static Type InferirImpresor(Type tipo)
                 {
-                        // Primero busco en los tipos registrados por los componentes
-                        Lbl.TipoRegistrado Func = Lfx.Components.Manager.TiposRegistrados.GetByLblType(tipo) as Lbl.TipoRegistrado;
-                        if (Func != null && Func.Impresor != null)
-                                return Func.Impresor;
+                        Type Res = Lfx.Components.Manager.RegisteredTypes.GetHandler(tipo, "print");
 
-                        Type Res = InferirImpresor(tipo.ToString());
+                        if (Res != null) {
+                                return Res;
+                        } else {
+                                Res = InferirImpresor(tipo.ToString());
 
-                        if (Res == typeof(Lazaro.Impresion.ImpresorGenerico) && tipo.BaseType != null)
-                                // Intento buscar un impresora para la clase base
-                                Res = InferirImpresor(tipo.BaseType);
-
+                                if (Res == typeof(Lazaro.Impresion.ImpresorGenerico) && tipo.BaseType != null)
+                                        // Intento buscar un impresora para la clase base
+                                        Res = InferirImpresor(tipo.BaseType);
+                        }
                         return Res;
                 }
 

@@ -39,125 +39,185 @@ namespace Lfc
 
                         // Ordenados por TipoLbl
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Impuestos.Alicuota),
-                                typeof(Lfc.Alicuotas.Inicio),
-                                typeof(Lfc.Alicuotas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Alicuotas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Alicuotas.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Articulos.Articulo),
-                                typeof(Lfc.Articulos.Inicio),
-                                typeof(Lfc.Articulos.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Articulos.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Articulos.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Articulos.Categoria),
-                                typeof(Lfc.Articulos.Categorias.Inicio),
-                                typeof(Lfc.Articulos.Categorias.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Articulos.Categorias.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Articulos.Categorias.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Articulos.Marca),
-                                typeof(Lfc.Articulos.Marcas.Inicio),
-                                typeof(Lfc.Articulos.Marcas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Articulos.Marcas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Articulos.Marcas.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Articulos.Margen),
-                                typeof(Lfc.Articulos.Margenes.Inicio),
-                                typeof(Lfc.Articulos.Margenes.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Articulos.Margenes.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Articulos.Margenes.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Articulos.Rubro),
-                                typeof(Lfc.Articulos.Rubros.Inicio),
-                                typeof(Lfc.Articulos.Rubros.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Articulos.Rubros.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Articulos.Rubros.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Articulos.Situacion),
-                                typeof(Lfc.Articulos.Situaciones.Inicio),
-                                typeof(Lfc.Articulos.Situaciones.Editar)));
-                        
-                        Res.Add(new Lfc.TipoRegistrado(
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Articulos.Situaciones.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Articulos.Situaciones.Editar))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Bancos.Cheque),
-                                typeof(Lfc.Bancos.Cheques.Inicio),
-                                typeof(Lfc.Bancos.Cheques.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Bancos.Cheques.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Bancos.Cheques.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Bancos.Chequera),
-                                typeof(Lfc.Bancos.Chequeras.Inicio),
-                                typeof(Lfc.Bancos.Chequeras.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Bancos.Chequeras.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Bancos.Chequeras.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Cajas.Caja),
-                                typeof(Lfc.Cajas.Inicio),
-                                typeof(Lfc.Cajas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Cajas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Cajas.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.Comprobante),
-                                typeof(Lfc.Comprobantes.Inicio),
-                                typeof(Lfc.Comprobantes.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Comprobantes.ComprobanteDeCompra),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Compra.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Compra.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.Factura),
-                                typeof(Lfc.Comprobantes.Inicio),
-                                typeof(Lfc.Comprobantes.Facturas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Facturas.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.Presupuesto),
-                                typeof(Lfc.Comprobantes.Inicio),
-                                typeof(Lfc.Comprobantes.Presupuestos.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Presupuestos.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorPresupuesto))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.Recibo),
-                                typeof(Lfc.Comprobantes.Recibos.Inicio),
-                                typeof(Lfc.Comprobantes.Recibos.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Recibos.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorRecibo))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.PuntoDeVenta),
-                                typeof(Lfc.Pvs.Inicio),
-                                typeof(Lfc.Pvs.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Pvs.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Pvs.Editar))
+                                }));
 
-                       Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Impresion.Plantilla),
-                                typeof(Lfc.Comprobantes.Plantillas.Inicio),
-                                typeof(Lfc.Comprobantes.Plantillas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Plantillas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Plantillas.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Personas.Persona),
-                                typeof(Lfc.Personas.Inicio),
-                                typeof(Lfc.Personas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Personas.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Personas.Proveedor),
-                                typeof(Lfc.Personas.Inicio),
-                                typeof(Lfc.Personas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Personas.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Personas.Usuario),
-                                typeof(Lfc.Personas.Inicio),
-                                typeof(Lfc.Personas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Personas.Usuario))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Personas.Grupo),
-                                typeof(Lfc.Personas.Grupos.Inicio),
-                                typeof(Lfc.Personas.Grupos.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Grupos.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Personas.Grupos.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Entidades.Sucursal),
-                                typeof(Lfc.Sucursales.Inicio),
-                                typeof(Lfc.Sucursales.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Sucursales.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Sucursales.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Tareas.Tarea),
-                                typeof(Lfc.Tareas.Inicio),
-                                typeof(Lfc.Tareas.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Tareas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Tareas.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Tareas.Estado),
-                                typeof(Lfc.Tareas.Estados.Inicio),
-                                typeof(Lfc.Tareas.Estados.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Tareas.Estados.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Tareas.Estados.Editar))
+                                }));
 
-                        Res.Add(new Lfc.TipoRegistrado(
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Tareas.Tipo),
-                                typeof(Lfc.Tareas.Tipos.Inicio),
-                                typeof(Lfc.Tareas.Tipos.Editar)));
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Tareas.Tipos.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Tareas.Tipos.Editar))
+                                }));
 
                         return Res;
                 }

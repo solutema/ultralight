@@ -118,12 +118,24 @@ namespace Lazaro
                                                         IgnoreUpdates = true;
                                                         break;
 
+                                                case "/portable":
+                                                case "--portable":
+                                                        Lfx.Environment.Folders.PortableMode = true;
+                                                        break;
+
                                                 default:
                                                         NombreConfig = System.IO.Path.GetFileNameWithoutExtension(Argumento);
                                                         break;
                                         }
                                 }
                         }
+
+
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "portable.lwf")) {
+                                NombreConfig = "portable";
+                                Lfx.Environment.Folders.PortableMode = true;
+                        }
+
 
                         // Manejadores de excepciones
                         Application.EnableVisualStyles();
@@ -300,9 +312,17 @@ namespace Lazaro
 
                         if (Lfx.Workspace.Master.MasterConnection.Tables.ContainsKey("sys_components")) {
                                 Lbl.ColeccionGenerica<Lbl.Componentes.Componente> Comps = Lbl.Componentes.Componente.Todos();
+                                // Inicializar todos los componentes
                                 foreach (Lbl.Componentes.Componente Comp in Comps) {
-                                        // Cargar todos los componentes en memoria
-                                        Comp.UrlActualizaciones = Comp.UrlActualizaciones;
+                                        // Registro el componente con el actualizador
+                                        if (Lfx.Updates.Updater.Master != null) {
+                                                Lfx.Updates.Package Pkg = new Lfx.Updates.Package();
+                                                Pkg.Name = Comp.EspacioNombres;
+                                                Pkg.RelativePath = "Components" + System.IO.Path.DirectorySeparatorChar + Comp.EspacioNombres + System.IO.Path.DirectorySeparatorChar;
+                                                Pkg.Url = Comp.UrlActualizaciones;
+                                                Lfx.Updates.Updater.Master.Packages.Add(Pkg);
+                                        }
+
                                         try {
                                                 Lfx.Components.Manager.RegisterComponent(Comp);
                                                 if (Comp.Estructura != null) {
@@ -315,14 +335,6 @@ namespace Lazaro
                                                         Comp.Version = Comp.ObtenerVersionActual();
                                                         Comp.Guardar();
                                                 }
-
-                                                Lfx.Updates.Package Pkg = new Lfx.Updates.Package();
-                                                Pkg.Name = Comp.EspacioNombres;
-                                                Pkg.RelativePath = "Components" + System.IO.Path.DirectorySeparatorChar + Comp.EspacioNombres + System.IO.Path.DirectorySeparatorChar;
-                                                Pkg.Url = Comp.UrlActualizaciones;
-
-                                                if (Lfx.Updates.Updater.Master != null)
-                                                        Lfx.Updates.Updater.Master.Packages.Add(Pkg);
                                         } catch (Exception ex) {
                                                 if (Lfx.Workspace.Master != null) {
                                                         Lfx.Workspace.Master.RunTime.Toast("No se puede registrar el componente " + Comp.Nombre + "." + ex.Message, "Error");

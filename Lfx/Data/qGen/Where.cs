@@ -57,6 +57,12 @@ namespace qGen
                         this.Add(Condition);
                 }
 
+                public Where(string sqlWhere)
+                        : this()
+                {
+                        this.Add(new SqlCondition(sqlWhere));
+                }
+
                 public Where(string columnName, object equalsValue)
                         : this(new ComparisonCondition(columnName, equalsValue))
                 {

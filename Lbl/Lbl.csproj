@@ -19,7 +19,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>Lazaro.ico</ApplicationIcon>
     <CodePage>65001</CodePage>
-    <ReleaseVersion>1.0</ReleaseVersion>
+    <ReleaseVersion>2.0</ReleaseVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -45,8 +45,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1591,0219</NoWarn>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Lbl</RootNamespace>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentation>true</GenerateDocumentation>
@@ -61,9 +59,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1591,0219</NoWarn>
-    <OutputType>Library</OutputType>
     <DebugSymbols>true</DebugSymbols>
-    <RootNamespace>Lbl</RootNamespace>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>Lbl.xml</DocumentationFile>
@@ -73,8 +69,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Core">
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulos\ColeccionDatosSeguimiento.cs" />
@@ -101,7 +95,6 @@
     <Compile Include="Impresion\TipoImpresora.cs" />
     <Compile Include="Impuestos\CondicionesFrenteAlIva.cs" />
     <Compile Include="Impuestos\SituacionIva.cs" />
-    <Compile Include="ITipoRegistrado.cs" />
     <Compile Include="ListaIds.cs" />
     <Compile Include="Personas\Cuit.cs" />
     <Compile Include="Personas\IIdentificadorUnico.cs" />
@@ -201,7 +194,6 @@
     <Compile Include="Personas\Persona.cs" />
     <Compile Include="Impresion\Plantilla.cs" />
     <Compile Include="Servicios\Verificador.cs" />
-    <Compile Include="TipoRegistrado.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lfx\Lfx.csproj">

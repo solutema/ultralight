@@ -31,13 +31,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Lbl
+namespace Lui.Forms
 {
-        public interface ITipoRegistrado : Lfx.Components.IRegisteredType
+        public class ScrollBar : System.Windows.Forms.ScrollBar
         {
-                Type Impresor { get; set; }
         }
 }
