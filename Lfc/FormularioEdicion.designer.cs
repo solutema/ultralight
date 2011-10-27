@@ -80,7 +80,6 @@ namespace Lfc
                         this.BotonGuardar.Subtext = "F9";
                         this.BotonGuardar.TabIndex = 100;
                         this.BotonGuardar.Text = "Guardar";
-                        this.BotonGuardar.ToolTipText = "";
                         this.BotonGuardar.Click += new System.EventHandler(this.SaveButton_Click);
                         // 
                         // BotonCancelar
@@ -97,7 +96,6 @@ namespace Lfc
                         this.BotonCancelar.Subtext = "Esc";
                         this.BotonCancelar.TabIndex = 101;
                         this.BotonCancelar.Text = "Cancelar";
-                        this.BotonCancelar.ToolTipText = "";
                         this.BotonCancelar.Click += new System.EventHandler(this.CancelButton_Click);
                         // 
                         // LowerPanel
@@ -127,7 +125,6 @@ namespace Lfc
                         this.BotonImprimir.Subtext = "F8";
                         this.BotonImprimir.TabIndex = 102;
                         this.BotonImprimir.Text = "Imprimir";
-                        this.BotonImprimir.ToolTipText = "";
                         this.BotonImprimir.Click += new System.EventHandler(this.BotonImprimir_Click);
                         // 
                         // BotonComentarios
@@ -211,7 +208,6 @@ namespace Lfc
                         this.EntradaImagen.Size = new System.Drawing.Size(308, 160);
                         this.EntradaImagen.TabIndex = 1;
                         this.EntradaImagen.Text = "Imagen";
-                        this.EntradaImagen.ToolTipText = "";
                         // 
                         // EntradaTags
                         // 
@@ -225,7 +221,6 @@ namespace Lfc
                         this.EntradaTags.Size = new System.Drawing.Size(308, 480);
                         this.EntradaTags.TabIndex = 3;
                         this.EntradaTags.Text = "Otros atributos";
-                        this.EntradaTags.ToolTipText = "";
                         // 
                         // EntradaComentarios
                         // 
@@ -242,7 +237,6 @@ namespace Lfc
                         this.EntradaComentarios.Size = new System.Drawing.Size(308, 152);
                         this.EntradaComentarios.TabIndex = 2;
                         this.EntradaComentarios.Text = "Comentarios";
-                        this.EntradaComentarios.ToolTipText = "";
                         // 
                         // FormularioEdicion
                         // 

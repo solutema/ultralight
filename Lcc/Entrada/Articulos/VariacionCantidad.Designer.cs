@@ -80,8 +80,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.Size = new System.Drawing.Size(112, 24);
                         this.EntradaCantidad.TabIndex = 54;
                         this.EntradaCantidad.Text = "1.0000";
-                        this.EntradaCantidad.PlaceholderText = "";
-                        this.EntradaCantidad.ToolTipText = "";
                         this.EntradaCantidad.TextChanged += new System.EventHandler(this.EntradaVariacionCantidad_TextChanged);
                         // 
                         // EntradaVariacion
@@ -101,8 +99,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaVariacion.SelectOnFocus = true;
                         this.EntradaVariacion.Size = new System.Drawing.Size(364, 24);
                         this.EntradaVariacion.TabIndex = 53;
-                        this.EntradaVariacion.PlaceholderText = "";
-                        this.EntradaVariacion.ToolTipText = "";
                         this.EntradaVariacion.TextChanged += new System.EventHandler(this.EntradaVariacionCantidad_TextChanged);
                         // 
                         // VariacionCantidad

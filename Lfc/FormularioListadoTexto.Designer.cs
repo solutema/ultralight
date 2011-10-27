@@ -106,7 +106,6 @@ namespace Lfc
 			this.BotonCopiar.Subtext = "F7";
 			this.BotonCopiar.TabIndex = 2;
 			this.BotonCopiar.Text = "Copiar";
-			this.BotonCopiar.ToolTipText = "Copia el texto del listado al portapapeles para pegarlo en otra aplicación.";
 			this.BotonCopiar.Click += new System.EventHandler(this.BotonCopiar_Click);
 			// 
 			// PrintButton
@@ -122,7 +121,6 @@ namespace Lfc
 			this.PrintButton.Subtext = "F8";
 			this.PrintButton.TabIndex = 3;
 			this.PrintButton.Text = "Imprimir";
-			this.PrintButton.ToolTipText = "";
 			// 
 			// BotonMostrar
 			// 
@@ -138,7 +136,6 @@ namespace Lfc
 			this.BotonMostrar.Subtext = "F9";
 			this.BotonMostrar.TabIndex = 0;
 			this.BotonMostrar.Text = "Mostrar";
-			this.BotonMostrar.ToolTipText = "";
 			this.BotonMostrar.Click += new System.EventHandler(this.BotonMostrar_Click);
 			// 
 			// CancelCommandButton
@@ -155,7 +152,6 @@ namespace Lfc
 			this.CancelCommandButton.Subtext = "Esc";
 			this.CancelCommandButton.TabIndex = 1;
 			this.CancelCommandButton.Text = "Volver";
-			this.CancelCommandButton.ToolTipText = "";
 			this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
 			// 
 			// TextListingForm

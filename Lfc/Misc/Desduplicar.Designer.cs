@@ -106,7 +106,6 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.MaxLength = 200;
                         this.EntradaElementoDuplicado.Name = "EntradaElementoDuplicado";
                         this.EntradaElementoDuplicado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaElementoDuplicado.PlaceholderText = "";
                         this.EntradaElementoDuplicado.ReadOnly = false;
                         this.EntradaElementoDuplicado.Required = true;
                         this.EntradaElementoDuplicado.Size = new System.Drawing.Size(456, 24);
@@ -114,7 +113,6 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.Table = "personas";
                         this.EntradaElementoDuplicado.Text = "0";
                         this.EntradaElementoDuplicado.TextDetail = "";
-                        this.EntradaElementoDuplicado.ToolTipText = "";
                         this.EntradaElementoDuplicado.TextChanged += new System.EventHandler(this.EntradaElementoDuplicado_TextChanged);
                         // 
                         // EtiquetaElemento2
@@ -140,7 +138,6 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.MaxLength = 200;
                         this.EntradaElementoOriginal.Name = "EntradaElementoOriginal";
                         this.EntradaElementoOriginal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaElementoOriginal.PlaceholderText = "";
                         this.EntradaElementoOriginal.ReadOnly = false;
                         this.EntradaElementoOriginal.Required = true;
                         this.EntradaElementoOriginal.Size = new System.Drawing.Size(456, 24);
@@ -148,7 +145,6 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.Table = "personas";
                         this.EntradaElementoOriginal.Text = "0";
                         this.EntradaElementoOriginal.TextDetail = "";
-                        this.EntradaElementoOriginal.ToolTipText = "";
                         this.EntradaElementoOriginal.TextChanged += new System.EventHandler(this.EntradaElementoOriginal_TextChanged);
                         // 
                         // txtTipo
@@ -160,14 +156,12 @@ namespace Lfc.Misc
                         this.txtTipo.Location = new System.Drawing.Point(152, 24);
                         this.txtTipo.Name = "txtTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTipo.PlaceholderText = "";
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
         "Persona|personas"};
                         this.txtTipo.Size = new System.Drawing.Size(140, 21);
                         this.txtTipo.TabIndex = 1;
                         this.txtTipo.TextKey = "personas";
-                        this.txtTipo.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -192,7 +186,6 @@ namespace Lfc.Misc
                             "s y movimientos de caja o stock, pasarán al registro 1. El registro 2 será enton" +
                             "ces eliminado.";
                         this.note1.Title = "Nota";
-                        this.note1.ToolTipText = "";
                         // 
                         // PanelPersona
                         // 
@@ -218,7 +211,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCteFinal.MultiLine = false;
                         this.EntradaCtaCteFinal.Name = "EntradaCtaCteFinal";
                         this.EntradaCtaCteFinal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCtaCteFinal.PlaceholderText = "";
                         this.EntradaCtaCteFinal.Prefijo = "$";
                         this.EntradaCtaCteFinal.ReadOnly = false;
                         this.EntradaCtaCteFinal.SelectOnFocus = true;
@@ -226,7 +218,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCteFinal.TabIndex = 5;
                         this.EntradaCtaCteFinal.TabStop = false;
                         this.EntradaCtaCteFinal.Text = "0.00";
-                        this.EntradaCtaCteFinal.ToolTipText = "";
                         // 
                         // label4
                         // 
@@ -248,7 +239,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte2.MultiLine = false;
                         this.EntradaCtaCte2.Name = "EntradaCtaCte2";
                         this.EntradaCtaCte2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCtaCte2.PlaceholderText = "";
                         this.EntradaCtaCte2.Prefijo = "$";
                         this.EntradaCtaCte2.ReadOnly = false;
                         this.EntradaCtaCte2.SelectOnFocus = true;
@@ -256,7 +246,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte2.TabIndex = 3;
                         this.EntradaCtaCte2.TabStop = false;
                         this.EntradaCtaCte2.Text = "0.00";
-                        this.EntradaCtaCte2.ToolTipText = "";
                         this.EntradaCtaCte2.TextChanged += new System.EventHandler(this.EntradaCtaCte1CtaCte2_TextChanged);
                         // 
                         // label2
@@ -279,7 +268,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte1.MultiLine = false;
                         this.EntradaCtaCte1.Name = "EntradaCtaCte1";
                         this.EntradaCtaCte1.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCtaCte1.PlaceholderText = "";
                         this.EntradaCtaCte1.Prefijo = "$";
                         this.EntradaCtaCte1.ReadOnly = false;
                         this.EntradaCtaCte1.SelectOnFocus = true;
@@ -287,7 +275,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte1.TabIndex = 1;
                         this.EntradaCtaCte1.TabStop = false;
                         this.EntradaCtaCte1.Text = "0.00";
-                        this.EntradaCtaCte1.ToolTipText = "";
                         this.EntradaCtaCte1.TextChanged += new System.EventHandler(this.EntradaCtaCte1CtaCte2_TextChanged);
                         // 
                         // label1

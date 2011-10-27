@@ -87,14 +87,12 @@ namespace Lazaro.Misc
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 1;
-                        this.EntradaContrasena.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -122,7 +120,6 @@ namespace Lazaro.Misc
                         this.CancelCommandButton.Subtext = "";
                         this.CancelCommandButton.TabIndex = 8;
                         this.CancelCommandButton.Text = "Cancelar";
-                        this.CancelCommandButton.ToolTipText = "";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // OkButton
@@ -140,7 +137,6 @@ namespace Lazaro.Misc
                         this.OkButton.Subtext = "";
                         this.OkButton.TabIndex = 7;
                         this.OkButton.Text = "Cambiar";
-                        this.OkButton.ToolTipText = "";
                         this.OkButton.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // LowerPanel
@@ -201,14 +197,12 @@ namespace Lazaro.Misc
                         this.EntradaContrasenaNueva1.Name = "EntradaContrasenaNueva1";
                         this.EntradaContrasenaNueva1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasenaNueva1.PasswordChar = '*';
-                        this.EntradaContrasenaNueva1.PlaceholderText = "";
                         this.EntradaContrasenaNueva1.Prefijo = "";
                         this.EntradaContrasenaNueva1.ReadOnly = false;
                         this.EntradaContrasenaNueva1.SelectOnFocus = true;
                         this.EntradaContrasenaNueva1.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasenaNueva1.Sufijo = "";
                         this.EntradaContrasenaNueva1.TabIndex = 3;
-                        this.EntradaContrasenaNueva1.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -236,14 +230,12 @@ namespace Lazaro.Misc
                         this.EntradaContrasenaNueva2.Name = "EntradaContrasenaNueva2";
                         this.EntradaContrasenaNueva2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasenaNueva2.PasswordChar = '*';
-                        this.EntradaContrasenaNueva2.PlaceholderText = "";
                         this.EntradaContrasenaNueva2.Prefijo = "";
                         this.EntradaContrasenaNueva2.ReadOnly = false;
                         this.EntradaContrasenaNueva2.SelectOnFocus = true;
                         this.EntradaContrasenaNueva2.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasenaNueva2.Sufijo = "";
                         this.EntradaContrasenaNueva2.TabIndex = 5;
-                        this.EntradaContrasenaNueva2.ToolTipText = "";
                         // 
                         // label4
                         // 

@@ -186,14 +186,13 @@ namespace Lazaro.Misc.Backup
                         this.EntradaConfirmar.Name = "EntradaConfirmar";
                         this.EntradaConfirmar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConfirmar.PasswordChar = '\0';
-                        this.EntradaConfirmar.PlaceholderText = "";
                         this.EntradaConfirmar.Prefijo = "";
                         this.EntradaConfirmar.ReadOnly = false;
                         this.EntradaConfirmar.SelectOnFocus = true;
                         this.EntradaConfirmar.Size = new System.Drawing.Size(80, 24);
                         this.EntradaConfirmar.Sufijo = "";
                         this.EntradaConfirmar.TabIndex = 0;
-                        this.EntradaConfirmar.ToolTipText = "Escriba el texto de confirmación para poder continuar";
+                        this.EntradaConfirmar.PlaceholderText = "Escriba el texto de confirmación para poder continuar";
                         this.EntradaConfirmar.TextChanged += new System.EventHandler(this.EntradaConfirmar_TextChanged);
                         // 
                         // PictureBox1

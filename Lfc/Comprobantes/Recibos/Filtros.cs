@@ -132,8 +132,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.PlaceholderText = "";
-                        this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -177,8 +175,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.PlaceholderText = "";
-                        this.EntradaVendedor.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -213,8 +209,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.PlaceholderText = "";
-                        this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -241,8 +235,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.Text = "De cobro";
                         this.EntradaTipo.TextKey = "0";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -293,7 +285,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFechas.TemporaryReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(448, 30);
                         this.EntradaFechas.TabIndex = 9;
-                        this.EntradaFechas.ToolTipText = "";
                         // 
                         // Filtros
                         // 

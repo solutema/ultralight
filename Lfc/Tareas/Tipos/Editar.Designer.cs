@@ -72,12 +72,10 @@ namespace Lfc.Tareas.Tipos
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(524, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -101,12 +99,11 @@ namespace Lfc.Tareas.Tipos
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.PlaceholderText = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(524, 72);
                         this.EntradaObs.TabIndex = 3;
-                        this.EntradaObs.ToolTipText = "Descripción larga";
+                        this.EntradaObs.PlaceholderText = "Descripción larga";
                         // 
                         // Label13
                         // 

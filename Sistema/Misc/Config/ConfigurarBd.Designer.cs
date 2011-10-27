@@ -114,14 +114,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaServidor.Name = "EntradaServidor";
                         this.EntradaServidor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaServidor.PasswordChar = '\0';
-                        this.EntradaServidor.PlaceholderText = "";
                         this.EntradaServidor.Prefijo = "";
                         this.EntradaServidor.ReadOnly = false;
                         this.EntradaServidor.SelectOnFocus = false;
                         this.EntradaServidor.Size = new System.Drawing.Size(196, 25);
                         this.EntradaServidor.Sufijo = "";
                         this.EntradaServidor.TabIndex = 4;
-                        this.EntradaServidor.ToolTipText = "";
                         this.EntradaServidor.Leave += new System.EventHandler(this.EntradaServidor_Leave);
                         // 
                         // EtiquetaServidor
@@ -160,7 +158,6 @@ namespace Lazaro.Misc.Config
                         this.BotonServidorVista.Subtext = "F8";
                         this.BotonServidorVista.TabIndex = 100;
                         this.BotonServidorVista.Text = "Vista Avanzada >";
-                        this.BotonServidorVista.ToolTipText = "";
                         this.BotonServidorVista.Click += new System.EventHandler(this.BotonServidorVista_Click);
                         // 
                         // PanelServidorAvanzado
@@ -196,7 +193,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaSucursal.Name = "EntradaSucursal";
                         this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.PasswordChar = '\0';
-                        this.EntradaSucursal.PlaceholderText = "";
                         this.EntradaSucursal.Prefijo = "";
                         this.EntradaSucursal.ReadOnly = false;
                         this.EntradaSucursal.SelectOnFocus = true;
@@ -204,7 +200,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaSucursal.Sufijo = "";
                         this.EntradaSucursal.TabIndex = 11;
                         this.EntradaSucursal.Text = "1";
-                        this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label5
                         // 
@@ -225,7 +220,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaSlowLink.MaxLength = 32767;
                         this.EntradaSlowLink.Name = "EntradaSlowLink";
                         this.EntradaSlowLink.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSlowLink.PlaceholderText = "";
                         this.EntradaSlowLink.ReadOnly = false;
                         this.EntradaSlowLink.SetData = new string[] {
         "Si|1",
@@ -233,7 +227,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaSlowLink.Size = new System.Drawing.Size(60, 25);
                         this.EntradaSlowLink.TabIndex = 9;
                         this.EntradaSlowLink.TextKey = "0";
-                        this.EntradaSlowLink.ToolTipText = "";
                         // 
                         // label4
                         // 
@@ -258,14 +251,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaBD.Name = "EntradaBD";
                         this.EntradaBD.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBD.PasswordChar = '\0';
-                        this.EntradaBD.PlaceholderText = "";
                         this.EntradaBD.Prefijo = "";
                         this.EntradaBD.ReadOnly = false;
                         this.EntradaBD.SelectOnFocus = true;
                         this.EntradaBD.Size = new System.Drawing.Size(172, 24);
                         this.EntradaBD.Sufijo = "";
                         this.EntradaBD.TabIndex = 3;
-                        this.EntradaBD.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -286,7 +277,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaConexion.MaxLength = 32767;
                         this.EntradaConexion.Name = "EntradaConexion";
                         this.EntradaConexion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConexion.PlaceholderText = "";
                         this.EntradaConexion.ReadOnly = false;
                         this.EntradaConexion.SetData = new string[] {
         "ODBC|odbc",
@@ -296,7 +286,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaConexion.Size = new System.Drawing.Size(196, 23);
                         this.EntradaConexion.TabIndex = 1;
                         this.EntradaConexion.TextKey = "mysql";
-                        this.EntradaConexion.ToolTipText = "";
                         this.EntradaConexion.TextChanged += new System.EventHandler(this.EntradaConexion_TextChanged);
                         // 
                         // Label1
@@ -322,14 +311,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(124, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 7;
-                        this.EntradaContrasena.ToolTipText = "";
                         // 
                         // EntradaUsuario
                         // 
@@ -344,14 +331,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUsuario.PasswordChar = '\0';
-                        this.EntradaUsuario.PlaceholderText = "";
                         this.EntradaUsuario.Prefijo = "";
                         this.EntradaUsuario.ReadOnly = false;
                         this.EntradaUsuario.SelectOnFocus = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(124, 25);
                         this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 5;
-                        this.EntradaUsuario.ToolTipText = "";
                         // 
                         // Label28
                         // 
@@ -387,7 +372,6 @@ namespace Lazaro.Misc.Config
                         this.GCommand1.Subtext = "F8";
                         this.GCommand1.TabIndex = 5;
                         this.GCommand1.Text = "buscar...";
-                        this.GCommand1.ToolTipText = "";
                         this.GCommand1.Visible = false;
                         // 
                         // LowerPanel
@@ -415,7 +399,6 @@ namespace Lazaro.Misc.Config
                         this.OkButton.Subtext = "F8";
                         this.OkButton.TabIndex = 50;
                         this.OkButton.Text = "Aceptar";
-                        this.OkButton.ToolTipText = "";
                         this.OkButton.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // CancelCommandButton
@@ -433,7 +416,6 @@ namespace Lazaro.Misc.Config
                         this.CancelCommandButton.Subtext = "";
                         this.CancelCommandButton.TabIndex = 51;
                         this.CancelCommandButton.Text = "Cancelar";
-                        this.CancelCommandButton.ToolTipText = "";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // Label6

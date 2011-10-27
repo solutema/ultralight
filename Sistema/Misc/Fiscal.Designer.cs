@@ -91,7 +91,6 @@ namespace Lazaro.Misc
                         this.BotonCierreZ.Subtext = "Ctrl-Z";
                         this.BotonCierreZ.TabIndex = 8;
                         this.BotonCierreZ.Text = "Cierre Z";
-                        this.BotonCierreZ.ToolTipText = "";
                         this.BotonCierreZ.Click += new System.EventHandler(this.BotonCierreZ_Click);
                         // 
                         // Timer1
@@ -132,13 +131,11 @@ namespace Lazaro.Misc
                         this.EntradaPv.MaxLength = 32767;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPv.PlaceholderText = "";
                         this.EntradaPv.ReadOnly = false;
                         this.EntradaPv.SetData = null;
                         this.EntradaPv.Size = new System.Drawing.Size(192, 21);
                         this.EntradaPv.TabIndex = 52;
                         this.EntradaPv.TextKey = "";
-                        this.EntradaPv.ToolTipText = "";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.txtPV_TextChanged);
                         // 
                         // BotonReiniciar
@@ -156,7 +153,6 @@ namespace Lazaro.Misc
                         this.BotonReiniciar.Subtext = "Ctrl-Z";
                         this.BotonReiniciar.TabIndex = 53;
                         this.BotonReiniciar.Text = "Reiniciar";
-                        this.BotonReiniciar.ToolTipText = "";
                         this.BotonReiniciar.Click += new System.EventHandler(this.BotonReiniciar_Click);
                         // 
                         // label2
@@ -210,7 +206,6 @@ namespace Lazaro.Misc
                         this.BotonIniciarDetener.Subtext = "Ctrl-Z";
                         this.BotonIniciarDetener.TabIndex = 57;
                         this.BotonIniciarDetener.Text = "Iniciar";
-                        this.BotonIniciarDetener.ToolTipText = "";
                         this.BotonIniciarDetener.Click += new System.EventHandler(this.BotonIniciarDetener_Click);
                         // 
                         // Fiscal

@@ -83,7 +83,6 @@ namespace Lfc.Articulos
                         this.CancelCommandButton.Subtext = "Esc";
                         this.CancelCommandButton.TabIndex = 1;
                         this.CancelCommandButton.Text = "Volver";
-                        this.CancelCommandButton.ToolTipText = "";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // FormTablaDetalles

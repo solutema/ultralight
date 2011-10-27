@@ -100,12 +100,10 @@ namespace Lfc.Cajas
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PlaceholderText = "";
                         this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(228, 24);
                         this.EntradaNumero.TabIndex = 9;
-                        this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.NumeroBanco_TextChanged);
                         // 
                         // Label3
@@ -142,7 +140,6 @@ namespace Lfc.Cajas
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBanco.PlaceholderText = "";
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(491, 24);
@@ -150,7 +147,6 @@ namespace Lfc.Cajas
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.ToolTipText = "";
                         this.EntradaBanco.TextChanged += new System.EventHandler(this.NumeroBanco_TextChanged);
                         // 
                         // EntradaTipo
@@ -161,7 +157,6 @@ namespace Lfc.Cajas
                         this.EntradaTipo.Location = new System.Drawing.Point(124, 64);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Efectivo|0",
@@ -170,7 +165,7 @@ namespace Lfc.Cajas
                         this.EntradaTipo.Size = new System.Drawing.Size(168, 24);
                         this.EntradaTipo.TabIndex = 5;
                         this.EntradaTipo.TextKey = "1";
-                        this.EntradaTipo.ToolTipText = "¿El producto usa control de stock?";
+                        this.EntradaTipo.PlaceholderText = "¿El producto usa control de stock?";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label7
@@ -195,12 +190,10 @@ namespace Lfc.Cajas
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(491, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.ToolTipText = "";
                         this.EntradaNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaNombre_KeyPress);
                         // 
                         // Label2
@@ -235,7 +228,6 @@ namespace Lfc.Cajas
                         this.EntradaMoneda.MaxLength = 200;
                         this.EntradaMoneda.Name = "EntradaMoneda";
                         this.EntradaMoneda.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMoneda.PlaceholderText = "";
                         this.EntradaMoneda.ReadOnly = false;
                         this.EntradaMoneda.Required = false;
                         this.EntradaMoneda.Size = new System.Drawing.Size(228, 24);
@@ -243,7 +235,6 @@ namespace Lfc.Cajas
                         this.EntradaMoneda.Table = "monedas";
                         this.EntradaMoneda.Text = "0";
                         this.EntradaMoneda.TextDetail = "";
-                        this.EntradaMoneda.ToolTipText = "";
                         // 
                         // EntradaCbu
                         // 
@@ -257,12 +248,10 @@ namespace Lfc.Cajas
                         this.EntradaCbu.MultiLine = false;
                         this.EntradaCbu.Name = "EntradaCbu";
                         this.EntradaCbu.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCbu.PlaceholderText = "";
                         this.EntradaCbu.ReadOnly = false;
                         this.EntradaCbu.SelectOnFocus = false;
                         this.EntradaCbu.Size = new System.Drawing.Size(228, 24);
                         this.EntradaCbu.TabIndex = 13;
-                        this.EntradaCbu.ToolTipText = "";
                         // 
                         // label5
                         // 
@@ -284,12 +273,10 @@ namespace Lfc.Cajas
                         this.EntradaTitular.MultiLine = false;
                         this.EntradaTitular.Name = "EntradaTitular";
                         this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTitular.PlaceholderText = "";
                         this.EntradaTitular.ReadOnly = false;
                         this.EntradaTitular.SelectOnFocus = true;
                         this.EntradaTitular.Size = new System.Drawing.Size(436, 24);
                         this.EntradaTitular.TabIndex = 3;
-                        this.EntradaTitular.ToolTipText = "";
                         // 
                         // label6
                         // 
@@ -308,7 +295,6 @@ namespace Lfc.Cajas
                         this.EntradaEstado.Location = new System.Drawing.Point(124, 224);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Activa|1",
@@ -316,7 +302,7 @@ namespace Lfc.Cajas
                         this.EntradaEstado.Size = new System.Drawing.Size(168, 24);
                         this.EntradaEstado.TabIndex = 15;
                         this.EntradaEstado.TextKey = "1";
-                        this.EntradaEstado.ToolTipText = "¿El producto usa control de stock?";
+                        this.EntradaEstado.PlaceholderText = "¿El producto usa control de stock?";
                         // 
                         // label8
                         // 

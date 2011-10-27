@@ -75,13 +75,11 @@ namespace Lcc.Entrada
                         this.EntradaValor1.MultiLine = false;
                         this.EntradaValor1.Name = "EntradaValor1";
                         this.EntradaValor1.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaValor1.PlaceholderText = "";
                         this.EntradaValor1.ReadOnly = false;
                         this.EntradaValor1.SelectOnFocus = true;
                         this.EntradaValor1.Size = new System.Drawing.Size(108, 24);
                         this.EntradaValor1.TabIndex = 5;
                         this.EntradaValor1.Text = "0.00";
-                        this.EntradaValor1.ToolTipText = "";
                         // 
                         // EntradaValor2
                         // 
@@ -94,13 +92,11 @@ namespace Lcc.Entrada
                         this.EntradaValor2.MultiLine = false;
                         this.EntradaValor2.Name = "EntradaValor2";
                         this.EntradaValor2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaValor2.PlaceholderText = "";
                         this.EntradaValor2.ReadOnly = false;
                         this.EntradaValor2.SelectOnFocus = true;
                         this.EntradaValor2.Size = new System.Drawing.Size(108, 24);
                         this.EntradaValor2.TabIndex = 7;
                         this.EntradaValor2.Text = "0.00";
-                        this.EntradaValor2.ToolTipText = "";
                         // 
                         // label8
                         // 

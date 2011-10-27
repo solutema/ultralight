@@ -94,12 +94,10 @@ namespace Lfc.Ciudades
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(670, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // EntradaCp
                         // 
@@ -112,12 +110,10 @@ namespace Lfc.Ciudades
                         this.EntradaCp.MultiLine = false;
                         this.EntradaCp.Name = "EntradaCp";
                         this.EntradaCp.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCp.PlaceholderText = "";
                         this.EntradaCp.ReadOnly = false;
                         this.EntradaCp.SelectOnFocus = false;
                         this.EntradaCp.Size = new System.Drawing.Size(172, 24);
                         this.EntradaCp.TabIndex = 5;
-                        this.EntradaCp.ToolTipText = "";
                         // 
                         // EntradaParent
                         // 
@@ -143,7 +139,6 @@ namespace Lfc.Ciudades
                         this.EntradaParent.Table = "ciudades";
                         this.EntradaParent.Text = "0";
                         this.EntradaParent.TextDetail = "";
-                        this.EntradaParent.ToolTipText = "";
                         // 
                         // EtiquetaParent
                         // 
@@ -172,7 +167,6 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.Location = new System.Drawing.Point(116, 32);
                         this.EntradaNivel.Name = "EntradaNivel";
                         this.EntradaNivel.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNivel.PlaceholderText = "";
                         this.EntradaNivel.ReadOnly = false;
                         this.EntradaNivel.SetData = new string[] {
         "Provincia|0",
@@ -181,7 +175,6 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.Size = new System.Drawing.Size(172, 51);
                         this.EntradaNivel.TabIndex = 3;
                         this.EntradaNivel.TextKey = "0";
-                        this.EntradaNivel.ToolTipText = "";
                         this.EntradaNivel.TextChanged += new System.EventHandler(this.EntradaNivel_TextChanged);
                         // 
                         // EntradaIva
@@ -193,7 +186,6 @@ namespace Lfc.Ciudades
                         this.EntradaIva.Location = new System.Drawing.Point(116, 156);
                         this.EntradaIva.Name = "EntradaIva";
                         this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaIva.PlaceholderText = "";
                         this.EntradaIva.ReadOnly = false;
                         this.EntradaIva.SetData = new string[] {
         "Predeterminado|0",
@@ -201,7 +193,6 @@ namespace Lfc.Ciudades
                         this.EntradaIva.Size = new System.Drawing.Size(172, 36);
                         this.EntradaIva.TabIndex = 9;
                         this.EntradaIva.TextKey = "0";
-                        this.EntradaIva.ToolTipText = "";
                         // 
                         // label4
                         // 

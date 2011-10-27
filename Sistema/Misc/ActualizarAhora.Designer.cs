@@ -159,7 +159,6 @@ namespace Lazaro.Misc
                         this.BotonInstalar.Subtext = "Tecla";
                         this.BotonInstalar.TabIndex = 61;
                         this.BotonInstalar.Text = "Cancelar";
-                        this.BotonInstalar.ToolTipText = "";
                         this.BotonInstalar.Click += new System.EventHandler(this.BotonInstalar_Click);
                         // 
                         // EtiquetaAyuda

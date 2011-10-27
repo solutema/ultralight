@@ -82,7 +82,6 @@ namespace Lcc.Edicion
                         this.EntradaImagen.TemporaryReadOnly = false;
                         this.EntradaImagen.Size = new System.Drawing.Size(620, 298);
                         this.EntradaImagen.TabIndex = 51;
-                        this.EntradaImagen.ToolTipText = "";
                         // 
                         // FormularioImagen
                         // 

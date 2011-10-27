@@ -106,7 +106,6 @@ namespace Lfc.Comprobantes.Compra
 			this.BotonRemito.Subtext = "Para asentar un remito de proveedor.";
 			this.BotonRemito.TabIndex = 4;
 			this.BotonRemito.Text = "Remito";
-			this.BotonRemito.ToolTipText = "";
 			this.BotonRemito.Click += new System.EventHandler(this.BotonArribo_Click);
 			// 
 			// BotonPedido
@@ -122,7 +121,6 @@ namespace Lfc.Comprobantes.Compra
 			this.BotonPedido.Subtext = "Para asentar un pedido realizado.";
 			this.BotonPedido.TabIndex = 2;
 			this.BotonPedido.Text = "Pedido";
-			this.BotonPedido.ToolTipText = "";
 			this.BotonPedido.Click += new System.EventHandler(this.BotonPedido_Click);
 			// 
 			// BotonRequerimiento
@@ -138,7 +136,6 @@ namespace Lfc.Comprobantes.Compra
 			this.BotonRequerimiento.Subtext = "Para solicitar un pedido.";
 			this.BotonRequerimiento.TabIndex = 0;
 			this.BotonRequerimiento.Text = "Nota de Pedido";
-			this.BotonRequerimiento.ToolTipText = "";
 			this.BotonRequerimiento.Click += new System.EventHandler(this.BotonRequerimiento_Click);
 			// 
 			// BotonFactura
@@ -154,7 +151,6 @@ namespace Lfc.Comprobantes.Compra
 			this.BotonFactura.Subtext = "Para asentar una factura de compra.";
 			this.BotonFactura.TabIndex = 6;
 			this.BotonFactura.Text = "Factura";
-			this.BotonFactura.ToolTipText = "";
 			this.BotonFactura.Click += new System.EventHandler(this.BotonFactura_Click);
 			// 
 			// Crear

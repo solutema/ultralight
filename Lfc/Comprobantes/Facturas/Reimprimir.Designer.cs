@@ -102,7 +102,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "A|A",
@@ -113,7 +112,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.Size = new System.Drawing.Size(40, 26);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.TextKey = "B";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
                         // EntradaDesde
@@ -127,13 +125,11 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
-                        this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
                         // EntradaPV
@@ -147,13 +143,11 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(52, 24);
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
-                        this.EntradaPV.ToolTipText = "";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
                         // Label7
@@ -174,7 +168,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaOrden.Location = new System.Drawing.Point(508, 20);
                         this.EntradaOrden.Name = "EntradaOrden";
                         this.EntradaOrden.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaOrden.PlaceholderText = "";
                         this.EntradaOrden.ReadOnly = false;
                         this.EntradaOrden.SetData = new string[] {
         "Normal|0",
@@ -182,7 +175,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaOrden.Size = new System.Drawing.Size(268, 36);
                         this.EntradaOrden.TabIndex = 9;
                         this.EntradaOrden.TextKey = "0";
-                        this.EntradaOrden.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -207,7 +199,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.ComprobanteVistaPrevia.Size = new System.Drawing.Size(760, 320);
                         this.ComprobanteVistaPrevia.TabIndex = 12;
                         this.ComprobanteVistaPrevia.TabStop = false;
-                        this.ComprobanteVistaPrevia.ToolTipText = "";
                         this.ComprobanteVistaPrevia.Visible = false;
                         // 
                         // EntradaHasta
@@ -221,13 +212,11 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaHasta.PlaceholderText = "";
                         this.EntradaHasta.ReadOnly = false;
                         this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(100, 24);
                         this.EntradaHasta.TabIndex = 7;
                         this.EntradaHasta.Text = "0";
-                        this.EntradaHasta.ToolTipText = "";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         this.EntradaHasta.Enter += new System.EventHandler(this.EntradaHasta_Enter);
                         // 

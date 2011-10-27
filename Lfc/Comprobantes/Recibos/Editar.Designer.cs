@@ -130,8 +130,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.PlaceholderText = "";
-                        this.EntradaVendedor.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -156,8 +154,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
                         this.EntradaNumero.TabIndex = 3;
-                        this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.ToolTipText = "";
                         // 
                         // frmFacturas
                         // 
@@ -174,7 +170,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.frmFacturas.TabIndex = 0;
                         this.frmFacturas.TabStop = false;
                         this.frmFacturas.Text = "Facturas";
-                        this.frmFacturas.ToolTipText = "";
                         // 
                         // ListaFacturas
                         // 
@@ -261,7 +256,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarFactura.Subtext = "F2";
                         this.BotonAgregarFactura.TabIndex = 10;
                         this.BotonAgregarFactura.Text = "Agregar";
-                        this.BotonAgregarFactura.ToolTipText = "";
                         this.BotonAgregarFactura.Click += new System.EventHandler(this.BotonFacturasAgregar_Click);
                         // 
                         // BotonQuitarFactura
@@ -278,7 +272,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarFactura.Subtext = "F3";
                         this.BotonQuitarFactura.TabIndex = 11;
                         this.BotonQuitarFactura.Text = "Quitar";
-                        this.BotonQuitarFactura.ToolTipText = "";
                         this.BotonQuitarFactura.Visible = false;
                         this.BotonQuitarFactura.Click += new System.EventHandler(this.BotonFacturasQuitar_Click);
                         // 
@@ -297,7 +290,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Frame1.TabIndex = 1;
                         this.Frame1.TabStop = false;
                         this.Frame1.Text = "Valores";
-                        this.Frame1.ToolTipText = "";
                         // 
                         // ListaValores
                         // 
@@ -359,7 +351,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarValor.Subtext = "F4";
                         this.BotonAgregarValor.TabIndex = 16;
                         this.BotonAgregarValor.Text = "Agregar";
-                        this.BotonAgregarValor.ToolTipText = "";
                         this.BotonAgregarValor.Click += new System.EventHandler(this.BotonValoresAgregar_Click);
                         // 
                         // BotonQuitarValor
@@ -376,7 +367,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarValor.Subtext = "F5";
                         this.BotonQuitarValor.TabIndex = 17;
                         this.BotonQuitarValor.Text = "Quitar";
-                        this.BotonQuitarValor.ToolTipText = "";
                         this.BotonQuitarValor.Click += new System.EventHandler(this.BotonValoresQuitar_Click);
                         // 
                         // Label4
@@ -431,8 +421,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.PlaceholderText = "";
-                        this.EntradaCliente.ToolTipText = "";
                         // 
                         // EtiquetaTitulo
                         // 
@@ -462,8 +450,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConceptoTexto.SelectOnFocus = true;
                         this.EntradaConceptoTexto.Size = new System.Drawing.Size(344, 24);
                         this.EntradaConceptoTexto.TabIndex = 9;
-                        this.EntradaConceptoTexto.PlaceholderText = "";
-                        this.EntradaConceptoTexto.ToolTipText = "";
                         // 
                         // label6
                         // 
@@ -508,8 +494,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
                         this.EntradaPV.TabIndex = 2;
-                        this.EntradaPV.PlaceholderText = "";
-                        this.EntradaPV.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -543,7 +527,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
                         this.EntradaConcepto.PlaceholderText = "Sin especificar";
-                        this.EntradaConcepto.ToolTipText = "";
                         // 
                         // Editar
                         // 

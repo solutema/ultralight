@@ -145,8 +145,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaFormaDePago.Text = "0";
                         this.EntradaFormaDePago.TextDetail = "";
                         this.EntradaFormaDePago.TextInt = 0;
-                        this.EntradaFormaDePago.PlaceholderText = "";
-                        this.EntradaFormaDePago.ToolTipText = "";
                         this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.txtTarjeta_TextChanged);
                         // 
                         // Label16
@@ -185,8 +183,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlanInteres.TabIndex = 3;
                         this.txtPlanInteres.TabStop = false;
                         this.txtPlanInteres.Text = "0.00";
-                        this.txtPlanInteres.PlaceholderText = "";
-                        this.txtPlanInteres.ToolTipText = "";
                         // 
                         // Label14
                         // 
@@ -215,8 +211,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtPlanCuotas.TabIndex = 1;
                         this.txtPlanCuotas.TabStop = false;
                         this.txtPlanCuotas.Text = "1";
-                        this.txtPlanCuotas.PlaceholderText = "";
-                        this.txtPlanCuotas.ToolTipText = "";
                         // 
                         // lblFecha1
                         // 
@@ -252,8 +246,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
                         this.EntradaPlan.TextInt = 0;
-                        this.EntradaPlan.PlaceholderText = "";
-                        this.EntradaPlan.ToolTipText = "";
                         this.EntradaPlan.TextChanged += new System.EventHandler(this.txtPlan_TextChanged);
                         // 
                         // Label15
@@ -290,8 +282,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
                         this.EntradaCliente.TextInt = 0;
-                        this.EntradaCliente.PlaceholderText = "";
-                        this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -323,8 +313,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaEstado.TabIndex = 6;
                         this.EntradaEstado.Text = "No Cobrados";
                         this.EntradaEstado.TextKey = "-2";
-                        this.EntradaEstado.PlaceholderText = "";
-                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -387,7 +375,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaFechas.TemporaryReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(455, 30);
                         this.EntradaFechas.TabIndex = 10;
-                        this.EntradaFechas.ToolTipText = "";
                         // 
                         // Filtros
                         // 

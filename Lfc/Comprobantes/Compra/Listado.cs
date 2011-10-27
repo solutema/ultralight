@@ -111,7 +111,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaReporte.SelectOnFocus = false;
                         this.EntradaReporte.Size = new System.Drawing.Size(568, 284);
                         this.EntradaReporte.TabIndex = 51;
-                        this.EntradaReporte.ToolTipText = "";
                         // 
                         // EntradaMostrar
                         // 
@@ -128,7 +127,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaMostrar.TabIndex = 55;
                         this.EntradaMostrar.Text = "Todo";
                         this.EntradaMostrar.TextKey = "1";
-                        this.EntradaMostrar.ToolTipText = "";
                         this.EntradaMostrar.TextChanged += new System.EventHandler(this.EntradaAgrupar_TextChanged);
                         // 
                         // Label2
@@ -158,7 +156,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaAgrupar.TabIndex = 53;
                         this.EntradaAgrupar.Text = "Sin Agrupar";
                         this.EntradaAgrupar.TextKey = "*";
-                        this.EntradaAgrupar.ToolTipText = "";
                         this.EntradaAgrupar.TextChanged += new System.EventHandler(this.EntradaAgrupar_TextChanged);
                         // 
                         // Label1

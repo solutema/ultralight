@@ -108,8 +108,6 @@ namespace Lfc.Sucursales
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(544, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // EntradaDireccion
                         // 
@@ -127,8 +125,6 @@ namespace Lfc.Sucursales
                         this.EntradaDireccion.SelectOnFocus = false;
                         this.EntradaDireccion.Size = new System.Drawing.Size(544, 24);
                         this.EntradaDireccion.TabIndex = 3;
-                        this.EntradaDireccion.PlaceholderText = "";
-                        this.EntradaDireccion.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -168,8 +164,6 @@ namespace Lfc.Sucursales
                         this.EntradaLocalidad.Table = "ciudades";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
-                        this.EntradaLocalidad.PlaceholderText = "";
-                        this.EntradaLocalidad.ToolTipText = "";
                         // 
                         // Label9
                         // 
@@ -201,8 +195,6 @@ namespace Lfc.Sucursales
                         this.EntradaSituacionOrigen.Table = "articulos_situaciones";
                         this.EntradaSituacionOrigen.Text = "0";
                         this.EntradaSituacionOrigen.TextDetail = "";
-                        this.EntradaSituacionOrigen.PlaceholderText = "";
-                        this.EntradaSituacionOrigen.ToolTipText = "";
                         // 
                         // label4
                         // 
@@ -235,8 +227,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaDiaria.Table = "cajas";
                         this.EntradaCajaDiaria.Text = "0";
                         this.EntradaCajaDiaria.TextDetail = "";
-                        this.EntradaCajaDiaria.PlaceholderText = "";
-                        this.EntradaCajaDiaria.ToolTipText = "";
                         // 
                         // label5
                         // 
@@ -269,8 +259,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaCheques.Table = "cajas";
                         this.EntradaCajaCheques.Text = "0";
                         this.EntradaCajaCheques.TextDetail = "";
-                        this.EntradaCajaCheques.PlaceholderText = "";
-                        this.EntradaCajaCheques.ToolTipText = "";
                         // 
                         // label6
                         // 
@@ -294,7 +282,6 @@ namespace Lfc.Sucursales
                         this.EntradaTelefono.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTelefono.Size = new System.Drawing.Size(540, 132);
                         this.EntradaTelefono.TabIndex = 7;
-                        this.EntradaTelefono.ToolTipText = "";
                         // 
                         // Editar
                         // 

@@ -161,7 +161,6 @@ namespace Lazaro.Reportes
                         this.PorMes.Subtext = "";
                         this.PorMes.TabIndex = 1;
                         this.PorMes.Text = "Mostrar";
-                        this.PorMes.ToolTipText = "";
                         this.PorMes.Click += new System.EventHandler(this.PorMes_Click);
                         // 
                         // PorRentabilidad
@@ -178,7 +177,6 @@ namespace Lazaro.Reportes
                         this.PorRentabilidad.Subtext = "";
                         this.PorRentabilidad.TabIndex = 2;
                         this.PorRentabilidad.Text = "Mostrar";
-                        this.PorRentabilidad.ToolTipText = "";
                         this.PorRentabilidad.Click += new System.EventHandler(this.PorRentabilidad_Click);
                         // 
                         // ChartRent
@@ -352,7 +350,6 @@ namespace Lazaro.Reportes
                         this.BotonPorDiaDelMes.Subtext = "";
                         this.BotonPorDiaDelMes.TabIndex = 17;
                         this.BotonPorDiaDelMes.Text = "Mostrar";
-                        this.BotonPorDiaDelMes.ToolTipText = "";
                         this.BotonPorDiaDelMes.Click += new System.EventHandler(this.BotonPorDiaDelMes_Click);
                         // 
                         // label9

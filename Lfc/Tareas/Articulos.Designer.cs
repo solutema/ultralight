@@ -101,7 +101,6 @@ namespace Lfc.Tareas
                         this.MatrizArticulos.ShowStock = true;
                         this.MatrizArticulos.Size = new System.Drawing.Size(576, 220);
                         this.MatrizArticulos.TabIndex = 1;
-                        this.MatrizArticulos.ToolTipText = "";
                         this.MatrizArticulos.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
                         // 
                         // EtiquetaTitulo
@@ -138,7 +137,6 @@ namespace Lfc.Tareas
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTotal.PlaceholderText = "";
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.ReadOnly = false;
                         this.EntradaTotal.SelectOnFocus = true;
@@ -146,7 +144,6 @@ namespace Lfc.Tareas
                         this.EntradaTotal.TabIndex = 54;
                         this.EntradaTotal.TabStop = false;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.ToolTipText = "";
                         // 
                         // EntradaDescuento
                         // 
@@ -160,14 +157,12 @@ namespace Lfc.Tareas
                         this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescuento.PlaceholderText = "";
                         this.EntradaDescuento.ReadOnly = false;
                         this.EntradaDescuento.SelectOnFocus = true;
                         this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 58;
                         this.EntradaDescuento.Text = "0.0000";
-                        this.EntradaDescuento.ToolTipText = "";
                         this.EntradaDescuento.TextChanged += new System.EventHandler(this.EntradaSubTotal_TextChanged);
                         // 
                         // Label6
@@ -192,7 +187,6 @@ namespace Lfc.Tareas
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSubTotal.PlaceholderText = "";
                         this.EntradaSubTotal.Prefijo = "$";
                         this.EntradaSubTotal.ReadOnly = false;
                         this.EntradaSubTotal.SelectOnFocus = true;
@@ -200,7 +194,6 @@ namespace Lfc.Tareas
                         this.EntradaSubTotal.TabIndex = 56;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
-                        this.EntradaSubTotal.ToolTipText = "";
                         this.EntradaSubTotal.TextChanged += new System.EventHandler(this.EntradaSubTotal_TextChanged);
                         // 
                         // Label5

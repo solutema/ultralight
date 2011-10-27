@@ -82,7 +82,6 @@ namespace Lui.Forms
                         this.OkButton.Subtext = "F9";
                         this.OkButton.TabIndex = 3;
                         this.OkButton.Text = "Aceptar";
-                        this.OkButton.ToolTipText = "";
                         this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
                         // 
                         // LowerPanel

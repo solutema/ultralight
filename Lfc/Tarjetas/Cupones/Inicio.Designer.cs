@@ -60,7 +60,6 @@ namespace Lfc.Cupones.Cupones
                         this.BotonAnular.Subtext = "F6";
                         this.BotonAnular.TabIndex = 7;
                         this.BotonAnular.Text = "Anular";
-                        this.BotonAnular.ToolTipText = "";
                         this.BotonAnular.Click += new System.EventHandler(this.BotonAnular_Click);
                         // 
                         // BotonAcreditar
@@ -77,7 +76,6 @@ namespace Lfc.Cupones.Cupones
                         this.BotonAcreditar.Subtext = "F4";
                         this.BotonAcreditar.TabIndex = 6;
                         this.BotonAcreditar.Text = "Acreditar";
-                        this.BotonAcreditar.ToolTipText = "";
                         this.BotonAcreditar.Click += new System.EventHandler(this.BotonAcreditar_Click);
                         // 
                         // BotonPresentar
@@ -94,7 +92,6 @@ namespace Lfc.Cupones.Cupones
                         this.BotonPresentar.Subtext = "F3";
                         this.BotonPresentar.TabIndex = 5;
                         this.BotonPresentar.Text = "Presentar";
-                        this.BotonPresentar.ToolTipText = "";
                         this.BotonPresentar.Click += new System.EventHandler(this.BotonPresentar_Click);
                         // 
                         // Inicio

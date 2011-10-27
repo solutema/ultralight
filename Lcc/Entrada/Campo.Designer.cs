@@ -90,8 +90,6 @@ namespace Lcc.Entrada
                         this.FieldData.Size = new System.Drawing.Size(366, 24);
                         this.FieldData.TabIndex = 0;
                         this.FieldData.Text = "0";
-                        this.FieldData.PlaceholderText = "";
-                        this.FieldData.ToolTipText = "";
                         // 
                         // Campo
                         // 

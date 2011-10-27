@@ -57,7 +57,6 @@ namespace Lfc.CuentasCorrientes
                         this.BotonNotaDeb.Subtext = "F4";
                         this.BotonNotaDeb.TabIndex = 61;
                         this.BotonNotaDeb.Text = "Nota Déb";
-                        this.BotonNotaDeb.ToolTipText = "";
                         this.BotonNotaDeb.Click += new System.EventHandler(this.BotonNotaDeb_Click);
                         // 
                         // BotonNotaCred
@@ -76,7 +75,6 @@ namespace Lfc.CuentasCorrientes
                         this.BotonNotaCred.Subtext = "F3";
                         this.BotonNotaCred.TabIndex = 60;
                         this.BotonNotaCred.Text = "Nota Créd";
-                        this.BotonNotaCred.ToolTipText = "";
                         this.BotonNotaCred.Click += new System.EventHandler(this.BotonNotaCred_Click);
                         // 
                         // BotonAjuste
@@ -95,7 +93,6 @@ namespace Lfc.CuentasCorrientes
                         this.BotonAjuste.Subtext = "F5";
                         this.BotonAjuste.TabIndex = 62;
                         this.BotonAjuste.Text = "Ajuste";
-                        this.BotonAjuste.ToolTipText = "";
                         this.BotonAjuste.Click += new System.EventHandler(this.BotonAjuste_Click);
                         // 
                         // Inicio

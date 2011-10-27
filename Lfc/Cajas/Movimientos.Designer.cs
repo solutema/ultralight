@@ -75,7 +75,6 @@ namespace Lfc.Cajas
                         this.BotonIngreso.Subtext = "F3";
                         this.BotonIngreso.TabIndex = 40;
                         this.BotonIngreso.Text = "Ingreso";
-                        this.BotonIngreso.ToolTipText = "";
                         this.BotonIngreso.Click += new System.EventHandler(this.BotonIngreso_Click);
                         // 
                         // BotonEgreso
@@ -94,7 +93,6 @@ namespace Lfc.Cajas
                         this.BotonEgreso.Subtext = "F4";
                         this.BotonEgreso.TabIndex = 41;
                         this.BotonEgreso.Text = "Egreso";
-                        this.BotonEgreso.ToolTipText = "";
                         this.BotonEgreso.Click += new System.EventHandler(this.BotonEgreso_Click);
                         // 
                         // BotonMovim
@@ -113,7 +111,6 @@ namespace Lfc.Cajas
                         this.BotonMovim.Subtext = "F5";
                         this.BotonMovim.TabIndex = 42;
                         this.BotonMovim.Text = "Movim.";
-                        this.BotonMovim.ToolTipText = "";
                         this.BotonMovim.Click += new System.EventHandler(this.BotonMovimiento_Click);
                         // 
                         // BotonArqueo
@@ -132,7 +129,6 @@ namespace Lfc.Cajas
                         this.BotonArqueo.Subtext = "F7";
                         this.BotonArqueo.TabIndex = 43;
                         this.BotonArqueo.Text = "Arqueo";
-                        this.BotonArqueo.ToolTipText = "";
                         this.BotonArqueo.Click += new System.EventHandler(this.BotonArqueo_Click);
                         // 
                         // Inicio

@@ -107,8 +107,6 @@ namespace Lfc.Cajas
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporte.TabIndex = 5;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.PlaceholderText = "";
-                        this.EntradaImporte.ToolTipText = "";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
                         // 
                         // Label2
@@ -144,8 +142,6 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.PlaceholderText = "";
-                        this.EntradaConcepto.ToolTipText = "";
                         // 
                         // EntradaComprobante
                         // 
@@ -165,8 +161,6 @@ namespace Lfc.Cajas
                         this.EntradaComprobante.SelectOnFocus = true;
                         this.EntradaComprobante.Size = new System.Drawing.Size(500, 24);
                         this.EntradaComprobante.TabIndex = 9;
-                        this.EntradaComprobante.PlaceholderText = "";
-                        this.EntradaComprobante.ToolTipText = "";
                         // 
                         // Label3
                         // 
@@ -196,8 +190,6 @@ namespace Lfc.Cajas
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(500, 116);
                         this.EntradaObs.TabIndex = 11;
-                        this.EntradaObs.PlaceholderText = "";
-                        this.EntradaObs.ToolTipText = "";
                         // 
                         // Label4
                         // 
@@ -232,8 +224,6 @@ namespace Lfc.Cajas
                         this.EntradaPersona.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPersona.Text = "0";
                         this.EntradaPersona.TextDetail = "";
-                        this.EntradaPersona.PlaceholderText = "";
-                        this.EntradaPersona.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -268,8 +258,6 @@ namespace Lfc.Cajas
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.PlaceholderText = "";
-                        this.EntradaCaja.ToolTipText = "";
                         // 
                         // label6
                         // 
@@ -299,8 +287,6 @@ namespace Lfc.Cajas
                         this.EntradaNuevoSaldo.TabIndex = 52;
                         this.EntradaNuevoSaldo.TabStop = false;
                         this.EntradaNuevoSaldo.Text = "0.00";
-                        this.EntradaNuevoSaldo.PlaceholderText = "";
-                        this.EntradaNuevoSaldo.ToolTipText = "";
                         // 
                         // label7
                         // 

@@ -104,13 +104,12 @@ namespace Lfc.Articulos
                         this.EntradaRendimiento.MultiLine = false;
                         this.EntradaRendimiento.Name = "EntradaRendimiento";
                         this.EntradaRendimiento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaRendimiento.PlaceholderText = "";
                         this.EntradaRendimiento.ReadOnly = false;
                         this.EntradaRendimiento.SelectOnFocus = true;
                         this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
                         this.EntradaRendimiento.TabIndex = 3;
                         this.EntradaRendimiento.Text = "0.00";
-                        this.EntradaRendimiento.ToolTipText = "Precio de costo o de compra.";
+                        this.EntradaRendimiento.PlaceholderText = "Precio de costo o de compra.";
                         // 
                         // label2
                         // 
@@ -130,7 +129,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.Location = new System.Drawing.Point(200, 24);
                         this.EntradaUnidad.Name = "EntradaUnidad";
                         this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUnidad.PlaceholderText = "";
                         this.EntradaUnidad.ReadOnly = false;
                         this.EntradaUnidad.SetData = new string[] {
         "N/A|",
@@ -150,7 +148,7 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.Size = new System.Drawing.Size(112, 81);
                         this.EntradaUnidad.TabIndex = 1;
                         this.EntradaUnidad.TextKey = "u";
-                        this.EntradaUnidad.ToolTipText = "¿El artículo usa control de stock?";
+                        this.EntradaUnidad.PlaceholderText = "¿El artículo usa control de stock?";
                         // 
                         // EntradaUnidadRend
                         // 
@@ -161,7 +159,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidadRend.Location = new System.Drawing.Point(200, 120);
                         this.EntradaUnidadRend.Name = "EntradaUnidadRend";
                         this.EntradaUnidadRend.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUnidadRend.PlaceholderText = "";
                         this.EntradaUnidadRend.ReadOnly = false;
                         this.EntradaUnidadRend.SetData = new string[] {
         "N/A|",
@@ -181,7 +178,7 @@ namespace Lfc.Articulos
                         this.EntradaUnidadRend.Size = new System.Drawing.Size(112, 81);
                         this.EntradaUnidadRend.TabIndex = 4;
                         this.EntradaUnidadRend.TextKey = "";
-                        this.EntradaUnidadRend.ToolTipText = "¿El artículo usa control de stock?";
+                        this.EntradaUnidadRend.PlaceholderText = "¿El artículo usa control de stock?";
                         // 
                         // Rendimiento
                         // 

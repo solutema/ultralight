@@ -47,8 +47,7 @@ namespace Lui.Forms
 		protected bool m_Highlighted;
                 protected Lui.Forms.Control.BorderStyles m_BorderStyle = Lui.Forms.Control.BorderStyles.Control;
                 protected bool m_Changed, m_ReadOnly = false, m_TemporaryReadOnly = false, m_ShowChanged, m_AutoHeight = false;
-		protected int m_IgnoreChanges;
-		protected string m_ToolTipText = "";
+                protected int IgnoreChanges { get; set; }
 		protected string m_Error = "";
 
                 [EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
@@ -223,19 +222,6 @@ namespace Lui.Forms
 			{
 				m_Highlighted = value;
 				Invalidate();
-			}
-		}
-
-
-		public string ToolTipText
-		{
-			get
-			{
-				return m_ToolTipText;
-			}
-			set
-			{
-				m_ToolTipText = value;
 			}
 		}
 

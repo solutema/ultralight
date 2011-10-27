@@ -114,7 +114,6 @@ namespace Lcc.Entrada.AuxForms
                         this.BotonGuardar.Subtext = "";
                         this.BotonGuardar.TabIndex = 3;
                         this.BotonGuardar.Text = "Aceptar";
-                        this.BotonGuardar.ToolTipText = "";
                         this.BotonGuardar.Click += new System.EventHandler(this.BotonGuardar_Click);
                         // 
                         // label1
@@ -146,8 +145,6 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaRatio.TabIndex = 1;
                         this.EntradaRatio.Text = "Libre";
                         this.EntradaRatio.TextKey = "0";
-                        this.EntradaRatio.PlaceholderText = "";
-                        this.EntradaRatio.ToolTipText = "";
                         this.EntradaRatio.TextChanged += new System.EventHandler(this.EntradaRatio_TextChanged);
                         // 
                         // label2
@@ -175,7 +172,6 @@ namespace Lcc.Entrada.AuxForms
                         this.BotonSinRecorte.Subtext = "";
                         this.BotonSinRecorte.TabIndex = 2;
                         this.BotonSinRecorte.Text = "Sin Recorte";
-                        this.BotonSinRecorte.ToolTipText = "";
                         this.BotonSinRecorte.Click += new System.EventHandler(this.BotonSinRecorte_Click);
                         // 
                         // panel1

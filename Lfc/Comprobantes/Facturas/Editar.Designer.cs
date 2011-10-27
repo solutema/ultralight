@@ -77,7 +77,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFormaPago.PlaceholderText = "";
                         this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.Required = true;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(92, 24);
@@ -85,7 +84,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.Table = "formaspago";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
-                        this.EntradaFormaPago.ToolTipText = "";
                         this.EntradaFormaPago.Leave += new System.EventHandler(this.EntradaFormaPago_Leave);
                         // 
                         // Label10
@@ -106,7 +104,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.Location = new System.Drawing.Point(72, 72);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|FA",
@@ -118,7 +115,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.Size = new System.Drawing.Size(116, 25);
                         this.EntradaTipo.TabIndex = 11;
                         this.EntradaTipo.TextKey = "FA";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label11
@@ -146,7 +142,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonPago.Subtext = "F2";
                         this.BotonPago.TabIndex = 51;
                         this.BotonPago.Text = "Pago";
-                        this.BotonPago.ToolTipText = "";
                         this.BotonPago.Visible = false;
                         this.BotonPago.Click += new System.EventHandler(this.BotonPago_Click);
                         // 
@@ -167,7 +162,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaRemito.SelectOnFocus = true;
                         this.EntradaRemito.Size = new System.Drawing.Size(144, 24);
                         this.EntradaRemito.TabIndex = 15;
-                        this.EntradaRemito.ToolTipText = "";
                         this.EntradaRemito.TextChanged += new System.EventHandler(this.EntradaRemito_TextChanged);
                         // 
                         // PanelFormaPago

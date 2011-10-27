@@ -88,7 +88,6 @@ namespace Lui.Forms
                         this.CancelBtn.Subtext = "Tecla";
                         this.CancelBtn.TabIndex = 2;
                         this.CancelBtn.Text = "Cancelar";
-                        this.CancelBtn.ToolTipText = "";
                         this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
                         // 
                         // Texto
@@ -104,14 +103,12 @@ namespace Lui.Forms
                         this.Texto.Name = "Texto";
                         this.Texto.Padding = new System.Windows.Forms.Padding(2);
                         this.Texto.PasswordChar = '\0';
-                        this.Texto.PlaceholderText = "";
                         this.Texto.Prefijo = "";
                         this.Texto.ReadOnly = false;
                         this.Texto.SelectOnFocus = true;
                         this.Texto.Size = new System.Drawing.Size(424, 24);
                         this.Texto.Sufijo = "";
                         this.Texto.TabIndex = 0;
-                        this.Texto.ToolTipText = "";
                         this.Texto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Texto_KeyDown);
                         // 
                         // OkButton
@@ -128,7 +125,6 @@ namespace Lui.Forms
                         this.OkButton.Subtext = "Tecla";
                         this.OkButton.TabIndex = 1;
                         this.OkButton.Text = "Aceptar";
-                        this.OkButton.ToolTipText = "";
                         this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
                         // 
                         // InputBox

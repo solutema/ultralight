@@ -103,7 +103,6 @@ namespace Lfc.Reportes
                         this.BotonActualizar.Subtext = "Tecla";
                         this.BotonActualizar.TabIndex = 1;
                         this.BotonActualizar.Text = "Actualizar";
-                        this.BotonActualizar.ToolTipText = "";
                         this.BotonActualizar.Click += new System.EventHandler(this.BotonActualizar_Click);
                         // 
                         // EntradaExpandirGrupos
@@ -120,8 +119,6 @@ namespace Lfc.Reportes
                         this.EntradaExpandirGrupos.Size = new System.Drawing.Size(148, 24);
                         this.EntradaExpandirGrupos.TabIndex = 0;
                         this.EntradaExpandirGrupos.TextKey = "0";
-                        this.EntradaExpandirGrupos.PlaceholderText = "";
-                        this.EntradaExpandirGrupos.ToolTipText = "";
                         // 
                         // Reporte
                         // 

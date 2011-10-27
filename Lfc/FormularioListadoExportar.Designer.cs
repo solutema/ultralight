@@ -83,7 +83,6 @@ namespace Lfc
                         this.BotonImprimir.Subtext = "Envía los datos directamente a la impresora.";
                         this.BotonImprimir.TabIndex = 0;
                         this.BotonImprimir.Text = "Imprimir";
-                        this.BotonImprimir.ToolTipText = "";
                         this.BotonImprimir.Click += new System.EventHandler(this.BotonImprimir_Click);
                         // 
                         // BotonExcel
@@ -102,7 +101,6 @@ namespace Lfc
                             "n una aplicación de planilla de cálculos compatible.";
                         this.BotonExcel.TabIndex = 1;
                         this.BotonExcel.Text = "Exportar a Excel";
-                        this.BotonExcel.ToolTipText = "";
                         this.BotonExcel.Click += new System.EventHandler(this.BotonExcel_Click);
                         // 
                         // BotonHtml
@@ -121,7 +119,6 @@ namespace Lfc
                             " Web.";
                         this.BotonHtml.TabIndex = 2;
                         this.BotonHtml.Text = "Exportar en HTML";
-                        this.BotonHtml.ToolTipText = "";
                         this.BotonHtml.Click += new System.EventHandler(this.BotonHtml_Click);
                         // 
                         // button1
@@ -139,7 +136,6 @@ namespace Lfc
                         this.BotonCancelar.Subtext = "Y volver al formulario anterior.";
                         this.BotonCancelar.TabIndex = 3;
                         this.BotonCancelar.Text = "Cancelar";
-                        this.BotonCancelar.ToolTipText = "";
                         this.BotonCancelar.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // FormularioListadoExportar

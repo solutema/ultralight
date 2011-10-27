@@ -110,7 +110,6 @@ namespace Lcc.Entrada
                         this.BotonAplicar.Subtext = "Tecla";
                         this.BotonAplicar.TabIndex = 0;
                         this.BotonAplicar.Text = "Aplicar";
-                        this.BotonAplicar.ToolTipText = "";
                         this.BotonAplicar.Click += new System.EventHandler(this.BotonAplicar_Click);
                         // 
                         // Filtros

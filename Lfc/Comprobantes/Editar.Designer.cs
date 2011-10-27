@@ -87,7 +87,6 @@ namespace Lfc.Comprobantes
                         this.ProductArray.ShowStock = true;
                         this.ProductArray.Size = new System.Drawing.Size(600, 208);
                         this.ProductArray.TabIndex = 20;
-                        this.ProductArray.ToolTipText = "";
                         this.ProductArray.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
                         this.ProductArray.ObtenerDatosSeguimiento += new System.EventHandler(this.ProductArray_ObtenerDatosSeguimiento);
                         // 
@@ -122,8 +121,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.PlaceholderText = "";
-                        this.EntradaCliente.ToolTipText = "";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
                         // 
                         // Label1
@@ -155,8 +152,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.PlaceholderText = "";
-                        this.EntradaVendedor.ToolTipText = "";
                         // 
                         // EntradaTotal
                         // 
@@ -175,8 +170,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
                         this.EntradaTotal.TabIndex = 41;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.PlaceholderText = "";
-                        this.EntradaTotal.ToolTipText = "";
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
                         // 
                         // Label4
@@ -217,8 +210,6 @@ namespace Lfc.Comprobantes
                         this.EntradaSubTotal.TabIndex = 22;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
-                        this.EntradaSubTotal.PlaceholderText = "";
-                        this.EntradaSubTotal.ToolTipText = "";
                         this.EntradaSubTotal.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // EntradaDescuento
@@ -238,8 +229,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 24;
                         this.EntradaDescuento.Text = "0.0000";
-                        this.EntradaDescuento.PlaceholderText = "";
-                        this.EntradaDescuento.ToolTipText = "";
                         this.EntradaDescuento.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // Label6
@@ -269,8 +258,6 @@ namespace Lfc.Comprobantes
                         this.EntradaInteres.Sufijo = "%";
                         this.EntradaInteres.TabIndex = 26;
                         this.EntradaInteres.Text = "0.0000";
-                        this.EntradaInteres.PlaceholderText = "";
-                        this.EntradaInteres.ToolTipText = "";
                         this.EntradaInteres.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // Label7
@@ -300,8 +287,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCuotas.Size = new System.Drawing.Size(32, 24);
                         this.EntradaCuotas.TabIndex = 28;
                         this.EntradaCuotas.Text = "0";
-                        this.EntradaCuotas.PlaceholderText = "";
-                        this.EntradaCuotas.ToolTipText = "";
                         this.EntradaCuotas.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // Label8
@@ -332,8 +317,6 @@ namespace Lfc.Comprobantes
                         this.EntradaValorCuota.TabIndex = 30;
                         this.EntradaValorCuota.TabStop = false;
                         this.EntradaValorCuota.Text = "0.00";
-                        this.EntradaValorCuota.PlaceholderText = "";
-                        this.EntradaValorCuota.ToolTipText = "";
                         // 
                         // Label9
                         // 
@@ -359,7 +342,6 @@ namespace Lfc.Comprobantes
                         this.BotonObs.Subtext = "F7";
                         this.BotonObs.TabIndex = 52;
                         this.BotonObs.Text = "Observac.";
-                        this.BotonObs.ToolTipText = "";
                         this.BotonObs.Click += new System.EventHandler(this.BotonObs_Click);
                         // 
                         // BotonConvertir
@@ -376,7 +358,6 @@ namespace Lfc.Comprobantes
                         this.BotonConvertir.Subtext = "F4";
                         this.BotonConvertir.TabIndex = 50;
                         this.BotonConvertir.Text = "Convertir";
-                        this.BotonConvertir.ToolTipText = "";
                         this.BotonConvertir.Click += new System.EventHandler(this.BotonConvertir_Click);
                         // 
                         // EntradaComprobanteId
@@ -401,7 +382,6 @@ namespace Lfc.Comprobantes
                         this.BotonMasDatos.Subtext = "F5";
                         this.BotonMasDatos.TabIndex = 51;
                         this.BotonMasDatos.Text = "Más Datos";
-                        this.BotonMasDatos.ToolTipText = "";
                         this.BotonMasDatos.Click += new System.EventHandler(this.BotonMasDatos_Click);
                         // 
                         // lblTitulo
@@ -443,8 +423,6 @@ namespace Lfc.Comprobantes
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
                         this.EntradaPV.TabIndex = 6;
                         this.EntradaPV.Text = "0";
-                        this.EntradaPV.PlaceholderText = "";
-                        this.EntradaPV.ToolTipText = "";
                         // 
                         // PnlCuotas
                         // 
@@ -476,8 +454,6 @@ namespace Lfc.Comprobantes
                         this.EntradaIva.TabIndex = 54;
                         this.EntradaIva.TabStop = false;
                         this.EntradaIva.Text = "0.00";
-                        this.EntradaIva.PlaceholderText = "";
-                        this.EntradaIva.ToolTipText = "";
                         this.EntradaIva.Visible = false;
                         // 
                         // EtiquetaIva

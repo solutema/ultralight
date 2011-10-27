@@ -86,7 +86,6 @@ namespace Lfc.Comprobantes
                         this.VariacionesCantidades.Padding = new System.Windows.Forms.Padding(2);
                         this.VariacionesCantidades.Size = new System.Drawing.Size(604, 256);
                         this.VariacionesCantidades.TabIndex = 0;
-                        this.VariacionesCantidades.ToolTipText = "";
                         // 
                         // ListaDatosSeguimiento
                         // 

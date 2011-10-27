@@ -112,8 +112,6 @@ namespace Lfc.Pvs
                         this.EntradaTipo.Size = new System.Drawing.Size(208, 24);
                         this.EntradaTipo.TabIndex = 9;
                         this.EntradaTipo.TextKey = "1";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label16
@@ -148,8 +146,6 @@ namespace Lfc.Pvs
                         this.EntradaEstacion.SelectOnFocus = true;
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
                         this.EntradaEstacion.TabIndex = 11;
-                        this.EntradaEstacion.PlaceholderText = "";
-                        this.EntradaEstacion.ToolTipText = "";
                         // 
                         // EntradaCarga
                         // 
@@ -164,8 +160,6 @@ namespace Lfc.Pvs
                         this.EntradaCarga.Size = new System.Drawing.Size(208, 24);
                         this.EntradaCarga.TabIndex = 16;
                         this.EntradaCarga.TextKey = "0";
-                        this.EntradaCarga.PlaceholderText = "";
-                        this.EntradaCarga.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -189,7 +183,6 @@ namespace Lfc.Pvs
                         this.BotonEstacionSeleccionar.Subtext = "";
                         this.BotonEstacionSeleccionar.TabIndex = 12;
                         this.BotonEstacionSeleccionar.Text = "...";
-                        this.BotonEstacionSeleccionar.ToolTipText = "Ver historial de movimientos de stock";
                         this.BotonEstacionSeleccionar.Click += new System.EventHandler(this.BotonEstacionSeleccionar_Click);
                         // 
                         // EntradaSucursal
@@ -215,7 +208,7 @@ namespace Lfc.Pvs
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
                         this.EntradaSucursal.PlaceholderText = "Todas";
-                        this.EntradaSucursal.ToolTipText = "Sucursal";
+                        this.EntradaSucursal.PlaceholderText = "Sucursal";
                         // 
                         // label4
                         // 
@@ -269,8 +262,6 @@ namespace Lfc.Pvs
                         this.EntradaModelo.TabIndex = 18;
                         this.EntradaModelo.Text = "Epson";
                         this.EntradaModelo.TextKey = "300";
-                        this.EntradaModelo.PlaceholderText = "";
-                        this.EntradaModelo.ToolTipText = "";
                         // 
                         // EntradaPuerto
                         // 
@@ -287,8 +278,6 @@ namespace Lfc.Pvs
                         this.EntradaPuerto.TabIndex = 20;
                         this.EntradaPuerto.Text = "COM1";
                         this.EntradaPuerto.TextKey = "1";
-                        this.EntradaPuerto.PlaceholderText = "";
-                        this.EntradaPuerto.ToolTipText = "";
                         // 
                         // EntradaBps
                         // 
@@ -305,8 +294,6 @@ namespace Lfc.Pvs
                         this.EntradaBps.TabIndex = 22;
                         this.EntradaBps.Text = "9600 bps";
                         this.EntradaBps.TextKey = "9600";
-                        this.EntradaBps.PlaceholderText = "";
-                        this.EntradaBps.ToolTipText = "";
                         // 
                         // EntradaTipoFac
                         // 
@@ -325,8 +312,6 @@ namespace Lfc.Pvs
                         this.EntradaTipoFac.TabIndex = 7;
                         this.EntradaTipoFac.Text = "Facturas, Notas de Crédito y Débito";
                         this.EntradaTipoFac.TextKey = "F,NC,ND";
-                        this.EntradaTipoFac.PlaceholderText = "";
-                        this.EntradaTipoFac.ToolTipText = "";
                         // 
                         // label8
                         // 
@@ -351,8 +336,6 @@ namespace Lfc.Pvs
                         this.EntradaDeTalonario.TabIndex = 14;
                         this.EntradaDeTalonario.Text = "No";
                         this.EntradaDeTalonario.TextKey = "0";
-                        this.EntradaDeTalonario.PlaceholderText = "";
-                        this.EntradaDeTalonario.ToolTipText = "";
                         // 
                         // label9
                         // 
@@ -375,7 +358,6 @@ namespace Lfc.Pvs
                         this.note2.Text = "Si desea cambiar el punto de venta predeterminado para las facturas u otros docum" +
                             "entos, utilice la opción Preferencias del menú Sistema.";
                         this.note2.Title = "Información";
-                        this.note2.ToolTipText = "";
                         // 
                         // EntradaNumero
                         // 
@@ -392,8 +374,6 @@ namespace Lfc.Pvs
                         this.EntradaNumero.Size = new System.Drawing.Size(72, 24);
                         this.EntradaNumero.TabIndex = 1;
                         this.EntradaNumero.Text = "0";
-                        this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.ToolTipText = "";
                         // 
                         // Label3
                         // 
@@ -427,7 +407,7 @@ namespace Lfc.Pvs
                         this.EntradaImpresora.Text = "0";
                         this.EntradaImpresora.TextDetail = "";
                         this.EntradaImpresora.PlaceholderText = "Ninguna";
-                        this.EntradaImpresora.ToolTipText = "Impresora";
+                        this.EntradaImpresora.PlaceholderText = "Impresora";
                         // 
                         // label10
                         // 

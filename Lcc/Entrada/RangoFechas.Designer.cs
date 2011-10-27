@@ -77,8 +77,6 @@ namespace Lcc.Entrada
                         this.EntradaTipoDeRango.Size = new System.Drawing.Size(124, 25);
                         this.EntradaTipoDeRango.TabIndex = 0;
                         this.EntradaTipoDeRango.TextKey = "semana";
-                        this.EntradaTipoDeRango.PlaceholderText = "";
-                        this.EntradaTipoDeRango.ToolTipText = "";
                         this.EntradaTipoDeRango.TextChanged += new System.EventHandler(this.EntradaTipoDeRango_TextChanged);
                         this.EntradaTipoDeRango.SizeChanged += new System.EventHandler(this.Combos_SizeChanged);
                         // 
@@ -96,8 +94,6 @@ namespace Lcc.Entrada
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(108, 24);
                         this.EntradaDesde.TabIndex = 1;
-                        this.EntradaDesde.PlaceholderText = "";
-                        this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesde_TextChanged);
                         // 
                         // EntradaHasta
@@ -114,8 +110,6 @@ namespace Lcc.Entrada
                         this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(108, 24);
                         this.EntradaHasta.TabIndex = 3;
-                        this.EntradaHasta.PlaceholderText = "";
-                        this.EntradaHasta.ToolTipText = "";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaHasta_TextChanged);
                         // 
                         // EntradaRango
@@ -134,8 +128,6 @@ namespace Lcc.Entrada
                         this.EntradaRango.Size = new System.Drawing.Size(311, 25);
                         this.EntradaRango.TabIndex = 1;
                         this.EntradaRango.TextKey = "1";
-                        this.EntradaRango.PlaceholderText = "";
-                        this.EntradaRango.ToolTipText = "";
                         this.EntradaRango.TextChanged += new System.EventHandler(this.EntradaRango_TextChanged);
                         this.EntradaRango.SizeChanged += new System.EventHandler(this.Combos_SizeChanged);
                         // 

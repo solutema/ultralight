@@ -96,7 +96,6 @@ namespace Lui.Printing
                         this.CancelCommandButton.Subtext = "Esc";
                         this.CancelCommandButton.TabIndex = 111;
                         this.CancelCommandButton.Text = "Cancelar";
-                        this.CancelCommandButton.ToolTipText = "";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // SaveButton
@@ -113,7 +112,6 @@ namespace Lui.Printing
                         this.SaveButton.Subtext = "F8";
                         this.SaveButton.TabIndex = 110;
                         this.SaveButton.Text = "Imprimir";
-                        this.SaveButton.ToolTipText = "";
                         // 
                         // LowerPanel
                         // 
@@ -139,7 +137,6 @@ namespace Lui.Printing
                         this.BotonZoom.Subtext = "F2";
                         this.BotonZoom.TabIndex = 101;
                         this.BotonZoom.Text = "Zoom";
-                        this.BotonZoom.ToolTipText = "";
                         this.BotonZoom.Click += new System.EventHandler(this.BotonZoom_Click);
                         // 
                         // PrintPreviewForm

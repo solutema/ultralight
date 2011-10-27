@@ -106,8 +106,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSubTotal.TabIndex = 4;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
-                        this.EntradaSubTotal.PlaceholderText = "";
-                        this.EntradaSubTotal.ToolTipText = "";
                         this.EntradaSubTotal.TextChanged += new System.EventHandler(this.EntradaImportes_TextChanged);
                         // 
                         // lblLabel1
@@ -136,8 +134,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaGestionDeCobro.Size = new System.Drawing.Size(108, 24);
                         this.EntradaGestionDeCobro.TabIndex = 6;
                         this.EntradaGestionDeCobro.Text = "0.00";
-                        this.EntradaGestionDeCobro.PlaceholderText = "";
-                        this.EntradaGestionDeCobro.ToolTipText = "";
                         this.EntradaGestionDeCobro.TextChanged += new System.EventHandler(this.EntradaImportes_TextChanged);
                         // 
                         // Label2
@@ -166,8 +162,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
                         this.EntradaTotal.TabIndex = 10;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.PlaceholderText = "";
-                        this.EntradaTotal.ToolTipText = "";
                         // 
                         // Label8
                         // 
@@ -210,8 +204,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCajaDestino.Table = "cajas";
                         this.EntradaCajaDestino.Text = "0";
                         this.EntradaCajaDestino.TextDetail = "";
-                        this.EntradaCajaDestino.PlaceholderText = "";
-                        this.EntradaCajaDestino.ToolTipText = "";
                         // 
                         // EntradaImpuestos
                         // 
@@ -230,8 +222,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaImpuestos.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImpuestos.TabIndex = 8;
                         this.EntradaImpuestos.Text = "0.00";
-                        this.EntradaImpuestos.PlaceholderText = "";
-                        this.EntradaImpuestos.ToolTipText = "";
                         this.EntradaImpuestos.TextChanged += new System.EventHandler(this.EntradaImportes_TextChanged);
                         // 
                         // label4

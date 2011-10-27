@@ -100,8 +100,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.PlaceholderText = "";
-                        this.EntradaConcepto.ToolTipText = "";
                         this.EntradaConcepto.Leave += new System.EventHandler(this.EntradaConcepto_Leave);
                         // 
                         // EntradaImporte
@@ -122,8 +120,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.PlaceholderText = "";
-                        this.EntradaImporte.ToolTipText = "";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
                         // 
                         // Label2
@@ -162,8 +158,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(496, 92);
                         this.EntradaObs.TabIndex = 7;
-                        this.EntradaObs.PlaceholderText = "";
-                        this.EntradaObs.ToolTipText = "";
                         // 
                         // Label4
                         // 
@@ -190,7 +184,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaDireccion.TabIndex = 5;
                         this.EntradaDireccion.Text = "Débito";
                         this.EntradaDireccion.TextKey = "1";
-                        this.EntradaDireccion.ToolTipText = "";
                         this.EntradaDireccion.TextChanged += new System.EventHandler(this.EntradaDireccion_TextChanged);
                         // 
                         // label5
@@ -221,7 +214,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaNuevoSaldo.TabIndex = 52;
                         this.EntradaNuevoSaldo.TabStop = false;
                         this.EntradaNuevoSaldo.Text = "0.00";
-                        this.EntradaNuevoSaldo.ToolTipText = "";
                         // 
                         // label3
                         // 

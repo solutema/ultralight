@@ -152,8 +152,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(96, 24);
                         this.EntradaNumero.TabIndex = 9;
-                        this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
                         // Label2
@@ -184,8 +182,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.Size = new System.Drawing.Size(124, 24);
                         this.EntradaTipo.TabIndex = 5;
                         this.EntradaTipo.TextKey = "*";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
                         // Label1
@@ -213,8 +209,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(48, 24);
                         this.EntradaPv.TabIndex = 7;
-                        this.EntradaPv.PlaceholderText = "";
-                        this.EntradaPv.ToolTipText = "";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
                         // Label7
@@ -266,8 +260,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.PlaceholderText = "";
-                        this.EntradaVendedor.ToolTipText = "";
                         this.EntradaVendedor.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
                         // lvItems
@@ -359,8 +351,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.PlaceholderText = "";
-                        this.EntradaCliente.ToolTipText = "";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
                         // FormSeleccionarFactura

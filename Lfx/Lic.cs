@@ -49,7 +49,7 @@ namespace Lfx
                                 using (System.IO.StreamReader Lector = System.IO.File.OpenText(Archivo)) {
                                         while (Lector.EndOfStream == false) {
                                                 string Contenido = Lector.ReadLine();
-                                                if (Contenido.IndexOf(".Sufijo = \"\";") >= 0)
+                                                if (Contenido.IndexOf(".PlaceholderText = \"\";") >= 0)
                                                         Encontre = true;
                                                 else
                                                         Salida.AppendLine(Contenido);

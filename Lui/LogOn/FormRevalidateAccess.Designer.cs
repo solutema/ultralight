@@ -104,8 +104,6 @@ namespace Lui.LogOn
                         this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
                         this.EntradaContrasena.TabIndex = 4;
-                        this.EntradaContrasena.PlaceholderText = "";
-                        this.EntradaContrasena.ToolTipText = "";
                         // 
                         // PictureBox2
                         // 
@@ -143,8 +141,6 @@ namespace Lui.LogOn
                         this.EntradaUsuario.Size = new System.Drawing.Size(288, 24);
                         this.EntradaUsuario.TabIndex = 2;
                         this.EntradaUsuario.Text = "0";
-                        this.EntradaUsuario.PlaceholderText = "";
-                        this.EntradaUsuario.ToolTipText = "";
                         // 
                         // label3
                         // 

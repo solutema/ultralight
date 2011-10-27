@@ -281,7 +281,6 @@ namespace Lazaro.Misc.Config
                         this.BotonSiguiente.Subtext = "F8";
                         this.BotonSiguiente.TabIndex = 0;
                         this.BotonSiguiente.Text = "Siguiente";
-                        this.BotonSiguiente.ToolTipText = "";
                         this.BotonSiguiente.Click += new System.EventHandler(this.BotonSiguiente_Click);
                         // 
                         // BotonAnterior
@@ -299,7 +298,6 @@ namespace Lazaro.Misc.Config
                         this.BotonAnterior.Subtext = "F8";
                         this.BotonAnterior.TabIndex = 1;
                         this.BotonAnterior.Text = "Anterior";
-                        this.BotonAnterior.ToolTipText = "";
                         this.BotonAnterior.Visible = false;
                         this.BotonAnterior.Click += new System.EventHandler(this.BotonAnterior_Click);
                         // 
@@ -317,7 +315,6 @@ namespace Lazaro.Misc.Config
                         this.BotonSalir.Subtext = "F8";
                         this.BotonSalir.TabIndex = 2;
                         this.BotonSalir.Text = "Salir";
-                        this.BotonSalir.ToolTipText = "";
                         this.BotonSalir.Click += new System.EventHandler(this.BotonSalir_Click);
                         // 
                         // panel1
@@ -403,14 +400,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaServidor.Name = "EntradaServidor";
                         this.EntradaServidor.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaServidor.PasswordChar = '\0';
-                        this.EntradaServidor.PlaceholderText = "";
                         this.EntradaServidor.Prefijo = "";
                         this.EntradaServidor.ReadOnly = false;
                         this.EntradaServidor.SelectOnFocus = true;
                         this.EntradaServidor.Size = new System.Drawing.Size(208, 24);
                         this.EntradaServidor.Sufijo = "";
                         this.EntradaServidor.TabIndex = 60;
-                        this.EntradaServidor.ToolTipText = "";
                         // 
                         // label4
                         // 

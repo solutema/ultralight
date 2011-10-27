@@ -129,8 +129,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.Size = new System.Drawing.Size(440, 24);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.TextKey = "PD";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label4
@@ -166,8 +164,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
-                        this.EntradaProveedor.PlaceholderText = "";
-                        this.EntradaProveedor.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -204,8 +200,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.TabIndex = 3;
                         this.EntradaEstado.Text = "N/A";
                         this.EntradaEstado.TextKey = "0";
-                        this.EntradaEstado.PlaceholderText = "";
-                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -253,7 +247,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFechas.TemporaryReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(440, 30);
                         this.EntradaFechas.TabIndex = 7;
-                        this.EntradaFechas.ToolTipText = "";
                         // 
                         // Filtros
                         // 

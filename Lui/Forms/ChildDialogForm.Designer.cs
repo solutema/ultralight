@@ -87,7 +87,6 @@ namespace Lui.Forms
                         this.OkButton.Subtext = "F9";
                         this.OkButton.TabIndex = 0;
                         this.OkButton.Text = "Aceptar";
-                        this.OkButton.ToolTipText = "";
                         this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
                         // 
                         // CancelCommandButton
@@ -104,7 +103,6 @@ namespace Lui.Forms
                         this.CancelCommandButton.Subtext = "Esc";
                         this.CancelCommandButton.TabIndex = 1;
                         this.CancelCommandButton.Text = "Volver";
-                        this.CancelCommandButton.ToolTipText = "";
                         this.CancelCommandButton.Click += new System.EventHandler(this.CancelCommandButton_Click);
                         // 
                         // ChildDialogForm

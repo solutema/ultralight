@@ -130,8 +130,6 @@ namespace Lfc.Tareas
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.PlaceholderText = "";
-                        this.EntradaCliente.ToolTipText = "";
                         // 
                         // EntradaTarea
                         // 
@@ -155,8 +153,6 @@ namespace Lfc.Tareas
                         this.EntradaTarea.Table = "tickets_tipos";
                         this.EntradaTarea.Text = "0";
                         this.EntradaTarea.TextDetail = "";
-                        this.EntradaTarea.PlaceholderText = "";
-                        this.EntradaTarea.ToolTipText = "";
                         // 
                         // Label3
                         // 
@@ -189,8 +185,6 @@ namespace Lfc.Tareas
                         this.EntradaTecnico.Table = "personas";
                         this.EntradaTecnico.Text = "0";
                         this.EntradaTecnico.TextDetail = "";
-                        this.EntradaTecnico.PlaceholderText = "";
-                        this.EntradaTecnico.ToolTipText = "";
                         // 
                         // Label4
                         // 
@@ -226,8 +220,6 @@ namespace Lfc.Tareas
                         this.EntradaAsunto.SelectOnFocus = false;
                         this.EntradaAsunto.Size = new System.Drawing.Size(298, 24);
                         this.EntradaAsunto.TabIndex = 7;
-                        this.EntradaAsunto.PlaceholderText = "";
-                        this.EntradaAsunto.ToolTipText = "";
                         // 
                         // Label6
                         // 
@@ -264,8 +256,6 @@ namespace Lfc.Tareas
                         this.EntradaDescripcion.SelectOnFocus = false;
                         this.EntradaDescripcion.Size = new System.Drawing.Size(298, 84);
                         this.EntradaDescripcion.TabIndex = 9;
-                        this.EntradaDescripcion.PlaceholderText = "";
-                        this.EntradaDescripcion.ToolTipText = "";
                         // 
                         // Label8
                         // 
@@ -312,8 +302,6 @@ namespace Lfc.Tareas
                         this.EntradaEntregaEstimada.SelectOnFocus = true;
                         this.EntradaEntregaEstimada.Size = new System.Drawing.Size(96, 24);
                         this.EntradaEntregaEstimada.TabIndex = 18;
-                        this.EntradaEntregaEstimada.PlaceholderText = "";
-                        this.EntradaEntregaEstimada.ToolTipText = "";
                         // 
                         // EntradaEntregaLimite
                         // 
@@ -330,8 +318,6 @@ namespace Lfc.Tareas
                         this.EntradaEntregaLimite.SelectOnFocus = true;
                         this.EntradaEntregaLimite.Size = new System.Drawing.Size(96, 24);
                         this.EntradaEntregaLimite.TabIndex = 20;
-                        this.EntradaEntregaLimite.PlaceholderText = "";
-                        this.EntradaEntregaLimite.ToolTipText = "";
                         // 
                         // EntradaPresupuesto
                         // 
@@ -350,8 +336,6 @@ namespace Lfc.Tareas
                         this.EntradaPresupuesto.Size = new System.Drawing.Size(80, 24);
                         this.EntradaPresupuesto.TabIndex = 24;
                         this.EntradaPresupuesto.Text = "0.00";
-                        this.EntradaPresupuesto.PlaceholderText = "";
-                        this.EntradaPresupuesto.ToolTipText = "";
                         // 
                         // EntradaObs
                         // 
@@ -369,8 +353,6 @@ namespace Lfc.Tareas
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(298, 24);
                         this.EntradaObs.TabIndex = 11;
-                        this.EntradaObs.PlaceholderText = "";
-                        this.EntradaObs.ToolTipText = "";
                         // 
                         // Label11
                         // 
@@ -394,7 +376,6 @@ namespace Lfc.Tareas
                         this.Frame2.TabIndex = 29;
                         this.Frame2.TabStop = false;
                         this.Frame2.Text = "Historial del Cliente";
-                        this.Frame2.ToolTipText = "";
                         // 
                         // ListaHistorial
                         // 
@@ -453,7 +434,6 @@ namespace Lfc.Tareas
                         this.BotonNovedad.Subtext = "F6";
                         this.BotonNovedad.TabIndex = 52;
                         this.BotonNovedad.Text = "Novedad";
-                        this.BotonNovedad.ToolTipText = "";
                         this.BotonNovedad.Click += new System.EventHandler(this.BotonNovedad_Click);
                         // 
                         // BotonArticulos
@@ -470,7 +450,6 @@ namespace Lfc.Tareas
                         this.BotonArticulos.Subtext = "F5";
                         this.BotonArticulos.TabIndex = 51;
                         this.BotonArticulos.Text = "Artículos";
-                        this.BotonArticulos.ToolTipText = "";
                         this.BotonArticulos.Click += new System.EventHandler(this.BotonArticulos_Click);
                         // 
                         // EntradaEstado
@@ -494,8 +473,6 @@ namespace Lfc.Tareas
                         this.EntradaEstado.Table = "tickets_estados";
                         this.EntradaEstado.Text = "0";
                         this.EntradaEstado.TextDetail = "";
-                        this.EntradaEstado.PlaceholderText = "";
-                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // BotonFacturar
                         // 
@@ -511,7 +488,6 @@ namespace Lfc.Tareas
                         this.BotonFacturar.Subtext = "F4";
                         this.BotonFacturar.TabIndex = 50;
                         this.BotonFacturar.Text = "Facturar";
-                        this.BotonFacturar.ToolTipText = "";
                         this.BotonFacturar.Click += new System.EventHandler(this.BotonFacturar_Click);
                         // 
                         // EntradaFechaIngreso
@@ -530,8 +506,6 @@ namespace Lfc.Tareas
                         this.EntradaFechaIngreso.Size = new System.Drawing.Size(148, 24);
                         this.EntradaFechaIngreso.TabIndex = 16;
                         this.EntradaFechaIngreso.TabStop = false;
-                        this.EntradaFechaIngreso.PlaceholderText = "";
-                        this.EntradaFechaIngreso.ToolTipText = "";
                         // 
                         // Label12
                         // 
@@ -559,8 +533,6 @@ namespace Lfc.Tareas
                         this.txtComprobante.Size = new System.Drawing.Size(184, 24);
                         this.txtComprobante.TabIndex = 28;
                         this.txtComprobante.TabStop = false;
-                        this.txtComprobante.PlaceholderText = "";
-                        this.txtComprobante.ToolTipText = "";
                         // 
                         // Label13
                         // 
@@ -597,8 +569,6 @@ namespace Lfc.Tareas
                         this.EntradaNumero.Size = new System.Drawing.Size(152, 24);
                         this.EntradaNumero.TabIndex = 12;
                         this.EntradaNumero.TabStop = false;
-                        this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.ToolTipText = "";
                         // 
                         // EntradaPresupuesto2
                         // 
@@ -618,8 +588,6 @@ namespace Lfc.Tareas
                         this.EntradaPresupuesto2.TabIndex = 26;
                         this.EntradaPresupuesto2.TabStop = false;
                         this.EntradaPresupuesto2.Text = "0.00";
-                        this.EntradaPresupuesto2.PlaceholderText = "";
-                        this.EntradaPresupuesto2.ToolTipText = "";
                         // 
                         // EntradaPrioridad
                         // 
@@ -639,8 +607,6 @@ namespace Lfc.Tareas
                         this.EntradaPrioridad.Size = new System.Drawing.Size(128, 25);
                         this.EntradaPrioridad.TabIndex = 22;
                         this.EntradaPrioridad.TextKey = "0";
-                        this.EntradaPrioridad.PlaceholderText = "";
-                        this.EntradaPrioridad.ToolTipText = "";
                         // 
                         // Label14
                         // 

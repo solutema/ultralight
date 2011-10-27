@@ -78,7 +78,6 @@ namespace Lui.Forms
 			this.Calendar1.ShowFocusRect = true;
 			this.Calendar1.Size = new System.Drawing.Size(304, 212);
 			this.Calendar1.TabIndex = 0;
-			this.Calendar1.ToolTipText = "";
 			this.Calendar1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Calendar1_KeyPress);
 			this.Calendar1.DoubleClick += new System.EventHandler(this.Calendar1_DoubleClick);
 			// 

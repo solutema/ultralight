@@ -117,7 +117,6 @@ namespace Lfc.Articulos
                         this.Frame2.Size = new System.Drawing.Size(356, 196);
                         this.Frame2.TabIndex = 1;
                         this.Frame2.Text = "Precio y Stock";
-                        this.Frame2.ToolTipText = "";
                         // 
                         // EntradaMargen
                         // 
@@ -127,14 +126,13 @@ namespace Lfc.Articulos
                         this.EntradaMargen.Location = new System.Drawing.Point(76, 64);
                         this.EntradaMargen.Name = "EntradaMargen";
                         this.EntradaMargen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargen.PlaceholderText = "";
                         this.EntradaMargen.ReadOnly = false;
                         this.EntradaMargen.SetData = new string[] {
         "Otro|-1"};
                         this.EntradaMargen.Size = new System.Drawing.Size(276, 96);
                         this.EntradaMargen.TabIndex = 4;
                         this.EntradaMargen.TextKey = "-1";
-                        this.EntradaMargen.ToolTipText = "Márgenes predefinidos";
+                        this.EntradaMargen.PlaceholderText = "Márgenes predefinidos";
                         this.EntradaMargen.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
                         // EntradaCosto
@@ -148,14 +146,13 @@ namespace Lfc.Articulos
                         this.EntradaCosto.MultiLine = false;
                         this.EntradaCosto.Name = "EntradaCosto";
                         this.EntradaCosto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCosto.PlaceholderText = "";
                         this.EntradaCosto.Prefijo = "$";
                         this.EntradaCosto.ReadOnly = false;
                         this.EntradaCosto.SelectOnFocus = true;
                         this.EntradaCosto.Size = new System.Drawing.Size(108, 24);
                         this.EntradaCosto.TabIndex = 1;
                         this.EntradaCosto.Text = "0.00";
-                        this.EntradaCosto.ToolTipText = "Precio de costo o de compra.";
+                        this.EntradaCosto.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaCosto.GotFocus += new System.EventHandler(this.EntradaCosto_GotFocus);
                         this.EntradaCosto.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
@@ -173,7 +170,6 @@ namespace Lfc.Articulos
                         this.BotonInfoCosto.Subtext = "";
                         this.BotonInfoCosto.TabIndex = 2;
                         this.BotonInfoCosto.Text = "...";
-                        this.BotonInfoCosto.ToolTipText = "Ver más datos sobre el precio";
                         this.BotonInfoCosto.Click += new System.EventHandler(this.BotonMasInfo_Click);
                         // 
                         // EntradaPvp
@@ -187,14 +183,13 @@ namespace Lfc.Articulos
                         this.EntradaPvp.MultiLine = false;
                         this.EntradaPvp.Name = "EntradaPvp";
                         this.EntradaPvp.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPvp.PlaceholderText = "";
                         this.EntradaPvp.Prefijo = "$";
                         this.EntradaPvp.ReadOnly = false;
                         this.EntradaPvp.SelectOnFocus = true;
                         this.EntradaPvp.Size = new System.Drawing.Size(108, 24);
                         this.EntradaPvp.TabIndex = 6;
                         this.EntradaPvp.Text = "0.00";
-                        this.EntradaPvp.ToolTipText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
+                        this.EntradaPvp.PlaceholderText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
                             "definido a continuación";
                         this.EntradaPvp.TextChanged += new System.EventHandler(this.EntradaPvp_TextChanged);
                         // 
@@ -242,7 +237,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.Location = new System.Drawing.Point(324, 32);
                         this.EntradaUnidad.Name = "EntradaUnidad";
                         this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUnidad.PlaceholderText = "";
                         this.EntradaUnidad.ReadOnly = false;
                         this.EntradaUnidad.SetData = new string[] {
         "N/A|",
@@ -262,7 +256,7 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.Size = new System.Drawing.Size(120, 81);
                         this.EntradaUnidad.TabIndex = 10;
                         this.EntradaUnidad.TextKey = "u";
-                        this.EntradaUnidad.ToolTipText = "¿El artículo usa control de stock?";
+                        this.EntradaUnidad.PlaceholderText = "¿El artículo usa control de stock?";
                         this.EntradaUnidad.Enter += new System.EventHandler(this.EntradaPvp_Enter);
                         // 
                         // EntradaUsaStock
@@ -274,7 +268,6 @@ namespace Lfc.Articulos
                         this.EntradaUsaStock.Location = new System.Drawing.Point(80, 32);
                         this.EntradaUsaStock.Name = "EntradaUsaStock";
                         this.EntradaUsaStock.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUsaStock.PlaceholderText = "";
                         this.EntradaUsaStock.ReadOnly = false;
                         this.EntradaUsaStock.SetData = new string[] {
         "No|0",
@@ -283,7 +276,7 @@ namespace Lfc.Articulos
                         this.EntradaUsaStock.Size = new System.Drawing.Size(120, 51);
                         this.EntradaUsaStock.TabIndex = 1;
                         this.EntradaUsaStock.TextKey = "1";
-                        this.EntradaUsaStock.ToolTipText = "¿El artículo usa control de stock?";
+                        this.EntradaUsaStock.PlaceholderText = "¿El artículo usa control de stock?";
                         this.EntradaUsaStock.TextChanged += new System.EventHandler(this.EntradaUsaStock_TextChanged);
                         // 
                         // BotonReceta
@@ -300,7 +293,6 @@ namespace Lfc.Articulos
                         this.BotonReceta.Subtext = "";
                         this.BotonReceta.TabIndex = 2;
                         this.BotonReceta.Text = "...";
-                        this.BotonReceta.ToolTipText = "Ver receta";
                         this.BotonReceta.Visible = false;
                         this.BotonReceta.Click += new System.EventHandler(this.BotonReceta_Click);
                         // 
@@ -318,7 +310,6 @@ namespace Lfc.Articulos
                         this.BotonUnidad.Subtext = "";
                         this.BotonUnidad.TabIndex = 11;
                         this.BotonUnidad.Text = "...";
-                        this.BotonUnidad.ToolTipText = "Ver historial de movimientos de stock";
                         this.BotonUnidad.Click += new System.EventHandler(this.BotonUnidad_Click);
                         // 
                         // label19
@@ -352,7 +343,6 @@ namespace Lfc.Articulos
                         this.EntradaCaja.Table = "cajas";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.ToolTipText = "";
                         // 
                         // label17
                         // 
@@ -383,13 +373,12 @@ namespace Lfc.Articulos
                         this.EntradaStockMinimo.MultiLine = false;
                         this.EntradaStockMinimo.Name = "EntradaStockMinimo";
                         this.EntradaStockMinimo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockMinimo.PlaceholderText = "";
                         this.EntradaStockMinimo.ReadOnly = false;
                         this.EntradaStockMinimo.SelectOnFocus = true;
                         this.EntradaStockMinimo.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockMinimo.TabIndex = 4;
                         this.EntradaStockMinimo.Text = "0.00";
-                        this.EntradaStockMinimo.ToolTipText = "Stock mínimo o crítico";
+                        this.EntradaStockMinimo.PlaceholderText = "Stock mínimo o crítico";
                         // 
                         // Label11
                         // 
@@ -420,14 +409,12 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.MultiLine = false;
                         this.EntradaStockActual.Name = "EntradaStockActual";
                         this.EntradaStockActual.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockActual.PlaceholderText = "";
                         this.EntradaStockActual.ReadOnly = false;
                         this.EntradaStockActual.SelectOnFocus = true;
                         this.EntradaStockActual.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockActual.TabIndex = 6;
                         this.EntradaStockActual.TabStop = false;
                         this.EntradaStockActual.Text = "0.00";
-                        this.EntradaStockActual.ToolTipText = "";
                         this.EntradaStockActual.TextChanged += new System.EventHandler(this.EntradaStockActual_TextChanged);
                         // 
                         // Frame1
@@ -474,7 +461,6 @@ namespace Lfc.Articulos
                         this.Frame1.Size = new System.Drawing.Size(986, 348);
                         this.Frame1.TabIndex = 0;
                         this.Frame1.Text = "Detalles de Artículo";
-                        this.Frame1.ToolTipText = "";
                         // 
                         // EntradaDestacado
                         // 
@@ -485,7 +471,6 @@ namespace Lfc.Articulos
                         this.EntradaDestacado.Location = new System.Drawing.Point(76, 292);
                         this.EntradaDestacado.Name = "EntradaDestacado";
                         this.EntradaDestacado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDestacado.PlaceholderText = "";
                         this.EntradaDestacado.ReadOnly = false;
                         this.EntradaDestacado.SetData = new string[] {
         "Si|1",
@@ -493,7 +478,6 @@ namespace Lfc.Articulos
                         this.EntradaDestacado.Size = new System.Drawing.Size(64, 36);
                         this.EntradaDestacado.TabIndex = 23;
                         this.EntradaDestacado.TextKey = "0";
-                        this.EntradaDestacado.ToolTipText = "";
                         // 
                         // EntradaWeb
                         // 
@@ -504,7 +488,6 @@ namespace Lfc.Articulos
                         this.EntradaWeb.Location = new System.Drawing.Point(228, 292);
                         this.EntradaWeb.Name = "EntradaWeb";
                         this.EntradaWeb.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaWeb.PlaceholderText = "";
                         this.EntradaWeb.ReadOnly = false;
                         this.EntradaWeb.SetData = new string[] {
         "Siempre|1",
@@ -513,7 +496,6 @@ namespace Lfc.Articulos
                         this.EntradaWeb.Size = new System.Drawing.Size(212, 51);
                         this.EntradaWeb.TabIndex = 25;
                         this.EntradaWeb.TextKey = "2";
-                        this.EntradaWeb.ToolTipText = "";
                         // 
                         // EntradaModelo
                         // 
@@ -526,12 +508,10 @@ namespace Lfc.Articulos
                         this.EntradaModelo.MultiLine = false;
                         this.EntradaModelo.Name = "EntradaModelo";
                         this.EntradaModelo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaModelo.PlaceholderText = "";
                         this.EntradaModelo.ReadOnly = false;
                         this.EntradaModelo.SelectOnFocus = false;
                         this.EntradaModelo.Size = new System.Drawing.Size(292, 24);
                         this.EntradaModelo.TabIndex = 9;
-                        this.EntradaModelo.ToolTipText = "";
                         this.EntradaModelo.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
                         // EntradaGarantia
@@ -545,14 +525,13 @@ namespace Lfc.Articulos
                         this.EntradaGarantia.MultiLine = false;
                         this.EntradaGarantia.Name = "EntradaGarantia";
                         this.EntradaGarantia.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaGarantia.PlaceholderText = "";
                         this.EntradaGarantia.ReadOnly = false;
                         this.EntradaGarantia.SelectOnFocus = true;
                         this.EntradaGarantia.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGarantia.Sufijo = "meses";
                         this.EntradaGarantia.TabIndex = 27;
                         this.EntradaGarantia.Text = "0";
-                        this.EntradaGarantia.ToolTipText = "Precio de costo o de compra.";
+                        this.EntradaGarantia.PlaceholderText = "Precio de costo o de compra.";
                         // 
                         // EntradaCodigo4
                         // 
@@ -565,12 +544,11 @@ namespace Lfc.Articulos
                         this.EntradaCodigo4.MultiLine = false;
                         this.EntradaCodigo4.Name = "EntradaCodigo4";
                         this.EntradaCodigo4.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo4.PlaceholderText = "";
                         this.EntradaCodigo4.ReadOnly = false;
                         this.EntradaCodigo4.SelectOnFocus = true;
                         this.EntradaCodigo4.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo4.TabIndex = 3;
-                        this.EntradaCodigo4.ToolTipText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
+                        this.EntradaCodigo4.PlaceholderText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
                         // EntradaProveedor
                         // 
@@ -595,7 +573,6 @@ namespace Lfc.Articulos
                         this.EntradaProveedor.Table = "personas";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
-                        this.EntradaProveedor.ToolTipText = "";
                         // 
                         // EntradaCategoria
                         // 
@@ -611,7 +588,6 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.MaxLength = 200;
                         this.EntradaCategoria.Name = "EntradaCategoria";
                         this.EntradaCategoria.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCategoria.PlaceholderText = "";
                         this.EntradaCategoria.ReadOnly = false;
                         this.EntradaCategoria.Required = true;
                         this.EntradaCategoria.Size = new System.Drawing.Size(292, 24);
@@ -619,7 +595,7 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.Table = "articulos_categorias";
                         this.EntradaCategoria.Text = "0";
                         this.EntradaCategoria.TextDetail = "";
-                        this.EntradaCategoria.ToolTipText = "Rubro o categoría";
+                        this.EntradaCategoria.PlaceholderText = "Rubro o categoría";
                         this.EntradaCategoria.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
                         // EntradaMarca
@@ -646,7 +622,6 @@ namespace Lfc.Articulos
                         this.EntradaMarca.Table = "marcas";
                         this.EntradaMarca.Text = "0";
                         this.EntradaMarca.TextDetail = "";
-                        this.EntradaMarca.ToolTipText = "";
                         this.EntradaMarca.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
                         // EntradaCodigo3
@@ -660,12 +635,11 @@ namespace Lfc.Articulos
                         this.EntradaCodigo3.MultiLine = false;
                         this.EntradaCodigo3.Name = "EntradaCodigo3";
                         this.EntradaCodigo3.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo3.PlaceholderText = "";
                         this.EntradaCodigo3.ReadOnly = false;
                         this.EntradaCodigo3.SelectOnFocus = true;
                         this.EntradaCodigo3.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo3.TabIndex = 1;
-                        this.EntradaCodigo3.ToolTipText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
+                        this.EntradaCodigo3.PlaceholderText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
                         // EntradaDescripcion2
                         // 
@@ -680,12 +654,11 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion2.MultiLine = true;
                         this.EntradaDescripcion2.Name = "EntradaDescripcion2";
                         this.EntradaDescripcion2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescripcion2.PlaceholderText = "";
                         this.EntradaDescripcion2.ReadOnly = false;
                         this.EntradaDescripcion2.SelectOnFocus = false;
                         this.EntradaDescripcion2.Size = new System.Drawing.Size(502, 104);
                         this.EntradaDescripcion2.TabIndex = 21;
-                        this.EntradaDescripcion2.ToolTipText = "Descripción larga";
+                        this.EntradaDescripcion2.PlaceholderText = "Descripción larga";
                         // 
                         // EntradaCodigo2
                         // 
@@ -698,12 +671,11 @@ namespace Lfc.Articulos
                         this.EntradaCodigo2.MultiLine = false;
                         this.EntradaCodigo2.Name = "EntradaCodigo2";
                         this.EntradaCodigo2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo2.PlaceholderText = "";
                         this.EntradaCodigo2.ReadOnly = false;
                         this.EntradaCodigo2.SelectOnFocus = true;
                         this.EntradaCodigo2.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo2.TabIndex = 3;
-                        this.EntradaCodigo2.ToolTipText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
+                        this.EntradaCodigo2.PlaceholderText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
                         // EntradaCodigo1
                         // 
@@ -716,12 +688,11 @@ namespace Lfc.Articulos
                         this.EntradaCodigo1.MultiLine = false;
                         this.EntradaCodigo1.Name = "EntradaCodigo1";
                         this.EntradaCodigo1.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo1.PlaceholderText = "";
                         this.EntradaCodigo1.ReadOnly = false;
                         this.EntradaCodigo1.SelectOnFocus = true;
                         this.EntradaCodigo1.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo1.TabIndex = 1;
-                        this.EntradaCodigo1.ToolTipText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
+                        this.EntradaCodigo1.PlaceholderText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
                         // EntradaUrl
                         // 
@@ -736,12 +707,11 @@ namespace Lfc.Articulos
                         this.EntradaUrl.MultiLine = false;
                         this.EntradaUrl.Name = "EntradaUrl";
                         this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUrl.PlaceholderText = "";
                         this.EntradaUrl.ReadOnly = false;
                         this.EntradaUrl.SelectOnFocus = false;
                         this.EntradaUrl.Size = new System.Drawing.Size(450, 24);
                         this.EntradaUrl.TabIndex = 15;
-                        this.EntradaUrl.ToolTipText = "Dirección de la página web del producto.";
+                        this.EntradaUrl.PlaceholderText = "Dirección de la página web del producto.";
                         // 
                         // EntradaDescripcion
                         // 
@@ -754,12 +724,11 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
                         this.EntradaDescripcion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescripcion.PlaceholderText = "";
                         this.EntradaDescripcion.ReadOnly = false;
                         this.EntradaDescripcion.SelectOnFocus = false;
                         this.EntradaDescripcion.Size = new System.Drawing.Size(320, 104);
                         this.EntradaDescripcion.TabIndex = 19;
-                        this.EntradaDescripcion.ToolTipText = "Descripción larga";
+                        this.EntradaDescripcion.PlaceholderText = "Descripción larga";
                         // 
                         // EntradaNombre
                         // 
@@ -774,12 +743,11 @@ namespace Lfc.Articulos
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(910, 24);
                         this.EntradaNombre.TabIndex = 13;
-                        this.EntradaNombre.ToolTipText = "Nombre completo del artículo";
+                        this.EntradaNombre.PlaceholderText = "Nombre completo del artículo";
                         this.EntradaNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaNombre_KeyPress);
                         this.EntradaNombre.TextChanged += new System.EventHandler(this.EntradaNombre_TextChanged);
                         // 
@@ -796,12 +764,10 @@ namespace Lfc.Articulos
                         this.EntradaSerie.MultiLine = false;
                         this.EntradaSerie.Name = "EntradaSerie";
                         this.EntradaSerie.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSerie.PlaceholderText = "";
                         this.EntradaSerie.ReadOnly = false;
                         this.EntradaSerie.SelectOnFocus = false;
                         this.EntradaSerie.Size = new System.Drawing.Size(550, 24);
                         this.EntradaSerie.TabIndex = 11;
-                        this.EntradaSerie.ToolTipText = "";
                         this.EntradaSerie.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
                         // EtiquetaCodigo1
@@ -976,7 +942,6 @@ namespace Lfc.Articulos
                         this.frame3.TabIndex = 2;
                         this.frame3.TabStop = false;
                         this.frame3.Text = "Stock";
-                        this.frame3.ToolTipText = "";
                         // 
                         // BotonConformacion
                         // 

@@ -93,7 +93,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.Location = new System.Drawing.Point(152, 24);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = "";
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Facturas A|A",
@@ -105,7 +104,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.Size = new System.Drawing.Size(144, 81);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.TextKey = "B";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
                         // Label7
@@ -128,13 +126,11 @@ namespace Lfc.Comprobantes
                         this.EntradaPv.MultiLine = false;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPv.PlaceholderText = "";
                         this.EntradaPv.ReadOnly = false;
                         this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(52, 24);
                         this.EntradaPv.TabIndex = 3;
                         this.EntradaPv.Text = "1";
-                        this.EntradaPv.ToolTipText = "";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
                         // EntradaDesde
@@ -148,13 +144,11 @@ namespace Lfc.Comprobantes
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.PlaceholderText = "";
                         this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
-                        this.EntradaDesde.ToolTipText = "";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
                         // Label1

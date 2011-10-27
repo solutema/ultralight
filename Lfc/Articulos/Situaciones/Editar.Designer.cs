@@ -89,12 +89,10 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(336, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -113,7 +111,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaCuentaStock.Location = new System.Drawing.Point(136, 48);
                         this.EntradaCuentaStock.Name = "EntradaCuentaStock";
                         this.EntradaCuentaStock.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuentaStock.PlaceholderText = "";
                         this.EntradaCuentaStock.ReadOnly = false;
                         this.EntradaCuentaStock.SetData = new string[] {
         "Si|1",
@@ -121,7 +118,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaCuentaStock.Size = new System.Drawing.Size(88, 24);
                         this.EntradaCuentaStock.TabIndex = 3;
                         this.EntradaCuentaStock.TextKey = "0";
-                        this.EntradaCuentaStock.ToolTipText = "";
                         // 
                         // EntradaFacturable
                         // 
@@ -131,7 +127,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaFacturable.Location = new System.Drawing.Point(136, 80);
                         this.EntradaFacturable.Name = "EntradaFacturable";
                         this.EntradaFacturable.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFacturable.PlaceholderText = "";
                         this.EntradaFacturable.ReadOnly = false;
                         this.EntradaFacturable.SetData = new string[] {
         "Si|1",
@@ -139,7 +134,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaFacturable.Size = new System.Drawing.Size(88, 24);
                         this.EntradaFacturable.TabIndex = 5;
                         this.EntradaFacturable.TextKey = "0";
-                        this.EntradaFacturable.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -169,13 +163,11 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaDeposito.MultiLine = false;
                         this.EntradaDeposito.Name = "EntradaDeposito";
                         this.EntradaDeposito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDeposito.PlaceholderText = "";
                         this.EntradaDeposito.ReadOnly = false;
                         this.EntradaDeposito.SelectOnFocus = false;
                         this.EntradaDeposito.Size = new System.Drawing.Size(52, 24);
                         this.EntradaDeposito.TabIndex = 7;
                         this.EntradaDeposito.Text = "0";
-                        this.EntradaDeposito.ToolTipText = "";
                         // 
                         // Editar
                         // 

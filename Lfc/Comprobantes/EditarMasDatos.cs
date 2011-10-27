@@ -129,8 +129,6 @@ namespace Lfc.Comprobantes
                         this.EntradaHaciaSituacion.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaHaciaSituacion.Text = "0";
                         this.EntradaHaciaSituacion.TextDetail = "";
-                        this.EntradaHaciaSituacion.PlaceholderText = "";
-                        this.EntradaHaciaSituacion.ToolTipText = "";
                         // 
                         // lblDesdeSituacion
                         // 
@@ -164,8 +162,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaDesdeSituacion.Text = "0";
                         this.EntradaDesdeSituacion.TextDetail = "";
-                        this.EntradaDesdeSituacion.PlaceholderText = "";
-                        this.EntradaDesdeSituacion.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -191,8 +187,6 @@ namespace Lfc.Comprobantes
                         this.EntradaBloqueada.TabIndex = 5;
                         this.EntradaBloqueada.Text = "Editable";
                         this.EntradaBloqueada.TextKey = "0";
-                        this.EntradaBloqueada.PlaceholderText = "";
-                        this.EntradaBloqueada.ToolTipText = "";
                         this.EntradaBloqueada.TextChanged += new System.EventHandler(this.EntradaBloqueada_TextChanged);
                         // 
                         // FormComprobanteMasDatos

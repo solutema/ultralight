@@ -96,8 +96,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaEstado.TabIndex = 1;
                         this.EntradaEstado.Text = "Todos";
                         this.EntradaEstado.TextKey = "-1";
-                        this.EntradaEstado.PlaceholderText = "";
-                        this.EntradaEstado.ToolTipText = "Estado para esta chequera.";
+                        this.EntradaEstado.PlaceholderText = "Estado para esta chequera.";
                         // 
                         // Label7
                         // 
@@ -139,8 +138,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPersona.Text = "0";
                         this.EntradaPersona.TextDetail = "";
-                        this.EntradaPersona.PlaceholderText = "";
-                        this.EntradaPersona.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -173,8 +170,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.PlaceholderText = "";
-                        this.EntradaBanco.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -196,7 +191,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechas.TemporaryReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(366, 68);
                         this.EntradaFechas.TabIndex = 9;
-                        this.EntradaFechas.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -229,8 +223,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.PlaceholderText = "";
-                        this.EntradaSucursal.ToolTipText = "";
                         // 
                         // Filtros
                         // 

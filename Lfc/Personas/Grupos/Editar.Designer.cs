@@ -88,8 +88,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 5;
                         this.EntradaDescuento.Text = "0.0000";
-                        this.EntradaDescuento.PlaceholderText = "";
-                        this.EntradaDescuento.ToolTipText = "";
                         // 
                         // label4
                         // 
@@ -118,8 +116,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(432, 24);
                         this.EntradaNombre.TabIndex = 3;
-                        this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -181,7 +177,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
                         this.EntradaGrupo.PlaceholderText = "Ninguno";
-                        this.EntradaGrupo.ToolTipText = "";
                         // 
                         // Label16
                         // 

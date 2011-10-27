@@ -82,7 +82,6 @@ namespace Lfc
                         this.EntradaEtiquetas.Size = new System.Drawing.Size(160, 287);
                         this.EntradaEtiquetas.TabIndex = 3;
                         this.EntradaEtiquetas.Text = "Etiquetas";
-                        this.EntradaEtiquetas.ToolTipText = "";
                         // 
                         // EntradaComentarios
                         // 
@@ -97,7 +96,6 @@ namespace Lfc
                         this.EntradaComentarios.Size = new System.Drawing.Size(434, 287);
                         this.EntradaComentarios.TabIndex = 1;
                         this.EntradaComentarios.Text = "Comentarios";
-                        this.EntradaComentarios.ToolTipText = "";
                         // 
                         // Etiquetas
                         // 

@@ -189,8 +189,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenes.Size = new System.Drawing.Size(116, 36);
                         this.EntradaMargenes.TabIndex = 8;
                         this.EntradaMargenes.TextKey = "1";
-                        this.EntradaMargenes.PlaceholderText = "";
-                        this.EntradaMargenes.ToolTipText = "";
                         this.EntradaMargenes.TextChanged += new System.EventHandler(this.EntradaMargenes_TextChanged);
                         // 
                         // EntradaMargenAbajo
@@ -210,7 +208,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenAbajo.TabIndex = 11;
                         this.EntradaMargenAbajo.Text = "0";
                         this.EntradaMargenAbajo.PlaceholderText = "auto";
-                        this.EntradaMargenAbajo.ToolTipText = "";
                         // 
                         // EntradaMargenArriba
                         // 
@@ -229,7 +226,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenArriba.TabIndex = 10;
                         this.EntradaMargenArriba.Text = "0";
                         this.EntradaMargenArriba.PlaceholderText = "auto";
-                        this.EntradaMargenArriba.ToolTipText = "";
                         // 
                         // EntradaMargenDerecha
                         // 
@@ -248,7 +244,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenDerecha.TabIndex = 12;
                         this.EntradaMargenDerecha.Text = "0";
                         this.EntradaMargenDerecha.PlaceholderText = "auto";
-                        this.EntradaMargenDerecha.ToolTipText = "";
                         // 
                         // EntradaMargenIzquierda
                         // 
@@ -267,7 +262,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenIzquierda.TabIndex = 9;
                         this.EntradaMargenIzquierda.Text = "0";
                         this.EntradaMargenIzquierda.PlaceholderText = "auto";
-                        this.EntradaMargenIzquierda.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -293,8 +287,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaLandscape.Size = new System.Drawing.Size(96, 36);
                         this.EntradaLandscape.TabIndex = 6;
                         this.EntradaLandscape.TextKey = "0";
-                        this.EntradaLandscape.PlaceholderText = "";
-                        this.EntradaLandscape.ToolTipText = "";
                         this.EntradaLandscape.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
                         // 
                         // BotonCargarDesdeArchivo
@@ -310,7 +302,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonCargarDesdeArchivo.Subtext = "Tecla";
                         this.BotonCargarDesdeArchivo.TabIndex = 15;
                         this.BotonCargarDesdeArchivo.Text = "Cargar";
-                        this.BotonCargarDesdeArchivo.ToolTipText = "";
                         this.BotonCargarDesdeArchivo.Click += new System.EventHandler(this.BotonCargar_Click);
                         // 
                         // BotonGuardarEnArchivo
@@ -326,7 +317,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonGuardarEnArchivo.Subtext = "Tecla";
                         this.BotonGuardarEnArchivo.TabIndex = 14;
                         this.BotonGuardarEnArchivo.Text = "Guardar";
-                        this.BotonGuardarEnArchivo.ToolTipText = "";
                         this.BotonGuardarEnArchivo.Click += new System.EventHandler(this.BotonGuardar_Click);
                         // 
                         // EntradaFuenteTamano
@@ -345,8 +335,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
                         this.EntradaFuenteTamano.TabIndex = 17;
                         this.EntradaFuenteTamano.Text = "10";
-                        this.EntradaFuenteTamano.PlaceholderText = "";
-                        this.EntradaFuenteTamano.ToolTipText = "";
                         this.EntradaFuenteTamano.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
                         // EntradaFuente
@@ -367,8 +355,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuente.Size = new System.Drawing.Size(256, 81);
                         this.EntradaFuente.TabIndex = 16;
                         this.EntradaFuente.TextKey = "*";
-                        this.EntradaFuente.PlaceholderText = "";
-                        this.EntradaFuente.ToolTipText = "";
                         this.EntradaFuente.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
                         // label4
@@ -407,8 +393,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaPapelTamano.Size = new System.Drawing.Size(88, 81);
                         this.EntradaPapelTamano.TabIndex = 5;
                         this.EntradaPapelTamano.TextKey = "a4";
-                        this.EntradaPapelTamano.PlaceholderText = "";
-                        this.EntradaPapelTamano.ToolTipText = "";
                         this.EntradaPapelTamano.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
                         // 
                         // label8
@@ -435,8 +419,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaNombre.Size = new System.Drawing.Size(284, 24);
                         this.EntradaNombre.TabIndex = 3;
                         this.EntradaNombre.Text = "Factura A";
-                        this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -462,8 +444,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCodigo.Size = new System.Drawing.Size(284, 24);
                         this.EntradaCodigo.TabIndex = 1;
                         this.EntradaCodigo.Text = "A";
-                        this.EntradaCodigo.PlaceholderText = "";
-                        this.EntradaCodigo.ToolTipText = "";
                         // 
                         // label6
                         // 
@@ -490,8 +470,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMembrete.Size = new System.Drawing.Size(256, 51);
                         this.EntradaMembrete.TabIndex = 14;
                         this.EntradaMembrete.TextKey = "0";
-                        this.EntradaMembrete.PlaceholderText = "";
-                        this.EntradaMembrete.ToolTipText = "";
                         // 
                         // EntradaCopias
                         // 
@@ -507,8 +485,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCopias.Size = new System.Drawing.Size(56, 24);
                         this.EntradaCopias.TabIndex = 19;
                         this.EntradaCopias.Text = "1";
-                        this.EntradaCopias.PlaceholderText = "";
-                        this.EntradaCopias.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -549,7 +525,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.button1.Subtext = "Tecla";
                         this.button1.TabIndex = 114;
                         this.button1.Text = "Subir";
-                        this.button1.ToolTipText = "";
                         // 
                         // button2
                         // 
@@ -565,7 +540,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.button2.Subtext = "Tecla";
                         this.button2.TabIndex = 113;
                         this.button2.Text = "Bajar";
-                        this.button2.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -622,7 +596,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonQuitar.Subtext = "Tecla";
                         this.BotonQuitar.TabIndex = 110;
                         this.BotonQuitar.Text = "Quitar";
-                        this.BotonQuitar.ToolTipText = "";
                         this.BotonQuitar.Click += new System.EventHandler(this.BotonQuitar_Click);
                         // 
                         // BotonAgregar
@@ -639,7 +612,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonAgregar.Subtext = "Tecla";
                         this.BotonAgregar.TabIndex = 109;
                         this.BotonAgregar.Text = "Agregar";
-                        this.BotonAgregar.ToolTipText = "";
                         this.BotonAgregar.Click += new System.EventHandler(this.BotonAgregar_Click);
                         // 
                         // Editar

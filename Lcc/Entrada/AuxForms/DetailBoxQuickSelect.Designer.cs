@@ -152,8 +152,6 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaBuscar.SelectOnFocus = false;
                         this.EntradaBuscar.Size = new System.Drawing.Size(524, 24);
                         this.EntradaBuscar.TabIndex = 0;
-                        this.EntradaBuscar.PlaceholderText = "";
-                        this.EntradaBuscar.ToolTipText = "";
                         this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);
                         this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
@@ -172,7 +170,6 @@ namespace Lcc.Entrada.AuxForms
                         this.BotonNuevo.Subtext = "F6";
                         this.BotonNuevo.TabIndex = 1;
                         this.BotonNuevo.Text = "Crear";
-                        this.BotonNuevo.ToolTipText = "";
                         this.BotonNuevo.Click += new System.EventHandler(this.BotonNuevo_Click);
                         // 
                         // Timer1

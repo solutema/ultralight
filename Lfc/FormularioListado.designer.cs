@@ -75,14 +75,13 @@ namespace Lfc
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBuscar.PasswordChar = '\0';
-                        this.EntradaBuscar.PlaceholderText = "buscar";
                         this.EntradaBuscar.Prefijo = "";
                         this.EntradaBuscar.ReadOnly = false;
                         this.EntradaBuscar.SelectOnFocus = true;
                         this.EntradaBuscar.Size = new System.Drawing.Size(212, 24);
                         this.EntradaBuscar.Sufijo = "";
                         this.EntradaBuscar.TabIndex = 1;
-                        this.EntradaBuscar.ToolTipText = "Escriba el texto o parte del texto a buscar y pulse <Intro>";
+                        this.EntradaBuscar.PlaceholderText = "Buscar (F3)";
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
                         this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
                         // 
@@ -101,7 +100,6 @@ namespace Lfc
                         this.BotonCrear.Subtext = "F6";
                         this.BotonCrear.TabIndex = 3;
                         this.BotonCrear.Text = "Crear";
-                        this.BotonCrear.ToolTipText = "";
                         this.BotonCrear.Click += new System.EventHandler(this.BotonCrear_Click);
                         // 
                         // TimerBuscar

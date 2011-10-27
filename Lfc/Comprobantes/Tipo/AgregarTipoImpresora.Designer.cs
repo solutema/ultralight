@@ -64,7 +64,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.label1 = new Lui.Forms.Label();
                         this.Label3 = new Lui.Forms.Label();
                         this.label2 = new Lui.Forms.Label();
-                        this.cmdEstacionSeleccionar = new Lui.Forms.Button();
+                        this.BotonSeleccionarEstacion = new Lui.Forms.Button();
                         this.EntradaEstacion = new Lui.Forms.TextBox();
                         this.EntradaPuntoDeVenta = new Lui.Forms.TextBox();
                         this.label4 = new Lui.Forms.Label();
@@ -103,7 +103,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImpresora.Text = "0";
                         this.EntradaImpresora.TextDetail = "";
                         this.EntradaImpresora.PlaceholderText = "Ninguno";
-                        this.EntradaImpresora.ToolTipText = "";
                         // 
                         // Label16
                         // 
@@ -137,7 +136,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
                         this.EntradaSucursal.PlaceholderText = "Todas";
-                        this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -168,20 +166,19 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // cmdEstacionSeleccionar
                         // 
-                        this.cmdEstacionSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.cmdEstacionSeleccionar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.cmdEstacionSeleccionar.Image = null;
-                        this.cmdEstacionSeleccionar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.cmdEstacionSeleccionar.Location = new System.Drawing.Point(352, 184);
-                        this.cmdEstacionSeleccionar.Name = "cmdEstacionSeleccionar";
-                        this.cmdEstacionSeleccionar.Padding = new System.Windows.Forms.Padding(2);
-                        this.cmdEstacionSeleccionar.Size = new System.Drawing.Size(28, 24);
-                        this.cmdEstacionSeleccionar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.cmdEstacionSeleccionar.Subtext = "";
-                        this.cmdEstacionSeleccionar.TabIndex = 8;
-                        this.cmdEstacionSeleccionar.Text = "...";
-                        this.cmdEstacionSeleccionar.ToolTipText = "Ver historial de movimientos de stock";
-                        this.cmdEstacionSeleccionar.Click += new System.EventHandler(this.BotonEstacionSeleccionar_Click);
+                        this.BotonSeleccionarEstacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonSeleccionarEstacion.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonSeleccionarEstacion.Image = null;
+                        this.BotonSeleccionarEstacion.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonSeleccionarEstacion.Location = new System.Drawing.Point(352, 184);
+                        this.BotonSeleccionarEstacion.Name = "cmdEstacionSeleccionar";
+                        this.BotonSeleccionarEstacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonSeleccionarEstacion.Size = new System.Drawing.Size(28, 24);
+                        this.BotonSeleccionarEstacion.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonSeleccionarEstacion.Subtext = "";
+                        this.BotonSeleccionarEstacion.TabIndex = 8;
+                        this.BotonSeleccionarEstacion.Text = "...";
+                        this.BotonSeleccionarEstacion.Click += new System.EventHandler(this.BotonEstacionSeleccionar_Click);
                         // 
                         // EntradaEstacion
                         // 
@@ -197,8 +194,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaEstacion.SelectOnFocus = true;
                         this.EntradaEstacion.Size = new System.Drawing.Size(196, 24);
                         this.EntradaEstacion.TabIndex = 7;
-                        this.EntradaEstacion.PlaceholderText = "";
-                        this.EntradaEstacion.ToolTipText = "";
                         // 
                         // EntradaPuntoDeVenta
                         // 
@@ -215,8 +210,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaPuntoDeVenta.Size = new System.Drawing.Size(72, 24);
                         this.EntradaPuntoDeVenta.TabIndex = 5;
                         this.EntradaPuntoDeVenta.Text = "0";
-                        this.EntradaPuntoDeVenta.PlaceholderText = "";
-                        this.EntradaPuntoDeVenta.ToolTipText = "";
                         // 
                         // label4
                         // 
@@ -256,7 +249,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.Add(this.EntradaPuntoDeVenta);
                         this.Controls.Add(this.EntradaSucursal);
                         this.Controls.Add(this.Label3);
-                        this.Controls.Add(this.cmdEstacionSeleccionar);
+                        this.Controls.Add(this.BotonSeleccionarEstacion);
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.EntradaEstacion);
@@ -269,7 +262,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.SetChildIndex(this.EntradaEstacion, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.cmdEstacionSeleccionar, 0);
+                        this.Controls.SetChildIndex(this.BotonSeleccionarEstacion, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
                         this.Controls.SetChildIndex(this.EntradaSucursal, 0);
                         this.Controls.SetChildIndex(this.EntradaPuntoDeVenta, 0);
@@ -288,7 +281,7 @@ namespace Lfc.Comprobantes.Tipo
                 internal Lui.Forms.Label label1;
                 internal Lui.Forms.Label Label3;
                 internal Lui.Forms.Label label2;
-                internal Lui.Forms.Button cmdEstacionSeleccionar;
+                internal Lui.Forms.Button BotonSeleccionarEstacion;
                 internal Lui.Forms.TextBox EntradaEstacion;
                 internal Lui.Forms.TextBox EntradaPuntoDeVenta;
                 internal Lui.Forms.Label label4;

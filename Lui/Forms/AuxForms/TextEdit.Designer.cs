@@ -70,8 +70,6 @@ namespace Lui.Forms.AuxForms
                         this.EntradaTexto.SelectOnFocus = false;
                         this.EntradaTexto.Size = new System.Drawing.Size(456, 199);
                         this.EntradaTexto.TabIndex = 0;
-                        this.EntradaTexto.PlaceholderText = "";
-                        this.EntradaTexto.ToolTipText = "";
                         // 
                         // BotonAceptar
                         // 
@@ -87,7 +85,6 @@ namespace Lui.Forms.AuxForms
                         this.BotonAceptar.Subtext = "F9";
                         this.BotonAceptar.TabIndex = 1;
                         this.BotonAceptar.Text = "Aceptar";
-                        this.BotonAceptar.ToolTipText = "";
                         this.BotonAceptar.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // BotonCancelar
@@ -104,7 +101,6 @@ namespace Lui.Forms.AuxForms
                         this.BotonCancelar.Subtext = "Esc";
                         this.BotonCancelar.TabIndex = 2;
                         this.BotonCancelar.Text = "Cancelar";
-                        this.BotonCancelar.ToolTipText = "";
                         this.BotonCancelar.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // TextEdit

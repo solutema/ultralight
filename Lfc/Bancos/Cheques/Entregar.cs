@@ -135,7 +135,6 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
 			this.EntradaConcepto.Text = "0";
 			this.EntradaConcepto.TextDetail = "";
-			this.EntradaConcepto.ToolTipText = "";
 			// 
 			// EntradaObs
 			// 
@@ -150,7 +149,6 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaObs.SelectOnFocus = false;
 			this.EntradaObs.Size = new System.Drawing.Size(404, 92);
 			this.EntradaObs.TabIndex = 10;
-			this.EntradaObs.ToolTipText = "";
 			// 
 			// Label4
 			// 
@@ -184,7 +182,6 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaSubTotal.TabIndex = 4;
 			this.EntradaSubTotal.TabStop = false;
 			this.EntradaSubTotal.Text = "0.00";
-			this.EntradaSubTotal.ToolTipText = "";
 			// 
 			// Label1
 			// 
@@ -208,7 +205,6 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaCantidad.TabIndex = 2;
 			this.EntradaCantidad.TabStop = false;
 			this.EntradaCantidad.Text = "0";
-			this.EntradaCantidad.ToolTipText = "";
 			// 
 			// lblLabel1
 			// 
@@ -250,7 +246,6 @@ namespace Lfc.Bancos.Cheques
 			this.gDetailBox1.TeclaDespuesDeEnter = "{tab}";
 			this.gDetailBox1.Text = "0";
 			this.gDetailBox1.TextDetail = "";
-			this.gDetailBox1.ToolTipText = "";
 			// 
 			// Entregar
 			// 

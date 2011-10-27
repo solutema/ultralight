@@ -130,9 +130,9 @@ namespace Lui.Forms
 			set
 			{
 				m_DecimalPlaces = value;
-				m_IgnoreChanges++;
+				IgnoreChanges++;
                                 this.TextRaw = FormatearDatos(this.TextRaw);
-				m_IgnoreChanges--;
+				IgnoreChanges--;
 			}
 		}
 
@@ -580,7 +580,7 @@ namespace Lui.Forms
 
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
-                        if (IgnorarEventos == 0) {
+                        if (IgnoreEvents == 0) {
                                 string Res = FormatearDatos(this.TextRaw);
                                 if (this.TextRaw != Res)
                                         this.TextRaw = Res;
@@ -589,7 +589,7 @@ namespace Lui.Forms
 
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {
-                        if (IgnorarEventos == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
+                        if (IgnoreEvents == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                 if (m_SelectOnFocus && m_TemporaryReadOnly == false && this.ReadOnly == false)
                                         TextBox1.SelectAll();
                                 else

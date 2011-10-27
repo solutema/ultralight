@@ -175,7 +175,6 @@ namespace Lfc.Personas
                             "uar con lo que estaba haciendo.";
                         this.BotonCancelar.TabIndex = 1;
                         this.BotonCancelar.Text = "Volver al formulario de alta";
-                        this.BotonCancelar.ToolTipText = "";
                         this.BotonCancelar.Click += new System.EventHandler(this.CmdCancelar_Click);
                         // 
                         // BotonContinuar
@@ -194,7 +193,6 @@ namespace Lfc.Personas
                             "mente cargar un dato duplicado.";
                         this.BotonContinuar.TabIndex = 0;
                         this.BotonContinuar.Text = "Crear un cliente nuevo";
-                        this.BotonContinuar.ToolTipText = "";
                         this.BotonContinuar.Click += new System.EventHandler(this.CmdCrearNuevo_Click);
                         // 
                         // BotonCorregir
@@ -213,7 +211,6 @@ namespace Lfc.Personas
                             "r datos duplicados.";
                         this.BotonCorregir.TabIndex = 2;
                         this.BotonCorregir.Text = "Actualizar los datos del cliente actual";
-                        this.BotonCorregir.ToolTipText = "";
                         this.BotonCorregir.Click += new System.EventHandler(this.CmdActualizar_Click);
                         // 
                         // TimerHabilitarBotones

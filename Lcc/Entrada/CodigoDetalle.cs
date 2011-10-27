@@ -42,7 +42,6 @@ namespace Lcc.Entrada
                 private bool m_AutoTab = true;
                 private bool m_AutoUpdate = true;
                 private bool m_Required = true;
-                private string m_PlaceholderText = "";
                 private string m_FreeTextCode = "";
                 private string m_LastText1;
                 private string m_TeclaDespuesDeEnter = "{tab}";
@@ -66,6 +65,10 @@ namespace Lcc.Entrada
                         this.BorderStyle = Lui.Forms.Control.BorderStyles.TextBox;
                 }
 
+
+                public string PlaceholderText { get; set; }
+
+
                 [EditorBrowsable(EditorBrowsableState.Never), 
                         System.ComponentModel.Browsable(false), 
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -81,19 +84,10 @@ namespace Lcc.Entrada
                         }
                 }
 
-                public string PlaceholderText
-                {
-                        get
-                        {
-                                return m_PlaceholderText;
-                        }
-                        set
-                        {
-                                m_PlaceholderText = value;
-                        }
-                }
-
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public string TeclaDespuesDeEnter
                 {
                         get

@@ -114,7 +114,6 @@ namespace Lazaro.Reportes
                     this.note1.TabIndex = 1;
                     this.note1.Text = "note1";
                     this.note1.Title = "Activos";
-                    this.note1.ToolTipText = "";
                     // 
                     // EntradaActivosCajas
                     // 
@@ -134,8 +133,6 @@ namespace Lazaro.Reportes
                     this.EntradaActivosCajas.Size = new System.Drawing.Size(100, 24);
                     this.EntradaActivosCajas.TabIndex = 2;
                     this.EntradaActivosCajas.Text = "0.00";
-                    this.EntradaActivosCajas.PlaceholderText = "";
-                    this.EntradaActivosCajas.ToolTipText = "";
                     // 
                     // txtFuturosTarjetas
                     // 
@@ -155,8 +152,6 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosTarjetas.Size = new System.Drawing.Size(100, 24);
                     this.EntradaFuturosTarjetas.TabIndex = 4;
                     this.EntradaFuturosTarjetas.Text = "0.00";
-                    this.EntradaFuturosTarjetas.PlaceholderText = "";
-                    this.EntradaFuturosTarjetas.ToolTipText = "";
                     // 
                     // label2
                     // 
@@ -186,8 +181,6 @@ namespace Lazaro.Reportes
                     this.EntradaActivosStock.Size = new System.Drawing.Size(100, 24);
                     this.EntradaActivosStock.TabIndex = 6;
                     this.EntradaActivosStock.Text = "0.00";
-                    this.EntradaActivosStock.PlaceholderText = "";
-                    this.EntradaActivosStock.ToolTipText = "";
                     // 
                     // label3
                     // 
@@ -217,8 +210,6 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosPedidos.Size = new System.Drawing.Size(100, 24);
                     this.EntradaFuturosPedidos.TabIndex = 8;
                     this.EntradaFuturosPedidos.Text = "0.00";
-                    this.EntradaFuturosPedidos.PlaceholderText = "";
-                    this.EntradaFuturosPedidos.ToolTipText = "";
                     // 
                     // label4
                     // 
@@ -248,8 +239,6 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCheques.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPasivosCheques.TabIndex = 13;
                     this.EntradaPasivosCheques.Text = "0.00";
-                    this.EntradaPasivosCheques.PlaceholderText = "";
-                    this.EntradaPasivosCheques.ToolTipText = "";
                     // 
                     // label7
                     // 
@@ -279,8 +268,6 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosCajas.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPasivosCajas.TabIndex = 11;
                     this.EntradaPasivosCajas.Text = "0.00";
-                    this.EntradaPasivosCajas.PlaceholderText = "";
-                    this.EntradaPasivosCajas.ToolTipText = "";
                     // 
                     // note2
                     // 
@@ -294,7 +281,6 @@ namespace Lazaro.Reportes
                     this.note2.TabIndex = 10;
                     this.note2.Text = "note2";
                     this.note2.Title = "Pasivos";
-                    this.note2.ToolTipText = "";
                     // 
                     // label8
                     // 
@@ -318,7 +304,6 @@ namespace Lazaro.Reportes
                     this.note3.TabIndex = 18;
                     this.note3.Text = "note3";
                     this.note3.Title = "Futuros";
-                    this.note3.ToolTipText = "";
                     // 
                     // txtActivosSubtotal
                     // 
@@ -338,8 +323,6 @@ namespace Lazaro.Reportes
                     this.EntradaActivosSubtotal.Size = new System.Drawing.Size(100, 24);
                     this.EntradaActivosSubtotal.TabIndex = 20;
                     this.EntradaActivosSubtotal.Text = "0.00";
-                    this.EntradaActivosSubtotal.PlaceholderText = "";
-                    this.EntradaActivosSubtotal.ToolTipText = "";
                     // 
                     // label5
                     // 
@@ -369,8 +352,6 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosSubtotal.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPasivosSubtotal.TabIndex = 22;
                     this.EntradaPasivosSubtotal.Text = "0.00";
-                    this.EntradaPasivosSubtotal.PlaceholderText = "";
-                    this.EntradaPasivosSubtotal.ToolTipText = "";
                     // 
                     // label6
                     // 
@@ -400,8 +381,6 @@ namespace Lazaro.Reportes
                     this.EntradaFuturosSubtotal.Size = new System.Drawing.Size(100, 24);
                     this.EntradaFuturosSubtotal.TabIndex = 24;
                     this.EntradaFuturosSubtotal.Text = "0.00";
-                    this.EntradaFuturosSubtotal.PlaceholderText = "";
-                    this.EntradaFuturosSubtotal.ToolTipText = "";
                     // 
                     // label9
                     // 
@@ -431,8 +410,6 @@ namespace Lazaro.Reportes
                     this.EntradaPatrimonioActual.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPatrimonioActual.TabIndex = 26;
                     this.EntradaPatrimonioActual.Text = "0.00";
-                    this.EntradaPatrimonioActual.PlaceholderText = "";
-                    this.EntradaPatrimonioActual.ToolTipText = "";
                     // 
                     // label10
                     // 
@@ -456,7 +433,6 @@ namespace Lazaro.Reportes
                     this.note4.TabIndex = 27;
                     this.note4.Text = "note4";
                     this.note4.Title = "Patrimonio";
-                    this.note4.ToolTipText = "";
                     // 
                     // txtPatrimonioFuturo
                     // 
@@ -476,8 +452,6 @@ namespace Lazaro.Reportes
                     this.EntradaPatrimonioFuturo.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPatrimonioFuturo.TabIndex = 29;
                     this.EntradaPatrimonioFuturo.Text = "0.00";
-                    this.EntradaPatrimonioFuturo.PlaceholderText = "";
-                    this.EntradaPatrimonioFuturo.ToolTipText = "";
                     // 
                     // label11
                     // 
@@ -507,8 +481,6 @@ namespace Lazaro.Reportes
                     this.EntradaActivosActualesFuturos.Size = new System.Drawing.Size(100, 24);
                     this.EntradaActivosActualesFuturos.TabIndex = 33;
                     this.EntradaActivosActualesFuturos.Text = "0.00";
-                    this.EntradaActivosActualesFuturos.PlaceholderText = "";
-                    this.EntradaActivosActualesFuturos.ToolTipText = "";
                     // 
                     // label12
                     // 
@@ -538,8 +510,6 @@ namespace Lazaro.Reportes
                     this.EntradaPasivosStock.Size = new System.Drawing.Size(100, 24);
                     this.EntradaPasivosStock.TabIndex = 35;
                     this.EntradaPasivosStock.Text = "0.00";
-                    this.EntradaPasivosStock.PlaceholderText = "";
-                    this.EntradaPasivosStock.ToolTipText = "";
                     // 
                     // label13
                     // 
@@ -569,7 +539,6 @@ namespace Lazaro.Reportes
                     this.EntradaCC.Size = new System.Drawing.Size(100, 24);
                     this.EntradaCC.TabIndex = 37;
                     this.EntradaCC.Text = "0.00";
-                    this.EntradaCC.ToolTipText = "";
                     // 
                     // label14
                     // 

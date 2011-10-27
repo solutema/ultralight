@@ -115,7 +115,6 @@ namespace Lfc.Personas
                         this.EntradaTipo.Table = "personas_tipos";
                         this.EntradaTipo.Text = "0";
                         this.EntradaTipo.TextDetail = "";
-                        this.EntradaTipo.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -150,7 +149,6 @@ namespace Lfc.Personas
                         this.EntradaSituacion.Table = "situaciones";
                         this.EntradaSituacion.Text = "0";
                         this.EntradaSituacion.TextDetail = "";
-                        this.EntradaSituacion.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -185,7 +183,6 @@ namespace Lfc.Personas
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.ToolTipText = "";
                         this.EntradaGrupo.TextChanged += new System.EventHandler(this.EntradaGrupo_TextChanged);
                         // 
                         // Label3
@@ -221,7 +218,6 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.Table = "ciudades";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
-                        this.EntradaLocalidad.ToolTipText = "";
                         // 
                         // EntradaEstadoCredito
                         // 
@@ -234,7 +230,6 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.Location = new System.Drawing.Point(137, 184);
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
                         this.EntradaEstadoCredito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstadoCredito.PlaceholderText = "";
                         this.EntradaEstadoCredito.ReadOnly = false;
                         this.EntradaEstadoCredito.SetData = new string[] {
         "Cualquiera|-1",
@@ -244,7 +239,6 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEstadoCredito.TabIndex = 13;
                         this.EntradaEstadoCredito.TextKey = "0";
-                        this.EntradaEstadoCredito.ToolTipText = "";
                         // 
                         // label21
                         // 
@@ -308,7 +302,6 @@ namespace Lfc.Personas
                         this.EntradaFechas.ReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(412, 31);
                         this.EntradaFechas.TabIndex = 17;
-                        this.EntradaFechas.ToolTipText = "";
                         // 
                         // EntradaFechaAUsar
                         // 
@@ -321,7 +314,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAUsar.Location = new System.Drawing.Point(3, 246);
                         this.EntradaFechaAUsar.Name = "EntradaFechaAUsar";
                         this.EntradaFechaAUsar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaAUsar.PlaceholderText = "";
                         this.EntradaFechaAUsar.ReadOnly = false;
                         this.EntradaFechaAUsar.SetData = new string[] {
         "Fecha de Alta|fechaalta",
@@ -329,7 +321,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAUsar.Size = new System.Drawing.Size(128, 25);
                         this.EntradaFechaAUsar.TabIndex = 16;
                         this.EntradaFechaAUsar.TextKey = "fechaalta";
-                        this.EntradaFechaAUsar.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -364,7 +355,6 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.Table = "personas_grupos";
                         this.EntradaSubGrupo.Text = "0";
                         this.EntradaSubGrupo.TextDetail = "";
-                        this.EntradaSubGrupo.ToolTipText = "";
                         // 
                         // label6
                         // 
@@ -386,7 +376,6 @@ namespace Lfc.Personas
                         this.EntradaEtiquetas.Location = new System.Drawing.Point(137, 215);
                         this.EntradaEtiquetas.Name = "EntradaEtiquetas";
                         this.EntradaEtiquetas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEtiquetas.PlaceholderText = "";
                         this.EntradaEtiquetas.ReadOnly = false;
                         this.EntradaEtiquetas.SetData = new string[] {
         "Todas|*",
@@ -394,7 +383,6 @@ namespace Lfc.Personas
                         this.EntradaEtiquetas.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEtiquetas.TabIndex = 15;
                         this.EntradaEtiquetas.TextKey = "*";
-                        this.EntradaEtiquetas.ToolTipText = "";
                         // 
                         // label5
                         // 
@@ -416,7 +404,6 @@ namespace Lfc.Personas
                         this.EntradaEstado.Location = new System.Drawing.Point(137, 153);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Todos|-1",
@@ -425,7 +412,6 @@ namespace Lfc.Personas
                         this.EntradaEstado.Size = new System.Drawing.Size(412, 25);
                         this.EntradaEstado.TabIndex = 11;
                         this.EntradaEstado.TextKey = "1";
-                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // Filtros
                         // 

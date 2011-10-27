@@ -141,7 +141,6 @@ namespace Lfc.Cajas
                         this.EntradaDestino.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaDestino.Text = "0";
                         this.EntradaDestino.TextDetail = "";
-                        this.EntradaDestino.ToolTipText = "";
                         this.EntradaDestino.TextChanged += new System.EventHandler(this.EntradaOrigenDestino_TextChanged);
                         // 
                         // Label3
@@ -166,7 +165,6 @@ namespace Lfc.Cajas
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporte.TabIndex = 5;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.ToolTipText = "";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
                         // 
                         // Label2
@@ -198,7 +196,6 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.ToolTipText = "";
                         // 
                         // Label1
                         // 
@@ -222,7 +219,6 @@ namespace Lfc.Cajas
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(464, 92);
                         this.EntradaObs.TabIndex = 13;
-                        this.EntradaObs.ToolTipText = "";
                         this.EntradaObs.Enter += new System.EventHandler(this.EntradaObs_Enter);
                         // 
                         // Label4
@@ -245,7 +241,6 @@ namespace Lfc.Cajas
                         this.EntradaComprob.TemporaryReadOnly = false;
                         this.EntradaComprob.Size = new System.Drawing.Size(240, 24);
                         this.EntradaComprob.TabIndex = 11;
-                        this.EntradaComprob.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -277,7 +272,6 @@ namespace Lfc.Cajas
                         this.EntradaOrigen.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaOrigen.Text = "0";
                         this.EntradaOrigen.TextDetail = "";
-                        this.EntradaOrigen.ToolTipText = "";
                         this.EntradaOrigen.TextChanged += new System.EventHandler(this.EntradaOrigenDestino_TextChanged);
                         // 
                         // Label6
@@ -302,7 +296,6 @@ namespace Lfc.Cajas
                         this.EntradaImporteDestino.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporteDestino.TabIndex = 7;
                         this.EntradaImporteDestino.Text = "0.00";
-                        this.EntradaImporteDestino.ToolTipText = "";
                         this.EntradaImporteDestino.Visible = false;
                         // 
                         // lblImporteDestino

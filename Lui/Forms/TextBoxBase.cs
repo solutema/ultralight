@@ -38,15 +38,15 @@ namespace Lui.Forms
 {
         public partial class TextBoxBase : EditableControl
         {
-                protected internal bool m_AutoTab = true;
-                protected internal bool m_AutoNav = true;
-                private string m_PlaceholderText = "";
+                protected bool m_AutoTab = true;
+                protected bool m_AutoNav = true;
+                protected string m_PlaceholderText = null;
 
                 new public event KeyPressEventHandler KeyPress;
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
                 new public event System.EventHandler GotFocus;
                 new public event System.EventHandler LostFocus;
-                protected internal int IgnorarEventos;
+                protected internal int IgnoreEvents;
 
                 public TextBoxBase()
                 {
@@ -118,9 +118,9 @@ namespace Lui.Forms
                                 m_PlaceholderText = value;
 
                                 if (ActiveControl != TextBox1) {
-                                        IgnorarEventos++;
+                                        IgnoreEvents++;
                                         this.SetTipIfBlank();
-                                        IgnorarEventos--;
+                                        IgnoreEvents--;
                                 }
                         }
                 }
@@ -207,10 +207,10 @@ namespace Lui.Forms
 
                 private void TextBox1_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (m_IgnoreChanges == 0) {
-                                m_IgnoreChanges++;
+                        if (IgnoreChanges == 0) {
+                                IgnoreChanges++;
                                 this.Changed = true;
-                                m_IgnoreChanges--;
+                                IgnoreChanges--;
                         }
                         this.OnTextChanged(EventArgs.Empty);
                 }                
@@ -274,14 +274,14 @@ namespace Lui.Forms
 
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
-                        if (IgnorarEventos == 0) {
-                                IgnorarEventos++;
+                        if (IgnoreEvents == 0) {
+                                IgnoreEvents++;
                                 TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                                 if (this.LostFocus != null)
                                         this.LostFocus(this, e);
 
                                 this.SetTipIfBlank();
-                                IgnorarEventos--;
+                                IgnoreEvents--;
                         }
                 }
 
@@ -289,7 +289,9 @@ namespace Lui.Forms
                 {
                         if (TextBox1.Text == "" && this.PlaceholderText != null && this.PlaceholderText.Length > 0) {
                                 TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
-                                TextBox1.Text = m_PlaceholderText;
+                                IgnoreChanges++;
+                                TextBox1.Text = this.PlaceholderText;
+                                IgnoreChanges--;
                                 TextBox1.SelectionStart = 0;
                                 TextBox1.SelectionLength = 0;
                         } else {
@@ -299,19 +301,21 @@ namespace Lui.Forms
 
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {
-                        if (IgnorarEventos == 0) {
-                                IgnorarEventos++;
+                        if (IgnoreEvents == 0) {
+                                IgnoreEvents++;
                                 if (m_TemporaryReadOnly == false && m_ReadOnly == false) {
                                         TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
 
                                         if (TextBox1.ForeColor == Lfx.Config.Display.CurrentTemplate.ControlGrayText) {
+                                                IgnoreChanges++;
                                                 this.TextBox1.Text = "";
+                                                IgnoreChanges--;
                                                 TextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
                                         }
                                 }
 
                                 TextBox1.Focus();
-                                IgnorarEventos--;
+                                IgnoreEvents--;
 
                                 if (null != GotFocus)
                                         GotFocus(this, e);

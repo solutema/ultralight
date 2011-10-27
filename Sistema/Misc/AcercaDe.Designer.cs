@@ -142,7 +142,6 @@ namespace Lazaro.Misc
                         this.OkButton.Subtext = "Esc";
                         this.OkButton.TabIndex = 0;
                         this.OkButton.Text = "Volver";
-                        this.OkButton.ToolTipText = "";
                         this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
                         // 
                         // ListaComponentes

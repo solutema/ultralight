@@ -94,7 +94,6 @@ namespace Lazaro.Misc.Config
                         this.BotonConfigurar.Subtext = "F8";
                         this.BotonConfigurar.TabIndex = 2;
                         this.BotonConfigurar.Text = "Configuración";
-                        this.BotonConfigurar.ToolTipText = "";
                         this.BotonConfigurar.Click += new System.EventHandler(this.BotonConfigurar_Click);
                         // 
                         // BotonReintentar
@@ -111,7 +110,6 @@ namespace Lazaro.Misc.Config
                         this.BotonReintentar.Subtext = "F8";
                         this.BotonReintentar.TabIndex = 0;
                         this.BotonReintentar.Text = "Volver a Intentar";
-                        this.BotonReintentar.ToolTipText = "";
                         this.BotonReintentar.Click += new System.EventHandler(this.BotonReintentar_Click);
                         // 
                         // BotonSalir
@@ -129,7 +127,6 @@ namespace Lazaro.Misc.Config
                         this.BotonSalir.Subtext = "F8";
                         this.BotonSalir.TabIndex = 1;
                         this.BotonSalir.Text = "Salir";
-                        this.BotonSalir.ToolTipText = "";
                         this.BotonSalir.Click += new System.EventHandler(this.BotonSalir_Click);
                         // 
                         // LowerPanel
@@ -155,7 +152,6 @@ namespace Lazaro.Misc.Config
                         this.EtiquetaErrorOriginal.TabIndex = 21;
                         this.EtiquetaErrorOriginal.Text = "No hay más información sobre el error.";
                         this.EtiquetaErrorOriginal.Title = "El mensaje de error original es:";
-                        this.EtiquetaErrorOriginal.ToolTipText = "";
                         // 
                         // panel1
                         // 

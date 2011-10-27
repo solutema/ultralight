@@ -111,8 +111,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaDescuento.TabIndex = 6;
                         this.EntradaDescuento.TabStop = false;
                         this.EntradaDescuento.Text = "0.0000";
-                        this.EntradaDescuento.PlaceholderText = "";
-                        this.EntradaDescuento.ToolTipText = "Escriba el descuento para este ítem";
+                        this.EntradaDescuento.PlaceholderText = "Escriba el descuento para este ítem";
                         this.EntradaDescuento.Visible = false;
                         // 
                         // EntradaImporte
@@ -132,8 +131,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.TabStop = false;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.PlaceholderText = "";
-                        this.EntradaImporte.ToolTipText = "";
                         // 
                         // EntradaUnitario
                         // 
@@ -152,8 +149,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaUnitario.TabIndex = 1;
                         this.EntradaUnitario.TabStop = false;
                         this.EntradaUnitario.Text = "0.00";
-                        this.EntradaUnitario.PlaceholderText = "";
-                        this.EntradaUnitario.ToolTipText = "Escriba el precio unitario.";
+                        this.EntradaUnitario.PlaceholderText = "Escriba el precio unitario.";
                         this.EntradaUnitario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaUnitario_KeyDown);
                         this.EntradaUnitario.TextChanged += new System.EventHandler(this.EntradaPrecioCantidad_TextChanged);
                         // 
@@ -174,8 +170,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.TabIndex = 2;
                         this.EntradaCantidad.TabStop = false;
                         this.EntradaCantidad.Text = "0.00";
-                        this.EntradaCantidad.PlaceholderText = "";
-                        this.EntradaCantidad.ToolTipText = "Escriba la cantidad.";
+                        this.EntradaCantidad.PlaceholderText = "Escriba la cantidad.";
                         this.EntradaCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaCantidad_KeyPress);
                         this.EntradaCantidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaCantidad_KeyDown);
                         this.EntradaCantidad.TextChanged += new System.EventHandler(this.EntradaPrecioCantidad_TextChanged);
@@ -202,8 +197,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaArticulo.Table = "articulos";
                         this.EntradaArticulo.Text = "0";
                         this.EntradaArticulo.TextDetail = "";
-                        this.EntradaArticulo.PlaceholderText = "";
-                        this.EntradaArticulo.ToolTipText = "";
                         this.EntradaArticulo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaArticulo_KeyDown);
                         this.EntradaArticulo.TextChanged += new System.EventHandler(this.EntradaArticulo_TextChanged);
                         // 

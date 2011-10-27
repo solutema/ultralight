@@ -124,7 +124,6 @@ namespace Lcc.Entrada
                         this.BotonQuitarImagen.Subtext = "";
                         this.BotonQuitarImagen.TabIndex = 2;
                         this.BotonQuitarImagen.Text = "Sin Imagen";
-                        this.BotonQuitarImagen.ToolTipText = "";
                         this.BotonQuitarImagen.Click += new System.EventHandler(this.BotonQuitarImagen_Click);
                         // 
                         // BotonSeleccionarImagen
@@ -142,7 +141,6 @@ namespace Lcc.Entrada
                         this.BotonSeleccionarImagen.Subtext = "";
                         this.BotonSeleccionarImagen.TabIndex = 1;
                         this.BotonSeleccionarImagen.Text = "Desde Archivo";
-                        this.BotonSeleccionarImagen.ToolTipText = "";
                         this.BotonSeleccionarImagen.Click += new System.EventHandler(this.BotonSeleccionarImagen_Click);
                         // 
                         // BotonCapturarImagen
@@ -161,7 +159,6 @@ namespace Lcc.Entrada
                         this.BotonCapturarImagen.Subtext = "";
                         this.BotonCapturarImagen.TabIndex = 0;
                         this.BotonCapturarImagen.Text = "Desde Dispositivo";
-                        this.BotonCapturarImagen.ToolTipText = "";
                         this.BotonCapturarImagen.Click += new System.EventHandler(this.BotonCapturarImagen_Click);
                         // 
                         // GroupLabel

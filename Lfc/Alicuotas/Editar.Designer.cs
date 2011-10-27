@@ -80,12 +80,10 @@ namespace Lfc.Alicuotas
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(408, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -107,14 +105,12 @@ namespace Lfc.Alicuotas
                         this.EntradaPorcentaje.MultiLine = false;
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPorcentaje.PlaceholderText = "";
                         this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.SelectOnFocus = true;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPorcentaje.Sufijo = "%";
                         this.EntradaPorcentaje.TabIndex = 3;
                         this.EntradaPorcentaje.Text = "0.0000";
-                        this.EntradaPorcentaje.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -145,13 +141,11 @@ namespace Lfc.Alicuotas
                         this.EntradaImporteMinimo.MultiLine = false;
                         this.EntradaImporteMinimo.Name = "EntradaImporteMinimo";
                         this.EntradaImporteMinimo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImporteMinimo.PlaceholderText = "";
                         this.EntradaImporteMinimo.ReadOnly = false;
                         this.EntradaImporteMinimo.SelectOnFocus = true;
                         this.EntradaImporteMinimo.Size = new System.Drawing.Size(100, 24);
                         this.EntradaImporteMinimo.TabIndex = 5;
                         this.EntradaImporteMinimo.Text = "0.00";
-                        this.EntradaImporteMinimo.ToolTipText = "";
                         // 
                         // Editar
                         // 

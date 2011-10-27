@@ -105,8 +105,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFrecuencia.Size = new System.Drawing.Size(176, 24);
                         this.EntradaFrecuencia.TabIndex = 3;
                         this.EntradaFrecuencia.TextKey = "semestral";
-                        this.EntradaFrecuencia.PlaceholderText = "";
-                        this.EntradaFrecuencia.ToolTipText = "";
                         // 
                         // Label11
                         // 
@@ -135,8 +133,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(740, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // lblLabel1
                         // 
@@ -168,7 +164,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.frame1.Size = new System.Drawing.Size(820, 136);
                         this.frame1.TabIndex = 7;
                         this.frame1.Text = "Periodicidad";
-                        this.frame1.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -212,8 +207,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFechaFin.SelectOnFocus = true;
                         this.EntradaFechaFin.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFechaFin.TabIndex = 5;
-                        this.EntradaFechaFin.PlaceholderText = "";
-                        this.EntradaFechaFin.ToolTipText = "";
                         // 
                         // EntradaRepetir
                         // 
@@ -232,8 +225,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaRepetir.Size = new System.Drawing.Size(64, 24);
                         this.EntradaRepetir.TabIndex = 7;
                         this.EntradaRepetir.Text = "0";
-                        this.EntradaRepetir.PlaceholderText = "";
-                        this.EntradaRepetir.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -260,8 +251,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFechaInicio.SelectOnFocus = true;
                         this.EntradaFechaInicio.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFechaInicio.TabIndex = 1;
-                        this.EntradaFechaInicio.PlaceholderText = "";
-                        this.EntradaFechaInicio.ToolTipText = "";
                         // 
                         // label5
                         // 
@@ -296,8 +285,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.PlaceholderText = "";
-                        this.EntradaConcepto.ToolTipText = "";
                         // 
                         // frame2
                         // 
@@ -315,7 +302,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.frame2.Size = new System.Drawing.Size(820, 96);
                         this.frame2.TabIndex = 6;
                         this.frame2.Text = "Pago";
-                        this.frame2.ToolTipText = "";
                         // 
                         // label6
                         // 
@@ -343,8 +329,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaImporte.Size = new System.Drawing.Size(100, 24);
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.PlaceholderText = "";
-                        this.EntradaImporte.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -372,8 +356,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaEstado.TabIndex = 3;
                         this.EntradaEstado.Text = "Activo";
                         this.EntradaEstado.TextKey = "1";
-                        this.EntradaEstado.PlaceholderText = "";
-                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // EntradaObs
                         // 
@@ -393,8 +375,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(740, 56);
                         this.EntradaObs.TabIndex = 5;
-                        this.EntradaObs.PlaceholderText = "";
-                        this.EntradaObs.ToolTipText = "";
                         // 
                         // label8
                         // 

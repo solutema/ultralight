@@ -95,8 +95,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(519, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.PlaceholderText = "";
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -123,8 +121,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaUbicacion.SelectOnFocus = false;
                         this.EntradaUbicacion.Size = new System.Drawing.Size(519, 24);
                         this.EntradaUbicacion.TabIndex = 10;
-                        this.EntradaUbicacion.PlaceholderText = "";
-                        this.EntradaUbicacion.ToolTipText = "";
                         // 
                         // label10
                         // 
@@ -149,8 +145,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTalonario.TabIndex = 12;
                         this.EntradaTalonario.Text = "No";
                         this.EntradaTalonario.TextKey = "0";
-                        this.EntradaTalonario.PlaceholderText = "";
-                        this.EntradaTalonario.ToolTipText = "";
                         // 
                         // label9
                         // 
@@ -175,8 +169,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalBps.Size = new System.Drawing.Size(136, 24);
                         this.EntradaFiscalBps.TabIndex = 20;
                         this.EntradaFiscalBps.TextKey = "9600";
-                        this.EntradaFiscalBps.PlaceholderText = "";
-                        this.EntradaFiscalBps.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -202,8 +194,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalPuerto.TabIndex = 18;
                         this.EntradaFiscalPuerto.Text = "COM1";
                         this.EntradaFiscalPuerto.TextKey = "1";
-                        this.EntradaFiscalPuerto.PlaceholderText = "";
-                        this.EntradaFiscalPuerto.ToolTipText = "";
                         // 
                         // EntradaFiscalModelo
                         // 
@@ -221,8 +211,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalModelo.TabIndex = 16;
                         this.EntradaFiscalModelo.Text = "Epson";
                         this.EntradaFiscalModelo.TextKey = "300";
-                        this.EntradaFiscalModelo.PlaceholderText = "";
-                        this.EntradaFiscalModelo.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -266,8 +254,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTipo.TabIndex = 2;
                         this.EntradaTipo.Text = "Impresora de Windows";
                         this.EntradaTipo.TextKey = "1";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label16
@@ -293,8 +279,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaCarga.TabIndex = 14;
                         this.EntradaCarga.Text = "Automática";
                         this.EntradaCarga.TextKey = "0";
-                        this.EntradaCarga.PlaceholderText = "";
-                        this.EntradaCarga.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -319,8 +303,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaEstacion.SelectOnFocus = true;
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
                         this.EntradaEstacion.TabIndex = 4;
-                        this.EntradaEstacion.PlaceholderText = "";
-                        this.EntradaEstacion.ToolTipText = "";
                         this.EntradaEstacion.TextChanged += new System.EventHandler(this.EntradaEstacion_TextChanged);
                         // 
                         // BotonSeleccionarEstacion
@@ -336,7 +318,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.BotonSeleccionarEstacion.Subtext = "";
                         this.BotonSeleccionarEstacion.TabIndex = 5;
                         this.BotonSeleccionarEstacion.Text = "...";
-                        this.BotonSeleccionarEstacion.ToolTipText = "Ver historial de movimientos de stock";
                         this.BotonSeleccionarEstacion.Click += new System.EventHandler(this.BotonSeleccionarEstacion_Click);
                         // 
                         // EntradaDispositivo
@@ -353,8 +334,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaDispositivo.SelectOnFocus = false;
                         this.EntradaDispositivo.Size = new System.Drawing.Size(336, 24);
                         this.EntradaDispositivo.TabIndex = 7;
-                        this.EntradaDispositivo.PlaceholderText = "";
-                        this.EntradaDispositivo.ToolTipText = "";
                         // 
                         // label4
                         // 
@@ -378,7 +357,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.BotonSeleccionarDispositivo.Subtext = "";
                         this.BotonSeleccionarDispositivo.TabIndex = 8;
                         this.BotonSeleccionarDispositivo.Text = "...";
-                        this.BotonSeleccionarDispositivo.ToolTipText = "Ver historial de movimientos de stock";
                         this.BotonSeleccionarDispositivo.Click += new System.EventHandler(this.BotonSeleccionarDispositivo_Click);
                         // 
                         // Editar

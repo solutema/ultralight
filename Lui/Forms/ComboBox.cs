@@ -186,9 +186,9 @@ namespace Lui.Forms
                                 for (int i = 0; i <= m_SetDataKey.GetUpperBound(0); i++) {
                                         if (m_SetDataKey[i] == m_TextKey) {
                                                 m_SetIndex = i;
-                                                m_IgnoreChanges++;
+                                                IgnoreChanges++;
                                                 this.TextRaw = m_SetDataText[m_SetIndex];
-                                                m_IgnoreChanges--;
+                                                IgnoreChanges--;
                                                 break;
                                         }
                                 }
@@ -316,7 +316,7 @@ namespace Lui.Forms
 
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
-                        if (IgnorarEventos == 0) {
+                        if (IgnoreEvents == 0) {
                                 if (PopUps.ODataSetHelp != null)
                                         PopUps.ODataSetHelp.Ocultar();
                         }
@@ -324,8 +324,8 @@ namespace Lui.Forms
 
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {
-                        if (IgnorarEventos == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
-                                IgnorarEventos++;
+                        if (IgnoreEvents == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
+                                IgnoreEvents++;
                                 if (this.AutoSize == false && this.AlwaysExpanded == false) {
                                         if (PopUps.ODataSetHelp == null && Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
                                                 PopUps.ODataSetHelp = new DataSetHelp();
@@ -338,7 +338,7 @@ namespace Lui.Forms
                                                 this.TextBox1.Focus();
                                         }
                                 }
-                                IgnorarEventos--;
+                                IgnoreEvents--;
                         }
                 }
 

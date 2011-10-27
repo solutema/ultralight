@@ -85,14 +85,12 @@ namespace Lazaro.Misc
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(169, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 6;
-                        this.EntradaContrasena.ToolTipText = "";
                         this.EntradaContrasena.TextChanged += new System.EventHandler(this.CambioDatos);
                         // 
                         // Label1
@@ -148,7 +146,6 @@ namespace Lazaro.Misc
                         this.CancelCommandButton.Subtext = "";
                         this.CancelCommandButton.TabIndex = 8;
                         this.CancelCommandButton.Text = "Cancelar";
-                        this.CancelCommandButton.ToolTipText = "";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // OkButton
@@ -167,7 +164,6 @@ namespace Lazaro.Misc
                         this.OkButton.Subtext = "";
                         this.OkButton.TabIndex = 7;
                         this.OkButton.Text = "Ingresar";
-                        this.OkButton.ToolTipText = "";
                         this.OkButton.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // EntradaUsuario
@@ -188,7 +184,6 @@ namespace Lazaro.Misc
                         this.EntradaUsuario.MaxLength = 200;
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.EntradaUsuario.PlaceholderText = "";
                         this.EntradaUsuario.ReadOnly = false;
                         this.EntradaUsuario.Required = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(281, 24);
@@ -196,7 +191,6 @@ namespace Lazaro.Misc
                         this.EntradaUsuario.Table = "personas";
                         this.EntradaUsuario.Text = "0";
                         this.EntradaUsuario.TextDetail = "";
-                        this.EntradaUsuario.ToolTipText = "";
                         this.EntradaUsuario.TextChanged += new System.EventHandler(this.CambioDatos);
                         // 
                         // LowerPanel

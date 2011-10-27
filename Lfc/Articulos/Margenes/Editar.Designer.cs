@@ -74,13 +74,11 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPorcentaje.MultiLine = false;
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPorcentaje.PlaceholderText = "";
                         this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.SelectOnFocus = false;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(108, 24);
                         this.EntradaPorcentaje.TabIndex = 3;
                         this.EntradaPorcentaje.Text = "0.0000";
-                        this.EntradaPorcentaje.ToolTipText = "";
                         // 
                         // Label12
                         // 
@@ -104,12 +102,10 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(392, 24);
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -128,7 +124,6 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPredet.Location = new System.Drawing.Point(148, 76);
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPredet.PlaceholderText = "";
                         this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",
@@ -136,7 +131,6 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPredet.Size = new System.Drawing.Size(108, 24);
                         this.EntradaPredet.TabIndex = 5;
                         this.EntradaPredet.TextKey = "0";
-                        this.EntradaPredet.ToolTipText = "";
                         // 
                         // Label7
                         // 

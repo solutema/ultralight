@@ -102,8 +102,6 @@ namespace Lfc.Articulos
                         this.EntradaFechaCreado.SelectOnFocus = true;
                         this.EntradaFechaCreado.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaCreado.TabIndex = 51;
-                        this.EntradaFechaCreado.PlaceholderText = "";
-                        this.EntradaFechaCreado.ToolTipText = "";
                         // 
                         // EntradaFechaPrecio
                         // 
@@ -121,8 +119,6 @@ namespace Lfc.Articulos
                         this.EntradaFechaPrecio.SelectOnFocus = true;
                         this.EntradaFechaPrecio.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaPrecio.TabIndex = 53;
-                        this.EntradaFechaPrecio.PlaceholderText = "";
-                        this.EntradaFechaPrecio.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -151,8 +147,6 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.Size = new System.Drawing.Size(92, 24);
                         this.EntradaCostoUltimaCompra.TabIndex = 55;
                         this.EntradaCostoUltimaCompra.Text = "0.00";
-                        this.EntradaCostoUltimaCompra.PlaceholderText = "";
-                        this.EntradaCostoUltimaCompra.ToolTipText = "";
                         // 
                         // Label3
                         // 
@@ -182,8 +176,6 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.Size = new System.Drawing.Size(92, 24);
                         this.EntradaCostoUltimas5Compras.TabIndex = 57;
                         this.EntradaCostoUltimas5Compras.Text = "0.00";
-                        this.EntradaCostoUltimas5Compras.PlaceholderText = "";
-                        this.EntradaCostoUltimas5Compras.ToolTipText = "";
                         // 
                         // Label4
                         // 

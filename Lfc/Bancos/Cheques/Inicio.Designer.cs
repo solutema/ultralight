@@ -73,7 +73,6 @@ namespace Lfc.Bancos.Cheques
                         this.DepositarPagar.Subtext = "F5";
                         this.DepositarPagar.TabIndex = 56;
                         this.DepositarPagar.Text = "Depositar";
-                        this.DepositarPagar.ToolTipText = "";
                         this.DepositarPagar.Click += new System.EventHandler(this.DepositarPagar_Click);
                         // 
                         // Inicio

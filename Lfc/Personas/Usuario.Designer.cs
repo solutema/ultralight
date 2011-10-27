@@ -88,7 +88,6 @@ namespace Lfc.Personas
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
                         this.EntradaAcceso.Name = "EntradaAcceso";
                         this.EntradaAcceso.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAcceso.PlaceholderText = "";
                         this.EntradaAcceso.ReadOnly = false;
                         this.EntradaAcceso.SetData = new string[] {
         "Si|1",
@@ -96,7 +95,6 @@ namespace Lfc.Personas
                         this.EntradaAcceso.Size = new System.Drawing.Size(72, 36);
                         this.EntradaAcceso.TabIndex = 1;
                         this.EntradaAcceso.TextKey = "1";
-                        this.EntradaAcceso.ToolTipText = "";
                         // 
                         // Label6
                         // 
@@ -119,12 +117,10 @@ namespace Lfc.Personas
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.PlaceholderText = "";
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = false;
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
                         this.EntradaContrasena.TabIndex = 3;
-                        this.EntradaContrasena.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -195,7 +191,6 @@ namespace Lfc.Personas
                         this.BotonAgregar.Subtext = "F6";
                         this.BotonAgregar.TabIndex = 6;
                         this.BotonAgregar.Text = "Agregar";
-                        this.BotonAgregar.ToolTipText = "";
                         this.BotonAgregar.Click += new System.EventHandler(this.BotonAgregar_Click);
                         // 
                         // BotonQuitar
@@ -213,7 +208,6 @@ namespace Lfc.Personas
                         this.BotonQuitar.Subtext = "";
                         this.BotonQuitar.TabIndex = 5;
                         this.BotonQuitar.Text = "Quitar";
-                        this.BotonQuitar.ToolTipText = "";
                         this.BotonQuitar.Click += new System.EventHandler(this.BotonQuitar_Click);
                         // 
                         // Usuario

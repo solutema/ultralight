@@ -112,7 +112,6 @@ namespace Lfc.Personas
                         this.EntradaObjeto.Text = "0";
                         this.EntradaObjeto.TextDetail = "";
                         this.EntradaObjeto.PlaceholderText = "Ninguno";
-                        this.EntradaObjeto.ToolTipText = "";
                         this.EntradaObjeto.TextChanged += new System.EventHandler(this.EntradaObjeto_TextChanged);
                         // 
                         // Label16
@@ -302,8 +301,6 @@ namespace Lfc.Personas
                         this.EntradaItems.SelectOnFocus = true;
                         this.EntradaItems.Size = new System.Drawing.Size(488, 24);
                         this.EntradaItems.TabIndex = 20;
-                        this.EntradaItems.PlaceholderText = "";
-                        this.EntradaItems.ToolTipText = "";
                         // 
                         // Label1
                         // 

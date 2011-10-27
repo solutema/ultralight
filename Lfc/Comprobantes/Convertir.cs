@@ -130,8 +130,6 @@ namespace Lfc.Comprobantes
                         this.EntradaOrigen.Size = new System.Drawing.Size(312, 24);
                         this.EntradaOrigen.TabIndex = 1;
                         this.EntradaOrigen.TabStop = false;
-                        this.EntradaOrigen.PlaceholderText = "";
-                        this.EntradaOrigen.ToolTipText = "";
                         // 
                         // Label6
                         // 
@@ -170,8 +168,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDestinoTipo.Size = new System.Drawing.Size(312, 81);
                         this.EntradaDestinoTipo.TabIndex = 3;
                         this.EntradaDestinoTipo.TextKey = "F";
-                        this.EntradaDestinoTipo.PlaceholderText = "";
-                        this.EntradaDestinoTipo.ToolTipText = "";
                         this.EntradaDestinoTipo.TextChanged += new System.EventHandler(this.EntradaDestinoTipo_TextChanged);
                         // 
                         // lblInfo

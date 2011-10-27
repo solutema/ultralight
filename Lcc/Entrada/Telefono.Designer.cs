@@ -86,7 +86,6 @@ namespace Lcc.Entrada
                         this.EntradaNombre.Size = new System.Drawing.Size(108, 24);
                         this.EntradaNombre.TabIndex = 4;
                         this.EntradaNombre.PlaceholderText = "Lugar";
-                        this.EntradaNombre.ToolTipText = "";
                         this.EntradaNombre.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 
                         // EntradaCaracteristica
@@ -106,7 +105,6 @@ namespace Lcc.Entrada
                         this.EntradaCaracteristica.Size = new System.Drawing.Size(60, 24);
                         this.EntradaCaracteristica.TabIndex = 1;
                         this.EntradaCaracteristica.PlaceholderText = "Característica";
-                        this.EntradaCaracteristica.ToolTipText = "";
                         this.EntradaCaracteristica.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 
                         // EntradaNumero
@@ -127,7 +125,6 @@ namespace Lcc.Entrada
                         this.EntradaNumero.Size = new System.Drawing.Size(268, 24);
                         this.EntradaNumero.TabIndex = 3;
                         this.EntradaNumero.PlaceholderText = "Número Telefónico";
-                        this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 
                         // label1

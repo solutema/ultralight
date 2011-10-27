@@ -93,8 +93,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.Table = "personas";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
-                        this.EntradaProveedor.PlaceholderText = "";
-                        this.EntradaProveedor.ToolTipText = "";
                         // 
                         // EntradaProductos
                         // 
@@ -116,7 +114,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.ShowStock = false;
                         this.EntradaProductos.Size = new System.Drawing.Size(640, 194);
                         this.EntradaProductos.TabIndex = 13;
-                        this.EntradaProductos.ToolTipText = "";
                         this.EntradaProductos.TotalChanged += new System.EventHandler(this.RecalcularTotal);
                         this.EntradaProductos.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaProductos_ObtenerDatosSeguimiento);
                         // 
@@ -145,8 +142,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(86, 24);
                         this.EntradaNumero.TabIndex = 6;
-                        this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.Leave += new System.EventHandler(this.EntradaNumero_Leave);
                         // 
                         // EntradaObs
@@ -171,7 +166,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonConvertir.Subtext = "F4";
                         this.BotonConvertir.TabIndex = 48;
                         this.BotonConvertir.Text = "Convertir";
-                        this.BotonConvertir.ToolTipText = "Puede convertir este comprobante en Nota de Pedido, Pedido o Arribo.";
                         this.BotonConvertir.Click += new System.EventHandler(this.BotonConvertir_Click);
                         // 
                         // BotonObs
@@ -188,7 +182,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonObs.Subtext = "F7";
                         this.BotonObs.TabIndex = 49;
                         this.BotonObs.Text = "Observac.";
-                        this.BotonObs.ToolTipText = "Ver las observaciones del comprobante.";
                         this.BotonObs.Click += new System.EventHandler(this.BotonObs_Click);
                         // 
                         // Label4
@@ -219,8 +212,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTotal.TabIndex = 21;
                         this.EntradaTotal.TabStop = false;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.PlaceholderText = "";
-                        this.EntradaTotal.ToolTipText = "";
                         // 
                         // EntradaTipo
                         // 
@@ -243,8 +234,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.Size = new System.Drawing.Size(92, 25);
                         this.EntradaTipo.TabIndex = 4;
                         this.EntradaTipo.TextKey = "FA";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // EtiquetaHaciaSituacion
@@ -278,8 +267,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaHaciaSituacion.Table = "articulos_situaciones";
                         this.EntradaHaciaSituacion.Text = "0";
                         this.EntradaHaciaSituacion.TextDetail = "";
-                        this.EntradaHaciaSituacion.PlaceholderText = "";
-                        this.EntradaHaciaSituacion.ToolTipText = "";
                         // 
                         // EtiquetaTitulo
                         // 
@@ -308,8 +295,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaPV.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPV.TabIndex = 5;
                         this.EntradaPV.Text = "0";
-                        this.EntradaPV.PlaceholderText = "";
-                        this.EntradaPV.ToolTipText = "";
                         // 
                         // EntradaGastosEnvio
                         // 
@@ -328,8 +313,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaGastosEnvio.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGastosEnvio.TabIndex = 15;
                         this.EntradaGastosEnvio.Text = "0.00";
-                        this.EntradaGastosEnvio.PlaceholderText = "";
-                        this.EntradaGastosEnvio.ToolTipText = "";
                         this.EntradaGastosEnvio.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 
                         // label1
@@ -357,8 +340,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.Size = new System.Drawing.Size(164, 26);
                         this.EntradaEstado.TabIndex = 19;
                         this.EntradaEstado.TextKey = "0";
-                        this.EntradaEstado.PlaceholderText = "";
-                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // label5
                         // 
@@ -398,8 +379,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaCancelado.TabIndex = 23;
                         this.EntradaCancelado.TabStop = false;
                         this.EntradaCancelado.Text = "0.00";
-                        this.EntradaCancelado.PlaceholderText = "";
-                        this.EntradaCancelado.ToolTipText = "";
                         // 
                         // EntradaFecha
                         // 
@@ -415,8 +394,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFecha.SelectOnFocus = true;
                         this.EntradaFecha.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFecha.TabIndex = 8;
-                        this.EntradaFecha.PlaceholderText = "";
-                        this.EntradaFecha.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -451,8 +428,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.Size = new System.Drawing.Size(58, 25);
                         this.EntradaFormaPago.TabIndex = 10;
                         this.EntradaFormaPago.TextKey = "0";
-                        this.EntradaFormaPago.PlaceholderText = "";
-                        this.EntradaFormaPago.ToolTipText = "";
                         // 
                         // EntradaOtrosGastos
                         // 
@@ -471,8 +446,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaOtrosGastos.Size = new System.Drawing.Size(104, 24);
                         this.EntradaOtrosGastos.TabIndex = 17;
                         this.EntradaOtrosGastos.Text = "0.00";
-                        this.EntradaOtrosGastos.PlaceholderText = "";
-                        this.EntradaOtrosGastos.ToolTipText = "";
                         this.EntradaOtrosGastos.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 
                         // label9

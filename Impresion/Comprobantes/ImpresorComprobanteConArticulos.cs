@@ -60,9 +60,11 @@ namespace Lazaro.Impresion.Comprobantes
                         if (ResultadoImprimir.Success == false)
                                 return ResultadoImprimir;
 
+                        if (this.Comprobante.Tipo.EsFactura && this.Comprobante.FormaDePago == null)
+                                throw new InvalidOperationException("La factura no tiene forma de pago.");
+
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
-
 
                         if (this.Reimpresion == false && this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.ActualizaCostoAlFacturar", 1) != 0) {
                                 // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)

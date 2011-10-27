@@ -125,7 +125,6 @@ namespace Lfc
                         this.EntradaContador2.Name = "EntradaContador2";
                         this.EntradaContador2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador2.PasswordChar = '\0';
-                        this.EntradaContador2.PlaceholderText = "";
                         this.EntradaContador2.Prefijo = "";
                         this.EntradaContador2.ReadOnly = false;
                         this.EntradaContador2.SelectOnFocus = true;
@@ -133,7 +132,6 @@ namespace Lfc
                         this.EntradaContador2.Sufijo = "";
                         this.EntradaContador2.TabIndex = 62;
                         this.EntradaContador2.TabStop = false;
-                        this.EntradaContador2.ToolTipText = "";
                         this.EntradaContador2.Visible = false;
                         // 
                         // EtiquetaContador1
@@ -164,7 +162,6 @@ namespace Lfc
                         this.EntradaContador1.Name = "EntradaContador1";
                         this.EntradaContador1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador1.PasswordChar = '\0';
-                        this.EntradaContador1.PlaceholderText = "";
                         this.EntradaContador1.Prefijo = "";
                         this.EntradaContador1.ReadOnly = false;
                         this.EntradaContador1.SelectOnFocus = true;
@@ -172,7 +169,6 @@ namespace Lfc
                         this.EntradaContador1.Sufijo = "";
                         this.EntradaContador1.TabIndex = 60;
                         this.EntradaContador1.TabStop = false;
-                        this.EntradaContador1.ToolTipText = "";
                         this.EntradaContador1.Visible = false;
                         // 
                         // EtiquetaCantidad
@@ -200,7 +196,6 @@ namespace Lfc
                         this.BotonImprimir.Subtext = "F8";
                         this.BotonImprimir.TabIndex = 65;
                         this.BotonImprimir.Text = "Listado";
-                        this.BotonImprimir.ToolTipText = "";
                         this.BotonImprimir.Click += new System.EventHandler(this.BotonImprimir_Click);
                         // 
                         // BotonFiltrar
@@ -217,7 +212,6 @@ namespace Lfc
                         this.BotonFiltrar.Subtext = "F2";
                         this.BotonFiltrar.TabIndex = 64;
                         this.BotonFiltrar.Text = "Filtrar";
-                        this.BotonFiltrar.ToolTipText = "";
                         this.BotonFiltrar.Visible = false;
                         this.BotonFiltrar.Click += new System.EventHandler(this.BotonFiltrar_Click);
                         // 
@@ -236,7 +230,6 @@ namespace Lfc
                         this.BotonCancelar.Subtext = "Esc";
                         this.BotonCancelar.TabIndex = 66;
                         this.BotonCancelar.Text = "Volver";
-                        this.BotonCancelar.ToolTipText = "";
                         this.BotonCancelar.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // PanelContadores
@@ -269,7 +262,6 @@ namespace Lfc
                         this.EntradaContador4.Name = "EntradaContador4";
                         this.EntradaContador4.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador4.PasswordChar = '\0';
-                        this.EntradaContador4.PlaceholderText = "";
                         this.EntradaContador4.Prefijo = "";
                         this.EntradaContador4.ReadOnly = false;
                         this.EntradaContador4.SelectOnFocus = true;
@@ -277,7 +269,6 @@ namespace Lfc
                         this.EntradaContador4.Sufijo = "";
                         this.EntradaContador4.TabIndex = 66;
                         this.EntradaContador4.TabStop = false;
-                        this.EntradaContador4.ToolTipText = "";
                         this.EntradaContador4.Visible = false;
                         // 
                         // EtiquetaContador4
@@ -308,7 +299,6 @@ namespace Lfc
                         this.EntradaContador3.Name = "EntradaContador3";
                         this.EntradaContador3.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador3.PasswordChar = '\0';
-                        this.EntradaContador3.PlaceholderText = "";
                         this.EntradaContador3.Prefijo = "";
                         this.EntradaContador3.ReadOnly = false;
                         this.EntradaContador3.SelectOnFocus = true;
@@ -316,7 +306,6 @@ namespace Lfc
                         this.EntradaContador3.Sufijo = "";
                         this.EntradaContador3.TabIndex = 64;
                         this.EntradaContador3.TabStop = false;
-                        this.EntradaContador3.ToolTipText = "";
                         this.EntradaContador3.Visible = false;
                         // 
                         // EtiquetaContador3

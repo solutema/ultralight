@@ -101,7 +101,6 @@ namespace Lfc.Comprobantes.Facturas
                             "ue estaba haciendo.";
                         this.BotonCancelar.TabIndex = 4;
                         this.BotonCancelar.Text = "Volver al formulario anterior";
-                        this.BotonCancelar.ToolTipText = "";
                         this.BotonCancelar.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // BotonContinuar
@@ -121,7 +120,6 @@ namespace Lfc.Comprobantes.Facturas
                             "sta factura.";
                         this.BotonContinuar.TabIndex = 3;
                         this.BotonContinuar.Text = "Imprimir la Factura con un pago separado";
-                        this.BotonContinuar.ToolTipText = "";
                         this.BotonContinuar.Click += new System.EventHandler(this.BotonContinuar_Click);
                         // 
                         // BotonCorregir
@@ -140,7 +138,6 @@ namespace Lfc.Comprobantes.Facturas
                             "ta factura. No será necesario informar más pagos para esta factura.";
                         this.BotonCorregir.TabIndex = 2;
                         this.BotonCorregir.Text = "Imprimir la Factura en Cuenta Corriente";
-                        this.BotonCorregir.ToolTipText = "";
                         this.BotonCorregir.Click += new System.EventHandler(this.BotonCorregir_Click);
                         // 
                         // SaldoEnCuentaCorriente

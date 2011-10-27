@@ -139,7 +139,6 @@ namespace Lazaro.Misc
                         this.OkButton.Subtext = "F8";
                         this.OkButton.TabIndex = 50;
                         this.OkButton.Text = "Iniciar";
-                        this.OkButton.ToolTipText = "";
                         this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
                         // 
                         // CancelCommandButton
@@ -158,7 +157,6 @@ namespace Lazaro.Misc
                         this.CancelCommandButton.Subtext = "";
                         this.CancelCommandButton.TabIndex = 51;
                         this.CancelCommandButton.Text = "Cancelar";
-                        this.CancelCommandButton.ToolTipText = "";
                         // 
                         // EtiquetaEstado
                         // 

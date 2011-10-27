@@ -80,8 +80,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(112, 24);
                         this.EntradaNumero.TabIndex = 1;
-                        this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.ToolTipText = "";
                         // 
                         // Label3
                         // 
@@ -125,7 +123,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaTarjeta.Text = "0";
                         this.EntradaTarjeta.TextDetail = "";
                         this.EntradaTarjeta.PlaceholderText = "Todas";
-                        this.EntradaTarjeta.ToolTipText = "Sucursal";
+                        this.EntradaTarjeta.PlaceholderText = "Sucursal";
                         // 
                         // label10
                         // 
@@ -160,7 +158,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
                         this.EntradaPlan.PlaceholderText = "Ninguna";
-                        this.EntradaPlan.ToolTipText = "Impresora";
+                        this.EntradaPlan.PlaceholderText = "Impresora";
                         // 
                         // label1
                         // 
@@ -186,8 +184,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechaPresentacion.SelectOnFocus = true;
                         this.EntradaFechaPresentacion.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaPresentacion.TabIndex = 7;
-                        this.EntradaFechaPresentacion.PlaceholderText = "";
-                        this.EntradaFechaPresentacion.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -213,8 +209,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechaAcreditacion.SelectOnFocus = true;
                         this.EntradaFechaAcreditacion.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaAcreditacion.TabIndex = 9;
-                        this.EntradaFechaAcreditacion.PlaceholderText = "";
-                        this.EntradaFechaAcreditacion.ToolTipText = "";
                         // 
                         // Editar
                         // 

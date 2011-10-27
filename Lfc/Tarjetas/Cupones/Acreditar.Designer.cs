@@ -122,8 +122,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtFormaPago.Size = new System.Drawing.Size(200, 24);
                         this.txtFormaPago.TabIndex = 17;
                         this.txtFormaPago.TextKey = "6";
-                        this.txtFormaPago.PlaceholderText = "";
-                        this.txtFormaPago.ToolTipText = "";
                         // 
                         // Label11
                         // 
@@ -150,8 +148,6 @@ namespace Lfc.Cupones.Cupones
                         this.txtCupones.TabIndex = 1;
                         this.txtCupones.TabStop = false;
                         this.txtCupones.Text = "0";
-                        this.txtCupones.PlaceholderText = "";
-                        this.txtCupones.ToolTipText = "";
                         // 
                         // lblLabel1
                         // 
@@ -188,8 +184,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaSubTotal.TabIndex = 3;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
-                        this.EntradaSubTotal.PlaceholderText = "";
-                        this.EntradaSubTotal.ToolTipText = "";
                         // 
                         // EntradaComisionTarjeta
                         // 
@@ -208,8 +202,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaComisionTarjeta.TabIndex = 6;
                         this.EntradaComisionTarjeta.TabStop = false;
                         this.EntradaComisionTarjeta.Text = "0.00";
-                        this.EntradaComisionTarjeta.PlaceholderText = "";
-                        this.EntradaComisionTarjeta.ToolTipText = "";
                         this.EntradaComisionTarjeta.TextChanged += new System.EventHandler(this.EntradaComisionTarjeta_TextChanged);
                         // 
                         // Label2
@@ -242,7 +234,6 @@ namespace Lfc.Cupones.Cupones
                         this.Frame1.TabIndex = 4;
                         this.Frame1.TabStop = false;
                         this.Frame1.Text = "Comisiones y Otros Decuentos";
-                        this.Frame1.ToolTipText = "";
                         // 
                         // EntradaComisionPlan
                         // 
@@ -261,8 +252,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaComisionPlan.TabIndex = 9;
                         this.EntradaComisionPlan.TabStop = false;
                         this.EntradaComisionPlan.Text = "0.00";
-                        this.EntradaComisionPlan.PlaceholderText = "";
-                        this.EntradaComisionPlan.ToolTipText = "";
                         this.EntradaComisionPlan.TextChanged += new System.EventHandler(this.EntradaComisionPlan_TextChanged);
                         // 
                         // EntradaComisionUsuario
@@ -281,8 +270,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaComisionUsuario.Size = new System.Drawing.Size(108, 24);
                         this.EntradaComisionUsuario.TabIndex = 12;
                         this.EntradaComisionUsuario.Text = "0.00";
-                        this.EntradaComisionUsuario.PlaceholderText = "";
-                        this.EntradaComisionUsuario.ToolTipText = "";
                         this.EntradaComisionUsuario.TextChanged += new System.EventHandler(this.EntradaComisionUsuario_TextChanged);
                         // 
                         // lblComisionTarjetaPct
@@ -373,8 +360,6 @@ namespace Lfc.Cupones.Cupones
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
                         this.EntradaTotal.TabIndex = 15;
                         this.EntradaTotal.Text = "0.00";
-                        this.EntradaTotal.PlaceholderText = "";
-                        this.EntradaTotal.ToolTipText = "";
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
                         // 
                         // Label8

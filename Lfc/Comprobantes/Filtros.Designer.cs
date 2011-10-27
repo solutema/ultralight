@@ -147,8 +147,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.PlaceholderText = "";
-                        this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label2
                         // 
@@ -184,8 +182,6 @@ namespace Lfc.Comprobantes
                         this.EntradaEstado.Size = new System.Drawing.Size(248, 25);
                         this.EntradaEstado.TabIndex = 15;
                         this.EntradaEstado.TextKey = "0";
-                        this.EntradaEstado.PlaceholderText = "";
-                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // Label3
                         // 
@@ -216,8 +212,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.Size = new System.Drawing.Size(180, 25);
                         this.EntradaTipo.TabIndex = 0;
                         this.EntradaTipo.TextKey = "Lbl.Comprobantes.Factura";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label4
@@ -251,8 +245,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.PlaceholderText = "";
-                        this.EntradaVendedor.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -278,8 +270,6 @@ namespace Lfc.Comprobantes
                         this.EntradaAnuladas.Size = new System.Drawing.Size(248, 25);
                         this.EntradaAnuladas.TabIndex = 17;
                         this.EntradaAnuladas.TextKey = "0";
-                        this.EntradaAnuladas.PlaceholderText = "";
-                        this.EntradaAnuladas.ToolTipText = "";
                         // 
                         // Label6
                         // 
@@ -312,8 +302,6 @@ namespace Lfc.Comprobantes
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.PlaceholderText = "";
-                        this.EntradaSucursal.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -346,8 +334,6 @@ namespace Lfc.Comprobantes
                         this.EntradaFormaPago.Table = "formaspago";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
-                        this.EntradaFormaPago.PlaceholderText = "";
-                        this.EntradaFormaPago.ToolTipText = "";
                         // 
                         // label8
                         // 
@@ -377,8 +363,6 @@ namespace Lfc.Comprobantes
                         this.EntradaLetra.Size = new System.Drawing.Size(84, 25);
                         this.EntradaLetra.TabIndex = 1;
                         this.EntradaLetra.TextKey = "*";
-                        this.EntradaLetra.PlaceholderText = "";
-                        this.EntradaLetra.ToolTipText = "";
                         // 
                         // Label9
                         // 
@@ -404,8 +388,6 @@ namespace Lfc.Comprobantes
                         this.EntradaPv.Size = new System.Drawing.Size(44, 24);
                         this.EntradaPv.TabIndex = 9;
                         this.EntradaPv.Text = "0";
-                        this.EntradaPv.PlaceholderText = "";
-                        this.EntradaPv.ToolTipText = "";
                         // 
                         // EntradaFechas
                         // 
@@ -418,7 +400,6 @@ namespace Lfc.Comprobantes
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechas.Size = new System.Drawing.Size(446, 33);
                         this.EntradaFechas.TabIndex = 19;
-                        this.EntradaFechas.ToolTipText = "";
                         // 
                         // tableLayoutPanel1
                         // 
@@ -510,8 +491,6 @@ namespace Lfc.Comprobantes
                         this.EntradaMontoHasta.Size = new System.Drawing.Size(109, 24);
                         this.EntradaMontoHasta.TabIndex = 3;
                         this.EntradaMontoHasta.Text = "0.00";
-                        this.EntradaMontoHasta.PlaceholderText = "";
-                        this.EntradaMontoHasta.ToolTipText = "";
                         // 
                         // EntradaMontoDesde
                         // 
@@ -529,8 +508,6 @@ namespace Lfc.Comprobantes
                         this.EntradaMontoDesde.Size = new System.Drawing.Size(114, 24);
                         this.EntradaMontoDesde.TabIndex = 1;
                         this.EntradaMontoDesde.Text = "0.00";
-                        this.EntradaMontoDesde.PlaceholderText = "";
-                        this.EntradaMontoDesde.ToolTipText = "";
                         // 
                         // label12
                         // 

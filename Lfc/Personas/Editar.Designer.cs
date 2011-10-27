@@ -140,14 +140,12 @@ namespace Lfc.Personas
                         this.EntradaEmail.Name = "EntradaEmail";
                         this.EntradaEmail.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmail.PasswordChar = '\0';
-                        this.EntradaEmail.PlaceholderText = "";
                         this.EntradaEmail.Prefijo = "";
                         this.EntradaEmail.ReadOnly = false;
                         this.EntradaEmail.SelectOnFocus = true;
                         this.EntradaEmail.Size = new System.Drawing.Size(242, 24);
                         this.EntradaEmail.Sufijo = "";
                         this.EntradaEmail.TabIndex = 7;
-                        this.EntradaEmail.ToolTipText = "";
                         this.EntradaEmail.Leave += new System.EventHandler(this.EntradaEmail_Leave);
                         // 
                         // EntradaLocalidad
@@ -174,7 +172,6 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.Table = "ciudades";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
-                        this.EntradaLocalidad.ToolTipText = "";
                         // 
                         // EntradaDomicilio
                         // 
@@ -191,14 +188,12 @@ namespace Lfc.Personas
                         this.EntradaDomicilio.Name = "EntradaDomicilio";
                         this.EntradaDomicilio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDomicilio.PasswordChar = '\0';
-                        this.EntradaDomicilio.PlaceholderText = "";
                         this.EntradaDomicilio.Prefijo = "";
                         this.EntradaDomicilio.ReadOnly = false;
                         this.EntradaDomicilio.SelectOnFocus = false;
                         this.EntradaDomicilio.Size = new System.Drawing.Size(242, 24);
                         this.EntradaDomicilio.Sufijo = "";
                         this.EntradaDomicilio.TabIndex = 1;
-                        this.EntradaDomicilio.ToolTipText = "";
                         // 
                         // EntradaNumDoc
                         // 
@@ -213,14 +208,12 @@ namespace Lfc.Personas
                         this.EntradaNumDoc.Name = "EntradaNumDoc";
                         this.EntradaNumDoc.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumDoc.PasswordChar = '\0';
-                        this.EntradaNumDoc.PlaceholderText = "";
                         this.EntradaNumDoc.Prefijo = "";
                         this.EntradaNumDoc.ReadOnly = false;
                         this.EntradaNumDoc.SelectOnFocus = true;
                         this.EntradaNumDoc.Size = new System.Drawing.Size(160, 24);
                         this.EntradaNumDoc.Sufijo = "";
                         this.EntradaNumDoc.TabIndex = 7;
-                        this.EntradaNumDoc.ToolTipText = "";
                         // 
                         // EntradaTipoDoc
                         // 
@@ -236,7 +229,6 @@ namespace Lfc.Personas
                         this.EntradaTipoDoc.MaxLength = 200;
                         this.EntradaTipoDoc.Name = "EntradaTipoDoc";
                         this.EntradaTipoDoc.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipoDoc.PlaceholderText = "";
                         this.EntradaTipoDoc.ReadOnly = false;
                         this.EntradaTipoDoc.Required = true;
                         this.EntradaTipoDoc.Size = new System.Drawing.Size(160, 24);
@@ -244,7 +236,6 @@ namespace Lfc.Personas
                         this.EntradaTipoDoc.Table = "tipo_doc";
                         this.EntradaTipoDoc.Text = "0";
                         this.EntradaTipoDoc.TextDetail = "";
-                        this.EntradaTipoDoc.ToolTipText = "";
                         // 
                         // EntradaApellido
                         // 
@@ -261,14 +252,12 @@ namespace Lfc.Personas
                         this.EntradaApellido.Name = "EntradaApellido";
                         this.EntradaApellido.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaApellido.PasswordChar = '\0';
-                        this.EntradaApellido.PlaceholderText = "";
                         this.EntradaApellido.Prefijo = "";
                         this.EntradaApellido.ReadOnly = false;
                         this.EntradaApellido.SelectOnFocus = true;
                         this.EntradaApellido.Size = new System.Drawing.Size(262, 24);
                         this.EntradaApellido.Sufijo = "";
                         this.EntradaApellido.TabIndex = 3;
-                        this.EntradaApellido.ToolTipText = "";
                         this.EntradaApellido.TextChanged += new System.EventHandler(this.GenerarNombreVisible);
                         // 
                         // EntradaNombre
@@ -286,14 +275,12 @@ namespace Lfc.Personas
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = "";
                         this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = true;
                         this.EntradaNombre.Size = new System.Drawing.Size(262, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
-                        this.EntradaNombre.ToolTipText = "";
                         this.EntradaNombre.TextChanged += new System.EventHandler(this.GenerarNombreVisible);
                         // 
                         // EntradaCuit
@@ -309,14 +296,12 @@ namespace Lfc.Personas
                         this.EntradaCuit.Name = "EntradaCuit";
                         this.EntradaCuit.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuit.PasswordChar = '\0';
-                        this.EntradaCuit.PlaceholderText = "";
                         this.EntradaCuit.Prefijo = "";
                         this.EntradaCuit.ReadOnly = false;
                         this.EntradaCuit.SelectOnFocus = true;
                         this.EntradaCuit.Size = new System.Drawing.Size(142, 24);
                         this.EntradaCuit.Sufijo = "";
                         this.EntradaCuit.TabIndex = 3;
-                        this.EntradaCuit.ToolTipText = "";
                         this.EntradaCuit.Leave += new System.EventHandler(this.EntradaCuit_Leave);
                         // 
                         // EntradaRazonSocial
@@ -334,14 +319,12 @@ namespace Lfc.Personas
                         this.EntradaRazonSocial.Name = "EntradaRazonSocial";
                         this.EntradaRazonSocial.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRazonSocial.PasswordChar = '\0';
-                        this.EntradaRazonSocial.PlaceholderText = "";
                         this.EntradaRazonSocial.Prefijo = "";
                         this.EntradaRazonSocial.ReadOnly = false;
                         this.EntradaRazonSocial.SelectOnFocus = true;
                         this.EntradaRazonSocial.Size = new System.Drawing.Size(170, 24);
                         this.EntradaRazonSocial.Sufijo = "";
                         this.EntradaRazonSocial.TabIndex = 1;
-                        this.EntradaRazonSocial.ToolTipText = "";
                         this.EntradaRazonSocial.TextChanged += new System.EventHandler(this.GenerarNombreVisible);
                         // 
                         // Label10
@@ -464,7 +447,6 @@ namespace Lfc.Personas
                         this.Frame1.Size = new System.Drawing.Size(346, 145);
                         this.Frame1.TabIndex = 0;
                         this.Frame1.Text = "Personas Físicas";
-                        this.Frame1.ToolTipText = "";
                         // 
                         // Frame2
                         // 
@@ -486,7 +468,6 @@ namespace Lfc.Personas
                         this.Frame2.Size = new System.Drawing.Size(282, 145);
                         this.Frame2.TabIndex = 1;
                         this.Frame2.Text = "Personas Jurídicas";
-                        this.Frame2.ToolTipText = "";
                         // 
                         // Label15
                         // 
@@ -524,7 +505,6 @@ namespace Lfc.Personas
                         this.EntradaSituacion.MaxLength = 200;
                         this.EntradaSituacion.Name = "EntradaSituacion";
                         this.EntradaSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSituacion.PlaceholderText = "";
                         this.EntradaSituacion.ReadOnly = false;
                         this.EntradaSituacion.Required = true;
                         this.EntradaSituacion.Size = new System.Drawing.Size(154, 24);
@@ -532,7 +512,6 @@ namespace Lfc.Personas
                         this.EntradaSituacion.Table = "situaciones";
                         this.EntradaSituacion.Text = "0";
                         this.EntradaSituacion.TextDetail = "";
-                        this.EntradaSituacion.ToolTipText = "";
                         this.EntradaSituacion.Leave += new System.EventHandler(this.EntradaSituacion_Leave);
                         // 
                         // EntradaTipoFac
@@ -544,7 +523,6 @@ namespace Lfc.Personas
                         this.EntradaTipoFac.MaxLength = 32767;
                         this.EntradaTipoFac.Name = "EntradaTipoFac";
                         this.EntradaTipoFac.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipoFac.PlaceholderText = "";
                         this.EntradaTipoFac.ReadOnly = false;
                         this.EntradaTipoFac.SetData = new string[] {
         "Predeterminada|*",
@@ -556,7 +534,6 @@ namespace Lfc.Personas
                         this.EntradaTipoFac.Size = new System.Drawing.Size(188, 24);
                         this.EntradaTipoFac.TabIndex = 7;
                         this.EntradaTipoFac.TextKey = "*";
-                        this.EntradaTipoFac.ToolTipText = "";
                         // 
                         // EntradaTipo
                         // 
@@ -582,7 +559,6 @@ namespace Lfc.Personas
                         this.EntradaTipo.Table = "personas_tipos";
                         this.EntradaTipo.Text = "0";
                         this.EntradaTipo.TextDetail = "";
-                        this.EntradaTipo.ToolTipText = "";
                         // 
                         // Label14
                         // 
@@ -618,7 +594,6 @@ namespace Lfc.Personas
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.ToolTipText = "";
                         this.EntradaGrupo.TextChanged += new System.EventHandler(this.EntradaGrupo_TextChanged);
                         // 
                         // Label16
@@ -645,7 +620,6 @@ namespace Lfc.Personas
                         this.BotonAcceso.Subtext = "F2";
                         this.BotonAcceso.TabIndex = 6;
                         this.BotonAcceso.Text = "Accesos";
-                        this.BotonAcceso.ToolTipText = "";
                         this.BotonAcceso.Visible = false;
                         this.BotonAcceso.Click += new System.EventHandler(this.BotonAcceso_Click);
                         // 
@@ -664,7 +638,6 @@ namespace Lfc.Personas
                         this.EntradaLimiteCredito.Name = "EntradaLimiteCredito";
                         this.EntradaLimiteCredito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLimiteCredito.PasswordChar = '\0';
-                        this.EntradaLimiteCredito.PlaceholderText = "";
                         this.EntradaLimiteCredito.Prefijo = "$";
                         this.EntradaLimiteCredito.ReadOnly = false;
                         this.EntradaLimiteCredito.SelectOnFocus = true;
@@ -672,7 +645,6 @@ namespace Lfc.Personas
                         this.EntradaLimiteCredito.Sufijo = "";
                         this.EntradaLimiteCredito.TabIndex = 7;
                         this.EntradaLimiteCredito.Text = "0.00";
-                        this.EntradaLimiteCredito.ToolTipText = "";
                         // 
                         // label17
                         // 
@@ -697,14 +669,12 @@ namespace Lfc.Personas
                         this.EntradaFechaNac.Name = "EntradaFechaNac";
                         this.EntradaFechaNac.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaNac.PasswordChar = '\0';
-                        this.EntradaFechaNac.PlaceholderText = "";
                         this.EntradaFechaNac.Prefijo = "";
                         this.EntradaFechaNac.ReadOnly = false;
                         this.EntradaFechaNac.SelectOnFocus = true;
                         this.EntradaFechaNac.Size = new System.Drawing.Size(152, 24);
                         this.EntradaFechaNac.Sufijo = "";
                         this.EntradaFechaNac.TabIndex = 13;
-                        this.EntradaFechaNac.ToolTipText = "";
                         // 
                         // label18
                         // 
@@ -731,14 +701,12 @@ namespace Lfc.Personas
                         this.EntradaDomicilioTrabajo.Name = "EntradaDomicilioTrabajo";
                         this.EntradaDomicilioTrabajo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDomicilioTrabajo.PasswordChar = '\0';
-                        this.EntradaDomicilioTrabajo.PlaceholderText = "";
                         this.EntradaDomicilioTrabajo.Prefijo = "";
                         this.EntradaDomicilioTrabajo.ReadOnly = false;
                         this.EntradaDomicilioTrabajo.SelectOnFocus = false;
                         this.EntradaDomicilioTrabajo.Size = new System.Drawing.Size(242, 24);
                         this.EntradaDomicilioTrabajo.Sufijo = "";
                         this.EntradaDomicilioTrabajo.TabIndex = 3;
-                        this.EntradaDomicilioTrabajo.ToolTipText = "";
                         // 
                         // label19
                         // 
@@ -761,7 +729,6 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.MaxLength = 32767;
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
                         this.EntradaEstadoCredito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstadoCredito.PlaceholderText = "";
                         this.EntradaEstadoCredito.ReadOnly = false;
                         this.EntradaEstadoCredito.SetData = new string[] {
         "Normal|0",
@@ -771,7 +738,6 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(134, 24);
                         this.EntradaEstadoCredito.TabIndex = 9;
                         this.EntradaEstadoCredito.TextKey = "100";
-                        this.EntradaEstadoCredito.ToolTipText = "";
                         // 
                         // label21
                         // 
@@ -798,14 +764,12 @@ namespace Lfc.Personas
                         this.EntradaCbu.Name = "EntradaCbu";
                         this.EntradaCbu.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCbu.PasswordChar = '\0';
-                        this.EntradaCbu.PlaceholderText = "";
                         this.EntradaCbu.Prefijo = "";
                         this.EntradaCbu.ReadOnly = false;
                         this.EntradaCbu.SelectOnFocus = true;
                         this.EntradaCbu.Size = new System.Drawing.Size(206, 24);
                         this.EntradaCbu.Sufijo = "";
                         this.EntradaCbu.TabIndex = 13;
-                        this.EntradaCbu.ToolTipText = "";
                         // 
                         // label20
                         // 
@@ -832,14 +796,12 @@ namespace Lfc.Personas
                         this.EntradaNumeroCuenta.Name = "EntradaNumeroCuenta";
                         this.EntradaNumeroCuenta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumeroCuenta.PasswordChar = '\0';
-                        this.EntradaNumeroCuenta.PlaceholderText = "";
                         this.EntradaNumeroCuenta.Prefijo = "";
                         this.EntradaNumeroCuenta.ReadOnly = false;
                         this.EntradaNumeroCuenta.SelectOnFocus = true;
                         this.EntradaNumeroCuenta.Size = new System.Drawing.Size(134, 24);
                         this.EntradaNumeroCuenta.Sufijo = "";
                         this.EntradaNumeroCuenta.TabIndex = 11;
-                        this.EntradaNumeroCuenta.ToolTipText = "";
                         // 
                         // label22
                         // 
@@ -877,7 +839,6 @@ namespace Lfc.Personas
                         this.frame3.Size = new System.Drawing.Size(346, 290);
                         this.frame3.TabIndex = 2;
                         this.frame3.Text = "Datos de Contacto";
-                        this.frame3.ToolTipText = "";
                         // 
                         // EntradaVendedor
                         // 
@@ -903,7 +864,6 @@ namespace Lfc.Personas
                         this.EntradaVendedor.Table = "personas";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
-                        this.EntradaVendedor.ToolTipText = "";
                         // 
                         // label23
                         // 
@@ -928,7 +888,6 @@ namespace Lfc.Personas
                         this.EntradaTelefono.ReadOnly = false;
                         this.EntradaTelefono.Size = new System.Drawing.Size(336, 88);
                         this.EntradaTelefono.TabIndex = 5;
-                        this.EntradaTelefono.ToolTipText = "";
                         // 
                         // frame4
                         // 
@@ -956,7 +915,6 @@ namespace Lfc.Personas
                         this.frame4.Size = new System.Drawing.Size(282, 226);
                         this.frame4.TabIndex = 3;
                         this.frame4.Text = "Otros datos";
-                        this.frame4.ToolTipText = "";
                         // 
                         // EntradaSubGrupo
                         // 
@@ -982,7 +940,6 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.Table = "personas_grupos";
                         this.EntradaSubGrupo.Text = "0";
                         this.EntradaSubGrupo.TextDetail = "";
-                        this.EntradaSubGrupo.ToolTipText = "";
                         // 
                         // label13
                         // 
@@ -1003,7 +960,6 @@ namespace Lfc.Personas
                         this.EntradaEstado.MaxLength = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.PlaceholderText = "";
                         this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Inactivo|0",
@@ -1011,7 +967,6 @@ namespace Lfc.Personas
                         this.EntradaEstado.Size = new System.Drawing.Size(131, 24);
                         this.EntradaEstado.TabIndex = 1;
                         this.EntradaEstado.TextKey = "1";
-                        this.EntradaEstado.ToolTipText = "";
                         // 
                         // EntradaObs
                         // 
@@ -1027,14 +982,12 @@ namespace Lfc.Personas
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.PasswordChar = '\0';
-                        this.EntradaObs.PlaceholderText = "";
                         this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(282, 240);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 5;
-                        this.EntradaObs.ToolTipText = "";
                         // 
                         // EntradaNombreVisible
                         // 
@@ -1051,7 +1004,6 @@ namespace Lfc.Personas
                         this.EntradaNombreVisible.Name = "EntradaNombreVisible";
                         this.EntradaNombreVisible.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombreVisible.PasswordChar = '\0';
-                        this.EntradaNombreVisible.PlaceholderText = "";
                         this.EntradaNombreVisible.Prefijo = "";
                         this.EntradaNombreVisible.ReadOnly = true;
                         this.EntradaNombreVisible.SelectOnFocus = true;
@@ -1059,7 +1011,6 @@ namespace Lfc.Personas
                         this.EntradaNombreVisible.Sufijo = "";
                         this.EntradaNombreVisible.TabIndex = 1;
                         this.EntradaNombreVisible.TabStop = false;
-                        this.EntradaNombreVisible.ToolTipText = "";
                         // 
                         // Label4
                         // 
@@ -1114,7 +1065,6 @@ namespace Lfc.Personas
                         this.frame5.Size = new System.Drawing.Size(346, 118);
                         this.frame5.TabIndex = 4;
                         this.frame5.Text = "Estado";
-                        this.frame5.ToolTipText = "";
                         // 
                         // label26
                         // 
@@ -1139,7 +1089,6 @@ namespace Lfc.Personas
                         this.EntradaFechaBaja.Name = "EntradaFechaBaja";
                         this.EntradaFechaBaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaBaja.PasswordChar = '\0';
-                        this.EntradaFechaBaja.PlaceholderText = "";
                         this.EntradaFechaBaja.Prefijo = "";
                         this.EntradaFechaBaja.ReadOnly = true;
                         this.EntradaFechaBaja.SelectOnFocus = true;
@@ -1147,7 +1096,6 @@ namespace Lfc.Personas
                         this.EntradaFechaBaja.Sufijo = "";
                         this.EntradaFechaBaja.TabIndex = 5;
                         this.EntradaFechaBaja.TabStop = false;
-                        this.EntradaFechaBaja.ToolTipText = "";
                         // 
                         // label25
                         // 
@@ -1182,7 +1130,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAlta.Name = "EntradaFechaAlta";
                         this.EntradaFechaAlta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaAlta.PasswordChar = '\0';
-                        this.EntradaFechaAlta.PlaceholderText = "";
                         this.EntradaFechaAlta.Prefijo = "";
                         this.EntradaFechaAlta.ReadOnly = true;
                         this.EntradaFechaAlta.SelectOnFocus = true;
@@ -1190,7 +1137,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAlta.Sufijo = "";
                         this.EntradaFechaAlta.TabIndex = 3;
                         this.EntradaFechaAlta.TabStop = false;
-                        this.EntradaFechaAlta.ToolTipText = "";
                         // 
                         // matrizTelefonos1
                         // 
@@ -1203,7 +1149,6 @@ namespace Lfc.Personas
                         this.matrizTelefonos1.ReadOnly = false;
                         this.matrizTelefonos1.Size = new System.Drawing.Size(536, 180);
                         this.matrizTelefonos1.TabIndex = 0;
-                        this.matrizTelefonos1.ToolTipText = "";
                         // 
                         // Editar
                         // 

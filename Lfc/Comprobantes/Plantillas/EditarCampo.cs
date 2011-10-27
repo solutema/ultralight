@@ -154,8 +154,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaTipo.Size = new System.Drawing.Size(260, 24);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.TextKey = "Texto";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         // 
                         // Label15
                         // 
@@ -180,8 +178,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaTexto.SelectOnFocus = false;
                         this.EntradaTexto.Size = new System.Drawing.Size(408, 24);
                         this.EntradaTexto.TabIndex = 3;
-                        this.EntradaTexto.PlaceholderText = "";
-                        this.EntradaTexto.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -216,8 +212,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaX.Size = new System.Drawing.Size(56, 24);
                         this.EntradaX.Sufijo = "x";
                         this.EntradaX.TabIndex = 5;
-                        this.EntradaX.PlaceholderText = "";
-                        this.EntradaX.ToolTipText = "";
                         // 
                         // EntradaY
                         // 
@@ -234,8 +228,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaY.Size = new System.Drawing.Size(56, 24);
                         this.EntradaY.Sufijo = "y";
                         this.EntradaY.TabIndex = 7;
-                        this.EntradaY.PlaceholderText = "";
-                        this.EntradaY.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -263,8 +255,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteNombre.Size = new System.Drawing.Size(256, 24);
                         this.EntradaFuenteNombre.TabIndex = 13;
                         this.EntradaFuenteNombre.TextKey = "*";
-                        this.EntradaFuenteNombre.PlaceholderText = "";
-                        this.EntradaFuenteNombre.ToolTipText = "";
                         this.EntradaFuenteNombre.TextChanged += new System.EventHandler(this.txtFuente_TextChanged);
                         // 
                         // label4
@@ -291,8 +281,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlto.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAlto.Sufijo = "v";
                         this.EntradaAlto.TabIndex = 11;
-                        this.EntradaAlto.PlaceholderText = "";
-                        this.EntradaAlto.ToolTipText = "";
                         // 
                         // EntradaAncho
                         // 
@@ -309,8 +297,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAncho.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAncho.Sufijo = "h";
                         this.EntradaAncho.TabIndex = 9;
-                        this.EntradaAncho.PlaceholderText = "";
-                        this.EntradaAncho.ToolTipText = "";
                         // 
                         // label5
                         // 
@@ -346,8 +332,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
                         this.EntradaFuenteTamano.TabIndex = 14;
                         this.EntradaFuenteTamano.Text = "10";
-                        this.EntradaFuenteTamano.PlaceholderText = "";
-                        this.EntradaFuenteTamano.ToolTipText = "";
                         this.EntradaFuenteTamano.TextChanged += new System.EventHandler(this.txtFuente_TextChanged);
                         // 
                         // txtAlign
@@ -365,8 +349,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtAlign.Size = new System.Drawing.Size(140, 24);
                         this.txtAlign.TabIndex = 16;
                         this.txtAlign.TextKey = "Near";
-                        this.txtAlign.PlaceholderText = "";
-                        this.txtAlign.ToolTipText = "";
                         // 
                         // label7
                         // 
@@ -392,8 +374,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtLineAlign.Size = new System.Drawing.Size(140, 24);
                         this.txtLineAlign.TabIndex = 17;
                         this.txtLineAlign.TextKey = "Near";
-                        this.txtLineAlign.PlaceholderText = "";
-                        this.txtLineAlign.ToolTipText = "";
                         // 
                         // EntradaAnchoBorde
                         // 
@@ -408,8 +388,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAnchoBorde.SelectOnFocus = true;
                         this.EntradaAnchoBorde.Size = new System.Drawing.Size(88, 24);
                         this.EntradaAnchoBorde.TabIndex = 21;
-                        this.EntradaAnchoBorde.PlaceholderText = "";
-                        this.EntradaAnchoBorde.ToolTipText = "";
                         // 
                         // label8
                         // 
@@ -464,8 +442,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.txtWrap.Size = new System.Drawing.Size(288, 24);
                         this.txtWrap.TabIndex = 19;
                         this.txtWrap.TextKey = "0";
-                        this.txtWrap.PlaceholderText = "";
-                        this.txtWrap.ToolTipText = "";
                         // 
                         // label9
                         // 

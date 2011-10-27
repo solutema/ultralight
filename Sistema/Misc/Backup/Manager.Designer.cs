@@ -93,7 +93,6 @@ namespace Lazaro.Misc.Backup
                             "ema.";
                         this.BotonBackup.TabIndex = 0;
                         this.BotonBackup.Text = "Crear una Copia de Respaldo ahora";
-                        this.BotonBackup.ToolTipText = "";
                         this.BotonBackup.Click += new System.EventHandler(this.BotonBackup_Click);
                         // 
                         // lvItems
@@ -164,7 +163,6 @@ namespace Lazaro.Misc.Backup
                         this.BotonEliminar.Subtext = "F3";
                         this.BotonEliminar.TabIndex = 4;
                         this.BotonEliminar.Text = "Eliminar";
-                        this.BotonEliminar.ToolTipText = "";
                         this.BotonEliminar.Click += new System.EventHandler(this.BotonEliminar_Click);
                         // 
                         // BotonRestaurar
@@ -182,7 +180,6 @@ namespace Lazaro.Misc.Backup
                         this.BotonRestaurar.Subtext = "F6";
                         this.BotonRestaurar.TabIndex = 5;
                         this.BotonRestaurar.Text = "Restaurar";
-                        this.BotonRestaurar.ToolTipText = "";
                         this.BotonRestaurar.Click += new System.EventHandler(this.BotonRestaurar_Click);
                         // 
                         // BotonCopiar
@@ -200,7 +197,6 @@ namespace Lazaro.Misc.Backup
                         this.BotonCopiar.Subtext = "F6";
                         this.BotonCopiar.TabIndex = 6;
                         this.BotonCopiar.Text = "Examinar";
-                        this.BotonCopiar.ToolTipText = "";
                         this.BotonCopiar.Click += new System.EventHandler(this.BotonCopiar_Click);
                         // 
                         // note1
@@ -219,7 +215,6 @@ namespace Lazaro.Misc.Backup
                         this.note1.Text = "Se mantienen automáticamente las últimas 7 copias de respaldo. La copia en letra " +
                             "negrita es la más reciente.";
                         this.note1.Title = "Información";
-                        this.note1.ToolTipText = "";
                         // 
                         // Manager
                         // 

@@ -134,8 +134,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaImporte.Size = new System.Drawing.Size(116, 24);
                         this.EntradaImporte.TabIndex = 1;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.PlaceholderText = "";
-                        this.EntradaImporte.ToolTipText = "";
                         // 
                         // label1
                         // 
@@ -197,8 +195,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaCobro.SelectOnFocus = true;
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.TabIndex = 7;
-                        this.EntradaFechaCobro.PlaceholderText = "";
-                        this.EntradaFechaCobro.ToolTipText = "";
                         this.EntradaFechaCobro.Enter += new System.EventHandler(this.EntradaFechaCobro_Enter);
                         // 
                         // label3
@@ -234,8 +230,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFechaEmision.SelectOnFocus = true;
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.TabIndex = 5;
-                        this.EntradaFechaEmision.PlaceholderText = "";
-                        this.EntradaFechaEmision.ToolTipText = "";
                         this.EntradaFechaEmision.Enter += new System.EventHandler(this.EntradaFechaEmision_Enter);
                         // 
                         // EntradaNumeroCheque
@@ -255,8 +249,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaNumeroCheque.Size = new System.Drawing.Size(176, 24);
                         this.EntradaNumeroCheque.TabIndex = 3;
                         this.EntradaNumeroCheque.Text = "0";
-                        this.EntradaNumeroCheque.PlaceholderText = "";
-                        this.EntradaNumeroCheque.ToolTipText = "Estado para esta chequera.";
+                        this.EntradaNumeroCheque.PlaceholderText = "Estado para esta chequera.";
                         // 
                         // lblFecha1
                         // 
@@ -291,8 +284,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
                         this.EntradaBanco.TextInt = 0;
-                        this.EntradaBanco.PlaceholderText = "";
-                        this.EntradaBanco.ToolTipText = "";
                         // 
                         // PanelTitulo
                         // 
@@ -314,7 +305,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.FrameTitulo.TabIndex = 0;
                         this.FrameTitulo.TabStop = false;
                         this.FrameTitulo.Text = "frame1";
-                        this.FrameTitulo.ToolTipText = "";
                         // 
                         // PanelCaja
                         // 
@@ -359,8 +349,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
                         this.EntradaCaja.TextInt = 0;
-                        this.EntradaCaja.PlaceholderText = "";
-                        this.EntradaCaja.ToolTipText = "";
                         // 
                         // PanelEfectivo
                         // 
@@ -415,8 +403,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaAutorizacion.SelectOnFocus = true;
                         this.EntradaAutorizacion.Size = new System.Drawing.Size(164, 24);
                         this.EntradaAutorizacion.TabIndex = 11;
-                        this.EntradaAutorizacion.PlaceholderText = "";
-                        this.EntradaAutorizacion.ToolTipText = "";
                         // 
                         // EntradaCupon
                         // 
@@ -433,8 +419,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCupon.SelectOnFocus = true;
                         this.EntradaCupon.Size = new System.Drawing.Size(164, 24);
                         this.EntradaCupon.TabIndex = 9;
-                        this.EntradaCupon.PlaceholderText = "";
-                        this.EntradaCupon.ToolTipText = "";
                         // 
                         // EntradaInteres
                         // 
@@ -454,8 +438,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaInteres.TabIndex = 7;
                         this.EntradaInteres.TabStop = false;
                         this.EntradaInteres.Text = "0.00";
-                        this.EntradaInteres.PlaceholderText = "";
-                        this.EntradaInteres.ToolTipText = "";
                         // 
                         // Label14
                         // 
@@ -483,8 +465,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCuotas.TabIndex = 5;
                         this.EntradaCuotas.TabStop = false;
                         this.EntradaCuotas.Text = "0";
-                        this.EntradaCuotas.PlaceholderText = "";
-                        this.EntradaCuotas.ToolTipText = "";
                         // 
                         // label4
                         // 
@@ -519,8 +499,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
                         this.EntradaPlan.TextInt = 0;
-                        this.EntradaPlan.PlaceholderText = "";
-                        this.EntradaPlan.ToolTipText = "";
                         this.EntradaPlan.TextChanged += new System.EventHandler(this.EntradaPlan_TextChanged);
                         // 
                         // Label10
@@ -578,8 +556,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.SelectOnFocus = true;
                         this.EntradaObs.Size = new System.Drawing.Size(320, 52);
                         this.EntradaObs.TabIndex = 1;
-                        this.EntradaObs.PlaceholderText = "";
-                        this.EntradaObs.ToolTipText = "";
                         // 
                         // Label20
                         // 
@@ -645,8 +621,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.Text = "0";
                         this.EntradaFormaDePago.TextDetail = "";
                         this.EntradaFormaDePago.TextInt = 0;
-                        this.EntradaFormaDePago.PlaceholderText = "";
-                        this.EntradaFormaDePago.ToolTipText = "";
                         this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.EntradaFormaDePago_TextChanged);
                         // 
                         // label13
@@ -719,8 +693,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaChequeTerceros.Text = "0";
                         this.EntradaChequeTerceros.TextDetail = "";
                         this.EntradaChequeTerceros.TextInt = 0;
-                        this.EntradaChequeTerceros.PlaceholderText = "";
-                        this.EntradaChequeTerceros.ToolTipText = "";
                         this.EntradaChequeTerceros.TextChanged += new System.EventHandler(this.EntradaChequeTerceros_TextChanged);
                         // 
                         // PanelValor
@@ -766,8 +738,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaValor.Text = "0";
                         this.EntradaValor.TextDetail = "";
                         this.EntradaValor.TextInt = 0;
-                        this.EntradaValor.PlaceholderText = "";
-                        this.EntradaValor.ToolTipText = "";
                         this.EntradaValor.TextChanged += new System.EventHandler(this.EntradaValor_TextChanged);
                         // 
                         // Pago

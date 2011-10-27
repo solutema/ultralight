@@ -182,7 +182,6 @@ namespace Lazaro.Misc.Config
                         this.BotonAceptar.Subtext = "F9";
                         this.BotonAceptar.TabIndex = 6;
                         this.BotonAceptar.Text = "Guardar";
-                        this.BotonAceptar.ToolTipText = "";
                         this.BotonAceptar.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // CancelCommandButton
@@ -200,7 +199,6 @@ namespace Lazaro.Misc.Config
                         this.CancelCommandButton.Subtext = "Esc";
                         this.CancelCommandButton.TabIndex = 7;
                         this.CancelCommandButton.Text = "Cancelar";
-                        this.CancelCommandButton.ToolTipText = "";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // EntradaEmpresaSituacion
@@ -219,7 +217,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaSituacion.MaxLength = 200;
                         this.EntradaEmpresaSituacion.Name = "EntradaEmpresaSituacion";
                         this.EntradaEmpresaSituacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaSituacion.PlaceholderText = "";
                         this.EntradaEmpresaSituacion.ReadOnly = false;
                         this.EntradaEmpresaSituacion.Required = true;
                         this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(388, 24);
@@ -227,7 +224,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaSituacion.Table = "situaciones";
                         this.EntradaEmpresaSituacion.Text = "0";
                         this.EntradaEmpresaSituacion.TextDetail = "";
-                        this.EntradaEmpresaSituacion.ToolTipText = "";
                         // 
                         // Label19
                         // 
@@ -250,12 +246,10 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaCuit.MultiLine = false;
                         this.EntradaEmpresaCuit.Name = "EntradaEmpresaCuit";
                         this.EntradaEmpresaCuit.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaCuit.PlaceholderText = "";
                         this.EntradaEmpresaCuit.ReadOnly = false;
                         this.EntradaEmpresaCuit.SelectOnFocus = false;
                         this.EntradaEmpresaCuit.Size = new System.Drawing.Size(112, 24);
                         this.EntradaEmpresaCuit.TabIndex = 5;
-                        this.EntradaEmpresaCuit.ToolTipText = "";
                         // 
                         // Label18
                         // 
@@ -278,12 +272,10 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaNombre.MultiLine = false;
                         this.EntradaEmpresaNombre.Name = "EntradaEmpresaNombre";
                         this.EntradaEmpresaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaNombre.PlaceholderText = "";
                         this.EntradaEmpresaNombre.ReadOnly = false;
                         this.EntradaEmpresaNombre.SelectOnFocus = false;
                         this.EntradaEmpresaNombre.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaNombre.TabIndex = 1;
-                        this.EntradaEmpresaNombre.ToolTipText = "";
                         // 
                         // Label17
                         // 
@@ -326,7 +318,6 @@ namespace Lazaro.Misc.Config
                         this.FrmGeneral.Size = new System.Drawing.Size(620, 385);
                         this.FrmGeneral.TabIndex = 0;
                         this.FrmGeneral.Text = "Generalidades";
-                        this.FrmGeneral.ToolTipText = "";
                         // 
                         // EntradaEmpresaId
                         // 
@@ -340,13 +331,11 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaId.MultiLine = false;
                         this.EntradaEmpresaId.Name = "EntradaEmpresaId";
                         this.EntradaEmpresaId.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaId.PlaceholderText = "";
                         this.EntradaEmpresaId.ReadOnly = false;
                         this.EntradaEmpresaId.SelectOnFocus = false;
                         this.EntradaEmpresaId.Size = new System.Drawing.Size(48, 24);
                         this.EntradaEmpresaId.TabIndex = 11;
                         this.EntradaEmpresaId.Text = "0";
-                        this.EntradaEmpresaId.ToolTipText = "";
                         // 
                         // EntradaEmpresaRazonSocial
                         // 
@@ -360,12 +349,10 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaRazonSocial.MultiLine = false;
                         this.EntradaEmpresaRazonSocial.Name = "EntradaEmpresaRazonSocial";
                         this.EntradaEmpresaRazonSocial.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaRazonSocial.PlaceholderText = "";
                         this.EntradaEmpresaRazonSocial.ReadOnly = false;
                         this.EntradaEmpresaRazonSocial.SelectOnFocus = false;
                         this.EntradaEmpresaRazonSocial.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaRazonSocial.TabIndex = 3;
-                        this.EntradaEmpresaRazonSocial.ToolTipText = "";
                         // 
                         // EntradaEmpresaEmail
                         // 
@@ -379,12 +366,10 @@ namespace Lazaro.Misc.Config
                         this.EntradaEmpresaEmail.MultiLine = false;
                         this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
                         this.EntradaEmpresaEmail.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaEmail.PlaceholderText = "";
                         this.EntradaEmpresaEmail.ReadOnly = false;
                         this.EntradaEmpresaEmail.SelectOnFocus = false;
                         this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaEmail.TabIndex = 9;
-                        this.EntradaEmpresaEmail.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -412,7 +397,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaActualizaciones.Location = new System.Drawing.Point(248, 332);
                         this.EntradaActualizaciones.Name = "EntradaActualizaciones";
                         this.EntradaActualizaciones.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaActualizaciones.PlaceholderText = "";
                         this.EntradaActualizaciones.ReadOnly = false;
                         this.EntradaActualizaciones.SetData = new string[] {
         "Estables|stable",
@@ -421,7 +405,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaActualizaciones.Size = new System.Drawing.Size(132, 24);
                         this.EntradaActualizaciones.TabIndex = 19;
                         this.EntradaActualizaciones.TextKey = "stable";
-                        this.EntradaActualizaciones.ToolTipText = "";
                         // 
                         // label30
                         // 
@@ -440,7 +423,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaAislacion.Location = new System.Drawing.Point(248, 300);
                         this.EntradaAislacion.Name = "EntradaAislacion";
                         this.EntradaAislacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAislacion.PlaceholderText = "";
                         this.EntradaAislacion.ReadOnly = false;
                         this.EntradaAislacion.SetData = new string[] {
         "Mejor concurrencia|RepeatableRead",
@@ -448,7 +430,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaAislacion.Size = new System.Drawing.Size(196, 24);
                         this.EntradaAislacion.TabIndex = 17;
                         this.EntradaAislacion.TextKey = "Serializable";
-                        this.EntradaAislacion.ToolTipText = "";
                         // 
                         // EntradaModoPantalla
                         // 
@@ -458,7 +439,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 268);
                         this.EntradaModoPantalla.Name = "EntradaModoPantalla";
                         this.EntradaModoPantalla.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaModoPantalla.PlaceholderText = "";
                         this.EntradaModoPantalla.ReadOnly = false;
                         this.EntradaModoPantalla.SetData = new string[] {
         "Predeterminado|*",
@@ -469,7 +449,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaModoPantalla.Size = new System.Drawing.Size(196, 24);
                         this.EntradaModoPantalla.TabIndex = 15;
                         this.EntradaModoPantalla.TextKey = "maximizado";
-                        this.EntradaModoPantalla.ToolTipText = "";
                         // 
                         // EntradaBackup
                         // 
@@ -479,7 +458,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaBackup.Location = new System.Drawing.Point(248, 236);
                         this.EntradaBackup.Name = "EntradaBackup";
                         this.EntradaBackup.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBackup.PlaceholderText = "";
                         this.EntradaBackup.ReadOnly = false;
                         this.EntradaBackup.SetData = new string[] {
         "Nunca|0",
@@ -488,7 +466,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaBackup.Size = new System.Drawing.Size(196, 24);
                         this.EntradaBackup.TabIndex = 13;
                         this.EntradaBackup.TextKey = "0";
-                        this.EntradaBackup.ToolTipText = "";
                         // 
                         // label29
                         // 
@@ -534,7 +511,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDecimales.Location = new System.Drawing.Point(192, 92);
                         this.EntradaStockDecimales.Name = "EntradaStockDecimales";
                         this.EntradaStockDecimales.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockDecimales.PlaceholderText = "";
                         this.EntradaStockDecimales.ReadOnly = false;
                         this.EntradaStockDecimales.SetData = new string[] {
         "Sin decimales|0",
@@ -545,7 +521,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDecimales.Size = new System.Drawing.Size(160, 24);
                         this.EntradaStockDecimales.TabIndex = 5;
                         this.EntradaStockDecimales.TextKey = "0";
-                        this.EntradaStockDecimales.ToolTipText = "";
                         // 
                         // Label25
                         // 
@@ -581,7 +556,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredet.MaxLength = 200;
                         this.EntradaStockDepositoPredet.Name = "EntradaStockDepositoPredet";
                         this.EntradaStockDepositoPredet.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockDepositoPredet.PlaceholderText = "";
                         this.EntradaStockDepositoPredet.ReadOnly = false;
                         this.EntradaStockDepositoPredet.Required = false;
                         this.EntradaStockDepositoPredet.Size = new System.Drawing.Size(416, 24);
@@ -589,7 +563,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredet.Table = "articulos_situaciones";
                         this.EntradaStockDepositoPredet.Text = "0";
                         this.EntradaStockDepositoPredet.TextDetail = "";
-                        this.EntradaStockDepositoPredet.ToolTipText = "";
                         // 
                         // EntradaStockMultideposito
                         // 
@@ -599,7 +572,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockMultideposito.Location = new System.Drawing.Point(192, 64);
                         this.EntradaStockMultideposito.Name = "EntradaStockMultideposito";
                         this.EntradaStockMultideposito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockMultideposito.PlaceholderText = "";
                         this.EntradaStockMultideposito.ReadOnly = false;
                         this.EntradaStockMultideposito.SetData = new string[] {
         "Estándar|0",
@@ -607,7 +579,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockMultideposito.Size = new System.Drawing.Size(224, 24);
                         this.EntradaStockMultideposito.TabIndex = 3;
                         this.EntradaStockMultideposito.TextKey = "0";
-                        this.EntradaStockMultideposito.ToolTipText = "";
                         // 
                         // Label23
                         // 
@@ -626,7 +597,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaArticulosCodigoPredet.Location = new System.Drawing.Point(192, 36);
                         this.EntradaArticulosCodigoPredet.Name = "EntradaArticulosCodigoPredet";
                         this.EntradaArticulosCodigoPredet.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaArticulosCodigoPredet.PlaceholderText = "";
                         this.EntradaArticulosCodigoPredet.ReadOnly = false;
                         this.EntradaArticulosCodigoPredet.SetData = new string[] {
         "Autonumérico incorporado|0",
@@ -637,7 +607,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaArticulosCodigoPredet.Size = new System.Drawing.Size(224, 24);
                         this.EntradaArticulosCodigoPredet.TabIndex = 1;
                         this.EntradaArticulosCodigoPredet.TextKey = "0";
-                        this.EntradaArticulosCodigoPredet.ToolTipText = "";
                         // 
                         // Label20
                         // 
@@ -659,13 +628,11 @@ namespace Lazaro.Misc.Config
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPV.PlaceholderText = "";
                         this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPV.TabIndex = 5;
                         this.EntradaPV.Text = "0";
-                        this.EntradaPV.ToolTipText = "";
                         // 
                         // Label9
                         // 
@@ -687,13 +654,11 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVND.MultiLine = false;
                         this.EntradaPVND.Name = "EntradaPVND";
                         this.EntradaPVND.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPVND.PlaceholderText = "";
                         this.EntradaPVND.ReadOnly = false;
                         this.EntradaPVND.SelectOnFocus = true;
                         this.EntradaPVND.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVND.TabIndex = 13;
                         this.EntradaPVND.Text = "0";
-                        this.EntradaPVND.ToolTipText = "";
                         // 
                         // Label10
                         // 
@@ -733,13 +698,11 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVNC.MultiLine = false;
                         this.EntradaPVNC.Name = "EntradaPVNC";
                         this.EntradaPVNC.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPVNC.PlaceholderText = "";
                         this.EntradaPVNC.ReadOnly = false;
                         this.EntradaPVNC.SelectOnFocus = true;
                         this.EntradaPVNC.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVNC.TabIndex = 10;
                         this.EntradaPVNC.Text = "0";
-                        this.EntradaPVNC.ToolTipText = "";
                         // 
                         // EntradaPVABC
                         // 
@@ -752,13 +715,11 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVABC.MultiLine = false;
                         this.EntradaPVABC.Name = "EntradaPVABC";
                         this.EntradaPVABC.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPVABC.PlaceholderText = "";
                         this.EntradaPVABC.ReadOnly = false;
                         this.EntradaPVABC.SelectOnFocus = true;
                         this.EntradaPVABC.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVABC.TabIndex = 7;
                         this.EntradaPVABC.Text = "0";
-                        this.EntradaPVABC.ToolTipText = "";
                         // 
                         // Label6
                         // 
@@ -820,7 +781,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaClientePredet.Table = "personas";
                         this.EntradaClientePredet.Text = "0";
                         this.EntradaClientePredet.TextDetail = "";
-                        this.EntradaClientePredet.ToolTipText = "";
                         // 
                         // Label15
                         // 
@@ -855,7 +815,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaFormaPagoPredet.Table = "formaspago";
                         this.EntradaFormaPagoPredet.Text = "0";
                         this.EntradaFormaPagoPredet.TextDetail = "";
-                        this.EntradaFormaPagoPredet.ToolTipText = "";
                         // 
                         // BotonSiguiente
                         // 
@@ -872,7 +831,6 @@ namespace Lazaro.Misc.Config
                         this.BotonSiguiente.Subtext = "F9";
                         this.BotonSiguiente.TabIndex = 5;
                         this.BotonSiguiente.Text = "Más...";
-                        this.BotonSiguiente.ToolTipText = "";
                         this.BotonSiguiente.Click += new System.EventHandler(this.BotonSiguiente_Click);
                         // 
                         // FrmArticulos
@@ -898,7 +856,6 @@ namespace Lazaro.Misc.Config
                         this.FrmArticulos.TabIndex = 0;
                         this.FrmArticulos.TabStop = false;
                         this.FrmArticulos.Text = "Artículos";
-                        this.FrmArticulos.ToolTipText = "";
                         this.FrmArticulos.Visible = false;
                         // 
                         // label26
@@ -926,7 +883,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredetSuc.MaxLength = 200;
                         this.EntradaStockDepositoPredetSuc.Name = "EntradaStockDepositoPredetSuc";
                         this.EntradaStockDepositoPredetSuc.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockDepositoPredetSuc.PlaceholderText = "";
                         this.EntradaStockDepositoPredetSuc.ReadOnly = false;
                         this.EntradaStockDepositoPredetSuc.Required = false;
                         this.EntradaStockDepositoPredetSuc.Size = new System.Drawing.Size(416, 24);
@@ -934,7 +890,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaStockDepositoPredetSuc.Table = "articulos_situaciones";
                         this.EntradaStockDepositoPredetSuc.Text = "0";
                         this.EntradaStockDepositoPredetSuc.TextDetail = "";
-                        this.EntradaStockDepositoPredetSuc.ToolTipText = "";
                         // 
                         // FrmComprobantes
                         // 
@@ -975,7 +930,6 @@ namespace Lazaro.Misc.Config
                         this.FrmComprobantes.TabIndex = 0;
                         this.FrmComprobantes.TabStop = false;
                         this.FrmComprobantes.Text = "Comprobantes";
-                        this.FrmComprobantes.ToolTipText = "";
                         this.FrmComprobantes.Visible = false;
                         // 
                         // EntradaPVRC
@@ -989,13 +943,11 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVRC.MultiLine = false;
                         this.EntradaPVRC.Name = "EntradaPVRC";
                         this.EntradaPVRC.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPVRC.PlaceholderText = "";
                         this.EntradaPVRC.ReadOnly = false;
                         this.EntradaPVRC.SelectOnFocus = true;
                         this.EntradaPVRC.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVRC.TabIndex = 19;
                         this.EntradaPVRC.Text = "0";
-                        this.EntradaPVRC.ToolTipText = "";
                         // 
                         // label3
                         // 
@@ -1026,14 +978,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaRedondeo.MultiLine = false;
                         this.EntradaRedondeo.Name = "EntradaRedondeo";
                         this.EntradaRedondeo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaRedondeo.PlaceholderText = "";
                         this.EntradaRedondeo.Prefijo = "$";
                         this.EntradaRedondeo.ReadOnly = false;
                         this.EntradaRedondeo.SelectOnFocus = true;
                         this.EntradaRedondeo.Size = new System.Drawing.Size(92, 24);
                         this.EntradaRedondeo.TabIndex = 25;
                         this.EntradaRedondeo.Text = "0.00";
-                        this.EntradaRedondeo.ToolTipText = "";
                         // 
                         // label22
                         // 
@@ -1055,14 +1005,12 @@ namespace Lazaro.Misc.Config
                         this.EntradaLimiteCredito.MultiLine = false;
                         this.EntradaLimiteCredito.Name = "EntradaLimiteCredito";
                         this.EntradaLimiteCredito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaLimiteCredito.PlaceholderText = "";
                         this.EntradaLimiteCredito.Prefijo = "$";
                         this.EntradaLimiteCredito.ReadOnly = false;
                         this.EntradaLimiteCredito.SelectOnFocus = true;
                         this.EntradaLimiteCredito.Size = new System.Drawing.Size(124, 24);
                         this.EntradaLimiteCredito.TabIndex = 23;
                         this.EntradaLimiteCredito.Text = "0.00";
-                        this.EntradaLimiteCredito.ToolTipText = "";
                         // 
                         // label21
                         // 
@@ -1081,7 +1029,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaCambiaPrecioComprob.Location = new System.Drawing.Point(420, 280);
                         this.EntradaCambiaPrecioComprob.Name = "EntradaCambiaPrecioComprob";
                         this.EntradaCambiaPrecioComprob.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCambiaPrecioComprob.PlaceholderText = "";
                         this.EntradaCambiaPrecioComprob.ReadOnly = false;
                         this.EntradaCambiaPrecioComprob.SetData = new string[] {
         "Si|1",
@@ -1089,7 +1036,6 @@ namespace Lazaro.Misc.Config
                         this.EntradaCambiaPrecioComprob.Size = new System.Drawing.Size(64, 24);
                         this.EntradaCambiaPrecioComprob.TabIndex = 21;
                         this.EntradaCambiaPrecioComprob.TextKey = "1";
-                        this.EntradaCambiaPrecioComprob.ToolTipText = "";
                         // 
                         // label13
                         // 
@@ -1111,13 +1057,11 @@ namespace Lazaro.Misc.Config
                         this.EntradaPVR.MultiLine = false;
                         this.EntradaPVR.Name = "EntradaPVR";
                         this.EntradaPVR.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPVR.PlaceholderText = "";
                         this.EntradaPVR.ReadOnly = false;
                         this.EntradaPVR.SelectOnFocus = true;
                         this.EntradaPVR.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVR.TabIndex = 16;
                         this.EntradaPVR.Text = "0";
-                        this.EntradaPVR.ToolTipText = "";
                         // 
                         // label12
                         // 

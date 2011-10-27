@@ -81,8 +81,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaEmisor.SelectOnFocus = true;
                         this.EntradaEmisor.Size = new System.Drawing.Size(372, 24);
                         this.EntradaEmisor.TabIndex = 1;
-                        this.EntradaEmisor.PlaceholderText = "";
-                        this.EntradaEmisor.ToolTipText = "Estado para esta chequera.";
+                        this.EntradaEmisor.PlaceholderText = "Estado para esta chequera.";
                         // 
                         // EntradaNumero
                         // 
@@ -100,8 +99,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(172, 24);
                         this.EntradaNumero.TabIndex = 5;
-                        this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.ToolTipText = "";
                         // 
                         // EntradaBanco
                         // 
@@ -127,8 +124,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Table = "bancos";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.PlaceholderText = "";
-                        this.EntradaBanco.ToolTipText = "";
                         // 
                         // label5
                         // 
@@ -173,8 +168,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaCobro.SelectOnFocus = true;
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.TabIndex = 9;
-                        this.EntradaFechaCobro.PlaceholderText = "";
-                        this.EntradaFechaCobro.ToolTipText = "";
                         // 
                         // label2
                         // 
@@ -201,8 +194,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaEmision.SelectOnFocus = true;
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.TabIndex = 7;
-                        this.EntradaFechaEmision.PlaceholderText = "";
-                        this.EntradaFechaEmision.ToolTipText = "";
                         // 
                         // lblFecha1
                         // 

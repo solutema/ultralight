@@ -77,8 +77,6 @@ namespace Lfc.Comprobantes
                     this.EntradaAgrupar.Size = new System.Drawing.Size(196, 24);
                     this.EntradaAgrupar.TabIndex = 1;
                     this.EntradaAgrupar.TextKey = "*";
-                    this.EntradaAgrupar.PlaceholderText = "";
-                    this.EntradaAgrupar.ToolTipText = "";
                     this.EntradaAgrupar.TextChanged += new System.EventHandler(this.EntradaAgrupar_TextChanged);
                     // 
                     // ReportListView

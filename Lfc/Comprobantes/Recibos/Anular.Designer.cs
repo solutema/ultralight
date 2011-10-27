@@ -105,8 +105,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.Size = new System.Drawing.Size(60, 24);
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
-                        this.EntradaPV.PlaceholderText = "";
-                        this.EntradaPV.ToolTipText = "";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
                         // 
                         // EntradaNumero
@@ -124,8 +122,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
                         this.EntradaNumero.TabIndex = 5;
                         this.EntradaNumero.Text = "0";
-                        this.EntradaNumero.PlaceholderText = "";
-                        this.EntradaNumero.ToolTipText = "";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
                         // 
                         // Label2
@@ -152,8 +148,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.Size = new System.Drawing.Size(176, 36);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.TextKey = "RC";
-                        this.EntradaTipo.PlaceholderText = "";
-                        this.EntradaTipo.ToolTipText = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
                         // 
                         // Label1
@@ -191,8 +185,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Size = new System.Drawing.Size(476, 24);
                         this.EntradaCliente.TabIndex = 11;
                         this.EntradaCliente.TabStop = false;
-                        this.EntradaCliente.PlaceholderText = "";
-                        this.EntradaCliente.ToolTipText = "";
                         // 
                         // Label4
                         // 
@@ -220,8 +212,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.TabIndex = 9;
                         this.EntradaImporte.TabStop = false;
                         this.EntradaImporte.Text = "0.00";
-                        this.EntradaImporte.PlaceholderText = "";
-                        this.EntradaImporte.ToolTipText = "";
                         // 
                         // Label5
                         // 
@@ -247,8 +237,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFecha.Size = new System.Drawing.Size(128, 24);
                         this.EntradaFecha.TabIndex = 7;
                         this.EntradaFecha.TabStop = false;
-                        this.EntradaFecha.PlaceholderText = "";
-                        this.EntradaFecha.ToolTipText = "";
                         // 
                         // Label3
                         // 
