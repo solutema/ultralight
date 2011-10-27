@@ -45,7 +45,6 @@ namespace Lui.Forms
                 private string[] m_SetDataText = { "" };
                 private string[] m_SetDataKey = { "" };
                 private int m_SetIndex; private string m_TextKey;
-                //private string m_Table = null, m_KeyField = null, m_DetailField = null, m_Filter = null;
                 private bool m_AlwaysExpanded = false;
 
                 public ComboBox()
@@ -131,12 +130,7 @@ namespace Lui.Forms
                         set
                         {
                                 m_AlwaysExpanded = value;
-                                if (this.AutoSize) {
-                                        if (m_AlwaysExpanded)
-                                                this.ItemList.Visible = true;
-                                        else if (this.ContainsFocus == false)
-                                                this.ItemList.Visible = false;
-                                }
+                                this.AutoSizeAlwaysExpandedChanged();
                         }
                 }
 
@@ -149,13 +143,17 @@ namespace Lui.Forms
                         set
                         {
                                 base.AutoSize = value;
-                                if (this.AutoSize) {
-                                        if (m_AlwaysExpanded)
-                                                this.ItemList.Visible = true;
-                                        else if (this.ContainsFocus == false)
-                                                this.ItemList.Visible = false;
-                                }
+                                this.AutoSizeAlwaysExpandedChanged();
                         }
+                }
+
+
+                private void AutoSizeAlwaysExpandedChanged()
+                {
+                        if (m_AlwaysExpanded)
+                                this.ItemList.Visible = true;
+                        else if (this.ContainsFocus == false)
+                                this.ItemList.Visible = false;
                 }
 
                 [System.ComponentModel.Category("Apariencia"), RefreshProperties(RefreshProperties.Repaint)]
@@ -405,7 +403,8 @@ namespace Lui.Forms
                                 else if (ItemList.SelectedIndex >= ItemList.TopIndex + (ItemList.Height / ItemList.ItemHeight))
                                         ItemList.TopIndex = ItemList.SelectedIndex;
                         } else {
-                                this.Height = TextBox1.Top + TextBox1.Height + TextBox1.Margin.Top + TextBox1.Margin.Bottom;
+                                if (this.AutoSize)
+                                        this.Height = TextBox1.Top + TextBox1.Height + TextBox1.Margin.Top + TextBox1.Margin.Bottom;
                         }
                 }
 
