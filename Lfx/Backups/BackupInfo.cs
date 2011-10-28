@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,36 +30,16 @@
 #endregion
 
 using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
-namespace Lazaro.WinMain.Errores
+namespace Lfx.Backups
 {
-        public partial class ExcepcionControlada : Form
+        public class BackupInfo
         {
-                public ExcepcionControlada()
-                {
-                        InitializeComponent();
-                }
-
-                private void BotonAmpliar_Click(object sender, EventArgs e)
-                {
-                        if (EtiquetaMasInformacion.Visible) {
-                                this.Height -= EtiquetaMasInformacion.Height;
-                                EtiquetaMasInformacion.Visible = false;
-                        } else {
-                                this.Height += EtiquetaMasInformacion.Height;
-                                EtiquetaMasInformacion.Visible = true;
-                        }
-                }
-
-                private void EtiquetaMasInformacion_TextChanged(object sender, EventArgs e)
-                {
-                        BotonAmpliar.Visible = (EtiquetaMasInformacion.Text.Length > 3);
-                }
-
-                private void BotonCerrar_Click(object sender, EventArgs e)
-                {
-                        this.Close();
-                }
+                public string Name { get; set; }
+                public string CompanyName { get; set; }
+                public string UserName { get; set; }
+                public string ProgramVersion { get; set; }
+                public DateTime BackupDate { get; set; }
         }
 }

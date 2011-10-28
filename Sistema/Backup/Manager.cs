@@ -35,10 +35,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc.Backup
+namespace Lazaro.WinMain.Backup
 {
         public partial class Manager : Lui.Forms.DialogForm
         {
+                Lfx.Backups.Manager BackupManager = new Lfx.Backups.Manager();
+
                 public Manager()
                 {
                         InitializeComponent();
@@ -49,23 +51,22 @@ namespace Lazaro.Misc.Backup
 
                 public void MostrarListaBackups()
                 {
-                        List<string> Backups = Misc.Backup.Services.ListaBackups();
-                        string BackupMasNuevo = Misc.Backup.Services.BackupMasNuevo();
+                        List<Lfx.Backups.BackupInfo> Backups = this.BackupManager.GetBackups();
+                        string BackupMasNuevo = this.BackupManager.GetNewestBackupName();
 
                         Listado.BeginUpdate();
                         Listado.Items.Clear();
                         int i = 1;
-                        foreach (string NombreCarpeta in Backups) {
-                                string ArchivoIni = Lfx.Types.Strings.ReadTextFile(Misc.Backup.Services.BackupPath + NombreCarpeta + System.IO.Path.DirectorySeparatorChar + "info.txt");
+                        foreach (Lfx.Backups.BackupInfo Backup in Backups) {
                                 ListViewItem Itm = new ListViewItem();
-                                Itm = Listado.Items.Add(NombreCarpeta);
-                                if (BackupMasNuevo == NombreCarpeta) {
+                                Itm = Listado.Items.Add(Backup.Name);
+                                if (BackupMasNuevo == Backup.Name) {
                                         Itm.Font = new Font(Itm.Font, FontStyle.Bold);
                                         Itm.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                                 }
                                 Itm.SubItems.Add(System.Convert.ToString(i));
-                                Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "FechaYHora"));
-                                Itm.SubItems.Add(Lfx.Types.Ini.ReadString(ArchivoIni, "", "Usuario"));
+                                Itm.SubItems.Add(Backup.BackupDate.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
+                                Itm.SubItems.Add(Backup.UserName);
                                 i++;
                         }
                         Listado.Sorting = SortOrder.Descending;
@@ -78,7 +79,7 @@ namespace Lazaro.Misc.Backup
                 {
                         BotonBackup.Enabled = false;
                         Aplicacion.Exec("BACKUP NOW");
-                        MostrarListaBackups();
+                        Lfx.Workspace.Master.RunTime.Toast("Se inició una copia de seguridad en segundo plano.", "Aviso");
                 }
 
 
@@ -89,7 +90,7 @@ namespace Lazaro.Misc.Backup
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Puede eliminar una copia de respaldo antigua o que ya no sea de utilidad. Al eliminar una copia de respaldo no se modifican los datos actualmente almacenados en el sistema, ni tampoco se impide que el sistema haga nuevas copias de respaldo.", "¿Desea eliminar la copia de respaldo seleccionada?");
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                        Misc.Backup.Services.DeleteBackup(NombreCarpeta);
+                                        this.BackupManager.Delete(NombreCarpeta);
                                         MostrarListaBackups();
                                 }
                         }
@@ -102,10 +103,10 @@ namespace Lazaro.Misc.Backup
                                 string NombreCarpeta = Listado.SelectedItems[0].Text;
                                 string FechaYHora = Listado.SelectedItems[0].SubItems[2].Text;
 
-                                Misc.Backup.Restore OPregunta = new Misc.Backup.Restore();
+                                WinMain.Backup.Restore OPregunta = new WinMain.Backup.Restore();
                                 OPregunta.lblFecha.Text = FechaYHora;
                                 if (OPregunta.ShowDialog() == DialogResult.OK) {
-                                        Misc.Backup.Services.Restore(NombreCarpeta);
+                                        this.BackupManager.Restore(NombreCarpeta);
                                 }
                         }
                 }

@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc
+namespace Lazaro.WinMain.Misc
 {
 	public partial class CambioContrasena : Lui.Forms.Form
 	{

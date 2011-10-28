@@ -4,6 +4,21 @@
         <name>Lfx</name>
     </assembly>
     <members>
+        <member name="M:Lfx.Backups.Manager.ExportBlobs(qGen.Select,System.String)">
+            <summary>
+            Exporta los campos binarios de una tabla en archivos.
+            </summary>
+        </member>
+        <member name="M:Lfx.Backups.Manager.ExportTableBin(System.String,Lfx.Backups.BackupWriter)">
+            <summary>
+            Exporta una tabla en un formato binario propietario, incluyendo BLOBs.
+            </summary>
+        </member>
+        <member name="M:Lfx.Backups.Manager.ExportTable(qGen.Select,System.Boolean,System.IO.StreamWriter)">
+            <summary>
+            Exporta una tabla a un archivo de texto con una secuencia de comandos SQL.
+            </summary>
+        </member>
         <member name="T:Lfx.Components.FunctionTypes">
             <summary>
             Enumera los tipos de componentes.

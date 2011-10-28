@@ -39,7 +39,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lazaro.Properties {
+namespace Lazaro.WinMain.Properties {
     using System;
     
     

@@ -37,7 +37,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc
+namespace Lazaro.WinMain.Misc
 {
         public partial class Verificador : Lui.Forms.Form
         {

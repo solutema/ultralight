@@ -115,6 +115,13 @@ namespace Lui.Forms
                         }
                         set
                         {
+                                if (TextBox1.Text == m_PlaceholderText && TextBox1.ForeColor == System.Drawing.SystemColors.GrayText) {
+                                        IgnoreEvents++;
+                                        TextBox1.Text = "";
+                                        this.SetTipIfBlank();
+                                        IgnoreEvents--;
+                                }
+
                                 m_PlaceholderText = value;
 
                                 if (ActiveControl != TextBox1) {

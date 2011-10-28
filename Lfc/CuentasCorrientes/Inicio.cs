@@ -185,7 +185,7 @@ namespace Lfc.CuentasCorrientes
                         Lfx.Data.Row Movim = this.Connection.Tables["ctacte"].FastRows[itemId];
                         if (this.Cliente == null) {
                                 this.Cliente = new Lbl.Personas.Persona(this.Connection, System.Convert.ToInt32(Movim["id_cliente"]));
-                                ((Lfx.Data.Filters.RelationFilter)(this.Definicion.Filters[0])).ElementId = this.Cliente.Id;
+                                ((Lfx.Data.Filters.RelationFilter)(this.Definicion.Filters["ctacte.id_cliente"])).Value = this.Cliente;
                                 RefreshList();
                         } else {
                                 if (Movim != null) {

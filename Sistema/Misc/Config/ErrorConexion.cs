@@ -31,7 +31,7 @@
 
 using System.Windows.Forms;
 
-namespace Lazaro.Misc.Config
+namespace Lazaro.WinMain.Misc.Config
 {
 	public partial class ErrorConexion : Lui.Forms.Form
 	{

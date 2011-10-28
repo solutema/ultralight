@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lazaro.Reportes
+namespace Lazaro.WinMain.Reportes
 {
         public class IngresosEgresos : Lui.Forms.ChildForm
         {
@@ -1168,7 +1168,7 @@ namespace Lazaro.Reportes
 
                 private void ChartButton_Click(object sender, System.EventArgs e)
                 {
-                        Lazaro.Reportes.Facturacion ChartFact = new Lazaro.Reportes.Facturacion();
+                        Lazaro.WinMain.Reportes.Facturacion ChartFact = new Lazaro.WinMain.Reportes.Facturacion();
                         ChartFact.MdiParent = this.MdiParent;
                         ChartFact.Show();
                 }

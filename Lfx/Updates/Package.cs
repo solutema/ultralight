@@ -177,9 +177,10 @@ namespace Lfx.Updates
                                 return;
 
                         foreach (File Fil in this.Files) {
-                                if (Fil.HasNewVersion() && Fil.IsDownloaded == false)
+                                if (Fil.HasNewVersion() && Fil.IsDownloaded == false) {
                                         Fil.Download();
-                                this.Updater.Progress.Value = this.GetDownloadedSize();
+                                        this.Updater.Progress.Value = this.GetDownloadedSize();
+                                }
                         }
                 }
 

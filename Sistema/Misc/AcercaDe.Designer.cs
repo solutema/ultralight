@@ -4,7 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc
+namespace Lazaro.WinMain.Misc
 {
         public partial class AcercaDe : Lui.Forms.Form
         {
@@ -224,7 +224,7 @@ namespace Lazaro.Misc
                         // 
                         // PicEsperar
                         // 
-                        this.PicEsperar.Image = global::Lazaro.Properties.Resources.ajax_loader;
+                        this.PicEsperar.Image = global::Lazaro.WinMain.Properties.Resources.ajax_loader;
                         this.PicEsperar.Location = new System.Drawing.Point(112, 344);
                         this.PicEsperar.Name = "PicEsperar";
                         this.PicEsperar.Size = new System.Drawing.Size(16, 16);

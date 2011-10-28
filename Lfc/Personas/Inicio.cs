@@ -66,7 +66,8 @@ namespace Lfc.Personas
                                         new Lfx.Data.FormField("ciudades.nombre AS ciudad", "Localidad", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lfx.Data.FormField("personas.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
                                         new Lfx.Data.FormField("personas.fechaalta", "Alta", Lfx.Data.InputFieldTypes.Date, 120),
-                                        new Lfx.Data.FormField("personas.fechabaja", "Baja", Lfx.Data.InputFieldTypes.Date, 120)
+                                        new Lfx.Data.FormField("personas.fechabaja", "Baja", Lfx.Data.InputFieldTypes.Date, 120),
+                                        new Lfx.Data.FormField("personas.numerocuenta", "Cuenta", Lfx.Data.InputFieldTypes.Text, 120)
 			        },
                                 ExtraSearchColumns = new Lfx.Data.FormFieldCollection()
 			        {

@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lazaro.Misc.Config
+namespace Lazaro.WinMain.Misc.Config
 {
         partial class Inicial
         {

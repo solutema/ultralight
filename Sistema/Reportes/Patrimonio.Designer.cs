@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lazaro.Reportes
+namespace Lazaro.WinMain.Reportes
 {
         partial class Patrimonio
         {

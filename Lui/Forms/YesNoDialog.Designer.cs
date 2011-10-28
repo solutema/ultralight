@@ -58,8 +58,8 @@ namespace Lui.Forms
                         // 
                         // DialogCaption
                         // 
-                        this.DialogCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.DialogCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.DialogCaption.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.DialogCaption.Location = new System.Drawing.Point(20, 24);
                         this.DialogCaption.Name = "DialogCaption";
@@ -100,9 +100,9 @@ namespace Lui.Forms
                         // 
                         // DialogText
                         // 
-                        this.DialogText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.DialogText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.DialogText.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.DialogText.Location = new System.Drawing.Point(88, 72);
                         this.DialogText.Multiline = true;
@@ -123,7 +123,6 @@ namespace Lui.Forms
                         this.Controls.Add(this.pctExclamation);
                         this.Name = "YesNoDialog";
                         this.Load += new System.EventHandler(this.YesNoDialog_Load);
-                        this.BackColorChanged += new System.EventHandler(this.YesNoDialog_BackColorChanged);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.YesNoDialogForm_KeyDown);
                         this.Controls.SetChildIndex(this.pctExclamation, 0);
                         this.Controls.SetChildIndex(this.pctInformation, 0);

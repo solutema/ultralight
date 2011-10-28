@@ -29,11 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lui.Forms
@@ -58,9 +54,11 @@ namespace Lui.Forms
                 {
                         InitializeComponent();
 
+                        this.DialogText.BackColor = this.BackColor;
                         this.MessageText = messageText;
                         this.MessageCaption = messageCaption;
                 }
+
 
                 public DialogIcons DialogIcon
                 {
@@ -152,12 +150,6 @@ namespace Lui.Forms
                 {
                         this.Size = new Size(480, 320);
                         this.CenterToParent();
-                }
-
-
-                private void YesNoDialog_BackColorChanged(object sender, System.EventArgs e)
-                {
-                        DialogText.BackColor = this.BackColor;
                 }
         }
 }

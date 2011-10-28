@@ -32,7 +32,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc.Config
+namespace Lazaro.WinMain.Misc.Config
 {
         public partial class Inicial : Lui.Forms.Form
         {

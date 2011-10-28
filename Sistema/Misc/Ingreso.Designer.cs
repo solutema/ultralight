@@ -33,7 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lazaro.Misc
+namespace Lazaro.WinMain.Misc
 {
         public partial class Ingreso
         {

@@ -33,7 +33,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc.Config
+namespace Lazaro.WinMain.Misc.Config
 {
         public partial class ConfigurarBd : Lui.Forms.Form
         {

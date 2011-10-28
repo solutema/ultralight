@@ -38,7 +38,7 @@ using System.Net.Mail;
 using System.Security.Permissions;
 using System.Windows.Forms;
 
-namespace Lazaro
+namespace Lazaro.WinMain
 {
         public class Aplicacion
         {
@@ -246,7 +246,7 @@ namespace Lazaro
                         if (IgnoreUpdates == false) {
                                 // Verifico la versión de Lázaro requerida por la BD
                                 DateTime FechaLazaroExe = System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                                DateTime MinVersion = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionMinima", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
+                                DateTime MinVersion = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionMinima", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
                                 if (FechaLazaroExe < MinVersion) {
                                         Misc.ActualizarAhora Act = new Misc.ActualizarAhora();
                                         DialogResult Res = Act.ShowDialog();
@@ -261,7 +261,7 @@ namespace Lazaro
                                         System.Environment.Exit(1);
                                 } else {
                                         // Cumple con la versión requerida, pero de todos modos verifico si es necesario actualizar Lázaro
-                                        DateTime VersionEstructura = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
+                                        DateTime VersionEstructura = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
                                         TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
 
                                         if (Diferencia.TotalHours < -12) {
@@ -634,7 +634,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                 Lfx.Workspace.Master.RunTime.Toast("Existe una diferencia de " + DiferenciaExplicada + " entre el reloj del servidor SQL y el reloj de este equipo. Es necesario que revise y ajuste el reloj de ambos equipos a la brevedad.", "Error de fecha y hora");
                         }
 
-                        Lazaro.Misc.Ingreso FormIngreso = new Lazaro.Misc.Ingreso();
+                        Lazaro.WinMain.Misc.Ingreso FormIngreso = new Lazaro.WinMain.Misc.Ingreso();
                         FormIngreso.Connection = Lfx.Workspace.Master.MasterConnection;
                         FormIngreso.ShowDialog();
                         FormIngreso.Dispose();
@@ -848,7 +848,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "VER":
-                                        Lazaro.Misc.AcercaDe OAcercaDe = new Lazaro.Misc.AcercaDe();
+                                        Lazaro.WinMain.Misc.AcercaDe OAcercaDe = new Lazaro.WinMain.Misc.AcercaDe();
                                         OAcercaDe.ShowDialog();
                                         break;
 
@@ -868,7 +868,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         break;
 
                                 case "CALC":
-                                        Lazaro.Misc.Calculadora OCalc = new Lazaro.Misc.Calculadora();
+                                        Lazaro.WinMain.Misc.Calculadora OCalc = new Lazaro.WinMain.Misc.Calculadora();
                                         OCalc.Show();
                                         break;
 
@@ -878,16 +878,21 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
 
                                                 switch (SubComandoBackup) {
                                                         case "MANAGER":
-                                                                Misc.Backup.Manager OFormBackup = (Misc.Backup.Manager)BuscarVentana("Misc.Backup.Manager");
+                                                                WinMain.Backup.Manager OFormBackup = (WinMain.Backup.Manager)BuscarVentana("WinMain.Misc.Backup.Manager");
                                                                 if (OFormBackup == null)
-                                                                        OFormBackup = new Misc.Backup.Manager();
+                                                                        OFormBackup = new WinMain.Backup.Manager();
                                                                 OFormBackup.ShowDialog(Aplicacion.FormularioPrincipal);
                                                                 break;
 
                                                         case "NOW":
-                                                                //string Carpeta = "lbkp_" + System.DateTime.Now.ToString("yyyyMMddHHmmss") + System.IO.Path.DirectorySeparatorChar;
-                                                                string Carpeta = "Copia de seguridad de Lázaro del " + System.DateTime.Now.ToString("dd-MM-yyyy (HH.mm).lbk") + System.IO.Path.DirectorySeparatorChar;
-                                                                Misc.Backup.Services.CreateBackup(Carpeta);
+                                                                Lfx.Backups.BackupInfo Bkp = new Lfx.Backups.BackupInfo();
+                                                                Bkp.Name = "Copia de seguridad de Lázaro del " + System.DateTime.Now.ToString("dd-MM-yyyy (HH.mm).lbk");
+                                                                Bkp.CompanyName = Lbl.Sys.Config.Actual.Empresa.Nombre;
+                                                                Bkp.UserName = Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombre;
+                                                                Bkp.ProgramVersion = Aplicacion.Version() + " del " + Aplicacion.BuildDate();
+                                                                
+                                                                Lfx.Backups.Manager BackupManager = new Lfx.Backups.Manager();
+                                                                BackupManager.StartBackgroundBackup(Bkp);
                                                                 break;
                                                 }
                                         }
@@ -914,9 +919,9 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                         Lfx.Environment.Shell.Execute("ServidorFiscal.exe", null, System.Diagnostics.ProcessWindowStyle.Normal, false);
                                                         break;
                                                 case "PANEL":
-                                                        Lazaro.Misc.Fiscal OFormFiscal = (Lazaro.Misc.Fiscal)BuscarVentana("Lazaro.Misc.Fiscal");
+                                                        Lazaro.WinMain.Misc.Fiscal OFormFiscal = (Lazaro.WinMain.Misc.Fiscal)BuscarVentana("Lazaro.Misc.Fiscal");
                                                         if (OFormFiscal == null)
-                                                                OFormFiscal = new Lazaro.Misc.Fiscal();
+                                                                OFormFiscal = new Lazaro.WinMain.Misc.Fiscal();
                                                         OFormFiscal.ShowDialog();
                                                         break;
                                         }
@@ -933,7 +938,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         switch (SubComandoReporte) {
                                                 case "RENTABILIDAD":
                                                         if (Lui.LogOn.LogOnData.ValidateAccess("Global", Lbl.Sys.Permisos.Operaciones.Total)) {
-                                                                Lazaro.Reportes.IngresosEgresos OFormRepRentabilidad = new Lazaro.Reportes.IngresosEgresos();
+                                                                Lazaro.WinMain.Reportes.IngresosEgresos OFormRepRentabilidad = new Lazaro.WinMain.Reportes.IngresosEgresos();
                                                                 if (!Aplicacion.Flotante)
                                                                         OFormRepRentabilidad.MdiParent = Aplicacion.FormularioPrincipal;
                                                                 OFormRepRentabilidad.Show();
@@ -942,7 +947,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                         break;
                                                 case "PATRIMONIO":
                                                         if (Lui.LogOn.LogOnData.ValidateAccess("Global", Lbl.Sys.Permisos.Operaciones.Total)) {
-                                                                Lazaro.Reportes.Patrimonio RepPatr = new Lazaro.Reportes.Patrimonio();
+                                                                Lazaro.WinMain.Reportes.Patrimonio RepPatr = new Lazaro.WinMain.Reportes.Patrimonio();
                                                                 if (!Aplicacion.Flotante)
                                                                         RepPatr.MdiParent = Aplicacion.FormularioPrincipal;
                                                                 RepPatr.Show();

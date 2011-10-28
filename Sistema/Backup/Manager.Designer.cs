@@ -35,7 +35,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc.Backup
+namespace Lazaro.WinMain.Backup
 {
         public partial class Manager
         {
@@ -90,16 +90,16 @@ namespace Lazaro.Misc.Backup
                         this.BotonBackup.Size = new System.Drawing.Size(632, 68);
                         this.BotonBackup.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonBackup.Subtext = "Haga clic aquí para dejar en este equipo una copia completa de los datos del sist" +
-                            "ema.";
+    "ema.";
                         this.BotonBackup.TabIndex = 0;
                         this.BotonBackup.Text = "Crear una Copia de Respaldo ahora";
                         this.BotonBackup.Click += new System.EventHandler(this.BotonBackup_Click);
                         // 
-                        // lvItems
+                        // Listado
                         // 
-                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Carpeta,
@@ -110,8 +110,9 @@ namespace Lazaro.Misc.Backup
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.HideSelection = false;
                         this.Listado.Location = new System.Drawing.Point(24, 120);
-                        this.Listado.Name = "lvItems";
+                        this.Listado.Name = "Listado";
                         this.Listado.Size = new System.Drawing.Size(628, 176);
+                        this.Listado.Sorting = System.Windows.Forms.SortOrder.Ascending;
                         this.Listado.TabIndex = 3;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
@@ -138,8 +139,8 @@ namespace Lazaro.Misc.Backup
                         // 
                         // Label2
                         // 
-                        this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(24, 96);
                         this.Label2.Name = "Label2";
@@ -201,8 +202,8 @@ namespace Lazaro.Misc.Backup
                         // 
                         // note1
                         // 
-                        this.note1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.note1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
                         this.note1.Location = new System.Drawing.Point(24, 308);
                         this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -213,7 +214,7 @@ namespace Lazaro.Misc.Backup
                         this.note1.TabIndex = 52;
                         this.note1.TabStop = false;
                         this.note1.Text = "Se mantienen automáticamente las últimas 7 copias de respaldo. La copia en letra " +
-                            "negrita es la más reciente.";
+    "negrita es la más reciente.";
                         this.note1.Title = "Información";
                         // 
                         // Manager

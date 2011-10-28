@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lazaro.Misc.Config
+namespace Lazaro.WinMain.Misc.Config
 {
         public partial class ConfigurarBd
         {
@@ -480,7 +480,7 @@ namespace Lazaro.Misc.Config
                         // 
                         // PictureBox1
                         // 
-                        this.PictureBox1.Image = global::Lazaro.Properties.Resources.drive_harddisk;
+                        this.PictureBox1.Image = global::Lazaro.WinMain.Properties.Resources.drive_harddisk;
                         this.PictureBox1.Location = new System.Drawing.Point(20, 52);
                         this.PictureBox1.Name = "PictureBox1";
                         this.PictureBox1.Size = new System.Drawing.Size(32, 32);

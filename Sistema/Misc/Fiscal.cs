@@ -35,7 +35,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc
+namespace Lazaro.WinMain.Misc
 {
         public partial class Fiscal : Lui.Forms.DialogForm
         {

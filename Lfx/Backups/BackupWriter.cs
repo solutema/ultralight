@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,36 +30,32 @@
 #endregion
 
 using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
-namespace Lazaro.WinMain.Errores
+namespace Lfx.Backups
 {
-        public partial class ExcepcionControlada : Form
+        public class BackupWriter
         {
-                public ExcepcionControlada()
+                public System.IO.Stream outputStream;
+
+                public BackupWriter(string path)
                 {
-                        InitializeComponent();
+                        outputStream = new System.IO.FileStream(path, System.IO.FileMode.Create, System.IO.FileAccess.Write);
                 }
 
-                private void BotonAmpliar_Click(object sender, EventArgs e)
+                public void Close()
                 {
-                        if (EtiquetaMasInformacion.Visible) {
-                                this.Height -= EtiquetaMasInformacion.Height;
-                                EtiquetaMasInformacion.Visible = false;
-                        } else {
-                                this.Height += EtiquetaMasInformacion.Height;
-                                EtiquetaMasInformacion.Visible = true;
-                        }
+                        outputStream.Close();
                 }
 
-                private void EtiquetaMasInformacion_TextChanged(object sender, EventArgs e)
+                public void Write(string text)
                 {
-                        BotonAmpliar.Visible = (EtiquetaMasInformacion.Text.Length > 3);
+                        this.Write(System.Text.Encoding.UTF8.GetBytes(text));
                 }
 
-                private void BotonCerrar_Click(object sender, EventArgs e)
+                public void Write(byte[] bytes)
                 {
-                        this.Close();
+                        outputStream.Write(bytes, 0, bytes.Length);
                 }
         }
 }

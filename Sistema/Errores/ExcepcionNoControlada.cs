@@ -37,7 +37,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lazaro.Errores
+namespace Lazaro.WinMain.Errores
 {
         public partial class ExcepcionNoControlada : Form
         {

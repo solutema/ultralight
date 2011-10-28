@@ -35,7 +35,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lazaro.Reportes
+namespace Lazaro.WinMain.Reportes
 {
         public class Facturacion : Lui.Forms.ChildForm
         {

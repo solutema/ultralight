@@ -32,7 +32,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc
+namespace Lazaro.WinMain.Misc
 {
         partial class ActualizarAhora
         {

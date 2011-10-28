@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lazaro.Principal
+namespace Lazaro.WinMain.Principal
 {
         partial class Inicio
         {
@@ -68,7 +68,7 @@ namespace Lazaro.Principal
                         this.BarraTareas = new System.Windows.Forms.ToolBar();
                         this.BarraTareasImagenes = new System.Windows.Forms.ImageList(this.components);
                         this.ListaBd = new System.Windows.Forms.ListBox();
-                        this.BarraInferior = new Lazaro.Principal.BarraInferior();
+                        this.BarraInferior = new Lazaro.WinMain.Principal.BarraInferior();
                         this.ConsoleOut = new System.Windows.Forms.TextBox();
                         this.PanelDebug = new System.Windows.Forms.Panel();
                         this.PanelDebug.SuspendLayout();

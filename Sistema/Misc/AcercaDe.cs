@@ -32,7 +32,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc
+namespace Lazaro.WinMain.Misc
 {
 	public partial class AcercaDe : Lui.Forms.Form
 	{

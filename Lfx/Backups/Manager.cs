@@ -1,5 +1,5 @@
-#region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+﻿#region License
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,41 +33,104 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
-namespace Lazaro.Misc.Backup
+namespace Lfx.Backups
 {
-        public class Services
+        public class Manager
         {
+                public string BackupPath { get; set; }
 
-                private static string m_BackupPath;
 
-                public static string DefaultBackupPath()
+                public Manager()
+                {
+                        this.BackupPath = this.GetDefaultBackupPath();
+                }
+
+
+                public void StartBackgroundBackup(BackupInfo backupInfo)
+                {
+                        System.Threading.ThreadStart BackupThread = delegate { this.Backup(backupInfo); };
+                        new System.Threading.Thread(BackupThread).Start();
+                }
+
+
+                public string GetDefaultBackupPath()
                 {
                         return Lfx.Environment.Folders.ApplicationDataFolder + "Backup" + System.IO.Path.DirectorySeparatorChar;
                 }
 
 
-                public static string BackupPath
+                public void Delete(string Carpeta)
                 {
-                        get
-                        {
-                                if (m_BackupPath == null) {
-                                        return DefaultBackupPath();
-                                } else {
-                                        return m_BackupPath;
-                                }
-                        }
-                        set
-                        {
-                                m_BackupPath = value;
+                        if (Carpeta.Length > 0 && System.IO.Directory.Exists(BackupPath + Carpeta)) {
+                                System.IO.Directory.Delete(BackupPath + Carpeta, true);
                         }
                 }
+
+
+                public string GetOldestBackupName()
+                {
+                        List<BackupInfo> Lista = this.GetBackups();
+                        string MasViejo = "";
+                        System.DateTime FechaMasViejo = System.DateTime.MaxValue;
+                        foreach (BackupInfo Backup in Lista) {
+                                if (Backup.BackupDate < FechaMasViejo) {
+                                        MasViejo = Backup.Name;
+                                        FechaMasViejo = Backup.BackupDate;
+                                }
+                        }
+                        return MasViejo;
+                }
+
+
+                public string GetNewestBackupName()
+                {
+                        List<BackupInfo> Lista = GetBackups();
+                        string MasNuevo = "";
+                        System.DateTime FechaMasNuevo = System.DateTime.MinValue;
+                        foreach (BackupInfo Backup in Lista) {
+                                if (Backup.BackupDate > FechaMasNuevo) {
+                                        MasNuevo = Backup.Name;
+                                        FechaMasNuevo = Backup.BackupDate;
+                                }
+                        }
+                        return MasNuevo;
+                }
+
+
+                public List<BackupInfo> GetBackups()
+                {
+                        Lfx.Environment.Folders.EnsurePathExists(BackupPath);
+
+                        List<BackupInfo> Res = new List<BackupInfo>();
+                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(this.BackupPath);
+                        foreach (System.IO.DirectoryInfo DirItem in Dir.GetDirectories("*.lbk")) {
+                                BackupInfo Backup = new BackupInfo();
+
+                                if (System.IO.File.Exists(this.BackupPath + DirItem.Name + System.IO.Path.DirectorySeparatorChar + "info.xml")) {
+                                        // Nuevo formato de archivo de información
+
+                                } else if (System.IO.File.Exists(this.BackupPath + DirItem.Name + System.IO.Path.DirectorySeparatorChar + "info.txt")) {
+                                        // Antiguo formato de información
+                                        string ArchivoIni = Lfx.Types.Strings.ReadTextFile(this.BackupPath + DirItem.Name + System.IO.Path.DirectorySeparatorChar + "info.txt");
+                                        Backup.Name = DirItem.Name;
+                                        Backup.UserName = Lfx.Types.Ini.ReadString(ArchivoIni, "", "Usuario");
+                                        Backup.CompanyName = Lfx.Types.Ini.ReadString(ArchivoIni, "", "Empresa");
+                                        Backup.ProgramVersion = Lfx.Types.Ini.ReadString(ArchivoIni, "", "VersiónLazaro");
+                                        Backup.BackupDate = DateTime.ParseExact(Lfx.Types.Ini.ReadString(ArchivoIni, "", "FechaYHora"), @"dd\-MM\-yyyy ""a las"" HH\:mm\:ss", System.Globalization.CultureInfo.InvariantCulture);
+                                }
+
+                                Res.Add(Backup);
+                        }
+
+                        return Res;
+                }
+
 
                 /// <summary>
                 /// Exporta los campos binarios de una tabla en archivos.
                 /// </summary>
-                public static void ExportBlobs(qGen.Select ComandoSelect, string Carpeta)
+                public void ExportBlobs(qGen.Select ComandoSelect, string Carpeta)
                 {
                         if (char.Parse(Carpeta.Substring(Carpeta.Length - 1, 1)) != System.IO.Path.DirectorySeparatorChar)
                                 Carpeta += System.Convert.ToString(System.IO.Path.DirectorySeparatorChar);
@@ -99,7 +162,7 @@ namespace Lazaro.Misc.Backup
                 /// <summary>
                 /// Exporta una tabla en un formato binario propietario, incluyendo BLOBs.
                 /// </summary>
-                public static void ExportTableBin(string nombreTabla, BackupStreamWriter writer)
+                public void ExportTableBin(string nombreTabla, BackupWriter writer)
                 {
                         qGen.Select Comando = new qGen.Select(nombreTabla);
                         System.Data.DataTable TablaBackup = Lfx.Workspace.Master.MasterConnection.Select(Comando);
@@ -186,7 +249,7 @@ namespace Lazaro.Misc.Backup
                 /// <summary>
                 /// Exporta una tabla a un archivo de texto con una secuencia de comandos SQL.
                 /// </summary>
-                public static void ExportTable(qGen.Select Comando, bool ExportarBlobs, System.IO.StreamWriter writer)
+                public void ExportTable(qGen.Select Comando, bool ExportarBlobs, System.IO.StreamWriter writer)
                 {
                         System.Data.DataTable Tabla = Lfx.Workspace.Master.MasterConnection.Select(Comando);
 
@@ -235,7 +298,7 @@ namespace Lazaro.Misc.Backup
                                                                 Valor = "'" + Lfx.Workspace.Master.MasterConnection.EscapeString(System.Convert.ToString(Registro[Campo.ColumnName])).Replace("\r", @"\r").Replace("\n", @"\n") + "'";
                                                                 break;
                                                         default:
-                                                                MessageBox.Show(Campo.DataType.Name);
+                                                                Lfx.Workspace.Master.RunTime.Toast("No se puede restaurar campo tipo " + Campo.DataType.Name, "Error");
                                                                 Valor = "'" + Lfx.Workspace.Master.MasterConnection.EscapeString(Registro[Campo.ColumnName].ToString()) + "'";
                                                                 break;
                                                 }
@@ -251,23 +314,19 @@ namespace Lazaro.Misc.Backup
                         return;
                 }
 
-                public static Lfx.Types.OperationResult CreateBackup(string Carpeta)
+
+                public Lfx.Types.OperationResult Backup(BackupInfo backupInfo)
                 {
-                        return CreateBackup(Carpeta, BackupPath);
-                }
+                        string WorkFolder = backupInfo.Name + System.IO.Path.DirectorySeparatorChar;
 
-                public static Lfx.Types.OperationResult CreateBackup(string workFolder, string storeFolder)
-                {
-                        Lfx.Environment.Folders.EnsurePathExists(BackupPath);
+                        Lfx.Environment.Folders.EnsurePathExists(this.BackupPath);
 
-                        if (!System.IO.Directory.Exists(Lfx.Environment.Folders.TemporaryFolder + workFolder))
-                                System.IO.Directory.CreateDirectory(Lfx.Environment.Folders.TemporaryFolder + workFolder);
-
-                        if (char.Parse(workFolder.Substring(workFolder.Length - 1, 1)) != System.IO.Path.DirectorySeparatorChar)
-                                workFolder += System.Convert.ToString(System.IO.Path.DirectorySeparatorChar);
+                        if (!System.IO.Directory.Exists(Lfx.Environment.Folders.TemporaryFolder + WorkFolder))
+                                System.IO.Directory.CreateDirectory(Lfx.Environment.Folders.TemporaryFolder + WorkFolder);
 
                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Creando Copia de Respaldo", "Se está creando un volcado completo del almacén de datos en una carpeta, para resguardar.");
-                        Progreso.Blocking = true;
+                        Progreso.Blocking = false;
+                        Progreso.Advertise = true;
                         Progreso.Begin();
                         Progreso.Max = Lfx.Workspace.Master.Structure.Tables.Count + 1;
 
@@ -275,9 +334,9 @@ namespace Lazaro.Misc.Backup
                         Progreso.ChangeStatus(Progreso.Value + 1);
                         System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
                         doc.AppendChild(Lfx.Workspace.Master.Structure.ToXml(doc));
-                        doc.Save(Lfx.Environment.Folders.TemporaryFolder + workFolder + "dbstruct.xml");
+                        doc.Save(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "dbstruct.xml");
 
-                        BackupStreamWriter Writer = new BackupStreamWriter(Lfx.Environment.Folders.TemporaryFolder + workFolder + "dbdata.lbd");
+                        BackupWriter Writer = new BackupWriter(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "dbdata.lbd");
                         Writer.Write(":BKP");
 
                         IList<string> TableList = Lfx.Data.DataBaseCache.DefaultCache.GetTableNames();
@@ -289,21 +348,20 @@ namespace Lazaro.Misc.Backup
                                 Progreso.ChangeStatus("Volcando " + NombreTabla);
                                 Progreso.ChangeStatus(Progreso.Value + 1);
                                 ExportTableBin(Tabla, Writer);
-                                System.Windows.Forms.Application.DoEvents();
 
                         }
                         Writer.Close();
 
-                        System.IO.FileStream Archivo = new System.IO.FileStream(Lfx.Environment.Folders.TemporaryFolder + workFolder + "info.txt", System.IO.FileMode.Append, System.IO.FileAccess.Write);
+                        System.IO.FileStream Archivo = new System.IO.FileStream(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "info.txt", System.IO.FileMode.Append, System.IO.FileAccess.Write);
                         using (System.IO.StreamWriter Escribidor = new System.IO.StreamWriter(Archivo, System.Text.Encoding.Default)) {
                                 Escribidor.WriteLine("Copia de seguridad de Lázaro");
                                 Escribidor.WriteLine("");
-                                Escribidor.WriteLine("Empresa=" + Lbl.Sys.Config.Actual.Empresa.Nombre);
+                                Escribidor.WriteLine("Empresa=" + backupInfo.CompanyName);
                                 Escribidor.WriteLine("EspacioTrabajo=" + Lfx.Workspace.Master.Name);
                                 Escribidor.WriteLine("FechaYHora=" + System.DateTime.Now.ToString("dd-MM-yyyy") + " a las " + System.DateTime.Now.ToString("HH:mm:ss"));
-                                Escribidor.WriteLine("Usuario=" + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombre);
+                                Escribidor.WriteLine("Usuario=" + backupInfo.UserName);
                                 Escribidor.WriteLine("Estación=" + System.Environment.MachineName.ToUpperInvariant());
-                                Escribidor.WriteLine("VersiónLazaro=" + Aplicacion.Version() + " del " + Aplicacion.BuildDate());
+                                Escribidor.WriteLine("VersiónLazaro=" + backupInfo.ProgramVersion);
                                 Escribidor.WriteLine("");
                                 Escribidor.WriteLine("Por favor no modifique ni elimine este archivo.");
                                 Escribidor.Close();
@@ -312,15 +370,15 @@ namespace Lazaro.Misc.Backup
 
                         if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema", "ComprimirCopiasDeRespaldo", 0) != 0) {
                                 Progreso.ChangeStatus("Comprimiendo los datos");
-                                Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(Lfx.Environment.Folders.TemporaryFolder + workFolder + "backup.7z");
-                                ArchivoComprimido.Add(Lfx.Environment.Folders.TemporaryFolder + workFolder + "*");
-                                if (System.IO.File.Exists(Lfx.Environment.Folders.TemporaryFolder + workFolder + "backup.7z")) {
+                                Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "backup.7z");
+                                ArchivoComprimido.Add(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "*");
+                                if (System.IO.File.Exists(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "backup.7z")) {
                                         Progreso.ChangeStatus("Eliminando archivos temporales");
                                         // Borrar los archivos que acabo de comprimir
-                                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.TemporaryFolder + workFolder);
+                                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(Lfx.Environment.Folders.TemporaryFolder + WorkFolder);
                                         foreach (System.IO.FileInfo DirItem in Dir.GetFiles()) {
                                                 if (DirItem.Name != "backup.7z" && DirItem.Name != "info.txt") {
-                                                        System.IO.File.Delete(Lfx.Environment.Folders.TemporaryFolder + workFolder + DirItem.Name);
+                                                        System.IO.File.Delete(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + DirItem.Name);
                                                 }
                                         }
                                 }
@@ -328,18 +386,17 @@ namespace Lazaro.Misc.Backup
 
                         Progreso.ChangeStatus("Almacenando");
                         Progreso.ChangeStatus(Progreso.Value + 1);
-                        System.IO.Directory.Move(Lfx.Environment.Folders.TemporaryFolder + workFolder, storeFolder + workFolder);
+                        System.IO.Directory.Move(Lfx.Environment.Folders.TemporaryFolder + WorkFolder, this.BackupPath + WorkFolder);
 
                         int GuardarBackups = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("", "Sisteam.Backup.CantMax", 7);
                         if (GuardarBackups > 0) {
-                                List<string> ListaDeBackups = ListaBackups();
+                                List<BackupInfo> ListaDeBackups = this.GetBackups();
                                 if (ListaDeBackups.Count > GuardarBackups) {
                                         Progreso.ChangeStatus("Eliminando copias de respaldo antiguas");
-                                        System.Windows.Forms.Application.DoEvents();
                                         int BorrarBackups = ListaDeBackups.Count - GuardarBackups;
                                         if (BorrarBackups < ListaDeBackups.Count) {
                                                 for (int i = 1; i <= BorrarBackups; i++) {
-                                                        DeleteBackup(BackupMasViejo());
+                                                        this.Delete(this.GetOldestBackupName());
                                                 }
                                         }
                                 }
@@ -351,71 +408,13 @@ namespace Lazaro.Misc.Backup
                 }
 
 
-                public static void DeleteBackup(string Carpeta)
+                public void Restore(string backupName)
                 {
-                        if (Carpeta.Length > 0 && System.IO.Directory.Exists(BackupPath + Carpeta)) {
-                                System.IO.Directory.Delete(BackupPath + Carpeta, true);
-                        }
-                }
+                        string Carpeta = backupName + System.IO.Path.DirectorySeparatorChar;
 
+                        Lfx.Environment.Folders.EnsurePathExists(this.BackupPath);
 
-                public static string BackupMasViejo()
-                {
-                        List<string> Lista = ListaBackups();
-                        string MasViejo = "";
-                        System.DateTime FechaMasViejo = System.DateTime.MaxValue;
-                        foreach (string Backup in Lista) {
-                                System.IO.DirectoryInfo BackupInfo = new System.IO.DirectoryInfo(BackupPath + Backup);
-                                if (BackupInfo.CreationTime < FechaMasViejo) {
-                                        MasViejo = Backup;
-                                        FechaMasViejo = BackupInfo.CreationTime;
-                                }
-                        }
-                        return MasViejo;
-                }
-
-
-                public static string BackupMasNuevo()
-                {
-                        List<string> Lista = ListaBackups();
-                        string MasNuevo = "";
-                        System.DateTime FechaMasNuevo = System.DateTime.MinValue;
-                        foreach (string Backup in Lista) {
-                                System.IO.DirectoryInfo BackupInfo = new System.IO.DirectoryInfo(BackupPath + Backup);
-                                if (BackupInfo.CreationTime > FechaMasNuevo) {
-                                        MasNuevo = Backup;
-                                        FechaMasNuevo = BackupInfo.CreationTime;
-                                }
-                        }
-                        return MasNuevo;
-                }
-
-
-                public static List<string> ListaBackups()
-                {
-                        Lfx.Environment.Folders.EnsurePathExists(BackupPath);
-
-                        List<string> Lista = new List<string>();
-                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(BackupPath);
-                        foreach (System.IO.DirectoryInfo DirItem in Dir.GetDirectories("*.lbk")) {
-                                Lista.Add(DirItem.Name);
-                        }
-
-                        foreach (System.IO.DirectoryInfo DirItem in Dir.GetDirectories("lbkp_*")) {
-                                Lista.Add(DirItem.Name);
-                        }
-                        return Lista;
-                }
-
-
-                public static void Restore(string Carpeta)
-                {
-                        Lfx.Environment.Folders.EnsurePathExists(BackupPath);
-
-                        if (Carpeta != null && Carpeta.Length > 0 && System.IO.Directory.Exists(BackupPath + Carpeta)) {
-                                if (char.Parse(Carpeta.Substring(Carpeta.Length - 1, 1)) != System.IO.Path.DirectorySeparatorChar)
-                                        Carpeta += System.Convert.ToString(System.IO.Path.DirectorySeparatorChar);
-
+                        if (Carpeta != null && Carpeta.Length > 0 && System.IO.Directory.Exists(this.BackupPath + Carpeta)) {
                                 bool UsandoArchivoComprimido = false;
 
                                 Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Restaurando Copia de Respaldo", "Este proceso va a demorar varios minutos. Por favor no lo interrumpa");
@@ -434,20 +433,20 @@ namespace Lazaro.Misc.Backup
 
                                         Progreso.ChangeStatus("Acomodando estructuras");
                                         Lfx.Workspace.Master.Structure.TagList.Clear();
-                                        Lfx.Workspace.Master.Structure.LoadFromFile(BackupPath + Carpeta + "dbstruct.xml");
+                                        Lfx.Workspace.Master.Structure.LoadFromFile(this.BackupPath + Carpeta + "dbstruct.xml");
                                         Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(true, true);
 
                                         IDbTransaction Trans = DataBase.BeginTransaction();
                                         DataBase.EnableConstraints(false);
 
                                         Progreso.ChangeStatus("Incorporando tablas de datos");
-                                        BackupStreamReader Lector = new BackupStreamReader(BackupPath + Carpeta + "dbdata.lbd");
+                                        BackupReader Lector = new BackupReader(this.BackupPath + Carpeta + "dbdata.lbd");
 
                                         Progreso.Max = (int)Lector.Length;
                                         string TablaActual = null;
                                         string[] ListaCampos = null;
                                         object[] ValoresCampos = null;
-                                        int CampoActual = 0, RenglonActual = 0;
+                                        int CampoActual = 0;
                                         bool EndTable = false;
                                         qGen.BuilkInsert Insertador = new qGen.BuilkInsert();
                                         do {
@@ -491,7 +490,6 @@ namespace Lazaro.Misc.Backup
                                                         DataBase.ExecuteSql(Insertador.ToString());
                                                         Insertador.Clear();
                                                         Progreso.Value = (int)Lector.Position;
-                                                        System.Windows.Forms.Application.DoEvents();
                                                 }
                                         } while (Lector.Position < Lector.Length);
                                         Lector.Close();
@@ -519,10 +517,10 @@ namespace Lazaro.Misc.Backup
                                                 }
                                         }
 
-                                        if (System.IO.File.Exists(BackupPath + Carpeta + "blobs.lst")) {
+                                        if (System.IO.File.Exists(this.BackupPath + Carpeta + "blobs.lst")) {
                                                 // Incorporar Blobs
                                                 Progreso.ChangeStatus("Incorporando imágenes");
-                                                System.IO.StreamReader LectorBlobs = new System.IO.StreamReader(BackupPath + Carpeta + "blobs.lst", System.Text.Encoding.Default);
+                                                System.IO.StreamReader LectorBlobs = new System.IO.StreamReader(this.BackupPath + Carpeta + "blobs.lst", System.Text.Encoding.Default);
                                                 string InfoImagen = null;
                                                 do {
                                                         InfoImagen = LectorBlobs.ReadLine();
@@ -536,7 +534,7 @@ namespace Lazaro.Misc.Backup
                                                                 qGen.Update ActualizarBlob = new qGen.Update(DataBase, Tabla);
                                                                 ActualizarBlob.WhereClause = new qGen.Where(Campo, CampoId);
 
-                                                                System.IO.FileStream ArchivoImagen = new System.IO.FileStream(BackupPath + Carpeta + NombreArchivoImagen, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+                                                                System.IO.FileStream ArchivoImagen = new System.IO.FileStream(this.BackupPath + Carpeta + NombreArchivoImagen, System.IO.FileMode.Open, System.IO.FileAccess.Read);
                                                                 byte[] Contenido = new byte[System.Convert.ToInt32(ArchivoImagen.Length) - 1 + 1];
                                                                 ArchivoImagen.Read(Contenido, 0, System.Convert.ToInt32(ArchivoImagen.Length));
                                                                 ArchivoImagen.Close();
@@ -552,10 +550,10 @@ namespace Lazaro.Misc.Backup
                                         if (UsandoArchivoComprimido) {
                                                 Progreso.ChangeStatus("Eliminando archivos temporales");
                                                 // Borrar los archivos que descomprim temporalmente
-                                                System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(BackupPath + Carpeta);
+                                                System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(this.BackupPath + Carpeta);
                                                 foreach (System.IO.FileInfo DirItem in Dir.GetFiles()) {
                                                         if (DirItem.Name != "backup.7z" && DirItem.Name != "info.txt") {
-                                                                System.IO.File.Delete(BackupPath + Carpeta + DirItem.Name);
+                                                                System.IO.File.Delete(this.BackupPath + Carpeta + DirItem.Name);
                                                         }
                                                 }
                                         }
@@ -564,106 +562,9 @@ namespace Lazaro.Misc.Backup
                                 }
                                 Progreso.End();
 
-                                Lui.Forms.MessageBox.Show("La copia de seguridad se restauró con éxito. A continuación se va a reiniciar la aplicación.", "Copia Restaurada");
-                                Aplicacion.Exec("REBOOT");
-                        }
-                }
-        }
-
-
-        public class BackupStreamWriter
-        {
-                public System.IO.Stream outputStream;
-
-                public BackupStreamWriter(string path)
-                {
-                        outputStream = new System.IO.FileStream(path, System.IO.FileMode.Create, System.IO.FileAccess.Write);
-                }
-
-                public void Close()
-                {
-                        outputStream.Close();
-                }
-
-                public void Write(string text)
-                {
-                        this.Write(System.Text.Encoding.UTF8.GetBytes(text));
-                }
-
-                public void Write(byte[] bytes)
-                {
-                        outputStream.Write(bytes, 0, bytes.Length);
-                }
-        }
-
-        public class BackupStreamReader
-        {
-                System.IO.Stream inputStream;
-                public BackupStreamReader(string path)
-                {
-                        System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read);
-                        int FirstPos = fs.ReadByte();
-                        inputStream = fs;
-                        inputStream.Seek(0, System.IO.SeekOrigin.Begin);
-                }
-
-                public string ReadString(int length)
-                {
-                        byte[] Res = new byte[length];
-                        inputStream.Read(Res, 0, length);
-                        return System.Text.Encoding.UTF8.GetString(Res);
-                }
-
-                public string ReadPrefixedString4()
-                {
-                        int Len = int.Parse(this.ReadString(4));
-                        return this.ReadString(Len);
-                }
-
-                public object ReadField()
-                {
-                        string Type = this.ReadString(1);
-                        string StrLen = this.ReadString(8);
-                        int Len = int.Parse(StrLen);
-                        switch (Type) {
-                                case "I":
-                                        return int.Parse(this.ReadString(Len));
-                                case "N":
-                                        return Lfx.Types.Parsing.ParseDecimal(this.ReadString(Len));
-                                case "D":
-                                        string FldVal = this.ReadString(Len);
-                                        return DateTime.ParseExact(FldVal, Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, null);
-                                case "B":
-                                        byte[] Res = new byte[Len];
-                                        inputStream.Read(Res, 0, Len);
-                                        return Res;
-                                case "U":
-                                        return null;
-                                default:
-                                        return this.ReadString(Len);
-
+                                Lfx.Workspace.Master.RunTime.Toast("La copia de seguridad se restauró con éxito. A continuación se va a reiniciar la aplicación.", "Copia Restaurada");
                         }
                 }
 
-                public void Close()
-                {
-                        inputStream.Close();
-                }
-
-                public long Length
-                {
-                        get
-                        {
-                                return inputStream.Length;
-                        }
-                }
-
-                public long Position
-                {
-                        get
-                        {
-                                return inputStream.Position;
-                        }
-                }
         }
 }

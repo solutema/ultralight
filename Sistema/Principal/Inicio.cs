@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace Lazaro.Principal
+namespace Lazaro.WinMain.Principal
 {
         public partial class Inicio : Form
         {

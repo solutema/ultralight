@@ -31,7 +31,7 @@
 
 using System.Windows.Forms;
 
-namespace Lazaro.Principal
+namespace Lazaro.WinMain.Principal
 {
         public class MenuItemInfo
         {

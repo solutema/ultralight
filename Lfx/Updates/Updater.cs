@@ -260,7 +260,6 @@ namespace Lfx.Updates
 
                         foreach (Package Pkg in this.Packages) {
                                 Pkg.DownloadNewFiles();
-                                this.Progress.Value = this.GetDownloadedSize();
                         }
                 }
 

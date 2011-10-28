@@ -37,7 +37,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lazaro.Reportes
+namespace Lazaro.WinMain.Reportes
 {
         public partial class Patrimonio : Lui.Forms.ChildForm
         {

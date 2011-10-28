@@ -37,7 +37,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lazaro.Principal
+namespace Lazaro.WinMain.Principal
 {
 	public partial class BarraInferior : UserControl
 	{

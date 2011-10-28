@@ -86,6 +86,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backups\BackupInfo.cs" />
+    <Compile Include="Backups\BackupReader.cs" />
+    <Compile Include="Backups\BackupWriter.cs" />
+    <Compile Include="Backups\Manager.cs" />
     <Compile Include="Components\Action.cs" />
     <Compile Include="Components\ActionCollection.cs" />
     <Compile Include="Components\FunctionInfo.cs" />

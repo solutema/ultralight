@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lazaro.Misc.Backup
+namespace Lazaro.WinMain.Backup
 {
         public partial class Restore : Lui.Forms.DialogForm
         {

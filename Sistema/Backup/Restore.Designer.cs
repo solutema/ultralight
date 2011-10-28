@@ -33,12 +33,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lazaro.Misc.Backup
+namespace Lazaro.WinMain.Backup
 {
         public partial class Restore
         {
                 public Restore()
-                        : base()
                 {
                         InitializeComponent();
                 }
