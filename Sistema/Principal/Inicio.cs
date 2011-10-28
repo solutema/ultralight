@@ -554,19 +554,16 @@ namespace Lazaro.WinMain.Principal
                 private void AgregarAlMenu(Menu ColgarDe, MenuItem Itm, MenuItemInfo ItmInfo)
                 {
                         // Para los tem OwnerDraw, ver las funciones Menu_Select, Menu_MeasureItem y Menu_DrawItem más abajo
-                        Itm.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.Menu_MeasureItem);
-                        Itm.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Menu_DrawItem);
-                        Itm.OwnerDraw = true;
+                        if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows) {
+                                Itm.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.Menu_MeasureItem);
+                                Itm.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Menu_DrawItem);
+                                Itm.OwnerDraw = true;
+                        }
                         Itm.Tag = Itm.GetHashCode();
-                        Itm.Select += new System.EventHandler(this.Menu_Select);
                         ColgarDe.MenuItems.Add(Itm);
                         MenuItemInfoTable.Add(Itm.Tag.ToString(), ItmInfo);
                 }
 
-                private void Menu_Select(object sender, System.EventArgs e)
-                {
-                        //NodoMenu MiItem = ((NodoMenu)(sender));
-                }
 
                 private void Menu_MeasureItem(System.Object sender, System.Windows.Forms.MeasureItemEventArgs e)
                 {

@@ -36,8 +36,7 @@
     <RemoteDebugMachine>
     </RemoteDebugMachine>
     <StartAction>Project</StartAction>
-    <StartArguments>
-    </StartArguments>
+    <StartArguments>/debug</StartArguments>
     <StartPage>
     </StartPage>
     <StartProgram>

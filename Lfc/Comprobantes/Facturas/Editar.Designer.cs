@@ -54,6 +54,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label2
                         // 
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 0);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(108, 24);
@@ -77,6 +78,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFormaPago.PlaceholderText = null;
                         this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.Required = true;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(92, 24);
@@ -88,6 +90,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label10
                         // 
+                        this.Label10.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label10.Location = new System.Drawing.Point(0, 72);
                         this.Label10.Name = "Label10";
                         this.Label10.Size = new System.Drawing.Size(72, 24);
@@ -102,8 +105,10 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(72, 72);
+                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = null;
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|FA",
@@ -120,6 +125,7 @@ namespace Lfc.Comprobantes.Facturas
                         // Label11
                         // 
                         this.Label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label11.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label11.Location = new System.Drawing.Point(400, 72);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(56, 24);
@@ -133,11 +139,11 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonPago.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonPago.Image = null;
                         this.BotonPago.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonPago.Location = new System.Drawing.Point(452, 372);
+                        this.BotonPago.Location = new System.Drawing.Point(492, 368);
                         this.BotonPago.Name = "BotonPago";
                         this.BotonPago.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonPago.ReadOnly = false;
-                        this.BotonPago.Size = new System.Drawing.Size(108, 28);
+                        this.BotonPago.Size = new System.Drawing.Size(108, 32);
                         this.BotonPago.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonPago.Subtext = "F2";
                         this.BotonPago.TabIndex = 51;
@@ -154,13 +160,17 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaRemito.DecimalPlaces = -1;
                         this.EntradaRemito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRemito.Location = new System.Drawing.Point(456, 72);
+                        this.EntradaRemito.MaxLength = 32767;
                         this.EntradaRemito.MultiLine = false;
                         this.EntradaRemito.Name = "EntradaRemito";
                         this.EntradaRemito.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaRemito.PasswordChar = '\0';
                         this.EntradaRemito.PlaceholderText = "Ninguno";
+                        this.EntradaRemito.Prefijo = "";
                         this.EntradaRemito.ReadOnly = false;
                         this.EntradaRemito.SelectOnFocus = true;
                         this.EntradaRemito.Size = new System.Drawing.Size(144, 24);
+                        this.EntradaRemito.Sufijo = "";
                         this.EntradaRemito.TabIndex = 15;
                         this.EntradaRemito.TextChanged += new System.EventHandler(this.EntradaRemito_TextChanged);
                         // 
