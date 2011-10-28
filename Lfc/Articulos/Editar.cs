@@ -218,13 +218,6 @@ namespace Lfc.Articulos
                                 EntradaStockActual.ErrorText = "";
                 }
 
-                private void EntradaNombre_TextChanged(object sender, System.EventArgs e)
-                {
-                        if (EntradaNombre.Text.Length > 0)
-                                EntradaNombre.ErrorText = null;
-                        else
-                                EntradaNombre.ErrorText = "Debe escribir un nombre para el artículo.";
-                }
 
                 private void BotonUnidad_Click(object sender, EventArgs e)
                 {

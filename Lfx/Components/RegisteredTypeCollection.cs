@@ -56,7 +56,7 @@ namespace Lfx.Components
                                 return Func.Actions[verb].Handler;
 
                         // Busco recursivamente hacia abajo en las herencias
-                        if (lblType.BaseType.ToString() != "Lbl.ElementoDeDatos") {
+                        if (lblType.BaseType != null && lblType.BaseType.ToString() != "Lbl.ElementoDeDatos") {
                                 return GetHandler(lblType.BaseType, verb);
                         }
 

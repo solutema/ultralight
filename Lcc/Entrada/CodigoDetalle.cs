@@ -432,6 +432,7 @@ namespace Lcc.Entrada
                                 if (textChanged)
                                         this.OnTextChanged(EventArgs.Empty);
                         } else if (this.Relation.IsEmpty() == false && EntradaCodigo.Text.Length > 0 && EntradaCodigo.Text != "0") {
+                                Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                                 if (this.AutoUpdate) {
                                         if (this.HasWorkspace == false || this.Workspace.SlowLink)
                                                 TimerActualizar.Interval = 500;

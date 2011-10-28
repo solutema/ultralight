@@ -122,6 +122,9 @@ namespace Lazaro.WinMain.Principal
                         if (this.Visible) {
                                 if (PanelDebug.Visible) {
                                         ListaBd.Items.Clear();
+                                        if (System.Windows.Forms.Form.ActiveForm != null && System.Windows.Forms.Form.ActiveForm.ActiveControl != null)
+                                                ListaBd.Items.Add(System.Windows.Forms.Form.ActiveForm.ActiveControl.Name);
+                                        
                                         foreach (Lfx.Data.Connection Bd in this.Workspace.ActiveConnections) {
                                                 ListaBd.Items.Add(Bd.Handle.ToString() + " " + Bd.Name);
                                         }

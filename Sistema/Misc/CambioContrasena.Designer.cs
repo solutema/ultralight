@@ -245,7 +245,7 @@ namespace Lazaro.WinMain.Misc
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(164, 24);
                         this.label4.TabIndex = 4;
-                        this.label4.Text = "Repita Contraseña ";
+                        this.label4.Text = "Repita contraseña ";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Titulo

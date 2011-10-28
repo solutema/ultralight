@@ -445,6 +445,7 @@ namespace Lcc.Entrada.Articulos
                                         if (this.Articulo.Unidad != "u")
                                                 EntradaCantidad.Sufijo = Articulo.Unidad;
                                         else
+                                                EntradaCantidad.Sufijo = "";
 
                                         if (m_Precio == Precios.Costo)
                                                 EntradaUnitario.ValueDecimal = Articulo.Costo;

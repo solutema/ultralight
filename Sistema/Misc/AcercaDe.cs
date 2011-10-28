@@ -115,10 +115,14 @@ namespace Lazaro.WinMain.Misc
 
                         if (Lfx.Updates.Updater.Master.Progress.IsRunning) {
                                 PicEsperar.Visible = true;
-                                if (Lfx.Updates.Updater.Master.Progress.Max == 0)
+                                if (Lfx.Updates.Updater.Master.Progress.Max == 0) {
                                         EtiquetaActualizar.Text = "Buscando...";
-                                else
-                                        EtiquetaActualizar.Text = "Descargando " + Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
+                                } else {
+                                        if (Lfx.Updates.Updater.Master.Progress.Status.StartsWith("Aplicando"))
+                                                EtiquetaActualizar.Text = "Instalando " + Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
+                                        else
+                                                EtiquetaActualizar.Text = "Descargando " + Lfx.Updates.Updater.Master.Progress.PercentDone.ToString() + "%";
+                                }
                                 EtiquetaActualizar.LinkArea = new LinkArea(0, 0);
                         } else {
                                 if (Lfx.Updates.Updater.Master.UpdatesPending()) {

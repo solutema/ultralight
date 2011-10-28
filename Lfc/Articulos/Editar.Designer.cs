@@ -548,7 +548,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo4.SelectOnFocus = true;
                         this.EntradaCodigo4.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo4.TabIndex = 3;
-                        this.EntradaCodigo4.PlaceholderText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
                         // EntradaProveedor
                         // 
@@ -639,7 +638,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo3.SelectOnFocus = true;
                         this.EntradaCodigo3.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo3.TabIndex = 1;
-                        this.EntradaCodigo3.PlaceholderText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
                         // EntradaDescripcion2
                         // 
@@ -675,7 +673,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo2.SelectOnFocus = true;
                         this.EntradaCodigo2.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo2.TabIndex = 3;
-                        this.EntradaCodigo2.PlaceholderText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
                         // EntradaCodigo1
                         // 
@@ -692,7 +689,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo1.SelectOnFocus = true;
                         this.EntradaCodigo1.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo1.TabIndex = 1;
-                        this.EntradaCodigo1.PlaceholderText = "Puede escribir hasta 4 códigos diferentes para el mismo artículo";
                         // 
                         // EntradaUrl
                         // 
@@ -749,7 +745,6 @@ namespace Lfc.Articulos
                         this.EntradaNombre.TabIndex = 13;
                         this.EntradaNombre.PlaceholderText = "Nombre completo del artículo";
                         this.EntradaNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaNombre_KeyPress);
-                        this.EntradaNombre.TextChanged += new System.EventHandler(this.EntradaNombre_TextChanged);
                         // 
                         // EntradaSerie
                         // 

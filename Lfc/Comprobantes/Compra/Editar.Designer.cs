@@ -66,6 +66,7 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // Label3
                         // 
+                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(0, 48);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(80, 24);
@@ -79,14 +80,16 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
+                        this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.ExtraDetailFields = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
-                        this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.Location = new System.Drawing.Point(80, 48);
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
                         this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaProveedor.PlaceholderText = null;
+                        this.EntradaProveedor.ReadOnly = false;
                         this.EntradaProveedor.Required = true;
                         this.EntradaProveedor.Size = new System.Drawing.Size(244, 24);
                         this.EntradaProveedor.TabIndex = 2;
@@ -96,12 +99,13 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // EntradaProductos
                         // 
-                        this.EntradaProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProductos.AutoNav = true;
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.EntradaProductos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
                         this.EntradaProductos.Location = new System.Drawing.Point(0, 106);
                         this.EntradaProductos.LockPrice = false;
@@ -111,14 +115,16 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.Name = "EntradaProductos";
                         this.EntradaProductos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
+                        this.EntradaProductos.ReadOnly = false;
                         this.EntradaProductos.ShowStock = false;
-                        this.EntradaProductos.Size = new System.Drawing.Size(640, 194);
+                        this.EntradaProductos.Size = new System.Drawing.Size(733, 260);
                         this.EntradaProductos.TabIndex = 13;
                         this.EntradaProductos.TotalChanged += new System.EventHandler(this.RecalcularTotal);
                         this.EntradaProductos.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaProductos_ObtenerDatosSeguimiento);
                         // 
                         // Label2
                         // 
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(332, 48);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(64, 24);
@@ -128,19 +134,25 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNumero.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNumero.AutoNav = true;
                         this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(552, 48);
+                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNumero.PasswordChar = '\0';
+                        this.EntradaNumero.PlaceholderText = null;
+                        this.EntradaNumero.Prefijo = "";
+                        this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
-                        this.EntradaNumero.Size = new System.Drawing.Size(86, 24);
+                        this.EntradaNumero.Size = new System.Drawing.Size(179, 24);
+                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 6;
                         this.EntradaNumero.Leave += new System.EventHandler(this.EntradaNumero_Leave);
                         // 
@@ -158,9 +170,10 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonConvertir.Image = null;
                         this.BotonConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonConvertir.Location = new System.Drawing.Point(0, 366);
+                        this.BotonConvertir.Location = new System.Drawing.Point(0, 432);
                         this.BotonConvertir.Name = "BotonConvertir";
                         this.BotonConvertir.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonConvertir.ReadOnly = false;
                         this.BotonConvertir.Size = new System.Drawing.Size(104, 32);
                         this.BotonConvertir.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonConvertir.Subtext = "F4";
@@ -174,9 +187,10 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonObs.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonObs.Image = null;
                         this.BotonObs.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonObs.Location = new System.Drawing.Point(116, 366);
+                        this.BotonObs.Location = new System.Drawing.Point(116, 432);
                         this.BotonObs.Name = "BotonObs";
                         this.BotonObs.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonObs.ReadOnly = false;
                         this.BotonObs.Size = new System.Drawing.Size(108, 32);
                         this.BotonObs.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonObs.Subtext = "F7";
@@ -187,7 +201,8 @@ namespace Lfc.Comprobantes.Compra
                         // Label4
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.Location = new System.Drawing.Point(412, 308);
+                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.Location = new System.Drawing.Point(505, 374);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(104, 28);
                         this.Label4.TabIndex = 20;
@@ -202,13 +217,18 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTotal.Location = new System.Drawing.Point(516, 308);
+                        this.EntradaTotal.Location = new System.Drawing.Point(609, 374);
+                        this.EntradaTotal.MaxLength = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTotal.PasswordChar = '\0';
+                        this.EntradaTotal.PlaceholderText = null;
                         this.EntradaTotal.Prefijo = "$";
+                        this.EntradaTotal.ReadOnly = false;
                         this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(124, 28);
+                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 21;
                         this.EntradaTotal.TabStop = false;
                         this.EntradaTotal.Text = "0.00";
@@ -220,8 +240,11 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(396, 48);
+                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = null;
+                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|FA",
         "Factura B|FB",
@@ -238,6 +261,7 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // EtiquetaHaciaSituacion
                         // 
+                        this.EtiquetaHaciaSituacion.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaHaciaSituacion.Location = new System.Drawing.Point(372, 76);
                         this.EtiquetaHaciaSituacion.Name = "EtiquetaHaciaSituacion";
                         this.EtiquetaHaciaSituacion.Size = new System.Drawing.Size(68, 24);
@@ -247,22 +271,24 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // EntradaHaciaSituacion
                         // 
-                        this.EntradaHaciaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaHaciaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoNav = true;
                         this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
+                        this.EntradaHaciaSituacion.DataValueField = "id_situacion";
                         this.EntradaHaciaSituacion.ExtraDetailFields = null;
                         this.EntradaHaciaSituacion.Filter = "deposito>0";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
-                        this.EntradaHaciaSituacion.DataValueField = "id_situacion";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(444, 76);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
                         this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaHaciaSituacion.PlaceholderText = null;
+                        this.EntradaHaciaSituacion.ReadOnly = false;
                         this.EntradaHaciaSituacion.Required = true;
-                        this.EntradaHaciaSituacion.Size = new System.Drawing.Size(196, 24);
+                        this.EntradaHaciaSituacion.Size = new System.Drawing.Size(289, 24);
                         this.EntradaHaciaSituacion.TabIndex = 12;
                         this.EntradaHaciaSituacion.Table = "articulos_situaciones";
                         this.EntradaHaciaSituacion.Text = "0";
@@ -270,12 +296,12 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // EtiquetaTitulo
                         // 
-                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.Location = new System.Drawing.Point(0, 0);
+                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header1;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
-                        this.EtiquetaTitulo.Size = new System.Drawing.Size(640, 40);
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(733, 40);
                         this.EtiquetaTitulo.TabIndex = 0;
                         this.EtiquetaTitulo.Text = "Comprobante";
                         this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -288,11 +314,17 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(492, 48);
+                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPV.PasswordChar = '\0';
+                        this.EntradaPV.PlaceholderText = null;
+                        this.EntradaPV.Prefijo = "";
+                        this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(56, 24);
+                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 5;
                         this.EntradaPV.Text = "0";
                         // 
@@ -304,13 +336,18 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaGastosEnvio.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaGastosEnvio.DecimalPlaces = -1;
                         this.EntradaGastosEnvio.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaGastosEnvio.Location = new System.Drawing.Point(116, 308);
+                        this.EntradaGastosEnvio.Location = new System.Drawing.Point(116, 374);
+                        this.EntradaGastosEnvio.MaxLength = 32767;
                         this.EntradaGastosEnvio.MultiLine = false;
                         this.EntradaGastosEnvio.Name = "EntradaGastosEnvio";
                         this.EntradaGastosEnvio.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaGastosEnvio.PasswordChar = '\0';
+                        this.EntradaGastosEnvio.PlaceholderText = null;
                         this.EntradaGastosEnvio.Prefijo = "$";
+                        this.EntradaGastosEnvio.ReadOnly = false;
                         this.EntradaGastosEnvio.SelectOnFocus = true;
                         this.EntradaGastosEnvio.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaGastosEnvio.Sufijo = "";
                         this.EntradaGastosEnvio.TabIndex = 15;
                         this.EntradaGastosEnvio.Text = "0.00";
                         this.EntradaGastosEnvio.TextChanged += new System.EventHandler(this.RecalcularTotal);
@@ -318,7 +355,8 @@ namespace Lfc.Comprobantes.Compra
                         // label1
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label1.Location = new System.Drawing.Point(0, 308);
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.Location = new System.Drawing.Point(0, 374);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(116, 24);
                         this.label1.TabIndex = 14;
@@ -327,24 +365,28 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // EntradaEstado
                         // 
-                        this.EntradaEstado.AlwaysExpanded = false;
+                        this.EntradaEstado.AlwaysExpanded = true;
                         this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.Location = new System.Drawing.Point(288, 307);
+                        this.EntradaEstado.Location = new System.Drawing.Point(288, 375);
+                        this.EntradaEstado.MaxLength = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEstado.PlaceholderText = null;
+                        this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "N/A|0"};
-                        this.EntradaEstado.Size = new System.Drawing.Size(164, 26);
+                        this.EntradaEstado.Size = new System.Drawing.Size(164, 21);
                         this.EntradaEstado.TabIndex = 19;
                         this.EntradaEstado.TextKey = "0";
                         // 
                         // label5
                         // 
                         this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label5.Location = new System.Drawing.Point(226, 308);
+                        this.label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label5.Location = new System.Drawing.Point(226, 374);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(60, 24);
                         this.label5.TabIndex = 18;
@@ -354,7 +396,8 @@ namespace Lfc.Comprobantes.Compra
                         // label6
                         // 
                         this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label6.Location = new System.Drawing.Point(412, 340);
+                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label6.Location = new System.Drawing.Point(505, 406);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(104, 28);
                         this.label6.TabIndex = 22;
@@ -369,13 +412,18 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaCancelado.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCancelado.DecimalPlaces = -1;
                         this.EntradaCancelado.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCancelado.Location = new System.Drawing.Point(516, 340);
+                        this.EntradaCancelado.Location = new System.Drawing.Point(609, 406);
+                        this.EntradaCancelado.MaxLength = 32767;
                         this.EntradaCancelado.MultiLine = false;
                         this.EntradaCancelado.Name = "EntradaCancelado";
                         this.EntradaCancelado.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCancelado.PasswordChar = '\0';
+                        this.EntradaCancelado.PlaceholderText = null;
                         this.EntradaCancelado.Prefijo = "$";
+                        this.EntradaCancelado.ReadOnly = false;
                         this.EntradaCancelado.SelectOnFocus = true;
                         this.EntradaCancelado.Size = new System.Drawing.Size(124, 28);
+                        this.EntradaCancelado.Sufijo = "";
                         this.EntradaCancelado.TabIndex = 23;
                         this.EntradaCancelado.TabStop = false;
                         this.EntradaCancelado.Text = "0.00";
@@ -388,15 +436,22 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFecha.DecimalPlaces = -1;
                         this.EntradaFecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFecha.Location = new System.Drawing.Point(80, 76);
+                        this.EntradaFecha.MaxLength = 32767;
                         this.EntradaFecha.MultiLine = false;
                         this.EntradaFecha.Name = "EntradaFecha";
                         this.EntradaFecha.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFecha.PasswordChar = '\0';
+                        this.EntradaFecha.PlaceholderText = null;
+                        this.EntradaFecha.Prefijo = "";
+                        this.EntradaFecha.ReadOnly = false;
                         this.EntradaFecha.SelectOnFocus = true;
                         this.EntradaFecha.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaFecha.Sufijo = "";
                         this.EntradaFecha.TabIndex = 8;
                         // 
                         // label7
                         // 
+                        this.label7.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label7.Location = new System.Drawing.Point(0, 76);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(80, 24);
@@ -406,6 +461,7 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // label8
                         // 
+                        this.label8.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label8.Location = new System.Drawing.Point(192, 76);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(104, 24);
@@ -420,8 +476,11 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.AutoSize = true;
                         this.EntradaFormaPago.AutoTab = true;
                         this.EntradaFormaPago.Location = new System.Drawing.Point(294, 76);
+                        this.EntradaFormaPago.MaxLength = 32767;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFormaPago.PlaceholderText = null;
+                        this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.SetData = new string[] {
         "Si|3",
         "No|0"};
@@ -437,13 +496,18 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaOtrosGastos.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaOtrosGastos.DecimalPlaces = -1;
                         this.EntradaOtrosGastos.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaOtrosGastos.Location = new System.Drawing.Point(116, 336);
+                        this.EntradaOtrosGastos.Location = new System.Drawing.Point(116, 402);
+                        this.EntradaOtrosGastos.MaxLength = 32767;
                         this.EntradaOtrosGastos.MultiLine = false;
                         this.EntradaOtrosGastos.Name = "EntradaOtrosGastos";
                         this.EntradaOtrosGastos.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaOtrosGastos.PasswordChar = '\0';
+                        this.EntradaOtrosGastos.PlaceholderText = null;
                         this.EntradaOtrosGastos.Prefijo = "$";
+                        this.EntradaOtrosGastos.ReadOnly = false;
                         this.EntradaOtrosGastos.SelectOnFocus = true;
                         this.EntradaOtrosGastos.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaOtrosGastos.Sufijo = "";
                         this.EntradaOtrosGastos.TabIndex = 17;
                         this.EntradaOtrosGastos.Text = "0.00";
                         this.EntradaOtrosGastos.TextChanged += new System.EventHandler(this.RecalcularTotal);
@@ -451,7 +515,8 @@ namespace Lfc.Comprobantes.Compra
                         // label9
                         // 
                         this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label9.Location = new System.Drawing.Point(0, 336);
+                        this.label9.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label9.Location = new System.Drawing.Point(0, 402);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(116, 24);
                         this.label9.TabIndex = 16;
@@ -489,7 +554,7 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.Add(this.Label4);
                         this.MinimumSize = new System.Drawing.Size(640, 400);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(640, 400);
+                        this.Size = new System.Drawing.Size(733, 466);
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.label5, 0);
