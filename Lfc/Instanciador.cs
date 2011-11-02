@@ -72,6 +72,7 @@ namespace Lfc
                                 return InferirFormularioListado(tipo.ToString());
                 }
 
+
                 public static Type InferirFormularioListado(string tipoOTabla)
                 {
                         switch (tipoOTabla) {
@@ -150,9 +151,13 @@ namespace Lfc
                         }
                 }
 
-                public static Lfc.FormularioListado InstanciarFormularioListado(Type tipo)
+                public static Lfc.FormularioListado InstanciarFormularioListado(Type tipo, string args)
                 {
-                        object Res = Activator.CreateInstance(tipo, null);
+                        object Res;
+                        if (args == null || args == string.Empty)
+                                Res = Activator.CreateInstance(tipo);
+                        else
+                                Res = Activator.CreateInstance(tipo, args);
                         return Res as Lfc.FormularioListado;
                 }
 

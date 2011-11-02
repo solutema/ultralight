@@ -252,9 +252,12 @@ namespace Lfc.Comprobantes.Recibos
 
                         }
 
+                        LabelAgregarFacturas.Visible = ListaFacturas.Items.Count == 0;
+                        BotonQuitarFactura.Visible = ListaFacturas.Items.Count > 0;
+
                         if (ListaFacturas.Items.Count > 0 && ListaFacturas.SelectedItems.Count == 0) {
-                                ListaFacturas.Items[0].Selected = true;
-                                ListaFacturas.Items[0].Focused = true;
+                                ListaFacturas.Items[ListaFacturas.Items.Count - 1].Selected = true;
+                                ListaFacturas.Items[ListaFacturas.Items.Count - 1].Focused = true;
                         }
 
                         EtiquetaFacturasImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Facturas.Total - Rec.Facturas.ImporteCancelado, this.Workspace.CurrentConfig.Moneda.Decimales);
@@ -265,6 +268,9 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void BotonFacturasQuitar_Click(object sender, System.EventArgs e)
                 {
+                        if (ListaFacturas.SelectedItems.Count == 0 && ListaFacturas.Items.Count > 0)
+                                ListaFacturas.Items[ListaFacturas.Items.Count].Selected = true;
+
                         if (ListaFacturas.SelectedItems.Count == 0) {
                                 Lui.Forms.MessageBox.Show("Debe seleccionar una factura para quitar.", "Error");
                         } else {
@@ -311,6 +317,7 @@ namespace Lfc.Comprobantes.Recibos
                                 }
                         }
                 }
+
 
                 private void MostrarValores()
                 {
@@ -367,9 +374,12 @@ namespace Lfc.Comprobantes.Recibos
                                 EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Cobros.ImporteTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
 
+                        LabelAgregarValores.Visible = ListaValores.Items.Count == 0;
+                        BotonQuitarValor.Visible = ListaValores.Items.Count > 0;
+
                         if (ListaValores.Items.Count > 0 && ListaValores.SelectedItems.Count == 0) {
-                                ListaValores.Items[0].Selected = true;
-                                ListaValores.Items[0].Focused = true;
+                                ListaValores.Items[ListaValores.Items.Count - 1].Selected = true;
+                                ListaValores.Items[ListaValores.Items.Count - 1].Focused = true;
                         }
 
                         ListaValores.EndUpdate();
@@ -378,6 +388,9 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void BotonValoresQuitar_Click(object sender, System.EventArgs e)
                 {
+                        if (ListaValores.SelectedItems.Count == 0 && ListaValores.Items.Count > 0)
+                                ListaValores.Items[ListaValores.Items.Count - 1].Selected = true;
+
                         if (ListaValores.SelectedItems.Count == 0) {
                                 Lui.Forms.MessageBox.Show("Debe seleccionar un valor para quitar.", "Error");
                         } else {
@@ -486,29 +499,6 @@ namespace Lfc.Comprobantes.Recibos
                 }
 
 
-                private void ListaFacturas_GotFocus(object sender, System.EventArgs e)
-                {
-                        ListaFacturas.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-                }
-
-                private void ListaFacturas_LostFocus(object sender, System.EventArgs e)
-                {
-                        ListaFacturas.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                }
-
-
-                private void ListaValores_GotFocus(object sender, System.EventArgs e)
-                {
-                        ListaValores.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-                }
-
-
-                private void ListaValores_LostFocus(object sender, System.EventArgs e)
-                {
-                        ListaValores.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                }
-
-
                 public override void AfterSave(IDbTransaction transaction)
                 {
                         Lbl.Comprobantes.Recibo Rec = this.Elemento as Lbl.Comprobantes.Recibo;
@@ -519,12 +509,23 @@ namespace Lfc.Comprobantes.Recibos
                         base.AfterSave(transaction);
                 }
 
+
                 public override bool PuedeEditar()
                 {
                         if (this.Elemento.Existe)
                                 return false;
 
                         return base.PuedeEditar();
+                }
+
+                private void LabelAgregarFacturas_Click(object sender, EventArgs e)
+                {
+                        BotonAgregarFactura.PerformClick();
+                }
+
+                private void LabelAgregarValores_Click(object sender, EventArgs e)
+                {
+                        BotonAgregarValor.PerformClick();
                 }
         }
 }

@@ -45,6 +45,12 @@ namespace Lfc.Misc
 
                 public Desduplicar()
                 {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Personas.Persona), Lbl.Sys.Permisos.Operaciones.Administrar) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
+
                         InitializeComponent();
                 }
 

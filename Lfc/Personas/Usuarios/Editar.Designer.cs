@@ -33,19 +33,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lfc.Personas
+namespace Lfc.Personas.Usuarios
 {
-        public partial class Usuario
+        public partial class Editar
         {
-                private Lui.Forms.ComboBox EntradaAcceso;
-                internal Lui.Forms.Label Label6;
-                internal Lui.Forms.Label label1;
-                private Lui.Forms.TextBox EntradaContrasena;
-                private Lui.Forms.ListView Listado;
-                private System.Windows.Forms.ColumnHeader ColCod;
-                private System.Windows.Forms.ColumnHeader ColNombre;
-                private System.ComponentModel.IContainer components = null;
-
                 /// <summary>
                 /// Limpiar los recursos que se estén utilizando.
                 /// </summary>
@@ -237,7 +228,15 @@ namespace Lfc.Personas
 
                 private System.Windows.Forms.ColumnHeader ColNivel;
                 private System.Windows.Forms.ColumnHeader ColItems;
-                internal Lui.Forms.Button BotonAgregar;
-                internal Lui.Forms.Button BotonQuitar;
+                private Lui.Forms.Button BotonAgregar;
+                private Lui.Forms.Button BotonQuitar;
+                private Lui.Forms.ComboBox EntradaAcceso;
+                private Lui.Forms.Label Label6;
+                private Lui.Forms.Label label1;
+                private Lui.Forms.TextBox EntradaContrasena;
+                private Lui.Forms.ListView Listado;
+                private System.Windows.Forms.ColumnHeader ColCod;
+                private System.Windows.Forms.ColumnHeader ColNombre;
+                private System.ComponentModel.IContainer components = null;
         }
 }

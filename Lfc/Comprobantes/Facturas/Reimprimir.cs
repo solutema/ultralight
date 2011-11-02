@@ -44,6 +44,12 @@ namespace Lfc.Comprobantes.Facturas
 
                 public Reimprimir()
                 {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Factura), Lbl.Sys.Permisos.Operaciones.Imprimir) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
+
                         InitializeComponent();
 
                         OkButton.Text = "Reimprimir";

@@ -53,7 +53,6 @@ namespace Lcc.Entrada
         public partial class Campo : ControlEntrada
         {
                 private DbTypes m_FieldType = DbTypes.Text;
-                private string m_Name;
                 //private bool m_SelectOnFocus = true;
 
                 public Campo()
@@ -115,19 +114,6 @@ namespace Lcc.Entrada
                                         FieldData.Text = "";
                                 else
                                         FieldData.Text = value.ToString();
-                        }
-                }
-
-
-                public string FieldName
-                {
-                        get
-                        {
-                                return m_Name;
-                        }
-                        set
-                        {
-                                m_Name = value;
                         }
                 }
 

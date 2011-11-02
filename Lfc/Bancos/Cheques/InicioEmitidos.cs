@@ -29,26 +29,18 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System.ComponentModel;
+using System;
+using System.Collections.Generic;
 
-namespace Lui.Forms
+namespace Lfc.Bancos.Cheques
 {
-        public interface IEditableControl : IControl
+        public class InicioEmitidos : Inicio
         {
-                string FieldName { get; set; }
-
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                bool Changed
+                public InicioEmitidos()
+                        : base()
                 {
-                        get;
-                        set;
-                }
-
-                bool ShowChanged
-                {
-                        set;
+                        this.Definicion.ElementoTipo = typeof(Lbl.Bancos.ChequeEmitido);
+                        this.Emitidos = true;
                 }
         }
 }

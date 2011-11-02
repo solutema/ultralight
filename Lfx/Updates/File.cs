@@ -177,7 +177,6 @@ namespace Lfx.Updates
                                 case CompressionFormats.Bz2:
                                         System.IO.MemoryStream InStr = new System.IO.MemoryStream(this.FileContents);
                                         Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(InStr, Lfx.FileFormats.Compression.ArchiveTypes.BZip2);
-                                        this.Package.Updater.Progress.ChangeStatus("Descomprimiendo " + this.Name);
                                         ArchivoComprimido.Extract(System.IO.File.Create(NewFileName));
                                         break;
                         }

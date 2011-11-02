@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lazaro.WinMain.Reportes
+namespace Lfc.Reportes
 {
         public class IngresosEgresos : Lui.Forms.ChildForm
         {
@@ -67,6 +67,12 @@ namespace Lazaro.WinMain.Reportes
                 public IngresosEgresos()
                         : base()
                 {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Administrar) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
+
                         InitializeComponent();
                 }
 
@@ -1168,7 +1174,7 @@ namespace Lazaro.WinMain.Reportes
 
                 private void ChartButton_Click(object sender, System.EventArgs e)
                 {
-                        Lazaro.WinMain.Reportes.Facturacion ChartFact = new Lazaro.WinMain.Reportes.Facturacion();
+                        Lfc.Reportes.Facturacion ChartFact = new Lfc.Reportes.Facturacion();
                         ChartFact.MdiParent = this.MdiParent;
                         ChartFact.Show();
                 }

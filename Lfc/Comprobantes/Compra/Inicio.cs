@@ -40,12 +40,17 @@ namespace Lfc.Comprobantes.Compra
 {
 	public partial class Inicio : Lfc.FormularioListado
 	{
-                public string m_Tipo = "FP", m_Letra = "*";
+                public string Tipo { get; set; }
+                public string Letra { get; set; }
+
 		public int m_Proveedor, m_Estado = -1;
 		private Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("mes-0");
 
         	public Inicio()
 		{
+                        this.Tipo = "FP";
+                        this.Letra = "*";
+
                         this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteDeCompra),
@@ -81,12 +86,19 @@ namespace Lfc.Comprobantes.Compra
                 }
 
 
+                public Inicio(string comando)
+                        : this()
+                {
+                        this.Tipo = comando;
+                }
+
+
                 public override Lbl.IElementoDeDatos Crear()
                 {
                         Lbl.IElementoDeDatos Res = base.Crear();
                         if (Res is Lbl.Comprobantes.ComprobanteDeCompra) {
                                 Lbl.Comprobantes.ComprobanteDeCompra Comprob = Res as Lbl.Comprobantes.ComprobanteDeCompra;
-                                string Tipo = this.m_Tipo;
+                                string Tipo = this.Tipo;
                                 if (Tipo == "FP")
                                         Tipo = "FA";
                                 Comprob.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[Tipo];
@@ -135,8 +147,8 @@ namespace Lfc.Comprobantes.Compra
 		{
 			Lfc.Comprobantes.Compra.Listado OFormListado = new Lfc.Comprobantes.Compra.Listado();
                         OFormListado.MdiParent = this.MdiParent;
-			OFormListado.m_Tipo = m_Tipo;
-                        OFormListado.m_Tipo = m_Letra;
+                        OFormListado.m_Tipo = this.Tipo;
+                        OFormListado.m_Tipo = this.Letra;
 			OFormListado.m_Proveedor = m_Proveedor;
 			OFormListado.m_Fecha = m_Fecha;
 			OFormListado.Show();
@@ -153,13 +165,13 @@ namespace Lfc.Comprobantes.Compra
 			{
                                 using (Lfc.Comprobantes.Compra.Filtros FormFiltros = new Lfc.Comprobantes.Compra.Filtros()) {
                                         FormFiltros.Connection = this.Connection;
-                                        FormFiltros.EntradaTipo.TextKey = m_Tipo;
+                                        FormFiltros.EntradaTipo.TextKey = Tipo;
                                         FormFiltros.EntradaProveedor.Text = m_Proveedor.ToString();
                                         FormFiltros.EntradaFechas.Rango = m_Fecha;
                                         FormFiltros.EntradaEstado.TextKey = m_Estado.ToString();
                                         FormFiltros.ShowDialog();
                                         if (FormFiltros.DialogResult == DialogResult.OK) {
-                                                m_Tipo = FormFiltros.EntradaTipo.TextKey;
+                                                Tipo = FormFiltros.EntradaTipo.TextKey;
                                                 m_Proveedor = FormFiltros.EntradaProveedor.TextInt;
                                                 m_Fecha = FormFiltros.EntradaFechas.Rango;
                                                 m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
@@ -177,7 +189,7 @@ namespace Lfc.Comprobantes.Compra
                 {
                         this.CustomFilters.Clear();
                         this.CustomFilters.AddWithValue("compra", 1);
-                        switch (m_Tipo) {
+                        switch (Tipo) {
                                 case "NP":
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac", "NP");
                                         if (m_Estado == -1)
@@ -200,7 +212,7 @@ namespace Lfc.Comprobantes.Compra
                                 case "FC":
                                 case "FE":
                                 case "FM":
-                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", m_Tipo);
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", Tipo);
                                         break;
                                 default:
                                         // Nada
@@ -215,19 +227,6 @@ namespace Lfc.Comprobantes.Compra
 
                         if (m_Fecha.HasRange)
                                 this.CustomFilters.AddWithValue("(comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
-                }
-
-
-                public string Tipo
-                {
-                        get
-                        {
-                                return m_Tipo;
-                        }
-                        set
-                        {
-                                m_Tipo = value;
-                        }
                 }
 	}
 }

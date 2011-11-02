@@ -35,7 +35,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lfc.Cupones.Cupones
+namespace Lfc.Tarjetas.Cupones
 {
         public partial class Inicio : Lfc.FormularioListado
         {
@@ -90,7 +90,7 @@ namespace Lfc.Cupones.Cupones
 
                 public override Lfx.Types.OperationResult OnFilter()
                 {
-                        using (Lfc.Cupones.Cupones.Filtros FormFiltros = new Lfc.Cupones.Cupones.Filtros()) {
+                        using (Lfc.Tarjetas.Cupones.Filtros FormFiltros = new Lfc.Tarjetas.Cupones.Filtros()) {
                                 FormFiltros.Connection = this.Connection;
                                 FormFiltros.EntradaFormaDePago.Text = m_FormaDePago.ToString();
                                 FormFiltros.EntradaPlan.Text = m_Plan.ToString();
@@ -167,7 +167,7 @@ namespace Lfc.Cupones.Cupones
                                 return;
                         }
 
-                        using (Lfc.Cupones.Cupones.Acreditar FormularioAcreditacion = new Lfc.Cupones.Cupones.Acreditar()) {
+                        using (Lfc.Tarjetas.Cupones.Acreditar FormularioAcreditacion = new Lfc.Tarjetas.Cupones.Acreditar()) {
                                 Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Acreditando Cupones", "Se están marcando los cupones seleccionados como 'Acreditado'.");
 
                                 decimal Total = 0;

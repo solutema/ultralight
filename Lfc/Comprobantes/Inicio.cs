@@ -38,14 +38,18 @@ namespace Lfc.Comprobantes
 {
         public partial class Inicio : Lfc.FormularioListado
         {
-                protected internal string m_Letra = "*";
                 protected internal Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("mes-0");
                 protected internal string m_Estado = "0";
                 protected internal int m_Sucursal, m_FormaPago, m_Cliente, m_Vendedor, m_Anuladas = 1, m_PV = 0;
                 protected internal decimal m_MontoDesde = 0, m_MontoHasta = 0;
 
+
+                public string Letra { get; set; }
+
                 public Inicio()
                 {
+                        this.Letra = "*";
+
                         this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteConArticulos),
@@ -87,16 +91,11 @@ namespace Lfc.Comprobantes
                                 m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
                 }
 
-                public string Letra
+
+                public Inicio(string comando)
+                        : this()
                 {
-                        get
-                        {
-                                return m_Letra;
-                        }
-                        set
-                        {
-                                m_Letra = value;
-                        }
+                        this.Letra = comando;
                 }
 
 
@@ -109,7 +108,7 @@ namespace Lfc.Comprobantes
                                         FormFiltros.Connection = this.Connection;
                                         FormFiltros.EntradaTipo.TextKey = this.Definicion.ElementoTipo.ToString();
                                         FormFiltros.EntradaPv.Text = m_PV.ToString();
-                                        FormFiltros.EntradaLetra.TextKey = m_Letra;
+                                        FormFiltros.EntradaLetra.TextKey = Letra;
                                         FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
                                         FormFiltros.EntradaFormaPago.TextInt = m_FormaPago;
                                         FormFiltros.EntradaCliente.TextInt = m_Cliente;
@@ -134,7 +133,7 @@ namespace Lfc.Comprobantes
                                                 m_MontoDesde = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoDesde.Text);
                                                 m_MontoHasta = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoHasta.Text);
                                                 this.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(FormFiltros.EntradaTipo.TextKey);
-                                                m_Letra = FormFiltros.EntradaLetra.TextKey;
+                                                Letra = FormFiltros.EntradaLetra.TextKey;
 
                                                 this.RefreshList();
                                                 ResultadoFiltrar.Success = true;
@@ -181,34 +180,26 @@ namespace Lfc.Comprobantes
                         switch (this.Definicion.ElementoTipo.ToString()) {
                                 case "Lbl.Comprobantes.NotaDeCredito":
                                         this.Definicion.Columns["pendiente"].Visible = true;
-                                        if (m_Letra == "*")
+                                        if (Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "NCA", "NCB", "NCC", "NCE", "NCM" });
                                         else
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", "NC" + m_Letra);
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", "NC" + Letra);
                                         break;
 
                                 case "Lbl.Comprobantes.NotaDeDebito":
                                         this.Definicion.Columns["pendiente"].Visible = true;
-                                        if (m_Letra == "*")
+                                        if (Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "NDA", "NDB", "NDC", "NDE", "NDM" });
                                         else
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", "ND" + m_Letra);
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", "ND" + Letra);
                                         break;
 
                                 case "Lbl.Comprobantes.Factura":
                                         this.Definicion.Columns["pendiente"].Visible = true;
-                                        if (m_Letra == "*")
+                                        if (Letra == "*")
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM" });
                                         else
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", "F" + m_Letra);
-                                        break;
-
-                                case "Lbl.Comprobantes.ComprobanteFacturable":
-                                        this.Definicion.Columns["pendiente"].Visible = true;
-                                        if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM", "NCA", "NCB", "NCC", "NCE", "NCM", "NDA", "NDB", "NDC", "NDE", "NDM" });
-                                        else
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "F" + m_Letra, "NC" + m_Letra, "ND" + m_Letra});
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", "F" + Letra);
                                         break;
 
                                 case "Lbl.Comprobantes.Presupuesto":
@@ -226,8 +217,14 @@ namespace Lfc.Comprobantes
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac", "T");
                                         break;
 
+                                case "Lbl.Comprobantes.ComprobanteFacturable":
                                 default:
-                                        throw new NotImplementedException("No se reconoce el tipo de comprobante " + this.Definicion.ElementoTipo.ToString());
+                                        this.Definicion.Columns["pendiente"].Visible = true;
+                                        if (Letra == "*")
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM", "NCA", "NCB", "NCC", "NCE", "NCM", "NDA", "NDB", "NDC", "NDE", "NDM" });
+                                        else
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "F" + Letra, "NC" + Letra, "ND" + Letra });
+                                        break;
                         }
 
                         if (m_Vendedor > 0)

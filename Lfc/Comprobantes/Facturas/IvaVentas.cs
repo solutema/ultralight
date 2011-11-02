@@ -41,6 +41,12 @@ namespace Lfc.Comprobantes.Facturas
 
                 public IvaVentas()
                 {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Factura), Lbl.Sys.Permisos.Operaciones.Listar) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
+
                         this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteFacturable),

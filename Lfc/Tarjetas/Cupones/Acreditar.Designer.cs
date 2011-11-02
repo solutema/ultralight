@@ -34,7 +34,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Text;
 
-namespace Lfc.Cupones.Cupones
+namespace Lfc.Tarjetas.Cupones
 {
         public partial class Acreditar
         {

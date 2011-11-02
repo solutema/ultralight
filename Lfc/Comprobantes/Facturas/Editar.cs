@@ -203,6 +203,9 @@ namespace Lfc.Comprobantes.Facturas
 
                         Comprob.Cliente.Cargar();
 
+                        if (Comprob.FormaDePago == null)
+                                return new Lfx.Types.FailureOperationResult("Debe especificar la Forma de Pago.");
+
                         if (Comprob.Cliente == null)
                                 return new Lfx.Types.FailureOperationResult("Debe proporcionar un Cliente válido.");
 

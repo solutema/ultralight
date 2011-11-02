@@ -311,7 +311,7 @@ namespace Lfc.Bancos.Cheques
                         int IdCajaOrigen = 0;
                         List<string> Cheques = new List<string>();
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
-                                if (itm.Checked && (itm.SubItems["estado"].Text == "A pagar")) {
+                                if (itm.Checked && (itm.SubItems["bancos_cheques.estado"].Text == "A pagar")) {
                                         Cheques.Add(itm.Text);
                                         if (IdCajaOrigen == 0)
                                                 IdCajaOrigen = this.Connection.FieldInt("SELECT id_caja FROM chequeras WHERE (SELECT numero FROM bancos_cheques WHERE id_cheque=" + itm.Text + ") BETWEEN desde AND hasta AND estado=1");

@@ -30,10 +30,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lfc.Cajas
@@ -48,9 +46,13 @@ namespace Lfc.Cajas
 
                 public Movimientos()
                 {
-                        InitializeComponent();
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Ver) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
 
-                        this.Fechas = new Lfx.Types.DateRange("dia-0");
+                        InitializeComponent();
 
                         this.Definicion = new Lfx.Data.Listing()
                         {
@@ -105,8 +107,41 @@ namespace Lfc.Cajas
                         if (this.HasWorkspace) {
                                 this.Caja = new Lbl.Cajas.Caja(this.Connection, 999);
                         }
-                        
+
+                        this.Fechas = new Lfx.Types.DateRange("dia-0");
+
                         this.HabilitarFiltrar = true;
+                }
+
+
+                public Movimientos(string comando)
+                        : this()
+                {
+                        if(comando == "efectivo") {
+                                this.Caja = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.CajaDiaria;
+                        } else {
+                                int NumeroCaja = Lfx.Types.Parsing.ParseInt(comando);
+                                if(NumeroCaja > 0)
+                                        this.Caja = new Lbl.Cajas.Caja(this.Connection, NumeroCaja);
+                        }
+
+                        if (this.Caja != null) {
+                                // Busco un rango de fechas en el cual haya movimientos
+                                string[] FechasAProbar = new string[] { "dia-0", "semana-0", "mes-0", "mes-1", "mes-2", "mes-3", "mes-4" };
+                                foreach (string FechaAProbar in FechasAProbar) {
+                                        Lfx.Types.DateRange Rango = new Lfx.Types.DateRange(FechaAProbar);
+                                        qGen.Select SelMovs = new qGen.Select("cajas_movim");
+                                        SelMovs.Fields = "COUNT(id_movim)";
+                                        SelMovs.WhereClause = new qGen.Where("id_caja", this.Caja.Id);
+                                        SelMovs.WhereClause.AddWithValue("fecha", Rango.From, Rango.To);
+                                        int Movs = this.Connection.FieldInt(SelMovs);
+
+                                        if (Movs > 0) {
+                                                this.Fechas = Rango;
+                                                break;
+                                        }
+                                }
+                        }
                 }
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
@@ -209,7 +244,6 @@ namespace Lfc.Cajas
                         TipoConcepto = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["conceptos.grupo"].Value.ToString());
                         Direccion = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["conceptos.es"].Value.ToString());
                         this.Fechas = this.Definicion.Filters["cajas_movim.fecha"].Value as Lfx.Types.DateRange;
-
 
                         BotonArqueo.Visible = !(this.Caja == null || this.Cliente != null || Concepto != null || Direccion != 0 || this.Fechas.To < System.DateTime.Now);
 

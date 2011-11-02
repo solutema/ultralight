@@ -43,10 +43,8 @@ namespace Lbl
         [Serializable]
         public abstract class ElementoDeDatos : System.MarshalByRefObject, IElementoDeDatos
 	{
-                [DefaultValue(null)]
                 public Lfx.Data.Connection Connection { get; set; }
 
-                [DefaultValue(null)]
                 public object Tag { get; set; }
 
 		protected int m_ItemId = 0;

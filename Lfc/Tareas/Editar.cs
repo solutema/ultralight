@@ -198,6 +198,13 @@ namespace Lfc.Tareas
 
                 private void BotonFacturar_Click(object sender, System.EventArgs e)
                 {
+                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea guardar los cambios realizados y generar una factura a partir de esta tarea?", "Facturar");
+                        if (Pregunta.ShowDialog() != DialogResult.OK)
+                                return;
+
+                        if (EntradaEstado.TextInt < 50)
+                                EntradaEstado.TextInt = 50;
+
                         Lfx.Types.OperationResult Res = this.Save();
                         if (Res.Success == false) {
                                 if (Res.Message != null)
@@ -205,19 +212,23 @@ namespace Lfc.Tareas
                                 return;
                         }
 
-                        Lbl.Comprobantes.ComprobanteFacturable Factura;
+                        Lbl.Comprobantes.Factura Factura;
 
                         int ComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
-                        bool ComprobanteAnulado = System.Convert.ToBoolean(this.Connection.FieldInt("SELECT anulada FROM comprob WHERE id_comprob=" + ComprobanteId.ToString()));
+                        bool ComprobanteAnulado;
+                        if (ComprobanteId > 0)
+                                ComprobanteAnulado = System.Convert.ToBoolean(this.Connection.FieldInt("SELECT anulada FROM comprob WHERE id_comprob=" + ComprobanteId.ToString()));
+                        else
+                                ComprobanteAnulado = false;
 
                         if (ComprobanteId > 0 && ComprobanteAnulado == false) {
                                 // Ya tiene un comprobante, pero fue anulado
-                                Factura = new Lbl.Comprobantes.ComprobanteFacturable(this.Connection, ComprobanteId);
+                                Factura = new Lbl.Comprobantes.Factura(this.Connection, ComprobanteId);
                         } else {
                                 // No tiene comprobante, lo creo
-                                EntradaEstado.Text = "50";
+                                EntradaEstado.TextInt = 50;
 
-                                Factura = new Lbl.Comprobantes.ComprobanteFacturable(this.Connection);
+                                Factura = new Lbl.Comprobantes.Factura(this.Connection);
 
                                 Factura.Crear();
                                 Factura.Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;

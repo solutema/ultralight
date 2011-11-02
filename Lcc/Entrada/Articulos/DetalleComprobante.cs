@@ -82,7 +82,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 override public bool ShowChanged
                 {
                         set
@@ -361,7 +361,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public decimal Importe
                 {
                         get
@@ -375,7 +375,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public decimal Unitario
                 {
                         get
@@ -389,7 +389,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lbl.Articulos.Articulo Articulo
                 {
                         get
@@ -403,7 +403,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public decimal Cantidad
                 {
                         get

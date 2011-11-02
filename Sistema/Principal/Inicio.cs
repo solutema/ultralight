@@ -370,98 +370,6 @@ namespace Lazaro.WinMain.Principal
                         MenuItemInfoTable = new Dictionary<string, MenuItemInfo>();
                         Aplicacion.FormularioPrincipal.MainMenu.MenuItems.Clear();
 
-                        // Creo el menú del sistema
-                        MenuItem ItmSistema = new MenuItem("&Sistema", new System.EventHandler(MnuClick));
-                        MenuItemInfo ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmSistema;
-                        ItmInfo.Funcion = "";
-                        ItmInfo.ParentText = "Menu".QuitarAcentos();
-                        ItmInfo.Text = ItmSistema.Text.QuitarAcentos();
-                        AgregarAlMenu(Aplicacion.FormularioPrincipal.MainMenu, ItmSistema, ItmInfo);
-
-                        MenuItem ItmTmp = null;
-
-                        // Creo la opción de Acerca de ...
-                        ItmTmp = new MenuItem("&Acerca de Lázaro", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "VER";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
-                        // Creo la opción de Calculadora ...
-                        ItmTmp = new MenuItem("&Calculadora", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "CALC";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
-                        // Creo la opción de Fiscal
-                        ItmTmp = new MenuItem("&Fiscal", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "FISCAL PANEL";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
-                        // Creo la opción de Copia de Respaldo
-                        ItmTmp = new MenuItem("&Copia de Respaldo", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "BACKUP MANAGER";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
-                        // Creo la opción de Preferencias
-                        ItmTmp = new MenuItem("&Preferencias", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "CONFIG";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
-                        // Creo la opción de Usuarios
-                        ItmTmp = new MenuItem("&Usuarios", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "ACCESSMGR";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
-                        // Creo la opción de Cambiar Contraseña
-                        ItmTmp = new MenuItem("&Cambiar Contraseña", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "CHANGEPWD";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
-                        // Separador
-                        ItmTmp = new MenuItem("-", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
-                        // Salir
-                        ItmTmp = new MenuItem("&Salir", new System.EventHandler(MnuClick));
-                        ItmInfo = new MenuItemInfo();
-                        ItmInfo.Item = ItmTmp;
-                        ItmInfo.Funcion = "QUIT";
-                        ItmInfo.ParentText = "Menu.&Sistema".QuitarAcentos();
-                        ItmInfo.Text = ItmTmp.Text.QuitarAcentos();
-                        AgregarAlMenu(ItmSistema, ItmTmp, ItmInfo);
-
                         System.Xml.XmlDocument MenuXml = new XmlDocument();
                         MenuXml.Load(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Lazaro.Principal.menu.xml"));
 
@@ -498,12 +406,12 @@ namespace Lazaro.WinMain.Principal
                                                         MenuItem ItmH = new MenuItem(Caja["nombre"].ToString(), new System.EventHandler(MnuClick));
                                                         MenuItemInfo ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
-                                                        ItmInfoH.Funcion = "CAJA " + Caja["id_caja"].ToString();
+                                                        ItmInfoH.Funcion = "INSTANCIAR Lfc.Cajas.Movimientos " + Caja["id_caja"].ToString();
                                                         ItmInfoH.ParentText = ItmInfo.Text;
                                                         ItmInfoH.Text = System.Convert.ToString(Caja["nombre"]).QuitarAcentos();
                                                         AgregarAlMenu(Itm, ItmH, ItmInfoH);
                                                 }
-                                        } else if (ItmInfo.Funcion == "LISTADO TICKETS") {
+                                        } else if (ItmInfo.Funcion == "LISTAR Lbl.Tareas.Tarea") {
                                                 MenuItem ItmH = null;
                                                 MenuItemInfo ItmInfoH = new MenuItemInfo();
                                                 DataTable Tipos = this.Workspace.MasterConnection.Select("SELECT id_tipo_ticket, nombre FROM tickets_tipos ORDER BY nombre");
@@ -512,7 +420,7 @@ namespace Lazaro.WinMain.Principal
                                                         ItmH = new MenuItem("Todos", new System.EventHandler(MnuClick));
                                                         ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
-                                                        ItmInfoH.Funcion = "LISTADO TICKETS";
+                                                        ItmInfoH.Funcion = "LISTAR Lbl.Tareas.Tarea";
                                                         ItmInfoH.ParentText = ItmInfo.Text;
                                                         ItmInfoH.Text = "Todos".QuitarAcentos();
                                                         AgregarAlMenu(Itm, ItmH, ItmInfoH);
@@ -522,7 +430,7 @@ namespace Lazaro.WinMain.Principal
                                                         ItmH = new MenuItem(Tipo["nombre"].ToString(), new System.EventHandler(MnuClick));
                                                         ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
-                                                        ItmInfoH.Funcion = "LISTADO TICKETS " + Tipo["id_tipo_ticket"].ToString();
+                                                        ItmInfoH.Funcion = "LISTAR Lbl.Tareas.Tarea " + Tipo["id_tipo_ticket"].ToString();
                                                         ItmInfoH.ParentText = ItmInfo.Text;
                                                         ItmInfoH.Text = Tipo["nombre"].ToString().QuitarAcentos();
 
@@ -643,7 +551,37 @@ namespace Lazaro.WinMain.Principal
                         int Hits = this.Workspace.CurrentConfig.ReadLocalSettingInt("MenuStats", ItmInfo.FullPath, 0);
                         this.Workspace.CurrentConfig.WriteLocalSetting("MenuStats", ItmInfo.FullPath, Hits + 1);
 
-                        Aplicacion.Exec(ItmInfo.Funcion);
+                        object Res = Aplicacion.Exec(ItmInfo.Funcion);
+                        this.ProcesarObjeto(Res);
+                }
+
+
+                public void ProcesarObjeto(object obj)
+                {
+                        if (obj is Lfx.Types.OperationResult) {
+                                Lfx.Types.OperationResult ResOp = obj as Lfx.Types.OperationResult;
+                                if (ResOp.Success == false && ResOp.Message != null)
+                                        Lfx.Workspace.Master.RunTime.Toast(ResOp.Message, "Error");
+                        } else if (obj is System.Windows.Forms.Form) {
+                                System.Windows.Forms.Form ResForm = obj as System.Windows.Forms.Form;
+
+                                if (Aplicacion.Flotante) {
+                                        ResForm.WindowState = Aplicacion.FormularioPrincipal.WindowState;
+                                        ResForm.Owner = Aplicacion.FormularioPrincipal;
+                                } else {
+                                        ResForm.MdiParent = Aplicacion.FormularioPrincipal;
+                                }
+
+                                if (ResForm.DialogResult == System.Windows.Forms.DialogResult.Abort) {
+                                        Lfx.Workspace.Master.RunTime.Toast("No se puede tener acceso al formulario.", "Error");
+                                        ResForm.Dispose();
+                                } else {
+                                        ResForm.Show();
+                                        ResForm.BringToFront();
+                                }
+                        } else if (obj != null) {
+                                Lfx.Workspace.Master.RunTime.Toast("La operación devolvió un objeto tipo " + obj.GetType().ToString(), "Aviso");
+                        }
                 }
 
                 public Lfx.Workspace Workspace

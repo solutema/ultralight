@@ -204,7 +204,7 @@ namespace Lazaro.WinMain.Misc.Config
 
                 private void BotonWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/17");
+                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/19");
                 }
 
         }

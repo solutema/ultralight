@@ -35,6 +35,8 @@ namespace Lui.Forms
 {
         public class EditableControl : Control, IEditableControl
         {
+                public string FieldName { get; set; }
+
                 /// <summary>
                 /// IDataControl
                 /// </summary>
@@ -56,7 +58,7 @@ namespace Lui.Forms
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+                [EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
                 public override string Text
                 {
                         get

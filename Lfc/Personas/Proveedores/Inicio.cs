@@ -29,26 +29,25 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System.ComponentModel;
+using System;
+using System.Collections.Generic;
 
-namespace Lui.Forms
+namespace Lfc.Personas.Proveedores
 {
-        public interface IEditableControl : IControl
+        public class Inicio : Lfc.Personas.Inicio
         {
-                string FieldName { get; set; }
-
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                bool Changed
+                public Inicio()
+                        : base()
                 {
-                        get;
-                        set;
+                        this.Definicion.ElementoTipo = typeof(Lbl.Personas.Proveedor);
+                        this.Tipo = 2;
                 }
 
-                bool ShowChanged
+                public Inicio(string comand)
+                        : base(comand)
                 {
-                        set;
+                        this.Definicion.ElementoTipo = typeof(Lbl.Personas.Proveedor);
+                        this.Tipo = 2;
                 }
         }
 }

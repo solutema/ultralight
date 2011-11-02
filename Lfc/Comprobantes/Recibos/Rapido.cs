@@ -43,6 +43,12 @@ namespace Lfc.Comprobantes.Recibos
 	{
 		public Rapido()
 		{
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Recibo), Lbl.Sys.Permisos.Operaciones.Crear) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
+
 			InitializeComponent();
 		}
 

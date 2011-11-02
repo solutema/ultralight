@@ -43,11 +43,23 @@ namespace Lfc.Comprobantes.Recibos
         {
                 public Anular()
                 {
-                        InitializeComponent();
-
-                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ColeccionComprobanteConArticulos), Lbl.Sys.Permisos.Operaciones.Eliminar) == false)
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Recibo), Lbl.Sys.Permisos.Operaciones.Eliminar) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
                                 this.Close();
+                        }
+
+                        InitializeComponent();
                 }
+
+
+                public Anular(string comando)
+                        : this()
+                {
+                        int IdRecibo = Lfx.Types.Parsing.ParseInt(comando);
+                        if (IdRecibo > 0)
+                                this.Cargar(IdRecibo);
+                }
+
 
                 public void Cargar(int idRecibo)
                 {
@@ -84,7 +96,6 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void EntradaNumeroTipoPV(object sender, EventArgs e)
                 {
-
                         int Numero = EntradaNumero.ValueInt; ;
                         int PV = EntradaPV.ValueInt;
 

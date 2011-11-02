@@ -32,13 +32,13 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Lfc.Personas
+namespace Lfc.Personas.Usuarios
 {
-	public partial class Usuario : Lcc.Edicion.ControlEdicion
+	public partial class Editar : Lcc.Edicion.ControlEdicion
 	{
                 private int TipoOriginal = 0;
 
-                public Usuario()
+                public Editar()
                 {
                         ElementoTipo = typeof(Lbl.Personas.Usuario);
 

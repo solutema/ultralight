@@ -36,7 +36,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lfc.Cupones.Cupones
+namespace Lfc.Tarjetas.Cupones
 {
         public partial class Acreditar : Lui.Forms.DialogForm
         {

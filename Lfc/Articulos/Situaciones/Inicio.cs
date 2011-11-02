@@ -52,11 +52,18 @@ namespace Lfc.Articulos.Situaciones
 				        new Lfx.Data.FormField("articulos_situaciones.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
                                         new Lfx.Data.FormField("articulos_situaciones.cuenta_stock", "Suma Stock", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
 				        new Lfx.Data.FormField("articulos_situaciones.facturable", "Facturable", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
-				        new Lfx.Data.FormField("articulos_situaciones.deposito", "Depósito", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lfx.Data.FormField("articulos_situaciones.deposito", "Depósito", Lfx.Data.InputFieldTypes.Integer, 96),
 			        },
                         };
 
                         this.HabilitarFiltrar = false;
+                }
+
+                protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
+                {
+                        if(row.Fields["articulos_situaciones.deposito"].ValueInt == 0)
+                                item.SubItems["articulos_situaciones.deposito"].Text = "No";
+                        base.OnItemAdded(item, row);
                 }
         }
 }

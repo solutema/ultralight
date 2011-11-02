@@ -77,6 +77,8 @@
     <Compile Include="Atributos\MuestraMensajeAlCrear.cs" />
     <Compile Include="Atributos\MuestraPanelExtendido.cs" />
     <Compile Include="Atributos\NombreItem.cs" />
+    <Compile Include="Bancos\ChequeEmitido.cs" />
+    <Compile Include="Bancos\ChequeRecibido.cs" />
     <Compile Include="ColeccionCodigoDetalle.cs" />
     <Compile Include="Componentes\Componente.cs" />
     <Compile Include="Comprobantes\Factura.cs" />

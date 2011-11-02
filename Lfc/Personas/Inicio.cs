@@ -37,14 +37,22 @@ namespace Lfc.Personas
 {
         public partial class Inicio : Lfc.FormularioListado
         {
-                public int m_Tipo;
-                private int m_Localidad, m_Grupo, m_SubGrupo, m_Situacion, m_EstadoCredito = -1, m_Estado = 1;
+                public int Tipo { get; set; }
+                public int Grupo { get; set; }
+                public int Localidad {get;set;}
+                public int SubGrupo { get; set; }
+                public int Situacion { get; set; }
+                public int EstadoCredito { get; set; }
+                public int Estado { get; set; }
 
                 private string m_FechaAUsar = "fechaalta";
                 private Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("*");
 
                 public Inicio()
                 {
+                        this.Estado = 1;
+                        this.EstadoCredito = -1;
+
                         this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Personas.Persona),
@@ -81,6 +89,14 @@ namespace Lfc.Personas
                         this.HabilitarFiltrar = true;
                 }
 
+
+                public Inicio(string comando)
+                        : this()
+                {
+                        this.Grupo = Lfx.Types.Parsing.ParseInt(comando);
+                }
+
+
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
                         base.OnItemAdded(item, row);
@@ -104,7 +120,7 @@ namespace Lfc.Personas
 
                 protected override void OnBeginRefreshList()
                 {
-                        switch (m_Tipo) {
+                        switch (Tipo) {
                                 case 1:
                                         this.Text = "Clientes: Listado";
                                         break;
@@ -118,26 +134,26 @@ namespace Lfc.Personas
 
                         this.CustomFilters.Clear();
 
-                        if (m_Tipo > 0)
-                                this.CustomFilters.AddWithValue("(personas.tipo&" + m_Tipo.ToString() + "=" + m_Tipo.ToString() + " OR personas.tipo=0)");
+                        if (Tipo > 0)
+                                this.CustomFilters.AddWithValue("(personas.tipo&" + Tipo.ToString() + "=" + Tipo.ToString() + " OR personas.tipo=0)");
 
-                        if (m_SubGrupo > 0)
-                                this.CustomFilters.AddWithValue("personas.id_subgrupo", m_SubGrupo);
-                        else if (m_Grupo > 0)
-                                this.CustomFilters.AddWithValue("personas.id_grupo", m_Grupo);
+                        if (SubGrupo > 0)
+                                this.CustomFilters.AddWithValue("personas.id_subgrupo", SubGrupo);
+                        else if (Grupo > 0)
+                                this.CustomFilters.AddWithValue("personas.id_grupo", Grupo);
 
-                        if (m_Situacion > 0)
-                                this.CustomFilters.AddWithValue("personas.id_situacion", m_Situacion);
+                        if (Situacion > 0)
+                                this.CustomFilters.AddWithValue("personas.id_situacion", Situacion);
 
-                        if (m_EstadoCredito >= 0)
-                                this.CustomFilters.AddWithValue("personas.estadocredito", m_EstadoCredito);
+                        if (EstadoCredito >= 0)
+                                this.CustomFilters.AddWithValue("personas.estadocredito", EstadoCredito);
 
-                        if (m_Localidad > 0)
-                                this.CustomFilters.AddWithValue("(personas.id_ciudad=" + m_Localidad.ToString() + " OR personas.id_ciudad IS NULL)");
+                        if (Localidad > 0)
+                                this.CustomFilters.AddWithValue("(personas.id_ciudad=" + Localidad.ToString() + " OR personas.id_ciudad IS NULL)");
 
-                        if (m_Estado >= 0 && this.SearchText == null)
+                        if (Estado >= 0 && this.SearchText == null)
                                 // Sólo filtro por estado si no estoy buscando
-                                this.CustomFilters.AddWithValue("personas.estado", m_Estado);
+                                this.CustomFilters.AddWithValue("personas.estado", Estado);
 
                         if (m_Fechas.HasRange)
                                 this.CustomFilters.AddWithValue(m_FechaAUsar, m_Fechas.From, m_Fechas.To);
@@ -150,13 +166,13 @@ namespace Lfc.Personas
                 {
                         using (Lfc.Personas.Filtros FormFiltros = new Lfc.Personas.Filtros()) {
                                 FormFiltros.Connection = this.Connection;
-                                FormFiltros.EntradaTipo.TextInt = m_Tipo;
-                                FormFiltros.EntradaSituacion.TextInt = m_Situacion;
-                                FormFiltros.EntradaGrupo.TextInt = m_Grupo;
-                                FormFiltros.EntradaSubGrupo.TextInt = m_SubGrupo;
-                                FormFiltros.EntradaLocalidad.TextInt = m_Localidad;
-                                FormFiltros.EntradaEstado.TextKey = m_Estado.ToString();
-                                FormFiltros.EntradaEstadoCredito.TextKey = m_EstadoCredito.ToString();
+                                FormFiltros.EntradaTipo.TextInt = Tipo;
+                                FormFiltros.EntradaSituacion.TextInt = Situacion;
+                                FormFiltros.EntradaGrupo.TextInt = Grupo;
+                                FormFiltros.EntradaSubGrupo.TextInt = SubGrupo;
+                                FormFiltros.EntradaLocalidad.TextInt = Localidad;
+                                FormFiltros.EntradaEstado.TextKey = Estado.ToString();
+                                FormFiltros.EntradaEstadoCredito.TextKey = EstadoCredito.ToString();
                                 FormFiltros.EntradaFechaAUsar.TextKey = m_FechaAUsar;
                                 FormFiltros.EntradaFechas.Rango = m_Fechas;
 
@@ -177,13 +193,13 @@ namespace Lfc.Personas
                                         FormFiltros.EntradaEtiquetas.TextKey = this.Labels[0].ToString();
 
                                 if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                        m_Tipo = FormFiltros.EntradaTipo.TextInt;
-                                        m_Situacion = FormFiltros.EntradaSituacion.TextInt;
-                                        m_Grupo = FormFiltros.EntradaGrupo.TextInt;
-                                        m_SubGrupo = FormFiltros.EntradaSubGrupo.TextInt;
-                                        m_Localidad = FormFiltros.EntradaLocalidad.TextInt;
-                                        m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
-                                        m_EstadoCredito = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstadoCredito.TextKey);
+                                        Tipo = FormFiltros.EntradaTipo.TextInt;
+                                        Situacion = FormFiltros.EntradaSituacion.TextInt;
+                                        Grupo = FormFiltros.EntradaGrupo.TextInt;
+                                        SubGrupo = FormFiltros.EntradaSubGrupo.TextInt;
+                                        Localidad = FormFiltros.EntradaLocalidad.TextInt;
+                                        Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
+                                        EstadoCredito = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstadoCredito.TextKey);
                                         if (FormFiltros.EntradaEtiquetas.TextKey == "0")
                                                 this.Labels = null;
                                         else

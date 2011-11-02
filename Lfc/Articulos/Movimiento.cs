@@ -42,6 +42,12 @@ namespace Lfc.Articulos
         {
                 public Movimiento()
                 {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Articulos.Articulo), Lbl.Sys.Permisos.Operaciones.Mover) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
+
                         InitializeComponent();
                 }
 

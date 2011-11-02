@@ -72,7 +72,6 @@ namespace Lui.Forms
 
 		[EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
-                        DefaultValue(""),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public virtual string ErrorText
 		{
@@ -88,7 +87,7 @@ namespace Lui.Forms
 		}
 
 
-		[EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		[EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 		public override string Text
 		{
 			get
@@ -246,7 +245,6 @@ namespace Lui.Forms
 
 		[EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
-                        DefaultValue(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		virtual public bool ShowChanged
 		{

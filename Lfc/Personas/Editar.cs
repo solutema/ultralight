@@ -271,7 +271,7 @@ namespace Lfc.Personas
                         //EntradaTags.Enabled = PermitirEdicionAvanzada;
 
                         EntradaEstado.Enabled = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
-                        BotonAcceso.Visible = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
+                        BotonAcceso.Visible = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Administrar);
 
                         base.ActualizarControl();
                 }
@@ -326,8 +326,14 @@ namespace Lfc.Personas
                         if (this.Elemento.Existe == false) {
                                 Lui.Forms.MessageBox.Show("No puede editar el acceso del usuario porque aun no ha sido guardado.", "Error");
                         } else {
-                                if (Lui.LogOn.LogOnData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar))
-                                        this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
+                                if (Lui.LogOn.LogOnData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar)) {
+                                        object Res = this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
+                                        if (Res is System.Windows.Forms.Form) {
+                                                System.Windows.Forms.Form ResForm = Res as System.Windows.Forms.Form;
+                                                ResForm.MdiParent = this.ParentForm.MdiParent;
+                                                ResForm.Show();
+                                        }
+                                }
                         }
                 }
 

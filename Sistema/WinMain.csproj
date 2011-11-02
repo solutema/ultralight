@@ -161,9 +161,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Facturacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Aplicacion.cs" />
     <Compile Include="Principal\BarraInferior.cs">
       <SubType>UserControl</SubType>
@@ -207,15 +204,6 @@
     <Compile Include="Misc\Ingreso.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reportes\IngresosEgresos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\Patrimonio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\Patrimonio.Designer.cs">
-      <DependentUpon>Patrimonio.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Misc\ActualizarAhora.resx">
       <DependentUpon>ActualizarAhora.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,10 +217,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\Facturacion.resx">
-      <DependentUpon>Facturacion.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Errores\ExcepcionControlada.resx">
       <DependentUpon>ExcepcionControlada.cs</DependentUpon>
@@ -283,14 +267,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\Ingreso.resx">
       <DependentUpon>Ingreso.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\IngresosEgresos.resx">
-      <DependentUpon>IngresosEgresos.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\Patrimonio.resx">
-      <DependentUpon>Patrimonio.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />

@@ -36,9 +36,10 @@ namespace Lfx.Data
         public class Tag
         {
                 public int Id;
-                public string TableName, FieldName, Label;
+                public string TableName, FieldName, Label, Extra;
                 public bool Nullable = false;
                 public Lfx.Data.DbTypes FieldType = Lfx.Data.DbTypes.VarChar;
+                public Lfx.Data.InputFieldTypes InputFieldType = InputFieldTypes.Text;
                 public object Value = null, DefaultValue = null;
                 public Connection DataBase;
                 public Lfx.Data.Relation Relation = null;
@@ -50,11 +51,13 @@ namespace Lfx.Data
                         this.Id = System.Convert.ToInt32(fromRow["id_tag"]);
                         this.FieldName = fromRow["fieldname"].ToString();
                         this.Label = fromRow["label"].ToString();
+                        if (fromRow["extra"] != null)
+                                this.Extra = fromRow["extra"].ToString();
                         string FldType = fromRow["fieldtype"].ToString();
                         switch(FldType) {
                                 case "relation":
                                         this.FieldType = DbTypes.Integer;
-                                        string[] RelationFields = fromRow["extra"].ToString().Split(new char[] { ',' });
+                                        string[] RelationFields = this.Extra.Split(new char[] { ',' });
                                         string ReferenceTable = RelationFields[0], ReferenceColumn, DetailColumn;
                                         
                                         if(RelationFields.Length >= 2)
@@ -73,7 +76,10 @@ namespace Lfx.Data
                                         this.FieldType = Lfx.Data.Types.FromSqlType(FldType);
                                         break;
                         }
-                        
+
+                        if (fromRow["inputtype"] != null && fromRow["inputtype"].ToString() != string.Empty)
+                                this.InputFieldType = (Lfx.Data.InputFieldTypes)(Enum.Parse(typeof(Lfx.Data.InputFieldTypes), fromRow["inputtype"].ToString()));
+                                                
                         this.Nullable = System.Convert.ToBoolean(fromRow["fieldnullable"]);
                         this.DefaultValue = fromRow["fielddefault"];
                         if (this.DefaultValue is DBNull)

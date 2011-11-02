@@ -45,6 +45,12 @@ namespace Lfc.CuentasCorrientes
 
                 public Inicio()
                 {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.CuentasCorrientes.CuentaCorriente), Lbl.Sys.Permisos.Operaciones.Listar) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
+
                         InitializeComponent();
 
                         this.Definicion = new Lfx.Data.Listing()
@@ -206,7 +212,9 @@ namespace Lfc.CuentasCorrientes
 
                 public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
-                        this.Cliente = filters["ctacte.id_cliente"].Value as Lbl.Personas.Persona;
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.CuentasCorrientes.CuentaCorriente), Lbl.Sys.Permisos.Operaciones.Ver)) {
+                                this.Cliente = filters["ctacte.id_cliente"].Value as Lbl.Personas.Persona;        
+                        }
                         m_Grupo = ((Lfx.Data.Filters.RelationFilter)(filters["personas.id_grupo"])).ElementId;
                         m_Localidad = ((Lfx.Data.Filters.RelationFilter)(filters["personas.id_ciudad"])).ElementId;
                         Fechas = ((Lfx.Data.Filters.DateRangeFilter)(filters["ctacte.fecha"])).DateRange;

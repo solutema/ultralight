@@ -1,138 +1,149 @@
 <Menu>
+  <Opcion Nombre="&amp;Sistema" Funcion="">
+    <Opcion Nombre="&amp;Acerca de Lázaro" Funcion="VER" />
+    <Opcion Nombre="&amp;Calculadora" Funcion="CALC" />
+    <Opcion Nombre="&amp;Fiscal" Funcion="FISCAL PANEL" />
+    <Opcion Nombre="&amp;Copia de Respaldo" Funcion="BACKUP MANAGER" />
+    <Opcion Nombre="&amp;Preferencias" Funcion="CONFIG" />
+    <Opcion Nombre="&amp;Usuarios" Funcion="LISTAR Lbl.Personas.Usuario" />
+    <Opcion Nombre="&amp;Cambiar Contraseña" Funcion="CHANGEPWD" />
+    <Opcion Nombre="-" Funcion="" />
+    <Opcion Nombre="&amp;Salir" Funcion="quit" />
+  </Opcion>
   <Opcion Nombre="&amp;Artículos" Funcion="">
-    <Opcion Nombre="&amp;Listado" Funcion="LISTADO Lbl.Articulos.Articulo" />
+    <Opcion Nombre="&amp;Listado" Funcion="LISTAR Lbl.Articulos.Articulo" />
     <Opcion Nombre="&amp;Nuevo" Funcion="CREAR Lbl.Articulos.Articulo" />
-    <Opcion Nombre="&amp;Entrada y Salida" Funcion="MOVIM ARTICULOS" />
+    <Opcion Nombre="&amp;Entrada y Salida" Funcion="INSTANCIAR Lfc.Articulos.Movimiento" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="&amp;Manejo de Pedidos" Funcion="">
-      <Opcion Nombre="&amp;Notas de Pedido" Funcion="LISTADO Lbl.Comprobantes.ComprobanteDeCompra NP" />
-      <Opcion Nombre="&amp;Pedidos" Funcion="LISTADO Lbl.Comprobantes.ComprobanteDeCompra PD" />
-      <Opcion Nombre="&amp;Remitos de Compra" Funcion="LISTADO Lbl.Comprobantes.ComprobanteDeCompra RP" />
-      <Opcion Nombre="&amp;Facturas de Compra" Funcion="LISTADO Lbl.Comprobantes.ComprobanteDeCompra FP" />
+      <Opcion Nombre="&amp;Notas de Pedido" Funcion="LISTAR Lbl.Comprobantes.ComprobanteDeCompra NP" />
+      <Opcion Nombre="&amp;Pedidos" Funcion="LISTAR Lbl.Comprobantes.ComprobanteDeCompra PD" />
+      <Opcion Nombre="&amp;Remitos de Compra" Funcion="LISTAR Lbl.Comprobantes.ComprobanteDeCompra RP" />
+      <Opcion Nombre="&amp;Facturas de Compra" Funcion="LISTAR Lbl.Comprobantes.ComprobanteDeCompra FP" />
       <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="Artículos a Pedir" Funcion="LISTADO ARTICULOS APEDIR" />
-      <Opcion Nombre="Artículos Pedidos" Funcion="LISTADO ARTICULOS PEDIDOS" />
+      <Opcion Nombre="Artículos a Pedir" Funcion="LISTAR ARTICULOS APEDIR" />
+      <Opcion Nombre="Artículos Pedidos" Funcion="LISTAR ARTICULOS PEDIDOS" />
     </Opcion>
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="&amp;Rubros" Funcion="LISTADO Lbl.Articulos.Rubro" />
-      <Opcion Nombre="&amp;Categorías" Funcion="LISTADO Lbl.Articulos.Categoria" />
-      <Opcion Nombre="&amp;Marcas" Funcion="LISTADO Lbl.Articulos.Marca" />
-      <Opcion Nombre="&amp;Alícuotas" Funcion="LISTADO Lbl.Impuestos.Alicuota" />
-      <Opcion Nombre="Már&amp;genes" Funcion="LISTADO Lbl.Articulos.Margen" />
-      <Opcion Nombre="Situaciones y Depósitos" Funcion="LISTADO Lbl.Articulos.Situacion" />
+      <Opcion Nombre="&amp;Rubros" Funcion="LISTAR Lbl.Articulos.Rubro" />
+      <Opcion Nombre="&amp;Categorías" Funcion="LISTAR Lbl.Articulos.Categoria" />
+      <Opcion Nombre="&amp;Marcas" Funcion="LISTAR Lbl.Articulos.Marca" />
+      <Opcion Nombre="&amp;Alícuotas" Funcion="LISTAR Lbl.Impuestos.Alicuota" />
+      <Opcion Nombre="Már&amp;genes" Funcion="LISTAR Lbl.Articulos.Margen" />
+      <Opcion Nombre="Situaciones y Depósitos" Funcion="LISTAR Lbl.Articulos.Situacion" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="&amp;Personas" Funcion="">
-    <Opcion Nombre="&amp;Clientes" Funcion="LISTADO Lbl.Personas.Persona" />
+    <Opcion Nombre="&amp;Clientes" Funcion="LISTAR Lbl.Personas.Persona" />
     <Opcion Nombre="Nuevo Cliente" Funcion="CREAR Lbl.Personas.Persona" />
     <Opcion Nombre="-" Funcion="" />
-    <Opcion Nombre="&amp;Proveedores" Funcion="LISTADO Lbl.Personas.Proveedor" />
+    <Opcion Nombre="&amp;Proveedores" Funcion="LISTAR Lbl.Personas.Proveedor" />
     <Opcion Nombre="Nuevo Proveedor" Funcion="CREAR Lbl.Personas.Proveedor" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="&amp;Grupos" Funcion="LISTADO Lbl.Personas.Grupo" />
+      <Opcion Nombre="&amp;Grupos" Funcion="LISTAR Lbl.Personas.Grupo" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="C&amp;omprobantes" Funcion="">
     <Opcion Nombre="&amp;Facturas" Funcion="">
-      <Opcion Nombre="&amp;Listado de Facturas" Funcion="LISTADO Lbl.Comprobantes.Factura" />
-      <Opcion Nombre="Listado de Facturas &amp;A" Funcion="LISTADO Lbl.Comprobantes.Factura A" />
-      <Opcion Nombre="Listado de Facturas &amp;B" Funcion="LISTADO Lbl.Comprobantes.Factura B" />
-      <Opcion Nombre="Listado de Tickets" Funcion="LISTADO Lbl.Comprobantes." />
+      <Opcion Nombre="&amp;Listado de Facturas" Funcion="LISTAR Lbl.Comprobantes.Factura" />
+      <Opcion Nombre="Listado de Facturas &amp;A" Funcion="LISTAR Lbl.Comprobantes.Factura A" />
+      <Opcion Nombre="Listado de Facturas &amp;B" Funcion="LISTAR Lbl.Comprobantes.Factura B" />
+      <Opcion Nombre="Listado de Tickets" Funcion="LISTAR Lbl.Comprobantes." />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Nueva Factura" Funcion="CREAR Lbl.Comprobantes.Factura" />
       <Opcion Nombre="Nuevo &amp;Ticket" Funcion="CREAR Lbl.Comprobantes.Ticket" />
       <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="&amp;Anular" Funcion="ANULAR FACTURA" />
-      <Opcion Nombre="&amp;Reimprimir" Funcion="REIMPRIMIR FACTURA" />
+      <Opcion Nombre="&amp;Anular" Funcion="INSTANCIAR Lfc.Comprobantes.Facturas.Anular" />
+      <Opcion Nombre="&amp;Reimprimir" Funcion="INSTANCIAR Lfc.Comprobantes.Facturas.Reimprimir" />
     </Opcion>
     <Opcion Nombre="&amp;Notas de Crédito y Débito" Funcion="">
-      <Opcion Nombre="Listado de Notas de &amp;Crédito" Funcion="LISTADO Lbl.Comprobantes.NotaDeCredito" />
-      <Opcion Nombre="Listado de Notas de &amp;Débito" Funcion="LISTADO Lbl.Comprobantes.NotaDeDebito" />
+      <Opcion Nombre="Listado de Notas de &amp;Crédito" Funcion="LISTAR Lbl.Comprobantes.NotaDeCredito" />
+      <Opcion Nombre="Listado de Notas de &amp;Débito" Funcion="LISTAR Lbl.Comprobantes.NotaDeDebito" />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Nueva Nota de Crédito/Débito" Funcion="CREAR Lbl.Comprobantes.NotaDeCredito" />
     </Opcion>
     <Opcion Nombre="&amp;Presupuestos" Funcion="">
-      <Opcion Nombre="&amp;Listado" Funcion="LISTADO Lbl.Comprobantes.Presupuesto" />
+      <Opcion Nombre="&amp;Listado" Funcion="LISTAR Lbl.Comprobantes.Presupuesto" />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Nuevo" Funcion="CREAR Lbl.Comprobantes.Presupuesto" />
     </Opcion>
     <Opcion Nombre="&amp;Recibos" Funcion="">
-      <Opcion Nombre="Listado de Recibos de &amp;Cobro" Funcion="LISTADO Lbl.Comprobantes.ReciboDeCobro" />
+      <Opcion Nombre="Listado de Recibos de &amp;Cobro" Funcion="LISTAR Lbl.Comprobantes.ReciboDeCobro" />
       <Opcion Nombre="Nuevo Recibo de Cobro" Funcion="CREAR Lbl.Comprobantes.ReciboDeCobro" />
-      <Opcion Nombre="&amp;Recibo Rápido" Funcion="RECIBO_RAPIDO" />
+      <Opcion Nombre="&amp;Recibo Rápido" Funcion="INSTANCIAR Lfc.Comprobantes.Recibos.Rapido" />
       <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="Listado de Recibos de &amp;Pago" Funcion="LISTADO Lbl.Comprobantes.ReciboDePago" />
+      <Opcion Nombre="Listado de Recibos de &amp;Pago" Funcion="LISTAR Lbl.Comprobantes.ReciboDePago" />
       <Opcion Nombre="Nuevo Recibo de Pa&amp;go" Funcion="CREAR Lbl.Comprobantes.ReciboDePago" />
       <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="&amp;Anular" Funcion="ANULAR RECIBO" />
+      <Opcion Nombre="&amp;Anular" Funcion="INSTANCIAR Lfc.Comprobantes.Recibos.Anular" />
     </Opcion>
     <Opcion Nombre="Re&amp;mitos" Funcion="">
-      <Opcion Nombre="&amp;Listado" Funcion="LISTADO Lbl.Comprobantes.Remito" />
+      <Opcion Nombre="&amp;Listado" Funcion="LISTAR Lbl.Comprobantes.Remito" />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Nuevo" Funcion="CREAR Lbl.Comprobantes.Remito" />
     </Opcion>
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Útiles" Funcion="">
-      <Opcion Nombre="&amp;Iniciar Talonario" Funcion="INICIAR_TALONARIO" />
+      <Opcion Nombre="&amp;Iniciar Talonario" Funcion="INSTANCIAR Lfc.Comprobantes.IniciarNumeracion" />
     </Opcion>
     <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="Puntos de Venta" Funcion="LISTADO Lbl.Comprobantes.PuntoDeVenta" />
-      <Opcion Nombre="&amp;Impresoras" Funcion="LISTADO Lbl.Impresion.Impresora" />
+      <Opcion Nombre="Puntos de Venta" Funcion="LISTAR Lbl.Comprobantes.PuntoDeVenta" />
+      <Opcion Nombre="&amp;Impresoras" Funcion="LISTAR Lbl.Impresion.Impresora" />
       <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="&amp;Tipos de Comprobante" Funcion="LISTADO Lbl.Comprobantes.Tipo" />
-      <Opcion Nombre="&amp;Plantillas" Funcion="LISTADO Lbl.Impresion.Plantilla" />
+      <Opcion Nombre="&amp;Tipos de Comprobante" Funcion="LISTAR Lbl.Comprobantes.Tipo" />
+      <Opcion Nombre="&amp;Plantillas" Funcion="LISTAR Lbl.Impresion.Plantilla" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="Ca&amp;jas" Funcion="">
-    <Opcion Nombre="Caja &amp;Efectivo" Funcion="CAJA_EFECTIVO" />
-    <Opcion Nombre="&amp;Cuentas Corrientes" Funcion="CTACTE" />
+    <Opcion Nombre="Caja &amp;Efectivo" Funcion="INSTANCIAR Lfc.Cajas.Movimientos efectivo" />
+    <Opcion Nombre="&amp;Cuentas Corrientes" Funcion="INSTANCIAR Lfc.CuentasCorrientes.Inicio" />
     <Opcion Nombre="T&amp;odas las Cajas" Funcion="MENU Lbl.Cajas.Caja" />
-    <Opcion Nombre="C&amp;upones de Cobro" Funcion="CUPONES" />
+    <Opcion Nombre="C&amp;upones de Cobro" Funcion="LISTAR Lbl.Pagos.Cupon" />
     <Opcion Nombre="C&amp;heques" Funcion="">
-      <Opcion Nombre="&amp;Recibidos" Funcion="LISTADO Lbl.Bancos.Cheque RECIBIDOS" />
-      <Opcion Nombre="&amp;Emitidos" Funcion="LISTADO Lbl.Bancos.Cheque EMITIDOS" />
+      <Opcion Nombre="&amp;Recibidos" Funcion="LISTAR Lbl.Bancos.ChequeRecibido" />
+      <Opcion Nombre="&amp;Emitidos" Funcion="LISTAR Lbl.Bancos.ChequeEmitido" />
       <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="Chequeras" Funcion="LISTADO Lbl.Bancos.Chequera" />
+      <Opcion Nombre="Chequeras" Funcion="LISTAR Lbl.Bancos.Chequera" />
     </Opcion>
     <Opcion Nombre="-" Funcion="">
-      <Opcion Nombre="Cajas" Funcion="LISTADO Lbl.Cajas.Caja" />
-      <Opcion Nombre="Conceptos" Funcion="LISTADO Lbl.Cajas.Concepto" />
+      <Opcion Nombre="Cajas" Funcion="LISTAR Lbl.Cajas.Caja" />
+      <Opcion Nombre="Conceptos" Funcion="LISTAR Lbl.Cajas.Concepto" />
     </Opcion>
-    <Opcion Nombre="&amp;Vencimientos" Funcion="LISTADO Lbl.Cajas.Vencimiento" />
+    <Opcion Nombre="&amp;Vencimientos" Funcion="LISTAR Lbl.Cajas.Vencimiento" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="Cajas" Funcion="LISTADO Lbl.Cajas.Caja" />
-      <Opcion Nombre="Conceptos" Funcion="LISTADO Lbl.Cajas.Concepto" />
-      <Opcion Nombre="Bancos" Funcion="LISTADO Lbl.Bancos.Banco" />
-      <Opcion Nombre="Formas de Pago" Funcion="LISTADO Lbl.Pagos.FormaDePago" />
-      <Opcion Nombre="Planes" Funcion="LISTADO Lbl.Tarjetas.Plan" />
+      <Opcion Nombre="Cajas" Funcion="LISTAR Lbl.Cajas.Caja" />
+      <Opcion Nombre="Conceptos" Funcion="LISTAR Lbl.Cajas.Concepto" />
+      <Opcion Nombre="Bancos" Funcion="LISTAR Lbl.Bancos.Banco" />
+      <Opcion Nombre="Formas de Pago" Funcion="LISTAR Lbl.Pagos.FormaDePago" />
+      <Opcion Nombre="Planes" Funcion="LISTAR Lbl.Tarjetas.Plan" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="&amp;Tareas" Funcion="">
-    <Opcion Nombre="&amp;Listado" Funcion="LISTADO Lbl.Tareas.Tarea" />
+    <Opcion Nombre="&amp;Listado" Funcion="LISTAR Lbl.Tareas.Tarea" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="&amp;Nueva" Funcion="CREAR Lbl.Tareas.Tarea" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="&amp;Tipos de Tarea" Funcion="LISTADO Lbl.Tareas.Tipo" />
-      <Opcion Nombre="&amp;Estados" Funcion="LISTADO Lbl.Tareas.Estado" />
+      <Opcion Nombre="&amp;Tipos de Tarea" Funcion="LISTAR Lbl.Tareas.Tipo" />
+      <Opcion Nombre="&amp;Estados" Funcion="LISTAR Lbl.Tareas.Estado" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="&amp;Varios" Funcion="">
-    <Opcion Nombre="Reporte de Ingresos y Gastos" Funcion="REPORTE RENTABILIDAD" />
-    <Opcion Nombre="Reporte de Estado Patrimonial" Funcion="REPORTE PATRIMONIO" />
+    <Opcion Nombre="Reporte de Ingresos y Gastos" Funcion="INSTANCIAR Lfc.Reportes.IngresosEgresos" />
+    <Opcion Nombre="Reporte de Estado Patrimonial" Funcion="INSTANCIAR Lfc.Reportes.Patrimonio" />
     <Opcion Nombre="Contabilidad" Funcion="">
-      <Opcion Nombre="&amp;Libro IVA Ventas" Funcion="LISTADO IvaVentas" />
+      <Opcion Nombre="&amp;Libro IVA Ventas" Funcion="INSTANCIAR Lfc.Comprobantes.Facturas.IvaVentas" />
     </Opcion>
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Utiles" Funcion="">
-      <Opcion Nombre="Desduplicar Registros" Funcion="DESDUP" />
+      <Opcion Nombre="Desduplicar Registros" Funcion="INSTANCIAR Lfc.Misc.Desduplicar" />
     </Opcion>
     <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="&amp;Localidades" Funcion="LISTADO Lbl.Entidades.Localidad" />
-      <Opcion Nombre="Sucursales" Funcion="LISTADO Lbl.Entidades.Sucursal" />
+      <Opcion Nombre="&amp;Localidades" Funcion="LISTAR Lbl.Entidades.Localidad" />
+      <Opcion Nombre="Sucursales" Funcion="LISTAR Lbl.Entidades.Sucursal" />
     </Opcion>
   </Opcion>
 </Menu>

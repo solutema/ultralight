@@ -4,11 +4,6 @@
         <name>Lbl</name>
     </assembly>
     <members>
-        <member name="T:Lbl.Componentes.Componente">
-            <summary>
-            Representa un componente.
-            </summary>
-        </member>
         <member name="T:Lbl.ElementoDeDatos">
             <summary>
             Proporciona acceso a los datos con alto nivel de abstracción.
@@ -173,6 +168,11 @@
         <member name="P:Lbl.ElementoDeDatos.Etiquetas">
             <summary>
             Obtiene o establece las etiquetas del elemento.
+            </summary>
+        </member>
+        <member name="T:Lbl.Componentes.Componente">
+            <summary>
+            Representa un componente.
             </summary>
         </member>
         <member name="P:Lbl.Componentes.Componente.EspacioNombres">

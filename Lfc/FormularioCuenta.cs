@@ -41,7 +41,7 @@ namespace Lfc
         public partial class FormularioCuenta : FormularioListadoBase
         {
                 private Lbl.Personas.Persona m_Cliente = null;
-                public Lfx.Types.DateRange Fechas = new Lfx.Types.DateRange("dia-0");
+                private Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("dia-0");
 
                 public FormularioCuenta()
                 {
@@ -56,6 +56,22 @@ namespace Lfc
                         this.Contadores.Add(new Contador("Egresos", Lui.Forms.DataTypes.Currency));
                         this.Contadores.Add(new Contador("Saldo", Lui.Forms.DataTypes.Currency));
                 }
+
+
+                public Lfx.Types.DateRange Fechas
+                {
+                        get
+                        {
+                                return m_Fechas;
+                        }
+                        set
+                        {
+                                m_Fechas = value;
+                                if (this.Definicion.Filters.ContainsKey("cajas_movim.fecha"))
+                                        this.Definicion.Filters["cajas_movim.fecha"].Value = value;
+                        }
+                }
+
 
                 public Lbl.Personas.Persona Cliente
                 {

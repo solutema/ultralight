@@ -48,7 +48,6 @@ namespace Lcc.Edicion.Comprobantes
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
-                        DefaultValue(""),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lbl.Pagos.FormaDePago FormaDePago
                 {
@@ -77,7 +76,6 @@ namespace Lcc.Edicion.Comprobantes
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
-                        DefaultValue(""),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public decimal Importe
                 {
@@ -93,7 +91,6 @@ namespace Lcc.Edicion.Comprobantes
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
-                        DefaultValue(""),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public string Obs
                 {

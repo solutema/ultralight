@@ -52,25 +52,24 @@ namespace Lfx.Types
 
                 public int Value { get; set; }
 
-                [DefaultValue(100)]
                 public int Max { get; set; }
 
-                [DefaultValue(true)]
                 public bool Blocking { get; set; }
 
-                [DefaultValue(false)]
                 public bool IsRunning { get; set; }
 
-                [DefaultValue(false)]
                 public bool IsDone { get; set; }
 
-                [DefaultValue(true)]
                 public bool Advertise { get; set; }
 
                 public OperationProgress(string name, string description)
                 {
+                        this.Blocking = true;
+                        this.Max = 100;
+                        this.Advertise = true;
                         this.Name = name;
                         this.Description = description;
+                        this.Advertise = true;
                 }
 
                 public void Begin()

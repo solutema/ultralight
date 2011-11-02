@@ -43,6 +43,12 @@ namespace Lfc.Comprobantes
         {
                 public IniciarNumeracion()
                 {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Factura), Lbl.Sys.Permisos.Operaciones.Administrar) == false) {
+                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
+                                this.Close();
+                                return;
+                        }
+
                         InitializeComponent();
 
                         EntradaTipoPvDesde_TextChanged(null, null);

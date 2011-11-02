@@ -43,7 +43,6 @@ namespace Lfc.Tareas
                 public int Grupo { get; set; }
                 public int Cliente { get; set; }
                 public int Localidad { get; set; }
-                [DefaultValue("<50")]
                 public string Estado { get; set; }
 
                 protected int Activos;
@@ -54,6 +53,7 @@ namespace Lfc.Tareas
 
                 public Inicio()
                 {
+                        this.Estado = "<50";
                         if (this.HasWorkspace) {
                                 // Localidad = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Localidad.Id;
                                 EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));

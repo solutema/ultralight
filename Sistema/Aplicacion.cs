@@ -300,15 +300,13 @@ namespace Lazaro.WinMain
                 private static void CargarComponentes()
                 {
                         // Cargo el componente Core
-                        Lbl.Componentes.Componente CoreComp = new Lbl.Componentes.Componente(Lfx.Workspace.Master.MasterConnection);
-                        CoreComp.Crear();
+                        Lbl.Componentes.Componente ComLfc = new Lbl.Componentes.Componente(Lfx.Workspace.Master.MasterConnection);
+                        ComLfc.Crear();
 
-                        CoreComp.Nombre = "Core";
-                        CoreComp.EspacioNombres = "Lfc";
-                        CoreComp.Assembly = System.Reflection.Assembly.LoadFrom("Lfc.dll");
-                        Lfx.Components.Manager.ComponentesCargados.Add("Core", CoreComp);
-
-                        Lfx.Components.Manager.RegisterComponent(CoreComp);
+                        ComLfc.Nombre = "Lfc";
+                        ComLfc.EspacioNombres = "Lfc";
+                        ComLfc.Assembly = System.Reflection.Assembly.LoadFrom("Lfc.dll");
+                        Lfx.Components.Manager.RegisterComponent(ComLfc);
 
                         if (Lfx.Workspace.Master.MasterConnection.Tables.ContainsKey("sys_components")) {
                                 Lbl.ColeccionGenerica<Lbl.Componentes.Componente> Comps = Lbl.Componentes.Componente.Todos();
@@ -764,6 +762,24 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         string SubComando = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
 
                         switch (SubComando) {
+                                case "CREAR":
+                                case "CREATE":
+                                        return ExecCrearEditar(true, comando);
+
+                                case "EDITAR":
+                                case "EDIT":
+                                        return ExecCrearEditar(false, comando);
+
+                                case "LISTAR":
+                                case "LIST":
+                                        return ExecListar(comando);
+
+                                case "IMPRIMIR":
+                                        return ExecImprimir(comando);
+
+                                case "INSTANCIAR":
+                                        return ExecInstanciar(comando);
+
                                 case "REPO":
                                         qGen.Select Sel = new qGen.Select("comprob_detalle");
                                         Sel.Fields = "personas.id_persona,personas.nombre_visible,comprob.fecha,comprob.total";
@@ -790,11 +806,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         RepForm.Show();
                                         break;
 
-                                case "DESDUP":
-                                        Lfc.Misc.Desduplicar DesDup = new Lfc.Misc.Desduplicar();
-                                        DesDup.ShowDialog();
-                                        break;
-
                                 case "LIC":
                                         Lfx.Lic.Licenciar(@"..\");
                                         Lfx.Lic.Licenciar(@"..\..\Componentes\RunComponent");
@@ -818,9 +829,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         His.Show();
                                         break;
 
-                                case "ERROR":
-                                        throw new InvalidOperationException("Error de Prueba");
-
                                 case "VENTRE":
                                         Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.MasterConnection);
                                         Fil.Carpeta = @"C:\Ventre\";
@@ -841,8 +849,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                         Ver.CheckDataBase();
                                                         break;
                                                 case "STRUCT":
-                                                        System.Threading.ThreadStart ParamInicioVerif = delegate { Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(true, false); };
-                                                        new System.Threading.Thread(ParamInicioVerif).Start();
+                                                        System.Threading.ThreadStart ThreadVerif = delegate { Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(true, false); };
+                                                        new System.Threading.Thread(ThreadVerif).Start();
                                                         break;
                                         }
                                         break;
@@ -862,11 +870,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         Lfx.Environment.Shell.Reboot();
                                         break;
 
-                                case "RECIBO_RAPIDO":
-                                        Lui.Forms.Form OFormReciboRapido = new Lfc.Comprobantes.Recibos.Rapido();
-                                        OFormReciboRapido.ShowDialog(Aplicacion.FormularioPrincipal);
-                                        break;
-
                                 case "CALC":
                                         Lazaro.WinMain.Misc.Calculadora OCalc = new Lazaro.WinMain.Misc.Calculadora();
                                         OCalc.Show();
@@ -875,7 +878,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                 case "BACKUP":
                                         if (Lui.LogOn.LogOnData.ValidateAccess("Global.Backup", Lbl.Sys.Permisos.Operaciones.Administrar)) {
                                                 string SubComandoBackup = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
                                                 switch (SubComandoBackup) {
                                                         case "MANAGER":
                                                                 WinMain.Backup.Manager OFormBackup = (WinMain.Backup.Manager)BuscarVentana("WinMain.Misc.Backup.Manager");
@@ -903,9 +905,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         FormConfig.ShowDialog(Aplicacion.FormularioPrincipal);
                                         break;
 
-                                case "ACCESSMGR":
-                                        return Exec("LIST USER");
-
                                 case "CHANGEPWD":
                                         Misc.CambioContrasena FormCambio = new Misc.CambioContrasena();
                                         FormCambio.ShowDialog();
@@ -932,251 +931,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                         Lui.Forms.MessageBox.Show(comando, "Mensaje remoto de " + estacion);
                                         return null;
 
-                                case "REPORTE":
-                                        string SubComandoReporte = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                        switch (SubComandoReporte) {
-                                                case "RENTABILIDAD":
-                                                        if (Lui.LogOn.LogOnData.ValidateAccess("Global", Lbl.Sys.Permisos.Operaciones.Total)) {
-                                                                Lazaro.WinMain.Reportes.IngresosEgresos OFormRepRentabilidad = new Lazaro.WinMain.Reportes.IngresosEgresos();
-                                                                if (!Aplicacion.Flotante)
-                                                                        OFormRepRentabilidad.MdiParent = Aplicacion.FormularioPrincipal;
-                                                                OFormRepRentabilidad.Show();
-                                                                return OFormRepRentabilidad;
-                                                        }
-                                                        break;
-                                                case "PATRIMONIO":
-                                                        if (Lui.LogOn.LogOnData.ValidateAccess("Global", Lbl.Sys.Permisos.Operaciones.Total)) {
-                                                                Lazaro.WinMain.Reportes.Patrimonio RepPatr = new Lazaro.WinMain.Reportes.Patrimonio();
-                                                                if (!Aplicacion.Flotante)
-                                                                        RepPatr.MdiParent = Aplicacion.FormularioPrincipal;
-                                                                RepPatr.Show();
-                                                                return RepPatr;
-                                                        }
-                                                        break;
-                                        }
-
-                                        break;
-
-                                case "IMPRIMIR":
-                                        string SubComandoImprimir = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
-
-                                        switch (SubComandoImprimir.ToUpperInvariant()) {
-                                                case "COMPROBANTE":
-                                                case "COMPROB":
-                                                        int IdComprobante = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
-
-                                                        Lfx.Types.OperationResult ResultadoImpresion;
-
-                                                        using (Lfx.Data.Connection DataBaseImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir comprobante")) {
-                                                                IDbTransaction Trans = DataBaseImprimir.BeginTransaction(IsolationLevel.Serializable);
-                                                                Lbl.Comprobantes.ComprobanteConArticulos Comprob = new Lbl.Comprobantes.ComprobanteConArticulos(DataBaseImprimir, IdComprobante);
-                                                                Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impresor = new Impresion.Comprobantes.ImpresorComprobanteConArticulos(Comprob, Trans);
-                                                                ResultadoImpresion = Impresor.Imprimir();
-                                                                if (ResultadoImpresion.Success)
-                                                                        Trans.Commit();
-                                                                else
-                                                                        Trans.Rollback();
-                                                                Trans.Dispose();
-                                                                DataBaseImprimir.Dispose();
-                                                        }
-
-                                                        return ResultadoImpresion;
-                                                default:
-                                                        int itemId = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim());
-                                                        Type TipoElem = Lbl.Instanciador.InferirTipo(SubComandoImprimir);
-                                                        if (TipoElem != null && itemId > 0) {
-                                                                using (Lfx.Data.Connection DbImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir " + TipoElem.ToString() + " " + itemId.ToString())) {
-                                                                        Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(TipoElem, DbImprimir, itemId);
-                                                                        IDbTransaction Trans = DbImprimir.BeginTransaction();
-                                                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(Elem, Trans);
-
-                                                                        string ImprimirEn = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
-                                                                        if (ImprimirEn == "EN") {
-                                                                                // El nombre de la impresora es lo que resta del comando
-                                                                                // No lo puedo separar con GetNextToken porque puede contener espacios
-                                                                                string NombreImpresora = comando;
-                                                                                Impresor.Impresora = Lbl.Impresion.Impresora.InstanciarImpresoraLocal(DbImprimir, NombreImpresora);
-                                                                        }
-
-                                                                        Lfx.Types.OperationResult Res = Impresor.Imprimir();
-                                                                        if (Res.Success) {
-                                                                                Trans.Commit();
-                                                                        } else {
-                                                                                Trans.Rollback();
-                                                                        }
-                                                                        Trans.Dispose();
-                                                                        return Res;
-                                                                }
-                                                        }
-                                                        break;
-                                        }
-                                        break;
-
-                                case "REIMPRIMIR":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ComprobanteFacturable), Lbl.Sys.Permisos.Operaciones.Imprimir)) {
-                                                string SubComandoAnular = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                                int IdComprobanteAnular = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
-
-                                                switch (SubComandoAnular) {
-                                                        case "FACTURA":
-                                                        case "FACT":
-                                                                Lfc.Comprobantes.Facturas.Reimprimir FormularioFacturaReimprimir = new Lfc.Comprobantes.Facturas.Reimprimir();
-                                                                if (!Aplicacion.Flotante)
-                                                                        FormularioFacturaReimprimir.MdiParent = Aplicacion.FormularioPrincipal;
-                                                                FormularioFacturaReimprimir.Show();
-                                                                break;
-                                                }
-                                        }
-                                        break;
-
-                                case "INICIAR_TALONARIO":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Comprobante), Lbl.Sys.Permisos.Operaciones.Administrar)) {
-                                                string TipoIniciar = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                                Lfc.Comprobantes.IniciarNumeracion FormularioIniciarNumeracion = new Lfc.Comprobantes.IniciarNumeracion();
-                                                if (!Aplicacion.Flotante)
-                                                        FormularioIniciarNumeracion.MdiParent = Aplicacion.FormularioPrincipal;
-                                                if (TipoIniciar.Length > 0)
-                                                        FormularioIniciarNumeracion.EntradaTipo.TextKey = TipoIniciar;
-
-                                                FormularioIniciarNumeracion.Show();
-                                                break;
-                                        }
-                                        break;
-
-                                case "ANULAR":
-                                        string SubComandoAnularComprob = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                        int IdComprobanteAnularComprob = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
-
-                                        switch (SubComandoAnularComprob) {
-                                                case "FACTURA":
-                                                case "FACT":
-                                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.ComprobanteFacturable), Lbl.Sys.Permisos.Operaciones.Eliminar)) {
-                                                                Lfc.Comprobantes.Facturas.Anular FormularioFacturaAnular = new Lfc.Comprobantes.Facturas.Anular();
-                                                                if (!Aplicacion.Flotante)
-                                                                        FormularioFacturaAnular.MdiParent = Aplicacion.FormularioPrincipal;
-                                                                FormularioFacturaAnular.Show();
-                                                        } else {
-                                                                return new Lfx.Types.NoAccessOperationResult();
-                                                        }
-                                                        break;
-
-                                                case "RECIBO":
-                                                case "RCP":
-                                                case "RC":
-                                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Recibo), Lbl.Sys.Permisos.Operaciones.Eliminar)) {
-                                                                Lfc.Comprobantes.Recibos.Anular FormularioReciboAnular = new Lfc.Comprobantes.Recibos.Anular();
-                                                                FormularioReciboAnular.Cargar(IdComprobanteAnularComprob);
-                                                                FormularioReciboAnular.ShowDialog(Aplicacion.FormularioPrincipal);
-                                                        } else {
-                                                                return new Lfx.Types.NoAccessOperationResult();
-                                                        }
-                                                        break;
-                                        }
-                                        break;
-
-                                case "CREAR":
-                                case "CREATE":
-                                        return ExecCrearEditar(true, comando);
-                                case "EDITAR":
-                                case "EDIT":
-                                        return ExecCrearEditar(false, comando);
-
-                                case "LISTADO":
-                                case "LIST":
-                                        return ExecListado(comando);
-
-                                case "CAJA_DIARIA":
-                                case "CAJA_EFECTIVO":
-                                        // Por el momento, muestro la caja de efectivo
-                                        Lbl.Cajas.Caja Caja = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.CajaDiaria;
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Caja, Lbl.Sys.Permisos.Operaciones.Ver)) {
-                                                string SubComandoCaja = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                                Lfc.Cajas.Movimientos FormularioCaja = new Lfc.Cajas.Movimientos();
-                                                if (!Aplicacion.Flotante)
-                                                        FormularioCaja.MdiParent = Aplicacion.FormularioPrincipal;
-                                                FormularioCaja.Caja = Caja;
-
-                                                if (SubComandoCaja.Length > 0) {
-                                                        NullableDateTime Fecha = Lfx.Types.Parsing.ParseDate(SubComandoCaja);
-                                                        if (Fecha != null) {
-                                                                FormularioCaja.Fechas = new Lfx.Types.DateRange("dia");
-                                                                FormularioCaja.Fechas.From = Fecha;
-                                                                FormularioCaja.Fechas.To = Fecha;
-                                                        }
-                                                }
-
-                                                FormularioCaja.Show();
-                                                return FormularioCaja;
-                                        }
-                                        break;
-
-                                case "CTACTE":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.CuentasCorrientes.CuentaCorriente), Lbl.Sys.Permisos.Operaciones.Ver)) {
-                                                string SubComandoCtaCte = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                                Lfc.CuentasCorrientes.Inicio CtaCte = ((Lfc.CuentasCorrientes.Inicio)(BuscarVentana("Lfc.Cajas.Corriente.Inicio")));
-
-                                                if (CtaCte == null)
-                                                        CtaCte = new Lfc.CuentasCorrientes.Inicio();
-
-                                                if (!Aplicacion.Flotante)
-                                                        CtaCte.MdiParent = Aplicacion.FormularioPrincipal;
-
-                                                int ClienteId = Lfx.Types.Parsing.ParseInt(SubComandoCtaCte);
-                                                if (ClienteId > 0)
-                                                        CtaCte.Cliente = new Lbl.Personas.Persona(CtaCte.Connection, ClienteId);
-                                                CtaCte.Show();
-                                                return CtaCte;
-                                        }
-                                        break;
-
-                                case "CUPONES":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Ver)) {
-                                                Lfc.Cupones.Cupones.Inicio OTarjetas = ((Lfc.Cupones.Cupones.Inicio)(BuscarVentana("Lfc.Cajas.Tarjetas.Inicio")));
-
-                                                if (OTarjetas == null)
-                                                        OTarjetas = new Lfc.Cupones.Cupones.Inicio();
-                                                if (!Aplicacion.Flotante)
-                                                        OTarjetas.MdiParent = Aplicacion.FormularioPrincipal;
-                                                OTarjetas.RefreshList();
-                                                OTarjetas.Show();
-                                                return OTarjetas;
-                                        }
-                                        break;
-
-                                case "CAJA":
-                                        string SubComandoVerCaja = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-                                        Lbl.Cajas.Caja VerCaja = new Lbl.Cajas.Caja(Lfx.Workspace.Master.MasterConnection, Lfx.Types.Parsing.ParseInt(SubComandoVerCaja));
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(VerCaja, Lbl.Sys.Permisos.Operaciones.Ver)) {
-                                                Lfc.Cajas.Movimientos FormularioCaja = new Lfc.Cajas.Movimientos();
-                                                if (!Aplicacion.Flotante)
-                                                        FormularioCaja.MdiParent = Aplicacion.FormularioPrincipal;
-                                                FormularioCaja.Caja = VerCaja;
-                                                FormularioCaja.RefreshList();
-                                                FormularioCaja.Show();
-                                                return FormularioCaja;
-                                        }
-                                        break;
-
-                                case "MOVIM":
-                                        string SubComandoMovim = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-
-                                        switch (SubComandoMovim) {
-                                                case "ARTICULOS":
-                                                        string SubComandoArticulos = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
-                                                        Lfc.Articulos.Movimiento FormularioMovimientoArticulo = new Lfc.Articulos.Movimiento();
-                                                        FormularioMovimientoArticulo.EntradaArticulo.TextInt = Lfx.Types.Parsing.ParseInt(SubComandoArticulos);
-                                                        FormularioMovimientoArticulo.ShowDialog(Aplicacion.FormularioPrincipal);
-                                                        return FormularioMovimientoArticulo;
-                                        }
-
-                                        break;
-
                                 case "RUN":
                                         string NombreComponente = Lfx.Types.Strings.GetNextToken(ref comando, ".").Trim();
                                         string NombreFuncion = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
@@ -1189,12 +943,16 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                         return new Lfx.Types.FailureOperationResult("No se encuentra el la función " + NombreComponente + "." + NombreFuncion);
                                                 } else {
                                                         Lfx.Components.FunctionInfo Funcion = Componente.Funciones[NombreFuncion];
-                                                        object ResForm = Funcion.Run();
+                                                        object RunResult = Funcion.Run();
 
-                                                        if (ResForm is System.Windows.Forms.Form) {
+                                                        if (RunResult is System.Windows.Forms.Form) {
                                                                 if (Funcion.Instancia.FunctionType == Lfx.Components.FunctionTypes.MdiChildren)
-                                                                        ((System.Windows.Forms.Form)(ResForm)).MdiParent = Aplicacion.Flotante ? null : Aplicacion.FormularioPrincipal;
-                                                                ((System.Windows.Forms.Form)(ResForm)).Show();
+                                                                        ((System.Windows.Forms.Form)(RunResult)).MdiParent = Aplicacion.Flotante ? null : Aplicacion.FormularioPrincipal;
+                                                                ((System.Windows.Forms.Form)(RunResult)).Show();
+                                                        } else if (RunResult is Lfx.Types.OperationResult) {
+                                                                Lfx.Types.OperationResult OpeResult = RunResult as Lfx.Types.OperationResult;
+                                                                if (OpeResult.Message != null && OpeResult.Message.Length > 0)
+                                                                        Lfx.Workspace.Master.RunTime.Toast(OpeResult.Message, OpeResult.Success ? "Aviso" : "Error");
                                                         }
 
                                                 }
@@ -1217,377 +975,137 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         return null;
                 }
 
-                private static object ExecListado(string Comando)
+
+                private static object ExecInstanciar(string comando)
                 {
-                        string SubComando = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim();
-                        Lfc.FormularioListado FormularioListado = null;
+                        string SubComando = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
 
-                        switch (SubComando) {
-                                case "IvaVentas":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Factura), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Comprobantes.Facturas.IvaVentas();
+                        string Prefijo = Lfx.Types.Strings.GetNextToken(ref SubComando, ".").Trim();
+                        if (Lfx.Components.Manager.ComponentesCargados.ContainsKey(Prefijo) == false)
+                                return new Lfx.Types.FailureOperationResult("No se reconoce el prefijo " + Prefijo);
+
+                        Lfx.Components.IComponent Comp = Lfx.Components.Manager.ComponentesCargados[Prefijo];
+                        Type Tipo = Comp.Assembly.GetType(Prefijo + "." + SubComando);
+
+                        object Res = null;
+
+                        if (comando != null && comando.Length > 0) {
+                                try {
+                                        // Intento pasarle los parámetros
+                                        Res = System.Activator.CreateInstance(Tipo, comando);
+                                } catch {
+                                        // Si no funciona, intento llamar sin parámetros
+                                        Res = System.Activator.CreateInstance(Tipo);
+                                }
+                        } else {
+                                Res = System.Activator.CreateInstance(Tipo);
+                        }
+
+                        return Res;
+                }
+
+
+                private static object ExecImprimir(string comando)
+                {
+                        string SubComandoImprimir = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
+
+                        switch (SubComandoImprimir.ToUpperInvariant()) {
+                                case "COMPROBANTE":
+                                case "COMPROB":
+                                        int IdComprobante = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
+
+                                        Lfx.Types.OperationResult ResultadoImpresion;
+
+                                        using (Lfx.Data.Connection DataBaseImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir comprobante")) {
+                                                IDbTransaction Trans = DataBaseImprimir.BeginTransaction(IsolationLevel.Serializable);
+                                                Lbl.Comprobantes.ComprobanteConArticulos Comprob = new Lbl.Comprobantes.ComprobanteConArticulos(DataBaseImprimir, IdComprobante);
+                                                Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impresor = new Impresion.Comprobantes.ImpresorComprobanteConArticulos(Comprob, Trans);
+                                                ResultadoImpresion = Impresor.Imprimir();
+                                                if (ResultadoImpresion.Success)
+                                                        Trans.Commit();
+                                                else
+                                                        Trans.Rollback();
+                                                Trans.Dispose();
+                                                DataBaseImprimir.Dispose();
                                         }
-                                        break;
 
-                                case "ALICUOTAS":
-                                case "Lbl.Impuestos.ObtenerAlicuota":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Impuestos.Alicuota), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Alicuotas.Inicio();
-                                        }
-                                        break;
+                                        return ResultadoImpresion;
+                                default:
+                                        int itemId = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim());
+                                        Type TipoElem = Lbl.Instanciador.InferirTipo(SubComandoImprimir);
+                                        if (TipoElem != null && itemId > 0) {
+                                                using (Lfx.Data.Connection DbImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir " + TipoElem.ToString() + " " + itemId.ToString())) {
+                                                        Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(TipoElem, DbImprimir, itemId);
+                                                        IDbTransaction Trans = DbImprimir.BeginTransaction();
+                                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(Elem, Trans);
 
-                                case "CHEQUERAS":
-                                case "Lbl.Bancos.Chequera":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Bancos.Chequera), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                Lfc.Bancos.Chequeras.Inicio OFormChequerasInicio = new Lfc.Bancos.Chequeras.Inicio();
-                                                if (!Aplicacion.Flotante)
-                                                        OFormChequerasInicio.MdiParent = Aplicacion.FormularioPrincipal;
-                                                OFormChequerasInicio.Show();
-                                                return OFormChequerasInicio;
-                                        }
-                                        break;
-
-                                case "CHEQUES":
-                                case "Lbl.Bancos.Cheque":
-                                        string SubSubComando = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-                                        switch (SubSubComando) {
-                                                case "RECIBIDOS":
-                                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Bancos.Cheque), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                                Lfc.Bancos.Cheques.Inicio FormularioChequesRecibidos = new Lfc.Bancos.Cheques.Inicio();
-                                                                if (!Aplicacion.Flotante)
-                                                                        FormularioChequesRecibidos.MdiParent = Aplicacion.FormularioPrincipal;
-                                                                FormularioChequesRecibidos.Emitidos = false;
-                                                                FormularioChequesRecibidos.Show();
-                                                                return FormularioChequesRecibidos;
+                                                        string ImprimirEn = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
+                                                        if (ImprimirEn == "EN") {
+                                                                // El nombre de la impresora es lo que resta del comando
+                                                                // No lo puedo separar con GetNextToken porque puede contener espacios
+                                                                string NombreImpresora = comando;
+                                                                Impresor.Impresora = Lbl.Impresion.Impresora.InstanciarImpresoraLocal(DbImprimir, NombreImpresora);
                                                         }
-                                                        break;
 
-                                                case "EMITIDOS":
-                                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Bancos.Cheque), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                                Lfc.Bancos.Cheques.Inicio FormularioChequesEmitidos = new Lfc.Bancos.Cheques.Inicio();
-                                                                if (!Aplicacion.Flotante)
-                                                                        FormularioChequesEmitidos.MdiParent = Aplicacion.FormularioPrincipal;
-                                                                FormularioChequesEmitidos.Emitidos = true;
-                                                                FormularioChequesEmitidos.Show();
-                                                                return FormularioChequesEmitidos;
+                                                        Lfx.Types.OperationResult Res = Impresor.Imprimir();
+                                                        if (Res.Success) {
+                                                                Trans.Commit();
+                                                        } else {
+                                                                Trans.Rollback();
                                                         }
-                                                        break;
-                                        }
-                                        break;
-
-                                case "CAJA":
-                                case "CAJAS":
-                                case "Lbl.Cajas.Caja":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Cajas.Inicio");
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Cajas.Inicio();
-                                        }
-                                        break;
-
-                                case "CLIENTE":
-                                case "CLIENTES":
-                                case "Lbl.Personas.Persona":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Personas.Persona), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Personas.Inicio");
-
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Personas.Inicio();
-
-                                                ((Lfc.Personas.Inicio)(FormularioListado)).m_Tipo = 1;
-                                        }
-                                        break;
-
-                                case "personas_grupos":
-                                case "PERSONAS_GRUPOS":
-                                case "Lbl.Personas.Grupo":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Personas.Grupo), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Personas.Grupos.Inicio");
-
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Personas.Grupos.Inicio();
-                                        }
-                                        break;
-
-                                case "USER":
-                                case "USERS":
-                                case "USUARIO":
-                                case "USUARIOS":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Personas.Usuario), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("FormClientesInicio");
-
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Personas.Inicio();
-
-                                                ((Lfc.Personas.Inicio)(FormularioListado)).m_Tipo = 4;
-                                        }
-                                        break;
-
-                                case "SUCURSAL":
-                                case "SUCURSALES":
-                                case "sucursales":
-                                case "Lbl.Entidades.Sucursal":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Entidades.Sucursal), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lazaro.Misc.Sucursales.Inicio");
-
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Sucursales.Inicio();
-                                        }
-                                        break;
-
-                                case "PLANTILLA":
-                                case "PLANTILLAS":
-                                case "sys_plantillas":
-                                case "Lbl.Impresion.Plantilla":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Impresion.Plantilla), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Comprobantes.Plantillas.Inicio");
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Comprobantes.Plantillas.Inicio();
-                                        }
-                                        break;
-
-                                case "PROVEEDOR":
-                                case "PROVEEDORES":
-                                case "Lbl.Personas.Proveedor":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Personas.Persona), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Personas.Inicio");
-
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Personas.Inicio();
-
-                                                ((Lfc.Personas.Inicio)(FormularioListado)).m_Tipo = 2;
-                                        }
-                                        break;
-
-                                case "PV":
-                                case "PVS":
-                                case "pvs":
-                                case "Lbl.Comprobantes.PuntoDeVenta":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.PuntoDeVenta), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lazaro.Misc.Pvs.Inicio");
-
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Pvs.Inicio();
-                                        }
-                                        break;
-
-                                case "ARTICULO":
-                                case "ARTICULOS":
-                                case "Lbl.Articulos.Articulo":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Articulos.Articulo), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                string SubComandoArticulos = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Articulos.Inicio");
-
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Articulos.Inicio();
-
-                                                switch (SubComandoArticulos) {
-                                                        case "PEDIDOS":
-                                                                ((Lfc.Articulos.Inicio)(FormularioListado)).m_Stock = "pedido";
-                                                                break;
-
-                                                        case "APEDIR":
-                                                                ((Lfc.Articulos.Inicio)(FormularioListado)).m_Stock = "apedir";
-                                                                break;
+                                                        Trans.Dispose();
+                                                        return Res;
                                                 }
                                         }
                                         break;
-
-                                case "ARTICULO_CATEG":
-                                case "ARTICULOS_CATEG":
-                                case "Lbl.Articulos.Categoria":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Articulos.Categoria), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Articulos.Categorias.Inicio");
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Articulos.Categorias.Inicio();
-                                        }
-                                        break;
-
-                                case "ARTICULO_RUBRO":
-                                case "ARTICULO_RUBROS":
-                                case "ARTICULOS_RUBRO":
-                                case "ARTICULOS_RUBROS":
-                                case "Lbl.Articulos.Rubro":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Articulos.Rubro), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = (Lfc.FormularioListado)BuscarVentana("Articulos.Rubros.Inicio");
-                                                if (FormularioListado == null)
-                                                        FormularioListado = new Lfc.Articulos.Rubros.Inicio();
-                                        }
-                                        break;
-
-                                case "COMPROBANTE":
-                                case "COMPROBANTES":
-                                case "Lbl.Comprobantes.ComprobanteConArticulos":
-                                case "Lbl.Comprobantes.ComprobanteFacturable":
-                                case "Lbl.Comprobantes.Factura":
-                                case "Lbl.Comprobantes.Presupuesto":
-                                case "Lbl.Comprobantes.NotaDeCredito":
-                                case "Lbl.Comprobantes.NotaDeDebito":
-                                        FormularioListado = new Lfc.Comprobantes.Inicio();
-                                        FormularioListado.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
-                                        string ListadoComprobLetra = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-                                        if (ListadoComprobLetra.Length > 0)
-                                                ((Lfc.Comprobantes.Inicio)(FormularioListado)).Letra = ListadoComprobLetra;
-                                        break;
-
-                                case "Lbl.Comprobantes.Remito":
-                                        FormularioListado = new Lfc.Comprobantes.Inicio();
-                                        FormularioListado.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
-                                        break;
-
-                                case "Lbl.Comprobantes.ComprobanteDeCompra":
-                                        FormularioListado = new Lfc.Comprobantes.Compra.Inicio();
-                                        FormularioListado.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(SubComando);
-                                        string ListadoComprobCompraTipo = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-                                        if (ListadoComprobCompraTipo.Length > 0)
-                                                ((Lfc.Comprobantes.Compra.Inicio)(FormularioListado)).Tipo = ListadoComprobCompraTipo;
-                                        break;
-
-                                case "RECIBOS":
-                                case "Lbl.Comprobantes.Recibo":
-                                case "Lbl.Comprobantes.ReciboDeCobro":
-                                        FormularioListado = new Lfc.Comprobantes.Recibos.Inicio();
-                                        FormularioListado.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
-                                        break;
-
-                                case "Lbl.Comprobantes.ReciboDePago":
-                                        FormularioListado = new Lfc.Comprobantes.Recibos.Inicio();
-                                        FormularioListado.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDePago);
-                                        break;
-
-                                case "Lbl.Comprobantes.Tipo":
-                                        FormularioListado = new Lfc.Comprobantes.Tipo.Inicio();
-                                        break;
-                                
-                                case "impresoras":
-                                case "Lbl.Impresion.Impresora":
-                                        FormularioListado = new Lfc.Comprobantes.Impresoras.Inicio();
-                                        break;
-
-                                case "MARCAS":
-                                case "Lbl.Articulos.Marca":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Articulos.Marca), Lbl.Sys.Permisos.Operaciones.Listar))
-                                                FormularioListado = new Lfc.Articulos.Marcas.Inicio();
-                                        break;
-
-                                case "PD":
-                                case "NP":
-                                case "FP":
-                                case "RP":
-                                case "PEDIDOS":
-                                        string SubComandoPedidos = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-
-                                        FormularioListado = new Lfc.Comprobantes.Compra.Inicio();
-                                        if (!Aplicacion.Flotante)
-                                                FormularioListado.MdiParent = Aplicacion.FormularioPrincipal;
-
-                                        switch (SubComando) {
-                                                case "PEDIDOS":
-                                                        ((Lfc.Comprobantes.Compra.Inicio)FormularioListado).m_Tipo = "PD";
-                                                        break;
-                                                default:
-                                                        ((Lfc.Comprobantes.Compra.Inicio)FormularioListado).m_Tipo = SubComando;
-                                                        break;
-                                        }
-
-                                        ((Lfc.Comprobantes.Compra.Inicio)FormularioListado).m_Proveedor = Lfx.Types.Parsing.ParseInt(SubComandoPedidos);
-                                        break;
-
-                                case "CONCEPTO":
-                                case "CONCEPTOS":
-                                case "CAJAS_CONCEPTOS":
-                                case "Lbl.Cajas.Concepto":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Concepto), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = new Lfc.Cajas.Conceptos.Inicio();
-                                        }
-                                        break;
-
-                                case "CIUDAD":
-                                case "CIUDADES":
-                                case "Lbl.Entidades.Localidad":
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Entidades.Localidad), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                FormularioListado = new Lfc.Ciudades.Inicio();
-                                        }
-                                        break;
-
-                                case "TICKET":
-                                case "TICKETS":
-                                case "Lbl.Tareas.Tarea":
-                                        string SubComandoTickets = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
-                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Tareas.Inicio");
-                                        if (FormularioListado == null)
-                                                FormularioListado = new Lfc.Tareas.Inicio();
-                                        ((Lfc.Tareas.Inicio)(FormularioListado)).Tipo = Lfx.Types.Parsing.ParseInt(SubComandoTickets);
-                                        break;
-
-                                case "Lbl.Tareas.Estado":
-                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Tareas.Estados.Inicio");
-                                        if (FormularioListado == null)
-                                                FormularioListado = new Lfc.Tareas.Estados.Inicio();
-                                        break;
-
-                                case "Lbl.Tareas.Tipo":
-                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Tareas.Tipos.Inicio");
-                                        if (FormularioListado == null)
-                                                FormularioListado = new Lfc.Tareas.Tipos.Inicio();
-                                        break;
-
-                                case "VENCIMIENTO":
-                                case "VENCIMIENTOS":
-                                case "Lbl.Cajas.Vencimiento":
-                                        FormularioListado = (Lfc.FormularioListado)BuscarVentana("Lfc.Cajas.Vencimientos.Inicio");
-                                        if (FormularioListado == null)
-                                                FormularioListado = new Lfc.Cajas.Vencimientos.Inicio();
-                                        break;
-
-                                default:
-                                        Type TipoLbl = Lbl.Instanciador.InferirTipo(SubComando);
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(TipoLbl, Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                Type TipoListado = Lfc.Instanciador.InferirFormularioListado(TipoLbl);
-                                                if (TipoListado == null && Lfx.Workspace.Master.DebugMode)
-                                                        throw new NotImplementedException("LISTADO " + SubComando);
-                                                else
-                                                        FormularioListado = Lfc.Instanciador.InstanciarFormularioListado(TipoListado);
-                                                break;
-                                        } else {
-                                                return new Lfx.Types.NoAccessOperationResult();
-                                        }
                         }
 
-                        if (FormularioListado == null)
-                                return null;
+                        return null;
+                }
 
-                        if (Aplicacion.Flotante)
-                                FormularioListado.WindowState = Aplicacion.FormularioPrincipal.WindowState;
-                        else
-                                FormularioListado.MdiParent = Aplicacion.FormularioPrincipal;
 
-                        FormularioListado.Show();
-                        FormularioListado.BringToFront();
+                private static object ExecListar(string comando)
+                {
+                        string SubComandoListado = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
+                        Lfc.FormularioListado FormularioListado = null;
+
+                        Type TipoLbl = Lbl.Instanciador.InferirTipo(SubComandoListado);
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(TipoLbl, Lbl.Sys.Permisos.Operaciones.Listar)) {
+                                Type TipoListado = Lfc.Instanciador.InferirFormularioListado(TipoLbl);
+                                if (TipoListado == null && Lfx.Workspace.Master.DebugMode)
+                                        throw new NotImplementedException("LISTAR " + SubComandoListado);
+                                else
+                                        FormularioListado = Lfc.Instanciador.InstanciarFormularioListado(TipoListado, comando.Length > 0 ? comando : null);
+                        } else {
+                                return new Lfx.Types.NoAccessOperationResult();
+                        }
 
                         return FormularioListado;
                 }
+
 
                 private static object ExecCrearEditar(bool crear, string comando)
                 {
                         string SubComando = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
 
-                        System.Type TipoElemento = Lbl.Instanciador.InferirTipo(SubComando);
-                        Lbl.Atributos.NombreItem AtrNombre = TipoElemento.GetAttribute<Lbl.Atributos.NombreItem>();
+                        System.Type TipoLbl = Lbl.Instanciador.InferirTipo(SubComando);
+                        Lbl.Atributos.NombreItem AtrNombre = TipoLbl.GetAttribute<Lbl.Atributos.NombreItem>();
+
+                        if (crear && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(TipoLbl, Lbl.Sys.Permisos.Operaciones.Crear) == false)
+                                return new Lfx.Types.NoAccessOperationResult();
+
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(TipoLbl, Lbl.Sys.Permisos.Operaciones.Ver) == false)
+                                return new Lfx.Types.NoAccessOperationResult();
 
                         Lfx.Data.Connection DataBase = Lfx.Workspace.Master.GetNewConnection("Editar " + (AtrNombre == null ? SubComando : AtrNombre.Nombre));
                         Lbl.IElementoDeDatos Elemento = null;
                         if(crear) {
-                                Elemento = Lbl.Instanciador.Instanciar(TipoElemento, DataBase);
+                                Elemento = Lbl.Instanciador.Instanciar(TipoLbl, DataBase);
                                 Elemento.Crear();
                         } else { 
                                 int ItemId = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref comando, " "));
-                                Elemento = Lbl.Instanciador.Instanciar(TipoElemento, DataBase, ItemId);
+                                Elemento = Lbl.Instanciador.Instanciar(TipoLbl, DataBase, ItemId);
                         }
-
-                        bool MdiChild = true;
 
                         Lfc.FormularioEdicion FormularioDeEdicion = Lfc.Instanciador.InstanciarFormularioEdicion(Elemento);
                         FormularioDeEdicion.DisposeConnection = true;
@@ -1595,22 +1113,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         if (FormularioDeEdicion == null)
                                 return null;
                         
-                        if (MdiChild == false) {
-                                FormularioDeEdicion.WindowState = FormWindowState.Normal;
-                                FormularioDeEdicion.Owner = Aplicacion.FormularioPrincipal;
-                                FormularioDeEdicion.MdiParent = null;
-                                FormularioDeEdicion.FormBorderStyle = FormBorderStyle.FixedDialog;
-                                FormularioDeEdicion.MaximizeBox = false;
-                                FormularioDeEdicion.MinimizeBox = false;
-                                FormularioDeEdicion.Show();
-                        } else {
-                                if (Aplicacion.Flotante)
-                                        FormularioDeEdicion.WindowState = Aplicacion.FormularioPrincipal.WindowState;
-                                else
-                                        FormularioDeEdicion.MdiParent = Aplicacion.FormularioPrincipal;
-
-                                FormularioDeEdicion.Show();
-                        }
                         return FormularioDeEdicion;
                 }
 

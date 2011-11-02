@@ -276,7 +276,7 @@ namespace Lui.Forms
                 {
                         string prevValueInSetReturn = null;
                         if (m_SetIndex <= 0)
-                                m_SetIndex = m_SetData.Length;
+                                m_SetIndex = m_SetData.Length - 1;
                         else
                                 m_SetIndex--;
                         prevValueInSetReturn = m_SetDataText[m_SetIndex];

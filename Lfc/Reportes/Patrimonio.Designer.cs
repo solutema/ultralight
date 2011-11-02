@@ -29,9 +29,9 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lazaro.WinMain.Reportes
+namespace Lfc.Reportes
 {
-        partial class Patrimonio
+        public partial class Patrimonio
         {
                 /// <summary>
                 /// Variable del diseñador requerida.

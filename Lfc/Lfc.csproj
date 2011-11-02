@@ -83,6 +83,18 @@
     <Compile Include="Articulos\TablaDetalles.Designer.cs">
       <DependentUpon>TablaDetalles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bancos\Cheques\InicioRecibidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bancos\Cheques\InicioEmitidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cajas\Movimiento.Designer.cs">
+      <DependentUpon>Movimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\Facturas\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Comprobantes\Facturas\IvaVentas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +121,12 @@
     </Compile>
     <Compile Include="Comprobantes\IniciarNumeracion.Designer.cs">
       <DependentUpon>IniciarNumeracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\Presupuestos\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\Remitos\Inicio.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Tipo\AgregarTipoImpresora.cs">
       <SubType>Form</SubType>
@@ -363,11 +381,14 @@
     <Compile Include="Personas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Personas\Usuario.cs">
+    <Compile Include="Personas\Proveedores\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\Usuarios\Editar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Personas\Usuario.Designer.cs">
-      <DependentUpon>Usuario.cs</DependentUpon>
+    <Compile Include="Personas\Usuarios\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
     <Compile Include="Personas\Filtros.cs">
       <SubType>Form</SubType>
@@ -543,6 +564,9 @@
     <Compile Include="Personas\EditarPermiso.Designer.cs">
       <DependentUpon>EditarPermiso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Personas\Usuarios\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -556,6 +580,18 @@
     </Compile>
     <Compile Include="Pvs\Inicio.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Facturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\IngresosEgresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Patrimonio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Patrimonio.Designer.cs">
+      <DependentUpon>Patrimonio.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\Reporte.cs">
       <SubType>Form</SubType>
@@ -815,8 +851,8 @@
       <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Personas\Usuario.resx">
-      <DependentUpon>Usuario.cs</DependentUpon>
+    <EmbeddedResource Include="Personas\Usuarios\Editar.resx">
+      <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\Filtros.resx">
@@ -960,6 +996,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pvs\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Facturacion.resx">
+      <DependentUpon>Facturacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\IngresosEgresos.resx">
+      <DependentUpon>IngresosEgresos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Patrimonio.resx">
+      <DependentUpon>Patrimonio.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Reporte.resx">

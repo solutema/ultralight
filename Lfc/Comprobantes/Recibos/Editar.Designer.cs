@@ -53,12 +53,12 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void InitializeComponent()
                 {
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editar));
                         this.Label3 = new Lui.Forms.Label();
                         this.Label1 = new Lui.Forms.Label();
                         this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
                         this.Label2 = new Lui.Forms.Label();
                         this.EntradaNumero = new Lui.Forms.TextBox();
-                        this.frmFacturas = new Lui.Forms.Frame();
                         this.ListaFacturas = new Lui.Forms.ListView();
                         this.FacturasId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.FacturasNumero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,7 +69,8 @@ namespace Lfc.Comprobantes.Recibos
                         this.EtiquetaFacturasImporte = new Lui.Forms.Label();
                         this.BotonAgregarFactura = new Lui.Forms.Button();
                         this.BotonQuitarFactura = new Lui.Forms.Button();
-                        this.Frame1 = new Lui.Forms.Frame();
+                        this.PanelValores = new System.Windows.Forms.Panel();
+                        this.LabelAgregarValores = new System.Windows.Forms.Label();
                         this.ListaValores = new Lui.Forms.ListView();
                         this.ValoresTipoPagoId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ValoresTipoPago = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -85,25 +86,30 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConceptoTexto = new Lui.Forms.TextBox();
                         this.label6 = new Lui.Forms.Label();
                         this.TablaCentral = new System.Windows.Forms.TableLayoutPanel();
+                        this.PanelComprob = new System.Windows.Forms.Panel();
+                        this.LabelAgregarFacturas = new System.Windows.Forms.Label();
                         this.EntradaPV = new Lui.Forms.TextBox();
                         this.label7 = new Lui.Forms.Label();
                         this.EntradaConcepto = new Lcc.Entrada.CodigoDetalle();
-                        this.frmFacturas.SuspendLayout();
-                        this.Frame1.SuspendLayout();
+                        this.PanelValores.SuspendLayout();
                         this.TablaCentral.SuspendLayout();
+                        this.PanelComprob.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(8, 28);
+                        this.Label3.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.Label3.Location = new System.Drawing.Point(0, 0);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(296, 16);
+                        this.Label3.Size = new System.Drawing.Size(372, 20);
                         this.Label3.TabIndex = 8;
-                        this.Label3.Text = "Este recibo cancela las siguientes comprob:";
+                        this.Label3.Text = "Este recibo cancela los siguientes comprobantes:";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(224, 44);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(80, 24);
@@ -117,13 +123,17 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
-                        this.EntradaVendedor.ExtraDetailFields = null;
-                        this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.DataValueField = "id_persona";
+                        this.EntradaVendedor.ExtraDetailFields = null;
+                        this.EntradaVendedor.FieldName = null;
+                        this.EntradaVendedor.Filter = "(tipo&4)=4";
+                        this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.Location = new System.Drawing.Point(304, 44);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaVendedor.PlaceholderText = null;
+                        this.EntradaVendedor.ReadOnly = false;
                         this.EntradaVendedor.Required = true;
                         this.EntradaVendedor.Size = new System.Drawing.Size(200, 24);
                         this.EntradaVendedor.TabIndex = 5;
@@ -133,6 +143,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label2
                         // 
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 44);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(76, 24);
@@ -146,36 +157,27 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
+                        this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(112, 44);
+                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNumero.PasswordChar = '\0';
+                        this.EntradaNumero.PlaceholderText = null;
+                        this.EntradaNumero.Prefijo = "";
+                        this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 3;
-                        // 
-                        // frmFacturas
-                        // 
-                        this.frmFacturas.Controls.Add(this.Label3);
-                        this.frmFacturas.Controls.Add(this.ListaFacturas);
-                        this.frmFacturas.Controls.Add(this.EtiquetaFacturasImporte);
-                        this.frmFacturas.Controls.Add(this.BotonAgregarFactura);
-                        this.frmFacturas.Controls.Add(this.BotonQuitarFactura);
-                        this.frmFacturas.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.frmFacturas.Location = new System.Drawing.Point(7, 7);
-                        this.frmFacturas.Name = "frmFacturas";
-                        this.frmFacturas.Padding = new System.Windows.Forms.Padding(2);
-                        this.frmFacturas.Size = new System.Drawing.Size(368, 350);
-                        this.frmFacturas.TabIndex = 0;
-                        this.frmFacturas.TabStop = false;
-                        this.frmFacturas.Text = "Facturas";
                         // 
                         // ListaFacturas
                         // 
-                        this.ListaFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListaFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListaFacturas.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaFacturas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.FacturasId,
@@ -185,20 +187,17 @@ namespace Lfc.Comprobantes.Recibos
             this.FacturasPendiente,
             this.FacturasCliente});
                         this.ListaFacturas.FullRowSelect = true;
-                        this.ListaFacturas.GridLines = true;
                         this.ListaFacturas.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaFacturas.HideSelection = false;
-                        this.ListaFacturas.Location = new System.Drawing.Point(8, 48);
+                        this.ListaFacturas.Location = new System.Drawing.Point(0, 28);
                         this.ListaFacturas.MultiSelect = false;
                         this.ListaFacturas.Name = "ListaFacturas";
-                        this.ListaFacturas.Size = new System.Drawing.Size(352, 264);
+                        this.ListaFacturas.Size = new System.Drawing.Size(376, 292);
                         this.ListaFacturas.Sorting = System.Windows.Forms.SortOrder.Ascending;
                         this.ListaFacturas.TabIndex = 9;
                         this.ListaFacturas.UseCompatibleStateImageBehavior = false;
                         this.ListaFacturas.View = System.Windows.Forms.View.Details;
-                        this.ListaFacturas.GotFocus += new System.EventHandler(this.ListaFacturas_GotFocus);
                         this.ListaFacturas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvFacturas_KeyDown);
-                        this.ListaFacturas.LostFocus += new System.EventHandler(this.ListaFacturas_LostFocus);
                         // 
                         // FacturasId
                         // 
@@ -235,9 +234,10 @@ namespace Lfc.Comprobantes.Recibos
                         // EtiquetaFacturasImporte
                         // 
                         this.EtiquetaFacturasImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaFacturasImporte.Location = new System.Drawing.Point(248, 322);
+                        this.EtiquetaFacturasImporte.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaFacturasImporte.Location = new System.Drawing.Point(260, 328);
                         this.EtiquetaFacturasImporte.Name = "EtiquetaFacturasImporte";
-                        this.EtiquetaFacturasImporte.Size = new System.Drawing.Size(112, 24);
+                        this.EtiquetaFacturasImporte.Size = new System.Drawing.Size(112, 31);
                         this.EtiquetaFacturasImporte.TabIndex = 12;
                         this.EtiquetaFacturasImporte.Text = "$ 0.00";
                         this.EtiquetaFacturasImporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -248,10 +248,11 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarFactura.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregarFactura.Image = null;
                         this.BotonAgregarFactura.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAgregarFactura.Location = new System.Drawing.Point(8, 320);
+                        this.BotonAgregarFactura.Location = new System.Drawing.Point(0, 328);
                         this.BotonAgregarFactura.Name = "BotonAgregarFactura";
                         this.BotonAgregarFactura.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonAgregarFactura.Size = new System.Drawing.Size(84, 28);
+                        this.BotonAgregarFactura.ReadOnly = false;
+                        this.BotonAgregarFactura.Size = new System.Drawing.Size(100, 31);
                         this.BotonAgregarFactura.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregarFactura.Subtext = "F2";
                         this.BotonAgregarFactura.TabIndex = 10;
@@ -264,10 +265,11 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarFactura.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarFactura.Image = null;
                         this.BotonQuitarFactura.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitarFactura.Location = new System.Drawing.Point(96, 320);
+                        this.BotonQuitarFactura.Location = new System.Drawing.Point(108, 328);
                         this.BotonQuitarFactura.Name = "BotonQuitarFactura";
                         this.BotonQuitarFactura.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonQuitarFactura.Size = new System.Drawing.Size(84, 28);
+                        this.BotonQuitarFactura.ReadOnly = false;
+                        this.BotonQuitarFactura.Size = new System.Drawing.Size(100, 31);
                         this.BotonQuitarFactura.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonQuitarFactura.Subtext = "F3";
                         this.BotonQuitarFactura.TabIndex = 11;
@@ -275,27 +277,41 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarFactura.Visible = false;
                         this.BotonQuitarFactura.Click += new System.EventHandler(this.BotonFacturasQuitar_Click);
                         // 
-                        // Frame1
+                        // PanelValores
                         // 
-                        this.Frame1.Controls.Add(this.ListaValores);
-                        this.Frame1.Controls.Add(this.BotonAgregarValor);
-                        this.Frame1.Controls.Add(this.BotonQuitarValor);
-                        this.Frame1.Controls.Add(this.Label4);
-                        this.Frame1.Controls.Add(this.EtiquetaValoresImporte);
-                        this.Frame1.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.Frame1.Location = new System.Drawing.Point(381, 7);
-                        this.Frame1.Name = "Frame1";
-                        this.Frame1.Padding = new System.Windows.Forms.Padding(2);
-                        this.Frame1.Size = new System.Drawing.Size(368, 350);
-                        this.Frame1.TabIndex = 1;
-                        this.Frame1.TabStop = false;
-                        this.Frame1.Text = "Valores";
+                        this.PanelValores.Controls.Add(this.LabelAgregarValores);
+                        this.PanelValores.Controls.Add(this.ListaValores);
+                        this.PanelValores.Controls.Add(this.BotonAgregarValor);
+                        this.PanelValores.Controls.Add(this.BotonQuitarValor);
+                        this.PanelValores.Controls.Add(this.Label4);
+                        this.PanelValores.Controls.Add(this.EtiquetaValoresImporte);
+                        this.PanelValores.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.PanelValores.Location = new System.Drawing.Point(381, 3);
+                        this.PanelValores.Name = "PanelValores";
+                        this.PanelValores.Size = new System.Drawing.Size(372, 359);
+                        this.PanelValores.TabIndex = 1;
+                        this.PanelValores.Text = "Valores";
+                        // 
+                        // LabelAgregarValores
+                        // 
+                        this.LabelAgregarValores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.LabelAgregarValores.BackColor = System.Drawing.Color.Transparent;
+                        this.LabelAgregarValores.Location = new System.Drawing.Point(4, 56);
+                        this.LabelAgregarValores.Margin = new System.Windows.Forms.Padding(16);
+                        this.LabelAgregarValores.Name = "LabelAgregarValores";
+                        this.LabelAgregarValores.Size = new System.Drawing.Size(364, 244);
+                        this.LabelAgregarValores.TabIndex = 19;
+                        this.LabelAgregarValores.Text = "Seleccione uno o más valores (pagos) que componen este recibo.";
+                        this.LabelAgregarValores.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.LabelAgregarValores.Click += new System.EventHandler(this.LabelAgregarValores_Click);
                         // 
                         // ListaValores
                         // 
-                        this.ListaValores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListaValores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListaValores.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaValores.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ValoresTipoPagoId,
@@ -303,18 +319,16 @@ namespace Lfc.Comprobantes.Recibos
             this.ValoresImporte,
             this.ValoresObs});
                         this.ListaValores.FullRowSelect = true;
-                        this.ListaValores.GridLines = true;
                         this.ListaValores.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-                        this.ListaValores.Location = new System.Drawing.Point(8, 48);
+                        this.ListaValores.HideSelection = false;
+                        this.ListaValores.Location = new System.Drawing.Point(0, 28);
                         this.ListaValores.MultiSelect = false;
                         this.ListaValores.Name = "ListaValores";
-                        this.ListaValores.Size = new System.Drawing.Size(352, 264);
+                        this.ListaValores.Size = new System.Drawing.Size(372, 292);
                         this.ListaValores.TabIndex = 15;
                         this.ListaValores.UseCompatibleStateImageBehavior = false;
                         this.ListaValores.View = System.Windows.Forms.View.Details;
-                        this.ListaValores.GotFocus += new System.EventHandler(this.ListaValores_GotFocus);
                         this.ListaValores.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListaValores_KeyDown);
-                        this.ListaValores.LostFocus += new System.EventHandler(this.ListaValores_LostFocus);
                         // 
                         // ValoresTipoPagoId
                         // 
@@ -343,10 +357,11 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarValor.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregarValor.Image = null;
                         this.BotonAgregarValor.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAgregarValor.Location = new System.Drawing.Point(8, 320);
+                        this.BotonAgregarValor.Location = new System.Drawing.Point(0, 328);
                         this.BotonAgregarValor.Name = "BotonAgregarValor";
                         this.BotonAgregarValor.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonAgregarValor.Size = new System.Drawing.Size(84, 28);
+                        this.BotonAgregarValor.ReadOnly = false;
+                        this.BotonAgregarValor.Size = new System.Drawing.Size(100, 31);
                         this.BotonAgregarValor.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregarValor.Subtext = "F4";
                         this.BotonAgregarValor.TabIndex = 16;
@@ -359,10 +374,11 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarValor.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarValor.Image = null;
                         this.BotonQuitarValor.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitarValor.Location = new System.Drawing.Point(96, 320);
+                        this.BotonQuitarValor.Location = new System.Drawing.Point(108, 328);
                         this.BotonQuitarValor.Name = "BotonQuitarValor";
                         this.BotonQuitarValor.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonQuitarValor.Size = new System.Drawing.Size(84, 28);
+                        this.BotonQuitarValor.ReadOnly = false;
+                        this.BotonQuitarValor.Size = new System.Drawing.Size(100, 31);
                         this.BotonQuitarValor.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonQuitarValor.Subtext = "F5";
                         this.BotonQuitarValor.TabIndex = 17;
@@ -371,11 +387,11 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label4
                         // 
-                        this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.Location = new System.Drawing.Point(8, 28);
+                        this.Label4.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.Label4.Location = new System.Drawing.Point(0, 0);
                         this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(348, 16);
+                        this.Label4.Size = new System.Drawing.Size(372, 20);
                         this.Label4.TabIndex = 14;
                         this.Label4.Text = "Y está compuesto por los siguientes valores:";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -383,15 +399,17 @@ namespace Lfc.Comprobantes.Recibos
                         // EtiquetaValoresImporte
                         // 
                         this.EtiquetaValoresImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaValoresImporte.Location = new System.Drawing.Point(248, 322);
+                        this.EtiquetaValoresImporte.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaValoresImporte.Location = new System.Drawing.Point(260, 328);
                         this.EtiquetaValoresImporte.Name = "EtiquetaValoresImporte";
-                        this.EtiquetaValoresImporte.Size = new System.Drawing.Size(112, 24);
+                        this.EtiquetaValoresImporte.Size = new System.Drawing.Size(112, 31);
                         this.EtiquetaValoresImporte.TabIndex = 18;
                         this.EtiquetaValoresImporte.Text = "$ 0.00";
                         this.EtiquetaValoresImporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                         // 
                         // Label5
                         // 
+                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(512, 44);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(52, 24);
@@ -401,20 +419,23 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaCliente
                         // 
-                        this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoNav = true;
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
+                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.ExtraDetailFields = null;
+                        this.EntradaCliente.FieldName = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
-                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.Location = new System.Drawing.Point(564, 44);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCliente.PlaceholderText = null;
+                        this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(192, 24);
                         this.EntradaCliente.TabIndex = 7;
@@ -424,8 +445,8 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EtiquetaTitulo
                         // 
-                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header1;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
@@ -436,23 +457,31 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaConceptoTexto
                         // 
-                        this.EntradaConceptoTexto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaConceptoTexto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConceptoTexto.AutoNav = true;
                         this.EntradaConceptoTexto.AutoTab = true;
                         this.EntradaConceptoTexto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaConceptoTexto.DecimalPlaces = -1;
+                        this.EntradaConceptoTexto.FieldName = null;
                         this.EntradaConceptoTexto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaConceptoTexto.Location = new System.Drawing.Point(84, 72);
+                        this.EntradaConceptoTexto.MaxLength = 32767;
                         this.EntradaConceptoTexto.MultiLine = false;
                         this.EntradaConceptoTexto.Name = "EntradaConceptoTexto";
                         this.EntradaConceptoTexto.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaConceptoTexto.PasswordChar = '\0';
+                        this.EntradaConceptoTexto.PlaceholderText = null;
+                        this.EntradaConceptoTexto.Prefijo = "";
+                        this.EntradaConceptoTexto.ReadOnly = false;
                         this.EntradaConceptoTexto.SelectOnFocus = true;
                         this.EntradaConceptoTexto.Size = new System.Drawing.Size(344, 24);
+                        this.EntradaConceptoTexto.Sufijo = "";
                         this.EntradaConceptoTexto.TabIndex = 9;
                         // 
                         // label6
                         // 
+                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label6.Location = new System.Drawing.Point(0, 72);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(84, 24);
@@ -462,23 +491,49 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // TablaCentral
                         // 
-                        this.TablaCentral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.TablaCentral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.TablaCentral.ColumnCount = 2;
                         this.TablaCentral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
                         this.TablaCentral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-                        this.TablaCentral.Controls.Add(this.frmFacturas, 0, 0);
-                        this.TablaCentral.Controls.Add(this.Frame1, 1, 0);
+                        this.TablaCentral.Controls.Add(this.PanelValores, 1, 0);
+                        this.TablaCentral.Controls.Add(this.PanelComprob, 0, 0);
                         this.TablaCentral.Location = new System.Drawing.Point(0, 108);
-                        this.TablaCentral.Margin = new System.Windows.Forms.Padding(4);
                         this.TablaCentral.Name = "TablaCentral";
-                        this.TablaCentral.Padding = new System.Windows.Forms.Padding(4);
                         this.TablaCentral.RowCount = 1;
                         this.TablaCentral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-                        this.TablaCentral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 288F));
-                        this.TablaCentral.Size = new System.Drawing.Size(756, 364);
+                        this.TablaCentral.Size = new System.Drawing.Size(756, 365);
                         this.TablaCentral.TabIndex = 10;
+                        // 
+                        // PanelComprob
+                        // 
+                        this.PanelComprob.Controls.Add(this.LabelAgregarFacturas);
+                        this.PanelComprob.Controls.Add(this.Label3);
+                        this.PanelComprob.Controls.Add(this.ListaFacturas);
+                        this.PanelComprob.Controls.Add(this.EtiquetaFacturasImporte);
+                        this.PanelComprob.Controls.Add(this.BotonQuitarFactura);
+                        this.PanelComprob.Controls.Add(this.BotonAgregarFactura);
+                        this.PanelComprob.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.PanelComprob.Location = new System.Drawing.Point(3, 3);
+                        this.PanelComprob.Name = "PanelComprob";
+                        this.PanelComprob.Size = new System.Drawing.Size(372, 359);
+                        this.PanelComprob.TabIndex = 2;
+                        // 
+                        // LabelAgregarFacturas
+                        // 
+                        this.LabelAgregarFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.LabelAgregarFacturas.BackColor = System.Drawing.Color.Transparent;
+                        this.LabelAgregarFacturas.Location = new System.Drawing.Point(4, 56);
+                        this.LabelAgregarFacturas.Margin = new System.Windows.Forms.Padding(16);
+                        this.LabelAgregarFacturas.Name = "LabelAgregarFacturas";
+                        this.LabelAgregarFacturas.Size = new System.Drawing.Size(364, 244);
+                        this.LabelAgregarFacturas.TabIndex = 13;
+                        this.LabelAgregarFacturas.Text = resources.GetString("LabelAgregarFacturas.Text");
+                        this.LabelAgregarFacturas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.LabelAgregarFacturas.Click += new System.EventHandler(this.LabelAgregarFacturas_Click);
                         // 
                         // EntradaPV
                         // 
@@ -486,18 +541,26 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.AutoTab = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaPV.DecimalPlaces = -1;
+                        this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(76, 44);
+                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPV.PasswordChar = '\0';
+                        this.EntradaPV.PlaceholderText = null;
+                        this.EntradaPV.Prefijo = "";
+                        this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
+                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 2;
                         // 
                         // label7
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label7.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label7.Location = new System.Drawing.Point(440, 72);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(76, 24);
@@ -512,21 +575,23 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
                         this.EntradaConcepto.DataTextField = "nombre";
+                        this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.ExtraDetailFields = null;
+                        this.EntradaConcepto.FieldName = null;
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.FreeTextCode = "";
-                        this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.Location = new System.Drawing.Point(516, 72);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaConcepto.PlaceholderText = "Sin especificar";
+                        this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(240, 24);
                         this.EntradaConcepto.TabIndex = 11;
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
-                        this.EntradaConcepto.PlaceholderText = "Sin especificar";
                         // 
                         // Editar
                         // 
@@ -544,7 +609,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.EntradaVendedor);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(756, 473);
+                        this.Size = new System.Drawing.Size(756, 474);
                         this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
@@ -558,11 +623,9 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.SetChildIndex(this.EntradaConceptoTexto, 0);
                         this.Controls.SetChildIndex(this.EntradaConcepto, 0);
                         this.Controls.SetChildIndex(this.label7, 0);
-                        this.frmFacturas.ResumeLayout(false);
-                        this.frmFacturas.PerformLayout();
-                        this.Frame1.ResumeLayout(false);
-                        this.Frame1.PerformLayout();
+                        this.PanelValores.ResumeLayout(false);
                         this.TablaCentral.ResumeLayout(false);
+                        this.PanelComprob.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -573,41 +636,43 @@ namespace Lfc.Comprobantes.Recibos
 
                 // Requerido por el Diseñador de Windows Forms
                 private System.ComponentModel.IContainer components = null;
-                internal Lui.Forms.Label Label3;
-                internal Lui.Forms.Label Label1;
-                internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
-                internal Lui.Forms.Label Label2;
-                internal Lui.Forms.TextBox EntradaNumero;
-                internal Lui.Forms.Frame frmFacturas;
-                internal Lui.Forms.ListView ListaFacturas;
-                internal Lui.Forms.Button BotonAgregarFactura;
-                internal Lui.Forms.Frame Frame1;
-                internal Lui.Forms.ListView ListaValores;
-                internal Lui.Forms.Label EtiquetaFacturasImporte;
-                internal Lui.Forms.Button BotonQuitarFactura;
-                internal Lui.Forms.Label EtiquetaValoresImporte;
-                internal Lui.Forms.Button BotonAgregarValor;
-                internal Lui.Forms.Button BotonQuitarValor;
-                internal System.Windows.Forms.ColumnHeader FacturasId;
-                internal System.Windows.Forms.ColumnHeader FacturasNumero;
-                internal System.Windows.Forms.ColumnHeader FacturasFecha;
-                internal System.Windows.Forms.ColumnHeader FacturasPendiente;
-                internal System.Windows.Forms.ColumnHeader FacturasCliente;
-                internal System.Windows.Forms.ColumnHeader ValoresTipoPagoId;
-                internal System.Windows.Forms.ColumnHeader ValoresTipoPago;
-                internal System.Windows.Forms.ColumnHeader ValoresImporte;
-                internal System.Windows.Forms.ColumnHeader ValoresObs;
-                internal System.Windows.Forms.ColumnHeader FacturasImporte;
-                internal Lui.Forms.Label Label4;
-                internal Lui.Forms.Label Label5;
-                internal Lcc.Entrada.CodigoDetalle EntradaCliente;
+                private Lui.Forms.Label Label3;
+                private Lui.Forms.Label Label1;
+                private Lcc.Entrada.CodigoDetalle EntradaVendedor;
+                private Lui.Forms.Label Label2;
+                private Lui.Forms.TextBox EntradaNumero;
+                private Lui.Forms.ListView ListaFacturas;
+                private Lui.Forms.Button BotonAgregarFactura;
+                private System.Windows.Forms.Panel PanelValores;
+                private Lui.Forms.ListView ListaValores;
+                private Lui.Forms.Label EtiquetaFacturasImporte;
+                private Lui.Forms.Button BotonQuitarFactura;
+                private Lui.Forms.Label EtiquetaValoresImporte;
+                private Lui.Forms.Button BotonAgregarValor;
+                private Lui.Forms.Button BotonQuitarValor;
+                private System.Windows.Forms.ColumnHeader FacturasId;
+                private System.Windows.Forms.ColumnHeader FacturasNumero;
+                private System.Windows.Forms.ColumnHeader FacturasFecha;
+                private System.Windows.Forms.ColumnHeader FacturasPendiente;
+                private System.Windows.Forms.ColumnHeader FacturasCliente;
+                private System.Windows.Forms.ColumnHeader ValoresTipoPagoId;
+                private System.Windows.Forms.ColumnHeader ValoresTipoPago;
+                private System.Windows.Forms.ColumnHeader ValoresImporte;
+                private System.Windows.Forms.ColumnHeader ValoresObs;
+                private System.Windows.Forms.ColumnHeader FacturasImporte;
+                private Lui.Forms.Label Label4;
+                private Lui.Forms.Label Label5;
+                private Lcc.Entrada.CodigoDetalle EntradaCliente;
                 private Lui.Forms.Label EtiquetaTitulo;
-                internal Lui.Forms.TextBox EntradaConceptoTexto;
-                internal Label label6;
+                private Lui.Forms.TextBox EntradaConceptoTexto;
                 private TableLayoutPanel TablaCentral;
-                internal Lui.Forms.TextBox EntradaPV;
-                internal Label label7;
-                internal Lcc.Entrada.CodigoDetalle EntradaConcepto;
+                private Lui.Forms.TextBox EntradaPV;
+                private Lcc.Entrada.CodigoDetalle EntradaConcepto;
+                private Lui.Forms.Label label6;
+                private Lui.Forms.Label label7;
+                private Panel PanelComprob;
+                private Label LabelAgregarValores;
+                private Label LabelAgregarFacturas;
 
         }
 }

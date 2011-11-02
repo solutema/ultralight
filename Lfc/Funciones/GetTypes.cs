@@ -89,9 +89,16 @@ namespace Lfc
                                 }));
 
                         Res.Add(new Lfx.Components.RegisteredType(
-                                typeof(Lbl.Bancos.Cheque),
+                                typeof(Lbl.Bancos.ChequeEmitido),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Bancos.Cheques.Inicio)),
+                                        new Lfx.Components.Action("list", typeof(Lfc.Bancos.Cheques.InicioEmitidos)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Bancos.Cheques.Editar))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Bancos.ChequeRecibido),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Bancos.Cheques.InicioEmitidos)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Bancos.Cheques.Editar))
                                 }));
 
@@ -125,10 +132,35 @@ namespace Lfc
                                         new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
                                 }));
 
+
+                        Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Comprobantes.ComprobanteFacturable),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Facturas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Facturas.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
+                                }));
+
                         Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.Factura),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Inicio)),
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Facturas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Facturas.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Comprobantes.NotaDeCredito),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Facturas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Facturas.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Comprobantes.NotaDeDebito),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Facturas.Inicio)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Facturas.Editar)),
                                         new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
                                 }));
@@ -136,7 +168,7 @@ namespace Lfc
                         Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.Presupuesto),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Inicio)),
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Presupuestos.Inicio)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Presupuestos.Editar)),
                                         new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorPresupuesto))
                                 }));
@@ -147,6 +179,22 @@ namespace Lfc
                                         new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.Inicio)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Recibos.Editar)),
                                         new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorRecibo))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Comprobantes.Remito),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Remitos.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Comprobantes.Ticket),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Facturas.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Facturas.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos))
                                 }));
 
                         Res.Add(new Lfx.Components.RegisteredType(
@@ -164,6 +212,20 @@ namespace Lfc
                                 }));
 
                         Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Pagos.Cupon),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Tarjetas.Cupones.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Tarjetas.Cupones.Editar))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Personas.Grupo),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Grupos.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Personas.Grupos.Editar))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Personas.Persona),
                                 new Lfx.Components.ActionCollection() {
                                         new Lfx.Components.Action("list", typeof(Lfc.Personas.Inicio)),
@@ -173,22 +235,15 @@ namespace Lfc
                         Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Personas.Proveedor),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Inicio)),
+                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Proveedores.Inicio)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Personas.Editar))
                                 }));
 
                         Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Personas.Usuario),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Inicio)),
-                                        new Lfx.Components.Action("edit", typeof(Lfc.Personas.Usuario))
-                                }));
-
-                        Res.Add(new Lfx.Components.RegisteredType(
-                                typeof(Lbl.Personas.Grupo),
-                                new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Grupos.Inicio)),
-                                        new Lfx.Components.Action("edit", typeof(Lfc.Personas.Grupos.Editar))
+                                        new Lfx.Components.Action("list", typeof(Lfc.Personas.Usuarios.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Personas.Usuarios.Editar))
                                 }));
 
                         Res.Add(new Lfx.Components.RegisteredType(

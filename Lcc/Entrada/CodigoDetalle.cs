@@ -57,10 +57,10 @@ namespace Lcc.Entrada
                         InitializeComponent();
 
                         Label1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        EntradaCodigo.BackColor = Label1.BackColor;
-                        EntradaFreeText.BackColor = Label1.BackColor;
                         Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                        EntradaCodigo.ForeColor = Label1.ForeColor;
+                        EntradaCodigo.BackColor = Label1.BackColor;
+                        EntradaCodigo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
+                        EntradaFreeText.BackColor = Label1.BackColor;
                         EntradaFreeText.ForeColor = Label1.ForeColor;
                         this.BorderStyle = Lui.Forms.Control.BorderStyles.TextBox;
                 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Ernesto N. Carrea
+// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,26 +29,31 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System.ComponentModel;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Lui.Forms
+namespace Lbl.Bancos
 {
-        public interface IEditableControl : IControl
-        {
-                string FieldName { get; set; }
+	public class ChequeRecibido : Cheque
+	{
+                //Heredar constructor
+		public ChequeRecibido(Lfx.Data.Connection dataBase)
+                        : base(dataBase) { }
 
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                bool Changed
-                {
-                        get;
-                        set;
-                }
+		public ChequeRecibido(Lfx.Data.Connection dataBase, int itemId)
+			: base(dataBase, itemId) { }
 
-                bool ShowChanged
+                public ChequeRecibido(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
+
+
+                new public bool Emitido
                 {
-                        set;
+                        get
+                        {
+                                return false;
+                        }
                 }
-        }
+	}
 }

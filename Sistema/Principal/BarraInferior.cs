@@ -54,7 +54,7 @@ namespace Lazaro.WinMain.Principal
 			TimerReloj_Tick(this, null);
 		}
 
-		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Lfx.Workspace Workspace
 		{
 			get
@@ -63,7 +63,7 @@ namespace Lazaro.WinMain.Principal
 			}
 		}
 
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DefaultValue(""), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lfx.Data.Connection DataBase
                 {
                         get
@@ -213,14 +213,20 @@ namespace Lazaro.WinMain.Principal
 
 		private void ArticuloNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-                        if (TablaActual != null && ItemActual > 0)
-                                Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                        if (TablaActual != null && ItemActual > 0) {
+                                object Res = Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                                if (Res != null)
+                                        Aplicacion.FormularioPrincipal.ProcesarObjeto(Res);
+                        }
 		}
 
                 private void PersonaNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        if (TablaActual != null && ItemActual > 0)
-                                Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                        if (TablaActual != null && ItemActual > 0) {
+                                object Res = Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                                if (Res != null)
+                                        Aplicacion.FormularioPrincipal.ProcesarObjeto(Res);
+                        }
                 }
 
                 private void EnlaceEtiquetas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

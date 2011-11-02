@@ -40,8 +40,12 @@ namespace Lui.Forms
 	{
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
-                        DefaultValue(true)]
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+                public string FieldName { get; set; }
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
                 public bool DisposeConnection { get; set; }
 
                 private Lfx.Data.Connection m_Connection = null;
@@ -50,15 +54,15 @@ namespace Lui.Forms
 
 		public Form()
 		{
+                        this.DisposeConnection = true;
 			InitializeComponent();
+                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
 		}
 
 
 		private void Form_Load(object sender, System.EventArgs e)
 		{
-			if(this.BackColor == SystemColors.Control)
-				this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-
+                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                         EventHandler WorkspaceChangedHandler = this.WorkspaceChanged;
                         if (WorkspaceChangedHandler != null)
                                 WorkspaceChangedHandler(this, null);

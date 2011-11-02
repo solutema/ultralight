@@ -117,4 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LabelAgregarFacturas.Text" xml:space="preserve">
+    <value>Es recibo cancelará automáticamente una o más facturas del cliente seleccionado que contengan saldo impago hasta completar el total del importe del recibo.
+Si desea cancelar específicamente una o más facturas seleccionadas manualmente, haga clic en el botón 'Agregar (F2)'.</value>
+  </data>
 </root>
