@@ -64,5 +64,10 @@ namespace Lfx.Data.Filters
                 {
                         return true;
                 }
+
+                public override string ToString()
+                {
+                        return this.GetType().ToString() + " on " + this.ColumnName;
+                }
         }
 }

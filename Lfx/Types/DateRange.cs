@@ -256,5 +256,57 @@ namespace Lfx.Types
                                 }
                         }
                 }
+
+                public override string ToString()
+                {
+                        string Res;
+
+                        switch (this.Rep) {
+                                case "dia-0":
+                                        return "hoy";
+                                case "dia-1":
+                                        return "ayer";
+                                case "dia-2":
+                                        return "anteayer";
+                                case "dia-3":
+                                case "dia-4":
+                                case "dia-5":
+                                        return "el " + this.From.ToString("dddd d");
+                                case "dia":
+                                        return "el " + this.From.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
+
+                                case "semana-0":
+                                        return "esta semana";
+                                case "semana-1":
+                                        return "la semana pasada";
+                                case "semana-2":
+                                case "semana-3":
+                                        return "la semana del " + this.From.ToString("dd/MM") + " al " + this.From.ToString("dd/MM");
+                                case "semana":
+                                        return "la semana del " + this.From.ToString("dd/MM") + " al " + this.From.ToString("dd/MM/yyyy");
+
+                                case "mes-0":
+                                        return "este mes";
+                                case "mes-1":
+                                        return "el mes pasado";
+                                case "mes-2":
+                                case "mes-3":
+                                case "mes-4":
+                                case "mes-5":
+                                case "mes-6":
+                                case "mes-7":
+                                case "mes-8":
+                                        return this.From.ToString("MMMM");
+
+                                case "*":
+                                        return "cualquiera";
+
+                                default:
+                                        if (this.From.Year == this.To.Year && this.From.Year == DateTime.Now.Year)
+                                                return "del " + this.From.ToString("dd/MM") + " al " + this.From.ToString("dd/MM");
+                                        else
+                                                return "del " + this.From.ToString("dd/MM/yyyy") + " al " + this.From.ToString("dd/MM/yyyy");
+                        }
+                }
         }
 }

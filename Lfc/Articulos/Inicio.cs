@@ -156,21 +156,21 @@ namespace Lfc.Articulos
                         this.CustomFilters.Clear();
 
                         if (m_Proveedor != null)
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_proveedor", m_Proveedor.Id));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.id_proveedor", m_Proveedor.Id));
 
                         if (m_Marca != null)
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("id_marca", m_Marca.Id));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.id_marca", m_Marca.Id));
 
                         if (m_Categoria != null)
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.id_categoria", m_Categoria.Id));
 
                         if (m_Rubro != null)
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.id_categoria", qGen.ComparisonOperators.In, new qGen.SqlExpression("SELECT id_categoria FROM articulos_categorias WHERE id_rubro=" + m_Rubro.ToString())));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.id_categoria", qGen.ComparisonOperators.In, new qGen.SqlExpression("SELECT id_categoria FROM articulos_categorias WHERE id_rubro=" + m_Rubro.Id.ToString())));
 
                         if (m_PvpDesde != 0)
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("pvp", qGen.ComparisonOperators.GreaterOrEqual, m_PvpDesde));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.pvp", qGen.ComparisonOperators.GreaterOrEqual, m_PvpDesde));
                         if (m_PvpHasta != 0)
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("pvp", qGen.ComparisonOperators.LessOrEqual, m_PvpHasta));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.pvp", qGen.ComparisonOperators.LessOrEqual, m_PvpHasta));
 
                         if (m_Situacion != null) {
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.id_situacion", m_Situacion.Id));
@@ -185,23 +185,23 @@ namespace Lfc.Articulos
 
                         switch (m_Stock) {
                                 case "cs":
-                                        this.CustomFilters.Add(new qGen.ComparisonCondition("stock_actual", qGen.ComparisonOperators.GreaterThan, 0));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.stock_actual", qGen.ComparisonOperators.GreaterThan, 0));
                                         break;
 
                                 case "ss":
-                                        this.CustomFilters.Add(new qGen.ComparisonCondition("stock_actual", qGen.ComparisonOperators.LessOrEqual, 0));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.stock_actual", qGen.ComparisonOperators.LessOrEqual, 0));
                                         break;
 
                                 case "faltante":
-                                        this.CustomFilters.AddWithValue("stock_actual", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("stock_minimo"));
+                                        this.CustomFilters.AddWithValue("articulos.stock_actual", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("articulos.stock_minimo"));
                                         break;
 
                                 case "faltanteip":
-                                        this.CustomFilters.Add(new qGen.ComparisonCondition("stock_actual+pedido", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("stock_minimo")));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.stock_actual+articulos.pedido", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("articulos.stock_minimo")));
                                         break;
 
                                 case "apedir":
-                                        this.CustomFilters.Add(new qGen.ComparisonCondition("apedir", qGen.ComparisonOperators.GreaterThan, 0));
+                                        this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.apedir", qGen.ComparisonOperators.GreaterThan, 0));
                                         break;
 
                                 case "pedido":
@@ -237,12 +237,12 @@ namespace Lfc.Articulos
 
                 public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
-                        m_Rubro = (Lbl.Articulos.Rubro)(filters["id_rubro"].Value);
-                        m_Categoria = (Lbl.Articulos.Categoria)(filters["id_categoria"].Value);
-                        m_Marca = (Lbl.Articulos.Marca)(filters["id_marca"].Value);
-                        m_Proveedor = (Lbl.Personas.Persona)(filters["id_proveedor"].Value);
-                        m_Situacion = (Lbl.Articulos.Situacion)(filters["id_situacion"].Value);
-                        m_Stock = System.Convert.ToString(filters["stock_actual"].Value);
+                        m_Rubro = filters["id_rubro"].Value as Lbl.Articulos.Rubro;
+                        m_Categoria = filters["id_categoria"].Value as Lbl.Articulos.Categoria;
+                        m_Marca = filters["id_marca"].Value as Lbl.Articulos.Marca;
+                        m_Proveedor = filters["id_proveedor"].Value as Lbl.Personas.Persona;
+                        m_Situacion = filters["id_situacion"].Value as Lbl.Articulos.Situacion;
+                        m_Stock = filters["stock_actual"].Value as string;
 
                         base.FiltersChanged(filters);
                 }

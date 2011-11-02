@@ -91,8 +91,8 @@ namespace Lfc.Personas
                                         new Lfx.Data.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
                                         new Lfx.Data.Filters.SetFilter("Estado", "personas.estado", new string[] {"Todos|-1", "Activos|1", "Inactivos|0"}, "-1"),
                                         new Lfx.Data.Filters.SetFilter("Estado de Crédito", "personas.estadocredito", new string[] { "Cualquiera|-1", "Normal|0", "En plan de pagos|5", "Suspendido|10" }, "-1"),
-                                        new Lfx.Data.Filters.DateRangeFilter("Fecha de Alta", "fechaalta", new Lfx.Types.DateRange("*")),
-                                        new Lfx.Data.Filters.DateRangeFilter("Fecha de Baja", "fechabaja", new Lfx.Types.DateRange("*"))
+                                        new Lfx.Data.Filters.DateRangeFilter("Fecha de Alta", "personas.fechaalta", new Lfx.Types.DateRange("*")),
+                                        new Lfx.Data.Filters.DateRangeFilter("Fecha de Baja", "personas.fechabaja", new Lfx.Types.DateRange("*"))
                                 }
                         };
 

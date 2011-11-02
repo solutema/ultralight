@@ -137,6 +137,9 @@ namespace Lfx.Types
                 /// </summary>
                 public static decimal ParseDecimal(string valor)
                 {
+                        if (valor == null || valor.Length == 0)
+                                return 0;
+
                         string ValorMejorado = valor.Replace("$", "").Trim();
 
                         if (IsNumeric(ValorMejorado)) {

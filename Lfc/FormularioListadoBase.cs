@@ -228,7 +228,31 @@ namespace Lfc
 
                 public virtual void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
+                        
+                }
 
+
+                private string ExplicarFiltros(Lfx.Data.Filters.FilterCollection filters)
+                {
+                        System.Text.StringBuilder Res = new System.Text.StringBuilder();
+                        foreach (Lfx.Data.Filters.IFilter filter in filters) {
+                                if (filter is Lfx.Data.Filters.RelationFilter) {
+                                        if(filter.Value != null)
+                                                Res.Append(", " + filter.Label + " es " + filter.Value.ToString());
+                                } else if (filter is Lfx.Data.Filters.NumericRangeFilter) {
+                                        if(Lfx.Types.Parsing.ParseDecimal(filter.Value as string) != 0)
+                                                Res.Append(", " + filter.Label + " es " + filter.Value.ToString());
+                                } else if (filter is Lfx.Data.Filters.DateRangeFilter) {
+                                        Lfx.Types.DateRange Rng = filter.Value as Lfx.Types.DateRange;
+                                        if (Rng != null && Rng.HasRange)
+                                                Res.Append(", " + filter.Label + " es " + Rng.ToString());
+                                } else if (filter is Lfx.Data.Filters.SetFilter) {
+                                        if (Lfx.Types.Parsing.ParseDecimal(filter.Value as string) > 0)
+                                                Res.Append(", " + filter.Label + " es " + filter.Value.ToString());
+                                }
+                        }
+
+                        return Res.ToString();
                 }
 
 
