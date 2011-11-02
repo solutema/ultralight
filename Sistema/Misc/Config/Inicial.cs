@@ -79,6 +79,8 @@ namespace Lazaro.WinMain.Misc.Config
                                 case Lfx.Environment.SystemInformation.Platforms.Windows:
                                         if (System.IO.File.Exists(@"C:\mysql\bin\mysqld.exe")) {
                                                 EtiquetaBuscando.Text = "Lázaro detectó un servidor SQL en este equipo. Haga clic en el botón 'Siguiente' para revisar la configuración detectada.";
+                                                EtiquetaBuscarEspere.Visible = false;
+                                                ProgresoBuscar.Visible = false;
                                                 EntradaServidor.Text = "localhost";
                                                 CheckEsteEquipo.Checked = true;
                                         } else {
@@ -94,7 +96,7 @@ namespace Lazaro.WinMain.Misc.Config
 
                                                 EtiquetaBuscarEspere.Visible = true;
                                                 while (Progreso != null && Progreso.IsRunning) {
-                                                        System.Threading.Thread.Sleep(200);
+                                                        System.Threading.Thread.Sleep(100);
                                                         EtiquetaBuscando.Text = Progreso.Status;
                                                         System.Windows.Forms.Application.DoEvents();
                                                         if (this.ThreadBuscar == null)
@@ -147,6 +149,10 @@ namespace Lazaro.WinMain.Misc.Config
                                                                                                 Cliente.Connect(DireccionServidor, 3306);
                                                                                                 Cliente.Close();
                                                                                                 this.ServidorDetectado = DireccionServidor.ToString();
+
+                                                                                                System.Net.IPHostEntry DireccionServidorDetectado = System.Net.Dns.GetHostEntry(ServidorDetectado);
+                                                                                                this.ServidorDetectado = DireccionServidorDetectado.HostName;
+
                                                                                                 progreso.End();
                                                                                         } catch {
                                                                                                 // Nada
@@ -403,7 +409,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.ThreadDescargar.Start();
 
                         while (Progreso != null && Progreso.IsRunning) {
-                                System.Threading.Thread.Sleep(200);
+                                System.Threading.Thread.Sleep(100);
                                 EtiquetaDescargando.Text = Progreso.Status;
                                 System.Windows.Forms.Application.DoEvents();
                                 if (this.ThreadDescargar == null)
