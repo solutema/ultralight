@@ -71,18 +71,12 @@ namespace Lcc.Entrada
                         this.TablaFiltros.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                         this.TablaFiltros.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                         this.TablaFiltros.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.TablaFiltros.Location = new System.Drawing.Point(4, 4);
+                        this.TablaFiltros.Location = new System.Drawing.Point(3, 4);
                         this.TablaFiltros.Name = "TablaFiltros";
                         this.TablaFiltros.RowCount = 1;
                         this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 190F));
-                        this.TablaFiltros.Size = new System.Drawing.Size(391, 241);
+                        this.TablaFiltros.Size = new System.Drawing.Size(336, 223);
                         this.TablaFiltros.TabIndex = 0;
                         // 
                         // PanelInferior
@@ -91,9 +85,9 @@ namespace Lcc.Entrada
                         this.PanelInferior.Controls.Add(this.BotonAplicar);
                         this.PanelInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
                         this.PanelInferior.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-                        this.PanelInferior.Location = new System.Drawing.Point(4, 245);
+                        this.PanelInferior.Location = new System.Drawing.Point(3, 227);
                         this.PanelInferior.Name = "PanelInferior";
-                        this.PanelInferior.Size = new System.Drawing.Size(391, 30);
+                        this.PanelInferior.Size = new System.Drawing.Size(336, 28);
                         this.PanelInferior.TabIndex = 1;
                         // 
                         // BotonAplicar
@@ -101,11 +95,11 @@ namespace Lcc.Entrada
                         this.BotonAplicar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAplicar.Image = null;
                         this.BotonAplicar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAplicar.Location = new System.Drawing.Point(304, 3);
+                        this.BotonAplicar.Location = new System.Drawing.Point(261, 3);
                         this.BotonAplicar.Name = "BotonAplicar";
                         this.BotonAplicar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAplicar.ReadOnly = false;
-                        this.BotonAplicar.Size = new System.Drawing.Size(84, 24);
+                        this.BotonAplicar.Size = new System.Drawing.Size(72, 22);
                         this.BotonAplicar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAplicar.Subtext = "Tecla";
                         this.BotonAplicar.TabIndex = 0;
@@ -114,15 +108,15 @@ namespace Lcc.Entrada
                         // 
                         // Filtros
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.AutoScroll = true;
                         this.AutoSize = true;
                         this.Controls.Add(this.TablaFiltros);
                         this.Controls.Add(this.PanelInferior);
                         this.Name = "Filtros";
-                        this.Padding = new System.Windows.Forms.Padding(4);
-                        this.Size = new System.Drawing.Size(399, 279);
+                        this.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+                        this.Size = new System.Drawing.Size(342, 259);
                         this.PanelInferior.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();

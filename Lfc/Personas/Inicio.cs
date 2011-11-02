@@ -37,22 +37,20 @@ namespace Lfc.Personas
 {
         public partial class Inicio : Lfc.FormularioListado
         {
-                public int Tipo { get; set; }
-                public int Grupo { get; set; }
-                public int Localidad {get;set;}
-                public int SubGrupo { get; set; }
-                public int Situacion { get; set; }
+                private int m_Tipo;
+
+                public Lbl.Personas.Grupo Grupo { get; set; }
+                public Lbl.Personas.Grupo SubGrupo { get; set; }
+                public Lbl.Entidades.Localidad Localidad { get; set; }
+                public Lbl.Impuestos.SituacionTributaria Situacion { get; set; }
                 public int EstadoCredito { get; set; }
                 public int Estado { get; set; }
 
-                private string m_FechaAUsar = "fechaalta";
-                private Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("*");
+                private Lfx.Types.DateRange FechaAlta { get; set; }
+                private Lfx.Types.DateRange FechaBaja { get; set; }
 
                 public Inicio()
                 {
-                        this.Estado = 1;
-                        this.EstadoCredito = -1;
-
                         this.Definicion = new Lfx.Data.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Personas.Persona),
@@ -60,7 +58,7 @@ namespace Lfc.Personas
                                 TableName = "personas",
                                 KeyColumnName = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre_visible",
-                                Joins =  new qGen.JoinCollection() { new qGen.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"), new qGen.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad") },
+                                Joins = new qGen.JoinCollection() { new qGen.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"), new qGen.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad") },
                                 OrderBy = "personas.nombre_visible",
                                 Columns = new Lfx.Data.FormFieldCollection()
 			        {
@@ -83,18 +81,49 @@ namespace Lfc.Personas
 				        new Lfx.Data.FormField("personas.apellido", "Apellido", Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lfx.Data.FormField("personas.extra1", "Extra 1", Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lfx.Data.FormField("personas.numerocuenta", "Núm. Cuenta", Lfx.Data.InputFieldTypes.Text, 0)
-			        }
+			        },
+                                Filters = new Lfx.Data.Filters.FilterCollection()
+                                {
+                                        new Lfx.Data.Filters.SetFilter("Categoría", "personas.tipo", new string[] { "Clientes|1", "Proveedores|2", "Usuarios del sistema|4" }, "1"),
+                                        new Lfx.Data.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
+                                        new Lfx.Data.Filters.RelationFilter("Sub-grupo", new Lfx.Data.Relation("personas.id_subgrupo", "personas_grupos", "id_grupo")),
+                                        new Lfx.Data.Filters.RelationFilter("Situación", new Lfx.Data.Relation("personas.id_situacion", "situaciones", "id_situacion")),
+                                        new Lfx.Data.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
+                                        new Lfx.Data.Filters.SetFilter("Estado", "personas.estado", new string[] {"Todos|-1", "Activos|1", "Inactivos|0"}, "-1"),
+                                        new Lfx.Data.Filters.SetFilter("Estado de Crédito", "personas.estadocredito", new string[] { "Cualquiera|-1", "Normal|0", "En plan de pagos|5", "Suspendido|10" }, "-1"),
+                                        new Lfx.Data.Filters.DateRangeFilter("Fecha de Alta", "fechaalta", new Lfx.Types.DateRange("*")),
+                                        new Lfx.Data.Filters.DateRangeFilter("Fecha de Baja", "fechabaja", new Lfx.Types.DateRange("*"))
+                                }
                         };
 
                         this.HabilitarFiltrar = true;
+
+                                                this.Estado = 1;
+                        this.EstadoCredito = -1;
+                        this.FechaAlta = new Lfx.Types.DateRange("*");
+                        this.FechaBaja = new Lfx.Types.DateRange("*");
                 }
 
 
                 public Inicio(string comando)
                         : this()
                 {
-                        this.Grupo = Lfx.Types.Parsing.ParseInt(comando);
+                        this.Tipo = Lfx.Types.Parsing.ParseInt(comando);
                 }
+
+
+                public int Tipo {
+                        get
+                        {
+                                return m_Tipo;
+                        }
+                        set
+                        {
+                                m_Tipo = value;
+                                this.Definicion.Filters["personas.tipo"].Value = m_Tipo;
+                        }
+                }
+
 
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
@@ -127,6 +156,9 @@ namespace Lfc.Personas
                                 case 2:
                                         this.Text = "Proveedores: Listado";
                                         break;
+                                case 4:
+                                        this.Text = "Usuarios: Listado";
+                                        break;
                                 default:
                                         this.Text = "Personas: Listado";
                                         break;
@@ -137,83 +169,48 @@ namespace Lfc.Personas
                         if (Tipo > 0)
                                 this.CustomFilters.AddWithValue("(personas.tipo&" + Tipo.ToString() + "=" + Tipo.ToString() + " OR personas.tipo=0)");
 
-                        if (SubGrupo > 0)
-                                this.CustomFilters.AddWithValue("personas.id_subgrupo", SubGrupo);
-                        else if (Grupo > 0)
-                                this.CustomFilters.AddWithValue("personas.id_grupo", Grupo);
+                        if (SubGrupo != null)
+                                this.CustomFilters.AddWithValue("personas.id_subgrupo", SubGrupo.Id);
+                        else if (Grupo != null)
+                                this.CustomFilters.AddWithValue("personas.id_grupo", Grupo.Id);
 
-                        if (Situacion > 0)
-                                this.CustomFilters.AddWithValue("personas.id_situacion", Situacion);
+                        if (Situacion != null)
+                                this.CustomFilters.AddWithValue("personas.id_situacion", Situacion.Id);
 
                         if (EstadoCredito >= 0)
                                 this.CustomFilters.AddWithValue("personas.estadocredito", EstadoCredito);
 
-                        if (Localidad > 0)
-                                this.CustomFilters.AddWithValue("(personas.id_ciudad=" + Localidad.ToString() + " OR personas.id_ciudad IS NULL)");
+                        if (Localidad != null)
+                                this.CustomFilters.AddWithValue("personas.id_ciudad", Localidad.Id);
 
-                        if (Estado >= 0 && this.SearchText == null)
-                                // Sólo filtro por estado si no estoy buscando
-                                this.CustomFilters.AddWithValue("personas.estado", Estado);
+                        this.CustomFilters.AddWithValue("personas.estado", Estado);
 
-                        if (m_Fechas.HasRange)
-                                this.CustomFilters.AddWithValue(m_FechaAUsar, m_Fechas.From, m_Fechas.To);
+                        if (FechaAlta.HasRange)
+                                this.CustomFilters.AddWithValue("fechaalta", FechaAlta.From, FechaAlta.To);
+
+                        if (FechaBaja.HasRange)
+                                this.CustomFilters.AddWithValue("fechabaja", FechaBaja.From, FechaBaja.To);
 
                         // Cargo la tabla en memoria, ya que la voy a usar mucho
                         this.Connection.Tables["personas_grupos"].PreLoad();
                 }
 
-                public override Lfx.Types.OperationResult OnFilter()
+
+                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
                 {
-                        using (Lfc.Personas.Filtros FormFiltros = new Lfc.Personas.Filtros()) {
-                                FormFiltros.Connection = this.Connection;
-                                FormFiltros.EntradaTipo.TextInt = Tipo;
-                                FormFiltros.EntradaSituacion.TextInt = Situacion;
-                                FormFiltros.EntradaGrupo.TextInt = Grupo;
-                                FormFiltros.EntradaSubGrupo.TextInt = SubGrupo;
-                                FormFiltros.EntradaLocalidad.TextInt = Localidad;
-                                FormFiltros.EntradaEstado.TextKey = Estado.ToString();
-                                FormFiltros.EntradaEstadoCredito.TextKey = EstadoCredito.ToString();
-                                FormFiltros.EntradaFechaAUsar.TextKey = m_FechaAUsar;
-                                FormFiltros.EntradaFechas.Rango = m_Fechas;
+                        this.Tipo = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["personas.tipo"].Value as string);
+                        this.Grupo = this.Definicion.Filters["personas.id_grupo"].Value as Lbl.Personas.Grupo;
+                        this.SubGrupo = this.Definicion.Filters["personas.id_subgrupo"].Value as Lbl.Personas.Grupo;
+                        this.Situacion = this.Definicion.Filters["personas.id_situacion"].Value as Lbl.Impuestos.SituacionTributaria;
+                        this.Localidad = this.Definicion.Filters["personas.id_ciudad"].Value as Lbl.Entidades.Localidad;
+                        this.Estado = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["personas.estado"].Value as string);
+                        this.EstadoCredito = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["personas.estadocredito"].Value as string);
+                        this.FechaAlta = this.Definicion.Filters["personas.fechaalta"].Value as Lfx.Types.DateRange;
+                        this.FechaBaja = this.Definicion.Filters["personas.fechabaja"].Value as Lfx.Types.DateRange;
 
-                                string[] Etiquetas = new string[1];
-                                int i = 0;
-                                Etiquetas[i++] = "Todas|0";
-                                foreach (Lfx.Data.Row Lab in this.Connection.Tables["sys_labels"].FastRows.Values) {
-                                        if (Lab["tablas"].ToString() == this.Definicion.TableName) {
-                                                if (Etiquetas.Length < (i + 1))
-                                                        Array.Resize<string>(ref Etiquetas, i + 2);
-
-                                                Etiquetas[i++] = Lab["nombre"].ToString() + "|" + Lab["id_label"].ToString();
-                                                Etiquetas[i++] = "No " + Lab["nombre"].ToString() + "|" + (-((int)(Lab["id_label"]))).ToString();
-                                        }
-                                }
-                                FormFiltros.EntradaEtiquetas.SetData = Etiquetas;
-                                if (this.Labels != null && this.Labels.Length > 0)
-                                        FormFiltros.EntradaEtiquetas.TextKey = this.Labels[0].ToString();
-
-                                if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                        Tipo = FormFiltros.EntradaTipo.TextInt;
-                                        Situacion = FormFiltros.EntradaSituacion.TextInt;
-                                        Grupo = FormFiltros.EntradaGrupo.TextInt;
-                                        SubGrupo = FormFiltros.EntradaSubGrupo.TextInt;
-                                        Localidad = FormFiltros.EntradaLocalidad.TextInt;
-                                        Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
-                                        EstadoCredito = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstadoCredito.TextKey);
-                                        if (FormFiltros.EntradaEtiquetas.TextKey == "0")
-                                                this.Labels = null;
-                                        else
-                                                this.Labels = new int[] { Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEtiquetas.TextKey) };
-                                        m_FechaAUsar = FormFiltros.EntradaFechaAUsar.TextKey;
-                                        m_Fechas = FormFiltros.EntradaFechas.Rango;
-
-                                        this.RefreshList();
-                                        return new Lfx.Types.SuccessOperationResult();
-                                } else {
-                                        return new Lfx.Types.OperationResult(false);
-                                }
-                        }
+                        base.FiltersChanged(filters);
                 }
+
 
                 public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {

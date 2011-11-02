@@ -60,15 +60,6 @@ namespace Lcc.Entrada
                 }
 
 
-                protected override void OnAutoSizeChanged(EventArgs e)
-                {
-                        //EntradaRango.AutoSize = this.AutoSize;
-                        //EntradaTipoDeRango.AutoSize = this.AutoSize;
-
-                        base.OnAutoSizeChanged(e);
-                }
-
-
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

@@ -390,12 +390,6 @@
     <Compile Include="Personas\Usuarios\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Personas\Filtros.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Personas\Filtros.Designer.cs">
-      <DependentUpon>Filtros.cs</DependentUpon>
-    </Compile>
     <Compile Include="Personas\Grupos\Editar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -853,10 +847,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\Usuarios\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Personas\Filtros.resx">
-      <DependentUpon>Filtros.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\Grupos\Editar.resx">

@@ -77,6 +77,7 @@ namespace Lfc.Comprobantes
                         // 
                         // label4
                         // 
+                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label4.Location = new System.Drawing.Point(316, 24);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(132, 24);
@@ -90,9 +91,12 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
+                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(152, 24);
+                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = null;
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Facturas A|A",
@@ -108,6 +112,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label7
                         // 
+                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(316, 56);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(132, 24);
@@ -121,14 +126,20 @@ namespace Lfc.Comprobantes
                         this.EntradaPv.AutoTab = true;
                         this.EntradaPv.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPv.DecimalPlaces = -1;
+                        this.EntradaPv.FieldName = null;
                         this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPv.Location = new System.Drawing.Point(448, 24);
+                        this.EntradaPv.MaxLength = 32767;
                         this.EntradaPv.MultiLine = false;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPv.PasswordChar = '\0';
+                        this.EntradaPv.PlaceholderText = null;
+                        this.EntradaPv.Prefijo = "";
                         this.EntradaPv.ReadOnly = false;
                         this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(52, 24);
+                        this.EntradaPv.Sufijo = "";
                         this.EntradaPv.TabIndex = 3;
                         this.EntradaPv.Text = "1";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
@@ -139,20 +150,27 @@ namespace Lfc.Comprobantes
                         this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDesde.DecimalPlaces = -1;
+                        this.EntradaDesde.FieldName = null;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(448, 56);
+                        this.EntradaDesde.MaxLength = 32767;
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDesde.PasswordChar = '\0';
+                        this.EntradaDesde.PlaceholderText = null;
+                        this.EntradaDesde.Prefijo = "";
                         this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(24, 24);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
@@ -165,6 +183,7 @@ namespace Lfc.Comprobantes
                         this.LabelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelAyuda.AutoEllipsis = true;
+                        this.LabelAyuda.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.LabelAyuda.Location = new System.Drawing.Point(24, 120);
                         this.LabelAyuda.Name = "LabelAyuda";
                         this.LabelAyuda.Size = new System.Drawing.Size(576, 100);
@@ -184,7 +203,7 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.Label7);
                         this.Controls.Add(this.Label1);
                         this.Name = "IniciarNumeracion";
-                        this.Text = "IniciarNumeracion";
+                        this.Text = "Reiniciar Numeración";
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);

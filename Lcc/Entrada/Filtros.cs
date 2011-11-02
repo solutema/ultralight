@@ -53,8 +53,13 @@ namespace Lcc.Entrada
 
                 public void FromFilters(IList<Lfx.Data.Filters.IFilter> filters)
                 {
+                        this.SuspendLayout();
+                        this.TablaFiltros.SuspendLayout();
                         this.ColFiltros = filters;
                         this.TablaFiltros.RowCount = filters.Count;
+
+                        while (TablaFiltros.RowStyles.Count < TablaFiltros.RowCount)
+                                TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle(SizeType.AutoSize));
 
                         int i = 0;
                         foreach (Lfx.Data.Filters.IFilter Filtro in this.ColFiltros) {
@@ -80,14 +85,18 @@ namespace Lcc.Entrada
                                         Lui.Forms.ComboBox EntradaSet = new Lui.Forms.ComboBox();
                                         EntradaSet.SetData = FiltroSet.SetData;
                                         EntradaSet.TextKey = FiltroSet.CurrentValue;
-                                        EntradaSet.AlwaysExpanded = false; // EntradaSet.SetData != null && EntradaSet.SetData.Length <= 4;
-                                        EntradaSet.AutoSize = !EntradaSet.AlwaysExpanded;
+                                        EntradaSet.Size = new System.Drawing.Size(200, 24);
+                                        EntradaSet.AlwaysExpanded = EntradaSet.SetData != null && (EntradaSet.SetData.Length <= 4 || TablaFiltros.RowCount <= 6);
+                                        EntradaSet.AutoSize = EntradaSet.AlwaysExpanded;
+                                        EntradaSet.Dock = DockStyle.Top;
                                         Entrada = EntradaSet;
                                 } else if (Filtro is Lfx.Data.Filters.DateRangeFilter) {
                                         Lfx.Data.Filters.DateRangeFilter FiltroFechas = Filtro as Lfx.Data.Filters.DateRangeFilter;
                                         Lcc.Entrada.RangoFechas EntradaRangoFechas = new Lcc.Entrada.RangoFechas();
                                         EntradaRangoFechas.Rango = FiltroFechas.DateRange;
+                                        EntradaRangoFechas.Size = new System.Drawing.Size(160, 46);
                                         EntradaRangoFechas.AutoSize = true;
+                                        EntradaRangoFechas.Dock = DockStyle.Top;
                                         Entrada = EntradaRangoFechas;
                                 } else if (Filtro is Lfx.Data.Filters.RelationFilter) {
                                         Lfx.Data.Filters.RelationFilter FiltroRelacion = Filtro as Lfx.Data.Filters.RelationFilter;
@@ -106,15 +115,14 @@ namespace Lcc.Entrada
                                 }
 
                                 Entrada.Name = "entrada" + i.ToString();
-                                Entrada.Dock = DockStyle.Fill;
                                 Filtro.Control = Entrada;
 
                                 this.TablaFiltros.Controls.Add(Entrada, 1, i);
-
-                                this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-
                                 i++;
                         }
+
+                        this.TablaFiltros.ResumeLayout();
+                        this.ResumeLayout();
                 }
 
 

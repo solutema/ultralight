@@ -71,23 +71,23 @@ namespace Lui.LogOn
                         // 
                         // OkButton
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(237, 8);
+                        this.OkButton.Location = new System.Drawing.Point(234, 8);
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(357, 8);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(354, 8);
                         // 
                         // Titulo
                         // 
-                        this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Titulo.Location = new System.Drawing.Point(16, 20);
+                        this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Titulo.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.Titulo.Location = new System.Drawing.Point(36, 36);
                         this.Titulo.Name = "Titulo";
-                        this.Titulo.Size = new System.Drawing.Size(445, 24);
+                        this.Titulo.Size = new System.Drawing.Size(400, 24);
                         this.Titulo.TabIndex = 0;
-                        this.Titulo.Text = "Para continuar, por favor escriba su contraseña.";
+                        this.Titulo.Text = "Para continuar, por favor escriba su contraseña";
                         this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.Titulo.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         // 
                         // EntradaContrasena
                         // 
@@ -95,20 +95,26 @@ namespace Lui.LogOn
                         this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasena.DecimalPlaces = -1;
-                        this.EntradaContrasena.Location = new System.Drawing.Point(160, 148);
+                        this.EntradaContrasena.FieldName = null;
+                        this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaContrasena.Location = new System.Drawing.Point(164, 156);
+                        this.EntradaContrasena.MaxLength = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.TemporaryReadOnly = false;
+                        this.EntradaContrasena.PlaceholderText = null;
+                        this.EntradaContrasena.Prefijo = "";
+                        this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
+                        this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 4;
                         // 
                         // PictureBox2
                         // 
                         this.PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox2.Image")));
-                        this.PictureBox2.Location = new System.Drawing.Point(32, 116);
+                        this.PictureBox2.Location = new System.Drawing.Point(36, 124);
                         this.PictureBox2.Name = "PictureBox2";
                         this.PictureBox2.Size = new System.Drawing.Size(32, 32);
                         this.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -117,7 +123,8 @@ namespace Lui.LogOn
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(72, 148);
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.Location = new System.Drawing.Point(76, 156);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(88, 24);
                         this.Label2.TabIndex = 3;
@@ -131,20 +138,27 @@ namespace Lui.LogOn
                         this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaUsuario.DecimalPlaces = -1;
                         this.EntradaUsuario.Enabled = false;
+                        this.EntradaUsuario.FieldName = null;
                         this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaUsuario.Location = new System.Drawing.Point(160, 116);
+                        this.EntradaUsuario.Location = new System.Drawing.Point(164, 124);
+                        this.EntradaUsuario.MaxLength = 32767;
                         this.EntradaUsuario.MultiLine = false;
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUsuario.TemporaryReadOnly = true;
+                        this.EntradaUsuario.PasswordChar = '\0';
+                        this.EntradaUsuario.PlaceholderText = null;
+                        this.EntradaUsuario.Prefijo = "";
+                        this.EntradaUsuario.ReadOnly = false;
                         this.EntradaUsuario.SelectOnFocus = true;
-                        this.EntradaUsuario.Size = new System.Drawing.Size(288, 24);
+                        this.EntradaUsuario.Size = new System.Drawing.Size(272, 24);
+                        this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 2;
                         this.EntradaUsuario.Text = "0";
                         // 
                         // label3
                         // 
-                        this.label3.Location = new System.Drawing.Point(72, 116);
+                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.Location = new System.Drawing.Point(76, 124);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(88, 24);
                         this.label3.TabIndex = 1;
@@ -153,21 +167,22 @@ namespace Lui.LogOn
                         // 
                         // LabelExplain
                         // 
-                        this.LabelExplain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.LabelExplain.Location = new System.Drawing.Point(20, 52);
+                        this.LabelExplain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.LabelExplain.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.LabelExplain.Location = new System.Drawing.Point(36, 68);
                         this.LabelExplain.Name = "LabelExplain";
-                        this.LabelExplain.Size = new System.Drawing.Size(445, 40);
+                        this.LabelExplain.Size = new System.Drawing.Size(400, 40);
                         this.LabelExplain.TabIndex = 55;
                         this.LabelExplain.Text = "La operación que intenta realizar requiere por motivos de seguridad que vuelva a " +
-                            "escribir su contraseña.";
+    "escribir su contraseña.";
                         this.LabelExplain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
                         // FormRevalidateAccess
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(477, 267);
+                        this.ClientSize = new System.Drawing.Size(474, 292);
                         this.Controls.Add(this.LabelExplain);
                         this.Controls.Add(this.EntradaUsuario);
                         this.Controls.Add(this.label3);
