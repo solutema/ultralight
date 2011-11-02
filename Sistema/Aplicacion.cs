@@ -223,16 +223,10 @@ namespace Lazaro.WinMain
                         if (Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null) == null)
                                 MostrarAsistenteConfig = true;
 
-                        if (MostrarAsistenteConfig) {
+                        if (MostrarAsistenteConfig || ReconfigDB) {
                                 // Presento el asistente de configurar almacén de datos
                                 using (Misc.Config.Inicial AsistenteInicial = new Misc.Config.Inicial()) {
                                         if (AsistenteInicial.ShowDialog() == DialogResult.Cancel)
-                                                System.Environment.Exit(0);
-                                }
-                        } else if (ReconfigDB) {
-                                // Presento la ventana de configuración del almacén de datos
-                                using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
-                                        if (ConfigBD.ShowDialog() == DialogResult.Cancel)
                                                 System.Environment.Exit(0);
                                 }
                         }
@@ -527,7 +521,7 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                                         }
 
                                         if (MostrarConfig) {
-                                                using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
+                                                using (Misc.Config.Inicial ConfigBD = new Misc.Config.Inicial()) {
                                                         if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
                                                                 MostrarConfig = false;
                                                                 System.Environment.Exit(0);
@@ -574,7 +568,7 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
 
                         if (Lfx.Workspace.Master.IsPrepared() == false) {
                                 using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"Aparentemente es la primera vez que conecta a este servidor. Antes de poder utilizarlo debe preparar el servidor con una carga inicial de datos.
-Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor """ + Lfx.Workspace.Master.MasterConnection.ToString() + @"""?")) {
+Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor?")) {
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                                 Lfx.Types.OperationResult Res;

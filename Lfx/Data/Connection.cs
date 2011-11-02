@@ -1025,6 +1025,7 @@ LEFT JOIN pg_attribute
                         }
                 }
 
+
                 public string FieldString(qGen.Select selectCommand)
                 {
                         selectCommand.SqlMode = this.SqlMode;
@@ -1034,6 +1035,7 @@ LEFT JOIN pg_attribute
                         else
                                 return Res.ToString();
                 }
+
 
                 public string FieldString(string selectCommand)
                 {

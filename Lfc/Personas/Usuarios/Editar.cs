@@ -77,6 +77,9 @@ namespace Lfc.Personas.Usuarios
                                 this.MostrarPermiso(Perm);
                         }
 
+                        Listado.Sorting = SortOrder.Ascending;
+                        Listado.Sort();
+
                         Listado.ResumeLayout();
                 }
 
