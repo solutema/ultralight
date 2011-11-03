@@ -94,6 +94,7 @@ namespace Lfc.Cajas
                         Lbl.Cajas.Caja Caja = this.Elemento as Lbl.Cajas.Caja;
 
                         Caja.Nombre = EntradaNombre.Text;
+                        Caja.Numero = EntradaNumero.Text;
                         Caja.Titular = EntradaTitular.Text;
                         Caja.Banco = EntradaBanco.Elemento as Lbl.Bancos.Banco;
                         Caja.Moneda = EntradaMoneda.Elemento as Lbl.Entidades.Moneda;
