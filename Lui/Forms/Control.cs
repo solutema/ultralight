@@ -87,7 +87,9 @@ namespace Lui.Forms
 		}
 
 
-		[EditorBrowsable(EditorBrowsableState.Always), Browsable(true), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		[EditorBrowsable(EditorBrowsableState.Always),
+                        Browsable(true),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 		public override string Text
 		{
 			get
@@ -191,7 +193,6 @@ namespace Lui.Forms
 				default:
 					return base.IsInputKey(keyData);
 			}
-
 		}
 
 

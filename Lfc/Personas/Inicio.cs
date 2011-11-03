@@ -88,7 +88,7 @@ namespace Lfc.Personas
                                         new Lfx.Data.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
                                         new Lfx.Data.Filters.RelationFilter("Sub-grupo", new Lfx.Data.Relation("personas.id_subgrupo", "personas_grupos", "id_grupo")),
                                         new Lfx.Data.Filters.RelationFilter("Situación", new Lfx.Data.Relation("personas.id_situacion", "situaciones", "id_situacion")),
-                                        new Lfx.Data.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
+                                        new Lfx.Data.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("nivel", 2)),
                                         new Lfx.Data.Filters.SetFilter("Estado", "personas.estado", new string[] {"Todos|-1", "Activos|1", "Inactivos|0"}, "-1"),
                                         new Lfx.Data.Filters.SetFilter("Estado de Crédito", "personas.estadocredito", new string[] { "Cualquiera|-1", "Normal|0", "En plan de pagos|5", "Suspendido|10" }, "-1"),
                                         new Lfx.Data.Filters.DateRangeFilter("Fecha de Alta", "personas.fechaalta", new Lfx.Types.DateRange("*")),
@@ -183,7 +183,8 @@ namespace Lfc.Personas
                         if (Localidad != null)
                                 this.CustomFilters.AddWithValue("personas.id_ciudad", Localidad.Id);
 
-                        this.CustomFilters.AddWithValue("personas.estado", Estado);
+                        if (Estado >= 0)
+                                this.CustomFilters.AddWithValue("personas.estado", Estado);
 
                         if (FechaAlta.HasRange)
                                 this.CustomFilters.AddWithValue("fechaalta", FechaAlta.From, FechaAlta.To);

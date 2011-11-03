@@ -88,6 +88,8 @@ namespace Lcc.Entrada
                                         EntradaSet.Size = new System.Drawing.Size(200, 24);
                                         EntradaSet.AlwaysExpanded = EntradaSet.SetData != null && (EntradaSet.SetData.Length <= 4 || TablaFiltros.RowCount <= 6);
                                         EntradaSet.AutoSize = EntradaSet.AlwaysExpanded;
+                                        EntradaSet.AutoNav = true;
+                                        EntradaSet.AutoTab = true;
                                         EntradaSet.Dock = DockStyle.Top;
                                         Entrada = EntradaSet;
                                 } else if (Filtro is Lfx.Data.Filters.DateRangeFilter) {
@@ -107,6 +109,8 @@ namespace Lcc.Entrada
                                                 EntradaRelacion.Filter = FiltroRelacion.Filter.ToString();
                                         EntradaRelacion.Elemento = (Lbl.IElementoDeDatos)FiltroRelacion.Elemento;
                                         EntradaRelacion.Dock = DockStyle.Top;
+                                        EntradaRelacion.AutoNav = true;
+                                        EntradaRelacion.AutoTab = true;
                                         Entrada = EntradaRelacion;
                                 } else {
                                         Entrada = new Label();

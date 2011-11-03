@@ -416,6 +416,7 @@ namespace Lui.Forms
                         base.OnSizeChanged(e);
                 }
 
+
                 protected override void OnKeyDown(KeyEventArgs e)
                 {
                         switch (e.KeyCode) {
@@ -425,6 +426,7 @@ namespace Lui.Forms
                                                 System.Windows.Forms.SendKeys.Send("+{tab}");
                                         }
                                         break;
+                                case Keys.Return:
                                 case Keys.Down:
                                         if (e.Shift == false && e.Alt == false && e.Control == false) {
                                                 e.Handled = true;
@@ -435,6 +437,7 @@ namespace Lui.Forms
 
                         base.OnKeyDown(e);
                 }
+
 
                 private void ItemList_KeyDown(object sender, KeyEventArgs e)
                 {
