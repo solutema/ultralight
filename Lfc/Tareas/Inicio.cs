@@ -59,23 +59,23 @@ namespace Lfc.Tareas
                                 EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));
                         }
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Tareas.Tarea),
 
                                 TableName = "tickets",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "tickets.id_persona=personas.id_persona") },
-                                KeyColumnName = new Lfx.Data.FormField("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                KeyColumnName = new Lazaro.Pres.Field("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("tickets.nombre", "Asunto", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("tickets.estado", "Estado", 160, EstadosTickets),
-				        new Lfx.Data.FormField("tickets.fecha_ingreso", "Ingreso", Lfx.Data.InputFieldTypes.DateTime, 160),
-                                        new Lfx.Data.FormField("tickets.entrega_limite", "Vencimiento", Lfx.Data.InputFieldTypes.Date, 96),
-                                        new Lfx.Data.FormField("tickets.id_tecnico_recibe", "Encargado", Lfx.Data.InputFieldTypes.Text, 240),
-                                        new Lfx.Data.FormField("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Antigüedad", Lfx.Data.InputFieldTypes.Integer, 60)
+				        new Lazaro.Pres.Field("tickets.nombre", "Asunto", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lazaro.Pres.Field("tickets.estado", "Estado", 160, EstadosTickets),
+				        new Lazaro.Pres.Field("tickets.fecha_ingreso", "Ingreso", Lfx.Data.InputFieldTypes.DateTime, 160),
+                                        new Lazaro.Pres.Field("tickets.entrega_limite", "Vencimiento", Lfx.Data.InputFieldTypes.Date, 96),
+                                        new Lazaro.Pres.Field("tickets.id_tecnico_recibe", "Encargado", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lazaro.Pres.Field("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Antigüedad", Lfx.Data.InputFieldTypes.Integer, 60)
 			        },
                                 OrderBy = "tickets.id_ticket DESC",
                         };

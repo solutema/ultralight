@@ -51,48 +51,48 @@ namespace Lfc.Personas
 
                 public Inicio()
                 {
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Personas.Persona),
 
                                 TableName = "personas",
-                                KeyColumnName = new Lfx.Data.FormField("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                KeyColumnName = new Lazaro.Pres.Field("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre_visible",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"), new qGen.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad") },
                                 OrderBy = "personas.nombre_visible",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("personas.nombre_visible", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("personas.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 140),
-				        new Lfx.Data.FormField("personas.domicilio", "Domicilio", Lfx.Data.InputFieldTypes.Text, 160),
-				        new Lfx.Data.FormField("personas.num_doc", "Núm. Doc.", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lfx.Data.FormField("personas_grupos.nombre", "Grupo", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lfx.Data.FormField("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lfx.Data.FormField("ciudades.nombre AS ciudad", "Localidad", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lfx.Data.FormField("personas.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
-                                        new Lfx.Data.FormField("personas.fechaalta", "Alta", Lfx.Data.InputFieldTypes.Date, 120),
-                                        new Lfx.Data.FormField("personas.fechabaja", "Baja", Lfx.Data.InputFieldTypes.Date, 120),
-                                        new Lfx.Data.FormField("personas.numerocuenta", "Cuenta", Lfx.Data.InputFieldTypes.Text, 120)
+				        new Lazaro.Pres.Field("personas.nombre_visible", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lazaro.Pres.Field("personas.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 140),
+				        new Lazaro.Pres.Field("personas.domicilio", "Domicilio", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lazaro.Pres.Field("personas.num_doc", "Núm. Doc.", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("personas_grupos.nombre", "Grupo", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("ciudades.nombre AS ciudad", "Localidad", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("personas.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
+                                        new Lazaro.Pres.Field("personas.fechaalta", "Alta", Lfx.Data.InputFieldTypes.Date, 120),
+                                        new Lazaro.Pres.Field("personas.fechabaja", "Baja", Lfx.Data.InputFieldTypes.Date, 120),
+                                        new Lazaro.Pres.Field("personas.numerocuenta", "Cuenta", Lfx.Data.InputFieldTypes.Text, 120)
 			        },
-                                ExtraSearchColumns = new Lfx.Data.FormFieldCollection()
+                                ExtraSearchColumns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("personas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lfx.Data.FormField("personas.apellido", "Apellido", Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lfx.Data.FormField("personas.extra1", "Extra 1", Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lfx.Data.FormField("personas.numerocuenta", "Núm. Cuenta", Lfx.Data.InputFieldTypes.Text, 0)
+				        new Lazaro.Pres.Field("personas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("personas.apellido", "Apellido", Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("personas.extra1", "Extra 1", Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("personas.numerocuenta", "Núm. Cuenta", Lfx.Data.InputFieldTypes.Text, 0)
 			        },
-                                Filters = new Lfx.Data.Filters.FilterCollection()
+                                Filters = new Lazaro.Pres.Filters.FilterCollection()
                                 {
-                                        new Lfx.Data.Filters.SetFilter("Categoría", "personas.tipo", new string[] { "Clientes|1", "Proveedores|2", "Usuarios del sistema|4" }, "1"),
-                                        new Lfx.Data.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
-                                        new Lfx.Data.Filters.RelationFilter("Sub-grupo", new Lfx.Data.Relation("personas.id_subgrupo", "personas_grupos", "id_grupo")),
-                                        new Lfx.Data.Filters.RelationFilter("Situación", new Lfx.Data.Relation("personas.id_situacion", "situaciones", "id_situacion")),
-                                        new Lfx.Data.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("nivel", 2)),
-                                        new Lfx.Data.Filters.SetFilter("Estado", "personas.estado", new string[] {"Todos|-1", "Activos|1", "Inactivos|0"}, "-1"),
-                                        new Lfx.Data.Filters.SetFilter("Estado de Crédito", "personas.estadocredito", new string[] { "Cualquiera|-1", "Normal|0", "En plan de pagos|5", "Suspendido|10" }, "-1"),
-                                        new Lfx.Data.Filters.DateRangeFilter("Fecha de Alta", "personas.fechaalta", new Lfx.Types.DateRange("*")),
-                                        new Lfx.Data.Filters.DateRangeFilter("Fecha de Baja", "personas.fechabaja", new Lfx.Types.DateRange("*"))
+                                        new Lazaro.Pres.Filters.SetFilter("Categoría", "personas.tipo", new string[] { "Clientes|1", "Proveedores|2", "Usuarios del sistema|4" }, "1"),
+                                        new Lazaro.Pres.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Sub-grupo", new Lfx.Data.Relation("personas.id_subgrupo", "personas_grupos", "id_grupo")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Situación", new Lfx.Data.Relation("personas.id_situacion", "situaciones", "id_situacion")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("nivel", 2)),
+                                        new Lazaro.Pres.Filters.SetFilter("Estado", "personas.estado", new string[] {"Todos|-1", "Activos|1", "Inactivos|0"}, "-1"),
+                                        new Lazaro.Pres.Filters.SetFilter("Estado de Crédito", "personas.estadocredito", new string[] { "Cualquiera|-1", "Normal|0", "En plan de pagos|5", "Suspendido|10" }, "-1"),
+                                        new Lazaro.Pres.Filters.DateRangeFilter("Fecha de Alta", "personas.fechaalta", new Lfx.Types.DateRange("*")),
+                                        new Lazaro.Pres.Filters.DateRangeFilter("Fecha de Baja", "personas.fechabaja", new Lfx.Types.DateRange("*"))
                                 }
                         };
 
@@ -197,7 +197,7 @@ namespace Lfc.Personas
                 }
 
 
-                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
+                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.Tipo = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["personas.tipo"].Value as string);
                         this.Grupo = this.Definicion.Filters["personas.id_grupo"].Value as Lbl.Personas.Grupo;

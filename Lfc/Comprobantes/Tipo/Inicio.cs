@@ -41,18 +41,18 @@ namespace Lfc.Comprobantes.Tipo
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.Tipo),
 
                                 TableName = "documentos_tipos",
                                 OrderBy = "nombre",
-                                KeyColumnName = new Lfx.Data.FormField("id_tipo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                KeyColumnName = new Lazaro.Pres.Field("id_tipo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("letra", "Letra", Lfx.Data.InputFieldTypes.Text, 60),
-				        new Lfx.Data.FormField("mueve_stock", "Mueve Stock", Lfx.Data.InputFieldTypes.Bool, 120)
+				        new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lazaro.Pres.Field("letra", "Letra", Lfx.Data.InputFieldTypes.Text, 60),
+				        new Lazaro.Pres.Field("mueve_stock", "Mueve Stock", Lfx.Data.InputFieldTypes.Bool, 120)
 			        }
                         };
 		}

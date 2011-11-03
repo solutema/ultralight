@@ -32,7 +32,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Lfx.FileFormats.Office.Spreadsheet;
+using Lazaro.Pres.Spreadsheet;
 
 namespace Lbl.Reportes
 {
@@ -44,7 +44,7 @@ namespace Lbl.Reportes
                 public qGen.Select SelectCommand;
                 public Lfx.Data.Grouping Grouping = null;
                 public System.Collections.Generic.List<Lfx.Data.Aggregate> Aggregates = new List<Lfx.Data.Aggregate>();
-                public System.Collections.Generic.List<Lfx.Data.FormField> Fields = new List<Lfx.Data.FormField>();
+                public Lazaro.Pres.FieldCollection Fields = new Lazaro.Pres.FieldCollection();
                 public bool ExpandGroups = true;
 
                 public Reporte(Lfx.Data.Connection dataBase, qGen.Select selectCommand)
@@ -53,15 +53,15 @@ namespace Lbl.Reportes
                         this.SelectCommand = selectCommand;
                 }
 
-                public Lfx.FileFormats.Office.Spreadsheet.Sheet ToWorkbookSheet()
+                public Lazaro.Pres.Spreadsheet.Sheet ToWorkbookSheet()
                 {
-                        Lfx.FileFormats.Office.Spreadsheet.Sheet Res = new Lfx.FileFormats.Office.Spreadsheet.Sheet(Titulo);
+                        Lazaro.Pres.Spreadsheet.Sheet Res = new Lazaro.Pres.Spreadsheet.Sheet(Titulo);
 
                         foreach (Lfx.Data.Aggregate Agru in this.Aggregates) {
                                 Agru.Reset();
                         }
 
-                        foreach (Lfx.Data.FormField Field in this.Fields) {
+                        foreach (Lazaro.Pres.Field Field in this.Fields) {
                                 Res.ColumnHeaders.Add(new ColumnHeader(Field.Label, Field.Width, Field.Alignment));
                         }
 
@@ -71,28 +71,28 @@ namespace Lbl.Reportes
                         qGen.Select Sel = this.SelectCommand.Clone();
                         if (this.Grouping != null) {
                                 if (Sel.Order == null || Sel.Order.Length == 0)
-                                        Sel.Order = this.Grouping.Field.ColumnName;
+                                        Sel.Order = this.Grouping.FieldName;
                                 else
-                                        Sel.Order = this.Grouping.Field.ColumnName + "," + Sel.Order;
+                                        Sel.Order = this.Grouping.FieldName + "," + Sel.Order;
                         }
 
                         System.Data.DataTable Tabla = DataBase.Select(Sel);
                         foreach (System.Data.DataRow Registro in Tabla.Rows) {
-                                if (this.Grouping != null && Lfx.Types.Object.CompareByValue(this.Grouping.LastValue, Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.Field.ColumnName)]) != 0) {
+                                if (this.Grouping != null && Lfx.Types.Object.CompareByValue(this.Grouping.LastValue, Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.FieldName)]) != 0) {
                                         // Agrego un renglón de subtotales
                                         if (this.Grouping.LastValue != null) {
-                                                Lfx.FileFormats.Office.Spreadsheet.Row SubTotales;
+                                                Lazaro.Pres.Spreadsheet.Row SubTotales;
                                                 if (this.ExpandGroups)
-                                                        SubTotales = new Lfx.FileFormats.Office.Spreadsheet.AggregationRow(Res);
+                                                        SubTotales = new Lazaro.Pres.Spreadsheet.AggregationRow(Res);
                                                 else
-                                                        SubTotales = new Lfx.FileFormats.Office.Spreadsheet.Row(Res);
+                                                        SubTotales = new Lazaro.Pres.Spreadsheet.Row(Res);
                                                 for (int i = 0; i < this.Fields.Count; i++) {
-                                                        Lfx.FileFormats.Office.Spreadsheet.Cell FuncCell = null;
-                                                        if (this.Grouping != null && this.Fields[i].ColumnName == this.Grouping.Field.ColumnName && this.ExpandGroups == false) {
+                                                        Lazaro.Pres.Spreadsheet.Cell FuncCell = null;
+                                                        if (this.Grouping != null && this.Fields[i].ColumnName == this.Grouping.FieldName && this.ExpandGroups == false) {
                                                                 FuncCell = new Cell(this.Grouping.LastValue);
                                                         } else {
                                                                 foreach (Lfx.Data.Aggregate SubtAgru in this.Aggregates) {
-                                                                        if (SubtAgru.Field.ColumnName == this.Fields[i].ColumnName) {
+                                                                        if (SubtAgru.FieldName == this.Fields[i].ColumnName) {
                                                                                 switch (SubtAgru.Function) {
                                                                                         case Lfx.Data.AggregationFunctions.Count:
                                                                                                 FuncCell = new Cell(SubtAgru.Count);
@@ -117,31 +117,31 @@ namespace Lbl.Reportes
                                                 }
                                                 Res.Rows.Add(SubTotales);
                                         }
-                                        this.Grouping.LastValue = Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.Field.ColumnName)];
+                                        this.Grouping.LastValue = Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.FieldName)];
 
                                         // Agrego un encabezado
                                         if (ExpandGroups)
-                                                Res.Rows.Add(new Lfx.FileFormats.Office.Spreadsheet.HeaderRow(Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.Field.ColumnName)].ToString()));
+                                                Res.Rows.Add(new Lazaro.Pres.Spreadsheet.HeaderRow(Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.FieldName)].ToString()));
                                 }
 
                                 if (Aggregates != null) {
                                         // Calculo las funciones de agregación
                                         foreach (Lfx.Data.Aggregate Agru in this.Aggregates) {
-                                                string ColName = Lfx.Data.Connection.GetFieldName(Agru.Field.ColumnName);
+                                                string ColName = Lfx.Data.Connection.GetFieldName(Agru.FieldName);
                                                 switch (Agru.Function) {
                                                         case Lfx.Data.AggregationFunctions.Count:
                                                                 Agru.Count++;
                                                                 break;
                                                         case Lfx.Data.AggregationFunctions.Sum:
-                                                                Agru.Sum += System.Convert.ToDecimal(Registro[Lfx.Data.Connection.GetFieldName(Agru.Field.ColumnName)]);
+                                                                Agru.Sum += System.Convert.ToDecimal(Registro[Lfx.Data.Connection.GetFieldName(Agru.FieldName)]);
                                                                 break;
                                                 }
                                         }
                                 }
                                 if (ExpandGroups) {
-                                        Lfx.FileFormats.Office.Spreadsheet.Row Renglon = new Lfx.FileFormats.Office.Spreadsheet.Row();
-                                        foreach (Lfx.Data.FormField Field in this.Fields) {
-                                                Lfx.FileFormats.Office.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.Connection.GetFieldName(Field.ColumnName)]);
+                                        Lazaro.Pres.Spreadsheet.Row Renglon = new Lazaro.Pres.Spreadsheet.Row();
+                                        foreach (Lazaro.Pres.Field Field in this.Fields) {
+                                                Lazaro.Pres.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.Connection.GetFieldName(Field.ColumnName)]);
                                                 Renglon.Cells.Add(Celda);
                                         }
                                         Res.Rows.Add(Renglon);

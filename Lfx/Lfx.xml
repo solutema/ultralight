@@ -39,19 +39,84 @@
             Esta función debe ser implementada por todos los componentes, y se utiliza para decidir si el componente se carga o no al inicio de la aplicación.
             </summary>
         </member>
-        <member name="P:Lfx.Data.Filters.Filter.Value">
+        <member name="F:Lfx.Data.InputFieldTypes.Serial">
             <summary>
-            Obtiene o establece el valor actual del filtro.
+            Número entero de 32 bits que indica un identificador de registro autonumérico.
             </summary>
         </member>
-        <member name="P:Lfx.Data.Filters.Filter.Value2">
+        <member name="F:Lfx.Data.InputFieldTypes.Relation">
             <summary>
-            Obtiene o establece el segundo valor del filtro, para el caso de los filtros de rango que tienen 2 valores (por ejemplo mínimo/máximo o desde/hasta).
+            Número entero de 32 bits que indica un identificador de registro relacionado con otra tabla.
             </summary>
         </member>
-        <member name="T:Lfx.Data.Listing">
+        <member name="F:Lfx.Data.InputFieldTypes.Integer">
             <summary>
-            Define los datos para emitir un listado.
+            Numero entero de 32 bits.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Numeric">
+            <summary>
+            Numero de doble precisión.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Currency">
+            <summary>
+            Numero que indica un valor monetario.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Text">
+            <summary>
+            Texto de largo variable de hasta 200 caracteres.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Set">
+            <summary>
+            Número entero dentro de una serie
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Memo">
+            <summary>
+            Texto de largo variable de largo extendido.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.YearMonth">
+            <summary>
+            Año y mes.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Date">
+            <summary>
+            Fecha.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.DateTime">
+            <summary>
+            Fecha y hora.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Image">
+            <summary>
+            Imagen (normalmente JPEG).
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Binary">
+            <summary>
+            Datos binarios.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.Bool">
+            <summary>
+            Valor booleano que indica si/no (normalmente se traduce a un entero pequeño 1/0).
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.NumericSet">
+            <summary>
+            Número entero comprendido dentro un conjunto determinado, cada uno asociado con una etiqueta.
+            </summary>
+        </member>
+        <member name="F:Lfx.Data.InputFieldTypes.AlphanumericSet">
+            <summary>
+            Valor alfanumérico comprendido dentro un conjunto determinado, cada uno asociado con una etiqueta.
             </summary>
         </member>
         <member name="T:qGen.Providers.SQLite">
@@ -206,91 +271,6 @@
         <member name="T:Lfx.Lic">
             <summary>
             Agrega la licencia GPL como encabezado a todos los archivos de código fuente.
-            </summary>
-        </member>
-        <member name="T:Lfx.Data.InputFieldTypes">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Serial">
-            <summary>
-            Número entero de 32 bits que indica un identificador de registro autonumérico.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Relation">
-            <summary>
-            Número entero de 32 bits que indica un identificador de registro relacionado con otra tabla.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Integer">
-            <summary>
-            Numero entero de 32 bits.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Numeric">
-            <summary>
-            Numero de doble precisión.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Currency">
-            <summary>
-            Numero que indica un valor monetario.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Text">
-            <summary>
-            Texto de largo variable de hasta 200 caracteres.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Set">
-            <summary>
-            Número entero dentro de una serie
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Memo">
-            <summary>
-            Texto de largo variable de largo extendido.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.YearMonth">
-            <summary>
-            Año y mes.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Date">
-            <summary>
-            Fecha.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.DateTime">
-            <summary>
-            Fecha y hora.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Image">
-            <summary>
-            Imagen (normalmente JPEG).
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Binary">
-            <summary>
-            Datos binarios.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.Bool">
-            <summary>
-            Valor booleano que indica si/no (normalmente se traduce a un entero pequeño 1/0).
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.NumericSet">
-            <summary>
-            Número entero comprendido dentro un conjunto determinado, cada uno asociado con una etiqueta.
-            </summary>
-        </member>
-        <member name="F:Lfx.Data.InputFieldTypes.AlphanumericSet">
-            <summary>
-            Valor alfanumérico comprendido dentro un conjunto determinado, cada uno asociado con una etiqueta.
             </summary>
         </member>
         <member name="T:Lfx.Data.Connection">

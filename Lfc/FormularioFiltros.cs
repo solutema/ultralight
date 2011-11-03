@@ -42,7 +42,7 @@ namespace Lfc
                 }
 
 
-                public void FromFilters(IList<Lfx.Data.Filters.IFilter> filtros)
+                public void FromFilters(Lazaro.Pres.Filters.FilterCollection filtros)
                 {
                         this.ControlFiltros.FromFilters(filtros);
                 }

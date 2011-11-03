@@ -47,32 +47,32 @@ namespace Lfc.Comprobantes.Facturas
                                 return;
                         }
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteFacturable),
 
                                 TableName = "comprob",
-                                KeyColumnName = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"), new qGen.Join("situaciones", "personas.id_situacion=situaciones.id_situacion") },
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
-				        new Lfx.Data.FormField("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 140),
-				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 300),
-				        new Lfx.Data.FormField("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 140),
-				        new Lfx.Data.FormField("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),
-				        new Lfx.Data.FormField("(comprob.total-comprob.iva)*(1-anulada) AS gravado", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-                                        new Lfx.Data.FormField("comprob.iva*(1-anulada) AS iva", "IVA", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("comprob.total*(1-anulada) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),                                
+				        new Lazaro.Pres.Field("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lazaro.Pres.Field("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
+				        new Lazaro.Pres.Field("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 140),
+				        new Lazaro.Pres.Field("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 300),
+				        new Lazaro.Pres.Field("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 140),
+				        new Lazaro.Pres.Field("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),
+				        new Lazaro.Pres.Field("(comprob.total-comprob.iva)*(1-anulada) AS gravado", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lazaro.Pres.Field("comprob.iva*(1-anulada) AS iva", "IVA", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("comprob.total*(1-anulada) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),                                
 			        },
 
                                 OrderBy = "comprob.pv, comprob.numero"
                         };
 
-                        this.Definicion.Columns["gravado"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.Definicion.Columns["total"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["gravado"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["total"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
 
                         this.Contadores.Add(new Lfc.Contador("Total", Lui.Forms.DataTypes.Currency));
 
@@ -241,9 +241,9 @@ namespace Lfc.Comprobantes.Facturas
                         base.OnItemAdded(item, row);
                 }
 
-                protected override Lfx.FileFormats.Office.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, Lfx.Data.FormFieldCollection useFields)
+                protected override Lazaro.Pres.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lazaro.Pres.Spreadsheet.Sheet sheet, Lazaro.Pres.FieldCollection useFields)
                 {
-                        Lfx.FileFormats.Office.Spreadsheet.Row Res = base.FormatRow(itemId, row, sheet, useFields);
+                        Lazaro.Pres.Spreadsheet.Row Res = base.FormatRow(itemId, row, sheet, useFields);
 
                         switch (row.Fields["tipo_fac"].ValueString) {
                                 case "NCA":

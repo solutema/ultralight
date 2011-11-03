@@ -81,6 +81,30 @@ namespace Lcc.Edicion
                 }
 
 
+                public void AddControl(string label, Lui.Forms.EditableControl control)
+                {
+                        Lui.Forms.Label Lbl = new Lui.Forms.Label();
+                        Lbl.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+                        Lbl.AutoSize = true;
+                        Lbl.Text = label;
+                        Lbl.Tag = control;
+                        Lbl.UseMnemonic = false;
+
+                        control.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+                        
+                        this.FieldContainer.Controls.Add(Lbl);
+                        this.FieldContainer.Controls.Add(control);
+                        
+                        Lbl.Location = new Point(0, this.FieldContainer.Height + 4);
+                        control.Location = new Point(Lbl.Width + 4, Lbl.Top);
+
+                        this.FieldContainer.Height = control.Top + control.Height;
+
+                        if (this.AutoSize)
+                                this.Height = FieldContainer.Top + FieldContainer.Height;
+                }
+
+
                 private void FieldContainer_ControlAdded(object sender, ControlEventArgs e)
                 {
                         int Y = 0;
@@ -88,17 +112,20 @@ namespace Lcc.Edicion
                         //Pongo los anchos de las etiquetas para todos los fields iguales (busco el mayor)
                         int MaxHeight = 0;
                         foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
-                                if (Ctl is Entrada.Campo) {
-                                        Ctl.Top = Y;
+                                Ctl.Top = Y;
+                                if (Ctl is Entrada.Campo)
                                         ((Entrada.Campo)Ctl).LabelWidth = this.AutoLabelWidth;
-                                        Y += Ctl.Height + 4;
-                                }
+                                Y += Ctl.Height + 4;
                                 if (Ctl.Top + Ctl.Height > MaxHeight)
                                         MaxHeight = Ctl.Top + Ctl.Height;
                         }
                         FieldContainer.Height = MaxHeight;
 
-                        this.Height = FieldContainer.Top + FieldContainer.Height;
+                        if (this.AutoSize)
+                                this.Height = FieldContainer.Top + FieldContainer.Height;
+                        else
+                                this.AutoScroll = true;
+
                 }
 
 

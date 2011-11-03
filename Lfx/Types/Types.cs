@@ -48,12 +48,6 @@ namespace Lfx.Types
 		public const char Escape = (char)27;
 	}
 
-        public enum StringAlignment
-        {
-                Near = 0,
-                Center = 1,
-                Far = 2,
-        }
 
         public static class ControlCodes
         {

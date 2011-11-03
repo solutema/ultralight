@@ -55,23 +55,23 @@ namespace Lfc.Cajas
                                 {1, "Activa"}
                         };
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Cajas.Caja),
 
                                 TableName = "cajas",
-                                KeyColumnName = new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
 
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Relation, 96),
-				        new Lfx.Data.FormField("cajas.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 120),
-				        new Lfx.Data.FormField("cajas.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("cajas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("cajas.tipo", "Tipo", 80, SetTipos),
-				        new Lfx.Data.FormField("0", "Saldo Actual", Lfx.Data.InputFieldTypes.Currency, 120),
-                                        new Lfx.Data.FormField("1", "Saldo Futuro", Lfx.Data.InputFieldTypes.Currency, 120),
-                                        new Lfx.Data.FormField("estado", "Estado", 96, SetEstados),
+				        new Lazaro.Pres.Field("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Relation, 96),
+				        new Lazaro.Pres.Field("cajas.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 120),
+				        new Lazaro.Pres.Field("cajas.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("cajas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lazaro.Pres.Field("cajas.tipo", "Tipo", 80, SetTipos),
+				        new Lazaro.Pres.Field("0", "Saldo Actual", Lfx.Data.InputFieldTypes.Currency, 120),
+                                        new Lazaro.Pres.Field("1", "Saldo Futuro", Lfx.Data.InputFieldTypes.Currency, 120),
+                                        new Lazaro.Pres.Field("estado", "Estado", 96, SetEstados),
 			        }
                         };
 

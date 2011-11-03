@@ -70,26 +70,26 @@ namespace Lfc.Bancos.Cheques
                                 };
                         }
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Bancos.Cheque),
 
                                 TableName = "bancos_cheques",
-                                KeyColumnName = new Lfx.Data.FormField("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
+                                KeyColumnName = new Lazaro.Pres.Field("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
                                 OrderBy = "bancos_cheques.fecha DESC",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("bancos", "bancos_cheques.id_banco=bancos.id_banco") },
 
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("bancos_cheques.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("bancos_cheques.fechaemision", "Fecha Emision", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lfx.Data.FormField("bancos_cheques.emitidopor", "Emitido por", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("bancos_cheques.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("bancos_cheques.fechacobro", "Fecha de Cobro", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lfx.Data.FormField("bancos_cheques.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
-				        new Lfx.Data.FormField("bancos.nombre", "Banco", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("bancos_cheques.estado", "Estado", 96, EstadosCheques),
-                                        new Lfx.Data.FormField("bancos_cheques.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
+				        new Lazaro.Pres.Field("bancos_cheques.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("bancos_cheques.fechaemision", "Fecha Emision", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lazaro.Pres.Field("bancos_cheques.emitidopor", "Emitido por", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("bancos_cheques.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("bancos_cheques.fechacobro", "Fecha de Cobro", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lazaro.Pres.Field("bancos_cheques.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lazaro.Pres.Field("bancos.nombre", "Banco", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("bancos_cheques.estado", "Estado", 96, EstadosCheques),
+                                        new Lazaro.Pres.Field("bancos_cheques.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
 			        }
                         };
 

@@ -31,30 +31,24 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Lfc.Alicuotas
 {
-	public partial class Inicio : Lfc.FormularioListado
+	public partial class Inicio : Lazaro.Pres.Listings.Listing
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
-                        {
-                                ElementoTipo = typeof(Lbl.Impuestos.Alicuota),
+                        ElementoTipo = typeof(Lbl.Impuestos.Alicuota);
 
-                                TableName = "alicuotas",
-                                OrderBy = "nombre",
-                                KeyColumnName = new Lfx.Data.FormField("id_alicuota", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Columns = new Lfx.Data.FormFieldCollection()
-			        {
-				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("porcentaje", "Porcentaje", Lfx.Data.InputFieldTypes.Numeric, 160),
-				        new Lfx.Data.FormField("importe_minimo", "Imp. Mín.", Lfx.Data.InputFieldTypes.Currency, 160)
-			        }
-                        };
+                        TableName = "alicuotas";
+                        OrderBy = "nombre";
+                        KeyColumnName = new Lazaro.Pres.Field("id_alicuota", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        Columns = new Lazaro.Pres.FieldCollection()
+			{
+				new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+				new Lazaro.Pres.Field("porcentaje", "Porcentaje", Lfx.Data.InputFieldTypes.Numeric, 160),
+				new Lazaro.Pres.Field("importe_minimo", "Imp. Mín.", Lfx.Data.InputFieldTypes.Currency, 160)
+			};
 		}
 	}
 }

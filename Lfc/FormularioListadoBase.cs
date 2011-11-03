@@ -43,7 +43,7 @@ namespace Lfc
                 protected string m_SearchText = null;
 
                 // La definición del listado
-                public Lfx.Data.Listing Definicion = null;
+                public Lazaro.Pres.Listings.Listing Definicion = null;
 
                 protected Dictionary<string, int> FormFieldToSubItem = new Dictionary<string, int>();
                 protected Dictionary<string, int> SubItemToFormField = new Dictionary<string, int>();
@@ -179,7 +179,7 @@ namespace Lfc
 
                 public virtual Lfx.Types.OperationResult OnPrint(bool selectPrinter)
                 {
-                        Lfx.FileFormats.Office.Spreadsheet.Workbook Workbook = this.ToWorkbook();
+                        Lazaro.Pres.Spreadsheet.Workbook Workbook = this.ToWorkbook();
                         Lazaro.Impresion.ImpresorListado Impresor = new Lazaro.Impresion.ImpresorListado(Workbook.Sheets[0], null);
 
                         if (selectPrinter) {
@@ -226,27 +226,27 @@ namespace Lfc
                 }
 
 
-                public virtual void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
+                public virtual void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         
                 }
 
 
-                private string ExplicarFiltros(Lfx.Data.Filters.FilterCollection filters)
+                private string ExplicarFiltros(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         System.Text.StringBuilder Res = new System.Text.StringBuilder();
-                        foreach (Lfx.Data.Filters.IFilter filter in filters) {
-                                if (filter is Lfx.Data.Filters.RelationFilter) {
+                        foreach (Lazaro.Pres.Filters.IFilter filter in filters) {
+                                if (filter is Lazaro.Pres.Filters.RelationFilter) {
                                         if(filter.Value != null)
                                                 Res.Append(", " + filter.Label + " es " + filter.Value.ToString());
-                                } else if (filter is Lfx.Data.Filters.NumericRangeFilter) {
+                                } else if (filter is Lazaro.Pres.Filters.NumericRangeFilter) {
                                         if(Lfx.Types.Parsing.ParseDecimal(filter.Value as string) != 0)
                                                 Res.Append(", " + filter.Label + " es " + filter.Value.ToString());
-                                } else if (filter is Lfx.Data.Filters.DateRangeFilter) {
+                                } else if (filter is Lazaro.Pres.Filters.DateRangeFilter) {
                                         Lfx.Types.DateRange Rng = filter.Value as Lfx.Types.DateRange;
                                         if (Rng != null && Rng.HasRange)
                                                 Res.Append(", " + filter.Label + " es " + Rng.ToString());
-                                } else if (filter is Lfx.Data.Filters.SetFilter) {
+                                } else if (filter is Lazaro.Pres.Filters.SetFilter) {
                                         if (Lfx.Types.Parsing.ParseDecimal(filter.Value as string) > 0)
                                                 Res.Append(", " + filter.Label + " es " + filter.Value.ToString());
                                 }
@@ -262,7 +262,7 @@ namespace Lfc
                                 switch (e.KeyCode) {
                                         case Keys.U:
                                                 e.Handled = true;
-                                                foreach (Lfx.Data.FormField Fld in this.Definicion.Columns) {
+                                                foreach (Lazaro.Pres.Field Fld in this.Definicion.Columns) {
                                                         if (FormFieldToSubItem.ContainsKey(Lfx.Data.Connection.GetFieldName(Fld.ColumnName)))
                                                                 Listado.Columns[FormFieldToSubItem[Lfx.Data.Connection.GetFieldName(Fld.ColumnName)]].Width = Fld.Width;
                                                 }
@@ -614,7 +614,7 @@ namespace Lfc
                                 } else {
                                         // Genero la lista de campos
                                         ListaCampos = this.Definicion.KeyColumnName.ColumnName;
-                                        foreach (Lfx.Data.FormField CurField in this.Definicion.Columns)
+                                        foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns)
                                                 ListaCampos += "," + CurField.ColumnName;
                                 }
 
@@ -627,13 +627,13 @@ namespace Lfc
                                                 WhereBuscarTexto.AddWithValue(this.Definicion.KeyColumnName.ColumnName, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
 
                                         if (this.Definicion.Columns != null) {
-                                                foreach (Lfx.Data.FormField CurField in this.Definicion.Columns) {
+                                                foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns) {
                                                         if (CurField.ColumnName.IndexOf(" AS ") == -1 && CurField.ColumnName.IndexOf("(") == -1)
                                                                 WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                 }
                                         }
                                         if (this.Definicion.ExtraSearchColumns != null) {
-                                                foreach (Lfx.Data.FormField CurField in this.Definicion.ExtraSearchColumns) {
+                                                foreach (Lazaro.Pres.Field CurField in this.Definicion.ExtraSearchColumns) {
                                                         WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                 }
                                         }
@@ -801,13 +801,13 @@ namespace Lfc
                                                         object ColFunc = this.Definicion.Columns[Col.Name].TotalFunction;
                                                         if (ColFunc == null) {
                                                                 Itm.SubItems.Add("");
-                                                        } else if (ColFunc is Lfx.FileFormats.Office.Spreadsheet.QuickFunctions) {
-                                                                Lfx.FileFormats.Office.Spreadsheet.QuickFunctions QuickFunc = (Lfx.FileFormats.Office.Spreadsheet.QuickFunctions)(this.Definicion.Columns[Col.Name].TotalFunction);
+                                                        } else if (ColFunc is Lazaro.Pres.Spreadsheet.QuickFunctions) {
+                                                                Lazaro.Pres.Spreadsheet.QuickFunctions QuickFunc = (Lazaro.Pres.Spreadsheet.QuickFunctions)(this.Definicion.Columns[Col.Name].TotalFunction);
                                                                 switch (QuickFunc) {
-                                                                        case Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Count:
+                                                                        case Lazaro.Pres.Spreadsheet.QuickFunctions.Count:
                                                                                 Itm.SubItems.Add(Grp.Items.Count.ToString());
                                                                                 break;
-                                                                        case Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum:
+                                                                        case Lazaro.Pres.Spreadsheet.QuickFunctions.Sum:
                                                                                 decimal Res = 0;
                                                                                 foreach (ListViewItem SubItm in Grp.Items) {
                                                                                         Lfx.Data.Row Rw = SubItm.Tag as Lfx.Data.Row;
@@ -841,12 +841,12 @@ namespace Lfc
                 }
 
 
-                protected virtual Lfx.FileFormats.Office.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, Lfx.Data.FormFieldCollection useFields)
+                protected virtual Lazaro.Pres.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lazaro.Pres.Spreadsheet.Sheet sheet, Lazaro.Pres.FieldCollection useFields)
                 {
-                        Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row(sheet);
+                        Lazaro.Pres.Spreadsheet.Row Reng = new Lazaro.Pres.Spreadsheet.Row(sheet);
 
                         if (this.Definicion.KeyColumnName != null) {
-                                Lfx.FileFormats.Office.Spreadsheet.Cell KeyCell = Reng.Cells.Add();
+                                Lazaro.Pres.Spreadsheet.Cell KeyCell = Reng.Cells.Add();
                                 KeyCell.Content = itemId;
                         }
 
@@ -854,7 +854,7 @@ namespace Lfc
                                 string FieldName = Lfx.Data.Connection.GetFieldName(useFields[FieldNum].ColumnName);
 
                                 if (FieldNum >= 0) {
-                                        Lfx.FileFormats.Office.Spreadsheet.Cell NewCell = Reng.Cells.Add();
+                                        Lazaro.Pres.Spreadsheet.Cell NewCell = Reng.Cells.Add();
 
                                         switch (useFields[FieldNum].DataType) {
                                                 case Lfx.Data.InputFieldTypes.Integer:
@@ -960,7 +960,7 @@ namespace Lfc
                 }
 
 
-                private string FormatValue(object cellValue, Lfx.Data.FormField formField)
+                private string FormatValue(object cellValue, Lazaro.Pres.Field formField)
                 {
                         string FieldValueAsText;
 
@@ -1148,17 +1148,17 @@ namespace Lfc
 
                                                 DialogoGuardar.FileName = this.Text.Replace(":", "");
                                                 if (DialogoGuardar.ShowDialog() == DialogResult.OK) {
-                                                        Lfx.FileFormats.Office.Spreadsheet.Workbook Workbook = this.ToWorkbook();
+                                                        Lazaro.Pres.Spreadsheet.Workbook Workbook = this.ToWorkbook();
                                                         string FileName = DialogoGuardar.FileName;
                                                         switch (Formato) {
                                                                 case FormatoExportar.Html:
-                                                                        Workbook.SaveTo(FileName, Lfx.FileFormats.Office.Spreadsheet.SaveFormats.Html);
+                                                                        Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.Html);
                                                                         break;
                                                                 case FormatoExportar.Excel:
-                                                                        Workbook.SaveTo(FileName, Lfx.FileFormats.Office.Spreadsheet.SaveFormats.Excel);
+                                                                        Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.Excel);
                                                                         break;
                                                                 case FormatoExportar.ExcelXml:
-                                                                        Workbook.SaveTo(FileName, Lfx.FileFormats.Office.Spreadsheet.SaveFormats.ExcelXml);
+                                                                        Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.ExcelXml);
                                                                         break;
                                                         }
                                                 }
@@ -1167,19 +1167,19 @@ namespace Lfc
                         }
                 }
 
-                public virtual Lfx.FileFormats.Office.Spreadsheet.Workbook ToWorkbook()
+                public virtual Lazaro.Pres.Spreadsheet.Workbook ToWorkbook()
                 {
                         return ToWorkbook(this.Definicion.Columns);
                 }
 
-                public virtual Lfx.FileFormats.Office.Spreadsheet.Workbook ToWorkbook(Lfx.Data.FormFieldCollection useFields)
+                public virtual Lazaro.Pres.Spreadsheet.Workbook ToWorkbook(Lazaro.Pres.FieldCollection useFields)
                 {
-                        Lfx.FileFormats.Office.Spreadsheet.Workbook Res = new Lfx.FileFormats.Office.Spreadsheet.Workbook();
-                        Lfx.FileFormats.Office.Spreadsheet.Sheet Sheet = new Lfx.FileFormats.Office.Spreadsheet.Sheet(this.Text);
+                        Lazaro.Pres.Spreadsheet.Workbook Res = new Lazaro.Pres.Spreadsheet.Workbook();
+                        Lazaro.Pres.Spreadsheet.Sheet Sheet = new Lazaro.Pres.Spreadsheet.Sheet(this.Text);
                         Res.Sheets.Add(Sheet);
 
                         // Exporto los encabezados de columna
-                        Sheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader(this.Definicion.KeyColumnName.Label, this.Definicion.KeyColumnName.Width));
+                        Sheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader(this.Definicion.KeyColumnName.Label, this.Definicion.KeyColumnName.Width));
                         Sheet.ColumnHeaders[0].DataType = this.Definicion.KeyColumnName.DataType;
                         Sheet.ColumnHeaders[0].Format = this.Definicion.KeyColumnName.Format;
                         Sheet.ColumnHeaders[0].Printable = this.Definicion.KeyColumnName.Printable;
@@ -1187,7 +1187,7 @@ namespace Lfc
                         int OrderColumn = -1;
                         if (useFields != null) {
                                 for (int i = 0; i <= useFields.Count - 1; i++) {
-                                        Lfx.FileFormats.Office.Spreadsheet.ColumnHeader ColHead = new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader(useFields[i].Label, useFields[i].Width);
+                                        Lazaro.Pres.Spreadsheet.ColumnHeader ColHead = new Lazaro.Pres.Spreadsheet.ColumnHeader(useFields[i].Label, useFields[i].Width);
                                         ColHead.Name = Lfx.Data.Connection.GetFieldName(useFields[i].ColumnName);
                                         ColHead.TextAlignment = useFields[i].Alignment;
                                         ColHead.DataType = useFields[i].DataType;
@@ -1212,7 +1212,7 @@ namespace Lfc
                                 string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.ColumnName);
                                 int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
-                                Lfx.FileFormats.Office.Spreadsheet.Row Reng = this.FormatRow(ItemId, Registro, Sheet, useFields);
+                                Lazaro.Pres.Spreadsheet.Row Reng = this.FormatRow(ItemId, Registro, Sheet, useFields);
 
                                 Sheet.Rows.Add(Reng);
                         }

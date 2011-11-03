@@ -39,22 +39,22 @@ namespace Lfc.Cajas.Vencimientos
         {
                 public Inicio()
                 {
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Cajas.Vencimiento),
 
                                 TableName = "vencimientos",
-                                KeyColumnName = new Lfx.Data.FormField("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
+                                KeyColumnName = new Lazaro.Pres.Field("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
                                 OrderBy = "vencimientos.fecha_proxima DESC",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("vencimientos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("vencimientos.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("vencimientos.frecuencia", "Frecuencia", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("vencimientos.fecha_proxima", "Próxima Ocurrencia", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lfx.Data.FormField("vencimientos.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
-				        new Lfx.Data.FormField("vencimientos.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
-                                        new Lfx.Data.FormField("vencimientos.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
+				        new Lazaro.Pres.Field("vencimientos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("vencimientos.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("vencimientos.frecuencia", "Frecuencia", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("vencimientos.fecha_proxima", "Próxima Ocurrencia", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lazaro.Pres.Field("vencimientos.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lazaro.Pres.Field("vencimientos.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
+                                        new Lazaro.Pres.Field("vencimientos.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
 			        }
                         };
 

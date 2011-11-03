@@ -42,17 +42,17 @@ namespace Lfc.Cajas.Conceptos
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Cajas.Concepto),
 
                                 TableName = "conceptos",
-                                KeyColumnName = new Lfx.Data.FormField("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                KeyColumnName = new Lazaro.Pres.Field("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("conceptos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("conceptos.es", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("conceptos.grupo", "Grupo", Lfx.Data.InputFieldTypes.Text, 120)
+				        new Lazaro.Pres.Field("conceptos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("conceptos.es", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("conceptos.grupo", "Grupo", Lfx.Data.InputFieldTypes.Text, 120)
 			        }
                         };
 		}

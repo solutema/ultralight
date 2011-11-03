@@ -39,27 +39,27 @@ namespace Lfc.Pvs
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.PuntoDeVenta),
 
                                 TableName = "pvs",
-                                KeyColumnName = new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal") },
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                        new Lfx.Data.FormField("pvs.numero", "PV", Lfx.Data.InputFieldTypes.Integer, 96),
-				        new Lfx.Data.FormField("pvs.tipo", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lfx.Data.FormField("pvs.tipo_fac", "Comprobantes", Lfx.Data.InputFieldTypes.Text, 180),
-				        new Lfx.Data.FormField("sucursales.nombre", "Sucursal", Lfx.Data.InputFieldTypes.Text, 160),
-				        new Lfx.Data.FormField("pvs.estacion", "Estacion", Lfx.Data.InputFieldTypes.Text, 160),
-				        new Lfx.Data.FormField("pvs.carga", "Carga", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lfx.Data.FormField("pvs.detalonario", "Usa Talonarios", Lfx.Data.InputFieldTypes.Bool, 120)
+				        new Lazaro.Pres.Field("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                        new Lazaro.Pres.Field("pvs.numero", "PV", Lfx.Data.InputFieldTypes.Integer, 96),
+				        new Lazaro.Pres.Field("pvs.tipo", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("pvs.tipo_fac", "Comprobantes", Lfx.Data.InputFieldTypes.Text, 180),
+				        new Lazaro.Pres.Field("sucursales.nombre", "Sucursal", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lazaro.Pres.Field("pvs.estacion", "Estacion", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lazaro.Pres.Field("pvs.carga", "Carga", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("pvs.detalonario", "Usa Talonarios", Lfx.Data.InputFieldTypes.Bool, 120)
 			        },
-                                Filters = new Lfx.Data.Filters.FilterCollection()
+                                Filters = new Lazaro.Pres.Filters.FilterCollection()
                                 {
-                                        new Lfx.Data.Filters.SetFilter("Tipo", "pvs.tipo", new string[] { "Todos|*", "Inactivo|0", "Normal|1", "Fiscal|2" }, "*")
+                                        new Lazaro.Pres.Filters.SetFilter("Tipo", "pvs.tipo", new string[] { "Todos|*", "Inactivo|0", "Normal|1", "Fiscal|2" }, "*")
                                 }
                         };
 
@@ -67,11 +67,11 @@ namespace Lfc.Pvs
 		}
 
 
-                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
+                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.CustomFilters.Clear();
 
-                        if (((Lfx.Data.Filters.SetFilter)(filters["pvs.tipo"])).CurrentValue != "*")
+                        if (((Lazaro.Pres.Filters.SetFilter)(filters["pvs.tipo"])).CurrentValue != "*")
                                 CustomFilters.AddWithValue("pvs.tipo", Lfx.Types.Parsing.ParseInt(filters[0].Value.ToString()));
 
                         base.FiltersChanged(filters);

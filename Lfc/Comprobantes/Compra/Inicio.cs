@@ -51,32 +51,32 @@ namespace Lfc.Comprobantes.Compra
                         this.Tipo = "FP";
                         this.Letra = "*";
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteDeCompra),
 
                                 TableName = "comprob",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("comprob_detalle", "comprob.id_comprob=comprob_detalle.id_comprob") },
-                                KeyColumnName = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                GroupBy = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                GroupBy = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "comprob.fecha DESC",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 48),
-				        new Lfx.Data.FormField("comprob.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 80),
-				        new Lfx.Data.FormField("comprob.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 120),
-				        new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lfx.Data.FormField("comprob.id_cliente", "Proveedor", Lfx.Data.InputFieldTypes.Relation, 160),
-				        new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
-                                        new Lfx.Data.FormField("comprob.total-comprob.cancelado AS pendiente", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("comprob.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
-                                        new Lfx.Data.FormField("comprob.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
+				        new Lazaro.Pres.Field("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 48),
+				        new Lazaro.Pres.Field("comprob.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 80),
+				        new Lazaro.Pres.Field("comprob.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 120),
+				        new Lazaro.Pres.Field("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lazaro.Pres.Field("comprob.id_cliente", "Proveedor", Lfx.Data.InputFieldTypes.Relation, 160),
+				        new Lazaro.Pres.Field("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lazaro.Pres.Field("comprob.total-comprob.cancelado AS pendiente", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("comprob.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
+                                        new Lazaro.Pres.Field("comprob.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
 			        },
                                 
-                                ExtraSearchColumns = new Lfx.Data.FormFieldCollection()
+                                ExtraSearchColumns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("comprob_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lfx.Data.FormField("comprob.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
+				        new Lazaro.Pres.Field("comprob_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("comprob.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
 			        }
                         };
 

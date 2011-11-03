@@ -38,7 +38,7 @@ namespace Lazaro.Impresion
 {
         public class ImpresorListado : Impresor
         {
-                public Lfx.FileFormats.Office.Spreadsheet.Sheet Sheet;
+                public Lazaro.Pres.Spreadsheet.Sheet Sheet;
 
                 private float[] ColumnWidths = null;
                 private StringFormat[] ColumnFormats = null;
@@ -50,7 +50,7 @@ namespace Lazaro.Impresion
 
                 private string LastGroup = null;
 
-                public ImpresorListado(Lfx.FileFormats.Office.Spreadsheet.Sheet sheet, IDbTransaction transaction)
+                public ImpresorListado(Lazaro.Pres.Spreadsheet.Sheet sheet, IDbTransaction transaction)
                         : base(transaction)
                 {
                         this.Sheet = sheet;
@@ -346,7 +346,7 @@ namespace Lazaro.Impresion
                         CursorY += RowHeight;
                 }
 
-                private void PrintRow(PrintPageEventArgs e, Lfx.FileFormats.Office.Spreadsheet.Row row)
+                private void PrintRow(PrintPageEventArgs e, Lazaro.Pres.Spreadsheet.Row row)
                 {
                         Graphics g = e.Graphics;
 

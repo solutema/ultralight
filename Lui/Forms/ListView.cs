@@ -116,7 +116,7 @@ namespace Lui.Forms
                 } */
 
 
-                public static Lui.Forms.ListView NewListViewFromSheet(Lfx.FileFormats.Office.Spreadsheet.Sheet sheet)
+                public static Lui.Forms.ListView NewListViewFromSheet(Lazaro.Pres.Spreadsheet.Sheet sheet)
                 {
                         Lui.Forms.ListView Result = new Lui.Forms.ListView();
                         Result.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -127,7 +127,7 @@ namespace Lui.Forms
                         return Result;
                 }
 
-                public void FromSheet(Lfx.FileFormats.Office.Spreadsheet.Sheet sheet)
+                public void FromSheet(Lazaro.Pres.Spreadsheet.Sheet sheet)
                 {
                         this.SuspendLayout();
                         this.BeginUpdate();
@@ -145,7 +145,7 @@ namespace Lui.Forms
 
                         if (sheet.ColumnHeaders != null) {
                                 this.Columns.Clear();
-                                foreach (Lfx.FileFormats.Office.Spreadsheet.ColumnHeader ch in sheet.ColumnHeaders) {
+                                foreach (Lazaro.Pres.Spreadsheet.ColumnHeader ch in sheet.ColumnHeaders) {
                                         System.Windows.Forms.ColumnHeader Col = this.Columns.Add(ch.Text, ch.Width);
                                         switch (ch.TextAlignment) {
                                                 case Lfx.Types.StringAlignment.Near:
@@ -160,14 +160,14 @@ namespace Lui.Forms
 
                         System.Windows.Forms.ListViewGroup LastGroup = null;
 
-                        foreach (Lfx.FileFormats.Office.Spreadsheet.Row rw in sheet.Rows) {
-                                if (rw is Lfx.FileFormats.Office.Spreadsheet.HeaderRow) {
+                        foreach (Lazaro.Pres.Spreadsheet.Row rw in sheet.Rows) {
+                                if (rw is Lazaro.Pres.Spreadsheet.HeaderRow) {
                                         LastGroup = new System.Windows.Forms.ListViewGroup(rw.Cells[0].Content.ToString());
                                         this.Groups.Add(LastGroup);
                                 } else {
                                         System.Windows.Forms.ListViewItem Itm = new System.Windows.Forms.ListViewItem();
 
-                                        if (rw is Lfx.FileFormats.Office.Spreadsheet.AggregationRow) {
+                                        if (rw is Lazaro.Pres.Spreadsheet.AggregationRow) {
                                                 //Itm.BackColor = System.Drawing.Color.LightGray;
                                                 Itm.Font = new System.Drawing.Font(Itm.Font, System.Drawing.FontStyle.Bold);
                                         }
@@ -182,7 +182,7 @@ namespace Lui.Forms
                                                 Itm.ForeColor = rw.ForeColor;
 
                                         int i = 0;
-                                        foreach (Lfx.FileFormats.Office.Spreadsheet.Cell cl in rw.Cells) {
+                                        foreach (Lazaro.Pres.Spreadsheet.Cell cl in rw.Cells) {
                                                 string CellString = "";
                                                 if (cl.Content != null) {
                                                         switch (cl.Content.GetType().ToString()) {

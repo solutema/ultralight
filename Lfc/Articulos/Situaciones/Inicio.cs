@@ -39,20 +39,20 @@ namespace Lfc.Articulos.Situaciones
         {
                 public Inicio()
                 {
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Situacion),
 
                                 TableName = "articulos_situaciones",
-                                KeyColumnName = new Lfx.Data.FormField("articulos_situaciones.id_situacion", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                KeyColumnName = new Lazaro.Pres.Field("articulos_situaciones.id_situacion", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre",
                                 OrderBy = "articulos_situaciones.nombre",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
                                 {
-				        new Lfx.Data.FormField("articulos_situaciones.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-                                        new Lfx.Data.FormField("articulos_situaciones.cuenta_stock", "Suma Stock", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
-				        new Lfx.Data.FormField("articulos_situaciones.facturable", "Facturable", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
-				        new Lfx.Data.FormField("articulos_situaciones.deposito", "Depósito", Lfx.Data.InputFieldTypes.Integer, 96),
+				        new Lazaro.Pres.Field("articulos_situaciones.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lazaro.Pres.Field("articulos_situaciones.cuenta_stock", "Suma Stock", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
+				        new Lazaro.Pres.Field("articulos_situaciones.facturable", "Facturable", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
+				        new Lazaro.Pres.Field("articulos_situaciones.deposito", "Depósito", Lfx.Data.InputFieldTypes.Integer, 96),
 			        },
                         };
 

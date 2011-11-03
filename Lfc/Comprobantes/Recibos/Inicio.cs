@@ -43,25 +43,25 @@ namespace Lfc.Comprobantes.Recibos
 
                 public Inicio()
                 {
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro),
 
                                 TableName = "recibos",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "recibos.id_cliente=personas.id_persona") },
-                                KeyColumnName = new Lfx.Data.FormField("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "recibos.fecha DESC",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-                                        new Lfx.Data.FormField("recibos.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 28),
-				        new Lfx.Data.FormField("recibos.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96),
-				        new Lfx.Data.FormField("recibos.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lfx.Data.FormField("recibos.total", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("0", "Facturas", Lfx.Data.InputFieldTypes.Text, 160),
-				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("recibos.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("recibos.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320),
-                                        new Lfx.Data.FormField("recibos.estado", "Estado", Lfx.Data.InputFieldTypes.Integer, 0)
+                                        new Lazaro.Pres.Field("recibos.pv", "PV", Lfx.Data.InputFieldTypes.Integer, 28),
+				        new Lazaro.Pres.Field("recibos.numero", "Número", Lfx.Data.InputFieldTypes.Integer, 96),
+				        new Lazaro.Pres.Field("recibos.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lazaro.Pres.Field("recibos.total", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("0", "Facturas", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lazaro.Pres.Field("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lazaro.Pres.Field("recibos.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("recibos.obs", "Obs.", Lfx.Data.InputFieldTypes.Memo, 320),
+                                        new Lazaro.Pres.Field("recibos.estado", "Estado", Lfx.Data.InputFieldTypes.Integer, 0)
 			        }
                         };
 

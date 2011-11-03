@@ -41,18 +41,18 @@ namespace Lfc.Comprobantes.Plantillas
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Impresion.Plantilla),
 
                                 TableName = "sys_plantillas",
-                                KeyColumnName = new Lfx.Data.FormField("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                KeyColumnName = new Lazaro.Pres.Field("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("sys_plantillas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-                                        new Lfx.Data.FormField("sys_plantillas.tamanopapel", "Papel", Lfx.Data.InputFieldTypes.Text, 64),
-				        new Lfx.Data.FormField("sys_plantillas.copias", "Copias", Lfx.Data.InputFieldTypes.Integer, 64)
+				        new Lazaro.Pres.Field("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lazaro.Pres.Field("sys_plantillas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lazaro.Pres.Field("sys_plantillas.tamanopapel", "Papel", Lfx.Data.InputFieldTypes.Text, 64),
+				        new Lazaro.Pres.Field("sys_plantillas.copias", "Copias", Lfx.Data.InputFieldTypes.Integer, 64)
 			        },
                                 OrderBy = "sys_plantillas.codigo"
                         };

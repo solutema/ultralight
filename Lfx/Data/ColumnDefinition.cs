@@ -161,6 +161,7 @@ namespace Lfx.Data
                         }
                 }
 
+
                 public string SqlDefinition()
                 {
                         string Def = this.SqlType();

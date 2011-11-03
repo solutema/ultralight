@@ -42,17 +42,17 @@ namespace Lfc.Ciudades
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Entidades.Localidad),
 
                                 TableName = "ciudades",
-                                KeyColumnName = new Lfx.Data.FormField("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("ciudades.id_ciudad", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "ciudades.parent, ciudades.nombre",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("cp", "Cód. Postal", Lfx.Data.InputFieldTypes.Text, 120)
+				        new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("cp", "Cód. Postal", Lfx.Data.InputFieldTypes.Text, 120)
 			        }
                         };
 		}

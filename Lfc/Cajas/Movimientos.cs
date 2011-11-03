@@ -54,30 +54,30 @@ namespace Lfc.Cajas
 
                         InitializeComponent();
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 TableName = "cajas_movim",
-                                KeyColumnName = new Lfx.Data.FormField("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "cajas_movim.id_persona=personas.id_persona"), new qGen.Join("cajas", "cajas_movim.id_caja=cajas.id_caja") },
-                                Columns = new Lfx.Data.FormFieldCollection() {
-                                        new Lfx.Data.FormField("cajas.nombre", "Caja", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lfx.Data.FormField("cajas_movim.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
-                                        new Lfx.Data.FormField("cajas_movim.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-                                        new Lfx.Data.FormField("cajas_movim.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 100),
-                                        new Lfx.Data.FormField("cajas_movim.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-                                        new Lfx.Data.FormField("cajas_movim.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
-                                        new Lfx.Data.FormField("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 200),
-                                        new Lfx.Data.FormField("cajas_movim.id_comprob", "Factura", Lfx.Data.InputFieldTypes.Relation, 0),
-                                        new Lfx.Data.FormField("cajas_movim.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0),
-                                        new Lfx.Data.FormField("cajas_movim.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 240),
-                                        new Lfx.Data.FormField("cajas_movim.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160)
+                                Columns = new Lazaro.Pres.FieldCollection() {
+                                        new Lazaro.Pres.Field("cajas.nombre", "Caja", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("cajas_movim.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
+                                        new Lazaro.Pres.Field("cajas_movim.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lazaro.Pres.Field("cajas_movim.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 100),
+                                        new Lazaro.Pres.Field("cajas_movim.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lazaro.Pres.Field("cajas_movim.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lazaro.Pres.Field("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 200),
+                                        new Lazaro.Pres.Field("cajas_movim.id_comprob", "Factura", Lfx.Data.InputFieldTypes.Relation, 0),
+                                        new Lazaro.Pres.Field("cajas_movim.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0),
+                                        new Lazaro.Pres.Field("cajas_movim.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lazaro.Pres.Field("cajas_movim.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160)
                                 },
 
-                                Filters = new Lfx.Data.Filters.FilterCollection() {
-                                        new Lfx.Data.Filters.RelationFilter("Caja", new Lfx.Data.Relation("cajas_movim.id_caja", "cajas", "cajas.id_caja")),
-                                        new Lfx.Data.Filters.RelationFilter("Persona", new Lfx.Data.Relation("cajas_movim.id_cliente", "personas", "personas.id_persona", "nombre_visible")),
-                                        new Lfx.Data.Filters.RelationFilter("Concepto", new Lfx.Data.Relation("cajas_movim.id_concepto", "conceptos", "conceptos.id_concepto")),
-                                        new Lfx.Data.Filters.SetFilter("Tipo", "conceptos.grupo", new string[] { 
+                                Filters = new Lazaro.Pres.Filters.FilterCollection() {
+                                        new Lazaro.Pres.Filters.RelationFilter("Caja", new Lfx.Data.Relation("cajas_movim.id_caja", "cajas", "cajas.id_caja")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Persona", new Lfx.Data.Relation("cajas_movim.id_cliente", "personas", "personas.id_persona", "nombre_visible")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Concepto", new Lfx.Data.Relation("cajas_movim.id_concepto", "conceptos", "conceptos.id_concepto")),
+                                        new Lazaro.Pres.Filters.SetFilter("Tipo", "conceptos.grupo", new string[] { 
                                                 "Todos|0",
                                                 "Gastos fijos|1",
                                                 "Gastos variables|2",
@@ -90,8 +90,8 @@ namespace Lfc.Cajas
                                                 "Sueldos y Salarios|80",
                                                 "Cobros|100"
                                         }, "0"),
-                                        new Lfx.Data.Filters.SetFilter("Visa", "conceptos.es", new string[] { "Entrada y Salida|0", "Entrada|1", "Salida|2" }, "0"),
-                                        new Lfx.Data.Filters.DateRangeFilter("Fecha", "cajas_movim.fecha", this.Fechas)
+                                        new Lazaro.Pres.Filters.SetFilter("Visa", "conceptos.es", new string[] { "Entrada y Salida|0", "Entrada|1", "Salida|2" }, "0"),
+                                        new Lazaro.Pres.Filters.DateRangeFilter("Fecha", "cajas_movim.fecha", this.Fechas)
                                 },
 
                                 OrderBy = "cajas_movim.id_movim DESC"
@@ -101,8 +101,8 @@ namespace Lfc.Cajas
                         this.Definicion.Columns["nombre"].Printable = false;
                         this.Definicion.Columns["cajas_movim.comprob"].Printable = false;
 
-                        this.Definicion.Columns["cajas_movim.concepto"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.TotalName;
-                        this.Definicion.Columns["cajas_movim.importe"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["cajas_movim.concepto"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.TotalName;
+                        this.Definicion.Columns["cajas_movim.importe"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
 
                         if (this.HasWorkspace) {
                                 this.Caja = new Lbl.Cajas.Caja(this.Connection, 999);
@@ -236,7 +236,7 @@ namespace Lfc.Cajas
                 }
 
 
-                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
+                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.Caja = this.Definicion.Filters["cajas_movim.id_caja"].Value as Lbl.Cajas.Caja;
                         this.Cliente = this.Definicion.Filters["cajas_movim.id_cliente"].Value as Lbl.Personas.Persona;

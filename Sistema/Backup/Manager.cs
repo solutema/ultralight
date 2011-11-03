@@ -78,7 +78,7 @@ namespace Lazaro.WinMain.Backup
                 private void BotonBackup_Click(System.Object sender, System.EventArgs e)
                 {
                         BotonBackup.Enabled = false;
-                        Aplicacion.Exec("BACKUP NOW");
+                        Ejecutor.Exec("BACKUP NOW");
                         Lfx.Workspace.Master.RunTime.Toast("Se inició una copia de seguridad en segundo plano.", "Aviso");
                 }
 

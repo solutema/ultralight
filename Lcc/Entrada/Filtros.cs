@@ -43,7 +43,7 @@ namespace Lcc.Entrada
         {
                 public event System.EventHandler Apply;
 
-                private IList<Lfx.Data.Filters.IFilter> ColFiltros;
+                private Lazaro.Pres.Filters.FilterCollection ColFiltros;
 
                 public Filtros()
                 {
@@ -51,7 +51,7 @@ namespace Lcc.Entrada
                 }
 
 
-                public void FromFilters(IList<Lfx.Data.Filters.IFilter> filters)
+                public void FromFilters(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.SuspendLayout();
                         this.TablaFiltros.SuspendLayout();
@@ -62,7 +62,7 @@ namespace Lcc.Entrada
                                 TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle(SizeType.AutoSize));
 
                         int i = 0;
-                        foreach (Lfx.Data.Filters.IFilter Filtro in this.ColFiltros) {
+                        foreach (Lazaro.Pres.Filters.IFilter Filtro in this.ColFiltros) {
                                 Label Etiqueta = new Label();
                                 Etiqueta.Name = "etiqueta" + i.ToString();
                                 Etiqueta.Text = Filtro.Label;
@@ -72,16 +72,16 @@ namespace Lcc.Entrada
                                 this.TablaFiltros.Controls.Add(Etiqueta, 0, i);
 
                                 Control Entrada;
-                                if (Filtro is Lfx.Data.Filters.NumericRangeFilter) {
+                                if (Filtro is Lazaro.Pres.Filters.NumericRangeFilter) {
                                         Lcc.Entrada.RangoNumerico EntradaRangoNumerico = new Lcc.Entrada.RangoNumerico();
-                                        Lfx.Data.Filters.NumericRangeFilter FiltroNumerico = Filtro as Lfx.Data.Filters.NumericRangeFilter;
+                                        Lazaro.Pres.Filters.NumericRangeFilter FiltroNumerico = Filtro as Lazaro.Pres.Filters.NumericRangeFilter;
                                         EntradaRangoNumerico.DecimalPlaces = FiltroNumerico.DecimalPlaces;
                                         EntradaRangoNumerico.Valule1 = System.Convert.ToDecimal(FiltroNumerico.Value);
                                         EntradaRangoNumerico.Valule2 = System.Convert.ToDecimal(FiltroNumerico.Value2);
                                         EntradaRangoNumerico.Dock = DockStyle.Top;
                                         Entrada = EntradaRangoNumerico;
-                                } else if (Filtro is Lfx.Data.Filters.SetFilter) {
-                                        Lfx.Data.Filters.SetFilter FiltroSet = Filtro as Lfx.Data.Filters.SetFilter;
+                                } else if (Filtro is Lazaro.Pres.Filters.SetFilter) {
+                                        Lazaro.Pres.Filters.SetFilter FiltroSet = Filtro as Lazaro.Pres.Filters.SetFilter;
                                         Lui.Forms.ComboBox EntradaSet = new Lui.Forms.ComboBox();
                                         EntradaSet.SetData = FiltroSet.SetData;
                                         EntradaSet.TextKey = FiltroSet.CurrentValue;
@@ -92,16 +92,16 @@ namespace Lcc.Entrada
                                         EntradaSet.AutoTab = true;
                                         EntradaSet.Dock = DockStyle.Top;
                                         Entrada = EntradaSet;
-                                } else if (Filtro is Lfx.Data.Filters.DateRangeFilter) {
-                                        Lfx.Data.Filters.DateRangeFilter FiltroFechas = Filtro as Lfx.Data.Filters.DateRangeFilter;
+                                } else if (Filtro is Lazaro.Pres.Filters.DateRangeFilter) {
+                                        Lazaro.Pres.Filters.DateRangeFilter FiltroFechas = Filtro as Lazaro.Pres.Filters.DateRangeFilter;
                                         Lcc.Entrada.RangoFechas EntradaRangoFechas = new Lcc.Entrada.RangoFechas();
                                         EntradaRangoFechas.Rango = FiltroFechas.DateRange;
                                         EntradaRangoFechas.Size = new System.Drawing.Size(160, 46);
                                         EntradaRangoFechas.AutoSize = true;
                                         EntradaRangoFechas.Dock = DockStyle.Top;
                                         Entrada = EntradaRangoFechas;
-                                } else if (Filtro is Lfx.Data.Filters.RelationFilter) {
-                                        Lfx.Data.Filters.RelationFilter FiltroRelacion = Filtro as Lfx.Data.Filters.RelationFilter;
+                                } else if (Filtro is Lazaro.Pres.Filters.RelationFilter) {
+                                        Lazaro.Pres.Filters.RelationFilter FiltroRelacion = Filtro as Lazaro.Pres.Filters.RelationFilter;
                                         Lcc.Entrada.CodigoDetalle EntradaRelacion = new Lcc.Entrada.CodigoDetalle();
                                         EntradaRelacion.Size = new System.Drawing.Size(160, 24);
                                         EntradaRelacion.Relation = FiltroRelacion.Relation;
@@ -135,25 +135,25 @@ namespace Lcc.Entrada
                 /// </summary>
                 public void ActualizarFiltros()
                 {
-                        foreach (Lfx.Data.Filters.IFilter Filtro in this.ColFiltros) {
-                                if (Filtro is Lfx.Data.Filters.NumericRangeFilter) {
+                        foreach (Lazaro.Pres.Filters.IFilter Filtro in this.ColFiltros) {
+                                if (Filtro is Lazaro.Pres.Filters.NumericRangeFilter) {
                                         Lcc.Entrada.RangoNumerico EntradaRangoNumerico = Filtro.Control as Lcc.Entrada.RangoNumerico;
-                                        Lfx.Data.Filters.NumericRangeFilter FiltroNumerico = Filtro as Lfx.Data.Filters.NumericRangeFilter;
+                                        Lazaro.Pres.Filters.NumericRangeFilter FiltroNumerico = Filtro as Lazaro.Pres.Filters.NumericRangeFilter;
 
                                         FiltroNumerico.Value = EntradaRangoNumerico.Valule1;
                                         FiltroNumerico.Value2 = EntradaRangoNumerico.Valule2;
-                                } else if (Filtro is Lfx.Data.Filters.SetFilter) {
-                                        Lfx.Data.Filters.SetFilter FiltroSet = Filtro as Lfx.Data.Filters.SetFilter;
+                                } else if (Filtro is Lazaro.Pres.Filters.SetFilter) {
+                                        Lazaro.Pres.Filters.SetFilter FiltroSet = Filtro as Lazaro.Pres.Filters.SetFilter;
                                         Lui.Forms.ComboBox EntradaSet = Filtro.Control as Lui.Forms.ComboBox;
 
                                         FiltroSet.CurrentValue = EntradaSet.TextKey;
-                                } else if (Filtro is Lfx.Data.Filters.DateRangeFilter) {
-                                        Lfx.Data.Filters.DateRangeFilter FiltroFechas = Filtro as Lfx.Data.Filters.DateRangeFilter;
+                                } else if (Filtro is Lazaro.Pres.Filters.DateRangeFilter) {
+                                        Lazaro.Pres.Filters.DateRangeFilter FiltroFechas = Filtro as Lazaro.Pres.Filters.DateRangeFilter;
                                         Lcc.Entrada.RangoFechas EntradaRangoFechas = Filtro.Control as Lcc.Entrada.RangoFechas;
 
                                         FiltroFechas.DateRange = EntradaRangoFechas.Rango;
-                                } else if (Filtro is Lfx.Data.Filters.RelationFilter) {
-                                        Lfx.Data.Filters.RelationFilter FiltroRelacion = Filtro as Lfx.Data.Filters.RelationFilter;
+                                } else if (Filtro is Lazaro.Pres.Filters.RelationFilter) {
+                                        Lazaro.Pres.Filters.RelationFilter FiltroRelacion = Filtro as Lazaro.Pres.Filters.RelationFilter;
                                         Lcc.Entrada.CodigoDetalle EntradaRelacion = Filtro.Control as Lcc.Entrada.CodigoDetalle;
 
                                         FiltroRelacion.Elemento = EntradaRelacion.Elemento;

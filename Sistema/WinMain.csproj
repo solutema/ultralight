@@ -100,6 +100,7 @@
     <Compile Include="Errores\ExcepcionControlada.Designer.cs">
       <DependentUpon>ExcepcionControlada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exec.cs" />
     <Compile Include="Misc\AcercaDe.Designer.cs">
       <DependentUpon>AcercaDe.cs</DependentUpon>
     </Compile>
@@ -284,7 +285,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Impresion\Impresion.csproj">
       <Project>{EBF39B24-DF1A-4C99-8FC8-F9A24E9CB8FF}</Project>
-      <Name>Lazaro.Impresion</Name>
+      <Name>Impresion</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
       <Project>{56F39851-6542-405C-9F47-E8414B757EF6}</Project>

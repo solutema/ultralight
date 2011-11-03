@@ -144,7 +144,7 @@ namespace Lazaro.WinMain.Principal
 
                                 if (ProximaTarea != null) {
                                         // Lanzo la tarea en un nuevo thread
-                                        System.Threading.ThreadStart ParamInicio = delegate { Aplicacion.Exec(ProximaTarea.Command, ProximaTarea.ComputerName); };
+                                        System.Threading.ThreadStart ParamInicio = delegate { Ejecutor.Exec(ProximaTarea.Command, ProximaTarea.ComputerName); };
                                         new System.Threading.Thread(ParamInicio).Start();
                                 }
 
@@ -160,7 +160,7 @@ namespace Lazaro.WinMain.Principal
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         DialogResult Respuesta = Pregunta.ShowDialog();
                                         if (Respuesta == DialogResult.OK)
-                                                Aplicacion.Exec("REBOOT");
+                                                Ejecutor.Exec("REBOOT");
                                 }
                         }
 
@@ -228,31 +228,31 @@ namespace Lazaro.WinMain.Principal
                                                 e.Handled = true;
                                                 string Cmd = Lui.Forms.InputBox.ShowInputBox("Comando");
                                                 if (Cmd != null && Cmd.Length > 0)
-                                                        Aplicacion.Exec(Cmd);
+                                                        Ejecutor.Exec(Cmd);
                                         }
                                         break;
                                 case Keys.F:
                                         if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
-                                                Aplicacion.Exec("CREAR Lbl.Comprobantes.Factura");
+                                                Ejecutor.Exec("CREAR Lbl.Comprobantes.Factura");
                                         }
                                         break;
                                 case Keys.T:
                                         if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
-                                                Aplicacion.Exec("CREAR Lbl.Comprobantes.Ticket");
+                                                Ejecutor.Exec("CREAR Lbl.Comprobantes.Ticket");
                                         }
                                         break;
                                 case Keys.P:
                                         if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
-                                                Aplicacion.Exec("CREAR Lbl.Comprobantes.Presupuesto");
+                                                Ejecutor.Exec("CREAR Lbl.Comprobantes.Presupuesto");
                                         }
                                         break;
                                 case Keys.L:
                                         if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
-                                                Aplicacion.Exec("CALC");
+                                                Ejecutor.Exec("CALC");
                                         }
                                         break;
                         }
@@ -551,7 +551,7 @@ namespace Lazaro.WinMain.Principal
                         int Hits = this.Workspace.CurrentConfig.ReadLocalSettingInt("MenuStats", ItmInfo.FullPath, 0);
                         this.Workspace.CurrentConfig.WriteLocalSetting("MenuStats", ItmInfo.FullPath, Hits + 1);
 
-                        object Res = Aplicacion.Exec(ItmInfo.Funcion);
+                        object Res = Ejecutor.Exec(ItmInfo.Funcion);
                         this.ProcesarObjeto(Res);
                 }
 

@@ -43,16 +43,16 @@ namespace Lfc.Tareas.Estados
                                 {1, "Activo"}
                         }; */
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Tareas.Estado),
 
                                 TableName = "tickets_estados",
-                                KeyColumnName = new Lfx.Data.FormField("tickets_estados.id_ticket_estado", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                KeyColumnName = new Lazaro.Pres.Field("tickets_estados.id_ticket_estado", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("tickets_estados.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("tickets_estados.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
 			        },
 
                                 OrderBy = "tickets_estados.nombre"

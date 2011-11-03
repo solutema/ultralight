@@ -50,37 +50,37 @@ namespace Lfc.Comprobantes
                 {
                         this.Letra = "*";
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteConArticulos),
 
                                 TableName = "comprob",
-                                KeyColumnName = new Lfx.Data.FormField("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "comprob.id_cliente=personas.id_persona") },
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
-				        new Lfx.Data.FormField("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lfx.Data.FormField("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("comprob.impresa", "Impresa", Lfx.Data.InputFieldTypes.Bool, 0),
-				        new Lfx.Data.FormField("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),
-				        new Lfx.Data.FormField("comprob.total-comprob.cancelado AS pendiente", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("comprob.id_vendedor", "Vendedor", Lfx.Data.InputFieldTypes.Relation, 160),
-				        new Lfx.Data.FormField("comprob.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160),
+				        new Lazaro.Pres.Field("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
+				        new Lazaro.Pres.Field("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
+				        new Lazaro.Pres.Field("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("comprob.impresa", "Impresa", Lfx.Data.InputFieldTypes.Bool, 0),
+				        new Lazaro.Pres.Field("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),
+				        new Lazaro.Pres.Field("comprob.total-comprob.cancelado AS pendiente", "Pendiente", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("comprob.id_vendedor", "Vendedor", Lfx.Data.InputFieldTypes.Relation, 160),
+				        new Lazaro.Pres.Field("comprob.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 160),
                                 
 			        },
 
-                                ExtraSearchColumns = new Lfx.Data.FormFieldCollection() {
-                                        new Lfx.Data.FormField("series", "Series")
+                                ExtraSearchColumns = new Lazaro.Pres.FieldCollection() {
+                                        new Lazaro.Pres.Field("series", "Series")
                                 },
 
                                 OrderBy = "comprob.id_comprob DESC"
                         };
 
-                        this.Definicion.Columns["total"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.Definicion.Columns["pendiente"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["total"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["pendiente"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
 
                         this.Contadores.Add(new Lfc.Contador("Total", Lui.Forms.DataTypes.Currency));
                         this.Contadores.Add(new Lfc.Contador("Pendiente", Lui.Forms.DataTypes.Currency));

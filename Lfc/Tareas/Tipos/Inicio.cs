@@ -43,17 +43,17 @@ namespace Lfc.Tareas.Tipos
                                 {1, "Activo"}
                         };
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Tareas.Tipo),
 
                                 TableName = "tickets_tipos",
-                                KeyColumnName = new Lfx.Data.FormField("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                KeyColumnName = new Lazaro.Pres.Field("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("tickets_tipos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("tickets_tipos.estado", "Estado", 160, EstadosTickets),
+				        new Lazaro.Pres.Field("tickets_tipos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("tickets_tipos.estado", "Estado", 160, EstadosTickets),
 			        },
                                 OrderBy = "tickets_tipos.nombre"
                         };

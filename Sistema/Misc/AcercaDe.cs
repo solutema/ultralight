@@ -83,7 +83,7 @@ namespace Lazaro.WinMain.Misc
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 DialogResult Respuesta = Pregunta.ShowDialog();
                                 if (Respuesta == DialogResult.OK)
-                                        Aplicacion.Exec("REBOOT");
+                                        Ejecutor.Exec("REBOOT");
                         }
                 }
 

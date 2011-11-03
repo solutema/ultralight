@@ -46,7 +46,7 @@ namespace Lfc.Comprobantes
                 internal int m_Sucursal = 0, m_Cliente = 0, m_Vendedor = 0, m_Anuladas = 1, m_PV = 0, m_FormaPago = 0;
                 internal decimal m_MontoDesde = 0, m_MontoHasta = 0;
                 internal string m_Agrupar = "";
-                internal Lfx.FileFormats.Office.Spreadsheet.Sheet ReportSheet;
+                internal Lazaro.Pres.Spreadsheet.Sheet ReportSheet;
 
                 public Listado()
                 {
@@ -179,21 +179,21 @@ namespace Lfc.Comprobantes
 
                         System.Data.DataTable Comprobs = this.Connection.Select(TextoSql);
 
-                        ReportSheet = new Lfx.FileFormats.Office.Spreadsheet.Sheet("Listado de Comprobantes - Fecha " + m_Fechas.From + " al " + m_Fechas.To);
-                        ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Detalle", 320));
-                        ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Artículos", 80, Lfx.Types.StringAlignment.Far));
-                        ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Facturas", 80, Lfx.Types.StringAlignment.Far));
-                        ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Costo", 120, Lfx.Types.StringAlignment.Far));
-                        ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Importe", 120, Lfx.Types.StringAlignment.Far));
-                        ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Pendiente", 120, Lfx.Types.StringAlignment.Far));
-                        ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Diferencia", 120, Lfx.Types.StringAlignment.Far));
+                        ReportSheet = new Lazaro.Pres.Spreadsheet.Sheet("Listado de Comprobantes - Fecha " + m_Fechas.From + " al " + m_Fechas.To);
+                        ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Detalle", 320));
+                        ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Artículos", 80, Lfx.Types.StringAlignment.Far));
+                        ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Facturas", 80, Lfx.Types.StringAlignment.Far));
+                        ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Costo", 120, Lfx.Types.StringAlignment.Far));
+                        ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Importe", 120, Lfx.Types.StringAlignment.Far));
+                        ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Pendiente", 120, Lfx.Types.StringAlignment.Far));
+                        ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Diferencia", 120, Lfx.Types.StringAlignment.Far));
 
                         decimal Total = 0, TotalCosto = 0;
                         decimal TotalNC = 0, TotalNCCosto = 0;
                         decimal Diferencia = 0;
 
                         foreach (System.Data.DataRow Comrob in Comprobs.Rows) {
-                                Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();
+                                Lazaro.Pres.Spreadsheet.Row Reng = new Lazaro.Pres.Spreadsheet.Row();
 
                                 FiltrosCompletos = "comprob.tipo_fac IN('NCA', 'NCB', 'NCC', 'NCE', 'NCM') AND comprob.id_comprob=comprob_detalle.id_comprob AND comprob_detalle.id_articulo=articulos.id_articulo AND " + Filtros;
 
@@ -244,12 +244,12 @@ namespace Lfc.Comprobantes
                                 if (Detalle == null || Detalle.Length == 0)
                                         Detalle = "(Sin especificar)";
 
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Detalle));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Comrob["cantart"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(Comrob["cantfact"])));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotalCosto, this.Workspace.CurrentConfig.Moneda.Decimales)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobDiferencia, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Detalle));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Comrob["cantart"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToInt32(Comrob["cantfact"])));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotalCosto, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobDiferencia, this.Workspace.CurrentConfig.Moneda.Decimales)));
 
                                 Total += ComprobTotal;
                                 TotalCosto += ComprobTotalCosto;
@@ -257,17 +257,17 @@ namespace Lfc.Comprobantes
                                 Diferencia += ComprobDiferencia;
                         }
 
-                        Lfx.FileFormats.Office.Spreadsheet.Row RengTotal = new Lfx.FileFormats.Office.Spreadsheet.Row();
-                        RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell("Total"));
-                        RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(" "));
-                        RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(" "));
-                        RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(TotalCosto));
-                        RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Total));
-                        RengTotal.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Diferencia));
+                        Lazaro.Pres.Spreadsheet.Row RengTotal = new Lazaro.Pres.Spreadsheet.Row();
+                        RengTotal.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell("Total"));
+                        RengTotal.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(" "));
+                        RengTotal.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(" "));
+                        RengTotal.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(TotalCosto));
+                        RengTotal.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Total));
+                        RengTotal.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Diferencia));
                         ReportSheet.Rows.Add(RengTotal);
 
                         ReportListView.FromSheet(ReportSheet);
-                        this.Report = new Lfx.FileFormats.Office.Spreadsheet.Workbook();
+                        this.Report = new Lazaro.Pres.Spreadsheet.Workbook();
                         this.Report.Sheets.Add(ReportSheet);
 
                         return new Lfx.Types.SuccessOperationResult();
@@ -309,32 +309,32 @@ namespace Lfc.Comprobantes
                         //double Diferencia = 0;
                         string UltimoValorAgrupar = "slfadf*af*df*asdf";
 
-                        ReportSheet = new Lfx.FileFormats.Office.Spreadsheet.Sheet("Listado de Comprobantes - Fecha " + m_Fechas.From + " al " + m_Fechas.To);
+                        ReportSheet = new Lazaro.Pres.Spreadsheet.Sheet("Listado de Comprobantes - Fecha " + m_Fechas.From + " al " + m_Fechas.To);
                         if (m_Agrupar.Length == 0) {
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Fecha", 100));
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Tipo", 48));
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Número", 120));
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Cliente", 240));
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("CUIT", 120));
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Importe", 160, Lfx.Types.StringAlignment.Far));
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Cancelado", 160, Lfx.Types.StringAlignment.Far));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Fecha", 100));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Tipo", 48));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Número", 120));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Cliente", 240));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("CUIT", 120));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Importe", 160, Lfx.Types.StringAlignment.Far));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Cancelado", 160, Lfx.Types.StringAlignment.Far));
                         } else {
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Item", 480));
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Importe", 160, Lfx.Types.StringAlignment.Far));
-                                ReportSheet.ColumnHeaders.Add(new Lfx.FileFormats.Office.Spreadsheet.ColumnHeader("Cancelado", 160, Lfx.Types.StringAlignment.Far));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Item", 480));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Importe", 160, Lfx.Types.StringAlignment.Far));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Cancelado", 160, Lfx.Types.StringAlignment.Far));
                         }
 
                         string NombreGrupo = null;
                         foreach (System.Data.DataRow Comprob in Comprobs.Rows) {
-                                Lfx.FileFormats.Office.Spreadsheet.Row Reng = new Lfx.FileFormats.Office.Spreadsheet.Row();
+                                Lazaro.Pres.Spreadsheet.Row Reng = new Lazaro.Pres.Spreadsheet.Row();
 
                                 if (m_Agrupar.Length > 0 && Comprob[Lfx.Data.Connection.GetFieldName(m_Agrupar)].ToString() != UltimoValorAgrupar) {
                                         UltimoValorAgrupar = Comprob[Lfx.Data.Connection.GetFieldName(m_Agrupar)].ToString();
 
                                         if (SubTotal > 0) {
-                                                Lfx.FileFormats.Office.Spreadsheet.Row SubTotal1 = new Lfx.FileFormats.Office.Spreadsheet.Row();
-                                                SubTotal1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(NombreGrupo));
-                                                SubTotal1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                                Lazaro.Pres.Spreadsheet.Row SubTotal1 = new Lazaro.Pres.Spreadsheet.Row();
+                                                SubTotal1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(NombreGrupo));
+                                                SubTotal1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                                 ReportSheet.Rows.Add(SubTotal1);
                                                 SubTotal = 0;
                                         }
@@ -396,18 +396,18 @@ namespace Lfc.Comprobantes
                                         }
                                 }
 
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lfx.Types.Formatting.FormatDate(Comprob["fecha"])));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToString(Comprob["tipo_fac"]).PadRight(3).Substring(0, 3)));
-                                Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToInt32(Comprob["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Comprob["numero"]).ToString("00000000")));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatDate(Comprob["fecha"])));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToString(Comprob["tipo_fac"]).PadRight(3).Substring(0, 3)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToInt32(Comprob["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Comprob["numero"]).ToString("00000000")));
 
                                 if (System.Convert.ToInt32(Comprob["anulada"]) != 0) {
-                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell("ANULADA"));
-                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell((double)0));
+                                        Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell("ANULADA"));
+                                        Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell((double)0));
                                         // No suma al total
                                 } else {
                                         Lfx.Data.Row Cliente = this.Connection.Row("personas", "id_persona", System.Convert.ToInt32(Comprob["id_cliente"]));
-                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Cliente["nombre_visible"].ToString()));
-                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Cliente["cuit"].ToString()));
+                                        Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Cliente["nombre_visible"].ToString()));
+                                        Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Cliente["cuit"].ToString()));
 
                                         switch (System.Convert.ToString(Comprob["tipo_fac"])) {
                                                 case "NCA":
@@ -415,15 +415,15 @@ namespace Lfc.Comprobantes
                                                 case "NCC":
                                                 case "NCE":
                                                 case "NCM":
-                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(-System.Convert.ToDouble(Comprob[ColumnaTotal])));
-                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob["cancelado"])));
+                                                        Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(-System.Convert.ToDouble(Comprob[ColumnaTotal])));
+                                                        Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToDouble(Comprob["cancelado"])));
                                                         Total -= System.Convert.ToDecimal(Comprob[ColumnaTotal]);
                                                         SubTotal -= System.Convert.ToDecimal(Comprob[ColumnaTotal]);
                                                         break;
 
                                                 default:
-                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob[ColumnaTotal])));
-                                                        Reng.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(System.Convert.ToDouble(Comprob["cancelado"])));
+                                                        Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToDouble(Comprob[ColumnaTotal])));
+                                                        Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToDouble(Comprob["cancelado"])));
                                                         Total += System.Convert.ToDecimal(Comprob[ColumnaTotal]);
                                                         SubTotal += System.Convert.ToDecimal(Comprob[ColumnaTotal]);
                                                         break;
@@ -435,24 +435,24 @@ namespace Lfc.Comprobantes
                         }
 
                         if (m_Agrupar.Length > 0 && SubTotal > 0) {
-                                Lfx.FileFormats.Office.Spreadsheet.Row SubTotal2 = new Lfx.FileFormats.Office.Spreadsheet.Row();
-                                SubTotal2.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(NombreGrupo));
-                                SubTotal2.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Lazaro.Pres.Spreadsheet.Row SubTotal2 = new Lazaro.Pres.Spreadsheet.Row();
+                                SubTotal2.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(NombreGrupo));
+                                SubTotal2.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                 ReportSheet.Rows.Add(SubTotal2);
                                 SubTotal = 0;
                         }
 
-                        Lfx.FileFormats.Office.Spreadsheet.Row Total1 = new Lfx.FileFormats.Office.Spreadsheet.Row();
-                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
-                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
-                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
-                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell("Total"));
-                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(""));
-                        Total1.Cells.Add(new Lfx.FileFormats.Office.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                        Lazaro.Pres.Spreadsheet.Row Total1 = new Lazaro.Pres.Spreadsheet.Row();
+                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(""));
+                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(""));
+                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(""));
+                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell("Total"));
+                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(""));
+                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
                         ReportSheet.Rows.Add(Total1);
 
                         ReportListView.FromSheet(ReportSheet);
-                        this.Report = new Lfx.FileFormats.Office.Spreadsheet.Workbook();
+                        this.Report = new Lazaro.Pres.Spreadsheet.Workbook();
                         this.Report.Sheets.Add(ReportSheet);
 
                         return new Lfx.Types.SuccessOperationResult();

@@ -158,7 +158,13 @@ namespace Lfc
                                 Res = Activator.CreateInstance(tipo);
                         else
                                 Res = Activator.CreateInstance(tipo, args);
-                        return Res as Lfc.FormularioListado;
+
+                        if (Res is Lazaro.Pres.Listings.Listing) {
+                                Lfc.FormularioListado NewForm = new Lfc.FormularioListado(Res as Lazaro.Pres.Listings.Listing);
+                                return NewForm;
+                        } else {
+                                return Res as Lfc.FormularioListado;
+                        }
                 }
 
                 private static Lcc.Edicion.ControlEdicion InstanciarControlEdicion(Type tipo)

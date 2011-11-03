@@ -42,17 +42,17 @@ namespace Lfc.Sucursales
         {
                 public Inicio()
                 {
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Entidades.Sucursal),
 
                                 TableName = "sucursales",
-                                KeyColumnName = new Lfx.Data.FormField("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Columns = new Lfx.Data.FormFieldCollection() 
+                                KeyColumnName = new Lazaro.Pres.Field("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lazaro.Pres.FieldCollection() 
 			        {
-				        new Lfx.Data.FormField("sucursales.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("sucursales.direccion", "Dirección", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("sucursales.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 320)
+				        new Lazaro.Pres.Field("sucursales.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("sucursales.direccion", "Dirección", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("sucursales.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 320)
 			        },
                                 OrderBy = "sucursales.nombre"
                         };

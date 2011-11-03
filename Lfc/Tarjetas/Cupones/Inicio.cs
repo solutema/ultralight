@@ -58,21 +58,21 @@ namespace Lfc.Tarjetas.Cupones
 
                         };
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Pagos.Cupon),
                                 TableName = "tarjetas_cupones",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("formaspago", "tarjetas_cupones.id_tarjeta=formaspago.id_formapago"), new qGen.Join("personas", "tarjetas_cupones.id_cliente=personas.id_persona") },
-                                KeyColumnName = new Lfx.Data.FormField("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28),
+                                KeyColumnName = new Lazaro.Pres.Field("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28),
 
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-                                        new Lfx.Data.FormField("tarjetas_cupones.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 240),
-                                        new Lfx.Data.FormField("formaspago.nombre", "Tarjeta", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lfx.Data.FormField("tarjetas_cupones.numero", "Cupón", Lfx.Data.InputFieldTypes.Text, 100),
-                                        new Lfx.Data.FormField("tarjetas_cupones.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 100),
-				        new Lfx.Data.FormField("tarjetas_cupones.estado", "Estado", 120, SetEstados),
-				        new Lfx.Data.FormField("tarjetas_cupones.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 120)
+                                        new Lazaro.Pres.Field("tarjetas_cupones.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lazaro.Pres.Field("formaspago.nombre", "Tarjeta", Lfx.Data.InputFieldTypes.Text, 240),
+				        new Lazaro.Pres.Field("tarjetas_cupones.numero", "Cupón", Lfx.Data.InputFieldTypes.Text, 100),
+                                        new Lazaro.Pres.Field("tarjetas_cupones.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 100),
+				        new Lazaro.Pres.Field("tarjetas_cupones.estado", "Estado", 120, SetEstados),
+				        new Lazaro.Pres.Field("tarjetas_cupones.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 120)
 			        },
                                 OrderBy = "tarjetas_cupones.id_cupon DESC"
                         };

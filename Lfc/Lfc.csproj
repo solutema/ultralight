@@ -158,9 +158,7 @@
     <Compile Include="Alicuotas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Alicuotas\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Alicuotas\Inicio.cs" />
     <Compile Include="Articulos\Categorias\Editar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -372,6 +370,8 @@
     <Compile Include="Misc\Desduplicar.Designer.cs">
       <DependentUpon>Desduplicar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pagos\FormasDePago\Editar.cs" />
+    <Compile Include="Pagos\FormasDePago\Inicio.cs" />
     <Compile Include="Personas\AltaDuplicada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -696,6 +696,10 @@
     <ProjectReference Include="..\Lui\Lui.csproj">
       <Project>{FD8409C3-35CF-4F30-8898-F4CC17FC35D6}</Project>
       <Name>Lui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pres\Pres.csproj">
+      <Project>{ADB0CDC0-F816-40AC-A3D9-7951254F6FB4}</Project>
+      <Name>Pres</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

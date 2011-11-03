@@ -41,18 +41,18 @@ namespace Lfc.Comprobantes.Impresoras
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Impresion.Impresora),
 
                                 TableName = "impresoras",
                                 OrderBy = "nombre",
-                                KeyColumnName = new Lfx.Data.FormField("id_impresora", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                KeyColumnName = new Lazaro.Pres.Field("id_impresora", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
-                                        new Lfx.Data.FormField("dispositivo", "Dispositivo", Lfx.Data.InputFieldTypes.Text, 240),
-                                        new Lfx.Data.FormField("ubicacion", "Ubicacion", Lfx.Data.InputFieldTypes.Text, 240)
+				        new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lazaro.Pres.Field("dispositivo", "Dispositivo", Lfx.Data.InputFieldTypes.Text, 240),
+                                        new Lazaro.Pres.Field("ubicacion", "Ubicacion", Lfx.Data.InputFieldTypes.Text, 240)
 			        }
                         };
 		}

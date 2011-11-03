@@ -41,17 +41,17 @@ namespace Lfc.Articulos.Rubros
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Rubro),
 
                                 TableName = "articulos_rubros",
-                                KeyColumnName = new Lfx.Data.FormField("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "articulos_rubros.nombre",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("articulos_rubros.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("articulos_rubros.id_alicuota", "Alícuota", Lfx.Data.InputFieldTypes.Integer, 160)
+				        new Lazaro.Pres.Field("articulos_rubros.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("articulos_rubros.id_alicuota", "Alícuota", Lfx.Data.InputFieldTypes.Integer, 160)
 			        }
                         };
 		}

@@ -214,7 +214,7 @@ namespace Lazaro.WinMain.Principal
 		private void ArticuloNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
                         if (TablaActual != null && ItemActual > 0) {
-                                object Res = Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                                object Res = Ejecutor.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
                                 if (Res != null)
                                         Aplicacion.FormularioPrincipal.ProcesarObjeto(Res);
                         }
@@ -223,7 +223,7 @@ namespace Lazaro.WinMain.Principal
                 private void PersonaNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
                         if (TablaActual != null && ItemActual > 0) {
-                                object Res = Aplicacion.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
+                                object Res = Ejecutor.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
                                 if (Res != null)
                                         Aplicacion.FormularioPrincipal.ProcesarObjeto(Res);
                         }

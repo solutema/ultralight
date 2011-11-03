@@ -41,7 +41,7 @@ namespace Lfc
         public partial class FormularioListadoTexto : Lui.Forms.ChildForm
         {
                 public System.Text.StringBuilder ListingContent = new System.Text.StringBuilder();
-                public Lfx.FileFormats.Office.Spreadsheet.Workbook Report;
+                public Lazaro.Pres.Spreadsheet.Workbook Report;
 
                 public virtual Lfx.Types.OperationResult RefreshList()
                 {

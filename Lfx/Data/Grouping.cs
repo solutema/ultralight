@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,59 +30,19 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace Lfx.Data
 {
-        public enum AggregationFunctions
-        {
-                Distinct,
-                Sum,
-                Count
-        }
-
-        [Serializable]
-        public class Aggregate
-        {
-                public Lfx.Data.FormField Field;
-                public AggregationFunctions Function = AggregationFunctions.Distinct;
-
-                public decimal Sum;
-                public int Count;
-
-                public Aggregate(AggregationFunctions groupingType, string fieldName)
-                {
-                        this.Function = groupingType;
-                        this.Field = new FormField(fieldName, fieldName);
-                }
-
-                public void Reset()
-                {
-                        this.ResetCounters();
-                }
-
-                public void ResetCounters()
-                {
-                        
-                        this.Count = 0;
-                        this.Sum = 0;
-                }
-
-                public override string ToString()
-                {
-                        return this.Function.ToString() + " on " + this.Field.ToString();
-                }
-        }
-
-
         [Serializable]
         public class Grouping
         {
-                public Lfx.Data.FormField Field;
+                public string FieldName;
                 public object LastValue = null;
 
                 public Grouping(string fieldName)
                 {
-                        this.Field = new FormField(fieldName, fieldName);
+                        this.FieldName = fieldName;
                 }
 
                 public void Reset()

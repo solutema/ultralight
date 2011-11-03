@@ -41,18 +41,18 @@ namespace Lfc.Personas.Grupos
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Personas.Grupo),
 
                                 TableName = "personas_grupos",
-                                KeyColumnName = new Lfx.Data.FormField("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "parent, nombre",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("descuento", "Descuento", Lfx.Data.InputFieldTypes.Numeric, 320),
-                                        new Lfx.Data.FormField("parent", "Parent", Lfx.Data.InputFieldTypes.Integer, 0),
+				        new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("descuento", "Descuento", Lfx.Data.InputFieldTypes.Numeric, 320),
+                                        new Lazaro.Pres.Field("parent", "Parent", Lfx.Data.InputFieldTypes.Integer, 0),
 			        }
                         };
 		}

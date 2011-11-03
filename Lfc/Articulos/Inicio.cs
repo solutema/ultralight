@@ -65,59 +65,59 @@ namespace Lfc.Articulos
                                 this.Connection.Tables["articulos_codigos"].PreLoad();
                         }
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Articulo),
 
                                 TableName = "articulos",
-                                KeyColumnName = new Lfx.Data.FormField("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                KeyColumnName = new Lazaro.Pres.Field("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre",
                                 Joins = this.FixedJoins(),
                                 OrderBy = "articulos.nombre",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
                                 {
-				        new Lfx.Data.FormField("articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-                                        new Lfx.Data.FormField("articulos.costo", "Costo", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("articulos.pvp", "PVP", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lfx.Data.FormField("articulos.stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
-				        new Lfx.Data.FormField("articulos.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
-				        new Lfx.Data.FormField("articulos.pedido", "Pedidos", Lfx.Data.InputFieldTypes.Numeric, 96),
-				        new Lfx.Data.FormField("articulos.apedir", "A Pedir", Lfx.Data.InputFieldTypes.Numeric, 96),
-				        new Lfx.Data.FormField("articulos.destacado", "Destacado", Lfx.Data.InputFieldTypes.Bool, 0),
-				        new Lfx.Data.FormField("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lfx.Data.FormField("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lfx.Data.FormField("articulos_categorias.nombre AS categorias_nombre", "Categoría", Lfx.Data.InputFieldTypes.Text, 120)
+				        new Lazaro.Pres.Field("articulos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lazaro.Pres.Field("articulos.costo", "Costo", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("articulos.pvp", "PVP", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("articulos.stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lazaro.Pres.Field("articulos.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lazaro.Pres.Field("articulos.pedido", "Pedidos", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lazaro.Pres.Field("articulos.apedir", "A Pedir", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lazaro.Pres.Field("articulos.destacado", "Destacado", Lfx.Data.InputFieldTypes.Bool, 0),
+				        new Lazaro.Pres.Field("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("articulos_categorias.nombre AS categorias_nombre", "Categoría", Lfx.Data.InputFieldTypes.Text, 120)
 			        },
 
-                                ExtraSearchColumns = new Lfx.Data.FormFieldCollection()
+                                ExtraSearchColumns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lfx.Data.FormField("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lfx.Data.FormField("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lfx.Data.FormField("articulos.codigo4", Cod4, Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lfx.Data.FormField("articulos.descripcion", "Descripción", Lfx.Data.InputFieldTypes.Memo, 0),
-				        new Lfx.Data.FormField("articulos.descripcion2", "Descripción Extendida", Lfx.Data.InputFieldTypes.Memo, 0),
-				        new Lfx.Data.FormField("articulos.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
+				        new Lazaro.Pres.Field("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("articulos.codigo4", Cod4, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("articulos.descripcion", "Descripción", Lfx.Data.InputFieldTypes.Memo, 0),
+				        new Lazaro.Pres.Field("articulos.descripcion2", "Descripción Extendida", Lfx.Data.InputFieldTypes.Memo, 0),
+				        new Lazaro.Pres.Field("articulos.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
 			        },
 
-                                Filters = new Lfx.Data.Filters.FilterCollection()
+                                Filters = new Lazaro.Pres.Filters.FilterCollection()
                                 {
-                                        new Lfx.Data.Filters.RelationFilter("Rubro", new Lfx.Data.Relation("id_rubro", "articulos_rubros", "id_rubro")),
-                                        new Lfx.Data.Filters.RelationFilter("Categoría", new Lfx.Data.Relation("id_categoria", "articulos_categorias", "id_categoria")),
-                                        new Lfx.Data.Filters.RelationFilter("Marca", new Lfx.Data.Relation("id_marca", "marcas", "id_marca")),
-                                        new Lfx.Data.Filters.RelationFilter("Proveedor", new Lfx.Data.Relation("id_proveedor", "personas", "id_persona", "nombre_visible")),
-                                        new Lfx.Data.Filters.RelationFilter("Situación", new Lfx.Data.Relation("id_situacion", "articulos_situaciones", "id_situacion")),
-                                        new Lfx.Data.Filters.SetFilter("Existencias", "stock_actual", new string[] { "Cualquiera|*", "En Existencia|cs", "Sin Existencia|ss", "Con Faltante|faltante", "Con Faltante (Incluyendo Pedidos)|faltanteip", "Con Pedidos|pedido", "A Pedir|apedir" }, "*")
+                                        new Lazaro.Pres.Filters.RelationFilter("Rubro", new Lfx.Data.Relation("id_rubro", "articulos_rubros", "id_rubro")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Categoría", new Lfx.Data.Relation("id_categoria", "articulos_categorias", "id_categoria")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Marca", new Lfx.Data.Relation("id_marca", "marcas", "id_marca")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Proveedor", new Lfx.Data.Relation("id_proveedor", "personas", "id_persona", "nombre_visible")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Situación", new Lfx.Data.Relation("id_situacion", "articulos_situaciones", "id_situacion")),
+                                        new Lazaro.Pres.Filters.SetFilter("Existencias", "stock_actual", new string[] { "Cualquiera|*", "En Existencia|cs", "Sin Existencia|ss", "Con Faltante|faltante", "Con Faltante (Incluyendo Pedidos)|faltanteip", "Con Pedidos|pedido", "A Pedir|apedir" }, "*")
                                 }
                         };
 
                         this.Contadores.Add(new Contador("Costo", Lui.Forms.DataTypes.Currency, "$", null));
                         this.Contadores.Add(new Contador("PVP", Lui.Forms.DataTypes.Currency, "$", null));
 
-                        this.Definicion.Columns["pedido"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.Definicion.Columns["apedir"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
-                        this.Definicion.Columns["articulos.stock_actual"].TotalFunction = Lfx.FileFormats.Office.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["pedido"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["apedir"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["articulos.stock_actual"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
                         
                         this.HabilitarFiltrar = true;
                 }
@@ -235,7 +235,7 @@ namespace Lfc.Articulos
                         base.OnEndRefreshList();
                 }
 
-                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
+                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         m_Rubro = filters["id_rubro"].Value as Lbl.Articulos.Rubro;
                         m_Categoria = filters["id_categoria"].Value as Lbl.Articulos.Categoria;

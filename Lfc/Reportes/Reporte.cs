@@ -51,7 +51,7 @@ namespace Lfc.Reportes
                 private void BotonActualizar_Click(object sender, EventArgs e)
                 {
                         this.ReporteAMostrar.ExpandGroups = EntradaExpandirGrupos.TextKey == "1";
-                        Lfx.FileFormats.Office.Spreadsheet.Sheet ReportSheet = this.ReporteAMostrar.ToWorkbookSheet();
+                        Lazaro.Pres.Spreadsheet.Sheet ReportSheet = this.ReporteAMostrar.ToWorkbookSheet();
                         ReportSheet.Sort(2, false);
                         ListViewReporte.FromSheet(ReportSheet);
                 }

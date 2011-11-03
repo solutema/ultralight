@@ -42,17 +42,17 @@ namespace Lfc.Articulos.Marcas
 	{
 		public Inicio()
 		{
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Marca),
 
                                 TableName = "marcas",
                                 OrderBy = "nombre",
-                                KeyColumnName = new Lfx.Data.FormField("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                KeyColumnName = new Lazaro.Pres.Field("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),
-				        new Lfx.Data.FormField("url", "Web", Lfx.Data.InputFieldTypes.Text, 120)
+				        new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),
+				        new Lazaro.Pres.Field("url", "Web", Lfx.Data.InputFieldTypes.Text, 120)
 			        }
                         };
 		}

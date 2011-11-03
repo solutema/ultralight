@@ -44,26 +44,26 @@ namespace Lfc.Articulos.Categorias
 
                 public Inicio()
                 {
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Categoria),
 
                                 TableName = "articulos_categorias",
-                                KeyColumnName = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                GroupBy = new Lfx.Data.FormField("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                GroupBy = new Lazaro.Pres.Field("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("articulos", "articulos_categorias.id_categoria") },
                                 OrderBy = "articulos_categorias.nombre",
-                                Columns = new Lfx.Data.FormFieldCollection()
+                                Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lfx.Data.FormField("articulos_categorias.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-				        new Lfx.Data.FormField("articulos_categorias.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
-				        new Lfx.Data.FormField("articulos_categorias.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
-                                        new Lfx.Data.FormField("articulos_categorias.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
-                                        new Lfx.Data.FormField("0", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
+				        new Lazaro.Pres.Field("articulos_categorias.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+				        new Lazaro.Pres.Field("articulos_categorias.stock_minimo", "Stock Mín", Lfx.Data.InputFieldTypes.Numeric, 96),
+				        new Lazaro.Pres.Field("articulos_categorias.cache_stock_actual", "Stock Act", Lfx.Data.InputFieldTypes.Numeric, 96),
+                                        new Lazaro.Pres.Field("articulos_categorias.cache_costo", "Valorización", Lfx.Data.InputFieldTypes.Numeric, 96),
+                                        new Lazaro.Pres.Field("0", "Valorización %", Lfx.Data.InputFieldTypes.Numeric, 96)
 			        },
-                                Filters = new Lfx.Data.Filters.FilterCollection()
+                                Filters = new Lazaro.Pres.Filters.FilterCollection()
                                 {
-                                        new Lfx.Data.Filters.SetFilter("Stock Actual", "articulos_categorias.cache_stock_actual", new string[] { "Todos|*", "Con faltantes|f" }, "*")
+                                        new Lazaro.Pres.Filters.SetFilter("Stock Actual", "articulos_categorias.cache_stock_actual", new string[] { "Todos|*", "Con faltantes|f" }, "*")
                                 }
                         };
                         
@@ -71,11 +71,11 @@ namespace Lfc.Articulos.Categorias
                 }
 
 
-                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
+                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.CustomFilters.Clear();
 
-                        if (((Lfx.Data.Filters.SetFilter)(filters["articulos_categorias.cache_stock_actual"])).CurrentValue == "f")
+                        if (((Lazaro.Pres.Filters.SetFilter)(filters["articulos_categorias.cache_stock_actual"])).CurrentValue == "f")
                                 CustomFilters.AddWithValue("articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)");
 
                         base.FiltersChanged(filters);

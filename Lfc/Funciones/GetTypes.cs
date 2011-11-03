@@ -219,6 +219,13 @@ namespace Lfc
                                 }));
 
                         Res.Add(new Lfx.Components.RegisteredType(
+                                typeof(Lbl.Pagos.FormaDePago),
+                                new Lfx.Components.ActionCollection() {
+                                        new Lfx.Components.Action("list", typeof(Lfc.Pagos.FormasDePago.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Pagos.FormasDePago.Editar))
+                                }));
+
+                        Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Personas.Grupo),
                                 new Lfx.Components.ActionCollection() {
                                         new Lfx.Components.Action("list", typeof(Lfc.Personas.Grupos.Inicio)),

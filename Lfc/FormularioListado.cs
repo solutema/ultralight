@@ -46,6 +46,13 @@ namespace Lfc
                 }
 
 
+                public FormularioListado(Lazaro.Pres.Listings.Listing definicion)
+                        : this()
+                {
+                        this.Definicion = definicion;
+                }
+
+
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

@@ -53,27 +53,27 @@ namespace Lfc.CuentasCorrientes
 
                         InitializeComponent();
 
-                        this.Definicion = new Lfx.Data.Listing()
+                        this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 TableName = "ctacte",
-                                KeyColumnName = new Lfx.Data.FormField("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumnName = new Lazaro.Pres.Field("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "ctacte.id_cliente=personas.id_persona") },
-                                Columns = new Lfx.Data.FormFieldCollection() {
-                                        new Lfx.Data.FormField("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 320),
-                                        new Lfx.Data.FormField("ctacte.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
-                                        new Lfx.Data.FormField("ctacte.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
-                                        new Lfx.Data.FormField("ctacte.fecha", "Fecha.", Lfx.Data.InputFieldTypes.Date, 100),
-                                        new Lfx.Data.FormField("ctacte.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-                                        new Lfx.Data.FormField("ctacte.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
-                                        new Lfx.Data.FormField("ctacte.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 320),
-                                        new Lfx.Data.FormField("ctacte.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
-                                        new Lfx.Data.FormField("ctacte.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0)
+                                Columns = new Lazaro.Pres.FieldCollection() {
+                                        new Lazaro.Pres.Field("personas.nombre_visible", "Persona", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lazaro.Pres.Field("ctacte.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
+                                        new Lazaro.Pres.Field("ctacte.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lazaro.Pres.Field("ctacte.fecha", "Fecha.", Lfx.Data.InputFieldTypes.Date, 100),
+                                        new Lazaro.Pres.Field("ctacte.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lazaro.Pres.Field("ctacte.saldo", "Saldo", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lazaro.Pres.Field("ctacte.obs", "Obs.", Lfx.Data.InputFieldTypes.Text, 320),
+                                        new Lazaro.Pres.Field("ctacte.comprob", "Comprobante", Lfx.Data.InputFieldTypes.Text, 160),
+                                        new Lazaro.Pres.Field("ctacte.id_recibo", "Recibo", Lfx.Data.InputFieldTypes.Relation, 0)
                                 },
-                                Filters = new Lfx.Data.Filters.FilterCollection() {
-                                        new Lfx.Data.Filters.RelationFilter("Cliente", new Lfx.Data.Relation("ctacte.id_cliente", "personas", "id_persona", "nombre_visible")),
-                                        new Lfx.Data.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
-                                        new Lfx.Data.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
-                                        new Lfx.Data.Filters.DateRangeFilter("Fecha", "ctacte.fecha", new Lfx.Types.DateRange("*"))
+                                Filters = new Lazaro.Pres.Filters.FilterCollection() {
+                                        new Lazaro.Pres.Filters.RelationFilter("Cliente", new Lfx.Data.Relation("ctacte.id_cliente", "personas", "id_persona", "nombre_visible")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad")),
+                                        new Lazaro.Pres.Filters.DateRangeFilter("Fecha", "ctacte.fecha", new Lfx.Types.DateRange("*"))
                                 },
                                 OrderBy = "personas.nombre_visible"
                         };
@@ -121,7 +121,7 @@ namespace Lfc.CuentasCorrientes
 
                         if (this.Cliente == null) {
                                 // Es para todas los clientes
-                                this.Definicion.GroupBy = new Lfx.Data.FormField("ctacte.id_cliente", "Cliente");
+                                this.Definicion.GroupBy = new Lazaro.Pres.Field("ctacte.id_cliente", "Cliente");
                                 this.Definicion.OrderBy = "personas.nombre_visible";
                                 this.Text = "Listado de Cuentas Corrientes";
 
@@ -191,7 +191,7 @@ namespace Lfc.CuentasCorrientes
                         Lfx.Data.Row Movim = this.Connection.Tables["ctacte"].FastRows[itemId];
                         if (this.Cliente == null) {
                                 this.Cliente = new Lbl.Personas.Persona(this.Connection, System.Convert.ToInt32(Movim["id_cliente"]));
-                                ((Lfx.Data.Filters.RelationFilter)(this.Definicion.Filters["ctacte.id_cliente"])).Value = this.Cliente;
+                                ((Lazaro.Pres.Filters.RelationFilter)(this.Definicion.Filters["ctacte.id_cliente"])).Value = this.Cliente;
                                 RefreshList();
                         } else {
                                 if (Movim != null) {
@@ -210,14 +210,14 @@ namespace Lfc.CuentasCorrientes
                 }
 
 
-                public override void FiltersChanged(Lfx.Data.Filters.FilterCollection filters)
+                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.CuentasCorrientes.CuentaCorriente), Lbl.Sys.Permisos.Operaciones.Ver)) {
                                 this.Cliente = filters["ctacte.id_cliente"].Value as Lbl.Personas.Persona;        
                         }
-                        m_Grupo = ((Lfx.Data.Filters.RelationFilter)(filters["personas.id_grupo"])).ElementId;
-                        m_Localidad = ((Lfx.Data.Filters.RelationFilter)(filters["personas.id_ciudad"])).ElementId;
-                        Fechas = ((Lfx.Data.Filters.DateRangeFilter)(filters["ctacte.fecha"])).DateRange;
+                        m_Grupo = ((Lazaro.Pres.Filters.RelationFilter)(filters["personas.id_grupo"])).ElementId;
+                        m_Localidad = ((Lazaro.Pres.Filters.RelationFilter)(filters["personas.id_ciudad"])).ElementId;
+                        Fechas = ((Lazaro.Pres.Filters.DateRangeFilter)(filters["ctacte.fecha"])).DateRange;
 
                         base.FiltersChanged(filters);
                 }
