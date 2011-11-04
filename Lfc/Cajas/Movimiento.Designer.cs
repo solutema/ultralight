@@ -86,7 +86,6 @@ namespace Lfc.Cajas
                         this.EntradaDestino.CanCreate = false;
                         this.EntradaDestino.DataTextField = "nombre";
                         this.EntradaDestino.DockPadding.All = 2;
-                        this.EntradaDestino.ExtraDetailFields = null;
                         this.EntradaDestino.FreeTextCode = "";
                         this.EntradaDestino.DataValueField = "id_caja";
                         this.EntradaDestino.Location = new System.Drawing.Point(112, 100);
@@ -141,7 +140,6 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.CanCreate = false;
                         this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.DockPadding.All = 2;
-                        this.EntradaConcepto.ExtraDetailFields = null;
                         this.EntradaConcepto.FreeTextCode = "*";
                         this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.Location = new System.Drawing.Point(112, 164);
@@ -216,7 +214,6 @@ namespace Lfc.Cajas
                         this.EntradaOrigen.CanCreate = false;
                         this.EntradaOrigen.DataTextField = "nombre";
                         this.EntradaOrigen.DockPadding.All = 2;
-                        this.EntradaOrigen.ExtraDetailFields = null;
                         this.EntradaOrigen.FreeTextCode = "";
                         this.EntradaOrigen.DataValueField = "id_caja";
                         this.EntradaOrigen.Location = new System.Drawing.Point(112, 68);

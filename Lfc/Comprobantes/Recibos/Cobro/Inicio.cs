@@ -117,12 +117,7 @@ namespace Lfc.Comprobantes.Recibos.Cobro
 
                 public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {
-                        object Res = this.Workspace.RunTime.Execute("INSTANCIAR Lfc.Comprobantes.Recibos.Anular " + itemIds[0].ToString());
-                        if (Res is System.Windows.Forms.Form) {
-                                System.Windows.Forms.Form ResForm = Res as System.Windows.Forms.Form;
-                                ResForm.MdiParent = this.ParentForm.MdiParent;
-                                ResForm.Show();
-                        }
+                        this.Workspace.RunTime.Execute("INSTANCIAR Lfc.Comprobantes.Recibos.Anular " + itemIds[0].ToString());
                         return base.OnDelete(itemIds);
                 }
 

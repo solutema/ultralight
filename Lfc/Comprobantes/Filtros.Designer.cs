@@ -134,7 +134,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
-                        this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(137, 152);
@@ -232,7 +231,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.CanCreate = false;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
-                        this.EntradaVendedor.ExtraDetailFields = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.Location = new System.Drawing.Point(137, 182);
@@ -289,7 +287,6 @@ namespace Lfc.Comprobantes
                         this.EntradaSucursal.CanCreate = false;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
-                        this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(137, 3);
@@ -321,7 +318,6 @@ namespace Lfc.Comprobantes
                         this.EntradaFormaPago.CanCreate = false;
                         this.EntradaFormaPago.DataTextField = "nombre";
                         this.EntradaFormaPago.DataValueField = "id_formapago";
-                        this.EntradaFormaPago.ExtraDetailFields = null;
                         this.EntradaFormaPago.Filter = "";
                         this.EntradaFormaPago.FreeTextCode = "";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(137, 33);

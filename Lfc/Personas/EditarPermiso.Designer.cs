@@ -97,7 +97,6 @@ namespace Lfc.Personas
                         this.EntradaObjeto.AutoTab = true;
                         this.EntradaObjeto.CanCreate = true;
                         this.EntradaObjeto.DataTextField = "nombre";
-                        this.EntradaObjeto.ExtraDetailFields = null;
                         this.EntradaObjeto.Filter = "";
                         this.EntradaObjeto.FreeTextCode = "";
                         this.EntradaObjeto.DataValueField = "id_objeto";

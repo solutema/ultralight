@@ -219,5 +219,28 @@ namespace Lfc
                                 }
                         }
                 }
+
+
+                protected override void OnBeginRefreshList()
+                {
+                        EtiquetaListadoVacio.Visible = false;
+                        base.OnBeginRefreshList();
+                }
+
+
+                protected override void OnEndRefreshList()
+                {
+                        if (Listado.Items.Count == 0) {
+                                EtiquetaListadoVacio.Visible = true;
+                                EtiquetaListadoVacio.BringToFront();
+                        }
+                        base.OnEndRefreshList();
+                }
+
+                private void EtiquetaListadoVacio_Click(object sender, System.EventArgs e)
+                {
+                        if (BotonCrear.Visible && BotonCrear.Enabled)
+                                BotonCrear.PerformClick();
+                }
         }
 }

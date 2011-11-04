@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Edicion\Campo.cs" />
     <Compile Include="Entrada\Articulos\Enums.cs" />
     <Compile Include="Entrada\Campo.cs">
       <SubType>UserControl</SubType>

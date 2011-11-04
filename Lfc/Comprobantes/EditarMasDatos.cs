@@ -114,7 +114,6 @@ namespace Lfc.Comprobantes
                         this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
-                        this.EntradaHaciaSituacion.ExtraDetailFields = null;
                         this.EntradaHaciaSituacion.FreeTextCode = "";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(140, 48);
@@ -146,7 +145,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion.AutoTab = true;
                         this.EntradaDesdeSituacion.CanCreate = false;
                         this.EntradaDesdeSituacion.DataTextField = "nombre";
-                        this.EntradaDesdeSituacion.ExtraDetailFields = null;
                         this.EntradaDesdeSituacion.Filter = "facturable=1";
                         this.EntradaDesdeSituacion.FreeTextCode = "";
                         this.EntradaDesdeSituacion.DataValueField = "id_situacion";

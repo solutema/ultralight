@@ -190,6 +190,7 @@ namespace Lfc
                                 typeof(Lbl.Comprobantes.Recibo),
                                 new Lfx.Components.ActionCollection() {
                                         new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.Cobro.Inicio)),
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Recibos.Editar)),
                                         new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorRecibo))
                                 }));
 

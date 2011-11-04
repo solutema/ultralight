@@ -189,7 +189,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCajaDestino.AutoTab = true;
                         this.EntradaCajaDestino.CanCreate = false;
                         this.EntradaCajaDestino.DataTextField = "nombre";
-                        this.EntradaCajaDestino.ExtraDetailFields = null;
                         this.EntradaCajaDestino.Filter = "";
                         this.EntradaCajaDestino.FreeTextCode = "";
                         this.EntradaCajaDestino.DataValueField = "id_caja";

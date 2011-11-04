@@ -328,7 +328,6 @@ namespace Lfc.Articulos
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.DataValueField = "id_caja";
-                        this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.Filter = "id_caja>999";
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(116, 168);
@@ -557,7 +556,6 @@ namespace Lfc.Articulos
                         this.EntradaProveedor.CanCreate = true;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.DataValueField = "id_persona";
-                        this.EntradaProveedor.ExtraDetailFields = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.Location = new System.Drawing.Point(613, 148);
@@ -580,7 +578,6 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.CanCreate = true;
                         this.EntradaCategoria.DataTextField = "nombre";
                         this.EntradaCategoria.DataValueField = "id_categoria";
-                        this.EntradaCategoria.ExtraDetailFields = null;
                         this.EntradaCategoria.Filter = "";
                         this.EntradaCategoria.FreeTextCode = "";
                         this.EntradaCategoria.Location = new System.Drawing.Point(76, 64);
@@ -606,7 +603,6 @@ namespace Lfc.Articulos
                         this.EntradaMarca.CanCreate = true;
                         this.EntradaMarca.DataTextField = "nombre";
                         this.EntradaMarca.DataValueField = "id_marca";
-                        this.EntradaMarca.ExtraDetailFields = null;
                         this.EntradaMarca.Filter = "";
                         this.EntradaMarca.FreeTextCode = "";
                         this.EntradaMarca.Location = new System.Drawing.Point(436, 64);

@@ -85,7 +85,6 @@ namespace Lfc.Log
             this.ColAccion,
             this.ColDatos});
                         this.ListaHistoral.FullRowSelect = true;
-                        this.ListaHistoral.GridLines = true;
                         this.ListaHistoral.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaHistoral.Location = new System.Drawing.Point(8, 8);
                         this.ListaHistoral.MultiSelect = false;

@@ -151,7 +151,6 @@ namespace Lfc.Sucursales
                         this.EntradaLocalidad.CanCreate = true;
                         this.EntradaLocalidad.DataTextField = "nombre";
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
-                        this.EntradaLocalidad.ExtraDetailFields = null;
                         this.EntradaLocalidad.Filter = "";
                         this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(96, 64);
@@ -182,7 +181,6 @@ namespace Lfc.Sucursales
                         this.EntradaSituacionOrigen.CanCreate = true;
                         this.EntradaSituacionOrigen.DataTextField = "nombre";
                         this.EntradaSituacionOrigen.DataValueField = "id_situacion";
-                        this.EntradaSituacionOrigen.ExtraDetailFields = null;
                         this.EntradaSituacionOrigen.Filter = "";
                         this.EntradaSituacionOrigen.FreeTextCode = "";
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(148, 240);
@@ -214,7 +212,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaDiaria.CanCreate = true;
                         this.EntradaCajaDiaria.DataTextField = "nombre";
                         this.EntradaCajaDiaria.DataValueField = "id_caja";
-                        this.EntradaCajaDiaria.ExtraDetailFields = null;
                         this.EntradaCajaDiaria.Filter = "";
                         this.EntradaCajaDiaria.FreeTextCode = "";
                         this.EntradaCajaDiaria.Location = new System.Drawing.Point(148, 268);
@@ -246,7 +243,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaCheques.CanCreate = true;
                         this.EntradaCajaCheques.DataTextField = "nombre";
                         this.EntradaCajaCheques.DataValueField = "id_caja";
-                        this.EntradaCajaCheques.ExtraDetailFields = null;
                         this.EntradaCajaCheques.Filter = "";
                         this.EntradaCajaCheques.FreeTextCode = "";
                         this.EntradaCajaCheques.Location = new System.Drawing.Point(148, 296);

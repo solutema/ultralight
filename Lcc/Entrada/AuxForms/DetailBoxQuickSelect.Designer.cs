@@ -90,7 +90,6 @@ namespace Lcc.Entrada.AuxForms
             this.extra3,
             this.extra4});
                         this.ListaItem.FullRowSelect = true;
-                        this.ListaItem.GridLines = true;
                         this.ListaItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
                         this.ListaItem.HideSelection = false;
                         this.ListaItem.LabelWrap = false;

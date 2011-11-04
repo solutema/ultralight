@@ -4009,6 +4009,7 @@ INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda) VALUES (1
 
 INSERT INTO alicuotas (id_alicuota, porcentaje, nombre) VALUES (1, 21, 'IVA 21%');
 INSERT INTO alicuotas (id_alicuota, porcentaje, nombre) VALUES (2, 10.5, 'IVA 10.5%');
+INSERT INTO alicuotas (id_alicuota, porcentaje, nombre) VALUES (3, 27, 'IVA 27%');
 
 INSERT INTO tipo_doc (id_tipo_doc, nombre) VALUES (1, 'DNI');
 INSERT INTO tipo_doc (id_tipo_doc, nombre) VALUES (2, 'LE');
@@ -4037,6 +4038,10 @@ INSERT INTO "situaciones" ("id_situacion", "nombre", "abrev", "comprob", "compro
 
 INSERT INTO articulos_rubros (id_rubro, nombre, estado, fecha, id_alicuota) VALUES (1, 'Productos o servicios IVA 21%', 1, NOW(), 1);
 INSERT INTO articulos_rubros (id_rubro, nombre, estado, fecha, id_alicuota) VALUES (2, 'Productos o servicios IVA 10.5%', 1, NOW(), 2);
+
+
+INSERT INTO articulos_categorias (id_categoria, nombre, estado, fecha, id_alicuota, web) VALUES (1, 'Productos o servicios IVA 21%', 1, NOW(), 1, 1);
+INSERT INTO articulos_categorias (id_categoria, nombre, estado, fecha, id_alicuota, web) VALUES (2, 'Productos o servicios IVA 10.5%', 1, NOW(), 2, 1);
 
 
 INSERT INTO articulos_situaciones (id_situacion, nombre, cuenta_stock, deposito, facturable) VALUES (1, 'Depósito 1', 1, 1, 1);

@@ -124,7 +124,6 @@ namespace Lfc.Ciudades
                         this.EntradaParent.CanCreate = true;
                         this.EntradaParent.DataTextField = "nombre";
                         this.EntradaParent.DataValueField = "id_ciudad";
-                        this.EntradaParent.ExtraDetailFields = null;
                         this.EntradaParent.Filter = "parent IS NULL";
                         this.EntradaParent.FreeTextCode = "";
                         this.EntradaParent.Location = new System.Drawing.Point(116, 124);

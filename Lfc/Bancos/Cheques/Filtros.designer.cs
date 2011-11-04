@@ -123,7 +123,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.AutoTab = true;
                         this.EntradaPersona.CanCreate = true;
                         this.EntradaPersona.DataTextField = "nombre_visible";
-                        this.EntradaPersona.ExtraDetailFields = null;
                         this.EntradaPersona.FreeTextCode = "";
                         this.EntradaPersona.DataValueField = "id_persona";
                         this.EntradaPersona.Location = new System.Drawing.Point(108, 116);
@@ -155,7 +154,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
-                        this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.Location = new System.Drawing.Point(108, 84);
@@ -208,7 +206,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
-                        this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.Location = new System.Drawing.Point(108, 52);

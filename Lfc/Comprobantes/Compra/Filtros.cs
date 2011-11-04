@@ -148,7 +148,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = false;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
-                        this.EntradaProveedor.ExtraDetailFields = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.DataValueField = "id_persona";

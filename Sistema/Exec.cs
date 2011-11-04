@@ -46,16 +46,29 @@ namespace Lazaro.WinMain
                 /// </returns>
                 public static object Exec(object param)
                 {
-                        if (param is Lfx.Services.Task) {
-                                Lfx.Services.Task Tsk = param as Lfx.Services.Task;
-                                return Exec(Tsk.Command, Tsk.CreatorComputerName);
-                        } else {
-                                return Exec(param.ToString(), null);
-                        }
+                        return Exec(param, null);
                 }
 
 
-                public static object Exec(string comando, string estacion)
+                public static object Exec(object param, string estacion)
+                {
+                        object Res;
+                        
+                        if (param is Lfx.Services.Task) {
+                                Lfx.Services.Task Tsk = param as Lfx.Services.Task;
+                                Res = ExecInternal(Tsk.Command, Tsk.CreatorComputerName);
+                        } else {
+                                Res = ExecInternal(param.ToString(), null);
+                        }
+
+                        if (Res != null && Aplicacion.FormularioPrincipal != null && Aplicacion.FormularioPrincipal.Visible)
+                                Aplicacion.FormularioPrincipal.ProcesarObjeto(Res);
+
+                        return Res;
+                }
+
+
+                private static object ExecInternal(string comando, string estacion)
                 {
                         Console.WriteLine("Exec:" + comando);
 

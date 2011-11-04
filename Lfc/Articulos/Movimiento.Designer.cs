@@ -259,7 +259,6 @@ namespace Lfc.Articulos
                         this.EntradaDesdeSituacion.CanCreate = false;
                         this.EntradaDesdeSituacion.DataTextField = "nombre";
                         this.EntradaDesdeSituacion.DataValueField = "id_situacion";
-                        this.EntradaDesdeSituacion.ExtraDetailFields = "";
                         this.EntradaDesdeSituacion.Filter = "";
                         this.EntradaDesdeSituacion.FreeTextCode = "";
                         this.EntradaDesdeSituacion.Location = new System.Drawing.Point(124, 148);
@@ -293,7 +292,6 @@ namespace Lfc.Articulos
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
-                        this.EntradaHaciaSituacion.ExtraDetailFields = "";
                         this.EntradaHaciaSituacion.Filter = "";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(124, 180);

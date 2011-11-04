@@ -88,7 +88,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.DataValueField = "id_banco";
-                        this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(120, 32);
@@ -168,7 +167,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.DataValueField = "id_caja";
-                        this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(120, 128);
@@ -262,7 +260,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
-                        this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(120, 96);

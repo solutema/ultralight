@@ -566,8 +566,7 @@ namespace Lazaro.WinMain.Principal
                         if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja") {
                                 // Nada
                         } else {
-                                object Res = Ejecutor.Exec(ItmInfo.Funcion);
-                                this.ProcesarObjeto(Res);
+                                Ejecutor.Exec(ItmInfo.Funcion);
                         }
                 }
 

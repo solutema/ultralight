@@ -1,5 +1,7 @@
 SET FOREIGN_KEY_CHECKS=0;
 
+INSERT INTO alicuotas (id_alicuota, porcentaje, nombre) VALUES (3, 27, 'IVA 27%');
+
 UPDATE personas SET fecha=fechaalta WHERE fecha IS NULL;
 UPDATE personas SET fecha=contrasena_fecha WHERE fecha IS NULL;
 UPDATE personas SET fecha=NOW() WHERE fecha IS NULL;

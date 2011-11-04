@@ -124,7 +124,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
-                        this.EntradaVendedor.ExtraDetailFields = null;
+                        this.EntradaVendedor.ExtraDetailFields = "";
                         this.EntradaVendedor.FieldName = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
@@ -297,10 +297,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.LabelAgregarValores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.LabelAgregarValores.BackColor = System.Drawing.Color.Transparent;
+                        this.LabelAgregarValores.BackColor = System.Drawing.SystemColors.Info;
+                        this.LabelAgregarValores.ForeColor = System.Drawing.SystemColors.InfoText;
                         this.LabelAgregarValores.Location = new System.Drawing.Point(4, 56);
-                        this.LabelAgregarValores.Margin = new System.Windows.Forms.Padding(16);
+                        this.LabelAgregarValores.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
                         this.LabelAgregarValores.Name = "LabelAgregarValores";
+                        this.LabelAgregarValores.Padding = new System.Windows.Forms.Padding(12);
                         this.LabelAgregarValores.Size = new System.Drawing.Size(364, 244);
                         this.LabelAgregarValores.TabIndex = 19;
                         this.LabelAgregarValores.Text = "Seleccione uno o más valores (pagos) que componen este recibo.";
@@ -426,7 +428,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
-                        this.EntradaCliente.ExtraDetailFields = null;
+                        this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.FieldName = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
@@ -525,10 +527,12 @@ namespace Lfc.Comprobantes.Recibos
                         this.LabelAgregarFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.LabelAgregarFacturas.BackColor = System.Drawing.Color.Transparent;
+                        this.LabelAgregarFacturas.BackColor = System.Drawing.SystemColors.Info;
+                        this.LabelAgregarFacturas.ForeColor = System.Drawing.SystemColors.InfoText;
                         this.LabelAgregarFacturas.Location = new System.Drawing.Point(4, 56);
-                        this.LabelAgregarFacturas.Margin = new System.Windows.Forms.Padding(16);
+                        this.LabelAgregarFacturas.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
                         this.LabelAgregarFacturas.Name = "LabelAgregarFacturas";
+                        this.LabelAgregarFacturas.Padding = new System.Windows.Forms.Padding(12);
                         this.LabelAgregarFacturas.Size = new System.Drawing.Size(364, 244);
                         this.LabelAgregarFacturas.TabIndex = 13;
                         this.LabelAgregarFacturas.Text = resources.GetString("LabelAgregarFacturas.Text");
@@ -576,7 +580,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.CanCreate = true;
                         this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.DataValueField = "id_concepto";
-                        this.EntradaConcepto.ExtraDetailFields = null;
+                        this.EntradaConcepto.ExtraDetailFields = "";
                         this.EntradaConcepto.FieldName = null;
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.FreeTextCode = "";

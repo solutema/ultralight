@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -32,20 +32,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace Lfx.Data
+namespace Lcc.Edicion
 {
-	public class TagCollection : List<Tag>
+        public class Campo
         {
-                public Tag this[string columnName]
+                public Lui.Forms.EditableControl ControlEntrada { get; set; }
+                public Lui.Forms.Label Etiqueta { get; set; }
+
+                public Campo(Lui.Forms.EditableControl control, Lui.Forms.Label etiqueta)
                 {
-                        get
-                        {
-                                foreach (Tag Tg in this) {
-                                        if (Tg.FieldName == columnName)
-                                                return Tg;
-                                }
-                                throw new IndexOutOfRangeException();
-                        }
+                        this.ControlEntrada = control;
+                        this.Etiqueta = etiqueta;
                 }
         }
 }

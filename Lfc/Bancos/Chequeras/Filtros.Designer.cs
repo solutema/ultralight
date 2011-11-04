@@ -117,7 +117,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
-                        this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.Location = new System.Drawing.Point(140, 84);
@@ -149,7 +148,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
-                        this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 52);

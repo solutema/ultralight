@@ -84,7 +84,7 @@ namespace Lfc.Comprobantes.Facturas
                 internal Lui.Forms.Label Label4;
                 internal Lui.Forms.Label Label8;
                 internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
-                internal Lui.Forms.ListView lvItems;
+                internal Lui.Forms.ListView Listado;
                 internal System.Windows.Forms.ColumnHeader ColFecha;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader1;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader2;
@@ -107,7 +107,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label4 = new Lui.Forms.Label();
                         this.Label8 = new Lui.Forms.Label();
                         this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
-                        this.lvItems = new Lui.Forms.ListView();
+                        this.Listado = new Lui.Forms.ListView();
                         this.ColumnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -244,7 +244,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
-                        this.EntradaVendedor.ExtraDetailFields = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.DataValueField = "id_persona";
@@ -264,11 +263,11 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // lvItems
                         // 
-                        this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lvItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                        this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnHeader6,
             this.ColFecha,
             this.ColumnHeader1,
@@ -276,20 +275,19 @@ namespace Lfc.Comprobantes.Facturas
             this.ColumnHeader3,
             this.ColumnHeader4,
             this.ColumnHeader5});
-                        this.lvItems.FullRowSelect = true;
-                        this.lvItems.GridLines = true;
-                        this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-                        this.lvItems.HideSelection = false;
-                        this.lvItems.LabelWrap = false;
-                        this.lvItems.Location = new System.Drawing.Point(8, 100);
-                        this.lvItems.MultiSelect = false;
-                        this.lvItems.Name = "lvItems";
-                        this.lvItems.Size = new System.Drawing.Size(680, 280);
-                        this.lvItems.TabIndex = 10;
-                        this.lvItems.UseCompatibleStateImageBehavior = false;
-                        this.lvItems.View = System.Windows.Forms.View.Details;
-                        this.lvItems.SelectedIndexChanged += new System.EventHandler(this.lvItems_SelectedIndexChanged);
-                        this.lvItems.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvItems_KeyDown);
+                        this.Listado.FullRowSelect = true;
+                        this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+                        this.Listado.HideSelection = false;
+                        this.Listado.LabelWrap = false;
+                        this.Listado.Location = new System.Drawing.Point(8, 100);
+                        this.Listado.MultiSelect = false;
+                        this.Listado.Name = "lvItems";
+                        this.Listado.Size = new System.Drawing.Size(680, 280);
+                        this.Listado.TabIndex = 10;
+                        this.Listado.UseCompatibleStateImageBehavior = false;
+                        this.Listado.View = System.Windows.Forms.View.Details;
+                        this.Listado.SelectedIndexChanged += new System.EventHandler(this.lvItems_SelectedIndexChanged);
+                        this.Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvItems_KeyDown);
                         // 
                         // ColumnHeader6
                         // 
@@ -335,7 +333,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
-                        this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.DataValueField = "id_persona";
@@ -358,7 +355,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(694, 475);
                         this.Controls.Add(this.EntradaCliente);
-                        this.Controls.Add(this.lvItems);
+                        this.Controls.Add(this.Listado);
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.Label8);
                         this.Controls.Add(this.EntradaVendedor);
@@ -381,7 +378,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.Label8, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.lvItems, 0);
+                        this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.ResumeLayout(false);
 
@@ -443,10 +440,10 @@ namespace Lfc.Comprobantes.Facturas
                         Sql += " ORDER BY fecha DESC LIMIT 100";
                         DataTable Facturas = this.Connection.Select(Sql);
 
-                        lvItems.BeginUpdate();
-                        lvItems.Items.Clear();
+                        Listado.BeginUpdate();
+                        Listado.Items.Clear();
                         foreach (System.Data.DataRow Factura in Facturas.Rows) {
-                                ListViewItem Itm = lvItems.Items.Add(System.Convert.ToString(Factura["id_comprob"]));
+                                ListViewItem Itm = Listado.Items.Add(System.Convert.ToString(Factura["id_comprob"]));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatDate(Factura["fecha"])));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToString(Factura["tipo_fac"])));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToInt32(Factura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Factura["numero"]).ToString("00000000")));
@@ -457,11 +454,11 @@ namespace Lfc.Comprobantes.Facturas
                                 else
                                         Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Factura["cancelado"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
                         }
-                        if (lvItems.Items.Count > 0) {
-                                lvItems.Items[0].Selected = true;
-                                lvItems.Items[0].Focused = true;
+                        if (Listado.Items.Count > 0) {
+                                Listado.Items[0].Selected = true;
+                                Listado.Items[0].Focused = true;
                         }
-                        lvItems.EndUpdate();
+                        Listado.EndUpdate();
                 }
 
 
@@ -469,8 +466,8 @@ namespace Lfc.Comprobantes.Facturas
                 {
                         Lfx.Data.Row Factura = null;
                         ListViewItem Itm = null;
-                        if (lvItems.SelectedItems.Count > 0) {
-                                Itm = lvItems.SelectedItems[0];
+                        if (Listado.SelectedItems.Count > 0) {
+                                Itm = Listado.SelectedItems[0];
                                 Factura = this.Connection.Row("comprob", "id_comprob", Lfx.Types.Parsing.ParseInt(Itm.Text));
                         }
 
@@ -500,19 +497,19 @@ namespace Lfc.Comprobantes.Facturas
                 {
                         switch (e.KeyCode) {
                                 case Keys.Up:
-                                        if (lvItems.Items.Count == 0) {
+                                        if (Listado.Items.Count == 0) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("+{tab}");
-                                        } else if (lvItems.SelectedItems[0].Index == 0) {
+                                        } else if (Listado.SelectedItems[0].Index == 0) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("+{tab}");
                                         }
                                         break;
                                 case Keys.Down:
-                                        if (lvItems.Items.Count == 0) {
+                                        if (Listado.Items.Count == 0) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("{tab}");
-                                        } else if (lvItems.SelectedItems.Count > 0 && lvItems.SelectedItems[0].Index == lvItems.Items.Count - 1) {
+                                        } else if (Listado.SelectedItems.Count > 0 && Listado.SelectedItems[0].Index == Listado.Items.Count - 1) {
                                                 e.Handled = true;
                                                 System.Windows.Forms.SendKeys.Send("{tab}");
                                         }

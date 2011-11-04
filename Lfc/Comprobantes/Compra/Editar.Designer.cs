@@ -81,7 +81,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.CanCreate = true;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.DataValueField = "id_persona";
-                        this.EntradaProveedor.ExtraDetailFields = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.Location = new System.Drawing.Point(80, 48);
@@ -278,7 +277,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
-                        this.EntradaHaciaSituacion.ExtraDetailFields = null;
                         this.EntradaHaciaSituacion.Filter = "deposito>0";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(444, 76);

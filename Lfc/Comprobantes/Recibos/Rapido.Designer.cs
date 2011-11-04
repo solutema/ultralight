@@ -82,7 +82,6 @@ namespace Lfc.Comprobantes.Recibos
             this.EntradaCaja.AutoTab = true;
             this.EntradaCaja.CanCreate = false;
             this.EntradaCaja.DataTextField = "nombre";
-            this.EntradaCaja.ExtraDetailFields = null;
             this.EntradaCaja.FreeTextCode = "";
             this.EntradaCaja.DataValueField = "id_caja";
             this.EntradaCaja.Location = new System.Drawing.Point(104, 160);
@@ -114,7 +113,6 @@ namespace Lfc.Comprobantes.Recibos
             this.EntradaCliente.AutoTab = true;
             this.EntradaCliente.CanCreate = false;
             this.EntradaCliente.DataTextField = "nombre_visible";
-            this.EntradaCliente.ExtraDetailFields = null;
             this.EntradaCliente.FreeTextCode = "";
             this.EntradaCliente.DataValueField = "id_persona";
             this.EntradaCliente.Location = new System.Drawing.Point(104, 20);

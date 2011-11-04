@@ -73,7 +73,6 @@ namespace Lfc.Articulos
             this.ColSituacion,
             this.ColCantidad});
                         this.ListaConformacion.FullRowSelect = true;
-                        this.ListaConformacion.GridLines = true;
                         this.ListaConformacion.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaConformacion.LabelWrap = false;
                         this.ListaConformacion.Location = new System.Drawing.Point(8, 8);

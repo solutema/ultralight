@@ -41,8 +41,12 @@ namespace Lcc.Edicion
 {
         public partial class MatrizCampos : ControlEdicion
         {
+                public List<Campo> Campos;
+
                 public MatrizCampos()
                 {
+                        this.Campos = new List<Campo>();
+
                         InitializeComponent();
 
                         this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
@@ -65,77 +69,54 @@ namespace Lcc.Edicion
                 }
 
 
-                public int AutoLabelWidth
-                {
-                        get
-                        {
-                                int MaxWidth = 0;
-                                foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
-                                        if (Ctl is Entrada.Campo) {
-                                                if (((Entrada.Campo)Ctl).AutoLabelWidth > MaxWidth)
-                                                        MaxWidth = ((Entrada.Campo)Ctl).AutoLabelWidth;
-                                        }
-                                }
-                                return MaxWidth;
-                        }
-                }
-
-
-                public void AddControl(string label, Lui.Forms.EditableControl control)
+                public void AgregarCampo(string label, Lui.Forms.EditableControl control)
                 {
                         Lui.Forms.Label Lbl = new Lui.Forms.Label();
-                        Lbl.Anchor = AnchorStyles.Left | AnchorStyles.Top;
                         Lbl.AutoSize = true;
                         Lbl.Text = label;
                         Lbl.Tag = control;
                         Lbl.UseMnemonic = false;
-
-                        control.Anchor = AnchorStyles.Left | AnchorStyles.Top;
                         
                         this.FieldContainer.Controls.Add(Lbl);
                         this.FieldContainer.Controls.Add(control);
-                        
-                        Lbl.Location = new Point(0, this.FieldContainer.Height + 4);
-                        control.Location = new Point(Lbl.Width + 4, Lbl.Top);
 
-                        this.FieldContainer.Height = control.Top + control.Height;
+                        Lbl.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+                        control.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
 
-                        if (this.AutoSize)
-                                this.Height = FieldContainer.Top + FieldContainer.Height;
+                        this.Campos.Add(new Campo(control, Lbl));
+
+                        this.ReLayout();
                 }
 
 
-                private void FieldContainer_ControlAdded(object sender, ControlEventArgs e)
+                public void EliminarCampos()
                 {
+                        this.FieldContainer.Controls.Clear();
+                        this.Campos.Clear();
+                }
+
+
+                private void ReLayout()
+                {
+                        if (this.Campos == null)
+                                return;
+
+                        int MaxLabelWidth = 0;
+                        foreach (Campo Cmp in this.Campos) {
+                                if (Cmp.Etiqueta.Width > MaxLabelWidth)
+                                        MaxLabelWidth = Cmp.Etiqueta.Width;
+                        }
+
                         int Y = 0;
-                        e.Control.Width = FieldContainer.ClientSize.Width - FieldContainer.Margin.Left - FieldContainer.Margin.Right;
-                        //Pongo los anchos de las etiquetas para todos los fields iguales (busco el mayor)
-                        int MaxHeight = 0;
-                        foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
-                                Ctl.Top = Y;
-                                if (Ctl is Entrada.Campo)
-                                        ((Entrada.Campo)Ctl).LabelWidth = this.AutoLabelWidth;
-                                Y += Ctl.Height + 4;
-                                if (Ctl.Top + Ctl.Height > MaxHeight)
-                                        MaxHeight = Ctl.Top + Ctl.Height;
+                        foreach (Campo Cmp in this.Campos) {
+                                Cmp.Etiqueta.Location = new Point(0, Y);
+                                Cmp.ControlEntrada.Location = new Point(MaxLabelWidth + 4, Y);
+                                Cmp.ControlEntrada.Width = this.ClientRectangle.Width - Cmp.ControlEntrada.Left;
+
+                                Y += Cmp.ControlEntrada.Height + 4;
                         }
-                        FieldContainer.Height = MaxHeight;
-
-                        if (this.AutoSize)
-                                this.Height = FieldContainer.Top + FieldContainer.Height;
-                        else
-                                this.AutoScroll = true;
-
+                        this.FieldContainer.Height = Y;
                 }
-
-
-                private void FieldContainer_ClientSizeChanged(object sender, EventArgs e)
-                {
-                        foreach (System.Windows.Forms.Control Ctl in FieldContainer.Controls) {
-                                Ctl.Width = this.FieldContainer.ClientRectangle.Width - FieldContainer.Margin.Left - FieldContainer.Margin.Right;
-                        }
-                }
-
 
                 public object this[string fieldName]
                 {

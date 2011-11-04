@@ -109,7 +109,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
-                        this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.DataValueField = "id_banco";

@@ -246,7 +246,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
-                        this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.DataValueField = "id_banco";
@@ -348,7 +347,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
-                        this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.DataValueField = "id_caja";
@@ -488,7 +486,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.AutoTab = true;
                         this.EntradaPlan.CanCreate = false;
                         this.EntradaPlan.DataTextField = "nombre";
-                        this.EntradaPlan.ExtraDetailFields = null;
                         this.EntradaPlan.Filter = "";
                         this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.DataValueField = "id_plan";
@@ -601,7 +598,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.AutoTab = true;
                         this.EntradaFormaDePago.CanCreate = true;
                         this.EntradaFormaDePago.DataTextField = "nombre";
-                        this.EntradaFormaDePago.ExtraDetailFields = null;
                         this.EntradaFormaDePago.Filter = "cobros=1";
                         this.EntradaFormaDePago.FreeTextCode = "";
                         this.EntradaFormaDePago.DataValueField = "id_formapago";

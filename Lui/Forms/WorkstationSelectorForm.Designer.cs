@@ -68,7 +68,6 @@ namespace Lui.Forms
             this.NombreEstacion,
             this.Nombre});
                         this.Listado.FullRowSelect = true;
-                        this.Listado.GridLines = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
                         this.Listado.HideSelection = false;
                         this.Listado.LabelWrap = false;

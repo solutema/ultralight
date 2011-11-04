@@ -161,7 +161,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
                         this.EntradaGrupo.DataTextField = "nombre";
-                        this.EntradaGrupo.ExtraDetailFields = null;
                         this.EntradaGrupo.Filter = "";
                         this.EntradaGrupo.FreeTextCode = "";
                         this.EntradaGrupo.DataValueField = "id_grupo";

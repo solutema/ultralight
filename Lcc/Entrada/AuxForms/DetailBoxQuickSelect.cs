@@ -139,7 +139,7 @@ namespace Lcc.Entrada.AuxForms
                                 m_ExtraDetailFields = "num_doc,cuit,extra1";
 
                         if (m_Table == "ciudades" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
-                                m_ExtraDetailFields = "cp";
+                                m_ExtraDetailFields = "cp,(SELECT nombre FROM ciudades b WHERE b.id_ciudad=ciudades.parent)";
 
                         if (m_ExtraDetailFields != null)
                                 CamposExtra = m_ExtraDetailFields.Length - m_ExtraDetailFields.Replace(",", "").Length + 1;
@@ -208,10 +208,14 @@ namespace Lcc.Entrada.AuxForms
                                                         TextoSql += ", control_stock, stock_actual, pedido, destacado";
 
                                                 TextoSql += " FROM " + m_Table;
-                                                if (sBuscar != null && sBuscar.Length > 1)
+                                                bool AgregueWhere = false;
+                                                if (sBuscar != null && sBuscar.Length > 1) {
                                                         TextoSql += " WHERE (" + m_DetailField + " LIKE '%" + sBuscar.Replace(" ", "%' AND " + m_DetailField + " LIKE '%") + "%'";
-                                                else if (sBuscar != null && sBuscar.Length > 0)
+                                                        AgregueWhere = true;
+                                                } else if (sBuscar != null && sBuscar.Length > 0) {
                                                         TextoSql += " WHERE (" + m_DetailField + " LIKE '" + this.Connection.EscapeString(sBuscar) + "%'";
+                                                        AgregueWhere = true;
+                                                }
 
                                                 if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0 && sBuscar != null && sBuscar.Length > 1) {
                                                         string TempExtraDetailFields = m_ExtraDetailFields;
@@ -226,11 +230,11 @@ namespace Lcc.Entrada.AuxForms
                                                         }
                                                         TextoSql += " OR (" + TempWhere + ")";
                                                 }
-                                                if (TextoSql.IndexOf(" WHERE ") != -1)
+                                                if (AgregueWhere)
                                                         TextoSql += ") ";
 
                                                 if (m_Filter != null && m_Filter.Length > 0) {
-                                                        if (TextoSql.IndexOf(" WHERE ") != -1)
+                                                        if (AgregueWhere)
                                                                 TextoSql += " AND (" + m_Filter + ")";
                                                         else
                                                                 TextoSql += " WHERE " + m_Filter;

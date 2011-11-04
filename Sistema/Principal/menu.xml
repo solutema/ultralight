@@ -36,10 +36,10 @@
   </Opcion>
   <Opcion Nombre="&amp;Personas" Funcion="">
     <Opcion Nombre="&amp;Clientes" Funcion="LISTAR Lbl.Personas.Persona" />
-    <Opcion Nombre="Nuevo Cliente" Funcion="CREAR Lbl.Personas.Persona" />
+    <Opcion Nombre="&amp;Nuevo Cliente" Funcion="CREAR Lbl.Personas.Persona" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="&amp;Proveedores" Funcion="LISTAR Lbl.Personas.Proveedor" />
-    <Opcion Nombre="Nuevo Proveedor" Funcion="CREAR Lbl.Personas.Proveedor" />
+    <Opcion Nombre="Nue&amp;vo Proveedor" Funcion="CREAR Lbl.Personas.Proveedor" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="&amp;Grupos" Funcion="LISTAR Lbl.Personas.Grupo" />

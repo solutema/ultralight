@@ -207,7 +207,7 @@ namespace Lfc.Comprobantes.Recibos
                                 FormularioSeleccionarFactura.EntradaCliente.Enabled = false;
                         }
 
-                        if (FormularioSeleccionarFactura.ShowDialog() == DialogResult.OK)
+                        if (FormularioSeleccionarFactura.ShowDialog() == DialogResult.OK && FormularioSeleccionarFactura.FacturaId != 0)
                                 AgregarFactura(FormularioSeleccionarFactura.FacturaId);
 
                         FormularioSeleccionarFactura = null;
@@ -252,7 +252,7 @@ namespace Lfc.Comprobantes.Recibos
 
                         }
 
-                        LabelAgregarFacturas.Visible = ListaFacturas.Items.Count == 0;
+                        LabelAgregarFacturas.Visible = ListaFacturas.Items.Count == 0 && this.Elemento.Existe == false;
                         BotonQuitarFactura.Visible = ListaFacturas.Items.Count > 0;
 
                         if (ListaFacturas.Items.Count > 0 && ListaFacturas.SelectedItems.Count == 0) {
@@ -374,7 +374,7 @@ namespace Lfc.Comprobantes.Recibos
                                 EtiquetaValoresImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Cobros.ImporteTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
                         }
 
-                        LabelAgregarValores.Visible = ListaValores.Items.Count == 0;
+                        LabelAgregarValores.Visible = ListaValores.Items.Count == 0 && this.Elemento.Existe == false;
                         BotonQuitarValor.Visible = ListaValores.Items.Count > 0;
 
                         if (ListaValores.Items.Count > 0 && ListaValores.SelectedItems.Count == 0) {

@@ -81,9 +81,9 @@ namespace Lfc
                         // 
                         // Listado
                         // 
-                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.FullRowSelect = true;
                         this.Listado.Location = new System.Drawing.Point(228, 0);
@@ -99,8 +99,8 @@ namespace Lfc
                         // 
                         // EtiquetaContador2
                         // 
-                        this.EtiquetaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaContador2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaContador2.Location = new System.Drawing.Point(0, 28);
                         this.EtiquetaContador2.Name = "EtiquetaContador2";
@@ -118,6 +118,7 @@ namespace Lfc
                         this.EntradaContador2.AutoTab = true;
                         this.EntradaContador2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador2.DecimalPlaces = -1;
+                        this.EntradaContador2.FieldName = null;
                         this.EntradaContador2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador2.Location = new System.Drawing.Point(100, 28);
                         this.EntradaContador2.MaxLength = 32767;
@@ -125,6 +126,7 @@ namespace Lfc
                         this.EntradaContador2.Name = "EntradaContador2";
                         this.EntradaContador2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador2.PasswordChar = '\0';
+                        this.EntradaContador2.PlaceholderText = null;
                         this.EntradaContador2.Prefijo = "";
                         this.EntradaContador2.ReadOnly = false;
                         this.EntradaContador2.SelectOnFocus = true;
@@ -136,8 +138,8 @@ namespace Lfc
                         // 
                         // EtiquetaContador1
                         // 
-                        this.EtiquetaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaContador1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaContador1.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaContador1.Name = "EtiquetaContador1";
@@ -155,6 +157,7 @@ namespace Lfc
                         this.EntradaContador1.AutoTab = true;
                         this.EntradaContador1.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador1.DecimalPlaces = -1;
+                        this.EntradaContador1.FieldName = null;
                         this.EntradaContador1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador1.Location = new System.Drawing.Point(100, 0);
                         this.EntradaContador1.MaxLength = 32767;
@@ -162,6 +165,7 @@ namespace Lfc
                         this.EntradaContador1.Name = "EntradaContador1";
                         this.EntradaContador1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador1.PasswordChar = '\0';
+                        this.EntradaContador1.PlaceholderText = null;
                         this.EntradaContador1.Prefijo = "";
                         this.EntradaContador1.ReadOnly = false;
                         this.EntradaContador1.SelectOnFocus = true;
@@ -255,6 +259,7 @@ namespace Lfc
                         this.EntradaContador4.AutoTab = true;
                         this.EntradaContador4.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador4.DecimalPlaces = -1;
+                        this.EntradaContador4.FieldName = null;
                         this.EntradaContador4.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador4.Location = new System.Drawing.Point(100, 84);
                         this.EntradaContador4.MaxLength = 32767;
@@ -262,6 +267,7 @@ namespace Lfc
                         this.EntradaContador4.Name = "EntradaContador4";
                         this.EntradaContador4.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador4.PasswordChar = '\0';
+                        this.EntradaContador4.PlaceholderText = null;
                         this.EntradaContador4.Prefijo = "";
                         this.EntradaContador4.ReadOnly = false;
                         this.EntradaContador4.SelectOnFocus = true;
@@ -273,8 +279,8 @@ namespace Lfc
                         // 
                         // EtiquetaContador4
                         // 
-                        this.EtiquetaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaContador4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaContador4.Location = new System.Drawing.Point(0, 84);
                         this.EtiquetaContador4.Name = "EtiquetaContador4";
@@ -292,6 +298,7 @@ namespace Lfc
                         this.EntradaContador3.AutoTab = true;
                         this.EntradaContador3.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador3.DecimalPlaces = -1;
+                        this.EntradaContador3.FieldName = null;
                         this.EntradaContador3.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador3.Location = new System.Drawing.Point(100, 56);
                         this.EntradaContador3.MaxLength = 32767;
@@ -299,6 +306,7 @@ namespace Lfc
                         this.EntradaContador3.Name = "EntradaContador3";
                         this.EntradaContador3.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador3.PasswordChar = '\0';
+                        this.EntradaContador3.PlaceholderText = null;
                         this.EntradaContador3.Prefijo = "";
                         this.EntradaContador3.ReadOnly = false;
                         this.EntradaContador3.SelectOnFocus = true;
@@ -310,8 +318,8 @@ namespace Lfc
                         // 
                         // EtiquetaContador3
                         // 
-                        this.EtiquetaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaContador3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaContador3.Location = new System.Drawing.Point(0, 56);
                         this.EtiquetaContador3.Name = "EtiquetaContador3";

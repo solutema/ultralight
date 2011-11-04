@@ -135,11 +135,6 @@ namespace Lfc.Personas
                                 }
                         }
 
-                        if (EntradaVendedor.TextInt == 0 && this.Elemento.Existe == false) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Debe ingresar un vendedor.";
-                        }
-
 
                         if (EntradaCuit.Text.Length > 0) {
                                 if (EntradaSituacion.TextInt == 1) {
@@ -327,12 +322,7 @@ namespace Lfc.Personas
                                 Lui.Forms.MessageBox.Show("No puede editar el acceso del usuario porque aun no ha sido guardado.", "Error");
                         } else {
                                 if (Lui.LogOn.LogOnData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar)) {
-                                        object Res = this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
-                                        if (Res is System.Windows.Forms.Form) {
-                                                System.Windows.Forms.Form ResForm = Res as System.Windows.Forms.Form;
-                                                ResForm.MdiParent = this.ParentForm.MdiParent;
-                                                ResForm.Show();
-                                        }
+                                        this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
                                 }
                         }
                 }

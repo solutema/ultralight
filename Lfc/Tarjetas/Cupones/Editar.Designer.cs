@@ -108,7 +108,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaTarjeta.CanCreate = false;
                         this.EntradaTarjeta.DataTextField = "nombre";
                         this.EntradaTarjeta.DataValueField = "id_tarjeta";
-                        this.EntradaTarjeta.ExtraDetailFields = null;
                         this.EntradaTarjeta.Filter = "";
                         this.EntradaTarjeta.FreeTextCode = "";
                         this.EntradaTarjeta.Location = new System.Drawing.Point(160, 28);
@@ -143,7 +142,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.CanCreate = true;
                         this.EntradaPlan.DataTextField = "nombre";
                         this.EntradaPlan.DataValueField = "id_plan";
-                        this.EntradaPlan.ExtraDetailFields = null;
                         this.EntradaPlan.Filter = "";
                         this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.Location = new System.Drawing.Point(160, 56);

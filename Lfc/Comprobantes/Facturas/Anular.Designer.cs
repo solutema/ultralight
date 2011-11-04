@@ -247,7 +247,6 @@ namespace Lfc.Comprobantes.Facturas
             this.ColCliente,
             this.ColImporte});
                         this.ListadoFacturas.FullRowSelect = true;
-                        this.ListadoFacturas.GridLines = true;
                         this.ListadoFacturas.LabelWrap = false;
                         this.ListadoFacturas.Location = new System.Drawing.Point(20, 112);
                         this.ListadoFacturas.MultiSelect = false;

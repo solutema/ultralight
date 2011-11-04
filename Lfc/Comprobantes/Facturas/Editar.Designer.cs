@@ -71,7 +71,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.CanCreate = true;
                         this.EntradaFormaPago.DataTextField = "nombre";
                         this.EntradaFormaPago.DataValueField = "id_formapago";
-                        this.EntradaFormaPago.ExtraDetailFields = null;
                         this.EntradaFormaPago.Filter = "cobros=1 AND estado=1";
                         this.EntradaFormaPago.FreeTextCode = "";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(108, 0);

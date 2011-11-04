@@ -66,59 +66,69 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // label9
                         // 
-                        this.label9.Location = new System.Drawing.Point(12, 48);
+                        this.label9.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label9.Location = new System.Drawing.Point(0, 32);
                         this.label9.Name = "label9";
-                        this.label9.Size = new System.Drawing.Size(104, 24);
+                        this.label9.Size = new System.Drawing.Size(116, 24);
                         this.label9.TabIndex = 2;
                         this.label9.Text = "Alícuota";
                         this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaAlicuota
                         // 
-                        this.EntradaAlicuota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaAlicuota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaAlicuota.AutoNav = true;
                         this.EntradaAlicuota.AutoTab = true;
                         this.EntradaAlicuota.CanCreate = true;
                         this.EntradaAlicuota.DataTextField = "nombre";
-                        this.EntradaAlicuota.ExtraDetailFields = "";
+                        this.EntradaAlicuota.DataValueField = "id_alicuota";
+                        this.EntradaAlicuota.FieldName = null;
                         this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.FreeTextCode = "";
-                        this.EntradaAlicuota.DataValueField = "id_alicuota";
-                        this.EntradaAlicuota.Location = new System.Drawing.Point(116, 48);
+                        this.EntradaAlicuota.Location = new System.Drawing.Point(116, 32);
                         this.EntradaAlicuota.MaxLength = 200;
                         this.EntradaAlicuota.Name = "EntradaAlicuota";
                         this.EntradaAlicuota.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaAlicuota.PlaceholderText = "Sin especificar";
+                        this.EntradaAlicuota.ReadOnly = false;
                         this.EntradaAlicuota.Required = true;
                         this.EntradaAlicuota.Size = new System.Drawing.Size(356, 24);
                         this.EntradaAlicuota.TabIndex = 3;
                         this.EntradaAlicuota.Table = "alicuotas";
                         this.EntradaAlicuota.Text = "0";
                         this.EntradaAlicuota.TextDetail = "";
-                        this.EntradaAlicuota.PlaceholderText = "Sin especificar";
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNombre.Location = new System.Drawing.Point(116, 16);
+                        this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = null;
+                        this.EntradaNombre.Prefijo = "";
+                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(356, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(12, 16);
+                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(104, 24);
+                        this.Label5.Size = new System.Drawing.Size(116, 24);
                         this.Label5.TabIndex = 0;
                         this.Label5.Text = "Nombre";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

@@ -56,6 +56,7 @@ namespace Lfc
                         this.EntradaBuscar = new Lui.Forms.TextBox();
                         this.BotonCrear = new Lui.Forms.Button();
                         this.TimerBuscar = new System.Windows.Forms.Timer(this.components);
+                        this.EtiquetaListadoVacio = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Listado
@@ -68,6 +69,7 @@ namespace Lfc
                         this.EntradaBuscar.AutoTab = false;
                         this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaBuscar.DecimalPlaces = -1;
+                        this.EntradaBuscar.FieldName = null;
                         this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBuscar.Location = new System.Drawing.Point(8, 8);
                         this.EntradaBuscar.MaxLength = 32767;
@@ -75,13 +77,13 @@ namespace Lfc
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBuscar.PasswordChar = '\0';
+                        this.EntradaBuscar.PlaceholderText = "Buscar (F3)";
                         this.EntradaBuscar.Prefijo = "";
                         this.EntradaBuscar.ReadOnly = false;
                         this.EntradaBuscar.SelectOnFocus = true;
                         this.EntradaBuscar.Size = new System.Drawing.Size(212, 24);
                         this.EntradaBuscar.Sufijo = "";
                         this.EntradaBuscar.TabIndex = 1;
-                        this.EntradaBuscar.PlaceholderText = "Buscar (F3)";
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
                         this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
                         // 
@@ -107,11 +109,33 @@ namespace Lfc
                         this.TimerBuscar.Interval = 500;
                         this.TimerBuscar.Tick += new System.EventHandler(this.TimerBuscar_Tick);
                         // 
+                        // EtiquetaListadoVacio
+                        // 
+                        this.EtiquetaListadoVacio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaListadoVacio.AutoEllipsis = true;
+                        this.EtiquetaListadoVacio.BackColor = System.Drawing.SystemColors.Info;
+                        this.EtiquetaListadoVacio.ForeColor = System.Drawing.SystemColors.InfoText;
+                        this.EtiquetaListadoVacio.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaListadoVacio.Location = new System.Drawing.Point(332, 192);
+                        this.EtiquetaListadoVacio.Margin = new System.Windows.Forms.Padding(0);
+                        this.EtiquetaListadoVacio.Name = "EtiquetaListadoVacio";
+                        this.EtiquetaListadoVacio.Padding = new System.Windows.Forms.Padding(12);
+                        this.EtiquetaListadoVacio.Size = new System.Drawing.Size(380, 80);
+                        this.EtiquetaListadoVacio.TabIndex = 70;
+                        this.EtiquetaListadoVacio.Text = "El listado no contiene datos.\r\nHaga clic en el botón \'Crear\' para añadir nuevos e" +
+    "lementos.";
+                        this.EtiquetaListadoVacio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaListadoVacio.UseMnemonic = false;
+                        this.EtiquetaListadoVacio.Visible = false;
+                        this.EtiquetaListadoVacio.Click += new System.EventHandler(this.EtiquetaListadoVacio_Click);
+                        // 
                         // FormularioListado
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoSize = true;
                         this.ClientSize = new System.Drawing.Size(792, 472);
+                        this.Controls.Add(this.EtiquetaListadoVacio);
                         this.Controls.Add(this.BotonCrear);
                         this.Controls.Add(this.EntradaBuscar);
                         this.Name = "FormularioListado";
@@ -123,6 +147,7 @@ namespace Lfc
                         this.Controls.SetChildIndex(this.BotonCancelar, 0);
                         this.Controls.SetChildIndex(this.BotonFiltrar, 0);
                         this.Controls.SetChildIndex(this.BotonImprimir, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaListadoVacio, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -132,6 +157,7 @@ namespace Lfc
                 private Lui.Forms.TextBox EntradaBuscar;
                 protected internal Lui.Forms.Button BotonCrear;
                 private System.Windows.Forms.Timer TimerBuscar;
+                private Lui.Forms.Label EtiquetaListadoVacio;
 
         }
 }

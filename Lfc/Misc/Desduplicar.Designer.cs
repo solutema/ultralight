@@ -100,7 +100,6 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.CanCreate = true;
                         this.EntradaElementoDuplicado.DataTextField = "nombre_visible";
                         this.EntradaElementoDuplicado.DataValueField = "id_persona";
-                        this.EntradaElementoDuplicado.ExtraDetailFields = null;
                         this.EntradaElementoDuplicado.FieldName = null;
                         this.EntradaElementoDuplicado.Filter = "";
                         this.EntradaElementoDuplicado.FreeTextCode = "";
@@ -135,7 +134,6 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.CanCreate = true;
                         this.EntradaElementoOriginal.DataTextField = "nombre_visible";
                         this.EntradaElementoOriginal.DataValueField = "id_persona";
-                        this.EntradaElementoOriginal.ExtraDetailFields = null;
                         this.EntradaElementoOriginal.FieldName = null;
                         this.EntradaElementoOriginal.Filter = "";
                         this.EntradaElementoOriginal.FreeTextCode = "";

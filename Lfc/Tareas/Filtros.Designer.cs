@@ -104,7 +104,6 @@ namespace Lfc.Tareas
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
-                        this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "(tipo&1)=1";
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(97, 3);
@@ -162,7 +161,6 @@ namespace Lfc.Tareas
                         this.EntradaTarea.CanCreate = false;
                         this.EntradaTarea.DataTextField = "nombre";
                         this.EntradaTarea.DataValueField = "id_tipo_ticket";
-                        this.EntradaTarea.ExtraDetailFields = null;
                         this.EntradaTarea.Filter = "";
                         this.EntradaTarea.FreeTextCode = "";
                         this.EntradaTarea.Location = new System.Drawing.Point(97, 93);
@@ -212,7 +210,6 @@ namespace Lfc.Tareas
                         this.EntradaLocalidad.CanCreate = false;
                         this.EntradaLocalidad.DataTextField = "nombre";
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
-                        this.EntradaLocalidad.ExtraDetailFields = null;
                         this.EntradaLocalidad.Filter = "";
                         this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(97, 33);
@@ -274,7 +271,6 @@ namespace Lfc.Tareas
                         this.EntradaGrupo.CanCreate = false;
                         this.EntradaGrupo.DataTextField = "nombre";
                         this.EntradaGrupo.DataValueField = "id_grupo";
-                        this.EntradaGrupo.ExtraDetailFields = null;
                         this.EntradaGrupo.Filter = "";
                         this.EntradaGrupo.FreeTextCode = "";
                         this.EntradaGrupo.Location = new System.Drawing.Point(97, 63);

@@ -121,7 +121,6 @@ namespace Lfc.Bancos.Cheques
 			this.EntradaConcepto.CanCreate = true;
 			this.EntradaConcepto.DataTextField = "nombre";
 			this.EntradaConcepto.DockPadding.All = 2;
-			this.EntradaConcepto.ExtraDetailFields = null;
 			this.EntradaConcepto.FreeTextCode = "";
 			this.EntradaConcepto.DataValueField = "id_concepto";
 			this.EntradaConcepto.Location = new System.Drawing.Point(128, 136);
@@ -232,7 +231,6 @@ namespace Lfc.Bancos.Cheques
 			this.gDetailBox1.CanCreate = true;
 			this.gDetailBox1.DataTextField = "nombre_visible";
 			this.gDetailBox1.DockPadding.All = 2;
-			this.gDetailBox1.ExtraDetailFields = null;
 			this.gDetailBox1.FreeTextCode = "";
 			this.gDetailBox1.DataValueField = "id_persona";
 			this.gDetailBox1.Location = new System.Drawing.Point(128, 104);

@@ -64,8 +64,9 @@ namespace Lcc.Edicion
                         // 
                         // GroupLabel
                         // 
-                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(460, 24);
@@ -75,15 +76,13 @@ namespace Lcc.Edicion
                         // 
                         // FieldContainer
                         // 
-                        this.FieldContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.FieldContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.FieldContainer.Location = new System.Drawing.Point(0, 28);
                         this.FieldContainer.Margin = new System.Windows.Forms.Padding(0);
                         this.FieldContainer.Name = "FieldContainer";
-                        this.FieldContainer.Size = new System.Drawing.Size(460, 184);
+                        this.FieldContainer.Size = new System.Drawing.Size(460, 0);
                         this.FieldContainer.TabIndex = 2;
-                        this.FieldContainer.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.FieldContainer_ControlAdded);
                         // 
                         // MatrizCampos
                         // 

@@ -62,6 +62,7 @@ namespace Lfc.Articulos.Categorias
                         EntradaCosto.Text = Lfx.Types.Formatting.FormatStock(this.Connection.FieldDecimal("SELECT SUM(costo) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
                         EntradaGarantia.Text = Cat.Garantia.ToString();
                         EntradaRubro.Elemento = Cat.Rubro;
+                        EntradaAlicuota.Elemento = Cat.Alicuota;
 
                         base.ActualizarControl();
                 }
@@ -77,6 +78,7 @@ namespace Lfc.Articulos.Categorias
                         Cat.Seguimiento = ((Lbl.Articulos.Seguimientos)(Lfx.Types.Parsing.ParseInt(EntradaSeguimiento.TextKey)));
                         Cat.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
                         Cat.Rubro = EntradaRubro.Elemento as Lbl.Articulos.Rubro;
+                        Cat.Alicuota = EntradaAlicuota.Elemento as Lbl.Impuestos.Alicuota;
 
                         base.ActualizarElemento();
                 }

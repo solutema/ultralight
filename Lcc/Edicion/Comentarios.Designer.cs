@@ -80,7 +80,6 @@ namespace Lcc.Edicion
             this.ColPersona,
             this.ColComentario});
                         this.ListaComentarios.FullRowSelect = true;
-                        this.ListaComentarios.GridLines = true;
                         this.ListaComentarios.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaComentarios.LabelWrap = false;
                         this.ListaComentarios.Location = new System.Drawing.Point(0, 27);

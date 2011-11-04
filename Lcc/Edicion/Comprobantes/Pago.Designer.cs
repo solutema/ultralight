@@ -267,7 +267,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
-                        this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.DataValueField = "id_banco";
@@ -332,7 +331,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
-                        this.EntradaCaja.ExtraDetailFields = null;
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.DataValueField = "id_caja";
@@ -482,7 +480,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.AutoTab = true;
                         this.EntradaPlan.CanCreate = false;
                         this.EntradaPlan.DataTextField = "nombre";
-                        this.EntradaPlan.ExtraDetailFields = null;
                         this.EntradaPlan.Filter = "";
                         this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.DataValueField = "id_plan";
@@ -604,7 +601,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.AutoTab = true;
                         this.EntradaFormaDePago.CanCreate = true;
                         this.EntradaFormaDePago.DataTextField = "nombre";
-                        this.EntradaFormaDePago.ExtraDetailFields = null;
                         this.EntradaFormaDePago.Filter = "pagos=1";
                         this.EntradaFormaDePago.FreeTextCode = "";
                         this.EntradaFormaDePago.DataValueField = "id_formapago";
@@ -676,7 +672,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaChequeTerceros.AutoTab = true;
                         this.EntradaChequeTerceros.CanCreate = true;
                         this.EntradaChequeTerceros.DataTextField = "nombre";
-                        this.EntradaChequeTerceros.ExtraDetailFields = null;
                         this.EntradaChequeTerceros.Filter = "emitido=0 AND estado=0";
                         this.EntradaChequeTerceros.FreeTextCode = "";
                         this.EntradaChequeTerceros.DataValueField = "id_cheque";
@@ -721,7 +716,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaValor.AutoTab = true;
                         this.EntradaValor.CanCreate = true;
                         this.EntradaValor.DataTextField = "nombre";
-                        this.EntradaValor.ExtraDetailFields = null;
                         this.EntradaValor.Filter = "estado=0";
                         this.EntradaValor.FreeTextCode = "";
                         this.EntradaValor.DataValueField = "id_valor";

@@ -86,7 +86,6 @@ namespace Lfc.Comprobantes
                                 | System.Windows.Forms.AnchorStyles.Right)));
                     this.ReportListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
                     this.ReportListView.FullRowSelect = true;
-                    this.ReportListView.GridLines = true;
                     this.ReportListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                     this.ReportListView.LabelWrap = false;
                     this.ReportListView.Location = new System.Drawing.Point(8, 36);

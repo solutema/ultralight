@@ -84,7 +84,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
                         this.EntradaConcepto.DataTextField = "nombre";
-                        this.EntradaConcepto.ExtraDetailFields = null;
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.FreeTextCode = "*";
                         this.EntradaConcepto.DataValueField = "id_concepto";

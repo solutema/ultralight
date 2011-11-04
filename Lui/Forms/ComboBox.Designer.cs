@@ -108,7 +108,7 @@ namespace Lui.Forms
                         this.Controls.Add(this.ImagenMasMenos);
                         this.Controls.Add(this.ItemList);
                         this.Name = "ComboBox";
-                        this.Size = new System.Drawing.Size(460, 110);
+                        this.Size = new System.Drawing.Size(460, 24);
                         this.SizeChanged += new System.EventHandler(this.ComboBox_SizeChanged);
                         this.Enter += new System.EventHandler(this.ComboBox_Enter);
                         this.Leave += new System.EventHandler(this.ComboBox_Leave);

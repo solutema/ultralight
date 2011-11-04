@@ -114,7 +114,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
-                        this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.FieldName = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
@@ -161,7 +160,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.CanCreate = false;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
-                        this.EntradaVendedor.ExtraDetailFields = null;
                         this.EntradaVendedor.FieldName = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
@@ -198,7 +196,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaSucursal.CanCreate = false;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
-                        this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.FieldName = null;
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";

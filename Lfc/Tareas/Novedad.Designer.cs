@@ -103,7 +103,6 @@ namespace Lfc.Tareas
                         this.EntradaTecnico.AutoTab = true;
                         this.EntradaTecnico.CanCreate = true;
                         this.EntradaTecnico.DataTextField = "nombre_visible";
-                        this.EntradaTecnico.ExtraDetailFields = null;
                         this.EntradaTecnico.Filter = "(tipo&4)=4";
                         this.EntradaTecnico.FreeTextCode = "";
                         this.EntradaTecnico.DataValueField = "id_persona";
@@ -203,7 +202,6 @@ namespace Lfc.Tareas
                         this.EntradaTicket.AutoTab = true;
                         this.EntradaTicket.CanCreate = true;
                         this.EntradaTicket.DataTextField = "nombre";
-                        this.EntradaTicket.ExtraDetailFields = null;
                         this.EntradaTicket.Filter = "";
                         this.EntradaTicket.FreeTextCode = "";
                         this.EntradaTicket.DataValueField = "id_ticket";

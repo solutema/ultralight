@@ -210,7 +210,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaSituacion.CanCreate = true;
                         this.EntradaEmpresaSituacion.DataTextField = "nombre";
                         this.EntradaEmpresaSituacion.DataValueField = "id_situacion";
-                        this.EntradaEmpresaSituacion.ExtraDetailFields = null;
                         this.EntradaEmpresaSituacion.Filter = "";
                         this.EntradaEmpresaSituacion.FreeTextCode = "";
                         this.EntradaEmpresaSituacion.Location = new System.Drawing.Point(176, 120);
@@ -549,7 +548,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaStockDepositoPredet.CanCreate = true;
                         this.EntradaStockDepositoPredet.DataTextField = "nombre";
                         this.EntradaStockDepositoPredet.DataValueField = "id_situacion";
-                        this.EntradaStockDepositoPredet.ExtraDetailFields = null;
                         this.EntradaStockDepositoPredet.Filter = "";
                         this.EntradaStockDepositoPredet.FreeTextCode = "";
                         this.EntradaStockDepositoPredet.Location = new System.Drawing.Point(192, 120);
@@ -766,7 +764,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaClientePredet.CanCreate = true;
                         this.EntradaClientePredet.DataTextField = "nombre_visible";
                         this.EntradaClientePredet.DataValueField = "id_persona";
-                        this.EntradaClientePredet.ExtraDetailFields = null;
                         this.EntradaClientePredet.Filter = "";
                         this.EntradaClientePredet.FreeTextCode = "";
                         this.EntradaClientePredet.Location = new System.Drawing.Point(184, 36);
@@ -800,7 +797,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaFormaPagoPredet.CanCreate = true;
                         this.EntradaFormaPagoPredet.DataTextField = "nombre";
                         this.EntradaFormaPagoPredet.DataValueField = "id_formapago";
-                        this.EntradaFormaPagoPredet.ExtraDetailFields = null;
                         this.EntradaFormaPagoPredet.Filter = "estado=1";
                         this.EntradaFormaPagoPredet.FreeTextCode = "";
                         this.EntradaFormaPagoPredet.Location = new System.Drawing.Point(184, 64);
@@ -876,7 +872,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaStockDepositoPredetSuc.CanCreate = true;
                         this.EntradaStockDepositoPredetSuc.DataTextField = "nombre";
                         this.EntradaStockDepositoPredetSuc.DataValueField = "id_situacion";
-                        this.EntradaStockDepositoPredetSuc.ExtraDetailFields = null;
                         this.EntradaStockDepositoPredetSuc.Filter = "";
                         this.EntradaStockDepositoPredetSuc.FreeTextCode = "";
                         this.EntradaStockDepositoPredetSuc.Location = new System.Drawing.Point(192, 148);

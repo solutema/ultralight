@@ -176,7 +176,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaUsuario.CanCreate = false;
                         this.EntradaUsuario.DataTextField = "nombre_visible";
                         this.EntradaUsuario.DataValueField = "id_persona";
-                        this.EntradaUsuario.ExtraDetailFields = null;
                         this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\' AND estado=1";
                         this.EntradaUsuario.FreeTextCode = "";
                         this.EntradaUsuario.Location = new System.Drawing.Point(235, 155);

@@ -174,7 +174,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionOrigen.AutoTab = true;
                         this.EntradaSituacionOrigen.CanCreate = true;
                         this.EntradaSituacionOrigen.DataTextField = "nombre";
-                        this.EntradaSituacionOrigen.ExtraDetailFields = null;
                         this.EntradaSituacionOrigen.Filter = "";
                         this.EntradaSituacionOrigen.FreeTextCode = "";
                         this.EntradaSituacionOrigen.DataValueField = "id_situacion";
@@ -205,7 +204,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionDestino.AutoTab = true;
                         this.EntradaSituacionDestino.CanCreate = true;
                         this.EntradaSituacionDestino.DataTextField = "nombre";
-                        this.EntradaSituacionDestino.ExtraDetailFields = null;
                         this.EntradaSituacionDestino.Filter = "";
                         this.EntradaSituacionDestino.FreeTextCode = "";
                         this.EntradaSituacionDestino.DataValueField = "id_situacion";
@@ -343,7 +341,6 @@ namespace Lfc.Comprobantes.Tipo
             this.ColPv,
             this.ColImpresora});
                         this.Listado.FullRowSelect = true;
-                        this.Listado.GridLines = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.LabelWrap = false;
                         this.Listado.Location = new System.Drawing.Point(468, 32);

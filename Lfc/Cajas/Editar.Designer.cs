@@ -139,7 +139,6 @@ namespace Lfc.Cajas
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.DataValueField = "id_banco";
-                        this.EntradaBanco.ExtraDetailFields = null;
                         this.EntradaBanco.FieldName = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
@@ -241,7 +240,6 @@ namespace Lfc.Cajas
                         this.EntradaMoneda.CanCreate = true;
                         this.EntradaMoneda.DataTextField = "nombre";
                         this.EntradaMoneda.DataValueField = "id_moneda";
-                        this.EntradaMoneda.ExtraDetailFields = null;
                         this.EntradaMoneda.FieldName = null;
                         this.EntradaMoneda.Filter = "";
                         this.EntradaMoneda.FreeTextCode = "";

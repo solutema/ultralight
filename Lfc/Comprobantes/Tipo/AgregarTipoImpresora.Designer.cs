@@ -88,7 +88,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImpresora.AutoTab = true;
                         this.EntradaImpresora.CanCreate = true;
                         this.EntradaImpresora.DataTextField = "nombre";
-                        this.EntradaImpresora.ExtraDetailFields = null;
                         this.EntradaImpresora.Filter = "";
                         this.EntradaImpresora.FreeTextCode = "";
                         this.EntradaImpresora.DataValueField = "id_impresora";
@@ -121,7 +120,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
-                        this.EntradaSucursal.ExtraDetailFields = null;
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.DataValueField = "id_sucursal";

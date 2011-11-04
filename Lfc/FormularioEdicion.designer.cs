@@ -75,6 +75,7 @@ namespace Lfc
                         this.BotonGuardar.Location = new System.Drawing.Point(568, 8);
                         this.BotonGuardar.Name = "BotonGuardar";
                         this.BotonGuardar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonGuardar.ReadOnly = false;
                         this.BotonGuardar.Size = new System.Drawing.Size(104, 44);
                         this.BotonGuardar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonGuardar.Subtext = "F9";
@@ -91,6 +92,7 @@ namespace Lfc
                         this.BotonCancelar.Location = new System.Drawing.Point(680, 8);
                         this.BotonCancelar.Name = "BotonCancelar";
                         this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonCancelar.ReadOnly = false;
                         this.BotonCancelar.Size = new System.Drawing.Size(104, 44);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonCancelar.Subtext = "Esc";
@@ -120,6 +122,7 @@ namespace Lfc
                         this.BotonImprimir.Location = new System.Drawing.Point(456, 8);
                         this.BotonImprimir.Name = "BotonImprimir";
                         this.BotonImprimir.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonImprimir.ReadOnly = false;
                         this.BotonImprimir.Size = new System.Drawing.Size(104, 44);
                         this.BotonImprimir.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonImprimir.Subtext = "F8";
@@ -155,9 +158,9 @@ namespace Lfc
                         // 
                         // SplitContainer
                         // 
-                        this.SplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.SplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.SplitContainer.Location = new System.Drawing.Point(0, 0);
                         this.SplitContainer.Name = "SplitContainer";
                         // 
@@ -181,13 +184,13 @@ namespace Lfc
                         // TablaElementosEstandar
                         // 
                         this.TablaElementosEstandar.ColumnCount = 1;
-                        this.TablaElementosEstandar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+                        this.TablaElementosEstandar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100f));
                         this.TablaElementosEstandar.Controls.Add(this.EntradaImagen, 0, 0);
                         this.TablaElementosEstandar.Controls.Add(this.EntradaTags, 0, 2);
                         this.TablaElementosEstandar.Controls.Add(this.EntradaComentarios, 0, 1);
                         this.TablaElementosEstandar.Dock = System.Windows.Forms.DockStyle.Fill;
                         this.TablaElementosEstandar.Location = new System.Drawing.Point(12, 12);
-                        this.TablaElementosEstandar.Margin = new System.Windows.Forms.Padding(0);
+                        this.TablaElementosEstandar.Margin = new System.Windows.Forms.Padding(8);
                         this.TablaElementosEstandar.Name = "TablaElementosEstandar";
                         this.TablaElementosEstandar.RowCount = 3;
                         this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -199,12 +202,15 @@ namespace Lfc
                         // EntradaImagen
                         // 
                         this.EntradaImagen.AutoNav = true;
+                        this.EntradaImagen.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.EntradaImagen.FieldName = null;
+                        this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaImagen.Location = new System.Drawing.Point(0, 0);
                         this.EntradaImagen.Margin = new System.Windows.Forms.Padding(0);
-                        this.EntradaImagen.MaximumSize = new System.Drawing.Size(320, 240);
                         this.EntradaImagen.MinimumSize = new System.Drawing.Size(240, 160);
                         this.EntradaImagen.Name = "EntradaImagen";
                         this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImagen.ReadOnly = false;
                         this.EntradaImagen.Size = new System.Drawing.Size(308, 160);
                         this.EntradaImagen.TabIndex = 1;
                         this.EntradaImagen.Text = "Imagen";
@@ -212,28 +218,31 @@ namespace Lfc
                         // EntradaTags
                         // 
                         this.EntradaTags.AutoNav = true;
+                        this.EntradaTags.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.EntradaTags.FieldName = null;
+                        this.EntradaTags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaTags.Location = new System.Drawing.Point(0, 312);
                         this.EntradaTags.Margin = new System.Windows.Forms.Padding(0);
-                        this.EntradaTags.MaximumSize = new System.Drawing.Size(320, 480);
                         this.EntradaTags.MinimumSize = new System.Drawing.Size(240, 160);
                         this.EntradaTags.Name = "EntradaTags";
                         this.EntradaTags.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTags.ReadOnly = false;
                         this.EntradaTags.Size = new System.Drawing.Size(308, 480);
                         this.EntradaTags.TabIndex = 3;
                         this.EntradaTags.Text = "Otros atributos";
                         // 
                         // EntradaComentarios
                         // 
-                        this.EntradaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComentarios.AutoNav = true;
+                        this.EntradaComentarios.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.EntradaComentarios.FieldName = null;
+                        this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaComentarios.Location = new System.Drawing.Point(0, 160);
                         this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(0);
-                        this.EntradaComentarios.MaximumSize = new System.Drawing.Size(320, 480);
                         this.EntradaComentarios.MinimumSize = new System.Drawing.Size(240, 152);
                         this.EntradaComentarios.Name = "EntradaComentarios";
                         this.EntradaComentarios.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComentarios.ReadOnly = false;
                         this.EntradaComentarios.Size = new System.Drawing.Size(308, 152);
                         this.EntradaComentarios.TabIndex = 2;
                         this.EntradaComentarios.Text = "Comentarios";

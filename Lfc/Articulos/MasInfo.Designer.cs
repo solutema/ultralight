@@ -199,7 +199,6 @@ namespace Lfc.Articulos
             this.pvp,
             this.usuario});
                         this.lvItems.FullRowSelect = true;
-                        this.lvItems.GridLines = true;
                         this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.lvItems.LabelWrap = false;
                         this.lvItems.Location = new System.Drawing.Point(12, 96);

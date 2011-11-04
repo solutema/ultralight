@@ -414,7 +414,6 @@ namespace Lfc.Reportes
             this.comprob,
             this.obs});
                         this.Listado.FullRowSelect = true;
-                        this.Listado.GridLines = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.HideSelection = false;
                         this.Listado.Location = new System.Drawing.Point(352, 8);

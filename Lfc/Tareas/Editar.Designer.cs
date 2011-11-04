@@ -117,7 +117,6 @@ namespace Lfc.Tareas
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
-                        this.EntradaCliente.ExtraDetailFields = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(84, 0);
@@ -140,7 +139,6 @@ namespace Lfc.Tareas
                         this.EntradaTarea.CanCreate = true;
                         this.EntradaTarea.DataTextField = "nombre";
                         this.EntradaTarea.DataValueField = "id_tipo_ticket";
-                        this.EntradaTarea.ExtraDetailFields = null;
                         this.EntradaTarea.Filter = "";
                         this.EntradaTarea.FreeTextCode = "";
                         this.EntradaTarea.Location = new System.Drawing.Point(84, 28);
@@ -172,7 +170,6 @@ namespace Lfc.Tareas
                         this.EntradaTecnico.CanCreate = false;
                         this.EntradaTecnico.DataTextField = "nombre_visible";
                         this.EntradaTecnico.DataValueField = "id_persona";
-                        this.EntradaTecnico.ExtraDetailFields = null;
                         this.EntradaTecnico.Filter = "(tipo&4)=4";
                         this.EntradaTecnico.FreeTextCode = "";
                         this.EntradaTecnico.Location = new System.Drawing.Point(84, 56);
@@ -389,7 +386,6 @@ namespace Lfc.Tareas
             this.Fecha,
             this.Detalle});
                         this.ListaHistorial.FullRowSelect = true;
-                        this.ListaHistorial.GridLines = true;
                         this.ListaHistorial.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaHistorial.Location = new System.Drawing.Point(0, 28);
                         this.ListaHistorial.MultiSelect = false;
@@ -460,7 +456,6 @@ namespace Lfc.Tareas
                         this.EntradaEstado.CanCreate = true;
                         this.EntradaEstado.DataTextField = "nombre";
                         this.EntradaEstado.DataValueField = "id_ticket_estado";
-                        this.EntradaEstado.ExtraDetailFields = null;
                         this.EntradaEstado.Filter = "";
                         this.EntradaEstado.FreeTextCode = "";
                         this.EntradaEstado.Location = new System.Drawing.Point(446, 28);

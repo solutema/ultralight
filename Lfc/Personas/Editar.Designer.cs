@@ -159,7 +159,6 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.CanCreate = true;
                         this.EntradaLocalidad.DataTextField = "nombre";
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
-                        this.EntradaLocalidad.ExtraDetailFields = null;
                         this.EntradaLocalidad.FieldName = null;
                         this.EntradaLocalidad.Filter = "nivel=2";
                         this.EntradaLocalidad.FreeTextCode = "";
@@ -229,7 +228,6 @@ namespace Lfc.Personas
                         this.EntradaTipoDoc.CanCreate = false;
                         this.EntradaTipoDoc.DataTextField = "nombre";
                         this.EntradaTipoDoc.DataValueField = "id_tipo_doc";
-                        this.EntradaTipoDoc.ExtraDetailFields = null;
                         this.EntradaTipoDoc.FieldName = null;
                         this.EntradaTipoDoc.Filter = "";
                         this.EntradaTipoDoc.FreeTextCode = "";
@@ -515,7 +513,6 @@ namespace Lfc.Personas
                         this.EntradaSituacion.CanCreate = false;
                         this.EntradaSituacion.DataTextField = "nombre";
                         this.EntradaSituacion.DataValueField = "id_situacion";
-                        this.EntradaSituacion.ExtraDetailFields = null;
                         this.EntradaSituacion.FieldName = null;
                         this.EntradaSituacion.Filter = "";
                         this.EntradaSituacion.FreeTextCode = "";
@@ -565,7 +562,6 @@ namespace Lfc.Personas
                         this.EntradaTipo.CanCreate = false;
                         this.EntradaTipo.DataTextField = "nombre";
                         this.EntradaTipo.DataValueField = "id_tipo_persona";
-                        this.EntradaTipo.ExtraDetailFields = null;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Filter = "";
                         this.EntradaTipo.FreeTextCode = "";
@@ -601,7 +597,6 @@ namespace Lfc.Personas
                         this.EntradaGrupo.CanCreate = true;
                         this.EntradaGrupo.DataTextField = "nombre";
                         this.EntradaGrupo.DataValueField = "id_grupo";
-                        this.EntradaGrupo.ExtraDetailFields = null;
                         this.EntradaGrupo.FieldName = null;
                         this.EntradaGrupo.Filter = "parent IS NULL";
                         this.EntradaGrupo.FreeTextCode = "";
@@ -884,7 +879,6 @@ namespace Lfc.Personas
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
-                        this.EntradaVendedor.ExtraDetailFields = null;
                         this.EntradaVendedor.FieldName = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
@@ -962,7 +956,6 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.CanCreate = true;
                         this.EntradaSubGrupo.DataTextField = "nombre";
                         this.EntradaSubGrupo.DataValueField = "id_grupo";
-                        this.EntradaSubGrupo.ExtraDetailFields = null;
                         this.EntradaSubGrupo.FieldName = null;
                         this.EntradaSubGrupo.Filter = "parent IS NULL";
                         this.EntradaSubGrupo.FreeTextCode = "";

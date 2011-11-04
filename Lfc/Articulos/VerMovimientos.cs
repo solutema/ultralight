@@ -76,13 +76,13 @@ namespace Lfc.Articulos
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-                internal Lui.Forms.ListView lvItems;
+                internal Lui.Forms.ListView Listado;
 		internal System.Windows.Forms.ColumnHeader id;
 		internal System.Windows.Forms.ColumnHeader fecha;
 		internal System.Windows.Forms.ColumnHeader cantidad;
 		internal System.Windows.Forms.ColumnHeader obs;
 		internal System.Windows.Forms.ColumnHeader saldo;
-                internal Lui.Forms.ListView lvPedidos;
+                internal Lui.Forms.ListView ListadoPedidos;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader1;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader2;
 		internal System.Windows.Forms.ColumnHeader ColumnHeader3;
@@ -96,7 +96,7 @@ namespace Lfc.Articulos
 
 		private void InitializeComponent()
 		{
-                        this.lvItems = new Lui.Forms.ListView();
+                        this.Listado = new Lui.Forms.ListView();
                         this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -104,7 +104,7 @@ namespace Lfc.Articulos
                         this.hacia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.saldo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.obs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.lvPedidos = new Lui.Forms.ListView();
+                        this.ListadoPedidos = new Lui.Forms.ListView();
                         this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -117,12 +117,12 @@ namespace Lfc.Articulos
                         // 
                         // lvItems
                         // 
-                        this.lvItems.AllowColumnReorder = true;
-                        this.lvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.Listado.AllowColumnReorder = true;
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lvItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                        this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.fecha,
             this.cantidad,
@@ -130,17 +130,16 @@ namespace Lfc.Articulos
             this.hacia,
             this.saldo,
             this.obs});
-                        this.lvItems.FullRowSelect = true;
-                        this.lvItems.GridLines = true;
-                        this.lvItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-                        this.lvItems.HideSelection = false;
-                        this.lvItems.Location = new System.Drawing.Point(8, 28);
-                        this.lvItems.MultiSelect = false;
-                        this.lvItems.Name = "lvItems";
-                        this.lvItems.Size = new System.Drawing.Size(608, 135);
-                        this.lvItems.TabIndex = 52;
-                        this.lvItems.UseCompatibleStateImageBehavior = false;
-                        this.lvItems.View = System.Windows.Forms.View.Details;
+                        this.Listado.FullRowSelect = true;
+                        this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+                        this.Listado.HideSelection = false;
+                        this.Listado.Location = new System.Drawing.Point(8, 28);
+                        this.Listado.MultiSelect = false;
+                        this.Listado.Name = "lvItems";
+                        this.Listado.Size = new System.Drawing.Size(608, 135);
+                        this.Listado.TabIndex = 52;
+                        this.Listado.UseCompatibleStateImageBehavior = false;
+                        this.Listado.View = System.Windows.Forms.View.Details;
                         // 
                         // id
                         // 
@@ -181,29 +180,28 @@ namespace Lfc.Articulos
                         // 
                         // lvPedidos
                         // 
-                        this.lvPedidos.AllowColumnReorder = true;
-                        this.lvPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        this.ListadoPedidos.AllowColumnReorder = true;
+                        this.ListadoPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lvPedidos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lvPedidos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                        this.ListadoPedidos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.ListadoPedidos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnHeader1,
             this.ColumnHeader2,
             this.ColumnHeader3,
             this.ColumnHeader6,
             this.ColumnHeader4,
             this.ColumnHeader5});
-                        this.lvPedidos.FullRowSelect = true;
-                        this.lvPedidos.GridLines = true;
-                        this.lvPedidos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-                        this.lvPedidos.HideSelection = false;
-                        this.lvPedidos.Location = new System.Drawing.Point(8, 191);
-                        this.lvPedidos.MultiSelect = false;
-                        this.lvPedidos.Name = "lvPedidos";
-                        this.lvPedidos.Size = new System.Drawing.Size(608, 104);
-                        this.lvPedidos.TabIndex = 53;
-                        this.lvPedidos.UseCompatibleStateImageBehavior = false;
-                        this.lvPedidos.View = System.Windows.Forms.View.Details;
-                        this.lvPedidos.DoubleClick += new System.EventHandler(this.lvPedidos_DoubleClick);
+                        this.ListadoPedidos.FullRowSelect = true;
+                        this.ListadoPedidos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+                        this.ListadoPedidos.HideSelection = false;
+                        this.ListadoPedidos.Location = new System.Drawing.Point(8, 191);
+                        this.ListadoPedidos.MultiSelect = false;
+                        this.ListadoPedidos.Name = "lvPedidos";
+                        this.ListadoPedidos.Size = new System.Drawing.Size(608, 104);
+                        this.ListadoPedidos.TabIndex = 53;
+                        this.ListadoPedidos.UseCompatibleStateImageBehavior = false;
+                        this.ListadoPedidos.View = System.Windows.Forms.View.Details;
+                        this.ListadoPedidos.DoubleClick += new System.EventHandler(this.lvPedidos_DoubleClick);
                         // 
                         // ColumnHeader1
                         // 
@@ -267,13 +265,13 @@ namespace Lfc.Articulos
                         this.ClientSize = new System.Drawing.Size(624, 364);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
-                        this.Controls.Add(this.lvPedidos);
-                        this.Controls.Add(this.lvItems);
+                        this.Controls.Add(this.ListadoPedidos);
+                        this.Controls.Add(this.Listado);
                         this.Name = "VerMovimientos";
                         this.Text = "Artículos: Detalle de Entrada y Salida";
                         this.Activated += new System.EventHandler(this.FormArticulosMovimDetalles_Activated);
-                        this.Controls.SetChildIndex(this.lvItems, 0);
-                        this.Controls.SetChildIndex(this.lvPedidos, 0);
+                        this.Controls.SetChildIndex(this.Listado, 0);
+                        this.Controls.SetChildIndex(this.ListadoPedidos, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.ResumeLayout(false);
@@ -284,8 +282,8 @@ namespace Lfc.Articulos
 
 		public void Mostrar(Lbl.Articulos.Articulo articulo)
 		{
-			lvItems.BeginUpdate();
-			lvItems.Items.Clear();
+			Listado.BeginUpdate();
+			Listado.Items.Clear();
 
                         System.Data.DataTable Detalles = this.Connection.Select("SELECT id_movim, id_articulo, desdesituacion, haciasituacion, cantidad, fecha, saldo, obs FROM articulos_movim WHERE id_articulo=" + articulo.Id.ToString() + " ORDER BY fecha");
 
@@ -312,7 +310,7 @@ namespace Lfc.Articulos
 					HaciaSituacion = SituacionCache[(int)Detalle["haciasituacion"]];
 				}
 
-				itm = lvItems.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
+				itm = Listado.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(Detalle["fecha"]))));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, DesdeSituacion));
@@ -320,7 +318,7 @@ namespace Lfc.Articulos
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["saldo"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Detalle["obs"])));
 			}
-			lvItems.EndUpdate();
+			Listado.EndUpdate();
 			if (itm != null)
 			{
 				itm.Selected = true;
@@ -328,8 +326,8 @@ namespace Lfc.Articulos
 				itm.EnsureVisible();
 			}
 
-			lvPedidos.BeginUpdate();
-			lvPedidos.Items.Clear();
+			ListadoPedidos.BeginUpdate();
+			ListadoPedidos.Items.Clear();
 			System.Data.DataTable Pedidos = this.Connection.Select(@"SELECT comprob.id_comprob, comprob.fecha, comprob.id_cliente, comprob.tipo_fac, comprob.numero, comprob_detalle.cantidad, comprob_detalle.precio, comprob.estado
 				FROM comprob, comprob_detalle
 				WHERE comprob.id_comprob=comprob_detalle.id_comprob
@@ -342,7 +340,7 @@ namespace Lfc.Articulos
 			itm = null;
 			foreach (System.Data.DataRow Pedido in Pedidos.Rows)
 			{
-				itm = lvPedidos.Items.Add(System.Convert.ToString(Pedido["id_comprob"]));
+				itm = ListadoPedidos.Items.Add(System.Convert.ToString(Pedido["id_comprob"]));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.Connection.ConvertDBNullToZero(Pedido["id_cliente"]).ToString())));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Pedido["numero"])));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(Pedido["fecha"]))));
@@ -362,7 +360,7 @@ namespace Lfc.Articulos
 						break;
 				}
 			}
-			lvPedidos.EndUpdate();
+			ListadoPedidos.EndUpdate();
 			if (itm != null)
 			{
 				itm.Selected = true;
@@ -373,20 +371,20 @@ namespace Lfc.Articulos
 
 		private void lvPedidos_DoubleClick(object sender, System.EventArgs e)
 		{
-			if (lvPedidos.SelectedItems.Count > 0)
+			if (ListadoPedidos.SelectedItems.Count > 0)
 			{
-				ListViewItem Itm = lvPedidos.SelectedItems[0];
+				ListViewItem Itm = ListadoPedidos.SelectedItems[0];
 				this.Workspace.RunTime.Execute("EDITAR PD " + Itm.Text);
 			}
 		}
 
 		private void FormArticulosMovimDetalles_Activated(object sender, System.EventArgs e)
 		{
-			if (lvItems.SelectedItems.Count > 0)
+			if (Listado.SelectedItems.Count > 0)
 			{
-				lvItems.SelectedItems[0].Selected = true;
-				lvItems.SelectedItems[0].Focused = true;
-				lvItems.SelectedItems[0].EnsureVisible();
+				Listado.SelectedItems[0].Selected = true;
+				Listado.SelectedItems[0].Focused = true;
+				Listado.SelectedItems[0].EnsureVisible();
 			}
 		}
 	}
