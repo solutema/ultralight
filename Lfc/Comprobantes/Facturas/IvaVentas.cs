@@ -235,7 +235,7 @@ namespace Lfc.Comprobantes.Facturas
                                 }
                         } else {
                                 // Si está anulada, la tacho
-                                item.SubItems["comprob.nombre_visible"].Text = "Anulada";
+                                item.SubItems["personas.nombre_visible"].Text = "Anulada";
                         }
 
                         base.OnItemAdded(item, row);
