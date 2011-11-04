@@ -75,6 +75,11 @@ namespace Lfx.Environment
                 [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
                 public static void Reboot()
                 {
+                        if (Lfx.Workspace.Master != null) {
+                                Lfx.Workspace.Master.Disposing = true;
+                                Lfx.Workspace.Master.Dispose();
+                        }
+
                         string[] ParametrosAPasar = System.Environment.GetCommandLineArgs();
                         ParametrosAPasar[0] = "";
                         string Params = string.Join(" ", ParametrosAPasar).Trim();
@@ -96,11 +101,6 @@ namespace Lfx.Environment
                         NuevoProceso.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
                         NuevoProceso.StartInfo.UseShellExecute = false;
                         NuevoProceso.Start();
-
-                        if (Lfx.Workspace.Master != null) {
-                                Lfx.Workspace.Master.Disposing = true;
-                                Lfx.Workspace.Master.Dispose();
-                        }
 
                         System.Environment.Exit(0);
                 }

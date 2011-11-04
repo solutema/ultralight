@@ -234,7 +234,7 @@ namespace Lfc.Comprobantes.Recibos
                         // EtiquetaFacturasImporte
                         // 
                         this.EtiquetaFacturasImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaFacturasImporte.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaFacturasImporte.LabelStyle = Lui.Forms.LabelStyles.Bigger;
                         this.EtiquetaFacturasImporte.Location = new System.Drawing.Point(260, 328);
                         this.EtiquetaFacturasImporte.Name = "EtiquetaFacturasImporte";
                         this.EtiquetaFacturasImporte.Size = new System.Drawing.Size(112, 31);
@@ -300,7 +300,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.LabelAgregarValores.BackColor = System.Drawing.SystemColors.Info;
                         this.LabelAgregarValores.ForeColor = System.Drawing.SystemColors.InfoText;
                         this.LabelAgregarValores.Location = new System.Drawing.Point(4, 56);
-                        this.LabelAgregarValores.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+                        this.LabelAgregarValores.Margin = new System.Windows.Forms.Padding(0);
                         this.LabelAgregarValores.Name = "LabelAgregarValores";
                         this.LabelAgregarValores.Padding = new System.Windows.Forms.Padding(12);
                         this.LabelAgregarValores.Size = new System.Drawing.Size(364, 244);
@@ -401,7 +401,7 @@ namespace Lfc.Comprobantes.Recibos
                         // EtiquetaValoresImporte
                         // 
                         this.EtiquetaValoresImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaValoresImporte.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaValoresImporte.LabelStyle = Lui.Forms.LabelStyles.Bigger;
                         this.EtiquetaValoresImporte.Location = new System.Drawing.Point(260, 328);
                         this.EtiquetaValoresImporte.Name = "EtiquetaValoresImporte";
                         this.EtiquetaValoresImporte.Size = new System.Drawing.Size(112, 31);
@@ -530,7 +530,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.LabelAgregarFacturas.BackColor = System.Drawing.SystemColors.Info;
                         this.LabelAgregarFacturas.ForeColor = System.Drawing.SystemColors.InfoText;
                         this.LabelAgregarFacturas.Location = new System.Drawing.Point(4, 56);
-                        this.LabelAgregarFacturas.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+                        this.LabelAgregarFacturas.Margin = new System.Windows.Forms.Padding(0);
                         this.LabelAgregarFacturas.Name = "LabelAgregarFacturas";
                         this.LabelAgregarFacturas.Padding = new System.Windows.Forms.Padding(12);
                         this.LabelAgregarFacturas.Size = new System.Drawing.Size(364, 244);

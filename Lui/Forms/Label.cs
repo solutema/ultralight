@@ -39,6 +39,8 @@ namespace Lui.Forms
         {
                 Small,
                 Default,
+                Big,
+                Bigger,
                 Title,
                 Header1,
                 Header2
@@ -77,6 +79,12 @@ namespace Lui.Forms
                                                 break;
                                         case LabelStyles.Default:
                                                 base.Font = Lfx.Config.Display.DefaultFont;
+                                                break;
+                                        case LabelStyles.Big:
+                                                base.Font = Lfx.Config.Display.BigFont;
+                                                break;
+                                        case LabelStyles.Bigger:
+                                                base.Font = Lfx.Config.Display.BiggerFont;
                                                 break;
                                         case LabelStyles.Header1:
                                                 base.Font = Lfx.Config.Display.HeaderFont;

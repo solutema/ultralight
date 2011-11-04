@@ -47,6 +47,8 @@ namespace Lfx.Config
                 public static System.Drawing.Font MenuFont = new System.Drawing.Font(DefaultFontName, 9.75F);
                 public static System.Drawing.Font SmallFont = new System.Drawing.Font(DefaultFontName, 8F);
                 public static System.Drawing.Font SmallerFont = new System.Drawing.Font(DefaultFontName, 6.75F);
+                public static System.Drawing.Font BigFont = new System.Drawing.Font(DefaultFontName, 12F);
+                public static System.Drawing.Font BiggerFont = new System.Drawing.Font(DefaultFontName, 14F);
                 public static System.Drawing.Font TitleFont = new System.Drawing.Font(DefaultFontName, 10.5F, System.Drawing.FontStyle.Bold);
                 public static System.Drawing.Font HeaderFont = new System.Drawing.Font(DefaultFontName, 16F, System.Drawing.FontStyle.Bold);
                 public static System.Drawing.Font Header2Font = new System.Drawing.Font(DefaultFontName, 12F, System.Drawing.FontStyle.Bold);
