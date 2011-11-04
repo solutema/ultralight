@@ -31,35 +31,25 @@
 
 using System;
 using System.Collections.Generic;
-using Lazaro.Pres;
-using Lazaro.Pres.Forms;
 
-namespace Lfc.Pagos.FormasDePago
+namespace Lfc.Pagos.Planes
 {
-        public partial class Editar : Form
-	{
-		public Editar()
-		{
-                        ElementoTipo = typeof(Lbl.Pagos.FormaDePago);
+        public class Inicio : Lazaro.Pres.Listings.Listing
+        {
+                public Inicio()
+                {
+                        ElementoTipo = typeof(Lbl.Pagos.Plan);
 
-                        Sections = new SectionCollection()
-                        {
-                                new Section("General")
-                        };
-
-                        Sections[0].Fields = new FieldCollection()
-                        {
-                                new Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text),
-                                new Field("tipo", "Tipo", new Dictionary<int, string>() {
-                                        { 1, "Efectivo" },
-                                        { 2, "Cheque (propio)" },
-                                        { 3, "Cuenta Corriente" },
-                                        { 4, "Tarjeta" },
-                                        { 6, "Caja" },
-                                        { 7, "Otro" },
-                                        { 8, "Cheque (terceros)" }
-                                })
-                        };
-		}      
-	}
+                        TableName = "tarjetas_planes";
+                        KeyColumnName = new Lazaro.Pres.Field("tarjetas_planes.id_plan", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        Columns = new Lazaro.Pres.FieldCollection() 
+			{
+				new Lazaro.Pres.Field("tarjetas_planes.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
+                                new Lazaro.Pres.Field("tarjetas_planes.cuotas", "Cuotas", Lfx.Data.InputFieldTypes.Integer, 96),
+                                new Lazaro.Pres.Field("tarjetas_planes.interes", "Desc./Recargo", Lfx.Data.InputFieldTypes.Numeric, 120),
+                                new Lazaro.Pres.Field("tarjetas_planes.comision", "Retención", Lfx.Data.InputFieldTypes.Numeric, 120)
+			};
+                        OrderBy = "tarjetas_planes.nombre";
+                }
+        }
 }

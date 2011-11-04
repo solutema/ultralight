@@ -89,6 +89,7 @@
     <Compile Include="Bancos\Cheques\InicioEmitidos.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Bancos\Inicio.cs" />
     <Compile Include="Cajas\Movimiento.Designer.cs">
       <DependentUpon>Movimiento.cs</DependentUpon>
     </Compile>
@@ -123,6 +124,9 @@
       <DependentUpon>IniciarNumeracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Presupuestos\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\Recibos\Pago\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Remitos\Inicio.cs">
@@ -370,8 +374,8 @@
     <Compile Include="Misc\Desduplicar.Designer.cs">
       <DependentUpon>Desduplicar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pagos\FormasDePago\Editar.cs" />
     <Compile Include="Pagos\FormasDePago\Inicio.cs" />
+    <Compile Include="Pagos\Planes\Inicio.cs" />
     <Compile Include="Personas\AltaDuplicada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -492,7 +496,7 @@
     <Compile Include="Comprobantes\Recibos\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Recibos\Inicio.cs">
+    <Compile Include="Comprobantes\Recibos\Cobro\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Recibos\Rapido.cs">

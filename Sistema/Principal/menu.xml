@@ -115,15 +115,11 @@
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="Cajas" Funcion="LISTAR Lbl.Cajas.Caja" />
-      <Opcion Nombre="Conceptos" Funcion="LISTAR Lbl.Cajas.Concepto" />
       <Opcion Nombre="Bancos" Funcion="LISTAR Lbl.Bancos.Banco" />
-      <Opcion Nombre="Formas de Pago" Funcion="LISTAR Lbl.Pagos.FormaDePago" />
-      <Opcion Nombre="Planes" Funcion="LISTAR Lbl.Tarjetas.Plan" />
     </Opcion>
   </Opcion>
   <Opcion Nombre="&amp;Tareas" Funcion="">
     <Opcion Nombre="&amp;Listado" Funcion="LISTAR Lbl.Tareas.Tarea" />
-    <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="&amp;Nueva" Funcion="CREAR Lbl.Tareas.Tarea" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
@@ -142,8 +138,13 @@
       <Opcion Nombre="Desduplicar Registros" Funcion="INSTANCIAR Lfc.Misc.Desduplicar" />
     </Opcion>
     <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="&amp;Localidades" Funcion="LISTAR Lbl.Entidades.Localidad" />
       <Opcion Nombre="Sucursales" Funcion="LISTAR Lbl.Entidades.Sucursal" />
+      <Opcion Nombre="-" Funcion="" />
+      <Opcion Nombre="Conceptos de Cobro y Pago" Funcion="LISTAR Lbl.Cajas.Concepto" />
+      <Opcion Nombre="Formas de Cobro y Pago" Funcion="LISTAR Lbl.Pagos.FormaDePago" />
+      <Opcion Nombre="Planes de Cobro y Pago" Funcion="LISTAR Lbl.Pagos.Plan" />
+      <Opcion Nombre="-" Funcion="" />
+      <Opcion Nombre="&amp;Localidades" Funcion="LISTAR Lbl.Entidades.Localidad" />
     </Opcion>
   </Opcion>
 </Menu>

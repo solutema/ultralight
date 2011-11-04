@@ -29,6 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using Microsoft.Win32;
 
 namespace Lazaro.Pres.Spreadsheet

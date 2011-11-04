@@ -35,6 +35,7 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
+        [Lbl.Atributos.NombreItem("Situación")]
 	public class Situacion : ElementoDeDatos
 	{
 		//Heredar constructor

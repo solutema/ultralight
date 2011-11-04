@@ -338,7 +338,7 @@ namespace Lazaro.WinMain.Principal
                                                 }
                                                 if (ColgarDe == null) {
                                                         //Si no hay de donde colgarlo, lo creo
-                                                        ColgarDe = new MenuItem(MenuItem.Parent, new System.EventHandler(MnuClick));
+                                                        ColgarDe = new MenuItem(MenuItem.Parent, new System.EventHandler(Menu_Click));
                                                         ItmInfo = new MenuItemInfo();
                                                         ItmInfo.Item = ColgarDe;
                                                         ItmInfo.Funcion = "";
@@ -348,7 +348,7 @@ namespace Lazaro.WinMain.Principal
                                                         AgregarAlMenu(this.MainMenu, ColgarDe, ItmInfo);
                                                 }
 
-                                                MenuItem Itm = new MenuItem(MenuItem.Name, new System.EventHandler(MnuClick));
+                                                MenuItem Itm = new MenuItem(MenuItem.Name, new System.EventHandler(Menu_Click));
                                                 ItmInfo = new MenuItemInfo();
                                                 ItmInfo.Item = Itm;
                                                 ItmInfo.Funcion = MenuItem.Function;
@@ -383,9 +383,11 @@ namespace Lazaro.WinMain.Principal
                 /// </summary>
                 private void CargarMenuXml(XmlNode node, Menu colgarDe, string parentText)
                 {
+                        Lfx.Data.Connection Conn = null;
+
                         if (node.ChildNodes.Count > 0) {
                                 foreach (XmlNode opcion in node.ChildNodes) {
-                                        MenuItem Itm = new MenuItem(opcion.Attributes["Nombre"].Value, new System.EventHandler(MnuClick));
+                                        MenuItem Itm = new MenuItem(opcion.Attributes["Nombre"].Value, new System.EventHandler(Menu_Click));
 
                                         MenuItemInfo ItmInfo = new MenuItemInfo();
                                         ItmInfo.Item = Itm;
@@ -399,11 +401,16 @@ namespace Lazaro.WinMain.Principal
 
                                         AgregarAlMenu(colgarDe, Itm, ItmInfo);
 
-                                        if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja" && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                DataTable Cajas = this.Workspace.MasterConnection.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
+                                        if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja")
+                                                Itm.Select += new EventHandler(Menu_Sekect);
+
+                                        /* if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja" && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Listar)) {
+                                                if (Conn == null)
+                                                        Conn = this.Workspace.GetNewConnection("Menú cajas");
+                                                DataTable Cajas = Conn.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
 
                                                 foreach (System.Data.DataRow Caja in Cajas.Rows) {
-                                                        MenuItem ItmH = new MenuItem(Caja["nombre"].ToString(), new System.EventHandler(MnuClick));
+                                                        MenuItem ItmH = new MenuItem(Caja["nombre"].ToString(), new System.EventHandler(Menu_Click));
                                                         MenuItemInfo ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
                                                         ItmInfoH.Funcion = "INSTANCIAR Lfc.Cajas.Movimientos " + Caja["id_caja"].ToString();
@@ -414,10 +421,12 @@ namespace Lazaro.WinMain.Principal
                                         } else if (ItmInfo.Funcion == "LISTAR Lbl.Tareas.Tarea") {
                                                 MenuItem ItmH = null;
                                                 MenuItemInfo ItmInfoH = new MenuItemInfo();
-                                                DataTable Tipos = this.Workspace.MasterConnection.Select("SELECT id_tipo_ticket, nombre FROM tickets_tipos ORDER BY nombre");
+                                                if (Conn == null)
+                                                        Conn = this.Workspace.GetNewConnection("Menú tareas");
+                                                DataTable Tipos = Conn.Select("SELECT id_tipo_ticket, nombre FROM tickets_tipos ORDER BY nombre");
 
                                                 if (Tipos.Rows.Count > 10) {
-                                                        ItmH = new MenuItem("Todos", new System.EventHandler(MnuClick));
+                                                        ItmH = new MenuItem("Todos", new System.EventHandler(Menu_Click));
                                                         ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
                                                         ItmInfoH.Funcion = "LISTAR Lbl.Tareas.Tarea";
@@ -426,8 +435,9 @@ namespace Lazaro.WinMain.Principal
                                                         AgregarAlMenu(Itm, ItmH, ItmInfoH);
                                                 }
 
+
                                                 foreach (System.Data.DataRow Tipo in Tipos.Rows) {
-                                                        ItmH = new MenuItem(Tipo["nombre"].ToString(), new System.EventHandler(MnuClick));
+                                                        ItmH = new MenuItem(Tipo["nombre"].ToString(), new System.EventHandler(Menu_Click));
                                                         ItmInfoH = new MenuItemInfo();
                                                         ItmInfoH.Item = ItmH;
                                                         ItmInfoH.Funcion = "LISTAR Lbl.Tareas.Tarea " + Tipo["id_tipo_ticket"].ToString();
@@ -439,7 +449,7 @@ namespace Lazaro.WinMain.Principal
                                                         else
                                                                 AgregarAlMenu(colgarDe, ItmH, ItmInfoH);
                                                 }
-                                        } else {
+                                        } else { */
                                                 string NuevoParentText = null;
 
                                                 if (parentText.Length > 0)
@@ -448,9 +458,12 @@ namespace Lazaro.WinMain.Principal
                                                         NuevoParentText = opcion.Attributes["Funcion"].Value;
 
                                                 CargarMenuXml(opcion, Itm, NuevoParentText);
-                                        }
+                                        //}
                                 }
                         }
+
+                        if (Conn != null)
+                                Conn.Dispose();
                 }
 
                 /// <summary>
@@ -543,16 +556,40 @@ namespace Lazaro.WinMain.Principal
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
-                private void MnuClick(object sender, System.EventArgs e)
+                private void Menu_Click(object sender, System.EventArgs e)
                 {
                         MenuItem ItemClicked = (MenuItem)sender;
                         MenuItemInfo ItmInfo = MenuItemInfoTable[ItemClicked.Tag.ToString()];
 
                         int Hits = this.Workspace.CurrentConfig.ReadLocalSettingInt("MenuStats", ItmInfo.FullPath, 0);
                         this.Workspace.CurrentConfig.WriteLocalSetting("MenuStats", ItmInfo.FullPath, Hits + 1);
+                        if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja") {
+                                // Nada
+                        } else {
+                                object Res = Ejecutor.Exec(ItmInfo.Funcion);
+                                this.ProcesarObjeto(Res);
+                        }
+                }
 
-                        object Res = Ejecutor.Exec(ItmInfo.Funcion);
-                        this.ProcesarObjeto(Res);
+
+                private void Menu_Sekect(object sender, System.EventArgs e)
+                {
+                        MenuItem ItemClicked = (MenuItem)sender;
+                        MenuItemInfo ItmInfo = MenuItemInfoTable[ItemClicked.Tag.ToString()];
+
+                        if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja" && ItemClicked.IsParent == false) {
+                                DataTable Cajas = this.Workspace.MasterConnection.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
+
+                                foreach (System.Data.DataRow Caja in Cajas.Rows) {
+                                        MenuItem ItmH = new MenuItem(Caja["nombre"].ToString(), new System.EventHandler(Menu_Click));
+                                        MenuItemInfo ItmInfoH = new MenuItemInfo();
+                                        ItmInfoH.Item = ItmH;
+                                        ItmInfoH.Funcion = "INSTANCIAR Lfc.Cajas.Movimientos " + Caja["id_caja"].ToString();
+                                        ItmInfoH.ParentText = ItmInfo.Text;
+                                        ItmInfoH.Text = System.Convert.ToString(Caja["nombre"]).QuitarAcentos();
+                                        AgregarAlMenu(ItemClicked, ItmH, ItmInfoH);
+                                }
+                        }
                 }
 
 

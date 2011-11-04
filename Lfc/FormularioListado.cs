@@ -128,10 +128,14 @@ namespace Lfc
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Crear)) {
                                 Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(this.Crear());
-                                FormNuevo.MdiParent = this.MdiParent;
-                                FormNuevo.Show();
+                                if (FormNuevo != null) {
+                                        FormNuevo.MdiParent = this.MdiParent;
+                                        FormNuevo.Show();
 
-                                return new Lfx.Types.SuccessOperationResult();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                } else {
+                                        return new Lfx.Types.FailureOperationResult("No se puede crear el elemento");
+                                }
                         } else {
                                 return new Lfx.Types.NoAccessOperationResult();
                         }

@@ -148,7 +148,12 @@ namespace Lfc.Comprobantes
 
                 public override Lfx.Types.OperationResult OnCreate()
                 {
-                        this.Workspace.RunTime.Execute("CREAR " + this.Definicion.ElementoTipo.ToString() + " " + this.Letra);
+                        object Res = this.Workspace.RunTime.Execute("CREAR " + this.Definicion.ElementoTipo.ToString() + " " + this.Letra);
+                        if (Res is System.Windows.Forms.Form) {
+                                System.Windows.Forms.Form FormNuevo = Res as System.Windows.Forms.Form;
+                                FormNuevo.MdiParent = this.MdiParent;
+                                FormNuevo.Show();
+                        }
                         return new Lfx.Types.SuccessOperationResult();
                 }
 

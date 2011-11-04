@@ -459,12 +459,16 @@ namespace Lfc
                                 Lfx.Data.Connection NuevaDb = this.Workspace.GetNewConnection("Editar " + this.Definicion.ElementoTipo.ToString() + " " + itemId);
                                 Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.Definicion.ElementoTipo, NuevaDb, itemId);
                                 Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
-                                FormNuevo.DisposeConnection = true;
-                                FormNuevo.MdiParent = this.MdiParent;
-                                FormNuevo.FromRow(Elem);
-                                FormNuevo.Show();
+                                if (FormNuevo != null) {
+                                        FormNuevo.DisposeConnection = true;
+                                        FormNuevo.MdiParent = this.MdiParent;
+                                        FormNuevo.FromRow(Elem);
+                                        FormNuevo.Show();
 
-                                return new Lfx.Types.SuccessOperationResult();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                } else {
+                                        return new Lfx.Types.FailureOperationResult("No se puede editar el elemento");
+                                }
                         } else {
                                 return new Lfx.Types.NoAccessOperationResult();
                         }

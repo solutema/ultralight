@@ -35,6 +35,7 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
+        [Lbl.Atributos.NombreItem("Márgen")]
 	public class Margen : ElementoDeDatos
 	{
 		public Margen(Lfx.Data.Connection dataBase) : base(dataBase) { }

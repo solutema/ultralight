@@ -67,6 +67,17 @@ namespace Lfx.Types
                 {
                         // Toma una fecha DD-MM-YYYY y devuelve un Date
                         string FechaTemp = fecha.Replace(" ", "").Replace("/", "-").Trim();
+
+                        string[] Partes = FechaTemp.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                        if (Partes.Length >= 1 && Partes[0].Length == 1)
+                                Partes[0] = "0" + Partes[0];
+                        if (Partes.Length >= 2 && Partes[1].Length == 1)
+                                Partes[1] = "0" + Partes[1];
+                        if (Partes.Length >= 3 && Partes[2].Length == 1)
+                                Partes[2] = "0" + Partes[2];
+                        
+                        FechaTemp = string.Join("-", Partes);
+
                         string[] FormatosAceptados =
 				{
                                         "yyyy-MM-dd",

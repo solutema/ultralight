@@ -314,9 +314,9 @@ namespace Lfc
                         } else {
                                 Lbl.Atributos.NombreItem Attr = this.ElementoTipo.GetAttribute<Lbl.Atributos.NombreItem>();
                                 if (Attr != null)
-                                        this.Text = Attr.Nombre + " nuevo";
+                                        this.Text = "Creando " + Attr.Nombre;
                                 else
-                                        this.Text = row.GetType().ToString() + " nuevo";
+                                        this.Text = "Creando " + row.GetType().ToString();
                         }
 
                         this.ReadOnly = !this.PuedeEditar();

@@ -35,6 +35,7 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
+        [Lbl.Atributos.NombreItem("Marca")]
 	public class Marca : ElementoDeDatos
 	{
 		public Personas.Persona Proveedor;

@@ -33,7 +33,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lfc.Comprobantes.Recibos
+namespace Lfc.Comprobantes.Recibos.Cobro
 {
 	public partial class Inicio : Lfc.FormularioListado
 	{
@@ -83,21 +83,6 @@ namespace Lfc.Comprobantes.Recibos
                                 item.Font = new Font(item.Font, FontStyle.Strikeout);
 		}
 
-                public bool DePago
-                {
-                        get
-                        {
-                                return this.Definicion.ElementoTipo == typeof(Lbl.Comprobantes.ReciboDePago);
-                        }
-                        set
-                        {
-                                if (value)
-                                        this.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDePago);
-                                else
-                                        this.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
-                        }
-                }
-
 
                 public override Lfx.Types.OperationResult OnFilter()
                 {
@@ -106,7 +91,6 @@ namespace Lfc.Comprobantes.Recibos
                         if (filtrarReturn.Success == true) {
                                 using (Comprobantes.Recibos.Filtros FormFiltros = new Comprobantes.Recibos.Filtros()) {
                                         FormFiltros.Connection = this.Connection;
-                                        FormFiltros.EntradaTipo.TextKey = this.DePago ? "1" : "0";
                                         FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
                                         FormFiltros.EntradaCliente.TextInt = m_Cliente;
                                         FormFiltros.EntradaVendedor.TextInt = m_Vendedor;
@@ -115,7 +99,6 @@ namespace Lfc.Comprobantes.Recibos
                                         FormFiltros.ShowDialog();
 
                                         if (FormFiltros.DialogResult == DialogResult.OK) {
-                                                this.DePago = FormFiltros.EntradaTipo.TextKey == "1";
                                                 m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
                                                 m_Cliente = FormFiltros.EntradaCliente.TextInt;
                                                 m_Vendedor = FormFiltros.EntradaVendedor.TextInt;
@@ -167,10 +150,7 @@ namespace Lfc.Comprobantes.Recibos
 		{
                         this.CustomFilters.Clear();
 
-                        if (this.DePago)
-                                this.CustomFilters.AddWithValue("recibos.tipo_fac", "RCP");
-                        else
-                                this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
+                        this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
 
                         if (SearchText == null) {
                                 if (m_Sucursal > 0)
