@@ -74,9 +74,9 @@ namespace Lcc.Entrada
                         // 
                         // EntradaImagen
                         // 
-                        this.EntradaImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImagen.BackColor = System.Drawing.Color.White;
                         this.EntradaImagen.ContextMenuStrip = this.MenuImagen;
                         this.EntradaImagen.Location = new System.Drawing.Point(0, 27);
@@ -111,14 +111,13 @@ namespace Lcc.Entrada
                         // BotonQuitarImagen
                         // 
                         this.BotonQuitarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonQuitarImagen.AutoSize = false;
                         this.BotonQuitarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarImagen.Image = null;
                         this.BotonQuitarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitarImagen.Location = new System.Drawing.Point(143, 133);
                         this.BotonQuitarImagen.Name = "BotonQuitarImagen";
                         this.BotonQuitarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonQuitarImagen.TemporaryReadOnly = false;
+                        this.BotonQuitarImagen.ReadOnly = false;
                         this.BotonQuitarImagen.Size = new System.Drawing.Size(96, 26);
                         this.BotonQuitarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitarImagen.Subtext = "";
@@ -135,7 +134,7 @@ namespace Lcc.Entrada
                         this.BotonSeleccionarImagen.Location = new System.Drawing.Point(143, 82);
                         this.BotonSeleccionarImagen.Name = "BotonSeleccionarImagen";
                         this.BotonSeleccionarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonSeleccionarImagen.TemporaryReadOnly = false;
+                        this.BotonSeleccionarImagen.ReadOnly = false;
                         this.BotonSeleccionarImagen.Size = new System.Drawing.Size(96, 40);
                         this.BotonSeleccionarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSeleccionarImagen.Subtext = "";
@@ -146,14 +145,13 @@ namespace Lcc.Entrada
                         // BotonCapturarImagen
                         // 
                         this.BotonCapturarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonCapturarImagen.AutoSize = false;
                         this.BotonCapturarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCapturarImagen.Image = null;
                         this.BotonCapturarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCapturarImagen.Location = new System.Drawing.Point(143, 38);
                         this.BotonCapturarImagen.Name = "BotonCapturarImagen";
                         this.BotonCapturarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCapturarImagen.TemporaryReadOnly = false;
+                        this.BotonCapturarImagen.ReadOnly = false;
                         this.BotonCapturarImagen.Size = new System.Drawing.Size(96, 40);
                         this.BotonCapturarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCapturarImagen.Subtext = "";
@@ -163,8 +161,9 @@ namespace Lcc.Entrada
                         // 
                         // GroupLabel
                         // 
-                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(236, 24);

@@ -124,7 +124,6 @@ namespace Lazaro.WinMain.Misc
                         this.Titulo.LabelStyle = Lui.Forms.LabelStyles.Header1;
                         this.Titulo.Location = new System.Drawing.Point(136, 32);
                         this.Titulo.Name = "Titulo";
-                        this.Titulo.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
                         this.Titulo.Size = new System.Drawing.Size(380, 32);
                         this.Titulo.TabIndex = 0;
                         this.Titulo.Text = "Bienvenido a Lázaro";

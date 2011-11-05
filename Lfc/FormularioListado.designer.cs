@@ -120,7 +120,6 @@ namespace Lfc
                         this.EtiquetaListadoVacio.Location = new System.Drawing.Point(332, 192);
                         this.EtiquetaListadoVacio.Margin = new System.Windows.Forms.Padding(0);
                         this.EtiquetaListadoVacio.Name = "EtiquetaListadoVacio";
-                        this.EtiquetaListadoVacio.Padding = new System.Windows.Forms.Padding(12);
                         this.EtiquetaListadoVacio.Size = new System.Drawing.Size(380, 80);
                         this.EtiquetaListadoVacio.TabIndex = 70;
                         this.EtiquetaListadoVacio.Text = "El listado no contiene datos.\r\nHaga clic en el botón \'Crear\' para añadir nuevos e" +

@@ -106,7 +106,7 @@ namespace Lazaro.WinMain.Misc.Config
 			EntradaClientePredet.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.ClientePredet", "");
 			EntradaFormaPagoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.FormaPagoPredet", "");
 
-			EntradaCambiaPrecioComprob.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.CambiaPrecioItemFactura", "1");
+			EntradaCambiaPrecioComprob.Value = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Documentos.CambiaPrecioItemFactura", "1") == "1";
 
                         EntradaLimiteCredito.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Cuentas.LimiteCreditoPredet", "0");
                         EntradaRedondeo.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Moneda.Redondeo", "0.05");
@@ -168,7 +168,7 @@ namespace Lazaro.WinMain.Misc.Config
 			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.ClientePredet", EntradaClientePredet.Text, "*");
 			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.FormaPagoPredet", EntradaFormaPagoPredet.Text, "*");
 
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.CambiaPrecioItemFactura", EntradaCambiaPrecioComprob.TextKey.ToString(), "*");
+			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Documentos.CambiaPrecioItemFactura", EntradaCambiaPrecioComprob.Value ? "1" : "0", "*");
 
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.Text, "*");
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Moneda.Redondeo", EntradaRedondeo.Text, "*");

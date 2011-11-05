@@ -63,7 +63,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.PanelServidorAvanzado = new System.Windows.Forms.Panel();
                         this.EntradaSucursal = new Lui.Forms.TextBox();
                         this.label5 = new Lui.Forms.Label();
-                        this.EntradaSlowLink = new Lui.Forms.ComboBox();
+                        this.EntradaSlowLink = new Lui.Forms.YesNo();
                         this.label4 = new Lui.Forms.Label();
                         this.EntradaBD = new Lui.Forms.TextBox();
                         this.Label2 = new Lui.Forms.Label();
@@ -108,6 +108,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaServidor.AutoTab = true;
                         this.EntradaServidor.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaServidor.DecimalPlaces = -1;
+                        this.EntradaServidor.FieldName = null;
                         this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaServidor.Location = new System.Drawing.Point(192, 164);
                         this.EntradaServidor.MaxLength = 32767;
@@ -188,6 +189,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaSucursal.DecimalPlaces = -1;
+                        this.EntradaSucursal.FieldName = null;
                         this.EntradaSucursal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSucursal.Location = new System.Drawing.Point(232, 144);
                         this.EntradaSucursal.MaxLength = 32767;
@@ -216,21 +218,12 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaSlowLink
                         // 
-                        this.EntradaSlowLink.AlwaysExpanded = false;
-                        this.EntradaSlowLink.AutoNav = true;
-                        this.EntradaSlowLink.AutoTab = true;
+                        this.EntradaSlowLink.FieldName = null;
                         this.EntradaSlowLink.Location = new System.Drawing.Point(232, 112);
-                        this.EntradaSlowLink.MaxLength = 32767;
                         this.EntradaSlowLink.Name = "EntradaSlowLink";
-                        this.EntradaSlowLink.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSlowLink.PlaceholderText = null;
                         this.EntradaSlowLink.ReadOnly = false;
-                        this.EntradaSlowLink.SetData = new string[] {
-        "Si|1",
-        "No|0"};
                         this.EntradaSlowLink.Size = new System.Drawing.Size(60, 25);
                         this.EntradaSlowLink.TabIndex = 9;
-                        this.EntradaSlowLink.TextKey = "0";
                         // 
                         // label4
                         // 
@@ -248,6 +241,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaBD.AutoTab = true;
                         this.EntradaBD.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaBD.DecimalPlaces = -1;
+                        this.EntradaBD.FieldName = null;
                         this.EntradaBD.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBD.Location = new System.Drawing.Point(124, 28);
                         this.EntradaBD.MaxLength = 32767;
@@ -278,6 +272,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaConexion.AlwaysExpanded = false;
                         this.EntradaConexion.AutoNav = true;
                         this.EntradaConexion.AutoTab = true;
+                        this.EntradaConexion.FieldName = null;
                         this.EntradaConexion.Location = new System.Drawing.Point(124, 0);
                         this.EntradaConexion.MaxLength = 32767;
                         this.EntradaConexion.Name = "EntradaConexion";
@@ -310,6 +305,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasena.DecimalPlaces = -1;
+                        this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(124, 84);
                         this.EntradaContrasena.MaxLength = 32767;
@@ -331,6 +327,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaUsuario.AutoTab = true;
                         this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaUsuario.DecimalPlaces = -1;
+                        this.EntradaUsuario.FieldName = null;
                         this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUsuario.Location = new System.Drawing.Point(124, 55);
                         this.EntradaUsuario.MaxLength = 32767;
@@ -512,6 +509,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(594, 452);
+                        this.Controls.Add(this.PanelServidorAvanzado);
                         this.Controls.Add(this.label7);
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.LowerPanel);
@@ -522,7 +520,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Controls.Add(this.EtiquetaEncab);
                         this.Controls.Add(this.EtiquetaServidor);
                         this.Controls.Add(this.PanelServidorNoInstalado);
-                        this.Controls.Add(this.PanelServidorAvanzado);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "ConfigurarBd";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -561,7 +558,7 @@ namespace Lazaro.WinMain.Misc.Config
                 private Lui.Forms.Label EtiquetaServidorCumple;
                 private Lui.Forms.Label EtiquetaSubEncab2;
                 private Lui.Forms.Label label4;
-                private Lui.Forms.ComboBox EntradaSlowLink;
+                private Lui.Forms.YesNo EntradaSlowLink;
                 private Lui.Forms.TextBox EntradaSucursal;
                 private Lui.Forms.Label label5;
                 private System.Windows.Forms.PictureBox PictureBox1;

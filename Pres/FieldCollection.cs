@@ -41,12 +41,12 @@ namespace Lazaro.Pres
                         get
                         {
                                 foreach (Field Fld in this) {
-                                        if (Fld.ColumnName == index)
+                                        if (Fld.MemberName == index)
                                                 return Fld;
                                 }
 
                                 foreach (Field Fld in this) {
-                                        if (Lfx.Data.Connection.GetFieldName(Fld.ColumnName) == index)
+                                        if (Lfx.Data.Connection.GetFieldName(Fld.MemberName) == index)
                                                 return Fld;
                                 }
                                 return null;

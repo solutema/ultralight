@@ -133,7 +133,7 @@ namespace Lfc.CuentasCorrientes
                                 this.Definicion.Columns["obs"].Visible = false;
                                 this.Definicion.Columns["comprob"].Visible = false;
 
-                                this.Definicion.Columns["saldo"].ColumnName = "SUM(ctacte.importe) AS saldo";
+                                this.Definicion.Columns["saldo"].MemberName = "SUM(ctacte.importe) AS saldo";
                                 this.Definicion.Having = new qGen.Where("saldo", qGen.ComparisonOperators.NotEquals, 0);
 
                                 this.UpdateFormFields();
@@ -161,7 +161,7 @@ namespace Lfc.CuentasCorrientes
                                 this.Definicion.Columns["obs"].Visible = true;
                                 this.Definicion.Columns["comprob"].Visible = true;
 
-                                this.Definicion.Columns["saldo"].ColumnName = "ctacte.saldo";
+                                this.Definicion.Columns["saldo"].MemberName = "ctacte.saldo";
                                 this.Definicion.Having = null;
 
                                 this.UpdateFormFields();

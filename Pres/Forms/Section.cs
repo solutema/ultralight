@@ -40,7 +40,13 @@ namespace Lazaro.Pres.Forms
 
                 public FieldCollection Fields { get; set; }
 
+                public Section()
+                {
+                        this.Fields = new FieldCollection();
+                }
+
                 public Section(string label)
+                        : this()
                 {
                         this.Label = label;
                 }

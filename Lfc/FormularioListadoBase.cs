@@ -263,8 +263,8 @@ namespace Lfc
                                         case Keys.U:
                                                 e.Handled = true;
                                                 foreach (Lazaro.Pres.Field Fld in this.Definicion.Columns) {
-                                                        if (FormFieldToSubItem.ContainsKey(Lfx.Data.Connection.GetFieldName(Fld.ColumnName)))
-                                                                Listado.Columns[FormFieldToSubItem[Lfx.Data.Connection.GetFieldName(Fld.ColumnName)]].Width = Fld.Width;
+                                                        if (FormFieldToSubItem.ContainsKey(Lfx.Data.Connection.GetFieldName(Fld.MemberName)))
+                                                                Listado.Columns[FormFieldToSubItem[Lfx.Data.Connection.GetFieldName(Fld.MemberName)]].Width = Fld.Width;
                                                 }
                                                 break;
                                 }
@@ -494,7 +494,7 @@ namespace Lfc
                         string NuevoOrden = null;
 
                         if (e.Column == 0)
-                                NuevoOrden = this.Definicion.KeyColumnName.ColumnName;
+                                NuevoOrden = this.Definicion.KeyColumnName.MemberName;
                         else if ((e.Column - 1) < this.Definicion.Columns.Count)
                                 NuevoOrden = Listado.Columns[e.Column].Name;
 
@@ -531,14 +531,14 @@ namespace Lfc
                                 Listado.Columns.Clear();
 
                                 Listado.Columns.Add(new ColumnHeader());
-                                Listado.Columns[ColNum].Name = this.Definicion.KeyColumnName.ColumnName;
+                                Listado.Columns[ColNum].Name = this.Definicion.KeyColumnName.MemberName;
                                 Listado.Columns[ColNum].Width = this.Definicion.KeyColumnName.Width;
                                 Listado.Columns[ColNum].Text = this.Definicion.KeyColumnName.Label;
 
                                 if (FormFieldToSubItem.ContainsKey(Listado.Columns[ColNum].Name) == false)
                                         FormFieldToSubItem.Add(Listado.Columns[ColNum].Name, ColNum);
-                                if (FormFieldToSubItem.ContainsKey(this.Definicion.KeyColumnName.ColumnName) == false)
-                                        FormFieldToSubItem.Add(this.Definicion.KeyColumnName.ColumnName, ColNum);
+                                if (FormFieldToSubItem.ContainsKey(this.Definicion.KeyColumnName.MemberName) == false)
+                                        FormFieldToSubItem.Add(this.Definicion.KeyColumnName.MemberName, ColNum);
 
                                 ColNum++;
 
@@ -547,14 +547,14 @@ namespace Lfc
                                                 if (Listado.Columns.Count <= ColNum)
                                                         Listado.Columns.Add(new ColumnHeader());
 
-                                                Listado.Columns[ColNum].Name = this.Definicion.Columns[i].ColumnName;
+                                                Listado.Columns[ColNum].Name = this.Definicion.Columns[i].MemberName;
                                                 Listado.Columns[ColNum].Width = this.Definicion.Columns[i].Width;
                                                 Listado.Columns[ColNum].Text = this.Definicion.Columns[i].Label;
 
                                                 if (FormFieldToSubItem.ContainsKey(Listado.Columns[ColNum].Name) == false)
                                                         FormFieldToSubItem.Add(Listado.Columns[ColNum].Name, ColNum);
-                                                if (FormFieldToSubItem.ContainsKey(this.Definicion.Columns[i].ColumnName) == false)
-                                                        FormFieldToSubItem.Add(this.Definicion.Columns[i].ColumnName, ColNum);
+                                                if (FormFieldToSubItem.ContainsKey(this.Definicion.Columns[i].MemberName) == false)
+                                                        FormFieldToSubItem.Add(this.Definicion.Columns[i].MemberName, ColNum);
 
                                                 switch (this.Definicion.Columns[i].DataType) {
                                                         case Lfx.Data.InputFieldTypes.Integer:
@@ -614,12 +614,12 @@ namespace Lfc
 
                                 string ListaCampos;
                                 if (forCount) {
-                                        ListaCampos = "COUNT(" + this.Definicion.KeyColumnName.ColumnName + ") AS row_count";
+                                        ListaCampos = "COUNT(" + this.Definicion.KeyColumnName.MemberName + ") AS row_count";
                                 } else {
                                         // Genero la lista de campos
-                                        ListaCampos = this.Definicion.KeyColumnName.ColumnName;
+                                        ListaCampos = this.Definicion.KeyColumnName.MemberName;
                                         foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns)
-                                                ListaCampos += "," + CurField.ColumnName;
+                                                ListaCampos += "," + CurField.MemberName;
                                 }
 
                                 // Genero las condiciones del WHERE
@@ -628,17 +628,17 @@ namespace Lfc
 
                                 if (this.SearchText != null) {
                                         if (this.SearchText.IsNumericInt())
-                                                WhereBuscarTexto.AddWithValue(this.Definicion.KeyColumnName.ColumnName, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
+                                                WhereBuscarTexto.AddWithValue(this.Definicion.KeyColumnName.MemberName, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
 
                                         if (this.Definicion.Columns != null) {
                                                 foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns) {
-                                                        if (CurField.ColumnName.IndexOf(" AS ") == -1 && CurField.ColumnName.IndexOf("(") == -1)
-                                                                WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                        if (CurField.MemberName.IndexOf(" AS ") == -1 && CurField.MemberName.IndexOf("(") == -1)
+                                                                WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                 }
                                         }
                                         if (this.Definicion.ExtraSearchColumns != null) {
                                                 foreach (Lazaro.Pres.Field CurField in this.Definicion.ExtraSearchColumns) {
-                                                        WhereBuscarTexto.AddWithValue(CurField.ColumnName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                        WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                 }
                                         }
                                 }
@@ -648,7 +648,7 @@ namespace Lfc
 
                                 if (m_Labels != null) {
                                         if (m_LabelField == null || m_LabelField.Length == 0)
-                                                m_LabelField = this.Definicion.KeyColumnName.ColumnName;
+                                                m_LabelField = this.Definicion.KeyColumnName.MemberName;
                                         if (m_Labels.Length == 1) {
                                                 // Ids negativos sólo cuando hay una sola etiqueta
                                                 if (m_Labels[0] > 0)
@@ -672,7 +672,7 @@ namespace Lfc
                                 ComandoSelect.WhereClause = WhereCompleto;
 
                                 if (this.Definicion.GroupBy != null)
-                                        ComandoSelect.Group = this.Definicion.GroupBy.ColumnName;
+                                        ComandoSelect.Group = this.Definicion.GroupBy.MemberName;
 
                                 if (this.Definicion.Having != null)
                                         ComandoSelect.HavingClause = this.Definicion.Having;
@@ -735,7 +735,7 @@ namespace Lfc
                                 foreach (System.Data.DataRow DtRow in Tabla.Rows) {
                                         Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
 
-                                        string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.ColumnName);
+                                        string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.MemberName);
                                         int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
                                         ListViewItem Itm = this.FormatListViewItem(ItemId, Registro);
@@ -800,7 +800,7 @@ namespace Lfc
                                         Itm.Font = new Font(Itm.Font, FontStyle.Bold);
                                         Itm.BackColor = Color.Lavender;
                                         foreach (ColumnHeader Col in Listado.Columns) {
-                                                if (Col.Name != this.Definicion.KeyColumnName.ColumnName) {
+                                                if (Col.Name != this.Definicion.KeyColumnName.MemberName) {
                                                         Itm.Group = Grp;
                                                         object ColFunc = this.Definicion.Columns[Col.Name].TotalFunction;
                                                         if (ColFunc == null) {
@@ -855,7 +855,7 @@ namespace Lfc
                         }
 
                         for (int FieldNum = 0; FieldNum < useFields.Count; FieldNum++) {
-                                string FieldName = Lfx.Data.Connection.GetFieldName(useFields[FieldNum].ColumnName);
+                                string FieldName = Lfx.Data.Connection.GetFieldName(useFields[FieldNum].MemberName);
 
                                 if (FieldNum >= 0) {
                                         Lazaro.Pres.Spreadsheet.Cell NewCell = Reng.Cells.Add();
@@ -940,7 +940,7 @@ namespace Lfc
                                 int FieldNum = -1;
                                 if (SubItemToFormField.ContainsKey(FieldName) == false) {
                                         for (int fi = 0; fi < this.Definicion.Columns.Count; fi++) {
-                                                if (this.Definicion.Columns[fi].ColumnName == FieldName) {
+                                                if (this.Definicion.Columns[fi].MemberName == FieldName) {
                                                         FieldNum = fi;
                                                         SubItemToFormField.Add(FieldName, FieldNum);
                                                         break;
@@ -1192,7 +1192,7 @@ namespace Lfc
                         if (useFields != null) {
                                 for (int i = 0; i <= useFields.Count - 1; i++) {
                                         Lazaro.Pres.Spreadsheet.ColumnHeader ColHead = new Lazaro.Pres.Spreadsheet.ColumnHeader(useFields[i].Label, useFields[i].Width);
-                                        ColHead.Name = Lfx.Data.Connection.GetFieldName(useFields[i].ColumnName);
+                                        ColHead.Name = Lfx.Data.Connection.GetFieldName(useFields[i].MemberName);
                                         ColHead.TextAlignment = useFields[i].Alignment;
                                         ColHead.DataType = useFields[i].DataType;
                                         ColHead.Format = useFields[i].Format;
@@ -1213,7 +1213,7 @@ namespace Lfc
                         foreach (System.Data.DataRow DtRow in Tabla.Rows) {
                                 Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
 
-                                string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.ColumnName);
+                                string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.MemberName);
                                 int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
                                 Lazaro.Pres.Spreadsheet.Row Reng = this.FormatRow(ItemId, Registro, Sheet, useFields);

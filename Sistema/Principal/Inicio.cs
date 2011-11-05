@@ -213,15 +213,18 @@ namespace Lazaro.WinMain.Principal
                                         break;
                                 case Keys.D:
                                         if (e.Control && e.Alt == false && e.Shift == false) {
+                                                e.Handled = true;
                                                 PanelDebug.Visible = !PanelDebug.Visible;
                                                 if (PanelDebug.Visible)
                                                         this.TimerProgramador_Tick(this, null);
                                         }
                                         break;
                                 case Keys.B:
-                                        if (e.Control && e.Alt == false && e.Shift == false)
+                                        if (e.Control && e.Alt == false && e.Shift == false) {
+                                                e.Handled = true;
                                                 BarraInferior.Visible = !BarraInferior.Visible;
-                                        this.Workspace.CurrentConfig.WriteLocalSetting("Sistema", "Apariencia.BarraInformacion", BarraInferior.Visible ? "1" : "0");
+                                                this.Workspace.CurrentConfig.WriteLocalSetting("Sistema", "Apariencia.BarraInformacion", BarraInferior.Visible ? "1" : "0");
+                                        }
                                         break;
                                 case Keys.R:
                                         if (e.Control == true && e.Alt == false && e.Shift == false) {

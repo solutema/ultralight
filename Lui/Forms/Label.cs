@@ -61,6 +61,18 @@ namespace Lui.Forms
                         }
                 }
 
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Padding Padding
+                {
+                        get
+                        {
+                                return base.Padding;
+                        }
+                }
+
                 public LabelStyles LabelStyle
                 {
                         get
@@ -73,24 +85,31 @@ namespace Lui.Forms
                                 switch(m_LabelStyle) {
                                         case LabelStyles.Title:
                                                 base.Font = Lfx.Config.Display.TitleFont;
+                                                base.Padding = new Padding(4);
                                                 break;
                                         case LabelStyles.Small:
                                                 base.Font = Lfx.Config.Display.SmallFont;
+                                                base.Padding = new Padding(0, 0, 0, 0);
                                                 break;
                                         case LabelStyles.Default:
                                                 base.Font = Lfx.Config.Display.DefaultFont;
+                                                base.Padding = new Padding(0, 4, 0, 4);
                                                 break;
                                         case LabelStyles.Big:
                                                 base.Font = Lfx.Config.Display.BigFont;
+                                                base.Padding = new Padding(4);
                                                 break;
                                         case LabelStyles.Bigger:
                                                 base.Font = Lfx.Config.Display.BiggerFont;
+                                                base.Padding = new Padding(4);
                                                 break;
                                         case LabelStyles.Header1:
                                                 base.Font = Lfx.Config.Display.HeaderFont;
+                                                base.Padding = new Padding(8);
                                                 break;
                                         case LabelStyles.Header2:
                                                 base.Font = Lfx.Config.Display.Header2Font;
+                                                base.Padding = new Padding(6);
                                                 break;
                                 }
                         }

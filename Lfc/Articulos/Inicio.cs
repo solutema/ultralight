@@ -177,10 +177,10 @@ namespace Lfc.Articulos
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEquals, 0));
                                 this.Definicion.Joins = this.FixedJoins();
                                 this.Definicion.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
-                                this.Definicion.Columns[3].ColumnName = "articulos_stock.cantidad";
+                                this.Definicion.Columns[3].MemberName = "articulos_stock.cantidad";
                         } else {
                                 this.Definicion.Joins = this.FixedJoins();
-                                this.Definicion.Columns[3].ColumnName = "articulos.stock_actual";
+                                this.Definicion.Columns[3].MemberName = "articulos.stock_actual";
                         }
 
                         switch (m_Stock) {

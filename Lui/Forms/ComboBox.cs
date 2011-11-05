@@ -93,6 +93,19 @@ namespace Lui.Forms
                         }
                 }
 
+
+                public void FromDictionary(IDictionary<int, string> dict)
+                {
+                        string[] Sd = new string[dict.Count];
+                        int i = 0;
+                        foreach (KeyValuePair<int, string> Val in dict) {
+                                Sd[i++] = Val.Value + "|" + Val.Key.ToString();
+                        }
+
+                        this.SetData = Sd;
+                }
+
+
                 public override bool TemporaryReadOnly
                 {
                         get
@@ -156,7 +169,9 @@ namespace Lui.Forms
                                 this.ItemList.Visible = false;
                 }
 
-                [System.ComponentModel.Category("Apariencia"), RefreshProperties(RefreshProperties.Repaint)]
+                
+                [System.ComponentModel.Category("Apariencia"),
+                        RefreshProperties(RefreshProperties.Repaint)]
                 public string TextKey
                 {
                         get
@@ -175,6 +190,22 @@ namespace Lui.Forms
                                         this.OnTextChanged(EventArgs.Empty);
                         }
                 }
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public int ValueInt
+                {
+                        get
+                        {
+                                return Lfx.Types.Parsing.ParseInt(this.TextKey);
+                        }
+                        set
+                        {
+                                this.TextKey = value.ToString();
+                        }
+                }
+
 
                 private void DetectarSetIndex()
                 {

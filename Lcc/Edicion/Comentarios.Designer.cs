@@ -70,9 +70,9 @@ namespace Lcc.Edicion
                         // 
                         // ListaComentarios
                         // 
-                        this.ListaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListaComentarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaComentarios.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColId,
@@ -115,23 +115,28 @@ namespace Lcc.Edicion
                         // 
                         // EntradaComentario
                         // 
-                        this.EntradaComentario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaComentario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComentario.AutoNav = true;
                         this.EntradaComentario.AutoTab = true;
                         this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaComentario.DecimalPlaces = -1;
+                        this.EntradaComentario.FieldName = null;
                         this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
                         this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.EntradaComentario.MaxLength = 32767;
                         this.EntradaComentario.MultiLine = false;
                         this.EntradaComentario.Name = "EntradaComentario";
                         this.EntradaComentario.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComentario.PasswordChar = '\0';
+                        this.EntradaComentario.PlaceholderText = null;
+                        this.EntradaComentario.Prefijo = "";
+                        this.EntradaComentario.ReadOnly = false;
                         this.EntradaComentario.SelectOnFocus = true;
                         this.EntradaComentario.Size = new System.Drawing.Size(464, 24);
+                        this.EntradaComentario.Sufijo = "";
                         this.EntradaComentario.TabIndex = 0;
-                        this.EntradaComentario.PlaceholderText = null;
-                        this.EntradaComentario.PlaceholderText = null;
                         this.EntradaComentario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaComentario_KeyDown);
                         this.EntradaComentario.TextChanged += new System.EventHandler(this.EntradaComentario_TextChanged);
                         // 
@@ -146,6 +151,7 @@ namespace Lcc.Edicion
                         this.BotonAgregar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.BotonAgregar.ReadOnly = false;
                         this.BotonAgregar.Size = new System.Drawing.Size(85, 24);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAgregar.Subtext = "Tecla";
@@ -155,8 +161,9 @@ namespace Lcc.Edicion
                         // 
                         // GroupLabel
                         // 
-                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(553, 24);

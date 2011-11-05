@@ -37,7 +37,11 @@ namespace Lazaro.Pres
         public class Field
         {
                 public string Label { get; set; }
-                public string ColumnName { get; set; }
+
+                /// <summary>
+                /// Nombre de la propiedad o campo asociado con este control de entrada de datos.
+                /// </summary>
+                public string MemberName { get; set; }
 
                 public Lfx.Data.InputFieldTypes DataType { get; set; }
                 public string Format { get; set; }
@@ -47,6 +51,7 @@ namespace Lazaro.Pres
                 public object TotalFunction { get; set; }
 
                 public IDictionary<int, string> SetValues { get; set; }
+                public Lfx.Data.Relation Relation { get; set; }
 
                 public bool Visible { get; set; }
                 public bool Printable { get; set; }
@@ -62,7 +67,7 @@ namespace Lazaro.Pres
                 public Field(string columnName, string label)
                         : this()
 		{
-			this.ColumnName = columnName;
+			this.MemberName = columnName;
 			this.Label = label;
 		}
 
@@ -106,7 +111,7 @@ namespace Lazaro.Pres
 
                 public override string ToString()
                 {
-                        return this.ColumnName;
+                        return this.MemberName;
                 }
 
 
@@ -133,7 +138,7 @@ namespace Lazaro.Pres
                 {
                         Field Res = new Field();
 
-                        Res.ColumnName = this.ColumnName;
+                        Res.MemberName = this.MemberName;
                         Res.Label = this.Label;
                         Res.DataType = this.DataType;
                         Res.Format = this.Format;

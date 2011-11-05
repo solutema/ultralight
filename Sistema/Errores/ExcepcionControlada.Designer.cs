@@ -91,7 +91,6 @@ namespace Lazaro.WinMain.Errores
                         this.EtiquetaDescripcion.Location = new System.Drawing.Point(72, 55);
                         this.EtiquetaDescripcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
-                        this.EtiquetaDescripcion.Padding = new System.Windows.Forms.Padding(3);
                         this.EtiquetaDescripcion.Size = new System.Drawing.Size(382, 38);
                         this.EtiquetaDescripcion.TabIndex = 6;
                         this.EtiquetaDescripcion.Text = "Lázaro encontró un problema.";

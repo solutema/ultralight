@@ -231,6 +231,12 @@
     <Compile Include="Forms\WorkstationSelectorForm.Designer.cs">
       <DependentUpon>WorkstationSelectorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\YesNo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\YesNo.Designer.cs">
+      <DependentUpon>YesNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\YesNoDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,6 +369,9 @@
     <EmbeddedResource Include="Forms\ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\YesNo.resx">
+      <DependentUpon>YesNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\YesNoDialog.resx">
       <DependentUpon>YesNoDialog.cs</DependentUpon>

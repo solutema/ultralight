@@ -53,7 +53,20 @@ namespace Lcc.Edicion
                 /// </summary>
                 public override void ActualizarControl()
                 {
-                        this.EliminarCampos();
+                        Lazaro.Pres.Forms.Section Sect = new Lazaro.Pres.Forms.Section("Campos adicionales");
+                        this.Tabla = m_Elemento.Connection.Tables[m_Elemento.TablaDatos];
+                        Tabla.Connection = this.Connection;
+                        if (Tabla.Tags != null) {
+                                foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
+                                        Lazaro.Pres.Field Fld = new Lazaro.Pres.Field(Tg.FieldName, Tg.Label, Tg.InputFieldType);
+                                        Fld.Relation = Tg.Relation;
+                                        Sect.Fields.Add(Fld);
+                                }
+                        }
+
+                        this.FromSection(Sect);
+
+                        /* this.EliminarCampos();
                         //Tomos los tags del registro
                         this.Tabla = m_Elemento.Connection.Tables[m_Elemento.TablaDatos];
                         Tabla.Connection = this.Connection;
@@ -132,7 +145,7 @@ namespace Lcc.Edicion
                                         Fld.FieldName = Tg.FieldName;
                                         this.AgregarCampo(Tg.Label, Fld);
                                 }
-                        }
+                        } */
 
                         base.ActualizarControl();
                 }
@@ -147,7 +160,7 @@ namespace Lcc.Edicion
                                         object FieldValue = null;
                                         switch (Tabla.Tags[Cmp.ControlEntrada.FieldName].InputFieldType) {
                                                 case Lfx.Data.InputFieldTypes.Bool:
-                                                        FieldValue = (((Lui.Forms.ComboBox)(Cmp.ControlEntrada)).TextKey == "1") ? 1 : 0;
+                                                        FieldValue = ((Lui.Forms.YesNo)(Cmp.ControlEntrada)).Value ? 1 : 0;
                                                         break;
                                                 case Lfx.Data.InputFieldTypes.Set:
                                                         FieldValue = ((Lui.Forms.ComboBox)(Cmp.ControlEntrada)).TextKey;
