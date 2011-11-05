@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lfc.Personas
+namespace Lfc.Personas.Usuarios
 {
         partial class EditarPermiso
         {

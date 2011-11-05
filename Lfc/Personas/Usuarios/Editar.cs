@@ -122,7 +122,13 @@ namespace Lfc.Personas.Usuarios
                         if (EntradaContrasena.Text.Length > 0) {
                                 if (EntradaContrasena.Text.Length < 6 || EntradaContrasena.Text.Length > 32)
                                         return new Lfx.Types.FailureOperationResult("La contraseña debe tener entre 6 y 32 caracteres");
+                        }
 
+                        if (Listado.Items.Count == 0) {
+                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("El usuario no tiene ningún permiso asignado y por lo tanto no podrá operar con el sistema. ¿Desea continuar de todos modos?", "Permisos");
+                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                if(Pregunta.ShowDialog() != DialogResult.OK)
+                                        return new Lfx.Types.FailureOperationResult("Debe asignar al menos un permiso al usuario. Utilice la tecla 'Agregar' (F6) para asignar uno o más permisos.");
                         }
 
                         return base.ValidarControl();

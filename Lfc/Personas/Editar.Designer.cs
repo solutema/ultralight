@@ -85,7 +85,7 @@ namespace Lfc.Personas
                         this.Label14 = new Lui.Forms.Label();
                         this.EntradaGrupo = new Lcc.Entrada.CodigoDetalle();
                         this.Label16 = new Lui.Forms.Label();
-                        this.BotonAcceso = new Lui.Forms.Button();
+                        this.BotonPermisos = new Lui.Forms.Button();
                         this.EntradaLimiteCredito = new Lui.Forms.TextBox();
                         this.label17 = new Lui.Forms.Label();
                         this.EntradaFechaNac = new Lui.Forms.TextBox();
@@ -159,6 +159,7 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.CanCreate = true;
                         this.EntradaLocalidad.DataTextField = "nombre";
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
+                        this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.FieldName = null;
                         this.EntradaLocalidad.Filter = "nivel=2";
                         this.EntradaLocalidad.FreeTextCode = "";
@@ -228,6 +229,7 @@ namespace Lfc.Personas
                         this.EntradaTipoDoc.CanCreate = false;
                         this.EntradaTipoDoc.DataTextField = "nombre";
                         this.EntradaTipoDoc.DataValueField = "id_tipo_doc";
+                        this.EntradaTipoDoc.ExtraDetailFields = "";
                         this.EntradaTipoDoc.FieldName = null;
                         this.EntradaTipoDoc.Filter = "";
                         this.EntradaTipoDoc.FreeTextCode = "";
@@ -513,6 +515,7 @@ namespace Lfc.Personas
                         this.EntradaSituacion.CanCreate = false;
                         this.EntradaSituacion.DataTextField = "nombre";
                         this.EntradaSituacion.DataValueField = "id_situacion";
+                        this.EntradaSituacion.ExtraDetailFields = "";
                         this.EntradaSituacion.FieldName = null;
                         this.EntradaSituacion.Filter = "";
                         this.EntradaSituacion.FreeTextCode = "";
@@ -562,6 +565,7 @@ namespace Lfc.Personas
                         this.EntradaTipo.CanCreate = false;
                         this.EntradaTipo.DataTextField = "nombre";
                         this.EntradaTipo.DataValueField = "id_tipo_persona";
+                        this.EntradaTipo.ExtraDetailFields = "";
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Filter = "";
                         this.EntradaTipo.FreeTextCode = "";
@@ -577,6 +581,7 @@ namespace Lfc.Personas
                         this.EntradaTipo.Table = "personas_tipos";
                         this.EntradaTipo.Text = "0";
                         this.EntradaTipo.TextDetail = "";
+                        this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label14
                         // 
@@ -597,6 +602,7 @@ namespace Lfc.Personas
                         this.EntradaGrupo.CanCreate = true;
                         this.EntradaGrupo.DataTextField = "nombre";
                         this.EntradaGrupo.DataValueField = "id_grupo";
+                        this.EntradaGrupo.ExtraDetailFields = "";
                         this.EntradaGrupo.FieldName = null;
                         this.EntradaGrupo.Filter = "parent IS NULL";
                         this.EntradaGrupo.FreeTextCode = "";
@@ -626,20 +632,20 @@ namespace Lfc.Personas
                         // 
                         // BotonAcceso
                         // 
-                        this.BotonAcceso.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAcceso.Image = null;
-                        this.BotonAcceso.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAcceso.Location = new System.Drawing.Point(284, 28);
-                        this.BotonAcceso.Name = "BotonAcceso";
-                        this.BotonAcceso.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonAcceso.ReadOnly = false;
-                        this.BotonAcceso.Size = new System.Drawing.Size(88, 44);
-                        this.BotonAcceso.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.BotonAcceso.Subtext = "F2";
-                        this.BotonAcceso.TabIndex = 6;
-                        this.BotonAcceso.Text = "Accesos";
-                        this.BotonAcceso.Visible = false;
-                        this.BotonAcceso.Click += new System.EventHandler(this.BotonAcceso_Click);
+                        this.BotonPermisos.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonPermisos.Image = null;
+                        this.BotonPermisos.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonPermisos.Location = new System.Drawing.Point(284, 28);
+                        this.BotonPermisos.Name = "BotonAcceso";
+                        this.BotonPermisos.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonPermisos.ReadOnly = false;
+                        this.BotonPermisos.Size = new System.Drawing.Size(88, 44);
+                        this.BotonPermisos.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonPermisos.Subtext = "F2";
+                        this.BotonPermisos.TabIndex = 6;
+                        this.BotonPermisos.Text = "Permisos";
+                        this.BotonPermisos.Visible = false;
+                        this.BotonPermisos.Click += new System.EventHandler(this.BotonPermisos_Click);
                         // 
                         // EntradaLimiteCredito
                         // 
@@ -879,6 +885,7 @@ namespace Lfc.Personas
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
+                        this.EntradaVendedor.ExtraDetailFields = "";
                         this.EntradaVendedor.FieldName = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
@@ -956,6 +963,7 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.CanCreate = true;
                         this.EntradaSubGrupo.DataTextField = "nombre";
                         this.EntradaSubGrupo.DataValueField = "id_grupo";
+                        this.EntradaSubGrupo.ExtraDetailFields = "";
                         this.EntradaSubGrupo.FieldName = null;
                         this.EntradaSubGrupo.Filter = "parent IS NULL";
                         this.EntradaSubGrupo.FreeTextCode = "";
@@ -1088,7 +1096,7 @@ namespace Lfc.Personas
                         this.frame5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.frame5.Controls.Add(this.label26);
-                        this.frame5.Controls.Add(this.BotonAcceso);
+                        this.frame5.Controls.Add(this.BotonPermisos);
                         this.frame5.Controls.Add(this.EntradaEstado);
                         this.frame5.Controls.Add(this.EntradaFechaBaja);
                         this.frame5.Controls.Add(this.label25);
@@ -1249,7 +1257,7 @@ namespace Lfc.Personas
                 internal Lui.Forms.Label Label15;
                 internal Lui.Forms.ComboBox EntradaTipoFac;
                 internal Lui.Forms.Label Label16;
-                internal Lui.Forms.Button BotonAcceso;
+                internal Lui.Forms.Button BotonPermisos;
                 internal Lui.Forms.TextBox EntradaLimiteCredito;
                 internal Lui.Forms.Label label17;
                 internal Lui.Forms.Label label18;

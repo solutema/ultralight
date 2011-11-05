@@ -30,14 +30,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
-namespace Lfc.Personas
+namespace Lfc.Personas.Usuarios
 {
         public partial class EditarPermiso : Lui.Forms.DialogForm
         {

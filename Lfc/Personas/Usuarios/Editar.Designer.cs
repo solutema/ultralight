@@ -76,9 +76,12 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaAcceso.AutoNav = true;
                         this.EntradaAcceso.AutoSize = true;
                         this.EntradaAcceso.AutoTab = true;
+                        this.EntradaAcceso.FieldName = null;
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
+                        this.EntradaAcceso.MaxLength = 32767;
                         this.EntradaAcceso.Name = "EntradaAcceso";
                         this.EntradaAcceso.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaAcceso.PlaceholderText = null;
                         this.EntradaAcceso.ReadOnly = false;
                         this.EntradaAcceso.SetData = new string[] {
         "Si|1",
@@ -89,6 +92,7 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // Label6
                         // 
+                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(0, 0);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(128, 24);
@@ -102,19 +106,25 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasena.DecimalPlaces = -1;
+                        this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(348, 0);
+                        this.EntradaContrasena.MaxLength = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
+                        this.EntradaContrasena.PlaceholderText = null;
+                        this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = false;
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
+                        this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 3;
                         // 
                         // label1
                         // 
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label1.Location = new System.Drawing.Point(220, 0);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(128, 24);
@@ -200,7 +210,7 @@ namespace Lfc.Personas.Usuarios
                         this.BotonQuitar.Text = "Quitar";
                         this.BotonQuitar.Click += new System.EventHandler(this.BotonQuitar_Click);
                         // 
-                        // Usuario
+                        // Editar
                         // 
                         this.Controls.Add(this.BotonQuitar);
                         this.Controls.Add(this.BotonAgregar);
@@ -210,7 +220,7 @@ namespace Lfc.Personas.Usuarios
                         this.Controls.Add(this.EntradaAcceso);
                         this.Controls.Add(this.Label6);
                         this.MinimumSize = new System.Drawing.Size(640, 400);
-                        this.Name = "Usuario";
+                        this.Name = "Editar";
                         this.Size = new System.Drawing.Size(640, 400);
                         this.Controls.SetChildIndex(this.Label6, 0);
                         this.Controls.SetChildIndex(this.EntradaAcceso, 0);

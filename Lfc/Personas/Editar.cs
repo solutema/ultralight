@@ -266,7 +266,7 @@ namespace Lfc.Personas
                         //EntradaTags.Enabled = PermitirEdicionAvanzada;
 
                         EntradaEstado.Enabled = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
-                        BotonAcceso.Visible = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Administrar);
+                        BotonPermisos.Visible = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Administrar);
 
                         base.ActualizarControl();
                 }
@@ -316,14 +316,22 @@ namespace Lfc.Personas
                 }
 
 
-                private void BotonAcceso_Click(object sender, System.EventArgs e)
+                private void BotonPermisos_Click(object sender, System.EventArgs e)
                 {
-                        if (this.Elemento.Existe == false) {
-                                Lui.Forms.MessageBox.Show("No puede editar el acceso del usuario porque aun no ha sido guardado.", "Error");
-                        } else {
-                                if (Lui.LogOn.LogOnData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar)) {
-                                        this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
+                        if (Lui.LogOn.LogOnData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar)) {
+                                if (this.Changed || this.Elemento.Existe == false) {
+                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Antes de editar los permisos debe guardar los cambios en este formulario. ¿Desea guardar ahora?", "Editar Permisos");
+                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                        if (this.Elemento.Existe)
+                                                this.ShowChanged = true;
+                                        DialogResult Res = Pregunta.ShowDialog();
+                                        this.ShowChanged = false;
+                                        if (Res != DialogResult.OK)
+                                                return;
+                                        else
+                                                this.Save();
                                 }
+                                this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
                         }
                 }
 
@@ -383,6 +391,11 @@ namespace Lfc.Personas
                 private void EntradaEmail_Leave(object sender, EventArgs e)
                 {
                         EntradaEmail.Text = EntradaEmail.Text.Replace(" ", "").Replace("/", ", ").Replace(";", ", ");
+                }
+
+                private void EntradaTipo_TextChanged(object sender, EventArgs e)
+                {
+                        BotonPermisos.Visible = (EntradaTipo.TextInt & 4) == 4;
                 }
         }
 }
