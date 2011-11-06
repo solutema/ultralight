@@ -4003,9 +4003,9 @@ INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (4, 'Peso
 INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (5, 'Pesos Chilenos', 'CLP', 1, 'CLP');
 INSERT INTO monedas (id_moneda, nombre, signo, cotizacion, iso) VALUES (6, 'Reales', 'BRL', 1, 'BRL');
 
-INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda) VALUES (999, NULL, '', 'Caja Efectivo', 0, 3);
-INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda) VALUES (1000, NULL, '', 'Cheques', 0, 3);
-INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda) VALUES (1001, NULL, '', 'Dólares', 0, 1);
+INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda, estado) VALUES (999, NULL, '', 'Caja Efectivo', 0, 3, 1);
+INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda, estado) VALUES (1000, NULL, '', 'Cheques', 0, 3, 1);
+INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda, estado) VALUES (1001, NULL, '', 'Dólares', 0, 1, 1);
 
 INSERT INTO alicuotas (id_alicuota, porcentaje, nombre) VALUES (1, 21, 'IVA 21%');
 INSERT INTO alicuotas (id_alicuota, porcentaje, nombre) VALUES (2, 10.5, 'IVA 10.5%');

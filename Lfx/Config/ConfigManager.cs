@@ -246,8 +246,8 @@ namespace Lfx.Config
                                 System.Data.DataTable TablaSysConfig = this.DataBase.Select(SelectConfig);
                                 foreach(System.Data.DataRow CfgRow in TablaSysConfig.Rows) {
                                         string Sucu;
-                                        if (CfgRow["id_sucursal"] == null || System.Convert.ToInt32(CfgRow["id_sucursal"]) == 0)
-                                                Sucu = "";
+                                        if (CfgRow["id_sucursal"] == null)
+                                                Sucu = "0";
                                         else
                                                 Sucu = CfgRow["id_sucursal"].ToString();
                                         string VarName = CfgRow["estacion"].ToString() + "/" + Sucu + "/" + CfgRow["nombre"].ToString();
@@ -259,7 +259,7 @@ namespace Lfx.Config
 			string Busco;
 
 			//Busco una variable para la estación
-                        Busco = (terminalName == null ? System.Environment.MachineName.ToUpperInvariant() : terminalName) + "//" + CompleteSettingName;
+                        Busco = (terminalName == null ? System.Environment.MachineName.ToUpperInvariant() : terminalName) + "/0/" + CompleteSettingName;
 			if(sucursal == 0 && SysConfigCache.ContainsKey(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 if (Res.Length > 0)
@@ -277,10 +277,9 @@ namespace Lfx.Config
 			if(sucursal == 0 && terminalName == null)
 			{
 				//Busco una variable global
-                                Busco = "*//" + DataBase.EscapeString(CompleteSettingName);
+                                Busco = "*/0/" + DataBase.EscapeString(CompleteSettingName);
                                 if (SysConfigCache.ContainsKey(Busco)) {
                                         string Res = (string)SysConfigCache[Busco];
-                                        if (Res.Length > 0)
                                                 return Res;
                                 }
 			}
@@ -300,7 +299,10 @@ namespace Lfx.Config
                         DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("id_sucursal", branch));
 			DataBase.Delete(DeleteCommand);
 
-			this.InvalidateConfigCache();
+                        CompleteSettingName = "*/" + branch.ToString() + "/" + CompleteSettingName;
+
+                        if (this.SysConfigCache.ContainsKey(CompleteSettingName))
+                                this.SysConfigCache.Remove(CompleteSettingName);
 			return true;
 		}
 
@@ -317,7 +319,10 @@ namespace Lfx.Config
                         DeleteCommand.WhereClause.Add(new qGen.ComparisonCondition("estacion", terminalName));
 			DataBase.Delete(DeleteCommand);
 
-			this.InvalidateConfigCache();
+                        CompleteSettingName = terminalName + "/0/" + CompleteSettingName;
+
+                        if (this.SysConfigCache.ContainsKey(CompleteSettingName))
+                                this.SysConfigCache.Remove(CompleteSettingName);
 			return true;
 		}
 
@@ -352,7 +357,13 @@ namespace Lfx.Config
 				DataBase.Update(UpdateCommand);
 			}
 
-			this.InvalidateConfigCache();
+                        CompleteSettingName = "*/" + branch.ToString() + "/" + CompleteSettingName;
+
+                        if (this.SysConfigCache.ContainsKey(CompleteSettingName))
+                                this.SysConfigCache[CompleteSettingName] = stringValue;
+                        else
+                                this.SysConfigCache.Add(CompleteSettingName, stringValue);
+
 			return true;
 		}
 
@@ -384,7 +395,13 @@ namespace Lfx.Config
 				DataBase.Update(UpdateCommand);
 			}
 
-			this.InvalidateConfigCache();
+                        CompleteSettingName = terminalName + "/0/" + CompleteSettingName;
+
+                        if (this.SysConfigCache.ContainsKey(CompleteSettingName))
+                                this.SysConfigCache[CompleteSettingName] = stringValue;
+                        else
+                                this.SysConfigCache.Add(CompleteSettingName, stringValue);
+
 			return true;
 		}
 

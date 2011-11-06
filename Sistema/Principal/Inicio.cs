@@ -405,7 +405,7 @@ namespace Lazaro.WinMain.Principal
                                         AgregarAlMenu(colgarDe, Itm, ItmInfo);
 
                                         if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja")
-                                                Itm.Select += new EventHandler(Menu_Sekect);
+                                                Itm.Select += new EventHandler(Menu_Select);
 
                                         /* if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja" && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Listar)) {
                                                 if (Conn == null)
@@ -574,7 +574,7 @@ namespace Lazaro.WinMain.Principal
                 }
 
 
-                private void Menu_Sekect(object sender, System.EventArgs e)
+                private void Menu_Select(object sender, System.EventArgs e)
                 {
                         MenuItem ItemClicked = (MenuItem)sender;
                         MenuItemInfo ItmInfo = MenuItemInfoTable[ItemClicked.Tag.ToString()];

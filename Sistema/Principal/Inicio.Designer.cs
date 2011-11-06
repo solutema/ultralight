@@ -68,9 +68,9 @@ namespace Lazaro.WinMain.Principal
                         this.BarraTareas = new System.Windows.Forms.ToolBar();
                         this.BarraTareasImagenes = new System.Windows.Forms.ImageList(this.components);
                         this.ListaBd = new System.Windows.Forms.ListBox();
-                        this.BarraInferior = new Lazaro.WinMain.Principal.BarraInferior();
                         this.ConsoleOut = new System.Windows.Forms.TextBox();
                         this.PanelDebug = new System.Windows.Forms.Panel();
+                        this.BarraInferior = new Lazaro.WinMain.Principal.BarraInferior();
                         this.PanelDebug.SuspendLayout();
                         this.SuspendLayout();
                         // 
@@ -82,12 +82,13 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // BarraTareas
                         // 
+                        this.BarraTareas.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
                         this.BarraTareas.DropDownArrows = true;
                         this.BarraTareas.ImageList = this.BarraTareasImagenes;
                         this.BarraTareas.Location = new System.Drawing.Point(0, 0);
                         this.BarraTareas.Name = "BarraTareas";
                         this.BarraTareas.ShowToolTips = true;
-                        this.BarraTareas.Size = new System.Drawing.Size(950, 32);
+                        this.BarraTareas.Size = new System.Drawing.Size(950, 28);
                         this.BarraTareas.TabIndex = 4;
                         this.BarraTareas.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
                         this.BarraTareas.Wrappable = false;
@@ -109,15 +110,6 @@ namespace Lazaro.WinMain.Principal
                         this.ListaBd.Name = "ListaBd";
                         this.ListaBd.Size = new System.Drawing.Size(308, 144);
                         this.ListaBd.TabIndex = 10;
-                        // 
-                        // BarraInferior
-                        // 
-                        this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.BarraInferior.Location = new System.Drawing.Point(0, 385);
-                        this.BarraInferior.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.BarraInferior.Name = "BarraInferior";
-                        this.BarraInferior.Size = new System.Drawing.Size(950, 52);
-                        this.BarraInferior.TabIndex = 8;
                         // 
                         // ConsoleOut
                         // 
@@ -146,15 +138,24 @@ namespace Lazaro.WinMain.Principal
                         this.PanelDebug.TabIndex = 13;
                         this.PanelDebug.Visible = false;
                         // 
+                        // BarraInferior
+                        // 
+                        this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
+                        this.BarraInferior.Location = new System.Drawing.Point(0, 385);
+                        this.BarraInferior.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.BarraInferior.Name = "BarraInferior";
+                        this.BarraInferior.Size = new System.Drawing.Size(950, 52);
+                        this.BarraInferior.TabIndex = 8;
+                        // 
                         // Inicio
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.Font = Lfx.Config.Display.DefaultFont;
                         this.ClientSize = new System.Drawing.Size(950, 437);
                         this.Controls.Add(this.PanelDebug);
                         this.Controls.Add(this.BarraInferior);
                         this.Controls.Add(this.BarraTareas);
+                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.IsMdiContainer = true;
                         this.KeyPreview = true;

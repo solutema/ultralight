@@ -81,6 +81,7 @@ namespace Lazaro.WinMain.Misc
                         Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.ContrasenaSal = Sal;
                         Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.Guardar();
 
+                        this.Hide();
                         Lfx.Workspace.Master.RunTime.Toast("Su contraseña ha sido cambiada. A partir de ahora debe utilizar siempre su nueva contraseña.", "Error");
                         this.Close();
                 }
@@ -88,8 +89,9 @@ namespace Lazaro.WinMain.Misc
 
 		private void BotonCancelar_Click(object sender, System.EventArgs e)
 		{
+                        this.Hide();
                         Lfx.Workspace.Master.RunTime.Toast("Su contraseña no ha sido cambiada.", "Aviso");
                         this.Close();
-		}
+                }
 	}
 }
