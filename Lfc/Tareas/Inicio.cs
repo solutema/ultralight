@@ -39,11 +39,10 @@ namespace Lfc.Tareas
 {
 	public partial class Inicio : Lfc.FormularioListado
 	{
-                public int Tipo { get; set; }
-                public int Grupo { get; set; }
-                public int Cliente { get; set; }
-                public int Localidad { get; set; }
-                public string Estado { get; set; }
+                private Lbl.Tareas.Tipo m_Tipo { get; set; }
+                private Lbl.Entidades.Localidad m_Localidad { get; set; }
+                private Lbl.Personas.Persona m_Cliente { get; set; }
+                private string m_Estado { get; set; }
 
                 protected int Activos;
                 protected int Terminados;
@@ -53,9 +52,7 @@ namespace Lfc.Tareas
 
                 public Inicio()
                 {
-                        this.Estado = "<50";
                         if (this.HasWorkspace) {
-                                // Localidad = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Localidad.Id;
                                 EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));
                         }
 
@@ -77,10 +74,85 @@ namespace Lfc.Tareas
                                         new Lazaro.Pres.Field("tickets.id_tecnico_recibe", "Encargado", Lfx.Data.InputFieldTypes.Text, 240),
                                         new Lazaro.Pres.Field("DATEDIFF(NOW(), tickets.fecha_ingreso) AS fechadiff", "Antigüedad", Lfx.Data.InputFieldTypes.Integer, 60)
 			        },
+
+                                Filters = new Lazaro.Pres.Filters.FilterCollection() 
+                                {
+                                        new Lazaro.Pres.Filters.RelationFilter("Cliente", new Lfx.Data.Relation("tickets.id_persona", "personas", "id_persona", "nombre_visible")),
+                                        new Lazaro.Pres.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("nivel", 2)),
+                                        new Lazaro.Pres.Filters.RelationFilter("Tipo", new Lfx.Data.Relation("tickets.id_tipo_ticket", "tickets_tipos", "id_tipo_ticket")),
+                                        new Lazaro.Pres.Filters.SetFilter("Estado", "tickets.estado", new string[] {
+                                                "Todos|todos",
+                                                "Sin Terminar|<30", 
+                                                "Terminados Sin Verificar|<40",
+                                                "Terminados Sin Entregar|<50" }, "<50"),
+                                        new Lazaro.Pres.Filters.SetFilter("Orden", "ORDER BY", new string[] {
+                                                "Los más nuevos primero|tickets.id_ticket DESC",
+                                                "Los más antiguos primero|tickets.id_ticket",
+                                                "Por nombre del Cliente|personas.nombre_visible" }, "tickets.id_ticket DESC")
+                                },
+
                                 OrderBy = "tickets.id_ticket DESC",
                         };
 
+                        this.Estado = "<50";
+
                         this.HabilitarFiltrar = true;
+                }
+
+
+                public string Estado
+                {
+                        get
+                        {
+                                return m_Estado;
+                        }
+                        set
+                        {
+                                m_Estado = value;
+                                this.Definicion.Filters["tickets.estado"].Value = value;
+                        }                                
+                }
+
+
+                public Lbl.Personas.Persona Cliente
+                {
+                        get
+                        {
+                                return m_Cliente;
+                        }
+                        set
+                        {
+                                m_Cliente = value;
+                                this.Definicion.Filters["tickets.id_persona"].Value = value;
+                        }
+                }
+
+
+                public Lbl.Tareas.Tipo Tipo
+                {
+                        get
+                        {
+                                return m_Tipo;
+                        }
+                        set
+                        {
+                                m_Tipo = value;
+                                this.Definicion.Filters["tickets.id_tipo_ticket"].Value = value;
+                        }
+                }
+
+
+                public Lbl.Entidades.Localidad Localidad
+                {
+                        get
+                        {
+                                return m_Localidad;
+                        }
+                        set
+                        {
+                                m_Localidad = value;
+                                this.Definicion.Filters["personas.id_ciudad"].Value = value;
+                        }
                 }
 
 
@@ -92,17 +164,14 @@ namespace Lfc.Tareas
 
                         this.CustomFilters.Clear();
 
-			if (Tipo > 0)
-				this.CustomFilters.AddWithValue("tickets.id_tipo_ticket", Tipo);
+                        if (this.Tipo != null)
+                                this.CustomFilters.AddWithValue("tickets.id_tipo_ticket", this.Tipo.Id);
 
-			if (Cliente > 0)
-				this.CustomFilters.AddWithValue("tickets.id_persona", Cliente);
+                        if (this.Cliente != null)
+                                this.CustomFilters.AddWithValue("tickets.id_persona", this.Cliente.Id);
 
-                        if (Grupo > 0)
-                                this.CustomFilters.AddWithValue("personas.id_grupo", Grupo);
-
-			if (Localidad > 0)
-				this.CustomFilters.AddWithValue("personas.id_ciudad", Localidad);
+                        if (this.Localidad != null)
+                                this.CustomFilters.AddWithValue("personas.id_ciudad", this.Localidad.Id);
 
 			switch (this.Estado)
 			{
@@ -128,41 +197,16 @@ namespace Lfc.Tareas
 		}
 
 
-		public override Lfx.Types.OperationResult OnFilter()
-		{
-			Lfx.Types.OperationResult filtrarReturn = new Lfx.Types.SuccessOperationResult();
+                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                {
+                        this.Cliente = this.Definicion.Filters["tickets.id_persona"].Value as Lbl.Personas.Persona;
+                        this.Tipo = this.Definicion.Filters["tickets.id_tipo_ticket"].Value as Lbl.Tareas.Tipo;
+                        this.Localidad = this.Definicion.Filters["personas.id_ciudad"].Value as Lbl.Entidades.Localidad;
+                        this.Estado = this.Definicion.Filters["tickets.estado"].Value as string;
+                        this.Definicion.OrderBy = this.Definicion.Filters["ORDER BY"].Value as string;
 
-                        using (Tareas.Filtros FormFiltros = new Tareas.Filtros()) {
-                                FormFiltros.Connection = this.Connection;
-                                FormFiltros.EntradaCliente.TextInt = Cliente;
-                                FormFiltros.EntradaGrupo.TextInt = Grupo;
-                                FormFiltros.EntradaLocalidad.TextInt = Localidad;
-                                FormFiltros.EntradaTarea.TextInt = Tipo;
-                                FormFiltros.EntradaEstado.TextKey = Estado;
-                                FormFiltros.EntradaOrden.TextKey = this.Definicion.OrderBy;
-
-                                // Agrego los estados de los tickets que figuran en la base de datos
-                                List<string> SetData2 = new List<string>(FormFiltros.EntradaEstado.SetData);
-                                foreach (int IdEstado in EstadosTickets.Keys) {
-                                        SetData2.Add(EstadosTickets[IdEstado] + "|" + IdEstado.ToString());
-                                }
-                                FormFiltros.EntradaEstado.SetData = SetData2.ToArray();
-
-                                if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                        Cliente = FormFiltros.EntradaCliente.TextInt;
-                                        Grupo = FormFiltros.EntradaGrupo.TextInt;
-                                        Localidad = FormFiltros.EntradaLocalidad.TextInt;
-                                        Tipo = FormFiltros.EntradaTarea.TextInt;
-                                        Estado = FormFiltros.EntradaEstado.TextKey;
-                                        this.Definicion.OrderBy = FormFiltros.EntradaOrden.TextKey;
-                                        this.RefreshList();
-                                        filtrarReturn.Success = true;
-                                } else {
-                                        filtrarReturn.Success = false;
-                                }
-                        }
-			return filtrarReturn;
-		}
+                        base.FiltersChanged(filters);
+                }
 
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
