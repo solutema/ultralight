@@ -126,7 +126,10 @@
     <Compile Include="Comprobantes\Presupuestos\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Recibos\Pago\Inicio.cs">
+    <Compile Include="Comprobantes\Recibos\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\Recibos\InicioPago.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Remitos\Inicio.cs">
@@ -496,7 +499,7 @@
     <Compile Include="Comprobantes\Recibos\Filtros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\Recibos\Cobro\Inicio.cs">
+    <Compile Include="Comprobantes\Recibos\InicioCobro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Recibos\Rapido.cs">

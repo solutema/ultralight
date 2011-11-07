@@ -50,5 +50,11 @@ namespace Lbl
                                 this.Add(System.Convert.ToInt32(Row[0]), Row[1].ToString());
                         }
                 }
+
+                public void AddRange(IDictionary<int, string> values)
+                {
+                        foreach (KeyValuePair<int, string> Vl in values)
+                                this.Add(Vl.Key, Vl.Value);
+                }
         }
 }

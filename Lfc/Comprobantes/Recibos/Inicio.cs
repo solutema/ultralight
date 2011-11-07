@@ -33,7 +33,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lfc.Comprobantes.Recibos.Cobro
+namespace Lfc.Comprobantes.Recibos
 {
 	public partial class Inicio : Lfc.FormularioListado
 	{
@@ -45,7 +45,7 @@ namespace Lfc.Comprobantes.Recibos.Cobro
                 {
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
-                                ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro),
+                                ElementoTipo = typeof(Lbl.Comprobantes.Recibo),
 
                                 TableName = "recibos",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "recibos.id_cliente=personas.id_persona") },
@@ -145,7 +145,10 @@ namespace Lfc.Comprobantes.Recibos.Cobro
 		{
                         this.CustomFilters.Clear();
 
-                        this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
+                        if (this.Definicion.ElementoTipo == typeof(Lbl.Comprobantes.ReciboDeCobro))
+                                this.CustomFilters.AddWithValue("recibos.tipo_fac", "RC");
+                        else
+                                this.CustomFilters.AddWithValue("recibos.tipo_fac", "RCP");
 
                         if (SearchText == null) {
                                 if (m_Sucursal > 0)

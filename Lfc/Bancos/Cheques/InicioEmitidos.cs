@@ -40,7 +40,18 @@ namespace Lfc.Bancos.Cheques
                         : base()
                 {
                         this.Definicion.ElementoTipo = typeof(Lbl.Bancos.ChequeEmitido);
-                        this.Emitidos = true;
+                        DepositarPagar.Text = "Pagar";
+                        BotonCrear.Text = "Emitir";
+
+                        Lbl.ColeccionCodigoDetalle NuevosEstados = new Lbl.ColeccionCodigoDetalle() { 
+                                {0, "A Pagar"},
+                                {5, "Depositado"},
+                                {10, "Pagado"},
+                                {11, "Entregado"},
+                                {90, "Anulado"}
+                        };
+                        
+                        this.EstadosCheques.AddRange(NuevosEstados);
                 }
         }
 }

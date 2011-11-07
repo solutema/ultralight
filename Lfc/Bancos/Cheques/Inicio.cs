@@ -40,35 +40,14 @@ namespace Lfc.Bancos.Cheques
 {
         public partial class Inicio : Lfc.FormularioListado
         {
-                protected internal int m_Estado = -2;
-                protected internal int m_Banco, m_Cliente, m_Sucursal;
-                protected internal bool m_Emitidos = false;
-                protected internal Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("*");
+                protected int Estado = -2;
+                protected int Banco, Cliente, Sucursal;
+                protected Lfx.Types.DateRange Fechas = new Lfx.Types.DateRange("*");
+                protected Lbl.ColeccionCodigoDetalle EstadosCheques = new Lbl.ColeccionCodigoDetalle();
 
                 public Inicio()
                 {
                         InitializeComponent();
-
-                        Lbl.ColeccionCodigoDetalle EstadosCheques;
-                        if (m_Emitidos) {
-                                EstadosCheques = new Lbl.ColeccionCodigoDetalle()
-                                { 
-                                        {0, "A Pagar"},
-                                        {5, "Depositado"},
-                                        {10, "Pagado"},
-                                        {11, "Entregado"},
-                                        {90, "Anulado"}
-                                };
-                        } else {
-                                EstadosCheques = new Lbl.ColeccionCodigoDetalle()
-                                { 
-                                        {0, "A Cobrar"},
-                                        {5, "Depositado"},
-                                        {10, "Cobrado"},
-                                        {11, "Entregado"},
-                                        {90, "Anulado"}
-                                };
-                        }
 
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
@@ -100,25 +79,15 @@ namespace Lfc.Bancos.Cheques
                         this.HabilitarFiltrar = true;
                 }
 
+
                 public bool Emitidos
                 {
                         get
                         {
-                                return m_Emitidos;
-                        }
-                        set
-                        {
-                                m_Emitidos = value;
-
-                                if (m_Emitidos == false) {
-                                        DepositarPagar.Text = "Depositar";
-                                        BotonCrear.Text = "Efectivizar";
-                                } else {
-                                        DepositarPagar.Text = "Pagar";
-                                        BotonCrear.Text = "Emitir";
-                                }
+                                return this.Definicion.ElementoTipo == typeof(Lbl.Bancos.ChequeEmitido);
                         }
                 }
+
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
@@ -129,7 +98,7 @@ namespace Lfc.Bancos.Cheques
                         
                         switch (row.Fields["estado"].ValueInt) {
                                 case 0:
-                                        if (m_Emitidos)
+                                        if (this.Emitidos)
                                                 item.SubItems["bancos_cheques.estado"].Text = "A pagar";
                                         else
                                                 item.SubItems["bancos_cheques.estado"].Text = "A cobrar";
@@ -144,7 +113,7 @@ namespace Lfc.Bancos.Cheques
                                         this.Contadores[1].AddValue(Importe);
                                         break;
                                 case 10:
-                                        if (m_Emitidos)
+                                        if (this.Emitidos)
                                                 item.SubItems["bancos_cheques.estado"].Text = "Pagado";
                                         else
                                                 item.SubItems["bancos_cheques.estado"].Text = "Cobrado";
@@ -209,19 +178,19 @@ namespace Lfc.Bancos.Cheques
                                         "Cobrado|10",
                                         "Anulado|90"};
                                         }
-                                        FormFiltros.EntradaEstado.TextKey = m_Estado.ToString();
-                                        FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
-                                        FormFiltros.EntradaBanco.TextInt = m_Banco;
-                                        FormFiltros.EntradaPersona.TextInt = m_Cliente;
-                                        FormFiltros.EntradaFechas.Rango = m_Fechas;
+                                        FormFiltros.EntradaEstado.TextKey = Estado.ToString();
+                                        FormFiltros.EntradaSucursal.TextInt = Sucursal;
+                                        FormFiltros.EntradaBanco.TextInt = Banco;
+                                        FormFiltros.EntradaPersona.TextInt = Cliente;
+                                        FormFiltros.EntradaFechas.Rango = Fechas;
 
                                         FormFiltros.ShowDialog();
                                         if (FormFiltros.DialogResult == DialogResult.OK) {
-                                                m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
-                                                m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
-                                                m_Banco = FormFiltros.EntradaBanco.TextInt;
-                                                m_Cliente = FormFiltros.EntradaPersona.TextInt;
-                                                m_Fechas = FormFiltros.EntradaFechas.Rango;
+                                                Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
+                                                Sucursal = FormFiltros.EntradaSucursal.TextInt;
+                                                Banco = FormFiltros.EntradaBanco.TextInt;
+                                                Cliente = FormFiltros.EntradaPersona.TextInt;
+                                                Fechas = FormFiltros.EntradaFechas.Rango;
                                                 RefreshList();
                                                 filtrarReturn.Success = true;
                                         } else {
@@ -241,22 +210,22 @@ namespace Lfc.Bancos.Cheques
                         else
                                 this.CustomFilters.AddWithValue("bancos_cheques.emitido", 0);
 
-                        if (m_Estado == -2)
+                        if (Estado == -2)
                                 this.CustomFilters.AddWithValue("bancos_cheques.estado IN (0, 5)");
-                        if (m_Estado >= 0)
-                                this.CustomFilters.AddWithValue("bancos_cheques.estado", m_Estado);
+                        if (Estado >= 0)
+                                this.CustomFilters.AddWithValue("bancos_cheques.estado", Estado);
 
-                        if (m_Sucursal > 0)
-                                this.CustomFilters.AddWithValue("bancos_cheques.id_sucursal", m_Sucursal);
+                        if (Sucursal > 0)
+                                this.CustomFilters.AddWithValue("bancos_cheques.id_sucursal", Sucursal);
 
-                        if (m_Banco > 0)
-                                this.CustomFilters.AddWithValue("bancos_cheques.id_banco", m_Banco);
+                        if (Banco > 0)
+                                this.CustomFilters.AddWithValue("bancos_cheques.id_banco", Banco);
 
-                        if (m_Cliente > 0)
-                                this.CustomFilters.AddWithValue("bancos_cheques.id_cliente", m_Cliente);
+                        if (Cliente > 0)
+                                this.CustomFilters.AddWithValue("bancos_cheques.id_cliente", Cliente);
 
-                        if (m_Fechas.HasRange)
-                                this.CustomFilters.AddWithValue("bancos_cheques.fechaemision BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.From) + "  00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fechas.To) + " 23:59:59'");
+                        if (Fechas.HasRange)
+                                this.CustomFilters.AddWithValue("bancos_cheques.fechaemision BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(Fechas.From) + "  00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(Fechas.To) + " 23:59:59'");
                 }
 
 

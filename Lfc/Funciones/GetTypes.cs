@@ -104,7 +104,7 @@ namespace Lfc
                         Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Bancos.ChequeRecibido),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Bancos.Cheques.InicioEmitidos)),
+                                        new Lfx.Components.Action("list", typeof(Lfc.Bancos.Cheques.InicioRecibidos)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Bancos.Cheques.Editar))
                                 }));
 
@@ -189,7 +189,7 @@ namespace Lfc
                         Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.Recibo),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.Cobro.Inicio)),
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.InicioCobro)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Recibos.Editar)),
                                         new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorRecibo))
                                 }));
@@ -197,7 +197,7 @@ namespace Lfc
                         Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.ReciboDeCobro),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.Cobro.Inicio)),
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.InicioCobro)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Recibos.Editar)),
                                         new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorRecibo))
                                 }));
@@ -205,7 +205,7 @@ namespace Lfc
                         Res.Add(new Lfx.Components.RegisteredType(
                                 typeof(Lbl.Comprobantes.ReciboDePago),
                                 new Lfx.Components.ActionCollection() {
-                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.Pago.Inicio)),
+                                        new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Recibos.InicioPago)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Recibos.Editar)),
                                         new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorRecibo))
                                 }));

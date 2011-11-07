@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Ernesto N. Carrea
+// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,29 +29,14 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-
-namespace Lfc.Bancos.Cheques
+namespace Lfc.Comprobantes.Recibos
 {
-        public class InicioRecibidos : Inicio
+        public partial class InicioCobro : Inicio
         {
-                public InicioRecibidos()
+                public InicioCobro()
                         : base()
                 {
-                        this.Definicion.ElementoTipo = typeof(Lbl.Bancos.ChequeRecibido);
-                        DepositarPagar.Text = "Depositar";
-                        BotonCrear.Text = "Efectivizar";
-
-                        Lbl.ColeccionCodigoDetalle NuevosEstados = new Lbl.ColeccionCodigoDetalle() { 
-                                {0, "A Cobrar"},
-                                {5, "Depositado"},
-                                {10, "Cobrado"},
-                                {11, "Entregado"},
-                                {90, "Anulado"}
-                        };
-
-                        this.EstadosCheques.AddRange(NuevosEstados);
+                        this.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.ReciboDeCobro);
                 }
         }
 }
