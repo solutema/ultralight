@@ -92,6 +92,12 @@
             Carga (o vuelve a cargar) el elemento desde su registro asociado en la base de datos.
             </summary>
         </member>
+        <member name="M:Lbl.ElementoDeDatos.ObtenerTodos(qGen.Where)">
+            <summary>
+            Obtiene una lista de todos los elementos de esta tabla
+            </summary>
+            <returns>Una colección con los id y nombre de todos los elementos de la tabla</returns>
+        </member>
         <member name="P:Lbl.ElementoDeDatos.Id">
             <summary>
             El valor de la clave primaria.

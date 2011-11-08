@@ -751,5 +751,19 @@ namespace Lbl
                                 m_Etiquetas = value;
                         }
                 }
+
+                /// <summary>
+                /// Obtiene una lista de todos los elementos de esta tabla
+                /// </summary>
+                /// <returns>Una colección con los id y nombre de todos los elementos de la tabla</returns>
+                public ColeccionCodigoDetalle ObtenerTodos(qGen.Where filter)
+                {
+                        qGen.Select Sel = new qGen.Select(this.TablaDatos);
+                        Sel.Fields = this.CampoId + ", " + this.CampoNombre;
+                        if (filter != null)
+                                Sel.WhereClause = filter;
+                        System.Data.DataTable Tabla = this.Connection.Select(Sel);
+                        return new ColeccionCodigoDetalle(Tabla);
+                }
 	}
 }
