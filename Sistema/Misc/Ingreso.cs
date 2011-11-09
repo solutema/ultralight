@@ -61,6 +61,11 @@ namespace Lazaro.WinMain.Misc
 
 		private void BotonAceptar_Click(object sender, System.EventArgs e)
 		{
+                        if (EntradaUsuario.TextInt == 0) {
+                                MessageBox.Show("Por favor ingrese su número de usuario y su contraseña.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                return;
+                        }
+
                         if (EntradaUsuario.TextInt == 1 && Lfx.Workspace.Master.DebugMode == false) {
                                 string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 bool Puede = false;

@@ -71,23 +71,25 @@ namespace Lfc.Articulos
                                 aceptarReturn.Success = false;
                         }
 
-
-                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.Connection, EntradaArticulo.TextInt);
-                        Art.Cargar();
-                        if (Art.Seguimiento != Lbl.Articulos.Seguimientos.Ninguno ) {
-                                if (Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal()) {
-                                        Lui.Forms.YesNoDialog Preg = new Lui.Forms.YesNoDialog("No debe realizar movimientos manuales de artículos con seguimiento. ¿Desea continuar de todos modos?", "Advertencia");
-                                        if (Preg.ShowDialog() != DialogResult.OK) {
-                                                aceptarReturn.Message += "Debe confeccionar un Remito o una Factura." + Environment.NewLine;
+                        Lbl.Articulos.Articulo Art = null;
+                        if (aceptarReturn.Success) {
+                                Art = EntradaArticulo.Elemento as Lbl.Articulos.Articulo;
+                                Art.Cargar();
+                                if (Art.Seguimiento != Lbl.Articulos.Seguimientos.Ninguno) {
+                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal()) {
+                                                Lui.Forms.YesNoDialog Preg = new Lui.Forms.YesNoDialog("No debe realizar movimientos manuales de artículos con seguimiento. ¿Desea continuar de todos modos?", "Advertencia");
+                                                if (Preg.ShowDialog() != DialogResult.OK) {
+                                                        aceptarReturn.Message += "Debe confeccionar un Remito o una Factura." + Environment.NewLine;
+                                                        aceptarReturn.Success = false;
+                                                }
+                                        } else {
+                                                aceptarReturn.Message += "No debe realizar movimientos manuales de artículos con seguimiento. Debería confeccionar un Remito o una Factura." + Environment.NewLine;
                                                 aceptarReturn.Success = false;
                                         }
-                                } else {
-                                        aceptarReturn.Message += "No debe realizar movimientos manuales de artículos con seguimiento. Debería confeccionar un Remito o una Factura." + Environment.NewLine;
-                                        aceptarReturn.Success = false;
                                 }
                         }
 
-                        if (aceptarReturn.Success == true) {
+                        if (aceptarReturn.Success) {
                                 IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 decimal Cantidad = EntradaCantidad.ValueDecimal;
                                 Lbl.Articulos.Situacion Origen, Destino;
