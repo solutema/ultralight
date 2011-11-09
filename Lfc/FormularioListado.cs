@@ -231,6 +231,11 @@ namespace Lfc
                 protected override void OnEndRefreshList()
                 {
                         if (Listado.Items.Count == 0) {
+                                if (this.HabilitarCrear)
+                                        EtiquetaListadoVacio.Text = "El listado no contiene datos." + System.Environment.NewLine + "Haga clic en el botón 'Crear' para crear uno nuevo";
+                                else
+                                        EtiquetaListadoVacio.Text = "El listado no contiene datos.";
+
                                 EtiquetaListadoVacio.Visible = true;
                                 EtiquetaListadoVacio.BringToFront();
                         }

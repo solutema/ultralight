@@ -57,9 +57,6 @@ namespace Lfc.Tarjetas.Cupones
                 internal Lui.Forms.TextBox EntradaComisionUsuario;
                 internal Lui.Forms.Label Label8;
                 internal Lui.Forms.ComboBox txtFormaPago;
-                internal Label lblComisionUsuarioPct;
-                internal Label lblComisionPlanPct;
-                internal Label lblComisionTarjetaPct;
                 internal Lui.Forms.TextBox EntradaTotal;
 
                 #region Código generado por el Diseñador de Windows Forms
@@ -110,22 +107,29 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // txtFormaPago
                         // 
+                        this.txtFormaPago.AlwaysExpanded = true;
                         this.txtFormaPago.AutoNav = true;
+                        this.txtFormaPago.AutoSize = true;
                         this.txtFormaPago.AutoTab = true;
-                        this.txtFormaPago.Location = new System.Drawing.Point(188, 256);
+                        this.txtFormaPago.FieldName = null;
+                        this.txtFormaPago.Location = new System.Drawing.Point(188, 244);
+                        this.txtFormaPago.MaxLength = 32767;
                         this.txtFormaPago.Name = "txtFormaPago";
                         this.txtFormaPago.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtFormaPago.PlaceholderText = null;
+                        this.txtFormaPago.ReadOnly = false;
                         this.txtFormaPago.SetData = new string[] {
         "Efectivo|1",
         "Cheque|2",
         "Depósito en Cuenta|6"};
-                        this.txtFormaPago.Size = new System.Drawing.Size(200, 24);
+                        this.txtFormaPago.Size = new System.Drawing.Size(200, 51);
                         this.txtFormaPago.TabIndex = 17;
                         this.txtFormaPago.TextKey = "6";
                         // 
                         // Label11
                         // 
-                        this.Label11.Location = new System.Drawing.Point(56, 256);
+                        this.Label11.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label11.Location = new System.Drawing.Point(56, 244);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(132, 24);
                         this.Label11.TabIndex = 16;
@@ -138,19 +142,27 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtCupones.AutoTab = true;
                         this.txtCupones.DataType = Lui.Forms.DataTypes.Integer;
                         this.txtCupones.DecimalPlaces = -1;
+                        this.txtCupones.FieldName = null;
                         this.txtCupones.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCupones.Location = new System.Drawing.Point(132, 20);
+                        this.txtCupones.MaxLength = 32767;
                         this.txtCupones.MultiLine = false;
                         this.txtCupones.Name = "txtCupones";
                         this.txtCupones.Padding = new System.Windows.Forms.Padding(2);
+                        this.txtCupones.PasswordChar = '\0';
+                        this.txtCupones.PlaceholderText = null;
+                        this.txtCupones.Prefijo = "";
+                        this.txtCupones.ReadOnly = false;
                         this.txtCupones.SelectOnFocus = true;
                         this.txtCupones.Size = new System.Drawing.Size(56, 24);
+                        this.txtCupones.Sufijo = "";
                         this.txtCupones.TabIndex = 1;
                         this.txtCupones.TabStop = false;
                         this.txtCupones.Text = "0";
                         // 
                         // lblLabel1
                         // 
+                        this.lblLabel1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.lblLabel1.Location = new System.Drawing.Point(20, 20);
                         this.lblLabel1.Name = "lblLabel1";
                         this.lblLabel1.Size = new System.Drawing.Size(112, 24);
@@ -160,6 +172,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(192, 20);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(168, 24);
@@ -173,14 +186,20 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaSubTotal.AutoTab = true;
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaSubTotal.DecimalPlaces = -1;
+                        this.EntradaSubTotal.FieldName = null;
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(360, 20);
+                        this.EntradaSubTotal.MaxLength = 32767;
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSubTotal.PasswordChar = '\0';
+                        this.EntradaSubTotal.PlaceholderText = null;
                         this.EntradaSubTotal.Prefijo = "$";
+                        this.EntradaSubTotal.ReadOnly = false;
                         this.EntradaSubTotal.SelectOnFocus = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaSubTotal.Sufijo = "";
                         this.EntradaSubTotal.TabIndex = 3;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
@@ -191,14 +210,20 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionTarjeta.AutoTab = true;
                         this.EntradaComisionTarjeta.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionTarjeta.DecimalPlaces = -1;
+                        this.EntradaComisionTarjeta.FieldName = null;
                         this.EntradaComisionTarjeta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionTarjeta.Location = new System.Drawing.Point(116, 36);
+                        this.EntradaComisionTarjeta.MaxLength = 32767;
                         this.EntradaComisionTarjeta.MultiLine = false;
                         this.EntradaComisionTarjeta.Name = "EntradaComisionTarjeta";
                         this.EntradaComisionTarjeta.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComisionTarjeta.PasswordChar = '\0';
+                        this.EntradaComisionTarjeta.PlaceholderText = null;
                         this.EntradaComisionTarjeta.Prefijo = "$";
+                        this.EntradaComisionTarjeta.ReadOnly = false;
                         this.EntradaComisionTarjeta.SelectOnFocus = true;
                         this.EntradaComisionTarjeta.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaComisionTarjeta.Sufijo = "";
                         this.EntradaComisionTarjeta.TabIndex = 6;
                         this.EntradaComisionTarjeta.TabStop = false;
                         this.EntradaComisionTarjeta.Text = "0.00";
@@ -206,6 +231,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label2
                         // 
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(8, 36);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(112, 24);
@@ -215,6 +241,8 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Frame1
                         // 
+                        this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Frame1.Controls.Add(this.EntradaComisionTarjeta);
                         this.Frame1.Controls.Add(this.EntradaComisionPlan);
                         this.Frame1.Controls.Add(this.EntradaComisionUsuario);
@@ -227,9 +255,11 @@ namespace Lfc.Tarjetas.Cupones
                         this.Frame1.Controls.Add(this.Label5);
                         this.Frame1.Controls.Add(this.Label7);
                         this.Frame1.Controls.Add(this.Label6);
+                        this.Frame1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Frame1.Location = new System.Drawing.Point(12, 56);
                         this.Frame1.Name = "Frame1";
                         this.Frame1.Padding = new System.Windows.Forms.Padding(2);
+                        this.Frame1.ReadOnly = false;
                         this.Frame1.Size = new System.Drawing.Size(608, 136);
                         this.Frame1.TabIndex = 4;
                         this.Frame1.TabStop = false;
@@ -241,14 +271,20 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionPlan.AutoTab = true;
                         this.EntradaComisionPlan.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionPlan.DecimalPlaces = -1;
+                        this.EntradaComisionPlan.FieldName = null;
                         this.EntradaComisionPlan.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionPlan.Location = new System.Drawing.Point(116, 68);
+                        this.EntradaComisionPlan.MaxLength = 32767;
                         this.EntradaComisionPlan.MultiLine = false;
                         this.EntradaComisionPlan.Name = "EntradaComisionPlan";
                         this.EntradaComisionPlan.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComisionPlan.PasswordChar = '\0';
+                        this.EntradaComisionPlan.PlaceholderText = null;
                         this.EntradaComisionPlan.Prefijo = "$";
+                        this.EntradaComisionPlan.ReadOnly = false;
                         this.EntradaComisionPlan.SelectOnFocus = true;
                         this.EntradaComisionPlan.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaComisionPlan.Sufijo = "";
                         this.EntradaComisionPlan.TabIndex = 9;
                         this.EntradaComisionPlan.TabStop = false;
                         this.EntradaComisionPlan.Text = "0.00";
@@ -260,20 +296,27 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionUsuario.AutoTab = true;
                         this.EntradaComisionUsuario.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionUsuario.DecimalPlaces = -1;
+                        this.EntradaComisionUsuario.FieldName = null;
                         this.EntradaComisionUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionUsuario.Location = new System.Drawing.Point(116, 100);
+                        this.EntradaComisionUsuario.MaxLength = 32767;
                         this.EntradaComisionUsuario.MultiLine = false;
                         this.EntradaComisionUsuario.Name = "EntradaComisionUsuario";
                         this.EntradaComisionUsuario.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComisionUsuario.PasswordChar = '\0';
+                        this.EntradaComisionUsuario.PlaceholderText = null;
                         this.EntradaComisionUsuario.Prefijo = "$";
+                        this.EntradaComisionUsuario.ReadOnly = false;
                         this.EntradaComisionUsuario.SelectOnFocus = true;
                         this.EntradaComisionUsuario.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaComisionUsuario.Sufijo = "";
                         this.EntradaComisionUsuario.TabIndex = 12;
                         this.EntradaComisionUsuario.Text = "0.00";
                         this.EntradaComisionUsuario.TextChanged += new System.EventHandler(this.EntradaComisionUsuario_TextChanged);
                         // 
                         // lblComisionTarjetaPct
                         // 
+                        this.lblComisionTarjetaPct.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.lblComisionTarjetaPct.Location = new System.Drawing.Point(228, 36);
                         this.lblComisionTarjetaPct.Name = "lblComisionTarjetaPct";
                         this.lblComisionTarjetaPct.Size = new System.Drawing.Size(76, 24);
@@ -283,6 +326,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblComisionUsuarioPct
                         // 
+                        this.lblComisionUsuarioPct.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.lblComisionUsuarioPct.Location = new System.Drawing.Point(228, 100);
                         this.lblComisionUsuarioPct.Name = "lblComisionUsuarioPct";
                         this.lblComisionUsuarioPct.Size = new System.Drawing.Size(76, 24);
@@ -292,6 +336,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label4
                         // 
+                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(8, 100);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(112, 24);
@@ -301,6 +346,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblComisionPlanPct
                         // 
+                        this.lblComisionPlanPct.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.lblComisionPlanPct.Location = new System.Drawing.Point(228, 68);
                         this.lblComisionPlanPct.Name = "lblComisionPlanPct";
                         this.lblComisionPlanPct.Size = new System.Drawing.Size(76, 24);
@@ -310,6 +356,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label3
                         // 
+                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(8, 68);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(112, 24);
@@ -319,27 +366,30 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(324, 36);
+                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label5.Location = new System.Drawing.Point(308, 36);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(276, 24);
+                        this.Label5.Size = new System.Drawing.Size(292, 24);
                         this.Label5.TabIndex = 7;
                         this.Label5.Text = "(Comisiones normales de las tarjetas)";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(324, 100);
+                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label7.Location = new System.Drawing.Point(308, 100);
                         this.Label7.Name = "Label7";
-                        this.Label7.Size = new System.Drawing.Size(276, 24);
+                        this.Label7.Size = new System.Drawing.Size(292, 24);
                         this.Label7.TabIndex = 13;
                         this.Label7.Text = "(Otros descuentos no contemplados)";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label6
                         // 
-                        this.Label6.Location = new System.Drawing.Point(324, 68);
+                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label6.Location = new System.Drawing.Point(308, 68);
                         this.Label6.Name = "Label6";
-                        this.Label6.Size = new System.Drawing.Size(276, 24);
+                        this.Label6.Size = new System.Drawing.Size(292, 24);
                         this.Label6.TabIndex = 10;
                         this.Label6.Text = "(Comisiones adicionales de algunos planes)";
                         this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -350,21 +400,28 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaTotal.AutoTab = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
+                        this.EntradaTotal.FieldName = null;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaTotal.Location = new System.Drawing.Point(188, 220);
+                        this.EntradaTotal.Location = new System.Drawing.Point(188, 208);
+                        this.EntradaTotal.MaxLength = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTotal.PasswordChar = '\0';
+                        this.EntradaTotal.PlaceholderText = null;
                         this.EntradaTotal.Prefijo = "$";
+                        this.EntradaTotal.ReadOnly = false;
                         this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
+                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 15;
                         this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
                         // 
                         // Label8
                         // 
-                        this.Label8.Location = new System.Drawing.Point(56, 220);
+                        this.Label8.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label8.Location = new System.Drawing.Point(56, 208);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(132, 28);
                         this.Label8.TabIndex = 14;
@@ -374,7 +431,7 @@ namespace Lfc.Tarjetas.Cupones
                         // Acreditar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(634, 374);
+                        this.ClientSize = new System.Drawing.Size(634, 372);
                         this.Controls.Add(this.EntradaTotal);
                         this.Controls.Add(this.Label8);
                         this.Controls.Add(this.EntradaSubTotal);
@@ -398,9 +455,14 @@ namespace Lfc.Tarjetas.Cupones
                         this.Frame1.ResumeLayout(false);
                         this.Frame1.PerformLayout();
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
                 #endregion
+
+                internal Lui.Forms.Label lblComisionUsuarioPct;
+                internal Lui.Forms.Label lblComisionPlanPct;
+                internal Lui.Forms.Label lblComisionTarjetaPct;
         }
 }
