@@ -56,22 +56,6 @@ namespace Lfx.Environment
                 }
 
 
-                /* [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
-		public static string[] ExecuteAndGet(string command, string paramsIdent, System.Diagnostics.ProcessWindowStyle windowStyle)
-                {
-                        System.Diagnostics.Process NuevoProceso = new System.Diagnostics.Process();
-                        NuevoProceso.StartInfo = new System.Diagnostics.ProcessStartInfo(command, paramsIdent);
-                        NuevoProceso.StartInfo.WindowStyle = windowStyle;
-                        NuevoProceso.StartInfo.RedirectStandardOutput = true;
-			NuevoProceso.StartInfo.UseShellExecute = false;
-			NuevoProceso.Start();
-
-                        NuevoProceso.WaitForExit();
-			string Res = NuevoProceso.StandardOutput.ReadToEnd();
-			return Res.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.None);
-                } */
-
-
                 [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
                 public static void Reboot()
                 {

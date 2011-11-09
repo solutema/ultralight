@@ -76,8 +76,10 @@ namespace Lazaro.Pres
                         : this(columnName, label)
                 {
                         this.DataType = dataType;
-                        if (this.Width < 28)
+                        if (this.Width < 28) {
                                 this.Visible = false;
+                                this.Printable = false;
+                        }
                 }
 
 
@@ -85,8 +87,10 @@ namespace Lazaro.Pres
                         : this(columnName, label, dataType)
                 {
                         this.Width = width;
-                        if (this.Width < 28)
+                        if (this.Width < 28) {
                                 this.Visible = false;
+                                this.Printable = false;
+                        }
                 }
 
 
