@@ -514,7 +514,7 @@ namespace Lfc.Comprobantes
                         // 
                         // EtiquetaIva
                         // 
-                        this.EtiquetaIva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.EtiquetaIva.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
                         this.EtiquetaIva.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaIva.Location = new System.Drawing.Point(0, 336);
                         this.EtiquetaIva.Name = "EtiquetaIva";
@@ -583,9 +583,9 @@ namespace Lfc.Comprobantes
 
                 #endregion
 
-                public Lcc.Entrada.Articulos.MatrizDetalleComprobante ProductArray;
+                internal Lcc.Entrada.Articulos.MatrizDetalleComprobante ProductArray;
                 internal Lui.Forms.Label Label3;
-                public Lcc.Entrada.CodigoDetalle EntradaCliente;
+                internal Lcc.Entrada.CodigoDetalle EntradaCliente;
                 internal Lui.Forms.Label Label1;
                 internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
                 internal Lui.Forms.TextBox EntradaTotal;
@@ -607,7 +607,7 @@ namespace Lfc.Comprobantes
                 internal Lui.Forms.Label EtiquetaTitulo;
                 internal Lui.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaPV;
-                private System.Windows.Forms.Panel PnlCuotas;
+                internal System.Windows.Forms.Panel PnlCuotas;
                 internal Lui.Forms.TextBox EntradaIva;
                 internal Lui.Forms.Label EtiquetaIva;
         }

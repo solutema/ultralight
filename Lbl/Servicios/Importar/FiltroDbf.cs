@@ -53,7 +53,8 @@ namespace Lbl.Servicios.Importar
                         Progreso.Begin();
 
                         ConexionExterna = new System.Data.Odbc.OdbcConnection();
-                        ConexionExterna.ConnectionString = @"Driver={Microsoft dBase Driver (*.dbf)};SourceType=DBF;SourceDB=" + this.Carpeta + ";Exclusive=No;Collate=Machine;NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
+                        //ConexionExterna.ConnectionString = @"Driver={Microsoft Access dBase Driver (*.dbf)};SourceType=DBF;SourceDB=" + this.Carpeta + ";Exclusive=No;Collate=Machine;NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
+                        ConexionExterna.ConnectionString = @"dsn=ventre;";
                         ConexionExterna.Open();
 
                         Progreso.Max = MapaDeTablas.Count;

@@ -43,7 +43,7 @@ namespace Lbl.Servicios.Importar
                 public FiltroEscorpion(Lfx.Data.Connection dataBase)
                         : base(dataBase)
                 {
-                        this.FilterName = "Filtro de importación de Escorpión Sistemas";
+                        this.FilterName = "Escorpión Sistemas";
 
                         this.Reemplazos.Add(new Reemplazo("NO POSEE", ""));
 

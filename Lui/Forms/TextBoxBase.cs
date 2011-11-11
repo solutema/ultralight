@@ -158,10 +158,6 @@ namespace Lui.Forms
                 {
                         if (m_AutoNav) {
                                 switch (e.KeyCode) {
-                                        case Keys.E:
-                                                if (e.Control)
-                                                        TextBox1.SelectionLength = 0;
-                                                break;
                                         case Keys.Down:
                                                 if (e.Alt) {
                                                         m_AutoNav = false;
@@ -200,13 +196,11 @@ namespace Lui.Forms
                                                         e.Handled = true;
                                                 }
                                                 break;
-                                        default:
-                                                if (this.KeyDown != null)
-                                                        this.KeyDown(this, e);
-                                                break;
                                 }
+                                if (e.Handled == false && this.KeyDown != null)
+                                        this.KeyDown(this, e);
                         } else {
-                                if (null != KeyDown)
+                                if (KeyDown  != null)
                                         KeyDown(this, e);
                         }
                 }

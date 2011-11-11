@@ -45,8 +45,8 @@ namespace Lcc.Entrada.Articulos
                 {
                         InitializeComponent();
 
-                        if (this.Workspace != null) {
-                                EntradaCantidad.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
+                        if (Lfx.Workspace.Master != null) {
+                                EntradaCantidad.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock;
                         }
                 }
 
@@ -114,6 +114,34 @@ namespace Lcc.Entrada.Articulos
                         this.Text = EntradaVariacion.Text + ": " + EntradaCantidad.Text;
                         EntradaCantidad.TabStop = EntradaVariacion.Text.Length > 0;
                         this.OnTextChanged(e);
+                }
+
+                private void EntradaVariacion_KeyDown(object sender, KeyEventArgs e)
+                {
+                        if (e.Alt == false && e.Control == false && e.Shift == false) {
+                                switch(e.KeyCode){
+                                        case Keys.Right:
+                                                if (EntradaVariacion.SelectionStart == EntradaVariacion.Text.Length) {
+                                                        e.Handled = true;
+                                                        SendKeys.Send("{tab}");
+                                                }
+                                                break;
+                                }
+                        }
+                }
+
+                private void EntradaCantidad_KeyDown(object sender, KeyEventArgs e)
+                {
+                        if (e.Alt == false && e.Control == false && e.Shift == false) {
+                                switch (e.KeyCode) {
+                                        case Keys.Left:
+                                                if (EntradaCantidad.SelectionStart == 0 && EntradaCantidad.SelectionLength == 0) {
+                                                        e.Handled = true;
+                                                        SendKeys.Send("+{tab}");
+                                                }
+                                                break;
+                                }
+                        }
                 }
         }
 

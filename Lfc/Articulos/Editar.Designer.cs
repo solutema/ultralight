@@ -109,6 +109,7 @@ namespace Lfc.Articulos
                         this.Frame2.Controls.Add(this.EtiquetaAlicuota);
                         this.Frame2.Controls.Add(this.Label8);
                         this.Frame2.Controls.Add(this.Label10);
+                        this.Frame2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Frame2.Location = new System.Drawing.Point(0, 352);
                         this.Frame2.Margin = new System.Windows.Forms.Padding(0);
                         this.Frame2.Name = "Frame2";
@@ -123,16 +124,18 @@ namespace Lfc.Articulos
                         this.EntradaMargen.AlwaysExpanded = true;
                         this.EntradaMargen.AutoNav = true;
                         this.EntradaMargen.AutoTab = true;
+                        this.EntradaMargen.FieldName = null;
                         this.EntradaMargen.Location = new System.Drawing.Point(76, 64);
+                        this.EntradaMargen.MaxLength = 32767;
                         this.EntradaMargen.Name = "EntradaMargen";
                         this.EntradaMargen.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaMargen.PlaceholderText = "Márgenes predefinidos";
                         this.EntradaMargen.ReadOnly = false;
                         this.EntradaMargen.SetData = new string[] {
         "Otro|-1"};
                         this.EntradaMargen.Size = new System.Drawing.Size(276, 96);
                         this.EntradaMargen.TabIndex = 4;
                         this.EntradaMargen.TextKey = "-1";
-                        this.EntradaMargen.PlaceholderText = "Márgenes predefinidos";
                         this.EntradaMargen.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
                         // EntradaCosto
@@ -141,18 +144,22 @@ namespace Lfc.Articulos
                         this.EntradaCosto.AutoTab = true;
                         this.EntradaCosto.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCosto.DecimalPlaces = -1;
+                        this.EntradaCosto.FieldName = null;
                         this.EntradaCosto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCosto.Location = new System.Drawing.Point(76, 32);
+                        this.EntradaCosto.MaxLength = 32767;
                         this.EntradaCosto.MultiLine = false;
                         this.EntradaCosto.Name = "EntradaCosto";
                         this.EntradaCosto.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCosto.PasswordChar = '\0';
+                        this.EntradaCosto.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaCosto.Prefijo = "$";
                         this.EntradaCosto.ReadOnly = false;
                         this.EntradaCosto.SelectOnFocus = true;
                         this.EntradaCosto.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaCosto.Sufijo = "";
                         this.EntradaCosto.TabIndex = 1;
                         this.EntradaCosto.Text = "0.00";
-                        this.EntradaCosto.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaCosto.GotFocus += new System.EventHandler(this.EntradaCosto_GotFocus);
                         this.EntradaCosto.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
@@ -178,23 +185,28 @@ namespace Lfc.Articulos
                         this.EntradaPvp.AutoTab = true;
                         this.EntradaPvp.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaPvp.DecimalPlaces = -1;
+                        this.EntradaPvp.FieldName = null;
                         this.EntradaPvp.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPvp.Location = new System.Drawing.Point(76, 168);
+                        this.EntradaPvp.MaxLength = 32767;
                         this.EntradaPvp.MultiLine = false;
                         this.EntradaPvp.Name = "EntradaPvp";
                         this.EntradaPvp.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPvp.PasswordChar = '\0';
+                        this.EntradaPvp.PlaceholderText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
+    "definido a continuación";
                         this.EntradaPvp.Prefijo = "$";
                         this.EntradaPvp.ReadOnly = false;
                         this.EntradaPvp.SelectOnFocus = true;
                         this.EntradaPvp.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaPvp.Sufijo = "";
                         this.EntradaPvp.TabIndex = 6;
                         this.EntradaPvp.Text = "0.00";
-                        this.EntradaPvp.PlaceholderText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
-                            "definido a continuación";
                         this.EntradaPvp.TextChanged += new System.EventHandler(this.EntradaPvp_TextChanged);
                         // 
                         // Label6
                         // 
+                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(0, 32);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(76, 24);
@@ -204,6 +216,7 @@ namespace Lfc.Articulos
                         // 
                         // EtiquetaAlicuota
                         // 
+                        this.EtiquetaAlicuota.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.EtiquetaAlicuota.Location = new System.Drawing.Point(188, 168);
                         this.EtiquetaAlicuota.Name = "EtiquetaAlicuota";
                         this.EtiquetaAlicuota.Size = new System.Drawing.Size(164, 24);
@@ -212,6 +225,7 @@ namespace Lfc.Articulos
                         // 
                         // Label8
                         // 
+                        this.Label8.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label8.Location = new System.Drawing.Point(0, 64);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(76, 24);
@@ -221,6 +235,7 @@ namespace Lfc.Articulos
                         // 
                         // Label10
                         // 
+                        this.Label10.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label10.Location = new System.Drawing.Point(0, 168);
                         this.Label10.Name = "Label10";
                         this.Label10.Size = new System.Drawing.Size(76, 24);
@@ -234,9 +249,12 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.AutoNav = true;
                         this.EntradaUnidad.AutoSize = true;
                         this.EntradaUnidad.AutoTab = true;
+                        this.EntradaUnidad.FieldName = null;
                         this.EntradaUnidad.Location = new System.Drawing.Point(324, 32);
+                        this.EntradaUnidad.MaxLength = 32767;
                         this.EntradaUnidad.Name = "EntradaUnidad";
                         this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaUnidad.PlaceholderText = "¿El artículo usa control de stock?";
                         this.EntradaUnidad.ReadOnly = false;
                         this.EntradaUnidad.SetData = new string[] {
         "N/A|",
@@ -256,7 +274,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.Size = new System.Drawing.Size(120, 81);
                         this.EntradaUnidad.TabIndex = 10;
                         this.EntradaUnidad.TextKey = "u";
-                        this.EntradaUnidad.PlaceholderText = "¿El artículo usa control de stock?";
                         this.EntradaUnidad.Enter += new System.EventHandler(this.EntradaPvp_Enter);
                         // 
                         // EntradaUsaStock
@@ -265,9 +282,12 @@ namespace Lfc.Articulos
                         this.EntradaUsaStock.AutoNav = true;
                         this.EntradaUsaStock.AutoSize = true;
                         this.EntradaUsaStock.AutoTab = true;
+                        this.EntradaUsaStock.FieldName = null;
                         this.EntradaUsaStock.Location = new System.Drawing.Point(80, 32);
+                        this.EntradaUsaStock.MaxLength = 32767;
                         this.EntradaUsaStock.Name = "EntradaUsaStock";
                         this.EntradaUsaStock.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaUsaStock.PlaceholderText = "¿El artículo usa control de stock?";
                         this.EntradaUsaStock.ReadOnly = false;
                         this.EntradaUsaStock.SetData = new string[] {
         "No|0",
@@ -276,7 +296,6 @@ namespace Lfc.Articulos
                         this.EntradaUsaStock.Size = new System.Drawing.Size(120, 51);
                         this.EntradaUsaStock.TabIndex = 1;
                         this.EntradaUsaStock.TextKey = "1";
-                        this.EntradaUsaStock.PlaceholderText = "¿El artículo usa control de stock?";
                         this.EntradaUsaStock.TextChanged += new System.EventHandler(this.EntradaUsaStock_TextChanged);
                         // 
                         // BotonReceta
@@ -314,6 +333,7 @@ namespace Lfc.Articulos
                         // 
                         // label19
                         // 
+                        this.label19.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label19.Location = new System.Drawing.Point(244, 32);
                         this.label19.Name = "label19";
                         this.label19.Size = new System.Drawing.Size(80, 24);
@@ -328,6 +348,8 @@ namespace Lfc.Articulos
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.DataValueField = "id_caja";
+                        this.EntradaCaja.ExtraDetailFields = "";
+                        this.EntradaCaja.FieldName = null;
                         this.EntradaCaja.Filter = "id_caja>999";
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(116, 168);
@@ -345,6 +367,7 @@ namespace Lfc.Articulos
                         // 
                         // label17
                         // 
+                        this.label17.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label17.Location = new System.Drawing.Point(-4, 168);
                         this.label17.Name = "label17";
                         this.label17.Size = new System.Drawing.Size(116, 24);
@@ -354,6 +377,7 @@ namespace Lfc.Articulos
                         // 
                         // Label7
                         // 
+                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(0, 32);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(80, 24);
@@ -367,20 +391,26 @@ namespace Lfc.Articulos
                         this.EntradaStockMinimo.AutoTab = true;
                         this.EntradaStockMinimo.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaStockMinimo.DecimalPlaces = -1;
+                        this.EntradaStockMinimo.FieldName = null;
                         this.EntradaStockMinimo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaStockMinimo.Location = new System.Drawing.Point(100, 92);
+                        this.EntradaStockMinimo.MaxLength = 32767;
                         this.EntradaStockMinimo.MultiLine = false;
                         this.EntradaStockMinimo.Name = "EntradaStockMinimo";
                         this.EntradaStockMinimo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaStockMinimo.PasswordChar = '\0';
+                        this.EntradaStockMinimo.PlaceholderText = "Stock mínimo o crítico";
+                        this.EntradaStockMinimo.Prefijo = "";
                         this.EntradaStockMinimo.ReadOnly = false;
                         this.EntradaStockMinimo.SelectOnFocus = true;
                         this.EntradaStockMinimo.Size = new System.Drawing.Size(96, 24);
+                        this.EntradaStockMinimo.Sufijo = "";
                         this.EntradaStockMinimo.TabIndex = 4;
                         this.EntradaStockMinimo.Text = "0.00";
-                        this.EntradaStockMinimo.PlaceholderText = "Stock mínimo o crítico";
                         // 
                         // Label11
                         // 
+                        this.Label11.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label11.Location = new System.Drawing.Point(0, 92);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(96, 24);
@@ -390,6 +420,7 @@ namespace Lfc.Articulos
                         // 
                         // Label9
                         // 
+                        this.Label9.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label9.Location = new System.Drawing.Point(0, 124);
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(96, 24);
@@ -403,14 +434,20 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.AutoTab = true;
                         this.EntradaStockActual.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaStockActual.DecimalPlaces = -1;
+                        this.EntradaStockActual.FieldName = null;
                         this.EntradaStockActual.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaStockActual.Location = new System.Drawing.Point(100, 124);
+                        this.EntradaStockActual.MaxLength = 32767;
                         this.EntradaStockActual.MultiLine = false;
                         this.EntradaStockActual.Name = "EntradaStockActual";
                         this.EntradaStockActual.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaStockActual.PasswordChar = '\0';
+                        this.EntradaStockActual.PlaceholderText = null;
+                        this.EntradaStockActual.Prefijo = "";
                         this.EntradaStockActual.ReadOnly = false;
                         this.EntradaStockActual.SelectOnFocus = true;
                         this.EntradaStockActual.Size = new System.Drawing.Size(96, 24);
+                        this.EntradaStockActual.Sufijo = "";
                         this.EntradaStockActual.TabIndex = 6;
                         this.EntradaStockActual.TabStop = false;
                         this.EntradaStockActual.Text = "0.00";
@@ -418,8 +455,8 @@ namespace Lfc.Articulos
                         // 
                         // Frame1
                         // 
-                        this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Frame1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Frame1.Controls.Add(this.EntradaDestacado);
                         this.Frame1.Controls.Add(this.EntradaWeb);
                         this.Frame1.Controls.Add(this.EntradaModelo);
@@ -452,6 +489,7 @@ namespace Lfc.Articulos
                         this.Frame1.Controls.Add(this.Label16);
                         this.Frame1.Controls.Add(this.Label12);
                         this.Frame1.Controls.Add(this.Label5);
+                        this.Frame1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Frame1.Location = new System.Drawing.Point(0, 0);
                         this.Frame1.Margin = new System.Windows.Forms.Padding(0);
                         this.Frame1.Name = "Frame1";
@@ -467,9 +505,12 @@ namespace Lfc.Articulos
                         this.EntradaDestacado.AutoNav = true;
                         this.EntradaDestacado.AutoSize = true;
                         this.EntradaDestacado.AutoTab = true;
+                        this.EntradaDestacado.FieldName = null;
                         this.EntradaDestacado.Location = new System.Drawing.Point(76, 292);
+                        this.EntradaDestacado.MaxLength = 32767;
                         this.EntradaDestacado.Name = "EntradaDestacado";
                         this.EntradaDestacado.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDestacado.PlaceholderText = null;
                         this.EntradaDestacado.ReadOnly = false;
                         this.EntradaDestacado.SetData = new string[] {
         "Si|1",
@@ -484,9 +525,12 @@ namespace Lfc.Articulos
                         this.EntradaWeb.AutoNav = true;
                         this.EntradaWeb.AutoSize = true;
                         this.EntradaWeb.AutoTab = true;
+                        this.EntradaWeb.FieldName = null;
                         this.EntradaWeb.Location = new System.Drawing.Point(228, 292);
+                        this.EntradaWeb.MaxLength = 32767;
                         this.EntradaWeb.Name = "EntradaWeb";
                         this.EntradaWeb.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaWeb.PlaceholderText = null;
                         this.EntradaWeb.ReadOnly = false;
                         this.EntradaWeb.SetData = new string[] {
         "Siempre|1",
@@ -502,14 +546,20 @@ namespace Lfc.Articulos
                         this.EntradaModelo.AutoTab = true;
                         this.EntradaModelo.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaModelo.DecimalPlaces = -1;
+                        this.EntradaModelo.FieldName = null;
                         this.EntradaModelo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaModelo.Location = new System.Drawing.Point(76, 92);
+                        this.EntradaModelo.MaxLength = 32767;
                         this.EntradaModelo.MultiLine = false;
                         this.EntradaModelo.Name = "EntradaModelo";
                         this.EntradaModelo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaModelo.PasswordChar = '\0';
+                        this.EntradaModelo.PlaceholderText = null;
+                        this.EntradaModelo.Prefijo = "";
                         this.EntradaModelo.ReadOnly = false;
                         this.EntradaModelo.SelectOnFocus = false;
                         this.EntradaModelo.Size = new System.Drawing.Size(292, 24);
+                        this.EntradaModelo.Sufijo = "";
                         this.EntradaModelo.TabIndex = 9;
                         this.EntradaModelo.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
@@ -519,18 +569,22 @@ namespace Lfc.Articulos
                         this.EntradaGarantia.AutoTab = true;
                         this.EntradaGarantia.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaGarantia.DecimalPlaces = -1;
+                        this.EntradaGarantia.FieldName = null;
                         this.EntradaGarantia.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaGarantia.Location = new System.Drawing.Point(536, 292);
+                        this.EntradaGarantia.MaxLength = 32767;
                         this.EntradaGarantia.MultiLine = false;
                         this.EntradaGarantia.Name = "EntradaGarantia";
                         this.EntradaGarantia.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaGarantia.PasswordChar = '\0';
+                        this.EntradaGarantia.PlaceholderText = "Precio de costo o de compra.";
+                        this.EntradaGarantia.Prefijo = "";
                         this.EntradaGarantia.ReadOnly = false;
                         this.EntradaGarantia.SelectOnFocus = true;
                         this.EntradaGarantia.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGarantia.Sufijo = "meses";
                         this.EntradaGarantia.TabIndex = 27;
                         this.EntradaGarantia.Text = "0";
-                        this.EntradaGarantia.PlaceholderText = "Precio de costo o de compra.";
                         // 
                         // EntradaCodigo4
                         // 
@@ -538,14 +592,20 @@ namespace Lfc.Articulos
                         this.EntradaCodigo4.AutoTab = true;
                         this.EntradaCodigo4.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCodigo4.DecimalPlaces = -1;
+                        this.EntradaCodigo4.FieldName = null;
                         this.EntradaCodigo4.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo4.Location = new System.Drawing.Point(772, 32);
+                        this.EntradaCodigo4.MaxLength = 32767;
                         this.EntradaCodigo4.MultiLine = false;
                         this.EntradaCodigo4.Name = "EntradaCodigo4";
                         this.EntradaCodigo4.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCodigo4.PasswordChar = '\0';
+                        this.EntradaCodigo4.PlaceholderText = null;
+                        this.EntradaCodigo4.Prefijo = "";
                         this.EntradaCodigo4.ReadOnly = false;
                         this.EntradaCodigo4.SelectOnFocus = true;
                         this.EntradaCodigo4.Size = new System.Drawing.Size(132, 24);
+                        this.EntradaCodigo4.Sufijo = "";
                         this.EntradaCodigo4.TabIndex = 3;
                         // 
                         // EntradaProveedor
@@ -556,6 +616,8 @@ namespace Lfc.Articulos
                         this.EntradaProveedor.CanCreate = true;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.DataValueField = "id_persona";
+                        this.EntradaProveedor.ExtraDetailFields = "";
+                        this.EntradaProveedor.FieldName = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.Location = new System.Drawing.Point(613, 148);
@@ -578,12 +640,15 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.CanCreate = true;
                         this.EntradaCategoria.DataTextField = "nombre";
                         this.EntradaCategoria.DataValueField = "id_categoria";
+                        this.EntradaCategoria.ExtraDetailFields = "";
+                        this.EntradaCategoria.FieldName = null;
                         this.EntradaCategoria.Filter = "";
                         this.EntradaCategoria.FreeTextCode = "";
                         this.EntradaCategoria.Location = new System.Drawing.Point(76, 64);
                         this.EntradaCategoria.MaxLength = 200;
                         this.EntradaCategoria.Name = "EntradaCategoria";
                         this.EntradaCategoria.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCategoria.PlaceholderText = "Rubro o categoría";
                         this.EntradaCategoria.ReadOnly = false;
                         this.EntradaCategoria.Required = true;
                         this.EntradaCategoria.Size = new System.Drawing.Size(292, 24);
@@ -591,18 +656,19 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.Table = "articulos_categorias";
                         this.EntradaCategoria.Text = "0";
                         this.EntradaCategoria.TextDetail = "";
-                        this.EntradaCategoria.PlaceholderText = "Rubro o categoría";
                         this.EntradaCategoria.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
                         // EntradaMarca
                         // 
-                        this.EntradaMarca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaMarca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaMarca.AutoNav = true;
                         this.EntradaMarca.AutoTab = true;
                         this.EntradaMarca.CanCreate = true;
                         this.EntradaMarca.DataTextField = "nombre";
                         this.EntradaMarca.DataValueField = "id_marca";
+                        this.EntradaMarca.ExtraDetailFields = "";
+                        this.EntradaMarca.FieldName = null;
                         this.EntradaMarca.Filter = "";
                         this.EntradaMarca.FreeTextCode = "";
                         this.EntradaMarca.Location = new System.Drawing.Point(436, 64);
@@ -625,34 +691,45 @@ namespace Lfc.Articulos
                         this.EntradaCodigo3.AutoTab = true;
                         this.EntradaCodigo3.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCodigo3.DecimalPlaces = -1;
+                        this.EntradaCodigo3.FieldName = null;
                         this.EntradaCodigo3.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaCodigo3.Location = new System.Drawing.Point(540, 32);
+                        this.EntradaCodigo3.MaxLength = 32767;
                         this.EntradaCodigo3.MultiLine = false;
                         this.EntradaCodigo3.Name = "EntradaCodigo3";
                         this.EntradaCodigo3.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCodigo3.PasswordChar = '\0';
+                        this.EntradaCodigo3.PlaceholderText = null;
+                        this.EntradaCodigo3.Prefijo = "";
                         this.EntradaCodigo3.ReadOnly = false;
                         this.EntradaCodigo3.SelectOnFocus = true;
                         this.EntradaCodigo3.Size = new System.Drawing.Size(132, 24);
+                        this.EntradaCodigo3.Sufijo = "";
                         this.EntradaCodigo3.TabIndex = 1;
                         // 
                         // EntradaDescripcion2
                         // 
-                        this.EntradaDescripcion2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaDescripcion2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDescripcion2.AutoNav = true;
                         this.EntradaDescripcion2.AutoTab = true;
                         this.EntradaDescripcion2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDescripcion2.DecimalPlaces = -1;
+                        this.EntradaDescripcion2.FieldName = null;
                         this.EntradaDescripcion2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescripcion2.Location = new System.Drawing.Point(484, 180);
+                        this.EntradaDescripcion2.MaxLength = 32767;
                         this.EntradaDescripcion2.MultiLine = true;
                         this.EntradaDescripcion2.Name = "EntradaDescripcion2";
                         this.EntradaDescripcion2.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDescripcion2.PasswordChar = '\0';
+                        this.EntradaDescripcion2.PlaceholderText = "Descripción larga";
+                        this.EntradaDescripcion2.Prefijo = "";
                         this.EntradaDescripcion2.ReadOnly = false;
                         this.EntradaDescripcion2.SelectOnFocus = false;
                         this.EntradaDescripcion2.Size = new System.Drawing.Size(502, 104);
+                        this.EntradaDescripcion2.Sufijo = "";
                         this.EntradaDescripcion2.TabIndex = 21;
-                        this.EntradaDescripcion2.PlaceholderText = "Descripción larga";
                         // 
                         // EntradaCodigo2
                         // 
@@ -660,14 +737,20 @@ namespace Lfc.Articulos
                         this.EntradaCodigo2.AutoTab = true;
                         this.EntradaCodigo2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCodigo2.DecimalPlaces = -1;
+                        this.EntradaCodigo2.FieldName = null;
                         this.EntradaCodigo2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo2.Location = new System.Drawing.Point(312, 32);
+                        this.EntradaCodigo2.MaxLength = 32767;
                         this.EntradaCodigo2.MultiLine = false;
                         this.EntradaCodigo2.Name = "EntradaCodigo2";
                         this.EntradaCodigo2.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCodigo2.PasswordChar = '\0';
+                        this.EntradaCodigo2.PlaceholderText = null;
+                        this.EntradaCodigo2.Prefijo = "";
                         this.EntradaCodigo2.ReadOnly = false;
                         this.EntradaCodigo2.SelectOnFocus = true;
                         this.EntradaCodigo2.Size = new System.Drawing.Size(132, 24);
+                        this.EntradaCodigo2.Sufijo = "";
                         this.EntradaCodigo2.TabIndex = 3;
                         // 
                         // EntradaCodigo1
@@ -676,34 +759,45 @@ namespace Lfc.Articulos
                         this.EntradaCodigo1.AutoTab = true;
                         this.EntradaCodigo1.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCodigo1.DecimalPlaces = -1;
+                        this.EntradaCodigo1.FieldName = null;
                         this.EntradaCodigo1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo1.Location = new System.Drawing.Point(84, 32);
+                        this.EntradaCodigo1.MaxLength = 32767;
                         this.EntradaCodigo1.MultiLine = false;
                         this.EntradaCodigo1.Name = "EntradaCodigo1";
                         this.EntradaCodigo1.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCodigo1.PasswordChar = '\0';
+                        this.EntradaCodigo1.PlaceholderText = null;
+                        this.EntradaCodigo1.Prefijo = "";
                         this.EntradaCodigo1.ReadOnly = false;
                         this.EntradaCodigo1.SelectOnFocus = true;
                         this.EntradaCodigo1.Size = new System.Drawing.Size(132, 24);
+                        this.EntradaCodigo1.Sufijo = "";
                         this.EntradaCodigo1.TabIndex = 1;
                         // 
                         // EntradaUrl
                         // 
-                        this.EntradaUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaUrl.AutoNav = true;
                         this.EntradaUrl.AutoTab = true;
                         this.EntradaUrl.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaUrl.DecimalPlaces = -1;
+                        this.EntradaUrl.FieldName = null;
                         this.EntradaUrl.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUrl.Location = new System.Drawing.Point(76, 148);
+                        this.EntradaUrl.MaxLength = 32767;
                         this.EntradaUrl.MultiLine = false;
                         this.EntradaUrl.Name = "EntradaUrl";
                         this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaUrl.PasswordChar = '\0';
+                        this.EntradaUrl.PlaceholderText = "Dirección de la página web del producto.";
+                        this.EntradaUrl.Prefijo = "";
                         this.EntradaUrl.ReadOnly = false;
                         this.EntradaUrl.SelectOnFocus = false;
                         this.EntradaUrl.Size = new System.Drawing.Size(450, 24);
+                        this.EntradaUrl.Sufijo = "";
                         this.EntradaUrl.TabIndex = 15;
-                        this.EntradaUrl.PlaceholderText = "Dirección de la página web del producto.";
                         // 
                         // EntradaDescripcion
                         // 
@@ -711,58 +805,75 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion.AutoTab = true;
                         this.EntradaDescripcion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDescripcion.DecimalPlaces = -1;
+                        this.EntradaDescripcion.FieldName = null;
                         this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescripcion.Location = new System.Drawing.Point(76, 180);
+                        this.EntradaDescripcion.MaxLength = 32767;
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
                         this.EntradaDescripcion.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDescripcion.PasswordChar = '\0';
+                        this.EntradaDescripcion.PlaceholderText = "Descripción larga";
+                        this.EntradaDescripcion.Prefijo = "";
                         this.EntradaDescripcion.ReadOnly = false;
                         this.EntradaDescripcion.SelectOnFocus = false;
                         this.EntradaDescripcion.Size = new System.Drawing.Size(320, 104);
+                        this.EntradaDescripcion.Sufijo = "";
                         this.EntradaDescripcion.TabIndex = 19;
-                        this.EntradaDescripcion.PlaceholderText = "Descripción larga";
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNombre.Location = new System.Drawing.Point(76, 120);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = "Nombre completo del artículo";
+                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(910, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 13;
-                        this.EntradaNombre.PlaceholderText = "Nombre completo del artículo";
                         this.EntradaNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaNombre_KeyPress);
                         // 
                         // EntradaSerie
                         // 
-                        this.EntradaSerie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaSerie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSerie.AutoNav = true;
                         this.EntradaSerie.AutoTab = true;
                         this.EntradaSerie.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaSerie.DecimalPlaces = -1;
+                        this.EntradaSerie.FieldName = null;
                         this.EntradaSerie.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSerie.Location = new System.Drawing.Point(436, 92);
+                        this.EntradaSerie.MaxLength = 32767;
                         this.EntradaSerie.MultiLine = false;
                         this.EntradaSerie.Name = "EntradaSerie";
                         this.EntradaSerie.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSerie.PasswordChar = '\0';
+                        this.EntradaSerie.PlaceholderText = null;
+                        this.EntradaSerie.Prefijo = "";
                         this.EntradaSerie.ReadOnly = false;
                         this.EntradaSerie.SelectOnFocus = false;
                         this.EntradaSerie.Size = new System.Drawing.Size(550, 24);
+                        this.EntradaSerie.Sufijo = "";
                         this.EntradaSerie.TabIndex = 11;
                         this.EntradaSerie.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
                         // EtiquetaCodigo1
                         // 
+                        this.EtiquetaCodigo1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaCodigo1.Location = new System.Drawing.Point(0, 32);
                         this.EtiquetaCodigo1.Name = "EtiquetaCodigo1";
                         this.EtiquetaCodigo1.Size = new System.Drawing.Size(84, 24);
@@ -772,6 +883,7 @@ namespace Lfc.Articulos
                         // 
                         // EtiquetaCodigo4
                         // 
+                        this.EtiquetaCodigo4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaCodigo4.Location = new System.Drawing.Point(688, 32);
                         this.EtiquetaCodigo4.Name = "EtiquetaCodigo4";
                         this.EtiquetaCodigo4.Size = new System.Drawing.Size(84, 24);
@@ -781,6 +893,7 @@ namespace Lfc.Articulos
                         // 
                         // EtiquetaCodigo3
                         // 
+                        this.EtiquetaCodigo3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaCodigo3.Location = new System.Drawing.Point(456, 32);
                         this.EtiquetaCodigo3.Name = "EtiquetaCodigo3";
                         this.EtiquetaCodigo3.Size = new System.Drawing.Size(84, 24);
@@ -790,6 +903,7 @@ namespace Lfc.Articulos
                         // 
                         // EtiquetaCodigo2
                         // 
+                        this.EtiquetaCodigo2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaCodigo2.Location = new System.Drawing.Point(228, 32);
                         this.EtiquetaCodigo2.Name = "EtiquetaCodigo2";
                         this.EtiquetaCodigo2.Size = new System.Drawing.Size(84, 24);
@@ -799,6 +913,7 @@ namespace Lfc.Articulos
                         // 
                         // label20
                         // 
+                        this.label20.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label20.Location = new System.Drawing.Point(460, 292);
                         this.label20.Name = "label20";
                         this.label20.Size = new System.Drawing.Size(76, 24);
@@ -809,6 +924,7 @@ namespace Lfc.Articulos
                         // Label14
                         // 
                         this.Label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label14.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label14.Location = new System.Drawing.Point(533, 148);
                         this.Label14.Name = "Label14";
                         this.Label14.Size = new System.Drawing.Size(80, 24);
@@ -818,6 +934,7 @@ namespace Lfc.Articulos
                         // 
                         // Label2
                         // 
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 64);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(76, 24);
@@ -827,6 +944,7 @@ namespace Lfc.Articulos
                         // 
                         // Label13
                         // 
+                        this.Label13.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label13.Location = new System.Drawing.Point(0, 180);
                         this.Label13.Name = "Label13";
                         this.Label13.Size = new System.Drawing.Size(76, 24);
@@ -836,6 +954,7 @@ namespace Lfc.Articulos
                         // 
                         // Label15
                         // 
+                        this.Label15.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label15.Location = new System.Drawing.Point(0, 292);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(76, 24);
@@ -845,6 +964,7 @@ namespace Lfc.Articulos
                         // 
                         // Label3
                         // 
+                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(0, 92);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(76, 24);
@@ -854,6 +974,7 @@ namespace Lfc.Articulos
                         // 
                         // Label4
                         // 
+                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(384, 92);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(52, 24);
@@ -863,6 +984,7 @@ namespace Lfc.Articulos
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(384, 64);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(52, 24);
@@ -872,6 +994,7 @@ namespace Lfc.Articulos
                         // 
                         // Label18
                         // 
+                        this.Label18.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label18.Location = new System.Drawing.Point(404, 180);
                         this.Label18.Name = "Label18";
                         this.Label18.Size = new System.Drawing.Size(76, 32);
@@ -881,6 +1004,7 @@ namespace Lfc.Articulos
                         // 
                         // Label16
                         // 
+                        this.Label16.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label16.Location = new System.Drawing.Point(156, 292);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(72, 24);
@@ -890,6 +1014,7 @@ namespace Lfc.Articulos
                         // 
                         // Label12
                         // 
+                        this.Label12.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label12.Location = new System.Drawing.Point(0, 148);
                         this.Label12.Name = "Label12";
                         this.Label12.Size = new System.Drawing.Size(76, 24);
@@ -899,6 +1024,7 @@ namespace Lfc.Articulos
                         // 
                         // Label5
                         // 
+                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 120);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(76, 24);
@@ -908,8 +1034,8 @@ namespace Lfc.Articulos
                         // 
                         // frame3
                         // 
-                        this.frame3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.frame3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.frame3.Controls.Add(this.EntradaCaja);
                         this.frame3.Controls.Add(this.BotonConformacion);
                         this.frame3.Controls.Add(this.BotonHistorial);
@@ -924,6 +1050,7 @@ namespace Lfc.Articulos
                         this.frame3.Controls.Add(this.label19);
                         this.frame3.Controls.Add(this.Label11);
                         this.frame3.Controls.Add(this.Label9);
+                        this.frame3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.frame3.Location = new System.Drawing.Point(372, 352);
                         this.frame3.Margin = new System.Windows.Forms.Padding(0);
                         this.frame3.Name = "frame3";

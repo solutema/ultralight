@@ -85,7 +85,7 @@ namespace Lbl.Servicios.Importar
                 /// </summary>
                 public virtual void FusionarTabla(MapaDeTabla mapa)
                 {
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Fusionando Datos", "Se van a incorporar los datos del mapa " + mapa.ToString());
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Incorporando Datos", "Se están incorporando los datos del mapa " + mapa.ToString());
                         Progreso.Begin();
 
                         Progreso.Max = mapa.ImportedRows.Count;
@@ -258,6 +258,12 @@ namespace Lbl.Servicios.Importar
                 public Lbl.IElementoDeDatos CargarElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
                         return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.Connection, row.Fields[this.Connection.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt);
+                }
+
+
+                public override string ToString()
+                {
+                        return this.FilterName;
                 }
         }
 }

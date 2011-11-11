@@ -54,12 +54,12 @@ namespace Lfc.Articulos
                         
                         foreach (System.Data.DataRow Situacion in Situaciones.Rows) {
                                 ListViewGroup Grupo = ListaConformacion.Groups.Add(Situacion["id_situacion"].ToString(), Situacion["nombre"].ToString());
-                                System.Data.DataTable Articulos = this.Connection.Select("SELECT serie FROM articulos_series WHERE id_articulo=" + articulo.Id.ToString() + " AND id_situacion=" + Situacion["id_situacion"].ToString());
+                                System.Data.DataTable Articulos = this.Connection.Select("SELECT serie, cantidad FROM articulos_series WHERE id_articulo=" + articulo.Id.ToString() + " AND id_situacion=" + Situacion["id_situacion"].ToString());
                                 foreach(System.Data.DataRow Articulo in Articulos.Rows){
                                         string Serie = Articulo["serie"].ToString();
                                         ListViewItem Itm = ListaConformacion.Items.Add(Serie);
                                         Itm.SubItems[0].Text = Serie;
-                                        Itm.SubItems.Add("1");
+                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatStock((decimal)Articulo["cantidad"]));
                                         Itm.Group = Grupo;
                                 }
                         }

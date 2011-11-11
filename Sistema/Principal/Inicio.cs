@@ -264,8 +264,8 @@ namespace Lazaro.WinMain.Principal
 
                 private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
                 {
-                        if (this.Workspace != null)
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
+                        if (Lfx.Workspace.Master != null)
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
                         System.Environment.Exit(0);
                 }
 
