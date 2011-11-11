@@ -31,21 +31,23 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Management;
 using System.Security.Permissions;
 
 namespace Lfx.Environment
 {
-	/// <summary>
-	/// Provee información sobre el sistema
-	/// </summary>
-	public class SystemInformation
-	{
-		public enum Platforms
-		{
-			Windows,
-			Unix,
-			Other
-		}
+        /// <summary>
+        /// Provee información sobre el sistema
+        /// </summary>
+        public class SystemInformation
+        {
+                public enum Platforms
+                {
+                        Windows,
+                        Unix,
+                        Other
+                }
 
                 public static string PlatformName
                 {
@@ -65,25 +67,25 @@ namespace Lfx.Environment
                         }
                 }
 
-		public static Platforms Platform
-		{
-			get
-			{
-				if (System.Environment.OSVersion.Platform == PlatformID.Win32NT || System.Environment.OSVersion.Platform == PlatformID.Win32Windows)
-					return Platforms.Windows;
-				else if ((int)System.Environment.OSVersion.Platform == 4 || (int)System.Environment.OSVersion.Platform == 128)
-					return Platforms.Unix;
-				else
-					return Platforms.Other;
-			}
-		}
+                public static Platforms Platform
+                {
+                        get
+                        {
+                                if (System.Environment.OSVersion.Platform == PlatformID.Win32NT || System.Environment.OSVersion.Platform == PlatformID.Win32Windows)
+                                        return Platforms.Windows;
+                                else if ((int)System.Environment.OSVersion.Platform == 4 || (int)System.Environment.OSVersion.Platform == 128)
+                                        return Platforms.Unix;
+                                else
+                                        return Platforms.Other;
+                        }
+                }
 
 
-		public enum RunTimes
-		{
-			DotNet,
-			Mono
-		}
+                public enum RunTimes
+                {
+                        DotNet,
+                        Mono
+                }
 
 
                 public static string ProcessorName
@@ -91,7 +93,11 @@ namespace Lfx.Environment
                         get
                         {
                                 try {
-                                        return Microsoft.Win32.Registry.GetValue(@"HKEY_LOCALMACHINE\Hardware\DESCRIPTION\System\CentralProcessor\0", "ProcessorNameString", "").ToString();
+                                        object Res = Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\CentralProcessor\0", "ProcessorNameString", "");
+                                        if (Res == null)
+                                                return string.Empty;
+                                        else
+                                                return Res.ToString();
                                 } catch {
                                         return string.Empty;
                                 }
@@ -99,14 +105,50 @@ namespace Lfx.Environment
                 }
 
 
+                [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+                private class MEMORYSTATUSEX
+                {
+                        public uint dwLength;
+                        public uint dwMemoryLoad;
+                        public ulong ullTotalPhys;
+                        public ulong ullAvailPhys;
+                        public ulong ullTotalPageFile;
+                        public ulong ullAvailPageFile;
+                        public ulong ullTotalVirtual;
+                        public ulong ullAvailVirtual;
+                        public ulong ullAvailExtendedVirtual;
+
+                        public MEMORYSTATUSEX()
+                        {
+                                this.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
+                        }
+                }
+
+                [return: MarshalAs(UnmanagedType.Bool)]
+                [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                static extern bool GlobalMemoryStatusEx([In, Out] MEMORYSTATUSEX lpBuffer);
+
+
+                /// <summary>
+                /// Get total amount of ram, in megabytes
+                /// </summary>
                 public static int TotalRam
                 {
                         get
                         {
                                 try {
-                                        PerformanceCounter Pc = new PerformanceCounter("Mono Memory", "Total Physical Memory");
-                                        return System.Convert.ToInt32(Pc.RawValue / 1024);
-                                } catch {
+                                        if (Platform == Platforms.Windows) {
+                                                MEMORYSTATUSEX memStatus = new MEMORYSTATUSEX();
+                                                if (GlobalMemoryStatusEx(memStatus))
+                                                        return System.Convert.ToInt32(memStatus.ullTotalPhys / 1024 / 1024);
+                                                else
+                                                        return 0;
+                                        } else {
+                                                PerformanceCounter Pc = new PerformanceCounter("Mono Memory", "Total Physical Memory");
+                                                return System.Convert.ToInt32(Pc.RawValue / 1024);
+                                        }
+                                } catch (Exception ex) {
+                                        System.Console.WriteLine(ex.Message);
                                         return 0;
                                 }
                         }
@@ -171,31 +213,31 @@ namespace Lfx.Environment
                         }
                 }
 
-		public static RunTimes RunTime
-		{
-			get
-			{
-				if(Type.GetType("Mono.Runtime") != null)
-					return Lfx.Environment.SystemInformation.RunTimes.Mono;
-				else
-					return Lfx.Environment.SystemInformation.RunTimes.DotNet;
-			}
-		}
+                public static RunTimes RunTime
+                {
+                        get
+                        {
+                                if (Type.GetType("Mono.Runtime") != null)
+                                        return Lfx.Environment.SystemInformation.RunTimes.Mono;
+                                else
+                                        return Lfx.Environment.SystemInformation.RunTimes.DotNet;
+                        }
+                }
 
 
-		public static bool DesignMode
-		{
-			get
-			{
+                public static bool DesignMode
+                {
+                        get
+                        {
                                 System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess();
-				if(Yo.ProcessName.IndexOf(".vshost") >= 0)
-					return true;
-				else if(Lfx.Environment.Folders.ApplicationFolder.IndexOf("/Sistema/bin/".Replace('/', System.IO.Path.DirectorySeparatorChar)) >= 0)
-					return true;
-				else
-					return false;
-			}
-		}
+                                if (Yo.ProcessName.IndexOf(".vshost") >= 0)
+                                        return true;
+                                else if (Lfx.Environment.Folders.ApplicationFolder.IndexOf("/Sistema/bin/".Replace('/', System.IO.Path.DirectorySeparatorChar)) >= 0)
+                                        return true;
+                                else
+                                        return false;
+                        }
+                }
 
 
                 public static bool IsUacActive
@@ -232,5 +274,5 @@ namespace Lfx.Environment
                                 return true;
                         }
                 }
-	}
+        }
 }

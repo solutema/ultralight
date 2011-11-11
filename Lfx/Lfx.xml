@@ -306,6 +306,11 @@
             Provee información sobre el sistema
             </summary>
         </member>
+        <member name="P:Lfx.Environment.SystemInformation.TotalRam">
+            <summary>
+            Get total amount of ram, in megabytes
+            </summary>
+        </member>
         <member name="T:Lfx.Services.Scheduler">
             <summary>
             Programador de tareas
