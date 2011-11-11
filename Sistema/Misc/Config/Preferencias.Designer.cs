@@ -49,46 +49,7 @@ namespace Lazaro.WinMain.Misc.Config
 		}
 
 
-		// Requerido por el Diseñador de Windows Forms
 		private System.ComponentModel.IContainer components = null;
-
-		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-		// Puede modificarse utilizando el Diseñador de Windows Forms. 
-		// No lo modifique con el editor de código.
-		internal Lui.Forms.Button BotonAceptar;
-                internal Lui.Forms.Button CancelCommandButton;
-		internal Lui.Forms.Label Label16;
-		internal Lcc.Entrada.CodigoDetalle EntradaClientePredet;
-		internal Lui.Forms.Label Label15;
-		internal Lcc.Entrada.CodigoDetalle EntradaFormaPagoPredet;
-		internal Lui.Forms.Label Label17;
-		internal Lui.Forms.TextBox EntradaEmpresaNombre;
-		internal Lui.Forms.Label Label18;
-		internal Lui.Forms.Label Label19;
-		internal Lui.Forms.TextBox EntradaEmpresaCuit;
-		internal Lcc.Entrada.CodigoDetalle EntradaEmpresaSituacion;
-		internal Lui.Forms.Label Label9;
-		internal Lui.Forms.TextBox EntradaPVND;
-		internal Lui.Forms.Label Label10;
-		internal Lui.Forms.Label Label8;
-		internal Lui.Forms.Label Label7;
-		internal Lui.Forms.TextBox EntradaPVNC;
-		internal Lui.Forms.TextBox EntradaPVABC;
-		internal Lui.Forms.Label Label6;
-		internal Lui.Forms.Label Label5;
-		internal Lui.Forms.Label Label4;
-		internal Lui.Forms.Label Label20;
-		internal Lui.Forms.TextBox EntradaPV;
-                internal Lui.Forms.ComboBox EntradaArticulosCodigoPredet;
-                internal Lui.Forms.ComboBox EntradaStockMultideposito;
-		internal Lui.Forms.Label Label23;
-		internal Lui.Forms.Label Label24;
-		internal Lcc.Entrada.CodigoDetalle EntradaStockDepositoPredet;
-		internal Lui.Forms.Label Label25;
-                internal Lui.Forms.ComboBox EntradaStockDecimales;
-		internal Lui.Forms.Button BotonSiguiente;
-		internal Lui.Forms.Frame FrmArticulos;
-                internal Lui.Forms.Frame FrmComprobantes;
 
 		private void InitializeComponent()
 		{
@@ -101,11 +62,14 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaNombre = new Lui.Forms.TextBox();
                         this.Label17 = new Lui.Forms.Label();
                         this.FrmGeneral = new Lui.Forms.Frame();
-                        this.EntradaEmpresaId = new Lui.Forms.TextBox();
+                        this.EntradaProvincia = new Lcc.Entrada.CodigoDetalle();
+                        this.label31 = new Lui.Forms.Label();
                         this.EntradaEmpresaRazonSocial = new Lui.Forms.TextBox();
+                        this.EntradaEmpresaId = new Lui.Forms.TextBox();
                         this.EntradaEmpresaEmail = new Lui.Forms.TextBox();
-                        this.label2 = new Lui.Forms.Label();
                         this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
+                        this.label28 = new Lui.Forms.Label();
                         this.EntradaActualizaciones = new Lui.Forms.ComboBox();
                         this.label30 = new Lui.Forms.Label();
                         this.EntradaAislacion = new Lui.Forms.ComboBox();
@@ -113,7 +77,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaBackup = new Lui.Forms.ComboBox();
                         this.label29 = new Lui.Forms.Label();
                         this.label27 = new Lui.Forms.Label();
-                        this.label28 = new Lui.Forms.Label();
                         this.label14 = new Lui.Forms.Label();
                         this.EntradaStockDecimales = new Lui.Forms.ComboBox();
                         this.Label25 = new Lui.Forms.Label();
@@ -154,9 +117,13 @@ namespace Lazaro.WinMain.Misc.Config
                         this.label13 = new Lui.Forms.Label();
                         this.EntradaPVR = new Lui.Forms.TextBox();
                         this.label12 = new Lui.Forms.Label();
+                        this.FrmAvanzado = new Lui.Forms.Frame();
+                        this.EntradaLocalidad = new Lcc.Entrada.CodigoDetalle();
+                        this.label32 = new Lui.Forms.Label();
                         this.FrmGeneral.SuspendLayout();
                         this.FrmArticulos.SuspendLayout();
                         this.FrmComprobantes.SuspendLayout();
+                        this.FrmAvanzado.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // BotonAceptar
@@ -206,15 +173,15 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaSituacion.FieldName = null;
                         this.EntradaEmpresaSituacion.Filter = "";
                         this.EntradaEmpresaSituacion.FreeTextCode = "";
-                        this.EntradaEmpresaSituacion.Location = new System.Drawing.Point(176, 120);
+                        this.EntradaEmpresaSituacion.Location = new System.Drawing.Point(192, 132);
                         this.EntradaEmpresaSituacion.MaxLength = 200;
                         this.EntradaEmpresaSituacion.Name = "EntradaEmpresaSituacion";
                         this.EntradaEmpresaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaSituacion.PlaceholderText = null;
                         this.EntradaEmpresaSituacion.ReadOnly = false;
                         this.EntradaEmpresaSituacion.Required = true;
-                        this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(388, 24);
-                        this.EntradaEmpresaSituacion.TabIndex = 7;
+                        this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(276, 24);
+                        this.EntradaEmpresaSituacion.TabIndex = 6;
                         this.EntradaEmpresaSituacion.Table = "situaciones";
                         this.EntradaEmpresaSituacion.Text = "0";
                         this.EntradaEmpresaSituacion.TextDetail = "";
@@ -222,10 +189,10 @@ namespace Lazaro.WinMain.Misc.Config
                         // Label19
                         // 
                         this.Label19.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label19.Location = new System.Drawing.Point(16, 120);
+                        this.Label19.Location = new System.Drawing.Point(32, 132);
                         this.Label19.Name = "Label19";
                         this.Label19.Size = new System.Drawing.Size(160, 24);
-                        this.Label19.TabIndex = 6;
+                        this.Label19.TabIndex = 5;
                         this.Label19.Text = "Condición IVA";
                         this.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -237,7 +204,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaCuit.DecimalPlaces = -1;
                         this.EntradaEmpresaCuit.FieldName = null;
                         this.EntradaEmpresaCuit.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaEmpresaCuit.Location = new System.Drawing.Point(176, 92);
+                        this.EntradaEmpresaCuit.Location = new System.Drawing.Point(192, 104);
                         this.EntradaEmpresaCuit.MaxLength = 13;
                         this.EntradaEmpresaCuit.MultiLine = false;
                         this.EntradaEmpresaCuit.Name = "EntradaEmpresaCuit";
@@ -249,15 +216,15 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaCuit.SelectOnFocus = false;
                         this.EntradaEmpresaCuit.Size = new System.Drawing.Size(112, 24);
                         this.EntradaEmpresaCuit.Sufijo = "";
-                        this.EntradaEmpresaCuit.TabIndex = 5;
+                        this.EntradaEmpresaCuit.TabIndex = 4;
                         // 
                         // Label18
                         // 
                         this.Label18.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label18.Location = new System.Drawing.Point(16, 92);
+                        this.Label18.Location = new System.Drawing.Point(32, 104);
                         this.Label18.Name = "Label18";
                         this.Label18.Size = new System.Drawing.Size(160, 24);
-                        this.Label18.TabIndex = 4;
+                        this.Label18.TabIndex = 3;
                         this.Label18.Text = "CUIT";
                         this.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -269,7 +236,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaNombre.DecimalPlaces = -1;
                         this.EntradaEmpresaNombre.FieldName = null;
                         this.EntradaEmpresaNombre.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaEmpresaNombre.Location = new System.Drawing.Point(176, 36);
+                        this.EntradaEmpresaNombre.Location = new System.Drawing.Point(192, 48);
                         this.EntradaEmpresaNombre.MaxLength = 200;
                         this.EntradaEmpresaNombre.MultiLine = false;
                         this.EntradaEmpresaNombre.Name = "EntradaEmpresaNombre";
@@ -286,7 +253,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // Label17
                         // 
                         this.Label17.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label17.Location = new System.Drawing.Point(16, 36);
+                        this.Label17.Location = new System.Drawing.Point(32, 48);
                         this.Label17.Name = "Label17";
                         this.Label17.Size = new System.Drawing.Size(160, 24);
                         this.Label17.TabIndex = 0;
@@ -298,23 +265,19 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.FrmGeneral.Controls.Add(this.EntradaEmpresaId);
+                        this.FrmGeneral.Controls.Add(this.EntradaLocalidad);
+                        this.FrmGeneral.Controls.Add(this.label32);
+                        this.FrmGeneral.Controls.Add(this.EntradaProvincia);
+                        this.FrmGeneral.Controls.Add(this.label31);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaRazonSocial);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaEmail);
+                        this.FrmGeneral.Controls.Add(this.EntradaEmpresaId);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaCuit);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaSituacion);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaNombre);
-                        this.FrmGeneral.Controls.Add(this.label2);
                         this.FrmGeneral.Controls.Add(this.label1);
-                        this.FrmGeneral.Controls.Add(this.EntradaActualizaciones);
-                        this.FrmGeneral.Controls.Add(this.label30);
-                        this.FrmGeneral.Controls.Add(this.EntradaAislacion);
-                        this.FrmGeneral.Controls.Add(this.EntradaModoPantalla);
-                        this.FrmGeneral.Controls.Add(this.EntradaBackup);
-                        this.FrmGeneral.Controls.Add(this.label29);
-                        this.FrmGeneral.Controls.Add(this.label27);
                         this.FrmGeneral.Controls.Add(this.label28);
-                        this.FrmGeneral.Controls.Add(this.label14);
+                        this.FrmGeneral.Controls.Add(this.label2);
                         this.FrmGeneral.Controls.Add(this.Label19);
                         this.FrmGeneral.Controls.Add(this.Label18);
                         this.FrmGeneral.Controls.Add(this.Label17);
@@ -325,30 +288,44 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmGeneral.ReadOnly = false;
                         this.FrmGeneral.Size = new System.Drawing.Size(620, 385);
                         this.FrmGeneral.TabIndex = 0;
-                        this.FrmGeneral.Text = "Generalidades";
+                        this.FrmGeneral.Text = "Datos de la Empresa";
                         // 
-                        // EntradaEmpresaId
+                        // EntradaProvincia
                         // 
-                        this.EntradaEmpresaId.AutoNav = true;
-                        this.EntradaEmpresaId.AutoTab = true;
-                        this.EntradaEmpresaId.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaEmpresaId.DecimalPlaces = -1;
-                        this.EntradaEmpresaId.FieldName = null;
-                        this.EntradaEmpresaId.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaEmpresaId.Location = new System.Drawing.Point(176, 176);
-                        this.EntradaEmpresaId.MaxLength = 3;
-                        this.EntradaEmpresaId.MultiLine = false;
-                        this.EntradaEmpresaId.Name = "EntradaEmpresaId";
-                        this.EntradaEmpresaId.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaId.PasswordChar = '\0';
-                        this.EntradaEmpresaId.PlaceholderText = null;
-                        this.EntradaEmpresaId.Prefijo = "";
-                        this.EntradaEmpresaId.ReadOnly = false;
-                        this.EntradaEmpresaId.SelectOnFocus = false;
-                        this.EntradaEmpresaId.Size = new System.Drawing.Size(48, 24);
-                        this.EntradaEmpresaId.Sufijo = "";
-                        this.EntradaEmpresaId.TabIndex = 11;
-                        this.EntradaEmpresaId.Text = "0";
+                        this.EntradaProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaProvincia.AutoNav = true;
+                        this.EntradaProvincia.AutoTab = true;
+                        this.EntradaProvincia.CanCreate = true;
+                        this.EntradaProvincia.DataTextField = "nombre";
+                        this.EntradaProvincia.DataValueField = "id_ciudad";
+                        this.EntradaProvincia.ExtraDetailFields = "";
+                        this.EntradaProvincia.FieldName = null;
+                        this.EntradaProvincia.Filter = "nivel=0";
+                        this.EntradaProvincia.FreeTextCode = "";
+                        this.EntradaProvincia.Location = new System.Drawing.Point(192, 188);
+                        this.EntradaProvincia.MaxLength = 200;
+                        this.EntradaProvincia.Name = "EntradaProvincia";
+                        this.EntradaProvincia.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaProvincia.PlaceholderText = null;
+                        this.EntradaProvincia.ReadOnly = false;
+                        this.EntradaProvincia.Required = true;
+                        this.EntradaProvincia.Size = new System.Drawing.Size(352, 24);
+                        this.EntradaProvincia.TabIndex = 10;
+                        this.EntradaProvincia.Table = "ciudades";
+                        this.EntradaProvincia.Text = "0";
+                        this.EntradaProvincia.TextDetail = "";
+                        this.EntradaProvincia.TextChanged += new System.EventHandler(this.EntradaProvincia_TextChanged);
+                        // 
+                        // label31
+                        // 
+                        this.label31.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label31.Location = new System.Drawing.Point(32, 188);
+                        this.label31.Name = "label31";
+                        this.label31.Size = new System.Drawing.Size(160, 24);
+                        this.label31.TabIndex = 9;
+                        this.label31.Text = "Provincia";
+                        this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaEmpresaRazonSocial
                         // 
@@ -358,7 +335,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaRazonSocial.DecimalPlaces = -1;
                         this.EntradaEmpresaRazonSocial.FieldName = null;
                         this.EntradaEmpresaRazonSocial.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaEmpresaRazonSocial.Location = new System.Drawing.Point(176, 64);
+                        this.EntradaEmpresaRazonSocial.Location = new System.Drawing.Point(192, 76);
                         this.EntradaEmpresaRazonSocial.MaxLength = 200;
                         this.EntradaEmpresaRazonSocial.MultiLine = false;
                         this.EntradaEmpresaRazonSocial.Name = "EntradaEmpresaRazonSocial";
@@ -370,7 +347,30 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaRazonSocial.SelectOnFocus = false;
                         this.EntradaEmpresaRazonSocial.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaRazonSocial.Sufijo = "";
-                        this.EntradaEmpresaRazonSocial.TabIndex = 3;
+                        this.EntradaEmpresaRazonSocial.TabIndex = 2;
+                        // 
+                        // EntradaEmpresaId
+                        // 
+                        this.EntradaEmpresaId.AutoNav = true;
+                        this.EntradaEmpresaId.AutoTab = true;
+                        this.EntradaEmpresaId.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EntradaEmpresaId.DecimalPlaces = -1;
+                        this.EntradaEmpresaId.FieldName = null;
+                        this.EntradaEmpresaId.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaId.Location = new System.Drawing.Point(192, 244);
+                        this.EntradaEmpresaId.MaxLength = 3;
+                        this.EntradaEmpresaId.MultiLine = false;
+                        this.EntradaEmpresaId.Name = "EntradaEmpresaId";
+                        this.EntradaEmpresaId.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaId.PasswordChar = '\0';
+                        this.EntradaEmpresaId.PlaceholderText = null;
+                        this.EntradaEmpresaId.Prefijo = "";
+                        this.EntradaEmpresaId.ReadOnly = false;
+                        this.EntradaEmpresaId.SelectOnFocus = false;
+                        this.EntradaEmpresaId.Size = new System.Drawing.Size(48, 24);
+                        this.EntradaEmpresaId.Sufijo = "";
+                        this.EntradaEmpresaId.TabIndex = 14;
+                        this.EntradaEmpresaId.Text = "0";
                         // 
                         // EntradaEmpresaEmail
                         // 
@@ -380,7 +380,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaEmail.DecimalPlaces = -1;
                         this.EntradaEmpresaEmail.FieldName = null;
                         this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaEmpresaEmail.Location = new System.Drawing.Point(176, 148);
+                        this.EntradaEmpresaEmail.Location = new System.Drawing.Point(192, 160);
                         this.EntradaEmpresaEmail.MaxLength = 200;
                         this.EntradaEmpresaEmail.MultiLine = false;
                         this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
@@ -392,35 +392,46 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaEmail.SelectOnFocus = false;
                         this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
                         this.EntradaEmpresaEmail.Sufijo = "";
-                        this.EntradaEmpresaEmail.TabIndex = 9;
-                        // 
-                        // label2
-                        // 
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label2.Location = new System.Drawing.Point(16, 176);
-                        this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(160, 24);
-                        this.label2.TabIndex = 10;
-                        this.label2.Text = "Id de empresa";
-                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EntradaEmpresaEmail.TabIndex = 8;
                         // 
                         // label1
                         // 
                         this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label1.Location = new System.Drawing.Point(16, 64);
+                        this.label1.Location = new System.Drawing.Point(32, 76);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(160, 24);
-                        this.label1.TabIndex = 2;
+                        this.label1.TabIndex = 1;
                         this.label1.Text = "Razón social";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // label2
+                        // 
+                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.Location = new System.Drawing.Point(32, 244);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(160, 24);
+                        this.label2.TabIndex = 13;
+                        this.label2.Text = "Id de empresa";
+                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label28
+                        // 
+                        this.label28.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label28.Location = new System.Drawing.Point(32, 160);
+                        this.label28.Name = "label28";
+                        this.label28.Size = new System.Drawing.Size(160, 24);
+                        this.label28.TabIndex = 7;
+                        this.label28.Text = "Correo electrónico";
+                        this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // EntradaActualizaciones
                         // 
-                        this.EntradaActualizaciones.AlwaysExpanded = false;
+                        this.EntradaActualizaciones.AlwaysExpanded = true;
                         this.EntradaActualizaciones.AutoNav = true;
+                        this.EntradaActualizaciones.AutoSize = true;
                         this.EntradaActualizaciones.AutoTab = true;
                         this.EntradaActualizaciones.FieldName = null;
-                        this.EntradaActualizaciones.Location = new System.Drawing.Point(248, 332);
+                        this.EntradaActualizaciones.Location = new System.Drawing.Point(248, 220);
                         this.EntradaActualizaciones.MaxLength = 32767;
                         this.EntradaActualizaciones.Name = "EntradaActualizaciones";
                         this.EntradaActualizaciones.Padding = new System.Windows.Forms.Padding(2);
@@ -430,27 +441,28 @@ namespace Lazaro.WinMain.Misc.Config
         "Estables|stable",
         "Preliminares|gama",
         "En prueba|beta"};
-                        this.EntradaActualizaciones.Size = new System.Drawing.Size(132, 24);
-                        this.EntradaActualizaciones.TabIndex = 19;
+                        this.EntradaActualizaciones.Size = new System.Drawing.Size(132, 51);
+                        this.EntradaActualizaciones.TabIndex = 21;
                         this.EntradaActualizaciones.TextKey = "stable";
                         // 
                         // label30
                         // 
                         this.label30.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label30.Location = new System.Drawing.Point(16, 332);
+                        this.label30.Location = new System.Drawing.Point(16, 220);
                         this.label30.Name = "label30";
                         this.label30.Size = new System.Drawing.Size(232, 24);
-                        this.label30.TabIndex = 18;
+                        this.label30.TabIndex = 20;
                         this.label30.Text = "Recibir actualizaciones";
                         this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaAislacion
                         // 
-                        this.EntradaAislacion.AlwaysExpanded = false;
+                        this.EntradaAislacion.AlwaysExpanded = true;
                         this.EntradaAislacion.AutoNav = true;
+                        this.EntradaAislacion.AutoSize = true;
                         this.EntradaAislacion.AutoTab = true;
                         this.EntradaAislacion.FieldName = null;
-                        this.EntradaAislacion.Location = new System.Drawing.Point(248, 300);
+                        this.EntradaAislacion.Location = new System.Drawing.Point(248, 176);
                         this.EntradaAislacion.MaxLength = 32767;
                         this.EntradaAislacion.Name = "EntradaAislacion";
                         this.EntradaAislacion.Padding = new System.Windows.Forms.Padding(2);
@@ -459,17 +471,18 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaAislacion.SetData = new string[] {
         "Mejor concurrencia|RepeatableRead",
         "Mejor consitencia|Serializable"};
-                        this.EntradaAislacion.Size = new System.Drawing.Size(196, 24);
-                        this.EntradaAislacion.TabIndex = 17;
+                        this.EntradaAislacion.Size = new System.Drawing.Size(196, 36);
+                        this.EntradaAislacion.TabIndex = 19;
                         this.EntradaAislacion.TextKey = "Serializable";
                         // 
                         // EntradaModoPantalla
                         // 
-                        this.EntradaModoPantalla.AlwaysExpanded = false;
+                        this.EntradaModoPantalla.AlwaysExpanded = true;
                         this.EntradaModoPantalla.AutoNav = true;
+                        this.EntradaModoPantalla.AutoSize = true;
                         this.EntradaModoPantalla.AutoTab = true;
                         this.EntradaModoPantalla.FieldName = null;
-                        this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 268);
+                        this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 88);
                         this.EntradaModoPantalla.MaxLength = 32767;
                         this.EntradaModoPantalla.Name = "EntradaModoPantalla";
                         this.EntradaModoPantalla.Padding = new System.Windows.Forms.Padding(2);
@@ -481,17 +494,18 @@ namespace Lazaro.WinMain.Misc.Config
         "Ventana Maximizada|maximizado",
         "Pantalla Completa|completo",
         "Ventanas Flotantes|flotante"};
-                        this.EntradaModoPantalla.Size = new System.Drawing.Size(196, 24);
-                        this.EntradaModoPantalla.TabIndex = 15;
-                        this.EntradaModoPantalla.TextKey = "maximizado";
+                        this.EntradaModoPantalla.Size = new System.Drawing.Size(196, 81);
+                        this.EntradaModoPantalla.TabIndex = 17;
+                        this.EntradaModoPantalla.TextKey = "*";
                         // 
                         // EntradaBackup
                         // 
-                        this.EntradaBackup.AlwaysExpanded = false;
+                        this.EntradaBackup.AlwaysExpanded = true;
                         this.EntradaBackup.AutoNav = true;
+                        this.EntradaBackup.AutoSize = true;
                         this.EntradaBackup.AutoTab = true;
                         this.EntradaBackup.FieldName = null;
-                        this.EntradaBackup.Location = new System.Drawing.Point(248, 236);
+                        this.EntradaBackup.Location = new System.Drawing.Point(248, 32);
                         this.EntradaBackup.MaxLength = 32767;
                         this.EntradaBackup.Name = "EntradaBackup";
                         this.EntradaBackup.Padding = new System.Windows.Forms.Padding(2);
@@ -501,47 +515,37 @@ namespace Lazaro.WinMain.Misc.Config
         "Nunca|0",
         "Cuando se solicita|1",
         "Automáticamente|2"};
-                        this.EntradaBackup.Size = new System.Drawing.Size(196, 24);
-                        this.EntradaBackup.TabIndex = 13;
+                        this.EntradaBackup.Size = new System.Drawing.Size(196, 51);
+                        this.EntradaBackup.TabIndex = 0;
                         this.EntradaBackup.TextKey = "0";
                         // 
                         // label29
                         // 
                         this.label29.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label29.Location = new System.Drawing.Point(16, 300);
+                        this.label29.Location = new System.Drawing.Point(16, 176);
                         this.label29.Name = "label29";
                         this.label29.Size = new System.Drawing.Size(232, 24);
-                        this.label29.TabIndex = 16;
+                        this.label29.TabIndex = 18;
                         this.label29.Text = "Nivel de aislamiento de clientes";
                         this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label27
                         // 
                         this.label27.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label27.Location = new System.Drawing.Point(16, 268);
+                        this.label27.Location = new System.Drawing.Point(16, 88);
                         this.label27.Name = "label27";
                         this.label27.Size = new System.Drawing.Size(232, 24);
-                        this.label27.TabIndex = 14;
+                        this.label27.TabIndex = 16;
                         this.label27.Text = "Modo de uso de la pantalla";
                         this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // label28
-                        // 
-                        this.label28.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label28.Location = new System.Drawing.Point(16, 148);
-                        this.label28.Name = "label28";
-                        this.label28.Size = new System.Drawing.Size(160, 24);
-                        this.label28.TabIndex = 8;
-                        this.label28.Text = "Correo electrónico";
-                        this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label14
                         // 
                         this.label14.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label14.Location = new System.Drawing.Point(16, 236);
+                        this.label14.Location = new System.Drawing.Point(16, 32);
                         this.label14.Name = "label14";
                         this.label14.Size = new System.Drawing.Size(232, 24);
-                        this.label14.TabIndex = 12;
+                        this.label14.TabIndex = 14;
                         this.label14.Text = "Realizar copias de respaldo";
                         this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -1193,6 +1197,62 @@ namespace Lazaro.WinMain.Misc.Config
                         this.label12.Text = "PV para Remitos";
                         this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // FrmAvanzado
+                        // 
+                        this.FrmAvanzado.Controls.Add(this.label14);
+                        this.FrmAvanzado.Controls.Add(this.label27);
+                        this.FrmAvanzado.Controls.Add(this.EntradaBackup);
+                        this.FrmAvanzado.Controls.Add(this.EntradaAislacion);
+                        this.FrmAvanzado.Controls.Add(this.label29);
+                        this.FrmAvanzado.Controls.Add(this.EntradaModoPantalla);
+                        this.FrmAvanzado.Controls.Add(this.EntradaActualizaciones);
+                        this.FrmAvanzado.Controls.Add(this.label30);
+                        this.FrmAvanzado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
+                        this.FrmAvanzado.Location = new System.Drawing.Point(8, 8);
+                        this.FrmAvanzado.Name = "FrmAvanzado";
+                        this.FrmAvanzado.Padding = new System.Windows.Forms.Padding(2);
+                        this.FrmAvanzado.ReadOnly = false;
+                        this.FrmAvanzado.Size = new System.Drawing.Size(620, 385);
+                        this.FrmAvanzado.TabIndex = 8;
+                        this.FrmAvanzado.Text = "Avanzado";
+                        this.FrmAvanzado.Visible = false;
+                        // 
+                        // EntradaLocalidad
+                        // 
+                        this.EntradaLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaLocalidad.AutoNav = true;
+                        this.EntradaLocalidad.AutoTab = true;
+                        this.EntradaLocalidad.CanCreate = true;
+                        this.EntradaLocalidad.DataTextField = "nombre";
+                        this.EntradaLocalidad.DataValueField = "id_ciudad";
+                        this.EntradaLocalidad.ExtraDetailFields = "";
+                        this.EntradaLocalidad.FieldName = null;
+                        this.EntradaLocalidad.Filter = "nivel=2";
+                        this.EntradaLocalidad.FreeTextCode = "";
+                        this.EntradaLocalidad.Location = new System.Drawing.Point(192, 216);
+                        this.EntradaLocalidad.MaxLength = 200;
+                        this.EntradaLocalidad.Name = "EntradaLocalidad";
+                        this.EntradaLocalidad.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaLocalidad.PlaceholderText = null;
+                        this.EntradaLocalidad.ReadOnly = false;
+                        this.EntradaLocalidad.Required = true;
+                        this.EntradaLocalidad.Size = new System.Drawing.Size(352, 24);
+                        this.EntradaLocalidad.TabIndex = 12;
+                        this.EntradaLocalidad.Table = "ciudades";
+                        this.EntradaLocalidad.Text = "0";
+                        this.EntradaLocalidad.TextDetail = "";
+                        // 
+                        // label32
+                        // 
+                        this.label32.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label32.Location = new System.Drawing.Point(32, 216);
+                        this.label32.Name = "label32";
+                        this.label32.Size = new System.Drawing.Size(160, 24);
+                        this.label32.TabIndex = 11;
+                        this.label32.Text = "Localidad";
+                        this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // Preferencias
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1200,9 +1260,10 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Controls.Add(this.BotonSiguiente);
                         this.Controls.Add(this.CancelCommandButton);
                         this.Controls.Add(this.BotonAceptar);
+                        this.Controls.Add(this.FrmGeneral);
                         this.Controls.Add(this.FrmComprobantes);
                         this.Controls.Add(this.FrmArticulos);
-                        this.Controls.Add(this.FrmGeneral);
+                        this.Controls.Add(this.FrmAvanzado);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "Preferencias";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1213,38 +1274,79 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmArticulos.PerformLayout();
                         this.FrmComprobantes.ResumeLayout(false);
                         this.FrmComprobantes.PerformLayout();
+                        this.FrmAvanzado.ResumeLayout(false);
+                        this.FrmAvanzado.PerformLayout();
                         this.ResumeLayout(false);
 
 		}
 		#endregion
 
-                internal Lui.Forms.ComboBox EntradaBackup;
-                internal Lui.Forms.Label label14;
-                internal Lui.Forms.TextBox EntradaLimiteCredito;
-                internal Lui.Forms.Label label21;
-                internal Lui.Forms.TextBox EntradaRedondeo;
-                internal Lui.Forms.Label label22;
-                internal Lui.Forms.ComboBox EntradaModoPantalla;
-                internal Lui.Forms.Label label27;
-                internal Lui.Forms.TextBox EntradaEmpresaEmail;
-                internal Lui.Forms.Label label28;
-                internal Lui.Forms.ComboBox EntradaAislacion;
-                internal Lui.Forms.Label label29;
-                internal Lui.Forms.ComboBox EntradaActualizaciones;
-                internal Lui.Forms.Label label30;
-                internal Lui.Forms.TextBox EntradaEmpresaRazonSocial;
-                internal Lui.Forms.Label label1;
-                internal Lui.Forms.TextBox EntradaPVRC;
-                internal Lui.Forms.Label label3;
-                internal Lui.Forms.TextBox EntradaEmpresaId;
-                internal Lui.Forms.Label label2;
-                internal Lui.Forms.Frame FrmGeneral;
-                internal Lui.Forms.Label label26;
-                internal Lcc.Entrada.CodigoDetalle EntradaStockDepositoPredetSuc;
-                internal Lui.Forms.Label label11;
-                internal Lui.Forms.Label label12;
-                internal Lui.Forms.TextBox EntradaPVR;
-                internal Lui.Forms.YesNo EntradaCambiaPrecioComprob;
-                internal Lui.Forms.Label label13;
+                private Lui.Forms.Button BotonAceptar;
+                private Lui.Forms.Button CancelCommandButton;
+                private Lui.Forms.Label Label16;
+                private Lcc.Entrada.CodigoDetalle EntradaClientePredet;
+                private Lui.Forms.Label Label15;
+                private Lcc.Entrada.CodigoDetalle EntradaFormaPagoPredet;
+                private Lui.Forms.Label Label17;
+                private Lui.Forms.TextBox EntradaEmpresaNombre;
+                private Lui.Forms.Label Label18;
+                private Lui.Forms.Label Label19;
+                private Lui.Forms.TextBox EntradaEmpresaCuit;
+                private Lcc.Entrada.CodigoDetalle EntradaEmpresaSituacion;
+                private Lui.Forms.Label Label9;
+                private Lui.Forms.TextBox EntradaPVND;
+                private Lui.Forms.Label Label10;
+                private Lui.Forms.Label Label8;
+                private Lui.Forms.Label Label7;
+                private Lui.Forms.TextBox EntradaPVNC;
+                private Lui.Forms.TextBox EntradaPVABC;
+                private Lui.Forms.Label Label6;
+                private Lui.Forms.Label Label5;
+                private Lui.Forms.Label Label4;
+                private Lui.Forms.Label Label20;
+                private Lui.Forms.TextBox EntradaPV;
+                private Lui.Forms.ComboBox EntradaArticulosCodigoPredet;
+                private Lui.Forms.ComboBox EntradaStockMultideposito;
+                private Lui.Forms.Label Label23;
+                private Lui.Forms.Label Label24;
+                private Lcc.Entrada.CodigoDetalle EntradaStockDepositoPredet;
+                private Lui.Forms.Label Label25;
+                private Lui.Forms.ComboBox EntradaStockDecimales;
+                private Lui.Forms.Button BotonSiguiente;
+                private Lui.Forms.Frame FrmArticulos;
+                private Lui.Forms.Frame FrmComprobantes;
+                private Lui.Forms.ComboBox EntradaBackup;
+                private Lui.Forms.Label label14;
+                private Lui.Forms.TextBox EntradaLimiteCredito;
+                private Lui.Forms.Label label21;
+                private Lui.Forms.TextBox EntradaRedondeo;
+                private Lui.Forms.Label label22;
+                private Lui.Forms.ComboBox EntradaModoPantalla;
+                private Lui.Forms.Label label27;
+                private Lui.Forms.TextBox EntradaEmpresaEmail;
+                private Lui.Forms.Label label28;
+                private Lui.Forms.ComboBox EntradaAislacion;
+                private Lui.Forms.Label label29;
+                private Lui.Forms.ComboBox EntradaActualizaciones;
+                private Lui.Forms.Label label30;
+                private Lui.Forms.TextBox EntradaEmpresaRazonSocial;
+                private Lui.Forms.Label label1;
+                private Lui.Forms.TextBox EntradaPVRC;
+                private Lui.Forms.Label label3;
+                private Lui.Forms.TextBox EntradaEmpresaId;
+                private Lui.Forms.Label label2;
+                private Lui.Forms.Frame FrmGeneral;
+                private Lui.Forms.Label label26;
+                private Lcc.Entrada.CodigoDetalle EntradaStockDepositoPredetSuc;
+                private Lui.Forms.Label label11;
+                private Lui.Forms.Label label12;
+                private Lui.Forms.TextBox EntradaPVR;
+                private Lui.Forms.YesNo EntradaCambiaPrecioComprob;
+                private Lui.Forms.Label label13;
+                private Lcc.Entrada.CodigoDetalle EntradaProvincia;
+                private Lui.Forms.Label label31;
+                private Lui.Forms.Frame FrmAvanzado;
+                private Lcc.Entrada.CodigoDetalle EntradaLocalidad;
+                private Lui.Forms.Label label32;
 	}
 }

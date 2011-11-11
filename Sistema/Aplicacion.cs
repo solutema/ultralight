@@ -599,7 +599,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         Lbl.Personas.IIdentificadorUnico Cuit = Lbl.Sys.Config.Actual.Empresa.Cuit;
                         if (Cuit == null || Cuit.EsValido() == false) {
                                 Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
-                                FormConfig.BotonSiguiente.Visible = false;
+                                FormConfig.PrimeraVez = true;
                                 if (FormConfig.ShowDialog() == DialogResult.OK)
                                         Ejecutor.Exec("REBOOT");
                                 else
@@ -708,14 +708,17 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                                 "empresa=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Nombre),
                                                                 "email=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Email),
                                                                 "canal=" + System.Uri.EscapeUriString(Lfx.Updates.Updater.Master != null ? Lfx.Updates.Updater.Master.Channel : ""),
-                                                                "version=" + System.Uri.EscapeUriString(Aplicacion.Version())
+                                                                "version=" + System.Uri.EscapeUriString(Aplicacion.Version()),
+                                                                "cpu=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.ProcessorName),
+                                                                "ram=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.TotalRam.ToString()),
+                                                                "loc=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Localidad", "0"))
                                                         };
-                                System.Net.WebRequest webRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
-                                webRequest.ContentType = "application/x-www-form-urlencoded";
-                                webRequest.Method = "POST";
+                                System.Net.WebRequest WebRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
+                                WebRequest.ContentType = "application/x-www-form-urlencoded";
+                                WebRequest.Method = "POST";
                                 byte[] PostData = System.Text.Encoding.Default.GetBytes(string.Join("&", Vars));
-                                webRequest.ContentLength = PostData.Length;
-                                using (System.IO.Stream ReqStream = webRequest.GetRequestStream()) {
+                                WebRequest.ContentLength = PostData.Length;
+                                using (System.IO.Stream ReqStream = WebRequest.GetRequestStream()) {
                                         //Escribimos los datos
                                         ReqStream.Write(PostData, 0, PostData.Length);
                                         ReqStream.Close();

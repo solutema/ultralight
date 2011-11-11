@@ -330,7 +330,6 @@ namespace Lcc.Entrada
                 private void MostrarBuscador(string valorIncial)
                 {
                         using (Statics.DetailBoxQuickSelect = new AuxForms.DetailBoxQuickSelect()) {
-
                                 Statics.DetailBoxQuickSelect.Owner = this.ParentForm;
                                 Statics.DetailBoxQuickSelect.ElementoTipo = this.ElementoTipo;
                                 Statics.DetailBoxQuickSelect.Table = this.Relation.ReferenceTable;

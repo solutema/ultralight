@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Security.Permissions;
 
 namespace Lfx.Environment
@@ -77,11 +78,40 @@ namespace Lfx.Environment
 			}
 		}
 
+
 		public enum RunTimes
 		{
 			DotNet,
 			Mono
 		}
+
+
+                public static string ProcessorName
+                {
+                        get
+                        {
+                                try {
+                                        return Microsoft.Win32.Registry.GetValue(@"HKEY_LOCALMACHINE\Hardware\DESCRIPTION\System\CentralProcessor\0", "ProcessorNameString", "").ToString();
+                                } catch {
+                                        return string.Empty;
+                                }
+                        }
+                }
+
+
+                public static int TotalRam
+                {
+                        get
+                        {
+                                try {
+                                        PerformanceCounter Pc = new PerformanceCounter("Mono Memory", "Total Physical Memory");
+                                        return System.Convert.ToInt32(Pc.RawValue / 1024);
+                                } catch {
+                                        return 0;
+                                }
+                        }
+                }
+
 
                 public static string RuntimeName
                 {

@@ -37,8 +37,9 @@ namespace Lazaro.WinMain.Misc.Config
 {
 	public partial class Preferencias : Lui.Forms.Form
 	{
-		int CurrentTab = 1;
-		const int TabCount = 3;
+                private bool m_PrimeraVez = false;
+		private int CurrentTab = 1;
+                private const int TabCount = 4;
 
                 public Preferencias()
                 {
@@ -60,6 +61,21 @@ namespace Lazaro.WinMain.Misc.Config
                         if (GuardarConfig() == false) {
                                 this.DialogResult = DialogResult.OK;
                                 this.Close();
+                        }
+                }
+
+                
+                /// <summary>
+                /// Indica si se está mostrando las preferencias en el primer inicio
+                /// </summary>
+                public bool PrimeraVez
+                {
+                        get{
+                                return m_PrimeraVez;
+                        }
+                        set{
+                                m_PrimeraVez = value;
+                                BotonSiguiente.Visible = value;
                         }
                 }
 
@@ -110,6 +126,9 @@ namespace Lazaro.WinMain.Misc.Config
 
                         EntradaLimiteCredito.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Cuentas.LimiteCreditoPredet", "0");
                         EntradaRedondeo.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Moneda.Redondeo", "0.05");
+
+                        EntradaProvincia.TextInt = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Provincia", 0);
+                        EntradaLocalidad.TextInt = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Localidad", 0);
 		}
 
 
@@ -119,7 +138,7 @@ namespace Lazaro.WinMain.Misc.Config
 				EntradaEmpresaCuit.Text = EntradaEmpresaCuit.Text.Substring(0, 2) + "-" + EntradaEmpresaCuit.Text.Substring(2, 8) + "-" + EntradaEmpresaCuit.Text.Substring(10, 1);
 
                         if (EntradaEmpresaCuit.Text != "00-00000000-0" && Lfx.Types.Strings.EsCuitValido(EntradaEmpresaCuit.Text) == false) {
-                                Lui.Forms.MessageBox.Show("Por favor ingrese una CUIT válida.\nSi todavía no disponde de una CUIT, puede utilizar provisoriamente la clave 00-00000000-0.", "La CUIT no es válida");
+                                Lui.Forms.MessageBox.Show("Por favor ingrese una CUIT válida.", "La CUIT no es válida");
                                 return true;
                         }
 
@@ -173,6 +192,26 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.Text, "*");
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Moneda.Redondeo", EntradaRedondeo.Text, "*");
 
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Provincia", EntradaProvincia.TextInt.ToString(), 0);
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Localidad", EntradaLocalidad.TextInt.ToString(), 0);
+
+                        if (this.PrimeraVez) {
+                                // Cambio la sucursal 1 y el cliente consumidor final a la localidad proporcionada
+                                Lbl.Entidades.Localidad Loc = EntradaLocalidad.Elemento as Lbl.Entidades.Localidad;
+                                if (Loc != null) {
+                                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
+                                        Lbl.Entidades.Sucursal Suc1 = new Lbl.Entidades.Sucursal(this.Connection, 1);
+                                        Suc1.Localidad = Loc;
+                                        Suc1.Guardar();
+
+                                        Lbl.Personas.Persona ConsFinal = new Lbl.Personas.Persona(this.Connection, 999);
+                                        ConsFinal.Localidad = Loc;
+                                        ConsFinal.Guardar();
+
+                                        Trans.Commit();
+                                }
+                        }
+
 			return false;
 		}
 
@@ -180,11 +219,21 @@ namespace Lazaro.WinMain.Misc.Config
 		private void BotonSiguiente_Click(object sender, System.EventArgs e)
 		{
 			CurrentTab += 1;
-			if (CurrentTab > TabCount)
-				CurrentTab = 1;
+                        if (CurrentTab > TabCount)
+                                CurrentTab = 1;
+
 			FrmGeneral.Visible = CurrentTab == 1;
 			FrmArticulos.Visible = CurrentTab == 2;
 			FrmComprobantes.Visible = CurrentTab == 3;
+                        FrmAvanzado.Visible = CurrentTab == 4;
 		}
+
+                private void EntradaProvincia_TextChanged(object sender, System.EventArgs e)
+                {
+                        if (EntradaProvincia.TextInt != 0)
+                                EntradaLocalidad.Filter = "parent IN (SELECT id_ciudad FROM ciudades WHERE nivel=1 AND parent=" + EntradaProvincia.TextInt.ToString() + ")";
+                        else
+                                EntradaLocalidad.Filter = "";
+                }
 	}
 }

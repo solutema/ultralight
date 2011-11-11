@@ -32,8 +32,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Facturas
