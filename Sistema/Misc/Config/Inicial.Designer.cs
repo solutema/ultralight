@@ -588,9 +588,9 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaEncab.LabelStyle = Lui.Forms.LabelStyles.Header1;
-                        this.EtiquetaEncab.Location = new System.Drawing.Point(120, 16);
+                        this.EtiquetaEncab.Location = new System.Drawing.Point(120, 8);
                         this.EtiquetaEncab.Name = "EtiquetaEncab";
-                        this.EtiquetaEncab.Size = new System.Drawing.Size(496, 28);
+                        this.EtiquetaEncab.Size = new System.Drawing.Size(496, 40);
                         this.EtiquetaEncab.TabIndex = 0;
                         this.EtiquetaEncab.Text = "Bienvenido a Lázaro";
                         this.EtiquetaEncab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -637,14 +637,13 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label10.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label10.Location = new System.Drawing.Point(44, 232);
+                        this.label10.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label10.Location = new System.Drawing.Point(44, 204);
                         this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label10.Name = "label10";
-                        this.label10.Size = new System.Drawing.Size(452, 36);
+                        this.label10.Size = new System.Drawing.Size(452, 64);
                         this.label10.TabIndex = 74;
-                        this.label10.Text = "Si necesita más información sobre la configuración de Lázaro, haga clic en el sig" +
-    "uiente enlace:";
+                        this.label10.Text = resources.GetString("label10.Text");
                         // 
                         // BotonGuiaInstalacion
                         // 
@@ -654,7 +653,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonGuiaInstalacion.Size = new System.Drawing.Size(452, 20);
                         this.BotonGuiaInstalacion.TabIndex = 73;
                         this.BotonGuiaInstalacion.TabStop = true;
-                        this.BotonGuiaInstalacion.Text = "Instalación y Mantenimiento: Instalación Inicial";
+                        this.BotonGuiaInstalacion.Text = "Manual de Instalación y Mantenimiento: Instalación Inicial";
                         this.BotonGuiaInstalacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.BotonGuiaInstalacion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonGuiaInstalacion_LinkClicked);
                         // 

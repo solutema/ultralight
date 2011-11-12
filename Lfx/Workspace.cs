@@ -374,6 +374,7 @@ namespace Lfx
                         // Cargar TagList y volver a verificar la estructura
                         Lfx.Workspace.Master.Structure.TagList.Clear();
                         Lfx.Workspace.Master.Structure.LoadBuiltIn();
+
                         this.CheckAndUpdateDataBaseStructure(this.MasterConnection, false);
 
                         this.MasterConnection.EnableConstraints(true);

@@ -39,29 +39,29 @@ using System.Windows.Forms;
 
 namespace Lazaro.WinMain.Principal
 {
-	public partial class BarraInferior : UserControl
-	{
+        public partial class BarraInferior : UserControl
+        {
                 private Lfx.Data.Connection m_DataBase;
-		private int ItemActual, ItemSolicitado;
-		private string TablaActual, TablaSolicitada;
+                private int ItemActual, ItemSolicitado;
+                private string TablaActual, TablaSolicitada;
                 private Lbl.IElementoDeDatos ElementoActual = null;
 
-		public BarraInferior()
-		{
-			InitializeComponent();
+                public BarraInferior()
+                {
+                        InitializeComponent();
 
 
-			TimerReloj_Tick(this, null);
-		}
+                        TimerReloj_Tick(this, null);
+                }
 
-		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return Lfx.Workspace.Master;
-			}
-		}
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public Lfx.Workspace Workspace
+                {
+                        get
+                        {
+                                return Lfx.Workspace.Master;
+                        }
+                }
 
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lfx.Data.Connection DataBase
@@ -74,30 +74,30 @@ namespace Lazaro.WinMain.Principal
                         }
                 }
 
-		private void TimerReloj_Tick(object sender, EventArgs e)
-		{
-			RelojHora.Text = System.DateTime.Now.ToString("HH:mm");
-			RelojFecha.Text = System.DateTime.Now.ToString("dd/MM/yy");
-		}
+                private void TimerReloj_Tick(object sender, EventArgs e)
+                {
+                        RelojHora.Text = System.DateTime.Now.ToString("HH:mm");
+                        RelojFecha.Text = System.DateTime.Now.ToString("dd/MM/yy");
+                }
 
-		private void TimerSlowLink_Tick(object sender, EventArgs e)
-		{
-			if (TablaActual != TablaSolicitada || ItemActual != ItemSolicitado)
-				this.ActualizarBarra();
-			TimerSlowLink.Stop();
-		}
+                private void TimerSlowLink_Tick(object sender, EventArgs e)
+                {
+                        if (TablaActual != TablaSolicitada || ItemActual != ItemSolicitado)
+                                this.ActualizarBarra();
+                        TimerSlowLink.Stop();
+                }
 
 
-		public void MostrarItem(string tabla, int item)
-		{
-			if (this.Workspace == null)
-				return;
+                public void MostrarItem(string tabla, int item)
+                {
+                        if (this.Workspace == null)
+                                return;
 
                         if (this.Visible == false)
                                 return;
 
-			TablaSolicitada = tabla;
-			ItemSolicitado = item;
+                        TablaSolicitada = tabla;
+                        ItemSolicitado = item;
 
                         if (this.Workspace.SlowLink) {
                                 //Reinicio el contador
@@ -106,21 +106,25 @@ namespace Lazaro.WinMain.Principal
                         } else {
                                 ActualizarBarra();
                         }
-		}
+                }
 
-		private void ActualizarBarra()
-		{
-			this.SuspendLayout();
+                private void ActualizarBarra()
+                {
+                        this.SuspendLayout();
 
-                        switch (TablaSolicitada)
-			{
-				case "articulo":
-				case "articulos":
-					PanelAyuda.Visible = false;
-					PanelPersona.Visible = false;
-                                        Lbl.Articulos.Articulo Art = new Lbl.Articulos.Articulo(this.DataBase, ItemSolicitado);
-                                        ElementoActual = Art;
-                                        if (Art.Existe) {
+                        switch (TablaSolicitada) {
+                                case "articulo":
+                                case "articulos":
+                                        PanelAyuda.Visible = false;
+                                        PanelPersona.Visible = false;
+                                        Lbl.Articulos.Articulo Art;
+                                        try {
+                                                Art = new Lbl.Articulos.Articulo(this.DataBase, ItemSolicitado);
+                                        } catch {
+                                                Art = null;
+                                        }
+                                        if (Art != null && Art.Existe) {
+                                                ElementoActual = Art;
                                                 ItemActual = ItemSolicitado;
                                                 TablaActual = TablaSolicitada;
 
@@ -140,14 +144,19 @@ namespace Lazaro.WinMain.Principal
                                                 ArticuloStock.Text = Lfx.Types.Formatting.FormatCurrency(Art.StockActual, this.Workspace.CurrentConfig.Moneda.Decimales);
                                                 PanelArticulo.Visible = true;
                                         }
-					break;
-				case "persona":
-				case "personas":
-					PanelAyuda.Visible = false;
-					PanelArticulo.Visible = false;
-                                        Lbl.Personas.Persona Per = new Lbl.Personas.Persona(this.DataBase, ItemSolicitado);
-                                        ElementoActual = Per;
-                                        if (Per.Existe) {
+                                        break;
+                                case "persona":
+                                case "personas":
+                                        PanelAyuda.Visible = false;
+                                        PanelArticulo.Visible = false;
+                                        Lbl.Personas.Persona Per;
+                                        try {
+                                                Per = new Lbl.Personas.Persona(this.DataBase, ItemSolicitado);
+                                        } catch {
+                                                Per = null;
+                                        }
+                                        if (Per != null && Per.Existe) {
+                                                ElementoActual = Per;
                                                 ItemActual = ItemSolicitado;
                                                 TablaActual = TablaSolicitada;
 
@@ -174,21 +183,21 @@ namespace Lazaro.WinMain.Principal
                                                 PersonaImagen.Image = Per.Imagen;
                                                 PanelPersona.Visible = true;
                                         }
-					break;
-			}
-			this.ResumeLayout();
-		}
+                                        break;
+                        }
+                        this.ResumeLayout();
+                }
 
-		public void MostrarAyuda(string titulo, string texto)
-		{
-			this.SuspendLayout();
-			PanelArticulo.Visible = false;
-			PanelPersona.Visible = false;
-			AyudaTitulo.Text = titulo;
-			AyudaTexto.Text = texto;
-			PanelAyuda.Visible = true;
-			this.ResumeLayout();
-		}
+                public void MostrarAyuda(string titulo, string texto)
+                {
+                        this.SuspendLayout();
+                        PanelArticulo.Visible = false;
+                        PanelPersona.Visible = false;
+                        AyudaTitulo.Text = titulo;
+                        AyudaTexto.Text = texto;
+                        PanelAyuda.Visible = true;
+                        this.ResumeLayout();
+                }
 
 
                 internal void ShowProgressRoutine(Lfx.Types.OperationProgress progreso)
@@ -211,14 +220,14 @@ namespace Lazaro.WinMain.Principal
                         }
                 }
 
-		private void ArticuloNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
+                private void ArticuloNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
                         if (TablaActual != null && ItemActual > 0) {
                                 object Res = Ejecutor.Exec("EDITAR " + TablaActual + " " + ItemActual.ToString());
                                 if (Res != null)
                                         Aplicacion.FormularioPrincipal.ProcesarObjeto(Res);
                         }
-		}
+                }
 
                 private void PersonaNombre_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
@@ -237,5 +246,5 @@ namespace Lazaro.WinMain.Principal
                                 FormularioEtiquetas.Show();
                         }
                 }
-	}
+        }
 }

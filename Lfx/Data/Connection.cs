@@ -879,6 +879,9 @@ LEFT JOIN pg_attribute
 
                                         if (DbConnection.State == System.Data.ConnectionState.Open)
                                                 DbConnection.Close();
+
+                                        DbConnection.Dispose();
+                                        DbConnection = null;
                                 } catch {
                                         if (Lfx.Workspace.Master.DebugMode)
                                                 throw;

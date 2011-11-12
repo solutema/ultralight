@@ -242,9 +242,10 @@ namespace Lazaro.WinMain.Misc.Config
                                                 }
                                         }
 
+                                        Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "lazaro";
+                                        Lfx.Workspace.Master.MasterConnection.Close();
+                                        Lfx.Workspace.Master.MasterConnection.Open();
                                         if (TengoDb) {
-                                                Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "lazaro";
-
                                                 Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DataSource", Lfx.Data.DataBaseCache.DefaultCache.ServerName);
                                                 Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
                                                 Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", Lfx.Data.DataBaseCache.DefaultCache.DataBaseName);
@@ -315,6 +316,12 @@ namespace Lazaro.WinMain.Misc.Config
                                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
                                         this.Close();
                                         return;
+                                case 99:
+                                        if (BotonInstalar.Enabled)
+                                                BotonInstalar.PerformClick();
+                                        else
+                                                this.Paso = 0;
+                                        break;
                         }
                         this.MostrarPaneles();
                 }
