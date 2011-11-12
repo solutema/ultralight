@@ -173,7 +173,7 @@ namespace Lcc.Entrada.AuxForms
                 }
 
 
-                public void Buscar(string valorInicial)
+                public DialogResult Buscar(string valorInicial)
                 {
                         Refrescar();
                         m_IgnoreEvents = true;
@@ -183,7 +183,9 @@ namespace Lcc.Entrada.AuxForms
                         EntradaBuscar.SelectionStart = EntradaBuscar.Text.Length;
                         this.Refrescar();
                         if (!this.Visible)
-                                this.ShowDialog();
+                                return this.ShowDialog();
+                        else
+                                return System.Windows.Forms.DialogResult.Retry;
                 }
 
                 internal void Refrescar()

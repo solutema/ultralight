@@ -341,8 +341,7 @@ namespace Lcc.Entrada
                                 Statics.DetailBoxQuickSelect.ControlDestino = this;
                                 Statics.DetailBoxQuickSelect.Top = System.Convert.ToInt32((this.DisplayRectangle.Top + this.DisplayRectangle.Height / 2) - (Statics.DetailBoxQuickSelect.Height / 2));
                                 Statics.DetailBoxQuickSelect.Left = System.Convert.ToInt32((this.DisplayRectangle.Left + this.DisplayRectangle.Width / 2) - (Statics.DetailBoxQuickSelect.Width / 2));
-                                Statics.DetailBoxQuickSelect.Buscar(valorIncial);
-                                if (Statics.DetailBoxQuickSelect.DialogResult != DialogResult.Retry) {
+                                if (Statics.DetailBoxQuickSelect.Buscar(valorIncial) != DialogResult.Retry) {
                                         if (EntradaCodigo.Text.Length > 0) {
                                                 System.Windows.Forms.SendKeys.Send(m_TeclaDespuesDeEnter);
                                         }

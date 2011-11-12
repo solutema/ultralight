@@ -35,18 +35,18 @@ namespace RunComponent
                                 FunctionName = ComponentName;
                         }
 
+                        Lfx.Workspace.Master = new Lfx.Workspace("default");
+                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global(Lfx.Workspace.Master);
                         if (ComponentName != null && FunctionName != null) {
                                 //Console.WriteLine("Ejecutando " + ComponentName + "." + FunctionName);
                                 Lfx.Components.Function Funcion = null;
                                 try {
                                         Funcion = Lfx.Components.Manager.LoadComponent(ComponentName, FunctionName);
                                 } catch (Exception ex) {
-                                        System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
+                                        System.Windows.Forms.MessageBox.Show(ex.ToString(), "Error");
                                 }
                                 if (Funcion != null) {
-                                        Lfx.Workspace.Master = new Lfx.Workspace("default");
-                                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global(Lfx.Workspace.Master);
-                                        Funcion.Workspace = new Lfx.Workspace("default");
+                                        Funcion.Workspace = Lfx.Workspace.Master;
                                         Funcion.ExecutableName = System.Reflection.Assembly.GetExecutingAssembly().Location;
                                         Funcion.CommandLineArgs = Environment.GetCommandLineArgs();
                                         Funcion.Create(true);
