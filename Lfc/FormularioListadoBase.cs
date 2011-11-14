@@ -214,7 +214,7 @@ namespace Lfc
                                 FormularioFiltros FormFiltros = new FormularioFiltros();
                                 FormFiltros.FromFilters(this.Definicion.Filters);
                                 if (FormFiltros.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                                        this.FiltersChanged(this.Definicion.Filters);
+                                        this.OnFiltersChanged(this.Definicion.Filters);
                                         this.RefreshList();
                                         return new Lfx.Types.SuccessOperationResult();
                                 } else {
@@ -226,7 +226,7 @@ namespace Lfc
                 }
 
 
-                public virtual void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                public virtual void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         
                 }

@@ -50,7 +50,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // ProductArray
                         // 
-                        this.ProductArray.Size = new System.Drawing.Size(599, 207);
+                        this.EntradaProductos.Size = new System.Drawing.Size(599, 207);
                         // 
                         // Label2
                         // 
@@ -198,7 +198,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.SetChildIndex(this.Label11, 0);
                         this.Controls.SetChildIndex(this.EntradaRemito, 0);
                         this.Controls.SetChildIndex(this.PanelFormaPago, 0);
-                        this.Controls.SetChildIndex(this.ProductArray, 0);
+                        this.Controls.SetChildIndex(this.EntradaProductos, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.Controls.SetChildIndex(this.BotonPago, 0);
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);

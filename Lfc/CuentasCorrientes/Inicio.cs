@@ -210,7 +210,7 @@ namespace Lfc.CuentasCorrientes
                 }
 
 
-                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                public override void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.CuentasCorrientes.CuentaCorriente), Lbl.Sys.Permisos.Operaciones.Ver)) {
                                 this.Cliente = filters["ctacte.id_cliente"].Value as Lbl.Personas.Persona;        
@@ -219,7 +219,7 @@ namespace Lfc.CuentasCorrientes
                         m_Localidad = ((Lazaro.Pres.Filters.RelationFilter)(filters["personas.id_ciudad"])).ElementId;
                         Fechas = ((Lazaro.Pres.Filters.DateRangeFilter)(filters["ctacte.fecha"])).DateRange;
 
-                        base.FiltersChanged(filters);
+                        base.OnFiltersChanged(filters);
                 }
 
 

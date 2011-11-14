@@ -40,17 +40,13 @@ namespace Lfc.Comprobantes.Compra
 {
 	public partial class Inicio : Lfc.FormularioListado
 	{
-                public string Tipo { get; set; }
-                public string Letra { get; set; }
-
-		public int m_Proveedor, m_Estado = -1;
-		private Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("mes-0");
+                private int m_Estado = -2;
+                private string m_Tipo = "FP";
+                private Lbl.Personas.Persona m_Proveedor;
+		private Lfx.Types.DateRange m_Fechas = new Lfx.Types.DateRange("mes-0");
 
         	public Inicio()
 		{
-                        this.Tipo = "FP";
-                        this.Letra = "*";
-
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteDeCompra),
@@ -72,13 +68,39 @@ namespace Lfc.Comprobantes.Compra
 				        new Lazaro.Pres.Field("comprob.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
                                         new Lazaro.Pres.Field("comprob.id_formapago", "Pago", Lfx.Data.InputFieldTypes.Text, 0)
 			        },
-                                
+
                                 ExtraSearchColumns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("comprob_detalle.series", "Números de Serie", Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lazaro.Pres.Field("comprob.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)
-			        }
+			        },
+
+                                Filters = new Lazaro.Pres.Filters.FilterCollection()
+                                {
+                                        new Lazaro.Pres.Filters.SetFilter("Tipo", "comprob.tipo_fac", new string[] {
+                                                "Notas de Pedido|NP",
+                                                "Pedidos|PD",
+                                                "Remitos|R",
+                                                "Facturas A|FA",
+                                                "Facturas B|FB",
+                                                "Facturas C|FC",
+                                                "Facturas E|FE",
+                                                "Facturas M|FM",
+                                                "Facturas (todas)|FP",
+                                                "Todo|*" }, "NP"),
+                                        new Lazaro.Pres.Filters.SetFilter("Estado", "comprob.estado", new string[] {
+                                                "Todos|-2",
+                                                "No pedidos|-1",
+						"Pedidos|100",
+                                                "Cancelados|200" }, "-2"),
+                                        new Lazaro.Pres.Filters.RelationFilter("Proveedor", new Lfx.Data.Relation("comprob.id_cliente", "personas", "id_persona", "nombre_visible"), new qGen.Where("(tipo&2)=2")),
+                                        new Lazaro.Pres.Filters.DateRangeFilter("Fecha", "compob.fecha", new Lfx.Types.DateRange("mes-0"))
+                                }
                         };
+
+                        this.Tipo = "FP";
+                        this.Estado = -2;
+                        this.Fechas = new Lfx.Types.DateRange("mes-0");
 
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency));
 
@@ -90,6 +112,100 @@ namespace Lfc.Comprobantes.Compra
                         : this()
                 {
                         this.Tipo = comando;
+                }
+
+
+                public override void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                {
+                        this.Tipo = this.Definicion.Filters["comprob.tipo_fac"].Value as string;
+                        this.Estado = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["comprob.estado"].Value as string);
+                        this.Proveedor = this.Definicion.Filters["comprob.id_cliente"].Value as Lbl.Personas.Persona;
+                        this.Fechas = this.Definicion.Filters["comprob.fecha"].Value as Lfx.Types.DateRange;
+
+                        base.OnFiltersChanged(filters);
+                }
+
+
+                public string Tipo
+                {
+                        get
+                        {
+                                return m_Tipo;
+                        }
+                        set
+                        {
+                                if (value != m_Tipo) {
+                                        Lazaro.Pres.Filters.SetFilter SetFil = this.Definicion.Filters["comprob.estado"] as Lazaro.Pres.Filters.SetFilter;
+                                        switch (value) {
+                                                case "NP":
+                                                        SetFil.SetData = new string[] {
+                                                                "Todos|-2",
+                                                                "No pedidos|-1",
+						                "Pedidos|100",
+                                                                "Cancelados|200"
+					                };
+                                                        this.Estado = -2;
+                                                        break;
+                                                case "PD":
+                                                        SetFil.SetData = new string[] {
+                                                                "Todos|-2",
+						                "Sin especificar|0",
+						                "No recibidos|-1",
+						                "Recibidos|100"
+					                };
+                                                        this.Estado = -2;
+                                                        break;
+                                                default:
+                                                        SetFil.SetData = new string[] { "Todos|-2" };
+                                                        this.Estado = -2;
+                                                        break;
+                                        }
+                                }
+
+                                m_Tipo = value;
+                                this.Definicion.Filters["comprob.tipo_fac"].Value = value;
+                        }
+                }
+
+                public int Estado
+                {
+                        get
+                        {
+                                return m_Estado;
+                        }
+                        set
+                        {
+                                m_Estado = value;
+                                this.Definicion.Filters["comprob.estado"].Value = value.ToString();
+                        }
+                }
+
+
+                public Lfx.Types.DateRange Fechas
+                {
+                        get
+                        {
+                                return m_Fechas;
+                        }
+                        set
+                        {
+                                m_Fechas = value;
+                                this.Definicion.Filters["comprob.fecha"].Value = value;
+                        }
+                }
+
+
+                public Lbl.Personas.Persona Proveedor
+                {
+                        get
+                        {
+                                return m_Proveedor;
+                        }
+                        set
+                        {
+                                m_Proveedor = value;
+                                this.Definicion.Filters["comprob.id_persona"].Value = value;
+                        }
                 }
 
 
@@ -137,53 +253,12 @@ namespace Lfc.Comprobantes.Compra
                                                 //Controla Pago
                                                 break;
                                         default:
-                                                item.SubItems["comprob.pendiente"].Text = "";
+                                                item.SubItems["comprob.total-comprob.cancelado AS pendiente"].Text = "";
                                                 break;
                                 }
                         }
                 }
 
-		public override Lfx.Types.OperationResult OnPrint(bool selectPrinter)
-		{
-			Lfc.Comprobantes.Compra.Listado OFormListado = new Lfc.Comprobantes.Compra.Listado();
-                        OFormListado.MdiParent = this.MdiParent;
-                        OFormListado.m_Tipo = this.Tipo;
-                        OFormListado.m_Tipo = this.Letra;
-			OFormListado.m_Proveedor = m_Proveedor;
-			OFormListado.m_Fecha = m_Fecha;
-			OFormListado.Show();
-			OFormListado.RefreshList();
-			return new Lfx.Types.SuccessOperationResult();
-		}
-
-
-		public override Lfx.Types.OperationResult OnFilter()
-		{
-			Lfx.Types.OperationResult filtrarReturn = new Lfx.Types.SuccessOperationResult();
-			filtrarReturn = base.OnFilter();
-			if (filtrarReturn.Success == true)
-			{
-                                using (Lfc.Comprobantes.Compra.Filtros FormFiltros = new Lfc.Comprobantes.Compra.Filtros()) {
-                                        FormFiltros.Connection = this.Connection;
-                                        FormFiltros.EntradaTipo.TextKey = Tipo;
-                                        FormFiltros.EntradaProveedor.Text = m_Proveedor.ToString();
-                                        FormFiltros.EntradaFechas.Rango = m_Fecha;
-                                        FormFiltros.EntradaEstado.TextKey = m_Estado.ToString();
-                                        FormFiltros.ShowDialog();
-                                        if (FormFiltros.DialogResult == DialogResult.OK) {
-                                                Tipo = FormFiltros.EntradaTipo.TextKey;
-                                                m_Proveedor = FormFiltros.EntradaProveedor.TextInt;
-                                                m_Fecha = FormFiltros.EntradaFechas.Rango;
-                                                m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
-                                                this.RefreshList();
-                                                filtrarReturn.Success = true;
-                                        } else {
-                                                filtrarReturn.Success = false;
-                                        }
-                                }
-			}
-			return filtrarReturn;
-		}
 
                 protected override void OnBeginRefreshList()
                 {
@@ -192,13 +267,13 @@ namespace Lfc.Comprobantes.Compra
                         switch (Tipo) {
                                 case "NP":
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac", "NP");
-                                        if (m_Estado == -1)
+                                        if (this.Estado == -1)
                                                 this.CustomFilters.AddWithValue("(comprob.estado<=50)");
                                         break;
 
                                 case "PD":
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac", "PD");
-                                        if (m_Estado == -1)
+                                        if (this.Estado == -1)
                                                 this.CustomFilters.AddWithValue("(comprob.estado<=50)");
                                         break;
 
@@ -219,14 +294,14 @@ namespace Lfc.Comprobantes.Compra
                                         break;
                         }
 
-                        if (m_Proveedor > 0)
-                                this.CustomFilters.AddWithValue("comprob.id_cliente", m_Proveedor);
+                        if (this.Proveedor != null)
+                                this.CustomFilters.AddWithValue("comprob.id_cliente", this.Proveedor.Id);
 
-                        if (m_Estado >= 0)
-                                this.CustomFilters.AddWithValue("comprob.estado", m_Estado);
+                        if (this.Estado >= 0)
+                                this.CustomFilters.AddWithValue("comprob.estado", this.Estado);
 
-                        if (m_Fecha.HasRange)
-                                this.CustomFilters.AddWithValue("(comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(m_Fecha.To) + " 23:59:59')");
+                        if (this.Fechas.HasRange)
+                                this.CustomFilters.AddWithValue("(comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(this.Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(this.Fechas.To) + " 23:59:59')");
                 }
 	}
 }

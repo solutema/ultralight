@@ -21,8 +21,8 @@
       <Opcion Nombre="&amp;Remitos de Compra" Funcion="LISTAR Lbl.Comprobantes.ComprobanteDeCompra RP" />
       <Opcion Nombre="&amp;Facturas de Compra" Funcion="LISTAR Lbl.Comprobantes.ComprobanteDeCompra FP" />
       <Opcion Nombre="-" Funcion="" />
-      <Opcion Nombre="Artículos a Pedir" Funcion="LISTAR ARTICULOS APEDIR" />
-      <Opcion Nombre="Artículos Pedidos" Funcion="LISTAR ARTICULOS PEDIDOS" />
+      <Opcion Nombre="Artículos a Pedir" Funcion="LISTAR Lbl.Articulos.Articulo APEDIR" />
+      <Opcion Nombre="Artículos Pedidos" Funcion="LISTAR Lbl.Articulos.Articulo PEDIDOS" />
     </Opcion>
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">

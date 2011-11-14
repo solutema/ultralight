@@ -184,7 +184,7 @@ namespace Lfc
                         // TablaElementosEstandar
                         // 
                         this.TablaElementosEstandar.ColumnCount = 1;
-                        this.TablaElementosEstandar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100f));
+                        this.TablaElementosEstandar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
                         this.TablaElementosEstandar.Controls.Add(this.EntradaImagen, 0, 0);
                         this.TablaElementosEstandar.Controls.Add(this.EntradaTags, 0, 2);
                         this.TablaElementosEstandar.Controls.Add(this.EntradaComentarios, 0, 1);
@@ -211,7 +211,7 @@ namespace Lfc
                         this.EntradaImagen.Name = "EntradaImagen";
                         this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImagen.ReadOnly = false;
-                        this.EntradaImagen.Size = new System.Drawing.Size(308, 160);
+                        this.EntradaImagen.Size = new System.Drawing.Size(240, 160);
                         this.EntradaImagen.TabIndex = 1;
                         this.EntradaImagen.Text = "Imagen";
                         // 
@@ -227,7 +227,7 @@ namespace Lfc
                         this.EntradaTags.Name = "EntradaTags";
                         this.EntradaTags.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTags.ReadOnly = false;
-                        this.EntradaTags.Size = new System.Drawing.Size(308, 480);
+                        this.EntradaTags.Size = new System.Drawing.Size(240, 480);
                         this.EntradaTags.TabIndex = 3;
                         this.EntradaTags.Text = "Otros atributos";
                         // 
@@ -243,7 +243,7 @@ namespace Lfc
                         this.EntradaComentarios.Name = "EntradaComentarios";
                         this.EntradaComentarios.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComentarios.ReadOnly = false;
-                        this.EntradaComentarios.Size = new System.Drawing.Size(308, 152);
+                        this.EntradaComentarios.Size = new System.Drawing.Size(240, 152);
                         this.EntradaComentarios.TabIndex = 2;
                         this.EntradaComentarios.Text = "Comentarios";
                         // 

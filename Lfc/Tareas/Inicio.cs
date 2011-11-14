@@ -197,7 +197,7 @@ namespace Lfc.Tareas
 		}
 
 
-                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                public override void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.Cliente = this.Definicion.Filters["tickets.id_persona"].Value as Lbl.Personas.Persona;
                         this.Tipo = this.Definicion.Filters["tickets.id_tipo_ticket"].Value as Lbl.Tareas.Tipo;
@@ -205,7 +205,7 @@ namespace Lfc.Tareas
                         this.Estado = this.Definicion.Filters["tickets.estado"].Value as string;
                         this.Definicion.OrderBy = this.Definicion.Filters["ORDER BY"].Value as string;
 
-                        base.FiltersChanged(filters);
+                        base.OnFiltersChanged(filters);
                 }
 
 

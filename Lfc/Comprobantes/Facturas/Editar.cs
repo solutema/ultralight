@@ -234,7 +234,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
                         }
 
-                        if (ProductArray.ShowStock && this.Tipo.MueveStock && Comprob.HayStock() == false) {
+                        if (EntradaProductos.ShowStock && this.Tipo.MueveStock && Comprob.HayStock() == false) {
                                 Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog("Las existencias actuales no son suficientes para cubrir la operación que intenta realizar.\n¿Desea continuar de todos modos?", "No hay existencias suficientes");
                                 OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (OPregunta.ShowDialog() == DialogResult.Cancel)
@@ -480,11 +480,11 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         if (RemitoId > 0) {
                                 Lfx.Data.Row Remito = this.Connection.FirstRowFromSelect("SELECT * FROM comprob WHERE tipo_fac='R' AND numero=" + RemitoId.ToString() + " AND impresa>0 AND anulada=0");
                                 if (Remito == null)
-                                        ProductArray.ShowStock = true;
+                                        EntradaProductos.ShowStock = true;
                                 else
-                                        ProductArray.ShowStock = false;
+                                        EntradaProductos.ShowStock = false;
                         } else {
-                                ProductArray.ShowStock = true;
+                                EntradaProductos.ShowStock = true;
                         }
                 }
 

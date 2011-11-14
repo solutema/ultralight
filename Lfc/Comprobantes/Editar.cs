@@ -30,12 +30,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Lfc.Comprobantes
 {
@@ -67,7 +63,7 @@ namespace Lfc.Comprobantes
                 {
                         if (this.HasWorkspace) {
                                 EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesFinal;
-                                ProductArray.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
+                                EntradaProductos.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
                         }
                         base.OnWorkspaceChanged();
                 }
@@ -153,11 +149,11 @@ namespace Lfc.Comprobantes
 
                         if (this.Elemento.Existe == true || this.PuedeEditar() == false) {
                                 // No actualizar automáticamente detalles
-                                ProductArray.AutoUpdate = false;
+                                EntradaProductos.AutoUpdate = false;
                         }
 
                         // Cargo el detalle del comprobante
-                        ProductArray.CargarArticulos(Comprob.Articulos);
+                        EntradaProductos.CargarArticulos(Comprob.Articulos);
 
                         this.PonerTitulo();
                         this.ResumeLayout();
@@ -201,7 +197,7 @@ namespace Lfc.Comprobantes
                         Comprob.Recargo = EntradaInteres.ValueDecimal;
                         Comprob.Cuotas = EntradaCuotas.ValueInt;
 
-                        Comprob.Articulos = ProductArray.ObtenerArticulos(Comprob);
+                        Comprob.Articulos = EntradaProductos.ObtenerArticulos(Comprob);
 
                         base.ActualizarElemento();
                 }
@@ -214,7 +210,7 @@ namespace Lfc.Comprobantes
                         }
                         set
                         {
-                                ProductArray.TemporaryReadOnly = value;
+                                EntradaProductos.TemporaryReadOnly = value;
                                 base.TemporaryReadOnly = value;
                         }
                 }
@@ -306,7 +302,7 @@ namespace Lfc.Comprobantes
                 private void ProductArray_TotalChanged(System.Object sender, System.EventArgs e)
                 {
                         if (this.TemporaryReadOnly == false)
-                                EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(ProductArray.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
 

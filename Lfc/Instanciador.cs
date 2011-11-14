@@ -81,7 +81,7 @@ namespace Lfc
 
                 private static Lcc.Edicion.ControlEdicion InstanciarControlEdicion(Type tipo)
                 {
-                        object Res = Activator.CreateInstance(tipo, null);
+                        object Res = Activator.CreateInstance(tipo);
                         return Res as Lcc.Edicion.ControlEdicion;
                 }
 

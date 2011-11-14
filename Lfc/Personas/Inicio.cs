@@ -197,7 +197,7 @@ namespace Lfc.Personas
                 }
 
 
-                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                public override void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.Tipo = Lfx.Types.Parsing.ParseInt(this.Definicion.Filters["personas.tipo"].Value as string);
                         this.Grupo = this.Definicion.Filters["personas.id_grupo"].Value as Lbl.Personas.Grupo;
@@ -209,7 +209,7 @@ namespace Lfc.Personas
                         this.FechaAlta = this.Definicion.Filters["personas.fechaalta"].Value as Lfx.Types.DateRange;
                         this.FechaBaja = this.Definicion.Filters["personas.fechabaja"].Value as Lfx.Types.DateRange;
 
-                        base.FiltersChanged(filters);
+                        base.OnFiltersChanged(filters);
                 }
 
 

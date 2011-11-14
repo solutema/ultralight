@@ -30,20 +30,12 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Compra
 {
 	public partial class Editar : Lcc.Edicion.ControlEdicion
 	{
-		protected internal string m_TipoComprob = "R";
-		protected internal string m_Numero = "";
-                protected internal Lbl.Comprobantes.ComprobanteDeCompra FacturaOriginal;
-                public string CrearTipo = "PD";
                 private System.Collections.Hashtable ArticulosCantidadesOriginales = new System.Collections.Hashtable();
 
 		public Editar()
@@ -137,7 +129,6 @@ namespace Lfc.Comprobantes.Compra
                         else
                                 Comprob.FormaDePago = null;
 
-                        Comprob.ComprobanteOriginal = FacturaOriginal;
                         Comprob.Vendedor = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
                         Comprob.Cliente = EntradaProveedor.Elemento as Lbl.Personas.Persona;
                         Comprob.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[EntradaTipo.TextKey];
@@ -290,7 +281,7 @@ namespace Lfc.Comprobantes.Compra
                         }
                 }
 
-                private void EntradaTipo_TextChanged(object sender, EventArgs e)
+                private void EntradaTipoNumero_TextChanged(object sender, EventArgs e)
                 {
                         Lbl.Comprobantes.Tipo Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[EntradaTipo.TextKey];
                         if (Tipo.Existe)
@@ -298,7 +289,7 @@ namespace Lfc.Comprobantes.Compra
                         else
                                 EntradaFormaPago.Enabled = false;
 
-                        this.Titulo = Tipo.ToString() + " " + EntradaNumero.Text;
+                        this.Titulo = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000") + "-" + EntradaNumero.ValueInt.ToString("00000000");
                 }
 	}
 }

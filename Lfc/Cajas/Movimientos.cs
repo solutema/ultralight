@@ -236,7 +236,7 @@ namespace Lfc.Cajas
                 }
 
 
-                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                public override void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.Caja = this.Definicion.Filters["cajas_movim.id_caja"].Value as Lbl.Cajas.Caja;
                         this.Cliente = this.Definicion.Filters["cajas_movim.id_cliente"].Value as Lbl.Personas.Persona;
@@ -247,7 +247,7 @@ namespace Lfc.Cajas
 
                         BotonArqueo.Visible = !(this.Caja == null || this.Cliente != null || Concepto != null || Direccion != 0 || this.Fechas.To < System.DateTime.Now);
 
-                        base.FiltersChanged(filters);
+                        base.OnFiltersChanged(filters);
                 }
 
 

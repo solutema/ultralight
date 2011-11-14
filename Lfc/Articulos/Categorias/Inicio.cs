@@ -71,14 +71,14 @@ namespace Lfc.Articulos.Categorias
                 }
 
 
-                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                public override void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.CustomFilters.Clear();
 
                         if (((Lazaro.Pres.Filters.SetFilter)(filters["articulos_categorias.cache_stock_actual"])).CurrentValue == "f")
                                 CustomFilters.AddWithValue("articulos_categorias.stock_minimo>0 AND articulos_categorias.stock_minimo>(SELECT SUM(articulos.stock_actual) FROM articulos WHERE articulos_categorias.id_categoria=id_categoria)");
 
-                        base.FiltersChanged(filters);
+                        base.OnFiltersChanged(filters);
                 }
 
 

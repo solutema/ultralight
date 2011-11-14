@@ -67,14 +67,14 @@ namespace Lfc.Pvs
 		}
 
 
-                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                public override void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         this.CustomFilters.Clear();
 
                         if (((Lazaro.Pres.Filters.SetFilter)(filters["pvs.tipo"])).CurrentValue != "*")
                                 CustomFilters.AddWithValue("pvs.tipo", Lfx.Types.Parsing.ParseInt(filters[0].Value.ToString()));
 
-                        base.FiltersChanged(filters);
+                        base.OnFiltersChanged(filters);
                 }
 
 

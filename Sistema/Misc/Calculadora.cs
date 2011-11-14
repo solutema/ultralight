@@ -165,7 +165,6 @@ namespace Lazaro.WinMain.Misc
                         this.Load += new System.EventHandler(this.FormCalculadora_Load);
                         this.Enter += new System.EventHandler(this.FormCalculadora_Enter);
                         this.Leave += new System.EventHandler(this.FormCalculadora_Leave);
-                        this.Resize += new System.EventHandler(this.FormCalculadora_Resize);
                         this.Panel1.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();
@@ -250,10 +249,11 @@ namespace Lazaro.WinMain.Misc
 		}
 
 
-		private void FormCalculadora_Resize(object sender, System.EventArgs e)
-		{
-			EntradaHistorial.ScrollToCaret();
-		}
+                protected override void OnResizeEnd(EventArgs e)
+                {
+                        base.OnResizeEnd(e);
+                        EntradaHistorial.ScrollToCaret();
+                }
 
 
 		private void FormCalculadora_Enter(object sender, System.EventArgs e)

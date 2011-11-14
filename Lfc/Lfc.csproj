@@ -418,13 +418,7 @@
     <Compile Include="Comprobantes\Compra\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprobantes\Compra\Filtros.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Comprobantes\Compra\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprobantes\Compra\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Convertir.cs">
@@ -864,14 +858,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Compra\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Comprobantes\Compra\Filtros.resx">
-      <DependentUpon>Filtros.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Comprobantes\Compra\Listado.resx">
-      <DependentUpon>Listado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Editar.resx">

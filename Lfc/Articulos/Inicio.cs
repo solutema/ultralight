@@ -42,7 +42,7 @@ namespace Lfc.Articulos
                 protected internal Lbl.Articulos.Categoria m_Categoria = null;
                 protected internal Lbl.Articulos.Rubro m_Rubro = null;
                 protected internal Lbl.Articulos.Situacion m_Situacion = null;
-                public string m_Stock = "*";
+                private string m_Stock = "*";
 
                 public Inicio()
                 {
@@ -121,6 +121,35 @@ namespace Lfc.Articulos
                         
                         this.HabilitarFiltrar = true;
                 }
+
+
+                public Inicio(string comando)
+                        : this()
+                {
+                        switch(comando){
+                                case "APEDIR":
+                                        this.Stock = "apedir";
+                                        break;
+                                case "PEDIDOS":
+                                        this.Stock = "pedido";
+                                        break;
+                        }
+                }
+
+
+                public string Stock
+                {
+                        get
+                        {
+                                return m_Stock;
+                        }
+                        set
+                        {
+                                this.Definicion.Filters["stock_actual"].Value = value;
+                                m_Stock = value;
+                        }
+                }
+
 
                 private qGen.JoinCollection FixedJoins()
                 {
@@ -235,7 +264,7 @@ namespace Lfc.Articulos
                         base.OnEndRefreshList();
                 }
 
-                public override void FiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
+                public override void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
                         m_Rubro = filters["id_rubro"].Value as Lbl.Articulos.Rubro;
                         m_Categoria = filters["id_categoria"].Value as Lbl.Articulos.Categoria;
@@ -244,7 +273,7 @@ namespace Lfc.Articulos
                         m_Situacion = filters["id_situacion"].Value as Lbl.Articulos.Situacion;
                         m_Stock = filters["stock_actual"].Value as string;
 
-                        base.FiltersChanged(filters);
+                        base.OnFiltersChanged(filters);
                 }
         }
 }
