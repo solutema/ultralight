@@ -64,6 +64,14 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>Lbl.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -101,7 +109,7 @@
     <Compile Include="Personas\Cuit.cs" />
     <Compile Include="Personas\IIdentificadorUnico.cs" />
     <Compile Include="Personas\Usuario.cs" />
-    <Compile Include="Servicios\Importar\FiltroMercurio.cs" />
+    <Compile Include="Servicios\Importar\Opciones.cs" />
     <Compile Include="Sys\Configuracion\Comprobantes.cs" />
     <Compile Include="Sys\Configuracion\Impresion.cs" />
     <Compile Include="Sys\Configuracion\UsuarioConectado.cs" />

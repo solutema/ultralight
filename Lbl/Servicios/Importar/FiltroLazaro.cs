@@ -37,8 +37,8 @@ namespace Lbl.Servicios.Importar
 {
         public class FiltroLazaro : FiltroBd
         {
-                public FiltroLazaro(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
+                public FiltroLazaro(Lfx.Data.Connection dataBase, Opciones opciones)
+                        : base(dataBase, opciones)
                 {
                         this.FilterName = "Filtro de importación de Lázaro";
                 }

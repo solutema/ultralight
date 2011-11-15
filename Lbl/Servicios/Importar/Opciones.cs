@@ -31,29 +31,24 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Lbl.Servicios.Importar
 {
-        public class FiltroMercurio : FiltroBd
+        public class Opciones
         {
-                public FiltroMercurio(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
+                public bool ImportarClientes { get; set; }
+                public bool ImportarArticulos { get; set; }
+                public bool ImportarStock { get; set; }
+                public bool ImportarFacturas { get; set; }
+                public bool ImportarCtasCtes { get; set; }
+
+                public Opciones()
                 {
-                        this.FilterName = "Filtro de importación de Sistema Mercurio";
-
-                        this.MapaDeTablas = new MapaDeTablas();
-                        this.MapaDeTablas.AddWithValue("articulos", "articulos", "codigo");
-                        this.MapaDeTablas["articulos"].TipoElemento = typeof(Lbl.Articulos.Articulo);
-                        
-                        this.MapaDeTablas.AddWithValue("rubros", "articulos_categorias", "codigo");
-                        this.MapaDeTablas["rubros"].TipoElemento = typeof(Lbl.Articulos.Categoria);
-
-                        this.MapaDeTablas.AddWithValue("clientes", "personas", "codigo");
-                        this.MapaDeTablas["clientes"].TipoElemento = typeof(Lbl.Personas.Persona);
-                        
-                        this.MapaDeTablas.AddWithValue("proveedores", "personas", "codigo");
-                        this.MapaDeTablas["proveedores"].TipoElemento = typeof(Lbl.Personas.Persona);
+                        this.ImportarClientes = false;
+                        this.ImportarArticulos = false;
+                        this.ImportarStock = false;
+                        this.ImportarFacturas = true;
+                        this.ImportarCtasCtes = false;
                 }
         }
 }

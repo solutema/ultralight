@@ -96,16 +96,16 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // BarraTareasImagenes
                         // 
-                        this.BarraTareasImagenes.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("BarraTareasImagenes.ImageStream")));
+                        this.BarraTareasImagenes.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+                        this.BarraTareasImagenes.ImageSize = new System.Drawing.Size(16, 16);
                         this.BarraTareasImagenes.TransparentColor = System.Drawing.Color.Transparent;
-                        this.BarraTareasImagenes.Images.SetKeyName(0, "inicio.gif");
-                        this.BarraTareasImagenes.Images.SetKeyName(1, "editar.gif");
                         // 
                         // ListaBd
                         // 
                         this.ListaBd.Dock = System.Windows.Forms.DockStyle.Top;
                         this.ListaBd.FormattingEnabled = true;
                         this.ListaBd.IntegralHeight = false;
+                        this.ListaBd.ItemHeight = 15;
                         this.ListaBd.Location = new System.Drawing.Point(0, 0);
                         this.ListaBd.Name = "ListaBd";
                         this.ListaBd.Size = new System.Drawing.Size(308, 144);
@@ -122,7 +122,7 @@ namespace Lazaro.WinMain.Principal
                         this.ConsoleOut.Name = "ConsoleOut";
                         this.ConsoleOut.ReadOnly = true;
                         this.ConsoleOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-                        this.ConsoleOut.Size = new System.Drawing.Size(308, 213);
+                        this.ConsoleOut.Size = new System.Drawing.Size(308, 208);
                         this.ConsoleOut.TabIndex = 12;
                         this.ConsoleOut.TabStop = false;
                         this.ConsoleOut.WordWrap = false;
@@ -134,18 +134,18 @@ namespace Lazaro.WinMain.Principal
                         this.PanelDebug.Dock = System.Windows.Forms.DockStyle.Left;
                         this.PanelDebug.Location = new System.Drawing.Point(0, 28);
                         this.PanelDebug.Name = "PanelDebug";
-                        this.PanelDebug.Size = new System.Drawing.Size(308, 357);
+                        this.PanelDebug.Size = new System.Drawing.Size(308, 352);
                         this.PanelDebug.TabIndex = 13;
                         this.PanelDebug.Visible = false;
                         // 
                         // BarraInferior
                         // 
                         this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.BarraInferior.Location = new System.Drawing.Point(0, 385);
+                        this.BarraInferior.Location = new System.Drawing.Point(0, 380);
                         this.BarraInferior.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BarraInferior.Name = "BarraInferior";
-                        this.BarraInferior.Size = new System.Drawing.Size(950, 52);
-                        this.BarraInferior.TabIndex = 8;
+                        this.BarraInferior.Size = new System.Drawing.Size(950, 57);
+                        this.BarraInferior.TabIndex = 15;
                         // 
                         // Inicio
                         // 
@@ -153,8 +153,8 @@ namespace Lazaro.WinMain.Principal
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(950, 437);
                         this.Controls.Add(this.PanelDebug);
-                        this.Controls.Add(this.BarraInferior);
                         this.Controls.Add(this.BarraTareas);
+                        this.Controls.Add(this.BarraInferior);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.IsMdiContainer = true;
@@ -179,9 +179,9 @@ namespace Lazaro.WinMain.Principal
                 internal System.Windows.Forms.MainMenu MainMenu;
                 public System.Windows.Forms.ToolBar BarraTareas;
                 private System.Windows.Forms.ImageList BarraTareasImagenes;
-                private BarraInferior BarraInferior;
                 private System.Windows.Forms.ListBox ListaBd;
                 private System.Windows.Forms.TextBox ConsoleOut;
                 private System.Windows.Forms.Panel PanelDebug;
+                private BarraInferior BarraInferior;
         }
 }

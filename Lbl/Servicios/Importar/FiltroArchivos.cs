@@ -40,8 +40,8 @@ namespace Lbl.Servicios.Importar
         /// </summary>
         public class FiltroArchivos : Filtro
         {
-                public FiltroArchivos(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
+                public FiltroArchivos(Lfx.Data.Connection dataBase, Opciones opciones)
+                        : base(dataBase, opciones)
                 {
                         this.FilterName = "Filtro de importación genérico de archivos";
                 }

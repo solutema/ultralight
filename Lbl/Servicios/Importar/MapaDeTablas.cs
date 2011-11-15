@@ -45,9 +45,11 @@ namespace Lbl.Servicios.Importar
                 public Type TipoElemento;
                 public string Where = null;
                 public System.Collections.Generic.List<Lfx.Data.Row> ImportedRows;
+                public bool ActualizaRegistros { get; set; }
 
                 public MapaDeTabla(string tablaExterna, string tablaLazaro)
                 {
+                        this.ActualizaRegistros = true;
                         this.Archivo = tablaExterna;
                         this.TablaLazaro = tablaLazaro;
                 }

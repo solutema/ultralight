@@ -259,8 +259,6 @@ namespace Lfx.Types
 
                 public override string ToString()
                 {
-                        string Res;
-
                         switch (this.Rep) {
                                 case "dia-0":
                                         return "hoy";

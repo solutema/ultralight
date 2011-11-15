@@ -42,8 +42,8 @@ namespace Lbl.Servicios.Importar
         {
                 private System.Data.Odbc.OdbcConnection ConexionExterna;
 
-                public FiltroDbf(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
+                public FiltroDbf(Lfx.Data.Connection dataBase, Opciones opciones)
+                        : base(dataBase, opciones)
                 {
                 }
 
@@ -77,7 +77,7 @@ namespace Lbl.Servicios.Importar
 
                         System.Collections.Generic.List<Lfx.Data.Row> Res = new List<Lfx.Data.Row>();
 
-                        string SqlSelect = @"SELECT * FROM " + this.Carpeta + mapa.Archivo;
+                        string SqlSelect = @"SELECT 0 as dbf_recno, * FROM " + this.Carpeta + mapa.Archivo;
                         if (mapa.Where != null)
                                 SqlSelect += " WHERE " + mapa.Where;
 
@@ -90,8 +90,11 @@ namespace Lbl.Servicios.Importar
 
                         Progreso.Max = ReadTable.Rows.Count;
                         // Navegar todos los registros
+                        int dbf_recno = 0;
                         foreach (System.Data.DataRow Rw in ReadTable.Rows) {
+                                Rw["dbf_recno"] = ++dbf_recno;
                                 Lfx.Data.Row Lrw = this.ProcesarRegistro(mapa, Rw);
+                                Lrw["dbf_recno"] = dbf_recno;
                                 Res.Add(Lrw);
                                 Progreso.Advance(1);
                         }

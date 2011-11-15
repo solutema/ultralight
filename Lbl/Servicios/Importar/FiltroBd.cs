@@ -39,8 +39,8 @@ namespace Lbl.Servicios.Importar
         {
                 public System.Data.IDbConnection ConexionExterna { get; set; }
 
-                public FiltroBd(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
+                public FiltroBd(Lfx.Data.Connection dataBase, Opciones opciones)
+                        : base(dataBase, opciones)
                 {
                 }
 

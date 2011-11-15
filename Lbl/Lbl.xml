@@ -348,62 +348,6 @@
             Describe un usuario del sistema. En realidad es una vista diferente de un registro de la tabla de personas.
             </summary>
         </member>
-        <member name="T:Lbl.Servicios.Importar.Filtro">
-            <summary>
-            Describe un filtro de importación.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.Cargar">
-            <summary>
-            Carga en memoria los datos a importar.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.CargarDatos">
-            <summary>
-            Carga los datos desde el origen.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.Fusionar">
-            <summary>
-            Incorpora en la base de datos los datos cargados en memoria.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.FusionarTabla(Lbl.Servicios.Importar.MapaDeTabla)">
-            <summary>
-            Incorpora en la base de datos los datos cargados en memoria para la tabla seleccionada.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.ProcesarRegistro(Lbl.Servicios.Importar.MapaDeTabla,System.Data.DataRow)">
-            <summary>
-            Procesa un registro según el mapa de columnas correspondiente a la tabla y devuelve un Lfx.Data.Row
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.PrepararTablasLazaro">
-            <summary>
-            Prepara las tablas internas para recibir los datos importados.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.ProcesarRemplazos(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row@)">
-            <summary>
-            Realiza los reemplazos de la lista de reemplazos definidos para este filtro.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.CrearElemento(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row)">
-            <summary>
-            Crea un derivado de ElementoDeDatos del tipo correspondiente para el mapa de tabla actual a partir de un Lfx.Data.Row.
-            </summary>
-            <param name="mapa">El mapa de la tabla a la cual corresponde el registro.</param>
-            <param name="row">El registro a partir del cual crear un ElementoDeDatos.</param>
-            <returns>Un objeto de alguna clase derivada de ElementoDeDatos.</returns>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.CargarElemento(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row)">
-            <summary>
-            Carga un elemento existente desde la base de datos.
-            </summary>
-            <param name="mapa"></param>
-            <param name="row"></param>
-            <returns></returns>
-        </member>
         <member name="T:Lbl.Sys.Permisos.Objeto">
             <summary>
             Describe un tipo de acceso que puede tener una persona.
@@ -483,6 +427,62 @@
             <summary>
             Fusiona dos elementos de datos, útil para eliminar duplicados. Cambia todas las referencias de claves foráneas al nuevo elemento.
             </summary>
+        </member>
+        <member name="T:Lbl.Servicios.Importar.Filtro">
+            <summary>
+            Describe un filtro de importación.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.Cargar">
+            <summary>
+            Carga en memoria los datos a importar.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.CargarDatos">
+            <summary>
+            Carga los datos desde el origen.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.Fusionar">
+            <summary>
+            Incorpora en la base de datos los datos cargados en memoria.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.FusionarTabla(Lbl.Servicios.Importar.MapaDeTabla)">
+            <summary>
+            Incorpora en la base de datos los datos cargados en memoria para la tabla seleccionada.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.ProcesarRegistro(Lbl.Servicios.Importar.MapaDeTabla,System.Data.DataRow)">
+            <summary>
+            Procesa un registro según el mapa de columnas correspondiente a la tabla y devuelve un Lfx.Data.Row
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.PrepararTablasLazaro">
+            <summary>
+            Prepara las tablas internas para recibir los datos importados.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.ProcesarRemplazos(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row@)">
+            <summary>
+            Realiza los reemplazos de la lista de reemplazos definidos para este filtro.
+            </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.CrearElemento(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row)">
+            <summary>
+            Crea un derivado de ElementoDeDatos del tipo correspondiente para el mapa de tabla actual a partir de un Lfx.Data.Row.
+            </summary>
+            <param name="mapa">El mapa de la tabla a la cual corresponde el registro.</param>
+            <param name="row">El registro a partir del cual crear un ElementoDeDatos.</param>
+            <returns>Un objeto de alguna clase derivada de ElementoDeDatos.</returns>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.CargarElemento(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row)">
+            <summary>
+            Carga un elemento existente desde la base de datos.
+            </summary>
+            <param name="mapa"></param>
+            <param name="row"></param>
+            <returns></returns>
         </member>
         <member name="T:Lbl.Servicios.Importar.FiltroArchivos">
             <summary>

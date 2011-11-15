@@ -146,10 +146,10 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "VENTRE":
-                                        Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.MasterConnection);
+                                        Lbl.Servicios.Importar.Opciones OpcionesFiltro = new Lbl.Servicios.Importar.Opciones();
+                                        Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.MasterConnection, OpcionesFiltro);
                                         Fil.Dsn = "ventre";
-                                        Fil.Cargar();
-                                        Fil.Fusionar();
+                                        Fil.Importar();
                                         break;
 
                                 case "CHECK":

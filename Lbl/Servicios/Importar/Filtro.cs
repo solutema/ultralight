@@ -40,16 +40,38 @@ namespace Lbl.Servicios.Importar
         /// </summary>
         public class Filtro
         {
-                public Lfx.Data.Connection Connection;
+                public Opciones Opciones { get; set; }
+
+                public Lfx.Data.Connection Connection { get; set; }
                 public MapaDeTablas MapaDeTablas;
                 public string FilterName = "Filtro de importación genérico";
 
                 // Tomar los siguientes valores como vacíos
                 public System.Collections.Generic.List<Reemplazo> Reemplazos = new List<Reemplazo>();
 
-                public Filtro(Lfx.Data.Connection dataBase)
+                public Filtro(Lfx.Data.Connection dataBase, Opciones opciones)
                 {
                         this.Connection = dataBase;
+                        this.Opciones = opciones;
+                }
+
+
+                public void Importar()
+                {
+                        this.Pre();
+                        this.Cargar();
+                        this.Fusionar();
+                        this.Post();
+                }
+
+
+                public virtual void Pre()
+                {
+                }
+
+
+                public virtual void Post()
+                {
                 }
 
                 /// <summary>
@@ -107,25 +129,29 @@ namespace Lbl.Servicios.Importar
                                 if (CurrentRow == null) {
                                         Elem = this.CrearElemento(mapa, ImportedRow);
                                         Elem.Registro[mapa.ColumnaIdLazaro] = ImportIdValue;
-                                } else {
+                                } else if (mapa.ActualizaRegistros) {
                                         Elem = this.CargarElemento(mapa, CurrentRow);
                                         foreach (MapaDeColumna mapaCol in mapa.MapaDeColumnas) {
                                                 Elem.Registro[mapaCol.ColumnaLazaro] = ImportedRow.Fields[mapaCol.ColumnaLazaro].Value;
                                         }
+                                } else {
+                                        Elem = null;
                                 }
-                                
-                                Elem.Guardar();
 
-                                if (Elem is Lbl.Articulos.Articulo && ImportedRow.Fields.Contains("stock_actual")) {
-                                        // Actualizo el stock
-                                        Lbl.Articulos.Articulo Art = Elem as Lbl.Articulos.Articulo;
+                                if (Elem != null) {
+                                        Elem.Guardar();
 
-                                        decimal StockActual = Art.ObtenerStockActual();
-                                        decimal NuevoStock = System.Convert.ToDecimal(ImportedRow["stock_actual"]);
-                                        decimal Diferencia = NuevoStock - StockActual;
+                                        if (this.Opciones.ImportarStock && Elem is Lbl.Articulos.Articulo && ImportedRow.Fields.Contains("stock_actual")) {
+                                                // Actualizo el stock
+                                                Lbl.Articulos.Articulo Art = Elem as Lbl.Articulos.Articulo;
 
-                                        if (Diferencia != 0)
-                                                Art.MoverStock(Diferencia, "Stock importado desde " + this.FilterName, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                                decimal StockActual = Art.ObtenerStockActual();
+                                                decimal NuevoStock = System.Convert.ToDecimal(ImportedRow["stock_actual"]);
+                                                decimal Diferencia = NuevoStock - StockActual;
+
+                                                if (Diferencia != 0)
+                                                        Art.MoverStock(Diferencia, "Stock importado desde " + this.FilterName, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                        }
                                 }
                                 Progreso.Advance(1);
                         }
