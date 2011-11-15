@@ -37,7 +37,8 @@ namespace Lbl.Comprobantes
 {
 	public class DetalleArticulo : ElementoDeDatos
 	{
-                public Lbl.Comprobantes.ComprobanteConArticulos Comprobante = null;
+                private Articulos.Articulo m_Articulo = null;
+                private Lbl.Comprobantes.ComprobanteConArticulos m_Comprobante = null;
 
 		//Heredar constructor
                 public DetalleArticulo(Lfx.Data.Connection dataBase)
@@ -76,8 +77,6 @@ namespace Lbl.Comprobantes
 				return "id_comprob_detalle";
 			}
 		}
-
-		private Articulos.Articulo m_Articulo = null;
 
                 public decimal Unitario
                 {
@@ -200,6 +199,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
                 protected internal int IdArticulo
                 {
                         get
@@ -209,8 +209,24 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 this.Registro["id_articulo"] = value;
+                                m_Articulo = null;
                         }
                 }
+
+
+                protected internal int IdComprobante
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("id_comprob");
+                        }
+                        set
+                        {
+                                this.Registro["id_comprob"] = value;
+                                m_Comprobante = null;
+                        }
+                }
+
 
                 public int Orden
                 {
@@ -231,6 +247,7 @@ namespace Lbl.Comprobantes
                         else
                                 return this.Articulo.ObtenerAlicuota();
                 }
+
 
                 public Articulos.Articulo Articulo
                 {
@@ -253,6 +270,27 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
+                public ComprobanteConArticulos Comprobante
+                {
+                        get
+                        {
+                                if (m_Comprobante == null && this.IdComprobante != 0)
+                                        m_Comprobante = new Lbl.Comprobantes.ComprobanteConArticulos(this.Connection, this.IdComprobante);
+
+                                return m_Comprobante;
+                        }
+                        set
+                        {
+                                if (value != null && value.Existe) {
+                                        this.IdComprobante = value.Id;
+                                } else {
+                                        this.IdComprobante = 0;
+                                }
+                        }
+                }
+
+
                 public Lbl.Articulos.ColeccionDatosSeguimiento DatosSeguimiento
                 {
                         get
@@ -265,6 +303,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
                 public decimal Recargo
                 {
                         get
@@ -276,6 +315,41 @@ namespace Lbl.Comprobantes
                                 Registro["recargo"] = value;
                         }
                 }
+
+
+                public override Lfx.Types.OperationResult Guardar()
+                {
+                        qGen.TableCommand Comando = new qGen.Insert(this.Connection, this.TablaDatos);
+                        Comando.Fields.AddWithValue("id_comprob", this.IdComprobante);
+                        Comando.Fields.AddWithValue("orden", this.Orden);
+
+                        if (this.Articulo == null) {
+                                Comando.Fields.AddWithValue("id_articulo", null);
+                                Comando.Fields.AddWithValue("nombre", this.Articulo.Nombre);
+                                Comando.Fields.AddWithValue("descripcion", "");
+                        } else {
+                                Comando.Fields.AddWithValue("id_articulo", this.Articulo.Id);
+                                Comando.Fields.AddWithValue("nombre", this.Nombre);
+                                Comando.Fields.AddWithValue("descripcion", this.Articulo.Descripcion);
+                        }
+
+                        Comando.Fields.AddWithValue("cantidad", this.Cantidad);
+                        Comando.Fields.AddWithValue("precio", this.Unitario);
+                        if (this.Costo == 0 && this.Articulo != null)
+                                Comando.Fields.AddWithValue("costo", this.Articulo.Costo);
+                        else
+                                Comando.Fields.AddWithValue("costo", this.Costo);
+                        Comando.Fields.AddWithValue("importe", this.Importe);
+                        Comando.Fields.AddWithValue("series", this.DatosSeguimiento);
+                        Comando.Fields.AddWithValue("obs", this.Obs);
+
+                        this.AgregarTags(Comando, this.Registro, this.TablaDatos);
+
+                        this.Connection.Execute(Comando);
+
+                        return base.Guardar();
+                }
+
 
                 public virtual DetalleArticulo Clone()
                 {
