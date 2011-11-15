@@ -41,7 +41,7 @@ namespace Lcc.Entrada
         /// Un control que contiene varios controles hijos que se van agregando automáticamente a medida que es necesario.
         /// </summary>
         /// <typeparam name="T">El tipo de control hijo.</typeparam>
-        public partial class MatrizControlesEntrada<T> : ControlEntrada where T : ControlEntrada
+        public partial class MatrizControlesEntrada<T> : ControlEntrada where T : IControlEntrada
         {
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
@@ -109,18 +109,19 @@ namespace Lcc.Entrada
 
                         this.SuspendLayout();
                         Ctrl.Size = new Size(this.Width - 20, 24);
-                        Ctrl.Location = new Point(0, Ctrl.Height * this.Controles.Count + this.PanelGrilla.AutoScrollPosition.Y);
+                        Ctrl.Location = new Point(0, Ctrl.Size.Height * this.Controles.Count + this.PanelGrilla.AutoScrollPosition.Y);
                         Ctrl.TabIndex = this.Controles.Count;
                         Ctrl.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-                        this.PanelGrilla.Controls.Add(Ctrl);
+                        this.PanelGrilla.Controls.Add(Ctrl as System.Windows.Forms.Control);
                         this.Controles.Add(Ctrl);
 
                         this.ReubicarControles();
                         this.ResumeLayout();
 
-                        Ctrl.TextChanged += new System.EventHandler(SubControl_TextChanged);
-                        Ctrl.SizeChanged += new System.EventHandler(SubControl_SizeChanged);
-                        Ctrl.Leave += new System.EventHandler(SubControl_Leave);
+                        System.Windows.Forms.Control WinCtrl = Ctrl as System.Windows.Forms.Control;
+                        WinCtrl.TextChanged += new System.EventHandler(SubControl_TextChanged);
+                        WinCtrl.SizeChanged += new System.EventHandler(SubControl_SizeChanged);
+                        WinCtrl.Leave += new System.EventHandler(SubControl_Leave);
 
                         return Ctrl;
                 }
@@ -151,7 +152,7 @@ namespace Lcc.Entrada
                 /// <param name="index">El índice del control que se va a quitar.</param>
                 protected void Quitar(int index)
                 {
-                        this.PanelGrilla.Controls.Remove(this.Controles[index]);
+                        this.PanelGrilla.Controls.Remove(this.Controles[index] as System.Windows.Forms.Control);
                         this.Controles.RemoveAt(index);
                 }
 
@@ -164,15 +165,16 @@ namespace Lcc.Entrada
                                 this.SuspendLayout();
                                 int ControlNumber = 0, AlturaActual = 0;
                                 foreach (T Control in this.Controles) {
-                                        Control.Top = AlturaActual + this.PanelGrilla.AutoScrollPosition.Y;
-                                        AlturaActual += Control.Height;
+                                        Control.Location = new Point(Control.Location.X, AlturaActual + this.PanelGrilla.AutoScrollPosition.Y);
+                                        AlturaActual += Control.Size.Height;
                                         Control.TabIndex = ControlNumber;
-                                        Control.Width = this.Width - 20;
+                                        Control.Size = new Size(this.Width - 20, Control.Size.Height);
                                         ControlNumber++;
 
                                         if (this.AutoSize) {
-                                                Point LocationOnForm = Control.FindForm().PointToClient(Control.Parent.PointToScreen(Control.Location));
-                                                this.Height = Control.Height + LocationOnForm.Y;
+                                                System.Windows.Forms.Control WinCtrl = Control as System.Windows.Forms.Control;
+                                                Point LocationOnForm = WinCtrl.FindForm().PointToClient(Control.Parent.PointToScreen(Control.Location));
+                                                this.Height = Control.Size.Height + LocationOnForm.Y;
                                         }
                                 }
                                 this.ResumeLayout();
@@ -186,7 +188,7 @@ namespace Lcc.Entrada
                 protected void AutoAgregarOQuitar(bool quitarDelMedio)
                 {
                         if (this.Controles != null) {
-                                T Ultimo = null;
+                                T Ultimo = default(T);
                                 switch (this.Controles.Count) {
                                         case 0:
                                                 if (this.TemporaryReadOnly == false)
@@ -220,7 +222,7 @@ namespace Lcc.Entrada
                                                 if (QuiteAlgo) {
                                                         this.ReubicarControles();
                                                 } else {
-                                                        T Penultimo = null;
+                                                        T Penultimo = default(T);
                                                         Ultimo = this.Controles[this.Controles.Count - 1];
                                                         if (this.Controles.Count > 1)
                                                                 Penultimo = this.Controles[this.Controles.Count - 2];

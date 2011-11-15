@@ -70,11 +70,8 @@
   <ItemGroup>
     <Compile Include="Edicion\Campo.cs" />
     <Compile Include="Entrada\Articulos\Enums.cs" />
-    <Compile Include="Entrada\Campo.cs">
+    <Compile Include="Entrada\CampoTexto.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Entrada\Campo.Designer.cs">
-      <DependentUpon>Campo.cs</DependentUpon>
     </Compile>
     <Compile Include="Entrada\ControlSeleccionElemento.cs">
       <SubType>UserControl</SubType>
@@ -97,6 +94,7 @@
     <Compile Include="Entrada\Filtros.Designer.cs">
       <DependentUpon>Filtros.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entrada\IControlEntrada.cs" />
     <Compile Include="Entrada\MatrizControlesEntrada.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,6 +102,9 @@
       <DependentUpon>MatrizControlesEntrada.cs</DependentUpon>
     </Compile>
     <Compile Include="Entrada\MatrizTelefonos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entrada\MatrizTextos.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Entrada\RangoNumerico.cs">
@@ -240,10 +241,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Edicion\MatrizTags.resx">
       <DependentUpon>MatrizTags.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Entrada\Campo.resx">
-      <DependentUpon>Campo.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Edicion\MatrizCampos.resx">
       <DependentUpon>MatrizCampos.cs</DependentUpon>

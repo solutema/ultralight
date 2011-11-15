@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,22 +31,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace Lbl.Servicios.Importar
+namespace Lcc.Entrada
 {
-        /// <summary>
-        /// Describe un filtro de importación desde uno o varios archivos.
-        /// </summary>
-        public class FiltroArchivos : Filtro
+        public class CampoTexto : Lui.Forms.TextBox, IControlEntrada
         {
-                public FiltroArchivos(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
+                public bool IsEmpty
                 {
-                        this.FilterName = "Filtro de importación genérico de archivos";
+                        get{
+                                return this.Text == null || this.Text.Length == 0;
+                        }
                 }
 
-                public string Carpeta { get; set; }
-                public string Dsn { get; set; }
         }
 }

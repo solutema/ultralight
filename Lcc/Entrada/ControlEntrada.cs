@@ -36,7 +36,7 @@ using System.ComponentModel;
 
 namespace Lcc.Entrada
 {
-        public class ControlEntrada : ControlDeDatos
+        public class ControlEntrada : ControlDeDatos, IControlEntrada
         {
                 public virtual bool IsEmpty
                 {

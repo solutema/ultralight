@@ -58,7 +58,11 @@ namespace Lfc.Cajas
                         {
                                 TableName = "cajas_movim",
                                 KeyColumnName = new Lazaro.Pres.Field("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Joins = new qGen.JoinCollection() { new qGen.Join("personas", "cajas_movim.id_persona=personas.id_persona"), new qGen.Join("cajas", "cajas_movim.id_caja=cajas.id_caja") },
+                                Joins = new qGen.JoinCollection() { 
+                                        new qGen.Join("personas", "cajas_movim.id_persona=personas.id_persona"),
+                                        new qGen.Join("cajas", "cajas_movim.id_caja=cajas.id_caja"),
+                                        new qGen.Join("conceptos", "cajas_movim.id_concepto=conceptos.id_concepto")
+                                },
                                 Columns = new Lazaro.Pres.FieldCollection() {
                                         new Lazaro.Pres.Field("cajas.nombre", "Caja", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("cajas_movim.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),

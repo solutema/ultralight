@@ -147,7 +147,7 @@ namespace Lazaro.WinMain
 
                                 case "VENTRE":
                                         Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.MasterConnection);
-                                        Fil.Carpeta = @"C:\Ventre\";
+                                        Fil.Dsn = "ventre";
                                         Fil.Cargar();
                                         Fil.Fusionar();
                                         break;

@@ -74,11 +74,11 @@ namespace Lfc.Articulos.Categorias
                         this.label9 = new Lui.Forms.Label();
                         this.Frame2 = new Lui.Forms.Frame();
                         this.Label3 = new Lui.Forms.Label();
-                        this.EntradaStockActual = new Lui.Forms.TextBox();
-                        this.EntradaCosto = new Lui.Forms.TextBox();
                         this.Label4 = new Lui.Forms.Label();
-                        this.EntradaItemStock = new Lui.Forms.TextBox();
+                        this.EntradaStockActual = new Lui.Forms.TextBox();
                         this.Label6 = new Lui.Forms.Label();
+                        this.EntradaCosto = new Lui.Forms.TextBox();
+                        this.EntradaItemStock = new Lui.Forms.TextBox();
                         this.label10 = new Lui.Forms.Label();
                         this.EntradaAlicuota = new Lcc.Entrada.CodigoDetalle();
                         this.Frame2.SuspendLayout();
@@ -104,7 +104,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
-                        this.EntradaNombre.Size = new System.Drawing.Size(668, 24);
+                        this.EntradaNombre.Size = new System.Drawing.Size(497, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
@@ -138,7 +138,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaNombreSing.Prefijo = "";
                         this.EntradaNombreSing.ReadOnly = false;
                         this.EntradaNombreSing.SelectOnFocus = false;
-                        this.EntradaNombreSing.Size = new System.Drawing.Size(668, 24);
+                        this.EntradaNombreSing.Size = new System.Drawing.Size(497, 24);
                         this.EntradaNombreSing.Sufijo = "";
                         this.EntradaNombreSing.TabIndex = 3;
                         // 
@@ -182,7 +182,7 @@ namespace Lfc.Articulos.Categorias
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(140, 24);
                         this.Label11.TabIndex = 4;
-                        this.Label11.Text = "Stock Mínimo";
+                        this.Label11.Text = "Stock mínimo";
                         this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaItem
@@ -194,7 +194,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaItem.DecimalPlaces = -1;
                         this.EntradaItem.FieldName = null;
                         this.EntradaItem.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaItem.Location = new System.Drawing.Point(224, 36);
+                        this.EntradaItem.Location = new System.Drawing.Point(184, 36);
                         this.EntradaItem.MaxLength = 32767;
                         this.EntradaItem.MultiLine = false;
                         this.EntradaItem.Name = "EntradaItem";
@@ -217,7 +217,7 @@ namespace Lfc.Articulos.Categorias
                         this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(12, 36);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(212, 24);
+                        this.Label2.Size = new System.Drawing.Size(168, 24);
                         this.Label2.TabIndex = 0;
                         this.Label2.Text = "Artículos";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -272,7 +272,7 @@ namespace Lfc.Articulos.Categorias
         "Ninguno|0",
         "Por Números de Serie|3",
         "Por Variaciones|5"};
-                        this.EntradaSeguimiento.Size = new System.Drawing.Size(236, 51);
+                        this.EntradaSeguimiento.Size = new System.Drawing.Size(187, 51);
                         this.EntradaSeguimiento.TabIndex = 9;
                         this.EntradaSeguimiento.TextKey = "0";
                         // 
@@ -293,6 +293,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaRubro.CanCreate = true;
                         this.EntradaRubro.DataTextField = "nombre";
                         this.EntradaRubro.DataValueField = "id_rubro";
+                        this.EntradaRubro.ExtraDetailFields = "";
                         this.EntradaRubro.FieldName = null;
                         this.EntradaRubro.Filter = "";
                         this.EntradaRubro.FreeTextCode = "";
@@ -303,8 +304,8 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaRubro.PlaceholderText = "Sin especificar";
                         this.EntradaRubro.ReadOnly = false;
                         this.EntradaRubro.Required = true;
-                        this.EntradaRubro.Size = new System.Drawing.Size(392, 24);
-                        this.EntradaRubro.TabIndex = 10;
+                        this.EntradaRubro.Size = new System.Drawing.Size(304, 24);
+                        this.EntradaRubro.TabIndex = 11;
                         this.EntradaRubro.Table = "articulos_rubros";
                         this.EntradaRubro.Text = "0";
                         this.EntradaRubro.TextDetail = "";
@@ -336,7 +337,7 @@ namespace Lfc.Articulos.Categorias
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(140, 24);
                         this.Label7.TabIndex = 6;
-                        this.Label7.Text = "Publicar en la Web*";
+                        this.Label7.Text = "Publicar en la web*";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label9
@@ -345,27 +346,28 @@ namespace Lfc.Articulos.Categorias
                         this.label9.Location = new System.Drawing.Point(0, 180);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(140, 24);
-                        this.label9.TabIndex = 11;
+                        this.label9.TabIndex = 10;
                         this.label9.Text = "Rubro";
                         this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Frame2
                         // 
+                        this.Frame2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.Frame2.Controls.Add(this.Label3);
+                        this.Frame2.Controls.Add(this.Label2);
+                        this.Frame2.Controls.Add(this.Label4);
                         this.Frame2.Controls.Add(this.EntradaItem);
                         this.Frame2.Controls.Add(this.EntradaStockActual);
-                        this.Frame2.Controls.Add(this.Label2);
-                        this.Frame2.Controls.Add(this.EntradaCosto);
-                        this.Frame2.Controls.Add(this.Label4);
-                        this.Frame2.Controls.Add(this.EntradaItemStock);
                         this.Frame2.Controls.Add(this.Label6);
+                        this.Frame2.Controls.Add(this.EntradaCosto);
+                        this.Frame2.Controls.Add(this.EntradaItemStock);
                         this.Frame2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.Frame2.Location = new System.Drawing.Point(324, 240);
+                        this.Frame2.Location = new System.Drawing.Point(336, 244);
                         this.Frame2.Name = "Frame2";
                         this.Frame2.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame2.ReadOnly = false;
-                        this.Frame2.Size = new System.Drawing.Size(348, 148);
-                        this.Frame2.TabIndex = 16;
+                        this.Frame2.Size = new System.Drawing.Size(300, 152);
+                        this.Frame2.TabIndex = 50;
                         this.Frame2.TabStop = false;
                         this.Frame2.Text = "Estadsticas";
                         // 
@@ -376,10 +378,22 @@ namespace Lfc.Articulos.Categorias
                         this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(12, 92);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(212, 24);
+                        this.Label3.Size = new System.Drawing.Size(168, 24);
                         this.Label3.TabIndex = 4;
-                        this.Label3.Text = "Stock Actual";
+                        this.Label3.Text = "Stock actual";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // Label4
+                        // 
+                        this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.Location = new System.Drawing.Point(12, 120);
+                        this.Label4.Name = "Label4";
+                        this.Label4.Size = new System.Drawing.Size(168, 24);
+                        this.Label4.TabIndex = 6;
+                        this.Label4.Text = "Costo del stock";
+                        this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaStockActual
                         // 
@@ -390,7 +404,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaStockActual.DecimalPlaces = -1;
                         this.EntradaStockActual.FieldName = null;
                         this.EntradaStockActual.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockActual.Location = new System.Drawing.Point(224, 92);
+                        this.EntradaStockActual.Location = new System.Drawing.Point(184, 92);
                         this.EntradaStockActual.MaxLength = 32767;
                         this.EntradaStockActual.MultiLine = false;
                         this.EntradaStockActual.Name = "EntradaStockActual";
@@ -406,6 +420,18 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaStockActual.TabStop = false;
                         this.EntradaStockActual.Text = "0";
                         // 
+                        // Label6
+                        // 
+                        this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label6.Location = new System.Drawing.Point(12, 64);
+                        this.Label6.Name = "Label6";
+                        this.Label6.Size = new System.Drawing.Size(168, 24);
+                        this.Label6.TabIndex = 2;
+                        this.Label6.Text = "Artículos con stock";
+                        this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // EntradaCosto
                         // 
                         this.EntradaCosto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -415,7 +441,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaCosto.DecimalPlaces = -1;
                         this.EntradaCosto.FieldName = null;
                         this.EntradaCosto.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCosto.Location = new System.Drawing.Point(224, 120);
+                        this.EntradaCosto.Location = new System.Drawing.Point(184, 120);
                         this.EntradaCosto.MaxLength = 32767;
                         this.EntradaCosto.MultiLine = false;
                         this.EntradaCosto.Name = "EntradaCosto";
@@ -431,18 +457,6 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaCosto.TabStop = false;
                         this.EntradaCosto.Text = "0.00";
                         // 
-                        // Label4
-                        // 
-                        this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label4.Location = new System.Drawing.Point(12, 120);
-                        this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(212, 24);
-                        this.Label4.TabIndex = 6;
-                        this.Label4.Text = "Costo del Stock";
-                        this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaItemStock
                         // 
                         this.EntradaItemStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -452,7 +466,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaItemStock.DecimalPlaces = -1;
                         this.EntradaItemStock.FieldName = null;
                         this.EntradaItemStock.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaItemStock.Location = new System.Drawing.Point(224, 64);
+                        this.EntradaItemStock.Location = new System.Drawing.Point(184, 64);
                         this.EntradaItemStock.MaxLength = 32767;
                         this.EntradaItemStock.MultiLine = false;
                         this.EntradaItemStock.Name = "EntradaItemStock";
@@ -468,18 +482,6 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaItemStock.TabStop = false;
                         this.EntradaItemStock.Text = "0";
                         // 
-                        // Label6
-                        // 
-                        this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label6.Location = new System.Drawing.Point(12, 64);
-                        this.Label6.Name = "Label6";
-                        this.Label6.Size = new System.Drawing.Size(212, 24);
-                        this.Label6.TabIndex = 2;
-                        this.Label6.Text = "Artículos con Stock";
-                        this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // label10
                         // 
                         this.label10.LabelStyle = Lui.Forms.LabelStyles.Default;
@@ -492,13 +494,12 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaAlicuota
                         // 
-                        this.EntradaAlicuota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaAlicuota.AutoNav = true;
                         this.EntradaAlicuota.AutoTab = true;
                         this.EntradaAlicuota.CanCreate = true;
                         this.EntradaAlicuota.DataTextField = "nombre";
                         this.EntradaAlicuota.DataValueField = "id_alicuota";
+                        this.EntradaAlicuota.ExtraDetailFields = "";
                         this.EntradaAlicuota.FieldName = null;
                         this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.FreeTextCode = "";
@@ -509,7 +510,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaAlicuota.PlaceholderText = "Sin especificar";
                         this.EntradaAlicuota.ReadOnly = false;
                         this.EntradaAlicuota.Required = true;
-                        this.EntradaAlicuota.Size = new System.Drawing.Size(354, 24);
+                        this.EntradaAlicuota.Size = new System.Drawing.Size(304, 24);
                         this.EntradaAlicuota.TabIndex = 13;
                         this.EntradaAlicuota.Table = "alicuotas";
                         this.EntradaAlicuota.Text = "0";
@@ -517,7 +518,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Editar
                         // 
-                        this.AutoSize = true;
                         this.Controls.Add(this.label10);
                         this.Controls.Add(this.EntradaAlicuota);
                         this.Controls.Add(this.EntradaGarantia);
@@ -536,7 +536,7 @@ namespace Lfc.Articulos.Categorias
                         this.Controls.Add(this.EntradaNombreSing);
                         this.Controls.Add(this.EntradaStockMinimo);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(810, 393);
+                        this.Size = new System.Drawing.Size(640, 400);
                         this.Controls.SetChildIndex(this.EntradaStockMinimo, 0);
                         this.Controls.SetChildIndex(this.EntradaNombreSing, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);

@@ -422,11 +422,15 @@ namespace Lcc.Entrada.AuxForms
                         this.Hide();
                         object Resultado = null;
 
-                        if (this.ElementoTipo != null)
-                                Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { ElementoTipo.ToString() });
+                        try {
+                                if (this.ElementoTipo != null)
+                                        Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { ElementoTipo.ToString() });
 
-                        if (Resultado == null)
-                                Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { m_Table });
+                                if (Resultado == null)
+                                        Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { m_Table });
+                        } catch {
+                                Lfx.Workspace.Master.RunTime.Toast("No se puede crear el elemento.", "Error");
+                        }
                         
                         if (Resultado == null) {
                                 // No se puede crear
@@ -445,7 +449,7 @@ namespace Lcc.Entrada.AuxForms
                                 this.DialogResult = DialogResult.Retry;
                                 this.Close();
                         } else if (Resultado is Lfx.Types.OperationResult) {
-                                Lui.Forms.MessageBox.Show(((Lfx.Types.OperationResult)(Resultado)).Message, "Mensaje");
+                                Lfx.Workspace.Master.RunTime.Toast(((Lfx.Types.OperationResult)(Resultado)).Message, "Mensaje");
                         } else {
                                 // Devolvió algo raro.
                         }

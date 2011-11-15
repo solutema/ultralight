@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,22 +31,40 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace Lbl.Servicios.Importar
+namespace Lcc.Entrada
 {
-        /// <summary>
-        /// Describe un filtro de importación desde uno o varios archivos.
-        /// </summary>
-        public class FiltroArchivos : Filtro
+        [Serializable]
+        public class MatrizTextos : MatrizControlesEntrada<CampoTexto>
         {
-                public FiltroArchivos(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
+                public override string Text
                 {
-                        this.FilterName = "Filtro de importación genérico de archivos";
-                }
+                        get
+                        {
+                                List<string> Lineas = new List<string>();
+                                foreach (CampoTexto Campo in this.Controles) {
+                                        if (Campo.IsEmpty == false)
+                                                Lineas.Add(Campo.Text);
+                                }
 
-                public string Carpeta { get; set; }
-                public string Dsn { get; set; }
+                                return string.Join(System.Environment.NewLine, Lineas.ToArray());
+                        }
+                        set
+                        {
+                                if (value == null) {
+                                        this.Count = 0;
+                                        this.AutoAgregarOQuitar(false);
+                                } else {
+                                        string[] Textos = value.Split(new char[] { Lfx.Types.ControlChars.Cr, Lfx.Types.ControlChars.Lf }, StringSplitOptions.RemoveEmptyEntries);
+                                        this.Count = Textos.Length;
+                                        int i = 0;
+                                        foreach (string Texto in Textos) {
+                                                this.Controles[i++].Text = Texto;
+                                        }
+                                }
+                        }
+                }
         }
 }
