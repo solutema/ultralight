@@ -123,17 +123,17 @@ namespace Lazaro.WinMain
                                         break; */
 
                                 case "LIC":
-                                        Lfx.Lic.Licenciar(@"..\");
-                                        Lfx.Lic.Licenciar(@"..\..\Componentes\RunComponent");
-                                        Lfx.Lic.Licenciar(@"..\..\Componentes\ServidorFiscal");
-                                        Lfx.Lic.Licenciar(@"..\..\Lfx");
-                                        Lfx.Lic.Licenciar(@"..\..\Lbl");
-                                        Lfx.Lic.Licenciar(@"..\..\Lui");
-                                        Lfx.Lic.Licenciar(@"..\..\Lcc");
-                                        Lfx.Lic.Licenciar(@"..\..\Lfc");
-                                        Lfx.Lic.Licenciar(@"..\..\Impresion");
-                                        Lfx.Lic.Licenciar(@"..\..\Pres");
-                                        Lfx.Lic.Licenciar(@"..\..\Actualizador");
+                                        Lfx.Lic.Licenciar(@"..\..\");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Componentes\RunComponent");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Componentes\ServidorFiscal");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Lfx");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Lbl");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Lui");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Lcc");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Lfc");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Impresion");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Pres");
+                                        Lfx.Lic.Licenciar(@"..\..\..\Actualizador");
                                         break;
 
                                 case "HISTORIAL":
@@ -157,7 +157,10 @@ namespace Lazaro.WinMain
 
                                         Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.MasterConnection, OpcionesFiltro);
                                         Fil.Dsn = "ventre";
-                                        Fil.Importar();
+
+                                        System.Threading.ThreadStart ThreadFiltro = delegate { Fil.Importar(); ; };
+                                        new System.Threading.Thread(ThreadFiltro).Start();
+                                        
                                         break;
 
                                 case "CHECK":

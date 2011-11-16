@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Carrea Ernesto N.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -44,7 +44,6 @@ namespace Lbl.Entidades
                 private Lbl.Entidades.Localidad m_Localidad = null;
                 private Lbl.Cajas.Caja m_CajaDiaria = null, m_CajaCheques = null;
                 private Lbl.Articulos.Situacion m_SituacionOrigen = null;
-
 
 		//Heredar constructor
 		public Sucursal(Lfx.Data.Connection dataBase)

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Carrea Ernesto N.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ namespace Lbl.Servicios.Importar
                                 this.MapaDeTablas["clientes.dbf"].Where = "CODIGO>1";   // 1 es consumidor final y lo ignoramos
                                 this.MapaDeTablas["clientes.dbf"].TipoElemento = typeof(Lbl.Personas.Persona);
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "tipo", 1);
-                                this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "id_situacion", 2);
+                                this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "estado", 1);
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("NOMBRE", "nombre_visible", ConversionDeColumna.InterpretarNombreYApellido);
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("DOMICILIO", "domicilio", ConversionDeColumna.ConvertirAMayusculasYMinusculas);
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("COD_POS", "id_ciudad", ConversionDeColumna.InterpretarSql);
@@ -66,6 +66,8 @@ namespace Lbl.Servicios.Importar
                                 this.MapaDeTablas.AddWithValue("Proveedores", "proveedo.dbf", "personas", "CODIGO");
                                 this.MapaDeTablas["proveedo.dbf"].TipoElemento = typeof(Lbl.Personas.Persona);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues(null, "tipo", 2);
+                                this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "estado", 1);
+                                this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "id_situacion", 2);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues("NOMBRE", "nombre_visible", ConversionDeColumna.InterpretarNombreYApellido);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues("DOMICILIO", "domicilio", ConversionDeColumna.ConvertirAMayusculasYMinusculas);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues("COD_POS", "id_ciudad", ConversionDeColumna.InterpretarSql);
@@ -116,20 +118,21 @@ namespace Lbl.Servicios.Importar
 
                                 this.MapaDeTablas["movimien.dbf"].MapaDeColumnas.AddWithValues("NROCOM", "NROCOM");
                                 this.MapaDeTablas["movimien.dbf"].MapaDeColumnas.AddWithValues("FECHA", "FECHA");
-                                this.MapaDeTablas["movimien.dbf"].MapaDeColumnas.AddWithValues("CLIENTE", "CLIENTE", ConversionDeColumna.InterpretarSql);
+                                this.MapaDeTablas["movimien.dbf"].MapaDeColumnas.AddWithValues("CLIENTE", "id_cliente", ConversionDeColumna.InterpretarSql);
                                 this.MapaDeTablas["movimien.dbf"].MapaDeColumnas["CLIENTE"].ParametroConversion = "SELECT id_persona FROM personas WHERE import_id='$VALOR$'";
                                 this.MapaDeTablas["movimien.dbf"].MapaDeColumnas.AddWithValues("TIPO", "TIPO");
                         }
 
                         if (this.Opciones.ImportarCtasCtes) {
                                 // Cuentas corrientes
-                                /* this.MapaDeTablas.AddWithValue("Cuentas Corrientes", "ctasctes.dbf", "catcte");
-                                this.Reemplazos.Add(new Reemplazo(1, 999, "ctascte.dbf:CLIENTE"));      // En el sistema de Escorpión, Consumidor Final es el cliente 1 (y puede tener cuenta corriente!), en Lázaro es 999
-                                this.MapaDeTablas.AddWithValue("ctascte.dbf", "ctacte", "TIPO,NROCOM");
-                                this.MapaDeTablas["ctascte.dbf"].TipoElemento = typeof(Lbl.CuentaCorriente.Movimiento);
-                                this.MapaDeTablas["ctascte.dbf"].MapaDeColumnas.AddWithValues(null, "estado", 1);
-                                this.MapaDeTablas["ctascte.dbf"].MapaDeColumnas.AddWithValues("DESCRIP", "nombre", ConversionDeColumna.ConvertirAMayusculasYMinusculas);
-                                */
+                                this.MapaDeTablas.AddWithValue("Cuentas Corrientes", "ctasctes.dbf", "ctacte", "TIPO,NROCOM");
+                                this.MapaDeTablas["ctasctes.dbf"].Where = "CONDICION='C' OR TIPO='RCB'"; 
+                                this.Reemplazos.Add(new Reemplazo(1, 999, "ctascte.dbf:CLIENTE"));         // En el sistema de Escorpión, Consumidor Final es el cliente 1 (y puede tener cuenta corriente!), en Lázaro es 999
+                                this.MapaDeTablas["ctasctes.dbf"].TipoElemento = typeof(Lbl.CuentasCorrientes.Movimiento);
+                                this.MapaDeTablas["ctasctes.dbf"].MapaDeColumnas.AddWithValues("FECHA", "fecha");
+                                this.MapaDeTablas["ctasctes.dbf"].MapaDeColumnas.AddWithValues("IMPORTE", "importe");
+                                this.MapaDeTablas["ctasctes.dbf"].MapaDeColumnas.AddWithValues("CLIENTE", "id_cliente", ConversionDeColumna.InterpretarSql);
+                                this.MapaDeTablas["ctasctes.dbf"].MapaDeColumnas["CLIENTE"].ParametroConversion = "SELECT id_persona FROM personas WHERE import_id='$VALOR$'";
                         }
                 }
 
@@ -151,10 +154,28 @@ namespace Lbl.Servicios.Importar
                 }
 
 
-
                 public override IElementoDeDatos ConvertirRegistroEnElemento(MapaDeTabla mapa, Lfx.Data.Row externalRow, Lfx.Data.Row internalRow)
                 {
                         switch (mapa.TablaLazaro) {
+                                case "ctacte":
+                                        Lbl.IElementoDeDatos ElemMovim = base.ConvertirRegistroEnElemento(mapa, externalRow, internalRow);
+                                        Lbl.CuentasCorrientes.Movimiento Movim = ElemMovim as Lbl.CuentasCorrientes.Movimiento;
+                                        if (Movim != null) {
+                                                Movim.Auto = true;
+                                                string TipoComprobVentre = externalRow["original_TIPO"].ToString();
+                                                if (TipoComprobVentre == "FCB") {
+                                                        TipoComprobVentre = "Factura";
+                                                } else if (TipoComprobVentre == "RCB") {
+                                                        TipoComprobVentre = "Recibo";
+                                                        Movim.Importe = -Movim.Importe;
+                                                } else if (TipoComprobVentre == "NCB") {
+                                                        TipoComprobVentre = "Nota de Crédito";
+                                                        Movim.Importe = -Movim.Importe;
+                                                }
+                                                Movim.Nombre = TipoComprobVentre + " " + externalRow["original_NROCOM"].ToString();
+                                        }
+                                        return ElemMovim;
+
                                 case "comprob_detalle":
                                         // Busco una factura a la cual adosar este detalle
                                         string Tipo = externalRow["TIPO"].ToString(), TipoLazaro = null;

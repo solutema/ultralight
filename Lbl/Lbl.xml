@@ -348,6 +348,11 @@
             Describe un usuario del sistema. En realidad es una vista diferente de un registro de la tabla de personas.
             </summary>
         </member>
+        <member name="T:Lbl.Servicios.Importar.ColeccionMapaDeTablas">
+            <summary>
+            Contiene una lista de tablas a mapear al importar.
+            </summary>
+        </member>
         <member name="T:Lbl.Sys.Permisos.Objeto">
             <summary>
             Describe un tipo de acceso que puede tener una persona.
@@ -433,17 +438,12 @@
             Describe un filtro de importación.
             </summary>
         </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.Cargar">
+        <member name="M:Lbl.Servicios.Importar.Filtro.CargarTodo">
             <summary>
             Carga en memoria los datos a importar.
             </summary>
         </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.CargarDatos">
-            <summary>
-            Carga los datos desde el origen.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.Fusionar">
+        <member name="M:Lbl.Servicios.Importar.Filtro.FusionarTodo">
             <summary>
             Incorpora en la base de datos los datos cargados en memoria.
             </summary>
@@ -452,6 +452,15 @@
             <summary>
             Incorpora en la base de datos los datos cargados en memoria para la tabla seleccionada.
             </summary>
+        </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.ConvertirRegistroEnElemento(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row,Lfx.Data.Row)">
+            <summary>
+            Convierte un registro en un elemento de datos.
+            </summary>
+            <param name="mapa">El mapa del cual proviene el registro.</param>
+            <param name="externalRow">El registro externo (importado).</param>
+            <param name="internalRow">El registro interno (de Lázaro) o null si se está importando un elemento nuevo.</param>
+            <returns>Un elemento de datos</returns>
         </member>
         <member name="M:Lbl.Servicios.Importar.Filtro.ProcesarRegistro(Lbl.Servicios.Importar.MapaDeTabla,System.Data.DataRow)">
             <summary>
@@ -484,6 +493,13 @@
             <param name="row"></param>
             <returns></returns>
         </member>
+        <member name="M:Lbl.Servicios.Importar.Filtro.GuardarElemento(Lbl.Servicios.Importar.MapaDeTabla,Lbl.IElementoDeDatos)">
+            <summary>
+            Guarda un elemento.
+            </summary>
+            <param name="mapa"></param>
+            <param name="elemento"></param>
+        </member>
         <member name="T:Lbl.Servicios.Importar.FiltroArchivos">
             <summary>
             Describe un filtro de importación desde uno o varios archivos.
@@ -512,11 +528,6 @@
         <member name="T:Lbl.Servicios.Importar.MapaDeTabla">
             <summary>
             Especifica cómo se "mapea" una tabla externa a una tabla de Lázaro.
-            </summary>
-        </member>
-        <member name="T:Lbl.Servicios.Importar.MapaDeTablas">
-            <summary>
-            Contiene una lista de tablas a mapear al importar.
             </summary>
         </member>
         <member name="M:Lbl.Comprobantes.ColeccionDetalleArticulos.Unificar">

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N., Martínez Miguel A.
+// Copyright 2004-2011 Carrea Ernesto N.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -115,6 +115,7 @@ namespace Lbl.Servicios.Importar
                 /// </summary>
                 public virtual void FusionarTabla(MapaDeTabla mapa)
                 {
+                        Progreso.Value = 0;
                         Progreso.ChangeStatus("Incorporando " + mapa.ToString());
                         Progreso.Max = mapa.ImportedRows.Count;
                         foreach (Lfx.Data.Row ImportedRow in mapa.ImportedRows) {
@@ -244,8 +245,21 @@ namespace Lbl.Servicios.Importar
                         }
 
                         // El id de seguimiento de importación
-                        internalRow[mapa.ColumnaIdLazaro] = externalRow[mapa.ColumnaIdExterna];
-                        internalRow.Fields.AddWithValue("original_" + mapa.ColumnaIdExterna, externalRow[mapa.ColumnaIdExterna]);
+                        string[] ColumnasExternas = mapa.ColumnaIdExterna.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                        if (ColumnasExternas.Length == 1) {
+                                internalRow[mapa.ColumnaIdLazaro] = externalRow[mapa.ColumnaIdExterna];
+                                internalRow.Fields.AddWithValue("original_" + mapa.ColumnaIdExterna, externalRow[mapa.ColumnaIdExterna]);
+                        } else {
+                                string Valor = null;
+                                foreach (string ColumnaExterna in ColumnasExternas) {
+                                        if (Valor == null)
+                                                Valor = externalRow[ColumnaExterna].ToString();
+                                        else
+                                                Valor += "--" + externalRow[ColumnaExterna].ToString();
+                                        internalRow.Fields.AddWithValue("original_" + ColumnaExterna, externalRow[ColumnaExterna]);
+                                }
+                                internalRow[mapa.ColumnaIdLazaro] = Valor;
+                        }
                         
                         this.ProcesarRemplazos(mapa, ref internalRow);
 
