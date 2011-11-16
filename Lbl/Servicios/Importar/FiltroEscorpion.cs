@@ -187,12 +187,18 @@ namespace Lbl.Servicios.Importar
                                                 Lfx.Data.Row FacRow = this.Connection.FirstRowFromSelect(SelFac);
 
                                                 if (FacRow == null) {
-                                                        qGen.Select SelCliente = new qGen.Select("personas");
-                                                        SelCliente.WhereClause = new qGen.Where();
-                                                        SelCliente.WhereClause.AddWithValue("import_id", System.Convert.ToInt32(externalRow["CLIENTE"]));
-                                                        int Cliente = this.Connection.FieldInt(SelCliente);
-                                                        if (Cliente <= 0)
+                                                        int ClienteVentre = System.Convert.ToInt32(externalRow["CLIENTE"]);
+                                                        int Cliente = 0;
+                                                        if (ClienteVentre == 1) {
                                                                 Cliente = 999;
+                                                        } else {
+                                                                qGen.Select SelCliente = new qGen.Select("personas");
+                                                                SelCliente.WhereClause = new qGen.Where();
+                                                                SelCliente.WhereClause.AddWithValue("import_id", ClienteVentre);
+                                                                Cliente = this.Connection.FieldInt(SelCliente);
+                                                                if (Cliente <= 0)
+                                                                        Cliente = 999;
+                                                        }
                                                         qGen.Insert NewFac = new qGen.Insert("comprob");
                                                         NewFac.Fields.AddWithValue("id_formapago", 3);
                                                         NewFac.Fields.AddWithValue("tipo_fac", TipoLazaro);
@@ -215,8 +221,12 @@ namespace Lbl.Servicios.Importar
                                                 if (internalRow != null)
                                                         internalRow.Fields.AddWithValue("id_comprob", Fac.Id);
                                                 Lbl.IElementoDeDatos Elem = base.ConvertirRegistroEnElemento(mapa, externalRow, internalRow);
-                                                if (Elem != null)
-                                                        Elem.Registro["id_comprob"] = Fac.Id;
+                                                Lbl.Comprobantes.DetalleArticulo DetArt = Elem as Lbl.Comprobantes.DetalleArticulo;
+                                                if (DetArt != null) {
+                                                        if (DetArt.Articulo == null)
+                                                                DetArt.Nombre = externalRow["CODIGO"].ToString();
+                                                        DetArt.IdComprobante = Fac.Id;
+                                                }
                                                 return Elem;
                                         }
                                         break;

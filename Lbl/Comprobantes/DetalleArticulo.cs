@@ -357,22 +357,9 @@ namespace Lbl.Comprobantes
                 public virtual DetalleArticulo Clone()
                 {
                         DetalleArticulo Res;
-                        if (this.Comprobante == null || this.Id == 0)
-                                Res = new DetalleArticulo(this.Connection);
-                        else
-                                Res = new DetalleArticulo(this.Comprobante, this.Id);
+                        Res = new DetalleArticulo(this.Connection);
+                        Res.m_ItemId = this.Id;
                         Res.m_Registro = this.m_Registro.Clone();
-                        Res.Articulo = this.Articulo;
-                        Res.Cantidad = this.Cantidad;
-                        Res.Costo = this.Costo;
-                        Res.Descripcion = this.Descripcion;
-                        Res.IdArticulo = this.IdArticulo;
-                        Res.Nombre = this.Nombre;
-                        Res.Obs = this.Obs;
-                        Res.Orden = this.Orden;
-                        Res.Recargo = this.Recargo;
-                        Res.DatosSeguimiento = this.DatosSeguimiento;
-                        Res.Unitario = this.Unitario;
                         return Res;
                 }
 
