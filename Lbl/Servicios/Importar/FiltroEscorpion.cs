@@ -102,6 +102,7 @@ namespace Lbl.Servicios.Importar
                                 // Movimientos de stock (a.k.a. facturas)
                                 this.MapaDeTablas.AddWithValue("Comprobantes", "movimien.dbf", "comprob_detalle", "lazaro_recno");
                                 this.MapaDeTablas["movimien.dbf"].TipoElemento = typeof(Lbl.Comprobantes.DetalleArticulo);
+                                //this.MapaDeTablas["movimien.dbf"].Limite = 1000;
                                 this.MapaDeTablas["movimien.dbf"].ActualizaRegistros = false;
                                 this.MapaDeTablas["movimien.dbf"].Where = "TIPO IN ('FCA', 'FCB')";   // Sólo facturas
                                 this.Reemplazos.Add(new Reemplazo(1, 999, "movimien.dbf:CLIENTE"));   // En el sistema de Escorpión, Consumidor Final es el cliente 1, en Lázaro es 999
@@ -187,8 +188,8 @@ namespace Lbl.Servicios.Importar
                                                 Lfx.Data.Row FacRow = this.Connection.FirstRowFromSelect(SelFac);
 
                                                 if (FacRow == null) {
-                                                        int ClienteVentre = System.Convert.ToInt32(externalRow["CLIENTE"]);
-                                                        int Cliente = 0;
+                                                        int Cliente = System.Convert.ToInt32(externalRow["CLIENTE"]);
+                                                        /* int ClienteVentre = System.Convert.ToInt32(externalRow["original_CLIENTE"]);
                                                         if (ClienteVentre == 1) {
                                                                 Cliente = 999;
                                                         } else {
@@ -198,9 +199,9 @@ namespace Lbl.Servicios.Importar
                                                                 Cliente = this.Connection.FieldInt(SelCliente);
                                                                 if (Cliente <= 0)
                                                                         Cliente = 999;
-                                                        }
+                                                        } */
                                                         qGen.Insert NewFac = new qGen.Insert("comprob");
-                                                        NewFac.Fields.AddWithValue("id_formapago", 3);
+                                                        NewFac.Fields.AddWithValue("id_formapago", 1);
                                                         NewFac.Fields.AddWithValue("tipo_fac", TipoLazaro);
                                                         NewFac.Fields.AddWithValue("pv", 1);
                                                         NewFac.Fields.AddWithValue("numero", Numero);
@@ -224,7 +225,7 @@ namespace Lbl.Servicios.Importar
                                                 Lbl.Comprobantes.DetalleArticulo DetArt = Elem as Lbl.Comprobantes.DetalleArticulo;
                                                 if (DetArt != null) {
                                                         if (DetArt.Articulo == null)
-                                                                DetArt.Nombre = externalRow["CODIGO"].ToString();
+                                                                DetArt.Nombre = externalRow["original_CODIGO"].ToString();
                                                         DetArt.IdComprobante = Fac.Id;
                                                 }
                                                 return Elem;

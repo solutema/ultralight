@@ -238,12 +238,14 @@ namespace Lbl.Servicios.Importar
                                         default:
                                                 throw new NotImplementedException("Lbl.Servicios.Importar.Filtro: no implementa ConversionDeColumna." + Col.Conversion.ToString());
                                 }
-                                Lfx.Data.Field Fld = new Lfx.Data.Field(Col.ColumnaLazaro, FieldValue);
-                                internalRow.Fields.Add(Fld);
+                                internalRow.Fields.AddWithValue(Col.ColumnaLazaro, FieldValue);
+                                if (Col.ColumnaExterna != null)
+                                        internalRow.Fields.AddWithValue("original_" + Col.ColumnaExterna, externalRow[Col.ColumnaExterna]);
                         }
 
                         // El id de seguimiento de importación
                         internalRow[mapa.ColumnaIdLazaro] = externalRow[mapa.ColumnaIdExterna];
+                        internalRow.Fields.AddWithValue("original_" + mapa.ColumnaIdExterna, externalRow[mapa.ColumnaIdExterna]);
                         
                         this.ProcesarRemplazos(mapa, ref internalRow);
 

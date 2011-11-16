@@ -99,7 +99,7 @@ namespace Lbl.Servicios.Importar
                         ReadTable.Locale = System.Globalization.CultureInfo.InvariantCulture;
                         ReadTable.Load(TableCommand.ExecuteReader());
 
-                        Progreso.ChangeStatus("Cargando " + mapa.ToString() + " em memoria (" + ReadTable.Rows.Count.ToString() + " registros)");
+                        Progreso.ChangeStatus("Cargando " + mapa.ToString() + " en memoria (" + ReadTable.Rows.Count.ToString() + " registros)");
                         Progreso.Max = ReadTable.Rows.Count;
                         // Navegar todos los registros
                         int lazaro_recno = 0;
@@ -109,6 +109,8 @@ namespace Lbl.Servicios.Importar
                                 Lrw["lazaro_recno"] = lazaro_recno;
                                 Res.Add(Lrw);
                                 Progreso.Advance(1);
+                                if (mapa.Limite > 0 && lazaro_recno > mapa.Limite)
+                                        break;
                         }
 
                         return Res;

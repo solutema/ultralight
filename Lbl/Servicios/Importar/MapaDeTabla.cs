@@ -47,6 +47,8 @@ namespace Lbl.Servicios.Importar
                 public string Where { get; set; }
                 public IList<Lfx.Data.Row> ImportedRows { get; set; }
                 public bool ActualizaRegistros { get; set; }
+                public int Limite { get; set; }
+                public int Saltear { get; set; }
 
                 public MapaDeTabla(string nombre, string tablaExterna, string tablaLazaro)
                 {
