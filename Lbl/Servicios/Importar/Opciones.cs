@@ -41,14 +41,15 @@ namespace Lbl.Servicios.Importar
                 public bool ImportarStock { get; set; }
                 public bool ImportarFacturas { get; set; }
                 public bool ImportarCtasCtes { get; set; }
+                public bool ActualizarRegistros { get; set; }
 
                 public Opciones()
                 {
-                        this.ImportarClientes = false;
-                        this.ImportarArticulos = false;
-                        this.ImportarStock = false;
+                        this.ImportarClientes = true;
+                        this.ImportarArticulos = true;
+                        this.ImportarStock = true;
                         this.ImportarFacturas = true;
-                        this.ImportarCtasCtes = false;
+                        this.ImportarCtasCtes = true;
                 }
         }
 }

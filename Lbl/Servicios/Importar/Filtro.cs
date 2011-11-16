@@ -42,12 +42,14 @@ namespace Lbl.Servicios.Importar
         {
                 public Opciones Opciones { get; set; }
 
+                protected Lfx.Types.OperationProgress Progreso;
                 public Lfx.Data.Connection Connection { get; set; }
-                public MapaDeTablas MapaDeTablas;
-                public string FilterName = "Filtro de importación genérico";
+                public ColeccionMapaDeTablas MapaDeTablas;
+                public string Name = "Filtro de importación genérico";
 
-                // Tomar los siguientes valores como vacíos
-                public System.Collections.Generic.List<Reemplazo> Reemplazos = new List<Reemplazo>();
+                public IList<Reemplazo> Reemplazos = new List<Reemplazo>();
+
+                protected IDictionary<string, IDictionary<string, object>> CacheConversiones = new Dictionary<string, IDictionary<string, object>>();
 
                 public Filtro(Lfx.Data.Connection dataBase, Opciones opciones)
                 {
@@ -58,44 +60,50 @@ namespace Lbl.Servicios.Importar
 
                 public void Importar()
                 {
-                        this.Pre();
-                        this.Cargar();
-                        this.Fusionar();
-                        this.Post();
+                        this.Progreso = new Lfx.Types.OperationProgress("Importando datos de " + this.Name, "Se están importando los datos del filtro " + this.Name);
+                        this.Progreso.Blocking = false;
+                        this.Progreso.Begin();
+
+                        this.PrepararTablasLazaro();
+                        this.PreImportar();
+                        this.CargarTodo();
+                        this.FusionarTodo();
+                        this.PostImportar();
+
+                        this.Progreso.End();
                 }
 
 
-                public virtual void Pre()
+                public virtual void PreImportar()
                 {
                 }
 
 
-                public virtual void Post()
+                public virtual void PostImportar()
                 {
                 }
 
                 /// <summary>
                 /// Carga en memoria los datos a importar.
                 /// </summary>
-                public void Cargar()
+                public void CargarTodo()
                 {
-                        this.PrepararTablasLazaro();
-                        this.CargarDatos();
+                        foreach (MapaDeTabla Map in MapaDeTablas) {
+                                Map.ImportedRows = CargarTabla(Map);
+                        }
                 }
 
-                /// <summary>
-                /// Carga los datos desde el origen.
-                /// </summary>
-                public virtual void CargarDatos()
+
+                public virtual IList<Lfx.Data.Row> CargarTabla(MapaDeTabla mapa)
                 {
-                        throw new NotImplementedException("Los filtros deben implementar el método CargarDatos");
+                        throw new NotImplementedException("El filtro " + this.Name + " debe implementar CargarTabla()");
                 }
 
 
                 /// <summary>
                 /// Incorpora en la base de datos los datos cargados en memoria.
                 /// </summary>
-                public virtual void Fusionar()
+                public virtual void FusionarTodo()
                 {
                         foreach (MapaDeTabla Mapa in this.MapaDeTablas) {
                                 this.FusionarTabla(Mapa);
@@ -107,9 +115,7 @@ namespace Lbl.Servicios.Importar
                 /// </summary>
                 public virtual void FusionarTabla(MapaDeTabla mapa)
                 {
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Incorporando Datos", "Se están incorporando los datos del mapa " + mapa.ToString());
-                        Progreso.Begin();
-
+                        Progreso.ChangeStatus("Incorporando " + mapa.ToString());
                         Progreso.Max = mapa.ImportedRows.Count;
                         foreach (Lfx.Data.Row ImportedRow in mapa.ImportedRows) {
                                 object ImportIdValue = ImportedRow.Fields[mapa.ColumnaIdLazaro].Value;
@@ -124,22 +130,11 @@ namespace Lbl.Servicios.Importar
                                         ImportIdSqlValue = ImportIdValue.ToString();
                                 }
 
-                                Lbl.IElementoDeDatos Elem;
                                 Lfx.Data.Row CurrentRow = this.Connection.FirstRowFromSelect("SELECT * FROM " + mapa.TablaLazaro + " WHERE " + mapa.ColumnaIdLazaro + "=" + ImportIdSqlValue);
-                                if (CurrentRow == null) {
-                                        Elem = this.CrearElemento(mapa, ImportedRow);
-                                        Elem.Registro[mapa.ColumnaIdLazaro] = ImportIdValue;
-                                } else if (mapa.ActualizaRegistros) {
-                                        Elem = this.CargarElemento(mapa, CurrentRow);
-                                        foreach (MapaDeColumna mapaCol in mapa.MapaDeColumnas) {
-                                                Elem.Registro[mapaCol.ColumnaLazaro] = ImportedRow.Fields[mapaCol.ColumnaLazaro].Value;
-                                        }
-                                } else {
-                                        Elem = null;
-                                }
+                                Lbl.IElementoDeDatos Elem = ConvertirRegistroEnElemento(mapa, ImportedRow, CurrentRow);
 
                                 if (Elem != null) {
-                                        Elem.Guardar();
+                                        this.GuardarElemento(mapa, Elem);
 
                                         if (this.Opciones.ImportarStock && Elem is Lbl.Articulos.Articulo && ImportedRow.Fields.Contains("stock_actual")) {
                                                 // Actualizo el stock
@@ -150,53 +145,92 @@ namespace Lbl.Servicios.Importar
                                                 decimal Diferencia = NuevoStock - StockActual;
 
                                                 if (Diferencia != 0)
-                                                        Art.MoverStock(Diferencia, "Stock importado desde " + this.FilterName, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                                        Art.MoverStock(Diferencia, "Stock importado desde " + this.Name, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
                                         }
                                 }
                                 Progreso.Advance(1);
                         }
-                        Progreso.End();
                 }
+
+
+                /// <summary>
+                /// Convierte un registro en un elemento de datos.
+                /// </summary>
+                /// <param name="mapa">El mapa del cual proviene el registro.</param>
+                /// <param name="externalRow">El registro externo (importado).</param>
+                /// <param name="internalRow">El registro interno (de Lázaro) o null si se está importando un elemento nuevo.</param>
+                /// <returns>Un elemento de datos</returns>
+                public virtual Lbl.IElementoDeDatos ConvertirRegistroEnElemento(MapaDeTabla mapa, Lfx.Data.Row externalRow, Lfx.Data.Row internalRow)
+                {
+                        Lbl.IElementoDeDatos Elem;
+
+                        object ImportIdValue = externalRow.Fields[mapa.ColumnaIdLazaro].Value;
+                        if (internalRow == null) {
+                                Elem = this.CrearElemento(mapa, externalRow);
+                                Elem.Registro[mapa.ColumnaIdLazaro] = ImportIdValue;
+                        } else if (this.Opciones.ActualizarRegistros && mapa.ActualizaRegistros) {
+                                Elem = this.CargarElemento(mapa, internalRow);
+                                foreach (MapaDeColumna mapaCol in mapa.MapaDeColumnas) {
+                                        Elem.Registro[mapaCol.ColumnaLazaro] = externalRow.Fields[mapaCol.ColumnaLazaro].Value;
+                                }
+                        } else {
+                                Elem = null;
+                        }
+
+                        return Elem;
+                }
+
 
                 /// <summary>
                 /// Procesa un registro según el mapa de columnas correspondiente a la tabla y devuelve un Lfx.Data.Row
                 /// </summary>
-                public virtual Lfx.Data.Row ProcesarRegistro(MapaDeTabla mapa, System.Data.DataRow row)
+                public Lfx.Data.Row ProcesarRegistro(MapaDeTabla mapa, System.Data.DataRow externalRow)
                 {
-                        Lfx.Data.Row Lrw = new Lfx.Data.Row();
-                        Lrw.IsNew = true;
-                        Lrw.Table = this.Connection.Tables[mapa.TablaLazaro];
+                        Lfx.Data.Row internalRow = new Lfx.Data.Row();
+                        internalRow.IsNew = true;
+                        internalRow.Table = this.Connection.Tables[mapa.TablaLazaro];
 
                         foreach (MapaDeColumna Col in mapa.MapaDeColumnas) {
                                 object FieldValue = null;
                                 switch (Col.Conversion) {
                                         case ConversionDeColumna.ConvertirAMinusculas:
-                                                FieldValue = row[Col.ColumnaExterna].ToString().ToLowerInvariant();
+                                                FieldValue = externalRow[Col.ColumnaExterna].ToString().ToLowerInvariant();
                                                 break;
                                         case ConversionDeColumna.ConvertirAMayusculasYMinusculas:
-                                                FieldValue = row[Col.ColumnaExterna].ToString().ToTitleCase();
+                                                FieldValue = externalRow[Col.ColumnaExterna].ToString().ToTitleCase();
                                                 break;
                                         case ConversionDeColumna.InterpretarNombreYApellido:
-                                                FieldValue = row[Col.ColumnaExterna].ToString().ToTitleCase();
+                                                FieldValue = externalRow[Col.ColumnaExterna].ToString().ToTitleCase();
                                                 string Nombre = FieldValue.ToString();
                                                 string Apellido = Lfx.Types.Strings.GetNextToken(ref Nombre, " ");
-                                                Lrw["nombre"] = Nombre.Trim();
-                                                Lrw["apellido"] = Apellido.Trim();
+                                                internalRow["nombre"] = Nombre.Trim();
+                                                internalRow["apellido"] = Apellido.Trim();
                                                 if (Nombre.Length > 0 && Apellido.Length > 0)
                                                         FieldValue = Apellido + ", " + Nombre;
                                                 break;
                                         case ConversionDeColumna.InterpretarSql:
                                                 string Sql = Col.ParametroConversion.ToString();
-                                                Sql = Sql.Replace("$VALOR$", row[Col.ColumnaExterna].ToString());
-                                                Lfx.Data.Row Result = this.Connection.FirstRowFromSelect(Sql);
-                                                if (Result == null || Result[0] == null)
-                                                        FieldValue = null;
-                                                else
-                                                        FieldValue = Result[0];
+                                                string ClaveBuscada = externalRow[Col.ColumnaExterna].ToString();
+
+                                                if (this.CacheConversiones.ContainsKey(Sql) && this.CacheConversiones[Sql].ContainsKey(ClaveBuscada)){
+                                                        FieldValue = this.CacheConversiones[Sql][ClaveBuscada];
+                                                } else {
+                                                        Lfx.Data.Row Result = this.Connection.FirstRowFromSelect(Sql.Replace("$VALOR$", ClaveBuscada));
+                                                        if (Result == null || Result[0] == null)
+                                                                FieldValue = null;
+                                                        else
+                                                                FieldValue = Result[0];
+
+                                                        if (this.CacheConversiones.ContainsKey(Sql) == false)
+                                                                // Agrego esta conversión a la cache
+                                                                this.CacheConversiones.Add(Sql, new Dictionary<string, object>());
+                                                        this.CacheConversiones[Sql].Add(ClaveBuscada, FieldValue);
+                                                }
+                                                
                                                 break;
                                         case ConversionDeColumna.Ninguna:
                                                 if (Col.ColumnaExterna != null) {
-                                                        FieldValue = row[Col.ColumnaExterna];
+                                                        FieldValue = externalRow[Col.ColumnaExterna];
                                                 } else {
                                                         FieldValue = Col.ValorPredeterminado;
                                                 }
@@ -205,15 +239,15 @@ namespace Lbl.Servicios.Importar
                                                 throw new NotImplementedException("Lbl.Servicios.Importar.Filtro: no implementa ConversionDeColumna." + Col.Conversion.ToString());
                                 }
                                 Lfx.Data.Field Fld = new Lfx.Data.Field(Col.ColumnaLazaro, FieldValue);
-                                Lrw.Fields.Add(Fld);
+                                internalRow.Fields.Add(Fld);
                         }
 
                         // El id de seguimiento de importación
-                        Lrw[mapa.ColumnaIdLazaro] = row[mapa.ColumnaIdExterna];
+                        internalRow[mapa.ColumnaIdLazaro] = externalRow[mapa.ColumnaIdExterna];
                         
-                        this.ProcesarRemplazos(mapa, ref Lrw);
+                        this.ProcesarRemplazos(mapa, ref internalRow);
 
-                        return Lrw;
+                        return internalRow;
                 }
 
                 /// <summary>
@@ -270,7 +304,7 @@ namespace Lbl.Servicios.Importar
                 /// <param name="mapa">El mapa de la tabla a la cual corresponde el registro.</param>
                 /// <param name="row">El registro a partir del cual crear un ElementoDeDatos.</param>
                 /// <returns>Un objeto de alguna clase derivada de ElementoDeDatos.</returns>
-                public Lbl.IElementoDeDatos CrearElemento(MapaDeTabla mapa, Lfx.Data.Row row)
+                protected Lbl.IElementoDeDatos CrearElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
                         return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.Connection, row);
                 }
@@ -281,15 +315,26 @@ namespace Lbl.Servicios.Importar
                 /// <param name="mapa"></param>
                 /// <param name="row"></param>
                 /// <returns></returns>
-                public Lbl.IElementoDeDatos CargarElemento(MapaDeTabla mapa, Lfx.Data.Row row)
+                protected Lbl.IElementoDeDatos CargarElemento(MapaDeTabla mapa, Lfx.Data.Row row)
                 {
                         return Lbl.Instanciador.Instanciar(mapa.TipoElemento, this.Connection, row.Fields[this.Connection.Tables[mapa.TablaLazaro].PrimaryKey].ValueInt);
                 }
 
 
+                /// <summary>
+                /// Guarda un elemento.
+                /// </summary>
+                /// <param name="mapa"></param>
+                /// <param name="elemento"></param>
+                protected virtual void GuardarElemento(MapaDeTabla mapa, Lbl.IElementoDeDatos elemento)
+                {
+                        elemento.Guardar();
+                }
+
+
                 public override string ToString()
                 {
-                        return this.FilterName;
+                        return this.Name;
                 }
         }
 }

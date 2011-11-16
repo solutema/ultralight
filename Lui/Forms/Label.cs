@@ -85,7 +85,7 @@ namespace Lui.Forms
                                 switch(m_LabelStyle) {
                                         case LabelStyles.Title:
                                                 base.Font = Lfx.Config.Display.TitleFont;
-                                                base.Padding = new Padding(4);
+                                                base.Padding = new Padding(0, 2, 0, 2);
                                                 break;
                                         case LabelStyles.Small:
                                                 base.Font = Lfx.Config.Display.SmallFont;

@@ -35,12 +35,36 @@ using System.Text;
 
 namespace Lbl.Servicios.Importar
 {
-        public class FiltroLazaro : FiltroBd
+        /// <summary>
+        /// Especifica cómo se "mapea" una tabla externa a una tabla de Lázaro.
+        /// </summary>
+        public class MapaDeTabla
         {
-                public FiltroLazaro(Lfx.Data.Connection dataBase, Opciones opciones)
-                        : base(dataBase, opciones)
+                public string Nombre { get; set; }
+                public string Archivo, TablaLazaro, ColumnaIdExterna = null, ColumnaIdLazaro = "import_id";
+                public MapaDeColumnas MapaDeColumnas = new MapaDeColumnas();
+                public Type TipoElemento { get; set; }
+                public string Where { get; set; }
+                public IList<Lfx.Data.Row> ImportedRows { get; set; }
+                public bool ActualizaRegistros { get; set; }
+
+                public MapaDeTabla(string nombre, string tablaExterna, string tablaLazaro)
                 {
-                        this.Name = "Filtro de importación de Lázaro";
+                        this.Nombre = nombre;
+                        this.ActualizaRegistros = true;
+                        this.Archivo = tablaExterna;
+                        this.TablaLazaro = tablaLazaro;
+                }
+
+                public MapaDeTabla(string nombre, string tablaExterna, string tablaLazaro, string columnaId)
+                        : this(nombre, tablaExterna, tablaLazaro)
+                {
+                        this.ColumnaIdExterna = columnaId;
+                }
+
+                public override string ToString()
+                {
+                        return this.Nombre;
                 }
         }
 }

@@ -43,7 +43,7 @@ namespace Lbl.Servicios.Importar
                 public FiltroArchivos(Lfx.Data.Connection dataBase, Opciones opciones)
                         : base(dataBase, opciones)
                 {
-                        this.FilterName = "Filtro de importación genérico de archivos";
+                        this.Name = "Filtro de importación genérico de archivos";
                 }
 
                 public string Carpeta { get; set; }

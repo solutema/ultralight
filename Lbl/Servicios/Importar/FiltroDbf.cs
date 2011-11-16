@@ -47,37 +47,48 @@ namespace Lbl.Servicios.Importar
                 {
                 }
 
-                public override void CargarDatos()
+
+                public override void PreImportar()
                 {
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Datos", "Se van a importar datos utilizando el filtro " + this.ToString());
-                        Progreso.Begin();
+                        if (ConexionExterna != null) {
+                                if (ConexionExterna.State == System.Data.ConnectionState.Open)
+                                        ConexionExterna.Close();
+                                ConexionExterna.Dispose();
+                        }
 
                         ConexionExterna = new System.Data.Odbc.OdbcConnection();
                         if (this.Dsn != null && this.Dsn.Length > 0)
                                 ConexionExterna.ConnectionString = @"dsn=" + this.Dsn + ";";
                         else
                                 ConexionExterna.ConnectionString = @"Driver={Microsoft Access dBase Driver (*.dbf)};SourceType=DBF;SourceDB=" + this.Carpeta + ";Exclusive=No;Collate=Machine;NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
-                        
+
                         ConexionExterna.Open();
 
-                        Progreso.Max = MapaDeTablas.Count;
-                        foreach (MapaDeTabla Map in MapaDeTablas) {
-                                Map.ImportedRows = CargarTablaDesdeArchivo(Map);
-                                Progreso.Advance(1);
-                        }
-
-                        ConexionExterna.Close();
-                        Progreso.End();
+                        base.PreImportar();
                 }
 
-                public virtual System.Collections.Generic.List<Lfx.Data.Row> CargarTablaDesdeArchivo(MapaDeTabla mapa)
+
+
+                public override void PostImportar()
                 {
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Tabla", "Se van a importar datos del mapa " + mapa.ToString() + " utilizando el filtro " + this.ToString());
-                        Progreso.Begin();
+                        if (ConexionExterna != null) {
+                                if (ConexionExterna.State == System.Data.ConnectionState.Open)
+                                        ConexionExterna.Close();
+                                ConexionExterna.Dispose();
+                        }
 
-                        System.Collections.Generic.List<Lfx.Data.Row> Res = new List<Lfx.Data.Row>();
+                        base.PostImportar();
+                }
 
-                        string SqlSelect = @"SELECT 0 as dbf_recno, * FROM " + this.Carpeta + mapa.Archivo;
+
+                public override IList<Lfx.Data.Row> CargarTabla(MapaDeTabla mapa)
+                {
+                        Progreso.Value = 0;
+                        Progreso.ChangeStatus("Leyendo " + mapa.ToString());
+
+                        IList<Lfx.Data.Row> Res = new List<Lfx.Data.Row>();
+
+                        string SqlSelect = @"SELECT 0 as lazaro_recno, * FROM " + this.Carpeta + mapa.Archivo;
                         if (mapa.Where != null)
                                 SqlSelect += " WHERE " + mapa.Where;
 
@@ -88,18 +99,18 @@ namespace Lbl.Servicios.Importar
                         ReadTable.Locale = System.Globalization.CultureInfo.InvariantCulture;
                         ReadTable.Load(TableCommand.ExecuteReader());
 
+                        Progreso.ChangeStatus("Cargando " + mapa.ToString() + " em memoria (" + ReadTable.Rows.Count.ToString() + " registros)");
                         Progreso.Max = ReadTable.Rows.Count;
                         // Navegar todos los registros
-                        int dbf_recno = 0;
+                        int lazaro_recno = 0;
                         foreach (System.Data.DataRow Rw in ReadTable.Rows) {
-                                Rw["dbf_recno"] = ++dbf_recno;
+                                Rw["lazaro_recno"] = ++lazaro_recno;
                                 Lfx.Data.Row Lrw = this.ProcesarRegistro(mapa, Rw);
-                                Lrw["dbf_recno"] = dbf_recno;
+                                Lrw["lazaro_recno"] = lazaro_recno;
                                 Res.Add(Lrw);
                                 Progreso.Advance(1);
                         }
 
-                        Progreso.End();
                         return Res;
                 }
         }

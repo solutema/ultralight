@@ -146,7 +146,15 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "VENTRE":
+                                        string Opciones = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
                                         Lbl.Servicios.Importar.Opciones OpcionesFiltro = new Lbl.Servicios.Importar.Opciones();
+                                        OpcionesFiltro.ImportarClientes = Opciones.IndexOf('C') >= 0;
+                                        OpcionesFiltro.ImportarArticulos = Opciones.IndexOf('A') >= 0;
+                                        OpcionesFiltro.ImportarFacturas = Opciones.IndexOf('F') >= 0;
+                                        OpcionesFiltro.ImportarCtasCtes = Opciones.IndexOf('E') >= 0;
+
+                                        OpcionesFiltro.ActualizarRegistros = SubComando.IndexOf('+') >= 0;
+
                                         Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.MasterConnection, OpcionesFiltro);
                                         Fil.Dsn = "ventre";
                                         Fil.Importar();

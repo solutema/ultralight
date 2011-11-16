@@ -44,29 +44,12 @@ namespace Lbl.Servicios.Importar
                 {
                 }
 
-                public override void CargarDatos()
+
+                public override IList<Lfx.Data.Row> CargarTabla(MapaDeTabla mapa)
                 {
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Datos", "Se van a importar datos utilizando el filtro " + this.ToString());
-                        Progreso.Begin();
+                        Progreso.ChangeStatus("Leyendo " + mapa.ToString());
 
-                        ConexionExterna.Open();
-
-                        Progreso.Max = MapaDeTablas.Count;
-                        foreach (MapaDeTabla Map in MapaDeTablas) {
-                                Map.ImportedRows = CargarTablaDesdeArchivo(Map);
-                                Progreso.Advance(1);
-                        }
-
-                        ConexionExterna.Close();
-                        Progreso.End();
-                }
-
-                public virtual System.Collections.Generic.List<Lfx.Data.Row> CargarTablaDesdeArchivo(MapaDeTabla mapa)
-                {
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Importando Tabla", "Se van a importar datos del mapa " + mapa.ToString() + " utilizando el filtro " + this.ToString());
-                        Progreso.Begin();
-
-                        System.Collections.Generic.List<Lfx.Data.Row> Res = new List<Lfx.Data.Row>();
+                        IList<Lfx.Data.Row> Res = new List<Lfx.Data.Row>();
 
                         string SqlSelect = @"SELECT * FROM " + mapa.Archivo;
                         if (mapa.Where != null)
@@ -87,7 +70,6 @@ namespace Lbl.Servicios.Importar
                                 Progreso.Advance(1);
                         }
 
-                        Progreso.End();
                         return Res;
                 }
         }

@@ -44,6 +44,9 @@ namespace Lbl.Comprobantes
                 public DetalleArticulo(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
+                public DetalleArticulo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
+                        : base(dataBase, row) { }
+
                 public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
                         : base(comprobante.Connection)
                 {
@@ -325,11 +328,11 @@ namespace Lbl.Comprobantes
 
                         if (this.Articulo == null) {
                                 Comando.Fields.AddWithValue("id_articulo", null);
-                                Comando.Fields.AddWithValue("nombre", this.Articulo.Nombre);
+                                Comando.Fields.AddWithValue("nombre", this.Nombre);
                                 Comando.Fields.AddWithValue("descripcion", "");
                         } else {
                                 Comando.Fields.AddWithValue("id_articulo", this.Articulo.Id);
-                                Comando.Fields.AddWithValue("nombre", this.Nombre);
+                                Comando.Fields.AddWithValue("nombre", this.Articulo.Nombre);
                                 Comando.Fields.AddWithValue("descripcion", this.Articulo.Descripcion);
                         }
 
