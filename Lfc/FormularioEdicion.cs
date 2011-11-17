@@ -434,6 +434,7 @@ namespace Lfc
                                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Imprimiendo", "El documento se está enviando a la impresora.");
                                         if (Impresora != null)
                                                 Progreso.Description = "El documento se está enviando a la impresora " + Impresora.ToString();
+                                        Progreso.Blocking = false;
                                         Progreso.Begin();
 
                                         Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, this.Elemento.Connection.BeginTransaction());

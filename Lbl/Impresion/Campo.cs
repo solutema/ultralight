@@ -41,14 +41,15 @@ namespace Lbl.Impresion
         /// </summary>
         public class Campo
         {
-                public string Valor;
-                public int AnchoBorde = 0;
+                public string Valor { get; set; }
+                public string Formato { get; set; }
+                public int AnchoBorde { get; set; }
                 public Color ColorTexto = Color.Black, ColorFondo = Color.Transparent, ColorBorde = Color.Transparent;
                 public Rectangle Rectangle;
-                public Font Font;
+                public Font Font { get; set; }
                 public StringAlignment Alignment = StringAlignment.Near;
                 public StringAlignment LineAlignment = StringAlignment.Near;
-                public bool Wrap = false;
+                public bool Wrap { get; set; }
 
                 public override string ToString()
                 {

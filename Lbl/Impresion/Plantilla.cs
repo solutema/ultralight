@@ -293,6 +293,12 @@ namespace Lbl.Impresion
                                 Attr.Value = Cam.Valor;
                                 CampoXml.Attributes.Append(Attr);
 
+                                if (Cam.Formato != null && Cam.Formato.Length > 0) {
+                                        Attr = XmlDef.CreateAttribute("Formato");
+                                        Attr.Value = Cam.Formato;
+                                        CampoXml.Attributes.Append(Attr);
+                                }
+
                                 Attr = XmlDef.CreateAttribute("X");
                                 Attr.Value = Cam.Rectangle.X.ToString();
                                 CampoXml.Attributes.Append(Attr);
@@ -404,6 +410,8 @@ namespace Lbl.Impresion
                                 if (Cam.Name == "Campo") {
                                         Campo NuevoCampo = new Campo();
                                         NuevoCampo.Valor = Cam.Attributes["Valor"].Value;
+                                        if (Cam.Attributes["Formato"] != null)
+                                                NuevoCampo.Formato = Cam.Attributes["Formato"].Value;
                                         if (Cam.Attributes["AnchoBorde"] != null)
                                                 NuevoCampo.AnchoBorde = Lfx.Types.Parsing.ParseInt(Cam.Attributes["AnchoBorde"].Value);
                                         if (Cam.Attributes["ColorBorde"] != null)

@@ -208,7 +208,7 @@ namespace Lazaro.Impresion.Comprobantes
 
 
 
-                public override string ObtenerValorCampo(string nombreCampo)
+                public override string ObtenerValorCampo(string nombreCampo, string formato)
                 {
                         switch (nombreCampo.ToUpperInvariant()) {
                                 case "TIPO":
@@ -218,10 +218,6 @@ namespace Lazaro.Impresion.Comprobantes
                                 case "NUMERO":
                                 case "COMPROB.NUMERO":
                                         return this.Comprobante.Numero.ToString();
-
-                                case "FECHA":
-                                case "COMPROB.FECHA":
-                                        return this.Comprobante.Fecha.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
 
                                 case "CLIENTE":
                                 case "CLIENTE.NOMBRE":
@@ -267,7 +263,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         return this.Comprobante.Vendedor.ToString();
 
                                 default:
-                                        return base.ObtenerValorCampo(nombreCampo);
+                                        return base.ObtenerValorCampo(nombreCampo, formato);
                         }
                 }
 	}

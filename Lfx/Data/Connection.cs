@@ -45,7 +45,9 @@ namespace Lfx.Data
 
                 public Lfx.Workspace Workspace;
                 public int KeepAlive = 600;             // 10 minutos
+                
                 private string m_Name = null;
+                private TableCollection m_Tables = null;
 
                 public readonly int Handle = 0;
                 private static int LastHandle = 0;
@@ -189,8 +191,54 @@ namespace Lfx.Data
                 {
                         get
                         {
-                                return Lfx.Data.DataBaseCache.DefaultCache.Tables;
+                                if (m_Tables == null)
+                                        m_Tables = this.GetTables();
+                                return m_Tables;
                         }
+                }
+
+
+                internal TableCollection GetTables()
+                {
+                        TableCollection Res = new Lfx.Data.TableCollection(Lfx.Workspace.Master.MasterConnection);
+                        foreach (string TblName in Lfx.Data.DataBaseCache.DefaultCache.GetTableNames()) {
+                                Lfx.Data.Table NewTable = new Lfx.Data.Table(Lfx.Workspace.Master.MasterConnection, TblName);
+                                switch (TblName) {
+                                        case "alicuotas":
+                                        case "articulos_codigos":
+                                        case "articulos_situaciones":
+                                        case "bancos":
+                                        case "cajas":
+                                        case "conceptos":
+                                        case "ciudades":
+                                        case "documentos_tipos":
+                                        case "formaspago":
+                                        case "impresoras":
+                                        case "lared_convenios":
+                                        case "margenes":
+                                        case "monedas":
+                                        case "personas_tipos":
+                                        case "pvs":
+                                        case "situaciones":
+                                        case "sucursales":
+                                        case "sys_permisos_objetos":
+                                        case "sys_plantillas":
+                                        case "sys_tags":
+                                        case "tickets_estados":
+                                        case "tipo_doc":
+                                                NewTable.AlwaysCache = true;
+                                                break;
+
+                                        case "sys_log":
+                                        case "sys_programador":
+                                        case "sys_quickpaste":
+                                                NewTable.Cacheable = false;
+                                                break;
+                                }
+                                Res.Add(NewTable);
+                        }
+
+                        return Res;
                 }
 
                 public string Name

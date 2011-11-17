@@ -133,6 +133,9 @@
     <Compile Include="Comprobantes\IniciarNumeracion.Designer.cs">
       <DependentUpon>IniciarNumeracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprobantes\Plantillas\EditarCampo.Designer.cs">
+      <DependentUpon>EditarCampo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comprobantes\Presupuestos\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>

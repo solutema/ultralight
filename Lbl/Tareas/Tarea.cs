@@ -44,7 +44,8 @@ namespace Lbl.Tareas
                 private Lbl.ColeccionGenerica<Comprobantes.DetalleArticulo> m_Articulos = null;
                 //private Lbl.ColeccionGenerica<Novedad> m_Novedades = null;
 
-                public Lbl.Personas.Persona Cliente, Encargado;
+                public Lbl.Personas.Persona Cliente {get;set;}
+                public Lbl.Personas.Persona Encargado { get; set; }
                 public Lbl.Tareas.Tipo Tipo;
 
                 public Tarea(Lfx.Data.Connection dataBase)

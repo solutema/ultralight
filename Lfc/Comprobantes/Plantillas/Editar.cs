@@ -73,7 +73,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 LapizBordeCampos.Dispose();
                                 BrushSeleccion.Dispose();
                         }
-                        
+
                         base.Dispose(disposing);
                 }
 
@@ -202,7 +202,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 Texto = Texto.Replace("{Cliente.Cuit}", "Responsable no inscripto");
                                 Texto = Texto.Replace("{Domicilio}", "Avenida San Martín 1234, 3ro. B");
                                 Texto = Texto.Replace("{Cliente.Domicilio}", "Avenida San Martín 1234, 3ro. B");
-                                Texto = Texto.Replace("{Fecha}", System.DateTime.Now.ToString("dd-MM-yyyy"));
+                                //Texto = Texto.Replace("{Fecha}", System.DateTime.Now.ToString("dd-MM-yyyy"));
                                 Texto = Texto.Replace("{FormaPago}", "Cuenta corriente");
                                 Texto = Texto.Replace("{Total}", "$ 123.456.789,00");
                                 Texto = Texto.Replace("{Comprobante.Total}", "$ 123.456.789,00");
@@ -284,6 +284,8 @@ namespace Lfc.Comprobantes.Plantillas
                                                 //Agarró el knob
                                                 KnobGrabbed = true;
                                                 return;
+                                        } else {
+                                                KnobGrabbed = false;
                                         }
                                 }
 
@@ -393,15 +395,19 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         if (CampoSeleccionado != null) {
                                 EditarCampo FormEditarCampo = new EditarCampo();
-                                FormEditarCampo.EntradaX.Text = CampoSeleccionado.Rectangle.X.ToString();
-                                FormEditarCampo.EntradaY.Text = CampoSeleccionado.Rectangle.Y.ToString();
-                                FormEditarCampo.EntradaAncho.Text = CampoSeleccionado.Rectangle.Width.ToString();
-                                FormEditarCampo.EntradaAlto.Text = CampoSeleccionado.Rectangle.Height.ToString();
                                 FormEditarCampo.EntradaTexto.Text = CampoSeleccionado.Valor;
-                                FormEditarCampo.txtAlign.TextKey = CampoSeleccionado.Alignment.ToString();
-                                FormEditarCampo.txtLineAlign.TextKey = CampoSeleccionado.LineAlignment.ToString();
-                                FormEditarCampo.txtWrap.TextKey = CampoSeleccionado.Wrap ? "1" : "0";
-                                FormEditarCampo.EntradaAnchoBorde.Text = CampoSeleccionado.AnchoBorde.ToString();
+                                if (CampoSeleccionado.Formato == null || CampoSeleccionado.Formato.Length == 0)
+                                        FormEditarCampo.EntradaFormato.TextKey = "*";
+                                else
+                                        FormEditarCampo.EntradaFormato.TextKey = CampoSeleccionado.Formato;
+                                FormEditarCampo.EntradaX.ValueInt = CampoSeleccionado.Rectangle.X;
+                                FormEditarCampo.EntradaY.ValueInt = CampoSeleccionado.Rectangle.Y;
+                                FormEditarCampo.EntradaAncho.ValueInt = CampoSeleccionado.Rectangle.Width;
+                                FormEditarCampo.EntradaAlto.ValueInt = CampoSeleccionado.Rectangle.Height;
+                                FormEditarCampo.EntradaAlienacionHorizontal.TextKey = CampoSeleccionado.Alignment.ToString();
+                                FormEditarCampo.EntradaAlienacionVertical.TextKey = CampoSeleccionado.LineAlignment.ToString();
+                                FormEditarCampo.EntradaAjusteTexto.TextKey = CampoSeleccionado.Wrap ? "1" : "0";
+                                FormEditarCampo.EntradaAnchoBorde.ValueInt = CampoSeleccionado.AnchoBorde;
                                 FormEditarCampo.ColorBorde.BackColor = CampoSeleccionado.ColorBorde;
                                 FormEditarCampo.ColorFondo.BackColor = CampoSeleccionado.ColorFondo;
                                 FormEditarCampo.ColorTexto.BackColor = CampoSeleccionado.ColorTexto;
@@ -413,10 +419,11 @@ namespace Lfc.Comprobantes.Plantillas
                                         FormEditarCampo.EntradaFuenteTamano.Text = "0";
                                 }
                                 if (FormEditarCampo.ShowDialog() == DialogResult.OK) {
-                                        CampoSeleccionado.Rectangle.X = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaX.Text);
-                                        CampoSeleccionado.Rectangle.Y = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaY.Text);
-                                        CampoSeleccionado.Rectangle.Width = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaAncho.Text);
-                                        CampoSeleccionado.Rectangle.Height = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaAlto.Text);
+                                        if (FormEditarCampo.EntradaFormato.TextKey == "*")
+                                                CampoSeleccionado.Formato = null;
+                                        else
+                                                CampoSeleccionado.Formato = FormEditarCampo.EntradaFormato.TextKey;
+                                        CampoSeleccionado.Rectangle = new Rectangle(FormEditarCampo.EntradaX.ValueInt, FormEditarCampo.EntradaY.ValueInt, FormEditarCampo.EntradaAncho.ValueInt, FormEditarCampo.EntradaAlto.ValueInt);
                                         CampoSeleccionado.Valor = FormEditarCampo.EntradaTexto.Text;
                                         CampoSeleccionado.AnchoBorde = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaAnchoBorde.Text);
                                         CampoSeleccionado.ColorBorde = FormEditarCampo.ColorBorde.BackColor;
@@ -427,7 +434,7 @@ namespace Lfc.Comprobantes.Plantillas
                                         } else {
                                                 CampoSeleccionado.Font = null;
                                         }
-                                        switch (FormEditarCampo.txtAlign.TextKey) {
+                                        switch (FormEditarCampo.EntradaAlienacionHorizontal.TextKey) {
                                                 case "Far":
                                                         CampoSeleccionado.Alignment = StringAlignment.Far;
                                                         break;
@@ -438,7 +445,7 @@ namespace Lfc.Comprobantes.Plantillas
                                                         CampoSeleccionado.Alignment = StringAlignment.Near;
                                                         break;
                                         }
-                                        switch (FormEditarCampo.txtLineAlign.TextKey) {
+                                        switch (FormEditarCampo.EntradaAlienacionVertical.TextKey) {
                                                 case "Far":
                                                         CampoSeleccionado.LineAlignment = StringAlignment.Far;
                                                         break;
@@ -449,7 +456,7 @@ namespace Lfc.Comprobantes.Plantillas
                                                         CampoSeleccionado.LineAlignment = StringAlignment.Near;
                                                         break;
                                         }
-                                        CampoSeleccionado.Wrap = FormEditarCampo.txtWrap.TextKey == "1";
+                                        CampoSeleccionado.Wrap = FormEditarCampo.EntradaAjusteTexto.TextKey == "1";
                                         this.ActualizarCampos();
                                         ImagePreview.Invalidate();
                                 }

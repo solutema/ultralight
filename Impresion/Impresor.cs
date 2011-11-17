@@ -87,10 +87,14 @@ namespace Lazaro.Impresion
 
                 public virtual Lfx.Types.OperationResult Imprimir()
                 {
-                        try {
+                        if (this.Workspace.DebugMode) {
                                 this.Print();
-                        } catch (Exception ex) {
-                                return new Lfx.Types.FailureOperationResult(ex.Message);
+                        } else {
+                                try {
+                                        this.Print();
+                                } catch (Exception ex) {
+                                        return new Lfx.Types.FailureOperationResult(ex.Message);
+                                }
                         }
                         return new Lfx.Types.SuccessOperationResult();
                 }

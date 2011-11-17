@@ -117,7 +117,7 @@ namespace Lazaro.Impresion.Comprobantes
                         return ResultadoImprimir;
                 }
 
-                public override string ObtenerValorCampo(string nombreCampo)
+                public override string ObtenerValorCampo(string nombreCampo, string formato)
                 {
                         string Res = null;
                         switch (nombreCampo.ToUpperInvariant()) {
@@ -254,7 +254,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         return this.Comprobante.Tipo.Nombre;
 
                                 default:
-                                        return base.ObtenerValorCampo(nombreCampo);
+                                        return base.ObtenerValorCampo(nombreCampo, formato);
                         }
                 }
 	}

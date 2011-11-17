@@ -74,43 +74,7 @@ namespace Lfx.Data
                         get
                         {
                                 if (m_Tables == null || m_Tables.Count == 0) {
-                                        m_Tables = new Lfx.Data.TableCollection(Lfx.Workspace.Master.MasterConnection);
-                                        foreach (string TblName in Lfx.Data.DataBaseCache.DefaultCache.GetTableNames()) {
-                                                Lfx.Data.Table NewTable = new Lfx.Data.Table(Lfx.Workspace.Master.MasterConnection, TblName);
-                                                switch (TblName) {
-                                                        case "alicuotas":
-                                                        case "articulos_codigos":
-                                                        case "articulos_situaciones":
-                                                        case "bancos":
-                                                        case "cajas":
-                                                        case "conceptos":
-                                                        case "ciudades":
-                                                        case "documentos_tipos":
-                                                        case "formaspago":
-                                                        case "impresoras":
-                                                        case "lared_convenios":
-                                                        case "margenes":
-                                                        case "monedas":
-                                                        case "personas_tipos":
-                                                        case "pvs":
-                                                        case "situaciones":
-                                                        case "sucursales":
-                                                        case "sys_permisos_objetos":
-                                                        case "sys_plantillas":
-                                                        case "sys_tags":
-                                                        case "tickets_estados":
-                                                        case "tipo_doc":
-                                                                NewTable.AlwaysCache = true;
-                                                                break;
-
-                                                        case "sys_log":
-                                                        case "sys_programador":
-                                                        case "sys_quickpaste":
-                                                                NewTable.Cacheable = false;
-                                                                break;
-                                                }
-                                                m_Tables.Add(NewTable);
-                                        }
+                                        m_Tables = this.Connection.GetTables();
                                 }
                                 return m_Tables;
                         }

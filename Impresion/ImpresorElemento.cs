@@ -188,7 +188,8 @@ namespace Lazaro.Impresion
                         Regex Rx = new Regex(@"\{[_\.0-9a-zA-Z]+\}", RegexOptions.ExplicitCapture | RegexOptions.Singleline);
                         MatchCollection NombresCampo = Rx.Matches(Texto);
                         foreach (Match Mt in NombresCampo) {
-                                Texto = Texto.Replace(Mt.Value, ObtenerValorCampo(Mt.Value.Substring(1, Mt.Value.Length - 2).ToLowerInvariant()));
+                                string ValorCampo = ObtenerValorCampo(Mt.Value.Substring(1, Mt.Value.Length - 2), Cam.Formato);
+                                Texto = Texto.Replace(Mt.Value, ValorCampo);
                         }
 
                         StringFormat Fmt = new StringFormat(); //StringFormatFlags.NoClip);
@@ -197,19 +198,17 @@ namespace Lazaro.Impresion
                         Fmt.Alignment = Cam.Alignment;
                         Fmt.LineAlignment = Cam.LineAlignment;
                         Fmt.Trimming = StringTrimming.EllipsisCharacter;
-                        e.Graphics.DrawString(Texto, Cam.Font == null ? Plantilla.Font : Cam.Font, new SolidBrush(Cam.ColorTexto), Cam.Rectangle, Fmt);
+                        Font Fnt = Cam.Font;
+                        if (Fnt == null)
+                                Fnt = Plantilla.Font;
+                        if (Fnt == null)
+                                Fnt = Lfx.Config.Display.DefaultFont;
+                        e.Graphics.DrawString(Texto, Fnt, new SolidBrush(Cam.ColorTexto), Cam.Rectangle, Fmt);
                 }
 
-                public virtual string ObtenerValorCampo(string nombreCampo)
+                public virtual string ObtenerValorCampo(string nombreCampo, string formato)
                 {
-                        object Res = this.Elemento.GetFieldValue<object>(nombreCampo);
-                        if (Res != null)
-                                return Res.ToString();
-
                         switch (nombreCampo.ToUpperInvariant()) {
-                                case "NOMBRE":
-                                        return (this.Elemento as Lbl.ICamposBaseEstandar).Nombre;
-
                                 case "EMPRESA":
                                 case "EMPRESA.NOMBRE":
                                         return Lbl.Sys.Config.Actual.Empresa.Nombre;
@@ -222,15 +221,72 @@ namespace Lazaro.Impresion
                                         return this.Workspace.CurrentConfig.Empresa.Telefono;
 
                                 default:
-                                        // Intento obtener una propiedad por su nombre
-                                        // TODO: implementar propiedades de propiedades (ejemplo "Cliente.Ciudad")
-                                        System.Reflection.PropertyInfo Prop = this.Elemento.GetType().GetProperty(nombreCampo);
-                                        if (Prop != null) {
-                                                object Val = Prop.GetValue(this.Elemento, null);
-                                                return Val.ToString();
-                                        } else {
-                                                return "{" + nombreCampo + "}";
+                                        // Intento obtener por nombre de propiedad del objeto
+                                        object Val = ObtenerPropiedadElemento(this.Elemento, nombreCampo);
+                                        if (Val == null) {
+                                                // Intento obtener por nombre de campo
+                                                Val = this.Elemento.GetFieldValue<object>(nombreCampo.ToLowerInvariant());
                                         }
+
+                                        if (Val is DateTime) {
+                                                if (formato != null) {
+                                                        try {
+                                                                return ((DateTime)Val).ToString(formato);
+                                                        } catch {
+                                                                return "Formato no válido";
+                                                        }
+                                                } else {
+                                                        return ((DateTime)Val).ToString(Lfx.Types.Formatting.DateTime.LongDatePattern);
+                                                }
+                                        } else if (Val is decimal) {
+                                                if (formato != null) {
+                                                        try {
+                                                                return ((decimal)Val).ToString(formato);
+                                                        } catch {
+                                                                return "Formato no válido";
+                                                        }
+                                                } else {
+                                                        return ((decimal)Val).ToString("#.00");
+                                                }
+                                        } else {
+                                                return Val.ToString();
+                                        }
+                        }
+                }
+
+                private object ObtenerPropiedadElemento(Lbl.ElementoDeDatos elemento, string nombrePropiedad)
+                {
+                        // Intento obtener una propiedad por su nombre
+                        // TODO: implementar propiedades de propiedades (ejemplo "Cliente.Ciudad")
+                        if (nombrePropiedad == null || nombrePropiedad.Length == 0)
+                                return null;
+
+                        string[] Partes = nombrePropiedad.Split(new char[] { '.' }, 2);
+                        if(Partes.Length == 0)
+                                return null;
+
+                        System.Reflection.PropertyInfo Prop = elemento.GetType().GetProperty(Partes[0]);
+                        object Val = null;
+
+                        if (Prop != null) {
+                                Val = Prop.GetValue(elemento, null);
+                        } else {
+                                // No hay propiedad... busco un miembro público
+                                System.Reflection.FieldInfo Fi = elemento.GetType().GetField(Partes[0]);
+                                try {
+                                        Val = elemento.GetType().InvokeMember(Fi.Name, System.Reflection.BindingFlags.GetField, null, elemento, null);
+                                } catch {
+                                        Val = null;
+                                }
+                        }
+
+                        
+                        if (Val == null) {
+                                return null;
+                        } else if (Val is Lbl.ElementoDeDatos && Partes.Length > 1) {
+                                return ObtenerPropiedadElemento(Val as Lbl.ElementoDeDatos, Partes[1]);
+                        } else {
+                                return Val;
                         }
                 }
         }

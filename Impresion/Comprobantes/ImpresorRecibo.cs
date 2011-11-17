@@ -49,7 +49,7 @@ namespace Lazaro.Impresion.Comprobantes
                         }
                 }
 
-                public override string ObtenerValorCampo(string nombreCampo)
+                public override string ObtenerValorCampo(string nombreCampo, string formato)
                 {
                         switch (nombreCampo.ToUpperInvariant()) {
                                 case "CLIENTE":
@@ -147,7 +147,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         }
                                         return Valores.ToString();
                                 default:
-                                        return base.ObtenerValorCampo(nombreCampo);
+                                        return base.ObtenerValorCampo(nombreCampo, formato);
                         }
                 }
 	}

@@ -146,6 +146,8 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "VENTRE":
+                                        Lfx.Data.Connection ConexionFiltro = Lfx.Workspace.Master.GetNewConnection("Importar datos");
+
                                         string Opciones = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
                                         Lbl.Servicios.Importar.Opciones OpcionesFiltro = new Lbl.Servicios.Importar.Opciones();
                                         OpcionesFiltro.ImportarClientes = Opciones.IndexOf('C') >= 0;
@@ -155,7 +157,7 @@ namespace Lazaro.WinMain
 
                                         OpcionesFiltro.ActualizarRegistros = SubComando.IndexOf('+') >= 0;
 
-                                        Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(Lfx.Workspace.Master.MasterConnection, OpcionesFiltro);
+                                        Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(ConexionFiltro, OpcionesFiltro);
                                         Fil.Dsn = "ventre";
 
                                         System.Threading.ThreadStart ThreadFiltro = delegate { Fil.Importar(); ; };

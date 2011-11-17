@@ -114,6 +114,7 @@ namespace Lbl.Servicios.Importar
                                         mapa.Saltear--;
                         }
 
+                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
                         // Navegar todos los registros
                         Progreso.ChangeStatus("Incorporando " + ReadTable.Rows.Count.ToString() + " registros de la tabla " + mapa.ToString());
                         Progreso.Max = ReadTable.Rows.Count;
@@ -129,11 +130,15 @@ namespace Lbl.Servicios.Importar
                                 if ((RowNumber % 200) == 0) {
                                         Progreso.Advance(200);
                                         this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados", this.Nombre + "." + mapa.Nombre, RowNumber.ToString(), 0);
+                                        Trans.Commit();
+                                        Trans.Dispose();
+                                        Trans = this.Connection.BeginTransaction();
                                 }
 
                                 if (mapa.Limite > 0 && RowNumber > mapa.Limite)
                                         break;
                         }
+                        Trans.Commit();
                         this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados", this.Nombre + "." + mapa.Nombre, RowNumber.ToString(), 0);
                 }
                 
