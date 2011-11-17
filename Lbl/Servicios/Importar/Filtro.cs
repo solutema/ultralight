@@ -94,8 +94,8 @@ namespace Lbl.Servicios.Importar
 
                 public virtual void ImportarTabla(MapaDeTabla mapa)
                 {
-                        Progreso.ChangeStatus("Leyendo la tabla " + mapa.ToString());
                         Progreso.Value = 0;
+                        Progreso.ChangeStatus("Leyendo la tabla " + mapa.ToString());
 
                         string SqlSelect = @"SELECT * FROM " + mapa.TablaExterna;
                         if (mapa.Where != null)
