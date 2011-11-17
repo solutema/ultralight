@@ -62,7 +62,7 @@ namespace Lfx.Backups
 
                 public void Delete(string Carpeta)
                 {
-                        if (Carpeta.Length > 0 && System.IO.Directory.Exists(BackupPath + Carpeta)) {
+                        if (Carpeta != null && Carpeta.Length > 0 && System.IO.Directory.Exists(BackupPath + Carpeta)) {
                                 System.IO.Directory.Delete(BackupPath + Carpeta, true);
                         }
                 }

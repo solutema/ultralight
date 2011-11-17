@@ -155,9 +155,7 @@
     <Compile Include="Personas\Proveedor.cs" />
     <Compile Include="Servicios\Desduplicador.cs" />
     <Compile Include="Servicios\Importar\Filtro.cs" />
-    <Compile Include="Servicios\Importar\FiltroArchivos.cs" />
-    <Compile Include="Servicios\Importar\FiltroBd.cs" />
-    <Compile Include="Servicios\Importar\FiltroDbf.cs" />
+    <Compile Include="Servicios\Importar\FiltroOdbc.cs" />
     <Compile Include="Servicios\Importar\FiltroEscorpion.cs" />
     <Compile Include="Servicios\Importar\FiltroLazaro.cs" />
     <Compile Include="Servicios\Importar\MapaDeColumnas.cs" />

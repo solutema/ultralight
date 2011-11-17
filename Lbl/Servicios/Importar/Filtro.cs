@@ -40,16 +40,15 @@ namespace Lbl.Servicios.Importar
         /// </summary>
         public class Filtro
         {
-                public Opciones Opciones { get; set; }
-
+                protected System.Data.IDbConnection ConexionExterna { get; set; }
                 protected Lfx.Types.OperationProgress Progreso;
-                public Lfx.Data.Connection Connection { get; set; }
+                protected Lfx.Data.Connection Connection { get; set; }
+                protected IDictionary<string, IDictionary<string, object>> CacheConversiones = new Dictionary<string, IDictionary<string, object>>();
+
+                public Opciones Opciones { get; set; }
                 public ColeccionMapaDeTablas MapaDeTablas;
                 public string Name = "Filtro de importación genérico";
-
                 public IList<Reemplazo> Reemplazos = new List<Reemplazo>();
-
-                protected IDictionary<string, IDictionary<string, object>> CacheConversiones = new Dictionary<string, IDictionary<string, object>>();
 
                 public Filtro(Lfx.Data.Connection dataBase, Opciones opciones)
                 {
@@ -66,8 +65,7 @@ namespace Lbl.Servicios.Importar
 
                         this.PrepararTablasLazaro();
                         this.PreImportar();
-                        this.CargarTodo();
-                        this.FusionarTodo();
+                        this.ImportarTodo();
                         this.PostImportar();
 
                         this.Progreso.End();
@@ -84,72 +82,81 @@ namespace Lbl.Servicios.Importar
                 }
 
                 /// <summary>
-                /// Carga en memoria los datos a importar.
+                /// Comienza la importación de todos los mapas.
                 /// </summary>
-                public void CargarTodo()
+                public void ImportarTodo()
                 {
-                        foreach (MapaDeTabla Map in MapaDeTablas) {
-                                Map.ImportedRows = CargarTabla(Map);
+                        foreach (MapaDeTabla Mapa in MapaDeTablas) {
+                                ImportarTabla(Mapa);
                         }
                 }
 
 
-                public virtual IList<Lfx.Data.Row> CargarTabla(MapaDeTabla mapa)
+                public virtual void ImportarTabla(MapaDeTabla mapa)
                 {
-                        throw new NotImplementedException("El filtro " + this.Name + " debe implementar CargarTabla()");
-                }
+                        Progreso.ChangeStatus("Leyendo " + mapa.ToString());
 
+                        string SqlSelect = @"SELECT * FROM " + mapa.TablaExterna;
+                        if (mapa.Where != null)
+                                SqlSelect += " WHERE " + mapa.Where;
 
-                /// <summary>
-                /// Incorpora en la base de datos los datos cargados en memoria.
-                /// </summary>
-                public virtual void FusionarTodo()
-                {
-                        foreach (MapaDeTabla Mapa in this.MapaDeTablas) {
-                                this.FusionarTabla(Mapa);
-                        }
-                }
+                        // Hago un SELECT de la tabla
+                        System.Data.IDbCommand TableCommand = ConexionExterna.CreateCommand();
+                        TableCommand.CommandText = SqlSelect;
+                        System.Data.DataTable ReadTable = new System.Data.DataTable();
+                        ReadTable.Locale = System.Globalization.CultureInfo.CurrentCulture;
+                        ReadTable.Load(TableCommand.ExecuteReader());
 
-                /// <summary>
-                /// Incorpora en la base de datos los datos cargados en memoria para la tabla seleccionada.
-                /// </summary>
-                public virtual void FusionarTabla(MapaDeTabla mapa)
-                {
+                        // Navegar todos los registros
                         Progreso.Value = 0;
-                        Progreso.ChangeStatus("Incorporando " + mapa.ToString());
-                        Progreso.Max = mapa.ImportedRows.Count;
-                        foreach (Lfx.Data.Row ImportedRow in mapa.ImportedRows) {
-                                object ImportIdValue = ImportedRow.Fields[mapa.ColumnaIdLazaro].Value;
-                                string ImportIdSqlValue;
-                                if(ImportIdValue is string) {
-                                        ImportIdSqlValue = "'" + ImportIdValue.ToString() + "'";
-                                } else if (ImportIdValue is decimal || ImportIdValue is double) {
-                                        ImportIdSqlValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(ImportIdValue));
-                                } else if (ImportIdValue is DateTime) {
-                                        ImportIdSqlValue = "'" + Lfx.Types.Formatting.FormatDateTimeSql(System.Convert.ToDateTime(ImportIdValue)) + "'";
-                                } else {
-                                        ImportIdSqlValue = ImportIdValue.ToString();
+                        Progreso.Max = ReadTable.Rows.Count;
+                        int RowNumber = 0;
+                        foreach (System.Data.DataRow OriginalRow in ReadTable.Rows) {
+                                ++RowNumber;
+
+                                if (mapa.Saltear > 0 || RowNumber > mapa.Saltear) {
+                                        Lfx.Data.Row ProcessedRow = this.ProcesarRegistro(mapa, OriginalRow);
+                                        this.ImportarRegistro(mapa, ProcessedRow);
                                 }
-
-                                Lfx.Data.Row CurrentRow = this.Connection.FirstRowFromSelect("SELECT * FROM " + mapa.TablaLazaro + " WHERE " + mapa.ColumnaIdLazaro + "=" + ImportIdSqlValue);
-                                Lbl.IElementoDeDatos Elem = ConvertirRegistroEnElemento(mapa, ImportedRow, CurrentRow);
-
-                                if (Elem != null) {
-                                        this.GuardarElemento(mapa, Elem);
-
-                                        if (this.Opciones.ImportarStock && Elem is Lbl.Articulos.Articulo && ImportedRow.Fields.Contains("stock_actual")) {
-                                                // Actualizo el stock
-                                                Lbl.Articulos.Articulo Art = Elem as Lbl.Articulos.Articulo;
-
-                                                decimal StockActual = Art.ObtenerStockActual();
-                                                decimal NuevoStock = System.Convert.ToDecimal(ImportedRow["stock_actual"]);
-                                                decimal Diferencia = NuevoStock - StockActual;
-
-                                                if (Diferencia != 0)
-                                                        Art.MoverStock(Diferencia, "Stock importado desde " + this.Name, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
-                                        }
-                                }
+                                
                                 Progreso.Advance(1);
+                                if (mapa.Limite > 0 && RowNumber > mapa.Limite)
+                                        break;
+                        }
+                }
+                
+
+                public virtual void ImportarRegistro(MapaDeTabla mapa, Lfx.Data.Row importedRow)
+                {
+                        object ImportIdValue = importedRow.Fields[mapa.ColumnaIdLazaro].Value;
+                        string ImportIdSqlValue;
+                        if (ImportIdValue is string) {
+                                ImportIdSqlValue = "'" + ImportIdValue.ToString() + "'";
+                        } else if (ImportIdValue is decimal || ImportIdValue is double) {
+                                ImportIdSqlValue = Lfx.Types.Formatting.FormatNumberSql(System.Convert.ToDecimal(ImportIdValue));
+                        } else if (ImportIdValue is DateTime) {
+                                ImportIdSqlValue = "'" + Lfx.Types.Formatting.FormatDateTimeSql(System.Convert.ToDateTime(ImportIdValue)) + "'";
+                        } else {
+                                ImportIdSqlValue = ImportIdValue.ToString();
+                        }
+
+                        Lfx.Data.Row CurrentRow = this.Connection.FirstRowFromSelect("SELECT * FROM " + mapa.TablaLazaro + " WHERE " + mapa.ColumnaIdLazaro + "=" + ImportIdSqlValue);
+                        Lbl.IElementoDeDatos Elem = ConvertirRegistroEnElemento(mapa, importedRow, CurrentRow);
+
+                        if (Elem != null) {
+                                this.GuardarElemento(mapa, Elem);
+
+                                if (this.Opciones.ImportarStock && Elem is Lbl.Articulos.Articulo && importedRow.Fields.Contains("stock_actual")) {
+                                        // Actualizo el stock
+                                        Lbl.Articulos.Articulo Art = Elem as Lbl.Articulos.Articulo;
+
+                                        decimal StockActual = Art.ObtenerStockActual();
+                                        decimal NuevoStock = System.Convert.ToDecimal(importedRow["stock_actual"]);
+                                        decimal Diferencia = NuevoStock - StockActual;
+
+                                        if (Diferencia != 0)
+                                                Art.MoverStock(Diferencia, "Stock importado desde " + this.Name, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                }
                         }
                 }
 
@@ -308,7 +315,7 @@ namespace Lbl.Servicios.Importar
                                 foreach (Reemplazo Rmp in this.Reemplazos) {
                                         if (Fld.DataType == Rmp.Tipo 
                                                 && (Rmp.NombreCampo == null || Rmp.NombreCampo == Fld.ColumnName
-                                                        || Rmp.NombreCampo == mapa.Archivo + ":" + Fld.ColumnName))
+                                                        || Rmp.NombreCampo == mapa.TablaExterna + ":" + Fld.ColumnName))
                                                 Fld.Value = Rmp.Reemplazar(Fld.Value);
                                 }
                         }

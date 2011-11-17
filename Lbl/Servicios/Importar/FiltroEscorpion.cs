@@ -38,7 +38,7 @@ namespace Lbl.Servicios.Importar
         /// <summary>
         /// Describe un filtro de importación desde archivos DBF del sistema de Escorpión Sistemas.
         /// </summary>
-        public class FiltroEscorpion : FiltroDbf
+        public class FiltroEscorpion : FiltroOdbc
         {
                 public FiltroEscorpion(Lfx.Data.Connection dataBase, Opciones opciones)
                         : base(dataBase, opciones)
@@ -102,7 +102,7 @@ namespace Lbl.Servicios.Importar
 
                         if (this.Opciones.ImportarFacturas) {
                                 // Movimientos de stock (a.k.a. facturas)
-                                this.MapaDeTablas.AddWithValue("Comprobantes", "movimien.dbf", "comprob_detalle", "lazaro_recno");
+                                this.MapaDeTablas.AddWithValue("Comprobantes", "movimien.dbf", "comprob_detalle", "TIPO,NROCOM");
                                 this.MapaDeTablas["movimien.dbf"].TipoElemento = typeof(Lbl.Comprobantes.DetalleArticulo);
                                 //this.MapaDeTablas["movimien.dbf"].Limite = 1000;
                                 this.MapaDeTablas["movimien.dbf"].ActualizaRegistros = false;
@@ -218,9 +218,9 @@ namespace Lbl.Servicios.Importar
                                                                 SelCliente.WhereClause = new qGen.Where();
                                                                 SelCliente.WhereClause.AddWithValue("import_id", ClienteVentre);
                                                                 Cliente = this.Connection.FieldInt(SelCliente);
-                                                                if (Cliente <= 0)
-                                                                        Cliente = 999;
                                                         } */
+                                                        if (Cliente <= 0)
+                                                                Cliente = 999;
                                                         qGen.Insert NewFac = new qGen.Insert("comprob");
                                                         NewFac.Fields.AddWithValue("id_formapago", 1);
                                                         NewFac.Fields.AddWithValue("tipo_fac", TipoLazaro);

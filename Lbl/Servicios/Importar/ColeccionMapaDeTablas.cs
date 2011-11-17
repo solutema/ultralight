@@ -54,7 +54,7 @@ namespace Lbl.Servicios.Importar
                         get
                         {
                                 foreach (MapaDeTabla Map in this) {
-                                        if (Map.Archivo == tablaExterna)
+                                        if (Map.TablaExterna == tablaExterna)
                                                 return Map;
                                 }
                                 return null;

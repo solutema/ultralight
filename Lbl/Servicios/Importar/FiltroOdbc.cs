@@ -36,17 +36,41 @@ using System.Text;
 namespace Lbl.Servicios.Importar
 {
         /// <summary>
-        /// Describe un filtro de importación desde uno o varios archivos.
+        /// Filtro de importación desde on origen ODBC.
         /// </summary>
-        public class FiltroArchivos : Filtro
+        public class FiltroOdbc : Filtro
         {
-                public FiltroArchivos(Lfx.Data.Connection dataBase, Opciones opciones)
-                        : base(dataBase, opciones)
+                public string Dsn { get; set; }
+
+                public FiltroOdbc(Lfx.Data.Connection dataBase, Opciones opciones)
+                        : base(dataBase, opciones) { }
+
+
+                public override void PreImportar()
                 {
-                        this.Name = "Filtro de importación genérico de archivos";
+                        if (ConexionExterna != null) {
+                                if (ConexionExterna.State == System.Data.ConnectionState.Open)
+                                        ConexionExterna.Close();
+                                ConexionExterna.Dispose();
+                        }
+
+                        ConexionExterna = new System.Data.Odbc.OdbcConnection();
+                        ConexionExterna.ConnectionString = @"dsn=" + this.Dsn + ";";
+                        ConexionExterna.Open();
+
+                        base.PreImportar();
                 }
 
-                public string Carpeta { get; set; }
-                public string Dsn { get; set; }
+
+                public override void PostImportar()
+                {
+                        if (ConexionExterna != null) {
+                                if (ConexionExterna.State == System.Data.ConnectionState.Open)
+                                        ConexionExterna.Close();
+                                ConexionExterna.Dispose();
+                        }
+
+                        base.PostImportar();
+                }
         }
 }

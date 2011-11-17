@@ -41,27 +41,31 @@ namespace Lbl.Servicios.Importar
         public class MapaDeTabla
         {
                 public string Nombre { get; set; }
-                public string Archivo, TablaLazaro, ColumnaIdExterna = null, ColumnaIdLazaro = "import_id";
-                public MapaDeColumnas MapaDeColumnas = new MapaDeColumnas();
+                public string TablaExterna { get; set; }
+                public string TablaLazaro { get; set; }
+                public string ColumnaIdExterna { get; set; }
+                public string ColumnaIdLazaro { get; set; }
+                public MapaDeColumnas MapaDeColumnas { get; set; }
                 public Type TipoElemento { get; set; }
                 public string Where { get; set; }
-                public IList<Lfx.Data.Row> ImportedRows { get; set; }
                 public bool ActualizaRegistros { get; set; }
                 public int Limite { get; set; }
                 public int Saltear { get; set; }
 
                 public MapaDeTabla(string nombre, string tablaExterna, string tablaLazaro)
                 {
+                        this.MapaDeColumnas = new MapaDeColumnas();
+                        this.ColumnaIdLazaro = "import_id";
                         this.Nombre = nombre;
                         this.ActualizaRegistros = true;
-                        this.Archivo = tablaExterna;
+                        this.TablaExterna = tablaExterna;
                         this.TablaLazaro = tablaLazaro;
                 }
 
-                public MapaDeTabla(string nombre, string tablaExterna, string tablaLazaro, string columnaId)
+                public MapaDeTabla(string nombre, string tablaExterna, string tablaLazaro, string columnaIdExterna)
                         : this(nombre, tablaExterna, tablaLazaro)
                 {
-                        this.ColumnaIdExterna = columnaId;
+                        this.ColumnaIdExterna = columnaIdExterna;
                 }
 
                 public override string ToString()

@@ -59,10 +59,11 @@ namespace Lfx.Environment
                 {
                         get
                         {
-                                string CompletePath = ApplicationDataFolder + "Temp" + System.IO.Path.DirectorySeparatorChar;
+                                return System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Lazaro") + System.IO.Path.DirectorySeparatorChar;
+                                /* string CompletePath = ApplicationDataFolder + "Temp" + System.IO.Path.DirectorySeparatorChar;
                                 if (!System.IO.Directory.Exists(CompletePath))
                                         System.IO.Directory.CreateDirectory(CompletePath);
-                                return CompletePath;
+                                return CompletePath; */
                         }
                 }
 

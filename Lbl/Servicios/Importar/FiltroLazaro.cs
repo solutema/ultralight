@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Lbl.Servicios.Importar
 {
-        public class FiltroLazaro : FiltroBd
+        public class FiltroLazaro : Filtro
         {
                 public FiltroLazaro(Lfx.Data.Connection dataBase, Opciones opciones)
                         : base(dataBase, opciones)
