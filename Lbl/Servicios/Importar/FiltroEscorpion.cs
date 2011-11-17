@@ -43,7 +43,7 @@ namespace Lbl.Servicios.Importar
                 public FiltroEscorpion(Lfx.Data.Connection dataBase, Opciones opciones)
                         : base(dataBase, opciones)
                 {
-                        this.Name = "Escorpión Sistemas";
+                        this.Nombre = "Escorpión Sistemas";
 
                         this.Reemplazos.Add(new Reemplazo("NO POSEE", ""));
 
@@ -172,7 +172,7 @@ namespace Lbl.Servicios.Importar
                                                         TipoComprobVentre = "Nota de Crédito";
                                                         Movim.Importe = -Movim.Importe;
                                                 }
-                                                Movim.Nombre = TipoComprobVentre + " " + externalRow["original_NROCOM"].ToString();
+                                                Movim.Nombre = TipoComprobVentre + " 0001-" + System.Convert.ToInt32(externalRow["original_NROCOM"]).ToString("00000000");
                                         }
                                         return ElemMovim;
 
@@ -210,15 +210,6 @@ namespace Lbl.Servicios.Importar
 
                                                 if (FacRow == null) {
                                                         int Cliente = System.Convert.ToInt32(externalRow["CLIENTE"]);
-                                                        /* int ClienteVentre = System.Convert.ToInt32(externalRow["original_CLIENTE"]);
-                                                        if (ClienteVentre == 1) {
-                                                                Cliente = 999;
-                                                        } else {
-                                                                qGen.Select SelCliente = new qGen.Select("personas");
-                                                                SelCliente.WhereClause = new qGen.Where();
-                                                                SelCliente.WhereClause.AddWithValue("import_id", ClienteVentre);
-                                                                Cliente = this.Connection.FieldInt(SelCliente);
-                                                        } */
                                                         if (Cliente <= 0)
                                                                 Cliente = 999;
                                                         qGen.Insert NewFac = new qGen.Insert("comprob");

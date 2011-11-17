@@ -51,6 +51,7 @@ namespace Lbl.Servicios.Importar
                 public bool ActualizaRegistros { get; set; }
                 public int Limite { get; set; }
                 public int Saltear { get; set; }
+                public bool AutoSaltear { get; set; }
 
                 public MapaDeTabla(string nombre, string tablaExterna, string tablaLazaro)
                 {
@@ -60,6 +61,7 @@ namespace Lbl.Servicios.Importar
                         this.ActualizaRegistros = true;
                         this.TablaExterna = tablaExterna;
                         this.TablaLazaro = tablaLazaro;
+                        this.AutoSaltear = true;
                 }
 
                 public MapaDeTabla(string nombre, string tablaExterna, string tablaLazaro, string columnaIdExterna)

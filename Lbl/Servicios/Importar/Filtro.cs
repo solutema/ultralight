@@ -47,7 +47,7 @@ namespace Lbl.Servicios.Importar
 
                 public Opciones Opciones { get; set; }
                 public ColeccionMapaDeTablas MapaDeTablas;
-                public string Name = "Filtro de importación genérico";
+                public string Nombre = "Filtro de importación genérico";
                 public IList<Reemplazo> Reemplazos = new List<Reemplazo>();
 
                 public Filtro(Lfx.Data.Connection dataBase, Opciones opciones)
@@ -59,7 +59,7 @@ namespace Lbl.Servicios.Importar
 
                 public void Importar()
                 {
-                        this.Progreso = new Lfx.Types.OperationProgress("Importando datos de " + this.Name, "Se están importando los datos del filtro " + this.Name);
+                        this.Progreso = new Lfx.Types.OperationProgress("Importando datos de " + this.Nombre, "Se están importando los datos del filtro " + this.Nombre);
                         this.Progreso.Blocking = false;
                         this.Progreso.Begin();
 
@@ -94,7 +94,8 @@ namespace Lbl.Servicios.Importar
 
                 public virtual void ImportarTabla(MapaDeTabla mapa)
                 {
-                        Progreso.ChangeStatus("Leyendo " + mapa.ToString());
+                        Progreso.ChangeStatus("Leyendo la tabla " + mapa.ToString());
+                        Progreso.Value = 0;
 
                         string SqlSelect = @"SELECT * FROM " + mapa.TablaExterna;
                         if (mapa.Where != null)
@@ -107,22 +108,33 @@ namespace Lbl.Servicios.Importar
                         ReadTable.Locale = System.Globalization.CultureInfo.CurrentCulture;
                         ReadTable.Load(TableCommand.ExecuteReader());
 
+                        if (mapa.AutoSaltear) {
+                                mapa.Saltear = this.Connection.Workspace.CurrentConfig.ReadGlobalSetting<int>("Importar.RegistrosImportados", this.Nombre + "." + mapa.Nombre, 0);
+                                if (mapa.Saltear > 1)
+                                        mapa.Saltear--;
+                        }
+
                         // Navegar todos los registros
-                        Progreso.Value = 0;
+                        Progreso.ChangeStatus("Incorporando " + ReadTable.Rows.Count.ToString() + " registros de la tabla " + mapa.ToString());
                         Progreso.Max = ReadTable.Rows.Count;
                         int RowNumber = 0;
                         foreach (System.Data.DataRow OriginalRow in ReadTable.Rows) {
                                 ++RowNumber;
 
-                                if (mapa.Saltear > 0 || RowNumber > mapa.Saltear) {
+                                if (mapa.Saltear == 0 || RowNumber > mapa.Saltear) {
                                         Lfx.Data.Row ProcessedRow = this.ProcesarRegistro(mapa, OriginalRow);
                                         this.ImportarRegistro(mapa, ProcessedRow);
                                 }
-                                
-                                Progreso.Advance(1);
+
+                                if ((RowNumber % 200) == 0) {
+                                        Progreso.Advance(200);
+                                        this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados", this.Nombre + "." + mapa.Nombre, RowNumber.ToString(), 0);
+                                }
+
                                 if (mapa.Limite > 0 && RowNumber > mapa.Limite)
                                         break;
                         }
+                        this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados", this.Nombre + "." + mapa.Nombre, RowNumber.ToString(), 0);
                 }
                 
 
@@ -155,7 +167,7 @@ namespace Lbl.Servicios.Importar
                                         decimal Diferencia = NuevoStock - StockActual;
 
                                         if (Diferencia != 0)
-                                                Art.MoverStock(Diferencia, "Stock importado desde " + this.Name, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                                Art.MoverStock(Diferencia, "Stock importado desde " + this.Nombre, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
                                 }
                         }
                 }
@@ -357,7 +369,7 @@ namespace Lbl.Servicios.Importar
 
                 public override string ToString()
                 {
-                        return this.Name;
+                        return this.Nombre;
                 }
         }
 }
