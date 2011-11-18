@@ -460,12 +460,8 @@ namespace Lbl.Impresion
                         }
                 }
 
-                public override Lfx.Types.OperationResult Cargar()
+                public override void OnLoad()
                 {
-                        Lfx.Types.OperationResult Res = base.Cargar();
-                        if (Res.Success == false)
-                                return Res;
-
                         this.Campos = new List<Campo>();
                         if (System.Convert.ToString(Registro["defxml"]).Length > 5) {
                                 //Tiene definición XML... la cargo
@@ -484,8 +480,8 @@ namespace Lbl.Impresion
                                 System.Drawing.Printing.PrintDocument DocuEjemplo = new System.Drawing.Printing.PrintDocument();
                                 System.Drawing.Graphics GraficoEjemplo = DocuEjemplo.PrinterSettings.CreateMeasurementGraphics();
                                 GraficoEjemplo.PageUnit = System.Drawing.GraphicsUnit.Document;
-                                
-                                System.Drawing.SizeF TamanoCaracter = GraficoEjemplo.MeasureString("H", new System.Drawing.Font( this.Font.Name, this.Font.Size * 0.85F));
+
+                                System.Drawing.SizeF TamanoCaracter = GraficoEjemplo.MeasureString("H", new System.Drawing.Font(this.Font.Name, this.Font.Size * 0.85F));
 
                                 System.Drawing.Rectangle PasadaXY = new System.Drawing.Rectangle();
 
@@ -565,7 +561,7 @@ namespace Lbl.Impresion
                                 this.Font = new System.Drawing.Font("Bitsream Vera Sans Mono", 10);
                         }
 
-                        return Res;
+                        base.OnLoad();
                 }
 	}
 }

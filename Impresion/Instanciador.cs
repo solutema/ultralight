@@ -54,7 +54,7 @@ namespace Lazaro.Impresion
                         } else {
                                 Res = InferirImpresor(tipo.ToString());
 
-                                if (Res == typeof(Lazaro.Impresion.ImpresorGenerico) && tipo.BaseType != null)
+                                if (Res == typeof(Lazaro.Impresion.ImpresorElemento) && tipo.BaseType != null)
                                         // Intento buscar un impresora para la clase base
                                         Res = InferirImpresor(tipo.BaseType);
                         }
@@ -80,7 +80,7 @@ namespace Lazaro.Impresion
                                 case "Lbl.Comprobantes.Remito":
                                         return typeof(Impresion.Comprobantes.ImpresorComprobanteConArticulos);
                                 default:
-                                        return typeof(ImpresorGenerico);
+                                        return typeof(ImpresorElemento);
                         }
                 }
         }

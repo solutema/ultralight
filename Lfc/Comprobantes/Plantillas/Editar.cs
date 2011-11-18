@@ -581,6 +581,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 System.IO.StreamReader Str = new System.IO.StreamReader(FileDialog.FileName, true);
                                 Plantilla.CargarXml(Str.ReadToEnd());
                                 Str.Close();
+                                this.MostrarListaCampos();
                         }
                 }
 

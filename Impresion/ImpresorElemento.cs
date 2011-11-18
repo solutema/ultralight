@@ -53,7 +53,24 @@ namespace Lazaro.Impresion
 
                 protected virtual Lbl.Impresion.Plantilla ObtenerPlantilla()
                 {
-                        return new Lbl.Impresion.Plantilla(this.Connection, this.Elemento.GetType());
+                        return this.ObtenerPlantilla(this.Elemento.GetType());
+                }
+
+
+                protected virtual Lbl.Impresion.Plantilla ObtenerPlantilla(Type tipoElemento)
+                {
+                        qGen.Select SelPla = new qGen.Select("sys_plantillas");
+                        SelPla.WhereClause = new qGen.Where("codigo", tipoElemento.ToString());
+                        Lfx.Data.Row Rw = this.Connection.FirstRowFromSelect(SelPla);
+                        if (Rw != null) {
+                                return new Lbl.Impresion.Plantilla(this.Connection, Rw);
+                        } else if (tipoElemento.BaseType != null) {
+                                return this.ObtenerPlantilla(tipoElemento.BaseType);
+                        } else {
+                                Lbl.Impresion.Plantilla Res = new Lbl.Impresion.Plantilla(this.Connection);
+                                Res.Crear();
+                                return Res;
+                        }
                 }
 
                 public virtual Lbl.Comprobantes.Tipo ObtenerTipo()
@@ -248,6 +265,8 @@ namespace Lazaro.Impresion
                                                 } else {
                                                         return ((decimal)Val).ToString("#.00");
                                                 }
+                                        } else if (Val == null) {
+                                                return "";
                                         } else {
                                                 return Val.ToString();
                                         }
