@@ -85,11 +85,7 @@ namespace Lfc.Articulos
                 {
                         string Ayuda;
                         if (m_Articulo != null) {
-                                if (TextoLibre)
-                                        Ayuda = "Proporcione los datos de ";
-                                else
-                                        Ayuda = "Seleccione ";
-                                Ayuda += Articulo.ToString();
+                                Ayuda = "Proporcione los datos de " + Articulo.ToString();
                                 switch (m_Articulo.ObtenerSeguimiento()) {
                                         case Lbl.Articulos.Seguimientos.NumerosDeSerie:
                                                 VariacionesCantidades.EsNumeroDeSerie = true;
@@ -99,7 +95,7 @@ namespace Lfc.Articulos
                                                 break;
                                 }
                         } else {
-                                Ayuda = "";
+                                Ayuda = "Seguimiento";
                         }
                         EtiquetaArticulo.Text = Ayuda;
                 }
@@ -113,19 +109,14 @@ namespace Lfc.Articulos
                                         return VariacionesCantidades.DatosSeguimiento;
                                 } else {
                                         Lbl.Articulos.ColeccionDatosSeguimiento Res = new Lbl.Articulos.ColeccionDatosSeguimiento();
-                                        /* if (m_Cantidad == 1) {
-                                                if (ListaDatosSeguimiento.SelectedItems.Count == 1)
-                                                        Res.AddWithValue(ListaDatosSeguimiento.SelectedItems[0].Text, 1);
-                                        } else { */
-                                                if (ListaDatosSeguimiento.CheckedItems == null || ListaDatosSeguimiento.CheckedItems.Count == 0)
-                                                        return null;
-                                                foreach (ListViewItem Itm in ListaDatosSeguimiento.CheckedItems) {
-                                                        if (Res.ContainsVariacion(Itm.Text))
-                                                                Res[Itm.Text].Cantidad++;
-                                                        else
-                                                                Res.AddWithValue(Itm.Text, 1);
-                                                }
-                                        //}
+                                        if (ListaDatosSeguimiento.CheckedItems == null || ListaDatosSeguimiento.CheckedItems.Count == 0)
+                                                return null;
+                                        foreach (ListViewItem Itm in ListaDatosSeguimiento.CheckedItems) {
+                                                if (Res.ContainsVariacion(Itm.Text))
+                                                        Res[Itm.Text].Cantidad += Lfx.Types.Parsing.ParseInt(Itm.SubItems[1].Text);
+                                                else
+                                                        Res.AddWithValue(Itm.Text, Lfx.Types.Parsing.ParseInt(Itm.SubItems[1].Text));
+                                        }
                                         return Res;
                                 }
                         }
@@ -143,18 +134,9 @@ namespace Lfc.Articulos
                         if (TextoLibre) {
                                 CantidadSelect = VariacionesCantidades.DatosSeguimiento.CantidadTotal;
                         } else {
-                                /* if (m_Cantidad == 1)
-                                        CantidadSelect = ListaDatosSeguimiento.SelectedItems.Count;
-                                else */
-                                        CantidadSelect = ListaDatosSeguimiento.CheckedItems.Count;
-                        }
-
-                        if (CantidadSelect != m_Cantidad) {
-                                // Lfx.Workspace.Master.RunTime.Toast("Se va a actualizar la cantidad.", "Aviso");
-                                /* if (m_Cantidad == 1)
-                                        return new Lfx.Types.FailureOperationResult("Debe seleccionar un elemento.");
-                                else
-                                        return new Lfx.Types.FailureOperationResult("Debe seleccionar " + m_Cantidad.ToString() + " elementos."); */
+                                if (VariacionesCantidades.EsNumeroDeSerie && ListaDatosSeguimiento.CheckedItems.Count == 0 && ListaDatosSeguimiento.SelectedItems.Count == 1)
+                                        ListaDatosSeguimiento.SelectedItems[0].Checked = true;
+                                CantidadSelect = ListaDatosSeguimiento.CheckedItems.Count;
                         }
 
                         m_Cantidad = System.Convert.ToInt32(CantidadSelect);
@@ -176,22 +158,19 @@ namespace Lfc.Articulos
                                         string Variacion = RowItem["serie"].ToString();
                                         decimal StockVariacion = System.Convert.ToDecimal(RowItem["cantidad"]);
 
-                                        for (int i = 0; i < StockVariacion && i < StockVariacion; i++) {
-                                                ListViewItem Itm = ListaDatosSeguimiento.Items.Add(Variacion);
-                                                Itm.SubItems[0].Text = Variacion;
-                                                Itm.SubItems.Add("1");
-                                                if (SelectedSeries.ContainsVariacion(Variacion)) {
-                                                        if (SelectedSeries[Variacion].Cantidad-- > 0)
-                                                                Itm.Checked = SelectedSeries.ContainsVariacion(Variacion);
-                                                }
+                                        ListViewItem Itm = ListaDatosSeguimiento.Items.Add(Variacion);
+                                        Itm.UseItemStyleForSubItems = false;
+                                        Itm.SubItems[0].Text = Variacion;
+                                        Itm.SubItems.Add("0");
+                                        Itm.SubItems.Add(System.Convert.ToInt32(StockVariacion).ToString());
+                                        Itm.SubItems[2].ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
+                                        if (SelectedSeries.ContainsVariacion(Variacion)) {
+                                                if (SelectedSeries[Variacion].Cantidad-- > 0)
+                                                        Itm.Checked = SelectedSeries.ContainsVariacion(Variacion);
                                         }
                                 }
 
-                                /* if(m_Cantidad == 1)
-                                        ListaDatosSeguimiento.CheckBoxes = false;
-                                else */
-                                        ListaDatosSeguimiento.CheckBoxes = true;
-
+                                ListaDatosSeguimiento.CheckBoxes = true;
                                 ListaDatosSeguimiento.EndUpdate();
                                 ListaDatosSeguimiento.Visible = true;
                                 if (ListaDatosSeguimiento.Items.Count > 0) {
@@ -219,8 +198,78 @@ namespace Lfc.Articulos
 
                 private void ListaSeries_KeyDown(object sender, KeyEventArgs e)
                 {
-                        if (e.KeyCode == Keys.Return && e.Control == false && e.Alt == false && e.Shift == false)
-                                OkButton.PerformClick();
+                        if (e.Control == false && e.Alt == false && e.Shift == false) {
+                                switch (e.KeyCode) {
+                                        case Keys.Return:
+                                                OkButton.PerformClick();
+                                                e.Handled = true;
+                                                break;
+                                }
+                        }
+                }
+
+                private void ListaDatosSeguimiento_KeyPress(object sender, KeyPressEventArgs e)
+                {
+                        if (VariacionesCantidades.EsNumeroDeSerie == false) {
+                                ListViewItem Itm = null;
+                                decimal Cantidad = 0, StockActual = 0;
+                                if (ListaDatosSeguimiento.Visible && ListaDatosSeguimiento.SelectedItems.Count > 0) {
+                                        Itm = ListaDatosSeguimiento.SelectedItems[0];
+                                        Cantidad = Lfx.Types.Parsing.ParseStock(Itm.SubItems[1].Text);
+                                        StockActual = Lfx.Types.Parsing.ParseStock(Itm.SubItems[2].Text);
+                                }
+                                decimal CantidadOriginal = Cantidad;
+
+                                switch (e.KeyChar) {
+                                        case '+':
+                                                Cantidad++;
+                                                e.Handled = true;
+                                                break;
+                                        case '-':
+                                                Cantidad--;
+                                                e.Handled = true;
+                                                break;
+                                        case '0':
+                                                string NewCant = Lui.Forms.InputBox.ShowInputBox("Escriba la cantidad");
+                                                Cantidad = Lfx.Types.Parsing.ParseInt(NewCant);
+                                                e.Handled = true;
+                                                break;
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                                Cantidad = int.Parse(e.KeyChar.ToString());
+                                                e.Handled = true;
+                                                break;
+                                }
+
+                                if (Cantidad > StockActual)
+                                        Cantidad = StockActual;
+                                if (Cantidad < 0)
+                                        Cantidad = 0;
+
+                                if (Itm != null && Cantidad >= 0 && Cantidad != CantidadOriginal) {
+                                        Itm.SubItems[1].Text = Cantidad.ToString();
+                                        Itm.Checked = Cantidad > 0;
+                                }
+                        }
+                }
+
+                private void ListaDatosSeguimiento_ItemChecked(object sender, ItemCheckedEventArgs e)
+                {
+                        if (e.Item.Checked) {
+                                if (e.Item.SubItems[1].Text == "0")
+                                        e.Item.SubItems[1].Text = "1";
+                        } else {
+                                if (e.Item.SubItems[1].Text != "0")
+                                        e.Item.SubItems[1].Text = "0";
+                        }
                 }
         }
 }
+

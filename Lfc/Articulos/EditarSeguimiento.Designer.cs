@@ -62,7 +62,10 @@ namespace Lfc.Articulos
                         this.ListaDatosSeguimiento = new Lui.Forms.ListView();
                         this.Variacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.VariacionCantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.VariacionStock = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EtiquetaArticulo = new Lui.Forms.Label();
+                        this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -83,11 +86,11 @@ namespace Lfc.Articulos
                         this.VariacionesCantidades.EsNumeroDeSerie = false;
                         this.VariacionesCantidades.FieldName = null;
                         this.VariacionesCantidades.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.VariacionesCantidades.Location = new System.Drawing.Point(16, 40);
+                        this.VariacionesCantidades.Location = new System.Drawing.Point(24, 88);
                         this.VariacionesCantidades.Name = "VariacionesCantidades";
                         this.VariacionesCantidades.Padding = new System.Windows.Forms.Padding(2);
                         this.VariacionesCantidades.ReadOnly = false;
-                        this.VariacionesCantidades.Size = new System.Drawing.Size(604, 256);
+                        this.VariacionesCantidades.Size = new System.Drawing.Size(584, 208);
                         this.VariacionesCantidades.TabIndex = 0;
                         // 
                         // ListaDatosSeguimiento
@@ -98,41 +101,75 @@ namespace Lfc.Articulos
                         this.ListaDatosSeguimiento.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaDatosSeguimiento.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Variacion,
-            this.VariacionCantidad});
+            this.VariacionCantidad,
+            this.VariacionStock});
                         this.ListaDatosSeguimiento.FullRowSelect = true;
                         this.ListaDatosSeguimiento.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaDatosSeguimiento.HideSelection = false;
-                        this.ListaDatosSeguimiento.Location = new System.Drawing.Point(16, 40);
+                        this.ListaDatosSeguimiento.Location = new System.Drawing.Point(24, 88);
                         this.ListaDatosSeguimiento.MultiSelect = false;
                         this.ListaDatosSeguimiento.Name = "ListaDatosSeguimiento";
-                        this.ListaDatosSeguimiento.Size = new System.Drawing.Size(600, 256);
+                        this.ListaDatosSeguimiento.Size = new System.Drawing.Size(584, 188);
                         this.ListaDatosSeguimiento.TabIndex = 1;
                         this.ListaDatosSeguimiento.UseCompatibleStateImageBehavior = false;
                         this.ListaDatosSeguimiento.View = System.Windows.Forms.View.Details;
+                        this.ListaDatosSeguimiento.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListaDatosSeguimiento_ItemChecked);
                         this.ListaDatosSeguimiento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListaSeries_KeyDown);
+                        this.ListaDatosSeguimiento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListaDatosSeguimiento_KeyPress);
                         // 
                         // Variacion
                         // 
                         this.Variacion.Text = "Variación";
-                        this.Variacion.Width = 461;
+                        this.Variacion.Width = 446;
                         // 
                         // VariacionCantidad
                         // 
-                        this.VariacionCantidad.Text = "Cantidad";
+                        this.VariacionCantidad.Text = "Cant.";
                         this.VariacionCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                        this.VariacionCantidad.Width = 96;
+                        // 
+                        // VariacionStock
+                        // 
+                        this.VariacionStock.Text = "Máx.";
+                        this.VariacionStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.VariacionStock.Width = 45;
                         // 
                         // EtiquetaArticulo
                         // 
                         this.EtiquetaArticulo.AutoEllipsis = true;
-                        this.EtiquetaArticulo.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.EtiquetaArticulo.Location = new System.Drawing.Point(16, 16);
+                        this.EtiquetaArticulo.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.EtiquetaArticulo.Location = new System.Drawing.Point(24, 28);
                         this.EtiquetaArticulo.Name = "EtiquetaArticulo";
-                        this.EtiquetaArticulo.Size = new System.Drawing.Size(600, 24);
+                        this.EtiquetaArticulo.Size = new System.Drawing.Size(584, 24);
                         this.EtiquetaArticulo.TabIndex = 51;
                         this.EtiquetaArticulo.Text = "Seleccione artículos";
                         this.EtiquetaArticulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.EtiquetaArticulo.UseMnemonic = false;
+                        // 
+                        // label1
+                        // 
+                        this.label1.AutoEllipsis = true;
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label1.Location = new System.Drawing.Point(24, 52);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(584, 36);
+                        this.label1.TabIndex = 52;
+                        this.label1.Text = "El artículo seleccionado utiliza seguimiento (por ejemplo números de serie o tall" +
+    "es y colores). Proporcione los datos de seguimiento del artículo seleccionado.";
+                        this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label1.UseMnemonic = false;
+                        // 
+                        // label2
+                        // 
+                        this.label2.AutoEllipsis = true;
+                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label2.Location = new System.Drawing.Point(24, 276);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(584, 20);
+                        this.label2.TabIndex = 53;
+                        this.label2.Text = "Utilice los números o las teclas + y - para cambiar la cantidad de la variación s" +
+    "eleccionada.";
+                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label2.UseMnemonic = false;
                         // 
                         // EditarSeguimiento
                         // 
@@ -140,6 +177,8 @@ namespace Lfc.Articulos
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(634, 372);
                         this.Controls.Add(this.EtiquetaArticulo);
+                        this.Controls.Add(this.label1);
+                        this.Controls.Add(this.label2);
                         this.Controls.Add(this.ListaDatosSeguimiento);
                         this.Controls.Add(this.VariacionesCantidades);
                         this.Name = "EditarSeguimiento";
@@ -147,6 +186,8 @@ namespace Lfc.Articulos
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditarSeries_KeyDown);
                         this.Controls.SetChildIndex(this.VariacionesCantidades, 0);
                         this.Controls.SetChildIndex(this.ListaDatosSeguimiento, 0);
+                        this.Controls.SetChildIndex(this.label2, 0);
+                        this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.EtiquetaArticulo, 0);
                         this.ResumeLayout(false);
 
@@ -159,6 +200,9 @@ namespace Lfc.Articulos
                 private System.Windows.Forms.ColumnHeader Variacion;
                 private System.Windows.Forms.ColumnHeader VariacionCantidad;
                 private Lui.Forms.Label EtiquetaArticulo;
+                private Lui.Forms.Label label1;
+                private Lui.Forms.Label label2;
+                private System.Windows.Forms.ColumnHeader VariacionStock;
 
         }
 }
