@@ -31,6 +31,7 @@
     <Column name="id_categoria" datatype="Integer" nullable="1" />
     <Column name="id_proveedor" datatype="Integer" nullable="1" />
     <Column name="control_stock" datatype="SmallInt" nullable="0" default="0" />
+    <Column name="seguimiento" datatype="SmallInt" nullable="0" default="0" />
     <Column name="stock_actual" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Column name="stock_minimo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Column name="unidad_stock" datatype="VarChar" nullable="1" lenght="50" />

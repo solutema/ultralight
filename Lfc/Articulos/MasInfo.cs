@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos
 {
-        public partial class MasInfo : Lui.Forms.DialogForm
+        public partial class MasInfo : Lui.Forms.ChildDialogForm
         {
                 private Lbl.Articulos.Articulo m_Articulo;
 

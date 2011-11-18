@@ -273,6 +273,7 @@ namespace Lfc.Articulos
                         IgnorarCostoTextChanged--;
 
                         EntradaUsaStock.TextKey = ((int)(Art.ControlStock)).ToString();
+                        EntradaSeguimiento.TextKey = ((int)(Art.Seguimiento)).ToString();
                         EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.StockActual, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                         EntradaUnidad.TextKey = Art.Unidad;
                         Rendimiento = Art.Rendimiento;
@@ -311,7 +312,8 @@ namespace Lfc.Articulos
                                 Art.Margen = null;
 
                         Art.Pvp = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
-                        Art.ControlStock = (Lbl.Articulos.ControlStock)(Lfx.Types.Parsing.ParseInt(EntradaUsaStock.TextKey));
+                        Art.ControlStock = (Lbl.Articulos.ControlStock)(EntradaUsaStock.ValueInt);
+                        Art.Seguimiento = (Lbl.Articulos.Seguimientos)(EntradaSeguimiento.ValueInt);
                         Art.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
                         Art.Unidad = EntradaUnidad.TextKey;
                         Art.Rendimiento = Rendimiento;

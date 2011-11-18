@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lfc.Comprobantes
+namespace Lfc.Articulos
 {
         partial class EditarSeguimiento
         {
@@ -75,23 +75,26 @@ namespace Lfc.Comprobantes
                         // 
                         // VariacionesCantidades
                         // 
-                        this.VariacionesCantidades.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.VariacionesCantidades.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.VariacionesCantidades.AutoNav = true;
                         this.VariacionesCantidades.AutoScrollMargin = new System.Drawing.Size(4, 4);
                         this.VariacionesCantidades.EsNumeroDeSerie = false;
+                        this.VariacionesCantidades.FieldName = null;
+                        this.VariacionesCantidades.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.VariacionesCantidades.Location = new System.Drawing.Point(16, 40);
                         this.VariacionesCantidades.Name = "VariacionesCantidades";
                         this.VariacionesCantidades.Padding = new System.Windows.Forms.Padding(2);
+                        this.VariacionesCantidades.ReadOnly = false;
                         this.VariacionesCantidades.Size = new System.Drawing.Size(604, 256);
                         this.VariacionesCantidades.TabIndex = 0;
                         // 
                         // ListaDatosSeguimiento
                         // 
-                        this.ListaDatosSeguimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListaDatosSeguimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListaDatosSeguimiento.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaDatosSeguimiento.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Variacion,
@@ -106,6 +109,7 @@ namespace Lfc.Comprobantes
                         this.ListaDatosSeguimiento.TabIndex = 1;
                         this.ListaDatosSeguimiento.UseCompatibleStateImageBehavior = false;
                         this.ListaDatosSeguimiento.View = System.Windows.Forms.View.Details;
+                        this.ListaDatosSeguimiento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListaSeries_KeyDown);
                         // 
                         // Variacion
                         // 
@@ -121,6 +125,7 @@ namespace Lfc.Comprobantes
                         // EtiquetaArticulo
                         // 
                         this.EtiquetaArticulo.AutoEllipsis = true;
+                        this.EtiquetaArticulo.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaArticulo.Location = new System.Drawing.Point(16, 16);
                         this.EtiquetaArticulo.Name = "EtiquetaArticulo";
                         this.EtiquetaArticulo.Size = new System.Drawing.Size(600, 24);

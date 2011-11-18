@@ -230,7 +230,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaGarantia.DecimalPlaces = -1;
                         this.EntradaGarantia.FieldName = null;
                         this.EntradaGarantia.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaGarantia.Location = new System.Drawing.Point(140, 236);
+                        this.EntradaGarantia.Location = new System.Drawing.Point(140, 252);
                         this.EntradaGarantia.MaxLength = 32767;
                         this.EntradaGarantia.MultiLine = false;
                         this.EntradaGarantia.Name = "EntradaGarantia";
@@ -248,7 +248,7 @@ namespace Lfc.Articulos.Categorias
                         // label20
                         // 
                         this.label20.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label20.Location = new System.Drawing.Point(0, 236);
+                        this.label20.Location = new System.Drawing.Point(0, 252);
                         this.label20.Name = "label20";
                         this.label20.Size = new System.Drawing.Size(140, 24);
                         this.label20.TabIndex = 14;
@@ -269,10 +269,11 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaSeguimiento.PlaceholderText = null;
                         this.EntradaSeguimiento.ReadOnly = false;
                         this.EntradaSeguimiento.SetData = new string[] {
-        "Ninguno|0",
+        "Predeterminado|0",
+        "Ninguno|1",
         "Por Números de Serie|3",
         "Por Variaciones|5"};
-                        this.EntradaSeguimiento.Size = new System.Drawing.Size(187, 51);
+                        this.EntradaSeguimiento.Size = new System.Drawing.Size(187, 66);
                         this.EntradaSeguimiento.TabIndex = 9;
                         this.EntradaSeguimiento.TextKey = "0";
                         // 
@@ -297,7 +298,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaRubro.FieldName = null;
                         this.EntradaRubro.Filter = "";
                         this.EntradaRubro.FreeTextCode = "";
-                        this.EntradaRubro.Location = new System.Drawing.Point(140, 180);
+                        this.EntradaRubro.Location = new System.Drawing.Point(140, 196);
                         this.EntradaRubro.MaxLength = 200;
                         this.EntradaRubro.Name = "EntradaRubro";
                         this.EntradaRubro.Padding = new System.Windows.Forms.Padding(2);
@@ -343,7 +344,7 @@ namespace Lfc.Articulos.Categorias
                         // label9
                         // 
                         this.label9.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label9.Location = new System.Drawing.Point(0, 180);
+                        this.label9.Location = new System.Drawing.Point(0, 196);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(140, 24);
                         this.label9.TabIndex = 10;
@@ -485,7 +486,7 @@ namespace Lfc.Articulos.Categorias
                         // label10
                         // 
                         this.label10.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label10.Location = new System.Drawing.Point(0, 208);
+                        this.label10.Location = new System.Drawing.Point(0, 224);
                         this.label10.Name = "label10";
                         this.label10.Size = new System.Drawing.Size(140, 24);
                         this.label10.TabIndex = 12;
@@ -503,7 +504,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaAlicuota.FieldName = null;
                         this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.FreeTextCode = "";
-                        this.EntradaAlicuota.Location = new System.Drawing.Point(140, 208);
+                        this.EntradaAlicuota.Location = new System.Drawing.Point(140, 224);
                         this.EntradaAlicuota.MaxLength = 200;
                         this.EntradaAlicuota.Name = "EntradaAlicuota";
                         this.EntradaAlicuota.Padding = new System.Windows.Forms.Padding(2);

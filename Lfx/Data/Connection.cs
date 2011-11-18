@@ -94,7 +94,7 @@ namespace Lfx.Data
                                         ConnectionString.Append("Allow User Variables=True;");
                                         ConnectionString.Append("Allow Batch=True;");
                                         // ConnectionString.Append("KeepAlive=20;");     // No sirve, uso KeepAlive propio
-                                        ConnectionString.Append("Pooling=false;");      // Si habilitamos el Pooling, en conector mantiene muchas conexiones abiertas
+                                        ConnectionString.Append("Pooling=false;");       // Si habilitamos el Pooling, en conector mantiene muchas conexiones abiertas
                                         // El pool crece, pero nunca se achica
                                         switch (System.Text.Encoding.Default.BodyName) {
                                                 case "utf-8":

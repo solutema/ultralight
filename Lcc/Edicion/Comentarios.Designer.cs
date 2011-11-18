@@ -156,6 +156,7 @@ namespace Lcc.Edicion
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAgregar.Subtext = "Tecla";
                         this.BotonAgregar.TabIndex = 1;
+                        this.BotonAgregar.TabStop = false;
                         this.BotonAgregar.Text = "Agregar";
                         this.BotonAgregar.Click += new System.EventHandler(this.BotonAgregar_Click);
                         // 

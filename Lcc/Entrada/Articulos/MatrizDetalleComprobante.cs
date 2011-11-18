@@ -121,6 +121,7 @@ namespace Lcc.Entrada.Articulos
                         return m_Articulos;
                 }
 
+
                 public Lbl.Comprobantes.ColeccionDetalleArticulos ObtenerArticulos(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
                 {
                         if (m_Articulos == null)
@@ -401,6 +402,14 @@ namespace Lcc.Entrada.Articulos
                                 EtiquetaHeaderCantidad.Width = ctrl.ImporteLeft - EtiquetaHeaderCantidad.Left - 2;
                                 EtiquetaHeaderImporte.Left = ctrl.ImporteLeft;
                                 EtiquetaHeaderImporte.Width = ctrl.Width - ctrl.ImporteLeft - 2;
+                        }
+                }
+
+
+                public void BorrarDatosDeSeguimiento()
+                {
+                        foreach (DetalleComprobante Pro in this.ChildControls) {
+                                Pro.DatosSeguimiento = null;
                         }
                 }
         }

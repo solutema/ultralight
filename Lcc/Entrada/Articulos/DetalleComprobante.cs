@@ -167,6 +167,8 @@ namespace Lcc.Entrada.Articulos
                                 } else {
                                         LabelSerials.Text = "Seguimiento: " + m_DatosSeguimiento.ToString();
                                         LabelSerials.Visible = true;
+                                        if (this.Cantidad != m_DatosSeguimiento.CantidadTotal)
+                                                this.Cantidad = m_DatosSeguimiento.CantidadTotal;
                                 }
                         }
                 }
@@ -437,6 +439,8 @@ namespace Lcc.Entrada.Articulos
                         if (this.Elemento != EntradaArticulo.Elemento)
                                 this.Elemento = EntradaArticulo.Elemento;
 
+                        this.DatosSeguimiento = null;
+
                         if (this.AutoUpdate) {
                                 if (this.Articulo != null) {
                                         EntradaUnitario.Enabled = true;
@@ -550,6 +554,20 @@ namespace Lcc.Entrada.Articulos
                                                 this.ObtenerDatosSeguimiento(this, null);
                                 }
                         }
+                }
+
+
+                protected override void OnLeave(EventArgs e)
+                {
+                        Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
+
+                        if (this.Cantidad != 0 && Art != null && Art.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno
+                                && (this.DatosSeguimiento == null || this.DatosSeguimiento.Count != this.Cantidad)) {
+                                if (this.ObtenerDatosSeguimiento != null)
+                                        this.ObtenerDatosSeguimiento(this, null);
+                        }
+
+                        base.OnLeave(e);
                 }
 
                 private void EntradaUnitario_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)

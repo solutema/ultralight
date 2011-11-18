@@ -358,8 +358,15 @@ namespace Lfc.Comprobantes
                                 OFormMasDatos.EntradaDesdeSituacion.Filter = "";
 
                         if (OFormMasDatos.ShowDialog() == DialogResult.OK) {
-                                Registro.SituacionOrigen = new Lbl.Articulos.Situacion(Registro.Connection, OFormMasDatos.EntradaDesdeSituacion.TextInt);
-                                Registro.SituacionDestino = new Lbl.Articulos.Situacion(Registro.Connection, OFormMasDatos.EntradaHaciaSituacion.TextInt);
+                                Lbl.Articulos.Situacion NuevoOrigen = OFormMasDatos.EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
+                                if ((NuevoOrigen == null && Registro.SituacionOrigen != null)
+                                        || (NuevoOrigen != null && Registro.SituacionOrigen == null)
+                                        || (NuevoOrigen != null && NuevoOrigen.Id != Registro.SituacionOrigen.Id)) {
+                                        // Cambió la situación de origen... borro los datos de seguimiento
+                                                EntradaProductos.BorrarDatosDeSeguimiento();
+                                }
+                                Registro.SituacionOrigen = NuevoOrigen;
+                                Registro.SituacionDestino = OFormMasDatos.EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
                                 ((Lbl.ICamposBaseEstandar)(this.Elemento)).Estado = Lfx.Types.Parsing.ParseInt(OFormMasDatos.EntradaBloqueada.TextKey);
                                 this.TemporaryReadOnly = Lfx.Types.Parsing.ParseInt(OFormMasDatos.EntradaBloqueada.TextKey) != 0;
                         }
@@ -451,7 +458,7 @@ namespace Lfc.Comprobantes
 
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
 
-                        EditarSeguimiento Editar = new EditarSeguimiento();
+                        Lfc.Articulos.EditarSeguimiento Editar = new Lfc.Articulos.EditarSeguimiento();
                         Editar.Connection = this.Connection;
                         Editar.Articulo = new Lbl.Articulos.Articulo(this.Connection, IdArticulo);
                         Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));

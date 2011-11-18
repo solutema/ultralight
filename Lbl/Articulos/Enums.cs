@@ -50,7 +50,8 @@ namespace Lbl.Articulos
 
         public enum Seguimientos
         {
-                Ninguno = 0,
+                Predeterminado = 0,
+                Ninguno = 1,
                 NumerosDeSerie = 3,
                 TallesYColores = 5
         }

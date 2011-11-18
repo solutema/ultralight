@@ -74,7 +74,7 @@ namespace Lbl.Comprobantes
                         {
                                 base.Tipo = value;
 
-                                if (this.Tipo.EsFacturaNCoND && this.FormaDePago == null)
+                                if (this.Compra == false && this.Tipo.EsFacturaNCoND && this.FormaDePago == null)
                                         this.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, Lbl.Pagos.TiposFormasDePago.CuentaCorriente);
 
                                 if (this.Tipo.Nomenclatura == "PD" || this.Tipo.Nomenclatura == "NP")

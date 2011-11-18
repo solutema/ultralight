@@ -90,10 +90,12 @@ namespace Lcc.Entrada.Articulos
                         set
                         {
                                 this.Controles.Clear();
-                                foreach(Lbl.Articulos.DatosSeguimiento Dat in value) {
-                                        VariacionCantidad Ctl = this.Agregar();
-                                        Ctl.Variacion = Dat.Variacion;
-                                        Ctl.Cantidad = Dat.Cantidad;
+                                if (value != null) {
+                                        foreach (Lbl.Articulos.DatosSeguimiento Dat in value) {
+                                                VariacionCantidad Ctl = this.Agregar();
+                                                Ctl.Variacion = Dat.Variacion;
+                                                Ctl.Cantidad = Dat.Cantidad;
+                                        }
                                 }
                                 this.AutoAgregarOQuitar(true);
                         }

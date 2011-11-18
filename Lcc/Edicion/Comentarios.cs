@@ -134,5 +134,12 @@ namespace Lcc.Edicion
                                 base.TemporaryReadOnly = false;
                         }
                 }
+
+
+                protected override void OnGotFocus(EventArgs e)
+                {
+                        SendKeys.Send("{tab}");
+                        base.OnGotFocus(e);
+                }
         }
 }

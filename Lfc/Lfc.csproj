@@ -103,6 +103,12 @@
     <Compile Include="Cajas\Movimiento.Designer.cs">
       <DependentUpon>Movimiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprobantes\Compra\Editar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\Compra\Editar.Designer.cs">
+      <DependentUpon>Editar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comprobantes\Facturas\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,10 +302,10 @@
     <Compile Include="Comprobantes\EditarTallesYColores.Designer.cs">
       <DependentUpon>EditarTallesYColores.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprobantes\EditarSeguimiento.cs">
+    <Compile Include="Articulos\EditarSeguimiento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobantes\EditarSeguimiento.Designer.cs">
+    <Compile Include="Articulos\EditarSeguimiento.Designer.cs">
       <DependentUpon>EditarSeguimiento.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Facturas\Anular.Designer.cs">
@@ -424,12 +430,6 @@
     </Compile>
     <Compile Include="Comprobantes\Compra\Crear.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprobantes\Compra\Editar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Comprobantes\Compra\Editar.Designer.cs">
-      <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Compra\Inicio.cs">
       <SubType>Form</SubType>
@@ -718,6 +718,9 @@
       <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\Compra\Editar.resx">
+      <DependentUpon>Editar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Facturas\Reimprimir.resx">
       <DependentUpon>Reimprimir.cs</DependentUpon>
     </EmbeddedResource>
@@ -809,7 +812,7 @@
     <EmbeddedResource Include="Comprobantes\EditarTallesYColores.resx">
       <DependentUpon>EditarTallesYColores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprobantes\EditarSeguimiento.resx">
+    <EmbeddedResource Include="Articulos\EditarSeguimiento.resx">
       <DependentUpon>EditarSeguimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Facturas\SaldoEnCuentaCorriente.resx">
@@ -867,10 +870,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Compra\Crear.resx">
       <DependentUpon>Crear.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Comprobantes\Compra\Editar.resx">
-      <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\Editar.resx">

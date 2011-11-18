@@ -37,7 +37,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lfc.Comprobantes
+namespace Lfc.Articulos
 {
         public partial class EditarSeguimiento : Lui.Forms.DialogForm
         {
@@ -89,8 +89,8 @@ namespace Lfc.Comprobantes
                                         Ayuda = "Proporcione los datos de ";
                                 else
                                         Ayuda = "Seleccione ";
-                                Ayuda += m_Cantidad.ToString() + " " + Articulo.ToString();
-                                switch (m_Articulo.Seguimiento) {
+                                Ayuda += Articulo.ToString();
+                                switch (m_Articulo.ObtenerSeguimiento()) {
                                         case Lbl.Articulos.Seguimientos.NumerosDeSerie:
                                                 VariacionesCantidades.EsNumeroDeSerie = true;
                                                 break;
@@ -113,10 +113,10 @@ namespace Lfc.Comprobantes
                                         return VariacionesCantidades.DatosSeguimiento;
                                 } else {
                                         Lbl.Articulos.ColeccionDatosSeguimiento Res = new Lbl.Articulos.ColeccionDatosSeguimiento();
-                                        if (m_Cantidad == 1) {
+                                        /* if (m_Cantidad == 1) {
                                                 if (ListaDatosSeguimiento.SelectedItems.Count == 1)
                                                         Res.AddWithValue(ListaDatosSeguimiento.SelectedItems[0].Text, 1);
-                                        } else {
+                                        } else { */
                                                 if (ListaDatosSeguimiento.CheckedItems == null || ListaDatosSeguimiento.CheckedItems.Count == 0)
                                                         return null;
                                                 foreach (ListViewItem Itm in ListaDatosSeguimiento.CheckedItems) {
@@ -125,7 +125,7 @@ namespace Lfc.Comprobantes
                                                         else
                                                                 Res.AddWithValue(Itm.Text, 1);
                                                 }
-                                        }
+                                        //}
                                         return Res;
                                 }
                         }
@@ -143,18 +143,21 @@ namespace Lfc.Comprobantes
                         if (TextoLibre) {
                                 CantidadSelect = VariacionesCantidades.DatosSeguimiento.CantidadTotal;
                         } else {
-                                if (m_Cantidad == 1)
+                                /* if (m_Cantidad == 1)
                                         CantidadSelect = ListaDatosSeguimiento.SelectedItems.Count;
-                                else
+                                else */
                                         CantidadSelect = ListaDatosSeguimiento.CheckedItems.Count;
                         }
 
                         if (CantidadSelect != m_Cantidad) {
-                                if (m_Cantidad == 1)
+                                // Lfx.Workspace.Master.RunTime.Toast("Se va a actualizar la cantidad.", "Aviso");
+                                /* if (m_Cantidad == 1)
                                         return new Lfx.Types.FailureOperationResult("Debe seleccionar un elemento.");
                                 else
-                                        return new Lfx.Types.FailureOperationResult("Debe seleccionar " + m_Cantidad.ToString() + " elementos.");
+                                        return new Lfx.Types.FailureOperationResult("Debe seleccionar " + m_Cantidad.ToString() + " elementos."); */
                         }
+
+                        m_Cantidad = System.Convert.ToInt32(CantidadSelect);
                         return base.Ok();
                 }
 
@@ -184,13 +187,17 @@ namespace Lfc.Comprobantes
                                         }
                                 }
 
-                                if(m_Cantidad == 1)
+                                /* if(m_Cantidad == 1)
                                         ListaDatosSeguimiento.CheckBoxes = false;
-                                else
+                                else */
                                         ListaDatosSeguimiento.CheckBoxes = true;
 
                                 ListaDatosSeguimiento.EndUpdate();
                                 ListaDatosSeguimiento.Visible = true;
+                                if (ListaDatosSeguimiento.Items.Count > 0) {
+                                        ListaDatosSeguimiento.Items[0].Selected = true;
+                                        ListaDatosSeguimiento.Items[0].Focused = true;
+                                }
                                 VariacionesCantidades.Visible = false;
                                 TextoLibre = false;
                         } else {

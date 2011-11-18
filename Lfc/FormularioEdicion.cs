@@ -76,7 +76,7 @@ namespace Lfc
                                 m_ControlUnico.Dock = System.Windows.Forms.DockStyle.Fill;
                                 this.SplitContainer.Panel1.AutoScrollMinSize = m_ControlUnico.MinimumSize;
                                 this.SplitContainer.Panel1.Controls.Add(m_ControlUnico);
-                                this.ResumeLayout();
+                                this.ResumeLayout(false);
                                 this.PerformLayout();
 
                                 m_ControlUnico.SaveRequest += new Lcc.LccEventHandler(this.ControlUnico_SaveRequest);

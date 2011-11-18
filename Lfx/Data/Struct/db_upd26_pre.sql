@@ -43,6 +43,7 @@ INSERT INTO "sys_permisos_objetos" ("id_objeto", "nombre", "tipo") VALUES (41,'T
 /*
 	Renombrar campos
 	articulos.fecha_creado	-> fecha
+	articulos_categorias.requierens -> seguimiento
 	tickets.fecha_ingreso	-> fecha
 */
 

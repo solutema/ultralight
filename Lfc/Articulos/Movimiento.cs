@@ -38,7 +38,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos
 {
-        public partial class Movimiento : Lui.Forms.DialogForm
+        public partial class Movimiento : Lui.Forms.ChildDialogForm
         {
                 public Movimiento()
                 {
@@ -49,6 +49,8 @@ namespace Lfc.Articulos
                         }
 
                         InitializeComponent();
+
+                        EntradaMovimiento_TextChanged(this, null);
                 }
 
 
@@ -74,17 +76,12 @@ namespace Lfc.Articulos
                         Lbl.Articulos.Articulo Art = null;
                         if (aceptarReturn.Success) {
                                 Art = EntradaArticulo.Elemento as Lbl.Articulos.Articulo;
-                                Art.Cargar();
-                                if (Art.Seguimiento != Lbl.Articulos.Seguimientos.Ninguno) {
-                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal()) {
-                                                Lui.Forms.YesNoDialog Preg = new Lui.Forms.YesNoDialog("No debe realizar movimientos manuales de artículos con seguimiento. ¿Desea continuar de todos modos?", "Advertencia");
-                                                if (Preg.ShowDialog() != DialogResult.OK) {
-                                                        aceptarReturn.Message += "Debe confeccionar un Remito o una Factura." + Environment.NewLine;
-                                                        aceptarReturn.Success = false;
-                                                }
+                                if (Art != null && Art.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno) {
+                                        if (EntradaArticulo.DatosSeguimiento == null || EntradaArticulo.DatosSeguimiento.Count == 0) {
+                                                return new Lfx.Types.FailureOperationResult("Debe ingresar los datos de seguimiento (Ctrl-S) del artículo '" + Art.Nombre + "' para poder realizar movimientos de stock.");
                                         } else {
-                                                aceptarReturn.Message += "No debe realizar movimientos manuales de artículos con seguimiento. Debería confeccionar un Remito o una Factura." + Environment.NewLine;
-                                                aceptarReturn.Success = false;
+                                                if (EntradaArticulo.DatosSeguimiento.CantidadTotal < EntradaArticulo.Cantidad)
+                                                        return new Lfx.Types.FailureOperationResult("Debe ingresar los datos de seguimiento (Ctrl-S) de todos los artículos '" + Art.Nombre + "' para poder realizar movimientos de stock.");
                                         }
                                 }
                         }
@@ -95,7 +92,7 @@ namespace Lfc.Articulos
                                 Lbl.Articulos.Situacion Origen, Destino;
                                 Origen = EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
                                 Destino = EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
-                                Art.MoverStock(Cantidad, EntradaObs.Text, Origen, Destino, null);
+                                Art.MoverStock(Cantidad, EntradaObs.Text, Origen, Destino, EntradaArticulo.DatosSeguimiento);
                                 Trans.Commit();
                         }
 
@@ -147,6 +144,8 @@ namespace Lfc.Articulos
                         EntradaStockActual2.Visible = EntradaHaciaSituacion.TextInt > 0;
                         lblStockFlecha2.Visible = EntradaHaciaSituacion.TextInt > 0;
                         EntradaStockResult2.Visible = EntradaHaciaSituacion.TextInt > 0;
+
+                        EntradaArticulo.DatosSeguimiento = null;
                 }
 
                 private void MostrarStock()
@@ -187,6 +186,28 @@ namespace Lfc.Articulos
                         EntradaHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
                         Label7.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
                         Label8.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
+                }
+
+                private void EntradaArticulo_ObtenerDatosSeguimiento(object sender, EventArgs e)
+                {
+                        Lbl.Articulos.Articulo Articulo = EntradaArticulo.Elemento as Lbl.Articulos.Articulo;
+                        decimal Cant = EntradaArticulo.Cantidad;
+
+                        if (Cant != 0) {
+                                Lfc.Articulos.EditarSeguimiento Editar = new Lfc.Articulos.EditarSeguimiento();
+                                Editar.Articulo = Articulo;
+                                Editar.Cantidad = Math.Abs(System.Convert.ToInt32(Cant));
+                                Editar.SituacionOrigen = this.EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
+                                Editar.DatosSeguimiento = EntradaArticulo.DatosSeguimiento;
+                                if (Editar.ShowDialog() == DialogResult.OK) {
+                                        EntradaArticulo.DatosSeguimiento = Editar.DatosSeguimiento;
+                                }
+                        }
+                }
+
+                private void EntradaArticulo_PrecioCantidadChanged(object sender, EventArgs e)
+                {
+                        EntradaCantidad.ValueDecimal = EntradaArticulo.Cantidad;
                 }
 
         }

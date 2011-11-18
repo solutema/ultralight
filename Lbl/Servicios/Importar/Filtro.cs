@@ -295,6 +295,7 @@ namespace Lbl.Servicios.Importar
                 /// </summary>
                 public void PrepararTablasLazaro()
                 {
+                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
                         System.Collections.Generic.List<string> TablasModificadas = new List<string>();
                         System.Console.WriteLine("Lbl.Servicios.Importar.Filtro: Preparando tablas internas...");
                         foreach (MapaDeTabla Map in this.MapaDeTablas) {
@@ -321,7 +322,9 @@ namespace Lbl.Servicios.Importar
                                         this.Connection.SetTableStructure(Tabla);
                                 }
                         }
+                        Trans.Commit();
                 }
+
 
                 /// <summary>
                 /// Realiza los reemplazos de la lista de reemplazos definidos para este filtro.

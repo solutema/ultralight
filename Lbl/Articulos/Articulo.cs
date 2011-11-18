@@ -324,13 +324,28 @@ namespace Lbl.Articulos
                         }
                 }
 
+
                 public Seguimientos Seguimiento
                 {
                         get
                         {
-                                return this.Categoria == null ? Seguimientos.Ninguno : this.Categoria.Seguimiento;
+                                return ((Seguimientos)(this.GetFieldValue<int>("seguimiento")));
+                        }
+                        set
+                        {
+                                this.Registro["seguimiento"] = (int)value;
                         }
                 }
+
+
+                public Seguimientos ObtenerSeguimiento()
+                {
+                        if (this.Seguimiento == Seguimientos.Ninguno)
+                                return this.Categoria == null ? Seguimientos.Ninguno : this.Categoria.ObtenerSeguimiento();
+                        else
+                                return this.Seguimiento;
+                }
+
 
                 public Lbl.Impuestos.Alicuota ObtenerAlicuota()
                 {
@@ -788,6 +803,7 @@ namespace Lbl.Articulos
                         Comando.Fields.AddWithValue("pvp", this.Pvp);
                         //control_stock, stock_minimo, unidad_stock, rendimiento, unidad_rend, estado, web, fecha_creado, fecha_precio
                         Comando.Fields.AddWithValue("control_stock", (int)(this.ControlStock));
+                        Comando.Fields.AddWithValue("seguimiento", (int)(this.Seguimiento));
                         Comando.Fields.AddWithValue("stock_minimo", this.StockMinimo);
                         if (this.Existe)
                                 Comando.Fields.AddWithValue("stock_actual", this.ObtenerStockActual());

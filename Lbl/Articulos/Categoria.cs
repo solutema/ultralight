@@ -125,6 +125,16 @@ namespace Lbl.Articulos
                         }
                 }
 
+
+                public Seguimientos ObtenerSeguimiento()
+                {
+                        if (this.Seguimiento == Seguimientos.Predeterminado)
+                                return Seguimientos.Ninguno;
+                        else
+                                return this.Seguimiento;
+                }
+
+
                 public Rubro Rubro
                 {
                         get

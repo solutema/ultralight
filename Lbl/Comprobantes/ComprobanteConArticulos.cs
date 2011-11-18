@@ -658,19 +658,22 @@ namespace Lbl.Comprobantes
                 public Lfx.Types.OperationResult VerificarSeries()
                 {
                         foreach (Lbl.Comprobantes.DetalleArticulo Art in this.Articulos) {
-                                if (Art.Articulo != null && Art.Articulo.Seguimiento != Lbl.Articulos.Seguimientos.Ninguno)
-                                        if (Art.DatosSeguimiento == null  || Art.DatosSeguimiento.Count == 0) {
+                                if (Art.Articulo != null && Art.Articulo.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno) {
+                                        if (Art.DatosSeguimiento == null || Art.DatosSeguimiento.Count == 0) {
                                                 return new Lfx.Types.FailureOperationResult("Debe ingresar los datos de seguimiento (Ctrl-S) del artículo '" + Art.Nombre + "' para poder realizar movimientos de stock.");
                                         } else {
                                                 if (Art.DatosSeguimiento.CantidadTotal < Art.Cantidad)
                                                         return new Lfx.Types.FailureOperationResult("Debe ingresar los datos de seguimiento (Ctrl-S) de todos los artículos '" + Art.Nombre + "' para poder realizar movimientos de stock.");
                                         }
+                                }
                         }
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
                 private void GuardarDetalle()
                 {
+                        this.Articulos.Comprobante = this;
+
                         qGen.Delete EliminarDetallesViejos = new qGen.Delete("comprob_detalle");
                         EliminarDetallesViejos.WhereClause = new qGen.Where("id_comprob", this.Id);
                         this.Connection.Execute(EliminarDetallesViejos);

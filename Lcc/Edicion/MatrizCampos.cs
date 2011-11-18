@@ -206,5 +206,11 @@ namespace Lcc.Edicion
                         this.ReLayout();
                         base.OnResize(e);
                 }
+
+                protected override void OnGotFocus(EventArgs e)
+                {
+                        SendKeys.Send("{tab}");
+                        base.OnGotFocus(e);
+                }
         }
 }
