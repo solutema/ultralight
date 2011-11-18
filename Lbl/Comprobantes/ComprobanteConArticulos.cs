@@ -493,6 +493,8 @@ namespace Lbl.Comprobantes
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
+                        this.Articulos.Comprobante = this;
+
 			qGen.TableCommand Comando;
 
 			if (this.Existe == false) {

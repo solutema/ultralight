@@ -76,6 +76,7 @@ namespace Lfx.Data
                         this.FastRows.LoadAll();
                 }
 
+
                 public Lfx.Data.TagCollection Tags
                 {
 			get

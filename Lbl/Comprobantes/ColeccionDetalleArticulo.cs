@@ -36,7 +36,7 @@ namespace Lbl.Comprobantes
 {
         public class ColeccionDetalleArticulos : Lbl.ColeccionGenerica<DetalleArticulo>
         {
-                public Lbl.Comprobantes.ComprobanteConArticulos Comprobante = null;
+                private Lbl.Comprobantes.ComprobanteConArticulos m_Comprobante = null;
 
                 public ColeccionDetalleArticulos(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
@@ -46,6 +46,36 @@ namespace Lbl.Comprobantes
                 {
                         this.Comprobante = comprobante;
                 }
+
+
+                public Lbl.Comprobantes.ComprobanteConArticulos Comprobante
+                {
+                        get
+                        {
+                                return m_Comprobante;
+                        }
+                        set
+                        {
+                                m_Comprobante = value;
+                                foreach (Lbl.Comprobantes.DetalleArticulo det in this)
+                                        det.Comprobante = m_Comprobante;
+                        }
+                }
+
+                public new void Add(Lbl.Comprobantes.DetalleArticulo detalle)
+                {
+                        detalle.Comprobante = this.Comprobante;
+                        base.Add(detalle);
+                }
+                
+
+                public new void AddRange(IEnumerable<Lbl.Comprobantes.DetalleArticulo> detalles)
+                {
+                        foreach (Lbl.Comprobantes.DetalleArticulo det in detalles)
+                                det.Comprobante = this.Comprobante;
+                        base.AddRange(detalles);
+                }
+                
 
                 public void AddWithValue(Lbl.Articulos.Articulo articulo, decimal cantidad, decimal unitario, string obs)
                 {

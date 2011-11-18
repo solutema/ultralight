@@ -263,7 +263,7 @@ namespace Lbl.Comprobantes
                         }
                         set
                         {
-                                if (value != null && value.Existe) {
+                                if (value != null) {
                                         this.IdArticulo = value.Id;
                                         this.Nombre = value.Nombre;
                                         this.Descripcion = value.Descripcion;
@@ -285,10 +285,12 @@ namespace Lbl.Comprobantes
                         }
                         set
                         {
-                                if (value != null && value.Existe) {
+                                if (value != null) {
                                         this.IdComprobante = value.Id;
+                                        m_Comprobante = value;
                                 } else {
                                         this.IdComprobante = 0;
+                                        m_Comprobante = null; 
                                 }
                         }
                 }

@@ -65,16 +65,16 @@
     <OutputPath>bin\x86\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.WIA">
+      <HintPath>..\Sistema\bin\rel\Interop.WIA.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core">
-    </Reference>
-    <Reference Include="Interop.WIA, Version=1.0.4262.23694, Culture=neutral, PublicKeyToken=null">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Sistema\bin\Interop.WIA.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

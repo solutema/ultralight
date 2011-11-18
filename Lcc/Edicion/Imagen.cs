@@ -32,9 +32,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-#if Windows
-using WIA;
-#endif
 
 namespace Lcc.Entrada
 {
@@ -122,20 +119,19 @@ namespace Lcc.Entrada
 
                 private void BotonCapturarImagen_Click(object sender, EventArgs e)
                 {
-#if Windows
-                        CommonDialogClass WiaDialog = new CommonDialogClass();
+                        WIA.CommonDialogClass WiaDialog = new WIA.CommonDialogClass();
                         WIA.ImageFile WiaImage = null;
 
                         try {
                                 WiaImage = WiaDialog.ShowAcquireImage(
-                                        WiaDeviceType.UnspecifiedDeviceType,
-                                        WiaImageIntent.ColorIntent,
-                                        WiaImageBias.MaximizeQuality,
+                                        WIA.WiaDeviceType.UnspecifiedDeviceType,
+                                        WIA.WiaImageIntent.ColorIntent,
+                                        WIA.WiaImageBias.MaximizeQuality,
                                         System.Drawing.Imaging.ImageFormat.Jpeg.Guid.ToString("B"), true, false, false);
 
                                 if (WiaImage != null) {
                                         WIA.Vector vector = WiaImage.FileData;
-                                        ImagenRecorte Recorte = new ImagenRecorte();
+                                        Entrada.AuxForms.ImagenRecorte Recorte = new Entrada.AuxForms.ImagenRecorte();
                                         Recorte.Imagen = System.Drawing.Image.FromStream(new System.IO.MemoryStream((byte[])vector.get_BinaryData()));
                                         if (Recorte.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                                 EntradaImagen.Image = Recorte.Imagen;
@@ -146,7 +142,6 @@ namespace Lcc.Entrada
                         } catch (Exception ex) {
                                 Lui.Forms.MessageBox.Show("No se puede conectar con el dispositivo de captura. " + ex.Message, "Error");
                         }
-#endif
                 }
 
                 private void guardarEnarchivoToolStripMenuItem_Click(object sender, EventArgs e)

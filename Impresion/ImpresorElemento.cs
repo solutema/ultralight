@@ -236,7 +236,7 @@ namespace Lazaro.Impresion
                                                                 return "Formato no válido";
                                                         }
                                                 } else {
-                                                        return ((DateTime)Val).ToString(Lfx.Types.Formatting.DateTime.LongDatePattern);
+                                                        return ((DateTime)Val).ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
                                                 }
                                         } else if (Val is decimal) {
                                                 if (formato != null) {

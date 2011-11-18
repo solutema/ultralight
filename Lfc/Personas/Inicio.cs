@@ -98,10 +98,18 @@ namespace Lfc.Personas
 
                         this.HabilitarFiltrar = true;
 
-                                                this.Estado = 1;
+                        this.Estado = 1;
                         this.EstadoCredito = -1;
                         this.FechaAlta = new Lfx.Types.DateRange("*");
                         this.FechaBaja = new Lfx.Types.DateRange("*");
+
+                        if (this.HasWorkspace) {
+                                Lfx.Data.TagCollection Tags = this.Connection.Tables["personas"].Tags;
+                                foreach (Lfx.Data.Tag Tg in Tags) {
+                                        if (Tg.FieldType == Lfx.Data.DbTypes.Text || Tg.FieldType == Lfx.Data.DbTypes.VarChar)
+                                                this.Definicion.ExtraSearchColumns.Add(new Lazaro.Pres.Field(Tg.FieldName, Tg.Label, Tg.InputFieldType));
+                                }
+                        }
                 }
 
 
