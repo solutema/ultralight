@@ -324,6 +324,11 @@ namespace Lfc.Articulos
                         //EntradaTags.ActualizarElemento();
                         //EntradaImagen.ActualizarElemento();
 
+                        Lbl.Articulos.Seguimientos Seg = Art.ObtenerSeguimiento();
+                        if (Seg != Lbl.Articulos.Seguimientos.Ninguno) {
+                                // Verificar que los datos de seguimiento actual coincidan con el stock actual
+                        }
+
                         base.ActualizarElemento();
                 }
 

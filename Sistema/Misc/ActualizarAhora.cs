@@ -91,7 +91,7 @@ namespace Lazaro.WinMain.Misc
                                 } else {
                                         BotonInstalar.Text = "Continuar";
                                         EtiquetaEstado.Text = "Finalizado";
-                                        EtiquetaAyuda.Text = @"No se encontraron actualizaciones o hubo un problema al descargarlas. La descarga se va a realizar en otro momento. Puede continuar.";
+                                        EtiquetaAyuda.Text = @"No se encontraron actualizaciones o hubo un problema al descargarlas. La actualización se intentará nuevamente en otro momento. Puede continuar.";
                                         return;
                                 }
                         }

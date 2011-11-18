@@ -123,7 +123,7 @@ namespace Lazaro.WinMain.Misc
                         this.label1.Size = new System.Drawing.Size(464, 40);
                         this.label1.TabIndex = 57;
                         this.label1.Text = "La versión de Lázaro que está utilizando es antigua. Por favor aguarde mientras s" +
-                            "e descarga la versión más nueva.";
+    "e busca una versión más nueva.";
                         // 
                         // EtiquetaEstado
                         // 
@@ -169,7 +169,7 @@ namespace Lazaro.WinMain.Misc
                         this.EtiquetaAyuda.Size = new System.Drawing.Size(464, 68);
                         this.EtiquetaAyuda.TabIndex = 63;
                         this.EtiquetaAyuda.Text = "Si no desea instalar la actualización ahora, haga clic en el botón \'Cancelar\'. La" +
-                            " descarga continuará en segundo plano y se instalará en otro momento.";
+    " descarga continuará en segundo plano y se instalará en otro momento.";
                         // 
                         // TimerProgreso
                         // 

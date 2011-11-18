@@ -338,9 +338,14 @@ namespace Lbl.Articulos
                 }
 
 
+                /// <summary>
+                /// Devuelve el modo de seguimiento para este artículo, o para la categoría si no se especificó un modo de seguimiento.
+                /// Este método nunca devuelve "Predeterminado".
+                /// </summary>
+                /// <returns>El modo de seguimiento para este artículo.</returns>
                 public Seguimientos ObtenerSeguimiento()
                 {
-                        if (this.Seguimiento == Seguimientos.Ninguno)
+                        if (this.Seguimiento == Seguimientos.Predeterminado)
                                 return this.Categoria == null ? Seguimientos.Ninguno : this.Categoria.ObtenerSeguimiento();
                         else
                                 return this.Seguimiento;
