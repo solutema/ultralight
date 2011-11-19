@@ -64,7 +64,7 @@ namespace Lbl.Servicios.Importar
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("OBSERVAC", "obs", ConversionDeColumna.ConvertirAMayusculasYMinusculas);
 
                                 this.MapaDeTablas.AddWithValue("Proveedores", "proveedo.dbf", "personas", "CODIGO");
-                                this.MapaDeTablas["proveedo.dbf"].TipoElemento = typeof(Lbl.Personas.Persona);
+                                this.MapaDeTablas["proveedo.dbf"].TipoElemento = typeof(Lbl.Personas.Proveedor);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues(null, "tipo", 2);
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "estado", 1);
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "id_situacion", 2);

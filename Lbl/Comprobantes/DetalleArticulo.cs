@@ -304,7 +304,10 @@ namespace Lbl.Comprobantes
                         }
                         set
                         {
-                                Registro["series"] = value.ToString();
+                                if (value == null)
+                                        Registro["series"] = null;
+                                else
+                                        Registro["series"] = value.ToString();
                         }
                 }
 
