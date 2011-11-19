@@ -307,6 +307,7 @@ namespace Lbl.Servicios.Importar
                                                 ImportTag.DataBase = this.Connection;
                                                 ImportTag.FieldType = Lfx.Data.DbTypes.VarChar;
                                                 ImportTag.Nullable = true;
+                                                ImportTag.Internal = true;
                                                 this.Connection.Tables[Map.TablaLazaro].Tags.Add(ImportTag);
                                                 ImportTag.Save();
                                                 TablasModificadas.Add(Map.TablaLazaro);

@@ -35,14 +35,16 @@ namespace Lfx.Data
 {
         public class Tag
         {
-                public int Id;
+                public int Id { get; set; }
                 public string TableName, FieldName, Label, Extra;
-                public bool Nullable = false;
+                public bool Nullable { get; set; }
+                public bool Internal { get; set; }
                 public Lfx.Data.DbTypes FieldType = Lfx.Data.DbTypes.VarChar;
                 public Lfx.Data.InputFieldTypes InputFieldType = InputFieldTypes.Text;
-                public object Value = null, DefaultValue = null;
-                public Connection DataBase;
-                public Lfx.Data.Relation Relation = null;
+                public object Value { get; set; }
+                public object DefaultValue { get; set; }
+                public Connection DataBase { get; set; }
+                public Lfx.Data.Relation Relation { get; set; }
 
                 public Tag(Connection dataBase, string tableName, Lfx.Data.Row fromRow)
                 {
@@ -81,11 +83,13 @@ namespace Lfx.Data
                                 this.InputFieldType = (Lfx.Data.InputFieldTypes)(Enum.Parse(typeof(Lfx.Data.InputFieldTypes), fromRow["inputtype"].ToString()));
                                                 
                         this.Nullable = System.Convert.ToBoolean(fromRow["fieldnullable"]);
+                        this.Nullable = System.Convert.ToBoolean(fromRow["internal"]);
                         this.DefaultValue = fromRow["fielddefault"];
                         if (this.DefaultValue is DBNull)
                                 this.DefaultValue = null;
 
                 }
+
 
                 public Tag(string tableName, string fieldName, string label)
                 {
@@ -93,6 +97,7 @@ namespace Lfx.Data
                         this.FieldName = fieldName;
                         this.Label = label;
                 }
+
 
                 public void Save()
                 {
@@ -120,6 +125,7 @@ namespace Lfx.Data
                         }
                         InsertOrUpdate.Fields.AddWithValue("fieldnullable", this.Nullable ? 1 : 0);
                         InsertOrUpdate.Fields.AddWithValue("fielddefault", this.DefaultValue);
+                        InsertOrUpdate.Fields.AddWithValue("internal", this.Internal ? 1 : 0);
 
                         this.DataBase.Execute(InsertOrUpdate);
                 }
