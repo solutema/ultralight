@@ -40,6 +40,12 @@ namespace Lbl.Articulos
                 {
                 }
 
+                public ColeccionDatosSeguimiento(string rep)
+                {
+                        this.FromString(rep);
+                }
+
+
                 public DatosSeguimiento this[string variacion]
                 {
                         get
@@ -53,15 +59,12 @@ namespace Lbl.Articulos
                         }
                 }
 
-                public ColeccionDatosSeguimiento(string rep)
-                {
-                        this.FromString(rep);
-                }
 
                 public void AddWithValue(string variacion, decimal cantidad)
                 {
                         this.Add(new DatosSeguimiento(variacion, cantidad));
                 }
+
 
                 public decimal CantidadTotal
                 {
@@ -77,7 +80,7 @@ namespace Lbl.Articulos
                         }
                 }
 
-                public bool ContainsVariacion(string variacion)
+                public bool ContainsKey(string variacion)
                 {
                         foreach (DatosSeguimiento Dat in this) {
                                 if (Dat.Variacion == variacion)
@@ -86,6 +89,7 @@ namespace Lbl.Articulos
 
                         return false;
                 }
+
 
                 public bool CantidadesSiempreUno()
                 {
@@ -116,6 +120,7 @@ namespace Lbl.Articulos
                         }
                         return Res.ToString();
                 }
+
 
                 public void FromString(string rep)
                 {

@@ -110,7 +110,7 @@ namespace Lfc.Articulos
                         // Label1
                         // 
                         this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label1.Location = new System.Drawing.Point(32, 76);
+                        this.Label1.Location = new System.Drawing.Point(32, 88);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(108, 24);
                         this.Label1.TabIndex = 2;
@@ -120,7 +120,7 @@ namespace Lfc.Articulos
                         // Label2
                         // 
                         this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label2.Location = new System.Drawing.Point(32, 132);
+                        this.Label2.Location = new System.Drawing.Point(32, 144);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(108, 24);
                         this.Label2.TabIndex = 4;
@@ -162,8 +162,9 @@ namespace Lfc.Articulos
                         this.EntradaMovimiento.ReadOnly = false;
                         this.EntradaMovimiento.SetData = new string[] {
         "Entrada|e",
-        "Salida|s"};
-                        this.EntradaMovimiento.Size = new System.Drawing.Size(192, 36);
+        "Salida|s",
+        "Otro|o"};
+                        this.EntradaMovimiento.Size = new System.Drawing.Size(192, 51);
                         this.EntradaMovimiento.TabIndex = 1;
                         this.EntradaMovimiento.TextKey = "e";
                         this.EntradaMovimiento.TextChanged += new System.EventHandler(this.EntradaMovimiento_TextChanged);
@@ -176,7 +177,7 @@ namespace Lfc.Articulos
                         this.EntradaCantidad.DecimalPlaces = -1;
                         this.EntradaCantidad.FieldName = null;
                         this.EntradaCantidad.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCantidad.Location = new System.Drawing.Point(140, 132);
+                        this.EntradaCantidad.Location = new System.Drawing.Point(140, 144);
                         this.EntradaCantidad.MaxLength = 32767;
                         this.EntradaCantidad.MultiLine = false;
                         this.EntradaCantidad.Name = "EntradaCantidad";
@@ -219,7 +220,7 @@ namespace Lfc.Articulos
                         // lblDesdeSituacion
                         // 
                         this.lblDesdeSituacion.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.lblDesdeSituacion.Location = new System.Drawing.Point(140, 252);
+                        this.lblDesdeSituacion.Location = new System.Drawing.Point(140, 256);
                         this.lblDesdeSituacion.Name = "lblDesdeSituacion";
                         this.lblDesdeSituacion.Size = new System.Drawing.Size(168, 24);
                         this.lblDesdeSituacion.TabIndex = 12;
@@ -229,7 +230,7 @@ namespace Lfc.Articulos
                         // lblHaciaSituacion
                         // 
                         this.lblHaciaSituacion.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.lblHaciaSituacion.Location = new System.Drawing.Point(140, 284);
+                        this.lblHaciaSituacion.Location = new System.Drawing.Point(140, 288);
                         this.lblHaciaSituacion.Name = "lblHaciaSituacion";
                         this.lblHaciaSituacion.Size = new System.Drawing.Size(168, 24);
                         this.lblHaciaSituacion.TabIndex = 16;
@@ -244,7 +245,7 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.DecimalPlaces = -1;
                         this.EntradaStockActual.FieldName = null;
                         this.EntradaStockActual.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockActual.Location = new System.Drawing.Point(308, 252);
+                        this.EntradaStockActual.Location = new System.Drawing.Point(308, 256);
                         this.EntradaStockActual.MaxLength = 32767;
                         this.EntradaStockActual.MultiLine = false;
                         this.EntradaStockActual.Name = "EntradaStockActual";
@@ -267,7 +268,7 @@ namespace Lfc.Articulos
                         this.EntradaStockResult.DecimalPlaces = -1;
                         this.EntradaStockResult.FieldName = null;
                         this.EntradaStockResult.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockResult.Location = new System.Drawing.Point(428, 252);
+                        this.EntradaStockResult.Location = new System.Drawing.Point(428, 256);
                         this.EntradaStockResult.MaxLength = 32767;
                         this.EntradaStockResult.MultiLine = false;
                         this.EntradaStockResult.Name = "EntradaStockResult";
@@ -295,7 +296,7 @@ namespace Lfc.Articulos
                         this.EntradaDesdeSituacion.FieldName = null;
                         this.EntradaDesdeSituacion.Filter = "";
                         this.EntradaDesdeSituacion.FreeTextCode = "";
-                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(140, 164);
+                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(140, 172);
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
                         this.EntradaDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
@@ -312,7 +313,7 @@ namespace Lfc.Articulos
                         // Label7
                         // 
                         this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label7.Location = new System.Drawing.Point(32, 164);
+                        this.Label7.Location = new System.Drawing.Point(32, 172);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(108, 24);
                         this.Label7.TabIndex = 6;
@@ -332,7 +333,7 @@ namespace Lfc.Articulos
                         this.EntradaHaciaSituacion.FieldName = null;
                         this.EntradaHaciaSituacion.Filter = "";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
-                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(140, 196);
+                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(140, 200);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
                         this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
@@ -349,7 +350,7 @@ namespace Lfc.Articulos
                         // Label8
                         // 
                         this.Label8.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label8.Location = new System.Drawing.Point(32, 196);
+                        this.Label8.Location = new System.Drawing.Point(32, 200);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(108, 24);
                         this.Label8.TabIndex = 8;
@@ -364,7 +365,7 @@ namespace Lfc.Articulos
                         this.EntradaStockResult2.DecimalPlaces = -1;
                         this.EntradaStockResult2.FieldName = null;
                         this.EntradaStockResult2.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockResult2.Location = new System.Drawing.Point(428, 284);
+                        this.EntradaStockResult2.Location = new System.Drawing.Point(428, 288);
                         this.EntradaStockResult2.MaxLength = 32767;
                         this.EntradaStockResult2.MultiLine = false;
                         this.EntradaStockResult2.Name = "EntradaStockResult2";
@@ -387,7 +388,7 @@ namespace Lfc.Articulos
                         this.EntradaStockActual2.DecimalPlaces = -1;
                         this.EntradaStockActual2.FieldName = null;
                         this.EntradaStockActual2.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockActual2.Location = new System.Drawing.Point(308, 284);
+                        this.EntradaStockActual2.Location = new System.Drawing.Point(308, 288);
                         this.EntradaStockActual2.MaxLength = 32767;
                         this.EntradaStockActual2.MultiLine = false;
                         this.EntradaStockActual2.Name = "EntradaStockActual2";
@@ -405,7 +406,7 @@ namespace Lfc.Articulos
                         // lblStockFlecha
                         // 
                         this.lblStockFlecha.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.lblStockFlecha.Location = new System.Drawing.Point(404, 252);
+                        this.lblStockFlecha.Location = new System.Drawing.Point(404, 256);
                         this.lblStockFlecha.Name = "lblStockFlecha";
                         this.lblStockFlecha.Size = new System.Drawing.Size(24, 24);
                         this.lblStockFlecha.TabIndex = 14;
@@ -415,7 +416,7 @@ namespace Lfc.Articulos
                         // lblStockFlecha2
                         // 
                         this.lblStockFlecha2.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.lblStockFlecha2.Location = new System.Drawing.Point(404, 284);
+                        this.lblStockFlecha2.Location = new System.Drawing.Point(404, 288);
                         this.lblStockFlecha2.Name = "lblStockFlecha2";
                         this.lblStockFlecha2.Size = new System.Drawing.Size(24, 24);
                         this.lblStockFlecha2.TabIndex = 18;
@@ -427,7 +428,7 @@ namespace Lfc.Articulos
                         this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(308, 232);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(96, 20);
+                        this.Label5.Size = new System.Drawing.Size(96, 24);
                         this.Label5.TabIndex = 10;
                         this.Label5.Text = "Antes";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -437,7 +438,7 @@ namespace Lfc.Articulos
                         this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(428, 232);
                         this.Label6.Name = "Label6";
-                        this.Label6.Size = new System.Drawing.Size(96, 20);
+                        this.Label6.Size = new System.Drawing.Size(96, 24);
                         this.Label6.TabIndex = 11;
                         this.Label6.Text = "Después";
                         this.Label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -454,7 +455,7 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.FieldName = null;
                         this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaArticulo.FreeTextCode = "";
-                        this.EntradaArticulo.Location = new System.Drawing.Point(140, 76);
+                        this.EntradaArticulo.Location = new System.Drawing.Point(140, 88);
                         this.EntradaArticulo.MaxLength = 200;
                         this.EntradaArticulo.MuestraPrecio = false;
                         this.EntradaArticulo.MuestraStock = false;

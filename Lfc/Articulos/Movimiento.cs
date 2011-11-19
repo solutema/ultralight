@@ -104,17 +104,33 @@ namespace Lfc.Articulos
                         MostrarStock();
                 }
 
+
+                private int IgnorarEntradaMovimiento_TextChanged = 0;
                 private void EntradaMovimiento_TextChanged(object sender, System.EventArgs e)
                 {
+                        if (IgnorarEntradaMovimiento_TextChanged > 0)
+                                return;
+
                         switch (EntradaMovimiento.TextKey) {
                                 case "e":
+                                        IgnorarEntradaMovimiento_TextChanged++;
                                         EntradaDesdeSituacion.TextInt = 998;
                                         EntradaHaciaSituacion.TextInt = 1;
+                                        IgnorarEntradaMovimiento_TextChanged--;
                                         break;
 
                                 case "s":
+                                        IgnorarEntradaMovimiento_TextChanged++;
                                         EntradaDesdeSituacion.TextInt = 1;
                                         EntradaHaciaSituacion.TextInt = 999;
+                                        IgnorarEntradaMovimiento_TextChanged--;
+                                        break;
+
+                                case "o":
+                                        /* IgnorarEntradaMovimiento_TextChanged++;
+                                        EntradaDesdeSituacion.TextInt = 0;
+                                        EntradaHaciaSituacion.TextInt = 0;
+                                        IgnorarEntradaMovimiento_TextChanged--; */
                                         break;
                         }
 
@@ -127,23 +143,27 @@ namespace Lfc.Articulos
                         lblDesdeSituacion.Text = EntradaDesdeSituacion.TextDetail;
                         lblHaciaSituacion.Text = EntradaHaciaSituacion.TextDetail;
 
-                        if (EntradaDesdeSituacion.TextInt == 1 && EntradaHaciaSituacion.TextInt == 999) {
-                                if (EntradaMovimiento.TextKey != "s")
-                                        EntradaMovimiento.TextKey = "s";
-                        } else if (EntradaDesdeSituacion.TextInt == 998 && EntradaHaciaSituacion.TextInt == 1) {
+                        Lbl.Articulos.Situacion Desde = EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
+                        Lbl.Articulos.Situacion Hacia = EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
+
+                        if ((Desde == null || Desde.CuentaStock == false) && (Hacia != null && Hacia.CuentaStock == true)) {
                                 if (EntradaMovimiento.TextKey != "e")
                                         EntradaMovimiento.TextKey = "e";
+                        } else if ((Hacia == null || Hacia.CuentaStock == false) && (Desde != null && Desde.CuentaStock == true)) {
+                                if (EntradaMovimiento.TextKey != "s")
+                                        EntradaMovimiento.TextKey = "s";
                         } else {
-                                EntradaMovimiento.TextKey = " ";
+                                if (EntradaMovimiento.TextKey != "o")
+                                        EntradaMovimiento.TextKey = "o";
                         }
 
-                        EntradaStockActual.Visible = EntradaDesdeSituacion.TextInt > 0;
-                        lblStockFlecha.Visible = EntradaDesdeSituacion.TextInt > 0;
-                        EntradaStockResult.Visible = EntradaDesdeSituacion.TextInt > 0;
+                        EntradaStockActual.Visible = Desde != null && Desde.CuentaStock;
+                        lblStockFlecha.Visible = EntradaStockActual.Visible;
+                        EntradaStockResult.Visible = EntradaStockActual.Visible;
 
-                        EntradaStockActual2.Visible = EntradaHaciaSituacion.TextInt > 0;
-                        lblStockFlecha2.Visible = EntradaHaciaSituacion.TextInt > 0;
-                        EntradaStockResult2.Visible = EntradaHaciaSituacion.TextInt > 0;
+                        EntradaStockActual2.Visible = Hacia != null && Hacia.CuentaStock;
+                        lblStockFlecha2.Visible = EntradaStockActual2.Visible;
+                        EntradaStockResult2.Visible = EntradaStockActual2.Visible;
 
                         EntradaArticulo.DatosSeguimiento = null;
                 }

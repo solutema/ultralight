@@ -1086,6 +1086,7 @@ namespace Lfc.Articulos
                         this.EntradaSeguimiento.Size = new System.Drawing.Size(187, 66);
                         this.EntradaSeguimiento.TabIndex = 7;
                         this.EntradaSeguimiento.TextKey = "0";
+                        this.EntradaSeguimiento.TextChanged += new System.EventHandler(this.EntradaSeguimiento_TextChanged);
                         // 
                         // BotonConformacion
                         // 

@@ -217,15 +217,10 @@ namespace Lui.Forms
                                                 m_SetIndex = i;
                                                 IgnoreChanges++;
                                                 this.TextRaw = m_SetDataText[m_SetIndex];
-                                                IgnoreChanges--;
-                                                break;
-                                        }
-                                }
-
-                                for (int i = m_SetDataText.GetLowerBound(0); i <= m_SetDataText.GetUpperBound(0); i++) {
-                                        if (m_SetData[i] == this.Text) {
                                                 if (ItemList.Items.Count >= (i + 1))
                                                         ItemList.SelectedIndex = i;
+                                                IgnoreChanges--;
+                                                break;
                                         }
                                 }
                         }

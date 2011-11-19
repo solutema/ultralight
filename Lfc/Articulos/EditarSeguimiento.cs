@@ -112,7 +112,7 @@ namespace Lfc.Articulos
                                         if (ListaDatosSeguimiento.CheckedItems == null || ListaDatosSeguimiento.CheckedItems.Count == 0)
                                                 return null;
                                         foreach (ListViewItem Itm in ListaDatosSeguimiento.CheckedItems) {
-                                                if (Res.ContainsVariacion(Itm.Text))
+                                                if (Res.ContainsKey(Itm.Text))
                                                         Res[Itm.Text].Cantidad += Lfx.Types.Parsing.ParseInt(Itm.SubItems[1].Text);
                                                 else
                                                         Res.AddWithValue(Itm.Text, Lfx.Types.Parsing.ParseInt(Itm.SubItems[1].Text));
@@ -164,9 +164,9 @@ namespace Lfc.Articulos
                                         Itm.SubItems.Add("0");
                                         Itm.SubItems.Add(System.Convert.ToInt32(StockVariacion).ToString());
                                         Itm.SubItems[2].ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
-                                        if (SelectedSeries.ContainsVariacion(Variacion)) {
+                                        if (SelectedSeries.ContainsKey(Variacion)) {
                                                 if (SelectedSeries[Variacion].Cantidad-- > 0)
-                                                        Itm.Checked = SelectedSeries.ContainsVariacion(Variacion);
+                                                        Itm.Checked = SelectedSeries.ContainsKey(Variacion);
                                         }
                                 }
 

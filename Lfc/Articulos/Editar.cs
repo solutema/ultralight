@@ -68,6 +68,7 @@ namespace Lfc.Articulos
                                                 EntradaNombre.Text = Texto;
                                 }
                         }
+                        EntradaSeguimiento_TextChanged(sender, e);
                 }
 
                 private void EntradaNombre_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
@@ -135,19 +136,55 @@ namespace Lfc.Articulos
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {
-                        Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
+                        /* if (this.Elemento.Existe) {
+                                Lbl.Articulos.Seguimientos Seg = (Lbl.Articulos.Seguimientos)(EntradaSeguimiento.ValueInt);
+                                if (Seg == Lbl.Articulos.Seguimientos.Predeterminado) {
+                                        Lbl.Articulos.Categoria Cat = EntradaCategoria.Elemento as Lbl.Articulos.Categoria;
+                                        if (Cat != null)
+                                                Seg = Cat.ObtenerSeguimiento();
+                                }
+
+                                decimal CantidadSeguimiento = this.Connection.FieldDecimal("SELECT SUM(cantidad) FROM articulos_series WHERE id_articulo=" + this.Elemento.Id);
+
+                                if (Seg == Lbl.Articulos.Seguimientos.Ninguno && CantidadSeguimiento != 0) {
+                                        // Se van a perder los datos de seguimiento
+                                        Lui.Forms.YesNoDialog PregNuevo = new Lui.Forms.YesNoDialog("Al desactivar el seguimiento, se perderán los datos actuales de seguimiento (números de serie o talles y colores). ¿Está seguro de que desea continuar?", "Desactivar seguimiento");
+                                        if (PregNuevo.ShowDialog() != DialogResult.OK)
+                                                return new Lfx.Types.FailureOperationResult("Active nuevamente el seguimiento del artículo para no perder los datos actuales de seguimiento. Puede consultar los datos actuales en 'Conformación'.");
+                                } else if (Seg != Lbl.Articulos.Seguimientos.Ninguno && CantidadSeguimiento != EntradaStockActual.ValueDecimal) {
+                                        // Hay que ingresar nuevos datos de seguimiento
+                                        Lui.Forms.YesNoDialog PregNuevo = new Lui.Forms.YesNoDialog("Al activar el seguimiento, deberá ingresar los datos de seguimiento (números de serie o talles y colores) para las existencias actuales. ¿Está seguro de que desea continuar?", "Activar seguimiento");
+                                        if (PregNuevo.ShowDialog() != DialogResult.OK) {
+                                                return new Lfx.Types.FailureOperationResult("Desactive nuevamente el seguimiento del artículo si no tiene los datos de seguimiento de las existencias actuales.");
+                                        } else {
+                                                Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
+
+                                                Lfc.Articulos.EditarSeguimiento EditarSeg = new EditarSeguimiento();
+                                                EditarSeg.Articulo = Art;
+                                                EditarSeg.Cantidad = Math.Abs(System.Convert.ToInt32(EntradaStockActual.ValueDecimal));
+                                                EditarSeg.SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, 998);
+                                                EditarSeg.DatosSeguimiento = EntradaArticulo.DatosSeguimiento;
+                                                if (EditarSeg.ShowDialog() == DialogResult.OK) {
+                                                        EntradaArticulo.DatosSeguimiento = EditarSeg.DatosSeguimiento;
+                                                }
+                                        }
+                                }
+                        } */
+
+
+                        Lfx.Types.OperationResult Res = new Lfx.Types.SuccessOperationResult();
 
                         if (EntradaNombre.Text.Length < 2) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Por favor escriba el nombre del artículo." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "Por favor escriba el nombre del artículo." + Environment.NewLine;
                         }
 
                         if (EntradaCodigo1.Text.Length > 0) {
                                 Lfx.Data.Row Articulo = this.Connection.FirstRowFromSelect("SELECT id_articulo FROM articulos WHERE codigo1='" + EntradaCodigo1.Text + "' AND id_articulo<>" + this.Elemento.Id.ToString());
 
                                 if (Articulo != null) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "Ya existe un artículo con el mismo código (" + EtiquetaCodigo1.Text + " " + EntradaCodigo1.Text + ") en la base de datos." + Environment.NewLine;
+                                        Res.Success = false;
+                                        Res.Message += "Ya existe un artículo con el mismo código (" + EtiquetaCodigo1.Text + " " + EntradaCodigo1.Text + ") en la base de datos." + Environment.NewLine;
                                 }
                         }
 
@@ -155,8 +192,8 @@ namespace Lfc.Articulos
                                 Lfx.Data.Row Articulo = this.Connection.FirstRowFromSelect("SELECT id_articulo FROM articulos WHERE codigo2='" + EntradaCodigo2.Text + "' AND id_articulo<>" + this.Elemento.Id.ToString());
 
                                 if (Articulo != null) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "Ya existe un artículo con el mismo código (" + EtiquetaCodigo2.Text + " " + EntradaCodigo2.Text + ") en la base de datos." + Environment.NewLine;
+                                        Res.Success = false;
+                                        Res.Message += "Ya existe un artículo con el mismo código (" + EtiquetaCodigo2.Text + " " + EntradaCodigo2.Text + ") en la base de datos." + Environment.NewLine;
                                 }
                         }
 
@@ -164,8 +201,8 @@ namespace Lfc.Articulos
                                 Lfx.Data.Row Articulo = this.Connection.FirstRowFromSelect("SELECT id_articulo FROM articulos WHERE codigo3='" + EntradaCodigo3.Text + "' AND id_articulo<>" + this.Elemento.Id.ToString());
 
                                 if (Articulo != null) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "Ya existe un artículo con el mismo código (" + EtiquetaCodigo3.Text + " " + EntradaCodigo3.Text + ") en la base de datos." + Environment.NewLine;
+                                        Res.Success = false;
+                                        Res.Message += "Ya existe un artículo con el mismo código (" + EtiquetaCodigo3.Text + " " + EntradaCodigo3.Text + ") en la base de datos." + Environment.NewLine;
                                 }
                         }
 
@@ -173,12 +210,12 @@ namespace Lfc.Articulos
                                 Lfx.Data.Row Articulo = this.Connection.FirstRowFromSelect("SELECT id_articulo FROM articulos WHERE codigo4='" + EntradaCodigo4.Text + "' AND id_articulo<>" + this.Elemento.Id.ToString());
 
                                 if (Articulo != null) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "Ya existe un artículo con el mismo código (" + EtiquetaCodigo4.Text + " " + EntradaCodigo4.Text + ") en la base de datos." + Environment.NewLine;
+                                        Res.Success = false;
+                                        Res.Message += "Ya existe un artículo con el mismo código (" + EtiquetaCodigo4.Text + " " + EntradaCodigo4.Text + ") en la base de datos." + Environment.NewLine;
                                 }
                         }
 
-                        return validarReturn;
+                        return Res;
                 }
 
 
@@ -192,7 +229,7 @@ namespace Lfc.Articulos
                                 Res += "Costo de la última compra (sin gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
                                 Res += "Costo de la última compra (con gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
 
-                                // Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
+                                // Podría hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
                                 // no permite la cláusula LIMIT dentro de una subconsulta IN ()
                                 decimal PrecioUlt5Comps = 0;
                                 System.Data.DataTable UltimasCompras = this.Connection.Select("SELECT comprob_detalle.precio, comprob.id_comprob FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND comprob_detalle.id_articulo=" + this.Elemento.Id.ToString() + " ORDER BY comprob.fecha DESC LIMIT 5");
@@ -272,8 +309,9 @@ namespace Lfc.Articulos
 
                         IgnorarCostoTextChanged--;
 
-                        EntradaUsaStock.TextKey = ((int)(Art.ControlStock)).ToString();
-                        EntradaSeguimiento.TextKey = ((int)(Art.Seguimiento)).ToString();
+                        EntradaUsaStock.ValueInt = (int)(Art.ControlStock);
+                        EntradaSeguimiento.ValueInt = (int)(Art.Seguimiento);
+                        EntradaSeguimiento.ReadOnly = Art.Existe && Art.StockActual != 0;
                         EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.StockActual, this.Workspace.CurrentConfig.Productos.DecimalesStock);
                         EntradaUnidad.TextKey = Art.Unidad;
                         Rendimiento = Art.Rendimiento;
@@ -426,6 +464,27 @@ namespace Lfc.Articulos
                         FormularioDetalles.MdiParent = this.ParentForm.MdiParent;
                         FormularioDetalles.Mostrar(this.Elemento as Lbl.Articulos.Articulo);
                         FormularioDetalles.Show();
+                }
+
+                private void EntradaSeguimiento_TextChanged(object sender, EventArgs e)
+                {
+                        Lbl.Articulos.Seguimientos Seg = (Lbl.Articulos.Seguimientos)(EntradaSeguimiento.ValueInt);
+                        if (Seg == Lbl.Articulos.Seguimientos.Predeterminado) {
+                                Lbl.Articulos.Categoria Cat = EntradaCategoria.Elemento as Lbl.Articulos.Categoria;
+                                if (Cat != null)
+                                        Seg = Cat.ObtenerSeguimiento();
+                        }
+
+                        EntradaStockActual.ReadOnly = Seg == Lbl.Articulos.Seguimientos.Ninguno;
+                        if(EntradaStockActual.ReadOnly) {
+                                // El stock no editable
+                                if (this.Elemento.Existe)
+                                        // Para artículos existentes, muestro el stock actual real
+                                        EntradaStockActual.ValueDecimal = this.Connection.FieldDecimal("SELECT stock_actual FROM articulos WHERE id_articulo=" + this.Elemento.Id.ToString());
+                                else
+                                        // Para artículos nuevos, muestro cero
+                                        EntradaStockActual.ValueDecimal = 0;
+                        }
                 }
         }
 }
