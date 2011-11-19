@@ -83,7 +83,7 @@ namespace Lfx.Data
                                 this.InputFieldType = (Lfx.Data.InputFieldTypes)(Enum.Parse(typeof(Lfx.Data.InputFieldTypes), fromRow["inputtype"].ToString()));
                                                 
                         this.Nullable = System.Convert.ToBoolean(fromRow["fieldnullable"]);
-                        this.Nullable = System.Convert.ToBoolean(fromRow["internal"]);
+                        this.Internal = System.Convert.ToBoolean(fromRow["internal"]);
                         this.DefaultValue = fromRow["fielddefault"];
                         if (this.DefaultValue is DBNull)
                                 this.DefaultValue = null;

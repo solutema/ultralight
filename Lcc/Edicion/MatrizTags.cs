@@ -58,94 +58,15 @@ namespace Lcc.Edicion
                         Tabla.Connection = this.Connection;
                         if (Tabla.Tags != null) {
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
-                                        Lazaro.Pres.Field Fld = new Lazaro.Pres.Field(Tg.FieldName, Tg.Label, Tg.InputFieldType);
-                                        Fld.Relation = Tg.Relation;
-                                        Sect.Fields.Add(Fld);
+                                        if (Tg.Internal == false) {
+                                                Lazaro.Pres.Field Fld = new Lazaro.Pres.Field(Tg.FieldName, Tg.Label, Tg.InputFieldType);
+                                                Fld.Relation = Tg.Relation;
+                                                Sect.Fields.Add(Fld);
+                                        }
                                 }
                         }
 
                         this.FromSection(Sect);
-
-                        /* this.EliminarCampos();
-                        //Tomos los tags del registro
-                        this.Tabla = m_Elemento.Connection.Tables[m_Elemento.TablaDatos];
-                        Tabla.Connection = this.Connection;
-                        if (Tabla.Tags != null) {
-                                foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
-                                        Lui.Forms.EditableControl Fld;
-
-                                        switch(Tg.InputFieldType)
-                                        {
-                                                case Lfx.Data.InputFieldTypes.Bool:
-                                                        Lui.Forms.ComboBox BoolField = new Lui.Forms.ComboBox();
-                                                        BoolField.SetData = new string[] { "Si|1", "No|0" };
-                                                        BoolField.AlwaysExpanded = false;
-                                                        BoolField.AutoSize = false;
-                                                        BoolField.TextKey = m_Elemento.GetFieldValue<bool>(Tg.FieldName) ? "1" : "0";
-                                                        Fld = BoolField;
-                                                        break;
-                                                case Lfx.Data.InputFieldTypes.Set:
-                                                        Lui.Forms.ComboBox SetField = new Lui.Forms.ComboBox();
-                                                        SetField.SetData = Tg.Extra.Split(new char[] { ';' });
-                                                        SetField.TextKey = m_Elemento.GetFieldValue<string>(Tg.FieldName);
-                                                        SetField.AlwaysExpanded = true;
-                                                        SetField.AutoSize = true;
-                                                        Fld = SetField;
-                                                        break;
-                                                case Lfx.Data.InputFieldTypes.Relation:
-                                                        Entrada.CodigoDetalle RelationField = new Entrada.CodigoDetalle();
-                                                        RelationField.Relation = Tg.Relation;
-                                                        RelationField.TextInt = m_Elemento.GetFieldValue<int>(Tg.FieldName);
-                                                        RelationField.PlaceholderText = Tg.Label;
-                                                        RelationField.Required = false;
-                                                        Fld = RelationField;
-                                                        break;
-                                                default:
-                                                        Lui.Forms.TextBox TextField = new Lui.Forms.TextBox();
-                                                        switch(Tg.InputFieldType){
-                                                                case Lfx.Data.InputFieldTypes.Currency:
-                                                                        TextField.DataType = Lui.Forms.DataTypes.Currency;
-                                                                        TextField.ValueDecimal = m_Elemento.GetFieldValue<decimal>(Tg.FieldName);
-                                                                        break;
-                                                                case Lfx.Data.InputFieldTypes.Date:
-                                                                        TextField.DataType = Lui.Forms.DataTypes.Date;
-                                                                        TextField.Text = m_Elemento.GetFieldValue<DateTime>(Tg.FieldName).ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
-                                                                        break;
-                                                                case Lfx.Data.InputFieldTypes.DateTime:
-                                                                        TextField.DataType = Lui.Forms.DataTypes.DateTime;
-                                                                        TextField.Text = m_Elemento.GetFieldValue<DateTime>(Tg.FieldName).ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
-                                                                        break;
-                                                                case Lfx.Data.InputFieldTypes.Numeric:
-                                                                        TextField.DataType = Lui.Forms.DataTypes.Float;
-                                                                        TextField.ValueDecimal = m_Elemento.GetFieldValue<decimal>(Tg.FieldName);
-                                                                        break;
-                                                                case Lfx.Data.InputFieldTypes.Integer:
-                                                                        TextField.DataType = Lui.Forms.DataTypes.Integer;
-                                                                        TextField.ValueInt = m_Elemento.GetFieldValue<int>(Tg.FieldName);
-                                                                        break;
-                                                                case Lfx.Data.InputFieldTypes.Text:
-                                                                        TextField.DataType = Lui.Forms.DataTypes.FreeText;
-                                                                        TextField.Text = m_Elemento.GetFieldValue<string>(Tg.FieldName);
-                                                                        break;
-                                                                case Lfx.Data.InputFieldTypes.Memo:
-                                                                        TextField.DataType = Lui.Forms.DataTypes.FreeText;
-                                                                        TextField.MultiLine = true;
-                                                                        TextField.Size = new Size(this.FieldContainer.ClientSize.Width, 72);
-                                                                        TextField.Text = m_Elemento.GetFieldValue<string>(Tg.FieldName);
-                                                                        break;
-                                                        }
-                                                        TextField.PlaceholderText = Tg.Label;
-                                                        Fld = TextField;
-                                                        break;
-                                        }
-
-                                        if (Fld.Size == System.Drawing.Size.Empty)
-                                                Fld.Size = new Size(this.FieldContainer.ClientSize.Width, 24);
-                                        Fld.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Top;
-                                        Fld.FieldName = Tg.FieldName;
-                                        this.AgregarCampo(Tg.Label, Fld);
-                                }
-                        } */
 
                         base.ActualizarControl();
                 }
