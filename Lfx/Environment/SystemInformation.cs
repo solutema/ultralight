@@ -105,56 +105,6 @@ namespace Lfx.Environment
                 }
 
 
-                [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-                private class MEMORYSTATUSEX
-                {
-                        public uint dwLength;
-                        public uint dwMemoryLoad;
-                        public ulong ullTotalPhys;
-                        public ulong ullAvailPhys;
-                        public ulong ullTotalPageFile;
-                        public ulong ullAvailPageFile;
-                        public ulong ullTotalVirtual;
-                        public ulong ullAvailVirtual;
-                        public ulong ullAvailExtendedVirtual;
-
-                        public MEMORYSTATUSEX()
-                        {
-                                this.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
-                        }
-                }
-
-                [return: MarshalAs(UnmanagedType.Bool)]
-                [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-                static extern bool GlobalMemoryStatusEx([In, Out] MEMORYSTATUSEX lpBuffer);
-
-
-                /// <summary>
-                /// Get total amount of ram, in megabytes
-                /// </summary>
-                public static int TotalRam
-                {
-                        get
-                        {
-                                try {
-                                        if (Platform == Platforms.Windows) {
-                                                MEMORYSTATUSEX memStatus = new MEMORYSTATUSEX();
-                                                if (GlobalMemoryStatusEx(memStatus))
-                                                        return System.Convert.ToInt32(memStatus.ullTotalPhys / 1024 / 1024);
-                                                else
-                                                        return 0;
-                                        } else {
-                                                PerformanceCounter Pc = new PerformanceCounter("Mono Memory", "Total Physical Memory");
-                                                return System.Convert.ToInt32(Pc.RawValue / 1024);
-                                        }
-                                } catch (Exception ex) {
-                                        System.Console.WriteLine(ex.Message);
-                                        return 0;
-                                }
-                        }
-                }
-
-
                 public static string RuntimeName
                 {
                         get

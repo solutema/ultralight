@@ -63,11 +63,11 @@ namespace Lbl.Servicios.Importar
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("CUIT", "cuit");
                                 this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues("OBSERVAC", "obs", ConversionDeColumna.ConvertirAMayusculasYMinusculas);
 
-                                this.MapaDeTablas.AddWithValue("Proveedores", "proveedo.dbf", "personas", "CODIGO");
+                                this.MapaDeTablas.AddWithValue("Proveedores", "proveedo.dbf", "personas", "CODIGO,CUIT");
                                 this.MapaDeTablas["proveedo.dbf"].TipoElemento = typeof(Lbl.Personas.Proveedor);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues(null, "tipo", 2);
-                                this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "estado", 1);
-                                this.MapaDeTablas["clientes.dbf"].MapaDeColumnas.AddWithValues(null, "id_situacion", 2);
+                                this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues(null, "estado", 1);
+                                this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues(null, "id_situacion", 2);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues("NOMBRE", "nombre_visible", ConversionDeColumna.InterpretarNombreYApellido);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues("DOMICILIO", "domicilio", ConversionDeColumna.ConvertirAMayusculasYMinusculas);
                                 this.MapaDeTablas["proveedo.dbf"].MapaDeColumnas.AddWithValues("COD_POS", "id_ciudad", ConversionDeColumna.InterpretarSql);
@@ -167,6 +167,9 @@ namespace Lbl.Servicios.Importar
                                         Lbl.IElementoDeDatos ElemMovim = base.ConvertirRegistroEnElemento(mapa, externalRow, internalRow);
                                         Lbl.CuentasCorrientes.Movimiento Movim = ElemMovim as Lbl.CuentasCorrientes.Movimiento;
                                         if (Movim != null) {
+                                                if (Movim.IdCliente == 0)
+                                                        return null;
+
                                                 Movim.Auto = true;
                                                 string TipoComprobVentre = externalRow["original_TIPO"].ToString();
                                                 if (TipoComprobVentre == "FCB") {

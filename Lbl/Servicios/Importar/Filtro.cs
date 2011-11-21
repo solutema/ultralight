@@ -60,7 +60,7 @@ namespace Lbl.Servicios.Importar
                 public void Importar()
                 {
                         this.Progreso = new Lfx.Types.OperationProgress("Importando datos de " + this.Nombre, "Se están importando los datos del filtro " + this.Nombre);
-                        this.Progreso.Blocking = false;
+                        this.Progreso.Blocking = true;
                         this.Progreso.Begin();
 
                         this.PrepararTablasLazaro();

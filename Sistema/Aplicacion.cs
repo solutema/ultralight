@@ -710,7 +710,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                                 "canal=" + System.Uri.EscapeUriString(Lfx.Updates.Updater.Master != null ? Lfx.Updates.Updater.Master.Channel : ""),
                                                                 "version=" + System.Uri.EscapeUriString(Aplicacion.Version()),
                                                                 "cpu=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.ProcessorName),
-                                                                "ram=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.TotalRam.ToString()),
                                                                 "loc=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Localidad", "0"))
                                                         };
                                 System.Net.WebRequest WebRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
