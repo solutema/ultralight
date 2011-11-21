@@ -92,7 +92,9 @@ namespace Lazaro.Impresion
                         } else {
                                 try {
                                         this.Print();
-                                } catch (Exception ex) {
+                                } catch (System.ComponentModel.Win32Exception ex) {
+                                        return new Lfx.Types.FailureOperationResult(ex.Message);
+                                } catch (System.Drawing.Printing.InvalidPrinterException ex) {
                                         return new Lfx.Types.FailureOperationResult(ex.Message);
                                 }
                         }

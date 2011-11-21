@@ -159,12 +159,8 @@ namespace Lazaro.Impresion.Comprobantes
                                                 //Elimina la ventana de "Imprimiendo página 1 de x"
                                                 this.PrintController = new System.Drawing.Printing.StandardPrintController();
 
-                                                try {
-                                                        ImprimiLocal = true;
-                                                        return base.Imprimir();
-                                                } catch (System.Exception Ex) {
-                                                        return new Lfx.Types.FailureOperationResult(Ex.ToString());
-                                                }
+                                                ImprimiLocal = true;
+                                                return base.Imprimir();
                                         } else {
                                                 if (this.Reimpresion)
                                                         throw new InvalidOperationException("No se permiten reimpresiones remotas.");
