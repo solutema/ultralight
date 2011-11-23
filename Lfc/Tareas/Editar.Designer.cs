@@ -209,7 +209,7 @@ namespace Lfc.Tareas
                         this.EntradaAsunto.AutoTab = true;
                         this.EntradaAsunto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAsunto.DecimalPlaces = -1;
-                        this.EntradaAsunto.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaAsunto.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaAsunto.Location = new System.Drawing.Point(84, 88);
                         this.EntradaAsunto.MultiLine = false;
                         this.EntradaAsunto.Name = "EntradaAsunto";
@@ -342,7 +342,7 @@ namespace Lfc.Tareas
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(84, 208);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";

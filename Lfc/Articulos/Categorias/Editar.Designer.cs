@@ -93,7 +93,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.FieldName = null;
-                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(140, 0);
                         this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;

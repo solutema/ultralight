@@ -75,7 +75,7 @@ namespace Lfc.Alicuotas
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";

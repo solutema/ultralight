@@ -718,7 +718,7 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDescripcion2.DecimalPlaces = -1;
                         this.EntradaDescripcion2.FieldName = null;
-                        this.EntradaDescripcion2.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaDescripcion2.ForceCase = Lui.Forms.TextCasing.Caption;
                         this.EntradaDescripcion2.Location = new System.Drawing.Point(484, 180);
                         this.EntradaDescripcion2.MaxLength = 32767;
                         this.EntradaDescripcion2.MultiLine = true;
@@ -808,7 +808,7 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDescripcion.DecimalPlaces = -1;
                         this.EntradaDescripcion.FieldName = null;
-                        this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.Caption;
                         this.EntradaDescripcion.Location = new System.Drawing.Point(76, 180);
                         this.EntradaDescripcion.MaxLength = 32767;
                         this.EntradaDescripcion.MultiLine = true;

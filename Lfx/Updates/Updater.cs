@@ -83,7 +83,8 @@ namespace Lfx.Updates
 
                         if (this.UpdaterThread == null) {
                                 this.UpdaterThread = new System.Threading.Thread(new System.Threading.ThreadStart(UpdateProc));
-                                this.UpdaterThread.Priority = System.Threading.ThreadPriority.Lowest;
+                                this.UpdaterThread.Priority = System.Threading.ThreadPriority.BelowNormal;
+                                this.UpdaterThread.IsBackground = true;
                                 this.UpdaterThread.Start();
                         }
                 }

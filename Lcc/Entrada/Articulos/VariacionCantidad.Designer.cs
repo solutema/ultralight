@@ -100,7 +100,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaVariacion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaVariacion.DecimalPlaces = -1;
                         this.EntradaVariacion.FieldName = null;
-                        this.EntradaVariacion.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaVariacion.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaVariacion.Location = new System.Drawing.Point(0, 0);
                         this.EntradaVariacion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaVariacion.MaxLength = 32767;

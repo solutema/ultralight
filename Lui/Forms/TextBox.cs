@@ -564,6 +564,10 @@ namespace Lui.Forms
                                 case TextCasing.Caption:
                                         Res = Res.ToTitleCase();
                                         break;
+                                case TextCasing.Automatic:
+                                        if (Res == Res.ToLower() || Res == Res.ToUpper())
+                                                Res = Res.ToTitleCase();
+                                        break;
                         }
 
                         return Res;

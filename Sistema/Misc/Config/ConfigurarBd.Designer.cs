@@ -109,7 +109,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaServidor.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaServidor.DecimalPlaces = -1;
                         this.EntradaServidor.FieldName = null;
-                        this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaServidor.Location = new System.Drawing.Point(192, 164);
                         this.EntradaServidor.MaxLength = 32767;
                         this.EntradaServidor.MultiLine = false;

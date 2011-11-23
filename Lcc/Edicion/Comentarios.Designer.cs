@@ -122,7 +122,7 @@ namespace Lcc.Edicion
                         this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaComentario.DecimalPlaces = -1;
                         this.EntradaComentario.FieldName = null;
-                        this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
                         this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaComentario.MaxLength = 32767;

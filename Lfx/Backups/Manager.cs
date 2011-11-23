@@ -50,7 +50,9 @@ namespace Lfx.Backups
                 public void StartBackgroundBackup(BackupInfo backupInfo)
                 {
                         System.Threading.ThreadStart BackupThread = delegate { this.Backup(backupInfo); };
-                        new System.Threading.Thread(BackupThread).Start();
+                        System.Threading.Thread Thr = new System.Threading.Thread(BackupThread);
+                        Thr.IsBackground = true;
+                        Thr.Start();
                 }
 
 

@@ -180,7 +180,7 @@ namespace Lfc.Cajas
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(116, 180);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";

@@ -177,7 +177,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaEmisor.AutoTab = true;
                         this.EntradaEmisor.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmisor.DecimalPlaces = -1;
-                        this.EntradaEmisor.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmisor.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaEmisor.Location = new System.Drawing.Point(140, 0);
                         this.EntradaEmisor.MultiLine = false;
                         this.EntradaEmisor.Name = "EntradaEmisor";
@@ -541,7 +541,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(140, 0);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";

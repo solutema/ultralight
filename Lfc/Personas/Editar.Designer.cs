@@ -1017,7 +1017,7 @@ namespace Lfc.Personas
                         this.EntradaObs.DecimalPlaces = -1;
                         this.EntradaObs.Dock = System.Windows.Forms.DockStyle.Fill;
                         this.EntradaObs.FieldName = null;
-                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(355, 450);
                         this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = true;

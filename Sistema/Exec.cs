@@ -161,7 +161,9 @@ namespace Lazaro.WinMain
                                         Fil.Dsn = "ventre";
 
                                         System.Threading.ThreadStart ThreadFiltro = delegate { Fil.Importar(); ; };
-                                        new System.Threading.Thread(ThreadFiltro).Start();
+                                        System.Threading.Thread Thr = new System.Threading.Thread(ThreadFiltro);
+                                        Thr.IsBackground = true;
+                                        Thr.Start();
                                         
                                         break;
 

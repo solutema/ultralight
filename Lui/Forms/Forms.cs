@@ -38,7 +38,15 @@ namespace Lui.Forms
 		None = 0,
 		UpperCase = 1,
 		LowerCase = 2,
+                /// <summary>
+                /// Poner la primera letras de cada palabra en mayúsculas, salvo artículos y otras excepciones.
+                /// </summary>
 		Caption = 3,
+                /// <summary>
+                /// Poner mayúsculas y minúsculas apropiadamente sólo si se escribió todo en mayúsculas o todo en minúsuclas.
+                /// Si el usuario usó mayúsculas y minúsculas mezcladas, las respetamos.
+                /// </summary>
+                Automatic
 	}
 
 	public enum DataTypes

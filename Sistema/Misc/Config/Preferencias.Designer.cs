@@ -235,7 +235,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaNombre.DecimalPlaces = -1;
                         this.EntradaEmpresaNombre.FieldName = null;
-                        this.EntradaEmpresaNombre.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaEmpresaNombre.Location = new System.Drawing.Point(192, 48);
                         this.EntradaEmpresaNombre.MaxLength = 200;
                         this.EntradaEmpresaNombre.MultiLine = false;
@@ -334,7 +334,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaRazonSocial.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaRazonSocial.DecimalPlaces = -1;
                         this.EntradaEmpresaRazonSocial.FieldName = null;
-                        this.EntradaEmpresaRazonSocial.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaRazonSocial.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaEmpresaRazonSocial.Location = new System.Drawing.Point(192, 76);
                         this.EntradaEmpresaRazonSocial.MaxLength = 200;
                         this.EntradaEmpresaRazonSocial.MultiLine = false;
@@ -379,7 +379,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaEmail.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaEmail.DecimalPlaces = -1;
                         this.EntradaEmpresaEmail.FieldName = null;
-                        this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaEmpresaEmail.Location = new System.Drawing.Point(192, 160);
                         this.EntradaEmpresaEmail.MaxLength = 200;
                         this.EntradaEmpresaEmail.MultiLine = false;

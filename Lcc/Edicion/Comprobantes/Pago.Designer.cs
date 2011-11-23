@@ -544,7 +544,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(140, 0);
                         this.EntradaObs.MultiLine = false;
                         this.EntradaObs.Name = "EntradaObs";

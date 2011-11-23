@@ -161,7 +161,9 @@ namespace Lazaro.WinMain.Principal
                                 if (YaSubiEstadisticas == false && Lfx.Workspace.Master.DebugMode == false) {
                                         YaSubiEstadisticas = true;
                                         System.Threading.ThreadStart ParamInicio = delegate { Aplicacion.EnviarEstadisticas(); };
-                                        new System.Threading.Thread(ParamInicio).Start();
+                                        System.Threading.Thread Thr = new System.Threading.Thread(ParamInicio);
+                                        Thr.IsBackground = true;
+                                        Thr.Start();
                                 }
 
                                 if (YaPregunteReiniciar == false && Lfx.Updates.Updater.Master != null && Lfx.Updates.Updater.Master.UpdatesPending() && ActiveForm == this) {

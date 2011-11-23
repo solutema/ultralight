@@ -92,6 +92,7 @@ namespace Lazaro.WinMain.Misc.Config
 
                                                 System.Threading.ThreadStart Buscar = delegate { this.BuscarServidor(Progreso); };
                                                 this.ThreadBuscar = new System.Threading.Thread(Buscar);
+                                                this.ThreadBuscar.IsBackground = true;
                                                 this.ThreadBuscar.Start();
 
                                                 EtiquetaBuscarEspere.Visible = true;
@@ -413,6 +414,7 @@ namespace Lazaro.WinMain.Misc.Config
 
                         System.Threading.ThreadStart Buscar = delegate { this.DescargarEInstalar(Progreso); };
                         this.ThreadDescargar = new System.Threading.Thread(Buscar);
+                        this.ThreadDescargar.IsBackground = true;
                         this.ThreadDescargar.Start();
 
                         while (Progreso != null && Progreso.IsRunning) {

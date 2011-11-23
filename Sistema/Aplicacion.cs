@@ -736,7 +736,6 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 private static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
                 {
                         GenericExceptionHandler(args.ExceptionObject as Exception);
-                        Application.Exit();
                 }
 
                 private static void GenericExceptionHandler(Exception ex)

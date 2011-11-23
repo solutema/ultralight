@@ -67,7 +67,7 @@ namespace Lfc.Tareas.Tipos
                         this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
@@ -94,7 +94,7 @@ namespace Lfc.Tareas.Tipos
                         this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(116, 28);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
