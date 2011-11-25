@@ -172,9 +172,6 @@
         K87NRs109SVYmyHcC0QFoTk1z6Xyi2sFG4ItweZLf0b/A7L9Lx9O4huhAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="$this.DrawGrid" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAEBAQAAEABAAoAQAAlgAAAAAAAAABAAgAIl0AAL4BAAAwMAAAAQAIAKgOAADgXgAAICAAAAEA

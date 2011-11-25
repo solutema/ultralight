@@ -219,6 +219,7 @@ namespace Lfc.Tareas
                                 return;
                         }
 
+                        Lfx.Data.Connection ConnFacturaNueva = this.Workspace.GetNewConnection("Convertir tarea en factura");
                         Lbl.Comprobantes.Factura Factura;
 
                         int ComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
@@ -230,17 +231,18 @@ namespace Lfc.Tareas
 
                         if (ComprobanteId > 0 && ComprobanteAnulado == false) {
                                 // Ya tiene un comprobante, pero fue anulado
-                                Factura = new Lbl.Comprobantes.Factura(this.Connection, ComprobanteId);
+                                Factura = new Lbl.Comprobantes.Factura(ConnFacturaNueva, ComprobanteId);
                         } else {
                                 // No tiene comprobante, lo creo
-                                EntradaEstado.TextInt = 50;
-
-                                Factura = new Lbl.Comprobantes.Factura(this.Connection);
+                                Factura = new Lbl.Comprobantes.Factura(ConnFacturaNueva);
 
                                 Factura.Crear();
                                 Factura.Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
+                                Factura.Cliente.Connection = ConnFacturaNueva;
                                 Factura.Tipo = Factura.Cliente.ObtenerTipoComprobante();
+                                Factura.Tipo.Connection = ConnFacturaNueva;
                                 Factura.Vendedor = EntradaTecnico.Elemento as Lbl.Personas.Persona;
+                                Factura.Vendedor.Connection = ConnFacturaNueva;
                                 Factura.Obs = EntradaTarea.TextDetail + " s/" + this.Elemento.ToString();
 
                                 System.Data.DataTable Articulos = this.Connection.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + this.Elemento.Id.ToString() + " ORDER BY orden");
@@ -253,10 +255,10 @@ namespace Lfc.Tareas
 
                                         Factura.Articulos.Add(Art);
                                 }
-                                if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text) > 0) {
+                                if (EntradaPresupuesto.ValueDecimal > 0) {
                                         Lbl.Comprobantes.DetalleArticulo Art = new Lbl.Comprobantes.DetalleArticulo(Factura);
 
-                                        Art.Articulo = new Lbl.Articulos.Articulo(this.Connection, 282);
+                                        Art.Nombre = this.Elemento.ToString();
                                         Art.Unitario = EntradaPresupuesto.ValueDecimal;
                                         Art.Cantidad = 1;
 
@@ -278,18 +280,20 @@ namespace Lfc.Tareas
 
                 private void EntradaComprobanteId_TextChanged(object sender, System.EventArgs e)
                 {
-                        int intComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
-                        if (intComprobanteId > 0) {
-                                txtComprobante.Text = Lbl.Comprobantes.Comprobante.TipoYNumeroCompleto(this.Connection, intComprobanteId);
+                        int ComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
+                        if (ComprobanteId > 0) {
+                                EntradaComprobante.Text = Lbl.Comprobantes.Comprobante.TipoYNumeroCompleto(this.Connection, ComprobanteId);
                                 // Guardo el comprobante en la tarea (sólo si no tenía uno asociado)
+                                System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
                                 qGen.Update Actual = new qGen.Update("tickets");
-                                Actual.Fields.Add(new Lfx.Data.Field("id_comprob", intComprobanteId));
+                                Actual.Fields.Add(new Lfx.Data.Field("id_comprob", ComprobanteId));
                                 Actual.WhereClause = new qGen.Where();
                                 Actual.WhereClause.AddWithValue("id_comprob", 0);
                                 Actual.WhereClause.AddWithValue("id_ticket", this.Elemento.Id);
                                 this.Connection.Execute(Actual);
+                                Trans.Commit();
                         } else {
-                                txtComprobante.Text = "";
+                                EntradaComprobante.Text = "";
                         }
                 }
 

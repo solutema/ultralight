@@ -409,8 +409,12 @@ namespace Lcc.Entrada.AuxForms
                                         if (Codigo.Length == 0)
                                                 Codigo = int.Parse(ListaItem.SelectedItems[0].Text).ToString();
                                         ControlDestino.Text = Codigo;
+                                        if (ControlDestino is Lui.Forms.IEditableControl)
+                                                ((Lui.Forms.IEditableControl)(ControlDestino)).Changed = true;
                                 } else {
                                         ControlDestino.Text = int.Parse(ListaItem.SelectedItems[0].Text).ToString();
+                                        if (ControlDestino is Lui.Forms.IEditableControl)
+                                                ((Lui.Forms.IEditableControl)(ControlDestino)).Changed = true;
                                 }
                                 this.Close();
                         }

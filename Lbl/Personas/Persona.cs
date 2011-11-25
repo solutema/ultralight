@@ -160,6 +160,7 @@ namespace Lbl.Personas
                         return base.Guardar();
                 }
 
+
                 public override string TablaDatos
 		{
 			get
@@ -191,7 +192,22 @@ namespace Lbl.Personas
 				return "nombre_visible";
 			}
 		}
-		
+
+
+                public override void OnLoad()
+                {
+                        m_CuentaCorriente = null;
+                        m_Etiquetas = null;
+                        m_EtiquetasOriginal = null;
+                        m_Grupo = null;
+                        m_Localidad = null;
+                        m_SituacionTributaria = null;
+                        m_SubGrupo = null;
+                        m_Vendedor = null;
+                        base.OnLoad();
+                }
+
+
 		public string NumeroDocumento
 		{
 			get
@@ -424,30 +440,6 @@ namespace Lbl.Personas
                         }
                 }
 
-                /* public string Contrasena
-                {
-                        get
-                        {
-                                return this.GetFieldValue<string>("contrasena");
-                        }
-                        set
-                        {
-                                this.Registro["contrasena"] = value;
-                        }
-                }
-
-
-                public string ContrasenaSal
-                {
-                        get
-                        {
-                                return this.GetFieldValue<string>("contrasena_sal");
-                        }
-                        set
-                        {
-                                this.Registro["contrasena_sal"] = value;
-                        }
-                } */
 
                 public NullableDateTime FechaNacimiento
 		{

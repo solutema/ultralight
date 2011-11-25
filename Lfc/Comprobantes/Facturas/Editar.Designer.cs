@@ -48,10 +48,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.PanelFormaPago.SuspendLayout();
                         this.SuspendLayout();
                         // 
-                        // ProductArray
-                        // 
-                        this.EntradaProductos.Size = new System.Drawing.Size(599, 207);
-                        // 
                         // Label2
                         // 
                         this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
@@ -71,6 +67,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.CanCreate = true;
                         this.EntradaFormaPago.DataTextField = "nombre";
                         this.EntradaFormaPago.DataValueField = "id_formapago";
+                        this.EntradaFormaPago.ExtraDetailFields = "";
+                        this.EntradaFormaPago.FieldName = null;
                         this.EntradaFormaPago.Filter = "cobros=1 AND estado=1";
                         this.EntradaFormaPago.FreeTextCode = "";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(108, 0);
@@ -103,6 +101,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
+                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(72, 72);
                         this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -138,7 +137,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonPago.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonPago.Image = null;
                         this.BotonPago.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonPago.Location = new System.Drawing.Point(492, 368);
+                        this.BotonPago.Location = new System.Drawing.Point(320, 368);
                         this.BotonPago.Name = "BotonPago";
                         this.BotonPago.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonPago.ReadOnly = false;
@@ -157,6 +156,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaRemito.AutoTab = true;
                         this.EntradaRemito.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaRemito.DecimalPlaces = -1;
+                        this.EntradaRemito.FieldName = null;
                         this.EntradaRemito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRemito.Location = new System.Drawing.Point(456, 72);
                         this.EntradaRemito.MaxLength = 32767;
@@ -186,8 +186,8 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Editar
                         // 
-                        this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.BotonPago);
+                        this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.PanelFormaPago);
                         this.Controls.Add(this.EntradaRemito);
                         this.Controls.Add(this.Label11);
@@ -198,10 +198,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.SetChildIndex(this.Label11, 0);
                         this.Controls.SetChildIndex(this.EntradaRemito, 0);
                         this.Controls.SetChildIndex(this.PanelFormaPago, 0);
-                        this.Controls.SetChildIndex(this.EntradaProductos, 0);
-                        this.Controls.SetChildIndex(this.EntradaCliente, 0);
-                        this.Controls.SetChildIndex(this.BotonPago, 0);
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);
+                        this.Controls.SetChildIndex(this.BotonPago, 0);
                         this.PanelFormaPago.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();

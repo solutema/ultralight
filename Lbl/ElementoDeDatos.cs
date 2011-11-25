@@ -156,7 +156,8 @@ namespace Lbl
                 /// </summary>
                 public virtual void OnLoad()
                 {
-                        
+                        m_Imagen = null;
+                        m_ImagenCambio = false;
                 }
 
                 /// <summary>
@@ -706,7 +707,7 @@ namespace Lbl
                                 throw new InvalidOperationException("No se puede cargar el registro desde la tabla " + this.TablaDatos + " porque no tiene Id.");
                         } else {
                                 // Quito el registro de la caché
-                                Lfx.Data.DataBaseCache.DefaultCache.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);
+                                this.Connection.Tables[this.TablaDatos].FastRows.RemoveFromCache(this.Id);
                         }
 
                         // En realidad, lo único que hago es vaciar los valores en memoria y dejo que this.Registro.Get() lo cargue.

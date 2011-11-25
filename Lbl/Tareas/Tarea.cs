@@ -184,6 +184,7 @@ namespace Lbl.Tareas
                 public override void Crear()
                 {
                         base.Crear();
+                        this.Fecha = DateTime.Now;
                         this.Encargado = new Lbl.Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                         this.Estado = 1;
                         this.Tipo = new Lbl.Tareas.Tipo(this.Connection, 99);

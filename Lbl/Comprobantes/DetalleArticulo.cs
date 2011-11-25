@@ -288,6 +288,7 @@ namespace Lbl.Comprobantes
                                 if (value != null) {
                                         this.IdComprobante = value.Id;
                                         m_Comprobante = value;
+                                        this.Connection = value.Connection;
                                 } else {
                                         this.IdComprobante = 0;
                                         m_Comprobante = null; 

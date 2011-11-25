@@ -87,7 +87,7 @@ namespace Lfc.Tareas
                         this.BotonFacturar = new Lui.Forms.Button();
                         this.EntradaFechaIngreso = new Lui.Forms.TextBox();
                         this.Label12 = new Lui.Forms.Label();
-                        this.txtComprobante = new Lui.Forms.TextBox();
+                        this.EntradaComprobante = new Lui.Forms.TextBox();
                         this.Label13 = new Lui.Forms.Label();
                         this.EntradaComprobanteId = new System.Windows.Forms.TextBox();
                         this.EntradaNumero = new Lui.Forms.TextBox();
@@ -514,20 +514,20 @@ namespace Lfc.Tareas
                         // 
                         // txtComprobante
                         // 
-                        this.txtComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtComprobante.AutoNav = true;
-                        this.txtComprobante.AutoTab = true;
-                        this.txtComprobante.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.txtComprobante.DecimalPlaces = -1;
-                        this.txtComprobante.ForceCase = Lui.Forms.TextCasing.None;
-                        this.txtComprobante.Location = new System.Drawing.Point(490, 208);
-                        this.txtComprobante.MultiLine = false;
-                        this.txtComprobante.Name = "txtComprobante";
-                        this.txtComprobante.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtComprobante.SelectOnFocus = true;
-                        this.txtComprobante.Size = new System.Drawing.Size(184, 24);
-                        this.txtComprobante.TabIndex = 28;
-                        this.txtComprobante.TabStop = false;
+                        this.EntradaComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaComprobante.AutoNav = true;
+                        this.EntradaComprobante.AutoTab = true;
+                        this.EntradaComprobante.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaComprobante.DecimalPlaces = -1;
+                        this.EntradaComprobante.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaComprobante.Location = new System.Drawing.Point(490, 208);
+                        this.EntradaComprobante.MultiLine = false;
+                        this.EntradaComprobante.Name = "txtComprobante";
+                        this.EntradaComprobante.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComprobante.SelectOnFocus = true;
+                        this.EntradaComprobante.Size = new System.Drawing.Size(184, 24);
+                        this.EntradaComprobante.TabIndex = 28;
+                        this.EntradaComprobante.TabStop = false;
                         // 
                         // Label13
                         // 
@@ -645,7 +645,7 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.EntradaPresupuesto2);
                         this.Controls.Add(this.EntradaNumero);
                         this.Controls.Add(this.EntradaComprobanteId);
-                        this.Controls.Add(this.txtComprobante);
+                        this.Controls.Add(this.EntradaComprobante);
                         this.Controls.Add(this.EntradaFechaIngreso);
                         this.Controls.Add(this.EntradaEstado);
                         this.Controls.Add(this.Frame2);
@@ -698,7 +698,7 @@ namespace Lfc.Tareas
                         this.Controls.SetChildIndex(this.Frame2, 0);
                         this.Controls.SetChildIndex(this.EntradaEstado, 0);
                         this.Controls.SetChildIndex(this.EntradaFechaIngreso, 0);
-                        this.Controls.SetChildIndex(this.txtComprobante, 0);
+                        this.Controls.SetChildIndex(this.EntradaComprobante, 0);
                         this.Controls.SetChildIndex(this.EntradaComprobanteId, 0);
                         this.Controls.SetChildIndex(this.EntradaNumero, 0);
                         this.Controls.SetChildIndex(this.EntradaPresupuesto2, 0);
@@ -746,7 +746,7 @@ namespace Lfc.Tareas
                 internal Lui.Forms.Label Label12;
                 internal Lui.Forms.Label Label13;
                 internal Lui.Forms.TextBox EntradaFechaIngreso;
-                internal Lui.Forms.TextBox txtComprobante;
+                internal Lui.Forms.TextBox EntradaComprobante;
                 internal System.Windows.Forms.TextBox EntradaComprobanteId;
                 internal Lui.Forms.TextBox EntradaNumero;
                 internal System.Windows.Forms.ColumnHeader Fecha;
