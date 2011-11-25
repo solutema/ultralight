@@ -54,7 +54,7 @@ namespace Lui.Forms
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        if (Listado.SelectedItems != null)
+                        if (Listado.SelectedItems != null && Listado.SelectedItems.Count > 0)
                                 this.Estacion = Listado.SelectedItems[0].Text;
                         return base.Ok();
                 }

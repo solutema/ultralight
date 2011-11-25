@@ -168,7 +168,12 @@ namespace Lazaro.WinMain.Principal
                                                         PersonaGrupo.Text = Per.Grupo.ToString();
                                                 else
                                                         PersonaGrupo.Text = "-";
-                                                decimal Saldo = Per.CuentaCorriente.Saldo(false);
+                                                decimal Saldo;
+                                                try {
+                                                        Saldo = Per.CuentaCorriente.Saldo(false);
+                                                } catch {
+                                                        Saldo = 0;
+                                                }
                                                 if (Saldo > 0) {
                                                         PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
                                                         PersonaComentario.BackColor = System.Drawing.Color.Tomato;

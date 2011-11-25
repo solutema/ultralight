@@ -212,6 +212,7 @@ namespace Lfc
                 {
                         if (this.Definicion != null && this.Definicion.Filters != null) {
                                 FormularioFiltros FormFiltros = new FormularioFiltros();
+                                FormFiltros.Connection = this.Connection;
                                 FormFiltros.FromFilters(this.Definicion.Filters);
                                 if (FormFiltros.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                         this.OnFiltersChanged(this.Definicion.Filters);

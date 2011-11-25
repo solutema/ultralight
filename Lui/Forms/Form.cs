@@ -122,7 +122,7 @@ namespace Lui.Forms
                         set
                         {
                                 if (m_Connection != value) {
-                                        if (m_Connection != null && DisposeConnection)
+                                        if (m_Connection != null && m_Connection != value && DisposeConnection)
                                                 // Deshecho la conexión vieja
                                                 m_Connection.Dispose();
 

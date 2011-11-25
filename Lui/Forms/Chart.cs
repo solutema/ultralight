@@ -244,18 +244,20 @@ namespace Lui.Forms
                                 return;
 
                         int ElementNumber = 1;
-                        System.Drawing.PointF LastPoint = new PointF(0, 65000);
-                        float ElementWidth = Size.Width / (Serie.Elements.Length - 1);
-                        foreach (Lbl.Charts.Element El in Serie.Elements) {
-                                if (El != null) {
-                                        PointF ThisPoint = new PointF(ElementWidth * (ElementNumber - 1), Size.Height - (int)(El.Value / CacheMax * Size.Height));
-                                        if (ElementNumber == 1)
-                                                LastPoint = ThisPoint;
+                        if (Serie.Elements.Length > 0 && CacheMax != 0) {
+                                System.Drawing.PointF LastPoint = new PointF(0, 65000);
+                                float ElementWidth = Size.Width / (Serie.Elements.Length - 1);
+                                foreach (Lbl.Charts.Element El in Serie.Elements) {
+                                        if (El != null) {
+                                                PointF ThisPoint = new PointF(ElementWidth * (ElementNumber - 1), Size.Height - (int)(El.Value / CacheMax * Size.Height));
+                                                if (ElementNumber == 1)
+                                                        LastPoint = ThisPoint;
 
-                                        Canvas.DrawLine(new System.Drawing.Pen(Serie.Color, 2), LastPoint, ThisPoint);
-                                        LastPoint = ThisPoint;
+                                                Canvas.DrawLine(new System.Drawing.Pen(Serie.Color, 2), LastPoint, ThisPoint);
+                                                LastPoint = ThisPoint;
+                                        }
+                                        ElementNumber++;
                                 }
-                                ElementNumber++;
                         }
                 }
 

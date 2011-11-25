@@ -119,10 +119,10 @@ namespace Lcc.Entrada
 
                 private void BotonCapturarImagen_Click(object sender, EventArgs e)
                 {
-                        WIA.CommonDialogClass WiaDialog = new WIA.CommonDialogClass();
-                        WIA.ImageFile WiaImage = null;
-
                         try {
+                                WIA.CommonDialogClass WiaDialog = new WIA.CommonDialogClass();
+                                WIA.ImageFile WiaImage = null;
+                                
                                 WiaImage = WiaDialog.ShowAcquireImage(
                                         WIA.WiaDeviceType.UnspecifiedDeviceType,
                                         WIA.WiaImageIntent.ColorIntent,
