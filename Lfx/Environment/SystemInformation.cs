@@ -55,6 +55,8 @@ namespace Lfx.Environment
                         {
                                 string Res = System.Environment.OSVersion.ToString();
                                 Res = Res.Replace("Service Pack ", "SP");
+
+                                Res = Res.Replace("Microsoft Windows NT 5.0.2195", "Windows 2000");
                                 Res = Res.Replace("Microsoft Windows NT 5.1.2600", "Windows XP");
                                 Res = Res.Replace("Microsoft Windows NT 6.0.6000", "Windows Vista");
                                 Res = Res.Replace("Microsoft Windows NT 6.0.6001", "Windows Vista");
