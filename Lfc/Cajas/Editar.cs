@@ -63,7 +63,7 @@ namespace Lfc.Cajas
 				validarReturn.Success = false;
 				validarReturn.Message += "Seleccione el Nombre de la cuenta." + Environment.NewLine;
 			}
-                        if (EntradaCbu.Text.Length > 0 && Lfx.Types.Strings.EsCbuValida(EntradaCbu.Text) == false) {
+                        if (EntradaClaveBancaria.Text.Length > 0 && Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "La CBU es incorrecta." + Environment.NewLine;
                         }
@@ -82,7 +82,7 @@ namespace Lfc.Cajas
                         EntradaBanco.Elemento = Caja.Banco;
                         EntradaMoneda.Elemento = Caja.Moneda;
                         EntradaNombre.Text = Caja.Nombre;
-                        EntradaCbu.Text = Caja.Cbu;
+                        EntradaClaveBancaria.Text = Caja.ClaveBancaria;
                         EntradaEstado.TextKey = Caja.Estado.ToString();
 
                         base.ActualizarControl();
@@ -99,7 +99,7 @@ namespace Lfc.Cajas
                         Caja.Banco = EntradaBanco.Elemento as Lbl.Bancos.Banco;
                         Caja.Moneda = EntradaMoneda.Elemento as Lbl.Entidades.Moneda;
                         Caja.Tipo = (Lbl.Cajas.TiposDeCaja)(Lfx.Types.Parsing.ParseInt(EntradaTipo.TextKey));
-                        Caja.Cbu = EntradaCbu.Text;
+                        Caja.ClaveBancaria = EntradaClaveBancaria.Text;
                         Caja.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
 
                         base.ActualizarElemento();

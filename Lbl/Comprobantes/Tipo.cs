@@ -161,7 +161,7 @@ namespace Lbl.Comprobantes
                 /// <summary>
                 /// Devuelve sólamente la letra (A, B, C, E o M, independientemente de que sea NCA, NDE, etc.)
                 /// </summary>
-                public string LetraSola
+                public string Letra
                 {
                         get
                         {

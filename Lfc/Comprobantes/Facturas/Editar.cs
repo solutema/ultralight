@@ -111,7 +111,7 @@ namespace Lfc.Comprobantes.Facturas
                                         validarReturn.Success = false;
                                         validarReturn.Message += "Debe especificar un Cliente." + Environment.NewLine;
                                 } else if (Cliente.SituacionTributaria != null && (Cliente.SituacionTributaria.Id == 2 || Cliente.SituacionTributaria.Id == 3)) {
-                                        if (Cliente.Cuit == null || Cliente.Cuit.EsValido() == false) {
+                                        if (Cliente.ClaveTributaria == null || Cliente.ClaveTributaria.EsValido() == false) {
                                                 validarReturn.Success = false;
                                                 validarReturn.Message += "El cliente debe tener una CUIT válida." + Environment.NewLine;
                                         }
@@ -212,7 +212,7 @@ namespace Lfc.Comprobantes.Facturas
                         else if (Comprob.Cliente.SituacionTributaria == null)
                                 return new Lfx.Types.FailureOperationResult("El Cliente no tiene una Situación Tributaria definida.");
 
-                        if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.LetraSola != Comprob.Cliente.LetraPredeterminada()) {
+                        if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
                                 Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
 Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llevar un comprobante tipo " + Comprob.Cliente.LetraPredeterminada() + @". No debería continuar con la impresión. 
 ¿Desea continuar de todos modos?", "Tipo de comprobante incorrecto");
@@ -221,13 +221,13 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         return new Lfx.Types.FailureOperationResult("Corrija la Situación Tributaria del Cliente o el Tipo de Comprobante.");
                         }
 
-                        if (Comprob.Tipo.LetraSola.ToUpperInvariant() == "A") {
-                                if (Comprob.Cliente.Cuit == null || Comprob.Cliente.Cuit.EsValido() == false)
+                        if (Comprob.Tipo.Letra.ToUpperInvariant() == "A") {
+                                if (Comprob.Cliente.ClaveTributaria == null || Comprob.Cliente.ClaveTributaria.EsValido() == false)
                                         return new Lfx.Types.FailureOperationResult("Debe proporcionar el número de CUIT del cliente.");
-                        } else if (Comprob.Tipo.LetraSola == "B") {
+                        } else if (Comprob.Tipo.Letra == "B") {
                                 //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
                                 if (Comprob.Total >= 1000 && Comprob.Cliente.NumeroDocumento.Length < 5 &&
-                                        (Comprob.Cliente.Cuit == null || Comprob.Cliente.Cuit.EsValido() == false))
+                                        (Comprob.Cliente.ClaveTributaria == null || Comprob.Cliente.ClaveTributaria.EsValido() == false))
                                         return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más, debe proporcionar el número de DNI/CUIT del cliente.");
                                 //Si es factura B de más de $ 1000, debe llevar domicilio
                                 if (Comprob.Total >= 1000 && Comprob.Cliente.Domicilio.Length < 1)

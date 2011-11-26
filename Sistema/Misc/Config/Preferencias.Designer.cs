@@ -57,7 +57,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.EntradaEmpresaSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.Label19 = new Lui.Forms.Label();
-                        this.EntradaEmpresaCuit = new Lui.Forms.TextBox();
+                        this.EntradaEmpresaClaveTributaria = new Lui.Forms.TextBox();
                         this.Label18 = new Lui.Forms.Label();
                         this.EntradaEmpresaNombre = new Lui.Forms.TextBox();
                         this.Label17 = new Lui.Forms.Label();
@@ -196,27 +196,27 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Label19.Text = "Condición IVA";
                         this.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaEmpresaCuit
+                        // EntradaEmpresaClaveTributaria
                         // 
-                        this.EntradaEmpresaCuit.AutoNav = true;
-                        this.EntradaEmpresaCuit.AutoTab = true;
-                        this.EntradaEmpresaCuit.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaEmpresaCuit.DecimalPlaces = -1;
-                        this.EntradaEmpresaCuit.FieldName = null;
-                        this.EntradaEmpresaCuit.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaEmpresaCuit.Location = new System.Drawing.Point(192, 104);
-                        this.EntradaEmpresaCuit.MaxLength = 13;
-                        this.EntradaEmpresaCuit.MultiLine = false;
-                        this.EntradaEmpresaCuit.Name = "EntradaEmpresaCuit";
-                        this.EntradaEmpresaCuit.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaCuit.PasswordChar = '\0';
-                        this.EntradaEmpresaCuit.PlaceholderText = null;
-                        this.EntradaEmpresaCuit.Prefijo = "";
-                        this.EntradaEmpresaCuit.ReadOnly = false;
-                        this.EntradaEmpresaCuit.SelectOnFocus = false;
-                        this.EntradaEmpresaCuit.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaEmpresaCuit.Sufijo = "";
-                        this.EntradaEmpresaCuit.TabIndex = 4;
+                        this.EntradaEmpresaClaveTributaria.AutoNav = true;
+                        this.EntradaEmpresaClaveTributaria.AutoTab = true;
+                        this.EntradaEmpresaClaveTributaria.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaEmpresaClaveTributaria.DecimalPlaces = -1;
+                        this.EntradaEmpresaClaveTributaria.FieldName = null;
+                        this.EntradaEmpresaClaveTributaria.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaEmpresaClaveTributaria.Location = new System.Drawing.Point(192, 104);
+                        this.EntradaEmpresaClaveTributaria.MaxLength = 13;
+                        this.EntradaEmpresaClaveTributaria.MultiLine = false;
+                        this.EntradaEmpresaClaveTributaria.Name = "EntradaEmpresaClaveTributaria";
+                        this.EntradaEmpresaClaveTributaria.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaClaveTributaria.PasswordChar = '\0';
+                        this.EntradaEmpresaClaveTributaria.PlaceholderText = null;
+                        this.EntradaEmpresaClaveTributaria.Prefijo = "";
+                        this.EntradaEmpresaClaveTributaria.ReadOnly = false;
+                        this.EntradaEmpresaClaveTributaria.SelectOnFocus = false;
+                        this.EntradaEmpresaClaveTributaria.Size = new System.Drawing.Size(112, 24);
+                        this.EntradaEmpresaClaveTributaria.Sufijo = "";
+                        this.EntradaEmpresaClaveTributaria.TabIndex = 4;
                         // 
                         // Label18
                         // 
@@ -272,7 +272,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaRazonSocial);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaEmail);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaId);
-                        this.FrmGeneral.Controls.Add(this.EntradaEmpresaCuit);
+                        this.FrmGeneral.Controls.Add(this.EntradaEmpresaClaveTributaria);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaSituacion);
                         this.FrmGeneral.Controls.Add(this.EntradaEmpresaNombre);
                         this.FrmGeneral.Controls.Add(this.label1);
@@ -1291,7 +1291,7 @@ namespace Lazaro.WinMain.Misc.Config
                 private Lui.Forms.TextBox EntradaEmpresaNombre;
                 private Lui.Forms.Label Label18;
                 private Lui.Forms.Label Label19;
-                private Lui.Forms.TextBox EntradaEmpresaCuit;
+                private Lui.Forms.TextBox EntradaEmpresaClaveTributaria;
                 private Lcc.Entrada.CodigoDetalle EntradaEmpresaSituacion;
                 private Lui.Forms.Label Label9;
                 private Lui.Forms.TextBox EntradaPVND;

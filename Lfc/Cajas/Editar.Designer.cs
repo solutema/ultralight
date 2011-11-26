@@ -47,7 +47,7 @@ namespace Lfc.Cajas
                 internal Lui.Forms.Label Label2;
                 internal Lui.Forms.ComboBox EntradaTipo;
                 internal Lui.Forms.Label Label4;
-                internal Lui.Forms.TextBox EntradaCbu;
+                internal Lui.Forms.TextBox EntradaClaveBancaria;
                 internal Lui.Forms.Label label5;
                 internal Lui.Forms.TextBox EntradaTitular;
                 internal Lui.Forms.ComboBox EntradaEstado;
@@ -79,7 +79,7 @@ namespace Lfc.Cajas
                         this.Label2 = new Lui.Forms.Label();
                         this.Label4 = new Lui.Forms.Label();
                         this.EntradaMoneda = new Lcc.Entrada.CodigoDetalle();
-                        this.EntradaCbu = new Lui.Forms.TextBox();
+                        this.EntradaClaveBancaria = new Lui.Forms.TextBox();
                         this.label5 = new Lui.Forms.Label();
                         this.EntradaTitular = new Lui.Forms.TextBox();
                         this.label6 = new Lui.Forms.Label();
@@ -256,27 +256,27 @@ namespace Lfc.Cajas
                         this.EntradaMoneda.Text = "0";
                         this.EntradaMoneda.TextDetail = "";
                         // 
-                        // EntradaCbu
+                        // EntradaClaveBancaria
                         // 
-                        this.EntradaCbu.AutoNav = true;
-                        this.EntradaCbu.AutoTab = true;
-                        this.EntradaCbu.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaCbu.DecimalPlaces = -1;
-                        this.EntradaCbu.FieldName = null;
-                        this.EntradaCbu.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCbu.Location = new System.Drawing.Point(124, 216);
-                        this.EntradaCbu.MaxLength = 23;
-                        this.EntradaCbu.MultiLine = false;
-                        this.EntradaCbu.Name = "EntradaCbu";
-                        this.EntradaCbu.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCbu.PasswordChar = '\0';
-                        this.EntradaCbu.PlaceholderText = null;
-                        this.EntradaCbu.Prefijo = "";
-                        this.EntradaCbu.ReadOnly = false;
-                        this.EntradaCbu.SelectOnFocus = false;
-                        this.EntradaCbu.Size = new System.Drawing.Size(228, 24);
-                        this.EntradaCbu.Sufijo = "";
-                        this.EntradaCbu.TabIndex = 13;
+                        this.EntradaClaveBancaria.AutoNav = true;
+                        this.EntradaClaveBancaria.AutoTab = true;
+                        this.EntradaClaveBancaria.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaClaveBancaria.DecimalPlaces = -1;
+                        this.EntradaClaveBancaria.FieldName = null;
+                        this.EntradaClaveBancaria.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaClaveBancaria.Location = new System.Drawing.Point(124, 216);
+                        this.EntradaClaveBancaria.MaxLength = 23;
+                        this.EntradaClaveBancaria.MultiLine = false;
+                        this.EntradaClaveBancaria.Name = "EntradaClaveBancaria";
+                        this.EntradaClaveBancaria.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaClaveBancaria.PasswordChar = '\0';
+                        this.EntradaClaveBancaria.PlaceholderText = null;
+                        this.EntradaClaveBancaria.Prefijo = "";
+                        this.EntradaClaveBancaria.ReadOnly = false;
+                        this.EntradaClaveBancaria.SelectOnFocus = false;
+                        this.EntradaClaveBancaria.Size = new System.Drawing.Size(228, 24);
+                        this.EntradaClaveBancaria.Sufijo = "";
+                        this.EntradaClaveBancaria.TabIndex = 13;
                         // 
                         // label5
                         // 
@@ -357,7 +357,7 @@ namespace Lfc.Cajas
                         this.Controls.Add(this.label8);
                         this.Controls.Add(this.EntradaTitular);
                         this.Controls.Add(this.label6);
-                        this.Controls.Add(this.EntradaCbu);
+                        this.Controls.Add(this.EntradaClaveBancaria);
                         this.Controls.Add(this.label5);
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.EntradaMoneda);
@@ -380,7 +380,7 @@ namespace Lfc.Cajas
                         this.Controls.SetChildIndex(this.EntradaMoneda, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.label5, 0);
-                        this.Controls.SetChildIndex(this.EntradaCbu, 0);
+                        this.Controls.SetChildIndex(this.EntradaClaveBancaria, 0);
                         this.Controls.SetChildIndex(this.label6, 0);
                         this.Controls.SetChildIndex(this.EntradaTitular, 0);
                         this.Controls.SetChildIndex(this.label8, 0);

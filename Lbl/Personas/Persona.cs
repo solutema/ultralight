@@ -100,7 +100,7 @@ namespace Lbl.Personas
                                 Comando.Fields.AddWithValue("id_subgrupo", null);
                         else
                                 Comando.Fields.AddWithValue("id_subgrupo", this.SubGrupo.Id);
-                        Comando.Fields.AddWithValue("nombre", this.NombreSolo);
+                        Comando.Fields.AddWithValue("nombre", this.Nombres);
                         Comando.Fields.AddWithValue("apellido", this.Apellido);
                         Comando.Fields.AddWithValue("razon_social", this.RazonSocial);
                         Comando.Fields.AddWithValue("nombre_visible", this.Nombre);
@@ -112,10 +112,10 @@ namespace Lbl.Personas
                                 Comando.Fields.AddWithValue("num_doc", "");
                         else
                                 Comando.Fields.AddWithValue("num_doc", this.NumeroDocumento.Replace(".", "").Replace(",", "").Replace(" ", ""));
-                        if (this.Cuit == null)
+                        if (this.ClaveTributaria == null)
                                 Comando.Fields.AddWithValue("cuit", null);
                         else
-                                Comando.Fields.AddWithValue("cuit", this.Cuit.Valor);
+                                Comando.Fields.AddWithValue("cuit", this.ClaveTributaria.Valor);
                         if (this.SituacionTributaria == null)
                                 Comando.Fields.AddWithValue("id_situacion", null);
                         else
@@ -142,7 +142,7 @@ namespace Lbl.Personas
                         Comando.Fields.AddWithValue("limitecredito", this.LimiteCredito);
                         Comando.Fields.AddWithValue("fechanac", this.FechaNacimiento);
                         Comando.Fields.AddWithValue("numerocuenta", this.NumeroCuenta);
-                        Comando.Fields.AddWithValue("cbu", this.Cbu);
+                        Comando.Fields.AddWithValue("cbu", this.ClaveBancaria);
                         Comando.Fields.AddWithValue("estadocredito", this.EstadoCredito);
 
                         if (this.Existe == false) {
@@ -232,7 +232,7 @@ namespace Lbl.Personas
                         }
 		}
 
-                public string Cbu
+                public string ClaveBancaria
                 {
                         get
                         {
@@ -244,14 +244,14 @@ namespace Lbl.Personas
                         }
                 }
 
-                public IIdentificadorUnico Cuit
+                public IIdentificadorUnico ClaveTributaria
 		{
 			get
 			{
                                 if (this.GetFieldValue<string>("cuit") == null)
                                         return null;
                                 else
-				        return new Cuit(this.GetFieldValue<string>("cuit"));
+				        return new Claves.Cuit(this.GetFieldValue<string>("cuit"));
 			}
                         set
                         {
@@ -356,7 +356,7 @@ namespace Lbl.Personas
                         }
                 }
 
-                public string NombreSolo
+                public string Nombres
                 {
                         get
                         {

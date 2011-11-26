@@ -82,11 +82,11 @@ namespace Lazaro.WinMain.Principal
                         BarraInferior.Visible = this.Workspace.CurrentConfig.ReadLocalSettingInt("Sistema", "Apariencia.BarraInformacion", 1) != 0;
                         switch (this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado)) {
                                 case "normal":
-                                        this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.NombreSolo + " en " + Lfx.Workspace.Master.ToString();
+                                        this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombres + " en " + Lfx.Workspace.Master.ToString();
                                         break;
                                 case "maximizado":
                                         this.WindowState = FormWindowState.Maximized;
-                                        this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.NombreSolo + " en " + this.Workspace.ToString();
+                                        this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombres + " en " + this.Workspace.ToString();
                                         break;
                                 case "completo":
                                         this.Text = "";

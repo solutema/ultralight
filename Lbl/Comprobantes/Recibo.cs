@@ -78,8 +78,8 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public ColeccionComprobanteConArticulos Facturas;
-                public Cajas.Concepto Concepto;
+                public ColeccionComprobanteConArticulos Facturas { get; set; }
+                public Cajas.Concepto Concepto { get; set; }
                 public ColeccionDeCobros Cobros = new ColeccionDeCobros();
                 public ColeccionDePagos Pagos = new ColeccionDePagos();
                 public bool CancelaCosas = true;
@@ -150,7 +150,7 @@ namespace Lbl.Comprobantes
                         return Res;
                 }
 
-                public decimal Total
+                public override decimal Total
                 {
                         get
                         {

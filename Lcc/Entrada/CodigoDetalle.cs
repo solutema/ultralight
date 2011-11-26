@@ -142,7 +142,10 @@ namespace Lcc.Entrada
                 {
                         get
                         {
-                                return this.Text != this.FreeTextCode && (this.Text.Length == 0 || this.Text == "0");
+                                if (this.Text == this.FreeTextCode)
+                                        return this.EntradaFreeText.Text.Length == 0;
+                                else
+                                        return this.Text.Length == 0 || this.Text == "0";
                         }
                 }
 
@@ -267,7 +270,7 @@ namespace Lcc.Entrada
                         get
                         {
                                 if (m_FreeTextCode.Length > 0 && this.EntradaCodigo.Text == m_FreeTextCode)
-                                        return this.EntradaCodigo.Text;
+                                        return m_FreeTextCode;
                                 else if (Label1.Text == "???")
                                         return "";
                                 else
@@ -420,12 +423,14 @@ namespace Lcc.Entrada
                 {
                         TimerActualizar.Stop();
 
-                        if (m_FreeTextCode.Length > 0 && EntradaCodigo.Text == m_FreeTextCode) {
+                        if (m_FreeTextCode != null && m_FreeTextCode.Length > 0 && EntradaCodigo.Text == m_FreeTextCode) {
                                 m_ItemId = 0;
                                 this.CurrentRow = null;
                                 m_LastText1 = "";
-                                EntradaFreeText.Visible = true;
-                                EntradaFreeText.Focus();
+                                if (EntradaFreeText.Visible == false) {
+                                        EntradaFreeText.Visible = true;
+                                        EntradaFreeText.Focus();
+                                }
 
                                 if (textChanged)
                                         this.OnTextChanged(EventArgs.Empty);
@@ -625,6 +630,12 @@ namespace Lcc.Entrada
                                                         KeyDown(sender, e);
                                         }
                                         break;
+                                case Keys.Back:
+                                        if (EntradaFreeText.Text.Length == 0) {
+                                                e.Handled = true;
+                                                EntradaCodigo.Focus();
+                                        }
+                                        break;
                                 default:
                                         if (null != KeyDown) KeyDown(sender, e);
                                         break;
@@ -761,6 +772,12 @@ namespace Lcc.Entrada
                         {
                                 return base.Font;
                         }
+                }
+
+                private void EntradaFreeText_TextChanged(object sender, EventArgs e)
+                {
+                        if (EntradaFreeText.Text.Length == 1 || EntradaFreeText.Text.Length == 0)
+                                this.OnTextChanged(EventArgs.Empty);
                 }
         }
 }

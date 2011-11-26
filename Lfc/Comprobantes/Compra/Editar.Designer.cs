@@ -278,7 +278,9 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.ShowStock = false;
                         this.EntradaProductos.Size = new System.Drawing.Size(642, 200);
                         this.EntradaProductos.TabIndex = 26;
+                        this.EntradaProductos.TotalChanged += new System.EventHandler(this.RecalcularTotal);
                         this.EntradaProductos.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaProductos_ObtenerDatosSeguimiento);
+                        this.EntradaProductos.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 
                         // EntradaProveedor
                         // 
@@ -423,6 +425,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaOtrosGastos.Sufijo = "";
                         this.EntradaOtrosGastos.TabIndex = 53;
                         this.EntradaOtrosGastos.Text = "0.00";
+                        this.EntradaOtrosGastos.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 
                         // EntradaCancelado
                         // 
@@ -472,6 +475,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaGastosEnvio.Sufijo = "";
                         this.EntradaGastosEnvio.TabIndex = 51;
                         this.EntradaGastosEnvio.Text = "0.00";
+                        this.EntradaGastosEnvio.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 
                         // EntradaTotal
                         // 

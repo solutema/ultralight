@@ -217,7 +217,11 @@ namespace Lfc.Comprobantes.Compra
                                 string Tipo = this.Tipo;
                                 if (Tipo == "FP")
                                         Tipo = "FA";
-                                Comprob.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[Tipo];
+
+                                if (Lbl.Comprobantes.Tipo.TodosPorLetra.ContainsKey(Tipo))
+                                        Comprob.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[Tipo];
+                                else
+                                        throw new InvalidOperationException("No se puede crear el tipo " + Tipo);
                         }
                         return Res;
                 }

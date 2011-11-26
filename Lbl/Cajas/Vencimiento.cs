@@ -66,6 +66,7 @@ namespace Lbl.Cajas
                 public override void Crear()
                 {
                         base.Crear();
+                        this.Estado = 1;
                         this.Frecuencia = Frecuencias.Unica;
                 }
 

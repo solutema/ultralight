@@ -76,7 +76,10 @@ namespace Lui.Forms
 					lstItems.Items.Clear();
 					for (int i = m_SetDataText.GetLowerBound(0); i <= m_SetDataText.GetUpperBound(0); i++)
 					{
-						lstItems.Items.Add(m_SetDataText[i]);
+                                                if (m_SetDataText[i] == null)
+                                                        lstItems.Items.Add("");
+                                                else
+                                                        lstItems.Items.Add(m_SetDataText[i]);
 					}
 
 					if(LineHeight == 0) {

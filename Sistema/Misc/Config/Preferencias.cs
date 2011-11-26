@@ -99,10 +99,10 @@ namespace Lazaro.WinMain.Misc.Config
 
                         EntradaEmpresaNombre.Text = Lbl.Sys.Config.Actual.Empresa.Nombre;
                         EntradaEmpresaRazonSocial.Text = Lbl.Sys.Config.Actual.Empresa.RazonSocial;
-                        if (Lbl.Sys.Config.Actual.Empresa.Cuit == null)
-                                EntradaEmpresaCuit.Text = "";
+                        if (Lbl.Sys.Config.Actual.Empresa.ClaveTributaria == null)
+                                EntradaEmpresaClaveTributaria.Text = "";
                         else
-                                EntradaEmpresaCuit.Text = Lbl.Sys.Config.Actual.Empresa.Cuit.ToString();
+                                EntradaEmpresaClaveTributaria.Text = Lbl.Sys.Config.Actual.Empresa.ClaveTributaria.ToString();
 			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Empresa.SituacionTributaria;
                         EntradaEmpresaEmail.Text = Lbl.Sys.Config.Actual.Empresa.Email;
                         EntradaEmpresaId.ValueInt = Lbl.Sys.Config.Actual.Empresa.Id;
@@ -134,10 +134,10 @@ namespace Lazaro.WinMain.Misc.Config
 
 		private bool GuardarConfig()
 		{
-			if (EntradaEmpresaCuit.Text.Length == 11)
-				EntradaEmpresaCuit.Text = EntradaEmpresaCuit.Text.Substring(0, 2) + "-" + EntradaEmpresaCuit.Text.Substring(2, 8) + "-" + EntradaEmpresaCuit.Text.Substring(10, 1);
+			if (EntradaEmpresaClaveTributaria.Text.Length == 11)
+				EntradaEmpresaClaveTributaria.Text = EntradaEmpresaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaEmpresaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaEmpresaClaveTributaria.Text.Substring(10, 1);
 
-                        if (EntradaEmpresaCuit.Text != "00-00000000-0" && Lfx.Types.Strings.EsCuitValido(EntradaEmpresaCuit.Text) == false) {
+                        if (EntradaEmpresaClaveTributaria.Text != "00-00000000-0" && Lbl.Personas.Claves.Cuit.EsValido(EntradaEmpresaClaveTributaria.Text) == false) {
                                 Lui.Forms.MessageBox.Show("Por favor ingrese una CUIT válida.", "La CUIT no es válida");
                                 return true;
                         }
@@ -160,10 +160,10 @@ namespace Lazaro.WinMain.Misc.Config
 
                         Lbl.Sys.Config.Actual.Empresa.Nombre = EntradaEmpresaNombre.Text;
                         Lbl.Sys.Config.Actual.Empresa.RazonSocial = EntradaEmpresaRazonSocial.Text;
-                        if (EntradaEmpresaCuit.Text.Length > 0)
-                                Lbl.Sys.Config.Actual.Empresa.Cuit = new Lbl.Personas.Cuit(EntradaEmpresaCuit.Text);
+                        if (EntradaEmpresaClaveTributaria.Text.Length > 0)
+                                Lbl.Sys.Config.Actual.Empresa.ClaveTributaria = new Lbl.Personas.Claves.Cuit(EntradaEmpresaClaveTributaria.Text);
                         else
-                                Lbl.Sys.Config.Actual.Empresa.Cuit = null;
+                                Lbl.Sys.Config.Actual.Empresa.ClaveTributaria = null;
 			this.Workspace.CurrentConfig.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
                         Lbl.Sys.Config.Actual.Empresa.Email = EntradaEmpresaEmail.Text;
                         Lbl.Sys.Config.Actual.Empresa.Id = EntradaEmpresaId.ValueInt;

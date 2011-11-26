@@ -89,7 +89,7 @@ namespace Lfc.Comprobantes
 
                         int PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
                         System.Data.DataTable PVAdmitidos = this.Connection.Select(@"SELECT * FROM pvs WHERE (
-                                CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + @",%'
+                                CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Letra + @",%'
                                 OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + @",%'
                                 OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Nomenclatura + @",%'
                                 )AND tipo>0");
@@ -264,8 +264,8 @@ namespace Lfc.Comprobantes
                         if (FormConvertir.ShowDialog() == DialogResult.OK) {
                                 string ConvertirEnTipo = FormConvertir.DestinoTipo;
                                 if (ConvertirEnTipo == "F" || ConvertirEnTipo == "NC" || ConvertirEnTipo == "ND") {
-                                        if (this.Tipo.LetraSola.Length > 0 && "ABCEM".IndexOf(this.Tipo.LetraSola) >= 0) {
-                                                ConvertirEnTipo += this.Tipo.LetraSola;
+                                        if (this.Tipo.Letra.Length > 0 && "ABCEM".IndexOf(this.Tipo.Letra) >= 0) {
+                                                ConvertirEnTipo += this.Tipo.Letra;
                                         } else {
                                                 Lbl.Comprobantes.ComprobanteConArticulos Compr = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                                                 if (Compr != null && Compr.Cliente != null && Compr.Cliente.LetraPredeterminada().Length > 0)
@@ -343,7 +343,7 @@ namespace Lfc.Comprobantes
 
                 private void BotonMasDatos_Click(System.Object sender, System.EventArgs e)
                 {
-                        Lbl.Comprobantes.Comprobante Registro = this.Elemento as Lbl.Comprobantes.Comprobante;
+                        Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         Comprobantes.FormComprobanteMasDatos OFormMasDatos = new Comprobantes.FormComprobanteMasDatos();
                         OFormMasDatos.Owner = this.ParentForm;
                         OFormMasDatos.EntradaDesdeSituacion.Elemento = Registro.SituacionOrigen;

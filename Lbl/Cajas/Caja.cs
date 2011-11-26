@@ -132,7 +132,7 @@ namespace Lbl.Cajas
                         }
                 }
 
-                public string Cbu
+                public string ClaveBancaria
                 {
                         get
                         {
@@ -179,7 +179,7 @@ namespace Lbl.Cajas
                                 Comando.Fields.AddWithValue("id_moneda", this.Moneda.Id);
                         Comando.Fields.AddWithValue("numero", this.Numero);
                         Comando.Fields.AddWithValue("tipo", (int)(this.Tipo));
-                        Comando.Fields.AddWithValue("cbu", this.Cbu);
+                        Comando.Fields.AddWithValue("cbu", this.ClaveBancaria);
                         Comando.Fields.AddWithValue("estado", this.Estado);
 
                         Connection.Execute(Comando);

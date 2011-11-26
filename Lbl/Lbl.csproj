@@ -91,6 +91,10 @@
     <Compile Include="Atributos\NombreItem.cs" />
     <Compile Include="Bancos\ChequeEmitido.cs" />
     <Compile Include="Bancos\ChequeRecibido.cs" />
+    <Compile Include="Bancos\Claves\Cbu.cs" />
+    <Compile Include="Bancos\Claves\Clabe.cs" />
+    <Compile Include="Bancos\Claves\Iban.cs" />
+    <Compile Include="Bancos\Claves\Routing.cs" />
     <Compile Include="ColeccionCodigoDetalle.cs" />
     <Compile Include="Componentes\Componente.cs" />
     <Compile Include="Comprobantes\Factura.cs" />
@@ -111,8 +115,13 @@
     <Compile Include="Impuestos\CondicionesFrenteAlIva.cs" />
     <Compile Include="Impuestos\SituacionIva.cs" />
     <Compile Include="ListaIds.cs" />
-    <Compile Include="Personas\Cuit.cs" />
-    <Compile Include="Personas\IIdentificadorUnico.cs" />
+    <Compile Include="Personas\Claves\Cpf.cs" />
+    <Compile Include="Personas\Claves\Cuit.cs" />
+    <Compile Include="IdentificadorUnico.cs" />
+    <Compile Include="IIdentificadorUnico.cs" />
+    <Compile Include="Personas\Claves\Nif.cs" />
+    <Compile Include="Personas\Claves\Ruc.cs" />
+    <Compile Include="Personas\Claves\Rut.cs" />
     <Compile Include="Personas\Usuario.cs" />
     <Compile Include="Servicios\Importar\ColeccionMapaDeTablas.cs" />
     <Compile Include="Servicios\Importar\Opciones.cs" />

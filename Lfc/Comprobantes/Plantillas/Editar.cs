@@ -221,6 +221,9 @@ namespace Lfc.Comprobantes.Plantillas
                                 StrFmt.Trimming = StringTrimming.None;
                                 StrFmt.Alignment = Cam.Alignment;
                                 StrFmt.LineAlignment = Cam.LineAlignment;
+
+                                if (FuenteItem == null)
+                                        FuenteItem = Lfx.Config.Display.DefaultFont;
                                 e.Graphics.DrawString(Texto, FuenteItem, new SolidBrush(Cam.ColorTexto), DrawRect, StrFmt);
 
                                 if (CampoSeleccionado == Cam) {

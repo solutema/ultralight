@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,36 +29,19 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Lbl.Comprobantes
+namespace Lbl.Bancos.Claves
 {
-        public class ColeccionRecibos : List<Recibo>
+        /// <summary>
+        /// IBAN (Europa)
+        /// </summary>
+        public class Iban : IdentificadorUnico
         {
-                public decimal ImporteTotal
+                public override string Nombre
                 {
                         get
                         {
-                                decimal Res = 0;
-                                foreach (Recibo comp in this) {
-                                        Res += comp.Total;
-                                }
-                                return Res;
+                                return "IBAN";
                         }
-                }
-
-                public override string ToString()
-                {
-                        string Res = null;
-                        foreach (Recibo Rec in this) {
-                                if (Res == null)
-                                        Res = Rec.ToString();
-                                else
-                                        Res += ", " + Rec.ToString();
-                        }
-                        return Res;
                 }
         }
 }

@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,36 +29,40 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Lbl.Comprobantes
+namespace Lbl
 {
-        public class ColeccionRecibos : List<Recibo>
+        public class IdentificadorUnico : IIdentificadorUnico
         {
-                public decimal ImporteTotal
+                public string Valor { get; set; }
+
+                public IdentificadorUnico()
+                {
+                }
+
+                public IdentificadorUnico(string valor)
+                {
+                        this.Valor = valor;
+                }
+
+                public virtual string Nombre
                 {
                         get
                         {
-                                decimal Res = 0;
-                                foreach (Recibo comp in this) {
-                                        Res += comp.Total;
-                                }
-                                return Res;
+                                return "Identificador Único de Personas";
                         }
                 }
 
+
                 public override string ToString()
                 {
-                        string Res = null;
-                        foreach (Recibo Rec in this) {
-                                if (Res == null)
-                                        Res = Rec.ToString();
-                                else
-                                        Res += ", " + Rec.ToString();
-                        }
-                        return Res;
+                        return this.Valor;
+                }
+
+
+                public virtual bool EsValido()
+                {
+                        // Overridear en las clases derivadas
+                        return true;
                 }
         }
 }

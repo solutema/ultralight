@@ -226,6 +226,17 @@ namespace Lazaro.Impresion
                 public virtual string ObtenerValorCampo(string nombreCampo, string formato)
                 {
                         switch (nombreCampo.ToUpperInvariant()) {
+                                case "HOY":
+                                        if (formato != null) {
+                                                try {
+                                                        return DateTime.Now.ToString(formato);
+                                                } catch {
+                                                        return "Formato no válido";
+                                                }
+                                        } else {
+                                                return DateTime.Now.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
+                                        }
+
                                 case "EMPRESA":
                                 case "EMPRESA.NOMBRE":
                                         return Lbl.Sys.Config.Actual.Empresa.Nombre;
@@ -265,6 +276,8 @@ namespace Lazaro.Impresion
                                                 } else {
                                                         return ((decimal)Val).ToString("#.00");
                                                 }
+                                        } else if (Val is bool) {
+                                                return (bool)Val ? "Sí" : "No";
                                         } else if (Val == null) {
                                                 return "";
                                         } else {

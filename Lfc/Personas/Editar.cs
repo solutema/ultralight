@@ -83,8 +83,8 @@ namespace Lfc.Personas
                                 }
                                 if (EntradaEmail.Text.Length > 0)
                                         Sql += @" OR email LIKE '%" + Workspace.MasterConnection.EscapeString(EntradaEmail.Text.Replace("%", "").Replace("_", "")) + @"%'";
-                                if (EntradaCuit.Text.Length > 0)
-                                        Sql += @" OR cuit='" + Workspace.MasterConnection.EscapeString(EntradaCuit.Text.Replace("%", "").Replace("_", "")) + @"'";
+                                if (EntradaClaveTributaria.Text.Length > 0)
+                                        Sql += @" OR cuit='" + Workspace.MasterConnection.EscapeString(EntradaClaveTributaria.Text.Replace("%", "").Replace("_", "")) + @"'";
                                 Sql += @") AND id_persona<>" + this.Elemento.Id.ToString();
 
                                 ClienteDup = this.Connection.FirstRowFromSelect(Sql);
@@ -106,7 +106,7 @@ namespace Lfc.Personas
                                                         itm.SubItems.Add(ClienteDup["cuit"].ToString());
                                                 else
                                                         itm.SubItems.Add("");
-                                                itm.SubItems.Add(EntradaCuit.Text);
+                                                itm.SubItems.Add(EntradaClaveTributaria.Text);
                                                 itm = FormAltaDuplicada.ListaComparacion.Items.Add("E-mail");
                                                 itm.SubItems.Add(ClienteDup["email"].ToString());
                                                 itm.SubItems.Add(EntradaEmail.Text);
@@ -128,29 +128,29 @@ namespace Lfc.Personas
                                 }
                         }
 
-                        if (EntradaCbu.Text.Length > 0) {
-                                if (Lfx.Types.Strings.EsCbuValida(EntradaCbu.Text) == false) {
+                        if (EntradaClaveBancaria.Text.Length > 0) {
+                                if (Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += "La CBU no es correcta." + Environment.NewLine + "El sistema le permite dejar la CBU en blanco, pero no aceptará una incorrecta." + Environment.NewLine;
                                 }
                         }
 
 
-                        if (EntradaCuit.Text.Length > 0) {
+                        if (EntradaClaveTributaria.Text.Length > 0) {
                                 if (EntradaSituacion.TextInt == 1) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += @"Un Cliente con CUIT no debe estar en Situación de ""Consumidor Final""." + Environment.NewLine;
                                 }
-                                if (System.Text.RegularExpressions.Regex.IsMatch(EntradaCuit.Text, @"^\d{11}$")) {
-                                        EntradaCuit.Text = EntradaCuit.Text.Substring(0, 2) + "-" + EntradaCuit.Text.Substring(2, 8) + "-" + EntradaCuit.Text.Substring(10, 1);
+                                if (System.Text.RegularExpressions.Regex.IsMatch(EntradaClaveTributaria.Text, @"^\d{11}$")) {
+                                        EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
                                 }
 
-                                if (Lfx.Types.Strings.EsCuitValido(EntradaCuit.Text)) {
+                                if (Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text)) {
                                         //Agrego los guiones si no los tiene
-                                        if (EntradaCuit.Text.Length == 11)
-                                                EntradaCuit.Text = EntradaCuit.Text.Substring(0, 2) + "-" + EntradaCuit.Text.Substring(2, 8) + "-" + EntradaCuit.Text.Substring(10, 1);
+                                        if (EntradaClaveTributaria.Text.Length == 11)
+                                                EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
 
-                                        Lfx.Data.Row rowVeriCUIT = this.Connection.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaCuit.Text + "' AND id_persona<>" + this.Elemento.Id.ToString());
+                                        Lfx.Data.Row rowVeriCUIT = this.Connection.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaClaveTributaria.Text + "' AND id_persona<>" + this.Elemento.Id.ToString());
                                         if (rowVeriCUIT != null) {
                                                 if (Cliente.Existe == false) {
                                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa CUIT en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "CUIT duplicada");
@@ -186,7 +186,7 @@ namespace Lfc.Personas
                         bool PermitirEdicionAvanzada = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.EditarAvanzado);
                         bool PermitirEdicionCredito = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Extra1);
 
-                        EntradaNombre.Text = Cliente.NombreSolo;
+                        EntradaNombre.Text = Cliente.Nombres;
                         EntradaNombre.Enabled = PermitirEdicionAvanzada;
                         EntradaApellido.Text = Cliente.Apellido;
                         EntradaApellido.Enabled = PermitirEdicionAvanzada;
@@ -198,11 +198,11 @@ namespace Lfc.Personas
 
                         EntradaRazonSocial.Text = Cliente.RazonSocial;
                         EntradaRazonSocial.Enabled = PermitirEdicionAvanzada;
-                        if (Cliente.Cuit != null)
-                                EntradaCuit.Text = Cliente.Cuit.ToString();
+                        if (Cliente.ClaveTributaria != null)
+                                EntradaClaveTributaria.Text = Cliente.ClaveTributaria.ToString();
                         else
-                                EntradaCuit.Text = "";
-                        EntradaCuit.Enabled = PermitirEdicionAvanzada;
+                                EntradaClaveTributaria.Text = "";
+                        EntradaClaveTributaria.Enabled = PermitirEdicionAvanzada;
                         EntradaSituacion.Elemento = Cliente.SituacionTributaria;
                         EntradaSituacion.Enabled = PermitirEdicionAvanzada;
                         if (Cliente.FacturaPreferida == null || Cliente.FacturaPreferida.Length == 0)
@@ -237,12 +237,12 @@ namespace Lfc.Personas
 
                         string CBU = Cliente.GetFieldValue<string>("cbu");
                         if (CBU == null)
-                                EntradaCbu.Text = "";
+                                EntradaClaveBancaria.Text = "";
                         else if (CBU.Length == 22)
-                                EntradaCbu.Text = CBU.Substring(0, 8) + "-" + CBU.Substring(8, 14);
+                                EntradaClaveBancaria.Text = CBU.Substring(0, 8) + "-" + CBU.Substring(8, 14);
                         else
-                                EntradaCbu.Text = CBU;
-                        EntradaCbu.Enabled = PermitirEdicionAvanzada;
+                                EntradaClaveBancaria.Text = CBU;
+                        EntradaClaveBancaria.Enabled = PermitirEdicionAvanzada;
                         EntradaObs.Text = Cliente.Obs;
                         EntradaObs.Enabled = PermitirEdicionAvanzada;
 
@@ -291,23 +291,23 @@ namespace Lfc.Personas
                 }
 
 
-                private void EntradaCuit_Leave(object sender, System.EventArgs e)
+                private void EntradaClaveTributaria_Leave(object sender, System.EventArgs e)
                 {
-                        if (EntradaCuit.Text.Length == 11)
-                                EntradaCuit.Text = EntradaCuit.Text.Substring(0, 2) + "-" + EntradaCuit.Text.Substring(2, 8) + "-" + EntradaCuit.Text.Substring(10, 1);
+                        if (EntradaClaveTributaria.Text.Length == 11)
+                                EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
 
-                        if (EntradaCuit.Text.Length == 13 && Lfx.Types.Strings.EsCuitValido(EntradaCuit.Text) == false)
-                                EntradaCuit.ErrorText = "La CUIT ingresada no es válida.";
-                        else if (EntradaCuit.Text.Length > 0 && EntradaCuit.Text.Length != 13)
-                                EntradaCuit.ErrorText = "La CUIT ingresada no es válida.";
+                        if (EntradaClaveTributaria.Text.Length == 13 && Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text) == false)
+                                EntradaClaveTributaria.ErrorText = "La CUIT ingresada no es válida.";
+                        else if (EntradaClaveTributaria.Text.Length > 0 && EntradaClaveTributaria.Text.Length != 13)
+                                EntradaClaveTributaria.ErrorText = "La CUIT ingresada no es válida.";
                         else
-                                EntradaCuit.ErrorText = null;
+                                EntradaClaveTributaria.ErrorText = null;
                 }
 
 
                 private void EntradaSituacion_Leave(object sender, System.EventArgs e)
                 {
-                        if (EntradaCuit.Text.Length > 0) {
+                        if (EntradaClaveTributaria.Text.Length > 0) {
                                 if (EntradaSituacion.TextInt == 1)
                                         EntradaSituacion.ErrorText = "La Situación Tributaria del cliente no se corresponde con la CUIT.";
                                 else
@@ -342,16 +342,16 @@ namespace Lfc.Personas
                         Res.Tipo = EntradaTipo.TextInt;
                         Res.Grupo = EntradaGrupo.Elemento as Lbl.Personas.Grupo;
                         Res.SubGrupo = EntradaSubGrupo.Elemento as Lbl.Personas.Grupo;
-                        Res.NombreSolo = EntradaNombre.Text.Trim();
+                        Res.Nombres = EntradaNombre.Text.Trim();
                         Res.Apellido = EntradaApellido.Text.Trim();
                         Res.RazonSocial = EntradaRazonSocial.Text.Trim();
                         Res.Nombre = EntradaNombreVisible.Text;
                         Res.TipoDocumento = EntradaTipoDoc.TextInt;
                         Res.NumeroDocumento = EntradaNumDoc.Text;
-                        if (EntradaCuit.Text.Length > 0)
-                                Res.Cuit = new Lbl.Personas.Cuit(EntradaCuit.Text);
+                        if (EntradaClaveTributaria.Text.Length > 0)
+                                Res.ClaveTributaria = new Lbl.Personas.Claves.Cuit(EntradaClaveTributaria.Text);
                         else
-                                Res.Cuit = null;
+                                Res.ClaveTributaria = null;
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
                         Res.SituacionTributaria = EntradaSituacion.Elemento as Lbl.Impuestos.SituacionTributaria;
 
@@ -370,7 +370,7 @@ namespace Lfc.Personas
                         Res.LimiteCredito = Lfx.Types.Parsing.ParseCurrency(EntradaLimiteCredito.Text);
                         Res.FechaNacimiento = Lfx.Types.Parsing.ParseDate(EntradaFechaNac.Text);
                         Res.NumeroCuenta = EntradaNumeroCuenta.Text;
-                        Res.Cbu = EntradaCbu.Text.Replace("-", "").Replace(" ", "").Replace("/", "").Replace(".", "");
+                        Res.ClaveBancaria = EntradaClaveBancaria.Text.Replace("-", "").Replace(" ", "").Replace("/", "").Replace(".", "");
                         Res.EstadoCredito = ((Lbl.Personas.EstadoCredito)(Lfx.Types.Parsing.ParseInt(EntradaEstadoCredito.TextKey)));
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
 

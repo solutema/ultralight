@@ -235,5 +235,18 @@ namespace Lbl.Comprobantes
                                 return Res;
                         }
                 }
+
+
+                public override string ToString()
+                {
+                        string Res = null;
+                        foreach (Pago Pg in this) {
+                                if (Res == null)
+                                        Res = Pg.ToString();
+                                else
+                                        Res += System.Environment.NewLine + Pg.ToString();
+                        }
+                        return Res;
+                }
         }
 }

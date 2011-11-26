@@ -406,7 +406,7 @@ namespace Lazaro.WinMain
                         Type TipoLbl = Lbl.Instanciador.InferirTipo(SubComandoListado);
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(TipoLbl, Lbl.Sys.Permisos.Operaciones.Listar)) {
                                 Type TipoListado = Lfc.Instanciador.InferirFormularioListado(TipoLbl);
-                                if (TipoListado == null && Lfx.Workspace.Master.DebugMode)
+                                if (TipoListado == null)
                                         throw new NotImplementedException("LISTAR " + SubComandoListado);
                                 else
                                         FormularioListado = Lfc.Instanciador.InstanciarFormularioListado(TipoListado, comando.Length > 0 ? comando : null);

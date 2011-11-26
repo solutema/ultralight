@@ -43,7 +43,6 @@ namespace Lbl.Comprobantes
                 private Personas.Persona m_Vendedor, m_Cliente;
                 private Entidades.Sucursal m_Sucursal;
                 private Comprobante m_ComprobanteOriginal;
-                private Articulos.Situacion m_SituacionOrigen, m_SituacionDestino;
                 private Tipo m_Tipo;
 
 		//Heredar constructor
@@ -74,11 +73,6 @@ namespace Lbl.Comprobantes
                                 } else {
                                         this.Registro["tipo_fac"] = value.Nomenclatura;
 
-                                        if (this.SituacionOrigen == null)
-                                                this.SituacionOrigen = Tipo.SituacionOrigen;
-                                        if (this.SituacionDestino == null)
-                                                this.SituacionDestino = Tipo.SituacionDestino;
-
                                         if (this.PV == 0) {
                                                 this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos." + Tipo.Nomenclatura + ".PV", 0);
                                                 if (this.PV /* still */ == 0) {
@@ -95,7 +89,7 @@ namespace Lbl.Comprobantes
                                                 if (this.PV /* still */ == 0)
                                                         this.PV = this.Connection.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + ",%' AND tipo>0");
                                                 if (this.PV /* still */ == 0)
-                                                        this.PV = this.Connection.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.LetraSola + ",%' AND tipo>0");
+                                                        this.PV = this.Connection.FieldInt("SELECT MIN(numero) FROM pvs WHERE CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Letra + ",%' AND tipo>0");
 
                                                 if (this.PV /* still */ == 0)
                                                         this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.PV", 1);
@@ -246,38 +240,6 @@ namespace Lbl.Comprobantes
                         {
                                 m_Sucursal = value;
                                 this.SetFieldValue("id_sucursal", value);
-                        }
-                }
-
-                public Articulos.Situacion SituacionOrigen
-                {
-                        get
-                        {
-                                if (m_SituacionOrigen == null && this.GetFieldValue<int>("situacionorigen") > 0)
-                                        m_SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, this.GetFieldValue<int>("situacionorigen"));
-
-                                return m_SituacionOrigen;
-                        }
-                        set
-                        {
-                                m_SituacionOrigen = value;
-                                this.SetFieldValue("situacionorigen", value);
-                        }
-                }
-
-                public Articulos.Situacion SituacionDestino
-                {
-                        get
-                        {
-                                if (m_SituacionDestino == null && this.GetFieldValue<int>("situaciondestino") > 0)
-                                        m_SituacionDestino = new Lbl.Articulos.Situacion(this.Connection, this.GetFieldValue<int>("situaciondestino"));
-
-                                return m_SituacionDestino;
-                        }
-                        set
-                        {
-                                m_SituacionDestino = value;
-                                this.SetFieldValue("situaciondestino", value);
                         }
                 }
 
@@ -504,6 +466,15 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 m_ComprobanteOriginal = value;
+                        }
+                }
+
+
+                public virtual decimal Total
+                {
+                        get
+                        {
+                                return 0;
                         }
                 }
 	}

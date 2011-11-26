@@ -130,78 +130,13 @@ namespace Lfx.Types
 		}
 
 
-                public static bool EsCbuValida(string cbu)
-                {
-                        string MiCopia = cbu.Replace("-", "").Replace(" ", "").Replace(".", "").Replace("/", "");
-                        if (MiCopia.Length != 22)
-                                return false;
-
-                        int[] Ponderador = { 3, 9, 7, 1 };
-                        int Verificador;
-
-                        Verificador = 0;
-                        string Bloque1 = MiCopia.Substring(0, 8);
-                        for (int i = 0; i < 7; i++) {
-                                Verificador += Lfx.Types.Parsing.ParseInt(Bloque1.Substring(i, 1)) * Ponderador[i % 4];
-                        }
-                        Verificador = (Verificador % 10) % 10;
-                        if (Lfx.Types.Parsing.ParseInt(Bloque1.Substring(7, 1)) != Verificador)
-                                return false;
-
-                        Verificador = 0;
-                        string Bloque2 = MiCopia.Substring(8, 14);
-                        for (int i = 0; i < 13; i++) {
-                                Verificador += Lfx.Types.Parsing.ParseInt(Bloque2.Substring(i, 1)) * Ponderador[i % 4];
-                        }
-                        Verificador = (10 - (Verificador % 10)) % 10;
-                        if (Lfx.Types.Parsing.ParseInt(Bloque2.Substring(13, 1)) != Verificador)
-                                return false;
-
-                        return true;
-                }
-
-                public static bool EsCuitValido(string Cuit)
-		{
-			// Utiliza el digito verificador para determinar la validez de una CUIT
-			// Devuelve Verdadero si la CUIT es válida
-			// Espera la CUIT en formato XX-XXXXXXXX-X
-			if(System.Text.RegularExpressions.Regex.IsMatch(Cuit, @"^\d{2}-\d{8}-\d{1}$")
-				|| System.Text.RegularExpressions.Regex.IsMatch(Cuit, @"^\d{11}$")) {
-				string CuitPlana = Cuit.Replace("-", "");
-				int Suma = 0;
-				Suma += int.Parse(CuitPlana.Substring(0, 1)) * 5;
-				Suma += int.Parse(CuitPlana.Substring(1, 1)) * 4;
-				Suma += int.Parse(CuitPlana.Substring(2, 1)) * 3;
-				Suma += int.Parse(CuitPlana.Substring(3, 1)) * 2;
-				Suma += int.Parse(CuitPlana.Substring(4, 1)) * 7;
-				Suma += int.Parse(CuitPlana.Substring(5, 1)) * 6;
-				Suma += int.Parse(CuitPlana.Substring(6, 1)) * 5;
-				Suma += int.Parse(CuitPlana.Substring(7, 1)) * 4;
-				Suma += int.Parse(CuitPlana.Substring(8, 1)) * 3;
-				Suma += int.Parse(CuitPlana.Substring(9, 1)) * 2;
-				// El digito verificador es 11 menos el mdulo de la suma y 11
-				int Verificador = 11 - (Suma % 11);
-
-				switch(Verificador) {
-					case 11:
-						Verificador = 0;
-						break;
-					case 10:
-						Verificador = 9;
-						break;
-				}
-				return int.Parse(CuitPlana.Substring(10, 1)) == Verificador;
-			} else {
-				return false;
-			}
-		}
-
 		public static void WriteTextFile(string fileName, string content)
 		{
 			System.IO.BinaryWriter wr = new System.IO.BinaryWriter(new System.IO.FileStream(fileName, System.IO.FileMode.OpenOrCreate));
 			wr.Write(System.Text.Encoding.Default.GetBytes(content));
 			wr.Close();
 		}
+
 
 		public static string ReadTextFile(string sFileName)
 		{

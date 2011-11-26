@@ -87,7 +87,7 @@ namespace Lbl.Sys.Configuracion
                         }
                 }
 
-                public Personas.IIdentificadorUnico Cuit
+                public IIdentificadorUnico ClaveTributaria
                 {
                         get
                         {
@@ -95,7 +95,7 @@ namespace Lbl.Sys.Configuracion
                                 if (Res == "00-00000000-0")
                                         return null;
                                 else
-                                        return new Personas.Cuit(Res);
+                                        return new Personas.Claves.Cuit(Res);
                         }
                         set
                         {

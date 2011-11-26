@@ -142,7 +142,7 @@ namespace Lfc.Personas
                                 item.ForeColor = System.Drawing.Color.Gray;
 
                         string Cuit = row.Fields["personas.cuit"].ValueString;
-                        if (Cuit != null && Cuit.Length > 0 && Lfx.Types.Strings.EsCuitValido(Cuit) == false) {
+                        if (Cuit != null && Cuit.Length > 0 && Lbl.Personas.Claves.Cuit.EsValido(Cuit) == false) {
                                 item.UseItemStyleForSubItems = false;
                                 item.SubItems["personas.cuit"].BackColor = System.Drawing.Color.Pink;
                         }

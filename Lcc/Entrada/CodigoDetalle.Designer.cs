@@ -183,6 +183,7 @@ namespace Lcc.Entrada
                         this.EntradaFreeText.GotFocus += new System.EventHandler(this.EntradaFreeText_GotFocus);
                         this.EntradaFreeText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaFreeText_KeyDown);
                         this.EntradaFreeText.LostFocus += new System.EventHandler(this.EntradaFreeText_LostFocus);
+                        this.EntradaFreeText.TextChanged += new System.EventHandler(this.EntradaFreeText_TextChanged);
                         // 
                         // TimerActualizar
                         // 

@@ -57,6 +57,7 @@ namespace Lbl.Comprobantes
 
                         this.Compra = true;
                         this.Fecha = DateTime.Now;
+                        this.FormaDePago = new Pagos.FormaDePago(this.Connection, Pagos.TiposFormasDePago.CuentaCorriente);
 
                         if (this.SituacionOrigen == null)
                                 this.SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, 998); //Proveedor

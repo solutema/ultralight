@@ -74,7 +74,8 @@ namespace Lcc.Entrada
                                 if (value == null) {
                                         this.CurrentRow = null;
                                         m_ItemId = 0;
-                                        this.TextInt = 0;
+                                        if (this.TextInt != 0)
+                                                this.TextInt = 0;
                                 } else {
                                         this.CurrentRow = m_Elemento.Registro;
                                         m_ItemId = m_Elemento.Id;

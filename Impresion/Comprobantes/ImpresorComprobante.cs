@@ -207,6 +207,9 @@ namespace Lazaro.Impresion.Comprobantes
                 public override string ObtenerValorCampo(string nombreCampo, string formato)
                 {
                         switch (nombreCampo.ToUpperInvariant()) {
+                                case "TOTAL.ENLETRAS":
+                                        return Lfx.Types.Formatting.SpellNumber(this.Comprobante.Total);
+
                                 case "TIPO":
                                 case "COMPROB.TIPO":
                                         return this.Comprobante.Tipo.ToString();
@@ -236,14 +239,14 @@ namespace Lazaro.Impresion.Comprobantes
                                                 return this.Comprobante.Cliente.DomicilioLaboral;
 
                                 case "CLIENTE.DOCUMENTO":
-                                        if (this.Comprobante.Cliente.Cuit != null)
-                                                return this.Comprobante.Cliente.Cuit.ToString();
+                                        if (this.Comprobante.Cliente.ClaveTributaria != null)
+                                                return this.Comprobante.Cliente.ClaveTributaria.ToString();
                                         else
                                                 return this.Comprobante.Cliente.NumeroDocumento;
                                 case "CUIT":
                                 case "CLIENTE.CUIT":
-                                        if (this.Comprobante.Cliente.Cuit != null)
-                                                return this.Comprobante.Cliente.Cuit.ToString();
+                                        if (this.Comprobante.Cliente.ClaveTributaria != null)
+                                                return this.Comprobante.Cliente.ClaveTributaria.ToString();
                                         else
                                                 return "";
 

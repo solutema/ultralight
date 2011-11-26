@@ -41,6 +41,7 @@ namespace Lbl.Comprobantes
 	public class ComprobanteConArticulos : Comprobante
 	{
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
+                private Articulos.Situacion m_SituacionOrigen, m_SituacionDestino;
                 private Lbl.Articulos.Situacion m_SituacionDestinoOriginal = null;
                 private ColeccionRecibos m_Recibos = null;
                 private Lbl.Pagos.FormaDePago m_FormaDePago = null;
@@ -145,6 +146,39 @@ namespace Lbl.Comprobantes
                 }
 
 
+                public Articulos.Situacion SituacionOrigen
+                {
+                        get
+                        {
+                                if (m_SituacionOrigen == null && this.GetFieldValue<int>("situacionorigen") > 0)
+                                        m_SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, this.GetFieldValue<int>("situacionorigen"));
+
+                                return m_SituacionOrigen;
+                        }
+                        set
+                        {
+                                m_SituacionOrigen = value;
+                                this.SetFieldValue("situacionorigen", value);
+                        }
+                }
+
+                public Articulos.Situacion SituacionDestino
+                {
+                        get
+                        {
+                                if (m_SituacionDestino == null && this.GetFieldValue<int>("situaciondestino") > 0)
+                                        m_SituacionDestino = new Lbl.Articulos.Situacion(this.Connection, this.GetFieldValue<int>("situaciondestino"));
+
+                                return m_SituacionDestino;
+                        }
+                        set
+                        {
+                                m_SituacionDestino = value;
+                                this.SetFieldValue("situaciondestino", value);
+                        }
+                }
+
+
                 public decimal Descuento
 		{
 			get
@@ -210,7 +244,7 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return this.Tipo.LetraSola == "A";
+                                return this.Tipo.Letra == "A";
                         }
                 }
 
@@ -286,7 +320,7 @@ namespace Lbl.Comprobantes
                 /// <summary>
                 /// Devuelve el importe total de la factura, redondeado a la cantidad de decimales configurada para el sistema.
                 /// </summary>
-                public decimal Total
+                public override decimal Total
                 {
                         get
                         {
@@ -778,6 +812,26 @@ namespace Lbl.Comprobantes
                         Nuevo.Tipo = tipo;
                         Nuevo.Obs = "s/" + this.ToString();
                         return Nuevo;
+                }
+
+
+                public override Tipo Tipo
+                {
+                        get
+                        {
+                                return base.Tipo;
+                        }
+                        set
+                        {
+                                base.Tipo = value;
+
+                                if (Tipo != null) {
+                                        if (this.SituacionOrigen == null)
+                                                this.SituacionOrigen = Tipo.SituacionOrigen;
+                                        if (this.SituacionDestino == null)
+                                                this.SituacionDestino = Tipo.SituacionDestino;
+                                }
+                        }
                 }
 	}
 }

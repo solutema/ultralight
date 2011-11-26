@@ -596,8 +596,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 /// </summary>
                 private static Lfx.Types.OperationResult IniciarGui()
                 {
-                        Lbl.Personas.IIdentificadorUnico Cuit = Lbl.Sys.Config.Actual.Empresa.Cuit;
-                        if (Cuit == null || Cuit.EsValido() == false) {
+                        Lbl.IIdentificadorUnico Identif = Lbl.Sys.Config.Actual.Empresa.ClaveTributaria;
+                        if (Identif == null || Identif.EsValido() == false) {
                                 Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
                                 FormConfig.PrimeraVez = true;
                                 if (FormConfig.ShowDialog() == DialogResult.OK)

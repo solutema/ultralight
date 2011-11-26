@@ -63,7 +63,7 @@ namespace Lfc.Personas
                         this.EntradaTipoDoc = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaApellido = new Lui.Forms.TextBox();
                         this.EntradaNombre = new Lui.Forms.TextBox();
-                        this.EntradaCuit = new Lui.Forms.TextBox();
+                        this.EntradaClaveTributaria = new Lui.Forms.TextBox();
                         this.EntradaRazonSocial = new Lui.Forms.TextBox();
                         this.Label10 = new Lui.Forms.Label();
                         this.Label9 = new Lui.Forms.Label();
@@ -94,7 +94,7 @@ namespace Lfc.Personas
                         this.label19 = new Lui.Forms.Label();
                         this.EntradaEstadoCredito = new Lui.Forms.ComboBox();
                         this.label21 = new Lui.Forms.Label();
-                        this.EntradaCbu = new Lui.Forms.TextBox();
+                        this.EntradaClaveBancaria = new Lui.Forms.TextBox();
                         this.label20 = new Lui.Forms.Label();
                         this.EntradaNumeroCuenta = new Lui.Forms.TextBox();
                         this.label22 = new Lui.Forms.Label();
@@ -298,26 +298,26 @@ namespace Lfc.Personas
                         // 
                         // EntradaCuit
                         // 
-                        this.EntradaCuit.AutoNav = true;
-                        this.EntradaCuit.AutoTab = true;
-                        this.EntradaCuit.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaCuit.DecimalPlaces = -1;
-                        this.EntradaCuit.FieldName = null;
-                        this.EntradaCuit.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCuit.Location = new System.Drawing.Point(108, 60);
-                        this.EntradaCuit.MaxLength = 32767;
-                        this.EntradaCuit.MultiLine = false;
-                        this.EntradaCuit.Name = "EntradaCuit";
-                        this.EntradaCuit.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuit.PasswordChar = '\0';
-                        this.EntradaCuit.PlaceholderText = null;
-                        this.EntradaCuit.Prefijo = "";
-                        this.EntradaCuit.ReadOnly = false;
-                        this.EntradaCuit.SelectOnFocus = true;
-                        this.EntradaCuit.Size = new System.Drawing.Size(142, 24);
-                        this.EntradaCuit.Sufijo = "";
-                        this.EntradaCuit.TabIndex = 3;
-                        this.EntradaCuit.Leave += new System.EventHandler(this.EntradaCuit_Leave);
+                        this.EntradaClaveTributaria.AutoNav = true;
+                        this.EntradaClaveTributaria.AutoTab = true;
+                        this.EntradaClaveTributaria.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaClaveTributaria.DecimalPlaces = -1;
+                        this.EntradaClaveTributaria.FieldName = null;
+                        this.EntradaClaveTributaria.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaClaveTributaria.Location = new System.Drawing.Point(108, 60);
+                        this.EntradaClaveTributaria.MaxLength = 32767;
+                        this.EntradaClaveTributaria.MultiLine = false;
+                        this.EntradaClaveTributaria.Name = "EntradaCuit";
+                        this.EntradaClaveTributaria.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaClaveTributaria.PasswordChar = '\0';
+                        this.EntradaClaveTributaria.PlaceholderText = null;
+                        this.EntradaClaveTributaria.Prefijo = "";
+                        this.EntradaClaveTributaria.ReadOnly = false;
+                        this.EntradaClaveTributaria.SelectOnFocus = true;
+                        this.EntradaClaveTributaria.Size = new System.Drawing.Size(142, 24);
+                        this.EntradaClaveTributaria.Sufijo = "";
+                        this.EntradaClaveTributaria.TabIndex = 3;
+                        this.EntradaClaveTributaria.Leave += new System.EventHandler(this.EntradaClaveTributaria_Leave);
                         // 
                         // EntradaRazonSocial
                         // 
@@ -472,7 +472,7 @@ namespace Lfc.Personas
                         this.Frame2.Controls.Add(this.Label3);
                         this.Frame2.Controls.Add(this.EntradaRazonSocial);
                         this.Frame2.Controls.Add(this.Label15);
-                        this.Frame2.Controls.Add(this.EntradaCuit);
+                        this.Frame2.Controls.Add(this.EntradaClaveTributaria);
                         this.Frame2.Controls.Add(this.Label7);
                         this.Frame2.Controls.Add(this.Label12);
                         this.Frame2.Controls.Add(this.EntradaSituacion);
@@ -781,29 +781,29 @@ namespace Lfc.Personas
                         this.label21.Text = "Estado de crédito";
                         this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaCbu
+                        // EntradaClaveBancaria
                         // 
-                        this.EntradaCbu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EntradaClaveBancaria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCbu.AutoNav = true;
-                        this.EntradaCbu.AutoTab = true;
-                        this.EntradaCbu.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaCbu.DecimalPlaces = -1;
-                        this.EntradaCbu.FieldName = null;
-                        this.EntradaCbu.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCbu.Location = new System.Drawing.Point(72, 196);
-                        this.EntradaCbu.MaxLength = 32767;
-                        this.EntradaCbu.MultiLine = false;
-                        this.EntradaCbu.Name = "EntradaCbu";
-                        this.EntradaCbu.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCbu.PasswordChar = '\0';
-                        this.EntradaCbu.PlaceholderText = null;
-                        this.EntradaCbu.Prefijo = "";
-                        this.EntradaCbu.ReadOnly = false;
-                        this.EntradaCbu.SelectOnFocus = true;
-                        this.EntradaCbu.Size = new System.Drawing.Size(206, 24);
-                        this.EntradaCbu.Sufijo = "";
-                        this.EntradaCbu.TabIndex = 13;
+                        this.EntradaClaveBancaria.AutoNav = true;
+                        this.EntradaClaveBancaria.AutoTab = true;
+                        this.EntradaClaveBancaria.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaClaveBancaria.DecimalPlaces = -1;
+                        this.EntradaClaveBancaria.FieldName = null;
+                        this.EntradaClaveBancaria.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaClaveBancaria.Location = new System.Drawing.Point(72, 196);
+                        this.EntradaClaveBancaria.MaxLength = 32767;
+                        this.EntradaClaveBancaria.MultiLine = false;
+                        this.EntradaClaveBancaria.Name = "EntradaClaveBancaria";
+                        this.EntradaClaveBancaria.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaClaveBancaria.PasswordChar = '\0';
+                        this.EntradaClaveBancaria.PlaceholderText = null;
+                        this.EntradaClaveBancaria.Prefijo = "";
+                        this.EntradaClaveBancaria.ReadOnly = false;
+                        this.EntradaClaveBancaria.SelectOnFocus = true;
+                        this.EntradaClaveBancaria.Size = new System.Drawing.Size(206, 24);
+                        this.EntradaClaveBancaria.Sufijo = "";
+                        this.EntradaClaveBancaria.TabIndex = 13;
                         // 
                         // label20
                         // 
@@ -933,7 +933,7 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.frame4.Controls.Add(this.EntradaSubGrupo);
                         this.frame4.Controls.Add(this.EntradaGrupo);
-                        this.frame4.Controls.Add(this.EntradaCbu);
+                        this.frame4.Controls.Add(this.EntradaClaveBancaria);
                         this.frame4.Controls.Add(this.label17);
                         this.frame4.Controls.Add(this.EntradaNumeroCuenta);
                         this.frame4.Controls.Add(this.label20);
@@ -1236,7 +1236,7 @@ namespace Lfc.Personas
                 internal Lcc.Entrada.CodigoDetalle EntradaTipoDoc;
                 internal Lui.Forms.TextBox EntradaApellido;
                 internal Lui.Forms.TextBox EntradaNombre;
-                internal Lui.Forms.TextBox EntradaCuit;
+                internal Lui.Forms.TextBox EntradaClaveTributaria;
                 internal Lui.Forms.TextBox EntradaRazonSocial;
                 internal Lui.Forms.Label Label10;
                 internal Lui.Forms.Label Label9;
@@ -1268,7 +1268,7 @@ namespace Lfc.Personas
                 internal Lui.Forms.Label label21;
                 internal Lui.Forms.TextBox EntradaNumeroCuenta;
                 internal Lui.Forms.Label label22;
-                internal Lui.Forms.TextBox EntradaCbu;
+                internal Lui.Forms.TextBox EntradaClaveBancaria;
                 internal Lcc.Entrada.CodigoDetalle EntradaGrupo;
                 private Lui.Forms.Frame frame3;
                 private Lui.Forms.Frame frame4;

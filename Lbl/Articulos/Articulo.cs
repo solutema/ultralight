@@ -554,7 +554,7 @@ namespace Lbl.Articulos
 
                                         // Si ees un artículo compuesto
                                         // Propagar los cambios de stock hacia abajo.
-                                        // Es decir, hacer movimientos de stock de los ingredientes (sub-artículos)
+                                        // Es decir, hacer movimientos de stock de los ingredientes (sub artículos)
                                         if (this.ControlStock == Articulos.ControlStock.Compuesto) {
                                                 string ObsSubItems = "Movim. s/salida de " + this.ToString();
                                                 foreach (ItemReceta Itm in this.Receta) {

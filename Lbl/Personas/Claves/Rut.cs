@@ -29,32 +29,24 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lbl.Personas
+
+namespace Lbl.Personas.Claves
 {
-        public class Cuit : IIdentificadorUnico
+        /// <summary>
+        /// Rol Único Tributario (Chile)
+        /// </summary>
+        public class Rut : IdentificadorUnico
         {
-                public string Valor { get; set; }
+                public Rut(string valor)
+                        : base(valor) { }
 
-                public Cuit(string valor)
+                public override string Nombre
                 {
-                        string Res = valor;
-
-                        Res = Res.Replace(".", "").Replace("-", "").Replace("/", "").Replace(" ", "").Replace("_", "");
-
-                        if (Res.Length == 11)
-                                this.Valor = Res.Substring(0, 2) + "-" + Res.Substring(2, 8) + "-" + Res.Substring(10, 1);
-                        else
-                                this.Valor = Res;
+                        get
+                        {
+                                return "RUT";
+                        }
                 }
 
-                public bool EsValido()
-                {
-                        return Lfx.Types.Strings.EsCuitValido(this.Valor);
-                }
-
-                public override string ToString()
-                {
-                        return this.Valor;
-                }
         }
 }

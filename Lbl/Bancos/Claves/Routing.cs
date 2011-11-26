@@ -29,12 +29,19 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lbl.Personas
+namespace Lbl.Bancos.Claves
 {
-        public interface IIdentificadorUnico
+        /// <summary>
+        /// Routing (Estados Unidos y Canadá)
+        /// </summary>
+        public class Routing : IdentificadorUnico
         {
-                string Valor { get; set; }
-
-                bool EsValido();
+                public override string Nombre
+                {
+                        get
+                        {
+                                return "Routing";
+                        }
+                }
         }
 }

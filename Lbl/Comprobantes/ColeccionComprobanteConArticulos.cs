@@ -66,5 +66,18 @@ namespace Lbl.Comprobantes
                                 return Res;
                         }
                 }
+
+
+                public override string ToString()
+                {
+                        string Res = null;
+                        foreach (ComprobanteConArticulos Cb in this) {
+                                if (Res == null)
+                                        Res = Cb.ToString();
+                                else
+                                        Res += System.Environment.NewLine + Cb.ToString();
+                        }
+                        return Res;
+                }
         }
 }
