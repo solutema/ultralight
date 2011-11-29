@@ -45,8 +45,8 @@ namespace Lui.Forms
 
 			this.BackColor = Lfx.Config.Display.CurrentTemplate.Selection;
 			Panel1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-			lstItems.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-			lstItems.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+			Listado.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
+			Listado.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
 		}
 
 		// Limpiar los recursos que se estén utilizando.
@@ -67,7 +67,7 @@ namespace Lui.Forms
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.ListBox lstItems;
+		internal System.Windows.Forms.ListBox Listado;
 		internal System.Windows.Forms.Timer Timer1;
 		internal System.Windows.Forms.Panel Panel1;
 
@@ -75,27 +75,29 @@ namespace Lui.Forms
 		{
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataSetHelp));
-                        this.lstItems = new System.Windows.Forms.ListBox();
+                        this.Listado = new System.Windows.Forms.ListBox();
                         this.Timer1 = new System.Windows.Forms.Timer(this.components);
                         this.Panel1 = new System.Windows.Forms.Panel();
                         this.SuspendLayout();
                         // 
-                        // lstItems
+                        // Listado
                         // 
-                        this.lstItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lstItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.lstItems.Font = Lfx.Config.Display.SmallFont;
-                        this.lstItems.ForeColor = System.Drawing.SystemColors.InfoText;
-                        this.lstItems.IntegralHeight = false;
-                        this.lstItems.Location = new System.Drawing.Point(4, 4);
-                        this.lstItems.Name = "lstItems";
-                        this.lstItems.Size = new System.Drawing.Size(206, 110);
-                        this.lstItems.TabIndex = 0;
-                        this.lstItems.TabStop = false;
-                        this.lstItems.DoubleClick += new System.EventHandler(this.lstItems_DoubleClick);
-                        this.lstItems.Click += new System.EventHandler(this.lstItems_Click);
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.Listado.Font = new System.Drawing.Font("Bitstream Vera Sans", 8F);
+                        this.Listado.ForeColor = System.Drawing.SystemColors.InfoText;
+                        this.Listado.IntegralHeight = false;
+                        this.Listado.Location = new System.Drawing.Point(4, 4);
+                        this.Listado.Name = "Listado";
+                        this.Listado.Size = new System.Drawing.Size(206, 110);
+                        this.Listado.TabIndex = 0;
+                        this.Listado.TabStop = false;
+                        this.Listado.DoubleClick += new System.EventHandler(this.Listado_DoubleClick);
+                        this.Listado.Click += new System.EventHandler(this.Listado_Click);
+                        this.Listado.MouseEnter += new System.EventHandler(this.Listado_MouseEnter);
+                        this.Listado.MouseLeave += new System.EventHandler(this.Listado_MouseLeave);
                         // 
                         // Timer1
                         // 
@@ -104,9 +106,9 @@ namespace Lui.Forms
                         // 
                         // Panel1
                         // 
-                        this.Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Panel1.Location = new System.Drawing.Point(2, 2);
                         this.Panel1.Name = "Panel1";
                         this.Panel1.Size = new System.Drawing.Size(210, 114);
@@ -117,9 +119,9 @@ namespace Lui.Forms
                         this.AutoScaleBaseSize = new System.Drawing.Size(6, 13);
                         this.ClientSize = new System.Drawing.Size(214, 118);
                         this.ControlBox = false;
-                        this.Controls.Add(this.lstItems);
+                        this.Controls.Add(this.Listado);
                         this.Controls.Add(this.Panel1);
-                        this.Font = Lfx.Config.Display.SmallFont;
+                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 8F);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.MaximizeBox = false;

@@ -41,9 +41,16 @@ namespace Lui.Forms
 	internal partial class DataSetHelp : System.Windows.Forms.Form
 	{
 
-		private string[] m_SetData = new string[1]; private string[] m_SetDataText = new string[1]; private string[] m_SetDataKey = new string[1];
-		private int m_SetIndex; private string m_TextKey;
+		private string[] m_SetData = new string[1];
+                private string[] m_SetDataText = new string[1];
+                private string[] m_SetDataKey = new string[1];
+		private int m_SetIndex;
+                private string m_TextKey;
 		private int IdealHeight = 118, LineHeight = 0;
+
+                [System.ComponentModel.Browsable(false),
+                        System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+                public Lui.Forms.ComboBox ControlDestino { get; set; }
 
 		[System.ComponentModel.Category("Comportamiento")]
 		public string[] SetData
@@ -73,22 +80,22 @@ namespace Lui.Forms
 						m_SetDataKey[i] = sItem;
 					}
 
-					lstItems.Items.Clear();
+					Listado.Items.Clear();
 					for (int i = m_SetDataText.GetLowerBound(0); i <= m_SetDataText.GetUpperBound(0); i++)
 					{
                                                 if (m_SetDataText[i] == null)
-                                                        lstItems.Items.Add("");
+                                                        Listado.Items.Add("");
                                                 else
-                                                        lstItems.Items.Add(m_SetDataText[i]);
+                                                        Listado.Items.Add(m_SetDataText[i]);
 					}
 
 					if(LineHeight == 0) {
 						Graphics a = this.CreateGraphics();
-						LineHeight = System.Convert.ToInt32(a.MeasureString("Hj", lstItems.Font).Height);
+						LineHeight = System.Convert.ToInt32(a.MeasureString("Hj", Listado.Font).Height);
 						a.Dispose();
 						a = null;
 					}
-					this.IdealHeight = LineHeight * (m_SetDataText.GetUpperBound(0) + 1) + (lstItems.Top * 2);
+					this.IdealHeight = LineHeight * (m_SetDataText.GetUpperBound(0) + 1) + (Listado.Top * 2);
 					if (IdealHeight > 240)
 						IdealHeight = 240;
 
@@ -119,6 +126,7 @@ namespace Lui.Forms
 				Timer1.Enabled = true;
 				this.Opacity = 1;
 				this.Visible = true;
+                                this.Ubicar();
 			}
 		}
 
@@ -133,7 +141,7 @@ namespace Lui.Forms
 					if (m_SetDataKey[i] == m_TextKey)
 					{
 						m_SetIndex = i;
-						lstItems.SelectedIndex = i;
+						Listado.SelectedIndex = i;
 						Found = true;
 						break;
 					}
@@ -145,7 +153,7 @@ namespace Lui.Forms
                                                 if (m_SetData != null && m_SetData[i] == m_TextKey)
 						{
 							m_SetIndex = i;
-							lstItems.SelectedIndex = i;
+							Listado.SelectedIndex = i;
 							break;
 						}
 					}
@@ -169,12 +177,17 @@ namespace Lui.Forms
 
 		private void FormAyudaDataSet_VisibleChanged(object sender, System.EventArgs e)
 		{
-			Timer1.Enabled = true;
+                        if (this.Visible)
+                                Timer1.Enabled = true;
 		}
 
 
 		public void Ocultar()
 		{
+                        // Permito procesar un clic
+                        System.Windows.Forms.Application.DoEvents();
+                        System.Threading.Thread.Sleep(1);
+
 			Timer1.Enabled = false;
 			//this.Visible = false;
 			this.Size = new Size(0, 0);
@@ -184,24 +197,50 @@ namespace Lui.Forms
 		}
 
 
-		public void Mostrar(System.Windows.Forms.Control parentControl)
+                public void Mostrar(Lui.Forms.ComboBox parentControl)
 		{
 			this.FormBorderStyle = FormBorderStyle.None;
-			this.Location = parentControl.PointToScreen(new Point(0, parentControl.Height - 2));
+                        this.ControlDestino = parentControl;
 			this.Size = new Size(parentControl.Width, IdealHeight);
+                        this.Ubicar();
 			if (this.Visible == false)
 				this.Visible = true;
 		}
 
 
-		private void lstItems_Click(object sender, System.EventArgs e)
+                // Ubica la ventana con respecto al ControlDestino
+                public void Ubicar()
+                {
+                        if (ControlDestino != null)
+                                this.Location = ControlDestino.PointToScreen(new Point(0, ControlDestino.Height - 2));
+                }
+
+
+		private void Listado_Click(object sender, System.EventArgs e)
 		{
-			this.Ocultar();
+                        if (Listado.SelectedIndex >= 0 && Listado.SelectedIndex < m_SetDataKey.Length) {
+                                string Key = this.m_SetDataKey[Listado.SelectedIndex];
+                                if (Key != null && Key.Length > 0 && this.ControlDestino != null)
+                                        this.ControlDestino.TextKey = Key;
+                        }
+                        if (this.ControlDestino != null)
+                                this.ControlDestino.Focus();
 		}
 
-		private void lstItems_DoubleClick(object sender, System.EventArgs e)
+		private void Listado_DoubleClick(object sender, System.EventArgs e)
 		{
-			this.Ocultar();
+			// this.Ocultar();
 		}
+
+                private void Listado_MouseEnter(object sender, EventArgs e)
+                {
+                        this.Timer1.Stop();
+                }
+
+                private void Listado_MouseLeave(object sender, EventArgs e)
+                {
+                        if (this.Visible)
+                                this.Timer1.Start();
+                }
 	}
 }

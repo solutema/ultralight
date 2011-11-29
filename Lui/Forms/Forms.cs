@@ -79,6 +79,6 @@ namespace Lui.Forms
 	/// </summary>
 	internal static class PopUps
 	{
-		internal static DataSetHelp ODataSetHelp;
+		internal static DataSetHelp FormDataSetHelp;
 	}
 }

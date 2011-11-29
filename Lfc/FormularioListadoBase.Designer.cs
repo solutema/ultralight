@@ -334,6 +334,7 @@ namespace Lfc
                         // 
                         this.RefreshTimer.Interval = 50;
                         this.RefreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
+                        this.RefreshTimer.Enabled = false;
                         // 
                         // PicEsperar
                         // 
@@ -378,12 +379,12 @@ namespace Lfc
                 protected Lui.Forms.Button BotonImprimir;
                 protected Lui.Forms.Button BotonFiltrar;
                 protected Lui.Forms.Button BotonCancelar;
-                private System.Windows.Forms.Panel PanelContadores;
+                protected System.Windows.Forms.Panel PanelContadores;
                 protected Lui.Forms.TextBox EntradaContador4;
                 protected Lui.Forms.Label EtiquetaContador4;
                 protected Lui.Forms.TextBox EntradaContador3;
                 protected Lui.Forms.Label EtiquetaContador3;
-                private System.Windows.Forms.Timer RefreshTimer;
-                private System.Windows.Forms.PictureBox PicEsperar;
+                protected System.Windows.Forms.Timer RefreshTimer;
+                protected System.Windows.Forms.PictureBox PicEsperar;
         }
 }

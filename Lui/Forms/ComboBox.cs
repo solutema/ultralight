@@ -256,11 +256,11 @@ namespace Lui.Forms
                                 if (ItemList.Visible)
                                         ItemList.SelectedItem = this.TextRaw;
 
-                                if (PopUps.ODataSetHelp != null) {
+                                if (PopUps.FormDataSetHelp != null) {
                                         if (this.TextKey.Length == 0)
-                                                PopUps.ODataSetHelp.TextKey = this.Text;
+                                                PopUps.FormDataSetHelp.TextKey = this.Text;
                                         else
-                                                PopUps.ODataSetHelp.TextKey = this.TextKey;
+                                                PopUps.FormDataSetHelp.TextKey = this.TextKey;
                                 }
                         }
                 }
@@ -289,11 +289,11 @@ namespace Lui.Forms
                                 if (ItemList.Visible)
                                         ItemList.SelectedItem = this.TextRaw;
 
-                                if (PopUps.ODataSetHelp != null) {
+                                if (PopUps.FormDataSetHelp != null) {
                                         if (this.TextKey.Length == 0)
-                                                PopUps.ODataSetHelp.TextKey = this.Text;
+                                                PopUps.FormDataSetHelp.TextKey = this.Text;
                                         else
-                                                PopUps.ODataSetHelp.TextKey = this.TextKey;
+                                                PopUps.FormDataSetHelp.TextKey = this.TextKey;
                                 }
                         }
                 }
@@ -341,8 +341,8 @@ namespace Lui.Forms
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
                         if (IgnoreEvents == 0) {
-                                if (PopUps.ODataSetHelp != null)
-                                        PopUps.ODataSetHelp.Ocultar();
+                                if (PopUps.FormDataSetHelp != null)
+                                        PopUps.FormDataSetHelp.Ocultar();
                         }
                 }
 
@@ -351,14 +351,14 @@ namespace Lui.Forms
                         if (IgnoreEvents == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                 IgnoreEvents++;
                                 if (this.AutoSize == false && this.AlwaysExpanded == false) {
-                                        if (PopUps.ODataSetHelp == null && Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
-                                                PopUps.ODataSetHelp = new DataSetHelp();
-                                        if (PopUps.ODataSetHelp != null && this.TemporaryReadOnly == false && this.ReadOnly == false) {
+                                        if (PopUps.FormDataSetHelp == null && Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
+                                                PopUps.FormDataSetHelp = new DataSetHelp();
+                                        if (PopUps.FormDataSetHelp != null && this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                                 string[] Aja = new string[this.SetData.Length];
                                                 this.SetData.CopyTo(Aja, 0);
-                                                PopUps.ODataSetHelp.SetData = Aja;
-                                                PopUps.ODataSetHelp.TextKey = this.TextKey;
-                                                PopUps.ODataSetHelp.Mostrar(this);
+                                                PopUps.FormDataSetHelp.SetData = Aja;
+                                                PopUps.FormDataSetHelp.TextKey = this.TextKey;
+                                                PopUps.FormDataSetHelp.Mostrar(this);
                                                 this.TextBox1.Focus();
                                         }
                                 }
