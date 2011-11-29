@@ -256,7 +256,7 @@ namespace Lui.Forms
                                 if (ItemList.Visible)
                                         ItemList.SelectedItem = this.TextRaw;
 
-                                if (PopUps.FormDataSetHelp != null) {
+                                if (PopUps.FormDataSetHelp != null && PopUps.FormDataSetHelp.Visible) {
                                         if (this.TextKey.Length == 0)
                                                 PopUps.FormDataSetHelp.TextKey = this.Text;
                                         else
@@ -289,7 +289,7 @@ namespace Lui.Forms
                                 if (ItemList.Visible)
                                         ItemList.SelectedItem = this.TextRaw;
 
-                                if (PopUps.FormDataSetHelp != null) {
+                                if (PopUps.FormDataSetHelp != null && PopUps.FormDataSetHelp.Visible) {
                                         if (this.TextKey.Length == 0)
                                                 PopUps.FormDataSetHelp.TextKey = this.Text;
                                         else
@@ -322,6 +322,7 @@ namespace Lui.Forms
                         set
                         {
                                 base.Text = value;
+                                this.TextBox1.Select(0, 0);
                                 for (int i = 0; i <= m_SetDataText.GetUpperBound(0); i++) {
                                         if (this.TextRaw == m_SetDataText[i]) {
                                                 if (this.TextKey != m_SetDataKey[i])
@@ -341,28 +342,27 @@ namespace Lui.Forms
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
                         if (IgnoreEvents == 0) {
-                                if (PopUps.FormDataSetHelp != null)
-                                        PopUps.FormDataSetHelp.Ocultar();
+                                if (PopUps.FormDataSetHelp != null && PopUps.FormDataSetHelp.Visible) {
+                                        TimerOcultarPopup.Start();
+                                        // PopUps.FormDataSetHelp.Ocultar();
+                                }
                         }
                 }
 
-                private void TextBox1_GotFocus(object sender, System.EventArgs e)
+                private void MostrarPopup()
                 {
-                        if (IgnoreEvents == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
-                                IgnoreEvents++;
-                                if (this.AutoSize == false && this.AlwaysExpanded == false) {
-                                        if (PopUps.FormDataSetHelp == null && Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
-                                                PopUps.FormDataSetHelp = new DataSetHelp();
-                                        if (PopUps.FormDataSetHelp != null && this.TemporaryReadOnly == false && this.ReadOnly == false) {
-                                                string[] Aja = new string[this.SetData.Length];
-                                                this.SetData.CopyTo(Aja, 0);
-                                                PopUps.FormDataSetHelp.SetData = Aja;
-                                                PopUps.FormDataSetHelp.TextKey = this.TextKey;
-                                                PopUps.FormDataSetHelp.Mostrar(this);
-                                                this.TextBox1.Focus();
-                                        }
+                        TimerOcultarPopup.Stop();
+                        if (this.AutoSize == false && this.AlwaysExpanded == false) {
+                                if (PopUps.FormDataSetHelp == null && Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet)
+                                        PopUps.FormDataSetHelp = new DataSetHelp();
+                                if (PopUps.FormDataSetHelp != null && this.TemporaryReadOnly == false && this.ReadOnly == false) {
+                                        string[] TempSet = new string[this.SetData.Length];
+                                        this.SetData.CopyTo(TempSet, 0);
+                                        PopUps.FormDataSetHelp.SetData = TempSet;
+                                        PopUps.FormDataSetHelp.TextKey = this.TextKey;
+                                        PopUps.FormDataSetHelp.Mostrar(this);
+                                        this.TextBox1.Focus();
                                 }
-                                IgnoreEvents--;
                         }
                 }
 
@@ -508,6 +508,33 @@ namespace Lui.Forms
                                         ItemList.TopIndex = ItemList.SelectedIndex;
                                 else if (ItemList.SelectedIndex >= ItemList.TopIndex + (ItemList.Height / ItemList.ItemHeight))
                                         ItemList.TopIndex = ItemList.SelectedIndex;
+                        }
+                }
+
+                private void TimerOcultarPopup_Tick(object sender, EventArgs e)
+                {
+                        TimerOcultarPopup.Stop();
+                        if (PopUps.FormDataSetHelp != null && PopUps.FormDataSetHelp.Visible)
+                                PopUps.FormDataSetHelp.Ocultar();
+                }
+
+                private void TextBox1_GotFocus(object sender, System.EventArgs e)
+                {
+                        if (IgnoreEvents == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
+                                IgnoreEvents++;
+                                this.TextBox1.Select(0, 0);
+                                this.MostrarPopup();
+                                IgnoreEvents--;
+                        }
+                }
+
+                private void TextBox1_Click(object sender, EventArgs e)
+                {
+                        if (IgnoreEvents == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
+                                IgnoreEvents++;
+                                this.TextBox1.Select(0, 0);
+                                this.MostrarPopup();
+                                IgnoreEvents--;
                         }
                 }
         }

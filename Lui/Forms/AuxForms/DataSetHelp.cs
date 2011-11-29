@@ -124,9 +124,7 @@ namespace Lui.Forms
 				DetectarSetIndex();
 				Timer1.Enabled = false;
 				Timer1.Enabled = true;
-				this.Opacity = 1;
-				this.Visible = true;
-                                this.Ubicar();
+                                this.Mostrar();
 			}
 		}
 
@@ -197,15 +195,21 @@ namespace Lui.Forms
 		}
 
 
-                public void Mostrar(Lui.Forms.ComboBox parentControl)
+                public void Mostrar()
 		{
 			this.FormBorderStyle = FormBorderStyle.None;
-                        this.ControlDestino = parentControl;
-			this.Size = new Size(parentControl.Width, IdealHeight);
                         this.Ubicar();
 			if (this.Visible == false)
 				this.Visible = true;
 		}
+
+
+                public void Mostrar(Lui.Forms.ComboBox parentControl)
+                {
+                        this.ControlDestino = parentControl;
+                        this.Size = new Size(parentControl.Width, IdealHeight);
+                        this.Mostrar();
+                }
 
 
                 // Ubica la ventana con respecto al ControlDestino
@@ -227,15 +231,12 @@ namespace Lui.Forms
                                 this.ControlDestino.Focus();
 		}
 
-		private void Listado_DoubleClick(object sender, System.EventArgs e)
-		{
-			// this.Ocultar();
-		}
 
                 private void Listado_MouseEnter(object sender, EventArgs e)
                 {
                         this.Timer1.Stop();
                 }
+
 
                 private void Listado_MouseLeave(object sender, EventArgs e)
                 {
