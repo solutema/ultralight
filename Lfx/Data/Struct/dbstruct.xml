@@ -233,6 +233,7 @@
     <Column name="id_caja" datatype="Integer" nullable="1" />
     <Column name="id_comprob" datatype="Integer" nullable="1" />
     <Column name="id_recibo" datatype="Integer" nullable="1" />
+    <Column name="id_recibo_pago" datatype="Integer" nullable="1" />
     <Column name="emitido" datatype="SmallInt" nullable="0" default="0" />
     <Column name="importe" inputtype="Currency" default="0" />
     <Column name="fechaemision" datatype="DateTime" nullable="0" />
@@ -243,6 +244,7 @@
     <Index table="bancos_cheques" name="bancos_cheques_id_caja" columns="id_caja" unique="0" primary="0" />
     <Index table="bancos_cheques" name="bancos_cheques_id_comprob" columns="id_comprob" unique="0" primary="0" />
     <Index table="bancos_cheques" name="bancos_cheques_id_recibo" columns="id_recibo" unique="0" primary="0" />
+    <Index table="bancos_cheques" name="bancos_cheques_id_recibo_pago" columns="id_recibo" unique="0" primary="0" />
     <Index table="bancos_cheques" name="bancos_cheques_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
     <Index table="bancos_cheques" name="bancos_cheques_id_cliente" columns="id_cliente" unique="0" primary="0" />
     <Index table="bancos_cheques" name="bancos_cheques_id_chequera" columns="id_chequera" unique="0" primary="0" />

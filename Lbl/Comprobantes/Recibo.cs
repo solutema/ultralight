@@ -213,10 +213,13 @@ namespace Lbl.Comprobantes
                                 }
 
                                 // Pagos con cheque
-                                using (System.Data.DataTable TablaPagos = this.Connection.Select("SELECT * FROM bancos_cheques WHERE id_recibo=" + Id.ToString())) {
+                                using (System.Data.DataTable TablaPagos = this.Connection.Select("SELECT * FROM bancos_cheques WHERE (id_recibo=" + this.Id.ToString() + " OR id_recibo_pago=" + this.Id.ToString() + ")")) {
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                                 Bancos.Cheque Ch = new Lbl.Bancos.Cheque(Connection, (Lfx.Data.Row)Pago);
-                                                Ch.Recibo = this;
+                                                if (this.DePago)
+                                                        Ch.ReciboPago = this;
+                                                else
+                                                        Ch.ReciboCobro = this;
                                                 if (this.DePago)
                                                         Pagos.Add(new Pago(Ch));
                                                 else 
@@ -338,7 +341,10 @@ namespace Lbl.Comprobantes
                                                 Pg.Cheque.Obs = ObsPago;
                                                 Pg.Cheque.Concepto = Pg.Concepto;
                                                 Pg.Cheque.ConceptoTexto = Pg.ConceptoTexto;
-                                                Pg.Cheque.Recibo = this;
+                                                if (this.DePago)
+                                                        Pg.Cheque.ReciboPago = this;
+                                                else
+                                                        Pg.Cheque.ReciboCobro = this;
                                                 Pg.Cheque.Cliente = this.Cliente;
                                                 Pg.Cheque.Emitido = Pg.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequePropio;
                                                 Lfx.Types.OperationResult ResultadoCheque = Pg.Cheque.Guardar();
@@ -385,7 +391,7 @@ namespace Lbl.Comprobantes
                                                 Pg.Cheque.ConceptoTexto = Pg.ConceptoTexto;
                                                 Pg.Cheque.Obs = ObsPago;
                                                 Pg.Cheque.Emitido = true;
-                                                Pg.Cheque.Recibo = this;
+                                                Pg.Cheque.ReciboPago = this;
                                                 Lfx.Types.OperationResult ResultadoCheque = Pg.Cheque.Guardar();
                                                 if (ResultadoCheque.Success == false)
                                                         return ResultadoCheque;
@@ -400,7 +406,7 @@ namespace Lbl.Comprobantes
                                                 if (Pg.Cheque.Obs.Length > 0)
                                                         Pg.Cheque.Obs += " /// ";
                                                 Pg.Cheque.Obs += "Entregado s/" + this.ToString();
-                                                Pg.Cheque.Recibo = this;
+                                                Pg.Cheque.ReciboPago = this;
                                                 Pg.Cheque.Guardar();
                                                 Lfx.Types.OperationResult ResultadoChequeTerceros = Pg.Cheque.Guardar();
                                                 if (ResultadoChequeTerceros.Success == false)

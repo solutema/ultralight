@@ -192,7 +192,9 @@ namespace Lbl.Cajas
                         this.Movimiento(false, null, "Arqueo - Saldo: " + Lfx.Types.Formatting.FormatCurrency(this.Saldo(false)), Lbl.Sys.Config.Actual.UsuarioConectado.Persona, 0, null, null, null, null);
                 }
 
-                public void Movimiento(bool auto, Lbl.Cajas.Concepto concepto, string textoConcepto, Lbl.Personas.Persona cliente, decimal importe, string obs, Lbl.Comprobantes.ComprobanteConArticulos factura, Lbl.Comprobantes.Recibo recibo, string comprobantes)
+                public void Movimiento(bool auto, Lbl.Cajas.Concepto concepto, string textoConcepto,
+                        Lbl.Personas.Persona cliente, decimal importe, string obs,
+                        Lbl.Comprobantes.ComprobanteConArticulos factura, Lbl.Comprobantes.Recibo recibo, string comprobantes)
                 {
                         decimal SaldoActual = this.Saldo(true);
 

@@ -72,8 +72,10 @@ namespace Lbl.Comprobantes
                 public Pago(Bancos.Cheque cheque)
                         : this(cheque.Connection, cheque.Emitido ? Lbl.Pagos.TiposFormasDePago.ChequePropio : Lbl.Pagos.TiposFormasDePago.ChequeTerceros)
                 {
-                        if (cheque.Recibo != null)
-                                this.Recibo = cheque.Recibo;
+                        if (cheque.ReciboPago != null)
+                                this.Recibo = cheque.ReciboPago;
+                        else if (cheque.ReciboCobro != null)
+                                this.Recibo = cheque.ReciboCobro;
                         this.Cheque = cheque;
                 }
 

@@ -94,7 +94,7 @@ namespace Lui.Forms
                         this.Listado.Size = new System.Drawing.Size(206, 110);
                         this.Listado.TabIndex = 0;
                         this.Listado.TabStop = false;
-                        this.Listado.Click += new System.EventHandler(this.Listado_Click);
+                        this.Listado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Listado_MouseDown);
                         this.Listado.MouseEnter += new System.EventHandler(this.Listado_MouseEnter);
                         this.Listado.MouseLeave += new System.EventHandler(this.Listado_MouseLeave);
                         // 

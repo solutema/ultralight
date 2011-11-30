@@ -215,12 +215,12 @@ namespace Lui.Forms
                 // Ubica la ventana con respecto al ControlDestino
                 public void Ubicar()
                 {
-                        if (ControlDestino != null)
+                        if (ControlDestino != null && ControlDestino.Created)
                                 this.Location = ControlDestino.PointToScreen(new Point(0, ControlDestino.Height - 2));
                 }
 
 
-		private void Listado_Click(object sender, System.EventArgs e)
+		private void Listado_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
                         if (Listado.SelectedIndex >= 0 && Listado.SelectedIndex < m_SetDataKey.Length) {
                                 string Key = this.m_SetDataKey[Listado.SelectedIndex];

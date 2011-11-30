@@ -38,7 +38,7 @@ namespace Lbl.Bancos
 	public class Cheque : ElementoDeDatos
 	{
                 public Bancos.Banco Banco;
-                public Lbl.Comprobantes.Recibo m_Recibo;
+                public Lbl.Comprobantes.Recibo m_Recibo, m_ReciboPago;
                 public Lbl.Cajas.Concepto Concepto;
                 public Lbl.Personas.Persona Cliente;
                 public Lbl.Bancos.Chequera Chequera;
@@ -119,7 +119,8 @@ namespace Lbl.Bancos
                         base.OnLoad();
                 }
 
-                public Lbl.Comprobantes.Recibo Recibo
+
+                public Lbl.Comprobantes.Recibo ReciboCobro
                 {
                         get
                         {
@@ -132,6 +133,22 @@ namespace Lbl.Bancos
                                 m_Recibo = value;
                         }
                 }
+
+
+                public Lbl.Comprobantes.Recibo ReciboPago
+                {
+                        get
+                        {
+                                if (m_ReciboPago == null && this.GetFieldValue<int>("id_recibo_pago") > 0)
+                                        this.m_ReciboPago = new Comprobantes.ReciboDeCobro(this.Connection, this.GetFieldValue<int>("id_recibo_pago"));
+                                return m_ReciboPago;
+                        }
+                        set
+                        {
+                                m_ReciboPago = value;
+                        }
+                }
+
 
 		public override string ToString()
 		{
@@ -178,7 +195,7 @@ namespace Lbl.Bancos
                                                 this.Cliente, -this.Importe,
                                                 "Pago de " + this.ToString(),
                                                 null,
-                                                this.Recibo,
+                                                this.ReciboCobro != null ? this.ReciboCobro : this.ReciboPago,
                                                 null);
 
                         qGen.Update ActualizarEstado = new qGen.Update(this.TablaDatos);
@@ -293,13 +310,20 @@ namespace Lbl.Bancos
 			Comando.Fields.AddWithValue("numero", this.Numero);
 			Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
 
-                        if (this.Recibo == null)
+                        if (this.ReciboCobro == null)
                                 Comando.Fields.AddWithValue("id_recibo", null);
                         else
-                                Comando.Fields.AddWithValue("id_recibo", this.Recibo.Id);
+                                Comando.Fields.AddWithValue("id_recibo", this.ReciboCobro.Id);
 
-                        if (this.Cliente == null && this.Recibo != null)
-                                this.Cliente = this.Recibo.Cliente;
+                        if (this.ReciboPago == null)
+                                Comando.Fields.AddWithValue("id_recibo_pago", null);
+                        else
+                                Comando.Fields.AddWithValue("id_recibo_pago", this.ReciboPago.Id);
+
+                        if (this.Cliente == null && this.ReciboCobro != null)
+                                this.Cliente = this.ReciboCobro.Cliente;
+                        if (this.Cliente == null && this.ReciboPago != null)
+                                this.Cliente = this.ReciboPago.Cliente;
 
                         if (this.Cliente == null)
                                 Comando.Fields.AddWithValue("id_cliente", null);
@@ -340,9 +364,11 @@ namespace Lbl.Bancos
                                 Lbl.Personas.Persona UsarCliente = this.Cliente;
                                 if (UsarCliente == null && this.Factura != null)
                                         UsarCliente = this.Factura.Cliente;
-                                if (UsarCliente == null && this.Recibo != null)
-                                        UsarCliente = this.Recibo.Cliente;
-                                CajaCheques.Movimiento(true, this.Concepto, this.ConceptoTexto, UsarCliente, this.Importe, this.ToString(), this.Factura, this.Recibo, "");
+                                if (UsarCliente == null && this.ReciboCobro != null)
+                                        UsarCliente = this.ReciboCobro.Cliente;
+                                if (UsarCliente == null && this.ReciboPago != null)
+                                        UsarCliente = this.ReciboPago.Cliente;
+                                CajaCheques.Movimiento(true, this.Concepto, this.ConceptoTexto, UsarCliente, this.Importe, this.ToString(), this.Factura, this.ReciboCobro != null ? this.ReciboCobro : this.ReciboPago, "");
                         }
 
                         return base.Guardar();
@@ -361,9 +387,11 @@ namespace Lbl.Bancos
                                         Lbl.Personas.Persona UsarCliente = this.Cliente;
                                         if (UsarCliente == null && this.Factura != null)
                                                 UsarCliente = this.Factura.Cliente;
-                                        if (UsarCliente == null && this.Recibo != null)
-                                                UsarCliente = this.Recibo.Cliente;
-                                        CajaCheques.Movimiento(true, this.Concepto, "Anulación " + this.ToString(), UsarCliente, this.Importe, null, this.Factura, this.Recibo, "");
+                                        if (UsarCliente == null && this.ReciboCobro != null)
+                                                UsarCliente = this.ReciboCobro.Cliente;
+                                        if (UsarCliente == null && this.ReciboPago != null)
+                                                UsarCliente = this.ReciboPago.Cliente;
+                                        CajaCheques.Movimiento(true, this.Concepto, "Anulación " + this.ToString(), UsarCliente, this.Importe, null, this.Factura, this.ReciboCobro != null ? this.ReciboCobro : this.ReciboPago, "");
                                 }
 
                                 Lbl.Sys.Config.ActionLog(this.Connection, Sys.Log.Acciones.Delete, this, null);
