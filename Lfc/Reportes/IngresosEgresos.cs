@@ -565,7 +565,6 @@ namespace Lfc.Reportes
                         // 
                         // Label13
                         // 
-                        this.Label13.BackColor = System.Drawing.Color.Silver;
                         this.Label13.Location = new System.Drawing.Point(8, 308);
                         this.Label13.Name = "Label13";
                         this.Label13.Size = new System.Drawing.Size(280, 2);

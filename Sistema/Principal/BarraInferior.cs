@@ -176,11 +176,11 @@ namespace Lazaro.WinMain.Principal
                                                 }
                                                 if (Saldo > 0) {
                                                         PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
-                                                        PersonaComentario.BackColor = System.Drawing.Color.Tomato;
+                                                        PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Warning;
                                                         PersonaComentario.Visible = true;
                                                 } else if (Saldo < 0) {
                                                         PersonaComentario.Text = "Esta persona registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
-                                                        PersonaComentario.BackColor = System.Drawing.SystemColors.Control;
+                                                        PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Default;
                                                         PersonaComentario.Visible = true;
                                                 } else {
                                                         PersonaComentario.Visible = false;

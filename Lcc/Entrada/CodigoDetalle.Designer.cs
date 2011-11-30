@@ -67,7 +67,7 @@ namespace Lcc.Entrada
                         this.MenuItemPegar = new System.Windows.Forms.MenuItem();
                         this.MenuItem5 = new System.Windows.Forms.MenuItem();
                         this.MenuItemEditar = new System.Windows.Forms.MenuItem();
-                        this.Label1 = new Lui.Forms.Label();
+                        this.Label1 = new System.Windows.Forms.Label();
                         this.EntradaFreeText = new System.Windows.Forms.TextBox();
                         this.TimerActualizar = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
@@ -211,17 +211,17 @@ namespace Lcc.Entrada
                 #endregion
 
                 protected System.Windows.Forms.TextBox EntradaCodigo;
-                internal Lui.Forms.Label Label1;
-                internal System.Windows.Forms.TextBox EntradaFreeText;
-                internal System.Windows.Forms.MenuItem MenuItemCopiarCodigo;
-                internal System.Windows.Forms.MenuItem MenuItemCopiarNombre;
-                internal System.Windows.Forms.MenuItem MenuItem3;
-                internal System.Windows.Forms.MenuItem MenuItemPegar;
-                internal System.Windows.Forms.MenuItem MenuItem5;
-                internal System.Windows.Forms.MenuItem MenuItemEditar;
-                internal System.Windows.Forms.MenuItem MenuItemBuscadorRapido;
-                internal System.Windows.Forms.MenuItem MenuItem2;
-                internal System.Windows.Forms.ContextMenu MiContextMenu;
-                private System.Windows.Forms.Timer TimerActualizar;
+                protected System.Windows.Forms.Label Label1;
+                protected System.Windows.Forms.TextBox EntradaFreeText;
+                protected System.Windows.Forms.MenuItem MenuItemCopiarCodigo;
+                protected System.Windows.Forms.MenuItem MenuItemCopiarNombre;
+                protected System.Windows.Forms.MenuItem MenuItem3;
+                protected System.Windows.Forms.MenuItem MenuItemPegar;
+                protected System.Windows.Forms.MenuItem MenuItem5;
+                protected System.Windows.Forms.MenuItem MenuItemEditar;
+                protected System.Windows.Forms.MenuItem MenuItemBuscadorRapido;
+                protected System.Windows.Forms.MenuItem MenuItem2;
+                protected System.Windows.Forms.ContextMenu MiContextMenu;
+                protected System.Windows.Forms.Timer TimerActualizar;
         }
 }

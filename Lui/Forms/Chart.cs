@@ -52,9 +52,6 @@ namespace Lui.Forms
                 {
                         // Llamada necesaria para el Diseñador de formularios Windows.Forms.
                         InitializeComponent();
-
-                        TitleLabel.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        TitleLabel.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
                 }
 
                 /// <summary> 
@@ -100,6 +97,7 @@ namespace Lui.Forms
                         // 
                         this.TitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
                         this.TitleLabel.Location = new System.Drawing.Point(0, 0);
+                        this.TitleLabel.LabelStyle = LabelStyles.Header2;
                         this.TitleLabel.Name = "TitleLabel";
                         this.TitleLabel.Size = new System.Drawing.Size(448, 24);
                         this.TitleLabel.TabIndex = 2;

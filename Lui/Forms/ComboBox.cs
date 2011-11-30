@@ -52,7 +52,7 @@ namespace Lui.Forms
                         InitializeComponent();
 
                         this.BorderStyle = BorderStyles.TextBox;
-                        this.BackColor = TextBox1.BackColor;
+                        //this.BackColor = TextBox1.BackColor;
                         TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                         TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);

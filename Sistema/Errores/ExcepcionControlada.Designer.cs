@@ -84,7 +84,6 @@ namespace Lazaro.WinMain.Errores
                         // 
                         this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaDescripcion.BackColor = System.Drawing.SystemColors.ControlLightLight;
                         this.EtiquetaDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                         this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaDescripcion.Location = new System.Drawing.Point(96, 63);
@@ -95,7 +94,6 @@ namespace Lazaro.WinMain.Errores
                         // 
                         // EtiquetaTitulo
                         // 
-                        this.EtiquetaTitulo.BackColor = System.Drawing.SystemColors.ButtonFace;
                         this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 24);
                         this.EtiquetaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

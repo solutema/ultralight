@@ -60,7 +60,7 @@ namespace Lui.Forms
 		{
                         this.LabelTitle = new Lui.Forms.Label();
                         this.LabelText = new Lui.Forms.Label();
-                        this.label1 = new Lui.Forms.Label();
+                        this.label1 = new System.Windows.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // LabelTitle
@@ -98,16 +98,11 @@ namespace Lui.Forms
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label1.AutoEllipsis = true;
                         this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label1.Location = new System.Drawing.Point(4, 30);
-                        this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(313, 1);
                         this.label1.TabIndex = 2;
-                        this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.label1.UseMnemonic = false;
                         // 
                         // Note
                         // 
@@ -132,6 +127,6 @@ namespace Lui.Forms
 
 		private Lui.Forms.Label LabelTitle;
 		private Lui.Forms.Label LabelText;
-		private Lui.Forms.Label label1;
+                private System.Windows.Forms.Label label1;
 	}
 }

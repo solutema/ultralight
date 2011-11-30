@@ -46,11 +46,6 @@ namespace Lfc
                 public FormularioCuenta()
                 {
                         InitializeComponent();
-
-                        //lblTitulo.Font = Lfx.Config.Display.CurrentTemplate.DefaultHeaderFont;
-                        lblTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        lblTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
-
                         this.Contadores.Add(new Contador("Transporte", Lui.Forms.DataTypes.Currency));
                         this.Contadores.Add(new Contador("Ingresos", Lui.Forms.DataTypes.Currency));
                         this.Contadores.Add(new Contador("Egresos", Lui.Forms.DataTypes.Currency));

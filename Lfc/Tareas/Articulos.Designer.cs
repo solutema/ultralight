@@ -107,7 +107,7 @@ namespace Lfc.Tareas
                         // 
                         this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.ForeColor = System.Drawing.Color.White;
+                        this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(8, 8);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
                         this.EtiquetaTitulo.Size = new System.Drawing.Size(576, 40);

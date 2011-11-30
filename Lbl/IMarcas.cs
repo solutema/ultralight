@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,59 +31,21 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
 
-namespace Lui.Printing
+namespace Lbl
 {
-	public partial class ManualFeedDialog : Lui.Forms.Form
-	{
-		public ManualFeedDialog()
-		{
-			InitializeComponent();
-		}
+        [Flags]
+        public enum Marcas
+        {
+                Ninguna = 0,
+                Eliminado = 1,
+                Protegido = 2,
+                Destacado = 4,
+                RequiereAtencion = 8
+        }
 
-		private void ManualFeedForm_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-		{
-			switch (e.KeyChar)
-			{
-				case ' ':
-					e.Handled = true;
-					this.DialogResult = DialogResult.OK;
-					this.Close();
-					break;
-				case (char)Keys.Escape:
-					e.Handled = true;
-					this.DialogResult = DialogResult.Cancel;
-					this.Close();
-					break;
-			}		
-		}
-
-		public string DocumentName
-		{
-			get
-			{
-				return txtDocumento.Text;
-			}
-			set
-			{
-				txtDocumento.Text = value;
-			}
-		}
-
-		public string PrinterName
-		{
-			get
-			{
-				return txtImpresora.Text;
-			}
-			set
-			{
-				txtImpresora.Text = value;
-			}
-		}
-	}
+        public interface IMarcas
+        {
+                Marcas Marcas { get; set; }
+        }
 }

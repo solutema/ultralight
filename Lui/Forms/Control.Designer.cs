@@ -48,7 +48,7 @@ namespace Lui.Forms
                 private void InitializeComponent()
                 {
                         this.components = new System.ComponentModel.Container();
-                        this.ControlCaption = new System.Windows.Forms.Label();
+                        this.ControlCaption = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // ControlCaption
@@ -56,6 +56,7 @@ namespace Lui.Forms
                         this.ControlCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.ControlCaption.AutoSize = true;
+                        this.ControlCaption.LabelStyle = LabelStyles.Title;
                         this.ControlCaption.Location = new System.Drawing.Point(4, 4);
                         this.ControlCaption.Name = "ControlCaption";
                         this.ControlCaption.Size = new System.Drawing.Size(0, 20);
@@ -81,6 +82,6 @@ namespace Lui.Forms
                 }
                 #endregion
 
-                internal System.Windows.Forms.Label ControlCaption;
+                protected Lui.Forms.Label ControlCaption;
         }
 }

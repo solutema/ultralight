@@ -114,9 +114,7 @@ namespace Lfc
                         this.EtiquetaListadoVacio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaListadoVacio.AutoEllipsis = true;
-                        this.EtiquetaListadoVacio.BackColor = System.Drawing.SystemColors.Info;
-                        this.EtiquetaListadoVacio.ForeColor = System.Drawing.SystemColors.InfoText;
-                        this.EtiquetaListadoVacio.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaListadoVacio.LabelStyle = Lui.Forms.LabelStyles.Info;
                         this.EtiquetaListadoVacio.Location = new System.Drawing.Point(332, 192);
                         this.EtiquetaListadoVacio.Margin = new System.Windows.Forms.Padding(0);
                         this.EtiquetaListadoVacio.Name = "EtiquetaListadoVacio";

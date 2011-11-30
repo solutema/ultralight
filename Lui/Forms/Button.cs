@@ -59,7 +59,7 @@ namespace Lui.Forms
                         MainText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonText;
                         SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
                         SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
-                        this.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonBackground;
+                        //this.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonBackground;
                         this.BorderStyle = BorderStyles.Button;
                 }
 
@@ -137,10 +137,6 @@ namespace Lui.Forms
                         get
                         {
                                 return base.BackColor;
-                        }
-                        set
-                        {
-                                base.BackColor = value;
                         }
                 }
 

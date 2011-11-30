@@ -46,9 +46,6 @@ namespace Lui.LogOn
 		public FormRevalidateAccess()
 		{
 			InitializeComponent();
-
-			Titulo.BackColor = Lfx.Config.Display.CurrentTemplate.TitleBackground;
-			Titulo.ForeColor = Lfx.Config.Display.CurrentTemplate.TitleText;
 			CancelCommandButton.Text = "Cancelar";
 		}
 

@@ -47,8 +47,6 @@ namespace Lfc.Comprobantes.Compra
 
                         EntradaTotal.CustomFont = new System.Drawing.Font(this.Font.Name, 14);
                         EntradaCancelado.CustomFont = new System.Drawing.Font(this.Font.Name, 12);
-                        EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
                 }
 
 

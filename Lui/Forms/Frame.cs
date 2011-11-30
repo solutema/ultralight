@@ -43,15 +43,9 @@ namespace Lui.Forms
         public partial class Frame : ContainerControl
         {
 
-                public Frame() : base()
+                public Frame()
                 {
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
-
-                        ControlCaption.Font = Lfx.Config.Display.TitleFont;
-                        ControlCaption.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
-                        //ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                 }
 
                 private void Frame_Enter(object sender, EventArgs e)
@@ -73,9 +67,9 @@ namespace Lui.Forms
                                 y += ControlCaption.Top + ControlCaption.Height;
                         e.Graphics.DrawLine(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.ControlBorder), 0, y, this.Width - 1, y);
                         if (this.Highlighted) {
-                                ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                                //ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
                         } else {
-                                ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                                //ControlCaption.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                         }
                 }
         }

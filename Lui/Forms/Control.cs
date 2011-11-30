@@ -68,6 +68,8 @@ namespace Lui.Forms
                 public Control()
                 {
                         InitializeComponent();
+
+                        base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                 }
 
 		[EditorBrowsable(EditorBrowsableState.Never),
@@ -114,10 +116,6 @@ namespace Lui.Forms
 			{
 				return Lfx.Config.Display.CurrentTemplate.WindowBackground;
 			}
-                        set
-                        {
-                                // Nada
-                        }
 		}
 
                 /// <summary>

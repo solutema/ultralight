@@ -115,8 +115,7 @@ namespace Lazaro.WinMain.Backup
                         // 
                         // Label2
                         // 
-                        this.Label2.BackColor = System.Drawing.Color.Red;
-                        this.Label2.ForeColor = System.Drawing.Color.Snow;
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Warning;
                         this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(80, 60);
                         this.Label2.Name = "Label2";

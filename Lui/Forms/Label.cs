@@ -43,12 +43,20 @@ namespace Lui.Forms
                 Bigger,
                 Title,
                 Header1,
-                Header2
+                Header2,
+                Warning,
+                Info
         }
 
         public class Label : System.Windows.Forms.Label, IControl
         {
                 private LabelStyles m_LabelStyle = LabelStyles.Default;
+
+                public Label()
+                {
+                        base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                        base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                }
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
@@ -58,6 +66,30 @@ namespace Lui.Forms
                         get
                         {
                                 return base.Font;
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Color BackColor
+                {
+                        get
+                        {
+                                return base.BackColor;
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Color ForeColor
+                {
+                        get
+                        {
+                                return base.ForeColor;
                         }
                 }
 
@@ -86,30 +118,44 @@ namespace Lui.Forms
                                         case LabelStyles.Title:
                                                 base.Font = Lfx.Config.Display.TitleFont;
                                                 base.Padding = new Padding(0, 2, 0, 2);
+                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.TitleBackground;
+                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.TitleText;
                                                 break;
                                         case LabelStyles.Small:
                                                 base.Font = Lfx.Config.Display.SmallFont;
                                                 base.Padding = new Padding(0, 0, 0, 0);
+                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                                                 break;
                                         case LabelStyles.Default:
                                                 base.Font = Lfx.Config.Display.DefaultFont;
                                                 base.Padding = new Padding(0, 4, 0, 4);
+                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                                                 break;
                                         case LabelStyles.Big:
                                                 base.Font = Lfx.Config.Display.BigFont;
                                                 base.Padding = new Padding(4);
+                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                                                 break;
                                         case LabelStyles.Bigger:
                                                 base.Font = Lfx.Config.Display.BiggerFont;
                                                 base.Padding = new Padding(4);
+                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                                                 break;
                                         case LabelStyles.Header1:
                                                 base.Font = Lfx.Config.Display.HeaderFont;
                                                 base.Padding = new Padding(8);
+                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
+                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
                                                 break;
                                         case LabelStyles.Header2:
                                                 base.Font = Lfx.Config.Display.Header2Font;
                                                 base.Padding = new Padding(6);
+                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
+                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
                                                 break;
                                 }
                         }

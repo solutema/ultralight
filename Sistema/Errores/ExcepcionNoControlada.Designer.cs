@@ -78,7 +78,6 @@ namespace Lazaro.WinMain.Errores
                         // 
                         // EtiquetaTitulo
                         // 
-                        this.EtiquetaTitulo.BackColor = System.Drawing.SystemColors.ButtonFace;
                         this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 24);
                         this.EtiquetaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

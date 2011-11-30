@@ -134,7 +134,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAviso.ForeColor = System.Drawing.Color.Tomato;
+                        this.EtiquetaAviso.LabelStyle = Lui.Forms.LabelStyles.Warning;
                         this.EtiquetaAviso.Location = new System.Drawing.Point(20, 80);
                         this.EtiquetaAviso.Name = "EtiquetaAviso";
                         this.EtiquetaAviso.Size = new System.Drawing.Size(756, 28);

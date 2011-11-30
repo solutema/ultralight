@@ -64,7 +64,7 @@ namespace Lui.Forms
                 {
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComboBox));
-                        this.ImagenMasMenos = new Lui.Forms.Label();
+                        this.ImagenMasMenos = new System.Windows.Forms.Label();
                         this.ItemList = new System.Windows.Forms.ListBox();
                         this.TimerOcultarPopup = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
@@ -81,7 +81,6 @@ namespace Lui.Forms
                         this.ImagenMasMenos.BackColor = System.Drawing.Color.Gray;
                         this.ImagenMasMenos.ForeColor = System.Drawing.Color.White;
                         this.ImagenMasMenos.Image = ((System.Drawing.Image)(resources.GetObject("ImagenMasMenos.Image")));
-                        this.ImagenMasMenos.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.ImagenMasMenos.Location = new System.Drawing.Point(446, 3);
                         this.ImagenMasMenos.Margin = new System.Windows.Forms.Padding(1);
                         this.ImagenMasMenos.Name = "ImagenMasMenos";
@@ -129,7 +128,7 @@ namespace Lui.Forms
 
                 #endregion
 
-                protected Lui.Forms.Label ImagenMasMenos;
+                protected System.Windows.Forms.Label ImagenMasMenos;
                 protected System.Windows.Forms.ListBox ItemList;
                 protected System.Windows.Forms.Timer TimerOcultarPopup;
 

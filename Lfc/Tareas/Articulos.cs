@@ -45,9 +45,6 @@ namespace Lfc.Tareas
                 public Articulos()
                 {
                         InitializeComponent();
-
-                        EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
                 }
 
                 public void ActualizarElemento()

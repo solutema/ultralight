@@ -45,10 +45,6 @@ namespace Lcc.Edicion
                         this.Campos = new List<Campo>();
 
                         InitializeComponent();
-
-                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                        GroupLabel.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
-                        GroupLabel.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
                 }
 
 

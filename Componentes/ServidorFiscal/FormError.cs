@@ -80,14 +80,14 @@ namespace ServidorFiscal
 		internal Lui.Forms.Label Label3;
 		internal Lui.Forms.Label Label5;
 		internal Lui.Forms.Label Label6;
-		internal Lui.Forms.Label lblError;
-		internal Lui.Forms.Label lblLugar;
-		internal Lui.Forms.Label lblMensaje;
-		internal Lui.Forms.Label lblEstadoImpresora;
-		internal Lui.Forms.Label lblEstadoFiscal;
+		internal Lui.Forms.Label EtiquetaError;
+		internal Lui.Forms.Label EtiquetaLugar;
+		internal Lui.Forms.Label EtiquetaMensaje;
+		internal Lui.Forms.Label EtiquetaEstadoImpresora;
+		internal Lui.Forms.Label EtiquetaEstadoFiscal;
 		internal Lui.Forms.Label Label8;
-		internal Lui.Forms.Label lblCampos;
-		internal Lui.Forms.Label lblComando;
+		internal Lui.Forms.Label EtiquetaCampos;
+		internal Lui.Forms.Label EtiquetaComando;
 		internal Lui.Forms.Label Label4;
 		private PictureBox pictureBox1;
 		internal Lui.Forms.Label DialogCaption;
@@ -101,14 +101,14 @@ namespace ServidorFiscal
                         this.Label3 = new Lui.Forms.Label();
                         this.Label5 = new Lui.Forms.Label();
                         this.Label6 = new Lui.Forms.Label();
-                        this.lblError = new Lui.Forms.Label();
-                        this.lblLugar = new Lui.Forms.Label();
-                        this.lblMensaje = new Lui.Forms.Label();
-                        this.lblEstadoImpresora = new Lui.Forms.Label();
-                        this.lblEstadoFiscal = new Lui.Forms.Label();
-                        this.lblCampos = new Lui.Forms.Label();
+                        this.EtiquetaError = new Lui.Forms.Label();
+                        this.EtiquetaLugar = new Lui.Forms.Label();
+                        this.EtiquetaMensaje = new Lui.Forms.Label();
+                        this.EtiquetaEstadoImpresora = new Lui.Forms.Label();
+                        this.EtiquetaEstadoFiscal = new Lui.Forms.Label();
+                        this.EtiquetaCampos = new Lui.Forms.Label();
                         this.Label8 = new Lui.Forms.Label();
-                        this.lblComando = new Lui.Forms.Label();
+                        this.EtiquetaComando = new Lui.Forms.Label();
                         this.Label4 = new Lui.Forms.Label();
                         this.Label7 = new Lui.Forms.Label();
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -180,66 +180,60 @@ namespace ServidorFiscal
                         // 
                         // lblError
                         // 
-                        this.lblError.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblError.Location = new System.Drawing.Point(160, 56);
-                        this.lblError.Name = "lblError";
-                        this.lblError.Size = new System.Drawing.Size(200, 20);
-                        this.lblError.TabIndex = 57;
-                        this.lblError.Text = ".";
+                        this.EtiquetaError.Location = new System.Drawing.Point(160, 56);
+                        this.EtiquetaError.Name = "lblError";
+                        this.EtiquetaError.Size = new System.Drawing.Size(200, 20);
+                        this.EtiquetaError.TabIndex = 57;
+                        this.EtiquetaError.Text = ".";
                         // 
                         // lblLugar
                         // 
-                        this.lblLugar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaLugar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblLugar.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblLugar.Location = new System.Drawing.Point(160, 80);
-                        this.lblLugar.Name = "lblLugar";
-                        this.lblLugar.Size = new System.Drawing.Size(452, 20);
-                        this.lblLugar.TabIndex = 58;
-                        this.lblLugar.Text = ".";
+                        this.EtiquetaLugar.Location = new System.Drawing.Point(160, 80);
+                        this.EtiquetaLugar.Name = "lblLugar";
+                        this.EtiquetaLugar.Size = new System.Drawing.Size(452, 20);
+                        this.EtiquetaLugar.TabIndex = 58;
+                        this.EtiquetaLugar.Text = ".";
                         // 
                         // lblMensaje
                         // 
-                        this.lblMensaje.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.EtiquetaMensaje.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblMensaje.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblMensaje.Location = new System.Drawing.Point(160, 104);
-                        this.lblMensaje.Name = "lblMensaje";
-                        this.lblMensaje.Size = new System.Drawing.Size(452, 50);
-                        this.lblMensaje.TabIndex = 59;
-                        this.lblMensaje.Text = ".";
+                        this.EtiquetaMensaje.Location = new System.Drawing.Point(160, 104);
+                        this.EtiquetaMensaje.Name = "EtiquetaMensaje";
+                        this.EtiquetaMensaje.Size = new System.Drawing.Size(452, 50);
+                        this.EtiquetaMensaje.TabIndex = 59;
+                        this.EtiquetaMensaje.Text = ".";
                         // 
                         // lblEstadoImpresora
                         // 
-                        this.lblEstadoImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.lblEstadoImpresora.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblEstadoImpresora.Location = new System.Drawing.Point(188, 182);
-                        this.lblEstadoImpresora.Name = "lblEstadoImpresora";
-                        this.lblEstadoImpresora.Size = new System.Drawing.Size(200, 128);
-                        this.lblEstadoImpresora.TabIndex = 61;
-                        this.lblEstadoImpresora.Text = ".";
+                        this.EtiquetaEstadoImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.EtiquetaEstadoImpresora.Location = new System.Drawing.Point(188, 182);
+                        this.EtiquetaEstadoImpresora.Name = "lblEstadoImpresora";
+                        this.EtiquetaEstadoImpresora.Size = new System.Drawing.Size(200, 128);
+                        this.EtiquetaEstadoImpresora.TabIndex = 61;
+                        this.EtiquetaEstadoImpresora.Text = ".";
                         // 
                         // lblEstadoFiscal
                         // 
-                        this.lblEstadoFiscal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaEstadoFiscal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblEstadoFiscal.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblEstadoFiscal.Location = new System.Drawing.Point(396, 182);
-                        this.lblEstadoFiscal.Name = "lblEstadoFiscal";
-                        this.lblEstadoFiscal.Size = new System.Drawing.Size(216, 128);
-                        this.lblEstadoFiscal.TabIndex = 62;
-                        this.lblEstadoFiscal.Text = ".";
+                        this.EtiquetaEstadoFiscal.Location = new System.Drawing.Point(396, 182);
+                        this.EtiquetaEstadoFiscal.Name = "lblEstadoFiscal";
+                        this.EtiquetaEstadoFiscal.Size = new System.Drawing.Size(216, 128);
+                        this.EtiquetaEstadoFiscal.TabIndex = 62;
+                        this.EtiquetaEstadoFiscal.Text = ".";
                         // 
                         // lblCampos
                         // 
-                        this.lblCampos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.lblCampos.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblCampos.Location = new System.Drawing.Point(76, 182);
-                        this.lblCampos.Name = "lblCampos";
-                        this.lblCampos.Size = new System.Drawing.Size(104, 128);
-                        this.lblCampos.TabIndex = 64;
-                        this.lblCampos.Text = ".";
+                        this.EtiquetaCampos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.EtiquetaCampos.Location = new System.Drawing.Point(76, 182);
+                        this.EtiquetaCampos.Name = "lblCampos";
+                        this.EtiquetaCampos.Size = new System.Drawing.Size(104, 128);
+                        this.EtiquetaCampos.TabIndex = 64;
+                        this.EtiquetaCampos.Text = ".";
                         // 
                         // Label8
                         // 
@@ -254,14 +248,13 @@ namespace ServidorFiscal
                         // 
                         // lblComando
                         // 
-                        this.lblComando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaComando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblComando.BackColor = System.Drawing.SystemColors.Window;
-                        this.lblComando.Location = new System.Drawing.Point(452, 56);
-                        this.lblComando.Name = "lblComando";
-                        this.lblComando.Size = new System.Drawing.Size(160, 20);
-                        this.lblComando.TabIndex = 66;
-                        this.lblComando.Text = ".";
+                        this.EtiquetaComando.Location = new System.Drawing.Point(452, 56);
+                        this.EtiquetaComando.Name = "lblComando";
+                        this.EtiquetaComando.Size = new System.Drawing.Size(160, 20);
+                        this.EtiquetaComando.TabIndex = 66;
+                        this.EtiquetaComando.Text = ".";
                         // 
                         // Label4
                         // 
@@ -277,7 +270,7 @@ namespace ServidorFiscal
                         // 
                         this.Label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label7.ForeColor = System.Drawing.Color.DarkRed;
+                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Warning;
                         this.Label7.Location = new System.Drawing.Point(76, 318);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(536, 24);
@@ -312,15 +305,15 @@ namespace ServidorFiscal
                         this.Controls.Add(this.DialogCaption);
                         this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.Label7);
-                        this.Controls.Add(this.lblComando);
+                        this.Controls.Add(this.EtiquetaComando);
                         this.Controls.Add(this.Label4);
-                        this.Controls.Add(this.lblCampos);
+                        this.Controls.Add(this.EtiquetaCampos);
                         this.Controls.Add(this.Label8);
-                        this.Controls.Add(this.lblEstadoFiscal);
-                        this.Controls.Add(this.lblEstadoImpresora);
-                        this.Controls.Add(this.lblMensaje);
-                        this.Controls.Add(this.lblLugar);
-                        this.Controls.Add(this.lblError);
+                        this.Controls.Add(this.EtiquetaEstadoFiscal);
+                        this.Controls.Add(this.EtiquetaEstadoImpresora);
+                        this.Controls.Add(this.EtiquetaMensaje);
+                        this.Controls.Add(this.EtiquetaLugar);
+                        this.Controls.Add(this.EtiquetaError);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.Label5);
                         this.Controls.Add(this.Label3);
@@ -334,15 +327,15 @@ namespace ServidorFiscal
                         this.Controls.SetChildIndex(this.Label3, 0);
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.lblError, 0);
-                        this.Controls.SetChildIndex(this.lblLugar, 0);
-                        this.Controls.SetChildIndex(this.lblMensaje, 0);
-                        this.Controls.SetChildIndex(this.lblEstadoImpresora, 0);
-                        this.Controls.SetChildIndex(this.lblEstadoFiscal, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaError, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaLugar, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaMensaje, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaEstadoImpresora, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaEstadoFiscal, 0);
                         this.Controls.SetChildIndex(this.Label8, 0);
-                        this.Controls.SetChildIndex(this.lblCampos, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaCampos, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.lblComando, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaComando, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
                         this.Controls.SetChildIndex(this.pictureBox1, 0);
                         this.Controls.SetChildIndex(this.DialogCaption, 0);
@@ -359,35 +352,35 @@ namespace ServidorFiscal
 			switch (Res.Error)
 			{
 				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok:
-					lblError.Text = "OK???";
+					EtiquetaError.Text = "OK???";
 					break;
 				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.ErrorBCC:
-					lblError.Text = "BCC";
+					EtiquetaError.Text = "BCC";
 					break;
 				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Error:
-					lblError.Text = "Error Genérico";
+					EtiquetaError.Text = "Error Genérico";
 					break;
 				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.ErrorFiscal:
-					lblError.Text = "Error Fiscal";
+					EtiquetaError.Text = "Error Fiscal";
 					break;
 				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.ErrorImpresora:
-					lblError.Text = "Error Impresora";
+					EtiquetaError.Text = "Error Impresora";
 					break;
 				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.NAK:
-					lblError.Text = "NAK";
+					EtiquetaError.Text = "NAK";
 					break;
 				case Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.TimeOut:
-					lblError.Text = "Timeout";
+					EtiquetaError.Text = "Timeout";
 					break;
 			}
 
-			lblLugar.Text = Res.Lugar;
-			lblMensaje.Text = Res.Mensaje;
-			lblComando.Text = Res.CodigoComando.ToString();
+			EtiquetaLugar.Text = Res.Lugar;
+			EtiquetaMensaje.Text = Res.Mensaje;
+			EtiquetaComando.Text = Res.CodigoComando.ToString();
                         if (Res.Campos != null)
-                                lblCampos.Text = string.Join(Environment.NewLine, Res.Campos.ToArray());
-			lblEstadoImpresora.Text = Res.ExplicarEstadoImpresora();
-			lblEstadoFiscal.Text = Res.ExplicarEstadoFiscal();
+                                EtiquetaCampos.Text = string.Join(Environment.NewLine, Res.Campos.ToArray());
+			EtiquetaEstadoImpresora.Text = Res.ExplicarEstadoImpresora();
+			EtiquetaEstadoFiscal.Text = Res.ExplicarEstadoFiscal();
 			CancelCommandButton.Visible = false;
 		}
 	}

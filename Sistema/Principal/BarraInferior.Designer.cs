@@ -125,7 +125,6 @@ namespace Lazaro.WinMain.Principal
                         // 
                         this.RelojFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.RelojFecha.BackColor = System.Drawing.SystemColors.Control;
                         this.RelojFecha.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.RelojFecha.Location = new System.Drawing.Point(2, 30);
                         this.RelojFecha.Name = "RelojFecha";
@@ -140,7 +139,6 @@ namespace Lazaro.WinMain.Principal
                         this.RelojHora.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.RelojHora.BackColor = System.Drawing.SystemColors.Control;
                         this.RelojHora.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         this.RelojHora.Location = new System.Drawing.Point(2, 2);
                         this.RelojHora.Name = "RelojHora";
@@ -391,7 +389,6 @@ namespace Lazaro.WinMain.Principal
                         // PersonaComentario
                         // 
                         this.PersonaComentario.AutoEllipsis = true;
-                        this.PersonaComentario.BackColor = System.Drawing.SystemColors.Control;
                         this.PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.PersonaComentario.Location = new System.Drawing.Point(54, 16);
                         this.PersonaComentario.Name = "PersonaComentario";

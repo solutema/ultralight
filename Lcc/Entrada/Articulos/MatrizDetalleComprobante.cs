@@ -56,16 +56,6 @@ namespace Lcc.Entrada.Articulos
                 public MatrizDetalleComprobante()
                 {
                         InitializeComponent();
-
-                        PanelGrilla.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                        EtiquetaHeaderDetalle.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
-                        EtiquetaHeaderDetalle.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
-                        EtiquetaHeaderUnitario.BackColor = EtiquetaHeaderDetalle.BackColor;
-                        EtiquetaHeaderUnitario.ForeColor = EtiquetaHeaderDetalle.ForeColor;
-                        EtiquetaHeaderCantidad.BackColor = EtiquetaHeaderDetalle.BackColor;
-                        EtiquetaHeaderCantidad.ForeColor = EtiquetaHeaderDetalle.ForeColor;
-                        EtiquetaHeaderImporte.BackColor = EtiquetaHeaderDetalle.BackColor;
-                        EtiquetaHeaderImporte.ForeColor = EtiquetaHeaderDetalle.ForeColor;
                 }
 
 
@@ -392,7 +382,6 @@ namespace Lcc.Entrada.Articulos
 
                 private void ReubicarEncabs()
                 {
-                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                         if (this.ChildControls != null && this.ChildControls.Count > 0) {
                                 DetalleComprobante ctrl = this.ChildControls[0];
                                 EtiquetaHeaderDetalle.Width = ctrl.UnitarioLeft - 2;

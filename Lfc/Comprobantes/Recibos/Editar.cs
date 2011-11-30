@@ -43,11 +43,6 @@ namespace Lfc.Comprobantes.Recibos
                         ElementoTipo = typeof(Lbl.Comprobantes.Recibo);
 
                         InitializeComponent();
-
-                        EtiquetaTitulo.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                        EtiquetaTitulo.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
-                        ListaValores.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        ListaFacturas.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
                 }
 
 
