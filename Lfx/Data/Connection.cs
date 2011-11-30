@@ -1019,7 +1019,7 @@ LEFT JOIN pg_attribute
                         if (this.ReadOnly)
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
 
-                        // TODO: esto debería hacerlo no sólo en DesignMode
+                        // TODO: esto debería hacerlo no sólo en DebugMode
                         if (this.RequiresTransaction && m_InTransaction == false && Lfx.Workspace.Master.DebugMode)
                                 throw new InvalidOperationException("Comandos fuera de transacción: " + sqlCommand);
 
@@ -1036,7 +1036,6 @@ LEFT JOIN pg_attribute
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
 
                         if (sqlCommand is qGen.Update || sqlCommand is qGen.Insert || sqlCommand is qGen.Delete) {
-                                // TODO: esto debería hacerlo no sólo en DesignMode
                                 if (this.RequiresTransaction && this.m_InTransaction == false)
                                         throw new InvalidOperationException("Comando fuera una transacción: " + sqlCommand);
                         }
