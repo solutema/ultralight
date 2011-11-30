@@ -49,7 +49,7 @@ namespace Lazaro.WinMain.Principal
                 public BarraInferior()
                 {
                         InitializeComponent();
-
+                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
 
                         TimerReloj_Tick(this, null);
                 }

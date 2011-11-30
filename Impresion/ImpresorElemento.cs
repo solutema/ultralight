@@ -131,10 +131,18 @@ namespace Lazaro.Impresion
                                 this.Plantilla = this.ObtenerPlantilla();
 
                         Lfx.Types.OperationResult Res = base.Imprimir();
+
+                        System.Data.IDbTransaction Trans = null;
+                        if (this.Connection.InTransaction == false)
+                                Trans = this.Connection.BeginTransaction();
+
                         if (Res.Success)
                                 Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.Print, this.Elemento, null);
                         else
                                 Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.PrintFail, this.Elemento, Res.Message);
+
+                        if (Trans != null)
+                                Trans.Commit();
                         
                         return Res;
 

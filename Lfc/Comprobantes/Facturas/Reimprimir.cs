@@ -219,11 +219,12 @@ namespace Lfc.Comprobantes.Facturas
                                                 // No existe, supongo que está anulado, lo salteo
                                         } else {
                                                 Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Connection, IdFactura);
+                                                Progreso.ChangeStatus("Imprimiendo " + Fac.ToString());
                                                 Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impr = new Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos(Fac, null);
                                                 Impr.Reimpresion = true;
                                                 Impr.Imprimir();
                                         }
-                                        Progreso.Advance(Progreso.Value + 1);
+                                        Progreso.Advance(1);
                                 }
 
                                 Progreso.End();

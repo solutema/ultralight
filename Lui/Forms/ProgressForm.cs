@@ -60,7 +60,9 @@ namespace Lui.Forms
                         }
                         EtiquetaEstado.Text = progreso.Status;
                         EtiquetaDescripcion.Text = progreso.Description;
-                        if (progreso.Value > ProgressBar.Maximum)
+                        if (progreso.Value < ProgressBar.Minimum)
+                                ProgressBar.Value = ProgressBar.Minimum;
+                        else if (progreso.Value > ProgressBar.Maximum)
                                 ProgressBar.Value = ProgressBar.Maximum;
                         else
                                 ProgressBar.Value = progreso.Value;

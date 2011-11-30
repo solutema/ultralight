@@ -63,10 +63,10 @@ namespace Lui.Forms
                         this.DialogCaption.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.DialogCaption.Location = new System.Drawing.Point(20, 24);
                         this.DialogCaption.Name = "DialogCaption";
-                        this.DialogCaption.Size = new System.Drawing.Size(552, 28);
+                        this.DialogCaption.Size = new System.Drawing.Size(552, 44);
                         this.DialogCaption.TabIndex = 0;
                         this.DialogCaption.Text = "Pregunta";
-                        this.DialogCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.DialogCaption.TextAlign = System.Drawing.ContentAlignment.TopCenter;
                         // 
                         // pctQuestion
                         // 
