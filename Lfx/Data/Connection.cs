@@ -777,10 +777,7 @@ LEFT JOIN pg_attribute
                         foreach (Data.ConstraintDefinition CurCon in CurrentConstraints.Values) {
                                 if (CurCon != null && newConstraints.ContainsKey(CurCon.Name) == false) {
                                         Sql = "ALTER TABLE \"" + CurCon.TableName + "\" DROP FOREIGN KEY \"" + CurCon.Name + "\"";
-                                        // TODO: los módulos agregan FK.
-                                        // Si el módulo no está cargado, no figuran las FK y se eliminan, cuando no deberían.
-                                        // Arreglar cómo y cuándo se eliminan las FK.
-                                        //this.Execute(this.CustomizeSql(Sql));
+                                        this.ExecuteSql(this.CustomizeSql(Sql));
                                 }
                         }
                 }
@@ -1024,7 +1021,7 @@ LEFT JOIN pg_attribute
 
                         // TODO: esto debería hacerlo no sólo en DesignMode
                         if (this.RequiresTransaction && m_InTransaction == false && Lfx.Workspace.Master.DebugMode)
-                                throw new InvalidOperationException("No se permite la ejecución de comandos fuera de una transacción en la conexión " + this.Name);
+                                throw new InvalidOperationException("Comandos fuera de transacción: " + sqlCommand);
 
                         sqlCommand = sqlCommand.Trim(new char[] { ' ', (char)13, (char)10, (char)9 });
                         if (sqlCommand.Length == 0)
@@ -1040,8 +1037,8 @@ LEFT JOIN pg_attribute
 
                         if (sqlCommand is qGen.Update || sqlCommand is qGen.Insert || sqlCommand is qGen.Delete) {
                                 // TODO: esto debería hacerlo no sólo en DesignMode
-                                if (this.RequiresTransaction && this.m_InTransaction == false && Lfx.Workspace.Master.DebugMode)
-                                        throw new InvalidOperationException("No se permite la ejecución de comandos fuera de una transacción en la conexión " + this.Name);
+                                if (this.RequiresTransaction && this.m_InTransaction == false)
+                                        throw new InvalidOperationException("Comando fuera una transacción: " + sqlCommand);
                         }
                         sqlCommand.SqlMode = this.SqlMode;
                         using (System.Data.IDbCommand Cmd = this.GetCommand(sqlCommand)) {

@@ -228,8 +228,7 @@ namespace Lfx.Config
                         return (T)Res;
                 }
 
-                // TODO: hacer private
-                public string ReadGlobalSettingString(string sectionName, string settingName, string defaultValue, string terminalName, int sucursal)
+                private string ReadGlobalSettingString(string sectionName, string settingName, string defaultValue, string terminalName, int sucursal)
 		{
 			string CompleteSettingName = (sectionName==null||sectionName.Length==0?"":(sectionName+@".")) + settingName;
 			

@@ -289,7 +289,6 @@ namespace Lazaro.Impresion
                 private object ObtenerPropiedadElemento(Lbl.ElementoDeDatos elemento, string nombrePropiedad)
                 {
                         // Intento obtener una propiedad por su nombre
-                        // TODO: implementar propiedades de propiedades (ejemplo "Cliente.Ciudad")
                         if (nombrePropiedad == null || nombrePropiedad.Length == 0)
                                 return null;
 

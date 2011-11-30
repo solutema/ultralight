@@ -100,6 +100,14 @@ namespace Lazaro.Pres
                         this.SetValues = setValues;
                 }
 
+
+                public Field(string columnName, string label, int width, Lfx.Data.Relation relation)
+                        : this(columnName, label, Lfx.Data.InputFieldTypes.Relation, width)
+                {
+                        this.Relation = relation;
+                }
+
+
                 public Field(string columnName, string label, int width, IDictionary<int, string> setValues)
                         : this(columnName, label, Lfx.Data.InputFieldTypes.Set, width)
                 {
