@@ -169,65 +169,24 @@ namespace Lfc.Comprobantes.Facturas
                         int Hasta = EntradaHasta.ValueInt;
                         int Cantidad = Hasta - Desde + 1;
 
-                        int DesdeReal, HastaReal, Paso;
+                        int DesdeReal, HastaReal;
                         if (EntradaOrden.TextKey == "1") {
                                 DesdeReal = Hasta;
                                 HastaReal = Desde - 1;
-                                Paso = -1;
                         } else {
                                 DesdeReal = Desde;
                                 HastaReal = Hasta + 1;
-                                Paso = 1;
                         }
 
                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Por favor verifique que impresora tenga " + Cantidad.ToString() + " comprobantes, iniciando con el Nº " + PV.ToString("0000") + "-" + DesdeReal.ToString("00000000"), "¿Está seguro de que desea reimprimir " + Cantidad.ToString() + " comprobantes?");
                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Reimprimiendo...", "Se están reimprimiendo " + Cantidad.ToString() + " comprobantes.");
-                                Progreso.Max = Cantidad;
-                                Progreso.Begin();
+                                System.Threading.ThreadStart ThreadFiltro = delegate { ProcesarReimpresion(EntradaTipo.TextKey, PV, DesdeReal, HastaReal); ; };
+                                System.Threading.Thread Thr = new System.Threading.Thread(ThreadFiltro);
+                                Thr.IsBackground = true;
+                                Thr.Start();
 
-                                string IncluyeTipos = "";
-
-                                switch (EntradaTipo.TextKey) {
-                                        case "A":
-                                                IncluyeTipos = "'FA', 'NCA', 'NDA'";
-                                                break;
-
-                                        case "B":
-                                                IncluyeTipos = "'FB', 'NCB', 'NDB'";
-                                                break;
-
-                                        case "C":
-                                                IncluyeTipos = "'FC', 'NCC', 'NDC'";
-                                                break;
-
-                                        case "E":
-                                                IncluyeTipos = "'FE', 'NCE', 'NDE'";
-                                                break;
-
-                                        case "M":
-                                                IncluyeTipos = "'FM', 'NCM', 'NDM'";
-                                                break;
-                                }
-
-                                for (int Numero = DesdeReal; Numero != HastaReal; Numero += Paso) {
-                                        int IdFactura = Connection.FieldInt("SELECT id_comprob FROM comprob WHERE impresa=1 AND anulada=0 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
-
-                                        if (IdFactura == 0) {
-                                                // No existe, supongo que está anulado, lo salteo
-                                        } else {
-                                                Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Connection, IdFactura);
-                                                Progreso.ChangeStatus("Imprimiendo " + Fac.ToString());
-                                                Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impr = new Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos(Fac, null);
-                                                Impr.Reimpresion = true;
-                                                Impr.Imprimir();
-                                        }
-                                        Progreso.Advance(1);
-                                }
-
-                                Progreso.End();
                                 ProximosNumeros.Clear();
 
                                 EntradaDesde.Text = "0";
@@ -239,6 +198,64 @@ namespace Lfc.Comprobantes.Facturas
                                 return new Lfx.Types.FailureOperationResult("La operación fue cancelada.");
                         }
                 }
+
+
+                private void ProcesarReimpresion(string tipo, int pv, int desde, int hasta)
+                {
+                        int Cantidad = Math.Abs(hasta - desde);
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Reimprimiendo...", "Se están reimprimiendo " + Cantidad.ToString() + " comprobantes.");
+                        Progreso.Cancelable = true;
+                        Progreso.Max = Cantidad;
+                        Progreso.Modal = true;
+                        Progreso.Advertise = true;
+                        Progreso.Begin();
+
+                        string IncluyeTipos = "";
+
+                        switch (tipo) {
+                                case "A":
+                                        IncluyeTipos = "'FA', 'NCA', 'NDA'";
+                                        break;
+
+                                case "B":
+                                        IncluyeTipos = "'FB', 'NCB', 'NDB'";
+                                        break;
+
+                                case "C":
+                                        IncluyeTipos = "'FC', 'NCC', 'NDC'";
+                                        break;
+
+                                case "E":
+                                        IncluyeTipos = "'FE', 'NCE', 'NDE'";
+                                        break;
+
+                                case "M":
+                                        IncluyeTipos = "'FM', 'NCM', 'NDM'";
+                                        break;
+                        }
+
+                        int Paso = desde < hasta ? 1 : -1;
+                        for (int Numero = desde; Numero != hasta; Numero += Paso) {
+                                int IdFactura = Connection.FieldInt("SELECT id_comprob FROM comprob WHERE impresa=1 AND anulada=0 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + pv.ToString() + " AND numero=" + Numero.ToString());
+
+                                if (IdFactura == 0) {
+                                        // No existe, supongo que está anulado, lo salteo
+                                } else {
+                                        Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Connection, IdFactura);
+                                        Progreso.ChangeStatus("Imprimiendo " + Fac.ToString());
+                                        Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impr = new Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos(Fac, null);
+                                        Impr.Reimpresion = true;
+                                        Impr.Imprimir();
+                                }
+                                Progreso.Advance(1);
+
+                                if (Progreso.Cancelar)
+                                        break;
+                        }
+
+                        Progreso.End();
+                }
+
 
                 private void EntradaHasta_Enter(object sender, EventArgs e)
                 {

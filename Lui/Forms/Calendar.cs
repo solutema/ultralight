@@ -69,8 +69,8 @@ namespace Lui.Forms
                                         EtiquetaDia.BringToFront();
                                         this.Controls.Add(EtiquetaDia);
                                         Dias.Add(EtiquetaDia);
-                                        EtiquetaDia.MouseDown += new System.Windows.Forms.MouseEventHandler(lblDia_Click);
-                                        EtiquetaDia.DoubleClick += new System.EventHandler(lblDia_DoubleClick);
+                                        EtiquetaDia.MouseDown += new System.Windows.Forms.MouseEventHandler(EtiquetaDia_Click);
+                                        EtiquetaDia.DoubleClick += new System.EventHandler(EtiquetaDia_DoubleClick);
                                 }
                         }
                         EtiquetaMes.BackColor = Lfx.Config.Display.CurrentTemplate.ControlBackground;
@@ -187,7 +187,7 @@ namespace Lui.Forms
                         int PrimerDia = System.Convert.ToInt32(DateTime.ParseExact(m_CurrentDate.ToString("MM/01/yyyy", System.Globalization.CultureInfo.InvariantCulture), "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).DayOfWeek);
 
                         for (int i = 0; i <= PrimerDia - 1; i++) {
-                                EtiquetaDia = ((Label)(Dias[i]));
+                                EtiquetaDia = ((System.Windows.Forms.Label)(Dias[i]));
                                 EtiquetaDia.Enabled = false;
                                 EtiquetaDia.Visible = false;
                                 EtiquetaDia.Text = "?";
@@ -238,12 +238,12 @@ namespace Lui.Forms
                 {
                         if (Dias.Count > 0) {
                                 this.SuspendLayout();
-                                Label lblDia = null;
+                                System.Windows.Forms.Label EtiquetaDia = null;
                                 for (int s = 1; s <= 6; s++) {
                                         for (int d = 1; d <= 7; d++) {
-                                                lblDia = ((Label)(Dias[(s - 1) * 7 + d - 1]));
-                                                lblDia.Location = new Point(EtiquetaDia1.Left + (d - 1) * 32, EtiquetaDia1.Top + s * 24);
-                                                lblDia.BringToFront();
+                                                EtiquetaDia = ((System.Windows.Forms.Label)(Dias[(s - 1) * 7 + d - 1]));
+                                                EtiquetaDia.Location = new Point(EtiquetaDia1.Left + (d - 1) * 32, EtiquetaDia1.Top + s * 24);
+                                                EtiquetaDia.BringToFront();
                                         }
                                 }
                                 PanelFondo.SendToBack();
@@ -251,17 +251,17 @@ namespace Lui.Forms
                         }
                 }
 
-                private void lblDia_DoubleClick(object sender, System.EventArgs e)
+                private void EtiquetaDia_DoubleClick(object sender, System.EventArgs e)
                 {
                         if (this.DoubleClick != null)
                                 this.DoubleClick(this, null);
                 }
 
-                private void lblDia_Click(object sender, System.Windows.Forms.MouseEventArgs e)
+                private void EtiquetaDia_Click(object sender, System.Windows.Forms.MouseEventArgs e)
                 {
                         if (this.Focused == false)
                                 this.Focus();
-                        int Dia = (int)((Label)sender).Tag;
+                        int Dia = (int)((System.Windows.Forms.Label)sender).Tag;
                         if (Dia > 0) {
                                 this.CurrentDate = new DateTime(m_CurrentDate.Year, m_CurrentDate.Month, Dia);
                                 if (m_MultiSelect)
@@ -366,14 +366,14 @@ namespace Lui.Forms
                 {
                         // Marca o desmarca la semana completa
                         DateTime PrimerDiaSemana = m_CurrentDate.AddDays(System.Convert.ToInt32(-System.Convert.ToInt64(m_CurrentDate.DayOfWeek)) + 1);
-                        bool bNuevoEstado = false;
+                        bool NuevoEstado = false;
 
                         // Me baso en el primer da de la semana para saber si marcar o desmarcar toda la semana
-                        bNuevoEstado = !IsSelected(PrimerDiaSemana);
+                        NuevoEstado = !IsSelected(PrimerDiaSemana);
 
                         int i = 0;
                         for (i = 1; i <= 7; i++) {
-                                SetSelectedState(PrimerDiaSemana.AddDays(i - 1), bNuevoEstado);
+                                SetSelectedState(PrimerDiaSemana.AddDays(i - 1), NuevoEstado);
                         }
 
                         MostrarCalendario();
@@ -381,11 +381,11 @@ namespace Lui.Forms
 
                 public void InvertSelectedMonth()
                 {
-                        int iDiasDelMes = DateTime.DaysInMonth(m_CurrentDate.Year, m_CurrentDate.Month);
-                        bool bNuevoEstado = !IsSelected(new DateTime(m_CurrentDate.Year, m_CurrentDate.Month, 1));
+                        int DiasDelMes = DateTime.DaysInMonth(m_CurrentDate.Year, m_CurrentDate.Month);
+                        bool NuevoEstado = !IsSelected(new DateTime(m_CurrentDate.Year, m_CurrentDate.Month, 1));
 
-                        for (int i = 1; i <= iDiasDelMes; i++) {
-                                SetSelectedState(new DateTime(m_CurrentDate.Year, m_CurrentDate.Month, i), bNuevoEstado);
+                        for (int i = 1; i <= DiasDelMes; i++) {
+                                SetSelectedState(new DateTime(m_CurrentDate.Year, m_CurrentDate.Month, i), NuevoEstado);
                         }
                         MostrarCalendario();
                 }

@@ -274,7 +274,7 @@ namespace Lfx
                                 }
 
                                 Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Versión de los Datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
-                                Progreso.Blocking = true;
+                                Progreso.Modal = true;
                                 Progreso.Begin();
 
                                 Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()), "*");
@@ -330,7 +330,7 @@ namespace Lfx
                 public Lfx.Types.OperationResult Prepare()
                 {
                         Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Preparando Almacén de Datos", "Se están a creando las estructuras de datos y se va realizar una carga inicial de datos.");
-                        Progreso.Blocking = true;
+                        Progreso.Modal = true;
                         Progreso.Begin();
 
                         // Creación de tablas
@@ -425,7 +425,7 @@ namespace Lfx
                 public void CheckAndUpdateDataBaseStructure(Lfx.Data.Connection dataBase, bool omitPreAndPostSql)
                 {
                         Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Estructuras de Datos", "Se está analizando la estructura del almacén de datos y se van a realizar cambios si fuera necesario.");
-                        Progreso.Blocking = true;
+                        Progreso.Modal = true;
                         Progreso.Begin();
 
                         bool MustEnableConstraints = false;

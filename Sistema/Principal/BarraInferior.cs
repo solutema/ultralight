@@ -175,12 +175,12 @@ namespace Lazaro.WinMain.Principal
                                                         Saldo = 0;
                                                 }
                                                 if (Saldo > 0) {
-                                                        PersonaComentario.Text = "Esta persona registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
-                                                        PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Warning;
+                                                        PersonaComentario.Text = "Registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                                        PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.SmallWarning;
                                                         PersonaComentario.Visible = true;
                                                 } else if (Saldo < 0) {
-                                                        PersonaComentario.Text = "Esta persona registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
-                                                        PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Default;
+                                                        PersonaComentario.Text = "Registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                                        PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Small;
                                                         PersonaComentario.Visible = true;
                                                 } else {
                                                         PersonaComentario.Visible = false;

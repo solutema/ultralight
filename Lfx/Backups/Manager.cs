@@ -327,7 +327,7 @@ namespace Lfx.Backups
                                 System.IO.Directory.CreateDirectory(Lfx.Environment.Folders.TemporaryFolder + WorkFolder);
 
                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Creando Copia de Respaldo", "Se está creando un volcado completo del almacén de datos en una carpeta, para resguardar.");
-                        Progreso.Blocking = false;
+                        Progreso.Modal = false;
                         Progreso.Advertise = true;
                         Progreso.Begin();
                         Progreso.Max = Lfx.Workspace.Master.Structure.Tables.Count + 1;
@@ -420,7 +420,7 @@ namespace Lfx.Backups
                                 bool UsandoArchivoComprimido = false;
 
                                 Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Restaurando Copia de Respaldo", "Este proceso va a demorar varios minutos. Por favor no lo interrumpa");
-                                Progreso.Blocking = true;
+                                Progreso.Modal = true;
 
                                 /* Progreso.ChangeStatus("Descomprimiendo");
                                 // Descomprimir backup si está comprimido

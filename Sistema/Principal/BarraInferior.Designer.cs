@@ -64,24 +64,18 @@ namespace Lazaro.WinMain.Principal
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BarraInferior));
                         this.PanelReloj = new System.Windows.Forms.Panel();
-                        this.RelojFecha = new Lui.Forms.Label();
-                        this.RelojHora = new Lui.Forms.Label();
                         this.PanelArticulo = new System.Windows.Forms.Panel();
-                        this.ArticuloNombre = new Lui.Forms.LinkLabel();
-                        this.ArticuloStock = new Lui.Forms.Label();
-                        this.label5 = new Lui.Forms.Label();
-                        this.ArticuloPvp = new Lui.Forms.Label();
-                        this.ArticuloPrecio = new Lui.Forms.Label();
-                        this.ArticuloDescripcion = new Lui.Forms.Label();
-                        this.ArticuloCodigos = new Lui.Forms.Label();
                         this.PanelAyuda = new System.Windows.Forms.Panel();
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.AyudaTitulo = new Lui.Forms.Label();
-                        this.AyudaTexto = new Lui.Forms.Label();
                         this.ProgressBar = new System.Windows.Forms.ProgressBar();
                         this.TimerReloj = new System.Windows.Forms.Timer(this.components);
                         this.PanelPersona = new System.Windows.Forms.Panel();
                         this.PersonaImagen = new System.Windows.Forms.PictureBox();
+                        this.TimerSlowLink = new System.Windows.Forms.Timer(this.components);
+                        this.PanelProgreso = new System.Windows.Forms.Panel();
+                        this.pictureBox2 = new System.Windows.Forms.PictureBox();
+                        this.RelojFecha = new Lui.Forms.Label();
+                        this.RelojHora = new Lui.Forms.Label();
                         this.EnlaceComentarios = new Lui.Forms.LinkLabel();
                         this.PersonaNombre = new Lui.Forms.LinkLabel();
                         this.label3 = new Lui.Forms.Label();
@@ -93,11 +87,17 @@ namespace Lazaro.WinMain.Principal
                         this.PersonaDomicilio = new Lui.Forms.Label();
                         this.PersonaTelefono = new Lui.Forms.Label();
                         this.label2 = new Lui.Forms.Label();
-                        this.TimerSlowLink = new System.Windows.Forms.Timer(this.components);
-                        this.PanelProgreso = new System.Windows.Forms.Panel();
-                        this.pictureBox2 = new System.Windows.Forms.PictureBox();
+                        this.AyudaTitulo = new Lui.Forms.Label();
+                        this.AyudaTexto = new Lui.Forms.Label();
                         this.EtiquetaOperacion = new Lui.Forms.Label();
                         this.EtiquetaDescripcion = new Lui.Forms.Label();
+                        this.ArticuloNombre = new Lui.Forms.LinkLabel();
+                        this.ArticuloStock = new Lui.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
+                        this.ArticuloPvp = new Lui.Forms.Label();
+                        this.ArticuloPrecio = new Lui.Forms.Label();
+                        this.ArticuloDescripcion = new Lui.Forms.Label();
+                        this.ArticuloCodigos = new Lui.Forms.Label();
                         this.PanelReloj.SuspendLayout();
                         this.PanelArticulo.SuspendLayout();
                         this.PanelAyuda.SuspendLayout();
@@ -110,8 +110,8 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // PanelReloj
                         // 
-                        this.PanelReloj.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelReloj.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelReloj.BackColor = System.Drawing.SystemColors.ControlDark;
                         this.PanelReloj.Controls.Add(this.RelojFecha);
                         this.PanelReloj.Controls.Add(this.RelojHora);
@@ -121,38 +121,11 @@ namespace Lazaro.WinMain.Principal
                         this.PanelReloj.Size = new System.Drawing.Size(74, 48);
                         this.PanelReloj.TabIndex = 0;
                         // 
-                        // RelojFecha
-                        // 
-                        this.RelojFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.RelojFecha.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.RelojFecha.Location = new System.Drawing.Point(2, 30);
-                        this.RelojFecha.Name = "RelojFecha";
-                        this.RelojFecha.Size = new System.Drawing.Size(70, 16);
-                        this.RelojFecha.TabIndex = 1;
-                        this.RelojFecha.Text = "00/00/00";
-                        this.RelojFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.RelojFecha.UseMnemonic = false;
-                        // 
-                        // RelojHora
-                        // 
-                        this.RelojHora.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.RelojHora.LabelStyle = Lui.Forms.LabelStyles.Header2;
-                        this.RelojHora.Location = new System.Drawing.Point(2, 2);
-                        this.RelojHora.Name = "RelojHora";
-                        this.RelojHora.Size = new System.Drawing.Size(70, 26);
-                        this.RelojHora.TabIndex = 0;
-                        this.RelojHora.Text = "00:00";
-                        this.RelojHora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.RelojHora.UseMnemonic = false;
-                        // 
                         // PanelArticulo
                         // 
-                        this.PanelArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelArticulo.Controls.Add(this.ArticuloNombre);
                         this.PanelArticulo.Controls.Add(this.ArticuloStock);
                         this.PanelArticulo.Controls.Add(this.label5);
@@ -165,6 +138,304 @@ namespace Lazaro.WinMain.Principal
                         this.PanelArticulo.Size = new System.Drawing.Size(720, 48);
                         this.PanelArticulo.TabIndex = 1;
                         this.PanelArticulo.Visible = false;
+                        // 
+                        // PanelAyuda
+                        // 
+                        this.PanelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelAyuda.Controls.Add(this.pictureBox1);
+                        this.PanelAyuda.Controls.Add(this.AyudaTitulo);
+                        this.PanelAyuda.Controls.Add(this.AyudaTexto);
+                        this.PanelAyuda.Location = new System.Drawing.Point(2, 2);
+                        this.PanelAyuda.Name = "PanelAyuda";
+                        this.PanelAyuda.Size = new System.Drawing.Size(720, 48);
+                        this.PanelAyuda.TabIndex = 2;
+                        // 
+                        // pictureBox1
+                        // 
+                        this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+                        this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+                        this.pictureBox1.Name = "pictureBox1";
+                        this.pictureBox1.Size = new System.Drawing.Size(48, 48);
+                        this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                        this.pictureBox1.TabIndex = 2;
+                        this.pictureBox1.TabStop = false;
+                        // 
+                        // ProgressBar
+                        // 
+                        this.ProgressBar.Location = new System.Drawing.Point(60, 12);
+                        this.ProgressBar.Name = "ProgressBar";
+                        this.ProgressBar.Size = new System.Drawing.Size(212, 24);
+                        this.ProgressBar.TabIndex = 3;
+                        // 
+                        // TimerReloj
+                        // 
+                        this.TimerReloj.Enabled = true;
+                        this.TimerReloj.Interval = 1000;
+                        this.TimerReloj.Tick += new System.EventHandler(this.TimerReloj_Tick);
+                        // 
+                        // PanelPersona
+                        // 
+                        this.PanelPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelPersona.Controls.Add(this.PersonaImagen);
+                        this.PanelPersona.Controls.Add(this.EnlaceComentarios);
+                        this.PanelPersona.Controls.Add(this.PersonaNombre);
+                        this.PanelPersona.Controls.Add(this.label3);
+                        this.PanelPersona.Controls.Add(this.PersonaGrupo);
+                        this.PanelPersona.Controls.Add(this.PersonaComentario);
+                        this.PanelPersona.Controls.Add(this.label1);
+                        this.PanelPersona.Controls.Add(this.PersonaEmail);
+                        this.PanelPersona.Controls.Add(this.label4);
+                        this.PanelPersona.Controls.Add(this.PersonaDomicilio);
+                        this.PanelPersona.Controls.Add(this.PersonaTelefono);
+                        this.PanelPersona.Controls.Add(this.label2);
+                        this.PanelPersona.Location = new System.Drawing.Point(2, 2);
+                        this.PanelPersona.Name = "PanelPersona";
+                        this.PanelPersona.Size = new System.Drawing.Size(718, 48);
+                        this.PanelPersona.TabIndex = 2;
+                        // 
+                        // PersonaImagen
+                        // 
+                        this.PersonaImagen.Location = new System.Drawing.Point(0, 0);
+                        this.PersonaImagen.Name = "PersonaImagen";
+                        this.PersonaImagen.Size = new System.Drawing.Size(52, 48);
+                        this.PersonaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+                        this.PersonaImagen.TabIndex = 15;
+                        this.PersonaImagen.TabStop = false;
+                        // 
+                        // TimerSlowLink
+                        // 
+                        this.TimerSlowLink.Interval = 1000;
+                        this.TimerSlowLink.Tick += new System.EventHandler(this.TimerSlowLink_Tick);
+                        // 
+                        // PanelProgreso
+                        // 
+                        this.PanelProgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelProgreso.Controls.Add(this.pictureBox2);
+                        this.PanelProgreso.Controls.Add(this.EtiquetaOperacion);
+                        this.PanelProgreso.Controls.Add(this.EtiquetaDescripcion);
+                        this.PanelProgreso.Controls.Add(this.ProgressBar);
+                        this.PanelProgreso.Location = new System.Drawing.Point(2, 2);
+                        this.PanelProgreso.Name = "PanelProgreso";
+                        this.PanelProgreso.Size = new System.Drawing.Size(720, 48);
+                        this.PanelProgreso.TabIndex = 3;
+                        this.PanelProgreso.Visible = false;
+                        // 
+                        // pictureBox2
+                        // 
+                        this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+                        this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+                        this.pictureBox2.Name = "pictureBox2";
+                        this.pictureBox2.Size = new System.Drawing.Size(48, 48);
+                        this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                        this.pictureBox2.TabIndex = 6;
+                        this.pictureBox2.TabStop = false;
+                        // 
+                        // RelojFecha
+                        // 
+                        this.RelojFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.RelojFecha.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.RelojFecha.Location = new System.Drawing.Point(2, 30);
+                        this.RelojFecha.Name = "RelojFecha";
+                        this.RelojFecha.Size = new System.Drawing.Size(70, 16);
+                        this.RelojFecha.TabIndex = 1;
+                        this.RelojFecha.Text = "00/00/00";
+                        this.RelojFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.RelojFecha.UseMnemonic = false;
+                        // 
+                        // RelojHora
+                        // 
+                        this.RelojHora.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.RelojHora.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.RelojHora.Location = new System.Drawing.Point(2, 2);
+                        this.RelojHora.Name = "RelojHora";
+                        this.RelojHora.Size = new System.Drawing.Size(70, 26);
+                        this.RelojHora.TabIndex = 0;
+                        this.RelojHora.Text = "00:00";
+                        this.RelojHora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.RelojHora.UseMnemonic = false;
+                        // 
+                        // EnlaceComentarios
+                        // 
+                        this.EnlaceComentarios.AutoEllipsis = true;
+                        this.EnlaceComentarios.Location = new System.Drawing.Point(612, 32);
+                        this.EnlaceComentarios.Name = "EnlaceComentarios";
+                        this.EnlaceComentarios.Size = new System.Drawing.Size(106, 16);
+                        this.EnlaceComentarios.TabIndex = 14;
+                        this.EnlaceComentarios.TabStop = true;
+                        this.EnlaceComentarios.Text = "Comentarios...";
+                        this.EnlaceComentarios.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EnlaceComentarios.UseMnemonic = false;
+                        this.EnlaceComentarios.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EnlaceEtiquetas_LinkClicked);
+                        // 
+                        // PersonaNombre
+                        // 
+                        this.PersonaNombre.AutoEllipsis = true;
+                        this.PersonaNombre.Location = new System.Drawing.Point(54, 2);
+                        this.PersonaNombre.Name = "PersonaNombre";
+                        this.PersonaNombre.Size = new System.Drawing.Size(250, 16);
+                        this.PersonaNombre.TabIndex = 12;
+                        this.PersonaNombre.TabStop = true;
+                        this.PersonaNombre.Text = "Nombre de la persona de ejemplo";
+                        this.PersonaNombre.UseMnemonic = false;
+                        this.PersonaNombre.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PersonaNombre_LinkClicked);
+                        // 
+                        // label3
+                        // 
+                        this.label3.AutoEllipsis = true;
+                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label3.Location = new System.Drawing.Point(304, 34);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(62, 16);
+                        this.label3.TabIndex = 10;
+                        this.label3.Text = "Grupo";
+                        this.label3.UseMnemonic = false;
+                        // 
+                        // PersonaGrupo
+                        // 
+                        this.PersonaGrupo.AutoEllipsis = true;
+                        this.PersonaGrupo.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.PersonaGrupo.Location = new System.Drawing.Point(364, 32);
+                        this.PersonaGrupo.Name = "PersonaGrupo";
+                        this.PersonaGrupo.Size = new System.Drawing.Size(232, 16);
+                        this.PersonaGrupo.TabIndex = 11;
+                        this.PersonaGrupo.Text = "-";
+                        this.PersonaGrupo.UseMnemonic = false;
+                        // 
+                        // PersonaComentario
+                        // 
+                        this.PersonaComentario.AutoEllipsis = true;
+                        this.PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.SmallWarning;
+                        this.PersonaComentario.Location = new System.Drawing.Point(54, 16);
+                        this.PersonaComentario.Name = "PersonaComentario";
+                        this.PersonaComentario.Size = new System.Drawing.Size(248, 32);
+                        this.PersonaComentario.TabIndex = 9;
+                        this.PersonaComentario.Text = "Registra saldo impago en cta. cte. por $ 10000";
+                        this.PersonaComentario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.PersonaComentario.UseMnemonic = false;
+                        this.PersonaComentario.Visible = false;
+                        // 
+                        // label1
+                        // 
+                        this.label1.AutoEllipsis = true;
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label1.Location = new System.Drawing.Point(304, 18);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(62, 16);
+                        this.label1.TabIndex = 8;
+                        this.label1.Text = "Correo-e";
+                        this.label1.UseMnemonic = false;
+                        // 
+                        // PersonaEmail
+                        // 
+                        this.PersonaEmail.AutoEllipsis = true;
+                        this.PersonaEmail.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.PersonaEmail.Location = new System.Drawing.Point(364, 18);
+                        this.PersonaEmail.Name = "PersonaEmail";
+                        this.PersonaEmail.Size = new System.Drawing.Size(232, 16);
+                        this.PersonaEmail.TabIndex = 9;
+                        this.PersonaEmail.Text = "info@dominio.com";
+                        this.PersonaEmail.UseMnemonic = false;
+                        // 
+                        // label4
+                        // 
+                        this.label4.AutoEllipsis = true;
+                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label4.Location = new System.Drawing.Point(304, 2);
+                        this.label4.Name = "label4";
+                        this.label4.Size = new System.Drawing.Size(62, 16);
+                        this.label4.TabIndex = 3;
+                        this.label4.Text = "Domicilio";
+                        this.label4.UseMnemonic = false;
+                        // 
+                        // PersonaDomicilio
+                        // 
+                        this.PersonaDomicilio.AutoEllipsis = true;
+                        this.PersonaDomicilio.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.PersonaDomicilio.Location = new System.Drawing.Point(364, 2);
+                        this.PersonaDomicilio.Name = "PersonaDomicilio";
+                        this.PersonaDomicilio.Size = new System.Drawing.Size(232, 16);
+                        this.PersonaDomicilio.TabIndex = 4;
+                        this.PersonaDomicilio.Text = "12.345.67";
+                        this.PersonaDomicilio.UseMnemonic = false;
+                        // 
+                        // PersonaTelefono
+                        // 
+                        this.PersonaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PersonaTelefono.AutoEllipsis = true;
+                        this.PersonaTelefono.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.PersonaTelefono.Location = new System.Drawing.Point(654, 2);
+                        this.PersonaTelefono.Name = "PersonaTelefono";
+                        this.PersonaTelefono.Size = new System.Drawing.Size(110, 16);
+                        this.PersonaTelefono.TabIndex = 6;
+                        this.PersonaTelefono.Text = "01234 555-12364";
+                        this.PersonaTelefono.UseMnemonic = false;
+                        // 
+                        // label2
+                        // 
+                        this.label2.AutoEllipsis = true;
+                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label2.Location = new System.Drawing.Point(596, 2);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(64, 16);
+                        this.label2.TabIndex = 5;
+                        this.label2.Text = "Tel.";
+                        this.label2.UseMnemonic = false;
+                        // 
+                        // AyudaTitulo
+                        // 
+                        this.AyudaTitulo.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.AyudaTitulo.Location = new System.Drawing.Point(52, 0);
+                        this.AyudaTitulo.Name = "AyudaTitulo";
+                        this.AyudaTitulo.Size = new System.Drawing.Size(670, 20);
+                        this.AyudaTitulo.TabIndex = 0;
+                        this.AyudaTitulo.Text = "Ayuda dinámica";
+                        this.AyudaTitulo.UseMnemonic = false;
+                        // 
+                        // AyudaTexto
+                        // 
+                        this.AyudaTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.AyudaTexto.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.AyudaTexto.Location = new System.Drawing.Point(52, 18);
+                        this.AyudaTexto.Name = "AyudaTexto";
+                        this.AyudaTexto.Size = new System.Drawing.Size(670, 30);
+                        this.AyudaTexto.TabIndex = 1;
+                        this.AyudaTexto.Text = "...";
+                        this.AyudaTexto.UseMnemonic = false;
+                        // 
+                        // EtiquetaOperacion
+                        // 
+                        this.EtiquetaOperacion.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.EtiquetaOperacion.Location = new System.Drawing.Point(284, 0);
+                        this.EtiquetaOperacion.Name = "EtiquetaOperacion";
+                        this.EtiquetaOperacion.Size = new System.Drawing.Size(437, 20);
+                        this.EtiquetaOperacion.TabIndex = 4;
+                        this.EtiquetaOperacion.Text = "Progreso...";
+                        this.EtiquetaOperacion.UseMnemonic = false;
+                        // 
+                        // EtiquetaDescripcion
+                        // 
+                        this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(284, 18);
+                        this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
+                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(437, 30);
+                        this.EtiquetaDescripcion.TabIndex = 5;
+                        this.EtiquetaDescripcion.Text = "...";
+                        this.EtiquetaDescripcion.UseMnemonic = false;
                         // 
                         // ArticuloNombre
                         // 
@@ -224,9 +495,9 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // ArticuloDescripcion
                         // 
-                        this.ArticuloDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ArticuloDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ArticuloDescripcion.AutoEllipsis = true;
                         this.ArticuloDescripcion.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.ArticuloDescripcion.Location = new System.Drawing.Point(70, 16);
@@ -238,8 +509,8 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // ArticuloCodigos
                         // 
-                        this.ArticuloCodigos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)));
+                        this.ArticuloCodigos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
                         this.ArticuloCodigos.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.ArticuloCodigos.Location = new System.Drawing.Point(0, 0);
                         this.ArticuloCodigos.Name = "ArticuloCodigos";
@@ -249,285 +520,14 @@ namespace Lazaro.WinMain.Principal
                         this.ArticuloCodigos.TextAlign = System.Drawing.ContentAlignment.TopRight;
                         this.ArticuloCodigos.UseMnemonic = false;
                         // 
-                        // PanelAyuda
-                        // 
-                        this.PanelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.PanelAyuda.Controls.Add(this.pictureBox1);
-                        this.PanelAyuda.Controls.Add(this.AyudaTitulo);
-                        this.PanelAyuda.Controls.Add(this.AyudaTexto);
-                        this.PanelAyuda.Location = new System.Drawing.Point(2, 2);
-                        this.PanelAyuda.Name = "PanelAyuda";
-                        this.PanelAyuda.Size = new System.Drawing.Size(720, 48);
-                        this.PanelAyuda.TabIndex = 2;
-                        // 
-                        // pictureBox1
-                        // 
-                        this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-                        this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-                        this.pictureBox1.Name = "pictureBox1";
-                        this.pictureBox1.Size = new System.Drawing.Size(48, 48);
-                        this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-                        this.pictureBox1.TabIndex = 2;
-                        this.pictureBox1.TabStop = false;
-                        // 
-                        // AyudaTitulo
-                        // 
-                        this.AyudaTitulo.LabelStyle = Lui.Forms.LabelStyles.Title;
-                        this.AyudaTitulo.Location = new System.Drawing.Point(52, 0);
-                        this.AyudaTitulo.Name = "AyudaTitulo";
-                        this.AyudaTitulo.Size = new System.Drawing.Size(670, 20);
-                        this.AyudaTitulo.TabIndex = 0;
-                        this.AyudaTitulo.Text = "Ayuda dinámica";
-                        this.AyudaTitulo.UseMnemonic = false;
-                        // 
-                        // AyudaTexto
-                        // 
-                        this.AyudaTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.AyudaTexto.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.AyudaTexto.Location = new System.Drawing.Point(52, 18);
-                        this.AyudaTexto.Name = "AyudaTexto";
-                        this.AyudaTexto.Size = new System.Drawing.Size(670, 30);
-                        this.AyudaTexto.TabIndex = 1;
-                        this.AyudaTexto.Text = "...";
-                        this.AyudaTexto.UseMnemonic = false;
-                        // 
-                        // ProgressBar
-                        // 
-                        this.ProgressBar.Location = new System.Drawing.Point(60, 12);
-                        this.ProgressBar.Name = "ProgressBar";
-                        this.ProgressBar.Size = new System.Drawing.Size(212, 24);
-                        this.ProgressBar.TabIndex = 3;
-                        // 
-                        // TimerReloj
-                        // 
-                        this.TimerReloj.Enabled = true;
-                        this.TimerReloj.Interval = 1000;
-                        this.TimerReloj.Tick += new System.EventHandler(this.TimerReloj_Tick);
-                        // 
-                        // PanelPersona
-                        // 
-                        this.PanelPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.PanelPersona.Controls.Add(this.PersonaImagen);
-                        this.PanelPersona.Controls.Add(this.EnlaceComentarios);
-                        this.PanelPersona.Controls.Add(this.PersonaNombre);
-                        this.PanelPersona.Controls.Add(this.label3);
-                        this.PanelPersona.Controls.Add(this.PersonaGrupo);
-                        this.PanelPersona.Controls.Add(this.PersonaComentario);
-                        this.PanelPersona.Controls.Add(this.label1);
-                        this.PanelPersona.Controls.Add(this.PersonaEmail);
-                        this.PanelPersona.Controls.Add(this.label4);
-                        this.PanelPersona.Controls.Add(this.PersonaDomicilio);
-                        this.PanelPersona.Controls.Add(this.PersonaTelefono);
-                        this.PanelPersona.Controls.Add(this.label2);
-                        this.PanelPersona.Location = new System.Drawing.Point(2, 2);
-                        this.PanelPersona.Name = "PanelPersona";
-                        this.PanelPersona.Size = new System.Drawing.Size(718, 48);
-                        this.PanelPersona.TabIndex = 2;
-                        // 
-                        // PersonaImagen
-                        // 
-                        this.PersonaImagen.Location = new System.Drawing.Point(0, 0);
-                        this.PersonaImagen.Name = "PersonaImagen";
-                        this.PersonaImagen.Size = new System.Drawing.Size(52, 48);
-                        this.PersonaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-                        this.PersonaImagen.TabIndex = 15;
-                        this.PersonaImagen.TabStop = false;
-                        // 
-                        // EnlaceComentarios
-                        // 
-                        this.EnlaceComentarios.AutoEllipsis = true;
-                        this.EnlaceComentarios.Location = new System.Drawing.Point(612, 32);
-                        this.EnlaceComentarios.Name = "EnlaceComentarios";
-                        this.EnlaceComentarios.Size = new System.Drawing.Size(106, 16);
-                        this.EnlaceComentarios.TabIndex = 14;
-                        this.EnlaceComentarios.TabStop = true;
-                        this.EnlaceComentarios.Text = "Comentarios...";
-                        this.EnlaceComentarios.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.EnlaceComentarios.UseMnemonic = false;
-                        this.EnlaceComentarios.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EnlaceEtiquetas_LinkClicked);
-                        // 
-                        // PersonaNombre
-                        // 
-                        this.PersonaNombre.AutoEllipsis = true;
-                        this.PersonaNombre.Location = new System.Drawing.Point(54, 2);
-                        this.PersonaNombre.Name = "PersonaNombre";
-                        this.PersonaNombre.Size = new System.Drawing.Size(250, 16);
-                        this.PersonaNombre.TabIndex = 12;
-                        this.PersonaNombre.TabStop = true;
-                        this.PersonaNombre.Text = "Nombre de la persona de ejemplo";
-                        this.PersonaNombre.UseMnemonic = false;
-                        this.PersonaNombre.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PersonaNombre_LinkClicked);
-                        // 
-                        // label3
-                        // 
-                        this.label3.AutoEllipsis = true;
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.label3.Location = new System.Drawing.Point(304, 34);
-                        this.label3.Name = "label3";
-                        this.label3.Size = new System.Drawing.Size(62, 16);
-                        this.label3.TabIndex = 10;
-                        this.label3.Text = "Grupo";
-                        this.label3.UseMnemonic = false;
-                        // 
-                        // PersonaGrupo
-                        // 
-                        this.PersonaGrupo.AutoEllipsis = true;
-                        this.PersonaGrupo.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.PersonaGrupo.Location = new System.Drawing.Point(364, 32);
-                        this.PersonaGrupo.Name = "PersonaGrupo";
-                        this.PersonaGrupo.Size = new System.Drawing.Size(232, 16);
-                        this.PersonaGrupo.TabIndex = 11;
-                        this.PersonaGrupo.Text = "-";
-                        this.PersonaGrupo.UseMnemonic = false;
-                        // 
-                        // PersonaComentario
-                        // 
-                        this.PersonaComentario.AutoEllipsis = true;
-                        this.PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.PersonaComentario.Location = new System.Drawing.Point(54, 16);
-                        this.PersonaComentario.Name = "PersonaComentario";
-                        this.PersonaComentario.Size = new System.Drawing.Size(248, 32);
-                        this.PersonaComentario.TabIndex = 9;
-                        this.PersonaComentario.Text = "Comentario sobre la persona.";
-                        this.PersonaComentario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.PersonaComentario.UseMnemonic = false;
-                        this.PersonaComentario.Visible = false;
-                        // 
-                        // label1
-                        // 
-                        this.label1.AutoEllipsis = true;
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.label1.Location = new System.Drawing.Point(304, 18);
-                        this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(62, 16);
-                        this.label1.TabIndex = 8;
-                        this.label1.Text = "Correo-e";
-                        this.label1.UseMnemonic = false;
-                        // 
-                        // PersonaEmail
-                        // 
-                        this.PersonaEmail.AutoEllipsis = true;
-                        this.PersonaEmail.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.PersonaEmail.Location = new System.Drawing.Point(364, 18);
-                        this.PersonaEmail.Name = "PersonaEmail";
-                        this.PersonaEmail.Size = new System.Drawing.Size(232, 16);
-                        this.PersonaEmail.TabIndex = 9;
-                        this.PersonaEmail.Text = "info@dominio.com";
-                        this.PersonaEmail.UseMnemonic = false;
-                        // 
-                        // label4
-                        // 
-                        this.label4.AutoEllipsis = true;
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.label4.Location = new System.Drawing.Point(304, 2);
-                        this.label4.Name = "label4";
-                        this.label4.Size = new System.Drawing.Size(62, 16);
-                        this.label4.TabIndex = 3;
-                        this.label4.Text = "Domicilio";
-                        this.label4.UseMnemonic = false;
-                        // 
-                        // PersonaDomicilio
-                        // 
-                        this.PersonaDomicilio.AutoEllipsis = true;
-                        this.PersonaDomicilio.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.PersonaDomicilio.Location = new System.Drawing.Point(364, 2);
-                        this.PersonaDomicilio.Name = "PersonaDomicilio";
-                        this.PersonaDomicilio.Size = new System.Drawing.Size(232, 16);
-                        this.PersonaDomicilio.TabIndex = 4;
-                        this.PersonaDomicilio.Text = "12.345.67";
-                        this.PersonaDomicilio.UseMnemonic = false;
-                        // 
-                        // PersonaTelefono
-                        // 
-                        this.PersonaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.PersonaTelefono.AutoEllipsis = true;
-                        this.PersonaTelefono.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.PersonaTelefono.Location = new System.Drawing.Point(654, 2);
-                        this.PersonaTelefono.Name = "PersonaTelefono";
-                        this.PersonaTelefono.Size = new System.Drawing.Size(110, 16);
-                        this.PersonaTelefono.TabIndex = 6;
-                        this.PersonaTelefono.Text = "01234 555-12364";
-                        this.PersonaTelefono.UseMnemonic = false;
-                        // 
-                        // label2
-                        // 
-                        this.label2.AutoEllipsis = true;
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.label2.Location = new System.Drawing.Point(596, 2);
-                        this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(64, 16);
-                        this.label2.TabIndex = 5;
-                        this.label2.Text = "Tel.";
-                        this.label2.UseMnemonic = false;
-                        // 
-                        // TimerSlowLink
-                        // 
-                        this.TimerSlowLink.Interval = 1000;
-                        this.TimerSlowLink.Tick += new System.EventHandler(this.TimerSlowLink_Tick);
-                        // 
-                        // PanelProgreso
-                        // 
-                        this.PanelProgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.PanelProgreso.Controls.Add(this.pictureBox2);
-                        this.PanelProgreso.Controls.Add(this.EtiquetaOperacion);
-                        this.PanelProgreso.Controls.Add(this.EtiquetaDescripcion);
-                        this.PanelProgreso.Controls.Add(this.ProgressBar);
-                        this.PanelProgreso.Location = new System.Drawing.Point(2, 2);
-                        this.PanelProgreso.Name = "PanelProgreso";
-                        this.PanelProgreso.Size = new System.Drawing.Size(720, 48);
-                        this.PanelProgreso.TabIndex = 3;
-                        this.PanelProgreso.Visible = false;
-                        // 
-                        // pictureBox2
-                        // 
-                        this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-                        this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-                        this.pictureBox2.Name = "pictureBox2";
-                        this.pictureBox2.Size = new System.Drawing.Size(48, 48);
-                        this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-                        this.pictureBox2.TabIndex = 6;
-                        this.pictureBox2.TabStop = false;
-                        // 
-                        // EtiquetaOperacion
-                        // 
-                        this.EtiquetaOperacion.LabelStyle = Lui.Forms.LabelStyles.Title;
-                        this.EtiquetaOperacion.Location = new System.Drawing.Point(284, 0);
-                        this.EtiquetaOperacion.Name = "EtiquetaOperacion";
-                        this.EtiquetaOperacion.Size = new System.Drawing.Size(437, 20);
-                        this.EtiquetaOperacion.TabIndex = 4;
-                        this.EtiquetaOperacion.Text = "Progreso...";
-                        this.EtiquetaOperacion.UseMnemonic = false;
-                        // 
-                        // EtiquetaDescripcion
-                        // 
-                        this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Small;
-                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(284, 18);
-                        this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
-                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(437, 30);
-                        this.EtiquetaDescripcion.TabIndex = 5;
-                        this.EtiquetaDescripcion.Text = "...";
-                        this.EtiquetaDescripcion.UseMnemonic = false;
-                        // 
                         // BarraInferior
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-                        this.Controls.Add(this.PanelProgreso);
                         this.Controls.Add(this.PanelReloj);
-                        this.Controls.Add(this.PanelArticulo);
                         this.Controls.Add(this.PanelPersona);
                         this.Controls.Add(this.PanelAyuda);
+                        this.Controls.Add(this.PanelProgreso);
+                        this.Controls.Add(this.PanelArticulo);
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "BarraInferior";
                         this.Size = new System.Drawing.Size(800, 52);

@@ -37,34 +37,66 @@ namespace Lfx.Types
         public delegate void ShowProgressDelegate(Lfx.Types.OperationProgress progreso);
 
         /// <summary>
-        /// Describe el progreso de una operación.
+        /// Describe el progreso de una operación larga.
         /// </summary>
         public class OperationProgress
         {
-
+                /// <summary>
+                /// El nombre de la operación, por ejemplo "Imprimiendo...".
+                /// </summary>
                 public string Name { get; set; }
-
-                public string Status { get; set; }
-
+                /// <summary>
+                /// La descripción larga de la operación, por ejemplo "Se están imprimiendo 250 comprobantes en la impresora predeterminada".
+                /// </summary>
                 public string Description { get; set; }
 
-                public string EndMessage { get; set; }
+                /// <summary>
+                /// Indica si la operación debe bloquear el uso de la interfaz.
+                /// </summary>
+                public bool Modal { get; set; }
+                
+                /// <summary>
+                /// Indica si la operación puede ser cancelada.
+                /// </summary>
+                public bool Cancelable { get; set; }
+                
+                /// <summary>
+                /// Indica si hay una solicitud de cancelar esta operación.
+                /// </summary>
+                public bool Cancelar { get; set; }
 
+                /// <summary>
+                /// Indica si se debe mostrar un indicador de progreso.
+                /// </summary>
+                public bool Advertise { get; set; }
+
+                /// <summary>
+                /// El estado actual de la operación, por ejemplo "Cargando datos".
+                /// </summary>
+                public string Status { get; set; }
+
+                /// <summary>
+                /// Obtiene o establece un valor que indica la cantidad de elementos que fuero procesados (el progreso de la operación, entre 0 y Max).
+                /// </summary>
                 public int Value { get; set; }
-
+                /// <summary>
+                /// Obtiene o establece un valor que indica la cantidad de elementos que se van a procesar.
+                /// </summary>
                 public int Max { get; set; }
 
-                public bool Blocking { get; set; }
-
+                /// <summary>
+                /// Indica si la operación está en ejecución. Es Falso si la operación aun no ha iniciado o ya ha terminado.
+                /// </summary>
                 public bool IsRunning { get; set; }
 
+                /// <summary>
+                /// Indica si la operación ya finalizó.
+                /// </summary>
                 public bool IsDone { get; set; }
-
-                public bool Advertise { get; set; }
 
                 public OperationProgress(string name, string description)
                 {
-                        this.Blocking = true;
+                        this.Modal = true;
                         this.Max = 100;
                         this.Advertise = true;
                         this.Name = name;
@@ -117,11 +149,6 @@ namespace Lfx.Types
                                 Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }
 
-                public void End(string message)
-                {
-                        this.EndMessage = message;
-                        this.End();
-                }
 
                 public void End()
                 {

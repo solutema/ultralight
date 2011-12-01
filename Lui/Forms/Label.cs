@@ -45,6 +45,7 @@ namespace Lui.Forms
                 Header1,
                 Header2,
                 Warning,
+                SmallWarning,
                 Info
         }
 
@@ -156,6 +157,18 @@ namespace Lui.Forms
                                                 base.Padding = new Padding(6);
                                                 base.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
                                                 base.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
+                                                break;
+                                        case LabelStyles.Warning:
+                                                base.Font = Lfx.Config.Display.DefaultFont;
+                                                base.Padding = new Padding(0, 4, 0, 4);
+                                                base.BackColor = System.Drawing.Color.Tomato;
+                                                base.ForeColor = System.Drawing.Color.White;
+                                                break;
+                                        case LabelStyles.SmallWarning:
+                                                base.Font = Lfx.Config.Display.SmallFont;
+                                                base.Padding = new Padding(0, 2, 0, 2);
+                                                base.BackColor = System.Drawing.Color.Tomato;
+                                                base.ForeColor = System.Drawing.Color.White;
                                                 break;
                                 }
                         }

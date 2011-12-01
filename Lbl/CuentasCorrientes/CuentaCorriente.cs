@@ -109,7 +109,7 @@ namespace Lbl.CuentasCorrientes
                 public void Recalcular()
                 {
                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Recalculando", "Se va a recalcular el saldo de la cuenta corriente de " + this.Persona.ToString());
-                        Progreso.Blocking = false;
+                        Progreso.Modal = false;
                         Progreso.Begin();
 
                         System.Data.DataTable Movims = this.Connection.Select("SELECT id_movim, importe FROM ctacte WHERE id_cliente=" + this.Persona.Id.ToString() + " ORDER BY " + this.CampoId);

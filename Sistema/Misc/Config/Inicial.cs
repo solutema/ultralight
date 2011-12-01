@@ -86,7 +86,7 @@ namespace Lazaro.WinMain.Misc.Config
                                         } else {
                                                 Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Buscando un servidor", "Por favor aguarde mientras Lázaro busca un servidor en la red para utilizar como almacén de datos.");
                                                 ProgresoBuscar.Visible = true;
-                                                Progreso.Blocking = false;
+                                                Progreso.Modal = false;
                                                 Progreso.Advertise = false;
                                                 Progreso.Begin();
 
@@ -409,7 +409,7 @@ namespace Lazaro.WinMain.Misc.Config
 
                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Instalar servidor SQL", "Se está descargando e instalando un servidor SQL en este equipo");
                         Progreso.Advertise = false;
-                        Progreso.Blocking = false;
+                        Progreso.Modal = false;
                         Progreso.Begin();
 
                         System.Threading.ThreadStart Buscar = delegate { this.DescargarEInstalar(Progreso); };

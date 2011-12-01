@@ -63,38 +63,40 @@ namespace Lui.Forms
                         this.ProgressBar = new System.Windows.Forms.ProgressBar();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.EtiquetaEstado = new Lui.Forms.Label();
+                        this.BotonCancelar = new Lui.Forms.LinkLabel();
+                        this.EtiquetaOtrasOperaciones = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // EtiquetaNombreOperacion
                         // 
-                        this.EtiquetaNombreOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaNombreOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaNombreOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                         this.EtiquetaNombreOperacion.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.EtiquetaNombreOperacion.Location = new System.Drawing.Point(88, 24);
                         this.EtiquetaNombreOperacion.Name = "EtiquetaNombreOperacion";
-                        this.EtiquetaNombreOperacion.Size = new System.Drawing.Size(364, 60);
+                        this.EtiquetaNombreOperacion.Size = new System.Drawing.Size(364, 44);
                         this.EtiquetaNombreOperacion.TabIndex = 0;
                         this.EtiquetaNombreOperacion.Text = "Procesando...";
                         this.EtiquetaNombreOperacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EtiquetaDescripcion
                         // 
-                        this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(88, 88);
+                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(88, 108);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
-                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(364, 98);
+                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(364, 78);
                         this.EtiquetaDescripcion.TabIndex = 2;
                         this.EtiquetaDescripcion.Text = "Por favor aguarde mientras se completan las operaciones.";
                         // 
                         // ProgressBar
                         // 
-                        this.ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ProgressBar.Location = new System.Drawing.Point(84, 246);
                         this.ProgressBar.Name = "ProgressBar";
                         this.ProgressBar.Size = new System.Drawing.Size(368, 20);
@@ -113,19 +115,44 @@ namespace Lui.Forms
                         // 
                         // EtiquetaEstado
                         // 
-                        this.EtiquetaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaEstado.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(88, 196);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(364, 44);
                         this.EtiquetaEstado.TabIndex = 0;
                         // 
+                        // BotonCancelar
+                        // 
+                        this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonCancelar.Location = new System.Drawing.Point(356, 164);
+                        this.BotonCancelar.Name = "BotonCancelar";
+                        this.BotonCancelar.Size = new System.Drawing.Size(96, 20);
+                        this.BotonCancelar.TabIndex = 0;
+                        this.BotonCancelar.TabStop = true;
+                        this.BotonCancelar.Text = "Cancelar";
+                        this.BotonCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        this.BotonCancelar.Visible = false;
+                        this.BotonCancelar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonCancelar_LinkClicked);
+                        // 
+                        // EtiquetaOtrasOperaciones
+                        // 
+                        this.EtiquetaOtrasOperaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaOtrasOperaciones.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaOtrasOperaciones.Location = new System.Drawing.Point(88, 72);
+                        this.EtiquetaOtrasOperaciones.Name = "EtiquetaOtrasOperaciones";
+                        this.EtiquetaOtrasOperaciones.Size = new System.Drawing.Size(364, 32);
+                        this.EtiquetaOtrasOperaciones.TabIndex = 6;
+                        // 
                         // ProgressForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(474, 292);
                         this.ControlBox = false;
+                        this.Controls.Add(this.EtiquetaOtrasOperaciones);
+                        this.Controls.Add(this.BotonCancelar);
                         this.Controls.Add(this.ProgressBar);
                         this.Controls.Add(this.EtiquetaEstado);
                         this.Controls.Add(this.PictureBox1);
@@ -144,5 +171,8 @@ namespace Lui.Forms
 
 
 		#endregion
+
+                private LinkLabel BotonCancelar;
+                private Label EtiquetaOtrasOperaciones;
 	}
 }

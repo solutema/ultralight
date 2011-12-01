@@ -407,7 +407,7 @@ namespace Lazaro.WinMain
                                                         Operaciones.Add(Prog);
 
                                                 if (Prog.Advertise) {
-                                                        if (Aplicacion.FormularioPrincipal == null || Prog.Blocking) {
+                                                        if (Aplicacion.FormularioPrincipal == null || Prog.Modal) {
                                                                 if (Aplicacion.FormularioProgreso == null) {
                                                                         Aplicacion.FormularioProgreso = new Lui.Forms.ProgressForm();
                                                                         Aplicacion.FormularioProgreso.Show();
