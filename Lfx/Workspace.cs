@@ -254,12 +254,12 @@ namespace Lfx
                                         return;
                                 }
 
-                                // Me fijo si ya hay alguien descargando las actualizaciones
-                                string FechaInicioActualizacion = Conn.Workspace.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.VerificarVersionBd.Inicio", string.Empty);
-                                string FechaInicioActualizacionMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddHours(2));
+                                // Me fijo si ya hay alguien verificando la estructura
+                                string FechaInicioVerif = Conn.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "VerificarVersionBd.Inicio", string.Empty);
+                                string FechaInicioVerifMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddMinutes(10).ToUniversalTime());
 
-                                if (string.Compare(FechaInicioActualizacion, FechaInicioActualizacionMax) > 0)
-                                        // Ya hay alguien actualizando.
+                                if (string.Compare(FechaInicioVerif, FechaInicioVerifMax) > 0)
+                                        // Ya hay alguien verificando
                                         return;
 
                                 DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
@@ -277,8 +277,8 @@ namespace Lfx
                                 Progreso.Modal = true;
                                 Progreso.Begin();
 
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()), "*");
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()), "*");
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
 
                                 if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
                                         //Actualizo desde la versión actual a la última
@@ -304,7 +304,7 @@ namespace Lfx
                                         }
                                 }
 
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting(string.Empty, "Sistema.VerificarVersionBd.Inicio", "0", "*");
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "VerificarVersionBd.Inicio", "0", "*");
                                 Progreso.End();
                         }
                 }

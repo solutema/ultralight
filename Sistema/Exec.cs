@@ -181,7 +181,9 @@ namespace Lazaro.WinMain
                                                         break;
                                                 case "STRUCT":
                                                         System.Threading.ThreadStart ThreadVerif = delegate { Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(true, false); };
-                                                        new System.Threading.Thread(ThreadVerif).Start();
+                                                        System.Threading.Thread ThrVerif = new System.Threading.Thread(ThreadVerif);
+                                                        ThrVerif.IsBackground = true;
+                                                        ThrVerif.Start();
                                                         break;
                                         }
                                         break;
