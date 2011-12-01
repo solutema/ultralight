@@ -37,8 +37,8 @@ namespace Lbl.Sys.Configuracion
 {
         public class Moneda : SeccionConfiguracion
         {
-                public string Simbolo;
-                public Lbl.Entidades.Moneda MonedaPredeterminada;
+                public string Simbolo { get; set; }
+                public Lbl.Entidades.Moneda MonedaPredeterminada { get; set; }
 
                 public Moneda(Lfx.Workspace workspace)
                         : base(workspace)

@@ -37,17 +37,48 @@ namespace Lbl.Sys.Configuracion
 {
         public class Empresa : SeccionConfiguracion
         {
+                private Lbl.Impuestos.Alicuota m_AlicuotaPredeterminada = null;
                 private ColeccionGenerica<Lbl.Comprobantes.PuntoDeVenta> m_PuntosDeVenta = null;
 
-                public Lbl.Entidades.Sucursal SucursalPredeterminada;
-                public Lbl.Impuestos.Alicuota AlicuotaPredeterminada;
+                public Lbl.Entidades.Sucursal SucursalPredeterminada { get; set; }
 
                 public Empresa(Lfx.Workspace workspace)
                         : base(workspace)
                 {
                         this.SucursalPredeterminada = new Entidades.Sucursal(this.DataBase, this.Workspace.CurrentConfig.ReadLocalSettingInt("Company", "Branch", 1));
-                        this.AlicuotaPredeterminada = new Impuestos.Alicuota(this.DataBase, 1);
                 }
+
+
+                public int SituacionTributaria
+                {
+                        get
+                        {
+                                return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Empresa.Situacion", 2);
+                        }
+                        set
+                        {
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.Situacion", value.ToString(), "*");
+                        }
+                }
+
+
+                public Lbl.Impuestos.Alicuota AlicuotaPredeterminada
+                {
+                        get
+                        {
+                                if (m_AlicuotaPredeterminada == null) {
+                                        if(this.SituacionTributaria == 4)
+                                                // Monotributistas usan alícuota del 0% por comodidad
+                                                m_AlicuotaPredeterminada = new Impuestos.Alicuota(this.DataBase, 4);
+                                        else
+                                                // El resto usan 21%
+                                                m_AlicuotaPredeterminada = new Impuestos.Alicuota(this.DataBase, 1);
+                                }
+
+                                return m_AlicuotaPredeterminada;
+                        }
+                }
+
 
                 public string Nombre
                 {

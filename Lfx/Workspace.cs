@@ -52,7 +52,9 @@ namespace Lfx
                 public Services.Scheduler DefaultScheduler;
                 public RunTimeServices RunTime;
                 public int DataBaseCount = 0;
-                public bool DebugMode = false, WebAppMode = false;
+                public bool DebugMode { get; set; }
+                public bool TraceMode { get; set; }
+                public bool WebAppMode { get; set; }
                 public List<Data.Connection> ActiveConnections = new List<Data.Connection>();
 
                 public Workspace()
@@ -212,10 +214,7 @@ namespace Lfx
                 /// </summary>
                 public void DebugLog(int handle, string command)
                 {
-                        /* if (this.DebugMode && perfCounter != null && perfCounter.ElapsedMilliseconds > 500)
-                                System.Console.WriteLine(handle.ToString() + ": " 
-                                        + (perfCounter == null ? "" : perfCounter.ElapsedMilliseconds.ToString() + " ms. ")
-                                        + command); */
+                        System.Console.WriteLine(handle.ToString() + ": " + command);
                 }
 
                 public bool SlowLink

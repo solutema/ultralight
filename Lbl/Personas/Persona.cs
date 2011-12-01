@@ -304,12 +304,13 @@ namespace Lbl.Personas
                 public Comprobantes.Tipo ObtenerTipoComprobante()
                 {
                         string TipoComprob;
-                        if (this.FacturaPreferida != null)
+                        if (this.FacturaPreferida != null) {
                                 TipoComprob = "F" + this.FacturaPreferida;
-                        else if (this.SituacionTributaria != null)
+                        } else if (this.SituacionTributaria != null) {
                                 TipoComprob = "F" + this.SituacionTributaria.ObtenerLetraPredeterminada();
-                        else
-                                TipoComprob = "FB";
+                        } else {
+                                TipoComprob = "F" + this.LetraPredeterminada();
+                        }
 
                         if (Lbl.Comprobantes.Tipo.TodosPorLetra.ContainsKey(TipoComprob))
                                 return Lbl.Comprobantes.Tipo.TodosPorLetra[TipoComprob];
@@ -565,10 +566,15 @@ namespace Lbl.Personas
                 public string LetraPredeterminada()
                 {
                         if (this.FacturaPreferida == null) {
-                                if (this.SituacionTributaria == null)
-                                        return "B";
-                                else
+                                if (this.SituacionTributaria == null) {
+                                        if (Lbl.Sys.Config.Actual.Empresa.SituacionTributaria == 4)
+                                                // Soy monotributista
+                                                return "C";
+                                        else
+                                                return "B";
+                                } else {
                                         return this.SituacionTributaria.ObtenerLetraPredeterminada();
+                                }
                         } else {
                                 return this.FacturaPreferida;
                         }

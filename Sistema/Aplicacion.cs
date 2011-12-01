@@ -73,7 +73,7 @@ namespace Lazaro.WinMain
                 {
                         System.Threading.Thread.CurrentThread.Name = "Lazaro";
 
-                        bool ReconfigDB = false, DebugMode = false, IgnoreUpdates = false;
+                        bool ReconfigDB = false, DebugMode = false, TraceMode = false, IgnoreUpdates = false;
                         bool MostrarAsistenteConfig = false, ClearCache = false;
 
                         string NombreConfig = "default";
@@ -115,6 +115,11 @@ namespace Lazaro.WinMain
                                                 case "--debug":
                                                         DebugMode = true;
                                                         IgnoreUpdates = true;
+                                                        break;
+
+                                                case "/trace":
+                                                case "--trace":
+                                                        TraceMode = true;
                                                         break;
 
                                                 case "/portable":
@@ -213,6 +218,7 @@ namespace Lazaro.WinMain
                         // Inicio el espacio de trabajo
                         Lfx.Workspace.Master = new Lfx.Workspace(NombreConfig, false, false);
                         Lfx.Workspace.Master.DebugMode = DebugMode;
+                        Lfx.Workspace.Master.TraceMode = TraceMode;
                         Lfx.Workspace.Master.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
                         
                         // Asigno a la aplicación WinForms la misma cultura que se está usando en el espacio de trabajo

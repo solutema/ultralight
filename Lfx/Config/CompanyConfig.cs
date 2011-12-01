@@ -138,17 +138,5 @@ namespace Lfx.Config
                                         return this.CajaDiaria;
                         }
                 }
-
-                public int SituacionTributaria
-                {
-                        get
-                        {
-                                return ConfigManager.ReadGlobalSetting<int>("Sistema", "Empresa.Situacion", 2);
-                        }
-                        set
-                        {
-                                ConfigManager.WriteGlobalSetting("Sistema", "Empresa.Situacion", value.ToString(), "*");
-                        }
-                }
         }
 }

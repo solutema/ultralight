@@ -251,7 +251,7 @@ namespace Lfx.Data
                         set
                         {
                                 if (value == "Editar")
-                                        System.Console.WriteLine(this.Handle.ToString() + ": ahora se llama " + value);
+                                        this.Workspace.DebugLog(this.Handle, "Ahora se llama " + value);
                                 m_Name = value;
                         }
                 }
@@ -347,7 +347,8 @@ namespace Lfx.Data
                         bool TablaCreada = false;
                         if (CurrentTableDef.Columns.Count == 0) {
                                 //Crear la tabla
-                                this.ExecuteSql(this.CustomizeSql(newTableDef.ToString()));
+                                string Sql = newTableDef.ToString();
+                                this.ExecuteSql(this.CustomizeSql(Sql));
                                 TablaCreada = true;
                         } else {
                                 //Modificar tabla existente
@@ -430,9 +431,8 @@ namespace Lfx.Data
 
                                 foreach (Data.ColumnDefinition FieldDef in CurrentTableDef.Columns.Values) {
                                         if (newTableDef.Columns.ContainsKey(FieldDef.Name) == false) {
-                                                //string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" DROP \"" + FieldDef.Name + "\"";
-                                                // Dropear columnas desconocidas???
-                                                // this.Execute(this.CustomizeSql(Sql));
+                                                string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" DROP \"" + FieldDef.Name + "\"";
+                                                this.ExecuteSql(this.CustomizeSql(Sql));
                                         }
                                 }
                         }
@@ -471,9 +471,7 @@ namespace Lfx.Data
                                                 CurrentIndex.Name = "PRIMARY";
 
                                         if (newTableDef.Indexes.ContainsKey(CurrentIndex.Name) == false)
-                                                // FIXME: debería dropear índices que desconozco???
-                                                //this.DropIndex(CurrentIndex);
-                                                System.Console.WriteLine("DROP INDEX " + CurrentIndex.Name);
+                                                this.DropIndex(CurrentIndex);
                                 }
                         }
                 }
@@ -819,8 +817,7 @@ LEFT JOIN pg_attribute
                                                 Res.Add(NewKey.Name, NewKey);
                                                 break;
                                         default:
-                                                System.Console.WriteLine("GetConstraints: " + Constraint["CONSTRAINT_TYPE"].ToString().ToUpper() + " " + Constraint["CONSTRAINT_NAME"].ToString() + " no reconocida");
-                                                break;
+                                                throw new NotImplementedException("GetConstraints: " + Constraint["CONSTRAINT_TYPE"].ToString().ToUpper() + " " + Constraint["CONSTRAINT_NAME"].ToString() + " no reconocida");
                                 }
                         }
                         return Res;
@@ -1002,6 +999,9 @@ LEFT JOIN pg_attribute
                         if (this.IsOpen() == false)
                                 this.Open();
 
+                        if (this.Workspace.TraceMode)
+                                this.Workspace.DebugLog(this.Handle, insertCommand.ToString());
+
                         System.Data.IDbCommand TempCommand = this.GetCommand(insertCommand);
                         try {
                                 return TempCommand.ExecuteNonQuery();
@@ -1018,6 +1018,9 @@ LEFT JOIN pg_attribute
                 {
                         if (this.ReadOnly)
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
+
+                        if (this.Workspace.TraceMode)
+                                this.Workspace.DebugLog(this.Handle, sqlCommand);
 
                         // TODO: esto debería hacerlo no sólo en DebugMode
                         if (this.RequiresTransaction && m_InTransaction == false && Lfx.Workspace.Master.DebugMode)
@@ -1052,6 +1055,9 @@ LEFT JOIN pg_attribute
 
                         if (this.IsOpen() == false)
                                 this.Open();
+
+                        if (this.Workspace.TraceMode)
+                                this.Workspace.DebugLog(this.Handle, command.CommandText);
 
                         int Intentos = 3;
                         while (true) {
@@ -1119,6 +1125,9 @@ LEFT JOIN pg_attribute
 
                         if (this.IsOpen() == false)
                                 this.Open();
+
+                        if (this.Workspace.TraceMode)
+                                this.Workspace.DebugLog(this.Handle, selectCommand);
 
                         System.Data.IDbCommand Cmd = this.GetCommand(selectCommand);
                         int Intentos = 3;
@@ -1278,6 +1287,9 @@ LEFT JOIN pg_attribute
                 {
                         if (this.IsOpen() == false)
                                 this.Open();
+
+                        if (this.Workspace.TraceMode)
+                                this.Workspace.DebugLog(this.Handle, selectCommand);
 
                         System.Data.IDbDataAdapter Adaptador = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetAdapter(selectCommand, this.DbConnection);
                         using (System.Data.DataSet Lector = new System.Data.DataSet()) {

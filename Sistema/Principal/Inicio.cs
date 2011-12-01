@@ -278,6 +278,9 @@ namespace Lazaro.WinMain.Principal
                 {
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
+                        System.IO.StreamWriter StdOut = new System.IO.StreamWriter(Console.OpenStandardOutput());
+                        StdOut.AutoFlush = true;
+                        Console.SetOut(StdOut);
                         System.Environment.Exit(0);
                 }
 

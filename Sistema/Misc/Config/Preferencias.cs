@@ -103,7 +103,7 @@ namespace Lazaro.WinMain.Misc.Config
                                 EntradaEmpresaClaveTributaria.Text = "";
                         else
                                 EntradaEmpresaClaveTributaria.Text = Lbl.Sys.Config.Actual.Empresa.ClaveTributaria.ToString();
-			EntradaEmpresaSituacion.TextInt = this.Workspace.CurrentConfig.Empresa.SituacionTributaria;
+                        EntradaEmpresaSituacion.TextInt = Lbl.Sys.Config.Actual.Empresa.SituacionTributaria;
                         EntradaEmpresaEmail.Text = Lbl.Sys.Config.Actual.Empresa.Email;
                         EntradaEmpresaId.ValueInt = Lbl.Sys.Config.Actual.Empresa.Id;
 
@@ -164,7 +164,7 @@ namespace Lazaro.WinMain.Misc.Config
                                 Lbl.Sys.Config.Actual.Empresa.ClaveTributaria = new Lbl.Personas.Claves.Cuit(EntradaEmpresaClaveTributaria.Text);
                         else
                                 Lbl.Sys.Config.Actual.Empresa.ClaveTributaria = null;
-			this.Workspace.CurrentConfig.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
+                        Lbl.Sys.Config.Actual.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
                         Lbl.Sys.Config.Actual.Empresa.Email = EntradaEmpresaEmail.Text;
                         Lbl.Sys.Config.Actual.Empresa.Id = EntradaEmpresaId.ValueInt;
 
