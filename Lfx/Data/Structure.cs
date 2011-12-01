@@ -261,6 +261,9 @@ namespace Lfx.Data
 
                                         if (ColumnaXml.Attributes["lenght"] != null)
                                                 Columna.Lenght = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["lenght"].Value);
+                                        else if (Columna.FieldType == DbTypes.VarChar)
+                                                // La longitud predeterminada para los campos VarChar es de 200
+                                                Columna.Lenght = 200;
 
                                         if (ColumnaXml.Attributes["precision"] != null)
                                                 Columna.Precision = Lfx.Types.Parsing.ParseInt(ColumnaXml.Attributes["precision"].Value);
