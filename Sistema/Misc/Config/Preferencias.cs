@@ -231,7 +231,7 @@ namespace Lazaro.WinMain.Misc.Config
                 private void EntradaProvincia_TextChanged(object sender, System.EventArgs e)
                 {
                         if (EntradaProvincia.TextInt != 0)
-                                EntradaLocalidad.Filter = "parent IN (SELECT id_ciudad FROM ciudades WHERE nivel=1 AND parent=" + EntradaProvincia.TextInt.ToString() + ")";
+                                EntradaLocalidad.Filter = "id_provincia=" + EntradaProvincia.TextInt.ToString();
                         else
                                 EntradaLocalidad.Filter = "";
                 }

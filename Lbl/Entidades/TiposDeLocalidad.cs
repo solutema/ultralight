@@ -35,7 +35,6 @@ namespace Lbl.Entidades
         public enum TiposLocalidad
         {
                 Provincia = 0,
-                Departamento = 1,
                 Localidad = 2
         }
 }

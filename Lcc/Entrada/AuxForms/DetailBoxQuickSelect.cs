@@ -139,7 +139,7 @@ namespace Lcc.Entrada.AuxForms
                                 m_ExtraDetailFields = "num_doc,cuit,extra1";
 
                         if (m_Table == "ciudades" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
-                                m_ExtraDetailFields = "cp,(SELECT nombre FROM ciudades b WHERE b.id_ciudad=ciudades.parent)";
+                                m_ExtraDetailFields = "cp,(SELECT nombre FROM ciudades b WHERE b.id_ciudad=ciudades.id_provincia)";
 
                         if (m_ExtraDetailFields != null)
                                 CamposExtra = m_ExtraDetailFields.Length - m_ExtraDetailFields.Replace(",", "").Length + 1;

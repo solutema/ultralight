@@ -106,20 +106,20 @@ namespace Lbl.Entidades
                         }
                 }
 
-                public Localidad Parent
+                public Localidad Provincia
                 {
                         get
                         {
                                 if (m_Parent == null) {
-                                        if (this.Registro["parent"] != null)
-                                                m_Parent = new Localidad(this.Connection, this.GetFieldValue<int>("parent"));
+                                        if (this.Registro["id_provincia"] != null)
+                                                m_Parent = new Localidad(this.Connection, this.GetFieldValue<int>("id_provincia"));
                                 }
                                 return m_Parent;
                         }
                         set
                         {
                                 m_Parent = value;
-                                this.SetFieldValue("parent", value);
+                                this.SetFieldValue("id_provincia", value);
                         }
                 }
 
@@ -129,8 +129,8 @@ namespace Lbl.Entidades
                         {
                                 if (this.GetFieldValue<int>("iva") == 1)
                                         return Impuestos.SituacionIva.Exento;
-                                else if (this.Parent != null)
-                                        return this.Parent.Iva;
+                                else if (this.Provincia != null)
+                                        return this.Provincia.Iva;
                                 else
                                         return Impuestos.SituacionIva.Predeterminado;
                         }
@@ -140,66 +140,6 @@ namespace Lbl.Entidades
                         }
                 }
 
-                public Localidad Departamento
-                {
-                        get
-                        {
-                                switch (this.TipoLocalidad) {
-                                        case Entidades.TiposLocalidad.Provincia:
-                                                return null;
-                                        case Entidades.TiposLocalidad.Departamento:
-                                                return this;
-                                        case Entidades.TiposLocalidad.Localidad:
-                                                return this.Parent;
-                                        default:
-                                                throw new InvalidProgramException("Tipo de Localidad desconocido");
-                                }
-                        }
-                        set
-                        {
-                                switch (this.TipoLocalidad) {
-                                        case Entidades.TiposLocalidad.Provincia:
-                                                throw new InvalidOperationException("No se puede establecer el Departamento de una Provincia");
-                                        case Entidades.TiposLocalidad.Departamento:
-                                                throw new InvalidOperationException("No se puede establecer el Departamento de un Departamento");
-                                        case Entidades.TiposLocalidad.Localidad:
-                                                this.Parent = value;
-                                                break;
-                                }
-                        }
-                }
-
-                public Localidad Provincia
-                {
-                        get
-                        {
-                                switch (this.TipoLocalidad) {
-                                        case Entidades.TiposLocalidad.Provincia:
-                                                return this;
-                                        case Entidades.TiposLocalidad.Departamento:
-                                                return this.Parent;
-                                        case Entidades.TiposLocalidad.Localidad:
-                                                if (this.Parent == null)
-                                                        return null;
-                                                else
-                                                        return this.Parent.Parent;
-                                        default:
-                                                throw new InvalidProgramException("Tipo de Localidad desconocido");
-                                }
-                        }
-                        set
-                        {
-                                switch (this.TipoLocalidad) {
-                                        case Entidades.TiposLocalidad.Provincia:
-                                                throw new InvalidOperationException("No se puede establecer la Provincia de una Provincia");
-                                        case Entidades.TiposLocalidad.Departamento:
-                                                this.Parent = value;
-                                                break;
-                                        case Entidades.TiposLocalidad.Localidad:
-                                                throw new InvalidOperationException("No se puede establecer la Provincia de una Localidad directamente, debe establecer el Departamento");
-                                }
-                        }
-                }
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
@@ -215,12 +155,12 @@ namespace Lbl.Entidades
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
                         Comando.Fields.AddWithValue("cp", this.CodigoPostal);
-                        if (this.Parent == null) {
-                                Comando.Fields.AddWithValue("parent", null);
-                                Comando.Fields.AddWithValue("nivel", 0);
+                        if (this.Provincia == null) {
+                                Comando.Fields.AddWithValue("id_provincia", null);
+                                Comando.Fields.AddWithValue("nivel", (int)(TiposLocalidad.Provincia));
                         } else {
-                                Comando.Fields.AddWithValue("parent", this.Parent.Id);
-                                Comando.Fields.AddWithValue("nivel", this.Parent.Nivel + 1);
+                                Comando.Fields.AddWithValue("id_provincia", this.Provincia.Id);
+                                Comando.Fields.AddWithValue("nivel", (int)(TiposLocalidad.Localidad));
                         }
                         Comando.Fields.AddWithValue("iva", (int)this.Iva);
 

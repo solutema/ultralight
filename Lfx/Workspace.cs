@@ -328,7 +328,7 @@ namespace Lfx
                 /// </summary>
                 public Lfx.Types.OperationResult Prepare()
                 {
-                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Preparando Almacén de Datos", "Se están a creando las estructuras de datos y se va realizar una carga inicial de datos.");
+                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Preparando Almacén de Datos", "Se están creando las estructuras de datos y se va realizar una carga inicial de datos.");
                         Progreso.Modal = true;
                         Progreso.Begin();
 

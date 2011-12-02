@@ -150,6 +150,7 @@
     <Column name="id_articulo" datatype="Integer" nullable="0" />
     <Column name="id_item" datatype="Integer" nullable="0" />
     <Column name="cantidad" datatype="Numeric" nullable="0" lenght="14" precision="4" />
+    <Index table="articulos_recetas" name="articulos_recetas_id_articulo" columns="id_articulo" unique="0" primary="0" />
   </Table>
   <Constraint name="articulos_recetas_id_articulo" table="articulos_recetas" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
 
@@ -287,7 +288,9 @@
     <Column name="id_ciudad" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" label="Nombre" required="1" nullable="0" lenght="200" />
     <Column name="cp" inputtype="Text" label="Código Postal" nullable="0" lenght="50" />
-    <Column name="parent" inputtype="Relation" section="Otros" label="Provincia" nullable="1"
+    <Column name="parent" inputtype="Relation" section="Otros" label="Parent" nullable="1"
+            relation_table="ciudades" relation_key="id_ciudad" relation_detail="nombre" />
+    <Column name="id_provincia" inputtype="Relation" section="Otros" label="Provincia" nullable="1"
             relation_table="ciudades" relation_key="id_ciudad" relation_detail="nombre" />
     <Column name="ca" datatype="Integer" nullable="0" />
     <Column name="nivel" datatype="SmallInt" nullable="0" default="0" />

@@ -98,4 +98,7 @@ UPDATE sys_log SET comando='Save' WHERE comando='EDIT';
 
 UPDATE sys_plantillas SET codigo='Lbl.Comprobantes.ComprobanteConArticulos' WHERE codigo='*';
 
+UPDATE ciudades a SET id_provincia=(SELECT parent FROM (SELECT id_ciudad, parent, nivel FROM ciudades WHERE nivel=1) AS X WHERE id_ciudad=a.parent) WHERE id_provincia IS NULL AND nivel=2;
+DELETE FROM ciudades WHERE nivel=1;
+
 SET FOREIGN_KEY_CHECKS=1;

@@ -64,7 +64,7 @@ namespace Lfc.Ciudades
                                 EntradaParent.TabStop = false;
                         }
                         EntradaIva.TextKey = ((int)(Localidad.Iva)).ToString();
-                        EntradaParent.Elemento = Localidad.Parent;
+                        EntradaParent.Elemento = Localidad.Provincia;
 
                         base.ActualizarControl();
                 }
@@ -75,7 +75,7 @@ namespace Lfc.Ciudades
 
                         Res.Nombre = EntradaNombre.Text;
                         Res.CodigoPostal = EntradaCp.Text;
-                        Res.Parent = EntradaParent.Elemento as Lbl.Entidades.Localidad;
+                        Res.Provincia = EntradaParent.Elemento as Lbl.Entidades.Localidad;
                         Res.Iva = (Lbl.Impuestos.SituacionIva)(Lfx.Types.Parsing.ParseInt(EntradaIva.TextKey));
 
                         base.ActualizarElemento();

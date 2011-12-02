@@ -100,8 +100,11 @@ namespace Lfx.Data
                         if (object.ReferenceEquals(f1, null) || object.ReferenceEquals(f2, null))
                                 return false;
 
-                        return f1.TableName == f2.TableName
-                                && f1.ToString() == f2.ToString();
+                        return string.Compare(f1.TableName, f2.TableName) == 0
+                                && f1.Unique == f2.Unique
+                                && f1.Primary == f2.Primary
+                                && string.Compare(f1.Name, f2.Name) == 0
+                                && string.Compare(string.Join(",", f1.Columns), string.Join(",", f2.Columns)) == 0;
                 }
 
                 public static bool operator !=(IndexDefinition f1, IndexDefinition f2)

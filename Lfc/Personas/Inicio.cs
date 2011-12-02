@@ -37,7 +37,7 @@ namespace Lfc.Personas
 {
         public partial class Inicio : Lfc.FormularioListado
         {
-                private int m_Tipo;
+                private int m_Tipo = 1;
 
                 public Lbl.Personas.Grupo Grupo { get; set; }
                 public Lbl.Personas.Grupo SubGrupo { get; set; }
@@ -84,12 +84,12 @@ namespace Lfc.Personas
 			        },
                                 Filters = new Lazaro.Pres.Filters.FilterCollection()
                                 {
-                                        new Lazaro.Pres.Filters.SetFilter("Categoría", "personas.tipo", new string[] { "Clientes|1", "Proveedores|2", "Usuarios del sistema|4" }, "1"),
+                                        new Lazaro.Pres.Filters.SetFilter("Categoría", "personas.tipo", new string[] { "Todos|0", "Clientes|1", "Proveedores|2", "Usuarios del sistema|4" }, "1"),
                                         new Lazaro.Pres.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
                                         new Lazaro.Pres.Filters.RelationFilter("Sub-grupo", new Lfx.Data.Relation("personas.id_subgrupo", "personas_grupos", "id_grupo")),
                                         new Lazaro.Pres.Filters.RelationFilter("Situación", new Lfx.Data.Relation("personas.id_situacion", "situaciones", "id_situacion")),
                                         new Lazaro.Pres.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("nivel", 2)),
-                                        new Lazaro.Pres.Filters.SetFilter("Estado", "personas.estado", new string[] {"Todos|-1", "Activos|1", "Inactivos|0"}, "-1"),
+                                        new Lazaro.Pres.Filters.SetFilter("Estado", "personas.estado", new string[] {"Todos|-1", "Activos|1", "Inactivos|0"}, "1"),
                                         new Lazaro.Pres.Filters.SetFilter("Estado de Crédito", "personas.estadocredito", new string[] { "Cualquiera|-1", "Normal|0", "En plan de pagos|5", "Suspendido|10" }, "-1"),
                                         new Lazaro.Pres.Filters.DateRangeFilter("Fecha de Alta", "personas.fechaalta", new Lfx.Types.DateRange("*")),
                                         new Lazaro.Pres.Filters.DateRangeFilter("Fecha de Baja", "personas.fechabaja", new Lfx.Types.DateRange("*"))
