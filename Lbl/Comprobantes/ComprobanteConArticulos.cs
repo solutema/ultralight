@@ -291,7 +291,9 @@ namespace Lbl.Comprobantes
                                 return Res;
                         } else if (this.PV != 0) {
                                 // Si base.ObtenerImpresora() no pudo encontrar nada, busco en el punto de venta
-                                int IdPv = this.Connection.FieldInt("SELECT id_pv FROM pvs WHERE numero=" + this.PV.ToString());
+                                int IdPv = 0;
+                                if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(this.PV))
+                                        IdPv = Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[this.PV].Id;
                                 if (IdPv == 0)
                                         throw new InvalidOperationException("No existe el Punto de Venta " + this.PV.ToString());
                                 PuntoDeVenta Pun = new PuntoDeVenta(this.Connection, IdPv);
@@ -324,7 +326,10 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return this.RedondearImporte(this.TotalSinRedondeo);
+                                if (this.Existe && this.Modificado == false)
+                                        return this.GetFieldValue<decimal>("total");
+                                else
+                                        return this.RedondearImporte(this.TotalSinRedondeo);
                         }
                 }
 
@@ -460,7 +465,6 @@ namespace Lbl.Comprobantes
 
                 public override void OnLoad()
                 {
-                        this.m_ArticulosOriginales = this.Articulos.Clone();
                         this.m_SituacionDestinoOriginal = this.SituacionDestino;
                         
                         base.OnLoad();
@@ -479,6 +483,7 @@ namespace Lbl.Comprobantes
                                                         m_Articulos.Add(DetArt);
                                                 }
                                         }
+                                        this.m_ArticulosOriginales = this.Articulos.Clone();
                                 }
                                 return m_Articulos;
                         }

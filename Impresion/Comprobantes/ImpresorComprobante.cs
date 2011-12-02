@@ -63,14 +63,23 @@ namespace Lazaro.Impresion.Comprobantes
                         }
                 }
 
+
                 protected override Lbl.Impresion.Plantilla ObtenerPlantilla()
 		{
-                        Lbl.Impresion.Plantilla Res = new Lbl.Impresion.Plantilla(this.Connection, this.Comprobante.Tipo.Nomenclatura);
-                        if (Res == null)
-                                Res = base.ObtenerPlantilla();
-
-                        return Res;
+                        if (Lbl.Impresion.Plantilla.TodasPorCodigo.ContainsKey(this.Comprobante.Tipo.Nomenclatura)) {
+                                // Busco una plantilla para el tipo exacto
+                                return Lbl.Impresion.Plantilla.TodasPorCodigo[this.Comprobante.Tipo.Nomenclatura];
+                        } else if (this.Comprobante.Tipo.EsFacturaNCoND && Lbl.Impresion.Plantilla.TodasPorCodigo.ContainsKey("F" + this.Comprobante.Tipo.Letra)) {
+                                // En caso de NC y ND, pruebo utilizando la plantilla de facturas
+                                return Lbl.Impresion.Plantilla.TodasPorCodigo[this.Comprobante.Tipo.Nomenclatura];
+                        } else if (this.Comprobante.Tipo.EsFacturaNCoND && Lbl.Impresion.Plantilla.TodasPorCodigo.ContainsKey("FA")) {
+                                // En caso de facturas B, C, E y M, pruebo utilizando la plantilla de facturas A
+                                return Lbl.Impresion.Plantilla.TodasPorCodigo["FA"];
+                        } else {
+                                return base.ObtenerPlantilla();
+                        }
 		}
+
 
                 protected override Lbl.Impresion.Impresora ObtenerImpresora()
                 {

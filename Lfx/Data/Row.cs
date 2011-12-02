@@ -37,13 +37,26 @@ namespace Lfx.Data
 {
 	public class Row
 	{
-		public bool IsNew = true, IsModified = false;
-		public FieldCollection Fields = null;
-		public System.Data.DataTable DataTable;
-                public Lfx.Data.Table Table;
+                public bool IsNew { get; set; }
+                public bool m_IsModified;
+                public FieldCollection Fields { get; set; }
+                public System.Data.DataTable DataTable { get; set; }
+                public Lfx.Data.Table Table { get; set; }
+
+                public bool IsModified {
+                        get
+                        {
+                                return m_IsModified;
+                        }
+                        set
+                        {
+                                m_IsModified = value;
+                        }
+                }
 
 		public Row()
 		{
+                        this.IsNew = true;
                         if (Fields == null)
                                 Fields = new FieldCollection();
 		}
@@ -82,7 +95,7 @@ namespace Lfx.Data
 			{
 				if(Fields == null)
 					Fields = new FieldCollection();
-                                if (Fields[fieldName].Value != value)
+                                if (Fields[fieldName].Value != value && this.IsModified == false)
                                         this.IsModified = true;
 				Fields[fieldName].Value = value;
 			}

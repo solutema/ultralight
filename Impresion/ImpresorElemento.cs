@@ -59,12 +59,10 @@ namespace Lazaro.Impresion
 
                 protected virtual Lbl.Impresion.Plantilla ObtenerPlantilla(Type tipoElemento)
                 {
-                        qGen.Select SelPla = new qGen.Select("sys_plantillas");
-                        SelPla.WhereClause = new qGen.Where("codigo", tipoElemento.ToString());
-                        Lfx.Data.Row Rw = this.Connection.FirstRowFromSelect(SelPla);
-                        if (Rw != null) {
-                                return new Lbl.Impresion.Plantilla(this.Connection, Rw);
-                        } else if (tipoElemento.BaseType != null) {
+                        string nombreTipo = tipoElemento.ToString();
+                        if (Lbl.Impresion.Plantilla.TodasPorCodigo.ContainsKey(nombreTipo))
+                                return Lbl.Impresion.Plantilla.TodasPorCodigo[nombreTipo];
+                        else if (tipoElemento.BaseType != null) {
                                 return this.ObtenerPlantilla(tipoElemento.BaseType);
                         } else {
                                 Lbl.Impresion.Plantilla Res = new Lbl.Impresion.Plantilla(this.Connection);

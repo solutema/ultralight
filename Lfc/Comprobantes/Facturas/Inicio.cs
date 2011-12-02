@@ -47,5 +47,11 @@ namespace Lfc.Comprobantes.Facturas
                 {
                         this.Definicion.ElementoTipo = typeof(Lbl.Comprobantes.Factura);
                 }
+
+
+                public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
+                {
+                        return base.OnDelete(itemIds);
+                }
         }
 }

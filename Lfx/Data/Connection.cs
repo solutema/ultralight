@@ -1228,6 +1228,7 @@ LEFT JOIN pg_attribute
                                                         else
                                                                 Res[Rdr.GetName(i)] = Rdr[i];
                                                 }
+                                                Res.IsModified = false;
                                         }
                                         Rdr.Close();
                                         return Res;
@@ -1398,7 +1399,7 @@ LEFT JOIN pg_attribute
                                 this.Open();
 
                         if (m_InTransaction)
-                                throw new InvalidOperationException("Ya se inició una transacción");
+                                throw new InvalidOperationException(this.Name + ": Ya se inició una transacción");
                         m_InTransaction = true;
 
                         return new Transaction(this, il);

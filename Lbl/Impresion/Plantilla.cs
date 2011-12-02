@@ -53,7 +53,7 @@ namespace Lbl.Impresion
                 public Plantilla(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }
 
-                public Plantilla(Lfx.Data.Connection dataBase, System.Type tipoElemento)
+                /* public Plantilla(Lfx.Data.Connection dataBase, System.Type tipoElemento)
                         : this(dataBase, tipoElemento.ToString()) { }
 
                 public Plantilla(Lfx.Data.Connection dataBase, string tipoComprob)
@@ -108,7 +108,7 @@ namespace Lbl.Impresion
                                 m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='*'");
 
                         this.Cargar();
-                }
+                } */
 
 
                 public override string TablaDatos
@@ -562,6 +562,24 @@ namespace Lbl.Impresion
                         }
 
                         base.OnLoad();
+                }
+
+
+                private static Dictionary<string, Plantilla> m_TodasPorCodigo = null;
+                public static Dictionary<string, Plantilla> TodasPorCodigo
+                {
+                        get
+                        {
+                                if (m_TodasPorCodigo == null) {
+                                        m_TodasPorCodigo = new Dictionary<string, Plantilla>();
+                                        qGen.Select Sel = new qGen.Select("sys_plantillas");
+                                        System.Data.DataTable Tabla = Lfx.Workspace.Master.MasterConnection.Select(Sel);
+                                        foreach (System.Data.DataRow Reg in Tabla.Rows) {
+                                                m_TodasPorCodigo.Add(System.Convert.ToString(Reg["codigo"]), new Plantilla(Lfx.Workspace.Master.MasterConnection, (Lfx.Data.Row)Reg));
+                                        }
+                                }
+                                return m_TodasPorCodigo;
+                        }
                 }
 	}
 }

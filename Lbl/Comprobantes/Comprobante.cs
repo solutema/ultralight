@@ -61,7 +61,7 @@ namespace Lbl.Comprobantes
 			get
 			{
                                 if(m_Tipo == null && this.GetFieldValue<string>("tipo_fac") != null)
-                                        Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[this.GetFieldValue<string>("tipo_fac")];
+                                        m_Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[this.GetFieldValue<string>("tipo_fac")];
                                 return m_Tipo;
 			}
                         set

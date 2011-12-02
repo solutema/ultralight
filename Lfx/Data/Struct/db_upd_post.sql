@@ -96,4 +96,6 @@ UPDATE sys_log SET comando='Save' WHERE comando='CREATE';
 UPDATE sys_log SET comando='Quit' WHERE comando='QUIT';
 UPDATE sys_log SET comando='Save' WHERE comando='EDIT';
 
+UPDATE sys_plantillas SET codigo='Lbl.Comprobantes.ComprobanteConArticulos' WHERE codigo='*';
+
 SET FOREIGN_KEY_CHECKS=1;

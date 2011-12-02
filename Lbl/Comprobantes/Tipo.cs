@@ -206,7 +206,7 @@ namespace Lbl.Comprobantes
                 }
 
                 /// <summary>
-                /// Devuelve sólamente el tipo (F, NC, ND, sin letra A, B, etc.)
+                /// Devuelve sólamente el tipo (F, NC, ND, sin letra A, B, etc.).
                 /// </summary>
                 public string TipoBase
                 {
@@ -225,7 +225,7 @@ namespace Lbl.Comprobantes
 
 
                 /// <summary>
-                /// La nomenclatura del tipo de comprobante (A, B, NCA, NDE, etc.)
+                /// La nomenclatura del tipo de comprobante (A, B, NCA, NDE, etc.). Está formada por el TipoBase y la Letra.
                 /// </summary>
                 public string Nomenclatura
                 {

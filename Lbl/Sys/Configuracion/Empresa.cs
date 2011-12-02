@@ -110,7 +110,13 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Empresa.RazonSocial", Nombre);
+                                string Predet;
+                                if (string.Compare(Nombre, "Empresa Sin Nombre") == 0)
+                                        Predet = "Compañía sin Nombre";
+                                else
+                                        Predet = Nombre;
+
+                                return this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Empresa.RazonSocial", Predet);
                         }
                         set
                         {

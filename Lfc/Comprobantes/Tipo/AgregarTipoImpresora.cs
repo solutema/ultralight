@@ -63,7 +63,10 @@ namespace Lfc.Comprobantes.Tipo
 
                                 int Pv = Lfx.Types.Parsing.ParseInt(EntradaPuntoDeVenta.Text);
                                 if (Pv > 0) {
-                                        int IdPv = this.Connection.FieldInt("SELECT id_pv FROM pvs WHERE numero=" + Pv.ToString());
+                                        
+                                        int IdPv = 0;
+                                        if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(Pv))
+                                                IdPv = Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[Pv].Id;
                                         if (IdPv == 0)
                                                 Res.PuntoDeVenta = null;
                                         else

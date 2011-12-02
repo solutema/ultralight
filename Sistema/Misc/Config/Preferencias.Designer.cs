@@ -62,14 +62,16 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaNombre = new Lui.Forms.TextBox();
                         this.Label17 = new Lui.Forms.Label();
                         this.FrmGeneral = new Lui.Forms.Frame();
+                        this.EntradaLocalidad = new Lcc.Entrada.CodigoDetalle();
+                        this.label32 = new Lui.Forms.Label();
                         this.EntradaProvincia = new Lcc.Entrada.CodigoDetalle();
                         this.label31 = new Lui.Forms.Label();
                         this.EntradaEmpresaRazonSocial = new Lui.Forms.TextBox();
-                        this.EntradaEmpresaId = new Lui.Forms.TextBox();
                         this.EntradaEmpresaEmail = new Lui.Forms.TextBox();
+                        this.EntradaEmpresaId = new Lui.Forms.TextBox();
                         this.label1 = new Lui.Forms.Label();
-                        this.label2 = new Lui.Forms.Label();
                         this.label28 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.EntradaActualizaciones = new Lui.Forms.ComboBox();
                         this.label30 = new Lui.Forms.Label();
                         this.EntradaAislacion = new Lui.Forms.ComboBox();
@@ -118,8 +120,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaPVR = new Lui.Forms.TextBox();
                         this.label12 = new Lui.Forms.Label();
                         this.FrmAvanzado = new Lui.Forms.Frame();
-                        this.EntradaLocalidad = new Lcc.Entrada.CodigoDetalle();
-                        this.label32 = new Lui.Forms.Label();
                         this.FrmGeneral.SuspendLayout();
                         this.FrmArticulos.SuspendLayout();
                         this.FrmComprobantes.SuspendLayout();
@@ -129,6 +129,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // BotonAceptar
                         // 
                         this.BotonAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonAceptar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAceptar.Image = null;
                         this.BotonAceptar.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -146,6 +147,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.CancelCommandButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -166,6 +168,7 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEmpresaSituacion.AutoNav = true;
                         this.EntradaEmpresaSituacion.AutoTab = true;
+                        this.EntradaEmpresaSituacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaSituacion.CanCreate = true;
                         this.EntradaEmpresaSituacion.DataTextField = "nombre";
                         this.EntradaEmpresaSituacion.DataValueField = "id_situacion";
@@ -200,6 +203,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaEmpresaClaveTributaria.AutoNav = true;
                         this.EntradaEmpresaClaveTributaria.AutoTab = true;
+                        this.EntradaEmpresaClaveTributaria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaClaveTributaria.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaClaveTributaria.DecimalPlaces = -1;
                         this.EntradaEmpresaClaveTributaria.FieldName = null;
@@ -232,6 +236,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaEmpresaNombre.AutoNav = true;
                         this.EntradaEmpresaNombre.AutoTab = true;
+                        this.EntradaEmpresaNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaNombre.DecimalPlaces = -1;
                         this.EntradaEmpresaNombre.FieldName = null;
@@ -265,6 +270,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+                        this.FrmGeneral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.FrmGeneral.Controls.Add(this.EntradaLocalidad);
                         this.FrmGeneral.Controls.Add(this.label32);
                         this.FrmGeneral.Controls.Add(this.EntradaProvincia);
@@ -290,12 +296,50 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmGeneral.TabIndex = 0;
                         this.FrmGeneral.Text = "Datos de la Empresa";
                         // 
+                        // EntradaLocalidad
+                        // 
+                        this.EntradaLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaLocalidad.AutoNav = true;
+                        this.EntradaLocalidad.AutoTab = true;
+                        this.EntradaLocalidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaLocalidad.CanCreate = true;
+                        this.EntradaLocalidad.DataTextField = "nombre";
+                        this.EntradaLocalidad.DataValueField = "id_ciudad";
+                        this.EntradaLocalidad.ExtraDetailFields = "";
+                        this.EntradaLocalidad.FieldName = null;
+                        this.EntradaLocalidad.Filter = "nivel=2";
+                        this.EntradaLocalidad.FreeTextCode = "";
+                        this.EntradaLocalidad.Location = new System.Drawing.Point(192, 216);
+                        this.EntradaLocalidad.MaxLength = 200;
+                        this.EntradaLocalidad.Name = "EntradaLocalidad";
+                        this.EntradaLocalidad.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaLocalidad.PlaceholderText = null;
+                        this.EntradaLocalidad.ReadOnly = false;
+                        this.EntradaLocalidad.Required = true;
+                        this.EntradaLocalidad.Size = new System.Drawing.Size(352, 24);
+                        this.EntradaLocalidad.TabIndex = 12;
+                        this.EntradaLocalidad.Table = "ciudades";
+                        this.EntradaLocalidad.Text = "0";
+                        this.EntradaLocalidad.TextDetail = "";
+                        // 
+                        // label32
+                        // 
+                        this.label32.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label32.Location = new System.Drawing.Point(32, 216);
+                        this.label32.Name = "label32";
+                        this.label32.Size = new System.Drawing.Size(160, 24);
+                        this.label32.TabIndex = 11;
+                        this.label32.Text = "Localidad";
+                        this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // EntradaProvincia
                         // 
                         this.EntradaProvincia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProvincia.AutoNav = true;
                         this.EntradaProvincia.AutoTab = true;
+                        this.EntradaProvincia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaProvincia.CanCreate = true;
                         this.EntradaProvincia.DataTextField = "nombre";
                         this.EntradaProvincia.DataValueField = "id_ciudad";
@@ -331,6 +375,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaEmpresaRazonSocial.AutoNav = true;
                         this.EntradaEmpresaRazonSocial.AutoTab = true;
+                        this.EntradaEmpresaRazonSocial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaRazonSocial.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaRazonSocial.DecimalPlaces = -1;
                         this.EntradaEmpresaRazonSocial.FieldName = null;
@@ -349,10 +394,34 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaRazonSocial.Sufijo = "";
                         this.EntradaEmpresaRazonSocial.TabIndex = 2;
                         // 
+                        // EntradaEmpresaEmail
+                        // 
+                        this.EntradaEmpresaEmail.AutoNav = true;
+                        this.EntradaEmpresaEmail.AutoTab = true;
+                        this.EntradaEmpresaEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaEmpresaEmail.DataType = Lui.Forms.DataTypes.FreeText;
+                        this.EntradaEmpresaEmail.DecimalPlaces = -1;
+                        this.EntradaEmpresaEmail.FieldName = null;
+                        this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.LowerCase;
+                        this.EntradaEmpresaEmail.Location = new System.Drawing.Point(192, 160);
+                        this.EntradaEmpresaEmail.MaxLength = 200;
+                        this.EntradaEmpresaEmail.MultiLine = false;
+                        this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
+                        this.EntradaEmpresaEmail.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEmpresaEmail.PasswordChar = '\0';
+                        this.EntradaEmpresaEmail.PlaceholderText = null;
+                        this.EntradaEmpresaEmail.Prefijo = "";
+                        this.EntradaEmpresaEmail.ReadOnly = false;
+                        this.EntradaEmpresaEmail.SelectOnFocus = false;
+                        this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
+                        this.EntradaEmpresaEmail.Sufijo = "";
+                        this.EntradaEmpresaEmail.TabIndex = 8;
+                        // 
                         // EntradaEmpresaId
                         // 
                         this.EntradaEmpresaId.AutoNav = true;
                         this.EntradaEmpresaId.AutoTab = true;
+                        this.EntradaEmpresaId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaId.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaEmpresaId.DecimalPlaces = -1;
                         this.EntradaEmpresaId.FieldName = null;
@@ -372,28 +441,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaId.TabIndex = 14;
                         this.EntradaEmpresaId.Text = "0";
                         // 
-                        // EntradaEmpresaEmail
-                        // 
-                        this.EntradaEmpresaEmail.AutoNav = true;
-                        this.EntradaEmpresaEmail.AutoTab = true;
-                        this.EntradaEmpresaEmail.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaEmpresaEmail.DecimalPlaces = -1;
-                        this.EntradaEmpresaEmail.FieldName = null;
-                        this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.LowerCase;
-                        this.EntradaEmpresaEmail.Location = new System.Drawing.Point(192, 160);
-                        this.EntradaEmpresaEmail.MaxLength = 200;
-                        this.EntradaEmpresaEmail.MultiLine = false;
-                        this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
-                        this.EntradaEmpresaEmail.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmpresaEmail.PasswordChar = '\0';
-                        this.EntradaEmpresaEmail.PlaceholderText = null;
-                        this.EntradaEmpresaEmail.Prefijo = "";
-                        this.EntradaEmpresaEmail.ReadOnly = false;
-                        this.EntradaEmpresaEmail.SelectOnFocus = false;
-                        this.EntradaEmpresaEmail.Size = new System.Drawing.Size(388, 24);
-                        this.EntradaEmpresaEmail.Sufijo = "";
-                        this.EntradaEmpresaEmail.TabIndex = 8;
-                        // 
                         // label1
                         // 
                         this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
@@ -403,16 +450,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.label1.TabIndex = 1;
                         this.label1.Text = "Razón social";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // label2
-                        // 
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label2.Location = new System.Drawing.Point(32, 244);
-                        this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(160, 24);
-                        this.label2.TabIndex = 13;
-                        this.label2.Text = "Id de empresa";
-                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label28
                         // 
@@ -424,12 +461,23 @@ namespace Lazaro.WinMain.Misc.Config
                         this.label28.Text = "Correo electrónico";
                         this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // label2
+                        // 
+                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.Location = new System.Drawing.Point(32, 244);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(160, 24);
+                        this.label2.TabIndex = 13;
+                        this.label2.Text = "Id de empresa";
+                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // EntradaActualizaciones
                         // 
                         this.EntradaActualizaciones.AlwaysExpanded = true;
                         this.EntradaActualizaciones.AutoNav = true;
                         this.EntradaActualizaciones.AutoSize = true;
                         this.EntradaActualizaciones.AutoTab = true;
+                        this.EntradaActualizaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaActualizaciones.FieldName = null;
                         this.EntradaActualizaciones.Location = new System.Drawing.Point(248, 220);
                         this.EntradaActualizaciones.MaxLength = 32767;
@@ -461,6 +509,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaAislacion.AutoNav = true;
                         this.EntradaAislacion.AutoSize = true;
                         this.EntradaAislacion.AutoTab = true;
+                        this.EntradaAislacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaAislacion.FieldName = null;
                         this.EntradaAislacion.Location = new System.Drawing.Point(248, 176);
                         this.EntradaAislacion.MaxLength = 32767;
@@ -481,6 +530,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaModoPantalla.AutoNav = true;
                         this.EntradaModoPantalla.AutoSize = true;
                         this.EntradaModoPantalla.AutoTab = true;
+                        this.EntradaModoPantalla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaModoPantalla.FieldName = null;
                         this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 88);
                         this.EntradaModoPantalla.MaxLength = 32767;
@@ -504,6 +554,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaBackup.AutoNav = true;
                         this.EntradaBackup.AutoSize = true;
                         this.EntradaBackup.AutoTab = true;
+                        this.EntradaBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaBackup.FieldName = null;
                         this.EntradaBackup.Location = new System.Drawing.Point(248, 32);
                         this.EntradaBackup.MaxLength = 32767;
@@ -554,6 +605,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaStockDecimales.AlwaysExpanded = false;
                         this.EntradaStockDecimales.AutoNav = true;
                         this.EntradaStockDecimales.AutoTab = true;
+                        this.EntradaStockDecimales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaStockDecimales.FieldName = null;
                         this.EntradaStockDecimales.Location = new System.Drawing.Point(192, 92);
                         this.EntradaStockDecimales.MaxLength = 32767;
@@ -597,6 +649,7 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaStockDepositoPredet.AutoNav = true;
                         this.EntradaStockDepositoPredet.AutoTab = true;
+                        this.EntradaStockDepositoPredet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaStockDepositoPredet.CanCreate = true;
                         this.EntradaStockDepositoPredet.DataTextField = "nombre";
                         this.EntradaStockDepositoPredet.DataValueField = "id_situacion";
@@ -622,6 +675,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaStockMultideposito.AlwaysExpanded = false;
                         this.EntradaStockMultideposito.AutoNav = true;
                         this.EntradaStockMultideposito.AutoTab = true;
+                        this.EntradaStockMultideposito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaStockMultideposito.FieldName = null;
                         this.EntradaStockMultideposito.Location = new System.Drawing.Point(192, 64);
                         this.EntradaStockMultideposito.MaxLength = 32767;
@@ -651,6 +705,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaArticulosCodigoPredet.AlwaysExpanded = false;
                         this.EntradaArticulosCodigoPredet.AutoNav = true;
                         this.EntradaArticulosCodigoPredet.AutoTab = true;
+                        this.EntradaArticulosCodigoPredet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaArticulosCodigoPredet.FieldName = null;
                         this.EntradaArticulosCodigoPredet.Location = new System.Drawing.Point(192, 36);
                         this.EntradaArticulosCodigoPredet.MaxLength = 32767;
@@ -682,6 +737,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaPV.AutoNav = true;
                         this.EntradaPV.AutoTab = true;
+                        this.EntradaPV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.FieldName = null;
@@ -715,6 +771,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaPVND.AutoNav = true;
                         this.EntradaPVND.AutoTab = true;
+                        this.EntradaPVND.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVND.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVND.DecimalPlaces = -1;
                         this.EntradaPVND.FieldName = null;
@@ -768,6 +825,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaPVNC.AutoNav = true;
                         this.EntradaPVNC.AutoTab = true;
+                        this.EntradaPVNC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVNC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVNC.DecimalPlaces = -1;
                         this.EntradaPVNC.FieldName = null;
@@ -791,6 +849,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaPVABC.AutoNav = true;
                         this.EntradaPVABC.AutoTab = true;
+                        this.EntradaPVABC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVABC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVABC.DecimalPlaces = -1;
                         this.EntradaPVABC.FieldName = null;
@@ -856,6 +915,7 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaClientePredet.AutoNav = true;
                         this.EntradaClientePredet.AutoTab = true;
+                        this.EntradaClientePredet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaClientePredet.CanCreate = true;
                         this.EntradaClientePredet.DataTextField = "nombre_visible";
                         this.EntradaClientePredet.DataValueField = "id_persona";
@@ -892,6 +952,7 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaPagoPredet.AutoNav = true;
                         this.EntradaFormaPagoPredet.AutoTab = true;
+                        this.EntradaFormaPagoPredet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaFormaPagoPredet.CanCreate = true;
                         this.EntradaFormaPagoPredet.DataTextField = "nombre";
                         this.EntradaFormaPagoPredet.DataValueField = "id_formapago";
@@ -915,6 +976,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // BotonSiguiente
                         // 
                         this.BotonSiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonSiguiente.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonSiguiente.Image = null;
                         this.BotonSiguiente.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -934,6 +996,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+                        this.FrmArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.FrmArticulos.Controls.Add(this.label26);
                         this.FrmArticulos.Controls.Add(this.EntradaStockDepositoPredetSuc);
                         this.FrmArticulos.Controls.Add(this.EntradaStockDecimales);
@@ -971,6 +1034,7 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaStockDepositoPredetSuc.AutoNav = true;
                         this.EntradaStockDepositoPredetSuc.AutoTab = true;
+                        this.EntradaStockDepositoPredetSuc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaStockDepositoPredetSuc.CanCreate = true;
                         this.EntradaStockDepositoPredetSuc.DataTextField = "nombre";
                         this.EntradaStockDepositoPredetSuc.DataValueField = "id_situacion";
@@ -996,6 +1060,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmComprobantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+                        this.FrmComprobantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.FrmComprobantes.Controls.Add(this.EntradaPVRC);
                         this.FrmComprobantes.Controls.Add(this.label3);
                         this.FrmComprobantes.Controls.Add(this.label11);
@@ -1037,6 +1102,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaPVRC.AutoNav = true;
                         this.EntradaPVRC.AutoTab = true;
+                        this.EntradaPVRC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVRC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVRC.DecimalPlaces = -1;
                         this.EntradaPVRC.FieldName = null;
@@ -1080,6 +1146,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaRedondeo.AutoNav = true;
                         this.EntradaRedondeo.AutoTab = true;
+                        this.EntradaRedondeo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaRedondeo.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaRedondeo.DecimalPlaces = -1;
                         this.EntradaRedondeo.FieldName = null;
@@ -1113,6 +1180,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaLimiteCredito.AutoNav = true;
                         this.EntradaLimiteCredito.AutoTab = true;
+                        this.EntradaLimiteCredito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaLimiteCredito.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaLimiteCredito.DecimalPlaces = -1;
                         this.EntradaLimiteCredito.FieldName = null;
@@ -1144,6 +1212,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaCambiaPrecioComprob
                         // 
+                        this.EntradaCambiaPrecioComprob.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCambiaPrecioComprob.FieldName = null;
                         this.EntradaCambiaPrecioComprob.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCambiaPrecioComprob.Location = new System.Drawing.Point(420, 280);
@@ -1168,6 +1237,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaPVR.AutoNav = true;
                         this.EntradaPVR.AutoTab = true;
+                        this.EntradaPVR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVR.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVR.DecimalPlaces = -1;
                         this.EntradaPVR.FieldName = null;
@@ -1199,6 +1269,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // FrmAvanzado
                         // 
+                        this.FrmAvanzado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.FrmAvanzado.Controls.Add(this.label14);
                         this.FrmAvanzado.Controls.Add(this.label27);
                         this.FrmAvanzado.Controls.Add(this.EntradaBackup);
@@ -1216,42 +1287,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmAvanzado.TabIndex = 8;
                         this.FrmAvanzado.Text = "Avanzado";
                         this.FrmAvanzado.Visible = false;
-                        // 
-                        // EntradaLocalidad
-                        // 
-                        this.EntradaLocalidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaLocalidad.AutoNav = true;
-                        this.EntradaLocalidad.AutoTab = true;
-                        this.EntradaLocalidad.CanCreate = true;
-                        this.EntradaLocalidad.DataTextField = "nombre";
-                        this.EntradaLocalidad.DataValueField = "id_ciudad";
-                        this.EntradaLocalidad.ExtraDetailFields = "";
-                        this.EntradaLocalidad.FieldName = null;
-                        this.EntradaLocalidad.Filter = "nivel=2";
-                        this.EntradaLocalidad.FreeTextCode = "";
-                        this.EntradaLocalidad.Location = new System.Drawing.Point(192, 216);
-                        this.EntradaLocalidad.MaxLength = 200;
-                        this.EntradaLocalidad.Name = "EntradaLocalidad";
-                        this.EntradaLocalidad.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaLocalidad.PlaceholderText = null;
-                        this.EntradaLocalidad.ReadOnly = false;
-                        this.EntradaLocalidad.Required = true;
-                        this.EntradaLocalidad.Size = new System.Drawing.Size(352, 24);
-                        this.EntradaLocalidad.TabIndex = 12;
-                        this.EntradaLocalidad.Table = "ciudades";
-                        this.EntradaLocalidad.Text = "0";
-                        this.EntradaLocalidad.TextDetail = "";
-                        // 
-                        // label32
-                        // 
-                        this.label32.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label32.Location = new System.Drawing.Point(32, 216);
-                        this.label32.Name = "label32";
-                        this.label32.Size = new System.Drawing.Size(160, 24);
-                        this.label32.TabIndex = 11;
-                        this.label32.Text = "Localidad";
-                        this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Preferencias
                         // 

@@ -349,9 +349,6 @@ namespace Lcc.Entrada
                                                 System.Windows.Forms.SendKeys.Send(m_TeclaDespuesDeEnter);
                                         }
                                 }
-
-                                Statics.DetailBoxQuickSelect.Dispose();
-                                Statics.DetailBoxQuickSelect = null;
                         }
                 }
 
