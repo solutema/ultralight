@@ -6,4 +6,6 @@ DROP TABLE IF EXISTS sys_accesslist;
 DROP TABLE IF EXISTS sys_asl;
 DROP TABLE IF EXISTS tarjetas;
 
+ALTER TABLE ciudades DROP parent;
+
 SET FOREIGN_KEY_CHECKS=1;

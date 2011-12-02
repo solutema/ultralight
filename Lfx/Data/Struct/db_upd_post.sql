@@ -100,5 +100,6 @@ UPDATE sys_plantillas SET codigo='Lbl.Comprobantes.ComprobanteConArticulos' WHER
 
 UPDATE ciudades a SET id_provincia=(SELECT parent FROM (SELECT id_ciudad, parent, nivel FROM ciudades WHERE nivel=1) AS X WHERE id_ciudad=a.parent) WHERE id_provincia IS NULL AND nivel=2;
 DELETE FROM ciudades WHERE nivel=1;
+UPDATE ciudades SET parent=id_provincia WHERE nivel>0;
 
 SET FOREIGN_KEY_CHECKS=1;
