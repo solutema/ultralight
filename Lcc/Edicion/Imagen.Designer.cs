@@ -111,6 +111,7 @@ namespace Lcc.Entrada
                         // BotonQuitarImagen
                         // 
                         this.BotonQuitarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonQuitarImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonQuitarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarImagen.Image = null;
                         this.BotonQuitarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -128,6 +129,7 @@ namespace Lcc.Entrada
                         // BotonSeleccionarImagen
                         // 
                         this.BotonSeleccionarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonSeleccionarImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonSeleccionarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonSeleccionarImagen.Image = null;
                         this.BotonSeleccionarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -145,6 +147,7 @@ namespace Lcc.Entrada
                         // BotonCapturarImagen
                         // 
                         this.BotonCapturarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonCapturarImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonCapturarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCapturarImagen.Image = null;
                         this.BotonCapturarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -163,10 +166,10 @@ namespace Lcc.Entrada
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
-                        this.GroupLabel.Size = new System.Drawing.Size(236, 24);
+                        this.GroupLabel.Size = new System.Drawing.Size(240, 24);
                         this.GroupLabel.TabIndex = 2;
                         this.GroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.GroupLabel.UseMnemonic = false;
@@ -180,6 +183,7 @@ namespace Lcc.Entrada
                         this.Controls.Add(this.BotonCapturarImagen);
                         this.Name = "Imagen";
                         this.Size = new System.Drawing.Size(240, 160);
+                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.BotonCapturarImagen, 0);
                         this.Controls.SetChildIndex(this.BotonSeleccionarImagen, 0);
                         this.Controls.SetChildIndex(this.BotonQuitarImagen, 0);

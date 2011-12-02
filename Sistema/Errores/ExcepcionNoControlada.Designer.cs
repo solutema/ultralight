@@ -78,11 +78,13 @@ namespace Lazaro.WinMain.Errores
                         // 
                         // EtiquetaTitulo
                         // 
-                        this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header2;
-                        this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 24);
+                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 32);
                         this.EtiquetaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
-                        this.EtiquetaTitulo.Size = new System.Drawing.Size(468, 32);
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(468, 24);
                         this.EtiquetaTitulo.TabIndex = 1;
                         this.EtiquetaTitulo.Text = "Reporte de Error";
                         this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,8 +127,6 @@ namespace Lazaro.WinMain.Errores
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.MaximizeBox = false;
-                        this.MinimizeBox = false;
                         this.Name = "ExcepcionNoControlada";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Error";

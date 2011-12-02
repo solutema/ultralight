@@ -154,7 +154,7 @@ namespace Lui.Forms
                                                 break;
                                         case LabelStyles.Header2:
                                                 base.Font = Lfx.Config.Display.Header2Font;
-                                                base.Padding = new Padding(6);
+                                                base.Padding = new Padding(2);
                                                 base.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
                                                 base.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
                                                 break;

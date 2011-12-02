@@ -82,8 +82,8 @@ namespace Lfc
 
                 protected override void OnTextChanged(EventArgs e)
                 {
-                        if (lblTitulo != null)
-                                lblTitulo.Text = this.Text;
+                        if (EtiquetaTitulo != null)
+                                EtiquetaTitulo.Text = this.Text;
                         base.OnTextChanged(e);
                 }
         }

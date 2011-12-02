@@ -119,6 +119,7 @@ namespace Lcc.Edicion
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComentario.AutoNav = true;
                         this.EntradaComentario.AutoTab = true;
+                        this.EntradaComentario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaComentario.DecimalPlaces = -1;
                         this.EntradaComentario.FieldName = null;
@@ -143,6 +144,7 @@ namespace Lcc.Edicion
                         // BotonAgregar
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregar.Enabled = false;
                         this.BotonAgregar.Image = null;
@@ -164,7 +166,7 @@ namespace Lcc.Edicion
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(553, 24);
@@ -182,6 +184,7 @@ namespace Lcc.Edicion
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "Comentarios";
                         this.Size = new System.Drawing.Size(552, 260);
+                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.ListaComentarios, 0);
                         this.Controls.SetChildIndex(this.EntradaComentario, 0);
                         this.Controls.SetChildIndex(this.BotonAgregar, 0);

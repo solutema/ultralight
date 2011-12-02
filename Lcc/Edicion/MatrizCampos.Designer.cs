@@ -66,7 +66,7 @@ namespace Lcc.Edicion
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Header2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(460, 24);
@@ -92,6 +92,7 @@ namespace Lcc.Edicion
                         this.Controls.Add(this.GroupLabel);
                         this.Name = "MatrizCampos";
                         this.Size = new System.Drawing.Size(460, 212);
+                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.GroupLabel, 0);
                         this.Controls.SetChildIndex(this.FieldContainer, 0);
                         this.ResumeLayout(false);

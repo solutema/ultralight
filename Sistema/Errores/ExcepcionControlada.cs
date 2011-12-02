@@ -34,7 +34,7 @@ using System.Windows.Forms;
 
 namespace Lazaro.WinMain.Errores
 {
-        public partial class ExcepcionControlada : Form
+        public partial class ExcepcionControlada : Lui.Forms.Form
         {
                 public ExcepcionControlada()
                 {

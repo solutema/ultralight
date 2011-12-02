@@ -67,7 +67,7 @@ namespace Lfc.Comprobantes
                         this.PnlCuotas.SuspendLayout();
                         this.SuspendLayout();
                         // 
-                        // ProductArray
+                        // EntradaProductos
                         // 
                         this.EntradaProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -75,6 +75,7 @@ namespace Lfc.Comprobantes
                         this.EntradaProductos.AutoNav = true;
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.EntradaProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaProductos.FieldName = null;
                         this.EntradaProductos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
@@ -83,7 +84,7 @@ namespace Lfc.Comprobantes
                         this.EntradaProductos.LockQuantity = false;
                         this.EntradaProductos.LockText = false;
                         this.EntradaProductos.MaxLength = 200;
-                        this.EntradaProductos.Name = "ProductArray";
+                        this.EntradaProductos.Name = "EntradaProductos";
                         this.EntradaProductos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.EntradaProductos.ReadOnly = false;
@@ -109,6 +110,7 @@ namespace Lfc.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoNav = true;
                         this.EntradaCliente.AutoTab = true;
+                        this.EntradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
@@ -144,6 +146,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaVendedor.AutoNav = true;
                         this.EntradaVendedor.AutoTab = true;
+                        this.EntradaVendedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
@@ -169,6 +172,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTotal.AutoNav = true;
                         this.EntradaTotal.AutoTab = true;
+                        this.EntradaTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
                         this.EntradaTotal.FieldName = null;
@@ -216,6 +220,7 @@ namespace Lfc.Comprobantes
                         this.EntradaSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaSubTotal.AutoNav = true;
                         this.EntradaSubTotal.AutoTab = true;
+                        this.EntradaSubTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaSubTotal.DecimalPlaces = -1;
                         this.EntradaSubTotal.FieldName = null;
@@ -242,6 +247,7 @@ namespace Lfc.Comprobantes
                         this.EntradaDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaDescuento.AutoNav = true;
                         this.EntradaDescuento.AutoTab = true;
+                        this.EntradaDescuento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaDescuento.DecimalPlaces = -1;
                         this.EntradaDescuento.FieldName = null;
@@ -278,6 +284,7 @@ namespace Lfc.Comprobantes
                         this.EntradaInteres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaInteres.AutoNav = true;
                         this.EntradaInteres.AutoTab = true;
+                        this.EntradaInteres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaInteres.DecimalPlaces = -1;
                         this.EntradaInteres.FieldName = null;
@@ -314,6 +321,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCuotas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaCuotas.AutoNav = true;
                         this.EntradaCuotas.AutoTab = true;
+                        this.EntradaCuotas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCuotas.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCuotas.DecimalPlaces = -1;
                         this.EntradaCuotas.FieldName = null;
@@ -350,6 +358,7 @@ namespace Lfc.Comprobantes
                         this.EntradaValorCuota.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaValorCuota.AutoNav = true;
                         this.EntradaValorCuota.AutoTab = true;
+                        this.EntradaValorCuota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaValorCuota.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaValorCuota.DecimalPlaces = -1;
                         this.EntradaValorCuota.FieldName = null;
@@ -384,6 +393,7 @@ namespace Lfc.Comprobantes
                         // BotonObs
                         // 
                         this.BotonObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonObs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonObs.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonObs.Image = null;
                         this.BotonObs.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -401,6 +411,7 @@ namespace Lfc.Comprobantes
                         // BotonConvertir
                         // 
                         this.BotonConvertir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonConvertir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonConvertir.Image = null;
                         this.BotonConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -426,6 +437,7 @@ namespace Lfc.Comprobantes
                         // BotonMasDatos
                         // 
                         this.BotonMasDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonMasDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonMasDatos.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonMasDatos.Image = null;
                         this.BotonMasDatos.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -468,6 +480,7 @@ namespace Lfc.Comprobantes
                         this.EntradaPV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPV.AutoNav = true;
                         this.EntradaPV.AutoTab = true;
+                        this.EntradaPV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.FieldName = null;
@@ -504,6 +517,7 @@ namespace Lfc.Comprobantes
                         this.EntradaIva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaIva.AutoNav = true;
                         this.EntradaIva.AutoTab = true;
+                        this.EntradaIva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaIva.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaIva.DecimalPlaces = -1;
                         this.EntradaIva.FieldName = null;
@@ -565,6 +579,7 @@ namespace Lfc.Comprobantes
                         this.MinimumSize = new System.Drawing.Size(600, 400);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(640, 400);
+                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.EntradaProductos, 0);
                         this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);

@@ -68,6 +68,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
+
                 public void CargarArticulos(IList<Lbl.Comprobantes.DetalleArticulo> articulos)
                 {
                         if (articulos == null || articulos.Count == 0) {
@@ -90,6 +91,7 @@ namespace Lcc.Entrada.Articulos
                                 }
                         }
                 }
+
 
                 public Lbl.Comprobantes.ColeccionDetalleArticulos ObtenerArticulos(Lfx.Data.Connection dataBase)
                 {
@@ -188,6 +190,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
+
                 public Precios Precio
                 {
                         get
@@ -202,6 +205,7 @@ namespace Lcc.Entrada.Articulos
                                 }
                         }
                 }
+
 
                 public int MaxLength
                 {
@@ -218,6 +222,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
+
                 public bool LockText
                 {
                         get
@@ -232,6 +237,8 @@ namespace Lcc.Entrada.Articulos
                                 }
                         }
                 }
+
+
                 public bool LockQuantity
                 {
                         get
@@ -246,6 +253,8 @@ namespace Lcc.Entrada.Articulos
                                 }
                         }
                 }
+
+
                 public bool LockPrice
                 {
                         get
@@ -261,6 +270,7 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
+
                 public bool ShowStock
                 {
                         get
@@ -275,6 +285,7 @@ namespace Lcc.Entrada.Articulos
                                 }
                         }
                 }
+
 
                 [System.ComponentModel.Category("Datos")]
                 public string FreeTextCode
@@ -341,6 +352,7 @@ namespace Lcc.Entrada.Articulos
                                 this.ObtenerDatosSeguimiento(sender, null);
                 }
 
+
                 private void ProductArray_Enter(object sender, System.EventArgs e)
                 {
                         this.AutoAgregarOQuitar(false);
@@ -372,6 +384,7 @@ namespace Lcc.Entrada.Articulos
                         this.ResumeLayout();
                 }
 
+
                 protected override void ReubicarControles()
                 {
                         if (this.ChildControls != null && this.ChildControls.Count > 0) {
@@ -379,6 +392,7 @@ namespace Lcc.Entrada.Articulos
                                 ReubicarEncabs();
                         }
                 }
+
 
                 private void ReubicarEncabs()
                 {

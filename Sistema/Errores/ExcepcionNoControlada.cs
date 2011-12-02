@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lazaro.WinMain.Errores
 {
-        public partial class ExcepcionNoControlada : Form
+        public partial class ExcepcionNoControlada : Lui.Forms.Form
         {
                 public ExcepcionNoControlada()
                 {

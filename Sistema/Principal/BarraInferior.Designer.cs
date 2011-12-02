@@ -139,7 +139,7 @@ namespace Lazaro.WinMain.Principal
                         this.RelojHora.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.RelojHora.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.RelojHora.LabelStyle = Lui.Forms.LabelStyles.Bigger;
                         this.RelojHora.Location = new System.Drawing.Point(2, 2);
                         this.RelojHora.Name = "RelojHora";
                         this.RelojHora.Size = new System.Drawing.Size(70, 26);
