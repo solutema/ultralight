@@ -110,10 +110,9 @@ namespace Lbl.Entidades
                 {
                         get
                         {
-                                if (m_Parent == null) {
-                                        if (this.Registro["id_provincia"] != null)
-                                                m_Parent = new Localidad(this.Connection, this.GetFieldValue<int>("id_provincia"));
-                                }
+                                if (m_Parent == null && this.Registro["id_provincia"] != null)
+                                        m_Parent = new Localidad(this.Connection, this.GetFieldValue<int>("id_provincia"));
+
                                 return m_Parent;
                         }
                         set

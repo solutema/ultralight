@@ -463,7 +463,7 @@ namespace Lfc
                                 if (FormNuevo != null) {
                                         FormNuevo.DisposeConnection = true;
                                         FormNuevo.MdiParent = this.MdiParent;
-                                        FormNuevo.FromRow(Elem);
+                                        //FormNuevo.FromRow(Elem);
                                         FormNuevo.Show();
 
                                         return new Lfx.Types.SuccessOperationResult();

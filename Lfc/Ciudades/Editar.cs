@@ -57,12 +57,8 @@ namespace Lfc.Ciudades
                         EntradaNombre.Text = Localidad.Nombre;
                         EntradaCp.Text = Localidad.CodigoPostal;
                         EntradaNivel.TextKey = Localidad.Nivel.ToString();
-                        EntradaNivel.TemporaryReadOnly = true;
-                        EntradaNivel.TabStop = false;
-                        if (Localidad.Nivel == 0) {
-                                EntradaParent.Enabled = false;
-                                EntradaParent.TabStop = false;
-                        }
+                        EntradaNivel.ReadOnly = this.Elemento.Existe;
+                        EntradaNivel.TabStop = !EntradaNivel.ReadOnly;
                         EntradaIva.TextKey = ((int)(Localidad.Iva)).ToString();
                         EntradaParent.Elemento = Localidad.Provincia;
 
@@ -86,17 +82,9 @@ namespace Lfc.Ciudades
                         switch(EntradaNivel.TextKey) {
                                 case "0":
                                         EntradaParent.Enabled = false;
-                                        EntradaParent.TextInt = 0;
-                                        break;
-                                case "1":
-                                        EntradaParent.Enabled = true;
-                                        EntradaParent.Filter = "nivel=0";
-                                        EtiquetaParent.Text = "Provincia";
                                         break;
                                 case "2":
                                         EntradaParent.Enabled = true;
-                                        EntradaParent.Filter = "nivel=1";
-                                        EtiquetaParent.Text = "Departamento";
                                         break;
                         }
                 }

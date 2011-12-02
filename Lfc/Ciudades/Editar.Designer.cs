@@ -65,6 +65,7 @@ namespace Lfc.Ciudades
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 0);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
@@ -74,7 +75,8 @@ namespace Lfc.Ciudades
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(0, 92);
+                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.Location = new System.Drawing.Point(0, 76);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(120, 24);
                         this.Label2.TabIndex = 4;
@@ -87,32 +89,46 @@ namespace Lfc.Ciudades
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
+                        this.EntradaNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = null;
+                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(670, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // EntradaCp
                         // 
                         this.EntradaCp.AutoNav = true;
                         this.EntradaCp.AutoTab = true;
+                        this.EntradaCp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCp.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCp.DecimalPlaces = -1;
+                        this.EntradaCp.FieldName = null;
                         this.EntradaCp.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCp.Location = new System.Drawing.Point(116, 92);
+                        this.EntradaCp.Location = new System.Drawing.Point(116, 76);
+                        this.EntradaCp.MaxLength = 32767;
                         this.EntradaCp.MultiLine = false;
                         this.EntradaCp.Name = "EntradaCp";
                         this.EntradaCp.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCp.PasswordChar = '\0';
+                        this.EntradaCp.PlaceholderText = null;
+                        this.EntradaCp.Prefijo = "";
                         this.EntradaCp.ReadOnly = false;
                         this.EntradaCp.SelectOnFocus = false;
                         this.EntradaCp.Size = new System.Drawing.Size(172, 24);
+                        this.EntradaCp.Sufijo = "";
                         this.EntradaCp.TabIndex = 5;
                         // 
                         // EntradaParent
@@ -121,12 +137,15 @@ namespace Lfc.Ciudades
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaParent.AutoNav = true;
                         this.EntradaParent.AutoTab = true;
+                        this.EntradaParent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaParent.CanCreate = true;
                         this.EntradaParent.DataTextField = "nombre";
                         this.EntradaParent.DataValueField = "id_ciudad";
-                        this.EntradaParent.Filter = "parent IS NULL";
+                        this.EntradaParent.ExtraDetailFields = "";
+                        this.EntradaParent.FieldName = null;
+                        this.EntradaParent.Filter = "nivel=0";
                         this.EntradaParent.FreeTextCode = "";
-                        this.EntradaParent.Location = new System.Drawing.Point(116, 124);
+                        this.EntradaParent.Location = new System.Drawing.Point(116, 108);
                         this.EntradaParent.MaxLength = 200;
                         this.EntradaParent.Name = "EntradaParent";
                         this.EntradaParent.Padding = new System.Windows.Forms.Padding(2);
@@ -141,7 +160,8 @@ namespace Lfc.Ciudades
                         // 
                         // EtiquetaParent
                         // 
-                        this.EtiquetaParent.Location = new System.Drawing.Point(0, 124);
+                        this.EtiquetaParent.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaParent.Location = new System.Drawing.Point(0, 108);
                         this.EtiquetaParent.Name = "EtiquetaParent";
                         this.EtiquetaParent.Size = new System.Drawing.Size(120, 24);
                         this.EtiquetaParent.TabIndex = 6;
@@ -150,6 +170,7 @@ namespace Lfc.Ciudades
                         // 
                         // label3
                         // 
+                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label3.Location = new System.Drawing.Point(0, 32);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(120, 24);
@@ -163,17 +184,20 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.AutoNav = true;
                         this.EntradaNivel.AutoSize = true;
                         this.EntradaNivel.AutoTab = true;
+                        this.EntradaNivel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaNivel.FieldName = null;
                         this.EntradaNivel.Location = new System.Drawing.Point(116, 32);
+                        this.EntradaNivel.MaxLength = 32767;
                         this.EntradaNivel.Name = "EntradaNivel";
                         this.EntradaNivel.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNivel.PlaceholderText = null;
                         this.EntradaNivel.ReadOnly = false;
                         this.EntradaNivel.SetData = new string[] {
         "Provincia|0",
-        "Departamento|1",
         "Localidad|2"};
-                        this.EntradaNivel.Size = new System.Drawing.Size(172, 51);
+                        this.EntradaNivel.Size = new System.Drawing.Size(172, 36);
                         this.EntradaNivel.TabIndex = 3;
-                        this.EntradaNivel.TextKey = "0";
+                        this.EntradaNivel.TextKey = "2";
                         this.EntradaNivel.TextChanged += new System.EventHandler(this.EntradaNivel_TextChanged);
                         // 
                         // EntradaIva
@@ -182,9 +206,13 @@ namespace Lfc.Ciudades
                         this.EntradaIva.AutoNav = true;
                         this.EntradaIva.AutoSize = true;
                         this.EntradaIva.AutoTab = true;
-                        this.EntradaIva.Location = new System.Drawing.Point(116, 156);
+                        this.EntradaIva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaIva.FieldName = null;
+                        this.EntradaIva.Location = new System.Drawing.Point(116, 140);
+                        this.EntradaIva.MaxLength = 32767;
                         this.EntradaIva.Name = "EntradaIva";
                         this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaIva.PlaceholderText = null;
                         this.EntradaIva.ReadOnly = false;
                         this.EntradaIva.SetData = new string[] {
         "Predeterminado|0",
@@ -195,7 +223,8 @@ namespace Lfc.Ciudades
                         // 
                         // label4
                         // 
-                        this.label4.Location = new System.Drawing.Point(0, 156);
+                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label4.Location = new System.Drawing.Point(0, 140);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(120, 24);
                         this.label4.TabIndex = 8;
@@ -217,6 +246,7 @@ namespace Lfc.Ciudades
                         this.Controls.Add(this.Label2);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(788, 197);
+                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.EtiquetaParent, 0);
@@ -239,11 +269,11 @@ namespace Lfc.Ciudades
                 private Lui.Forms.Label Label2;
                 private Lui.Forms.TextBox EntradaNombre;
                 private Lcc.Entrada.CodigoDetalle EntradaParent;
-                private Label EtiquetaParent;
-                private Label label3;
                 private Lui.Forms.ComboBox EntradaNivel;
                 private Lui.Forms.TextBox EntradaCp;
                 private Lui.Forms.ComboBox EntradaIva;
-                private Label label4;
+                private Lui.Forms.Label EtiquetaParent;
+                private Lui.Forms.Label label3;
+                private Lui.Forms.Label label4;
         }
 }

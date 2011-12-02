@@ -132,9 +132,11 @@ namespace Lui.Forms
 			}
 			set
 			{
+                                if (m_TemporaryReadOnly != value)
+                                        Invalidate();
 				m_TemporaryReadOnly = value;
                                 this.SetControlsTemporaryReadOnly(this.Controls, value);
-				Invalidate();
+				
 			}
 		}
 
@@ -153,8 +155,9 @@ namespace Lui.Forms
                         }
                         set
                         {
+                                if (m_ReadOnly != value)
+                                        Invalidate();
                                 m_ReadOnly = value;
-                                Invalidate();
                         }
                 }
 
