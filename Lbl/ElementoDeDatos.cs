@@ -583,6 +583,8 @@ namespace Lbl
                                                         case Lfx.Data.DbTypes.Currency:
                                                         case Lfx.Data.DbTypes.Integer:
                                                         case Lfx.Data.DbTypes.SmallInt:
+                                                        case Lfx.Data.DbTypes.MediumInt:
+                                                        case Lfx.Data.DbTypes.TinyInt:
                                                         case Lfx.Data.DbTypes.Numeric:
                                                                 comando.Fields.AddWithValue(Tg.FieldName, 0);
                                                                 break;

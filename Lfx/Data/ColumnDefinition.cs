@@ -69,6 +69,9 @@ namespace Lfx.Data
                         switch (FieldType) {
                                 case DbTypes.Serial:
                                         return "$SERIAL$";
+                                case DbTypes.Relation:
+                                        Def = "MEDIUMINT";
+                                        break;
                                 case DbTypes.DateTime:
                                         Def = "$DATETIME$";
                                         break;
@@ -77,6 +80,9 @@ namespace Lfx.Data
                                         break;
                                 case DbTypes.Integer:
                                         Def = "INTEGER";
+                                        break;
+                                case DbTypes.MediumInt:
+                                        Def = "MEDIUMINT";
                                         break;
                                 case DbTypes.SmallInt:
                                         Def = "SMALLINT";
@@ -147,7 +153,7 @@ namespace Lfx.Data
                                                 this.FieldType = DbTypes.SmallInt;
                                                 break;
                                         case InputFieldTypes.Relation:
-                                                this.FieldType = DbTypes.Numeric;
+                                                this.FieldType = DbTypes.MediumInt;
                                                 break;
                                         case InputFieldTypes.Serial:
                                                 this.FieldType = DbTypes.Serial;
@@ -190,6 +196,8 @@ namespace Lfx.Data
                                         case DbTypes.Integer:
                                         case DbTypes.Numeric:
                                         case DbTypes.SmallInt:
+                                        case DbTypes.MediumInt:
+                                        case DbTypes.TinyInt:
                                                 if (this.DefaultValue == null) {
                                                         if(this.Nullable)
                                                                 Def += " DEFAULT NULL";	// Nullable columns default to null

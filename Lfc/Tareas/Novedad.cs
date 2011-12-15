@@ -43,6 +43,7 @@ namespace Lfc.Tareas
                         if (EntradaTicket.TextInt == 0)
                                 return new Lfx.Types.FailureOperationResult("Escriba el código de Ticket");
 
+                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
                         qGen.Insert InsertarNovedad = new qGen.Insert(Connection, "tickets_eventos");
                         InsertarNovedad.Fields.AddWithValue("id_ticket", EntradaTicket.TextInt);
                         InsertarNovedad.Fields.AddWithValue("id_tecnico", EntradaTecnico.TextInt);
@@ -50,7 +51,8 @@ namespace Lfc.Tareas
                         InsertarNovedad.Fields.AddWithValue("privado", EntradaCondicion.TextKey);
                         InsertarNovedad.Fields.AddWithValue("descripcion", EntradaDescripcion.Text);
                         InsertarNovedad.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                        Connection.Execute(InsertarNovedad);
+                        this.Connection.Execute(InsertarNovedad);
+                        Trans.Commit();
 
                         return base.Ok();
                 }

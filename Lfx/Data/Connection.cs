@@ -544,7 +544,7 @@ namespace Lfx.Data
                                         case Lfx.Data.DbTypes.Numeric:
                                                 FieldDef.Lenght = System.Convert.ToInt32(Columna["NUMERIC_PRECISION"]);
                                                 if (FieldDef.Lenght == 0)
-                                                        FieldDef.Lenght = 14;
+                                                        FieldDef.Lenght = 15;
                                                 FieldDef.Precision = System.Convert.ToInt32(Columna["NUMERIC_SCALE"]);
                                                 if (FieldDef.Precision == 0)
                                                         FieldDef.Precision = 4;
@@ -565,6 +565,7 @@ namespace Lfx.Data
                                         switch (FieldDef.FieldType) {
                                                 case DbTypes.Integer:
                                                 case DbTypes.SmallInt:
+                                                case DbTypes.MediumInt:
                                                 case DbTypes.Numeric:
                                                         if (Lfx.Types.Parsing.ParseDecimal(FieldDef.DefaultValue) == 0)
                                                                 FieldDef.DefaultValue = "0";

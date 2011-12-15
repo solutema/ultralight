@@ -69,6 +69,6 @@
     <StartWithIE>false</StartWithIE>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>/debug /trace</StartArguments>
+    <StartArguments>/debug</StartArguments>
   </PropertyGroup>
 </Project>

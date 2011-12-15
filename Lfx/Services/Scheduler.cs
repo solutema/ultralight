@@ -125,10 +125,16 @@ namespace Lfx.Services
                         qGen.Select NextTask = new qGen.Select("sys_programador");
                         NextTask.WhereClause = new qGen.Where("estado", 0);
                         NextTask.WhereClause.AddWithValue("componente", component);
+                        NextTask.WhereClause.AddWithValue("fechaejecutar", qGen.ComparisonOperators.LessOrEqual, qGen.SqlFunctions.Now);
                         NextTask.WhereClause.AddWithValue(WhereEstacion);
                         NextTask.Order = "id_evento";
 
-                        Lfx.Data.Row TaskRow = this.DataBase.FirstRowFromSelect(NextTask);
+                        Lfx.Data.Row TaskRow;
+                        try {
+                                TaskRow = this.DataBase.FirstRowFromSelect(NextTask);
+                        } catch {
+                                TaskRow = null;
+                        }
                         if (TaskRow != null) {
                                 Task Result = new Task();
 

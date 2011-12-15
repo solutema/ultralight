@@ -235,7 +235,7 @@ namespace Lazaro.WinMain.Misc.Config
                                                 TengoDb = true;
                                         } catch {
                                                 try {
-                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("CREATE DATABASE lazaro");
+                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("CREATE DATABASE lazaro DEFAULT CHARACTER SET utf8");
                                                         Lfx.Workspace.Master.MasterConnection.ExecuteSql("USE lazaro");
                                                         TengoDb = true;
                                                 } catch {

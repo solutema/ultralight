@@ -47,10 +47,12 @@ namespace Lfx.Data
 
         public enum DbTypes
         {
-                Serial,
-                Integer,
-                SmallInt,
-                TinyInt,
+                Serial,         // Un entero autoincremental, clave primaria
+                Relation,       // Un entero del mismo tamaño que Serial, pero no es autoincremental ni clave primaria
+                Integer,        // 4 bytes / 32 bits
+                MediumInt,      // 3 bytes
+                SmallInt,       // 2 bytes / 16 bits
+                TinyInt,        // 1 byte
                 Numeric,
                 Currency,
                 VarChar,
@@ -112,15 +114,19 @@ namespace Lfx.Data
                                         return Lfx.Data.DbTypes.VarChar;
                                 case "SERIAL":
                                         return Lfx.Data.DbTypes.Serial;
+                                case "MEDIUMINT":
+                                        return Lfx.Data.DbTypes.MediumInt;
+                                case "SMALLINT":
+                                        return Lfx.Data.DbTypes.SmallInt;
+                                case "TINYINT":
+                                        return Lfx.Data.DbTypes.TinyInt;
                                 case "INTEGER":
 				case "BIGINT":
 				case "INT":
                                         return Lfx.Data.DbTypes.Integer;
                                 case "BOOL":
 				case "BOOLEAN":
-                                case "SMALLINT":
-				case "TINYINT":
-                                        return Lfx.Data.DbTypes.SmallInt;
+                                        return Lfx.Data.DbTypes.TinyInt;
                                 case "DECIMAL":         // FIXME: DECIMAL no es lo mismo que NUMERIC, pero MySQL 5.0 los trata igual y reporta los numeric como decimal
                                 case "NUMERIC":
                                         return Lfx.Data.DbTypes.Numeric;

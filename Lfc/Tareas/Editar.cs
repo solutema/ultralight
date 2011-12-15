@@ -94,40 +94,6 @@ namespace Lfc.Tareas
                         base.ActualizarControl();
                 }
 
-                /* public override Lui.Printing.ItemPrint FormatForPrinting(Lui.Printing.ItemPrint ImprimirItem)
-                {
-                        ImprimirItem.Titulo = "Tarea Nº " + EntradaNumero.Text;
-                        ImprimirItem.AgregarPar("Tipo de Tarea", EntradaTarea.TextDetail, 1);
-                        ImprimirItem.AgregarPar("Asunto", txtAsunto.Text, 1);
-                        ImprimirItem.AgregarPar("Cliente", EntradaCliente.TextDetail, 1);
-                        // Datos del cliente
-                        if (EntradaDescripcion.Text.Length > 0)
-                                ImprimirItem.AgregarPar("Descripción", EntradaDescripcion.Text, 1);
-
-                        ImprimirItem.AgregarPar("Encargado", EntradaTecnico.TextDetail, 1);
-                        ImprimirItem.AgregarPar("Estado", EntradaEstado.TextDetail, 1);
-                        ImprimirItem.AgregarPar("Fecha de Ingreso", EntradaFechaIngreso.Text, 1);
-                        if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto.Text) != 0)
-                                ImprimirItem.AgregarPar("Presupuesto", Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + EntradaPresupuesto.Text, 1);
-
-                        if (Lfx.Types.Parsing.ParseCurrency(EntradaPresupuesto2.Text) != 0) {
-                                ImprimirItem.AgregarPar("Artículos", Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + EntradaPresupuesto2.Text, 1);
-                                //Detalle artículos
-                                System.Data.DataTable Articulos = this.PrintDataBase.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + this.Elemento.Id.ToString() + " ORDER BY orden");
-                                foreach (System.Data.DataRow Articulo in Articulos.Rows) {
-                                        ImprimirItem.AgregarPar(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDouble(Articulo["precio"]), this.Workspace.CurrentConfig.Moneda.Decimales), "[" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Articulo["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock) + "] " + System.Convert.ToString(Articulo["nombre"]), 2);
-                                }
-                        }
-
-                        System.Data.DataTable Eventos = this.PrintDataBase.Select("SELECT tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.privado=0 AND tickets_eventos.id_tecnico=personas.id_persona AND id_ticket=" + this.Elemento.Id.ToString() + " ORDER BY id_evento DESC");
-                        if (Eventos.Rows.Count > 0) {
-                                ImprimirItem.AgregarPar("Historial", "", 1);
-                                foreach (System.Data.DataRow Evento in Eventos.Rows) {
-                                        ImprimirItem.AgregarPar(System.Convert.ToString(Evento["fecha"]), "[" + System.Convert.ToString(Evento["nombre"]) + "] " + System.Convert.ToString(Evento["descripcion"]), 2);
-                                }
-                        }
-                        return ImprimirItem;
-                } */
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {

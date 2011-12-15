@@ -37,11 +37,11 @@ namespace Lfx.Data
         public enum InputFieldTypes
         {
                 /// <summary>
-                /// Número entero de 32 bits que indica un identificador de registro autonumérico.
+                /// Número entero que indica un identificador de registro autonumérico.
                 /// </summary>
                 Serial,
                 /// <summary>
-                /// Número entero de 32 bits que indica un identificador de registro relacionado con otra tabla.
+                /// Número entero que indica un identificador de registro relacionado con otra tabla.
                 /// </summary>
                 Relation,
                 /// <summary>

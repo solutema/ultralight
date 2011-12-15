@@ -193,12 +193,12 @@ namespace Lfx.Data
                                                                 break;
                                                         case "Bool":
                                                                 Columna.InputFieldType = InputFieldTypes.Bool;
-                                                                Columna.FieldType = DbTypes.SmallInt;
+                                                                Columna.FieldType = DbTypes.TinyInt;
                                                                 break;
                                                         case "Currency":
                                                                 Columna.InputFieldType = InputFieldTypes.Currency;
                                                                 Columna.FieldType = DbTypes.Currency;
-                                                                Columna.Lenght = 14;
+                                                                Columna.Lenght = 15;
                                                                 Columna.Precision = 4;
                                                                 break;
                                                         case "Date":
@@ -217,6 +217,10 @@ namespace Lfx.Data
                                                                 Columna.InputFieldType = InputFieldTypes.Integer;
                                                                 Columna.FieldType = DbTypes.Integer;
                                                                 break;
+                                                        case "MediumInt":
+                                                                Columna.InputFieldType = InputFieldTypes.Integer;
+                                                                Columna.FieldType = DbTypes.MediumInt;
+                                                                break;
                                                         case "SmallInt":
                                                                 Columna.InputFieldType = InputFieldTypes.Integer;
                                                                 Columna.FieldType = DbTypes.SmallInt;
@@ -232,7 +236,7 @@ namespace Lfx.Data
                                                         case "Numeric":
                                                                 Columna.InputFieldType = InputFieldTypes.Numeric;
                                                                 Columna.FieldType = DbTypes.Numeric;
-                                                                Columna.Lenght = 14;
+                                                                Columna.Lenght = 15;
                                                                 Columna.Precision = 4;
                                                                 break;
                                                         case "NumericSet":
@@ -241,7 +245,8 @@ namespace Lfx.Data
                                                                 break;
                                                         case "Relation":
                                                                 Columna.InputFieldType = InputFieldTypes.Relation;
-                                                                Columna.Relation = new Relation(Columna.Name, ColumnaXml.Attributes["relation_table"].Value, ColumnaXml.Attributes["relation_key"].Value, ColumnaXml.Attributes["relation_detail"].Value);
+                                                                if (ColumnaXml.Attributes["relation_table"] != null)
+                                                                        Columna.Relation = new Relation(Columna.Name, ColumnaXml.Attributes["relation_table"].Value, ColumnaXml.Attributes["relation_key"].Value, ColumnaXml.Attributes["relation_detail"].Value);
                                                                 Columna.FieldType = DbTypes.Integer;
                                                                 break;
                                                         case "Serial":
@@ -308,6 +313,8 @@ namespace Lfx.Data
                                                         case DbTypes.Numeric:
                                                         case DbTypes.Serial:
                                                         case DbTypes.SmallInt:
+                                                        case DbTypes.TinyInt:
+                                                        case DbTypes.MediumInt:
                                                                 if (Columna.Nullable)
                                                                         Columna.DefaultValue = "NULL";
                                                                 else
@@ -337,7 +344,7 @@ namespace Lfx.Data
                                                                 Columna.Lenght = 200;
                                                                 break;
                                                         case Lfx.Data.DbTypes.Numeric:
-                                                                Columna.Lenght = 14;
+                                                                Columna.Lenght = 15;
                                                                 Columna.Precision = 4;
                                                                 break;
                                                 }
