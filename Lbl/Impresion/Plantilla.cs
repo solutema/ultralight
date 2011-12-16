@@ -29,6 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -40,7 +41,7 @@ namespace Lbl.Impresion
         [Lbl.Atributos.NombreItem("Plantilla")]
 	public class Plantilla : ElementoDeDatos
 	{
-                public System.Collections.Generic.List<Campo> Campos;
+                public IList<Campo> Campos;
                 public System.Drawing.Font Font;
 
 		//Heredar constructor

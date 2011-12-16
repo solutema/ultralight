@@ -279,6 +279,12 @@ namespace Lfx
                                 Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()), "*");
                                 Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
 
+                                try {
+                                        Conn.ExecuteSql("FLUSH TABLES");
+                                } catch {
+                                        // No tengo permiso... no importa
+                                }
+
                                 if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
                                         //Actualizo desde la versión actual a la última
                                         for (int i = VersionActual + 1; i <= VersionUltima; i++) {
@@ -439,6 +445,11 @@ namespace Lfx
                         //Primero borro claves foráneas (deleteOnly = true)
                         dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, true);
 
+                        try {
+                                dataBase.ExecuteSql("FLUSH TABLES");
+                        } catch {
+                                // No tengo permiso... no importa
+                        }
                         Progreso.Max = Lfx.Workspace.Master.Structure.Tables.Count;
                         foreach (Lfx.Data.TableStructure Tab in Lfx.Workspace.Master.Structure.Tables.Values) {
                                 string TableLabel = Tab.Label;
@@ -450,6 +461,11 @@ namespace Lfx
 
                         //Ahora creo claves nuevas (deleteOnly = false)
                         Progreso.ChangeStatus("Creando claves foráneas");
+                        try {
+                                dataBase.ExecuteSql("FLUSH TABLES");
+                        } catch {
+                                // No tengo permiso... no importa
+                        }
                         dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, false);
 
                         if (omitPreAndPostSql == false)

@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace Lfx.Data
 {
@@ -38,7 +39,7 @@ namespace Lfx.Data
         {
                 public string TableName;
                 public string Name;
-                public string[] Columns;
+                public List<string> Columns;
                 public bool Unique, Primary;
 
                 public IndexDefinition(string tableName)
@@ -63,7 +64,7 @@ namespace Lfx.Data
                         Res.Attributes["name"].Value = this.Name;
 
                         Res.Attributes.Append(node.OwnerDocument.CreateAttribute("columns"));
-                        Res.Attributes["columns"].Value = string.Join(",", this.Columns);
+                        Res.Attributes["columns"].Value = string.Join(",", this.Columns.ToArray());
 
                         Res.Attributes.Append(node.OwnerDocument.CreateAttribute("unique"));
                         Res.Attributes["unique"].Value = this.Unique ? "1" : "0";
@@ -78,7 +79,7 @@ namespace Lfx.Data
 
                 public string CommaSeparatedColumns()
                 {
-                        return "\"" + String.Join(",", this.Columns).Replace(",", "\",\"") + "\"";
+                        return "\"" + String.Join(",", this.Columns.ToArray()).Replace(",", "\",\"") + "\"";
                 }
 
                 public string SqlDefinition()
@@ -104,7 +105,7 @@ namespace Lfx.Data
                                 && f1.Unique == f2.Unique
                                 && f1.Primary == f2.Primary
                                 && string.Compare(f1.Name, f2.Name) == 0
-                                && string.Compare(string.Join(",", f1.Columns), string.Join(",", f2.Columns)) == 0;
+                                && string.Compare(f1.CommaSeparatedColumns(), f2.CommaSeparatedColumns()) == 0;
                 }
 
                 public static bool operator !=(IndexDefinition f1, IndexDefinition f2)
@@ -124,7 +125,7 @@ namespace Lfx.Data
 
                 public override string ToString()
                 {
-                        string Res = this.Name + ": " + this.TableName + " (" + string.Join(",", this.Columns) + ")";
+                        string Res = this.Name + ": " + this.TableName + " (" + this.CommaSeparatedColumns() + ")";
                         if (this.Primary)
                                 Res += " primary";
                         if (this.Primary)

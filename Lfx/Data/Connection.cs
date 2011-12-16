@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
@@ -358,9 +359,7 @@ namespace Lfx.Data
                                         if (CurrentTableDef.Columns.ContainsKey(NewFieldDef.Name)) {
                                                 Data.ColumnDefinition CurrentFieldDef = CurrentTableDef.Columns[NewFieldDef.Name];
                                                 if (CurrentFieldDef.PrimaryKey == true && NewFieldDef.PrimaryKey == false) {
-                                                        // FIXME: esto es léxico MySQL
-                                                        string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" DROP PRIMARY KEY;";
-                                                        this.ExecuteSql(this.CustomizeSql(Sql));
+                                                        DropPrimaryKey(newTableDef.Name);
                                                         break;
                                                 }
                                         }
@@ -373,11 +372,7 @@ namespace Lfx.Data
                                         string Sql = null;
                                         if (CurrentTableDef.Columns.ContainsKey(NewFieldDef.Name) == false) {
                                                 //Agregar campo a una tabla existente
-                                                Sql = "ALTER TABLE \"" + newTableDef.Name + "\" ADD \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition();
-                                                if (LastColName == null)
-                                                        Sql += " FIRST";
-                                                else
-                                                        Sql += " AFTER \"" + LastColName + "\"";
+                                                AddColumn(newTableDef.Name, NewFieldDef, LastColName);
                                         } else {
                                                 Data.ColumnDefinition CurrentFieldDef = CurrentTableDef.Columns[NewFieldDef.Name];
                                                 if (CurrentFieldDef != NewFieldDef) {
@@ -431,14 +426,12 @@ namespace Lfx.Data
 
                                 foreach (Data.ColumnDefinition FieldDef in CurrentTableDef.Columns.Values) {
                                         if (newTableDef.Columns.ContainsKey(FieldDef.Name) == false) {
-                                                string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" DROP \"" + FieldDef.Name + "\"";
-                                                this.ExecuteSql(this.CustomizeSql(Sql));
+                                                DropColumn(newTableDef.Name, FieldDef.Name);
                                         }
                                 }
                         }
 
-                        //Índices
-                        //Crear y modificar
+                        //Crear y modificar indices
                         if (newTableDef.Indexes != null) {
                                 foreach (Data.IndexDefinition NewIndex in newTableDef.Indexes.Values) {
                                         if (NewIndex.Primary && this.AccessMode == AccessModes.Npgsql)
@@ -464,7 +457,8 @@ namespace Lfx.Data
                                         }
                                 }
                         }
-                        //Eliminar
+
+                        //Eliminar indices
                         if (CurrentTableDef.Indexes != null) {
                                 foreach (Data.IndexDefinition CurrentIndex in CurrentTableDef.Indexes.Values) {
                                         if (CurrentIndex.Primary && CurrentIndex.Name != "PRIMARY")
@@ -476,18 +470,43 @@ namespace Lfx.Data
                         }
                 }
 
-                public void CreateIndex(Data.IndexDefinition index)
+
+                protected void AddColumn(string tableName, Data.ColumnDefinition newColumn, string afterColumn)
+                {
+                        string Sql = "ALTER TABLE \"" + tableName + "\" ADD \"" + newColumn.Name + "\" " + newColumn.SqlDefinition();
+                        if (afterColumn == null)
+                                Sql += " FIRST";
+                        else
+                                Sql += " AFTER \"" + afterColumn + "\"";
+                }
+
+
+                protected void DropColumn(string table, string column)
+                {
+                        string Sql = "ALTER TABLE \"" + table + "\" DROP \"" + column + "\"";
+                        this.ExecuteSql(this.CustomizeSql(Sql));
+                }
+
+
+                protected void DropPrimaryKey(string table)
+                {
+                        string Sql = "ALTER TABLE \"" + table + "\" DROP PRIMARY KEY;";
+                        this.ExecuteSql(this.CustomizeSql(Sql));
+                }
+
+
+                protected void CreateIndex(Data.IndexDefinition index)
                 {
                         string Sql = null;
                         switch (this.AccessMode) {
                                 case AccessModes.Npgsql:
                                         if (index.Primary)
-                                                Sql = "ALTER TABLE \"" + index.TableName + "\" ADD PRIMARY KEY (\"" + String.Join(",", index.Columns).Replace(",", "\",\"") + "\"); ";
+                                                Sql = "ALTER TABLE \"" + index.TableName + "\" ADD PRIMARY KEY (" + index.CommaSeparatedColumns() + "); ";
                                         else {
                                                 Sql = "CREATE ";
                                                 if (index.Unique)
                                                         Sql += " UNIQUE";
-                                                Sql += " INDEX \"" + index.Name + "\" ON \"" + index.TableName + "\" (\"" + String.Join(",", index.Columns).Replace(",", "\",\"") + "\")";
+                                                Sql += " INDEX \"" + index.Name + "\" ON \"" + index.TableName + "\" (" + index.CommaSeparatedColumns() + ")";
                                         }
                                         break;
                                 default:
@@ -497,8 +516,18 @@ namespace Lfx.Data
                         this.ExecuteSql(Sql);
                 }
 
-                public void DropIndex(Data.IndexDefinition index)
+                protected void DropIndex(Data.IndexDefinition index)
                 {
+                        // Elimino las claves foráneas que se vean afectadas por la eliminación de este índice
+                        // (esto parece ser especialmente necesario para evitar corrupción de datos con MySQL 5.5)
+                        IDictionary<string, ConstraintDefinition> EfKeys = this.GetConstraints();
+                        foreach (ConstraintDefinition EfKey in EfKeys.Values) {
+                                if (EfKey.TableName == index.TableName && index.Columns.Contains(EfKey.Column))
+                                        DropForeignKey(EfKey);
+                                if (EfKey.ReferenceTable == index.TableName && index.Columns.Contains(EfKey.ReferenceColumn))
+                                        DropForeignKey(EfKey);
+                        }
+
                         string Sql;
                         switch (this.AccessMode) {
                                 case AccessModes.Npgsql:
@@ -516,6 +545,7 @@ namespace Lfx.Data
                         }
                         this.ExecuteSql(Sql);
                 }
+
 
                 public Data.TableStructure GetTableStructure(string tableName, bool withConstraints)
                 {
@@ -661,15 +691,14 @@ LEFT JOIN pg_attribute
                         System.Data.DataTable Indexes = this.Select(Sql);
 
                         if (Indexes.Rows.Count > 0) {
-                                TableDef.Indexes = new System.Collections.Generic.Dictionary<string, IndexDefinition>();
+                                TableDef.Indexes = new Dictionary<string, IndexDefinition>();
                                 foreach (System.Data.DataRow Index in Indexes.Rows) {
                                         string IndexName = Index["INDEX_NAME"].ToString();
 
                                         if (TableDef.Indexes.ContainsKey(IndexName)) {
                                                 //Es un índice existente... agrego el campo
                                                 string ColName = Index["COLUMN_NAME"].ToString();
-                                                System.Array.Resize(ref TableDef.Indexes[IndexName].Columns, TableDef.Indexes[IndexName].Columns.Length + 1);
-                                                TableDef.Indexes[IndexName].Columns[TableDef.Indexes[IndexName].Columns.Length - 1] = ColName;
+                                                TableDef.Indexes[IndexName].Columns.Add(ColName);
                                                 // Y marco la columna como primaria en la definición de la tabla
                                                 switch (this.AccessMode) {
                                                         case AccessModes.MySql:
@@ -685,7 +714,7 @@ LEFT JOIN pg_attribute
                                                 //Es un índice nuevo
                                                 Data.IndexDefinition NewIndex = new IndexDefinition(tableName);
                                                 NewIndex.Name = Index["INDEX_NAME"].ToString();
-                                                NewIndex.Columns = Index["COLUMN_NAME"].ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                                                NewIndex.Columns = new List<string>(Index["COLUMN_NAME"].ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries));
                                                 NewIndex.Unique = System.Convert.ToInt32(Index["NON_UNIQUE"]) == 0;
                                                 switch (this.AccessMode) {
                                                         case AccessModes.MySql:
@@ -700,7 +729,7 @@ LEFT JOIN pg_attribute
                                                 TableDef.Indexes.Add(NewIndex.Name, NewIndex);
                                                 if (NewIndex.Primary) {
                                                         // Pongo las columnas como primarias en la definición de la tabla
-                                                        for (int i = 0; i < NewIndex.Columns.Length; i++) {
+                                                        for (int i = 0; i < NewIndex.Columns.Count; i++) {
                                                                 TableDef.Columns[NewIndex.Columns[i]].PrimaryKey = true;
                                                         }
                                                 }
@@ -710,7 +739,7 @@ LEFT JOIN pg_attribute
 
                         if (withConstraints) {
                                 //Claves foráneas
-                                TableDef.Constraints = new System.Collections.Generic.Dictionary<string, ConstraintDefinition>();
+                                TableDef.Constraints = new Dictionary<string, ConstraintDefinition>();
                                 System.Data.DataTable Constraints = this.Select(@"SELECT INFORMATION_SCHEMA.TABLE_CONSTRAINTS.CONSTRAINT_NAME, INFORMATION_SCHEMA.TABLE_CONSTRAINTS.TABLE_NAME, INFORMATION_SCHEMA.TABLE_CONSTRAINTS.CONSTRAINT_TYPE,
 					INFORMATION_SCHEMA.KEY_COLUMN_USAGE.COLUMN_NAME, INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME, INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_COLUMN_NAME
 					FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS, INFORMATION_SCHEMA.KEY_COLUMN_USAGE
@@ -739,35 +768,27 @@ LEFT JOIN pg_attribute
                 public void EmptyConstraints()
                 {
                         // Borra todas las claves foráneas
-                        System.Collections.Generic.Dictionary<string, ConstraintDefinition> CurrentConstraints = this.GetConstraints();
+                        IDictionary<string, ConstraintDefinition> CurrentConstraints = this.GetConstraints();
                         foreach (Data.ConstraintDefinition Con in CurrentConstraints.Values) {
                                 string Sql = "ALTER TABLE \"" + Con.TableName + "\" DROP FOREIGN KEY \"" + Con.Name + "\"";
                                 this.ExecuteSql(this.CustomizeSql(Sql));
                         }
                 }
 
-                public void SetConstraints(System.Collections.Generic.Dictionary<string, ConstraintDefinition> newConstraints, bool deleteOnly)
+                public void SetConstraints(Dictionary<string, ConstraintDefinition> newConstraints, bool deleteOnly)
                 {
-                        // FIXME: "DROP FOREIGN KEY" puede ser léxico MySQL. MySQL puede soportar en un futuro la sintáxis "DROP CONSTRAINT" que es más estándar
-
-                        System.Collections.Generic.Dictionary<string, ConstraintDefinition> CurrentConstraints = this.GetConstraints();
-                        string Sql = null;
+                        IDictionary<string, ConstraintDefinition> CurrentConstraints = this.GetConstraints();
+                        //string Sql = null;
                         if (deleteOnly == false) {
                                 foreach (Data.ConstraintDefinition NewCon in newConstraints.Values) {
                                         //Data.ConstraintDefinition CurrentCon;
                                         if (CurrentConstraints.ContainsKey(NewCon.Name) == false) {
                                                 //Agregar
-                                                Sql = "ALTER TABLE \"" + NewCon.TableName + "\" ADD CONSTRAINT \"" + NewCon.Name + "\" FOREIGN KEY (\"" + NewCon.Column + "\") REFERENCES \"" + NewCon.ReferenceTable + "\" (\"" + NewCon.ReferenceColumn + "\") $DEFERRABLE$";
-                                                this.ExecuteSql(this.CustomizeSql(Sql));
+                                                CreateForeignKey(NewCon);
                                         } else if (CurrentConstraints[NewCon.Name] != NewCon) {
                                                 //No es igual... hay que modificarlo
-                                                if (this.AccessMode == AccessModes.Npgsql)
-                                                        Sql = "ALTER TABLE \"" + NewCon.TableName + "\" DROP CONSTRAINT \"" + NewCon.Name + "\"";
-                                                else
-                                                        Sql = "ALTER TABLE \"" + NewCon.TableName + "\" DROP FOREIGN KEY \"" + NewCon.Name + "\"";
-                                                this.ExecuteSql(this.CustomizeSql(Sql));
-                                                Sql = "ALTER TABLE \"" + NewCon.TableName + "\" ADD CONSTRAINT \"" + NewCon.Name + "\" FOREIGN KEY (\"" + NewCon.Column + "\") REFERENCES \"" + NewCon.ReferenceTable + "\" (\"" + NewCon.ReferenceColumn + "\") $DEFERRABLE$";
-                                                this.ExecuteSql(this.CustomizeSql(Sql));
+                                                DropForeignKey(NewCon);
+                                                CreateForeignKey(NewCon);
                                         }
                                 }
                         } //deleteOnly
@@ -775,15 +796,36 @@ LEFT JOIN pg_attribute
                         //Eliminar constraints obsoletas
                         foreach (Data.ConstraintDefinition CurCon in CurrentConstraints.Values) {
                                 if (CurCon != null && newConstraints.ContainsKey(CurCon.Name) == false) {
-                                        Sql = "ALTER TABLE \"" + CurCon.TableName + "\" DROP FOREIGN KEY \"" + CurCon.Name + "\"";
-                                        this.ExecuteSql(this.CustomizeSql(Sql));
+                                        DropForeignKey(CurCon);
                                 }
                         }
                 }
 
-                public System.Collections.Generic.Dictionary<string, ConstraintDefinition> GetConstraints()
+
+                public void CreateForeignKey(Data.ConstraintDefinition constraint)
                 {
-                        System.Collections.Generic.Dictionary<string, ConstraintDefinition> Res = new System.Collections.Generic.Dictionary<string, ConstraintDefinition>();
+                        string Sql = "ALTER TABLE \"" + constraint.TableName + "\" ADD CONSTRAINT \"" + constraint.Name + "\" FOREIGN KEY (\"" + constraint.Column + "\") REFERENCES \"" + constraint.ReferenceTable + "\" (\"" + constraint.ReferenceColumn + "\") $DEFERRABLE$";
+                        this.ExecuteSql(this.CustomizeSql(Sql));
+                }
+
+
+                public void DropForeignKey(Data.ConstraintDefinition constraint)
+                {
+                        // FIXME: "DROP FOREIGN KEY" puede ser léxico MySQL. MySQL puede soportar en un futuro la sintáxis "DROP CONSTRAINT" que es más estándar
+
+                        string Sql;
+                        if (this.AccessMode == AccessModes.Npgsql)
+                                Sql = "ALTER TABLE \"" + constraint.TableName + "\" DROP CONSTRAINT \"" + constraint.Name + "\"";
+                        else
+                                Sql = "ALTER TABLE \"" + constraint.TableName + "\" DROP FOREIGN KEY \"" + constraint.Name + "\"";
+
+                        this.ExecuteSql(this.CustomizeSql(Sql));
+                }
+
+
+                public IDictionary<string, ConstraintDefinition> GetConstraints()
+                {
+                        IDictionary<string, ConstraintDefinition> Res = new Dictionary<string, ConstraintDefinition>();
                         //Claves foráneas
                         string SQL;
                         if (this.AccessMode == AccessModes.Npgsql) {

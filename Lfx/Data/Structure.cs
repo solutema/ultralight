@@ -87,7 +87,7 @@ namespace Lfx.Data
                                 Res.AppendChild(Lfx.Workspace.Master.MasterConnection.GetTableStructure(Tabla, false).ToXml(Res));
                         }
 
-                        System.Collections.Generic.Dictionary<string, ConstraintDefinition> Keys = Lfx.Workspace.Master.MasterConnection.GetConstraints();
+                        IDictionary<string, ConstraintDefinition> Keys = Lfx.Workspace.Master.MasterConnection.GetConstraints();
                         foreach (ConstraintDefinition Key in Keys.Values) {
                                 Res.AppendChild(Key.ToXml(Res));
                         }
@@ -372,7 +372,7 @@ namespace Lfx.Data
                                                 Indice.Unique = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(IndiceXml.Attributes["unique"].Value));
                                         if (IndiceXml.Attributes["primary"] != null)
                                                 Indice.Primary = System.Convert.ToBoolean(Lfx.Types.Parsing.ParseInt(IndiceXml.Attributes["primary"].Value));
-                                        Indice.Columns = IndiceXml.Attributes["columns"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                                        Indice.Columns = new List<string>(IndiceXml.Attributes["columns"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries));
                                         Tabla.Indexes.Add(Indice.Name, Indice);
 
                                         if (Indice.Primary) {

@@ -140,7 +140,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonAceptar.Size = new System.Drawing.Size(88, 32);
                         this.BotonAceptar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAceptar.Subtext = "F9";
-                        this.BotonAceptar.TabIndex = 6;
+                        this.BotonAceptar.TabIndex = 50;
                         this.BotonAceptar.Text = "Guardar";
                         this.BotonAceptar.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
@@ -158,7 +158,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.CancelCommandButton.Size = new System.Drawing.Size(88, 32);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "Esc";
-                        this.CancelCommandButton.TabIndex = 7;
+                        this.CancelCommandButton.TabIndex = 51;
                         this.CancelCommandButton.Text = "Cancelar";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
@@ -987,7 +987,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonSiguiente.Size = new System.Drawing.Size(96, 32);
                         this.BotonSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSiguiente.Subtext = "F9";
-                        this.BotonSiguiente.TabIndex = 5;
+                        this.BotonSiguiente.TabIndex = 52;
                         this.BotonSiguiente.Text = "Más...";
                         this.BotonSiguiente.Click += new System.EventHandler(this.BotonSiguiente_Click);
                         // 
