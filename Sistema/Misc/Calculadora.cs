@@ -199,7 +199,11 @@ namespace Lazaro.WinMain.Misc
 					if(e.Control == true) {
 						e.Handled = true;
 						Calcular();
-						Clipboard.SetDataObject(EntradaFormula.Text);
+                                                try {
+                                                        Clipboard.SetDataObject(EntradaFormula.Text);
+                                                } catch {
+                                                        // Error de portapapeles
+                                                }
 						this.Hide();
 						System.Windows.Forms.SendKeys.Send("^V");
 						this.Close();

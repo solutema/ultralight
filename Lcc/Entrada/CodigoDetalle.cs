@@ -674,21 +674,33 @@ namespace Lcc.Entrada
 
                 private void MenuItemCopiarCodigo_Click(object sender, System.EventArgs e)
                 {
-                        Clipboard.SetDataObject(this.Text, true);
+                        try {
+                                Clipboard.SetDataObject(this.Text, true);
+                        } catch {
+                                // Error de portapapeles
+                        }
                 }
 
 
                 private void MenuItemCopiarNombre_Click(object sender, System.EventArgs e)
                 {
-                        Clipboard.SetDataObject(this.TextDetail, true);
+                        try {
+                                Clipboard.SetDataObject(this.TextDetail, true);
+                        } catch {
+                                // Error de portapapeles
+                        }
                 }
 
 
                 private void MenuItemPegar_Click(object sender, System.EventArgs e)
                 {
-                        string DatosPortapapeles = System.Convert.ToString(Clipboard.GetDataObject().GetData(DataFormats.Text, true));
-                        if (DatosPortapapeles != null)
-                                this.Text = DatosPortapapeles;
+                        try {
+                                string DatosPortapapeles = System.Convert.ToString(Clipboard.GetDataObject().GetData(DataFormats.Text, true));
+                                if (DatosPortapapeles != null)
+                                        this.Text = DatosPortapapeles;
+                        } catch {
+                                // Error de portapapeles
+                        }
                 }
 
 

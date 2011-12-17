@@ -141,8 +141,13 @@ namespace Lui.Forms
 
                 private void YesNoDialogForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
-                        if (e.Control == true && e.Alt == false && e.Shift == false && e.KeyCode == Keys.C)
-                                Clipboard.SetDataObject(DialogText.Text);
+                        if (e.Control == true && e.Alt == false && e.Shift == false && e.KeyCode == Keys.C) {
+                                try {
+                                        Clipboard.SetDataObject(DialogText.Text);
+                                } catch {
+                                        // Error de portapapeles
+                                }
+                        }
                 }
 
 

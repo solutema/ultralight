@@ -62,7 +62,11 @@ namespace Lfc
 
                 private void BotonCopiar_Click(object sender, System.EventArgs e)
                 {
-                        Clipboard.SetDataObject(ListingContent.ToString());
+                        try {
+                                Clipboard.SetDataObject(ListingContent.ToString());
+                        } catch {
+                                // Error de portapapeles
+                        }
                 }
         }
 }

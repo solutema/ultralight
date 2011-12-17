@@ -208,7 +208,6 @@ namespace Lazaro.WinMain.Principal
                                                                 string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
                                                                 do {
                                                                         string Comando = Lfx.Data.Connection.GetNextCommand(ref SqlActualizacion);
-                                                                        System.Windows.Forms.Clipboard.SetDataObject(Comando, true);
                                                                         try {
                                                                                 ConexionActualizar.ExecuteSql(Comando);
                                                                         } catch (Exception ex) {

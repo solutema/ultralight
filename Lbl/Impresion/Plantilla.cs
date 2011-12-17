@@ -54,64 +54,6 @@ namespace Lbl.Impresion
                 public Plantilla(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }
 
-                /* public Plantilla(Lfx.Data.Connection dataBase, System.Type tipoElemento)
-                        : this(dataBase, tipoElemento.ToString()) { }
-
-                public Plantilla(Lfx.Data.Connection dataBase, string tipoComprob)
-                        : this(dataBase)
-                {
-                        string BuscarComprob = tipoComprob;
-
-                        // Esta es una situación especial para los Lbl.Comprobantes.ComprobanteConArticulos
-                        // Los busco por letra
-                        switch (BuscarComprob) {
-                                case "NDA":
-                                case "NCA":
-                                        m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='FA'");
-                                        break;
-                                case "NDB":
-                                case "NCB":
-                                        m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='FB'");
-                                        break;
-                                case "NDC":
-                                case "NCC":
-                                        m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='FC'");
-                                        break;
-                                case "NDE":
-                                case "NCE":
-                                        m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='FE'");
-                                        break;
-                                case "NDM":
-                                case "NCM":
-                                        m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='FM'");
-                                        break;
-                        }
-
-                        if (m_ItemId == 0) {
-                                // Esta es una situación especial para los Lbl.Comprobantes.ComprobanteConArticulos
-                                switch (BuscarComprob) {
-                                        case "FB":
-                                        case "FC":
-                                        case "FE":
-                                        case "FM":
-                                                m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='FA'");
-                                                break;
-                                }
-                                m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
-                        }
-
-                        if (m_ItemId == 0)
-                                // Busco por el tipo de datos, literal (p. ej. Lbl.Comprobantes.Factura o Lbl.ElementoDeDatos) 
-                                m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='" + BuscarComprob + "'");
-
-                        if (m_ItemId == 0)
-                                // Busco una plantilla genérica
-                                m_ItemId = dataBase.FieldInt("SELECT id_plantilla FROM sys_plantillas WHERE codigo='*'");
-
-                        this.Cargar();
-                } */
-
-
                 public override string TablaDatos
 		{
 			get
@@ -252,7 +194,8 @@ namespace Lbl.Impresion
                         get
                         {
                                 XmlDocument Res = new XmlDocument();
-                                Res.LoadXml(this.Registro["defxml"].ToString());
+                                if (this.Registro["defxml"] != null)
+                                        Res.LoadXml(this.Registro["defxml"].ToString());
                                 return Res;
                         }
                         set
@@ -464,100 +407,9 @@ namespace Lbl.Impresion
                 public override void OnLoad()
                 {
                         this.Campos = new List<Campo>();
-                        if (System.Convert.ToString(Registro["defxml"]).Length > 5) {
+                        if (Registro["defxml"] != null && System.Convert.ToString(Registro["defxml"]).Length > 5) {
                                 //Tiene definición XML... la cargo
                                 this.CargarXml(Registro["defxml"].ToString());
-                        } else if (System.Convert.ToString(Registro["definicion"]).Length > 5) {
-                                //Tiene definición INI... la convierto
-                                string Definicion = System.Convert.ToString(Registro["definicion"]);
-
-                                string Fuente = Lfx.Types.Ini.ReadString(Definicion, "General", "Fuente", "Courier New");
-                                int FuenteTamano = Lfx.Types.Ini.ReadInt(Definicion, "General", "FuenteTamano", 10);
-                                this.Font = new System.Drawing.Font(Fuente, FuenteTamano);
-                                this.Copias = Lfx.Types.Ini.ReadInt(Definicion, "General", "Copias");
-                                int CantPasadas = Lfx.Types.Ini.ReadInt(Definicion, "General", "Pasadas");
-
-                                //Calculo le ancho y alto de caracter
-                                System.Drawing.Printing.PrintDocument DocuEjemplo = new System.Drawing.Printing.PrintDocument();
-                                System.Drawing.Graphics GraficoEjemplo = DocuEjemplo.PrinterSettings.CreateMeasurementGraphics();
-                                GraficoEjemplo.PageUnit = System.Drawing.GraphicsUnit.Document;
-
-                                System.Drawing.SizeF TamanoCaracter = GraficoEjemplo.MeasureString("H", new System.Drawing.Font(this.Font.Name, this.Font.Size * 0.85F));
-
-                                System.Drawing.Rectangle PasadaXY = new System.Drawing.Rectangle();
-
-                                for (int Pasada = 1; Pasada <= CantPasadas; Pasada++) {
-                                        string[] NombresCampos = new string[] { "Fecha", "Cliente", "FormaPago", "Domicilio", "IVA", "CUIT", "Total", "Codigos", "Detalles", "Cantidades", "Importes", "SonPesos", "Texto1", "Texto2", "Texto3", "Texto4" };
-
-                                        string NombrePasada = "Pasada" + Pasada.ToString();
-                                        PasadaXY = Lfx.Types.Ini.ReadRectangle(Definicion, NombrePasada, "XY", PasadaXY);
-
-                                        foreach (string NombreCampo in NombresCampos) {
-                                                System.Drawing.Rectangle CampoXY = Lfx.Types.Ini.ReadRectangle(Definicion, NombrePasada, NombreCampo + "XY", new System.Drawing.Rectangle());
-                                                if (CampoXY == new System.Drawing.Rectangle(0, 0, 0, 0) && Pasada > 1)
-                                                        CampoXY = Lfx.Types.Ini.ReadRectangle(Definicion, "Pasada1", NombreCampo + "XY", new System.Drawing.Rectangle());
-
-                                                string CampoTexto = Lfx.Types.Ini.ReadString(Definicion, NombrePasada, NombreCampo);
-                                                if (CampoTexto.Length == 0 && Pasada > 1)
-                                                        CampoTexto = Lfx.Types.Ini.ReadString(Definicion, "Pasada1", NombreCampo);
-
-                                                CampoXY.X += PasadaXY.X;
-                                                CampoXY.Y += PasadaXY.Y;
-
-                                                Campo Cam = new Campo();
-                                                if (NombreCampo.Length > 5 && NombreCampo.Substring(0, 5) == "Texto")
-                                                        Cam.Valor = CampoTexto;
-                                                else
-                                                        Cam.Valor = "{" + NombreCampo + "}";
-
-                                                if (CampoXY.Height == 0)
-                                                        CampoXY.Height = 1;
-
-                                                if (CampoXY.Width == 0) {
-                                                        switch (NombreCampo.ToUpperInvariant()) {
-                                                                case "CLIENTE.CUIT":
-                                                                case "CUIT":
-                                                                        CampoXY.Width = 13;
-                                                                        break;
-                                                                case "COMPROBANTE.TOTAL":
-                                                                case "COMPROBANTE.SUBTOTAL":
-                                                                case "ARTICULOS.CANTIDADES":
-                                                                case "TOTAL":
-                                                                case "SUBTOTAL":
-                                                                case "CANTIDADES":
-                                                                        CampoXY.Width = 16;
-                                                                        break;
-                                                                case "COMPROBANTE.FECHA":
-                                                                case "FECHA":
-                                                                        CampoXY.Width = 8;
-                                                                        break;
-                                                                case "IVA":
-                                                                case "CLIENTE.IVA":
-                                                                        CampoXY.Width = 20;
-                                                                        break;
-                                                                case "TEXT":
-                                                                        if (CampoTexto.Length > 0)
-                                                                                CampoXY.Width = CampoTexto.Length;
-                                                                        else
-                                                                                CampoXY.Width = 80;
-                                                                        break;
-                                                                default:
-                                                                        CampoXY.Width = 40;
-                                                                        break;
-                                                        }
-                                                }
-
-                                                Cam.Rectangle = new System.Drawing.Rectangle(CampoXY.X * System.Convert.ToInt32(TamanoCaracter.Width),
-                                                        CampoXY.Y * System.Convert.ToInt32(TamanoCaracter.Height),
-                                                        CampoXY.Width * System.Convert.ToInt32(TamanoCaracter.Width),
-                                                        CampoXY.Height * System.Convert.ToInt32(TamanoCaracter.Height));
-
-                                                if (CampoTexto.Length > 0 || CampoXY.Location.X != 0 || CampoXY.Location.Y != 0)
-                                                        this.Campos.Add(Cam);
-                                        }
-                                }
-                                GraficoEjemplo.Dispose();
-                                DocuEjemplo.Dispose();
                         } else {
                                 this.Font = new System.Drawing.Font("Bitsream Vera Sans Mono", 10);
                         }

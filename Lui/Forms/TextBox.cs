@@ -270,10 +270,14 @@ namespace Lui.Forms
 
                 private void MenuItemCopiar_Click(System.Object sender, System.EventArgs e)
 		{
-			if (TextBox1.SelectionLength > 0)
-				Clipboard.SetDataObject(TextBox1.SelectedText);
-			else
-				Clipboard.SetDataObject(this.Text);
+                        try {
+                                if (TextBox1.SelectionLength > 0)
+                                        Clipboard.SetDataObject(TextBox1.SelectedText);
+                                else
+                                        Clipboard.SetDataObject(this.Text);
+                        } catch {
+                                // Error de portapapeles
+                        }
 		}
 
 

@@ -524,7 +524,7 @@ namespace Lfx.Data
                         foreach (ConstraintDefinition EfKey in EfKeys.Values) {
                                 if (EfKey.TableName == index.TableName && index.Columns.Contains(EfKey.Column))
                                         DropForeignKey(EfKey);
-                                if (EfKey.ReferenceTable == index.TableName && index.Columns.Contains(EfKey.ReferenceColumn))
+                                else if (EfKey.ReferenceTable == index.TableName && index.Columns.Contains(EfKey.ReferenceColumn))
                                         DropForeignKey(EfKey);
                         }
 

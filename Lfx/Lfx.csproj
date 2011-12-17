@@ -130,6 +130,9 @@
     <Compile Include="Data\Structure.cs" />
     <Compile Include="Data\Transaction.cs" />
     <Compile Include="RuntimeServices.cs" />
+    <Compile Include="Types\Ini.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Types\StringAlignment.cs" />
     <Compile Include="Updates\CompressionFormats.cs" />
     <Compile Include="Updates\File.cs" />
@@ -191,7 +194,6 @@
     <Compile Include="Types\Evaluator.cs" />
     <Compile Include="Types\Currency.cs" />
     <Compile Include="Types\Formatting.cs" />
-    <Compile Include="Types\Ini.cs" />
     <Compile Include="Types\NullableDateTime.cs" />
     <Compile Include="Types\Object.cs" />
     <Compile Include="Types\OperationProgress.cs" />
