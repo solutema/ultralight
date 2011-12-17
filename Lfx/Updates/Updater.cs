@@ -240,7 +240,7 @@ namespace Lfx.Updates
                 }
 
 
-                private int GetDownloadedSize()
+                protected internal int GetDownloadedSize()
                 {
                         if (this.Packages == null)
                                 return 0;
