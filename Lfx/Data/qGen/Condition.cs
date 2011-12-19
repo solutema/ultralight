@@ -164,6 +164,13 @@ namespace qGen
                                 return value.ToString();
                         } else if (value is SqlExpression) {
                                 return m_RightValue.ToString();
+                        } else if (value is SqlFunctions) {
+                                switch((SqlFunctions)value) {
+                                        case SqlFunctions.Now:
+                                                return "NOW()";
+                                        default:
+                                                return m_RightValue.ToString();
+                                }
                         } else if (value is int[]) {
                                 string[] RightValStr = Array.ConvertAll<int, string>((int[])value, new Converter<int, string>(Convert.ToString));
                                 return string.Join(",", RightValStr);

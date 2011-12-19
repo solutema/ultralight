@@ -96,6 +96,7 @@ namespace Lfx.Services
                         Comando.Fields.AddWithValue("comando", commandString);
                         Comando.Fields.AddWithValue("componente", component);
                         Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        Comando.Fields.AddWithValue("fechaejecutar", null);
 
                         try {
                                 System.Data.IDbTransaction Trans = this.DataBase.BeginTransaction();
@@ -121,12 +122,17 @@ namespace Lfx.Services
                         WhereEstacion.AddWithValue("estacion", this.DataBase.EscapeString(System.Environment.MachineName.ToUpperInvariant()));
                         WhereEstacion.AddWithValue("estacion", "*");
 
+                        qGen.Where WhereFecha = new qGen.Where(qGen.AndOr.Or);
+                        WhereFecha.AddWithValue("fechaejecutar", qGen.ComparisonOperators.LessOrEqual, qGen.SqlFunctions.Now);
+                        WhereFecha.AddWithValue("fechaejecutar", null);
+
                         m_LastGetTask = DateTime.Now;
                         qGen.Select NextTask = new qGen.Select("sys_programador");
                         NextTask.WhereClause = new qGen.Where("estado", 0);
                         NextTask.WhereClause.AddWithValue("componente", component);
-                        NextTask.WhereClause.AddWithValue("fechaejecutar", qGen.ComparisonOperators.LessOrEqual, qGen.SqlFunctions.Now);
                         NextTask.WhereClause.AddWithValue(WhereEstacion);
+                        NextTask.WhereClause.AddWithValue(WhereFecha);
+
                         NextTask.Order = "id_evento";
 
                         Lfx.Data.Row TaskRow;
