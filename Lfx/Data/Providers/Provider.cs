@@ -48,6 +48,8 @@ namespace qGen.Providers
                 public string ParameterClass = null;
                 public string TransactionClass = null;
 
+                public ProviderSettings Settings { get; set; }
+
                 protected internal Assembly m_Assembly = null;
 
                 public Provider(string assemblyName, string nameSpace, string connectionClass, string commandClass, string adapterClass, string parameterClass, string transactionClass)

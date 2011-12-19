@@ -45,6 +45,7 @@ namespace qGen.Providers
                         "OdbcParameter",
                         "OdbcTransaction")
                 {
+                        this.Settings = new AnsiSettings();
                 }
 
                 public override System.Data.IDbConnection GetConnection()

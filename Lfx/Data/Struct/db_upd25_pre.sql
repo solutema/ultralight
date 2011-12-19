@@ -242,7 +242,7 @@ REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES (
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('314','Maipú','','6','0','1','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('315','Mayor Luis J. Fontana','','6','0','1','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('316','9 de Julio','','6','0','1','2010-06-02 19:41:50');
-REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('317','O\' Higgins','','6','0','1','2010-06-02 19:41:50');
+REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('317','O''Higgins','','6','0','1','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('318','Presidencia de la Plaza','','6','0','1','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('319','1º de Mayo','','6','0','1','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('320','Quitilipi','','6','0','1','2010-06-02 19:41:50');
@@ -602,7 +602,7 @@ REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES (
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1063','Villa Lynch Pueyrredón','','114','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1064','Bragado','6640','115','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1065','Comodoro Py','6641','115','0','2','2010-06-02 19:41:50');
-REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1066','General O\'Brien','','115','0','2','2010-06-02 19:41:50');
+REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1066','General O''Brien','','115','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1067','Irala','6013','115','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1068','La Limpia','','115','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1069','Máximo Fernández (Est. Juan F. Salaberry) ','','115','0','2','2010-06-02 19:41:50');
@@ -677,7 +677,7 @@ REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES (
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1138','Cascadas','','128','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1139','Coronel Suárez','7540','128','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1140','Cura Malal','7548','128','0','2','2010-06-02 19:41:50');
-REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1141','D\'Orbigny','','128','0','2','2010-06-02 19:41:50');
+REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1141','D''Orbigny','','128','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1142','Huanguelén','7545','128','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1143','Pasman','7547','128','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1144','San José','','128','0','2','2010-06-02 19:41:50');
@@ -687,7 +687,7 @@ REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES (
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1148','Castilla','6616','129','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1149','Chacabuco','6740','129','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1150','Los Angeles','2741','129','0','2','2010-06-02 19:41:50');
-REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1151','O\'Higgins','','129','0','2','2010-06-02 19:41:50');
+REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1151','O''Higgins','','129','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1152','Rawson','6734','129','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1153','Chascomús','7130','130','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1154','Manuel J. Cobo (Est. Lezama)','','130','0','2','2010-06-02 19:41:50');
@@ -1447,7 +1447,7 @@ REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES (
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1908','Alejo Ledesma','2662','258','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1909','Arias','2624','258','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1910','Camilo Aldao','2585','258','0','2','2010-06-02 19:41:50');
-REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1911','Capitán General Bernardo O\'Higgins','','258','0','2','2010-06-02 19:41:50');
+REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1911','Capitán General Bernardo O''Higgins','','258','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1912','Cavanagh','2625','258','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1913','Colonia Barge','2659','258','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('1914','Colonia Italiana','2645','258','0','2','2010-06-02 19:41:50');
@@ -1843,7 +1843,7 @@ REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES (
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2304','Goya','3450','285','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2305','Itatí','3414','286','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2306','Ramada Paso','3412','286','0','2','2010-06-02 19:41:50');
-REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2307','Colonia Liebig\'s','','287','0','2','2010-06-02 19:41:50');
+REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2307','Colonia Liebig''s','','287','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2308','Ituzaingó','3302','287','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2309','San Antonio','','287','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2310','San Carlos','','287','0','2','2010-06-02 19:41:50');
@@ -2055,7 +2055,7 @@ REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES (
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2516','Hocker','','341','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2517','La Clarita','3269','341','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2518','Pueblo Cazes','3269','341','0','2','2010-06-02 19:41:50');
-REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2519','Pueblo Liebig\'s','','341','0','2','2010-06-02 19:41:50');
+REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2519','Pueblo Liebig''s','','341','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2520','San José','3283','341','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2521','Ubajay','3287','341','0','2','2010-06-02 19:41:50');
 REPLACE INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('2522','Villa  Elisa','','341','0','2','2010-06-02 19:41:50');

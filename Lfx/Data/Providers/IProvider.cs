@@ -40,5 +40,7 @@ namespace qGen.Providers
                 IDbCommand GetCommand();
                 IDbDataAdapter GetAdapter(string commandText, IDbConnection connection);
                 IDbDataParameter GetParameter();
+
+                ProviderSettings Settings { get; set; }
         }
 }

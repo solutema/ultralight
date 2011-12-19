@@ -85,6 +85,8 @@ namespace qGen
                                         Param.ParameterName = "@" + ThisField.ColumnName;
                                         if (ThisField.Value is NullableDateTime && ThisField.Value != null)
                                                 Param.Value = ((NullableDateTime)(ThisField.Value)).Value;
+                                        else if (ThisField.Value != null && ThisField.Value.GetType().IsEnum)
+                                                Param.Value = System.Convert.ToInt32(ThisField.Value);
                                         else
                                                 Param.Value = ThisField.Value;
                                         if (ThisField.DataType == Lfx.Data.DbTypes.Blob)

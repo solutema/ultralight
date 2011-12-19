@@ -367,10 +367,10 @@ namespace Lfx
                         Progreso.ChangeStatus("Carga inicial de datos");
                         Progreso.Max = Sql.Length;
                         this.MasterConnection.ExecuteSql(Sql);
-                        /*
-                        do {
+                        
+                        /* do {
                                 string Comando = Lfx.Data.Connection.GetNextCommand(ref Sql);
-                                this.MasterConnection.Execute(Comando);
+                                this.MasterConnection.ExecuteSql(Comando);
                                 Progreso.ChangeStatus(Progreso.Max - Sql.Length);
                         }
                         while (Sql.Length > 0); */

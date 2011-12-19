@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N.
+// Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,23 +29,18 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
+using System.Collections.Generic;
+
 namespace qGen.Providers
 {
-        /// <summary>
-        /// Proveedor compatible con MySql Connector/NET versión 6. Requiere la presencia de MySql.Data.dll en el directorio del programa.
-        /// </summary>
-        public class MySql : Provider
+        public class ProviderSettings
         {
-                public MySql() :
-                        base("MySql.Data",
-                        "MySql.Data",
-                        "MySqlClient.MySqlConnection",
-                        "MySqlClient.MySqlCommand",
-                        "MySqlClient.MySqlDataAdapter",
-                        "MySqlClient.MySqlParameter",
-                        "MySqlClient.MySqlTransaction")
+                public Dictionary<string, string> Keywords { get; set; }
+
+                public virtual bool CompareColumnDefinitions(Lfx.Data.ColumnDefinition col1, Lfx.Data.ColumnDefinition col2)
                 {
-                        this.Settings = new MySqlSettings();
+                        return col1 == col2;
                 }
         }
 }

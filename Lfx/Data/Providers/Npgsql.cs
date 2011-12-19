@@ -45,6 +45,7 @@ namespace qGen.Providers
                         "NpgsqlParameter",
                         "NpgsqlTransacion")
                 {
+                        this.Settings = new NpgsqlSettings();
                 }
         }
 }

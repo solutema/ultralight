@@ -82,13 +82,13 @@ namespace Lfx.Data
                                         Def = "INTEGER";
                                         break;
                                 case DbTypes.MediumInt:
-                                        Def = "MEDIUMINT";
+                                        Def = "$MEDIUMINT$";
                                         break;
                                 case DbTypes.SmallInt:
-                                        Def = "SMALLINT";
+                                        Def = "$SMALLINT$";
                                         break;
                                 case DbTypes.TinyInt:
-                                        Def = "TINYINT";
+                                        Def = "$TINYINT$";
                                         break;
 				case DbTypes.Currency:
                                 case DbTypes.Numeric:

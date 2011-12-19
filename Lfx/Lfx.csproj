@@ -117,7 +117,11 @@
     <Compile Include="Data\Aggregate.cs" />
     <Compile Include="Data\Grouping.cs" />
     <Compile Include="Data\InputFieldTypes.cs" />
+    <Compile Include="Data\Providers\AnsiSettings.cs" />
     <Compile Include="Data\Providers\IProvider.cs" />
+    <Compile Include="Data\Providers\MySqlSettings.cs" />
+    <Compile Include="Data\Providers\NpgsqlSettings.cs" />
+    <Compile Include="Data\Providers\ProviderSettings.cs" />
     <Compile Include="Data\Providers\SQLite.cs" />
     <Compile Include="Data\qGen\BeginTransactionCommand.cs" />
     <Compile Include="Data\qGen\CommitCommand.cs" />

@@ -87,7 +87,7 @@ namespace Lfx.Data
                         TableSql += FieldsSql;
                         if (PrimaryKeys.Length > 0)
                                 TableSql += "," + System.Environment.NewLine + "  PRIMARY KEY (" + PrimaryKeys + ")";
-                        TableSql += System.Environment.NewLine + ") $/CREATETABLE$;" + System.Environment.NewLine + System.Environment.NewLine;
+                        TableSql += System.Environment.NewLine + ") $CREATETABLE_OPTIONS$;" + System.Environment.NewLine + System.Environment.NewLine;
 
                         return TableSql;
                 }
