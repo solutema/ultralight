@@ -439,8 +439,10 @@ namespace Lfx
                                 MustEnableConstraints = true;
                         }
 
-                        if (omitPreAndPostSql == false)
+                        if (omitPreAndPostSql == false) {
+                                Progreso.ChangeStatus("Ejecutando guión previo...");
                                 InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd_pre.sql");
+                        }
 
                         //Primero borro claves foráneas (deleteOnly = true)
                         dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, true);
@@ -468,8 +470,10 @@ namespace Lfx
                         }
                         dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, false);
 
-                        if (omitPreAndPostSql == false)
+                        if (omitPreAndPostSql == false) {
+                                Progreso.ChangeStatus("Ejecutando guión posterior...");
                                 InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd_post.sql");
+                        }
 
                         if (MustEnableConstraints)
                                 dataBase.EnableConstraints(true);

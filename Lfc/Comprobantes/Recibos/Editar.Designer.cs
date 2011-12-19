@@ -197,7 +197,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.ListaFacturas.TabIndex = 9;
                         this.ListaFacturas.UseCompatibleStateImageBehavior = false;
                         this.ListaFacturas.View = System.Windows.Forms.View.Details;
-                        this.ListaFacturas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvFacturas_KeyDown);
+                        this.ListaFacturas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListaFacturas_KeyDown);
                         // 
                         // FacturasId
                         // 

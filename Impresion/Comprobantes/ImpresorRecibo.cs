@@ -136,7 +136,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                                 Valores.AppendLine("                           cupón " + Pg.Cupon.ToString());
                                                                 break;
                                                         case Lbl.Pagos.TiposFormasDePago.Caja:
-                                                                Valores.AppendLine("Depósito en Cuenta       : " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
+                                                                Valores.AppendLine("Ingreso en Cuenta        : " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Pg.Importe, this.Workspace.CurrentConfig.Moneda.Decimales));
                                                                 Valores.AppendLine("                           cuenta " + Pg.CajaDestino.ToString());
                                                                 break;
                                                         default:

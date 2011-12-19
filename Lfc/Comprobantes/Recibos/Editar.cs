@@ -414,7 +414,7 @@ namespace Lfc.Comprobantes.Recibos
                 }
 
 
-                private void lvFacturas_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                private void ListaFacturas_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
                         switch (e.KeyCode) {
                                 case Keys.Up:
