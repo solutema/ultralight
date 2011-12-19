@@ -114,7 +114,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Servicio.cs" />
     <EmbeddedResource Include="FormEstado.resx">
       <DependentUpon>FormEstado.cs</DependentUpon>
       <SubType>Designer</SubType>

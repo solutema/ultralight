@@ -308,9 +308,11 @@ namespace ServidorFiscal
                         Programador.Stop();
 
                         if (this.PV != 0) {
+                                System.Data.IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction();
                                 qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
                                 Actualizar.Fields.AddWithValue("lsa", null);
                                 this.Impresora.DataBase.Execute(Actualizar);
+                                Trans.Commit();
                         }
 
                         Impresora.Terminar();
