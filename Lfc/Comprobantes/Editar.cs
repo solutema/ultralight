@@ -339,6 +339,7 @@ namespace Lfc.Comprobantes
                         }
                 }
 
+
                 private void BotonMasDatos_Click(System.Object sender, System.EventArgs e)
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
@@ -399,6 +400,7 @@ namespace Lfc.Comprobantes
                         IgnorarEventos = false;
                 }
 
+
                 private void EntradaTotal_TextChanged(object sender, System.EventArgs e)
                 {
                         if (IgnorarEventos)
@@ -418,6 +420,7 @@ namespace Lfc.Comprobantes
                         }
                         IgnorarEventos = false;
                 }
+
 
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public virtual Lbl.Comprobantes.Tipo Tipo
@@ -439,6 +442,17 @@ namespace Lfc.Comprobantes
                                 }
                         }
                 }
+
+
+                public override void AfterSave(System.Data.IDbTransaction transaction)
+                {
+                        Lbl.Comprobantes.Comprobante Compr = this.Elemento as Lbl.Comprobantes.Comprobante;
+                        if (Compr != null && Compr.Tipo != null && Compr.Tipo.ImprimirAlGuardar) {
+                                Lazaro.Impresion.Impresor Impr = Lazaro.Impresion.Instanciador.InstanciarImpresor(Compr, transaction);
+                                Impr.Imprimir();
+                        }
+                }
+
 
                 private void ProductArray_ObtenerDatosSeguimiento(object sender, EventArgs e)
                 {

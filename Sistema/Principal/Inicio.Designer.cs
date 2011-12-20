@@ -47,8 +47,6 @@ namespace Lazaro.WinMain.Principal
                         if (disposing) {
                                 if (components != null)
                                         components.Dispose();
-                                if (ConsoleWriter != null)
-                                        ConsoleWriter.Dispose();
                         }
                         base.Dispose(disposing);
                 }
@@ -67,11 +65,7 @@ namespace Lazaro.WinMain.Principal
                         this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
                         this.BarraTareas = new System.Windows.Forms.ToolBar();
                         this.BarraTareasImagenes = new System.Windows.Forms.ImageList(this.components);
-                        this.ListaBd = new System.Windows.Forms.ListBox();
-                        this.ConsoleOut = new System.Windows.Forms.TextBox();
-                        this.PanelDebug = new System.Windows.Forms.Panel();
                         this.BarraInferior = new Lazaro.WinMain.Principal.BarraInferior();
-                        this.PanelDebug.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // TimerProgramador
@@ -100,46 +94,9 @@ namespace Lazaro.WinMain.Principal
                         this.BarraTareasImagenes.ImageSize = new System.Drawing.Size(16, 16);
                         this.BarraTareasImagenes.TransparentColor = System.Drawing.Color.Transparent;
                         // 
-                        // ListaBd
-                        // 
-                        this.ListaBd.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.ListaBd.FormattingEnabled = true;
-                        this.ListaBd.IntegralHeight = false;
-                        this.ListaBd.ItemHeight = 15;
-                        this.ListaBd.Location = new System.Drawing.Point(0, 0);
-                        this.ListaBd.Name = "ListaBd";
-                        this.ListaBd.Size = new System.Drawing.Size(308, 144);
-                        this.ListaBd.TabIndex = 10;
-                        // 
-                        // ConsoleOut
-                        // 
-                        this.ConsoleOut.BackColor = System.Drawing.SystemColors.Window;
-                        this.ConsoleOut.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.ConsoleOut.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.ConsoleOut.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        this.ConsoleOut.Location = new System.Drawing.Point(0, 144);
-                        this.ConsoleOut.Multiline = true;
-                        this.ConsoleOut.Name = "ConsoleOut";
-                        this.ConsoleOut.ReadOnly = true;
-                        this.ConsoleOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-                        this.ConsoleOut.Size = new System.Drawing.Size(308, 208);
-                        this.ConsoleOut.TabIndex = 12;
-                        this.ConsoleOut.TabStop = false;
-                        this.ConsoleOut.WordWrap = false;
-                        // 
-                        // PanelDebug
-                        // 
-                        this.PanelDebug.Controls.Add(this.ConsoleOut);
-                        this.PanelDebug.Controls.Add(this.ListaBd);
-                        this.PanelDebug.Dock = System.Windows.Forms.DockStyle.Left;
-                        this.PanelDebug.Location = new System.Drawing.Point(0, 28);
-                        this.PanelDebug.Name = "PanelDebug";
-                        this.PanelDebug.Size = new System.Drawing.Size(308, 352);
-                        this.PanelDebug.TabIndex = 13;
-                        this.PanelDebug.Visible = false;
-                        // 
                         // BarraInferior
                         // 
+                        this.BarraInferior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
                         this.BarraInferior.Location = new System.Drawing.Point(0, 380);
                         this.BarraInferior.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -152,7 +109,6 @@ namespace Lazaro.WinMain.Principal
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(950, 437);
-                        this.Controls.Add(this.PanelDebug);
                         this.Controls.Add(this.BarraTareas);
                         this.Controls.Add(this.BarraInferior);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
@@ -166,8 +122,6 @@ namespace Lazaro.WinMain.Principal
                         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
                         this.Load += new System.EventHandler(this.FormPrincipal_Load);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormPrincipal_KeyDown);
-                        this.PanelDebug.ResumeLayout(false);
-                        this.PanelDebug.PerformLayout();
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -179,9 +133,6 @@ namespace Lazaro.WinMain.Principal
                 internal System.Windows.Forms.MainMenu MainMenu;
                 public System.Windows.Forms.ToolBar BarraTareas;
                 private System.Windows.Forms.ImageList BarraTareasImagenes;
-                private System.Windows.Forms.ListBox ListaBd;
-                private System.Windows.Forms.TextBox ConsoleOut;
-                private System.Windows.Forms.Panel PanelDebug;
                 private BarraInferior BarraInferior;
         }
 }

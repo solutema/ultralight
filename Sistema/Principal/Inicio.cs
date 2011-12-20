@@ -43,22 +43,12 @@ namespace Lazaro.WinMain.Principal
                 public Lfx.Types.ShowProgressDelegate ShowProgress = null;
 
                 private static System.Collections.Generic.Dictionary<string, MenuItemInfo> MenuItemInfoTable = null;
-                private System.IO.TextWriter ConsoleWriter = null;
-                private System.Text.StringBuilder ConsoleBuffer = new System.Text.StringBuilder();
 
                 public Inicio()
                 {
                         InitializeComponent();
 
                         ShowProgress = new Lfx.Types.ShowProgressDelegate(ShowProgressRoutine);
-
-                        if (Lfx.Workspace.Master.DebugMode) {
-                                PanelDebug.Visible = true;
-                                TimerProgramador.Interval = 1000;
-                        }
-
-                        ConsoleWriter = new TextBoxStreamWriter(ConsoleOut);
-                        Console.SetOut(ConsoleWriter);
                 }
 
 
@@ -66,6 +56,7 @@ namespace Lazaro.WinMain.Principal
                 {
                         this.BarraInferior.ShowProgressRoutine(progreso);
                 }
+
 
                 private void FormPrincipal_Load(object sender, EventArgs e)
                 {
@@ -120,26 +111,6 @@ namespace Lazaro.WinMain.Principal
                         TimerProgramador.Stop();
 
                         if (this.Visible) {
-                                if (PanelDebug.Visible) {
-                                        ListaBd.Items.Clear();
-                                        if (System.Windows.Forms.Form.ActiveForm != null && System.Windows.Forms.Form.ActiveForm.ActiveControl != null) {
-                                                Control Act = System.Windows.Forms.Form.ActiveForm.ActiveControl;
-                                                while(true)
-                                                {
-                                                        if (Act is ContainerControl && ((ContainerControl)(Act)).ActiveControl != null) {
-                                                                Act = ((ContainerControl)(Act)).ActiveControl;
-                                                        } else {
-                                                                break;
-                                                        }
-                                                }
-                                                ListaBd.Items.Add(Act.Name);
-                                        }
-                                        
-                                        foreach (Lfx.Data.Connection Bd in this.Workspace.ActiveConnections) {
-                                                ListaBd.Items.Add(Bd.Handle.ToString() + " " + Bd.Name);
-                                        }
-                                }
-
                                 //Ejecuto tareas del programador
                                 Lfx.Services.Task ProximaTarea = null;
                                 // En conexiones lentas, 1 vez por minuto
@@ -220,14 +191,6 @@ namespace Lazaro.WinMain.Principal
                                                                 Archivo.Dispose();
                                                         }
                                                 }
-                                        }
-                                        break;
-                                case Keys.D:
-                                        if (e.Control && e.Alt == false && e.Shift == false) {
-                                                e.Handled = true;
-                                                PanelDebug.Visible = !PanelDebug.Visible;
-                                                if (PanelDebug.Visible)
-                                                        this.TimerProgramador_Tick(this, null);
                                         }
                                         break;
                                 case Keys.B:
@@ -642,47 +605,6 @@ namespace Lazaro.WinMain.Principal
                         get
                         {
                                 return Lfx.Workspace.Master;
-                        }
-                }
-
-                public void ConsoleWrite(char value)
-                {
-                        if (PanelDebug.Visible) {
-                                ConsoleBuffer.Append(value);
-                                if (value == Lfx.Types.ControlChars.Lf) {
-                                        ConsoleOut.AppendText(ConsoleBuffer.ToString());
-                                        ConsoleBuffer = new System.Text.StringBuilder();
-                                }
-                        }
-                }
-        }
-
-        public class TextBoxStreamWriter : System.IO.TextWriter
-        {
-                private TextBox destinationControl = null;
-
-                public TextBoxStreamWriter(TextBox output)
-                {
-                        destinationControl = output;
-                }
-
-                public override void Write(char value)
-                {
-                        base.Write(value);
-
-                        if (destinationControl.InvokeRequired) {
-                                MethodInvoker Mi = delegate { Aplicacion.FormularioPrincipal.ConsoleWrite(value); };
-                                Aplicacion.FormularioPrincipal.Invoke(Mi);
-                        } else {
-                                Aplicacion.FormularioPrincipal.ConsoleWrite(value);
-                        }
-                }
-
-                public override System.Text.Encoding Encoding
-                {
-                        get
-                        {
-                                return System.Text.Encoding.UTF8;
                         }
                 }
         }

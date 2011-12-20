@@ -42,7 +42,6 @@ REPLACE INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha"
 REPLACE INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (40,'Tareas: Estados',NULL,0,'0000-00-00 00:00:00','Lbl.Tareas.Estado',NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (41,'Tareas: Categorías',NULL,0,'0000-00-00 00:00:00','Lbl.Tareas.Tipo',NULL,NULL,NULL,NULL,NULL,NULL);
 
-
 REPLACE INTO "sys_permisos" ("id_permiso", "id_objeto", "id_persona", "items", "ops") VALUES (1, 1, 1, null, 65536);
 
 UPDATE ciudades SET iva=1 WHERE id_ciudad=24;
