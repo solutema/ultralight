@@ -100,6 +100,8 @@
     <Compile Include="Comprobantes\Factura.cs" />
     <Compile Include="Comprobantes\Lote.cs" />
     <Compile Include="CuentasCorrientes\Movimiento.cs" />
+    <Compile Include="Entidades\ClaveUnica.cs" />
+    <Compile Include="Entidades\Pais.cs" />
     <Compile Include="Estados.cs" />
     <Compile Include="IMarcas.cs" />
     <Compile Include="ICuenta.cs" />

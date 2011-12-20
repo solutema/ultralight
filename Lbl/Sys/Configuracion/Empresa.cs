@@ -38,6 +38,7 @@ namespace Lbl.Sys.Configuracion
         public class Empresa : SeccionConfiguracion
         {
                 private Lbl.Impuestos.Alicuota m_AlicuotaPredeterminada = null;
+                private Lbl.Entidades.Pais m_Pais = null;
                 private ColeccionGenerica<Lbl.Comprobantes.PuntoDeVenta> m_PuntosDeVenta = null;
 
                 public Lbl.Entidades.Sucursal SucursalPredeterminada { get; set; }
@@ -58,6 +59,21 @@ namespace Lbl.Sys.Configuracion
                         set
                         {
                                 this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.Situacion", value.ToString(), "*");
+                        }
+                }
+
+
+                public Lbl.Entidades.Pais Pais
+                {
+                        get
+                        {
+                                if (m_Pais == null) {
+                                        int IdPais = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Pais", 0);
+                                        if (IdPais > 0)
+                                                m_Pais = new Lbl.Entidades.Pais(this.DataBase, 1);
+                                }
+
+                                return m_Pais;
                         }
                 }
 
@@ -154,6 +170,7 @@ namespace Lbl.Sys.Configuracion
                                 this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.Email", value, "*");
                         }
                 }
+
 
                 public ColeccionGenerica<Lbl.Comprobantes.PuntoDeVenta> PuntosDeVenta
                 {

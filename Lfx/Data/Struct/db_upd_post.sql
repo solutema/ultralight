@@ -1,5 +1,77 @@
 SET FOREIGN_KEY_CHECKS=0;
 
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (1,'DNI','Documento Nacional de Identidad','Argentina, España y Perú',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (2,'LE','Libreta de Enrolamiento','Argentina',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (3,'LC','Libreta Cívica','Argentina',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (4,'CI','Cédula de Identidad','Bolivia, Brazil, Chile, Costa Rica, Ecuador, Honduras, Nicaragua, Panamá, Paraguay, Uruguay y Venezuela',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (5,'CUIL','CUIL','Argentina',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (6,'CUIT','CUIT','Argentina',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (7,'Pasaporte','',NULL,1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (8,'CURP','Clave Única de Registro de Población','México',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (9,'CIE','Cédula de Identidad y Electoral','República Dominicana',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (10,'CC','Cédula de Ciudadanía','Colombia',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (11,'DUI','Documento Único de Identidad','El Salvador',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (12,'DPI','Documento Personal de Identificación','Guatemala',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (14,'NIT','Número de Identificación Tributaria','Bolivia, Colombia, El Salvador',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (15,'RIF','Registro Único de Información Fiscal','Venezuela',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (16,'RUT','Rol Único Tributario','Chile',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (17,'RUN','Rol Único Nacional','Chile',1,1);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (18,'RNC','Registro Nacional del Contribuyente','República Dominicana',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (19,'RUT','Registro Único Tributario','Uruguay',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (20,'NIF','Número de identificación fiscal','España',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (21,'NIE','Número de identificación de extranjero','España',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (22,'SSN','Social Security Number ','Estados Unidos',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (23,'TIN','Taxpayer Identification Number','Estados Unidos',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (24,'RFC','Registro Federal de Contribuyentes','México',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (25,'RUC','Registro Único de Contribuyentes','Panamá, Perú y en Ecuador',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (26,'RTU','Registro Tributario Unificado','Guatemala',1,3);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "fisjur") VALUES (27,'CPF','Cadastro de Pessoas Físicas','Brazil',1,3);
+
+
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (1,'Dólares',NULL,1,'USD','USD',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (2,'Euros',NULL,1,'€','EUR',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (3,'Pesos Argentinos',NULL,1,'$','ARS',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (4,'Pesos Uruguayos',NULL,1,'$','UYU',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (5,'Pesos Chilenos',NULL,1,'$','CLP',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (6,'Reales',NULL,1,'R$','BRL',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (7,'Guaraníes',NULL,1,'Gs','PYG',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (8,'Pesos Bolivianos',NULL,1,'$','BOB',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (9,'Soles',NULL,1,'S/.','PEN',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (11,'Pesos Colombianos',NULL,1,'$','COP',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (12,'Bolívares',NULL,1,'Bs','VEF',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (13,'Colones de Costa Rica',NULL,1,'C','CRC',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (14,'Pesos Cubanos',NULL,1,'P','CUP',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (15,'Colones de El Salvador',NULL,1,'$','SVC',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (16,'Quetzales',NULL,1,'Q','GTQ',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (17,'Pesos Mexicanos',NULL,1,'$','MXN',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (18,'Córdobas',NULL,1,'C$','NIO',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (19,'Balboas',NULL,1,'B/.','PAB',1);
+REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (20,'Pesos Dominicanos',NULL,1,'RD$','DOP',1);
+
+
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (1,'Argentina',NULL,1,'AR',1,6,3);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (2,'España',NULL,1,'ES',1,20,2);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (3,'Chile',NULL,1,'CL',4,16,5);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (4,'México',NULL,1,'MX',8,24,17);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (5,'Uruguay',NULL,1,'UY',4,19,4);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (6,'Paraguay',NULL,1,'PY',4,0,7);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (7,'Bolivia',NULL,1,'BO',4,14,8);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (8,'Colombia',NULL,1,'CO',10,14,11);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (9,'Venezuela',NULL,1,'VE',4,15,12);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (10,'Ecuador',NULL,1,'EC',4,25,NULL);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (11,'Perú',NULL,1,'PE',1,25,9);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (12,'Panamá',NULL,1,'PA',4,25,19);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (13,'Guatemala',NULL,1,'GT',12,26,16);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (14,'El Salvador',NULL,1,'SV',11,14,15);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (15,'República Dominicana',NULL,1,'DO',9,18,20);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (16,'Cuba',NULL,1,'CU',0,0,14);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (17,'Brazil',NULL,1,'BR',4,27,6);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (18,'Costa Rica',NULL,1,'CR',4,0,13);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (19,'Honduras',NULL,'0','HN',4,0,NULL);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (20,'Nicaragua',NULL,'0','NI',4,0,18);
+REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "iso", "clavejur", "clavefis", "id_moneda") VALUES (99,'Estados Unidos',NULL,1,'US',22,23,1);
+
+
 REPLACE INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (1,'Global',NULL,0,'0000-00-00 00:00:00','Global',NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (2,'Personas',NULL,0,'0000-00-00 00:00:00','Lbl.Personas.Persona',NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (3,'Artículos',NULL,0,'0000-00-00 00:00:00','Lbl.Articulos.Articulo',NULL,NULL,NULL,NULL,NULL,NULL);
@@ -100,5 +172,6 @@ UPDATE sys_plantillas SET codigo='Lbl.Comprobantes.ComprobanteConArticulos' WHER
 UPDATE ciudades a SET id_provincia=(SELECT parent FROM (SELECT id_ciudad, parent, nivel FROM ciudades WHERE nivel=1) AS X WHERE id_ciudad=a.parent) WHERE id_provincia IS NULL AND nivel=2;
 DELETE FROM ciudades WHERE nivel=1;
 UPDATE ciudades SET parent=id_provincia WHERE nivel>0;
+UPDATE ciudades SET id_pais=1 WHERE id_pais=0 AND parent IS NULL;
 
 SET FOREIGN_KEY_CHECKS=1;

@@ -287,6 +287,8 @@
     <Column name="id_ciudad" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" label="Nombre" required="1" nullable="0" lenght="200" />
     <Column name="cp" inputtype="Text" label="Código Postal" nullable="0" lenght="50" />
+    <Column name="id_pais" inputtype="Relation" section="Otros" label="País" nullable="0"
+            relation_table="paises" relation_key="id_pais" relation_detail="nombre" />
     <Column name="parent" inputtype="Relation" section="Otros" label="Parent" nullable="1"
             relation_table="ciudades" relation_key="id_ciudad" relation_detail="nombre" />
     <Column name="id_provincia" inputtype="Relation" section="Otros" label="Provincia" nullable="1"
@@ -296,9 +298,10 @@
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
+    <Index table="ciudades" name="PRIMARY" columns="id_ciudad" unique="1" primary="1" />
     <Index table="ciudades" name="ciudades_cp" columns="cp" unique="0" primary="0" />
     <Index table="ciudades" name="ciudades_parent" columns="parent" unique="0" primary="0" />
-    <Index table="ciudades" name="PRIMARY" columns="id_ciudad" unique="1" primary="1" />
+    <Index table="ciudades" name="ciudades_id_pais" columns="id_pais" unique="0" primary="0" />
   </Table>
   
   
@@ -605,9 +608,8 @@
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="margenes" name="PRIMARY" columns="id_margen" unique="1" primary="1" />
   </Table>
-  
-  
-  
+
+
   <Table name="monedas" lsdet="1" label="Monedas">
     <Column name="id_moneda" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="50" />
@@ -619,8 +621,22 @@
     <Column name="cotizacion" inputtype="Currency" default="0" />
     <Index table="monedas" name="PRIMARY" columns="id_moneda" unique="1" primary="1" />
   </Table>
-  
-  
+
+
+  <Table name="paises" lsdet="1" label="Países">
+    <Column name="id_pais" datatype="Serial" nullable="0" primary_key="1" />
+    <Column name="nombre" inputtype="Text" nullable="0" lenght="50" />
+    <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
+    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
+    <Column name="iso" datatype="VarChar" nullable="0" lenght="50" />
+    <Column name="clavejur" inputtype="Relation" label="Clave de Identificación de Personas Jurídicas" nullable="0" />
+    <Column name="clavefis" inputtype="Relation" label="Clave de Identificación de Personas Físicas" nullable="0" />
+    <Column name="id_moneda" inputtype="Relation" label="Moneda" nullable="1" />
+    <Index table="paises" name="PRIMARY" columns="id_pais" unique="1" primary="1" />
+  </Table>
+
+
   <Table name="pagos_valores" label="Valores de Pago">
     <Column name="id_valor" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
@@ -1195,9 +1211,11 @@
   <Table name="tipo_doc" lsdet="1" label="Tipos de Documento">
     <Column name="id_tipo_doc" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
+    <Column name="descripcion" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
+    <Column name="fisjur" inputtype="TinyInt" label="Física/Jurídica" nullable="0" />
     <Index table="tipo_doc" name="PRIMARY" columns="id_tipo_doc" unique="1" primary="1" />
   </Table>
   

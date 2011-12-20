@@ -127,6 +127,9 @@ namespace Lazaro.WinMain.Misc.Config
                         EntradaLimiteCredito.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Cuentas.LimiteCreditoPredet", "0");
                         EntradaRedondeo.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Moneda.Redondeo", "0.05");
 
+                        EntradaPais.TextInt = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Pais", 0);
+                        if (EntradaPais.TextInt > 0)
+                                EntradaPais.ReadOnly = true;
                         EntradaProvincia.TextInt = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Provincia", 0);
                         EntradaLocalidad.TextInt = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Localidad", 0);
 		}
@@ -192,6 +195,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.Text, "*");
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Moneda.Redondeo", EntradaRedondeo.Text, "*");
 
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "País", EntradaPais.TextInt.ToString(), 0);
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Provincia", EntradaProvincia.TextInt.ToString(), 0);
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Localidad", EntradaLocalidad.TextInt.ToString(), 0);
 
@@ -234,6 +238,14 @@ namespace Lazaro.WinMain.Misc.Config
                                 EntradaLocalidad.Filter = "id_provincia=" + EntradaProvincia.TextInt.ToString();
                         else
                                 EntradaLocalidad.Filter = "";
+                }
+
+                private void EntradaPais_TextChanged(object sender, System.EventArgs e)
+                {
+                        if (EntradaPais.TextInt != 0)
+                                EntradaProvincia.Filter = "id_pais=" + EntradaPais.TextInt.ToString();
+                        else
+                                EntradaProvincia.Filter = "";
                 }
 	}
 }
