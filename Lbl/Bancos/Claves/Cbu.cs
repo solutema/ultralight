@@ -33,6 +33,7 @@ namespace Lbl.Bancos.Claves
 {
         /// <summary>
         /// Clave Bancaria Uniforme (Argentina)
+        /// http://www.clientebancario.gov.ar/default.asp
         /// </summary>
         public class Cbu : IdentificadorUnico
         {

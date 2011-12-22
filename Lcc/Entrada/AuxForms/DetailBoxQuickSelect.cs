@@ -134,12 +134,14 @@ namespace Lcc.Entrada.AuxForms
 
                         if (m_Table == "articulos" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
                                 m_ExtraDetailFields = "codigo1,codigo2,codigo3,codigo4";
-
-                        if (m_Table == "personas" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
+                        else if (m_Table == "personas" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
                                 m_ExtraDetailFields = "num_doc,cuit,extra1";
-
-                        if (m_Table == "ciudades" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
+                        else if (m_Table == "ciudades" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0))
                                 m_ExtraDetailFields = "cp,(SELECT nombre FROM ciudades b WHERE b.id_ciudad=ciudades.id_provincia)";
+                        else if (m_Table == "tipo_doc" && (m_ExtraDetailFields == null || m_ExtraDetailFields.Length == 0)) {
+                                m_ExtraDetailFields = "nombre";
+                                m_DetailField = "descripcion";
+                        }
 
                         if (m_ExtraDetailFields != null)
                                 CamposExtra = m_ExtraDetailFields.Length - m_ExtraDetailFields.Replace(",", "").Length + 1;

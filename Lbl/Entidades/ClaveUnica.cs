@@ -35,9 +35,16 @@ using System.Text;
 
 namespace Lbl.Entidades
 {
+        public enum TipoClaveUnica
+        {
+                PersonasFisicas = 1,
+                PersonasJuridicas = 2,
+                PersonasFisicasYJuridicas = 3,
+                CuentasBancarias = 4
+        }
 
         /// <summary>
-        /// Representa una Clave Única (por ejemplo un DNI, SSN, etc.).
+        /// Representa una Clave Única (por ejemplo un DNI, SSN, CBU, IBAN, etc.).
         /// </summary>
         [Lbl.Atributos.NombreItem("Clave Única")]
         public class ClaveUnica : ElementoDeDatos
@@ -78,6 +85,19 @@ namespace Lbl.Entidades
                         set
                         {
                                 this.Registro["descripcion"] = value;
+                        }
+                }
+
+
+                public TipoClaveUnica Tipo
+                {
+                        get
+                        {
+                                return (TipoClaveUnica)(this.GetFieldValue<int>("tipo"));
+                        }
+                        set
+                        {
+                                this.Registro["tipo"] = (int)(value);
                         }
                 }
         }

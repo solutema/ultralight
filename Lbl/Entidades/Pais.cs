@@ -42,7 +42,7 @@ namespace Lbl.Entidades
         [Lbl.Atributos.NombreItem("País")]
         public class Pais : ElementoDeDatos
         {
-                private ClaveUnica m_ClavePersonasFisicas = null, m_ClavePersonasJuridicas = null;
+                private ClaveUnica m_ClavePersonasFisicas = null, m_ClavePersonasJuridicas = null, m_ClaveBancaria = null;
                 private Moneda m_Moneda = null;
 
                 //Heredar constructor
@@ -84,7 +84,11 @@ namespace Lbl.Entidades
                         }
                 }
 
+                
 
+                /// <summary>
+                /// El tipo de clave utilizada para identificar a las personas (DNI, CI, SSN, etc.)
+                /// </summary>
                 public ClaveUnica ClavePersonasFisicas
                 {
                         get
@@ -96,6 +100,9 @@ namespace Lbl.Entidades
                 }
 
 
+                /// <summary>
+                /// El tipo de clave utilizada para identificar a las personas jurídicas (CUIT, RUT, NIF, etc.)
+                /// </summary>
                 public ClaveUnica ClavePersonasJuridicas
                 {
                         get
@@ -106,6 +113,24 @@ namespace Lbl.Entidades
                         }
                 }
 
+
+                /// <summary>
+                /// El tipo de clave utilizada para identificar las cuentas bancarias (CBU, IBAN, CLABE, etc.)
+                /// </summary>
+                public ClaveUnica ClaveBancaria
+                {
+                        get
+                        {
+                                if (m_ClaveBancaria == null)
+                                        m_ClaveBancaria = new ClaveUnica(this.Connection, this.GetFieldValue<int>("claveban"));
+                                return m_ClaveBancaria;
+                        }
+                }
+
+
+                /// <summary>
+                /// La divisa utilizada en el país.
+                /// </summary>
                 public Moneda Moneda
                 {
                         get

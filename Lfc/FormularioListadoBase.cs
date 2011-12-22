@@ -56,7 +56,7 @@ namespace Lfc
                 protected ListViewGroup LastGroup = null;
 
                 // Labels
-                protected int[] m_Labels = null;
+                protected List<int> m_Labels = null;
                 protected string m_LabelField = null;
 
                 public List<Contador> Contadores = new List<Contador>();
@@ -88,7 +88,7 @@ namespace Lfc
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public int[] Labels
+                public List<int> Labels
                 {
                         get
                         {
@@ -628,18 +628,57 @@ namespace Lfc
                                 WhereBuscarTexto.Operator = qGen.AndOr.Or;
 
                                 if (this.SearchText != null) {
+                                        bool EsNumero = this.SearchText.IsNumericInt() || this.SearchText.IsNumericFloat();
                                         if (this.SearchText.IsNumericInt())
                                                 WhereBuscarTexto.AddWithValue(this.Definicion.KeyColumnName.MemberName, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
 
                                         if (this.Definicion.Columns != null) {
                                                 foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns) {
-                                                        if (CurField.MemberName.IndexOf(" AS ") == -1 && CurField.MemberName.IndexOf("(") == -1)
-                                                                WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                        if (CurField.MemberName.IndexOf(" AS ") == -1 && CurField.MemberName.IndexOf("(") == -1) {
+                                                                switch(CurField.DataType) {
+                                                                        case Lfx.Data.InputFieldTypes.Binary:
+                                                                        case Lfx.Data.InputFieldTypes.Image:
+                                                                                // En estos tipos de campos no se busca
+                                                                                break;
+                                                                        case Lfx.Data.InputFieldTypes.Currency:
+                                                                        case Lfx.Data.InputFieldTypes.Integer:
+                                                                        case Lfx.Data.InputFieldTypes.Numeric:
+                                                                        case Lfx.Data.InputFieldTypes.NumericSet:
+                                                                        case Lfx.Data.InputFieldTypes.Relation:
+                                                                        case Lfx.Data.InputFieldTypes.Serial:
+                                                                                // En estos tipos de campos busco sólo números
+                                                                                if(EsNumero)
+                                                                                        WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                                                break;
+                                                                        default:
+                                                                                WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                                                break;
+                                                                }
+                                                                
+                                                        }
                                                 }
                                         }
                                         if (this.Definicion.ExtraSearchColumns != null) {
                                                 foreach (Lazaro.Pres.Field CurField in this.Definicion.ExtraSearchColumns) {
-                                                        WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                        switch (CurField.DataType) {
+                                                                case Lfx.Data.InputFieldTypes.Binary:
+                                                                case Lfx.Data.InputFieldTypes.Image:
+                                                                        // En estos tipos de campos no se busca
+                                                                        break;
+                                                                case Lfx.Data.InputFieldTypes.Currency:
+                                                                case Lfx.Data.InputFieldTypes.Integer:
+                                                                case Lfx.Data.InputFieldTypes.Numeric:
+                                                                case Lfx.Data.InputFieldTypes.NumericSet:
+                                                                case Lfx.Data.InputFieldTypes.Relation:
+                                                                case Lfx.Data.InputFieldTypes.Serial:
+                                                                        // En estos tipos de campos busco sólo números
+                                                                        if (EsNumero)
+                                                                                WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                                        break;
+                                                                default:
+                                                                        WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                                        break;
+                                                        }
                                                 }
                                         }
                                 }
@@ -650,14 +689,14 @@ namespace Lfc
                                 if (m_Labels != null) {
                                         if (m_LabelField == null || m_LabelField.Length == 0)
                                                 m_LabelField = this.Definicion.KeyColumnName.MemberName;
-                                        if (m_Labels.Length == 1) {
+                                        if (m_Labels.Count == 1) {
                                                 // Ids negativos sólo cuando hay una sola etiqueta
                                                 if (m_Labels[0] > 0)
                                                         WhereCompleto.AddWithValue(m_LabelField, qGen.ComparisonOperators.In, new qGen.SqlExpression("(SELECT item_id FROM sys_labels_values WHERE id_label=" + m_Labels[0].ToString() + ")"));
                                                 else
                                                         WhereCompleto.AddWithValue(m_LabelField, qGen.ComparisonOperators.NotIn, new qGen.SqlExpression("(SELECT item_id FROM sys_labels_values WHERE id_label=" + (-m_Labels[0]).ToString() + ")"));
-                                        } else if (m_Labels.Length > 1) {
-                                                string[] LabelsString = Array.ConvertAll<int, string>(m_Labels, new Converter<int, string>(Convert.ToString));
+                                        } else if (m_Labels.Count > 1) {
+                                                string[] LabelsString = Array.ConvertAll<int, string>(m_Labels.ToArray(), new Converter<int, string>(Convert.ToString));
                                                 WhereCompleto.AddWithValue(m_LabelField, qGen.ComparisonOperators.In, new qGen.SqlExpression("(SELECT item_id FROM sys_labels_values WHERE id_label IN (" + string.Join(",", LabelsString) + "))"));
                                         }
                                 }

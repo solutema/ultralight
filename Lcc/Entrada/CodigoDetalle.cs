@@ -149,16 +149,31 @@ namespace Lcc.Entrada
                         }
                 }
 
+
+                public override bool ReadOnly
+                {
+                        get
+                        {
+                                return base.ReadOnly;
+                        }
+                        set
+                        {
+                                base.ReadOnly = value;
+                                EntradaCodigo.ReadOnly = this.TemporaryReadOnly || this.ReadOnly;
+                        }
+                }
+
+
                 public override bool TemporaryReadOnly
                 {
                         get
                         {
-                                return EntradaCodigo.ReadOnly;
+                                return base.ReadOnly;
                         }
                         set
                         {
                                 base.TemporaryReadOnly = value;
-                                EntradaCodigo.ReadOnly = value;
+                                EntradaCodigo.ReadOnly = this.TemporaryReadOnly || this.ReadOnly;
                                 if (Label1.Text == "???")
                                         ProgramarActualizacionDetalle(false);
                         }

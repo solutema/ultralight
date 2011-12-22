@@ -25,7 +25,7 @@ INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('
 INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('21','Santa Fe','',NULL,'0','0','2010-06-02 19:41:50');
 INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('22','Santiago Del Estero','',NULL,'0','0','2010-06-02 19:41:50');
 INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('23','Tucuman','',NULL,'0','0','2010-06-02 19:41:50');
-INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('24','Tierra Del Fuego','',NULL,'0','0','2010-06-02 19:41:50');
+INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('24','Tierra del Fuego','',NULL,'0','0','2010-06-02 19:41:50');
 INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('99','Ciudad de Buenos Aires','','1','0','1','2010-06-02 19:41:50');
 INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('100','Adolfo Alsina','','2','0','1','2010-06-02 19:41:50');
 INSERT INTO ciudades (id_ciudad, nombre, cp, parent, ca, nivel, fecha) VALUES ('101','Adolfo Gonzales Chaves','','2','0','1','2010-06-02 19:41:50');

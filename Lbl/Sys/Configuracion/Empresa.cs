@@ -70,6 +70,8 @@ namespace Lbl.Sys.Configuracion
                                 if (m_Pais == null) {
                                         int IdPais = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Pais", 0);
                                         if (IdPais > 0)
+                                                m_Pais = new Lbl.Entidades.Pais(this.DataBase, IdPais);
+                                        else
                                                 m_Pais = new Lbl.Entidades.Pais(this.DataBase, 1);
                                 }
 
@@ -144,8 +146,8 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                string Res = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Empresa.CUIT", "00-00000000-0");
-                                if (Res == "00-00000000-0")
+                                string Res = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Empresa.CUIT", "");
+                                if (Res == "" || Res == "00-00000000-0")
                                         return null;
                                 else
                                         return new Personas.Claves.Cuit(Res);
@@ -153,7 +155,7 @@ namespace Lbl.Sys.Configuracion
                         set
                         {
                                 if (value == null)
-                                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.CUIT", "00-00000000-0", 0);
+                                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.CUIT", "", 0);
                                 else
                                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Empresa.CUIT", value.ToString(), 0);
                         }

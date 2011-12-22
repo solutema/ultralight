@@ -32,7 +32,8 @@
 namespace Lbl.Bancos.Claves
 {
         /// <summary>
-        /// IBAN (Europa)
+        /// International Bank Account Number (Europa, otros)
+        /// http://en.wikipedia.org/wiki/International_Bank_Account_Number
         /// </summary>
         public class Iban : IdentificadorUnico
         {

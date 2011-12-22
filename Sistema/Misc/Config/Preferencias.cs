@@ -137,14 +137,6 @@ namespace Lazaro.WinMain.Misc.Config
 
 		private bool GuardarConfig()
 		{
-			if (EntradaEmpresaClaveTributaria.Text.Length == 11)
-				EntradaEmpresaClaveTributaria.Text = EntradaEmpresaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaEmpresaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaEmpresaClaveTributaria.Text.Substring(10, 1);
-
-                        if (EntradaEmpresaClaveTributaria.Text != "00-00000000-0" && Lbl.Personas.Claves.Cuit.EsValido(EntradaEmpresaClaveTributaria.Text) == false) {
-                                Lui.Forms.MessageBox.Show("Por favor ingrese una CUIT válida.", "La CUIT no es válida");
-                                return true;
-                        }
-
                         if (EntradaEmpresaEmail.Text.Length <= 5 || EntradaEmpresaEmail.Text.IndexOf('@') <= 0 || EntradaEmpresaEmail.Text.IndexOf('.') <= 0) {
                                 Lui.Forms.MessageBox.Show("Debe escribir una dirección de Correo Electrónico (e-mail) válida.", "Validación");
                                 return true;
@@ -195,11 +187,15 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.Text, "*");
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Moneda.Redondeo", EntradaRedondeo.Text, "*");
 
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "País", EntradaPais.TextInt.ToString(), 0);
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Pais", EntradaPais.TextInt.ToString(), 0);
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Provincia", EntradaProvincia.TextInt.ToString(), 0);
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Localidad", EntradaLocalidad.TextInt.ToString(), 0);
 
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Configurado", "1", 0);
+
                         if (this.PrimeraVez) {
+                                // Hago cambios referentes al país donde está configurado el sistema
+
                                 // Cambio la sucursal 1 y el cliente consumidor final a la localidad proporcionada
                                 Lbl.Entidades.Localidad Loc = EntradaLocalidad.Elemento as Lbl.Entidades.Localidad;
                                 if (Loc != null) {
@@ -242,10 +238,17 @@ namespace Lazaro.WinMain.Misc.Config
 
                 private void EntradaPais_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (EntradaPais.TextInt != 0)
-                                EntradaProvincia.Filter = "id_pais=" + EntradaPais.TextInt.ToString();
-                        else
-                                EntradaProvincia.Filter = "";
+                        Lbl.Entidades.Pais Pais = EntradaPais.Elemento as Lbl.Entidades.Pais;
+                        if (Pais != null) {
+                                if (Pais.ClavePersonasJuridicas != null)
+                                        EtiquetaClaveTributaria.Text = Pais.ClavePersonasJuridicas.ToString();
+                                else
+                                        EtiquetaClaveTributaria.Text = "Clave Tributaria";
+                                EntradaProvincia.Filter = "id_provincia IS NULL AND id_pais=" + Pais.Id.ToString();
+                        } else {
+                                EtiquetaClaveTributaria.Text = "Clave Tributaria";
+                                EntradaProvincia.Filter = "id_provincia IS NULL";
+                        }
                 }
 	}
 }

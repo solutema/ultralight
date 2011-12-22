@@ -216,9 +216,9 @@ namespace Lfx.Data
                                         case "documentos_tipos":
                                         case "formaspago":
                                         case "impresoras":
-                                        case "lared_convenios":
                                         case "margenes":
                                         case "monedas":
+                                        case "paises":
                                         case "personas_tipos":
                                         case "pvs":
                                         case "situaciones":
@@ -233,7 +233,7 @@ namespace Lfx.Data
 
                                         case "sys_log":
                                         case "sys_programador":
-                                        case "sys_quickpaste":
+                                        case "sys_config":
                                                 NewTable.Cacheable = false;
                                                 break;
                                 }
@@ -348,12 +348,12 @@ namespace Lfx.Data
                         Data.TableStructure CurrentTableDef = this.GetTableStructure(newTableDef.Name, false);
                         bool TablaCreada = false;
                         if (CurrentTableDef.Columns.Count == 0) {
-                                //Crear la tabla
+                                // Crear la tabla
                                 string Sql = newTableDef.ToString();
                                 this.ExecuteSql(this.CustomizeSql(Sql));
                                 TablaCreada = true;
                         } else {
-                                //Modificar tabla existente
+                                // Modificar tabla existente
 
                                 // Primero dropeo las que ya no son claves primarias
                                 foreach (Data.ColumnDefinition NewFieldDef in newTableDef.Columns.Values) {
@@ -366,27 +366,25 @@ namespace Lfx.Data
                                         }
                                 }
 
-
                                 // Luego hago las modificaciones pertinentes
                                 string LastColName = null;
+                                List<string> Alterations = new List<string>();
                                 foreach (Data.ColumnDefinition NewFieldDef in newTableDef.Columns.Values) {
-                                        string Sql = null;
                                         if (CurrentTableDef.Columns.ContainsKey(NewFieldDef.Name) == false) {
                                                 //Agregar campo a una tabla existente
-                                                AddColumn(newTableDef.Name, NewFieldDef, LastColName);
+                                                Alterations.Add("ADD COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition());
                                         } else {
                                                 Data.ColumnDefinition CurrentFieldDef = CurrentTableDef.Columns[NewFieldDef.Name];
                                                 if (CurrentFieldDef != NewFieldDef) {
                                                         //Existe el campo, pero no es igual... hay que modificarlo
                                                         if (this.AccessMode == AccessModes.Npgsql) {
-                                                                Sql = string.Empty;
                                                                 if (CurrentFieldDef.FieldType != NewFieldDef.FieldType || CurrentFieldDef.Lenght != NewFieldDef.Lenght || CurrentFieldDef.Precision != NewFieldDef.Precision)
-                                                                        Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" TYPE " + NewFieldDef.SqlType();
+                                                                        Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" TYPE " + NewFieldDef.SqlType());
                                                                 if (CurrentFieldDef.Nullable != NewFieldDef.Nullable) {
                                                                         if (NewFieldDef.Nullable)
-                                                                                Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" SET NOT NULL";
+                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" SET NOT NULL");
                                                                         else
-                                                                                Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" DROP NOT NULL";
+                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" DROP NOT NULL");
                                                                 }
                                                                 if (CurrentFieldDef.DefaultValue != NewFieldDef.DefaultValue && NewFieldDef.FieldType != DbTypes.Serial) {
                                                                         //Cambio de default value (salvo en Serial, que en PostgreSQL es siempre 0)
@@ -394,41 +392,43 @@ namespace Lfx.Data
                                                                                 case DbTypes.VarChar:
                                                                                 case DbTypes.Text:
                                                                                         if (NewFieldDef.DefaultValue == null)
-                                                                                                Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" SET DEFAULT ''";
+                                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" SET DEFAULT ''");
                                                                                         else if (NewFieldDef.DefaultValue == "NULL")
-                                                                                                Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" SET DEFAULT NULL";
+                                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" SET DEFAULT NULL");
                                                                                         else
-                                                                                                Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" SET DEFAULT '" + NewFieldDef.DefaultValue + "'";
+                                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" SET DEFAULT '" + NewFieldDef.DefaultValue + "'");
                                                                                         break;
                                                                                 default:
                                                                                         if (NewFieldDef.DefaultValue != null && NewFieldDef.DefaultValue.Length > 0)
-                                                                                                Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" SET DEFAULT " + NewFieldDef.DefaultValue;
+                                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" SET DEFAULT " + NewFieldDef.DefaultValue);
                                                                                         else
-                                                                                                Sql += ", ALTER COLUMN \"" + NewFieldDef.Name + "\" DROP DEFAULT";
+                                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" DROP DEFAULT");
                                                                                         break;
                                                                         }
                                                                 }
-                                                                if (Sql.Length > 0)
-                                                                        Sql = "ALTER TABLE \"" + newTableDef.Name + "\"" + Sql.Substring(1, Sql.Length - 1);
-                                                                else
-                                                                        Sql = null;
                                                         } else {
-                                                                Sql = "ALTER TABLE \"" + newTableDef.Name + "\" CHANGE \"" + NewFieldDef.Name + "\" \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition();
+                                                                string Alter = "MODIFY COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition();
+                                                                if (LastColName == null)
+                                                                        Alter += " FIRST";
+                                                                else
+                                                                        Alter += " AFTER \"" + LastColName + "\"";
+                                                                Alterations.Add(Alter);
                                                         }
                                                 }
                                         }
-
-                                        if (Sql != null) {
-                                                this.ExecuteSql(this.CustomizeSql(Sql));
-                                        }
-
                                         LastColName = NewFieldDef.Name;
                                 }
 
                                 foreach (Data.ColumnDefinition FieldDef in CurrentTableDef.Columns.Values) {
                                         if (newTableDef.Columns.ContainsKey(FieldDef.Name) == false) {
-                                                DropColumn(newTableDef.Name, FieldDef.Name);
+                                                Alterations.Add("DROP COLUMN \"" + FieldDef.Name + "\"");
                                         }
+                                }
+
+                                // Ejecuto todas las alteraciones juntas
+                                if (Alterations.Count > 0) {
+                                        string Sql = "ALTER TABLE \"" + newTableDef.Name + "\" " + string.Join("," + System.Environment.NewLine, Alterations.ToArray());
+                                        this.ExecuteSql(this.CustomizeSql(Sql));
                                 }
                         }
 
@@ -479,6 +479,7 @@ namespace Lfx.Data
                                 Sql += " FIRST";
                         else
                                 Sql += " AFTER \"" + afterColumn + "\"";
+                        this.ExecuteSql(this.CustomizeSql(Sql));
                 }
 
 

@@ -602,20 +602,13 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 /// </summary>
                 private static Lfx.Types.OperationResult IniciarGui()
                 {
-                        Lbl.IIdentificadorUnico Identif = Lbl.Sys.Config.Actual.Empresa.ClaveTributaria;
-                        if (Identif == null || Identif.EsValido() == false) {
+                        int Configurado = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Configurado", 0);
+                        if (Configurado == 0 && Lbl.Sys.Config.Actual.Empresa.ClaveTributaria == null) {
                                 Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
                                 FormConfig.PrimeraVez = true;
-                                if (FormConfig.ShowDialog() == DialogResult.OK)
-                                        Ejecutor.Exec("REBOOT");
-                                else
+                                if (FormConfig.ShowDialog() != DialogResult.OK)
                                         Ejecutor.Exec("QUIT");
-                        } else if (Lbl.Sys.Config.Actual.Empresa.Email.Length <= 5) {
-                                string Email = Lui.Forms.InputBox.ShowInputBox("Por favor escriba la dirección de correo electrónico (e-mail) de la empresa. Si desea ingresar al sistema sin escribir la dirección ahora, haga clic en Cancelar.", Lbl.Sys.Config.Actual.Empresa.Nombre, "");
-                                if (Email != null && Email.Length > 5)
-                                        Lbl.Sys.Config.Actual.Empresa.Email = Email;
                         }
-
 
                         System.DateTime FechaServidor = System.Convert.ToDateTime(Lfx.Workspace.Master.MasterConnection.FirstRowFromSelect("SELECT NOW()")[0]);
                         System.TimeSpan Diferencia = FechaServidor - System.DateTime.Now;

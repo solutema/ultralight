@@ -272,6 +272,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Data\Struct\db_upd26_pre.sql" />
     <EmbeddedResource Include="Data\Struct\db_upd27_post.sql" />
+    <EmbeddedResource Include="Data\Struct\db_upd27_pre.sql" />
+    <EmbeddedResource Include="Data\Struct\db_upd26_post.sql" />
     <Content Include="Lazaro.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

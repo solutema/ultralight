@@ -137,13 +137,12 @@ namespace Lfc.Ciudades
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaParent.AutoNav = true;
                         this.EntradaParent.AutoTab = true;
-                        this.EntradaParent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaParent.CanCreate = true;
                         this.EntradaParent.DataTextField = "nombre";
                         this.EntradaParent.DataValueField = "id_ciudad";
                         this.EntradaParent.ExtraDetailFields = "";
                         this.EntradaParent.FieldName = null;
-                        this.EntradaParent.Filter = "nivel=0";
+                        this.EntradaParent.Filter = "id_provincia IS NULL";
                         this.EntradaParent.FreeTextCode = "";
                         this.EntradaParent.Location = new System.Drawing.Point(116, 108);
                         this.EntradaParent.MaxLength = 200;

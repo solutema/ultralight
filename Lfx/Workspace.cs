@@ -43,7 +43,7 @@ namespace Lfx
                 private Lfx.Data.Connection m_MasterConnection = null;
                 public Data.Structure Structure = new Data.Structure();
 
-                public const int VersionUltima = 24;
+                public const int VersionUltima = 25;
                 public System.Globalization.CultureInfo CultureInfo = new System.Globalization.CultureInfo("es-ar");
 
                 private string m_Name;
@@ -445,6 +445,7 @@ namespace Lfx
                         }
 
                         //Primero borro claves foráneas (deleteOnly = true)
+                        Progreso.ChangeStatus("Eliminando claves obsoletas...");
                         dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, true);
 
                         try {

@@ -48,7 +48,7 @@ namespace Lfc.Cajas
                 internal Lui.Forms.ComboBox EntradaTipo;
                 internal Lui.Forms.Label Label4;
                 internal Lui.Forms.TextBox EntradaClaveBancaria;
-                internal Lui.Forms.Label label5;
+                internal Lui.Forms.Label EtiquetaClaveBancaria;
                 internal Lui.Forms.TextBox EntradaTitular;
                 internal Lui.Forms.ComboBox EntradaEstado;
                 internal Lcc.Entrada.CodigoDetalle EntradaMoneda;
@@ -80,7 +80,7 @@ namespace Lfc.Cajas
                         this.Label4 = new Lui.Forms.Label();
                         this.EntradaMoneda = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaClaveBancaria = new Lui.Forms.TextBox();
-                        this.label5 = new Lui.Forms.Label();
+                        this.EtiquetaClaveBancaria = new Lui.Forms.Label();
                         this.EntradaTitular = new Lui.Forms.TextBox();
                         this.label6 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
@@ -280,13 +280,13 @@ namespace Lfc.Cajas
                         // 
                         // label5
                         // 
-                        this.label5.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label5.Location = new System.Drawing.Point(0, 216);
-                        this.label5.Name = "label5";
-                        this.label5.Size = new System.Drawing.Size(120, 24);
-                        this.label5.TabIndex = 12;
-                        this.label5.Text = "CBU";
-                        this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        this.EtiquetaClaveBancaria.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaClaveBancaria.Location = new System.Drawing.Point(0, 216);
+                        this.EtiquetaClaveBancaria.Name = "label5";
+                        this.EtiquetaClaveBancaria.Size = new System.Drawing.Size(120, 24);
+                        this.EtiquetaClaveBancaria.TabIndex = 12;
+                        this.EtiquetaClaveBancaria.Text = "Clave Bancaria";
+                        this.EtiquetaClaveBancaria.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                         // 
                         // EntradaTitular
                         // 
@@ -358,7 +358,7 @@ namespace Lfc.Cajas
                         this.Controls.Add(this.EntradaTitular);
                         this.Controls.Add(this.label6);
                         this.Controls.Add(this.EntradaClaveBancaria);
-                        this.Controls.Add(this.label5);
+                        this.Controls.Add(this.EtiquetaClaveBancaria);
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.EntradaMoneda);
                         this.Controls.Add(this.EntradaNombre);
@@ -379,7 +379,7 @@ namespace Lfc.Cajas
                         this.Controls.SetChildIndex(this.EntradaNombre, 0);
                         this.Controls.SetChildIndex(this.EntradaMoneda, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.label5, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaClaveBancaria, 0);
                         this.Controls.SetChildIndex(this.EntradaClaveBancaria, 0);
                         this.Controls.SetChildIndex(this.label6, 0);
                         this.Controls.SetChildIndex(this.EntradaTitular, 0);

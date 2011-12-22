@@ -226,6 +226,8 @@ namespace Lfc.Bancos.Cheques
 
                         if (Fechas.HasRange)
                                 this.CustomFilters.AddWithValue("bancos_cheques.fechaemision BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(Fechas.From) + "  00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(Fechas.To) + " 23:59:59'");
+
+                        base.OnBeginRefreshList();
                 }
 
 

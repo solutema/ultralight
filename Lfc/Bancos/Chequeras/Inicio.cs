@@ -108,6 +108,8 @@ namespace Lfc.Bancos.Chequeras
 
                         if (m_Caja > 0)
                                 this.CustomFilters.AddWithValue("chequeras.id_caja", m_Caja);
+
+                        base.OnBeginRefreshList();
                 }
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright 2004-2011 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
@@ -32,15 +32,17 @@
 namespace Lbl.Bancos.Claves
 {
         /// <summary>
-        /// Routing (Estados Unidos y Canadá)
+        /// Código Cuenta Cliente (España)
+        /// Está siendo sustituído por el IBAN.
+        /// http://es.wikipedia.org/wiki/C%C3%B3digo_cuenta_cliente
         /// </summary>
-        public class Routing : IdentificadorUnico
+        public class Ccc : IdentificadorUnico
         {
                 public override string Nombre
                 {
                         get
                         {
-                                return "Routing";
+                                return "CCC";
                         }
                 }
         }

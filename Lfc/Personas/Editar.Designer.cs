@@ -72,7 +72,7 @@ namespace Lfc.Personas
                         this.Label5 = new Lui.Forms.Label();
                         this.Label2 = new Lui.Forms.Label();
                         this.Label1 = new Lui.Forms.Label();
-                        this.Label7 = new Lui.Forms.Label();
+                        this.EtiquetaClaveTributaria = new Lui.Forms.Label();
                         this.Label3 = new Lui.Forms.Label();
                         this.Label11 = new Lui.Forms.Label();
                         this.Frame1 = new Lui.Forms.Frame();
@@ -95,7 +95,7 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito = new Lui.Forms.ComboBox();
                         this.label21 = new Lui.Forms.Label();
                         this.EntradaClaveBancaria = new Lui.Forms.TextBox();
-                        this.label20 = new Lui.Forms.Label();
+                        this.EtiquetaClaveBancaria = new Lui.Forms.Label();
                         this.EntradaNumeroCuenta = new Lui.Forms.TextBox();
                         this.label22 = new Lui.Forms.Label();
                         this.frame3 = new Lui.Forms.Frame();
@@ -163,7 +163,7 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.FieldName = null;
-                        this.EntradaLocalidad.Filter = "nivel=2";
+                        this.EntradaLocalidad.Filter = "id_provincia IS NOT NULL";
                         this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(100, 208);
                         this.EntradaLocalidad.MaxLength = 200;
@@ -423,15 +423,15 @@ namespace Lfc.Personas
                         this.Label1.Text = "Nombre";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // Label7
+                        // EtiquetaClaveTributaria
                         // 
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label7.Location = new System.Drawing.Point(8, 60);
-                        this.Label7.Name = "Label7";
-                        this.Label7.Size = new System.Drawing.Size(100, 24);
-                        this.Label7.TabIndex = 2;
-                        this.Label7.Text = "CUIT";
-                        this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaClaveTributaria.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaClaveTributaria.Location = new System.Drawing.Point(8, 60);
+                        this.EtiquetaClaveTributaria.Name = "EtiquetaClaveTributaria";
+                        this.EtiquetaClaveTributaria.Size = new System.Drawing.Size(100, 24);
+                        this.EtiquetaClaveTributaria.TabIndex = 2;
+                        this.EtiquetaClaveTributaria.Text = "Clave Tributaria";
+                        this.EtiquetaClaveTributaria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3
                         // 
@@ -486,7 +486,7 @@ namespace Lfc.Personas
                         this.Frame2.Controls.Add(this.EntradaTipoFac);
                         this.Frame2.Controls.Add(this.Label3);
                         this.Frame2.Controls.Add(this.Label15);
-                        this.Frame2.Controls.Add(this.Label7);
+                        this.Frame2.Controls.Add(this.EtiquetaClaveTributaria);
                         this.Frame2.Controls.Add(this.Label12);
                         this.Frame2.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
                         this.Frame2.Location = new System.Drawing.Point(355, 3);
@@ -828,13 +828,13 @@ namespace Lfc.Personas
                         // 
                         // label20
                         // 
-                        this.label20.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label20.Location = new System.Drawing.Point(8, 200);
-                        this.label20.Name = "label20";
-                        this.label20.Size = new System.Drawing.Size(64, 24);
-                        this.label20.TabIndex = 12;
-                        this.label20.Text = "CBU";
-                        this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaClaveBancaria.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaClaveBancaria.Location = new System.Drawing.Point(8, 200);
+                        this.EtiquetaClaveBancaria.Name = "label20";
+                        this.EtiquetaClaveBancaria.Size = new System.Drawing.Size(64, 24);
+                        this.EtiquetaClaveBancaria.TabIndex = 12;
+                        this.EtiquetaClaveBancaria.Text = "CBU";
+                        this.EtiquetaClaveBancaria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaNumeroCuenta
                         // 
@@ -964,7 +964,7 @@ namespace Lfc.Personas
                         this.frame4.Controls.Add(this.EntradaLimiteCredito);
                         this.frame4.Controls.Add(this.EntradaEstadoCredito);
                         this.frame4.Controls.Add(this.EntradaTipo);
-                        this.frame4.Controls.Add(this.label20);
+                        this.frame4.Controls.Add(this.EtiquetaClaveBancaria);
                         this.frame4.Controls.Add(this.label17);
                         this.frame4.Controls.Add(this.Label14);
                         this.frame4.Controls.Add(this.label22);
@@ -1280,7 +1280,7 @@ namespace Lfc.Personas
                 internal Lui.Forms.Label Label5;
                 internal Lui.Forms.Label Label2;
                 internal Lui.Forms.Label Label1;
-                internal Lui.Forms.Label Label7;
+                internal Lui.Forms.Label EtiquetaClaveTributaria;
                 internal Lui.Forms.Label Label3;
                 internal Lui.Forms.Label Label11;
                 internal Lui.Forms.Frame Frame1;
@@ -1318,7 +1318,7 @@ namespace Lfc.Personas
                 internal Lui.Forms.ComboBox EntradaEstado;
                 private Lcc.Entrada.MatrizTelefonos matrizTelefonos1;
                 private Lcc.Entrada.MatrizTelefonos EntradaTelefono;
-                internal Lui.Forms.Label label20;
+                internal Lui.Forms.Label EtiquetaClaveBancaria;
                 internal Lui.Forms.Label Label4;
                 internal Lui.Forms.Label label13;
                 internal Lui.Forms.Label label23;

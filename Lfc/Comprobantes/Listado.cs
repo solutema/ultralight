@@ -315,7 +315,7 @@ namespace Lfc.Comprobantes
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Tipo", 48));
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Número", 120));
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Cliente", 240));
-                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("CUIT", 120));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader(Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre, 120));
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Importe", 160, Lfx.Types.StringAlignment.Far));
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Cancelado", 160, Lfx.Types.StringAlignment.Far));
                         } else {

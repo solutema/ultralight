@@ -46,6 +46,7 @@ namespace Lui.Forms
                         InitializeComponent();
 
                         LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+                        this.MessageText.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                 }
 
                 private void OkButton_Click(object sender, EventArgs e)

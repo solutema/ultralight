@@ -40,10 +40,6 @@
     <Column name="costo" inputtype="Currency" default="0" />
     <Column name="id_margen" inputtype="Relation" nullable="1" />
     <Column name="pvp" inputtype="Currency" default="0" />
-    <Column name="pvp2" inputtype="Currency" default="0" />
-    <Column name="pvp3" inputtype="Currency" default="0" />
-    <Column name="pvp4" inputtype="Currency" default="0" />
-    <Column name="pvp5" inputtype="Currency" default="0" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" default="0" />
     <Column name="destacado" inputtype="Bool" nullable="0" default="0" />
@@ -287,11 +283,11 @@
     <Column name="id_ciudad" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" label="Nombre" required="1" nullable="0" lenght="200" />
     <Column name="cp" inputtype="Text" label="Código Postal" nullable="0" lenght="50" />
-    <Column name="id_pais" inputtype="Relation" section="Otros" label="País" nullable="0"
+    <Column name="id_pais" inputtype="Relation" label="País" nullable="1"
             relation_table="paises" relation_key="id_pais" relation_detail="nombre" />
-    <Column name="parent" inputtype="Relation" section="Otros" label="Parent" nullable="1"
+    <Column name="parent" inputtype="Relation" label="Parent" nullable="1"
             relation_table="ciudades" relation_key="id_ciudad" relation_detail="nombre" />
-    <Column name="id_provincia" inputtype="Relation" section="Otros" label="Provincia" nullable="1"
+    <Column name="id_provincia" inputtype="Relation" label="Provincia" nullable="1"
             relation_table="ciudades" relation_key="id_ciudad" relation_detail="nombre" />
     <Column name="nivel" datatype="TinyInt" nullable="0" default="0" />
     <Column name="iva" datatype="TinyInt" nullable="0" default="0" />
@@ -300,10 +296,9 @@
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="ciudades" name="PRIMARY" columns="id_ciudad" unique="1" primary="1" />
     <Index table="ciudades" name="ciudades_cp" columns="cp" unique="0" primary="0" />
-    <Index table="ciudades" name="ciudades_parent" columns="parent" unique="0" primary="0" />
     <Index table="ciudades" name="ciudades_id_pais" columns="id_pais" unique="0" primary="0" />
   </Table>
-  
+  <Constraint name="ciudades_id_pais" table="ciudades" column="id_pais" reference_table="paises" reference_column="id_pais" />
   
   <Table name="ctacte" label="Movimientos de Cuentas Corrientes">
     <Column name="id_movim" datatype="Serial" nullable="0" primary_key="1" />
@@ -630,11 +625,21 @@
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="iso" datatype="VarChar" nullable="0" lenght="50" />
-    <Column name="clavejur" inputtype="Relation" label="Clave de Identificación de Personas Jurídicas" nullable="0" />
-    <Column name="clavefis" inputtype="Relation" label="Clave de Identificación de Personas Físicas" nullable="0" />
+    <Column name="clavefis" inputtype="Relation" label="Clave de Identificación de Personas Físicas" nullable="1" />
+    <Column name="clavejur" inputtype="Relation" label="Clave de Identificación de Personas Jurídicas" nullable="1" />
+    <Column name="claveban" inputtype="Relation" label="Clave de Identificación de Cuentas Bancarias" nullable="1" />
     <Column name="id_moneda" inputtype="Relation" label="Moneda" nullable="1" />
     <Index table="paises" name="PRIMARY" columns="id_pais" unique="1" primary="1" />
+    <Index table="paises" name="paises_id_moneda" columns="id_moneda" unique="0" primary="0" />
+    <Index table="paises" name="paises_clavefis" columns="clavefis" unique="0" primary="0" />
+    <Index table="paises" name="paises_clavejur" columns="clavejur" unique="0" primary="0" />
+    <Index table="paises" name="paises_claveban" columns="claveban" unique="0" primary="0" />
   </Table>
+  <Constraint name="paises_id_moneda" table="paises" column="id_moneda" reference_table="monedas" reference_column="id_moneda" />
+  <Constraint name="paises_clavefis" table="paises" column="clavefis" reference_table="tipo_doc" reference_column="id_tipo_doc" />
+  <Constraint name="paises_clavejur" table="paises" column="clavejur" reference_table="tipo_doc" reference_column="id_tipo_doc" />
+  <Constraint name="paises_claveban" table="paises" column="claveban" reference_table="tipo_doc" reference_column="id_tipo_doc" />
+
 
 
   <Table name="pagos_valores" label="Valores de Pago">
@@ -667,9 +672,9 @@
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tipo" inputtype="NumericSet" nullable="0" default="0" />
-    <Column name="id_grupo" inputtype="Relation" section="Otros" label="Grupo" nullable="1"
+    <Column name="id_grupo" inputtype="Relation" label="Grupo" nullable="1"
             relation_table="personas_grupos" relation_key="id_grupo" relation_detail="nombre" />
-    <Column name="id_subgrupo" inputtype="Relation" section="Otros" label="Sub Grupo" nullable="1"
+    <Column name="id_subgrupo" inputtype="Relation" label="Sub Grupo" nullable="1"
             relation_table="personas_grupos" relation_key="id_grupo" relation_detail="nombre" />
     <Column name="nombre" inputtype="Text" section="Personas Físicas" label="Nombre" nullable="1" lenght="50" />
     <Column name="apellido" inputtype="Text" section="Personas Físicas" label="Apellido" nullable="1" lenght="50" />
@@ -680,7 +685,9 @@
     <Column name="id_tipo_doc" inputtype="Relation" section="Personas Físicas" label="Tipo de Documento" nullable="1"
             relation_table="tipo_doc" relation_key="id_tipo_doc" relation_detail="nombre" />
     <Column name="num_doc" inputtype="Text" section="Personas Físicas" label="Documento" nullable="1" lenght="50" />
-    <Column name="cuit" inputtype="Text" section="Personas Jurídicas" label="CUIT" nullable="1" lenght="16" />
+    <Column name="id_tipo_cuit" inputtype="Relation" section="Personas Jurídicas" label="Tipo de Clave Tributaria" nullable="1"
+            relation_table="tipo_doc" relation_key="id_tipo_doc" relation_detail="nombre" />
+    <Column name="cuit" inputtype="Text" section="Personas Jurídicas" label="Clave Tributaria" nullable="1" lenght="16" />
     <Column name="id_situacion" inputtype="Relation" section="Personas Jurídicas" label="Situación Tributaria" nullable="1"
             relation_table="situaciones" relation_key="id_situacion" relation_detail="nombre" />
     <Column name="domicilio" inputtype="Text" label="Domicilio Particular" section="Locación" nullable="1" lenght="200" />
@@ -697,7 +704,7 @@
     <Column name="limitecredito" inputtype="Currency" section="Crédito" label="Límite de Crédito" default="0" />
     <Column name="estadocredito" inputtype="NumericSet" section="Crédito" label="Estado de Crédito" nullable="0" default="0" />
     <Column name="numerocuenta" inputtype="Text" label="Número de Cuenta" section="Crédito" nullable="1" lenght="200" />
-    <Column name="cbu" inputtype="Text" label="CBU" section="Crédito" nullable="1" lenght="200" />
+    <Column name="cbu" inputtype="Text" label="Cuenta Bancaria" section="Crédito" nullable="1" lenght="200" />
     <Column name="id_vendedor" inputtype="Relation" nullable="1" />
     <Column name="extra1" datatype="Text" nullable="1" />
     <Index table="personas" name="personas_id_situacion" columns="id_situacion" unique="0" primary="0" />
@@ -1215,7 +1222,7 @@
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
-    <Column name="fisjur" inputtype="TinyInt" label="Física/Jurídica" nullable="0" />
+    <Column name="tipo" inputtype="TinyInt" label="Física/Jurídica" nullable="0" />
     <Index table="tipo_doc" name="PRIMARY" columns="id_tipo_doc" unique="1" primary="1" />
   </Table>
   

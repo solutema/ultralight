@@ -306,6 +306,8 @@ namespace Lfc.Comprobantes.Compra
 
                         if (this.Fechas.HasRange)
                                 this.CustomFilters.AddWithValue("(comprob.fecha BETWEEN '" + Lfx.Types.Formatting.FormatDateSql(this.Fechas.From) + " 00:00:00' AND '" + Lfx.Types.Formatting.FormatDateSql(this.Fechas.To) + " 23:59:59')");
+
+                        base.OnBeginRefreshList();
                 }
 	}
 }

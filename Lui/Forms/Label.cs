@@ -170,6 +170,12 @@ namespace Lui.Forms
                                                 base.BackColor = System.Drawing.Color.Tomato;
                                                 base.ForeColor = System.Drawing.Color.White;
                                                 break;
+                                        case LabelStyles.Info:
+                                                base.Font = Lfx.Config.Display.DefaultFont;
+                                                base.Padding = new Padding(0, 4, 0, 4);
+                                                base.BackColor = System.Drawing.SystemColors.Info;
+                                                base.ForeColor = System.Drawing.SystemColors.InfoText;
+                                                break;
                                 }
                         }
                 }

@@ -47,29 +47,36 @@ namespace Lfc.Cajas
                         ElementoTipo = typeof(Lbl.Cajas.Caja);
 
                         InitializeComponent();
+
+                        EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre;
                 }
 
-		public override Lfx.Types.OperationResult ValidarControl()
-		{
-			Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
+                public override Lfx.Types.OperationResult ValidarControl()
+                {
+                        Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
 
-			if (EntradaMoneda.TextInt == 0)
-			{
-				validarReturn.Success = false;
-				validarReturn.Message += "Seleccione la Currency." + Environment.NewLine;
-			}
-			if (EntradaNombre.Text.Length < 2)
-			{
-				validarReturn.Success = false;
-				validarReturn.Message += "Seleccione el Nombre de la cuenta." + Environment.NewLine;
-			}
-                        if (EntradaClaveBancaria.Text.Length > 0 && Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {
+                        if (EntradaMoneda.TextInt == 0) {
                                 validarReturn.Success = false;
-                                validarReturn.Message += "La CBU es incorrecta." + Environment.NewLine;
+                                validarReturn.Message += "Seleccione la Currency." + Environment.NewLine;
                         }
 
-			return validarReturn;
-		}
+                        if (EntradaNombre.Text.Length < 2) {
+                                validarReturn.Success = false;
+                                validarReturn.Message += "Seleccione el Nombre de la cuenta." + Environment.NewLine;
+                        }
+
+                        switch(Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre)
+                        {
+                                case "CBU":
+                                        if (EntradaClaveBancaria.Text.Length > 0 && Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {
+                                                validarReturn.Success = false;
+                                                validarReturn.Message += "La CBU es incorrecta." + Environment.NewLine;
+                                        }
+                                        break;
+                        }
+
+                        return validarReturn;
+                }
 
 
                 public override void ActualizarControl()

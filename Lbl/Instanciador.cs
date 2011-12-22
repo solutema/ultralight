@@ -200,6 +200,9 @@ namespace Lbl
                                         return typeof(Lbl.Personas.Usuario);
                                 case "Lbl.Personas.Proveedor":
                                         return typeof(Lbl.Personas.Proveedor);
+                                case "paises":
+                                case "Lbl.Entidades.Pais":
+                                        return typeof(Lbl.Entidades.Pais);
                                 case "personas_grupos":
                                 case "Lbl.Personas.Grupo":
                                         return typeof(Lbl.Personas.Grupo);
@@ -239,8 +242,9 @@ namespace Lbl
                                 case "tickets_tipos":
                                 case "Lbl.Tareas.Tipo":
                                         return typeof(Lbl.Tareas.Tipo);
-                                //case "tipo_doc":
-                                //        return typeof(Lbl);
+                                case "tipo_doc":
+                                case "Lbl.Entidades.ClaveUnica":
+                                        return typeof(Lbl.Entidades.ClaveUnica);
                                 default:
                                         // Intento cargarlo mediante reflexión
                                         if (Ensablado == null)

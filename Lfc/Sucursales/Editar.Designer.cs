@@ -170,7 +170,7 @@ namespace Lfc.Sucursales
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.FieldName = null;
-                        this.EntradaLocalidad.Filter = "nivel=2";
+                        this.EntradaLocalidad.Filter = "id_provincia IS NOT NULL";
                         this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(96, 64);
                         this.EntradaLocalidad.MaxLength = 200;

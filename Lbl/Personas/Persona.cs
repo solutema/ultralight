@@ -71,7 +71,12 @@ namespace Lbl.Personas
                         if (IdGrupoPredet != 0)
                                 this.Grupo = new Lbl.Personas.Grupo(this.Connection, IdGrupoPredet);
                         this.SubGrupo = null;
-                        this.TipoDocumento = 1;
+                        if (Lbl.Sys.Config.Actual.Empresa.Pais != null) {
+                                if (Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasFisicas != null)
+                                        this.TipoDocumento = Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasFisicas;
+                                if (Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasFisicas != null)
+                                        this.TipoClaveTributaria = Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas;
+                        }
                         this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.Connection, 1);
                         this.Localidad = new Lbl.Entidades.Localidad(this.Connection, this.Workspace.CurrentConfig.Empresa.IdLocalidad);
                         this.Estado = 1;
@@ -104,10 +109,14 @@ namespace Lbl.Personas
                         Comando.Fields.AddWithValue("apellido", this.Apellido);
                         Comando.Fields.AddWithValue("razon_social", this.RazonSocial);
                         Comando.Fields.AddWithValue("nombre_visible", this.Nombre);
-                        if (this.TipoDocumento == 0)
+                        if (this.TipoDocumento == null)
                                 Comando.Fields.AddWithValue("id_tipo_doc", null);
                         else
-                                Comando.Fields.AddWithValue("id_tipo_doc", this.TipoDocumento);
+                                Comando.Fields.AddWithValue("id_tipo_doc", this.TipoDocumento.Id);
+                        if (this.TipoClaveTributaria == null)
+                                Comando.Fields.AddWithValue("id_tipo_cuit", null);
+                        else
+                                Comando.Fields.AddWithValue("id_tipo_cuit", this.TipoClaveTributaria.Id);
                         if (this.NumeroDocumento == null)
                                 Comando.Fields.AddWithValue("num_doc", "");
                         else
@@ -208,18 +217,6 @@ namespace Lbl.Personas
                 }
 
 
-		public string NumeroDocumento
-		{
-			get
-			{
-				return this.GetFieldValue<string>("num_doc");
-			}
-                        set
-                        {
-                                this.Registro["num_doc"] = value;
-                        }
-		}
-
 		public string NumeroCuenta
 		{
 			get
@@ -243,6 +240,50 @@ namespace Lbl.Personas
                                 this.Registro["cbu"] = value;
                         }
                 }
+
+
+                public Lbl.Entidades.ClaveUnica TipoClaveTributaria
+                {
+                        get
+                        {
+                                if (Registro["id_tipo_cuit"] == null)
+                                        return null;
+                                else
+                                        return new Entidades.ClaveUnica(this.Connection, this.GetFieldValue<int>("id_tipo_cuit"));
+                        }
+                        set
+                        {
+                                if (value == null)
+                                        Registro["id_tipo_cuit"] = null;
+                                else
+                                        Registro["id_tipo_cuit"] = value.Id;
+                        }
+                }
+
+
+                public string Cbu
+                {
+                        get
+                        {
+                                if (this.ClaveBancaria == null)
+                                        return "";
+                                else
+                                        return this.ClaveBancaria.ToString();
+                        }
+                }
+
+
+                public string Cuit
+                {
+                        get
+                        {
+                                if (this.ClaveTributaria == null)
+                                        return "";
+                                else
+                                        return this.ClaveTributaria.ToString();
+                        }
+                }
+
 
                 public IIdentificadorUnico ClaveTributaria
 		{
@@ -318,20 +359,38 @@ namespace Lbl.Personas
                                 throw new InvalidOperationException("No se reconoce el tipo de comprobante " + TipoComprob + " para " + this.ToString());
                 }
 
-		public int TipoDocumento
+
+		public Lbl.Entidades.ClaveUnica TipoDocumento
 		{
 			get
 			{
 				if(Registro["id_tipo_doc"] == null)
-					return 0;
+					return null;
 				else
-					return this.GetFieldValue<int>("id_tipo_doc");
+					return new Entidades.ClaveUnica(this.Connection, this.GetFieldValue<int>("id_tipo_doc"));
 			}
                         set
                         {
-                                Registro["id_tipo_doc"] = value;
+                                if (value == null)
+                                        Registro["id_tipo_doc"] = null;
+                                else
+                                        Registro["id_tipo_doc"] = value.Id;
                         }
 		}
+
+
+                public string NumeroDocumento
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("num_doc");
+                        }
+                        set
+                        {
+                                this.Registro["num_doc"] = value;
+                        }
+                }
+
 
                 public int Tipo
                 {

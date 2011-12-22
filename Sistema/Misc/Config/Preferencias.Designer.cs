@@ -58,7 +58,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.Label19 = new Lui.Forms.Label();
                         this.EntradaEmpresaClaveTributaria = new Lui.Forms.TextBox();
-                        this.Label18 = new Lui.Forms.Label();
+                        this.EtiquetaClaveTributaria = new Lui.Forms.Label();
                         this.EntradaEmpresaNombre = new Lui.Forms.TextBox();
                         this.Label17 = new Lui.Forms.Label();
                         this.FrmGeneral = new Lui.Forms.Frame();
@@ -224,15 +224,15 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaEmpresaClaveTributaria.Sufijo = "";
                         this.EntradaEmpresaClaveTributaria.TabIndex = 7;
                         // 
-                        // Label18
+                        // EtiquetaClaveTributaria
                         // 
-                        this.Label18.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label18.Location = new System.Drawing.Point(32, 148);
-                        this.Label18.Name = "Label18";
-                        this.Label18.Size = new System.Drawing.Size(184, 24);
-                        this.Label18.TabIndex = 6;
-                        this.Label18.Text = "Clave Tributaria";
-                        this.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaClaveTributaria.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaClaveTributaria.Location = new System.Drawing.Point(32, 148);
+                        this.EtiquetaClaveTributaria.Name = "EtiquetaClaveTributaria";
+                        this.EtiquetaClaveTributaria.Size = new System.Drawing.Size(184, 24);
+                        this.EtiquetaClaveTributaria.TabIndex = 6;
+                        this.EtiquetaClaveTributaria.Text = "Clave Tributaria";
+                        this.EtiquetaClaveTributaria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaEmpresaNombre
                         // 
@@ -289,7 +289,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmGeneral.Controls.Add(this.label28);
                         this.FrmGeneral.Controls.Add(this.label2);
                         this.FrmGeneral.Controls.Add(this.Label19);
-                        this.FrmGeneral.Controls.Add(this.Label18);
+                        this.FrmGeneral.Controls.Add(this.EtiquetaClaveTributaria);
                         this.FrmGeneral.Controls.Add(this.Label17);
                         this.FrmGeneral.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FrmGeneral.Location = new System.Drawing.Point(8, 8);
@@ -350,7 +350,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.FieldName = null;
-                        this.EntradaLocalidad.Filter = "nivel=2";
+                        this.EntradaLocalidad.Filter = "id_provincia IS NOT NULL";
                         this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(216, 260);
                         this.EntradaLocalidad.MaxLength = 200;
@@ -387,7 +387,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaProvincia.DataValueField = "id_ciudad";
                         this.EntradaProvincia.ExtraDetailFields = "";
                         this.EntradaProvincia.FieldName = null;
-                        this.EntradaProvincia.Filter = "nivel=0";
+                        this.EntradaProvincia.Filter = "id_provincia IS NULL";
                         this.EntradaProvincia.FreeTextCode = "";
                         this.EntradaProvincia.Location = new System.Drawing.Point(216, 232);
                         this.EntradaProvincia.MaxLength = 200;
@@ -1366,7 +1366,7 @@ namespace Lazaro.WinMain.Misc.Config
                 private Lcc.Entrada.CodigoDetalle EntradaFormaPagoPredet;
                 private Lui.Forms.Label Label17;
                 private Lui.Forms.TextBox EntradaEmpresaNombre;
-                private Lui.Forms.Label Label18;
+                private Lui.Forms.Label EtiquetaClaveTributaria;
                 private Lui.Forms.Label Label19;
                 private Lui.Forms.TextBox EntradaEmpresaClaveTributaria;
                 private Lcc.Entrada.CodigoDetalle EntradaEmpresaSituacion;

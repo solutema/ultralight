@@ -66,7 +66,7 @@ namespace Lfc.Personas
 				        new Lazaro.Pres.Field("personas.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 140),
 				        new Lazaro.Pres.Field("personas.domicilio", "Domicilio", Lfx.Data.InputFieldTypes.Text, 160),
 				        new Lazaro.Pres.Field("personas.num_doc", "Núm. Doc.", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lazaro.Pres.Field("personas.cuit", "CUIT", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("personas.cuit", Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre, Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("personas_grupos.nombre", "Grupo", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("ciudades.nombre AS ciudad", "Localidad", Lfx.Data.InputFieldTypes.Text, 120),
@@ -141,12 +141,6 @@ namespace Lfc.Personas
                         if (row.Fields["personas.estado"].ValueInt == 0)
                                 item.ForeColor = System.Drawing.Color.Gray;
 
-                        string Cuit = row.Fields["personas.cuit"].ValueString;
-                        if (Cuit != null && Cuit.Length > 0 && Lbl.Personas.Claves.Cuit.EsValido(Cuit) == false) {
-                                item.UseItemStyleForSubItems = false;
-                                item.SubItems["personas.cuit"].BackColor = System.Drawing.Color.Pink;
-                        }
-
                         int IdSubGrupo = row.Fields["personas.id_subgrupo"].ValueInt;
                         if (IdSubGrupo != 0) {
                                 Lfx.Data.Row SubGrupo = this.Connection.Tables["personas_grupos"].FastRows[IdSubGrupo];
@@ -202,6 +196,8 @@ namespace Lfc.Personas
 
                         // Cargo la tabla en memoria, ya que la voy a usar mucho
                         this.Connection.Tables["personas_grupos"].PreLoad();
+
+                        base.OnBeginRefreshList();
                 }
 
 

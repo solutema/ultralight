@@ -42,6 +42,8 @@ namespace Lfc.Personas
                         ElementoTipo = typeof(Lbl.Personas.Persona);
 
                         InitializeComponent();
+
+                        EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre;
                 }
 
 
@@ -101,7 +103,7 @@ namespace Lfc.Personas
                                                 itm = FormAltaDuplicada.ListaComparacion.Items.Add("Teléfono");
                                                 itm.SubItems.Add(ClienteDup["telefono"].ToString());
                                                 itm.SubItems.Add(EntradaTelefono.Text);
-                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add("CUIT");
+                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add(Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre);
                                                 if (ClienteDup["cuit"] != null)
                                                         itm.SubItems.Add(ClienteDup["cuit"].ToString());
                                                 else
@@ -128,51 +130,49 @@ namespace Lfc.Personas
                                 }
                         }
 
-                        if (EntradaClaveBancaria.Text.Length > 0) {
-                                if (Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "La CBU no es correcta." + Environment.NewLine + "El sistema le permite dejar la CBU en blanco, pero no aceptará una incorrecta." + Environment.NewLine;
-                                }
+                        switch (Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre) {
+                                case "CBU":
+                                        if (EntradaClaveBancaria.Text.Length > 0 && Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {
+                                                validarReturn.Success = false;
+                                                validarReturn.Message += "La CBU es incorrecta." + Environment.NewLine;
+                                        }
+                                        break;
                         }
 
+                        switch (Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre) {
+                                case "CUIT":
+                                        if (EntradaClaveTributaria.Text.Length > 0) {
+                                                if (EntradaSituacion.TextInt == 1) {
+                                                        validarReturn.Success = false;
+                                                        validarReturn.Message += @"Un Cliente con CUIT no debe estar en Situación de ""Consumidor Final""." + Environment.NewLine;
+                                                }
+                                                if (System.Text.RegularExpressions.Regex.IsMatch(EntradaClaveTributaria.Text, @"^\d{11}$")) {
+                                                        EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
+                                                }
 
-                        if (EntradaClaveTributaria.Text.Length > 0) {
-                                if (EntradaSituacion.TextInt == 1) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += @"Un Cliente con CUIT no debe estar en Situación de ""Consumidor Final""." + Environment.NewLine;
-                                }
-                                if (System.Text.RegularExpressions.Regex.IsMatch(EntradaClaveTributaria.Text, @"^\d{11}$")) {
-                                        EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
-                                }
+                                                //Agrego los guiones si no los tiene
+                                                if (EntradaClaveTributaria.Text.Length == 11)
+                                                        EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
 
-                                if (Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text)) {
-                                        //Agrego los guiones si no los tiene
-                                        if (EntradaClaveTributaria.Text.Length == 11)
-                                                EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
-
-                                        Lfx.Data.Row rowVeriCUIT = this.Connection.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaClaveTributaria.Text + "' AND id_persona<>" + this.Elemento.Id.ToString());
-                                        if (rowVeriCUIT != null) {
-                                                if (Cliente.Existe == false) {
-                                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa CUIT en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "CUIT duplicada");
-                                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                                                        if (Pregunta.ShowDialog() != DialogResult.OK) {
-                                                                validarReturn.Success = false;
-                                                                validarReturn.Message += "Cambie la CUIT para antes de continuar." + Environment.NewLine;
-                                                        }
-                                                } else {
-                                                        if (System.Convert.ToInt32(rowVeriCUIT["id_persona"]) != this.Elemento.Id) {
-                                                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa CUIT en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "CUIT duplicada");
-                                                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                                                                if (Pregunta.ShowDialog() != DialogResult.OK) {
-                                                                        validarReturn.Success = false;
-                                                                        validarReturn.Message += "Cambie la CUIT para antes de continuar." + Environment.NewLine;
-                                                                }
-                                                        }
+                                                if (Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text) == false) {
+                                                        validarReturn.Success = false;
+                                                        validarReturn.Message += "La CUIT no es correcta." + Environment.NewLine + "El sistema le permite dejar la CUIT en blanco, pero no aceptará una incorrecta." + Environment.NewLine;
                                                 }
                                         }
-                                } else {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "La CUIT no es correcta." + Environment.NewLine + "El sistema le permite dejar la CUIT en blanco, pero no aceptará una incorrecta." + Environment.NewLine;
+                                        break;
+                        }
+
+                        if (EntradaClaveTributaria.Text.Length > 0) {
+                                Lfx.Data.Row RowPersMismaClave = this.Connection.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaClaveTributaria.Text + "' AND id_persona<>" + this.Elemento.Id.ToString());
+                                if (RowPersMismaClave != null) {
+                                        if (Cliente.Existe == false || System.Convert.ToInt32(RowPersMismaClave["id_persona"]) != this.Elemento.Id) {
+                                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa Clave Tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "Clave Tributaria duplicada");
+                                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                                if (Pregunta.ShowDialog() != DialogResult.OK) {
+                                                        validarReturn.Success = false;
+                                                        validarReturn.Message += "Cambie la Clave Tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") para antes de continuar." + Environment.NewLine;
+                                                }
+                                        }
                                 }
                         }
 
@@ -191,13 +191,17 @@ namespace Lfc.Personas
                         EntradaApellido.Text = Cliente.Apellido;
                         EntradaApellido.Enabled = PermitirEdicionAvanzada;
                         EntradaNombreVisible.Text = Cliente.Nombre;
-                        EntradaTipoDoc.TextInt = Cliente.TipoDocumento;
+                        EntradaTipoDoc.Elemento = Cliente.TipoDocumento;
                         EntradaTipoDoc.Enabled = PermitirEdicionAvanzada;
                         EntradaNumDoc.Text = Cliente.NumeroDocumento;
                         EntradaNumDoc.Enabled = PermitirEdicionAvanzada;
 
                         EntradaRazonSocial.Text = Cliente.RazonSocial;
                         EntradaRazonSocial.Enabled = PermitirEdicionAvanzada;
+
+                        if (Cliente.TipoClaveTributaria != null)
+                                EtiquetaClaveTributaria.Text = Cliente.TipoClaveTributaria.Nombre;
+
                         if (Cliente.ClaveTributaria != null)
                                 EntradaClaveTributaria.Text = Cliente.ClaveTributaria.ToString();
                         else
@@ -346,7 +350,7 @@ namespace Lfc.Personas
                         Res.Apellido = EntradaApellido.Text.Trim();
                         Res.RazonSocial = EntradaRazonSocial.Text.Trim();
                         Res.Nombre = EntradaNombreVisible.Text;
-                        Res.TipoDocumento = EntradaTipoDoc.TextInt;
+                        Res.TipoDocumento = EntradaTipoDoc.Elemento as Lbl.Entidades.ClaveUnica;
                         Res.NumeroDocumento = EntradaNumDoc.Text;
                         if (EntradaClaveTributaria.Text.Length > 0)
                                 Res.ClaveTributaria = new Lbl.Personas.Claves.Cuit(EntradaClaveTributaria.Text);

@@ -57,6 +57,8 @@ namespace Lfc
                         this.BotonCrear = new Lui.Forms.Button();
                         this.TimerBuscar = new System.Windows.Forms.Timer(this.components);
                         this.EtiquetaListadoVacio = new Lui.Forms.Label();
+                        this.PanelContadores.SuspendLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // Listado
@@ -67,6 +69,7 @@ namespace Lfc
                         // 
                         this.EntradaBuscar.AutoNav = true;
                         this.EntradaBuscar.AutoTab = false;
+                        this.EntradaBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaBuscar.DecimalPlaces = -1;
                         this.EntradaBuscar.FieldName = null;
@@ -90,6 +93,7 @@ namespace Lfc
                         // BotonCrear
                         // 
                         this.BotonCrear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonCrear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonCrear.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCrear.Image = null;
                         this.BotonCrear.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -137,6 +141,8 @@ namespace Lfc
                         this.Controls.Add(this.EntradaBuscar);
                         this.Name = "FormularioListado";
                         this.Text = "Listado";
+                        this.Controls.SetChildIndex(this.PanelContadores, 0);
+                        this.Controls.SetChildIndex(this.PicEsperar, 0);
                         this.Controls.SetChildIndex(this.EntradaBuscar, 0);
                         this.Controls.SetChildIndex(this.EtiquetaCantidad, 0);
                         this.Controls.SetChildIndex(this.BotonCrear, 0);
@@ -145,6 +151,8 @@ namespace Lfc
                         this.Controls.SetChildIndex(this.BotonFiltrar, 0);
                         this.Controls.SetChildIndex(this.BotonImprimir, 0);
                         this.Controls.SetChildIndex(this.EtiquetaListadoVacio, 0);
+                        this.PanelContadores.ResumeLayout(false);
+                        ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).EndInit();
                         this.ResumeLayout(false);
 
                 }

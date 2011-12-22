@@ -92,9 +92,9 @@
     <Compile Include="Bancos\ChequeEmitido.cs" />
     <Compile Include="Bancos\ChequeRecibido.cs" />
     <Compile Include="Bancos\Claves\Cbu.cs" />
+    <Compile Include="Bancos\Claves\Ccc.cs" />
     <Compile Include="Bancos\Claves\Clabe.cs" />
     <Compile Include="Bancos\Claves\Iban.cs" />
-    <Compile Include="Bancos\Claves\Routing.cs" />
     <Compile Include="ColeccionCodigoDetalle.cs" />
     <Compile Include="Componentes\Componente.cs" />
     <Compile Include="Comprobantes\Factura.cs" />

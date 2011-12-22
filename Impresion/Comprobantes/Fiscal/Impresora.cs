@@ -335,7 +335,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         string ClienteTipoDoc = "DNI";
                         string ClienteNumDoc = Comprob.Cliente.NumeroDocumento.Replace("-", "").Replace(".", "");
 
-                        switch (Comprob.Cliente.TipoDocumento) {
+                        switch (Comprob.Cliente.TipoDocumento.Id) {
                                 case 1:
                                         ClienteTipoDoc = "DNI";
                                         break;

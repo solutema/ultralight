@@ -237,6 +237,8 @@ namespace Lfc.Articulos
                                         this.CustomFilters.Add(new qGen.ComparisonCondition("pedido", qGen.ComparisonOperators.GreaterThan, 0));
                                         break;
                         }
+
+                        base.OnBeginRefreshList();
                 }
 
                 protected override void OnEndRefreshList()
