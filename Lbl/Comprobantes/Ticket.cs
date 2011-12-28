@@ -31,7 +31,10 @@
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.NombreItem("Ticket")]
+        [Lbl.Atributos.Datos(NombreSingular = "Ticket",
+                TablaDatos = "comprob",
+                CampoId = "id_comprob")]
+        [Lbl.Atributos.Presentacion()]
         public class Ticket : ComprobanteFacturable
         {
                 //Heredar constructor

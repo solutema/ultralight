@@ -35,6 +35,11 @@ using System.Text;
 
 namespace Lbl.Cajas
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Concepto",
+                       Grupo = "Cajas",
+                       TablaDatos = "conceptos",
+                       CampoId = "id_concepto")]
+        [Lbl.Atributos.Presentacion()]
         public class Concepto : ElementoDeDatos
         {
                 private static Concepto m_IngresosPorFacturacion = null, m_AjustesYMovimientos = null;
@@ -48,22 +53,6 @@ namespace Lbl.Cajas
 
                 public Concepto(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "conceptos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_concepto";
-			}
-		}
 
                 public int Direccion
                 {

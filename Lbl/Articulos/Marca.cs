@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.NombreItem("Marca")]
+        [Lbl.Atributos.Datos(NombreSingular = "Marca",
+                Grupo = "Artículos",
+                TablaDatos = "marcas",
+                CampoId = "id_marca")]
+        [Lbl.Atributos.Presentacion()]
 	public class Marca : ElementoDeDatos
 	{
 		public Personas.Persona Proveedor;
@@ -48,21 +52,6 @@ namespace Lbl.Articulos
                 public Marca(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "marcas";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_marca";
-			}
-		}
 
 		public string Url
 		{

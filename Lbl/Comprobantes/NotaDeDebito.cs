@@ -35,7 +35,10 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.NombreItem("Nota de Débito")]
+        [Lbl.Atributos.Datos(NombreSingular = "Nota de Débito",
+                TablaDatos = "comprob",
+                CampoId = "id_comprob")]
+        [Lbl.Atributos.Presentacion()]
         public class NotaDeDebito : ComprobanteFacturable
         {
                 //Heredar constructor

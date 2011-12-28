@@ -39,7 +39,10 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una País.
         /// </summary>
-        [Lbl.Atributos.NombreItem("País")]
+        [Lbl.Atributos.Datos(NombreSingular = "País",
+                TablaDatos = "paises",
+                CampoId = "id_pais")]
+        [Lbl.Atributos.Presentacion()]
         public class Pais : ElementoDeDatos
         {
                 private ClaveUnica m_ClavePersonasFisicas = null, m_ClavePersonasJuridicas = null, m_ClaveBancaria = null;
@@ -54,22 +57,6 @@ namespace Lbl.Entidades
 
                 public Pais(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "paises";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_pais";
-                        }
-                }
 
 
                 public string CodigoIso

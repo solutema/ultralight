@@ -38,7 +38,10 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una sucursal de la empresa.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Sucursal")]
+        [Lbl.Atributos.Datos(NombreSingular = "Sucursal",
+                TablaDatos = "sucursales",
+                CampoId = "id_sucursal")]
+        [Lbl.Atributos.Presentacion()]
 	public class Sucursal : ElementoDeDatos
 	{
                 private Lbl.Entidades.Localidad m_Localidad = null;
@@ -55,21 +58,6 @@ namespace Lbl.Entidades
                 public Sucursal(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "sucursales";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_sucursal";
-			}
-		}
 
                 public override Lfx.Types.OperationResult Guardar()
                 {

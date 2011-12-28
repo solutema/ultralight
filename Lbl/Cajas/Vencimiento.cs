@@ -48,7 +48,11 @@ namespace Lbl.Cajas
                 Anual
         }
 
-        [Lbl.Atributos.NombreItem("Vencimiento")]
+        [Lbl.Atributos.Datos(NombreSingular = "Vencimiento",
+                Grupo = "Cajas",
+                TablaDatos = "vencimientos",
+                CampoId = "id_vencimiento")]
+        [Lbl.Atributos.Presentacion()]
         public class Vencimiento : ElementoDeDatos
         {
                 public Cajas.Concepto Concepto;
@@ -67,24 +71,10 @@ namespace Lbl.Cajas
                 {
                         base.Crear();
                         this.Estado = 1;
-                        this.Frecuencia = Frecuencias.Unica;
+                        this.FechaInicio = System.DateTime.Now;
+                        this.Frecuencia = Frecuencias.Diaria;
                 }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "vencimientos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_vencimiento";
-			}
-		}
 
                 public decimal Importe
                 {

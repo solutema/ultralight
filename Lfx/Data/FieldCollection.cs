@@ -51,7 +51,7 @@ namespace Lfx.Data
 				}
 
                                 foreach (Field Itm in this) {
-                                        if (Lfx.Data.Connection.GetFieldName(Itm.ColumnName) == columnName)
+                                        if (Itm.ColumnName != null && Lfx.Data.Connection.GetFieldName(Itm.ColumnName) == columnName)
                                                 return Itm;
                                 }
 

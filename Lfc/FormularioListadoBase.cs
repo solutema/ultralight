@@ -1150,9 +1150,9 @@ namespace Lfc
                 protected override void OnActivated(EventArgs e)
                 {
                         if (this.Text == "Listado" && this.Definicion.ElementoTipo != null) {
-                                Lbl.Atributos.NombreItem Attr = this.Definicion.ElementoTipo.GetAttribute<Lbl.Atributos.NombreItem>();
+                                Lbl.Atributos.Datos Attr = this.Definicion.ElementoTipo.GetAttribute<Lbl.Atributos.Datos>();
                                 if (Attr != null)
-                                        this.Text = "Listado de " + Attr.Nombre;
+                                        this.Text = "Listado de " + Attr.NombrePlural;
                         }
 
                         // Sólo refresco si no hay filtros y cuando son pocos elementos

@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.NombreItem("Presupuesto")]
+        [Lbl.Atributos.Datos(NombreSingular = "Presupuesto",
+                TablaDatos = "comprob",
+                CampoId = "id_comprob",
+                TablaImagenes = "comprob_imagenes")]
+        [Lbl.Atributos.Presentacion()]
         public class Presupuesto : ComprobanteConArticulos
         {
                 //Heredar constructor

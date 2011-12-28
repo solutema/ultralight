@@ -38,7 +38,10 @@ namespace Lbl.Pagos
         /// <summary>
         /// Representa una forma de pago. Tanto para emitir pagos como para recibir pagos.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Forma de Pago")]
+        [Lbl.Atributos.Datos(NombreSingular = "Forma de Pago",
+                TablaDatos = "formaspago",
+                CampoId = "id_formapago")]
+        [Lbl.Atributos.Presentacion()]
         public class FormaDePago : ElementoDeDatos
         {
                 private Lbl.Cajas.Caja m_Caja;
@@ -59,22 +62,7 @@ namespace Lbl.Pagos
                         m_ItemId = (int)tipoFormaPago;
                 }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "formaspago";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_formapago";
-			}
-		}
-
+		
                 public override void Crear()
                 {
                         base.Crear();

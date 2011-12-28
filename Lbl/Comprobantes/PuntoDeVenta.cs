@@ -42,7 +42,11 @@ namespace Lbl.Comprobantes
                 Fiscal = 2
         }
 
-        [Lbl.Atributos.NombreItem("Punto de Venta")]
+        [Lbl.Atributos.Datos(NombreSingular = "Punto de Venta",
+                TablaDatos = "pvs",
+                CampoId = "id_pv",
+                CampoNombre = "numero")]
+        [Lbl.Atributos.Presentacion()]
         public class PuntoDeVenta : ElementoDeDatos
         {
                 public Lbl.Entidades.Sucursal Sucursal;
@@ -57,29 +61,6 @@ namespace Lbl.Comprobantes
                 public PuntoDeVenta(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "pvs";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_pv";
-                        }
-                }
-
-                public override string CampoNombre
-                {
-                        get
-                        {
-                                return "numero";
-                        }
-                }
 
                 public override void Crear()
                 {

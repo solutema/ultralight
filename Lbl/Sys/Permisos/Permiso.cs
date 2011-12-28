@@ -38,6 +38,11 @@ namespace Lbl.Sys.Permisos
         /// <summary>
         /// Describe una instancia de un permiso en particular.
         /// </summary>
+        [Lbl.Atributos.Datos(NombreSingular = "Permiso",
+                       Grupo = "Permisos",
+                       TablaDatos = "sys_permisos",
+                       CampoId = "id_permiso")]
+        [Lbl.Atributos.Presentacion()]
         public class Permiso : ElementoDeDatos
         {
                 public ListaIds Item = null;
@@ -63,21 +68,6 @@ namespace Lbl.Sys.Permisos
                         this.Item = item;
                 }
 
-		public override string TablaDatos
-		{
-			get
-			{
-                                return "sys_permisos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_permiso";
-			}
-		}
 
                 public override void OnLoad()
                 {

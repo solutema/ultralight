@@ -39,6 +39,10 @@ namespace Lbl
         /// Describe una etiqueta que se puede asociar a un ElementoDeDatos, por ejemplo "Destacado", "Nuevo", etc.
         /// Se pueden asociar cero o más etiquetas a un elemento mediante la propiedad Etiquetas y el método GuardarEtiquetas().
         /// </summary>
+        [Lbl.Atributos.Datos(NombreSingular = "Etiqueta",
+                       TablaDatos = "sys_labels",
+                       CampoId = "id_label")]
+        [Lbl.Atributos.Presentacion()]
         public class Etiqueta : ElementoDeDatos
         {
                 private static ColeccionGenerica<Etiqueta> m_Todas;
@@ -53,21 +57,6 @@ namespace Lbl
                 public Etiqueta(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "sys_labels";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_label";
-                        }
-                }
 
                 public static implicit operator Etiqueta(Lfx.Data.Row row)
                 {

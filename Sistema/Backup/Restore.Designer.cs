@@ -103,8 +103,8 @@ namespace Lazaro.WinMain.Backup
                         // 
                         // Label1
                         // 
-                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label1.LabelStyle = Lui.Forms.LabelStyles.Title;
                         this.Label1.Location = new System.Drawing.Point(80, 20);
                         this.Label1.Name = "Label1";
@@ -115,7 +115,6 @@ namespace Lazaro.WinMain.Backup
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Warning;
                         this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(80, 60);
                         this.Label2.Name = "Label2";
@@ -126,47 +125,47 @@ namespace Lazaro.WinMain.Backup
                         // 
                         // Label3
                         // 
-                        this.Label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(144, 88);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(436, 32);
+                        this.Label3.Size = new System.Drawing.Size(436, 44);
                         this.Label3.TabIndex = 59;
                         this.Label3.Text = "Si continúa con esta acción, llevará el estado del sistema completo atrás en el t" +
-                            "iempo al:";
+    "iempo al:";
                         // 
                         // lblFecha
                         // 
                         this.lblFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblFecha.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.lblFecha.Location = new System.Drawing.Point(344, 124);
+                        this.lblFecha.LabelStyle = Lui.Forms.LabelStyles.Big;
+                        this.lblFecha.Location = new System.Drawing.Point(336, 132);
                         this.lblFecha.Name = "lblFecha";
-                        this.lblFecha.Size = new System.Drawing.Size(236, 15);
+                        this.lblFecha.Size = new System.Drawing.Size(244, 28);
                         this.lblFecha.TabIndex = 60;
                         this.lblFecha.Text = "01-01-2001 a las 00:00:00";
                         // 
                         // Label4
                         // 
-                        this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label4.Location = new System.Drawing.Point(80, 152);
+                        this.Label4.Location = new System.Drawing.Point(80, 176);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(500, 52);
                         this.Label4.TabIndex = 61;
                         this.Label4.Text = "Lea atentamente la sección \"Restaurar Copia de Seguridad\" en el \"Manual del Admin" +
-                            "istrador\" y asegúrese de comprender las implicaciones de la acción que está a pu" +
-                            "nto de realizar.";
+    "istrador\" y asegúrese de comprender las implicaciones de la acción que está a pu" +
+    "nto de realizar.";
                         // 
                         // Label5
                         // 
-                        this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label5.Location = new System.Drawing.Point(80, 216);
+                        this.Label5.Location = new System.Drawing.Point(80, 240);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(500, 20);
+                        this.Label5.Size = new System.Drawing.Size(500, 24);
                         this.Label5.TabIndex = 62;
                         this.Label5.Text = "Para continuar con el proceso, escriba \"si\" en el cuadro:";
                         // 
@@ -175,22 +174,24 @@ namespace Lazaro.WinMain.Backup
                         this.EntradaConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConfirmar.AutoNav = true;
                         this.EntradaConfirmar.AutoTab = false;
+                        this.EntradaConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaConfirmar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaConfirmar.DecimalPlaces = -1;
+                        this.EntradaConfirmar.FieldName = null;
                         this.EntradaConfirmar.ForceCase = Lui.Forms.TextCasing.LowerCase;
-                        this.EntradaConfirmar.Location = new System.Drawing.Point(500, 236);
+                        this.EntradaConfirmar.Location = new System.Drawing.Point(500, 264);
                         this.EntradaConfirmar.MaxLength = 32767;
                         this.EntradaConfirmar.MultiLine = false;
                         this.EntradaConfirmar.Name = "EntradaConfirmar";
                         this.EntradaConfirmar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConfirmar.PasswordChar = '\0';
+                        this.EntradaConfirmar.PlaceholderText = "Escriba el texto de confirmación para poder continuar";
                         this.EntradaConfirmar.Prefijo = "";
                         this.EntradaConfirmar.ReadOnly = false;
                         this.EntradaConfirmar.SelectOnFocus = true;
                         this.EntradaConfirmar.Size = new System.Drawing.Size(80, 24);
                         this.EntradaConfirmar.Sufijo = "";
                         this.EntradaConfirmar.TabIndex = 0;
-                        this.EntradaConfirmar.PlaceholderText = "Escriba el texto de confirmación para poder continuar";
                         this.EntradaConfirmar.TextChanged += new System.EventHandler(this.EntradaConfirmar_TextChanged);
                         // 
                         // PictureBox1
@@ -205,7 +206,7 @@ namespace Lazaro.WinMain.Backup
                         // Restore
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(594, 375);
+                        this.ClientSize = new System.Drawing.Size(594, 372);
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.EntradaConfirmar);
                         this.Controls.Add(this.Label5);

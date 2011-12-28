@@ -38,7 +38,12 @@ namespace Lbl.Personas
         /// <summary>
         /// Representa una persona física o jurídica.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Persona")]
+        [Lbl.Atributos.Datos(NombreSingular = "Persona",
+                TablaDatos = "personas",
+                CampoId = "id_persona",
+                CampoNombre = "nombre_visible",
+                TablaImagenes = "personas_imagenes")]
+        [Lbl.Atributos.Presentacion()]
         public class Persona : ElementoDeDatos, IElementoConImagen, ICamposBaseEstandar
 	{
                 private Entidades.Localidad m_Localidad = null;
@@ -168,39 +173,6 @@ namespace Lbl.Personas
 
                         return base.Guardar();
                 }
-
-
-                public override string TablaDatos
-		{
-			get
-			{
-				return "personas";
-			}
-		}
-
-                public override string TablaImagenes
-                {
-                        get
-                        {
-                                return "personas_imagenes";
-                        }
-                }
-
-                public override string CampoId
-		{
-			get
-			{
-				return "id_persona";
-			}
-		}
-
-                public override string CampoNombre
-		{
-			get
-			{
-				return "nombre_visible";
-			}
-		}
 
 
                 public override void OnLoad()

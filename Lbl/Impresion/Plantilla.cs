@@ -38,7 +38,11 @@ namespace Lbl.Impresion
         /// <summary>
         /// Define una plantilla que se utiliza para imprimir un ElementoDeDatos.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Plantilla")]
+        [Lbl.Atributos.Datos(NombreSingular = "Plantilla",
+                Grupo = "Comprobantes",
+                TablaDatos = "sys_plantillas",
+                CampoId = "id_plantilla")]
+        [Lbl.Atributos.Presentacion()]
 	public class Plantilla : ElementoDeDatos
 	{
                 public IList<Campo> Campos;
@@ -53,23 +57,6 @@ namespace Lbl.Impresion
 
                 public Plantilla(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }
-
-                public override string TablaDatos
-		{
-			get
-			{
-				return "sys_plantillas";
-			}
-		}
-
-
-                public override string CampoId
-		{
-			get
-			{
-				return "id_plantilla";
-			}
-		}
 
 
                 public override void Crear()

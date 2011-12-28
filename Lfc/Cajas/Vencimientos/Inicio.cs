@@ -45,6 +45,7 @@ namespace Lfc.Cajas.Vencimientos
 
                                 TableName = "vencimientos",
                                 KeyColumnName = new Lazaro.Pres.Field("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
+                                Joins = new qGen.JoinCollection() { new qGen.Join("conceptos", "vencimientos.id_concepto=conceptos.id_concepto") },
                                 OrderBy = "vencimientos.fecha_proxima DESC",
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
@@ -52,7 +53,7 @@ namespace Lfc.Cajas.Vencimientos
 				        new Lazaro.Pres.Field("vencimientos.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
 				        new Lazaro.Pres.Field("vencimientos.frecuencia", "Frecuencia", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lazaro.Pres.Field("vencimientos.fecha_proxima", "Próxima Ocurrencia", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lazaro.Pres.Field("vencimientos.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
+				        new Lazaro.Pres.Field("conceptos.nombre", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),
 				        new Lazaro.Pres.Field("vencimientos.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 96),
                                         new Lazaro.Pres.Field("vencimientos.obs", "Obs", Lfx.Data.InputFieldTypes.Memo, 320)
 			        }
@@ -64,28 +65,24 @@ namespace Lfc.Cajas.Vencimientos
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        switch (row.Fields["estado"].ValueInt) {
+                        switch (row.Fields["vencimientos.estado"].ValueInt) {
                                 case 1:
-                                        item.SubItems["estado"].Text = "Activo";
-                                        NullableDateTime Vencimiento = row.Fields["fecha_proxima"].ValueDateTime;
-                                        if (Vencimiento != null && Vencimiento <= DateTime.Now)
-                                                item.ForeColor = System.Drawing.Color.Red;
-                                        else if (Vencimiento != null && Vencimiento <= DateTime.Now.AddDays(5))
-                                                item.ForeColor = System.Drawing.Color.Orange;
+                                        item.SubItems["vencimientos.estado"].Text = "Activo";
+                                        NullableDateTime Vencimiento = row.Fields["vencimientos.fecha_proxima"].ValueDateTime;
+                                        if (Vencimiento != null) {
+                                                if (Vencimiento <= DateTime.Now)
+                                                        item.ForeColor = System.Drawing.Color.Red;
+                                                else if (Vencimiento <= DateTime.Now.AddDays(5))
+                                                        item.ForeColor = System.Drawing.Color.Orange;
+                                        }
                                         break;
                                 case 2:
-                                        item.SubItems["estado"].Text = "Inactivo";
+                                        item.SubItems["vencimientos.estado"].Text = "Inactivo";
                                         break;
                                 case 100:
-                                        item.SubItems["estado"].Text = "Terminado";
+                                        item.SubItems["vencimientos.estado"].Text = "Terminado";
                                         break;
-                        }
-
-                        Lfx.Data.Row Concepto = this.Connection.Tables["conceptos"].FastRows[row.Fields["id_concepto"].ValueInt];
-                        if (Concepto != null)
-                                item.SubItems["id_concepto"].Text = Concepto.Fields["nombre"].ToString();
-
-                        
+                        }                        
                 }
         }
 }

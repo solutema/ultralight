@@ -35,6 +35,11 @@ using System.Text;
 
 namespace Lbl.Tareas
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Tipo",
+                Grupo = "Tareas",
+                TablaDatos = "tickets_tipos",
+                CampoId = "id_tipo_ticket")]
+        [Lbl.Atributos.Presentacion()]
         public class Tipo : ElementoDeDatos
         {
                 public Tipo(Lfx.Data.Connection dataBase)
@@ -45,22 +50,6 @@ namespace Lbl.Tareas
 
                 public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-                                return "tickets_tipos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-                                return "id_tipo_ticket";
-			}
-		}
 
 
                 public override void Crear()

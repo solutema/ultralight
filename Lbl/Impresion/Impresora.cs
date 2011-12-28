@@ -39,7 +39,10 @@ namespace Lbl.Impresion
         /// Representa una impresora configurada en Lázaro. Puede ser una impresora de Windows,
         /// un controlador fiscal o una impresora nula.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Impresora")]
+        [Lbl.Atributos.Datos(NombreSingular = "Impresora",
+                TablaDatos = "impresoras",
+                CampoId = "id_impresora")]
+        [Lbl.Atributos.Presentacion()]
         public class Impresora : ElementoDeDatos
         {
                 //Heredar constructor
@@ -51,22 +54,6 @@ namespace Lbl.Impresion
 
                 public Impresora(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "impresoras";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_impresora";
-                        }
-                }
 
 
                 public override void Crear()

@@ -38,7 +38,11 @@ namespace Lbl.Tareas
         /// <summary>
         /// Representa una novedad de una tarea.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Novedad"), Lbl.Atributos.MuestraMensajeAlCrear(false)]
+        [Lbl.Atributos.Datos(NombreSingular = "Novedad",
+                Grupo = "Tareas",
+                TablaDatos = "tickets_eventos",
+                CampoId = "id_evento")]
+        [Lbl.Atributos.Presentacion()]
         public class Novedad : ElementoDeDatos
         {
                 private Tarea m_Tarea = null;
@@ -53,21 +57,6 @@ namespace Lbl.Tareas
                 public Novedad(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "tickets_eventos";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_evento";
-                        }
-                }
 
                 public string Descripcion
                 {

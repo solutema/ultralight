@@ -38,7 +38,10 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una moneda (divisa).
         /// </summary>
-        [Lbl.Atributos.NombreItem("Moneda")]
+        [Lbl.Atributos.Datos(NombreSingular = "Moneda",
+                TablaDatos = "monedas",
+                CampoId = "id_moneda")]
+        [Lbl.Atributos.Presentacion()]
         public class Moneda : ElementoDeDatos
         {
                 //Heredar constructor
@@ -51,21 +54,6 @@ namespace Lbl.Entidades
                 public Moneda(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "monedas";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_moneda";
-                        }
-                }
 
                 public string Simbolo
                 {

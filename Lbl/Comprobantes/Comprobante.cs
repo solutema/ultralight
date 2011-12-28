@@ -35,9 +35,11 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.NombreItem("Comprobante"),
-                Lbl.Atributos.MuestraMensajeAlCrear(false),
-                Lbl.Atributos.MuestraPanelExtendido(false)]
+        [Lbl.Atributos.Datos(NombreSingular = "Comprobante",
+                TablaDatos = "comprob",
+                CampoId = "id_comprbo",
+                TablaImagenes = "comprob_imagenes")]
+        [Lbl.Atributos.Presentacion(PanelExtendido = false)]
         public abstract class Comprobante : ElementoDeDatos, IElementoConImagen, ICamposBaseEstandar
 	{
                 private Personas.Persona m_Vendedor, m_Cliente;

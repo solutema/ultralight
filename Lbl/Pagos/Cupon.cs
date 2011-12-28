@@ -38,7 +38,11 @@ namespace Lbl.Pagos
         /// <summary>
         /// Describe un pago con un cupón (por ejemplo pagos con tarjeta de crédito, vales, mutuales, etc.)
         /// </summary>
-        [Lbl.Atributos.NombreItem("Cupón")]
+        [Lbl.Atributos.Datos(NombreSingular = "Cupón",
+                Grupo = "Pagos y Cobros",
+                TablaDatos = "tarjetas_cupones",
+                CampoId = "id_cupon")]
+        [Lbl.Atributos.Presentacion()]
 	public class Cupon : ElementoDeDatos
 	{
                 private Pagos.FormaDePago m_FormaDePago;
@@ -75,21 +79,6 @@ namespace Lbl.Pagos
 			Autorizacion = autorizacion;
 		}
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "tarjetas_cupones";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_cupon";
-			}
-		}
 
                 public string Numero
                 {

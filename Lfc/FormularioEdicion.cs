@@ -172,8 +172,8 @@ namespace Lfc
                                                 ControlDestino.Focus();
                                         }
 
-                                        Lbl.Atributos.MuestraMensajeAlCrear AttrMuestraMsg = this.ElementoTipo.GetAttribute<Lbl.Atributos.MuestraMensajeAlCrear>();
-                                        if (AttrMuestraMsg != null && AttrMuestraMsg.Muestra)
+                                        Lbl.Atributos.Presentacion AttrMuestraMsg = this.ElementoTipo.GetAttribute<Lbl.Atributos.Presentacion>();
+                                        if (AttrMuestraMsg != null && AttrMuestraMsg.MensajeAlCrear)
                                                 Lui.Forms.MessageBox.Show("Acaba de crear " + this.Elemento.ToString(), "Crear");
                                 }
 
@@ -281,9 +281,9 @@ namespace Lfc
                         BotonHistorial.Visible = this.Elemento.Existe && Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal();
                         BotonComentarios.Visible = this.Elemento.Existe;
 
-                        Lbl.Atributos.MuestraPanelExtendido AttrMuestraPanel = this.ElementoTipo.GetAttribute<Lbl.Atributos.MuestraPanelExtendido>();
+                        Lbl.Atributos.Presentacion AttrMuestraPanel = this.ElementoTipo.GetAttribute<Lbl.Atributos.Presentacion>();
                         if (AttrMuestraPanel != null)
-                                MuestraPanel = AttrMuestraPanel.Muestra;
+                                MuestraPanel = AttrMuestraPanel.PanelExtendido;
 
                         if (this.ControlUnico != null) {
                                 this.ControlUnico.FromRow(row);
@@ -312,9 +312,9 @@ namespace Lfc
                         if (row != null && row.Existe) {
                                 this.Text = row.ToString();
                         } else {
-                                Lbl.Atributos.NombreItem Attr = this.ElementoTipo.GetAttribute<Lbl.Atributos.NombreItem>();
+                                Lbl.Atributos.Datos Attr = this.ElementoTipo.GetAttribute<Lbl.Atributos.Datos>();
                                 if (Attr != null)
-                                        this.Text = "Creando " + Attr.Nombre;
+                                        this.Text = "Creando " + Attr.NombreSingular;
                                 else
                                         this.Text = "Creando " + row.GetType().ToString();
                         }

@@ -164,6 +164,9 @@ namespace qGen
                                 return value.ToString();
                         } else if (value is SqlExpression) {
                                 return m_RightValue.ToString();
+                        } else if (value is qGen.Select) {
+                                // Sub select
+                                return "(" + m_RightValue.ToString() + ")";
                         } else if (value is SqlFunctions) {
                                 switch((SqlFunctions)value) {
                                         case SqlFunctions.Now:

@@ -37,7 +37,10 @@ namespace Lbl.Componentes
         /// <summary>
         /// Representa un componente.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Componente")]
+        [Lbl.Atributos.Datos(NombreSingular = "Componente",
+                TablaDatos = "sys_components",
+                CampoId = "id_component")]
+        [Lbl.Atributos.Presentacion()]
         public class Componente : ElementoDeDatos, Lfx.Components.IComponent
         {
                 public Lfx.Components.FunctionInfoCollection Funciones { get; set; }
@@ -56,22 +59,6 @@ namespace Lbl.Componentes
 
                 public Componente(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "sys_components";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_component";
-                        }
-                }
 
 
                 /// <summary>

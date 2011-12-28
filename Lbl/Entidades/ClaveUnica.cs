@@ -46,7 +46,10 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una Clave Única (por ejemplo un DNI, SSN, CBU, IBAN, etc.).
         /// </summary>
-        [Lbl.Atributos.NombreItem("Clave Única")]
+        [Lbl.Atributos.Datos(NombreSingular = "Clave Única",
+                TablaDatos = "tipo_doc",
+                CampoId = "id_tipo_doc")]
+        [Lbl.Atributos.Presentacion()]
         public class ClaveUnica : ElementoDeDatos
         {
                 //Heredar constructor
@@ -58,22 +61,6 @@ namespace Lbl.Entidades
 
                 public ClaveUnica(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "tipo_doc";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_tipo_doc";
-                        }
-                }
 
 
                 public string Descripcion

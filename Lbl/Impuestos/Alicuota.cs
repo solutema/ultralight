@@ -38,7 +38,11 @@ namespace Lbl.Impuestos
         /// <summary>
         /// Representa una alícuota de IVA.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Alícuota")]
+        [Lbl.Atributos.Datos(NombreSingular = "Alícuota",
+                Grupo = "Impuestos",
+                TablaDatos = "alicuotas",
+                CampoId = "id_alicuota")]
+        [Lbl.Atributos.Presentacion()]
         public class Alicuota : ElementoDeDatos
         {
                 public Alicuota(Lfx.Data.Connection dataBase)
@@ -50,21 +54,6 @@ namespace Lbl.Impuestos
                 public Alicuota(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "alicuotas";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-                                return "id_alicuota";
-			}
-		}
 
                 public decimal Porcentaje
                 {

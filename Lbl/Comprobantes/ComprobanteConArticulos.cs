@@ -35,9 +35,11 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.NombreItem("Comprobante con Artículos"),
-                Lbl.Atributos.MuestraMensajeAlCrear(false),
-                Lbl.Atributos.MuestraPanelExtendido(false)]
+        [Lbl.Atributos.Datos(NombreSingular = "Comprobante con Artículos",
+                TablaDatos = "comprob",
+                CampoId = "id_comprob",
+                TablaImagenes = "comprob_imagenes")]
+        [Lbl.Atributos.Presentacion(PanelExtendido = false)]
 	public class ComprobanteConArticulos : Comprobante
 	{
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
@@ -55,30 +57,6 @@ namespace Lbl.Comprobantes
 
 		public ComprobanteConArticulos(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "comprob";
-			}
-		}
-
-                public override string TablaImagenes
-                {
-                        get
-                        {
-                                return "comprob_imagenes";
-                        }
-                }
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_comprob";
-			}
-		}
 
 
                 public bool Anulado

@@ -38,7 +38,10 @@ namespace Lbl.Personas
         /// <summary>
         /// Describe un usuario del sistema. En realidad es una vista diferente de un registro de la tabla de personas.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Usuario")]
+        [Lbl.Atributos.Datos(NombreSingular = "Usuario",
+                TablaDatos = "personas",
+                CampoId = "id_persona")]
+        [Lbl.Atributos.Presentacion()]
         public class Usuario : ElementoDeDatos
         {
                 private bool CambioContrasena = false;
@@ -55,29 +58,6 @@ namespace Lbl.Personas
                 public Usuario(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "personas";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_persona";
-                        }
-                }
-
-                public override string CampoNombre
-                {
-                        get
-                        {
-                                return "nombre_visible";
-                        }
-                }
 
                 public string Contrasena
                 {

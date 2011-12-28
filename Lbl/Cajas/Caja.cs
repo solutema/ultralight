@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Cajas
 {
-        [Lbl.Atributos.NombreItem("Caja")]
+        [Lbl.Atributos.Datos(NombreSingular = "Caja",
+                Grupo = "Cajas",
+                TablaDatos = "cajas",
+                CampoId = "id_caja")]
+        [Lbl.Atributos.Presentacion()]
 	public class Caja : ElementoDeDatos, Lbl.ICamposBaseEstandar, Lbl.ICuenta
 	{
                 private Lbl.Bancos.Banco m_Banco = null;
@@ -51,21 +55,6 @@ namespace Lbl.Cajas
                 public Caja(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "cajas";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_caja";
-			}
-		}
 
                 public virtual decimal Saldo(bool forUpdate)
 		{

@@ -38,6 +38,10 @@ namespace Lbl.Sys.Permisos
         /// <summary>
         /// Describe un tipo de acceso que puede tener una persona.
         /// </summary>
+        [Lbl.Atributos.Datos(NombreSingular = "Objeto de Permiso",
+                TablaDatos = "sys_permisos_objetos",
+                CampoId = "id_objeto")]
+        [Lbl.Atributos.Presentacion()]
         public class Objeto : ElementoDeDatos
         {
                 //Heredar constructor
@@ -50,21 +54,6 @@ namespace Lbl.Sys.Permisos
                 public Objeto(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-                                return "sys_permisos_objetos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_objeto";
-			}
-		}
 
                 public string Tipo
                 {

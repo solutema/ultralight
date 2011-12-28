@@ -35,6 +35,11 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Detalle de Comprobante",
+                Grupo = "Comprobantes",
+                TablaDatos = "comprob_detalle",
+                CampoId = "id_comprob_detalle")]
+        [Lbl.Atributos.Presentacion()]
 	public class DetalleArticulo : ElementoDeDatos
 	{
                 private Articulos.Articulo m_Articulo = null;
@@ -64,22 +69,6 @@ namespace Lbl.Comprobantes
                 {
                         this.Comprobante = comprobante;
                 }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "comprob_detalle";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_comprob_detalle";
-			}
-		}
 
                 public decimal Unitario
                 {

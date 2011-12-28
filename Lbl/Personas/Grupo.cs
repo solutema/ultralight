@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Personas
 {
-        [Lbl.Atributos.NombreItem("Grupo")]
+        [Lbl.Atributos.Datos(NombreSingular = "Grupo",
+                Grupo = "Personas",
+                TablaDatos = "personas_grupos",
+                CampoId = "id_grupo")]
+        [Lbl.Atributos.Presentacion()]
 	public class Grupo : ElementoDeDatos
 	{
                 private Grupo m_Parent = null;
@@ -49,21 +53,6 @@ namespace Lbl.Personas
                 public Grupo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "personas_grupos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_grupo";
-			}
-		}
 
                 public override void OnLoad()
                 {

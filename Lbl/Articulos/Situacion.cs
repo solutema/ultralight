@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.NombreItem("Situación")]
+        [Lbl.Atributos.Datos(NombreSingular = "Situación",
+                Grupo = "Artículos",
+                TablaDatos = "articulos_situaciones",
+                CampoId = "id_situacion")]
+        [Lbl.Atributos.Presentacion()]
 	public class Situacion : ElementoDeDatos
 	{
 		//Heredar constructor
@@ -46,22 +50,6 @@ namespace Lbl.Articulos
 
                 public Situacion(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "articulos_situaciones";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_situacion";
-			}
-		}
 
 
                 /// <summary>

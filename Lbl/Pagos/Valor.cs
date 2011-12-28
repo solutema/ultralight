@@ -35,6 +35,10 @@ using System.Text;
 
 namespace Lbl.Pagos
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Valor de Pago",
+                TablaDatos = "pagos_valores",
+                CampoId = "id_valor")]
+        [Lbl.Atributos.Presentacion()]
         public class Valor : ElementoDeDatos
         {
                 public Lbl.Pagos.FormaDePago FormaDePago;
@@ -54,21 +58,6 @@ namespace Lbl.Pagos
                 public Valor(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "pagos_valores";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_valor";
-                        }
-                }
 
                 public override void OnLoad()
                 {

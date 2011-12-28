@@ -35,7 +35,12 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.NombreItem("Artículo")]
+        [Lbl.Atributos.Datos(NombreSingular = "Artículo",
+                Grupo = "Artículos",
+                TablaDatos = "articulos",
+                CampoId = "id_articulo",
+                TablaImagenes = "articulos_imagenes")]
+        [Lbl.Atributos.Presentacion()]
 	public class Articulo : ElementoDeDatos, IElementoConImagen
 	{
                 private Lbl.Articulos.Categoria m_Categoria = null;
@@ -56,29 +61,6 @@ namespace Lbl.Articulos
                 public Articulo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "articulos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_articulo";
-			}
-		}
-
-                public override string TablaImagenes
-                {
-                        get
-                        {
-                                return "articulos_imagenes";
-                        }
-                }
 
 		public string Codigo1
 		{

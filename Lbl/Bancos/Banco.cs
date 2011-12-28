@@ -35,6 +35,11 @@ using System.Text;
 
 namespace Lbl.Bancos
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Banco",
+                       Grupo = "Bancos",
+                       TablaDatos = "bancos",
+                       CampoId = "id_banco")]
+        [Lbl.Atributos.Presentacion()]
 	public class Banco : ElementoDeDatos
 	{
 		//Heredar constructor
@@ -46,21 +51,5 @@ namespace Lbl.Bancos
 
                 public Banco(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "bancos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_banco";
-			}
-		}
 	}
 }

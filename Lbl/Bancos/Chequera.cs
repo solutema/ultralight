@@ -35,6 +35,11 @@ using System.Text;
 
 namespace Lbl.Bancos
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Chequera",
+                Grupo = "Bancos",
+                TablaDatos = "chequeras",
+                CampoId = "id_chequera")]
+        [Lbl.Atributos.Presentacion()]
         public class Chequera : ElementoDeDatos
         {
                 public Bancos.Banco Banco;
@@ -54,21 +59,6 @@ namespace Lbl.Bancos
                 public Chequera(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "chequeras";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_chequera";
-                        }
-                }
 
                 public string Titular
                 {

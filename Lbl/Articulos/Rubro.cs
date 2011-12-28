@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.NombreItem("Rubro")]
+        [Lbl.Atributos.Datos(NombreSingular = "Rubro",
+                Grupo = "Artículos",
+                TablaDatos = "articulos_rubros",
+                CampoId = "id_rubro")]
+        [Lbl.Atributos.Presentacion()]
 	public class Rubro : ElementoDeDatos
 	{
                 public Lbl.Impuestos.Alicuota Alicuota = null;
@@ -48,21 +52,6 @@ namespace Lbl.Articulos
                 public Rubro(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "articulos_rubros";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_rubro";
-			}
-		}
 
                 public override void OnLoad()
                 {

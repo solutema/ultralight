@@ -163,11 +163,12 @@ namespace Lbl
                 /// <summary>
                 /// Devuelve el nombre de la tabla en la base de datos correspondiente a este elemento.
                 /// </summary>
-                public virtual string TablaDatos
+                public string TablaDatos
 		{
 			get
                         {
-                                throw new InvalidOperationException("No se puede instanciar ElementoDeDatos");
+                                Lbl.Atributos.Datos AtrDatos = this.GetType().GetAttribute<Lbl.Atributos.Datos>();
+                                return AtrDatos.TablaDatos;
                         }
 		}
 
@@ -175,33 +176,39 @@ namespace Lbl
                 /// Devuelve el nombre de la tabla en la base de datos correspondiente a las imágenes de este elemento.
                 /// Puede ser la misma que la tabla de datos.
                 /// </summary>
-                public virtual string TablaImagenes
+                public string TablaImagenes
                 {
                         get
                         {
-                                return this.TablaDatos;
+                                Lbl.Atributos.Datos AtrDatos = this.GetType().GetAttribute<Lbl.Atributos.Datos>();
+                                if (AtrDatos.TablaImagenes == null)
+                                        return AtrDatos.TablaDatos;
+                                else
+                                        return AtrDatos.TablaImagenes;
                         }
                 }
 
                 /// <summary>
                 /// Obtiene el nombre del campo que es clave primaria en la tabla de datos.
                 /// </summary>
-                public virtual string CampoId
+                public string CampoId
 		{
                         get
                         {
-                                throw new InvalidOperationException("No se puede instanciar ElementoDeDatos");
+                                Lbl.Atributos.Datos AtrDatos = this.GetType().GetAttribute<Lbl.Atributos.Datos>();
+                                return AtrDatos.CampoId;
                         }
 		}
 
                 /// <summary>
                 /// Obtiene el nombre del campo detalle en la tabla de datos.
                 /// </summary>
-                public virtual string CampoNombre
+                public string CampoNombre
 		{
 			get
 			{
-				return "nombre";
+                                Lbl.Atributos.Datos AtrDatos = this.GetType().GetAttribute<Lbl.Atributos.Datos>();
+                                return AtrDatos.CampoNombre;
 			}
 		}
 

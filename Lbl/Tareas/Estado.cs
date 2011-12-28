@@ -35,6 +35,11 @@ using System.Text;
 
 namespace Lbl.Tareas
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Estado",
+                Grupo = "Tareas",
+                TablaDatos = "tickets_estados",
+                CampoId = "id_ticket_estado")]
+        [Lbl.Atributos.Presentacion()]
         public class Estado : Lbl.ElementoDeDatos
         {
                 public Estado(Lfx.Data.Connection dataBase)
@@ -46,21 +51,6 @@ namespace Lbl.Tareas
                 public Estado(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "tickets_estados";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_ticket_estado";
-                        }
-                }
 
                 public override void Crear()
                 {

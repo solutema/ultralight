@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.NombreItem("Recibo de Cobro")]
+        [Lbl.Atributos.Datos(NombreSingular = "Recibo de Cobro",
+                TablaDatos = "recibos",
+                CampoId = "id_recibo",
+                TablaImagenes = "recibos_imagenes")]
+        [Lbl.Atributos.Presentacion()]
         public class ReciboDeCobro : Recibo
         {
                 //Heredar constructor

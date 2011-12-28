@@ -38,7 +38,10 @@ namespace Lbl.Personas
         /// <summary>
         /// Representa un proveedor.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Proveedor")]
+        [Lbl.Atributos.Datos(NombreSingular = "Proveedor",
+                TablaDatos = "personas",
+                CampoId = "id_persona")]
+        [Lbl.Atributos.Presentacion()]
         public class Proveedor : Persona
         {
                 // Heredar constructores

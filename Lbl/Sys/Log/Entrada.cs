@@ -35,6 +35,10 @@ using System.Text;
 
 namespace Lbl.Sys.Log
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Entrada de Registro de Actividades",
+                       TablaDatos = "sys_log",
+                       CampoId = "id_log")]
+        [Lbl.Atributos.Presentacion()]
         public class Entrada : Lbl.ElementoDeDatos
         {
                 //Heredar constructor
@@ -43,22 +47,6 @@ namespace Lbl.Sys.Log
 
                 public Entrada(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "sys_log";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_log";
-			}
-		}
 
 
                 public string ComandoTexto

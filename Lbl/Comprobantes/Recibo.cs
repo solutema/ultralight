@@ -35,6 +35,12 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Recibo",
+                Grupo = "Comprobantes",
+                TablaDatos = "recibos",
+                CampoId = "id_recibo",
+                TablaImagenes = "recibos_imagenes")]
+        [Lbl.Atributos.Presentacion()]
         public class Recibo : Comprobante
         {
                 //Heredar constructor
@@ -54,29 +60,6 @@ namespace Lbl.Comprobantes
                 public Recibo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "recibos";
-                        }
-                }
-
-                public override string TablaImagenes
-                {
-                        get
-                        {
-                                return "recibos_imagenes";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_recibo";
-                        }
-                }
 
                 public ColeccionComprobanteConArticulos Facturas { get; set; }
                 public Cajas.Concepto Concepto { get; set; }

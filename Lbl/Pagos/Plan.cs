@@ -38,7 +38,11 @@ namespace Lbl.Pagos
         /// <summary>
         /// Representa un plan de una tarjeta de crédito (p. ej.: "Plan 12 cuotas sin interés").
         /// </summary>
-        [Lbl.Atributos.NombreItem("Plan")]
+        [Lbl.Atributos.Datos(NombreSingular = "Plan",
+                Grupo = "Pagos y Cobros",
+                TablaDatos = "tarjetas_planes",
+                CampoId = "id_plan")]
+        [Lbl.Atributos.Presentacion()]
 	public class Plan : ElementoDeDatos
 	{
 		//Heredar constructor
@@ -51,21 +55,6 @@ namespace Lbl.Pagos
                 public Plan(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public override string TablaDatos
-		{
-			get
-			{
-				return "tarjetas_planes";
-			}
-		}
-
-                public override string CampoId
-		{
-			get
-			{
-				return "id_plan";
-			}
-		}
 
                 public decimal Comision
                 {

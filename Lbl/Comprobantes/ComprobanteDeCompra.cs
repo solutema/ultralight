@@ -35,9 +35,10 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.NombreItem("Comprobante de Compra"),
-                Lbl.Atributos.MuestraMensajeAlCrear(false),
-                Lbl.Atributos.MuestraPanelExtendido(true)]
+        [Lbl.Atributos.Datos(NombreSingular = "Comprobante de Compra",
+                TablaDatos = "comprob",
+                CampoId = "id_comprob")]
+        [Lbl.Atributos.Presentacion()]
         public class ComprobanteDeCompra : ComprobanteConArticulos, Lbl.IElementoConImagen
         {
                 //Heredar constructor

@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.NombreItem("Tipo de Comprobante")]
+        [Lbl.Atributos.Datos(NombreSingular = "Tipo de Comprobante",
+                Grupo = "Comprobantes",
+                TablaDatos = "documentos_tipos",
+                CampoId = "id_tipo")]
+        [Lbl.Atributos.Presentacion()]
         public class Tipo : ElementoDeDatos
         {
                 private Articulos.Situacion m_SituacionOrigen, m_SituacionDestino;
@@ -64,22 +68,6 @@ namespace Lbl.Comprobantes
 
                         base.Crear();
                 }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "documentos_tipos";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_tipo";
-			}
-		}
 
 
                 public Lbl.Articulos.Situacion SituacionOrigen

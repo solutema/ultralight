@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.NombreItem("Márgen")]
+        [Lbl.Atributos.Datos(NombreSingular = "Márgen",
+                Grupo = "Artículos",
+                TablaDatos = "margenes",
+                CampoId = "id_margen")]
+        [Lbl.Atributos.Presentacion()]
 	public class Margen : ElementoDeDatos
 	{
 		public Margen(Lfx.Data.Connection dataBase) : base(dataBase) { }
@@ -45,22 +49,6 @@ namespace Lbl.Articulos
 
                 public Margen(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-		public override string TablaDatos
-		{
-			get
-			{
-				return "margenes";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_margen";
-			}
-		}
 
 
                 public decimal Porcentaje

@@ -444,7 +444,7 @@ namespace Lfx.Backups
                                         Progreso.ChangeStatus("Incorporando tablas de datos");
                                         BackupReader Lector = new BackupReader(this.BackupPath + Carpeta + "dbdata.lbd");
 
-                                        Progreso.Max = (int)Lector.Length;
+                                        Progreso.Max = (int)(Lector.Length / 1024);
                                         string TablaActual = null;
                                         string[] ListaCampos = null;
                                         object[] ValoresCampos = null;
@@ -491,7 +491,7 @@ namespace Lfx.Backups
                                                 if (EndTable || Insertador.Count >= 1000) {
                                                         DataBase.ExecuteSql(Insertador.ToString());
                                                         Insertador.Clear();
-                                                        Progreso.Value = (int)Lector.Position;
+                                                        Progreso.Value = (int)(Lector.Position / 1024);
                                                 }
                                         } while (Lector.Position < Lector.Length);
                                         Lector.Close();

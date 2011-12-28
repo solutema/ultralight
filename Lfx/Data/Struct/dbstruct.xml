@@ -1234,7 +1234,7 @@
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="fecha_inicio" datatype="DateTime" nullable="0" />
-    <Column name="fecha_proxima" datatype="DateTime" nullable="0" />
+    <Column name="fecha_proxima" datatype="DateTime" nullable="1" />
     <Column name="fecha_fin" datatype="DateTime" nullable="1" />
     <Column name="frecuencia" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="repetir" inputtype="Bool" nullable="0" default="0" />

@@ -39,7 +39,10 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una Provincia, Departamento o Localidad.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Localidad")]
+        [Lbl.Atributos.Datos(NombreSingular = "Localidad",
+                TablaDatos = "ciudades",
+                CampoId = "id_ciudad")]
+        [Lbl.Atributos.Presentacion()]
 	public class Localidad : ElementoDeDatos
 	{
                 private Localidad m_Parent = null;
@@ -54,21 +57,6 @@ namespace Lbl.Entidades
                 public Localidad(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "ciudades";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_ciudad";
-			}
-		}
 
                 public int Nivel
                 {
@@ -94,6 +82,7 @@ namespace Lbl.Entidades
                         }
                 }
 
+
                 public TiposLocalidad TipoLocalidad
                 {
                         get
@@ -105,6 +94,7 @@ namespace Lbl.Entidades
                                 this.Nivel = (int)value;
                         }
                 }
+
 
                 public Localidad Provincia
                 {
@@ -121,6 +111,7 @@ namespace Lbl.Entidades
                                 this.SetFieldValue("id_provincia", value);
                         }
                 }
+
 
                 public Impuestos.SituacionIva Iva
                 {

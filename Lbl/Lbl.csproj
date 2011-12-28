@@ -86,9 +86,8 @@
     <Compile Include="Articulos\ColeccionDatosSeguimiento.cs" />
     <Compile Include="Articulos\DatosSeguimiento.cs" />
     <Compile Include="Articulos\ItemReceta.cs" />
-    <Compile Include="Atributos\MuestraMensajeAlCrear.cs" />
-    <Compile Include="Atributos\MuestraPanelExtendido.cs" />
-    <Compile Include="Atributos\NombreItem.cs" />
+    <Compile Include="Atributos\Datos.cs" />
+    <Compile Include="Atributos\Presentacion.cs" />
     <Compile Include="Bancos\ChequeEmitido.cs" />
     <Compile Include="Bancos\ChequeRecibido.cs" />
     <Compile Include="Bancos\Claves\Cbu.cs" />

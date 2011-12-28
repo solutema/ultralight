@@ -35,6 +35,10 @@ using System.Text;
 
 namespace Lbl.Bancos
 {
+        [Lbl.Atributos.Datos(NombreSingular = "Cheque",
+                TablaDatos = "bancos_cheques",
+                CampoId = "id_cheque")]
+        [Lbl.Atributos.Presentacion()]
 	public class Cheque : ElementoDeDatos
 	{
                 public Bancos.Banco Banco;
@@ -72,21 +76,6 @@ namespace Lbl.Bancos
                         this.Banco = banco;
 		}
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "bancos_cheques";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_cheque";
-			}
-		}
 
                 public override void OnLoad()
                 {

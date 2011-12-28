@@ -35,7 +35,11 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.NombreItem("Categoría")]
+        [Lbl.Atributos.Datos(NombreSingular = "Categorías",
+                Grupo = "Artículos",
+                TablaDatos = "articulos_categorias",
+                CampoId = "id_categoria")]
+        [Lbl.Atributos.Presentacion()]
         public class Categoria : ElementoDeDatos, IElementoConImagen
 	{
                 protected Rubro m_Rubro = null;
@@ -49,22 +53,7 @@ namespace Lbl.Articulos
                 public Categoria(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "articulos_categorias";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_categoria";
-			}
-		}
-
+		
 		public virtual string NombreSingular
 		{
 			get

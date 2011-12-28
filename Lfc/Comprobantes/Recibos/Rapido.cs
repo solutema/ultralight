@@ -103,7 +103,11 @@ namespace Lfc.Comprobantes.Recibos
 		{
                         if (EntradaCliente.TextInt > 0) {
                                 Lbl.Personas.Persona Pers = EntradaCliente.Elemento as Lbl.Personas.Persona;
-                                EntradaImporte.ValueDecimal = Pers.CuentaCorriente.Saldo(false);
+                                decimal Saldo = Pers.CuentaCorriente.Saldo(false);
+                                if (Saldo > 0)
+                                        EntradaImporte.ValueDecimal = Pers.CuentaCorriente.Saldo(false);
+                                else
+                                        EntradaImporte.ValueDecimal = 0;
                         } else {
                                 EntradaImporte.ValueDecimal = 0;
                         }

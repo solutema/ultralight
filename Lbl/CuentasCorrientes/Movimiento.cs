@@ -34,7 +34,11 @@ using System.Collections.Generic;
 
 namespace Lbl.CuentasCorrientes
 {
-        [Lbl.Atributos.NombreItem("Movimiento de Cuenta Corriente")]
+        [Lbl.Atributos.Datos(NombreSingular = "Movimiento de Cuenta Corriente",
+                TablaDatos = "ctacte",
+                CampoId = "id_movim",
+                CampoNombre = "concepto")]
+        [Lbl.Atributos.Presentacion(PanelExtendido = false)]
         public class Movimiento : ElementoDeDatos
         {
                 //Heredar constructor
@@ -46,31 +50,6 @@ namespace Lbl.CuentasCorrientes
 
                 public Movimiento(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-                public override string TablaDatos
-                {
-                        get
-                        {
-                                return "ctacte";
-                        }
-                }
-
-                public override string CampoId
-                {
-                        get
-                        {
-                                return "id_movim";
-                        }
-                }
-
-
-                public override string CampoNombre
-                {
-                        get
-                        {
-                                return "concepto";
-                        }
-                }
 
 
                 public override Lfx.Types.OperationResult Guardar()

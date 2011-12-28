@@ -38,7 +38,11 @@ namespace Lbl.Impuestos
         /// <summary>
         /// Representa la situación de una persona frente al fisco.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Situación Tributaria")]
+        [Lbl.Atributos.Datos(NombreSingular = "Situación Tributaria",
+                Grupo = "Impuestos",
+                TablaDatos = "situaciones",
+                CampoId = "id_situacion")]
+        [Lbl.Atributos.Presentacion()]
 	public class SituacionTributaria : ElementoDeDatos
 	{
 		public SituacionTributaria(Lfx.Data.Connection dataBase)
@@ -50,21 +54,6 @@ namespace Lbl.Impuestos
 		public SituacionTributaria(Lfx.Data.Connection dataBase, int itemId)
                         : base(dataBase, itemId) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "situaciones";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_situacion";
-			}
-		}
 
                 public string Abreviatura
                 {

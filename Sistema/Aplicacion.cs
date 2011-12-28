@@ -418,7 +418,12 @@ namespace Lazaro.WinMain
                                                                         Aplicacion.FormularioProgreso = new Lui.Forms.ProgressForm();
                                                                         Aplicacion.FormularioProgreso.Show();
                                                                 }
-                                                                Aplicacion.FormularioProgreso.MostrarProgreso(Operaciones, Prog);
+                                                                if (Aplicacion.FormularioProgreso.InvokeRequired) {
+                                                                        MethodInvoker Mi = delegate { Aplicacion.FormularioProgreso.MostrarProgreso(Operaciones, Prog); };
+                                                                        Aplicacion.FormularioProgreso.Invoke(Mi);
+                                                                } else {
+                                                                        Aplicacion.FormularioProgreso.MostrarProgreso(Operaciones, Prog);
+                                                                }
                                                         } else {
                                                                 if (FormularioPrincipal.InvokeRequired) {
                                                                         MethodInvoker Mi = delegate { FormularioPrincipal.ShowProgress(Prog); };

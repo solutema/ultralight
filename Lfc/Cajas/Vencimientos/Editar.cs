@@ -55,7 +55,7 @@ namespace Lfc.Cajas.Vencimientos
                         EntradaConcepto.Elemento = Res.Concepto;
                         EntradaFechaFin.Text = Lfx.Types.Formatting.FormatDate(Res.FechaFin);
                         EntradaFechaInicio.Text = Lfx.Types.Formatting.FormatDate(Res.FechaInicio);
-                        EntradaFrecuencia.TextKey = ((int)(Res.Frecuencia)).ToString();
+                        EntradaFrecuencia.TextKey = Res.Frecuencia.ToString();
                         EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Res.Importe, this.Workspace.CurrentConfig.Moneda.Decimales);
                         EntradaNombre.Text = Res.Nombre;
                         EntradaObs.Text = Res.Obs;
@@ -74,31 +74,31 @@ namespace Lfc.Cajas.Vencimientos
                         Res.FechaFin = Lfx.Types.Parsing.ParseDate(EntradaFechaFin.Text);
                         Res.FechaInicio = Lfx.Types.Parsing.ParseDate(EntradaFechaInicio.Text);
                         switch (EntradaFrecuencia.TextKey) {
-                                case "unica":
+                                case "Unica":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Unica;
                                         break;
-                                case "diaria":
+                                case "Diaria":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Diaria;
                                         break;
-                                case "semanal":
+                                case "Semanal":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Semanal;
                                         break;
-                                case "mensual":
+                                case "Mensual":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Mensual;
                                         break;
-                                case "bimestral":
+                                case "Bimestral":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Bimestral;
                                         break;
-                                case "trimestral":
+                                case "Trimestral":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Trimestral;
                                         break;
-                                case "cuatrimestral":
+                                case "Cuatrimestral":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Cuatrimestral;
                                         break;
-                                case "semestral":
+                                case "Semestral":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Semestral;
                                         break;
-                                case "anual":
+                                case "Anual":
                                         Res.Frecuencia = Lbl.Cajas.Frecuencias.Anual;
                                         break;
                         }

@@ -38,7 +38,11 @@ namespace Lbl.Tareas
         /// <summary>
         /// Representa una tarea.
         /// </summary>
-        [Lbl.Atributos.NombreItem("Tarea"), Lbl.Atributos.MuestraMensajeAlCrear(true)]
+        [Lbl.Atributos.Datos(NombreSingular = "Tarea",
+                Grupo = "Tareas",
+                TablaDatos = "tickets",
+                CampoId = "id_ticket")]
+        [Lbl.Atributos.Presentacion()]
         public class Tarea : ElementoDeDatos
         {
                 private Lbl.ColeccionGenerica<Comprobantes.DetalleArticulo> m_Articulos = null;
@@ -57,21 +61,6 @@ namespace Lbl.Tareas
                 public Tarea(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-		public override string TablaDatos
-		{
-			get
-			{
-				return "tickets";
-			}
-		}
-
-		public override string CampoId
-		{
-			get
-			{
-				return "id_ticket";
-			}
-		}
 
                 public string Descripcion
                 {
