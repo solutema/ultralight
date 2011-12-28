@@ -441,8 +441,13 @@ namespace Lazaro.WinMain
                                                         if (Operaciones.Count == 0) {
                                                                 // Si no quedan más operaciones en progreso, deshecho el formulario
                                                                 if (Aplicacion.FormularioProgreso != null) {
-                                                                        Aplicacion.FormularioProgreso.Dispose();
-                                                                        Aplicacion.FormularioProgreso = null;
+                                                                        try {
+                                                                                Aplicacion.FormularioProgreso.Close();
+                                                                                Aplicacion.FormularioProgreso.Dispose();
+                                                                                Aplicacion.FormularioProgreso = null;
+                                                                        } catch {
+                                                                                //
+                                                                        }
                                                                 }
                                                         }
                                                 }

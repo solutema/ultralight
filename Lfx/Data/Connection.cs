@@ -465,8 +465,13 @@ namespace Lfx.Data
                                         if (CurrentIndex.Primary && CurrentIndex.Name != "PRIMARY")
                                                 CurrentIndex.Name = "PRIMARY";
 
-                                        if (newTableDef.Indexes.ContainsKey(CurrentIndex.Name) == false)
-                                                this.DropIndex(CurrentIndex);
+                                        if (newTableDef.Indexes.ContainsKey(CurrentIndex.Name) == false) {
+                                                try {
+                                                        this.DropIndex(CurrentIndex);
+                                                } catch {
+                                                        // Nada... lo dropeo en la próxima?
+                                                }
+                                        }
                                 }
                         }
                 }
