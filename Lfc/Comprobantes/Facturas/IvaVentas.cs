@@ -58,7 +58,7 @@ namespace Lfc.Comprobantes.Facturas
 			        {
 				        new Lazaro.Pres.Field("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
 				        new Lazaro.Pres.Field("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
-				        new Lazaro.Pres.Field("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 140),
+				        new Lazaro.Pres.Field("comprob.nombre", "Número", Lfx.Data.InputFieldTypes.Text, 140),
 				        new Lazaro.Pres.Field("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 300),
 				        new Lazaro.Pres.Field("personas.cuit", Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre, Lfx.Data.InputFieldTypes.Text, 140),
 				        new Lazaro.Pres.Field("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),

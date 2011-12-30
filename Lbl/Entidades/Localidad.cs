@@ -58,18 +58,6 @@ namespace Lbl.Entidades
                         : base(dataBase, row) { }
 
 
-                public int Nivel
-                {
-                        get
-                        {
-                                return this.GetFieldValue<int>("nivel");
-                        }
-                        set
-                        {
-                                this.Registro["nivel"] = value;
-                        }
-                }
-
                 public string CodigoPostal
                 {
                         get
@@ -79,19 +67,6 @@ namespace Lbl.Entidades
                         set
                         {
                                 this.Registro["cp"] = value;
-                        }
-                }
-
-
-                public TiposLocalidad TipoLocalidad
-                {
-                        get
-                        {
-                                return ((TiposLocalidad)(this.Nivel));
-                        }
-                        set
-                        {
-                                this.Nivel = (int)value;
                         }
                 }
 
@@ -147,10 +122,8 @@ namespace Lbl.Entidades
                         Comando.Fields.AddWithValue("cp", this.CodigoPostal);
                         if (this.Provincia == null) {
                                 Comando.Fields.AddWithValue("id_provincia", null);
-                                Comando.Fields.AddWithValue("nivel", (int)(TiposLocalidad.Provincia));
                         } else {
                                 Comando.Fields.AddWithValue("id_provincia", this.Provincia.Id);
-                                Comando.Fields.AddWithValue("nivel", (int)(TiposLocalidad.Localidad));
                         }
                         Comando.Fields.AddWithValue("iva", (int)this.Iva);
 

@@ -107,14 +107,20 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaFormaPagoPredet = new Lcc.Entrada.CodigoDetalle();
                         this.BotonSiguiente = new Lui.Forms.Button();
                         this.FrmArticulos = new Lui.Forms.Frame();
+                        this.EntradaMonedaDecimalesCosto = new Lui.Forms.ComboBox();
+                        this.label35 = new Lui.Forms.Label();
+                        this.EntradaMonedaDecimalesUnitarios = new Lui.Forms.ComboBox();
+                        this.label34 = new Lui.Forms.Label();
+                        this.EntradaMonedaDecimalesFinal = new Lui.Forms.ComboBox();
+                        this.label18 = new Lui.Forms.Label();
                         this.label26 = new Lui.Forms.Label();
                         this.EntradaStockDepositoPredetSuc = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaMonedaUnidadMonetariaMinima = new Lui.Forms.TextBox();
+                        this.label22 = new Lui.Forms.Label();
                         this.FrmComprobantes = new Lui.Forms.Frame();
                         this.EntradaPVRC = new Lui.Forms.TextBox();
                         this.label3 = new Lui.Forms.Label();
                         this.label11 = new Lui.Forms.Label();
-                        this.EntradaRedondeo = new Lui.Forms.TextBox();
-                        this.label22 = new Lui.Forms.Label();
                         this.EntradaLimiteCredito = new Lui.Forms.TextBox();
                         this.label21 = new Lui.Forms.Label();
                         this.EntradaCambiaPrecioComprob = new Lui.Forms.YesNo();
@@ -801,10 +807,10 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label9
                         // 
-                        this.Label9.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label9.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.Label9.Location = new System.Drawing.Point(308, 184);
                         this.Label9.Name = "Label9";
-                        this.Label9.Size = new System.Drawing.Size(264, 24);
+                        this.Label9.Size = new System.Drawing.Size(284, 24);
                         this.Label9.TabIndex = 14;
                         this.Label9.Text = "(0 para utilizar el mismo que para facturas)";
                         this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -845,20 +851,20 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label8
                         // 
-                        this.Label8.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label8.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.Label8.Location = new System.Drawing.Point(308, 156);
                         this.Label8.Name = "Label8";
-                        this.Label8.Size = new System.Drawing.Size(264, 24);
+                        this.Label8.Size = new System.Drawing.Size(284, 24);
                         this.Label8.TabIndex = 11;
                         this.Label8.Text = "(0 para utilizar el mismo que para facturas)";
                         this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.Label7.Location = new System.Drawing.Point(308, 128);
                         this.Label7.Name = "Label7";
-                        this.Label7.Size = new System.Drawing.Size(264, 24);
+                        this.Label7.Size = new System.Drawing.Size(284, 24);
                         this.Label7.TabIndex = 8;
                         this.Label7.Text = "(0 para utilizar el predeterminado)";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1039,11 +1045,19 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.FrmArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.FrmArticulos.Controls.Add(this.EntradaMonedaDecimalesCosto);
+                        this.FrmArticulos.Controls.Add(this.label35);
+                        this.FrmArticulos.Controls.Add(this.EntradaMonedaDecimalesUnitarios);
+                        this.FrmArticulos.Controls.Add(this.label34);
+                        this.FrmArticulos.Controls.Add(this.EntradaMonedaDecimalesFinal);
+                        this.FrmArticulos.Controls.Add(this.label18);
                         this.FrmArticulos.Controls.Add(this.label26);
                         this.FrmArticulos.Controls.Add(this.EntradaStockDepositoPredetSuc);
                         this.FrmArticulos.Controls.Add(this.EntradaStockDecimales);
                         this.FrmArticulos.Controls.Add(this.Label25);
                         this.FrmArticulos.Controls.Add(this.Label24);
+                        this.FrmArticulos.Controls.Add(this.EntradaMonedaUnidadMonetariaMinima);
+                        this.FrmArticulos.Controls.Add(this.label22);
                         this.FrmArticulos.Controls.Add(this.EntradaStockDepositoPredet);
                         this.FrmArticulos.Controls.Add(this.EntradaStockMultideposito);
                         this.FrmArticulos.Controls.Add(this.Label23);
@@ -1057,8 +1071,107 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmArticulos.Size = new System.Drawing.Size(620, 385);
                         this.FrmArticulos.TabIndex = 0;
                         this.FrmArticulos.TabStop = false;
-                        this.FrmArticulos.Text = "Artículos";
+                        this.FrmArticulos.Text = "Existencias y Precios";
                         this.FrmArticulos.Visible = false;
+                        // 
+                        // EntradaMonedaDecimalesCosto
+                        // 
+                        this.EntradaMonedaDecimalesCosto.AlwaysExpanded = false;
+                        this.EntradaMonedaDecimalesCosto.AutoNav = true;
+                        this.EntradaMonedaDecimalesCosto.AutoTab = true;
+                        this.EntradaMonedaDecimalesCosto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaMonedaDecimalesCosto.FieldName = null;
+                        this.EntradaMonedaDecimalesCosto.Location = new System.Drawing.Point(192, 216);
+                        this.EntradaMonedaDecimalesCosto.MaxLength = 32767;
+                        this.EntradaMonedaDecimalesCosto.Name = "EntradaMonedaDecimalesCosto";
+                        this.EntradaMonedaDecimalesCosto.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaMonedaDecimalesCosto.PlaceholderText = null;
+                        this.EntradaMonedaDecimalesCosto.ReadOnly = false;
+                        this.EntradaMonedaDecimalesCosto.SetData = new string[] {
+        "Sin decimales|0",
+        "Un decimal|1",
+        "Dos decimales|2",
+        "Tres decimales|3",
+        "Cuatro decimales|4"};
+                        this.EntradaMonedaDecimalesCosto.Size = new System.Drawing.Size(160, 24);
+                        this.EntradaMonedaDecimalesCosto.TabIndex = 11;
+                        this.EntradaMonedaDecimalesCosto.TextKey = "0";
+                        // 
+                        // label35
+                        // 
+                        this.label35.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label35.Location = new System.Drawing.Point(16, 216);
+                        this.label35.Name = "label35";
+                        this.label35.Size = new System.Drawing.Size(176, 24);
+                        this.label35.TabIndex = 10;
+                        this.label35.Text = "Precios de Costo";
+                        this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaMonedaDecimalesUnitarios
+                        // 
+                        this.EntradaMonedaDecimalesUnitarios.AlwaysExpanded = false;
+                        this.EntradaMonedaDecimalesUnitarios.AutoNav = true;
+                        this.EntradaMonedaDecimalesUnitarios.AutoTab = true;
+                        this.EntradaMonedaDecimalesUnitarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaMonedaDecimalesUnitarios.FieldName = null;
+                        this.EntradaMonedaDecimalesUnitarios.Location = new System.Drawing.Point(192, 244);
+                        this.EntradaMonedaDecimalesUnitarios.MaxLength = 32767;
+                        this.EntradaMonedaDecimalesUnitarios.Name = "EntradaMonedaDecimalesUnitarios";
+                        this.EntradaMonedaDecimalesUnitarios.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaMonedaDecimalesUnitarios.PlaceholderText = null;
+                        this.EntradaMonedaDecimalesUnitarios.ReadOnly = false;
+                        this.EntradaMonedaDecimalesUnitarios.SetData = new string[] {
+        "Sin decimales|0",
+        "Un decimal|1",
+        "Dos decimales|2",
+        "Tres decimales|3",
+        "Cuatro decimales|4"};
+                        this.EntradaMonedaDecimalesUnitarios.Size = new System.Drawing.Size(160, 24);
+                        this.EntradaMonedaDecimalesUnitarios.TabIndex = 13;
+                        this.EntradaMonedaDecimalesUnitarios.TextKey = "0";
+                        // 
+                        // label34
+                        // 
+                        this.label34.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label34.Location = new System.Drawing.Point(16, 244);
+                        this.label34.Name = "label34";
+                        this.label34.Size = new System.Drawing.Size(176, 24);
+                        this.label34.TabIndex = 12;
+                        this.label34.Text = "Precios Unitarios";
+                        this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaMonedaDecimalesFinal
+                        // 
+                        this.EntradaMonedaDecimalesFinal.AlwaysExpanded = false;
+                        this.EntradaMonedaDecimalesFinal.AutoNav = true;
+                        this.EntradaMonedaDecimalesFinal.AutoTab = true;
+                        this.EntradaMonedaDecimalesFinal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaMonedaDecimalesFinal.FieldName = null;
+                        this.EntradaMonedaDecimalesFinal.Location = new System.Drawing.Point(192, 272);
+                        this.EntradaMonedaDecimalesFinal.MaxLength = 32767;
+                        this.EntradaMonedaDecimalesFinal.Name = "EntradaMonedaDecimalesFinal";
+                        this.EntradaMonedaDecimalesFinal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaMonedaDecimalesFinal.PlaceholderText = null;
+                        this.EntradaMonedaDecimalesFinal.ReadOnly = false;
+                        this.EntradaMonedaDecimalesFinal.SetData = new string[] {
+        "Sin decimales|0",
+        "Un decimal|1",
+        "Dos decimales|2",
+        "Tres decimales|3",
+        "Cuatro decimales|4"};
+                        this.EntradaMonedaDecimalesFinal.Size = new System.Drawing.Size(160, 24);
+                        this.EntradaMonedaDecimalesFinal.TabIndex = 15;
+                        this.EntradaMonedaDecimalesFinal.TextKey = "0";
+                        // 
+                        // label18
+                        // 
+                        this.label18.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label18.Location = new System.Drawing.Point(16, 272);
+                        this.label18.Name = "label18";
+                        this.label18.Size = new System.Drawing.Size(176, 24);
+                        this.label18.TabIndex = 14;
+                        this.label18.Text = "Total del Comprobante";
+                        this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label26
                         // 
@@ -1097,6 +1210,40 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaStockDepositoPredetSuc.Text = "0";
                         this.EntradaStockDepositoPredetSuc.TextDetail = "";
                         // 
+                        // EntradaMonedaUnidadMonetariaMinima
+                        // 
+                        this.EntradaMonedaUnidadMonetariaMinima.AutoNav = true;
+                        this.EntradaMonedaUnidadMonetariaMinima.AutoTab = true;
+                        this.EntradaMonedaUnidadMonetariaMinima.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaMonedaUnidadMonetariaMinima.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaMonedaUnidadMonetariaMinima.DecimalPlaces = -1;
+                        this.EntradaMonedaUnidadMonetariaMinima.FieldName = null;
+                        this.EntradaMonedaUnidadMonetariaMinima.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaMonedaUnidadMonetariaMinima.Location = new System.Drawing.Point(252, 304);
+                        this.EntradaMonedaUnidadMonetariaMinima.MaxLength = 32767;
+                        this.EntradaMonedaUnidadMonetariaMinima.MultiLine = false;
+                        this.EntradaMonedaUnidadMonetariaMinima.Name = "EntradaMonedaUnidadMonetariaMinima";
+                        this.EntradaMonedaUnidadMonetariaMinima.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaMonedaUnidadMonetariaMinima.PasswordChar = '\0';
+                        this.EntradaMonedaUnidadMonetariaMinima.PlaceholderText = null;
+                        this.EntradaMonedaUnidadMonetariaMinima.Prefijo = "$";
+                        this.EntradaMonedaUnidadMonetariaMinima.ReadOnly = false;
+                        this.EntradaMonedaUnidadMonetariaMinima.SelectOnFocus = true;
+                        this.EntradaMonedaUnidadMonetariaMinima.Size = new System.Drawing.Size(92, 24);
+                        this.EntradaMonedaUnidadMonetariaMinima.Sufijo = "";
+                        this.EntradaMonedaUnidadMonetariaMinima.TabIndex = 17;
+                        this.EntradaMonedaUnidadMonetariaMinima.Text = "0.00";
+                        // 
+                        // label22
+                        // 
+                        this.label22.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label22.Location = new System.Drawing.Point(16, 304);
+                        this.label22.Name = "label22";
+                        this.label22.Size = new System.Drawing.Size(236, 24);
+                        this.label22.TabIndex = 16;
+                        this.label22.Text = "Denominación Monetaria Mínima";
+                        this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // FrmComprobantes
                         // 
                         this.FrmComprobantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1106,8 +1253,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmComprobantes.Controls.Add(this.EntradaPVRC);
                         this.FrmComprobantes.Controls.Add(this.label3);
                         this.FrmComprobantes.Controls.Add(this.label11);
-                        this.FrmComprobantes.Controls.Add(this.EntradaRedondeo);
-                        this.FrmComprobantes.Controls.Add(this.label22);
                         this.FrmComprobantes.Controls.Add(this.EntradaLimiteCredito);
                         this.FrmComprobantes.Controls.Add(this.label21);
                         this.FrmComprobantes.Controls.Add(this.EntradaCambiaPrecioComprob);
@@ -1176,47 +1321,13 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label11
                         // 
-                        this.label11.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label11.LabelStyle = Lui.Forms.LabelStyles.Small;
                         this.label11.Location = new System.Drawing.Point(308, 212);
                         this.label11.Name = "label11";
-                        this.label11.Size = new System.Drawing.Size(264, 24);
+                        this.label11.Size = new System.Drawing.Size(284, 24);
                         this.label11.TabIndex = 17;
                         this.label11.Text = "(0 para utilizar el mismo que para facturas)";
                         this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // EntradaRedondeo
-                        // 
-                        this.EntradaRedondeo.AutoNav = true;
-                        this.EntradaRedondeo.AutoTab = true;
-                        this.EntradaRedondeo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
-                        this.EntradaRedondeo.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaRedondeo.DecimalPlaces = -1;
-                        this.EntradaRedondeo.FieldName = null;
-                        this.EntradaRedondeo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaRedondeo.Location = new System.Drawing.Point(248, 348);
-                        this.EntradaRedondeo.MaxLength = 32767;
-                        this.EntradaRedondeo.MultiLine = false;
-                        this.EntradaRedondeo.Name = "EntradaRedondeo";
-                        this.EntradaRedondeo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaRedondeo.PasswordChar = '\0';
-                        this.EntradaRedondeo.PlaceholderText = null;
-                        this.EntradaRedondeo.Prefijo = "$";
-                        this.EntradaRedondeo.ReadOnly = false;
-                        this.EntradaRedondeo.SelectOnFocus = true;
-                        this.EntradaRedondeo.Size = new System.Drawing.Size(92, 24);
-                        this.EntradaRedondeo.Sufijo = "";
-                        this.EntradaRedondeo.TabIndex = 25;
-                        this.EntradaRedondeo.Text = "0.00";
-                        // 
-                        // label22
-                        // 
-                        this.label22.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label22.Location = new System.Drawing.Point(12, 348);
-                        this.label22.Name = "label22";
-                        this.label22.Size = new System.Drawing.Size(236, 24);
-                        this.label22.TabIndex = 24;
-                        this.label22.Text = "Redondeo en comprobantes";
-                        this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaLimiteCredito
                         // 
@@ -1337,10 +1448,10 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Controls.Add(this.BotonSiguiente);
                         this.Controls.Add(this.CancelCommandButton);
                         this.Controls.Add(this.BotonAceptar);
-                        this.Controls.Add(this.FrmGeneral);
-                        this.Controls.Add(this.FrmComprobantes);
                         this.Controls.Add(this.FrmArticulos);
                         this.Controls.Add(this.FrmAvanzado);
+                        this.Controls.Add(this.FrmGeneral);
+                        this.Controls.Add(this.FrmComprobantes);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "Preferencias";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1396,7 +1507,7 @@ namespace Lazaro.WinMain.Misc.Config
                 private Lui.Forms.Label label14;
                 private Lui.Forms.TextBox EntradaLimiteCredito;
                 private Lui.Forms.Label label21;
-                private Lui.Forms.TextBox EntradaRedondeo;
+                private Lui.Forms.TextBox EntradaMonedaUnidadMonetariaMinima;
                 private Lui.Forms.Label label22;
                 private Lui.Forms.ComboBox EntradaModoPantalla;
                 private Lui.Forms.Label label27;
@@ -1427,5 +1538,11 @@ namespace Lazaro.WinMain.Misc.Config
                 private Lui.Forms.Label label32;
                 private Lcc.Entrada.CodigoDetalle EntradaPais;
                 private Lui.Forms.Label label33;
+                private Lui.Forms.ComboBox EntradaMonedaDecimalesFinal;
+                private Lui.Forms.Label label18;
+                private Lui.Forms.ComboBox EntradaMonedaDecimalesUnitarios;
+                private Lui.Forms.Label label34;
+                private Lui.Forms.ComboBox EntradaMonedaDecimalesCosto;
+                private Lui.Forms.Label label35;
 	}
 }

@@ -376,7 +376,7 @@ namespace Lbl.Comprobantes
                 /// <returns>El importe redondeado y truncado.</returns>
                 public decimal RedondearImporte(decimal importe)
                 {
-                        decimal Redondeo = this.Workspace.CurrentConfig.Moneda.Redondeo;
+                        decimal Redondeo = Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
                         if (this.Compra || Redondeo == 0)
                                 return Lfx.Types.Currency.Truncate(importe, this.Workspace.CurrentConfig.Moneda.Decimales);
                         else
@@ -553,6 +553,7 @@ namespace Lbl.Comprobantes
 
                         Comando.Fields.AddWithValue("pv", this.PV);
                         Comando.Fields.AddWithValue("numero", this.Numero);
+                        Comando.Fields.AddWithValue("nombre", this.PV.ToString("0000") + "-" + this.Numero.ToString("00000000"));
                         Comando.Fields.AddWithValue("id_cliente", Lfx.Data.Connection.ConvertZeroToDBNull(this.Cliente.Id));
                         if (this.SituacionOrigen == null)
                                 Comando.Fields.AddWithValue("situacionorigen", null);

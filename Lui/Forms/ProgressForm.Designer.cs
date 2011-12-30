@@ -57,6 +57,7 @@ namespace Lui.Forms
 
 		private void InitializeComponent()
 		{
+                        this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressForm));
                         this.EtiquetaNombreOperacion = new Lui.Forms.Label();
                         this.EtiquetaDescripcion = new Lui.Forms.Label();
@@ -163,7 +164,6 @@ namespace Lui.Forms
                         this.Name = "ProgressForm";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Progreso";
-                        this.TopMost = true;
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
                         this.ResumeLayout(false);
 

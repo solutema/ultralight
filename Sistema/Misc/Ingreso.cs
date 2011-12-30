@@ -50,7 +50,7 @@ namespace Lazaro.WinMain.Misc
 
 		private void FormIngreso_Load(object sender, System.EventArgs e)
 		{
-                        int UltimoUsuario = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>(null, "Sistema.Ingreso.UltimoUsuario", 0);
+                        int UltimoUsuario = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Ingreso.UltimoUsuario", 0);
                         if (UltimoUsuario == 0 && Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToUpperInvariant() == "LOCALHOST")
                                 // Si estoy en localhost, el usuario predeterminado es Administrador
                                 UltimoUsuario = 1;
@@ -67,7 +67,7 @@ namespace Lazaro.WinMain.Misc
                         }
 
                         if (EntradaUsuario.TextInt == 1 && Lfx.Workspace.Master.DebugMode == false) {
-                                string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 bool Puede = false;
                                 if (EstacionesAdministrador.Length == 0) {
                                         Puede = true;
@@ -99,8 +99,8 @@ namespace Lazaro.WinMain.Misc
 				OkButton.Refresh();
                                 Lbl.Personas.Persona Usuario = new Lbl.Personas.Persona(Lfx.Workspace.Master.MasterConnection, Usu.Id);
                                 Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Lfx.Workspace.Master, Usu);
-                                this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), System.Environment.MachineName.ToUpperInvariant());
-				this.Workspace.CurrentConfig.WriteGlobalSetting(null, "Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), System.Environment.MachineName.ToUpperInvariant());
+				this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
                                 Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOn, Usuario, null);
 				this.Close();
 			}

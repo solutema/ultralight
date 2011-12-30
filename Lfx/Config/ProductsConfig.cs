@@ -49,7 +49,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSetting<int>("Sistema", "Stock.Decimales", 0);
+                                return ConfigManager.ReadGlobalSetting<int>("Sistema.Stock.Decimales", 0);
                         }
                 }
 
@@ -57,7 +57,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSetting<int>(null, "Sistema.Stock.DepositoPredet", 1);
+                                return ConfigManager.ReadGlobalSetting<int>("Sistema.Stock.DepositoPredet", 1);
                         }
                 }
 
@@ -66,7 +66,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.ReadGlobalSetting<int>(null, "Sistema.Stock.Multideposito", 0) != 0;
+                                return ConfigManager.ReadGlobalSetting<int>("Sistema.Stock.Multideposito", 0) != 0;
                         }
                 }
 
@@ -77,7 +77,7 @@ namespace Lfx.Config
                                 return ps_DefaultCode;
 
                         // Devuelve el código predeterminado de un artículo
-                        int CodPredet = ConfigManager.ReadGlobalSetting<int>(null, "Sistema.Stock.CodigoPredet", 0);
+                        int CodPredet = ConfigManager.ReadGlobalSetting<int>("Sistema.Stock.CodigoPredet", 0);
 
                         switch (CodPredet) {
                                 case 0:

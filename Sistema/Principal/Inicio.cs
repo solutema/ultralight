@@ -71,7 +71,7 @@ namespace Lazaro.WinMain.Principal
                         }
 
                         BarraInferior.Visible = this.Workspace.CurrentConfig.ReadLocalSettingInt("Sistema", "Apariencia.BarraInformacion", 1) != 0;
-                        switch (this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Apariencia.ModoPantalla", ModoPredeterminado)) {
+                        switch (this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Apariencia.ModoPantalla", ModoPredeterminado)) {
                                 case "normal":
                                         this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombres + " en " + Lfx.Workspace.Master.ToString();
                                         break;
@@ -197,7 +197,7 @@ namespace Lazaro.WinMain.Principal
                                         if (e.Control && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
                                                 BarraInferior.Visible = !BarraInferior.Visible;
-                                                this.Workspace.CurrentConfig.WriteLocalSetting("Sistema", "Apariencia.BarraInformacion", BarraInferior.Visible ? "1" : "0");
+                                                this.Workspace.CurrentConfig.WriteLocalSetting("Sistema", "Apariencia.BarraInformacion", BarraInferior.Visible ? 1 : 0);
                                         }
                                         break;
                                 case Keys.R:
@@ -239,7 +239,7 @@ namespace Lazaro.WinMain.Principal
                 private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
                 {
                         if (Lfx.Workspace.Master != null)
-                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("", "Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
                         System.IO.StreamWriter StdOut = new System.IO.StreamWriter(Console.OpenStandardOutput());
                         StdOut.AutoFlush = true;
                         Console.SetOut(StdOut);

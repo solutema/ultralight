@@ -51,6 +51,11 @@ namespace Lfc.Personas
 
                 public Inicio()
                 {
+                        Lbl.ColeccionCodigoDetalle SetEstados = new Lbl.ColeccionCodigoDetalle() {
+                                { 0, "Inactivo" },
+                                { 1, "Normal" }
+                        };
+
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Personas.Persona),
@@ -68,9 +73,9 @@ namespace Lfc.Personas
 				        new Lazaro.Pres.Field("personas.num_doc", "Núm. Doc.", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lazaro.Pres.Field("personas.cuit", Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre, Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("personas_grupos.nombre", "Grupo", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lazaro.Pres.Field("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Text, 120),
+                                        new Lazaro.Pres.Field("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Relation, 120),
                                         new Lazaro.Pres.Field("ciudades.nombre AS ciudad", "Localidad", Lfx.Data.InputFieldTypes.Text, 120),
-                                        new Lazaro.Pres.Field("personas.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 0),
+                                        new Lazaro.Pres.Field("personas.estado", "Estado", 0, SetEstados),
                                         new Lazaro.Pres.Field("personas.fechaalta", "Alta", Lfx.Data.InputFieldTypes.Date, 120),
                                         new Lazaro.Pres.Field("personas.fechabaja", "Baja", Lfx.Data.InputFieldTypes.Date, 120),
                                         new Lazaro.Pres.Field("personas.numerocuenta", "Cuenta", Lfx.Data.InputFieldTypes.Text, 120)
@@ -88,7 +93,7 @@ namespace Lfc.Personas
                                         new Lazaro.Pres.Filters.RelationFilter("Grupo", new Lfx.Data.Relation("personas.id_grupo", "personas_grupos", "id_grupo")),
                                         new Lazaro.Pres.Filters.RelationFilter("Sub-grupo", new Lfx.Data.Relation("personas.id_subgrupo", "personas_grupos", "id_grupo")),
                                         new Lazaro.Pres.Filters.RelationFilter("Situación", new Lfx.Data.Relation("personas.id_situacion", "situaciones", "id_situacion")),
-                                        new Lazaro.Pres.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("nivel", 2)),
+                                        new Lazaro.Pres.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("id_provincia", qGen.ComparisonOperators.NotEquals, null)),
                                         new Lazaro.Pres.Filters.SetFilter("Estado", "personas.estado", new string[] {"Todos|-1", "Activos|1", "Inactivos|0"}, "1"),
                                         new Lazaro.Pres.Filters.SetFilter("Estado de Crédito", "personas.estadocredito", new string[] { "Cualquiera|-1", "Normal|0", "En plan de pagos|5", "Suspendido|10" }, "-1"),
                                         new Lazaro.Pres.Filters.DateRangeFilter("Fecha de Alta", "personas.fechaalta", new Lfx.Types.DateRange("*")),

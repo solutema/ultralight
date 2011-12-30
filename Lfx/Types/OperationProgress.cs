@@ -109,7 +109,7 @@ namespace Lfx.Types
                         this.IsDone = false;
                         this.IsRunning = true;
                         this.Value = 0;
-                        this.Status = "Iniciando...";
+                        this.Status = "Procesando...";
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                         Console.WriteLine("Inicio: " + this.Name);
@@ -142,9 +142,9 @@ namespace Lfx.Types
                                 Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }
 
-                public void Advance(int newValue)
+                public void Advance(int advanceAmount)
                 {
-                        this.Value += newValue;
+                        this.Value += advanceAmount;
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.RunTime.NotifyProgress(this);
                 }

@@ -144,7 +144,7 @@ namespace Lfx
                 public void InitUpdater()
                 {
                         if (Lfx.Updates.Updater.Master == null && this.WebAppMode == false && this.DebugMode == false) {
-                                string Nivel = this.CurrentConfig.ReadGlobalSetting<string>(null, "Sistema.Actualizaciones.Nivel", "stable");
+                                string Nivel = this.CurrentConfig.ReadGlobalSetting<string>("Sistema.Actualizaciones.Nivel", "stable");
                                 Lfx.Updates.Updater.Master = new Updates.Updater(Nivel);
                                 Lfx.Updates.Updater.Master.Path = Lfx.Environment.Folders.ApplicationFolder;
                                 Lfx.Updates.Updater.Master.TempPath = Lfx.Environment.Folders.UpdatesFolder;
@@ -246,7 +246,7 @@ namespace Lfx
                 {
                         using (Lfx.Data.Connection Conn = Lfx.Workspace.Master.GetNewConnection("Verificar estructura de la base de datos")) {
                                 Conn.RequiresTransaction = false;
-                                int VersionActual = this.CurrentConfig.ReadGlobalSetting<int>("Sistema", "DB.Version", 0);
+                                int VersionActual = this.CurrentConfig.ReadGlobalSetting<int>("Sistema.DB.Version", 0);
 
                                 if (VersionUltima < VersionActual) {
                                         this.RunTime.Toast("Es necesario actualizar Lázaro en esta estación de trabajo. Se esperaba la versión " + VersionUltima.ToString() + " de la base de datos, pero se encontró la versión " + VersionActual.ToString() + " que es demasiado nueva.", "Aviso");
@@ -254,14 +254,14 @@ namespace Lfx
                                 }
 
                                 // Me fijo si ya hay alguien verificando la estructura
-                                string FechaInicioVerif = Conn.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "VerificarVersionBd.Inicio", string.Empty);
+                                string FechaInicioVerif = Conn.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.VerificarVersionBd.Inicio", string.Empty);
                                 string FechaInicioVerifMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddMinutes(10).ToUniversalTime());
 
                                 if (string.Compare(FechaInicioVerif, FechaInicioVerifMax) > 0)
                                         // Ya hay alguien verificando
                                         return;
 
-                                DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"));
+                                DateTime VersionEstructura = Lfx.Types.Parsing.ParseSqlDateTime(this.CurrentConfig.ReadGlobalSetting<string>("Sistema.DB.VersionEstructura", "2000-01-01 00:00:00"));
                                 DateTime FechaLazaroExe = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).LastWriteTime;
                                 TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
                                 System.Console.WriteLine("Versión estructura: " + VersionEstructura.ToString());
@@ -276,8 +276,8 @@ namespace Lfx
                                 Progreso.Modal = true;
                                 Progreso.Begin();
 
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()), "*");
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant(), "*");
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()));
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant());
 
                                 try {
                                         Conn.ExecuteSql("FLUSH TABLES");
@@ -298,18 +298,18 @@ namespace Lfx
                                         Progreso.ChangeStatus("Verificando estructuras");
                                         this.CheckAndUpdateDataBaseStructure(Conn, false);
                                         if (noTocarDatos == false)
-                                                this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe.ToUniversalTime()));
+                                                this.CurrentConfig.WriteGlobalSetting("Sistema.DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe.ToUniversalTime()));
                                 }
 
                                 if (noTocarDatos == false && VersionActual < VersionUltima && VersionActual > 0) {
                                         for (int i = VersionActual + 1; i <= VersionUltima; i++) {
                                                 Progreso.ChangeStatus("Post-actualización " + i.ToString());
                                                 InyectarSqlDesdeRecurso(Conn, @"Data.Struct.db_upd" + i.ToString() + "_post.sql");
-                                                this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", i.ToString(), "*");
+                                                this.CurrentConfig.WriteGlobalSetting("Sistema.DB.Version", i);
                                         }
                                 }
 
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "VerificarVersionBd.Inicio", "0", "*");
+                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", "0");
                                 Progreso.End();
                         }
                 }
@@ -383,7 +383,7 @@ namespace Lfx
                         this.CheckAndUpdateDataBaseStructure(this.MasterConnection, false);
 
                         this.MasterConnection.EnableConstraints(true);
-                        this.CurrentConfig.WriteGlobalSetting("Sistema", "DB.Version", Lfx.Workspace.VersionUltima.ToString(), "*");
+                        this.CurrentConfig.WriteGlobalSetting("Sistema.DB.Version", Lfx.Workspace.VersionUltima);
                         
                         Progreso.End();
                         return new Lfx.Types.SuccessOperationResult();

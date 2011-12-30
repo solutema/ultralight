@@ -109,7 +109,7 @@ namespace Lbl.Servicios.Importar
                         ReadTable.Load(TableCommand.ExecuteReader());
 
                         if (mapa.AutoSaltear) {
-                                mapa.Saltear = this.Connection.Workspace.CurrentConfig.ReadGlobalSetting<int>("Importar.RegistrosImportados", this.Nombre + "." + mapa.Nombre, 0);
+                                mapa.Saltear = this.Connection.Workspace.CurrentConfig.ReadGlobalSetting<int>("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, 0);
                                 if (mapa.Saltear > 1)
                                         mapa.Saltear--;
                         }
@@ -129,7 +129,7 @@ namespace Lbl.Servicios.Importar
 
                                 if ((RowNumber % 200) == 0) {
                                         Progreso.Advance(200);
-                                        this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados", this.Nombre + "." + mapa.Nombre, RowNumber.ToString(), 0);
+                                        this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, RowNumber);
                                         Trans.Commit();
                                         Trans.Dispose();
                                         Trans = this.Connection.BeginTransaction();
@@ -139,7 +139,7 @@ namespace Lbl.Servicios.Importar
                                         break;
                         }
                         Trans.Commit();
-                        this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados", this.Nombre + "." + mapa.Nombre, RowNumber.ToString(), 0);
+                        this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, RowNumber);
                 }
                 
 

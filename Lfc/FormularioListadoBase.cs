@@ -638,7 +638,19 @@ namespace Lfc
                                                                 switch(CurField.DataType) {
                                                                         case Lfx.Data.InputFieldTypes.Binary:
                                                                         case Lfx.Data.InputFieldTypes.Image:
+                                                                        case Lfx.Data.InputFieldTypes.Bool:
+                                                                        case Lfx.Data.InputFieldTypes.Set:
                                                                                 // En estos tipos de campos no se busca
+                                                                                break;
+                                                                        case Lfx.Data.InputFieldTypes.Date:
+                                                                        case Lfx.Data.InputFieldTypes.DateTime:
+                                                                                // En estos campos, busco atento a que se trata de una fecha
+                                                                                if (SearchText.IsDate()) {
+                                                                                        DateTime SearchDate = SearchText.ParseDateTime();
+                                                                                        DateTime FromDate = new DateTime(SearchDate.Year, SearchDate.Month, SearchDate.Day, 0, 0, 0);
+                                                                                        DateTime ToDate = new DateTime(SearchDate.Year, SearchDate.Month, SearchDate.Day, 23, 59, 59);
+                                                                                        WhereBuscarTexto.AddWithValue(CurField.MemberName, FromDate, ToDate);
+                                                                                }
                                                                                 break;
                                                                         case Lfx.Data.InputFieldTypes.Currency:
                                                                         case Lfx.Data.InputFieldTypes.Integer:

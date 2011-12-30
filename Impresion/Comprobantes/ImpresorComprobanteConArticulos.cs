@@ -66,7 +66,7 @@ namespace Lazaro.Impresion.Comprobantes
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
 
-                        if (this.Reimpresion == false && this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.ActualizaCostoAlFacturar", 1) != 0) {
+                        if (this.Reimpresion == false && this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.ActualizaCostoAlFacturar", 1) != 0) {
                                 // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)
                                 foreach (Lbl.Comprobantes.DetalleArticulo Det in this.Comprobante.Articulos) {
                                         if (Det.Articulo != null) {

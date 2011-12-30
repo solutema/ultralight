@@ -61,7 +61,7 @@ namespace Lfc.Comprobantes
                 {
                         if (this.HasWorkspace) {
                                 EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesFinal;
-                                EntradaProductos.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos.CambiaPrecioItemFactura", 0) == 0;
+                                EntradaProductos.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.CambiaPrecioItemFactura", 0) == 0;
                         }
                         base.OnWorkspaceChanged();
                 }
@@ -384,8 +384,8 @@ namespace Lfc.Comprobantes
 
                         decimal SubTotal = EntradaSubTotal.ValueDecimal;
                         decimal Total;
-                        if (this.Workspace.CurrentConfig.Moneda.Redondeo > 0)
-                                Total = Math.Floor((SubTotal * (1 + Recargo - Descuento)) / this.Workspace.CurrentConfig.Moneda.Redondeo) * this.Workspace.CurrentConfig.Moneda.Redondeo;
+                        if (Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima > 0)
+                                Total = Math.Floor((SubTotal * (1 + Recargo - Descuento)) / Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima) * Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
                         else
                                 Total = SubTotal * (1 + Recargo - Descuento);
 

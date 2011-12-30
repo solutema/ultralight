@@ -258,6 +258,7 @@ namespace Lfx.Data
                         }
                 }
 
+
                 public DateTime ServerDateTime
                 {
                         get
@@ -265,6 +266,20 @@ namespace Lfx.Data
                                 return this.FieldDateTime("SELECT NOW()", DateTime.Now);
                         }
                 }
+
+
+                public string ServerVersion
+                {
+                        get
+                        {
+                                try {
+                                        return this.FieldString("SELECT VERSION()");
+                                } catch {
+                                        return "unknown";
+                                }
+                        }
+                }
+
 
                 private void SetTransactionIsolationLevel(System.Data.IsolationLevel level)
                 {
@@ -372,7 +387,14 @@ namespace Lfx.Data
                                 foreach (Data.ColumnDefinition NewFieldDef in newTableDef.Columns.Values) {
                                         if (CurrentTableDef.Columns.ContainsKey(NewFieldDef.Name) == false) {
                                                 //Agregar campo a una tabla existente
-                                                Alterations.Add("ADD COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition());
+                                                string Sql = "ADD COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition();
+                                                if (this.SqlMode == qGen.SqlModes.MySql) {
+                                                        if (LastColName == null)
+                                                                Sql += " FIRST";
+                                                        else
+                                                                Sql += " AFTER \"" + LastColName + "\"";
+                                                }
+                                                Alterations.Add(Sql);
                                         } else {
                                                 Data.ColumnDefinition CurrentFieldDef = CurrentTableDef.Columns[NewFieldDef.Name];
                                                 if (CurrentFieldDef != NewFieldDef) {
@@ -382,9 +404,9 @@ namespace Lfx.Data
                                                                         Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" TYPE " + NewFieldDef.SqlType());
                                                                 if (CurrentFieldDef.Nullable != NewFieldDef.Nullable) {
                                                                         if (NewFieldDef.Nullable)
-                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" SET NOT NULL");
-                                                                        else
                                                                                 Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" DROP NOT NULL");
+                                                                        else
+                                                                                Alterations.Add("ALTER COLUMN \"" + NewFieldDef.Name + "\" SET NOT NULL");
                                                                 }
                                                                 if (CurrentFieldDef.DefaultValue != NewFieldDef.DefaultValue && NewFieldDef.FieldType != DbTypes.Serial) {
                                                                         //Cambio de default value (salvo en Serial, que en PostgreSQL es siempre 0)
@@ -408,10 +430,12 @@ namespace Lfx.Data
                                                                 }
                                                         } else {
                                                                 string Alter = "MODIFY COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition();
-                                                                if (LastColName == null)
-                                                                        Alter += " FIRST";
-                                                                else
-                                                                        Alter += " AFTER \"" + LastColName + "\"";
+                                                                if (this.SqlMode == qGen.SqlModes.MySql) {
+                                                                        if (LastColName == null)
+                                                                                Alter += " FIRST";
+                                                                        else
+                                                                                Alter += " AFTER \"" + LastColName + "\"";
+                                                                }
                                                                 Alterations.Add(Alter);
                                                         }
                                                 }
@@ -474,24 +498,6 @@ namespace Lfx.Data
                                         }
                                 }
                         }
-                }
-
-
-                protected void AddColumn(string tableName, Data.ColumnDefinition newColumn, string afterColumn)
-                {
-                        string Sql = "ALTER TABLE \"" + tableName + "\" ADD \"" + newColumn.Name + "\" " + newColumn.SqlDefinition();
-                        if (afterColumn == null)
-                                Sql += " FIRST";
-                        else
-                                Sql += " AFTER \"" + afterColumn + "\"";
-                        this.ExecuteSql(this.CustomizeSql(Sql));
-                }
-
-
-                protected void DropColumn(string table, string column)
-                {
-                        string Sql = "ALTER TABLE \"" + table + "\" DROP \"" + column + "\"";
-                        this.ExecuteSql(this.CustomizeSql(Sql));
                 }
 
 
@@ -1020,8 +1026,10 @@ LEFT JOIN pg_attribute
                                         TempCommand.Dispose();
                                         return Res;
                                 } catch (Exception ex) {
-                                        if (this.TryToRecover(ex))
-                                                throw;
+                                        if (this.TryToRecover(ex)) {
+                                                ex.Data.Add("Command", updateCommand.ToString());
+                                                throw ex;
+                                        }
                                 }
                         }
                 }
@@ -1123,7 +1131,8 @@ LEFT JOIN pg_attribute
                                                 LogError("----------------------------------------------------------------------------");
                                                 LogError(ex.Message);
                                                 LogError(command.CommandText);
-                                                throw;
+                                                ex.Data.Add("Command", command.CommandText);
+                                                throw ex;
                                         }
                                 }
                         }
@@ -1190,7 +1199,8 @@ LEFT JOIN pg_attribute
                                                 LogError("----------------------------------------------------------------------------");
                                                 LogError(ex.Message);
                                                 LogError(selectCommand);
-                                                throw;
+                                                ex.Data.Add("Command", selectCommand);
+                                                throw ex;
                                         }
                                 }
                         }
@@ -1322,7 +1332,8 @@ LEFT JOIN pg_attribute
                                                 LogError("----------------------------------------------------------------------------");
                                                 LogError(ex.Message);
                                                 LogError(selectCommand);
-                                                throw;
+                                                ex.Data.Add("Command", selectCommand);
+                                                throw ex;
                                         }
                                 }
                         }
@@ -1355,7 +1366,8 @@ LEFT JOIN pg_attribute
                                                         LogError("----------------------------------------------------------------------------");
                                                         LogError(ex.Message);
                                                         LogError(selectCommand);
-                                                        throw;
+                                                        ex.Data.Add("Command", selectCommand);
+                                                        throw ex;
                                                 }
                                         }
                                 }
@@ -1406,7 +1418,7 @@ LEFT JOIN pg_attribute
 
                 public void SetLock(bool enable, string lockName)
                 {
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema", "Lock." + lockName, enable ? "1" : "0", "*");
+                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Lock." + lockName, enable ? 1 : 0);
                         if (enable)
                                 System.Threading.Thread.Sleep(5000);
                 }
@@ -1414,7 +1426,7 @@ LEFT JOIN pg_attribute
                 public bool HasLock(string lockName)
                 {
                         this.Workspace.CurrentConfig.ClearCache();
-                        return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Lock." + lockName, 0) != 0;
+                        return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Lock." + lockName, 0) != 0;
                 }
 
                 public bool HasGlobalLock()

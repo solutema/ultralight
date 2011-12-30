@@ -56,9 +56,6 @@ namespace Lfc.Ciudades
 
                         EntradaNombre.Text = Localidad.Nombre;
                         EntradaCp.Text = Localidad.CodigoPostal;
-                        EntradaNivel.TextKey = Localidad.Nivel.ToString();
-                        EntradaNivel.ReadOnly = this.Elemento.Existe;
-                        EntradaNivel.TabStop = !EntradaNivel.ReadOnly;
                         EntradaIva.TextKey = ((int)(Localidad.Iva)).ToString();
                         EntradaParent.Elemento = Localidad.Provincia;
 

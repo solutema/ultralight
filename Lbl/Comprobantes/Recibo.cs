@@ -78,7 +78,7 @@ namespace Lbl.Comprobantes
                         if (this.Tipo == null)
                                 this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["RC"];
                         
-                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Documentos." + this.Tipo.Nomenclatura + ".PV", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos." + this.Tipo.Nomenclatura + ".PV", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
                         this.Vendedor = new Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                 }
 

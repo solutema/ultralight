@@ -108,7 +108,6 @@
     <Compile Include="Impresion\Campo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Entidades\TiposDeLocalidad.cs" />
     <Compile Include="Impresion\CargasPapel.cs" />
     <Compile Include="Impresion\ClasesImpresora.cs" />
     <Compile Include="Impresion\Impresora.cs" />

@@ -196,7 +196,7 @@ namespace Lazaro.WinMain
                                 case "REBOOT":
                                         int EstacionFiscal = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
                                         if (EstacionFiscal > 0) {
-                                                Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal.ToString(), "*");
+                                                Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal);
                                                 System.Threading.Thread.Sleep(100);
                                         }
 
@@ -227,7 +227,7 @@ namespace Lazaro.WinMain
                                                                 Bkp.ProgramVersion = Aplicacion.Version() + " del " + Aplicacion.BuildDate();
 
                                                                 Lfx.Backups.Manager BackupManager = new Lfx.Backups.Manager();
-                                                                BackupManager.StartBackgroundBackup(Bkp);
+                                                                BackupManager.StartBackup(Bkp);
                                                                 break;
                                                 }
                                         }

@@ -49,7 +49,7 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_FormatoMoneda == null)
-                                        m_FormatoMoneda = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Formato.Moneda", "#.00");
+                                        m_FormatoMoneda = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Formato.Moneda", "#.00");
                                 return m_FormatoMoneda;
                         }
                 }

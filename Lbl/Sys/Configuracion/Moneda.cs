@@ -47,48 +47,90 @@ namespace Lbl.Sys.Configuracion
                         this.Simbolo = MonedaPredeterminada.Simbolo;
                 }
 
-                // La cantidad de decimales para el stock
+
                 private int m_Decimales = -1;
+                /// <summary>
+                /// La cantidad de decimales para los precios de venta en general.
+                /// </summary>
                 public int Decimales
                 {
                         get
                         {
                                 if (m_Decimales == -1)
-                                        m_Decimales = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>(null, "Sistema.Moneda.Decimales", 2);
+                                        m_Decimales = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.Decimales", 2);
                                 return m_Decimales;
+                        }
+                        set
+                        {
+                                m_Decimales = value;
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.Decimales", m_Decimales);
                         }
                 }
 
+
                 private int m_DecimalesCosto = -1;
+                /// <summary>
+                /// La cantidad de decimales para los precios de compra y de costo.
+                /// </summary>
                 public int DecimalesCosto
                 {
                         get
                         {
                                 if (m_DecimalesCosto == -1)
-                                        m_DecimalesCosto = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>(null, "Sistema.Moneda.DecimalesCosto", this.Decimales);
+                                        m_DecimalesCosto = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesCosto", this.Decimales);
                                 return m_DecimalesCosto;
+                        }
+                        set
+                        {
+                                m_DecimalesCosto = value;
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.DecimalesCosto", m_DecimalesCosto);
                         }
                 }
 
+
                 private int m_DecimalesFinal = -1;
+                /// <summary>
+                /// La cantidad de decimales para el importe final del comprobante.
+                /// </summary>
                 public int DecimalesFinal
                 {
                         get
                         {
                                 if (m_DecimalesFinal == -1)
-                                        m_DecimalesFinal = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>(null, "Sistema.Moneda.DecimalesFinal", this.Decimales);
+                                        m_DecimalesFinal = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesFinal", this.Decimales);
                                 return m_DecimalesFinal;
+                        }
+                        set
+                        {
+                                m_DecimalesFinal = value;
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.DecimalesFinal", m_DecimalesFinal);
                         }
                 }
 
-                private decimal m_Redodeo = -1;
-                public decimal Redondeo
+
+                private decimal m_UnidadMonetariaMinima = -1;
+                /// <summary>
+                /// La unidad monetaria mínima para el importe final de los comprobantes de venta.
+                /// Esto puede conicidir con el valor de la divisa monetaria más pequeña en circulación, para evitar dar cambio en
+                /// monedas que no existen. Por ejemplo, si la moneda más pequeña es de 5 centavos, este valor podría ser 0.05 para evitar
+                /// dar cambio de 1, 2, 3 y 4 centavos, que es imposible.
+                /// Ejemplos: 
+                ///     UnidadMonetariaMinima = 0        El importe final no se trunca.
+                ///     UnidadMonetariaMinima = 0.05     El importe final se trunca a 5 centavos, o sea algo que cuesta $ 1.18 se factura a $ 1.15.
+                ///     UnidadMonetariaMinima = 1        El importe final se trunca a 1 peso, o sea se eliminan los centavos.
+                /// </summary>
+                public decimal UnidadMonetariaMinima
                 {
                         get
                         {
-                                if (m_Redodeo == -1)
-                                        m_Redodeo = Lfx.Types.Parsing.ParseDecimal(this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<string>("", "Sistema.Moneda.Redondeo", "0"));
-                                return m_Redodeo;
+                                if (m_UnidadMonetariaMinima == -1)
+                                        m_UnidadMonetariaMinima = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<decimal>("Sistema.Moneda.Redondeo", 0);
+                                return m_UnidadMonetariaMinima;
+                        }
+                        set
+                        {
+                                m_UnidadMonetariaMinima = value;
+                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.Redondeo", m_UnidadMonetariaMinima);
                         }
                 }
         }

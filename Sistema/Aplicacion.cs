@@ -245,7 +245,7 @@ namespace Lazaro.WinMain
                         if (IgnoreUpdates == false) {
                                 // Verifico la versión de Lázaro requerida por la BD
                                 DateTime FechaLazaroExe = System.IO.File.GetLastWriteTime(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                                DateTime MinVersion = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionMinima", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
+                                DateTime MinVersion = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.DB.VersionMinima", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
                                 if (FechaLazaroExe < MinVersion) {
                                         Misc.ActualizarAhora Act = new Misc.ActualizarAhora();
                                         DialogResult Res = Act.ShowDialog();
@@ -260,7 +260,7 @@ namespace Lazaro.WinMain
                                         System.Environment.Exit(1);
                                 } else {
                                         // Cumple con la versión requerida, pero de todos modos verifico si es necesario actualizar Lázaro
-                                        DateTime VersionEstructura = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "DB.VersionEstructura", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
+                                        DateTime VersionEstructura = DateTime.ParseExact(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.DB.VersionEstructura", "2000-01-01 00:00:00"), Lfx.Types.Formatting.DateTime.SqlDateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AssumeUniversal);
                                         TimeSpan Diferencia = FechaLazaroExe - VersionEstructura;
 
                                         if (Diferencia.TotalHours < -12) {
@@ -602,7 +602,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         }
 
                         // Configuro el nivel de aislación predeterminado
-                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (System.Data.IsolationLevel)(Enum.Parse(typeof(System.Data.IsolationLevel), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Datos.Aislacion", "Serializable")));
+                        Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel = (System.Data.IsolationLevel)(Enum.Parse(typeof(System.Data.IsolationLevel), Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Datos.Aislacion", "Serializable")));
 
                         return iniciarReturn;
                 }
@@ -612,7 +612,7 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                 /// </summary>
                 private static Lfx.Types.OperationResult IniciarGui()
                 {
-                        int Configurado = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema", "Configurado", 0);
+                        int Configurado = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Configurado", 0);
                         if (Configurado == 0 && Lbl.Sys.Config.Actual.Empresa.ClaveTributaria == null) {
                                 Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
                                 FormConfig.PrimeraVez = true;
@@ -641,25 +641,25 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         FormIngreso = null;
 
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.Id > 0) {
-                                if (Lfx.Workspace.Master.MasterConnection.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Backup.Tipo", "0") == "2") {
+                                if (Lfx.Workspace.Master.MasterConnection.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Tipo", "0") == "2") {
                                         string FechaActual = System.DateTime.Now.ToString("yyyy-MM-dd");
-                                        string FechaBackup = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Backup.Ultimo", "");
+                                        string FechaBackup = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Ultimo", "");
                                         if (FechaActual != FechaBackup) {
                                                 int Articulos = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT COUNT(id_articulo) FROM articulos");
                                                 if (Articulos > 0) {
                                                         //Hago un backup automático, una vez por día, siempre que haya al menos 1 artículo en la BD
                                                         //Esto es para evitar hacer backup de una BD vacía
                                                         Ejecutor.Exec("BACKUP NOW");
-                                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema", "Backup.Ultimo", FechaActual);
+                                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Backup.Ultimo", FechaActual);
                                                 }
                                         }
                                 }
 
                                 // Mostrar qué hay de nuevo
-                                string FechaWhatsnew = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), "Whatsnew.Ultimo", "firsttime");
+                                string FechaWhatsnew = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString() + ".Whatsnew.Ultimo", "firsttime");
                                 if (FechaWhatsnew == "firsttime") {
                                         // Primera vez que entra. No muestro qué hay de nuevo (TODO: pero podría darle una bienvenida)
-                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), "Whatsnew.Ultimo", System.DateTime.Now.ToString("yyyy-MM-dd"));
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString() + ".Whatsnew.Ultimo", System.DateTime.Now.ToString("yyyy-MM-dd"));
                                 } else {
                                         // Veo si hay novedades para mostrar
                                         string FechaWhatsnewOriginal = FechaWhatsnew;
@@ -719,7 +719,8 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                                                                 "canal=" + System.Uri.EscapeUriString(Lfx.Updates.Updater.Master != null ? Lfx.Updates.Updater.Master.Channel : ""),
                                                                 "version=" + System.Uri.EscapeUriString(Aplicacion.Version()),
                                                                 "cpu=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.ProcessorName),
-                                                                "loc=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema", "Localidad", "0"))
+                                                                "server=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.MasterConnection.ServerVersion),
+                                                                "loc=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Localidad", "0"))
                                                         };
                                 System.Net.WebRequest WebRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
                                 WebRequest.ContentType = "application/x-www-form-urlencoded";
@@ -824,6 +825,20 @@ Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restau
                         Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
                         Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.PlatformName);
                         Texto.AppendLine("RunTime : " + Lfx.Environment.SystemInformation.RuntimeName);
+                        if(ex.HelpLink != null)
+                                Texto.AppendLine("Ayuda   : " + ex.HelpLink);
+                        if (ex.Source != null)
+                                Texto.AppendLine("Origen  : " + ex.Source);
+                        if (ex.Data != null) {
+                                try {
+                                        Texto.AppendLine("Datos   : ");
+                                        foreach (KeyValuePair<object, object> Dt in ex.Data) {
+                                                Texto.AppendLine("  " + Dt.Key.ToString() + ": " + Dt.Value.ToString());
+                                        }
+                                } catch (Exception xx) {
+                                        Texto.AppendLine("          " + xx.Message);
+                                }
+                        }
                         Texto.AppendLine("Excepción no controlada: " + ex.ToString());
                         Texto.AppendLine("");
 

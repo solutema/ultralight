@@ -51,7 +51,7 @@ namespace Lfx.Config
                         get
                         {
                                 if (m_Decimales == -1)
-                                        m_Decimales = ConfigManager.ReadGlobalSetting<int>(null, "Sistema.Moneda.Decimales", 2);
+                                        m_Decimales = ConfigManager.ReadGlobalSetting<int>("Sistema.Moneda.Decimales", 2);
                                 return m_Decimales;
                         }
                 }
@@ -62,7 +62,7 @@ namespace Lfx.Config
                         get
                         {
                                 if (m_DecimalesCosto == -1)
-                                        m_DecimalesCosto = ConfigManager.ReadGlobalSetting<int>(null, "Sistema.Moneda.DecimalesCosto", this.Decimales);
+                                        m_DecimalesCosto = ConfigManager.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesCosto", this.Decimales);
                                 return m_DecimalesCosto;
                         }
                 }
@@ -73,19 +73,8 @@ namespace Lfx.Config
                         get
                         {
                                 if (m_DecimalesFinal == -1)
-                                        m_DecimalesFinal = ConfigManager.ReadGlobalSetting<int>(null, "Sistema.Moneda.DecimalesFinal", this.Decimales);
+                                        m_DecimalesFinal = ConfigManager.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesFinal", this.Decimales);
                                 return m_DecimalesFinal;
-                        }
-                }
-
-                private static decimal m_Redodeo = -1;
-                public decimal Redondeo
-                {
-                        get
-                        {
-                                if(m_Redodeo == -1)
-                                        m_Redodeo = Lfx.Types.Parsing.ParseCurrency(ConfigManager.ReadGlobalSetting<string>("", "Sistema.Moneda.Redondeo", "0"));
-                                return m_Redodeo;
                         }
                 }
         }

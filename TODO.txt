@@ -9,5 +9,7 @@ Tareas pendientes (sin orden particular)
 * Renombrar los campos "impresa" y "anulada" en comprob a "impreso" y "anulado" para que coincida
   con el nombre de la tabla y con los mismos campos en "recibos"
 
+* Opción de hacer copias de resguardo consistentes (con LOCK TABLES o BEGIN TRANSACTION).
+
 * Unit-tests
 * Documentación

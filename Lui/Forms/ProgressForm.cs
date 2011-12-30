@@ -51,6 +51,7 @@ namespace Lui.Forms
                 {
                         this.Progreso = progreso;
 
+                        this.TopMost = progreso.Modal;
                         ProgressBar.Maximum = progreso.Max;
                         if (ProgressBar.Value > 0)
                                 ProgressBar.Style = ProgressBarStyle.Continuous;
@@ -70,6 +71,7 @@ namespace Lui.Forms
                         else
                                 ProgressBar.Value = progreso.Value;
                         BotonCancelar.Visible = progreso.Cancelable;
+
                         this.Refresh();
                 }
 

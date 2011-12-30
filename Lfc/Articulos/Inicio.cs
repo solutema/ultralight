@@ -92,9 +92,6 @@ namespace Lfc.Articulos
 
                                 ExtraSearchColumns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lazaro.Pres.Field("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lazaro.Pres.Field("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 0),
-				        new Lazaro.Pres.Field("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lazaro.Pres.Field("articulos.codigo4", Cod4, Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lazaro.Pres.Field("articulos.descripcion", "Descripción", Lfx.Data.InputFieldTypes.Memo, 0),
 				        new Lazaro.Pres.Field("articulos.descripcion2", "Descripción Extendida", Lfx.Data.InputFieldTypes.Memo, 0),

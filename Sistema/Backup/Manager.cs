@@ -79,7 +79,7 @@ namespace Lazaro.WinMain.Backup
                 {
                         BotonBackup.Enabled = false;
                         Ejecutor.Exec("BACKUP NOW");
-                        Lfx.Workspace.Master.RunTime.Toast("Se inició una copia de seguridad en segundo plano.", "Aviso");
+                        this.Close();
                 }
 
 
@@ -107,6 +107,7 @@ namespace Lazaro.WinMain.Backup
                                 OPregunta.lblFecha.Text = FechaYHora;
                                 if (OPregunta.ShowDialog() == DialogResult.OK) {
                                         this.BackupManager.Restore(NombreCarpeta);
+                                        this.Close();
                                 }
                         }
                 }

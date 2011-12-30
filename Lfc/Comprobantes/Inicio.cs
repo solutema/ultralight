@@ -60,7 +60,7 @@ namespace Lfc.Comprobantes
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("comprob.tipo_fac", "Tipo", Lfx.Data.InputFieldTypes.Text, 40),
-				        new Lazaro.Pres.Field("CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) AS numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("comprob.nombre", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lazaro.Pres.Field("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
 				        new Lazaro.Pres.Field("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lazaro.Pres.Field("comprob.total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),

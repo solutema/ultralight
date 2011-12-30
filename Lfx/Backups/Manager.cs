@@ -47,7 +47,7 @@ namespace Lfx.Backups
                 }
 
 
-                public void StartBackgroundBackup(BackupInfo backupInfo)
+                public void StartBackup(BackupInfo backupInfo)
                 {
                         System.Threading.ThreadStart BackupThread = delegate { this.Backup(backupInfo); };
                         System.Threading.Thread Thr = new System.Threading.Thread(BackupThread);
@@ -327,7 +327,7 @@ namespace Lfx.Backups
                                 System.IO.Directory.CreateDirectory(Lfx.Environment.Folders.TemporaryFolder + WorkFolder);
 
                         Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Creando Copia de Respaldo", "Se está creando un volcado completo del almacén de datos en una carpeta, para resguardar.");
-                        Progreso.Modal = false;
+                        Progreso.Modal = true;
                         Progreso.Advertise = true;
                         Progreso.Begin();
                         Progreso.Max = Lfx.Workspace.Master.Structure.Tables.Count + 1;
@@ -370,7 +370,7 @@ namespace Lfx.Backups
                                 Archivo.Close();
                         }
 
-                        if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema", "ComprimirCopiasDeRespaldo", 0) != 0) {
+                        if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.ComprimirCopiasDeRespaldo", 0) != 0) {
                                 Progreso.ChangeStatus("Comprimiendo los datos");
                                 Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "backup.7z");
                                 ArchivoComprimido.Add(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "*");
@@ -390,7 +390,7 @@ namespace Lfx.Backups
                         Progreso.ChangeStatus(Progreso.Value + 1);
                         System.IO.Directory.Move(Lfx.Environment.Folders.TemporaryFolder + WorkFolder, this.BackupPath + WorkFolder);
 
-                        int GuardarBackups = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("", "Sisteam.Backup.CantMax", 7);
+                        int GuardarBackups = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sisteam.Backup.CantMax", 7);
                         if (GuardarBackups > 0) {
                                 List<BackupInfo> ListaDeBackups = this.GetBackups();
                                 if (ListaDeBackups.Count > GuardarBackups) {
