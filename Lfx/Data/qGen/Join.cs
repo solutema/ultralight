@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N.
+// Copyright 2004-2012 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,15 +36,23 @@ namespace qGen
         [Serializable]
         public class Join
         {
-                public string Table;
-                public string On;
+                public string Table {get;set;}
+                public string Alias { get; set; }
+                public string On { get; set; }
                 public JoinTypes JoinType = JoinTypes.LeftJoin;
 
                 public Join(string table, string on)
                 {
-                        this.Table = table;
+                        if (table.IndexOf(' ') >= 0) {
+                                string[] Partes = table.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                                this.Table = Partes[0];
+                                this.Alias = Partes[1];
+                        } else {
+                                this.Table = table;
+                        }
                         this.On = on;
                 }
+
 
                 public Join(string table, string on, JoinTypes joinType)
                 {
@@ -53,33 +61,46 @@ namespace qGen
                         this.JoinType = joinType;
                 }
 
+
+                public string TableAndAlias
+                {
+                        get
+                        {
+                                if(this.Alias != null && this.Alias.Length > 0) {
+                                        return this.Table + " " + this.Alias;
+                                } else {
+                                        return this.Table;
+                                }
+                        }
+                }
+
                 public override string ToString()
                 {
                         System.Text.StringBuilder Res = new System.Text.StringBuilder();
                         switch (this.JoinType) {
                                 case JoinTypes.ImplicitJoin:
-                                        Res.Append("," + this.Table);
+                                        Res.Append("," + this.TableAndAlias);
                                         break;
                                 case JoinTypes.LeftJoin:
-                                        Res.Append(" LEFT JOIN " + this.Table);
+                                        Res.Append(" LEFT JOIN " + this.TableAndAlias);
                                         break;
                                 case JoinTypes.CrossJoin:
-                                        Res.Append(" CROSS JOIN " + this.Table);
+                                        Res.Append(" CROSS JOIN " + this.TableAndAlias);
                                         break;
                                 case JoinTypes.FullOuterJoin:
-                                        Res.Append(" FULL OUTER JOIN " + this.Table);
+                                        Res.Append(" FULL OUTER JOIN " + this.TableAndAlias);
                                         break;
                                 case JoinTypes.InnerJoin:
-                                        Res.Append(" INNER JOIN " + this.Table);
+                                        Res.Append(" INNER JOIN " + this.TableAndAlias);
                                         break;
                                 case JoinTypes.LeftOuterJoin:
-                                        Res.Append(" LEFT OUTER JOIN " + this.Table);
+                                        Res.Append(" LEFT OUTER JOIN " + this.TableAndAlias);
                                         break;
                                 case JoinTypes.NaturalJoin:
-                                        Res.Append(" NATURAL JOIN " + this.Table);
+                                        Res.Append(" NATURAL JOIN " + this.TableAndAlias);
                                         break;
                                 case JoinTypes.RightOuterJoin:
-                                        Res.Append(" RIGHT OUTER JOIN " + this.Table);
+                                        Res.Append(" RIGHT OUTER JOIN " + this.TableAndAlias);
                                         break;
                         }
 

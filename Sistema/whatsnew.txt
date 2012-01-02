@@ -59,3 +59,4 @@ Lázaro tiene un nuevo ícono. Algunas ubicaciones aun pueden mostrar el ícono 
 *** 2011-08-24
 
 * Se mejoró la seguridad en el almacenamiento de contraseñas. Se recomienda que cambie su contraseña desde el menú Sistema.
+

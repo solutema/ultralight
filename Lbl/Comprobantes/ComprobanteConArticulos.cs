@@ -1,5 +1,5 @@
 #region License
-// Copyright 2004-2011 Carrea Ernesto N.
+// Copyright 2004-2012 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -304,7 +304,7 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                if (this.Existe && this.Modificado == false)
+                                if (this.Existe && this.Modificado == false && this.GetFieldValue<decimal>("total") != 0)
                                         return this.GetFieldValue<decimal>("total");
                                 else
                                         return this.RedondearImporte(this.TotalSinRedondeo);
