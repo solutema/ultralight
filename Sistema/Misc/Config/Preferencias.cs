@@ -196,9 +196,9 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Localidad", EntradaLocalidad.TextInt);
 
                         EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
-                        EntradaMonedaDecimalesCosto.TextKey = Lbl.Sys.Config.Actual.Moneda.DecimalesCosto.ToString();
-                        EntradaMonedaDecimalesUnitarios.TextKey = Lbl.Sys.Config.Actual.Moneda.Decimales.ToString();
-                        EntradaMonedaDecimalesFinal.TextKey = Lbl.Sys.Config.Actual.Moneda.DecimalesFinal.ToString();
+                        Lbl.Sys.Config.Actual.Moneda.DecimalesCosto= EntradaMonedaDecimalesCosto.ValueInt;
+                        Lbl.Sys.Config.Actual.Moneda.Decimales = EntradaMonedaDecimalesUnitarios.ValueInt;
+                        Lbl.Sys.Config.Actual.Moneda.DecimalesFinal = EntradaMonedaDecimalesFinal.ValueInt;
 
 
                         this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Configurado", "1", 0);

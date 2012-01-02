@@ -60,11 +60,11 @@ namespace Lfc.Bancos.Chequeras
                                 KeyColumnName = new Lazaro.Pres.Field("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lazaro.Pres.Field("chequeras.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 240),
+				        new Lazaro.Pres.Field("bancos.nombre", "Banco", 240, new Lfx.Data.Relation("chequeras.id_banco", "bancos", "id_banco")),
                                         new Lazaro.Pres.Field("chequeras.cheques_emitidos", "Emitidos", Lfx.Data.InputFieldTypes.Integer, 90),
 				        new Lazaro.Pres.Field("chequeras.desde", "Desde", Lfx.Data.InputFieldTypes.Integer, 120),
 				        new Lazaro.Pres.Field("chequeras.hasta", "Hasta", Lfx.Data.InputFieldTypes.Integer, 120),
-				        new Lazaro.Pres.Field("chequeras.id_caja", "Caja", Lfx.Data.InputFieldTypes.Relation, 240),
+				        new Lazaro.Pres.Field("cajas.nombre", "Caja", 240, new Lfx.Data.Relation("chequeras.id_caja", "cajas", "id_caja")),
 				        new Lazaro.Pres.Field("chequeras.titular", "Titular", Lfx.Data.InputFieldTypes.Text, 240),
 				        new Lazaro.Pres.Field("chequeras.estado", "Estado", Lfx.Data.InputFieldTypes.Text, 80),
 			        }
@@ -127,12 +127,13 @@ namespace Lfc.Bancos.Chequeras
 					break;
 			}
 
-                        item.SubItems["chequeras.id_banco"].Text = this.Connection.Tables["bancos"].FastRows[System.Convert.ToInt32(row["chequeras.id_banco"])].Fields["nombre"].ToString();
                         item.SubItems["chequeras.desde"].Text = row.Fields["chequeras.desde"].ValueInt.ToString("00000000");
                         item.SubItems["chequeras.hasta"].Text = row.Fields["chequeras.hasta"].ValueInt.ToString("00000000");
+                        /* item.SubItems["chequeras.id_banco"].Text = this.Connection.Tables["bancos"].FastRows[System.Convert.ToInt32(row["chequeras.id_banco"])].Fields["nombre"].ToString();
                         int IdCaja = row.Fields["id_caja"].ValueInt;
                         if (IdCaja > 0)
                                 item.SubItems["chequeras.id_caja"].Text = this.Connection.Tables["cajas"].FastRows[IdCaja].Fields["nombre"].ToString();
+                         * */
 		}
 	}
 

@@ -55,10 +55,15 @@ namespace qGen
 
 
                 public Join(string table, string on, JoinTypes joinType)
+                        : this(table, on)
                 {
-                        this.Table = table;
-                        this.On = on;
                         this.JoinType = joinType;
+                }
+
+
+                public Join(Lfx.Data.Relation relation)
+                        : this(relation.ReferenceTable, relation.Column + "=" + relation.ReferenceTable + "." + relation.ReferenceColumn)
+                {
                 }
 
 

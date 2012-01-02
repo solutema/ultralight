@@ -614,6 +614,14 @@ namespace Lfc
                                 if (this.Definicion.Joins != null && this.Definicion.Joins.Count > 0)
                                         ComandoSelect.Joins = this.Definicion.Joins;
 
+                                foreach (Lazaro.Pres.Field Fld in this.Definicion.Columns) {
+                                        if (Fld.DataType == Lfx.Data.InputFieldTypes.Relation && Fld.Relation != null) {
+                                                qGen.Join RelJoin = new qGen.Join(Fld.Relation);
+                                                if (ComandoSelect.Joins.Contains(RelJoin) == false)
+                                                        ComandoSelect.Joins.Add(RelJoin);
+                                        }
+                                }
+
                                 string ListaCampos;
                                 if (forCount) {
                                         ListaCampos = "COUNT(" + this.Definicion.KeyColumnName.MemberName + ") AS row_count";
@@ -657,12 +665,12 @@ namespace Lfc
                                                                         case Lfx.Data.InputFieldTypes.Integer:
                                                                         case Lfx.Data.InputFieldTypes.Numeric:
                                                                         case Lfx.Data.InputFieldTypes.NumericSet:
-                                                                        case Lfx.Data.InputFieldTypes.Relation:
                                                                         case Lfx.Data.InputFieldTypes.Serial:
                                                                                 // En estos tipos de campos busco sólo números
                                                                                 if(EsNumero)
                                                                                         WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                                 break;
+                                                                        case Lfx.Data.InputFieldTypes.Relation:
                                                                         default:
                                                                                 WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                                 break;
@@ -682,12 +690,12 @@ namespace Lfc
                                                                 case Lfx.Data.InputFieldTypes.Integer:
                                                                 case Lfx.Data.InputFieldTypes.Numeric:
                                                                 case Lfx.Data.InputFieldTypes.NumericSet:
-                                                                case Lfx.Data.InputFieldTypes.Relation:
                                                                 case Lfx.Data.InputFieldTypes.Serial:
                                                                         // En estos tipos de campos busco sólo números
                                                                         if (EsNumero)
                                                                                 WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                         break;
+                                                                case Lfx.Data.InputFieldTypes.Relation:
                                                                 default:
                                                                         WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                         break;
@@ -916,15 +924,15 @@ namespace Lfc
                                         switch (useFields[FieldNum].DataType) {
                                                 case Lfx.Data.InputFieldTypes.Integer:
                                                 case Lfx.Data.InputFieldTypes.Serial:
-                                                case Lfx.Data.InputFieldTypes.Relation:
                                                         if (row[FieldName] == null || row[FieldName] is DBNull)
                                                                 NewCell.Content = null;
                                                         else if (useFields[FieldNum].Format != null)
                                                                 NewCell.Content = System.Convert.ToInt32(row[FieldName]).ToString(useFields[FieldNum].Format);
                                                         else
-                                                                NewCell.Content = System.Convert.ToInt32(row[FieldName]).ToString();
+                                                                NewCell.Content = row[FieldName].ToString();
                                                         break;
 
+                                                case Lfx.Data.InputFieldTypes.Relation:
                                                 case Lfx.Data.InputFieldTypes.Text:
                                                 case Lfx.Data.InputFieldTypes.Memo:
                                                         if (row[FieldName] == null)
@@ -1030,7 +1038,6 @@ namespace Lfc
                         switch (formField.DataType) {
                                 case Lfx.Data.InputFieldTypes.Integer:
                                 case Lfx.Data.InputFieldTypes.Serial:
-                                case Lfx.Data.InputFieldTypes.Relation:
                                         if (cellValue == null || cellValue is DBNull)
                                                 FieldValueAsText = "";
                                         else if (formField.Format != null)
@@ -1041,6 +1048,7 @@ namespace Lfc
 
                                 case Lfx.Data.InputFieldTypes.Text:
                                 case Lfx.Data.InputFieldTypes.Memo:
+                                case Lfx.Data.InputFieldTypes.Relation:
                                         if (cellValue == null)
                                                 FieldValueAsText = "";
                                         else if (cellValue is System.Byte[])

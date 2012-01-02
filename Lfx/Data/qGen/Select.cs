@@ -45,7 +45,7 @@ namespace qGen
                 public string Order = null;
                 public string Group = "";
                 public bool ForUpdate = false;
-                public List<Join> Joins = new List<Join>();
+                public JoinCollection Joins = new JoinCollection();
 
                 public Where HavingClause = null;
 
@@ -164,7 +164,7 @@ namespace qGen
                         if (this.HavingClause != null)
                                 Res.HavingClause = this.HavingClause.Clone();
                         if (this.Joins != null) {
-                                Res.Joins = new System.Collections.Generic.List<Join>();
+                                Res.Joins = new JoinCollection();
                                 Res.Joins.AddRange(this.Joins);
                         }
                         return Res;

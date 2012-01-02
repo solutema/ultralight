@@ -30,11 +30,12 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace qGen
 {
         [Serializable]
-        public class JoinCollection : System.Collections.Generic.List<qGen.Join>
+        public class JoinCollection : List<qGen.Join>
         {
                 public Join this[string tableName]
                 {
@@ -49,5 +50,13 @@ namespace qGen
                         }
                 }
 
+                new public bool Contains(Join join)
+                {
+                        foreach(Join Jn in this) {
+                                if (Jn.TableAndAlias == join.TableAndAlias && Jn.On == join.On)
+                                        return true;
+                        }
+                        return false;
+                }
         }
 }
