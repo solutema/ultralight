@@ -406,18 +406,21 @@ namespace Lfx
                                 System.IO.StreamReader Lector = new System.IO.StreamReader(RecursoActualizacion);
                                 string SqlActualizacion = dataBase.CustomizeSql(Lector.ReadToEnd());
                                 RecursoActualizacion.Close();
-                                dataBase.ExecuteSql(SqlActualizacion);
-                                /* Esto es si no soporta lotes (MyODBC) 
-                                do {
-                                        string Comando = Data.Connection.GetNextCommand(ref SqlActualizacion);
-                                        try {
-                                                dataBase.Execute(Comando);
-                                        } catch (Exception ex) {
-                                                if (Lfx.Environment.SystemInformation.DesignMode)
-                                                        throw;
+                                try {
+                                        dataBase.ExecuteSql(SqlActualizacion);
+                                } catch {
+                                        // Falló la ejecución... intento los comandos SQL de a uno, ignorando el que de un error
+                                        do {
+                                                string Comando = Data.Connection.GetNextCommand(ref SqlActualizacion);
+                                                try {
+                                                        dataBase.ExecuteSql(Comando);
+                                                } catch {
+                                                        if (Lfx.Environment.SystemInformation.DesignMode)
+                                                                throw;
+                                                }
                                         }
+                                        while (SqlActualizacion.Length > 0);
                                 }
-                                while (SqlActualizacion.Length > 0); */
                         }
                 }
 
