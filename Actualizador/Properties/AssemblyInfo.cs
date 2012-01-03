@@ -14,7 +14,7 @@ using System.Security.Permissions;
 [assembly: AssemblyDescription("Actualizador Lázaro")]
 [assembly: AssemblyCompany("Carrea Ernesto")]
 [assembly: AssemblyProduct("Lázaro")]
-[assembly: AssemblyCopyright("Copyright © 2004-2011 Carrea Ernesto")]
+[assembly: AssemblyCopyright("Copyright 2004-2012 Ernesto N. Carrea")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]

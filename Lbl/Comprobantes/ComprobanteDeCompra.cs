@@ -86,7 +86,9 @@ namespace Lbl.Comprobantes
 
                 new public Lbl.Comprobantes.ComprobanteDeCompra ConvertirEn(Tipo tipo)
                 {
-                        return base.ConvertirEn(tipo) as Lbl.Comprobantes.ComprobanteDeCompra;
+                        Lbl.Comprobantes.ComprobanteConArticulos Res = base.ConvertirEn(tipo);
+                        Res.Compra = true;
+                        return (Lbl.Comprobantes.ComprobanteDeCompra)Res;
                 }
         }
 }

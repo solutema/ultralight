@@ -742,7 +742,10 @@ namespace Lbl.Comprobantes
                 {
                         Type TipoComprob;
                         if (tipo.EsFactura) {
-                                TipoComprob = typeof(Lbl.Comprobantes.Factura);
+                                if(this.Compra)
+                                        TipoComprob = typeof(Lbl.Comprobantes.ComprobanteDeCompra);
+                                else
+                                        TipoComprob = typeof(Lbl.Comprobantes.Factura);
                         } else if (tipo.EsNotaCredito) {
                                 TipoComprob = typeof(Lbl.Comprobantes.NotaDeCredito);
                         } else if (tipo.EsNotaDebito) {
@@ -795,6 +798,7 @@ namespace Lbl.Comprobantes
                         Nuevo.PV = 0;
                         Nuevo.Tipo = tipo;
                         Nuevo.Obs = "s/" + this.ToString();
+                        Nuevo.Compra = this.Compra;
                         return Nuevo;
                 }
 
