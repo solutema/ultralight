@@ -130,7 +130,7 @@ namespace Lui.Forms
                                                 break;
                                         case LabelStyles.Default:
                                                 base.Font = Lfx.Config.Display.DefaultFont;
-                                                base.Padding = new Padding(0, 4, 0, 4);
+                                                base.Padding = new Padding(0, 4, 0, 0);
                                                 base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
                                                 base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                                                 break;
