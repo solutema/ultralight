@@ -108,7 +108,7 @@ namespace Lbl.Entidades
                 {
                         get
                         {
-                                if (m_ClaveBancaria == null)
+                                if (m_ClaveBancaria == null && this.GetFieldValue<int>("claveban") > 0)
                                         m_ClaveBancaria = new ClaveUnica(this.Connection, this.GetFieldValue<int>("claveban"));
                                 return m_ClaveBancaria;
                         }

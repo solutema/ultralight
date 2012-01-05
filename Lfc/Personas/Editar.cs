@@ -43,7 +43,8 @@ namespace Lfc.Personas
 
                         InitializeComponent();
 
-                        EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre;
+                        if (Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria != null)
+                                EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre;
                 }
 
 
