@@ -59,7 +59,12 @@ namespace Cargador
                         if (ArchivosNuevos.Length > 0) {
                                 if (IsUacActive && IsAdministrator == false && FolderWritable(CarpetaTrabajo) == false) {
                                         System.Console.WriteLine("Ejecutando como Administrador.");
-                                        Elevate();
+                                        try {
+                                                Elevate();
+                                        } catch {
+                                                // No se pudo elevar. Se va a ejecutar Lázaro sin privilegios.
+                                                EjecutarLazaro();
+                                        }
                                         return;
                                 } else {
                                         System.Console.WriteLine("Se van a actualizar " + ArchivosNuevos.Length.ToString() + " archivos.");
