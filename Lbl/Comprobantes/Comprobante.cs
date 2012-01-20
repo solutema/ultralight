@@ -44,7 +44,7 @@ namespace Lbl.Comprobantes
 	{
                 private Personas.Persona m_Vendedor, m_Cliente;
                 private Entidades.Sucursal m_Sucursal;
-                private Comprobante m_ComprobanteOriginal;
+                private ComprobanteConArticulos m_ComprobanteOriginal;
                 private Tipo m_Tipo;
 
 		//Heredar constructor
@@ -133,7 +133,6 @@ namespace Lbl.Comprobantes
                                 Registro["estado"] = 1;
 
                                 Registro["fecha"] = this.Connection.ServerDateTime;
-                                //Registro["fecha"] = new DateTime(2010, 11, 30, 22, 01, 00);
 
                                 if (this.TablaDatos == "recibos") {
                                         ActualizarComprob.Fields.AddWithValue("impreso", 1);
@@ -143,7 +142,7 @@ namespace Lbl.Comprobantes
                                         Registro["impresa"] = 1;
                                 }
                                 ActualizarComprob.Fields.AddWithValue("estado", 1);
-                                ActualizarComprob.Fields.AddWithValue("fecha", Registro["fecha"]);
+                                ActualizarComprob.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         }
                         ActualizarComprob.WhereClause = new qGen.Where(this.CampoId, this.Id);
 
@@ -457,7 +456,8 @@ namespace Lbl.Comprobantes
 				return "Recibo S/N";
 		}
 
-                public Lbl.Comprobantes.Comprobante ComprobanteOriginal
+
+                public Lbl.Comprobantes.ComprobanteConArticulos ComprobanteOriginal
                 {
                         get
                         {

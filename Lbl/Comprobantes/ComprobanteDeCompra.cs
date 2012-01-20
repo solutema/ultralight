@@ -55,8 +55,6 @@ namespace Lbl.Comprobantes
                 {
                         base.Crear();
                         this.Compra = true;
-
-                        this.Compra = true;
                         this.Fecha = DateTime.Now;
                         this.FormaDePago = new Pagos.FormaDePago(this.Connection, Pagos.TiposFormasDePago.CuentaCorriente);
 
@@ -84,11 +82,11 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                new public Lbl.Comprobantes.ComprobanteDeCompra ConvertirEn(Tipo tipo)
+                new public ComprobanteDeCompra Convertir(Tipo tipo)
                 {
-                        Lbl.Comprobantes.ComprobanteConArticulos Res = base.ConvertirEn(tipo);
+                        Lbl.Comprobantes.ComprobanteConArticulos Res = base.Convertir(tipo);
                         Res.Compra = true;
-                        return (Lbl.Comprobantes.ComprobanteDeCompra)Res;
+                        return (ComprobanteDeCompra)Res;
                 }
         }
 }

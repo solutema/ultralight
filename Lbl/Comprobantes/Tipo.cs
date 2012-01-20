@@ -122,6 +122,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
                 public bool ImprimirAlGuardar
                 {
                         get
@@ -134,15 +135,28 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public bool MueveStock
+                public decimal MueveStock
                 {
                         get
                         {
-                                return this.GetFieldValue<int>("mueve_stock") != 0;
+                                return this.GetFieldValue<decimal>("mueve_stock");
                         }
                         set
                         {
-                                this.Registro["mueve_stock"] = value ? 1 : 0;
+                                this.Registro["mueve_stock"] = value;
+                        }
+                }
+
+
+                public decimal DireccionCtaCte
+                {
+                        get
+                        {
+                                return this.GetFieldValue<decimal>("direc_ctacte");
+                        }
+                        set
+                        {
+                                this.Registro["direc_ctacte"] = value;
                         }
                 }
 
@@ -213,6 +227,24 @@ namespace Lbl.Comprobantes
 
 
                 /// <summary>
+                /// Devuelve el tipo Lbl.
+                /// </summary>
+                public string NombreTipoLbl
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("tipo");
+                        }
+                }
+
+
+                public Type ObtenerTipoLbl()
+                {
+                        return Lbl.Instanciador.InferirTipo(this.NombreTipoLbl);
+                }
+
+                
+                /// <summary>
                 /// La nomenclatura del tipo de comprobante (A, B, NCA, NDE, etc.). Está formada por el TipoBase y la Letra.
                 /// </summary>
                 public string Nomenclatura
@@ -227,6 +259,10 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
+                /// <summary>
+                /// Devuleve Verdadero si este tipo de comprobante es una Nota de Crédito.
+                /// </summary>
                 public bool EsNotaCredito
                 {
                         get
@@ -235,6 +271,10 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
+                /// <summary>
+                /// Devuleve Verdadero si este tipo de comprobante es una Nota de Débito.
+                /// </summary>
                 public bool EsNotaDebito
                 {
                         get
@@ -243,12 +283,32 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
+                /// <summary>
+                /// Devuleve Verdadero si este tipo de comprobante es un ticket.
+                /// </summary>
+                public bool EsTicket
+                {
+                        get
+                        {
+                                switch (this.Nomenclatura.ToUpperInvariant()) {
+                                        case "T":
+                                                return true;
+                                        default:
+                                                return false;
+                                }
+                        }
+                }
+
+
+                /// <summary>
+                /// Devuleve Verdadero si este tipo de comprobante es una factura.
+                /// </summary>
                 public bool EsFactura
                 {
                         get
                         {
-                                switch (this.Nomenclatura.ToUpperInvariant())
-                                {
+                                switch (this.Nomenclatura.ToUpperInvariant()) {
                                         case "A":
                                         case "B":
                                         case "C":
@@ -267,13 +327,24 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
+                public bool EsFacturaOTicket
+                {
+                        get
+                        {
+                                return this.EsFactura || this.EsTicket;
+                        }
+                }
+
+
                 public bool EsFacturaNCoND
                 {
                         get
                         {
-                                return this.EsFactura || this.EsNotaCredito || this.EsNotaDebito;
+                                return this.EsFacturaOTicket || this.EsNotaCredito || this.EsNotaDebito;
                         }
                 }
+
 
                 public bool EsRemito
                 {
@@ -283,6 +354,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
                 public bool EsPedido
                 {
                         get
@@ -291,13 +363,6 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public bool EsTicket
-                {
-                        get
-                        {
-                                return this.Nomenclatura.ToUpperInvariant() == "T";
-                        }
-                }
 
                 public bool EsPresupuesto
                 {
@@ -306,6 +371,7 @@ namespace Lbl.Comprobantes
                                 return this.Nomenclatura.ToUpperInvariant() == "PS";
                         }
                 }
+
 
                 public bool PermiteImprimirVariasVeces
                 {
@@ -318,6 +384,7 @@ namespace Lbl.Comprobantes
                                 this.Registro["imprimir_repetir"] = value ? 1 : 0;
                         }
                 }
+
 
                 public bool PermiteModificarImpresos
                 {
@@ -344,7 +411,8 @@ namespace Lbl.Comprobantes
 
                         Comando.Fields.AddWithValue("letra", this.Nomenclatura);
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
-                        Comando.Fields.AddWithValue("mueve_stock", this.MueveStock ? 1 : 0);
+                        Comando.Fields.AddWithValue("mueve_stock", this.MueveStock);
+                        Comando.Fields.AddWithValue("direc_ctacte", this.DireccionCtaCte);
                         Comando.Fields.AddWithValue("numerar_guardar", this.NumerarAlGuardar ? 1 : 0);
                         Comando.Fields.AddWithValue("numerar_imprimir", this.NumerarAlImprimir ? 1 : 0);
                         Comando.Fields.AddWithValue("imprimir_guardar", this.ImprimirAlGuardar ? 1 : 0);

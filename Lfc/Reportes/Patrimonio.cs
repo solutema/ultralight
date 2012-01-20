@@ -57,7 +57,7 @@ namespace Lfc.Reportes
                         System.Data.DataTable Cajas = this.Connection.Select("SELECT * FROM cajas WHERE estado>0");
                         foreach(System.Data.DataRow Rw in Cajas.Rows) {
                                 Lbl.Cajas.Caja Cta = new Lbl.Cajas.Caja(this.Connection, (Lfx.Data.Row)Rw);
-                                decimal Saldo = Cta.Saldo(false);
+                                decimal Saldo = Cta.ObtenerSaldo(false);
                                 if (Saldo > 0)
                                         ActivosCajas += Saldo;
                                 else

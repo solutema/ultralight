@@ -654,8 +654,9 @@ namespace Lfc
                                                                         case Lfx.Data.InputFieldTypes.Date:
                                                                         case Lfx.Data.InputFieldTypes.DateTime:
                                                                                 // En estos campos, busco atento a que se trata de una fecha
-                                                                                if (SearchText.IsDate()) {
-                                                                                        DateTime SearchDate = SearchText.ParseDateTime();
+                                                                                NullableDateTime Fecha = SearchText.ParseDateTime();    // TODO: cachear el valor para que no lo parsee en cada iteración
+                                                                                if (Fecha != null) {
+                                                                                        DateTime SearchDate = Fecha.Value;
                                                                                         DateTime FromDate = new DateTime(SearchDate.Year, SearchDate.Month, SearchDate.Day, 0, 0, 0);
                                                                                         DateTime ToDate = new DateTime(SearchDate.Year, SearchDate.Month, SearchDate.Day, 23, 59, 59);
                                                                                         WhereBuscarTexto.AddWithValue(CurField.MemberName, FromDate, ToDate);

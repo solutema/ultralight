@@ -105,11 +105,12 @@ namespace Lazaro.Impresion.Comprobantes
 				case "FACTURAS":
                                         if (Recibo.Facturas.Count > 0) {
                                                 string Res = null;
-                                                foreach (Lbl.Comprobantes.ComprobanteConArticulos fac in Recibo.Facturas) {
+                                                foreach (Lbl.Comprobantes.ComprobanteImporte CompImp in Recibo.Facturas) {
+                                                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = CompImp.Comprobante;
                                                         if (Res == null)
-                                                                Res = fac.ToString();
+                                                                Res = Comprob.ToString();
                                                         else
-                                                                Res += ", " + fac.ToString();
+                                                                Res += ", " + Comprob.ToString();
                                                 }
                                                 return Res;
                                         } else {

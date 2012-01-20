@@ -37,7 +37,7 @@ namespace Lbl
 {
         public interface ICuenta
         {
-                decimal Saldo(bool forUpdate);
+                decimal ObtenerSaldo(bool forUpdate);
 
                 void Recalcular();
         }

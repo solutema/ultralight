@@ -388,7 +388,7 @@ namespace Lbl
                 public void AgregarComentario(string texto)
                 {
                         if (this.Existe == false)
-                                throw new InvalidOperationException("No se pueden agregar comentarios a un elemento que aun no ha sido guardado.");
+                                throw new Lfx.Types.DomainException("No se pueden agregar comentarios a un elemento que aun no ha sido guardado.");
 
                         qGen.Insert NuevoCom = new qGen.Insert("sys_comments");
                         NuevoCom.Fields.AddWithValue("tablas", this.TablaDatos);
@@ -503,7 +503,7 @@ namespace Lbl
                 public void GuardarEtiquetas()
                 {
                         if (this.Existe == false)
-                                throw new InvalidOperationException("No se pueden agregar etiquetas a un elemento que aun no ha sido guardado.");
+                                throw new Lfx.Types.DomainException("No se pueden agregar etiquetas a un elemento que aun no ha sido guardado.");
 
                         // Elimino las etiquetas que ya no están.
                         ColeccionGenerica<Etiqueta> ListaEtiquetas = this.Etiquetas.Quitados(m_EtiquetasOriginal);

@@ -170,7 +170,7 @@ namespace Lazaro.WinMain.Principal
                                                         PersonaGrupo.Text = "-";
                                                 decimal Saldo;
                                                 try {
-                                                        Saldo = Per.CuentaCorriente.Saldo(false);
+                                                        Saldo = Per.CuentaCorriente.ObtenerSaldo(false);
                                                 } catch {
                                                         Saldo = 0;
                                                 }

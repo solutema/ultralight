@@ -61,7 +61,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
                         this.EntradaFormaPago = new Lui.Forms.ComboBox();
-                        this.label8 = new Lui.Forms.Label();
                         this.EntradaFecha = new Lui.Forms.TextBox();
                         this.EntradaPV = new Lui.Forms.TextBox();
                         this.EntradaHaciaSituacion = new Lcc.Entrada.CodigoDetalle();
@@ -107,23 +106,34 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoTab = true;
+                        this.EntradaTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaTipo.FieldName = null;
-                        this.EntradaTipo.Location = new System.Drawing.Point(384, 44);
+                        this.EntradaTipo.Location = new System.Drawing.Point(312, 44);
                         this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = null;
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
+        "Remito|R",
+        "Nota Pedido|NP",
+        "Pedido|PD",
         "Factura A|FA",
         "Factura B|FB",
         "Factura C|FC",
         "Factura E|FE",
         "Factura M|FM",
-        "Remito|R",
-        "Nota Pedido|NP",
-        "Pedido|PD"};
-                        this.EntradaTipo.Size = new System.Drawing.Size(92, 25);
+        "Nota de Crédito A|NCA",
+        "Nota de Crédito B|NCB",
+        "Nota de Crédito C|NCC",
+        "Nota de Crédito E|NCE",
+        "Nota de Crédito M|NCM",
+        "Nota de Débito A|NDA",
+        "Nota de Débito B|NDB",
+        "Nota de Débito C|NDC",
+        "Nota de Débito E|NDE",
+        "Nota de Débito M|NDM"};
+                        this.EntradaTipo.Size = new System.Drawing.Size(132, 25);
                         this.EntradaTipo.TabIndex = 17;
                         this.EntradaTipo.TextKey = "FA";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipoPvNumero_TextChanged);
@@ -133,34 +143,27 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.AlwaysExpanded = false;
                         this.EntradaFormaPago.AutoNav = true;
                         this.EntradaFormaPago.AutoTab = true;
+                        this.EntradaFormaPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaFormaPago.FieldName = null;
-                        this.EntradaFormaPago.Location = new System.Drawing.Point(296, 72);
+                        this.EntradaFormaPago.Location = new System.Drawing.Point(188, 72);
                         this.EntradaFormaPago.MaxLength = 32767;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPago.PlaceholderText = null;
                         this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.SetData = new string[] {
-        "Si|3",
-        "No|0"};
-                        this.EntradaFormaPago.Size = new System.Drawing.Size(58, 25);
+        "No controla pago|0",
+        "Efectivo|1",
+        "Cuenta Corriente|3" };
+                        this.EntradaFormaPago.Size = new System.Drawing.Size(176, 25);
                         this.EntradaFormaPago.TabIndex = 23;
                         this.EntradaFormaPago.TextKey = "0";
-                        // 
-                        // label8
-                        // 
-                        this.label8.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label8.Location = new System.Drawing.Point(192, 72);
-                        this.label8.Name = "label8";
-                        this.label8.Size = new System.Drawing.Size(104, 24);
-                        this.label8.TabIndex = 22;
-                        this.label8.Text = "Controla Pago";
-                        this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaFecha
                         // 
                         this.EntradaFecha.AutoNav = true;
                         this.EntradaFecha.AutoTab = true;
+                        this.EntradaFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaFecha.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFecha.DecimalPlaces = -1;
                         this.EntradaFecha.FieldName = null;
@@ -184,6 +187,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaPV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPV.AutoNav = true;
                         this.EntradaPV.AutoTab = true;
+                        this.EntradaPV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.FieldName = null;
@@ -210,6 +214,7 @@ namespace Lfc.Comprobantes.Compra
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoNav = true;
                         this.EntradaHaciaSituacion.AutoTab = true;
+                        this.EntradaHaciaSituacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
@@ -235,6 +240,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNumero.AutoNav = true;
                         this.EntradaNumero.AutoTab = true;
+                        this.EntradaNumero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
                         this.EntradaNumero.FieldName = null;
@@ -263,6 +269,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.AutoNav = true;
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.EntradaProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaProductos.FieldName = null;
                         this.EntradaProductos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
@@ -288,6 +295,7 @@ namespace Lfc.Comprobantes.Compra
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoNav = true;
                         this.EntradaProveedor.AutoTab = true;
+                        this.EntradaProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaProveedor.CanCreate = true;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.DataValueField = "id_persona";
@@ -332,11 +340,11 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label2.Location = new System.Drawing.Point(320, 44);
+                        this.Label2.Location = new System.Drawing.Point(448, 44);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(64, 24);
+                        this.Label2.Size = new System.Drawing.Size(28, 24);
                         this.Label2.TabIndex = 16;
-                        this.Label2.Text = "Número";
+                        this.Label2.Text = "Nº";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3
@@ -355,6 +363,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoTab = true;
+                        this.EntradaEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(288, 311);
                         this.EntradaEstado.MaxLength = 32767;
@@ -371,6 +380,7 @@ namespace Lfc.Comprobantes.Compra
                         // BotonObs
                         // 
                         this.BotonObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonObs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonObs.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonObs.Image = null;
                         this.BotonObs.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -388,6 +398,7 @@ namespace Lfc.Comprobantes.Compra
                         // BotonConvertir
                         // 
                         this.BotonConvertir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonConvertir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonConvertir.Image = null;
                         this.BotonConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -407,6 +418,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaOtrosGastos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaOtrosGastos.AutoNav = true;
                         this.EntradaOtrosGastos.AutoTab = true;
+                        this.EntradaOtrosGastos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaOtrosGastos.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaOtrosGastos.DecimalPlaces = -1;
                         this.EntradaOtrosGastos.FieldName = null;
@@ -432,6 +444,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaCancelado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCancelado.AutoNav = true;
                         this.EntradaCancelado.AutoTab = true;
+                        this.EntradaCancelado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCancelado.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCancelado.DecimalPlaces = -1;
                         this.EntradaCancelado.FieldName = null;
@@ -457,6 +470,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaGastosEnvio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaGastosEnvio.AutoNav = true;
                         this.EntradaGastosEnvio.AutoTab = true;
+                        this.EntradaGastosEnvio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaGastosEnvio.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaGastosEnvio.DecimalPlaces = -1;
                         this.EntradaGastosEnvio.FieldName = null;
@@ -482,6 +496,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTotal.AutoNav = true;
                         this.EntradaTotal.AutoTab = true;
+                        this.EntradaTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
                         this.EntradaTotal.FieldName = null;
@@ -594,7 +609,6 @@ namespace Lfc.Comprobantes.Compra
                         this.Contenedor.Controls.Add(this.EtiquetaEstado);
                         this.Contenedor.Controls.Add(this.EntradaFecha);
                         this.Contenedor.Controls.Add(this.label1);
-                        this.Contenedor.Controls.Add(this.label8);
                         this.Contenedor.Controls.Add(this.Label4);
                         this.Contenedor.Controls.Add(this.EntradaFormaPago);
                         this.Contenedor.Controls.Add(this.EntradaTipo);
@@ -610,6 +624,7 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.Add(this.Contenedor);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(640, 400);
+                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.Contenedor, 0);
                         this.Contenedor.ResumeLayout(false);
                         this.Contenedor.PerformLayout();
@@ -623,7 +638,6 @@ namespace Lfc.Comprobantes.Compra
                 internal Lui.Forms.Label EtiquetaTitulo;
                 internal Lui.Forms.ComboBox EntradaTipo;
                 internal Lui.Forms.ComboBox EntradaFormaPago;
-                internal Lui.Forms.Label label8;
                 internal Lui.Forms.TextBox EntradaFecha;
                 internal Lui.Forms.TextBox EntradaPV;
                 internal Lcc.Entrada.CodigoDetalle EntradaHaciaSituacion;

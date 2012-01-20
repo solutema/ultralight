@@ -39,7 +39,7 @@ namespace Lbl
         /// </summary>
         public static class Instanciador
         {
-                private static Assembly Ensablado;
+                internal static Assembly Ensamblado;
 
                 /// <summary>
                 /// Crea una instancia de un Lbl.ElementoDeDatos nuevo.
@@ -247,10 +247,10 @@ namespace Lbl
                                         return typeof(Lbl.Entidades.ClaveUnica);
                                 default:
                                         // Intento cargarlo mediante reflexión
-                                        if (Ensablado == null)
-                                                Ensablado = System.Reflection.Assembly.LoadFrom("Lbl.dll");
+                                        if (Ensamblado == null)
+                                                Ensamblado = System.Reflection.Assembly.LoadFrom("Lbl.dll");
 
-                                        Type Tipo = Ensablado.GetType(tablaOTipo);
+                                        Type Tipo = Ensamblado.GetType(tablaOTipo);
                                         if (Tipo != null)
                                                 return Tipo;
 

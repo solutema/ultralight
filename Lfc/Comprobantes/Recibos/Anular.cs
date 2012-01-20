@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Recibos
 {
-        public partial class Anular : Lui.Forms.DialogForm
+        public partial class Anular : Lui.Forms.ChildDialogForm
         {
                 public Anular()
                 {

@@ -403,7 +403,7 @@ namespace Lbl.Articulos
                                         // Calculo el stock según el elemento de la receta que se acabe primero
                                         return this.Connection.FieldDecimal(@"SELECT MIN(articulos.stock_actual / articulos_recetas.cantidad) FROM articulos_recetas, articulos WHERE articulos_recetas.id_item=articulos.id_articulo AND articulos_recetas.id_articulo=" + this.Id.ToString());
                                 default:
-                                        throw new NotImplementedException("ObtenerStockActual(): No se puede calcular el stock para " + this.ControlStock.ToString());
+                                        throw new Lfx.Types.DomainException("ObtenerStockActual(): No se puede calcular el stock para " + this.ControlStock.ToString());
                         }
                 }
 
@@ -427,12 +427,12 @@ namespace Lbl.Articulos
                                         else
                                                 return CantMin;
                                 default:
-                                        throw new NotImplementedException("ObtenerStockActual(Situacion): No se puede calcular el stock para " + this.ControlStock.ToString());
+                                        throw new Lfx.Types.DomainException("ObtenerStockActual(Situacion): No se puede calcular el stock para " + this.ControlStock.ToString());
                         }
 		}
 
 
-                public void MoverStock(decimal cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino, Lbl.Articulos.ColeccionDatosSeguimiento seguimiento)
+                public void MoverStock(Lbl.Comprobantes.ComprobanteConArticulos comprob, decimal cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino, Lbl.Articulos.ColeccionDatosSeguimiento seguimiento)
 		{
                         decimal Saldo;
 
@@ -540,7 +540,7 @@ namespace Lbl.Articulos
                                         if (this.ControlStock == Articulos.ControlStock.Compuesto) {
                                                 string ObsSubItems = "Movim. s/salida de " + this.ToString();
                                                 foreach (ItemReceta Itm in this.Receta) {
-                                                        Itm.Articulo.MoverStock(Itm.Cantidad * cantidad, ObsSubItems, situacionOrigen, situacionDestino, seguimiento);
+                                                        Itm.Articulo.MoverStock(comprob, Itm.Cantidad * cantidad, ObsSubItems, situacionOrigen, situacionDestino, seguimiento);
                                                 }
                                         }
 
@@ -584,6 +584,10 @@ namespace Lbl.Articulos
 			Comando.Fields.AddWithValue("saldo", Saldo);
 			Comando.Fields.AddWithValue("obs", obs);
                         Comando.Fields.AddWithValue("series", seguimiento);
+                        if (comprob == null)
+                                Comando.Fields.AddWithValue("id_comprob", null);
+                        else
+                                Comando.Fields.AddWithValue("id_comprob", comprob.Id);
 			
 			this.Connection.Execute(Comando);
 		}

@@ -265,7 +265,7 @@ namespace qGen
                                         Result = LeftValue + "<" + FormatValue(RightValue);
                                         break;
 
-                                case qGen.ComparisonOperators.NotEquals:
+                                case qGen.ComparisonOperators.NotEqual:
                                         if (m_RightValue == null)
                                                 Result = LeftValue + " IS NOT " + FormatValue(RightValue);
                                         else

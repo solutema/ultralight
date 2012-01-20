@@ -172,7 +172,7 @@ namespace Lbl.Servicios.Importar
                                         decimal Diferencia = NuevoStock - StockActual;
 
                                         if (Diferencia != 0)
-                                                Art.MoverStock(Diferencia, "Stock importado desde " + this.Nombre, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                                Art.MoverStock(null, Diferencia, "Stock importado desde " + this.Nombre, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
                                 }
                         }
                 }

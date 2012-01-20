@@ -42,6 +42,7 @@ namespace Lbl.Comprobantes
         [Lbl.Atributos.Presentacion(PanelExtendido = false)]
 	public class ComprobanteConArticulos : Comprobante
 	{
+                private ColeccionComprobanteImporte m_ComprobRelacionados = null;
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
                 private Articulos.Situacion m_SituacionOrigen, m_SituacionDestino;
                 private Lbl.Articulos.Situacion m_SituacionDestinoOriginal = null;
@@ -72,7 +73,32 @@ namespace Lbl.Comprobantes
                 {
                         base.Crear();
 
+                        this.ComprobRelacionados = new ColeccionComprobanteImporte();
                         this.Vendedor = new Lbl.Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
+                }
+
+
+                /// <summary>
+                /// Una colección con los comprobantes relacionados a este, por ejemplo las facturas o ND canceladas por esta si fuera una NC.
+                /// </summary>
+                public ColeccionComprobanteImporte ComprobRelacionados
+                {
+                        get
+                        {
+                                if (m_ComprobRelacionados == null) {
+                                        m_ComprobRelacionados = new ColeccionComprobanteImporte();
+                                        using (System.Data.DataTable TablaFacturas = Connection.Select("SELECT * FROM comprob_comprob WHERE id_comprob=" + this.Id.ToString())) {
+                                                foreach (System.Data.DataRow Factura in TablaFacturas.Rows) {
+                                                        m_ComprobRelacionados.AddWithValue(new ComprobanteConArticulos(this.Connection, System.Convert.ToInt32(Factura["id_comprob_rel"])), System.Convert.ToDecimal(Factura["importe"]));
+                                                }
+                                        }
+                                }
+                                return m_ComprobRelacionados;
+                        }
+                        set
+                        {
+                                m_ComprobRelacionados = value;
+                        }
                 }
 
                 public void Anular(bool anularPagos)
@@ -80,47 +106,21 @@ namespace Lbl.Comprobantes
                         if (this.Anulado)
                                 return;
 
-                        if (this.Tipo.EsNotaDebito) {
-                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), -this.Total, null, this, null, null, true);
-                        } else if (this.Tipo.EsNotaCredito) {
-                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), this.Total, null, this, null, null, true);
-                        } else if (this.Tipo.EsFactura) {
-                                Lbl.Articulos.Stock.MoverStockFactura(this, false);
-                                if (anularPagos) {
-                                        switch (this.FormaDePago.Tipo) {
-                                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
-                                                        // Hago un egreso de caja
-                                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
-                                                        Caja.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), this.Cliente, -this.ImporteCancelado, null, this, null, null);
-                                                        break;
-
-                                                case Lbl.Pagos.TiposFormasDePago.ChequePropio:
-                                                        Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(Connection, this);
-                                                        if (Cheque != null && Cheque.Existe)
-                                                                Cheque.Anular();
-                                                        break;
-
-                                                case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
-                                                        // Quito el saldo pagado de la cuenta corriente
-                                                        this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación Comprob. " + this.ToString(), -this.ImporteCancelado, "", this, null, null, false);
-                                                        break;
-
-                                                case Lbl.Pagos.TiposFormasDePago.Tarjeta:
-                                                        Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(Connection, this);
-                                                        if (Cupon != null && Cupon.Existe)
-                                                                Cupon.Anular();
-                                                        break;
-                                        }
-                                }
-                        }
-
                         // Marco la factura como anulada
                         qGen.Update Act = new qGen.Update(this.TablaDatos);
                         Act.Fields.AddWithValue("anulada", 1);
                         Act.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         this.Connection.Execute(Act);
 
-                        Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.Delete, this, null);
+                        if (anularPagos)
+                                // Anulos los pagos y descancelo los comprobantes
+                                this.AsentarPago(true);
+
+                        if (this.Tipo.MueveStock != 0)
+                                // Vuelvo el stock a su posición original
+                                this.MoverStock(true);
+
+                        Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.DeleteAndRevert, this, null);
                 }
 
 
@@ -273,7 +273,7 @@ namespace Lbl.Comprobantes
                                 if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(this.PV))
                                         IdPv = Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[this.PV].Id;
                                 if (IdPv == 0)
-                                        throw new InvalidOperationException("No existe el Punto de Venta " + this.PV.ToString());
+                                        throw new Lfx.Types.DomainException("No existe el Punto de Venta " + this.PV.ToString());
                                 PuntoDeVenta Pun = new PuntoDeVenta(this.Connection, IdPv);
                                 return Pun.Impresora;
                         } else {
@@ -424,27 +424,187 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-               
-		public bool HayStock()
-		{
-			//Verifica si hay suficiente stock para el comprobante
-			if (this.Articulos != null)
-			{
-				foreach (Comprobantes.DetalleArticulo Det in this.Articulos)
-				{
-					if(Det.Id > 0 && Det.Articulo != null 
-                                                && Det.Articulo.ControlStock != Lbl.Articulos.ControlStock.No 
+
+                /// <summary>
+                /// Asienta los movimientos de stock correspondientes al comprobante.
+                /// </summary>
+                /// <param name="anulacion">Indica si el movimiento es por anulación de comprobante.</param>
+                public void MoverStock(bool anulacion)
+                {
+                        if (this.Tipo.MueveStock != 0) {
+                                if (this.Tipo.EsRemito || (this.Tipo.EsFacturaNCoND && this.IdRemito == 0)) {
+                                        // Es un Remito, factura, NC o ND
+                                        // Resta lo facturado del stock
+                                        string NombreMovim = null;
+
+                                        if (anulacion)
+                                                NombreMovim = "Anulación de ";
+                                        else
+                                                NombreMovim = "Movimiento s/";
+
+                                        string NombreComprob = "comprob. ";
+
+                                        if (this.Compra)
+                                                NombreComprob += "de compra ";
+
+                                        foreach (Comprobantes.DetalleArticulo Det in this.Articulos) {
+                                                if (Det.Articulo != null && Det.Articulo.Id > 0) {
+                                                        if (anulacion) {
+                                                                Det.Articulo.MoverStock(this, Det.Cantidad,
+                                                                        NombreMovim + NombreComprob + this.ToString(),
+                                                                        this.SituacionDestino,
+                                                                        this.SituacionOrigen,
+                                                                        Det.DatosSeguimiento);
+                                                        } else {
+                                                                Det.Articulo.MoverStock(this, Det.Cantidad,
+                                                                        NombreMovim + NombreComprob + this.ToString(),
+                                                                        this.SituacionOrigen,
+                                                                        this.SituacionDestino,
+                                                                        Det.DatosSeguimiento);
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                }
+
+
+                public void AsentarPago(bool anulacion)
+                {
+                        if (this.FormaDePago == null)
+                                return;
+                        
+                        decimal ImporteMovimCtaCte = this.ImporteImpago;
+                        if (this.FormaDePago.Tipo == Pagos.TiposFormasDePago.CuentaCorriente)
+                                ImporteMovimCtaCte = this.Total;
+
+                        if (this.Tipo.DireccionCtaCte < 0)
+                                // Este tipo de comprobantes hace créditos en cuenta corriente
+                                ImporteMovimCtaCte = -ImporteMovimCtaCte;
+
+                        if (this.Compra) {
+                                // Es comprobante de compra, invierto la dirección del movimiento
+                                ImporteMovimCtaCte = -ImporteMovimCtaCte;
+                        }
+
+                        if (anulacion == false) {
+                                // Asiento el pago (sólo efectivo y cta. cte.)
+                                // El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
+                                switch (this.FormaDePago.Tipo) {
+                                        case Lbl.Pagos.TiposFormasDePago.Efectivo:
+                                                if (this.ImporteImpago > 0) {
+                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(this.Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                        CajaDiaria.Movimiento(true,
+                                                                Lbl.Cajas.Concepto.IngresosPorFacturacion,
+                                                                this.ToString(),
+                                                                this.Cliente,
+                                                                this.ImporteImpago,
+                                                                null,
+                                                                this,
+                                                                null,
+                                                                null);
+                                                        this.CancelarImporte(this.ImporteImpago, null);
+                                                }
+                                                break;
+                                        case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
+                                                this.Cliente.CuentaCorriente.Movimiento(true,
+                                                        Lbl.Cajas.Concepto.IngresosPorFacturacion,
+                                                        this.ToString(),
+                                                        ImporteMovimCtaCte,
+                                                        null,
+                                                        this,
+                                                        null,
+                                                        null);
+                                                if (this.Tipo.EsNotaCredito) {
+                                                        if (this.ComprobRelacionados == null || this.ComprobRelacionados.Count == 0) {
+                                                                // Si no hay comprobantes asociados, pero esta nota de crédito viene de un comprobante anteior
+                                                                // asocio el comprobante original a esta nota de crédito
+                                                                if (this.ComprobanteOriginal != null && this.ComprobanteOriginal.Tipo.EsFacturaOTicket) {
+                                                                        this.ComprobRelacionados = new ColeccionComprobanteImporte();
+                                                                        this.ComprobRelacionados.AddWithValue(this.ComprobanteOriginal, 0);
+                                                                }
+                                                        }
+                                                        Lbl.Comprobantes.Recibo.CancelarImpagos(this.Cliente, this.ComprobRelacionados, this, this.Compra ? -this.Total : this.Total);
+                                                }
+
+                                                decimal FacturaSaldo = this.ImporteImpago;
+                                                if (FacturaSaldo > 0) {
+                                                        decimal SaldoCtaCteAntes = -(ImporteMovimCtaCte - this.Cliente.CuentaCorriente.ObtenerSaldo(true));
+                                                        // Busca un saldo en cta cte para cancelar este comprobante
+                                                        if ((ImporteMovimCtaCte > 0 && SaldoCtaCteAntes < 0) || (ImporteMovimCtaCte < 0 && SaldoCtaCteAntes > 0)) {
+                                                                decimal SaldoACancelar = ImporteMovimCtaCte < 0 ? SaldoCtaCteAntes : -SaldoCtaCteAntes;
+
+                                                                if (SaldoACancelar > FacturaSaldo)
+                                                                        SaldoACancelar = FacturaSaldo;
+
+                                                                // Cancelo la factura con un saldo a favor que tenía en cta. cte.
+                                                                qGen.Update ActualizarComprob = new qGen.Update("comprob");
+                                                                ActualizarComprob.Fields.AddWithValue("cancelado", new qGen.SqlExpression("cancelado+" + Lfx.Types.Formatting.FormatCurrencySql(SaldoACancelar)));
+                                                                ActualizarComprob.WhereClause = new qGen.Where("id_comprob", this.Id);
+                                                                this.Connection.Execute(ActualizarComprob);
+                                                        }
+                                                }
+                                                break;
+                                }
+                        } else {
+                                // Es una anulación, invierto la dirección del movimiento
+                                ImporteMovimCtaCte = -ImporteMovimCtaCte;
+
+                                switch (this.FormaDePago.Tipo) {
+                                        case Lbl.Pagos.TiposFormasDePago.Efectivo:
+                                                // Hago un movimiento en caja diaria
+                                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                Caja.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación " + this.ToString(), this.Cliente, -ImporteMovimCtaCte, null, this, null, null);
+                                                break;
+
+                                        case Lbl.Pagos.TiposFormasDePago.ChequePropio:
+                                        case Pagos.TiposFormasDePago.ChequeTerceros:
+                                                Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(Connection, this);
+                                                if (Cheque != null && Cheque.Existe)
+                                                        Cheque.Anular();
+                                                break;
+
+                                        case Pagos.TiposFormasDePago.Caja:
+                                                throw new Lfx.Types.DomainException("No implementado: anular comprobante pagado con depósito en caja.");
+
+                                        case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
+                                                // Quito el saldo pagado de la cuenta corriente
+                                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación " + this.ToString(), ImporteMovimCtaCte, null, this, null, null);
+                                                if (this.Tipo.EsNotaCredito)
+                                                        Lbl.Comprobantes.Recibo.DescancelarImpagos(this.Cliente, this.ComprobRelacionados, this, this.Compra ? -this.Total : this.Total);
+                                                        //this.Cliente.CuentaCorriente.CancelarComprobantesConSaldo(ImporteMovimCtaCte, false);
+                                                break;
+
+                                        case Lbl.Pagos.TiposFormasDePago.Tarjeta:
+                                        case Pagos.TiposFormasDePago.OtroValor:
+                                                Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(Connection, this);
+                                                if (Cupon != null && Cupon.Existe)
+                                                        Cupon.Anular();
+                                                break;
+                                }
+                        }
+                }
+
+
+                public bool HayStock()
+                {
+                        //Verifica si hay suficiente stock para el comprobante
+                        if (this.Articulos != null) {
+                                foreach (Comprobantes.DetalleArticulo Det in this.Articulos) {
+                                        if (Det.Id > 0 && Det.Articulo != null
+                                                && Det.Articulo.ControlStock != Lbl.Articulos.ControlStock.No
                                                 && Det.Articulo.StockActual < Det.Cantidad)
-						return false;
-				}
-			}
-			return true;
-		}
+                                                return false;
+                                }
+                        }
+                        return true;
+                }
 
                 public override void OnLoad()
                 {
                         this.m_SituacionDestinoOriginal = this.SituacionDestino;
-                        
+                        this.m_ComprobRelacionados = null;
+                       
                         base.OnLoad();
                 }
 
@@ -488,24 +648,46 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public Lfx.Types.OperationResult CancelarImporte(decimal importe, Lbl.Comprobantes.Recibo recibo)
+                public Lfx.Types.OperationResult CancelarImporte(decimal importe, Lbl.Comprobantes.Comprobante comprob)
 		{
 			if(this.ImporteCancelado + importe > this.Total)
-				throw new InvalidOperationException("ComprobanteConArticulos.CancelarImporte: El importe a cancelar no puede ser mayor que el saldo impago");
+                                throw new Lfx.Types.DomainException("ComprobanteConArticulos.CancelarImporte: El importe a cancelar no puede ser mayor que el saldo impago");
 			this.ImporteCancelado += importe;
 			qGen.Update Actualizar = new qGen.Update("comprob", new qGen.Where("id_comprob", this.Id));
 			Actualizar.Fields.AddWithValue("cancelado", this.ImporteCancelado);
 			this.Connection.Execute(Actualizar);
 
-                        if (recibo != null) {
+                        if (comprob is Lbl.Comprobantes.Recibo) {
+                                Lbl.Comprobantes.Recibo recibo = comprob as Lbl.Comprobantes.Recibo;
                                 qGen.Insert AsentarComprobantesDeEsteRecibo = new qGen.Insert("recibos_comprob");
-                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_recibo", recibo.Id);
                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_comprob", this.Id);
+                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_recibo", comprob.Id);
+                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("importe", importe);
+                                this.Connection.Execute(AsentarComprobantesDeEsteRecibo);
+                        } else if (comprob is Lbl.Comprobantes.ComprobanteConArticulos) {
+                                Lbl.Comprobantes.ComprobanteConArticulos factura = comprob as Lbl.Comprobantes.ComprobanteConArticulos;
+                                qGen.Insert AsentarComprobantesDeEsteRecibo = new qGen.Insert("comprob_comprob");
+                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_comprob", factura.Id);
+                                AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_comprob_rel", this.Id);
                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("importe", importe);
                                 this.Connection.Execute(AsentarComprobantesDeEsteRecibo);
                         }
 			return new Lfx.Types.SuccessOperationResult();
 		}
+
+
+                public Lfx.Types.OperationResult DescancelarImporte(decimal importe, Lbl.Comprobantes.Comprobante comprob)
+                {
+                        if (importe > this.ImporteCancelado)
+                                throw new Lfx.Types.DomainException("ComprobanteConArticulos.CancelarImporte: El importe a cancelar no puede ser mayor que el saldo impago");
+                        this.ImporteCancelado -= importe;
+                        qGen.Update Actualizar = new qGen.Update("comprob", new qGen.Where("id_comprob", this.Id));
+                        Actualizar.Fields.AddWithValue("cancelado", this.ImporteCancelado);
+                        this.Connection.Execute(Actualizar);
+
+                        // Debería eliminar la asociación entre este comprobante y el recibo (o NC) que lo canceló orignalmente?
+                        return new Lfx.Types.SuccessOperationResult();
+                }
 
 
                 public override Lfx.Types.OperationResult Guardar()
@@ -579,6 +761,10 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("compra", this.Compra ? 1 : 0);
                         Comando.Fields.AddWithValue("estado", this.Estado);
                         Comando.Fields.AddWithValue("series", this.Articulos.DatosSeguimiento);
+                        if (this.Tipo.EsNotaCredito) {
+                                this.ImporteCancelado = this.Total;
+                                Comando.Fields.AddWithValue("cancelado", this.Total);
+                        }
 
 			this.AgregarTags(Comando);
 
@@ -588,85 +774,50 @@ namespace Lbl.Comprobantes
                         this.GuardarDetalle();
 
                         if (this.Compra) {
-                                if (this.Tipo.MueveStock) {
+                                if (this.Tipo.MueveStock != 0) {
                                         // Comprobantes de compra mueven stock al guardar
                                         Lfx.Types.OperationResult Res = VerificarSeries();
                                         if (Res.Success == false)
                                                 return Res;
                                 }
 
-                                if (this.Tipo.EsFactura && this.FormaDePago != null && this.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
-                                        decimal DiferenciaMonto;
-                                        if (this.m_RegistroOriginal == null)
-                                                DiferenciaMonto = -this.Total;
-                                        else
-                                                DiferenciaMonto = System.Convert.ToDecimal(this.m_RegistroOriginal["total"]) - this.Total;
-                                        if (DiferenciaMonto != 0)
-                                                this.Cliente.CuentaCorriente.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 21000), this.ToString(), DiferenciaMonto, null, null);
+                                if (this.Tipo.EsFacturaNCoND)
+                                        this.AsentarPago(false);
 
-                                }
+                                if (this.Tipo.MueveStock != 0) {
+                                        this.MoverStock(false);
 
-                                if (this.Tipo.EsFactura || this.Tipo.EsRemito) {
-                                        ColeccionDetalleArticulos Diferencia;
-                                        if (m_SituacionDestinoOriginal != null && this.SituacionDestino.Id == m_SituacionDestinoOriginal.Id)
-                                                Diferencia = this.m_Articulos.Diferencia(this.m_ArticulosOriginales);
-                                        else
-                                                Diferencia = this.m_Articulos.Diferencia(null);
-
-                                        foreach (DetalleArticulo Det in Diferencia) {
-                                                if (Det.Articulo != null) {
-                                                        Lbl.Articulos.Situacion SituacionProveedor = new Lbl.Articulos.Situacion(this.Connection, 998);
-                                                        Lbl.Articulos.Situacion Desde, Hacia;
-                                                        if (Det.Cantidad > 0) {
-                                                                Desde = SituacionProveedor;
-                                                                Hacia = this.SituacionDestino;
-                                                        } else {
-                                                                //Cantidad negativa. Hago el movimiento con cantidad positiva, pero en sentido inverso
-                                                                Desde = this.SituacionDestino;
-                                                                Hacia = SituacionProveedor;
-                                                        }
-
-                                                        decimal MoverCantidad = Math.Abs(Det.Cantidad);
-
-                                                        if (m_SituacionDestinoOriginal != null && this.SituacionDestino.Id != m_SituacionDestinoOriginal.Id)
-                                                                // Cambio de situación, primero devuelvo los artículos al proveedor
-                                                                Det.Articulo.MoverStock(MoverCantidad, "Edición de Compr. Proveed. " + this.ToString(), m_SituacionDestinoOriginal, SituacionProveedor, Det.DatosSeguimiento);
-
-                                                        Det.Articulo.MoverStock(MoverCantidad, "Movimiento s/Compr. Proveed. " + this.ToString(), Desde, Hacia, Det.DatosSeguimiento);
-                                                }
-                                        }
-                                }
-
-                                Lbl.ListaIds ArticulosAfectados = new Lbl.ListaIds();
-                                foreach (DetalleArticulo Det in m_Articulos) {
-                                        if (Det.IdArticulo != 0 && ArticulosAfectados.Contains(Det.IdArticulo) == false)
-                                                ArticulosAfectados.Add(Det.IdArticulo);
-                                }
-
-                                if (m_ArticulosOriginales != null) {
-                                        foreach (DetalleArticulo Det in m_ArticulosOriginales) {
-                                                if (Det.IdArticulo > 0 && ArticulosAfectados.Contains(Det.IdArticulo) == false)
+                                        Lbl.ListaIds ArticulosAfectados = new Lbl.ListaIds();
+                                        foreach (DetalleArticulo Det in m_Articulos) {
+                                                if (Det.IdArticulo != 0 && ArticulosAfectados.Contains(Det.IdArticulo) == false)
                                                         ArticulosAfectados.Add(Det.IdArticulo);
                                         }
-                                }
 
-                                if (ArticulosAfectados.Count > 0) {
-                                        string ArtCsv = ArticulosAfectados.ToString();
-                                        //Actualizo cantidades pedidas y a pedir
-                                        Connection.ExecuteSql(@"UPDATE articulos SET apedir=(
+                                        if (m_ArticulosOriginales != null) {
+                                                foreach (DetalleArticulo Det in m_ArticulosOriginales) {
+                                                        if (Det.IdArticulo > 0 && ArticulosAfectados.Contains(Det.IdArticulo) == false)
+                                                                ArticulosAfectados.Add(Det.IdArticulo);
+                                                }
+                                        }
+
+                                        if (ArticulosAfectados.Count > 0) {
+                                                string ArtCsv = ArticulosAfectados.ToString();
+                                                // Actualizo cantidades pedidas y a pedir
+                                                Connection.ExecuteSql(@"UPDATE articulos SET apedir=(
 							SELECT SUM(cantidad)
 							FROM comprob, comprob_detalle
 							WHERE comprob.id_comprob=comprob_detalle.id_comprob
 							AND comprob.compra=1
 							AND tipo_fac='NP' AND estado=50 AND comprob_detalle.id_articulo=articulos.id_articulo)
 						WHERE control_stock=1 AND id_articulo IN (" + ArtCsv + " )");
-                                        Connection.ExecuteSql(@"UPDATE articulos SET pedido=(
+                                                Connection.ExecuteSql(@"UPDATE articulos SET pedido=(
 							SELECT SUM(cantidad)
 							FROM comprob, comprob_detalle
 							WHERE comprob.id_comprob=comprob_detalle.id_comprob
 							AND comprob.compra=1
 							AND tipo_fac='PD' AND estado=50 AND comprob_detalle.id_articulo=articulos.id_articulo)
 						WHERE control_stock=1 AND id_articulo IN (" + ArtCsv + " )");
+                                        }
                                 }
                         }
 
@@ -740,26 +891,7 @@ namespace Lbl.Comprobantes
 
                 public virtual ComprobanteConArticulos Clone(Tipo tipo)
                 {
-                        Type TipoComprob;
-                        if (tipo.EsFactura) {
-                                if(this.Compra)
-                                        TipoComprob = typeof(Lbl.Comprobantes.ComprobanteDeCompra);
-                                else
-                                        TipoComprob = typeof(Lbl.Comprobantes.Factura);
-                        } else if (tipo.EsNotaCredito) {
-                                TipoComprob = typeof(Lbl.Comprobantes.NotaDeCredito);
-                        } else if (tipo.EsNotaDebito) {
-                                TipoComprob = typeof(Lbl.Comprobantes.NotaDeDebito);
-                        } else if (tipo.EsRemito) {
-                                TipoComprob = typeof(Lbl.Comprobantes.Remito);
-                        } else if (tipo.EsPresupuesto) {
-                                TipoComprob = typeof(Lbl.Comprobantes.Presupuesto);
-                        } else if (tipo.EsTicket) {
-                                TipoComprob = typeof(Lbl.Comprobantes.Ticket);
-                        } else {
-                                TipoComprob = this.GetType();   // o typeof(Lbl.Comprobantes.ComprobanteConArticulos);
-                        }
-
+                        Type TipoComprob = tipo.ObtenerTipoLbl();
                         Lbl.Comprobantes.ComprobanteConArticulos Nuevo = Lbl.Instanciador.Instanciar(TipoComprob, this.Connection) as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         Nuevo.Tipo = this.Tipo;
@@ -788,7 +920,7 @@ namespace Lbl.Comprobantes
                         return Nuevo;
                 }
 
-                public virtual ComprobanteConArticulos ConvertirEn(Tipo tipo)
+                public virtual ComprobanteConArticulos Convertir(Tipo tipo)
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Nuevo = this.Clone(tipo);
                         Nuevo.ComprobanteOriginal = this;
@@ -814,12 +946,34 @@ namespace Lbl.Comprobantes
                                 base.Tipo = value;
 
                                 if (Tipo != null) {
-                                        if (this.SituacionOrigen == null)
+                                        if (this.Compra) {
+                                                // Los comprobantes de compra mueven el stock en dirección inversa
+                                                this.SituacionOrigen = Tipo.SituacionDestino;
+                                                this.SituacionDestino = Tipo.SituacionOrigen;
+
+                                                // Es de compra. Uso "Proveedor" donde usaría "Cliente"
+                                                if (this.SituacionDestino != null && this.SituacionDestino.Id == 999)
+                                                        this.SituacionDestino = new Lbl.Articulos.Situacion(this.Connection, 998);
+                                                if (this.SituacionOrigen != null && this.SituacionOrigen.Id == 999)
+                                                        this.SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, 998);
+                                        } else {
                                                 this.SituacionOrigen = Tipo.SituacionOrigen;
-                                        if (this.SituacionDestino == null)
                                                 this.SituacionDestino = Tipo.SituacionDestino;
+                                        }
                                 }
                         }
+                }
+
+
+                public override string ToString()
+                {
+                        string Res = this.Tipo.ToString();
+                        if (this.Compra)
+                                Res += " de compra";
+                        Res += " Nº " + this.PV.ToString("0000") + "-" + this.Numero.ToString("00000000");
+                        if (this.Cliente != null)
+                                Res += " de " + this.Cliente.ToString();
+                        return Res;
                 }
 	}
 }

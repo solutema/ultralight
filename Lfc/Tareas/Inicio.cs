@@ -78,7 +78,7 @@ namespace Lfc.Tareas
                                 Filters = new Lazaro.Pres.Filters.FilterCollection() 
                                 {
                                         new Lazaro.Pres.Filters.RelationFilter("Cliente", new Lfx.Data.Relation("tickets.id_persona", "personas", "id_persona", "nombre_visible")),
-                                        new Lazaro.Pres.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("id_provincia", qGen.ComparisonOperators.NotEquals, null)),
+                                        new Lazaro.Pres.Filters.RelationFilter("Localidad", new Lfx.Data.Relation("personas.id_ciudad", "ciudades", "id_ciudad"), new qGen.Where("id_provincia", qGen.ComparisonOperators.NotEqual, null)),
                                         new Lazaro.Pres.Filters.RelationFilter("Tipo", new Lfx.Data.Relation("tickets.id_tipo_ticket", "tickets_tipos", "id_tipo_ticket")),
                                         new Lazaro.Pres.Filters.SetFilter("Estado", "tickets.estado", new string[] {
                                                 "Todos|todos",

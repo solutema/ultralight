@@ -128,7 +128,11 @@ namespace Lfc
                 public virtual Lfx.Types.OperationResult OnCreate()
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Crear)) {
-                                Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(this.Crear());
+                                Lbl.IElementoDeDatos NuevoElem = this.Crear();
+                                if (NuevoElem == null)
+                                        return new Lfx.Types.CancelOperationResult();
+
+                                Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(NuevoElem);
                                 if (FormNuevo != null) {
                                         FormNuevo.MdiParent = this.MdiParent;
                                         FormNuevo.Show();

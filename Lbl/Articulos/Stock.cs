@@ -45,51 +45,6 @@ namespace Lbl.Articulos
                         PreferCacheOnSlowLinks
                 }
 
-		public static void MoverStockFactura(Lbl.Comprobantes.ComprobanteConArticulos comprobante, bool saliente)
-		{
-			// Resta lo facturado del stock
-			string NombreMovim = null;
-
-			if (saliente)
-				NombreMovim = "Salida";
-			else
-				NombreMovim = "Ingreso";
-
-			foreach (Comprobantes.DetalleArticulo Det in comprobante.Articulos)
-			{
-
-				if (Det.Articulo != null && Det.Articulo.Id > 0)
-				{
-                                        if (saliente) {
-                                                Det.Articulo.MoverStock(Det.Cantidad,
-                                                        NombreMovim + " s/comprob. " + comprobante.ToString(),
-                                                        comprobante.SituacionOrigen,
-                                                        comprobante.SituacionDestino,
-                                                        Det.DatosSeguimiento);
-                                        } else {
-                                                Det.Articulo.MoverStock(Det.Cantidad,
-                                                        NombreMovim + " s/comprob. " + comprobante.ToString(),
-                                                        comprobante.SituacionDestino,
-                                                        comprobante.SituacionOrigen,
-                                                        Det.DatosSeguimiento);
-                                        }
-				}
-			}
-		}
-
-		public static void MoverStockComprobante(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
-		{
-                        if (comprobante.Tipo.MueveStock) {
-                                if (comprobante.Tipo.Nomenclatura == "R") {
-                                        // Es un Remito. Muevo el Stock
-                                        MoverStockFactura(comprobante, true);
-                                } else {
-                                        // Es una factura, NC o ND. Descuento el Stock, sólo si no hay Remito asociado
-                                        if (comprobante.IdRemito == 0)
-                                                MoverStockFactura(comprobante, true);
-                                }
-                        }
-		}
 
 		public static System.Drawing.Image ProductImage(Lfx.Data.Connection dataBase, int productId)
 		{

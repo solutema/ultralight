@@ -267,7 +267,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.Label1);
                         this.Name = "Anular";
-                        this.Text = "Anular";
+                        this.Text = "Anular Recibo";
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);

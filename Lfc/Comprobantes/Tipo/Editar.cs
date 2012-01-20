@@ -52,7 +52,7 @@ namespace Lfc.Comprobantes.Tipo
 
                         EntradaNombre.Text = Tipo.Nombre;
                         EntradaLetra.Text = Tipo.Nomenclatura;
-                        EntradaMueveStock.TextKey = Tipo.MueveStock ? "1" : "0";
+                        EntradaMueveStock.ValueInt = System.Convert.ToInt32(Tipo.MueveStock);
                         EntradaSituacionOrigen.Elemento = Tipo.SituacionOrigen;
                         EntradaSituacionDestino.Elemento = Tipo.SituacionDestino;
                         EntradaNumerarAl.TextKey = Tipo.NumerarAlGuardar ? "1" : (Tipo.NumerarAlImprimir ? "2" : "0");
@@ -71,7 +71,7 @@ namespace Lfc.Comprobantes.Tipo
 
                         Tipo.Nombre = EntradaNombre.Text;
                         Tipo.Nomenclatura = EntradaLetra.Text;
-                        Tipo.MueveStock = EntradaMueveStock.TextKey == "1";
+                        Tipo.MueveStock = EntradaMueveStock.ValueInt;
                         Tipo.SituacionOrigen = EntradaSituacionOrigen.Elemento as Lbl.Articulos.Situacion;
                         Tipo.SituacionDestino = EntradaSituacionDestino.Elemento as Lbl.Articulos.Situacion;
                         Tipo.NumerarAlGuardar = EntradaNumerarAl.TextKey == "1";

@@ -43,6 +43,8 @@ namespace Lbl.Comprobantes
         [Lbl.Atributos.Presentacion()]
         public class Recibo : Comprobante
         {
+                private ColeccionComprobanteImporte m_Facturas = null;
+
                 //Heredar constructor
                 public Recibo(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
@@ -61,11 +63,31 @@ namespace Lbl.Comprobantes
                         : base(dataBase, row) { }
 
 
-                public ColeccionComprobanteConArticulos Facturas { get; set; }
+                /// <summary>
+                /// Una colección conteniendo las facturas, NC o ND que cancela este recibo.
+                /// </summary>
+                public ColeccionComprobanteImporte Facturas
+                {
+                        get
+                        {
+                                //Cargo comprob asociadas al recibo
+                                m_Facturas = new ColeccionComprobanteImporte();
+                                using (System.Data.DataTable TablaFacturas = Connection.Select("SELECT * FROM recibos_comprob WHERE id_recibo=" + this.Id.ToString())) {
+                                        foreach (System.Data.DataRow Factura in TablaFacturas.Rows) {
+                                                m_Facturas.AddWithValue(new ComprobanteConArticulos(this.Connection, System.Convert.ToInt32(Factura["id_comprob"])), System.Convert.ToDecimal(Factura["importe"]));
+                                        }
+                                }
+                                return m_Facturas;
+                        }
+                        set
+                        {
+                                m_Facturas = value;
+                        }
+                }
+
                 public Cajas.Concepto Concepto { get; set; }
                 public ColeccionDeCobros Cobros = new ColeccionDeCobros();
                 public ColeccionDePagos Pagos = new ColeccionDePagos();
-                public bool CancelaCosas = true;
 
                 public override void Crear()
                 {
@@ -73,7 +95,7 @@ namespace Lbl.Comprobantes
                         
                         this.Fecha = this.Connection.ServerDateTime;
 
-                        Facturas = new ColeccionComprobanteConArticulos(this.Connection);
+                        Facturas = new ColeccionComprobanteImporte();
                         
                         if (this.Tipo == null)
                                 this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["RC"];
@@ -167,16 +189,8 @@ namespace Lbl.Comprobantes
                                 else
                                         this.ConceptoTexto = string.Empty;
 
-                                this.Facturas = new ColeccionComprobanteConArticulos(this.Connection);
                                 this.Cobros = new ColeccionDeCobros();
                                 this.Pagos = new ColeccionDePagos();
-
-                                //Cargo comprob asociadas al recibo
-                                using (System.Data.DataTable TablaFacturas = Connection.Select("SELECT * FROM recibos_comprob WHERE id_recibo=" + this.Id.ToString())) {
-                                        foreach (System.Data.DataRow Factura in TablaFacturas.Rows) {
-                                                Facturas.Add(new ComprobanteConArticulos(this.Connection, System.Convert.ToInt32(Factura["id_comprob"])));
-                                        }
-                                }
 
                                 // Cargo pagos asociados al registro
                                 // Pagos en efectivo
@@ -184,7 +198,7 @@ namespace Lbl.Comprobantes
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                                 decimal ImporteCaja = System.Convert.ToDecimal(Pago["importe"]);
                                                 if (this.DePago && ImporteCaja < 0) {
-                                                        Pago Pg = new Pago(this.Connection, Lbl.Pagos.TiposFormasDePago.Efectivo, ImporteCaja);
+                                                        Pago Pg = new Pago(this.Connection, Lbl.Pagos.TiposFormasDePago.Efectivo, -ImporteCaja);
                                                         Pg.Recibo = this;
                                                         Pagos.Add(Pg);
                                                 } else if (this.DePago == false && ImporteCaja > 0) {
@@ -273,7 +287,7 @@ namespace Lbl.Comprobantes
                                 Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                                 Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
-                                throw new InvalidOperationException("Lbl: No se puede cambiar un recibo impreso");
+                                throw new Lfx.Types.DomainException("Lbl: No se puede cambiar un recibo impreso");
                         }
 
                         if (this.Concepto != null)
@@ -285,6 +299,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("tipo_fac", this.Tipo.Nomenclatura);
                         Comando.Fields.AddWithValue("pv", this.PV);
                         Comando.Fields.AddWithValue("numero", this.Numero);
+                        Comando.Fields.AddWithValue("nombre", this.PV.ToString("0000") + "-" + this.Numero.ToString("00000000"));
                         Comando.Fields.AddWithValue("id_vendedor", Lfx.Data.Connection.ConvertZeroToDBNull(this.Vendedor.Id));
                         Comando.Fields.AddWithValue("id_cliente", Lfx.Data.Connection.ConvertZeroToDBNull(this.Cliente.Id));
                         Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
@@ -410,29 +425,139 @@ namespace Lbl.Comprobantes
                                 }
                         }
 
-                        // Doy las comprob por canceladas
-                        decimal TotalACancelar = this.Total;
+                        CancelarImpagos(this.Cliente, this.Facturas, this, this.DePago ? -this.Total : this.Total);
+                        this.Cliente.CuentaCorriente.Movimiento(true, this.Concepto, this.ConceptoTexto, this.DePago ? this.Total : -this.Total, this.Obs, null, this, null);
 
-                        if (this.Facturas != null && this.Facturas.Count > 0) {
+                        base.Guardar();
+
+                        return new Lfx.Types.SuccessOperationResult();
+                }
+
+
+                /// <summary>
+                /// Cancela el importe impago de los comprobantes en listaComprob y si sobra continúa cancelando en los comprobantes
+                /// más viejos que tengan saldo pendiente. Si continúa sobrando, deja el saldo a favor en cta. cte.
+                /// </summary>
+                /// <param name="cliente">El cliente.</param>
+                /// <param name="listaComprob">La lista de comprobantes en los cuales cancelar saldo impago.</param>
+                /// <param name="comprob">El comprobante que está cancelando saldos. Puede ser un recibo o una NC.</param>
+                /// <param name="importe">El importe total a cancelar. Puede ser negativo para hacerlo en contra del cliente.</param>
+                public static decimal CancelarImpagos(Lbl.Personas.Persona cliente, ColeccionComprobanteImporte listaComprob, Lbl.Comprobantes.Comprobante comprob, decimal importe)
+                {
+                        decimal TotalACancelar = Math.Abs(importe);
+
+                        // La dirección de los movimientos en cta. cte.
+                        // 1 = Realizar débitos en cta. cte., -1 realizar créditos en cta. cte.
+                        decimal DireccionCtaCte = importe < 0 ? 1 : -1;
+
+                        if (listaComprob != null && listaComprob.Count > 0) {
                                 // Si hay una lista de facturas, las cancelo
-                                foreach (Comprobantes.ComprobanteConArticulos Fact in this.Facturas) {
+                                foreach (ComprobanteImporte CompImp in listaComprob) {
                                         // Calculo cuanto queda por cancelar en esta factura
-                                        decimal ImportePendiente = Fact.Total - Fact.ImporteCancelado;
+                                        decimal ImportePendiente = CompImp.Comprobante.Total - CompImp.Comprobante.ImporteCancelado;
 
                                         // Intento cancelar todo
                                         decimal Cancelando = ImportePendiente;
 
-                                        // Si se acab la plata, hago un pago parcial
+                                        // Si se acabó la plata, hago un pago parcial
                                         if (Cancelando > TotalACancelar)
                                                 Cancelando = TotalACancelar;
 
                                         // Si alcanzo a cancelar algo, lo asiento
-                                        if (Cancelando > 0) {
-                                                Fact.CancelarImporte(Cancelando, this);
+                                        if (Cancelando > 0)
+                                                CompImp.Comprobante.CancelarImporte(Cancelando, comprob);
+                                        
+                                        CompImp.Importe = Cancelando;
 
-                                                if (Fact.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente)
-                                                        this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.AjustesYMovimientos, "Cancelación s/" + this.ToString(), this.DePago ? Cancelando : -Cancelando, this.Obs, Fact, this, null, false);
+                                        TotalACancelar -= Cancelando;
+                                        if (TotalACancelar <= 0)
+                                                break;
+                                }
+                        }
+
+                        if (TotalACancelar > 0) {
+                                // Si queda más saldo, sigo buscando facturas a cancelar
+                                qGen.Select SelFacConSaldo = new qGen.Select("comprob");
+                                SelFacConSaldo.WhereClause = new qGen.Where();
+                                SelFacConSaldo.WhereClause.AddWithValue("impresa", qGen.ComparisonOperators.NotEqual, 0);
+                                SelFacConSaldo.WhereClause.AddWithValue("anulada", 0);
+                                SelFacConSaldo.WhereClause.AddWithValue("numero", qGen.ComparisonOperators.GreaterThan, 0);
+                                SelFacConSaldo.WhereClause.AddWithValue("id_formapago", qGen.ComparisonOperators.In, new int[] { 1, 3, 99 });
+                                SelFacConSaldo.WhereClause.AddWithValue("cancelado", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("total"));
+                                SelFacConSaldo.WhereClause.AddWithValue("id_cliente", cliente.Id);
+                                SelFacConSaldo.WhereClause.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM", "NDA", "NDB", "NDC", "NDE", "NDM" });
+                                if (importe > 0) {
+                                        // Cancelo facturas y ND regulares
+                                        SelFacConSaldo.WhereClause.AddWithValue("compra", 0);
+                                } else {
+                                        // Cancelo facturas y de compra
+                                        SelFacConSaldo.WhereClause.AddWithValue("compra", qGen.ComparisonOperators.NotEqual, 0);
+                                }
+                                SelFacConSaldo.Order = "id_comprob";
+                                using (System.Data.DataTable FacturasConSaldo = cliente.Connection.Select(SelFacConSaldo)) {
+                                        foreach (System.Data.DataRow Factura in FacturasConSaldo.Rows) {
+                                                Lbl.Comprobantes.ComprobanteConArticulos Fact = new ComprobanteConArticulos(cliente.Connection, (Lfx.Data.Row)Factura);
+
+                                                decimal SaldoFactura = Fact.ImporteImpago;
+                                                decimal ImporteASaldar = SaldoFactura;
+
+                                                if (ImporteASaldar > TotalACancelar)
+                                                        ImporteASaldar = TotalACancelar;
+
+                                                listaComprob.AddWithValue(Fact, ImporteASaldar);
+                                                Fact.CancelarImporte(ImporteASaldar, comprob);
+
+                                                TotalACancelar -= ImporteASaldar;
+
+                                                if (TotalACancelar <= 0)
+                                                        break;
                                         }
+                                }
+                        }
+
+                        /* if (TotalACancelar > 0) {
+                                Lbl.Cajas.Concepto Conc;
+                                if (comprob is Recibo)
+                                        Conc = ((Recibo)comprob).Concepto;
+                                else
+                                        Conc = Lbl.Cajas.Concepto.IngresosPorFacturacion;
+                                cliente.CuentaCorriente.Movimiento(true, Conc, "Saldo s/" + comprob.ToString(), TotalACancelar * DireccionCtaCte, comprob.Obs, comprob as Lbl.Comprobantes.ComprobanteConArticulos, comprob as Lbl.Comprobantes.Recibo, null);
+                                cliente.CuentaCorriente.CancelarComprobantesConSaldo(TotalACancelar * -DireccionCtaCte, true);
+                                TotalACancelar = 0;
+                        } */
+
+                        // Devuelvo el sobrante
+                        return TotalACancelar;
+                }
+
+
+                public static decimal DescancelarImpagos(Lbl.Personas.Persona cliente, Lbl.Comprobantes.ColeccionComprobanteImporte listaComprob, Lbl.Comprobantes.Comprobante comprob, decimal importe)
+                {
+                        // Doy los comprob por cancelados
+                        decimal TotalACancelar = Math.Abs(importe);
+
+                        // La dirección de los movimientos en cta. cte.
+                        // 1 = Realizar débitos en cta. cte., -1 realizar créditos en cta. cte.
+                        decimal DireccionCtaCte = importe < 0 ? -1 : 1;
+
+                        //"Descancelo" comprob
+                        if (listaComprob != null && listaComprob.Count > 0) {
+                                // Si hay una lista de comprob, los descancelo
+                                foreach (ComprobanteImporte CompImp in listaComprob) {
+                                        // Intento descancelar todo
+                                        decimal Cancelando = CompImp.Importe;
+
+                                        // Si mes demasiado, hago un pago parcial
+                                        if (Cancelando > CompImp.Comprobante.ImporteCancelado)
+                                                Cancelando = CompImp.Comprobante.ImporteCancelado;
+
+                                        // Si se acabó la plata, hago un pago parcial
+                                        if (Cancelando > TotalACancelar)
+                                                Cancelando = TotalACancelar;
+
+                                        // Si alcanzo a cancelar algo, lo asiento
+                                        if (Cancelando > 0)
+                                                CompImp.Comprobante.DescancelarImporte(Cancelando, comprob);
 
                                         TotalACancelar = TotalACancelar - Cancelando;
                                         if (TotalACancelar == 0)
@@ -441,40 +566,58 @@ namespace Lbl.Comprobantes
                         }
 
                         if (TotalACancelar > 0) {
-                                // Si queda más saldo, sigo buscando facturas a cancelar
-                                using (System.Data.DataTable FacturasConSaldo = this.Connection.Select("SELECT * FROM comprob WHERE impresa>0 AND anulada=0 AND numero>0 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM') AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Cliente.Id.ToString() + " ORDER BY id_comprob")) {
-
-                                        decimal ImporteRestante = this.Total;
-
+                                // Si queda más saldo, sigo buscando facturas a descancelar
+                                qGen.Select SelFacConSaldo = new qGen.Select("comprob");
+                                SelFacConSaldo.WhereClause = new qGen.Where();
+                                SelFacConSaldo.WhereClause.AddWithValue("impresa", qGen.ComparisonOperators.NotEqual, 0);
+                                SelFacConSaldo.WhereClause.AddWithValue("anulada", 0);
+                                SelFacConSaldo.WhereClause.AddWithValue("numero", qGen.ComparisonOperators.GreaterThan, 0);
+                                SelFacConSaldo.WhereClause.AddWithValue("id_formapago", qGen.ComparisonOperators.In, new int[] { 1, 3, 99 });
+                                SelFacConSaldo.WhereClause.AddWithValue("cancelado", qGen.ComparisonOperators.GreaterThan, 0);
+                                SelFacConSaldo.WhereClause.AddWithValue("id_cliente", cliente.Id);
+                                SelFacConSaldo.WhereClause.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM", "NDA", "NDB", "NDC", "NDE", "NDM" });
+                                if (importe > 0) {
+                                        // Cancelo facturas y ND regulares
+                                        SelFacConSaldo.WhereClause.AddWithValue("compra", 0);
+                                } else {
+                                        // Cancelo facturas y de compra
+                                        SelFacConSaldo.WhereClause.AddWithValue("compra", qGen.ComparisonOperators.NotEqual, 0);
+                                }
+                                SelFacConSaldo.Order = "id_comprob DESC";
+                                using (System.Data.DataTable FacturasConSaldo = cliente.Connection.Select(SelFacConSaldo)) {
                                         foreach (System.Data.DataRow Factura in FacturasConSaldo.Rows) {
-                                                Lbl.Comprobantes.ComprobanteConArticulos Fact = new ComprobanteConArticulos(this.Connection, (Lfx.Data.Row)Factura);
+                                                Lbl.Comprobantes.ComprobanteConArticulos Fact = new ComprobanteConArticulos(cliente.Connection, (Lfx.Data.Row)Factura);
 
-                                                decimal SaldoFactura = Fact.Total - Fact.ImporteCancelado;
+                                                decimal SaldoFactura = Fact.ImporteCancelado;
                                                 decimal ImporteASaldar = SaldoFactura;
 
-                                                if (ImporteASaldar > Math.Abs(ImporteRestante))
-                                                        ImporteASaldar = Math.Abs(ImporteRestante);
+                                                if (ImporteASaldar > TotalACancelar)
+                                                        ImporteASaldar = TotalACancelar;
 
-                                                this.Facturas.Add(Fact);
-                                                Fact.CancelarImporte(ImporteASaldar, this);
+                                                Fact.DescancelarImporte(ImporteASaldar, comprob);
 
-                                                ImporteRestante += ImporteASaldar;
+                                                TotalACancelar -= ImporteASaldar;
 
-                                                if (ImporteRestante >= 0)
+                                                if (TotalACancelar <= 0)
                                                         break;
                                         }
                                 }
                         }
 
-                        if (TotalACancelar > 0) {
-                                Cliente.CuentaCorriente.Movimiento(true, this.Concepto, "Saldo s/" + this.ToString(), this.DePago ? TotalACancelar : -TotalACancelar, this.Obs, null, this, null, this.CancelaCosas);
+                        /* if (TotalACancelar > 0) {
+                                Lbl.Cajas.Concepto Conc;
+                                if (comprob is Recibo)
+                                        Conc = ((Recibo)comprob).Concepto;
+                                else
+                                        Conc = Lbl.Cajas.Concepto.AjustesYMovimientos;
+                                cliente.CuentaCorriente.Movimiento(true, Conc, "Anulación de " + comprob.ToString(), TotalACancelar * DireccionCtaCte, comprob.Obs, comprob as Lbl.Comprobantes.ComprobanteConArticulos, comprob as Lbl.Comprobantes.Recibo, null);
                                 TotalACancelar = 0;
-                        }
+                        } */
 
-                        base.Guardar();
-
-                        return new Lfx.Types.SuccessOperationResult();
+                        // Devuelvo el sobrante
+                        return TotalACancelar;
                 }
+
 
                 public void Anular()
                 {
@@ -499,44 +642,8 @@ namespace Lbl.Comprobantes
                                         }
                                 }
 
-                                // Doy las comprob por canceladas
-                                decimal TotalACancelar = this.Total;
-
-                                //"Descancelo" comprob
-                                if (this.Facturas != null && this.Facturas.Count > 0) {
-                                        // Si hay una lista de comprob, las descancelo
-                                        foreach (Comprobantes.ComprobanteConArticulos Fact in this.Facturas) {
-                                                // Calculo cuanto queda por cancelar en esta factura
-                                                decimal ImportePendiente = Fact.ImporteCancelado;
-
-                                                // Intento cancelar todo
-                                                decimal Cancelando = ImportePendiente;
-
-                                                // Si se acab la plata, hago un pago parcial
-                                                if (Cancelando > TotalACancelar)
-                                                        Cancelando = TotalACancelar;
-
-                                                // Si alcanzo a cancelar algo, lo asiento
-                                                if (Cancelando > 0) {
-                                                        if (Fact.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente)
-                                                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.AjustesYMovimientos, "Anulación de " + this.ToString(), this.DePago ? -Cancelando : Cancelando, this.Obs, Fact, this, null, false);
-
-                                                        qGen.Update ActualizarCancelado = new qGen.Update("comprob");
-                                                        ActualizarCancelado.Fields.AddWithValue("cancelado", new qGen.SqlExpression("cancelado-" + Lfx.Types.Formatting.FormatCurrencySql(Cancelando)));
-                                                        ActualizarCancelado.WhereClause = new qGen.Where("id_comprob", Fact.Id);
-                                                        this.Connection.Execute(ActualizarCancelado);
-                                                }
-
-                                                TotalACancelar = TotalACancelar - Cancelando;
-                                                if (TotalACancelar == 0)
-                                                        break;
-                                        }
-                                }
-
-                                if (TotalACancelar > 0) {
-                                        this.Cliente.CuentaCorriente.Movimiento(true, this.Concepto, "Anulación de " + this.ToString(), this.DePago ? -TotalACancelar : TotalACancelar, string.Empty, null, this, null, false);
-                                        TotalACancelar = 0;
-                                }
+                                DescancelarImpagos(this.Cliente, this.Facturas, this, this.DePago ? -this.Total : this.Total);
+                                this.Cliente.CuentaCorriente.Movimiento(true, this.Concepto, "Anulación de " + this.ToString(), this.DePago ? -this.Total : this.Total, this.Obs, null, this, null);
                         }
                 }
         }

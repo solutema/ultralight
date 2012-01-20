@@ -63,7 +63,7 @@ namespace Cargador
                                                 Elevate();
                                         } catch {
                                                 // No se pudo elevar. Se va a ejecutar Lázaro sin privilegios.
-                                                EjecutarLazaro();
+                                                EjecutarLazaro("/ignoreupdates");
                                         }
                                         return;
                                 } else {
@@ -102,7 +102,7 @@ namespace Cargador
                                 }
                         }
                         
-                        EjecutarLazaro();
+                        EjecutarLazaro(null);
                 }
 
 
@@ -121,11 +121,13 @@ namespace Cargador
                 }
 
 
-                public static void EjecutarLazaro()
+                public static void EjecutarLazaro(string extraParams)
                 {
                         string[] ParametrosAPasar = System.Environment.GetCommandLineArgs();
                         ParametrosAPasar[0] = "";
                         string Params = string.Join(" ", ParametrosAPasar).Trim();
+                        if (extraParams != null)
+                                Params += " " + extraParams;
                         string ExeName = "Lazaro.exe";
 
                         System.Console.WriteLine("Ejecutando " + ExeName);

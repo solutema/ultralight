@@ -347,6 +347,9 @@ namespace Lcc.Entrada
 
                 private void MostrarBuscador(string valorIncial)
                 {
+                        if (this.ReadOnly || this.TemporaryReadOnly)
+                                return;
+
                         using (Statics.DetailBoxQuickSelect = new AuxForms.DetailBoxQuickSelect()) {
                                 Statics.DetailBoxQuickSelect.Owner = this.ParentForm;
                                 Statics.DetailBoxQuickSelect.ElementoTipo = this.ElementoTipo;

@@ -91,19 +91,28 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaNombre.AutoNav = true;
                         this.EntradaNombre.AutoTab = true;
+                        this.EntradaNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = null;
+                        this.EntradaNombre.Prefijo = "";
+                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(320, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
                         // 
+                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(116, 24);
@@ -115,19 +124,28 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaLetra.AutoNav = true;
                         this.EntradaLetra.AutoTab = true;
+                        this.EntradaLetra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaLetra.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaLetra.DecimalPlaces = -1;
+                        this.EntradaLetra.FieldName = null;
                         this.EntradaLetra.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaLetra.Location = new System.Drawing.Point(120, 32);
+                        this.EntradaLetra.MaxLength = 32767;
                         this.EntradaLetra.MultiLine = false;
                         this.EntradaLetra.Name = "EntradaLetra";
                         this.EntradaLetra.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaLetra.PasswordChar = '\0';
+                        this.EntradaLetra.PlaceholderText = null;
+                        this.EntradaLetra.Prefijo = "";
+                        this.EntradaLetra.ReadOnly = false;
                         this.EntradaLetra.SelectOnFocus = true;
                         this.EntradaLetra.Size = new System.Drawing.Size(320, 24);
+                        this.EntradaLetra.Sufijo = "";
                         this.EntradaLetra.TabIndex = 3;
                         // 
                         // label1
                         // 
+                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 32);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(116, 24);
@@ -137,6 +155,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label2
                         // 
+                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 64);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(116, 24);
@@ -146,21 +165,29 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaMueveStock
                         // 
+                        this.EntradaMueveStock.AlwaysExpanded = false;
                         this.EntradaMueveStock.AutoNav = true;
                         this.EntradaMueveStock.AutoTab = true;
+                        this.EntradaMueveStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaMueveStock.FieldName = null;
                         this.EntradaMueveStock.Location = new System.Drawing.Point(120, 64);
+                        this.EntradaMueveStock.MaxLength = 32767;
                         this.EntradaMueveStock.Name = "EntradaMueveStock";
                         this.EntradaMueveStock.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaMueveStock.PlaceholderText = null;
+                        this.EntradaMueveStock.ReadOnly = false;
                         this.EntradaMueveStock.SetData = new string[] {
-        "Si|1",
+        "Saliente|-1",
+        "Entrante|1",
         "No|0"};
-                        this.EntradaMueveStock.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 24);
                         this.EntradaMueveStock.TabIndex = 5;
                         this.EntradaMueveStock.TextKey = "1";
                         this.EntradaMueveStock.TextChanged += new System.EventHandler(this.EntradaMueveStock_TextChanged);
                         // 
                         // label7
                         // 
+                        this.label7.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label7.Location = new System.Drawing.Point(64, 100);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(76, 24);
@@ -172,25 +199,30 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSituacionOrigen.AutoNav = true;
                         this.EntradaSituacionOrigen.AutoTab = true;
+                        this.EntradaSituacionOrigen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaSituacionOrigen.CanCreate = true;
                         this.EntradaSituacionOrigen.DataTextField = "nombre";
+                        this.EntradaSituacionOrigen.DataValueField = "id_situacion";
+                        this.EntradaSituacionOrigen.ExtraDetailFields = "";
+                        this.EntradaSituacionOrigen.FieldName = null;
                         this.EntradaSituacionOrigen.Filter = "";
                         this.EntradaSituacionOrigen.FreeTextCode = "";
-                        this.EntradaSituacionOrigen.DataValueField = "id_situacion";
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(140, 100);
                         this.EntradaSituacionOrigen.MaxLength = 200;
                         this.EntradaSituacionOrigen.Name = "EntradaSituacionOrigen";
                         this.EntradaSituacionOrigen.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSituacionOrigen.PlaceholderText = "Sin especificar";
+                        this.EntradaSituacionOrigen.ReadOnly = false;
                         this.EntradaSituacionOrigen.Required = true;
                         this.EntradaSituacionOrigen.Size = new System.Drawing.Size(240, 24);
                         this.EntradaSituacionOrigen.TabIndex = 7;
                         this.EntradaSituacionOrigen.Table = "articulos_situaciones";
                         this.EntradaSituacionOrigen.Text = "0";
                         this.EntradaSituacionOrigen.TextDetail = "";
-                        this.EntradaSituacionOrigen.PlaceholderText = "Sin especificar";
                         // 
                         // label3
                         // 
+                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label3.Location = new System.Drawing.Point(64, 128);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(76, 24);
@@ -202,41 +234,51 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSituacionDestino.AutoNav = true;
                         this.EntradaSituacionDestino.AutoTab = true;
+                        this.EntradaSituacionDestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaSituacionDestino.CanCreate = true;
                         this.EntradaSituacionDestino.DataTextField = "nombre";
+                        this.EntradaSituacionDestino.DataValueField = "id_situacion";
+                        this.EntradaSituacionDestino.ExtraDetailFields = "";
+                        this.EntradaSituacionDestino.FieldName = null;
                         this.EntradaSituacionDestino.Filter = "";
                         this.EntradaSituacionDestino.FreeTextCode = "";
-                        this.EntradaSituacionDestino.DataValueField = "id_situacion";
                         this.EntradaSituacionDestino.Location = new System.Drawing.Point(140, 128);
                         this.EntradaSituacionDestino.MaxLength = 200;
                         this.EntradaSituacionDestino.Name = "EntradaSituacionDestino";
                         this.EntradaSituacionDestino.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSituacionDestino.PlaceholderText = "Sin especificar";
+                        this.EntradaSituacionDestino.ReadOnly = false;
                         this.EntradaSituacionDestino.Required = true;
                         this.EntradaSituacionDestino.Size = new System.Drawing.Size(240, 24);
                         this.EntradaSituacionDestino.TabIndex = 9;
                         this.EntradaSituacionDestino.Table = "articulos_situaciones";
                         this.EntradaSituacionDestino.Text = "0";
                         this.EntradaSituacionDestino.TextDetail = "";
-                        this.EntradaSituacionDestino.PlaceholderText = "Sin especificar";
                         // 
                         // EntradaNumerarAl
                         // 
+                        this.EntradaNumerarAl.AlwaysExpanded = false;
                         this.EntradaNumerarAl.AutoNav = true;
                         this.EntradaNumerarAl.AutoTab = true;
+                        this.EntradaNumerarAl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaNumerarAl.FieldName = null;
                         this.EntradaNumerarAl.Location = new System.Drawing.Point(120, 164);
+                        this.EntradaNumerarAl.MaxLength = 32767;
                         this.EntradaNumerarAl.Name = "EntradaNumerarAl";
                         this.EntradaNumerarAl.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNumerarAl.PlaceholderText = null;
+                        this.EntradaNumerarAl.ReadOnly = false;
                         this.EntradaNumerarAl.SetData = new string[] {
         "Manualmente|0",
         "Cuando se crea el comprobante|1",
         "Cuando se imprime el comprobante|2"};
                         this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 24);
                         this.EntradaNumerarAl.TabIndex = 11;
-                        this.EntradaNumerarAl.Text = "Cuando se crea el comprobante";
                         this.EntradaNumerarAl.TextKey = "1";
                         // 
                         // label4
                         // 
+                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 164);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(116, 24);
@@ -246,21 +288,27 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaImprimirRepetir
                         // 
+                        this.EntradaImprimirRepetir.AlwaysExpanded = false;
                         this.EntradaImprimirRepetir.AutoNav = true;
                         this.EntradaImprimirRepetir.AutoTab = true;
+                        this.EntradaImprimirRepetir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaImprimirRepetir.FieldName = null;
                         this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 244);
+                        this.EntradaImprimirRepetir.MaxLength = 32767;
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
                         this.EntradaImprimirRepetir.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImprimirRepetir.PlaceholderText = null;
+                        this.EntradaImprimirRepetir.ReadOnly = false;
                         this.EntradaImprimirRepetir.SetData = new string[] {
         "Si|1",
         "No|0"};
                         this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 24);
                         this.EntradaImprimirRepetir.TabIndex = 13;
-                        this.EntradaImprimirRepetir.Text = "Si";
                         this.EntradaImprimirRepetir.TextKey = "1";
                         // 
                         // label6
                         // 
+                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label6.Location = new System.Drawing.Point(0, 244);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(376, 24);
@@ -270,21 +318,27 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaImprimirModificar
                         // 
+                        this.EntradaImprimirModificar.AlwaysExpanded = false;
                         this.EntradaImprimirModificar.AutoNav = true;
                         this.EntradaImprimirModificar.AutoTab = true;
+                        this.EntradaImprimirModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaImprimirModificar.FieldName = null;
                         this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 276);
+                        this.EntradaImprimirModificar.MaxLength = 32767;
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
                         this.EntradaImprimirModificar.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImprimirModificar.PlaceholderText = null;
+                        this.EntradaImprimirModificar.ReadOnly = false;
                         this.EntradaImprimirModificar.SetData = new string[] {
         "Si|1",
         "No|0"};
                         this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 24);
                         this.EntradaImprimirModificar.TabIndex = 15;
-                        this.EntradaImprimirModificar.Text = "Si";
                         this.EntradaImprimirModificar.TextKey = "1";
                         // 
                         // label8
                         // 
+                        this.label8.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label8.Location = new System.Drawing.Point(0, 276);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(376, 24);
@@ -294,21 +348,27 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaImprimirGuardar
                         // 
+                        this.EntradaImprimirGuardar.AlwaysExpanded = false;
                         this.EntradaImprimirGuardar.AutoNav = true;
                         this.EntradaImprimirGuardar.AutoTab = true;
+                        this.EntradaImprimirGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaImprimirGuardar.FieldName = null;
                         this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 308);
+                        this.EntradaImprimirGuardar.MaxLength = 32767;
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
                         this.EntradaImprimirGuardar.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImprimirGuardar.PlaceholderText = null;
+                        this.EntradaImprimirGuardar.ReadOnly = false;
                         this.EntradaImprimirGuardar.SetData = new string[] {
         "Si|1",
         "No|0"};
                         this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 24);
                         this.EntradaImprimirGuardar.TabIndex = 17;
-                        this.EntradaImprimirGuardar.Text = "Si";
                         this.EntradaImprimirGuardar.TextKey = "1";
                         // 
                         // label9
                         // 
+                        this.label9.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label9.Location = new System.Drawing.Point(0, 308);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(376, 24);
@@ -318,8 +378,9 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // GroupLabel
                         // 
-                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.GroupLabel.Location = new System.Drawing.Point(468, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(368, 24);
@@ -330,9 +391,9 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // Listado
                         // 
-                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColCod,
@@ -379,12 +440,14 @@ namespace Lfc.Comprobantes.Tipo
                         // BotonQuitar
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonQuitar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(620, 308);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonQuitar.ReadOnly = false;
                         this.BotonQuitar.Size = new System.Drawing.Size(104, 28);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "";
@@ -395,12 +458,14 @@ namespace Lfc.Comprobantes.Tipo
                         // BotonAgregar
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(732, 308);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonAgregar.ReadOnly = false;
                         this.BotonAgregar.Size = new System.Drawing.Size(104, 28);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregar.Subtext = "F6";
@@ -435,6 +500,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.Add(this.label6);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(838, 337);
+                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.label6, 0);
                         this.Controls.SetChildIndex(this.label8, 0);
                         this.Controls.SetChildIndex(this.label9, 0);

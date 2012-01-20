@@ -80,7 +80,7 @@ namespace Lbl.CuentasCorrientes
                 /// Calcula el saldo actual de la cuenta corriente.
                 /// </summary>
                 /// <returns>El monto adeudado (puede ser positivo o negativo) en la cuenta corriente.</returns>
-                public decimal Saldo(bool forUpdate)
+                public decimal ObtenerSaldo(bool forUpdate)
                 {
                         qGen.Select SelSaldo = new qGen.Select(this.TablaDatos, forUpdate);
                         SelSaldo.Fields = "saldo";
@@ -92,7 +92,7 @@ namespace Lbl.CuentasCorrientes
                 }
 
 
-                public decimal SaldoAFecha(DateTime date)
+                public decimal ObtenerSaldoAFecha(DateTime date)
                 {
                         qGen.Select SelSaldo = new qGen.Select(this.TablaDatos, false);
                         SelSaldo.Fields = "saldo";
@@ -138,7 +138,7 @@ namespace Lbl.CuentasCorrientes
                         string obs,
                         Dictionary<string, object> extras)
                 {
-                        this.Movimiento(auto, concepto, textoConcepto, importeDebito, obs, null, null, null, false, extras);
+                        this.Movimiento(auto, concepto, textoConcepto, importeDebito, obs, null, null, null, extras);
                 }
 
                 public void Movimiento(bool auto,
@@ -148,10 +148,9 @@ namespace Lbl.CuentasCorrientes
                         string obs,
                         Lbl.Comprobantes.ComprobanteConArticulos comprob,
                         Lbl.Comprobantes.Recibo recibo,
-                        string textoComprob,
-                        bool cancelaCosas)
+                        string textoComprob)
                 {
-                        this.Movimiento(auto, concepto, textoConcepto, importeDebito, obs, comprob, recibo, textoComprob, cancelaCosas, null);
+                        this.Movimiento(auto, concepto, textoConcepto, importeDebito, obs, comprob, recibo, textoComprob, null);
                 }
 
                 /// <summary>
@@ -164,7 +163,6 @@ namespace Lbl.CuentasCorrientes
                 /// <param name="obs">Observaciones.</param>
                 /// <param name="comprob">El comprobante asociado a este movimiento.</param>
                 /// <param name="recibo">El recibo asociado a este movimiento.</param>
-                /// <param name="cancelaCosas">Indica si el monto del movimiento se usa para cancelar comprobantes impagos.</param>
                 /// <param name="textoComprob">Un texto sobre los comprobantes asociados al sistema.</param>
                 /// <param name="extras">Colección de campos adicionales para el registro.</param>
                 public void Movimiento(bool auto, 
@@ -175,10 +173,9 @@ namespace Lbl.CuentasCorrientes
                         Lbl.Comprobantes.ComprobanteConArticulos comprob,
                         Lbl.Comprobantes.Recibo recibo,
                         string textoComprob,
-                        bool cancelaCosas,
                         Dictionary<string, object> extras)
                 {
-                        decimal SaldoActual = this.Saldo(true);
+                        decimal SaldoActual = this.ObtenerSaldo(true);
                         qGen.Insert Comando= new qGen.Insert(this.Connection, this.TablaDatos);
 				
                         Comando.Fields.AddWithValue("auto", auto ? (int)1 : (int)0);
@@ -208,90 +205,135 @@ namespace Lbl.CuentasCorrientes
                                 }
                         }
                         this.Connection.Execute(Comando);
-
-                        if (cancelaCosas) {
-                                string SqlWhere = "impresa>0 AND anulada=0 AND numero>0 AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=" + this.Persona.Id.ToString();
-                                if (importeDebito < 0) {
-                                        // Es un crédito (débito negativo)
-                                        // Cancelo saldos en facturas, notas de débito y notas de crédito de compra
-                                        SqlWhere += @" AND (
-                                                        (compra=0 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM'))
-                                                        OR
-                                                        (compra=1 AND tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM'))
-                                                         )";
-                                } else {
-                                        // Es un débito. Cancelo comprobantes de compra, o Notas de Crédito
-                                        SqlWhere += @" AND (
-                                                        (compra=1 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM'))
-                                                        OR
-                                                        (compra=0 AND tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM'))
-                                                         )";
-                                }
-                                System.Data.DataTable FacturasConSaldo = this.Connection.Select("SELECT id_comprob,total,cancelado FROM comprob WHERE " + SqlWhere + " ORDER BY id_comprob");
+                }
 
 
-                                decimal ImporteRestante = importeDebito;
+                /// <summary>
+                /// Da por pagado (direccion = 1) o despagado (retrotrae el pago) de uno o más comprobantes con saldo.
+                /// </summary>
+                /// <param name="importeDebito">El importe a cancelar de los comprobantes. Un importe negativo expresa descancelar comprobantes.</param>
+                /// <param name="cancelarPrimero">Indica si debo cancelar primero y luego descancelar (operación normal) o hacerlo en el ordne inverso (anulación de operación normal).</param>
+                public void CancelarComprobantesConSaldo(decimal importeDebito, bool cancelarPrimero)
+                {
+                        decimal ImporteCancelado;
 
-                                foreach (System.Data.DataRow Factura in FacturasConSaldo.Rows) {
-                                        decimal SaldoFactura = System.Convert.ToDecimal(Factura["total"]) - System.Convert.ToDecimal(Factura["cancelado"]);
-                                        decimal ImporteASaldar = SaldoFactura;
+                        if(cancelarPrimero) {
+                                ImporteCancelado = CancelarComprobantes(importeDebito);
+                                if (importeDebito > 0)
+                                        importeDebito -= ImporteCancelado;
+                                else
+                                        importeDebito += ImporteCancelado;
 
-                                        if (ImporteASaldar > Math.Abs(ImporteRestante))
-                                                ImporteASaldar = Math.Abs(ImporteRestante);
+                                // Si todavía queda más saldo...
+                                if (importeDebito != 0)
+                                        DesCancelarComprobantes(importeDebito);
+                        } else {
+                                ImporteCancelado = DesCancelarComprobantes(importeDebito);
+                                if (importeDebito > 0)
+                                        importeDebito -= ImporteCancelado;
+                                else
+                                        importeDebito += ImporteCancelado;
 
-                                        qGen.Update Act = new qGen.Update("comprob");
-                                        Act.Fields.AddWithValue("cancelado", System.Convert.ToDecimal(Factura["cancelado"]) + ImporteASaldar);
-                                        Act.WhereClause = new qGen.Where("id_comprob", System.Convert.ToInt32(Factura["id_comprob"]));
-                                        this.Connection.Execute(Act);
-                                        ImporteRestante += ImporteASaldar;
-
-                                        if (ImporteRestante >= 0)
-                                                break;
-                                }
+                                // Si todavía queda más saldo...
+                                if (importeDebito != 0)
+                                        CancelarComprobantes(-importeDebito);
                         }
                 }
 
+
                 /// <summary>
-                /// Ingresa un comprobante (factura, nota de crédito o nota de débito) a la cuenta corriente, realizando el movimiento correspondiente.
+                /// Descancela comprobantes hasta el importe solicitado.
                 /// </summary>
-                /// <param name="comprob">El comprobante a ingresar.</param>
-                public void IngresarComprobante(Comprobantes.ComprobanteConArticulos comprob)
+                /// <param name="importe">El importe a descancelar.</param>
+                private decimal DesCancelarComprobantes(decimal importe)
                 {
-                        if (comprob.Cliente.Id != this.Persona.Id)
-                                throw new InvalidOperationException("La factura se que ingresa no corresponde al cliente");
-                        
-                        if(comprob.Compra)
-                                throw new InvalidOperationException("La factura se que ingresa no corresponde al cliente");
+                        return 0;
+                }
 
-                        decimal SaldoCtaCteAntes = this.Saldo(true);
 
-                        this.Movimiento(true,
-                                Lbl.Cajas.Concepto.IngresosPorFacturacion,
-                                comprob.ToString(),
-                                comprob.Tipo.EsNotaCredito ? -comprob.Total : comprob.Total,
-                                null,
-                                comprob,
-                                null,
-                                null,
-                                comprob.Tipo.EsFacturaNCoND);
-                        decimal FacturaSaldo = comprob.Total - comprob.ImporteCancelado;
+                /// <summary>
+                /// Cancela saldos en comprobantes hasta el importe solicitado.
+                /// </summary>
+                /// <param name="importe">El importe a cancelar.</param>
+                /// <returns>El importe cancelado. Puede ser igual o menor al importe solicitado.</returns>
+                private decimal CancelarComprobantes(decimal importe)
+                {
+                        qGen.Where WhereConSaldo = new qGen.Where();
+                        WhereConSaldo.AddWithValue("impresa", qGen.ComparisonOperators.NotEqual, 0);
+                        WhereConSaldo.AddWithValue("anulada", 0);
+                        WhereConSaldo.AddWithValue("numero", qGen.ComparisonOperators.NotEqual, 0);
+                        WhereConSaldo.AddWithValue("id_formapago", qGen.ComparisonOperators.In, new int[] { 1, 3, 99 });
+                        WhereConSaldo.AddWithValue("id_cliente", this.Persona.Id);
+                        WhereConSaldo.AddWithValue("cancelado", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("total"));
+                        // impresa>0 AND anulada=0 AND numero>0 AND id_formapago IN (1, 3, 99) AND cancelado<total AND id_cliente=this.Persona.Id
 
-                        if (FacturaSaldo > 0) {
-                                // Busca un saldo en cta cte para cancelar este comprobante
-                                if ((comprob.Tipo.EsNotaCredito && SaldoCtaCteAntes > 0)
-                                        || (comprob.Tipo.EsNotaCredito == false && SaldoCtaCteAntes < 0)) {
-                                        decimal SaldoACancelar = comprob.Tipo.EsNotaCredito ? SaldoCtaCteAntes : -SaldoCtaCteAntes;
+                        if (importe > 0) {
+                                // Es un crédito, cancelo Facturas y Notas de Débito de venta y Notas de Crédito de compra
+                                qGen.Where WhereTipoCredVenta = new qGen.Where();
+                                WhereTipoCredVenta.AddWithValue("compra", 0);
+                                WhereTipoCredVenta.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM", "NDA", "NDB", "NDC", "NDE", "NDM", "T" });
 
-                                        if (SaldoACancelar > FacturaSaldo)
-                                                SaldoACancelar = FacturaSaldo;
+                                qGen.Where WhereTipoCredCompra = new qGen.Where();
+                                WhereTipoCredCompra.AddWithValue("compra", 1);
+                                WhereTipoCredCompra.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "NCA", "NCB", "NCC", "NCE", "NCM" });
 
-                                        // Cancelo la factura con un saldo a favor que tena en cta. cte.
-                                        qGen.Update ActualizarComprob = new qGen.Update("comprob");
-                                        ActualizarComprob.Fields.AddWithValue("cancelado", new qGen.SqlExpression("cancelado+" + Lfx.Types.Formatting.FormatCurrencySql(SaldoACancelar)));
-                                        ActualizarComprob.WhereClause = new qGen.Where("id_comprob", comprob.Id);
-                                        this.Connection.Execute(ActualizarComprob);
-                                }
+                                qGen.Where WhereTipoCred = new qGen.Where(qGen.AndOr.Or);
+                                WhereTipoCred.AddWithValue(WhereTipoCredVenta);
+                                WhereTipoCred.AddWithValue(WhereTipoCredCompra);
+
+                                WhereConSaldo.AddWithValue(WhereTipoCred);
+
+                                /*  AND (compra=0 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')
+                                    OR (compra=1 AND tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') */
+
+                        } else {
+                                // Es un débito. Cancelo Notas de Crédito de venta y Facturas y Notas de Débito de compra
+                                qGen.Where WhereTipoCredVenta = new qGen.Where();
+                                WhereTipoCredVenta.AddWithValue("compra", 1);
+                                WhereTipoCredVenta.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM", "NDA", "NDB", "NDC", "NDE", "NDM", "T" });
+
+                                qGen.Where WhereTipoCredCompra = new qGen.Where();
+                                WhereTipoCredCompra.AddWithValue("compra", 0);
+                                WhereTipoCredCompra.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "NCA", "NCB", "NCC", "NCE", "NCM" });
+
+                                qGen.Where WhereTipoCred = new qGen.Where(qGen.AndOr.Or);
+                                WhereTipoCred.AddWithValue(WhereTipoCredVenta);
+                                WhereTipoCred.AddWithValue(WhereTipoCredCompra);
+
+                                WhereConSaldo.AddWithValue(WhereTipoCred);
+
+                                /*  AND (compra=1 AND tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM', 'NDA', 'NDB', 'NDC', 'NDE', 'NDM')
+                                    OR (compra=0 AND tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM') */
                         }
+
+                        qGen.Select SelFacturasConSaldo = new qGen.Select("comprob", true);
+                        SelFacturasConSaldo.Fields = "id_comprob,total,cancelado";
+                        SelFacturasConSaldo.WhereClause = WhereConSaldo;
+                        SelFacturasConSaldo.Order = "id_comprob";
+                        System.Data.DataTable FacturasConSaldo = this.Connection.Select(SelFacturasConSaldo);
+
+                        decimal ImporteCancelar = Math.Abs(importe);
+                        decimal ImporteCancelado = 0;
+
+                        foreach (System.Data.DataRow Factura in FacturasConSaldo.Rows) {
+                                decimal SaldoComprob = System.Convert.ToDecimal(Factura["total"]) - System.Convert.ToDecimal(Factura["cancelado"]);
+                                decimal ImporteCancelarComprob = SaldoComprob;
+
+                                if (ImporteCancelarComprob > ImporteCancelar)
+                                        ImporteCancelarComprob = ImporteCancelar;
+
+                                qGen.Update ActCancelarComprob = new qGen.Update("comprob");
+                                ActCancelarComprob.Fields.AddWithValue("cancelado", System.Convert.ToDecimal(Factura["cancelado"]) + ImporteCancelarComprob);
+                                ActCancelarComprob.WhereClause = new qGen.Where("id_comprob", System.Convert.ToInt32(Factura["id_comprob"]));
+                                this.Connection.Execute(ActCancelarComprob);
+                                ImporteCancelar -= ImporteCancelarComprob;
+                                ImporteCancelado += ImporteCancelarComprob;
+
+                                if (ImporteCancelar <= 0)
+                                        break;
+                        }
+
+                        return ImporteCancelado;
                 }
         }
 }

@@ -92,7 +92,7 @@ namespace Lfc.Articulos
                                 Lbl.Articulos.Situacion Origen, Destino;
                                 Origen = EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
                                 Destino = EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
-                                Art.MoverStock(Cantidad, EntradaObs.Text, Origen, Destino, EntradaArticulo.DatosSeguimiento);
+                                Art.MoverStock(null, Cantidad, EntradaObs.Text, Origen, Destino, EntradaArticulo.DatosSeguimiento);
                                 Trans.Commit();
                         }
 

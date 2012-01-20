@@ -127,6 +127,7 @@ namespace Lbl.Comprobantes
                 public void Anular()
                 {
                         string DescripConcepto = "Anulación";
+
                         if (Recibo != null)
                                 DescripConcepto = "Anulación " + Recibo.ToString();
 
@@ -136,7 +137,7 @@ namespace Lbl.Comprobantes
                                 if (Recibo.Cliente != null)
                                         Cliente = Recibo.Cliente;
                                 if (Recibo.Facturas != null && Recibo.Facturas.Count > 0)
-                                        Factura = Recibo.Facturas[0];
+                                        Factura = Recibo.Facturas[0].Comprobante;
                         }
 
                         switch (this.FormaDePago.Tipo) {

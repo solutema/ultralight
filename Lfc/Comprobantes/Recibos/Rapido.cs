@@ -103,9 +103,9 @@ namespace Lfc.Comprobantes.Recibos
 		{
                         if (EntradaCliente.TextInt > 0) {
                                 Lbl.Personas.Persona Pers = EntradaCliente.Elemento as Lbl.Personas.Persona;
-                                decimal Saldo = Pers.CuentaCorriente.Saldo(false);
+                                decimal Saldo = Pers.CuentaCorriente.ObtenerSaldo(false);
                                 if (Saldo > 0)
-                                        EntradaImporte.ValueDecimal = Pers.CuentaCorriente.Saldo(false);
+                                        EntradaImporte.ValueDecimal = Pers.CuentaCorriente.ObtenerSaldo(false);
                                 else
                                         EntradaImporte.ValueDecimal = 0;
                         } else {

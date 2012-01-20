@@ -56,7 +56,7 @@ namespace Lbl.Cajas
                         : base(dataBase, row) { }
 
 
-                public virtual decimal Saldo(bool forUpdate)
+                public virtual decimal ObtenerSaldo(bool forUpdate)
 		{
                         qGen.Select SelSaldo = new qGen.Select("cajas_movim", forUpdate);
                         SelSaldo.Fields = "saldo";
@@ -178,14 +178,14 @@ namespace Lbl.Cajas
 
                 public void Arqueo()
                 {
-                        this.Movimiento(false, null, "Arqueo - Saldo: " + Lfx.Types.Formatting.FormatCurrency(this.Saldo(false)), Lbl.Sys.Config.Actual.UsuarioConectado.Persona, 0, null, null, null, null);
+                        this.Movimiento(false, null, "Arqueo - Saldo: " + Lfx.Types.Formatting.FormatCurrency(this.ObtenerSaldo(false)), Lbl.Sys.Config.Actual.UsuarioConectado.Persona, 0, null, null, null, null);
                 }
 
                 public void Movimiento(bool auto, Lbl.Cajas.Concepto concepto, string textoConcepto,
                         Lbl.Personas.Persona cliente, decimal importe, string obs,
                         Lbl.Comprobantes.ComprobanteConArticulos factura, Lbl.Comprobantes.Recibo recibo, string comprobantes)
                 {
-                        decimal SaldoActual = this.Saldo(true);
+                        decimal SaldoActual = this.ObtenerSaldo(true);
 
                         qGen.TableCommand Comando; Comando = new qGen.Insert(this.Connection, "cajas_movim");
 			Comando.Fields.AddWithValue("id_caja", this.Id);

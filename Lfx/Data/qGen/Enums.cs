@@ -63,7 +63,7 @@ namespace qGen
         {
                 NullSafeEquals,
                 Equals,
-                NotEquals,
+                NotEqual,
                 LessThan,
                 GreaterThan,
                 LessOrEqual,

@@ -83,6 +83,8 @@ namespace Lfc.CuentasCorrientes
                         this.Fechas = new Lfx.Types.DateRange("*");
 
                         this.HabilitarFiltrar = true;
+
+                        this.BotonAjuste.Visible = Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal();
                 }
 
 
@@ -136,7 +138,7 @@ namespace Lfc.CuentasCorrientes
                                 this.Definicion.Columns["comprob"].Visible = false;
 
                                 this.Definicion.Columns["saldo"].MemberName = "SUM(ctacte.importe) AS saldo";
-                                this.Definicion.Having = new qGen.Where("saldo", qGen.ComparisonOperators.NotEquals, 0);
+                                this.Definicion.Having = new qGen.Where("saldo", qGen.ComparisonOperators.NotEqual, 0);
 
                                 this.UpdateFormFields();
 
@@ -314,8 +316,7 @@ namespace Lfc.CuentasCorrientes
                                                                 FormAjuste.EntradaObs.Text,
                                                                 null,
                                                                 null,
-                                                                null,
-                                                                false);
+                                                                null);
                                                         Trans.Commit();
                                                         this.RefreshList();
                                                 }

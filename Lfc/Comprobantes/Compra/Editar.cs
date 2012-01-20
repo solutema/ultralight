@@ -91,7 +91,7 @@ namespace Lfc.Comprobantes.Compra
                         else
                                 EntradaFormaPago.TextKey = "0";
 
-                        EntradaFormaPago.Enabled = Fac.Tipo.EsFacturaNCoND;
+                        EntradaFormaPago.Enabled = Fac.Tipo.EsFactura;
 
                         EntradaPV.Text = Fac.PV.ToString("0000");
                         EntradaNumero.Text = Fac.Numero.ToString("00000000");
@@ -151,16 +151,22 @@ namespace Lfc.Comprobantes.Compra
                 }
 
 
+                public override bool PuedeEditar()
+                {
+                        return !this.Elemento.Existe;
+                }
+
+
                 public virtual Lbl.Comprobantes.Tipo TipoComprob
                 {
                         get
                         {
-                                Lbl.Comprobantes.ComprobanteDeCompra Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteDeCompra;
+                                Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                                 return Comprob.Tipo;
                         }
                         set
                         {
-                                Lbl.Comprobantes.ComprobanteDeCompra Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteDeCompra;
+                                Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                                 Comprob.Tipo = value;
                                 EntradaTipo.TextKey = Comprob.Tipo.Nomenclatura;
 
@@ -185,13 +191,12 @@ namespace Lfc.Comprobantes.Compra
                                                 EtiquetaEstado.Visible = true;
                                                 break;
                                         default:
-                                                EntradaEstado.SetData = new string[] { "N/A|0" };
+                                                EntradaEstado.SetData = new string[] { "N/A|1" };
                                                 EntradaEstado.Visible = false;
                                                 EtiquetaEstado.Visible = false;
                                                 break;
                                 }
 
-                                EntradaNumero.Enabled = (Comprob.Tipo.Nomenclatura != "NP");
                                 EtiquetaHaciaSituacion.Visible = Comprob.Tipo.EsFactura;
                                 EntradaHaciaSituacion.Visible = Comprob.Tipo.EsFactura;
                         }
@@ -219,6 +224,7 @@ namespace Lfc.Comprobantes.Compra
                                 EntradaObs.Text = FormularioObs.EditText;
                 }
 
+
                 private void BotonConvertir_Click(object sender, EventArgs e)
                 {
                         using (Lfc.Comprobantes.Compra.Crear FormularioConvertir = new Lfc.Comprobantes.Compra.Crear()) {
@@ -237,11 +243,15 @@ namespace Lfc.Comprobantes.Compra
                                         Lbl.Comprobantes.ComprobanteDeCompra NuevoComprob;
                                         if (FormularioConvertir.TipoComprob == "FP") {
                                                 Lbl.Comprobantes.Tipo NuevoTipo = Lbl.Comprobantes.Tipo.TodosPorLetra["FA"];
-                                                NuevoComprob = Comprob.ConvertirEn(NuevoTipo);
+                                                NuevoComprob = Comprob.Convertir(NuevoTipo);
+                                                NuevoComprob.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, 3);
+                                        } else if (FormularioConvertir.TipoComprob == "RP") {
+                                                Lbl.Comprobantes.Tipo NuevoTipo = Lbl.Comprobantes.Tipo.TodosPorLetra["R"];
+                                                NuevoComprob = Comprob.Convertir(NuevoTipo);
                                                 NuevoComprob.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, 3);
                                         } else {
                                                 Lbl.Comprobantes.Tipo NuevoTipo = Lbl.Comprobantes.Tipo.TodosPorLetra[FormularioConvertir.TipoComprob];
-                                                NuevoComprob = Comprob.ConvertirEn(NuevoTipo);
+                                                NuevoComprob = Comprob.Convertir(NuevoTipo);
                                         }
 
                                         Lfc.FormularioEdicion FormularioEdicion = Lfc.Instanciador.InstanciarFormularioEdicion(NuevoComprob);
@@ -259,11 +269,13 @@ namespace Lfc.Comprobantes.Compra
                         EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total + GastosEnvio + OtrosGastos, this.Workspace.CurrentConfig.Moneda.Decimales);
                 }
 
+
                 private void EntradaNumero_Leave(object sender, EventArgs e)
                 {
-                        if (Lfx.Types.Parsing.ParseInt(EntradaNumero.Text) > 0)
-                                EntradaNumero.Text = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString("00000000");
+                        if (EntradaNumero.ValueInt > 0)
+                                EntradaNumero.Text = EntradaNumero.ValueInt.ToString("00000000");
                 }
+
 
                 private void EntradaProductos_ObtenerDatosSeguimiento(object sender, EventArgs e)
                 {
@@ -293,8 +305,17 @@ namespace Lfc.Comprobantes.Compra
                         else
                                 EntradaFormaPago.Enabled = false;
 
-                        this.Titulo = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000") + "-" + EntradaNumero.ValueInt.ToString("00000000");
+                        if(EntradaNumero.ValueInt > 0)
+                                this.Titulo = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000") + "-" + EntradaNumero.ValueInt.ToString("00000000");
+                        else
+                                this.Titulo = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000");
+
+                        if (Tipo.EsNotaCredito)
+                                EtiquetaHaciaSituacion.Text = "Origen";
+                        else
+                                EtiquetaHaciaSituacion.Text = "Destino";
                 }
+
 
                 protected override void OnResize(EventArgs e)
                 {

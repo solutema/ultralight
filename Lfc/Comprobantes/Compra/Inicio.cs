@@ -86,6 +86,8 @@ namespace Lfc.Comprobantes.Compra
                                                 "Facturas C|FC",
                                                 "Facturas E|FE",
                                                 "Facturas M|FM",
+                                                "Notas de Crédito|NC",
+                                                "Notas de Débito|ND",
                                                 "Facturas (todas)|FP",
                                                 "Todo|*" }, "NP"),
                                         new Lazaro.Pres.Filters.SetFilter("Estado", "comprob.estado", new string[] {
@@ -103,6 +105,7 @@ namespace Lfc.Comprobantes.Compra
                         this.Fechas = new Lfx.Types.DateRange("mes-0");
 
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency));
+                        this.Contadores.Add(new Contador("Pendiente", Lui.Forms.DataTypes.Currency));
 
                         this.HabilitarFiltrar = true;
                 }
@@ -213,15 +216,34 @@ namespace Lfc.Comprobantes.Compra
                 {
                         Lbl.IElementoDeDatos Res = base.Crear();
                         if (Res is Lbl.Comprobantes.ComprobanteDeCompra) {
-                                Lbl.Comprobantes.ComprobanteDeCompra Comprob = Res as Lbl.Comprobantes.ComprobanteDeCompra;
                                 string Tipo = this.Tipo;
-                                if (Tipo == "FP")
-                                        Tipo = "FA";
+                                using (Crear FormCrear = new Crear()) {
+                                        if (FormCrear.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                                                Tipo = FormCrear.TipoComprob;
+                                        } else {
+                                                return null;
+                                        }
+                                }
+                                Lbl.Comprobantes.ComprobanteDeCompra Comprob = Res as Lbl.Comprobantes.ComprobanteDeCompra;
 
-                                if (Lbl.Comprobantes.Tipo.TodosPorLetra.ContainsKey(Tipo))
+                                switch (Tipo) {
+                                        case "FP":
+                                                Tipo = "FA";
+                                                break;
+                                        case "NC":
+                                                Tipo = "NCA";
+                                                break;
+                                        case "ND":
+                                                Tipo = "NDA";
+                                                break;
+                                }
+
+                                if (Lbl.Comprobantes.Tipo.TodosPorLetra.ContainsKey(Tipo)) {
                                         Comprob.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[Tipo];
-                                else
+                                } else {
+                                        
                                         throw new InvalidOperationException("No se puede crear el tipo " + Tipo);
+                                }
                         }
                         return Res;
                 }
@@ -231,6 +253,8 @@ namespace Lfc.Comprobantes.Compra
                 {
                         item.SubItems["comprob.pv"].Text = row.Fields["comprob.pv"].ValueInt.ToString("0000");
                         item.SubItems["comprob.numero"].Text = row.Fields["comprob.numero"].ValueInt.ToString("00000000");
+                        Contadores[0].AddValue(row.Fields["comprob.total"].ValueDecimal);
+                        Contadores[1].AddValue(row.Fields["pendiente"].ValueDecimal);
 
                         Lfx.Data.Row Persona = this.Connection.Tables["personas"].FastRows[row.Fields["comprob.id_cliente"].ValueInt];
                         if (Persona != null)
@@ -239,11 +263,9 @@ namespace Lfc.Comprobantes.Compra
                         switch (row.Fields["comprob.estado"].ValueInt) {
                                 case 50:
                                         item.ForeColor = System.Drawing.Color.DarkOrange;
-                                        this.Contadores[0].AddValue(row.Fields["comprob.total"].ValueDecimal);
                                         break;
                                 case 100:
                                         item.ForeColor = System.Drawing.Color.DarkGreen;
-                                        this.Contadores[0].AddValue(row.Fields["comprob.total"].ValueDecimal);
                                         break;
                                 case 200:
                                         item.ForeColor = System.Drawing.Color.DarkRed;
@@ -285,16 +307,22 @@ namespace Lfc.Comprobantes.Compra
                                         this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM')");
                                         break;
 
+                                case "NC":
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('NCA', 'NCB', 'NCC', 'NCE', 'NCM')");
+                                        break;
+
+                                case "ND":
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac IN ('NDA', 'NDB', 'NDC', 'NDE', 'NDM')");
+                                        break;
+
                                 case "RP":
                                 case "FA":
                                 case "FB":
                                 case "FC":
                                 case "FE":
                                 case "FM":
-                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", Tipo);
-                                        break;
                                 default:
-                                        // Nada
+                                        this.CustomFilters.AddWithValue("comprob.tipo_fac", Tipo);
                                         break;
                         }
 

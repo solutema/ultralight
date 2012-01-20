@@ -107,7 +107,7 @@ namespace Lfc.Comprobantes
                         }
 
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
-                        if (Registro.Tipo.MueveStock) {
+                        if (Registro.Tipo.MueveStock != 0) {
                                 if (Registro.SituacionOrigen == null || Registro.SituacionDestino == null || Registro.SituacionOrigen.Id == Registro.SituacionDestino.Id) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += "Seleccione la Situación de Origen y de Destino." + Environment.NewLine;
@@ -284,7 +284,7 @@ namespace Lfc.Comprobantes
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         if (Comprob.Existe) {
                                 Lbl.Comprobantes.Tipo NuevoTipo = Lbl.Comprobantes.Tipo.TodosPorLetra[tipoComprob];
-                                Lbl.Comprobantes.ComprobanteConArticulos Nuevo = Comprob.ConvertirEn(NuevoTipo) as Lbl.Comprobantes.ComprobanteConArticulos;
+                                Lbl.Comprobantes.ComprobanteConArticulos Nuevo = Comprob.Convertir(NuevoTipo) as Lbl.Comprobantes.ComprobanteConArticulos;
 
                                 FormularioEdicion NuevoComprob = Instanciador.InstanciarFormularioEdicion(Nuevo);
                                 NuevoComprob.ControlDestino = EntradaComprobanteId;

@@ -200,7 +200,7 @@ namespace Lfc.Articulos
 
                         if (m_Situacion != null) {
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.id_situacion", m_Situacion.Id));
-                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEquals, 0));
+                                this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEqual, 0));
                                 this.Definicion.Joins = this.FixedJoins();
                                 this.Definicion.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
                                 this.Definicion.Columns[3].MemberName = "articulos_stock.cantidad";

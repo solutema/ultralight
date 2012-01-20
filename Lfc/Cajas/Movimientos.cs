@@ -261,7 +261,7 @@ namespace Lfc.Cajas
                                 Cajas.IngresoEgreso FormularioIngreso = new Cajas.IngresoEgreso();
                                 FormularioIngreso.Caja = this.Caja;
                                 if (this.Caja != null)
-                                        FormularioIngreso.SaldoActual = this.Caja.Saldo(false);
+                                        FormularioIngreso.SaldoActual = this.Caja.ObtenerSaldo(false);
                                 FormularioIngreso.Ingreso = true;
                                 if (FormularioIngreso.ShowDialog() == DialogResult.OK)
                                         this.RefreshList();
@@ -275,7 +275,7 @@ namespace Lfc.Cajas
                                 Cajas.IngresoEgreso FormularioEgreso = new Cajas.IngresoEgreso();
                                 FormularioEgreso.Caja = this.Caja;
                                 if (this.Caja != null)
-                                        FormularioEgreso.SaldoActual = this.Caja.Saldo(false);
+                                        FormularioEgreso.SaldoActual = this.Caja.ObtenerSaldo(false);
                                 FormularioEgreso.Ingreso = false;
                                 if (FormularioEgreso.ShowDialog() == DialogResult.OK)
                                         this.RefreshList();

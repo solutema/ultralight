@@ -38,7 +38,8 @@ namespace Lfc.Comprobantes.Facturas
 {
 	public partial class Anular : Lui.Forms.ChildDialogForm
 	{
-		Dictionary<int, int> ProximosNumeros = new Dictionary<int,int>();
+                // Caché de próximos números (PV, número)
+		Dictionary<int, int> ProximosNumeros = new Dictionary<int, int>();
 
                 public Anular()
                 {
@@ -56,41 +57,57 @@ namespace Lfc.Comprobantes.Facturas
 
                 private void EntradaDesdeTipoPV_TextChanged(object sender, System.EventArgs e)
                 {
+                        if (sender == EntradaTipo)
+                                this.ProximosNumeros.Clear();
+
                         int PV = EntradaPV.ValueInt;
                         int Desde = EntradaDesde.ValueInt;
 
-                        if (EntradaHasta.ValueInt == 0 && this.ActiveControl != EntradaHasta)
+                        if (EntradaHasta.ValueInt < Desde && this.ActiveControl != EntradaHasta)
                                 EntradaHasta.ValueInt = Desde;
 
                         int Hasta = EntradaHasta.ValueInt;
                         int Cantidad = Hasta - Desde + 1;
 
-                        string IncluyeTipos = "";
+                        string[] IncluyeTipos;
 
                         switch (EntradaTipo.TextKey) {
                                 case "A":
-                                        IncluyeTipos = "'FA', 'NCA', 'NDA'";
+                                        IncluyeTipos = new string[] { "FA", "NCA", "NDA" };
                                         break;
 
                                 case "B":
-                                        IncluyeTipos = "'FB', 'NCB', 'NDB'";
+                                        IncluyeTipos = new string[] { "FB", "NCB", "NDB" };
                                         break;
 
                                 case "C":
-                                        IncluyeTipos = "'FC', 'NCC', 'NDC'";
+                                        IncluyeTipos = new string[] { "FC", "NCC", "NDC" };
                                         break;
 
                                 case "E":
-                                        IncluyeTipos = "'FE', 'NCE', 'NDE'";
+                                        IncluyeTipos = new string[] { "FE", "NCE", "NDE" };
                                         break;
 
                                 case "M":
-                                        IncluyeTipos = "'FM', 'NCM', 'NDM'";
+                                        IncluyeTipos = new string[] { "FM", "NCM", "NDM" };
+                                        break;
+
+                                default:
+                                        IncluyeTipos = new string[] { EntradaTipo.TextKey };
                                         break;
                         }
 
-                        if (ProximosNumeros.ContainsKey(PV) == false)
-                                ProximosNumeros[PV] = this.Connection.FieldInt("SELECT MAX(numero) FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString()) + 1;
+                        qGen.Where WhereAnular = new qGen.Where();
+                        WhereAnular.AddWithValue("impresa", qGen.ComparisonOperators.NotEqual, 0);
+                        WhereAnular.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, IncluyeTipos);
+                        WhereAnular.AddWithValue("pv", PV);
+
+                        if (ProximosNumeros.ContainsKey(PV) == false) {
+                                qGen.Select SelProxNum = new qGen.Select("comprob");
+                                SelProxNum.Fields = "MAX(numero)";
+                                SelProxNum.WhereClause = WhereAnular;
+                                ProximosNumeros[PV] = this.Connection.FieldInt(SelProxNum) + 1;
+                        }
 
                         if (PV <= 0 || Desde <= 0 || Cantidad <= 0) {
                                 EtiquetaAviso.Text = "El rango seleccionado no es válido.";
@@ -112,7 +129,12 @@ namespace Lfc.Comprobantes.Facturas
                         ListadoFacturas.Visible = Cantidad > 1;
 
                         if (Cantidad == 1) {
-                                int IdFactura = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Desde.ToString());
+                                qGen.Select SelDesde = new qGen.Select("comprob");
+                                SelDesde.Fields = "id_comprob";
+                                SelDesde.WhereClause = WhereAnular.Clone();
+                                SelDesde.WhereClause.AddWithValue("numero", Desde);
+
+                                int IdFactura = this.Connection.FieldInt(SelDesde);
 
                                 Lbl.Comprobantes.ComprobanteConArticulos FacturaInicial = null;
                                 if (IdFactura > 0)
@@ -151,7 +173,13 @@ namespace Lfc.Comprobantes.Facturas
                                 }
                         } else if (Cantidad > 1) {
                                 EntradaAnularPagos.TextKey = "1";
-                                System.Data.DataTable TablaFacturas = this.Connection.Select("SELECT * FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero BETWEEN " + Desde.ToString() + " AND " + Hasta.ToString());
+
+                                qGen.Select SelComprobs = new qGen.Select("comprob");
+                                SelComprobs.Fields = "*";
+                                SelComprobs.WhereClause = WhereAnular.Clone();
+                                SelComprobs.WhereClause.AddWithValue("numero", Desde, Hasta);
+
+                                System.Data.DataTable TablaFacturas = this.Connection.Select(SelComprobs);
                                 Lbl.Comprobantes.ColeccionComprobanteConArticulos Facturas = new Lbl.Comprobantes.ColeccionComprobanteConArticulos(this.Connection, TablaFacturas);
                                 ListadoFacturas.BeginUpdate();
                                 ListadoFacturas.Items.Clear();

@@ -234,7 +234,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
                         }
 
-                        if (EntradaProductos.ShowStock && this.Tipo.MueveStock && Comprob.HayStock() == false) {
+                        if (EntradaProductos.ShowStock && this.Tipo.MueveStock < 0 && Comprob.HayStock() == false) {
                                 Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog("Las existencias actuales no son suficientes para cubrir la operación que intenta realizar.\n¿Desea continuar de todos modos?", "No hay existencias suficientes");
                                 OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (OPregunta.ShowDialog() == DialogResult.Cancel)
@@ -242,7 +242,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         }
 
                         if (Comprob.Cliente.Id != 999 && (Comprob.Tipo.EsFactura || Comprob.Tipo.EsNotaDebito)) {
-                                decimal SaldoCtaCte = Comprob.Cliente.CuentaCorriente.Saldo(false);
+                                decimal SaldoCtaCte = Comprob.Cliente.CuentaCorriente.ObtenerSaldo(false);
 
                                 if (Comprob.FormaDePago != null && Comprob.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
                                         decimal LimiteCredito = Comprob.Cliente.LimiteCredito;
@@ -293,7 +293,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         return new Lfx.Types.CancelOperationResult();
                         }
 
-                        if (Comprob.Tipo.MueveStock) {
+                        if (Comprob.Tipo.MueveStock != 0) {
                                 Lfx.Types.OperationResult Res = Comprob.VerificarSeries();
                                 if (Res.Success == false)
                                         return Res;
@@ -366,7 +366,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                 if (MiCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
                                                         // Si la nueva forma de pago es cta. cte., asiento el saldo
                                                         // Y uso saldo a favor, si lo hay
-                                                        decimal Saldo = Factura.Cliente.CuentaCorriente.Saldo(true);
+                                                        decimal Saldo = Factura.Cliente.CuentaCorriente.ObtenerSaldo(true);
                                                         Factura.Cliente.CuentaCorriente.Movimiento(true,
                                                                 Lbl.Cajas.Concepto.IngresosPorFacturacion,
                                                                 "Saldo a Cta. Cte. s/" + Factura.ToString(),
@@ -374,8 +374,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                                 null,
                                                                 Factura,
                                                                 null,
-                                                                null,
-                                                                false);
+                                                                null);
                                                         if (Saldo < 0) {
                                                                 Saldo = Math.Abs(Saldo);
                                                                 if (Saldo > Factura.Total)
@@ -451,7 +450,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         Lbl.Comprobantes.ComprobanteConArticulos Factura = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         Lbl.Comprobantes.ReciboDeCobro Recibo = new Lbl.Comprobantes.ReciboDeCobro(this.Workspace.GetNewConnection("Nuevo recibo para " + Factura.ToString()));
                         Recibo.Crear();
-                        Recibo.Facturas.Add(Factura);
+                        Recibo.Facturas.AddWithValue(Factura, Factura.ImporteImpago);
                         Recibo.Cliente = Factura.Cliente;
 
                         Recibo.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;

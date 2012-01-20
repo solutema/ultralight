@@ -797,34 +797,14 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                 try {
                                         Trans = Comprob.Connection.BeginTransaction(IsolationLevel.Serializable);
 
-                                        //Marco la factura como impresa y numerada
+                                        // Marco la factura como impresa y numerada
                                         Comprob.Numerar(Res.NumeroComprobante, true);
 
-                                        //Resto el stock si corresponde
-                                        Lbl.Articulos.Stock.MoverStockComprobante(Comprob);
+                                        // Mover stock si corresponde
+                                        Comprob.MoverStock(false);
 
-                                        //Asiento el pago (sólo efectivo y cta. cte.)
-                                        //El resto de los pagos los maneja el formulario desde donde se mandó a imprimir
-                                        switch (Comprob.FormaDePago.Tipo) {
-                                                case Lbl.Pagos.TiposFormasDePago.Efectivo:
-                                                        if (Comprob.ImporteImpago > 0) {
-                                                                Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Comprob.Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
-                                                                CajaDiaria.Movimiento(true,
-                                                                        Lbl.Cajas.Concepto.IngresosPorFacturacion,
-                                                                        "Cobro " + Comprob.ToString(),
-                                                                        Comprob.Cliente,
-                                                                        Comprob.ImporteImpago,
-                                                                        null,
-                                                                        Comprob,
-                                                                        null,
-                                                                        null);
-                                                                Comprob.CancelarImporte(Comprob.ImporteImpago, null);
-                                                        }
-                                                        break;
-                                                case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
-                                                        Comprob.Cliente.CuentaCorriente.IngresarComprobante(Comprob);
-                                                        break;
-                                        }
+                                        // Asentar pagos si corresponde
+                                        Comprob.AsentarPago(false);
 
                                         Trans.Commit();
                                 } catch (Exception ex) {

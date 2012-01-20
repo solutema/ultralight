@@ -96,6 +96,8 @@
     <Compile Include="Bancos\Claves\Iban.cs" />
     <Compile Include="ColeccionCodigoDetalle.cs" />
     <Compile Include="Componentes\Componente.cs" />
+    <Compile Include="Comprobantes\ColeccionComprobanteImporte.cs" />
+    <Compile Include="Comprobantes\ComprobanteImporte.cs" />
     <Compile Include="Comprobantes\Factura.cs" />
     <Compile Include="Comprobantes\Lote.cs" />
     <Compile Include="CuentasCorrientes\Movimiento.cs" />

@@ -111,6 +111,7 @@
     <Column name="id_articulo" inputtype="Relation" nullable="0" default="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="cantidad" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+    <Column name="id_comprob" inputtype="Relation" nullable="1" />
     <Column name="desdesituacion" inputtype="Relation" nullable="1" />
     <Column name="haciasituacion" inputtype="Relation" nullable="1" />
     <Column name="saldo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
@@ -119,11 +120,13 @@
     <Index table="articulos_movim" name="articulos_movim_desdesituacion" columns="desdesituacion" unique="0" primary="0" />
     <Index table="articulos_movim" name="articulos_movim_haciasituacion" columns="haciasituacion" unique="0" primary="0" />
     <Index table="articulos_movim" name="articulos_movim_id_articulo" columns="id_articulo" unique="0" primary="0" />
+    <Index table="articulos_movim" name="articulos_movim_id_comprob" columns="id_comprob" unique="0" primary="0" />
     <Index table="articulos_movim" name="PRIMARY" columns="id_movim" unique="1" primary="1" />
   </Table>
   <Constraint name="articulos_movim_desdesituacion" table="articulos_movim" column="desdesituacion" reference_table="articulos_situaciones" reference_column="id_situacion" />
   <Constraint name="articulos_movim_haciasituacion" table="articulos_movim" column="haciasituacion" reference_table="articulos_situaciones" reference_column="id_situacion" />
   <Constraint name="articulos_movim_id_articulo" table="articulos_movim" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
+  <Constraint name="articulos_movim_id_comprob" table="articulos_movim" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
 
   
   <Table name="articulos_precios" label="Precios de Artículos">
@@ -405,7 +408,8 @@
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tabla" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="tipo" datatype="VarChar" nullable="1" lenght="200" />
-    <Column name="mueve_stock" inputtype="Bool" nullable="0" default="0" />
+    <Column name="direc_ctacte" inputtype="Currency" nullable="0" />
+    <Column name="mueve_stock" inputtype="Currency" nullable="0" />
     <Column name="situacionorigen" inputtype="Relation" nullable="1" />
     <Column name="situaciondestino" inputtype="Relation" nullable="1" />
     <Column name="numerar_guardar" inputtype="Bool" nullable="0" default="0" />
@@ -475,6 +479,16 @@
   <Constraint name="comprob_id_remito" table="comprob" column="id_remito" reference_table="comprob" reference_column="id_comprob" />
 
 
+  <Table name="comprob_comprob" label="Relaciones entre Comprobantes">
+    <Column name="id_comprob" inputtype="Relation" nullable="0" />
+    <Column name="id_comprob_rel" inputtype="Relation" nullable="0" />
+    <Column name="importe" inputtype="Currency" default="0" />
+    <Index table="comprob_comprob" name="PRIMARY" columns="id_comprob,id_comprob_rel" unique="1" primary="1" />
+  </Table>
+  <Constraint name="comprob_comprob_id_comprob" table="comprob_comprob" column="id_comprob" reference_table="comprob" reference_column="id_comprob" />
+  <Constraint name="comprob_comprob_id_comprob_rel" table="comprob_comprob" column="id_comprob_rel" reference_table="comprob" reference_column="id_comprob" />
+
+  
   <Table name="comprob_detalle" label="Detalles de Comprobantes">
     <Column name="id_comprob_detalle" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="id_comprob" inputtype="Relation" nullable="0" default="0" />

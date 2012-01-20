@@ -86,6 +86,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(20, 20);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
@@ -99,16 +100,22 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.AutoTab = true;
+                        this.EntradaTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
+                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = null;
+                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "A|A",
         "B|B",
         "C|C",
         "E|E",
-        "M|M"};
-                        this.EntradaTipo.Size = new System.Drawing.Size(40, 26);
+        "M|M",
+        "Ticket|T"};
+                        this.EntradaTipo.Size = new System.Drawing.Size(64, 25);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.TextKey = "B";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
@@ -117,23 +124,31 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EntradaDesde.AutoNav = true;
                         this.EntradaDesde.AutoTab = true;
+                        this.EntradaDesde.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDesde.DecimalPlaces = -1;
+                        this.EntradaDesde.FieldName = null;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(292, 20);
+                        this.EntradaDesde.MaxLength = 32767;
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDesde.PasswordChar = '\0';
+                        this.EntradaDesde.PlaceholderText = null;
+                        this.EntradaDesde.Prefijo = "";
+                        this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
                         // EtiquetaAviso
                         // 
-                        this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaAviso.LabelStyle = Lui.Forms.LabelStyles.Warning;
                         this.EtiquetaAviso.Location = new System.Drawing.Point(20, 80);
                         this.EtiquetaAviso.Name = "EtiquetaAviso";
@@ -145,21 +160,30 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EntradaPV.AutoNav = true;
                         this.EntradaPV.AutoTab = true;
+                        this.EntradaPV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
+                        this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(148, 48);
+                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPV.PasswordChar = '\0';
+                        this.EntradaPV.PlaceholderText = null;
+                        this.EntradaPV.Prefijo = "";
+                        this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(52, 24);
+                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
                         // 
                         // Label7
                         // 
+                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(228, 20);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(64, 24);
@@ -173,9 +197,14 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaAnularPagos.AutoNav = true;
                         this.EntradaAnularPagos.AutoSize = true;
                         this.EntradaAnularPagos.AutoTab = true;
+                        this.EntradaAnularPagos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaAnularPagos.FieldName = null;
                         this.EntradaAnularPagos.Location = new System.Drawing.Point(508, 20);
+                        this.EntradaAnularPagos.MaxLength = 32767;
                         this.EntradaAnularPagos.Name = "EntradaAnularPagos";
                         this.EntradaAnularPagos.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaAnularPagos.PlaceholderText = null;
+                        this.EntradaAnularPagos.ReadOnly = false;
                         this.EntradaAnularPagos.SetData = new string[] {
         "Anular todos los pagos asociados|1",
         "No anular los pagos asociados|0"};
@@ -185,6 +214,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label3
                         // 
+                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label3.Location = new System.Drawing.Point(436, 20);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(72, 24);
@@ -194,14 +224,18 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // ComprobanteVistaPrevia
                         // 
-                        this.ComprobanteVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ComprobanteVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ComprobanteVistaPrevia.AutoNav = true;
                         this.ComprobanteVistaPrevia.AutoSize = true;
+                        this.ComprobanteVistaPrevia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.ComprobanteVistaPrevia.FieldName = null;
+                        this.ComprobanteVistaPrevia.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.ComprobanteVistaPrevia.Location = new System.Drawing.Point(20, 112);
                         this.ComprobanteVistaPrevia.MinimumSize = new System.Drawing.Size(600, 320);
                         this.ComprobanteVistaPrevia.Name = "ComprobanteVistaPrevia";
                         this.ComprobanteVistaPrevia.Padding = new System.Windows.Forms.Padding(2);
+                        this.ComprobanteVistaPrevia.ReadOnly = false;
                         this.ComprobanteVistaPrevia.Size = new System.Drawing.Size(756, 320);
                         this.ComprobanteVistaPrevia.TabIndex = 12;
                         this.ComprobanteVistaPrevia.TabStop = false;
@@ -211,15 +245,23 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EntradaHasta.AutoNav = true;
                         this.EntradaHasta.AutoTab = true;
+                        this.EntradaHasta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaHasta.DecimalPlaces = -1;
+                        this.EntradaHasta.FieldName = null;
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 48);
+                        this.EntradaHasta.MaxLength = 32767;
                         this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaHasta.PasswordChar = '\0';
+                        this.EntradaHasta.PlaceholderText = null;
+                        this.EntradaHasta.Prefijo = "";
+                        this.EntradaHasta.ReadOnly = false;
                         this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 7;
                         this.EntradaHasta.Text = "0";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
@@ -227,6 +269,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label2
                         // 
+                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label2.Location = new System.Drawing.Point(228, 48);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(64, 24);
@@ -236,9 +279,9 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // ListadoFacturas
                         // 
-                        this.ListadoFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListadoFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListadoFacturas.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListadoFacturas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColTipo,
@@ -284,6 +327,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label4
                         // 
+                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
                         this.label4.Location = new System.Drawing.Point(20, 48);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(128, 24);
@@ -340,16 +384,16 @@ namespace Lfc.Comprobantes.Facturas
                 internal Lui.Forms.TextBox EntradaPV;
                 internal Lui.Forms.Label Label7;
                 public Lui.Forms.ComboBox EntradaAnularPagos;
-                private Label label3;
                 private Lfc.Comprobantes.Facturas.Editar ComprobanteVistaPrevia;
                 internal Lui.Forms.TextBox EntradaHasta;
-                internal Label label2;
                 private Lui.Forms.ListView ListadoFacturas;
-                internal Label label4;
                 private ColumnHeader ColTipo;
                 private ColumnHeader ColNumero;
                 private ColumnHeader ColFecha;
                 private ColumnHeader ColCliente;
                 private ColumnHeader ColImporte;
+                private Lui.Forms.Label label3;
+                internal Lui.Forms.Label label2;
+                internal Lui.Forms.Label label4;
         }
 }

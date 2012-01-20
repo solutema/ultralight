@@ -189,7 +189,7 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void BotonFacturasAgregar_Click(object sender, System.EventArgs e)
                 {
-                        Comprobantes.Facturas.FormSeleccionarFactura FormularioSeleccionarFactura = new Comprobantes.Facturas.FormSeleccionarFactura();
+                        Comprobantes.Facturas.Seleccionar FormularioSeleccionarFactura = new Comprobantes.Facturas.Seleccionar();
                         //FormularioSeleccionarFactura.Owner = this;
                         FormularioSeleccionarFactura.Connection = this.Connection;
                         FormularioSeleccionarFactura.AceptarAnuladas = false;
@@ -213,15 +213,16 @@ namespace Lfc.Comprobantes.Recibos
                 {
                         Lbl.Comprobantes.Recibo Rec = this.Elemento as Lbl.Comprobantes.Recibo;
                         if (Rec.Facturas == null) {
-                                Rec.Facturas = new Lbl.Comprobantes.ColeccionComprobanteConArticulos(this.Connection);
+                                Rec.Facturas = new Lbl.Comprobantes.ColeccionComprobanteImporte();
                         } else {
-                                foreach (Lbl.Comprobantes.ComprobanteConArticulos Fc in Rec.Facturas) {
+                                foreach (Lbl.Comprobantes.ComprobanteImporte CompImp in Rec.Facturas) {
+                                        Lbl.Comprobantes.ComprobanteConArticulos Fc = CompImp.Comprobante;
                                         if (Fc.Id == idFactura)
                                                 return new Lfx.Types.FailureOperationResult("La factura seleccionada ya está en la lista.");
                                 }
                         }
                         Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Rec.Connection, idFactura);
-                        Rec.Facturas.Add(Fac);
+                        Rec.Facturas.AddWithValue(Fac, Fac.ImporteImpago);
 
                         if (EntradaCliente.TextInt <= 0)
                                 EntradaCliente.Elemento = Fac.Cliente;
@@ -237,7 +238,8 @@ namespace Lfc.Comprobantes.Recibos
                         ListaFacturas.Items.Clear();
                         Lbl.Comprobantes.Recibo Rec = this.Elemento as Lbl.Comprobantes.Recibo;
 
-                        foreach (Lbl.Comprobantes.ComprobanteConArticulos Fc in Rec.Facturas) {
+                        foreach (Lbl.Comprobantes.ComprobanteImporte CompImp in Rec.Facturas) {
+                                Lbl.Comprobantes.ComprobanteConArticulos Fc = CompImp.Comprobante;
                                 ListViewItem AgregarFactura = ListaFacturas.Items.Add(Fc.GetHashCode().ToString());
                                 AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Fc.ToString()));
                                 AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatDate(Fc.Fecha)));
@@ -255,7 +257,7 @@ namespace Lfc.Comprobantes.Recibos
                                 ListaFacturas.Items[ListaFacturas.Items.Count - 1].Focused = true;
                         }
 
-                        EtiquetaFacturasImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Facturas.Total - Rec.Facturas.ImporteCancelado, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EtiquetaFacturasImporte.Text = Lfx.Types.Formatting.FormatCurrency(Rec.Facturas.ImporteImpago, this.Workspace.CurrentConfig.Moneda.Decimales);
 
                         ListaFacturas.EndUpdate();
                 }

@@ -71,7 +71,7 @@ namespace Lazaro.Impresion.Comprobantes
                                 return Lbl.Impresion.Plantilla.TodasPorCodigo[this.Comprobante.Tipo.Nomenclatura];
                         } else if (this.Comprobante.Tipo.EsFacturaNCoND && Lbl.Impresion.Plantilla.TodasPorCodigo.ContainsKey("F" + this.Comprobante.Tipo.Letra)) {
                                 // En caso de NC y ND, pruebo utilizando la plantilla de facturas
-                                return Lbl.Impresion.Plantilla.TodasPorCodigo[this.Comprobante.Tipo.Nomenclatura];
+                                return Lbl.Impresion.Plantilla.TodasPorCodigo["F" + this.Comprobante.Tipo.Letra];
                         } else if (this.Comprobante.Tipo.EsFacturaNCoND && Lbl.Impresion.Plantilla.TodasPorCodigo.ContainsKey("FA")) {
                                 // En caso de facturas B, C, E y M, pruebo utilizando la plantilla de facturas A
                                 return Lbl.Impresion.Plantilla.TodasPorCodigo["FA"];
