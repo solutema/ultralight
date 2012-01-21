@@ -167,6 +167,7 @@ namespace Lfx.Cpx
                                                 case "C":
                                                         return PriterStatusCodes.CardComplete;
                                                 case "NAK":
+                                                case "\x15":
                                                         return PriterStatusCodes.Busy;
                                                 case "b":
                                                         return PriterStatusCodes.WaitingForOperator;

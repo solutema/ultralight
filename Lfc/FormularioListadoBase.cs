@@ -88,6 +88,22 @@ namespace Lfc
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool HabilitarImprimir
+                {
+                        get
+                        {
+                                return BotonImprimir.Visible;
+                        }
+                        set
+                        {
+                                BotonImprimir.Visible = value;
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public List<int> Labels
                 {
                         get
@@ -337,6 +353,9 @@ namespace Lfc
                 }
 
 
+                /// <summary>
+                /// Devuelve una lista de Ids de los ítem seleccionados en el listado.
+                /// </summary>
                 public Lbl.ListaIds CodigosSeleccionados
                 {
                         get
@@ -360,6 +379,24 @@ namespace Lfc
                 }
 
 
+                /// <summary>
+                /// Devuelve una lista de Ids de todos los ítem del listado.
+                /// </summary>
+                public Lbl.ListaIds CodigosItem
+                {
+                        get
+                        {
+                                Lbl.ListaIds Res = new Lbl.ListaIds();
+                                foreach (ListViewItem itm in Listado.Items) {
+                                        Res.Add(Lfx.Types.Parsing.ParseInt(itm.Text));
+                                }
+                                return Res;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve el Id del elemento seleccionado del listado.
+                /// </summary>
                 public int CodigoSeleccionado
                 {
                         get
