@@ -48,9 +48,13 @@ namespace Lfx.Types
         {
                 public string Rep = "*";
                 private DateTime m_From, m_To;
+                public bool AllowPast { get; set; }
+                public bool AllowFuture { get; set; }
 
                 public DateRange(string rep)
                 {
+                        this.AllowFuture = false;
+                        this.AllowPast = true;
                         this.Rep = rep;
                 }
 
@@ -75,43 +79,18 @@ namespace Lfx.Types
                 {
                         get
                         {
-                                switch (this.Rep) {
-                                        case "dia-0":
-                                        case "dia-1":
-                                        case "dia-2":
-                                        case "dia-3":
-                                        case "dia-4":
-                                        case "dia-5":
-                                        case "dia":
-                                                return DateRangeTypes.Day;
-
-                                        case "semana-0":
-                                        case "semana-1":
-                                        case "semana-2":
-                                        case "semana-3":
-                                        case "semana":
-                                                return DateRangeTypes.Week;
-
-                                        case "mes-0":
-                                        case "mes-1":
-                                        case "mes-2":
-                                        case "mes-3":
-                                        case "mes-4":
-                                        case "mes-5":
-                                        case "mes-6":
-                                        case "mes-7":
-                                        case "mes-8":
-                                                return DateRangeTypes.Month;
-
-                                        case "*":
-                                                return DateRangeTypes.All;
-
-                                        case "-":
-                                                return DateRangeTypes.Range;
-
-                                        default:
-                                                throw new InvalidOperationException("DateRange: representación inválida (" + this.Rep + ")");
-                                }
+                                if (this.Rep == "mes" || this.Rep.StartsWith("mes-") || this.Rep.StartsWith("mes+"))
+                                        return DateRangeTypes.Month;
+                                else if (this.Rep == "dia" || this.Rep.StartsWith("dia-") || this.Rep.StartsWith("dia+"))
+                                        return DateRangeTypes.Day;
+                                else if (this.Rep == "semana" || this.Rep.StartsWith("semana-") || this.Rep.StartsWith("semana+"))
+                                        return DateRangeTypes.Week;
+                                else if (this.Rep == "*")
+                                        return DateRangeTypes.All;
+                                else if (this.Rep == "-")
+                                        return DateRangeTypes.Range;
+                                else
+                                        throw new InvalidOperationException("DateRange: representación inválida (" + this.Rep + ")");
                         }
                 }
 
@@ -156,6 +135,7 @@ namespace Lfx.Types
                         {
                                 switch(this.Rep) {
                                         case "dia-0":
+                                        case "dia+0":
                                                 return DateTime.Now;
                                         case "dia-1":
                                                 return DateTime.Now.AddDays(-1);
@@ -167,6 +147,16 @@ namespace Lfx.Types
                                                 return DateTime.Now.AddDays(-4);
                                         case "dia-5":
                                                 return DateTime.Now.AddDays(-5);
+                                        case "dia+1":
+                                                return DateTime.Now.AddDays(1);
+                                        case "dia+2":
+                                                return DateTime.Now.AddDays(2);
+                                        case "dia+3":
+                                                return DateTime.Now.AddDays(3);
+                                        case "dia+4":
+                                                return DateTime.Now.AddDays(4);
+                                        case "dia+5":
+                                                return DateTime.Now.AddDays(5);
                                         case "dia":
                                                 return m_From;
 
@@ -182,10 +172,14 @@ namespace Lfx.Types
                                         case "semana-3":
                                                 return DateTime.Now.AddDays(-((int)(DateTime.Now.DayOfWeek)) - 21);
 
+                                        case "semana+1":
+                                                return DateTime.Now.AddDays(-((int)(DateTime.Now.DayOfWeek)) + 7);
+
                                         case "semana":
                                                 return m_From.AddDays(-((int)(m_From.DayOfWeek)));
 
                                         case "mes-0":
+                                        case "mes+0":
                                                 return new DateTime(DateTime.Now.Year,DateTime.Now.Month, 1);
                                         case "mes-1":
                                                 return new DateTime(DateTime.Now.AddMonths(-1).Year, DateTime.Now.AddMonths(-1).Month, 1);
@@ -203,6 +197,22 @@ namespace Lfx.Types
                                                 return new DateTime(DateTime.Now.AddMonths(-7).Year, DateTime.Now.AddMonths(-7).Month, 1);
                                         case "mes-8":
                                                 return new DateTime(DateTime.Now.AddMonths(-8).Year, DateTime.Now.AddMonths(-8).Month, 1);
+                                        case "mes+1":
+                                                return new DateTime(DateTime.Now.AddMonths(1).Year, DateTime.Now.AddMonths(1).Month, 1);
+                                        case "mes+2":
+                                                return new DateTime(DateTime.Now.AddMonths(2).Year, DateTime.Now.AddMonths(2).Month, 1);
+                                        case "mes+3":
+                                                return new DateTime(DateTime.Now.AddMonths(3).Year, DateTime.Now.AddMonths(3).Month, 1);
+                                        case "mes+4":
+                                                return new DateTime(DateTime.Now.AddMonths(4).Year, DateTime.Now.AddMonths(4).Month, 1);
+                                        case "mes+5":
+                                                return new DateTime(DateTime.Now.AddMonths(5).Year, DateTime.Now.AddMonths(5).Month, 1);
+                                        case "mes+6":
+                                                return new DateTime(DateTime.Now.AddMonths(6).Year, DateTime.Now.AddMonths(6).Month, 1);
+                                        case "mes+7":
+                                                return new DateTime(DateTime.Now.AddMonths(7).Year, DateTime.Now.AddMonths(7).Month, 1);
+                                        case "mes+8":
+                                                return new DateTime(DateTime.Now.AddMonths(8).Year, DateTime.Now.AddMonths(8).Month, 1);
 
                                         case "*":
                                                 return m_From;
@@ -220,40 +230,14 @@ namespace Lfx.Types
                 {
                         get
                         {
-                                switch (this.Rep) {
-                                        case "dia-0":
-                                        case "dia-1":
-                                        case "dia-2":
-                                        case "dia-3":
-                                        case "dia-4":
-                                        case "dia-5":
-                                        case "dia":
+                                if (this.Rep == "dia" || this.Rep.StartsWith("dia-") || this.Rep.StartsWith("dia+"))
                                                 return this.From;
-
-                                        case "semana-0":
-                                        case "semana-1":
-                                        case "semana-2":
-                                        case "semana-3":
-                                        case "semana":
+                                if (this.Rep == "semana" || this.Rep.StartsWith("semana-") || this.Rep.StartsWith("semana+"))
                                                 return this.From.AddDays(7);
-
-                                        case "mes-0":
-                                        case "mes-1":
-                                        case "mes-2":
-                                        case "mes-3":
-                                        case "mes-4":
-                                        case "mes-5":
-                                        case "mes-6":
-                                        case "mes-7":
-                                        case "mes-8":
+                                if (this.Rep == "mes" || this.Rep.StartsWith("mes-") || this.Rep.StartsWith("mes+"))
                                                 return new DateTime(this.From.Year, this.From.Month, System.DateTime.DaysInMonth(this.From.Year, this.From.Month));
-
-                                        case "*":
+                                else
                                                 return m_To;
-
-                                        default:
-                                                return m_To;
-                                }
                         }
                 }
 
@@ -269,16 +253,27 @@ namespace Lfx.Types
                                 case "dia-3":
                                 case "dia-4":
                                 case "dia-5":
+                                case "dia+3":
+                                case "dia+4":
+                                case "dia+5":
                                         return "el " + this.From.ToString("dddd d");
                                 case "dia":
                                         return "el " + this.From.ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
+                                case "dia+1":
+                                        return "mañana";
+                                case "dia+2":
+                                        return "pasado mañana";
 
                                 case "semana-0":
                                         return "esta semana";
                                 case "semana-1":
                                         return "la semana pasada";
+                                case "semana+1":
+                                        return "la semana que viene";
                                 case "semana-2":
                                 case "semana-3":
+                                case "semana+2":
+                                case "semana+3":
                                         return "la semana del " + this.From.ToString("dd/MM") + " al " + this.From.ToString("dd/MM");
                                 case "semana":
                                         return "la semana del " + this.From.ToString("dd/MM") + " al " + this.From.ToString("dd/MM/yyyy");
@@ -287,6 +282,8 @@ namespace Lfx.Types
                                         return "este mes";
                                 case "mes-1":
                                         return "el mes pasado";
+                                case "mes+1":
+                                        return "el mes que viene";
                                 case "mes-2":
                                 case "mes-3":
                                 case "mes-4":
@@ -294,6 +291,13 @@ namespace Lfx.Types
                                 case "mes-6":
                                 case "mes-7":
                                 case "mes-8":
+                                case "mes+2":
+                                case "mes+3":
+                                case "mes+4":
+                                case "mes+5":
+                                case "mes+6":
+                                case "mes+7":
+                                case "mes+8":
                                         return this.From.ToString("MMMM");
 
                                 case "*":

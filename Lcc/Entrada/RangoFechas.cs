@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Lcc.Entrada
@@ -99,42 +100,69 @@ namespace Lcc.Entrada
                 {
                         switch (EntradaTipoDeRango.TextKey) {
                                 case "dia":
-                                        EntradaRango.SetData = new string[] {
-                                                "Hoy|dia-0",
-                                                "Ayer|dia-1",
-                                                "El " + DateTime.Now.AddDays(-2).ToString("dddd d") + "|dia-2",
-                                                "El " + DateTime.Now.AddDays(-3).ToString("dddd d") + "|dia-3",
-                                                "El " + DateTime.Now.AddDays(-4).ToString("dddd d") + "|dia-4",
-                                                "El " + DateTime.Now.AddDays(-5).ToString("dddd d") + "|dia-5",
-                                                "Un día específico|dia",
-                                        };
+                                        List<string> ListaDias = new List<string>();
+                                        if (m_Rango.AllowPast) {
+                                                ListaDias.Add("El " + DateTime.Now.AddDays(-5).ToString("dddd d") + "|dia-5");
+                                                ListaDias.Add("El " + DateTime.Now.AddDays(-4).ToString("dddd d") + "|dia-4");
+                                                ListaDias.Add("El " + DateTime.Now.AddDays(-3).ToString("dddd d") + "|dia-3");
+                                                ListaDias.Add("El " + DateTime.Now.AddDays(-2).ToString("dddd d") + "|dia-2");
+                                                ListaDias.Add("Ayer|dia-1");
+                                        }
+                                        ListaDias.Add("Hoy|dia-0");
+                                        if (m_Rango.AllowFuture) {
+                                                ListaDias.Add("Mañana|dia+1");
+                                                ListaDias.Add("El " + DateTime.Now.AddDays(2).ToString("dddd d") + "|dia+2");
+                                                ListaDias.Add("El " + DateTime.Now.AddDays(3).ToString("dddd d") + "|dia+3");
+                                                ListaDias.Add("El " + DateTime.Now.AddDays(4).ToString("dddd d") + "|dia+4");
+                                                ListaDias.Add("El " + DateTime.Now.AddDays(5).ToString("dddd d") + "|dia+5");
+                                        }
+                                        ListaDias.Add("Un día específico|dia");
+                                        EntradaRango.SetData = ListaDias.ToArray();
                                         EntradaRango.TextKey = "dia-0";
                                         EtiquetaDesde.Text = "día";
                                         break;
                                 case "semana":
-                                        EntradaRango.SetData = new string[] {
-                                                "Esta semana|semana-0",
-                                                "La semana pasada|semana-1",
-                                                "La semana del " + DateTime.Now.AddDays(-((int)(DateTime.Now.DayOfWeek)) - 13).ToString("dddd d") + "|semana-2",
-                                                "La semana del " + DateTime.Now.AddDays(-((int)(DateTime.Now.DayOfWeek)) - 20).ToString("dddd d") + "|semana-3",
-                                                "La semana del|semana",
-                                        };
+                                        List<string> ListaSemana = new List<string>();
+                                        if (m_Rango.AllowPast) {
+                                                ListaSemana.Add("La semana del " + DateTime.Now.AddDays(-((int)(DateTime.Now.DayOfWeek)) - 20).ToString("dddd d") + "|semana-3");
+                                                ListaSemana.Add("La semana del " + DateTime.Now.AddDays(-((int)(DateTime.Now.DayOfWeek)) - 13).ToString("dddd d") + "|semana-2");
+                                                ListaSemana.Add("La semana pasada|semana-1");
+
+                                        }
+                                        ListaSemana.Add("Esta semana|semana-0");
+                                        if (m_Rango.AllowFuture) {
+                                                ListaSemana.Add("La semana que viene|semana+1");
+                                                ListaSemana.Add("La semana del " + DateTime.Now.AddDays(-((int)(DateTime.Now.DayOfWeek)) + 15).ToString("dddd d") + "|semana+2");
+                                                ListaSemana.Add("La semana del " + DateTime.Now.AddDays(-((int)(DateTime.Now.DayOfWeek)) + 22).ToString("dddd d") + "|semana+3");
+                                        }
+                                        ListaSemana.Add("La semana del|semana");
+
+                                        EntradaRango.SetData = ListaSemana.ToArray();
                                         EntradaRango.TextKey = "semana-0";
                                         EtiquetaDesde.Text = "día";
                                         break;
                                 case "mes":
-                                        EntradaRango.SetData = new string[] {
-                                                "Este mes|mes-0",
-                                                "El mes pasado|mes-1",
-                                                DateTime.Now.AddMonths(-2).ToString("MMMM").ToTitleCase() + "|mes-2",
-                                                DateTime.Now.AddMonths(-3).ToString("MMMM").ToTitleCase() + "|mes-3",
-                                                DateTime.Now.AddMonths(-4).ToString("MMMM").ToTitleCase() + "|mes-4",
-                                                DateTime.Now.AddMonths(-5).ToString("MMMM").ToTitleCase() + "|mes-5",
-                                                DateTime.Now.AddMonths(-6).ToString("MMMM").ToTitleCase() + "|mes-6",
-                                                DateTime.Now.AddMonths(-7).ToString("MMMM").ToTitleCase() + "|mes-7",
-                                                DateTime.Now.AddMonths(-8).ToString("MMMM").ToTitleCase() + "|mes-8",
-                                        };
+                                        List<string> ListaMes = new List<string>();
+                                        if (m_Rango.AllowPast) {
+                                                ListaMes.Add(DateTime.Now.AddMonths(-8).ToString("MMMM").ToTitleCase() + "|mes-8");
+                                                ListaMes.Add(DateTime.Now.AddMonths(-7).ToString("MMMM").ToTitleCase() + "|mes-7");
+                                                ListaMes.Add(DateTime.Now.AddMonths(-6).ToString("MMMM").ToTitleCase() + "|mes-6");
+                                                ListaMes.Add(DateTime.Now.AddMonths(-5).ToString("MMMM").ToTitleCase() + "|mes-5");
+                                                ListaMes.Add(DateTime.Now.AddMonths(-4).ToString("MMMM").ToTitleCase() + "|mes-4");
+                                                ListaMes.Add(DateTime.Now.AddMonths(-3).ToString("MMMM").ToTitleCase() + "|mes-3");
+                                                ListaMes.Add(DateTime.Now.AddMonths(-2).ToString("MMMM").ToTitleCase() + "|mes-2");
+                                                ListaMes.Add("El mes pasado|mes-1");
+                                        }
+                                        ListaMes.Add("Este mes|mes-0");
+                                        if (m_Rango.AllowFuture) {
+                                                ListaMes.Add("El mes que viene|mes+1");
+                                                ListaMes.Add(DateTime.Now.AddMonths(2).ToString("MMMM").ToTitleCase() + "|mes+2");
+                                                ListaMes.Add(DateTime.Now.AddMonths(3).ToString("MMMM").ToTitleCase() + "|mes+3");
+                                                ListaMes.Add(DateTime.Now.AddMonths(4).ToString("MMMM").ToTitleCase() + "|mes+4");
+                                        }
+                                        EntradaRango.SetData = ListaMes.ToArray();
                                         EntradaRango.TextKey = "mes-0";
+                                        EtiquetaDesde.Text = "mes";
                                         break;
                                 case "rango":
                                 case "-":
