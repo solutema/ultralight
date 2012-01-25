@@ -71,10 +71,12 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 //Cargo comprob asociadas al recibo
-                                m_Facturas = new ColeccionComprobanteImporte();
-                                using (System.Data.DataTable TablaFacturas = Connection.Select("SELECT * FROM recibos_comprob WHERE id_recibo=" + this.Id.ToString())) {
-                                        foreach (System.Data.DataRow Factura in TablaFacturas.Rows) {
-                                                m_Facturas.AddWithValue(new ComprobanteConArticulos(this.Connection, System.Convert.ToInt32(Factura["id_comprob"])), System.Convert.ToDecimal(Factura["importe"]));
+                                if (m_Facturas == null || m_Facturas.Count == 0) {
+                                        m_Facturas = new ColeccionComprobanteImporte();
+                                        using (System.Data.DataTable TablaFacturas = Connection.Select("SELECT * FROM recibos_comprob WHERE id_recibo=" + this.Id.ToString())) {
+                                                foreach (System.Data.DataRow Factura in TablaFacturas.Rows) {
+                                                        m_Facturas.AddWithValue(new ComprobanteConArticulos(this.Connection, System.Convert.ToInt32(Factura["id_comprob"])), System.Convert.ToDecimal(Factura["importe"]));
+                                                }
                                         }
                                 }
                                 return m_Facturas;
@@ -266,6 +268,13 @@ namespace Lbl.Comprobantes
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
+                        this.Cliente.Connection = this.Connection;
+                        if (this.Facturas != null) {
+                                foreach (Lbl.Comprobantes.ComprobanteImporte Comp in this.Facturas) {
+                                        Comp.Comprobante.Connection = this.Connection;
+                                }
+                        }
+
                         if (this.Concepto == null) {
                                 //Concepto predeterminado para recibos
                                 if (this.DePago)

@@ -567,9 +567,13 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                if (m_Localidad == null && this.GetFieldValue<int>("id_ciudad") > 0)
-                                        m_Localidad = new Lbl.Entidades.Localidad(this.Connection, this.GetFieldValue<int>("id_ciudad"));
-
+                                if (m_Localidad == null) {
+                                        if (this.Id == 999)
+                                                // El cliente especial "Consumidor Final" está siempre en la ciudad actual
+                                                m_Localidad = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Localidad;
+                                        else if (this.GetFieldValue<int>("id_ciudad") > 0)
+                                                m_Localidad = new Lbl.Entidades.Localidad(this.Connection, this.GetFieldValue<int>("id_ciudad"));
+                                }
                                 return m_Localidad;
                         }
                         set

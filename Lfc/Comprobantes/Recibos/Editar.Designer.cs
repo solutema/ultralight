@@ -65,7 +65,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.FacturasFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.FacturasImporte = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.FacturasPendiente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.FacturasCliente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EtiquetaFacturasImporte = new Lui.Forms.Label();
                         this.BotonAgregarFactura = new Lui.Forms.Button();
                         this.BotonQuitarFactura = new Lui.Forms.Button();
@@ -121,6 +120,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaVendedor.AutoNav = true;
                         this.EntradaVendedor.AutoTab = true;
+                        this.EntradaVendedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
@@ -155,6 +155,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaNumero.AutoNav = true;
                         this.EntradaNumero.AutoTab = true;
+                        this.EntradaNumero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
                         this.EntradaNumero.FieldName = null;
@@ -184,8 +185,7 @@ namespace Lfc.Comprobantes.Recibos
             this.FacturasNumero,
             this.FacturasFecha,
             this.FacturasImporte,
-            this.FacturasPendiente,
-            this.FacturasCliente});
+            this.FacturasPendiente});
                         this.ListaFacturas.FullRowSelect = true;
                         this.ListaFacturas.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaFacturas.HideSelection = false;
@@ -207,7 +207,7 @@ namespace Lfc.Comprobantes.Recibos
                         // FacturasNumero
                         // 
                         this.FacturasNumero.Text = "Nro.";
-                        this.FacturasNumero.Width = 120;
+                        this.FacturasNumero.Width = 240;
                         // 
                         // FacturasFecha
                         // 
@@ -226,11 +226,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.FacturasPendiente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                         this.FacturasPendiente.Width = 72;
                         // 
-                        // FacturasCliente
-                        // 
-                        this.FacturasCliente.Text = "Cliente";
-                        this.FacturasCliente.Width = 300;
-                        // 
                         // EtiquetaFacturasImporte
                         // 
                         this.EtiquetaFacturasImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -245,6 +240,7 @@ namespace Lfc.Comprobantes.Recibos
                         // BotonAgregarFactura
                         // 
                         this.BotonAgregarFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonAgregarFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonAgregarFactura.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregarFactura.Image = null;
                         this.BotonAgregarFactura.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -262,6 +258,7 @@ namespace Lfc.Comprobantes.Recibos
                         // BotonQuitarFactura
                         // 
                         this.BotonQuitarFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonQuitarFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonQuitarFactura.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarFactura.Image = null;
                         this.BotonQuitarFactura.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -356,6 +353,7 @@ namespace Lfc.Comprobantes.Recibos
                         // BotonAgregarValor
                         // 
                         this.BotonAgregarValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonAgregarValor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonAgregarValor.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregarValor.Image = null;
                         this.BotonAgregarValor.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -373,6 +371,7 @@ namespace Lfc.Comprobantes.Recibos
                         // BotonQuitarValor
                         // 
                         this.BotonQuitarValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonQuitarValor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonQuitarValor.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarValor.Image = null;
                         this.BotonQuitarValor.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -425,6 +424,7 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoNav = true;
                         this.EntradaCliente.AutoTab = true;
+                        this.EntradaCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
@@ -463,6 +463,7 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConceptoTexto.AutoNav = true;
                         this.EntradaConceptoTexto.AutoTab = true;
+                        this.EntradaConceptoTexto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaConceptoTexto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaConceptoTexto.DecimalPlaces = -1;
                         this.EntradaConceptoTexto.FieldName = null;
@@ -543,6 +544,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaPV.AutoNav = true;
                         this.EntradaPV.AutoTab = true;
+                        this.EntradaPV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.FieldName = null;
@@ -577,6 +579,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConcepto.AutoNav = true;
                         this.EntradaConcepto.AutoTab = true;
+                        this.EntradaConcepto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaConcepto.CanCreate = true;
                         this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.DataValueField = "id_concepto";
@@ -614,6 +617,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.Add(this.EntradaVendedor);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(756, 474);
+                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
@@ -658,7 +662,6 @@ namespace Lfc.Comprobantes.Recibos
                 private System.Windows.Forms.ColumnHeader FacturasNumero;
                 private System.Windows.Forms.ColumnHeader FacturasFecha;
                 private System.Windows.Forms.ColumnHeader FacturasPendiente;
-                private System.Windows.Forms.ColumnHeader FacturasCliente;
                 private System.Windows.Forms.ColumnHeader ValoresTipoPagoId;
                 private System.Windows.Forms.ColumnHeader ValoresTipoPago;
                 private System.Windows.Forms.ColumnHeader ValoresImporte;

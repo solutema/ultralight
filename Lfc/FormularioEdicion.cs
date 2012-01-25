@@ -146,12 +146,17 @@ namespace Lfc
                                 IDbTransaction Trans = null;
                                 if (this.Elemento.Connection.InTransaction == false)
                                         Trans = this.Elemento.Connection.BeginTransaction(IsolationLevel.Serializable);
-                                try {
+
+                                if (Lfx.Workspace.Master.DebugMode) {
                                         Resultado = this.Elemento.Guardar();
-                                } catch {
-                                        if (Trans != null)
-                                                Trans.Rollback();
-                                        throw;
+                                } else {
+                                        try {
+                                                Resultado = this.Elemento.Guardar();
+                                        } catch {
+                                                if (Trans != null)
+                                                        Trans.Rollback();
+                                                throw;
+                                        }
                                 }
                                 if (Resultado.Success) {
                                         this.ControlUnico.AfterSave(Trans);

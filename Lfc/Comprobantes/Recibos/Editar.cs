@@ -245,7 +245,6 @@ namespace Lfc.Comprobantes.Recibos
                                 AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatDate(Fc.Fecha)));
                                 AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatCurrency(Fc.Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
                                 AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Lfx.Types.Formatting.FormatCurrency(Fc.Total - Fc.ImporteCancelado, this.Workspace.CurrentConfig.Moneda.Decimales)));
-                                AgregarFactura.SubItems.Add(new ListViewItem.ListViewSubItem(AgregarFactura, Fc.Cliente.ToString()));
 
                         }
 
