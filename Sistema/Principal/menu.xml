@@ -107,7 +107,7 @@
       <Opcion Nombre="Cajas" Funcion="LISTAR Lbl.Cajas.Caja" />
       <Opcion Nombre="Conceptos" Funcion="LISTAR Lbl.Cajas.Concepto" />
     </Opcion>
-    <Opcion Nombre="&amp;Vencimientos" Funcion="LISTAR Lbl.Cajas.Vencimiento" />
+    <Opcion Nombre="&amp;Vencimientos" Funcion="LISTAR Lbl.Vencimientos.Vencimiento" />
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Tablas" Funcion="">
       <Opcion Nombre="Cajas" Funcion="LISTAR Lbl.Cajas.Caja" />

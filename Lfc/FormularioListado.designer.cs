@@ -67,12 +67,11 @@ namespace Lfc
                         // 
                         // EntradaBuscar
                         // 
-                        this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaBuscar.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaBuscar.Location = new System.Drawing.Point(8, 8);
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBuscar.PlaceholderText = "Buscar (F3)";
-                        this.EntradaBuscar.ReadOnly = false;
                         this.EntradaBuscar.Size = new System.Drawing.Size(212, 24);
                         this.EntradaBuscar.TabIndex = 1;
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
@@ -82,13 +81,14 @@ namespace Lfc
                         // 
                         this.BotonCrear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCrear.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCrear.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCrear.Image = null;
                         this.BotonCrear.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCrear.Location = new System.Drawing.Point(120, 236);
+                        this.BotonCrear.Location = new System.Drawing.Point(180, 137);
+                        this.BotonCrear.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonCrear.Name = "BotonCrear";
                         this.BotonCrear.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCrear.ReadOnly = false;
-                        this.BotonCrear.Size = new System.Drawing.Size(96, 40);
+                        this.BotonCrear.Size = new System.Drawing.Size(136, 40);
                         this.BotonCrear.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonCrear.Subtext = "F6";
                         this.BotonCrear.TabIndex = 3;
@@ -120,12 +120,8 @@ namespace Lfc
                         // 
                         // FormularioListado
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.AutoSize = true;
-                        this.ClientSize = new System.Drawing.Size(792, 472);
                         this.Controls.Add(this.EtiquetaListadoVacio);
                         this.Controls.Add(this.EntradaBuscar);
-                        this.PanelAcciones.Controls.Add(this.BotonCrear);
                         this.Name = "FormularioListado";
                         this.Text = "Listado";
                         this.Controls.SetChildIndex(this.PanelContadores, 0);

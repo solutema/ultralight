@@ -78,7 +78,7 @@ namespace Lazaro.Pres.DisplayStyles
                         }
 
                         // Microsoft Sans Serif, Segoe UI, Bitstream Vera Sans
-                        if (Lfx.Environment.SystemInformation.DesignMode == false && TengoSegoe) {
+                        if (TengoSegoe) {
                                 DefaultFontName = "Segoe UI";
                                 DefaultCaptionFontName = "Segoe UI";
                         } else {
