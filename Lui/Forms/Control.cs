@@ -54,9 +54,6 @@ namespace Lui.Forms
                 [EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
                 new public event System.EventHandler TextChanged;
 
-                // IDataControl
-                protected Lfx.Data.Connection m_DataBase = null;
-
 		public enum BorderStyles
 		{
 			None = 0,
@@ -66,6 +63,7 @@ namespace Lui.Forms
 			Button
 		}
 
+
                 public Control()
                 {
                         InitializeComponent();
@@ -73,6 +71,7 @@ namespace Lui.Forms
                         this.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
                         base.BackColor = this.DisplayStyle.BackgroundColor;
                 }
+
 
 		[EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
@@ -90,10 +89,12 @@ namespace Lui.Forms
 			}
 		}
 
+
                 /// <summary>
                 /// Obtiene o establece un valor que indica si el control tiene navegación con teclado mejorada.
                 /// </summary>
-                [System.ComponentModel.Category("Comportamiento")]
+                [System.ComponentModel.Category("Comportamiento"),
+                        DefaultValue(true)]
                 public bool AutoNav
                 {
                         get
@@ -152,7 +153,8 @@ namespace Lui.Forms
                 /// </summary>
                 [EditorBrowsable(EditorBrowsableState.Never), 
                         System.ComponentModel.Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+                        DefaultValue(false)]
 		public virtual bool TemporaryReadOnly
 		{
 			get
@@ -175,7 +177,8 @@ namespace Lui.Forms
                 /// </summary>
                 [EditorBrowsable(EditorBrowsableState.Always),
                         System.ComponentModel.Browsable(true),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),
+                        DefaultValue(false)]
                 public virtual bool ReadOnly
                 {
                         get
@@ -312,36 +315,6 @@ namespace Lui.Forms
 		}
 
 
-                /// <summary>
-                /// IDataControl
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Data.Connection Connection
-                {
-                        get
-                        {
-                                if (m_DataBase == null) {
-                                        if (this.ParentForm is IDataForm) {
-                                                // Obtengo la conexión del formulario
-                                                m_DataBase = ((IDataForm)(this.ParentForm)).Connection;
-                                        } else {
-                                                // De lo contrario, intento buscar una conexión en los controles parent
-                                                System.Windows.Forms.Control MiParent = this.Parent;
-                                                while (MiParent != null) {
-                                                        if (MiParent is Lui.Forms.IDataControl) {
-                                                                m_DataBase = ((Lui.Forms.IDataControl)(MiParent)).Connection;
-                                                                break;
-                                                        } else {
-                                                                MiParent = MiParent.Parent;
-                                                        }
-                                                }
-                                        }
-                                }
-                                return m_DataBase;
-                        }
-                }
-
-
                 protected override void OnTextChanged(EventArgs e)
                 {
                         EventHandler Tceh = this.TextChanged;
@@ -473,7 +446,7 @@ namespace Lui.Forms
                         get
                         {
                                 if (m_PenDataAreaGrayTextColor == null)
-                                        m_PenDataAreaGrayTextColor = new Pen(this.DisplayStyle.DataAreaTextColor);
+                                        m_PenDataAreaGrayTextColor = new Pen(this.DisplayStyle.DataAreaGrayTextColor);
                                 return m_PenDataAreaGrayTextColor;
                         }
                 }

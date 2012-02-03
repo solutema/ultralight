@@ -38,36 +38,14 @@ using System.Windows.Forms;
 
 namespace Lui.Forms.AuxForms
 {
-	public partial class TextEdit : System.Windows.Forms.Form
+	public partial class TextEdit : Lui.Forms.DialogForm
 	{
+                public TextEdit()
+                {
+                        InitializeComponent();
+                        EntradaTexto.MenuItemEditor.Visible = false;
+                }
 
-		private void BotonAceptar_Click(object sender, System.EventArgs e)
-		{
-			this.DialogResult = DialogResult.OK;
-			this.Hide();
-		}
-
-		private void BotonCancelar_Click(object sender, System.EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close();
-		}
-
-		private void TextEdit_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-		{
-			switch (e.KeyCode)
-			{
-				case Keys.Escape:
-					e.Handled = true;
-					BotonCancelar.PerformClick();
-					break;
-				case Keys.F9:
-					e.Handled = true;
-					BotonAceptar.PerformClick();
-					break;
-			}
-
-		}
 
 		public string EditText
 		{
@@ -81,6 +59,7 @@ namespace Lui.Forms.AuxForms
 			}
 		}
 
+
                 public bool ReadOnly
                 {
                         get
@@ -90,7 +69,8 @@ namespace Lui.Forms.AuxForms
                         set
                         {
                                 EntradaTexto.TemporaryReadOnly = value;
-                                BotonAceptar.Visible = !value;
+                                this.OkButton.Visible = !value;
+                                this.ReadOnly = value;
                         }
                 }
 	}

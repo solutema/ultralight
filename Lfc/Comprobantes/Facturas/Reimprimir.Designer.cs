@@ -96,7 +96,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = false;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -115,16 +114,12 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // EntradaDesde
                         // 
-                        this.EntradaDesde.AutoNav = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaDesde.DecimalPlaces = -1;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(292, 20);
-                        this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesde.ReadOnly = false;
-                        this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
@@ -132,16 +127,12 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // EntradaPV
                         // 
-                        this.EntradaPV.AutoNav = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(148, 48);
-                        this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.ReadOnly = false;
-                        this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(52, 24);
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
@@ -159,7 +150,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaOrden
                         // 
                         this.EntradaOrden.AlwaysExpanded = true;
-                        this.EntradaOrden.AutoNav = true;
                         this.EntradaOrden.AutoSize = true;
                         this.EntradaOrden.Location = new System.Drawing.Point(508, 20);
                         this.EntradaOrden.Name = "EntradaOrden";
@@ -185,7 +175,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.ComprobanteVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ComprobanteVistaPrevia.AutoNav = true;
                         this.ComprobanteVistaPrevia.AutoSize = true;
                         this.ComprobanteVistaPrevia.Location = new System.Drawing.Point(16, 80);
                         this.ComprobanteVistaPrevia.MinimumSize = new System.Drawing.Size(600, 320);
@@ -199,16 +188,12 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // EntradaHasta
                         // 
-                        this.EntradaHasta.AutoNav = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaHasta.DecimalPlaces = -1;
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 48);
-                        this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHasta.ReadOnly = false;
-                        this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(100, 24);
                         this.EntradaHasta.TabIndex = 7;
                         this.EntradaHasta.Text = "0";

@@ -84,13 +84,11 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaBanco.AutoNav = true;
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.ExtraDetailFields = "";
-                        this.EntradaBanco.FieldName = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(120, 32);
@@ -99,7 +97,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.PlaceholderText = null;
-                        this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(440, 24);
                         this.EntradaBanco.TabIndex = 3;
@@ -109,22 +106,11 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // EntradaDesde
                         // 
-                        this.EntradaDesde.AutoNav = true;
-                        this.EntradaDesde.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaDesde.DecimalPlaces = -1;
-                        this.EntradaDesde.FieldName = null;
-                        this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(184, 64);
-                        this.EntradaDesde.MultiLine = false;
+                        this.EntradaDesde.MaxLength = 50;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.PasswordChar = '\0';
-                        this.EntradaDesde.PlaceholderText = null;
-                        this.EntradaDesde.Prefijo = "";
-                        this.EntradaDesde.ReadOnly = false;
-                        this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(116, 24);
-                        this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 8;
                         // 
                         // Label3
@@ -139,22 +125,11 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // EntradaHasta
                         // 
-                        this.EntradaHasta.AutoNav = true;
-                        this.EntradaHasta.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaHasta.DecimalPlaces = -1;
-                        this.EntradaHasta.FieldName = null;
-                        this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(368, 64);
-                        this.EntradaHasta.MultiLine = false;
+                        this.EntradaHasta.MaxLength = 50;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaHasta.PasswordChar = '\0';
-                        this.EntradaHasta.PlaceholderText = null;
-                        this.EntradaHasta.Prefijo = "";
-                        this.EntradaHasta.ReadOnly = false;
-                        this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 10;
                         // 
                         // label2
@@ -181,13 +156,11 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCaja.AutoNav = true;
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.ExtraDetailFields = "";
-                        this.EntradaCaja.FieldName = null;
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(120, 128);
@@ -196,7 +169,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.PlaceholderText = "Ninguna";
-                        this.EntradaCaja.ReadOnly = false;
                         this.EntradaCaja.Required = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(440, 24);
                         this.EntradaCaja.TabIndex = 14;
@@ -207,18 +179,15 @@ namespace Lfc.Bancos.Chequeras
                         // EntradaEstado
                         // 
                         this.EntradaEstado.AlwaysExpanded = true;
-                        this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
-                        this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(120, 160);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = "Estado para esta chequera.";
-                        this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Fuera de uso|0",
         "Activa|1"};
-                        this.EntradaEstado.Size = new System.Drawing.Size(172, 36);
+                        this.EntradaEstado.Size = new System.Drawing.Size(172, 40);
                         this.EntradaEstado.TabIndex = 16;
                         this.EntradaEstado.TextKey = "1";
                         // 
@@ -246,23 +215,13 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         this.EntradaTitular.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTitular.AutoNav = true;
-                        this.EntradaTitular.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaTitular.DecimalPlaces = -1;
-                        this.EntradaTitular.FieldName = null;
-                        this.EntradaTitular.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTitular.Location = new System.Drawing.Point(120, 0);
                         this.EntradaTitular.MaximumSize = new System.Drawing.Size(480, 32);
-                        this.EntradaTitular.MultiLine = false;
+                        this.EntradaTitular.MaxLength = 200;
                         this.EntradaTitular.Name = "EntradaTitular";
                         this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTitular.PasswordChar = '\0';
                         this.EntradaTitular.PlaceholderText = "";
-                        this.EntradaTitular.Prefijo = "";
-                        this.EntradaTitular.ReadOnly = false;
-                        this.EntradaTitular.SelectOnFocus = true;
                         this.EntradaTitular.Size = new System.Drawing.Size(440, 24);
-                        this.EntradaTitular.Sufijo = "";
                         this.EntradaTitular.TabIndex = 1;
                         // 
                         // label4
@@ -289,13 +248,11 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaSucursal.AutoNav = true;
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.ExtraDetailFields = "";
-                        this.EntradaSucursal.FieldName = null;
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(120, 96);
@@ -304,7 +261,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaSucursal.Name = "EntradaSucursal";
                         this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.PlaceholderText = "Todas";
-                        this.EntradaSucursal.ReadOnly = false;
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(440, 24);
                         this.EntradaSucursal.TabIndex = 12;

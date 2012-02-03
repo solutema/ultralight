@@ -57,6 +57,7 @@ namespace Lazaro.Pres.DisplayStyles
                 public System.Drawing.Font MenuFont { get; set; }
                 public System.Drawing.Font SmallFont { get; set; }
                 public System.Drawing.Font SmallerFont { get; set; }
+                public System.Drawing.Font DataEntryFont { get; set; }
                 public System.Drawing.Font BigFont { get; set; }
                 public System.Drawing.Font BiggerFont { get; set; }
                 public System.Drawing.Font MainHeaderFont { get; set; }
@@ -88,6 +89,7 @@ namespace Lazaro.Pres.DisplayStyles
                         DefaultMonoFontName = "Bitstream Vera Sans Mono";
                         
                         DefaultFont = new System.Drawing.Font(DefaultFontName, 9.75F);
+                        DataEntryFont = new System.Drawing.Font(DefaultFontName, 9.75F);
                         MenuFont = new System.Drawing.Font(DefaultFontName, 9.75F);
                         SmallFont = new System.Drawing.Font(DefaultFontName, 8F);
                         SmallerFont = new System.Drawing.Font(DefaultFontName, 6.75F);

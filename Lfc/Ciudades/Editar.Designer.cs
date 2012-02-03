@@ -87,64 +87,41 @@ namespace Lfc.Ciudades
                         // 
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
-                        this.EntradaNombre.MultiLine = false;
+                        this.EntradaNombre.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
-                        this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
-                        this.EntradaNombre.Size = new System.Drawing.Size(670, 24);
-                        this.EntradaNombre.Sufijo = "";
+                        this.EntradaNombre.Size = new System.Drawing.Size(262, 24);
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // EntradaCp
                         // 
-                        this.EntradaCp.AutoNav = true;
-                        this.EntradaCp.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaCp.DecimalPlaces = -1;
-                        this.EntradaCp.FieldName = null;
-                        this.EntradaCp.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCp.Location = new System.Drawing.Point(116, 76);
-                        this.EntradaCp.MultiLine = false;
                         this.EntradaCp.Name = "EntradaCp";
                         this.EntradaCp.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCp.PasswordChar = '\0';
-                        this.EntradaCp.PlaceholderText = null;
-                        this.EntradaCp.Prefijo = "";
-                        this.EntradaCp.ReadOnly = false;
-                        this.EntradaCp.SelectOnFocus = false;
                         this.EntradaCp.Size = new System.Drawing.Size(172, 24);
-                        this.EntradaCp.Sufijo = "";
                         this.EntradaCp.TabIndex = 5;
                         // 
                         // EntradaParent
                         // 
                         this.EntradaParent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaParent.AutoNav = true;
+                        this.EntradaParent.AutoTab = true;
                         this.EntradaParent.CanCreate = true;
                         this.EntradaParent.DataTextField = "nombre";
                         this.EntradaParent.DataValueField = "id_ciudad";
                         this.EntradaParent.ExtraDetailFields = "";
-                        this.EntradaParent.FieldName = null;
                         this.EntradaParent.Filter = "id_provincia IS NULL";
                         this.EntradaParent.FreeTextCode = "";
                         this.EntradaParent.Location = new System.Drawing.Point(116, 108);
+                        this.EntradaParent.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaParent.MaxLength = 200;
                         this.EntradaParent.Name = "EntradaParent";
                         this.EntradaParent.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaParent.PlaceholderText = "Ninguna";
-                        this.EntradaParent.ReadOnly = false;
                         this.EntradaParent.Required = false;
-                        this.EntradaParent.Size = new System.Drawing.Size(670, 24);
+                        this.EntradaParent.Size = new System.Drawing.Size(262, 24);
                         this.EntradaParent.TabIndex = 7;
                         this.EntradaParent.Table = "ciudades";
                         this.EntradaParent.Text = "0";
@@ -173,18 +150,14 @@ namespace Lfc.Ciudades
                         // EntradaNivel
                         // 
                         this.EntradaNivel.AlwaysExpanded = true;
-                        this.EntradaNivel.AutoNav = true;
                         this.EntradaNivel.AutoSize = true;
-                        this.EntradaNivel.FieldName = null;
                         this.EntradaNivel.Location = new System.Drawing.Point(116, 32);
                         this.EntradaNivel.Name = "EntradaNivel";
                         this.EntradaNivel.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNivel.PlaceholderText = null;
-                        this.EntradaNivel.ReadOnly = false;
                         this.EntradaNivel.SetData = new string[] {
         "Provincia|0",
         "Localidad|2"};
-                        this.EntradaNivel.Size = new System.Drawing.Size(172, 36);
+                        this.EntradaNivel.Size = new System.Drawing.Size(172, 40);
                         this.EntradaNivel.TabIndex = 3;
                         this.EntradaNivel.TextKey = "2";
                         this.EntradaNivel.TextChanged += new System.EventHandler(this.EntradaNivel_TextChanged);
@@ -192,18 +165,14 @@ namespace Lfc.Ciudades
                         // EntradaIva
                         // 
                         this.EntradaIva.AlwaysExpanded = true;
-                        this.EntradaIva.AutoNav = true;
                         this.EntradaIva.AutoSize = true;
-                        this.EntradaIva.FieldName = null;
                         this.EntradaIva.Location = new System.Drawing.Point(116, 140);
                         this.EntradaIva.Name = "EntradaIva";
                         this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaIva.PlaceholderText = null;
-                        this.EntradaIva.ReadOnly = false;
                         this.EntradaIva.SetData = new string[] {
         "Predeterminado|0",
         "Exento|1"};
-                        this.EntradaIva.Size = new System.Drawing.Size(172, 36);
+                        this.EntradaIva.Size = new System.Drawing.Size(172, 40);
                         this.EntradaIva.TabIndex = 9;
                         this.EntradaIva.TextKey = "0";
                         // 
@@ -230,8 +199,9 @@ namespace Lfc.Ciudades
                         this.Controls.Add(this.EtiquetaParent);
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.Label2);
+                        this.MinimumSize = new System.Drawing.Size(380, 180);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(788, 197);
+                        this.Size = new System.Drawing.Size(380, 185);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

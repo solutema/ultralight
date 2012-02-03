@@ -84,7 +84,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaImpresora.AutoNav = true;
                         this.EntradaImpresora.CanCreate = true;
                         this.EntradaImpresora.DataTextField = "nombre";
                         this.EntradaImpresora.Filter = "";
@@ -115,7 +114,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaSucursal.AutoNav = true;
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.Filter = "";
@@ -178,29 +176,20 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaEstacion
                         // 
-                        this.EntradaEstacion.AutoNav = true;
-                        this.EntradaEstacion.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaEstacion.DecimalPlaces = -1;
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(152, 184);
-                        this.EntradaEstacion.MultiLine = false;
                         this.EntradaEstacion.Name = "EntradaEstacion";
                         this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstacion.SelectOnFocus = true;
                         this.EntradaEstacion.Size = new System.Drawing.Size(196, 24);
                         this.EntradaEstacion.TabIndex = 7;
                         // 
                         // EntradaPuntoDeVenta
                         // 
-                        this.EntradaPuntoDeVenta.AutoNav = true;
                         this.EntradaPuntoDeVenta.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPuntoDeVenta.DecimalPlaces = -1;
                         this.EntradaPuntoDeVenta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPuntoDeVenta.Location = new System.Drawing.Point(152, 152);
-                        this.EntradaPuntoDeVenta.MultiLine = false;
                         this.EntradaPuntoDeVenta.Name = "EntradaPuntoDeVenta";
                         this.EntradaPuntoDeVenta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPuntoDeVenta.SelectOnFocus = true;
                         this.EntradaPuntoDeVenta.Size = new System.Drawing.Size(72, 24);
                         this.EntradaPuntoDeVenta.TabIndex = 5;
                         this.EntradaPuntoDeVenta.Text = "0";

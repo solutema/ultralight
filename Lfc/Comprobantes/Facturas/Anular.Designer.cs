@@ -97,13 +97,10 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = false;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = null;
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "A|A",
@@ -119,22 +116,13 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // EntradaDesde
                         // 
-                        this.EntradaDesde.AutoNav = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaDesde.DecimalPlaces = -1;
-                        this.EntradaDesde.FieldName = null;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(292, 20);
-                        this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.PasswordChar = '\0';
-                        this.EntradaDesde.PlaceholderText = null;
-                        this.EntradaDesde.Prefijo = "";
                         this.EntradaDesde.ReadOnly = false;
-                        this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
@@ -152,22 +140,13 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // EntradaPV
                         // 
-                        this.EntradaPV.AutoNav = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPV.DecimalPlaces = -1;
-                        this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(148, 48);
-                        this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPV.PasswordChar = '\0';
-                        this.EntradaPV.PlaceholderText = null;
-                        this.EntradaPV.Prefijo = "";
                         this.EntradaPV.ReadOnly = false;
-                        this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(52, 24);
-                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);
@@ -185,13 +164,10 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaAnularPagos
                         // 
                         this.EntradaAnularPagos.AlwaysExpanded = true;
-                        this.EntradaAnularPagos.AutoNav = true;
                         this.EntradaAnularPagos.AutoSize = true;
-                        this.EntradaAnularPagos.FieldName = null;
                         this.EntradaAnularPagos.Location = new System.Drawing.Point(508, 20);
                         this.EntradaAnularPagos.Name = "EntradaAnularPagos";
                         this.EntradaAnularPagos.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAnularPagos.PlaceholderText = null;
                         this.EntradaAnularPagos.ReadOnly = false;
                         this.EntradaAnularPagos.SetData = new string[] {
         "Anular todos los pagos asociados|1",
@@ -214,9 +190,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.ComprobanteVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ComprobanteVistaPrevia.AutoNav = true;
                         this.ComprobanteVistaPrevia.AutoSize = true;
-                        this.ComprobanteVistaPrevia.FieldName = null;
                         this.ComprobanteVistaPrevia.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.ComprobanteVistaPrevia.Location = new System.Drawing.Point(20, 112);
                         this.ComprobanteVistaPrevia.MinimumSize = new System.Drawing.Size(600, 320);
@@ -230,22 +204,13 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // EntradaHasta
                         // 
-                        this.EntradaHasta.AutoNav = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaHasta.DecimalPlaces = -1;
-                        this.EntradaHasta.FieldName = null;
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 48);
-                        this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaHasta.PasswordChar = '\0';
-                        this.EntradaHasta.PlaceholderText = null;
-                        this.EntradaHasta.Prefijo = "";
                         this.EntradaHasta.ReadOnly = false;
-                        this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaHasta.Sufijo = "";
                         this.EntradaHasta.TabIndex = 7;
                         this.EntradaHasta.Text = "0";
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaDesdeTipoPV_TextChanged);

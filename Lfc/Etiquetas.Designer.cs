@@ -74,8 +74,6 @@ namespace Lfc
                         // 
                         this.EntradaEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaEtiquetas.AutoNav = true;
-                        this.EntradaEtiquetas.FieldName = null;
                         this.EntradaEtiquetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaEtiquetas.Location = new System.Drawing.Point(453, 11);
                         this.EntradaEtiquetas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -91,8 +89,6 @@ namespace Lfc
                         this.EntradaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaComentarios.AutoNav = true;
-                        this.EntradaComentarios.FieldName = null;
                         this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaComentarios.Location = new System.Drawing.Point(13, 11);
                         this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

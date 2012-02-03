@@ -49,8 +49,6 @@ namespace Lfc.Articulos
                         }
 
                         InitializeComponent();
-
-                        EntradaMovimiento_TextChanged(this, null);
                 }
 
 
@@ -137,14 +135,15 @@ namespace Lfc.Articulos
                         MostrarStock();
                 }
 
+
                 private void EntradaDesdeHaciaSituacion_TextChanged(object sender, System.EventArgs e)
                 {
                         MostrarStock();
-                        lblDesdeSituacion.Text = EntradaDesdeSituacion.TextDetail;
-                        lblHaciaSituacion.Text = EntradaHaciaSituacion.TextDetail;
-
+                        
                         Lbl.Articulos.Situacion Desde = EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
                         Lbl.Articulos.Situacion Hacia = EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
+                        EtiquetaDesdeSituacion.Text = EntradaDesdeSituacion.TextDetail;
+                        EtiquetaHaciaSituacion.Text = EntradaHaciaSituacion.TextDetail;
 
                         if ((Desde == null || Desde.CuentaExistencias == false) && (Hacia != null && Hacia.CuentaExistencias == true)) {
                                 if (EntradaMovimiento.TextKey != "e")
@@ -157,13 +156,13 @@ namespace Lfc.Articulos
                                         EntradaMovimiento.TextKey = "o";
                         }
 
-                        EntradaStockActual.Visible = Desde != null && Desde.CuentaExistencias;
-                        lblStockFlecha.Visible = EntradaStockActual.Visible;
-                        EntradaStockResult.Visible = EntradaStockActual.Visible;
+                        EntradaDesdeAntes.Visible = Desde != null && Desde.CuentaExistencias;
+                        EtiquetaDesdeFlecha.Visible = EntradaDesdeAntes.Visible;
+                        EntradaDesdeDespues.Visible = EntradaDesdeAntes.Visible;
 
-                        EntradaStockActual2.Visible = Hacia != null && Hacia.CuentaExistencias;
-                        lblStockFlecha2.Visible = EntradaStockActual2.Visible;
-                        EntradaStockResult2.Visible = EntradaStockActual2.Visible;
+                        EntradaHaciaAntes.Visible = Hacia != null && Hacia.CuentaExistencias;
+                        EtiquetaHaciaFlecha.Visible = EntradaHaciaAntes.Visible;
+                        EntradaHaciaDespues.Visible = EntradaHaciaAntes.Visible;
 
                         EntradaArticulo.DatosSeguimiento = null;
                 }
@@ -178,38 +177,41 @@ namespace Lfc.Articulos
                                 decimal HaciaCantidad = this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaHaciaSituacion.TextInt.ToString());
 
                                 if (EntradaDesdeSituacion.TextInt < 998 || EntradaDesdeSituacion.TextInt > 999) {
-                                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
-                                        EntradaStockResult.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                                        EntradaDesdeAntes.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                                        EntradaDesdeDespues.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
                                 } else {
-                                        EntradaStockActual.Text = "N/A";
-                                        EntradaStockResult.Text = "N/A";
+                                        EntradaDesdeAntes.Text = "N/A";
+                                        EntradaDesdeDespues.Text = "N/A";
                                 }
 
                                 if (EntradaHaciaSituacion.TextInt < 998 || EntradaHaciaSituacion.TextInt > 999) {
-                                        EntradaStockActual2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
-                                        EntradaStockResult2.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                                        EntradaHaciaAntes.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                                        EntradaHaciaDespues.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
                                 } else {
-                                        EntradaStockActual2.Text = "N/A";
-                                        EntradaStockResult2.Text = "N/A";
+                                        EntradaHaciaAntes.Text = "N/A";
+                                        EntradaHaciaDespues.Text = "N/A";
                                 }
                         } else {
-                                EntradaStockActual.Text = "";
-                                EntradaStockResult.Text = "";
-                                EntradaStockActual2.Text = "";
-                                EntradaStockResult2.Text = "";
+                                EntradaDesdeAntes.Text = "";
+                                EntradaDesdeDespues.Text = "";
+                                EntradaHaciaAntes.Text = "";
+                                EntradaHaciaDespues.Text = "";
                         }
                 }
+
 
                 protected override void OnLoad(EventArgs e)
                 {
                         base.OnLoad(e);
-                        if (Lfx.Workspace.Master != null) {
+                        if (this.Connection != null) {
+                                EntradaMovimiento.TextKey = "s";
                                 EntradaDesdeSituacion.Visible = Lfx.Workspace.Master.CurrentConfig.Productos.StockMultideposito;
                                 EntradaHaciaSituacion.Visible = Lfx.Workspace.Master.CurrentConfig.Productos.StockMultideposito;
                                 Label7.Visible = Lfx.Workspace.Master.CurrentConfig.Productos.StockMultideposito;
                                 Label8.Visible = Lfx.Workspace.Master.CurrentConfig.Productos.StockMultideposito;
                         }
                 }
+
 
                 private void EntradaArticulo_ObtenerDatosSeguimiento(object sender, EventArgs e)
                 {

@@ -65,60 +65,38 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // EntradaEmisor
                         // 
-                        this.EntradaEmisor.AutoNav = true;
-                        this.EntradaEmisor.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaEmisor.DecimalPlaces = -1;
-                        this.EntradaEmisor.FieldName = null;
                         this.EntradaEmisor.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaEmisor.Location = new System.Drawing.Point(140, 0);
-                        this.EntradaEmisor.MultiLine = false;
                         this.EntradaEmisor.Name = "EntradaEmisor";
                         this.EntradaEmisor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEmisor.PasswordChar = '\0';
                         this.EntradaEmisor.PlaceholderText = "";
-                        this.EntradaEmisor.Prefijo = "";
                         this.EntradaEmisor.ReadOnly = false;
-                        this.EntradaEmisor.SelectOnFocus = true;
                         this.EntradaEmisor.Size = new System.Drawing.Size(460, 24);
-                        this.EntradaEmisor.Sufijo = "";
                         this.EntradaEmisor.TabIndex = 1;
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNumero.DecimalPlaces = -1;
-                        this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(140, 64);
-                        this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PasswordChar = '\0';
-                        this.EntradaNumero.PlaceholderText = null;
-                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.ReadOnly = false;
-                        this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(172, 24);
-                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 5;
                         // 
                         // EntradaBanco
                         // 
-                        this.EntradaBanco.AutoNav = true;
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.ExtraDetailFields = "";
-                        this.EntradaBanco.FieldName = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 32);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBanco.PlaceholderText = null;
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(460, 24);
@@ -159,22 +137,13 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // EntradaFechaCobro
                         // 
-                        this.EntradaFechaCobro.AutoNav = true;
                         this.EntradaFechaCobro.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaCobro.DecimalPlaces = -1;
-                        this.EntradaFechaCobro.FieldName = null;
                         this.EntradaFechaCobro.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaCobro.Location = new System.Drawing.Point(140, 128);
-                        this.EntradaFechaCobro.MultiLine = false;
                         this.EntradaFechaCobro.Name = "EntradaFechaCobro";
                         this.EntradaFechaCobro.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaCobro.PasswordChar = '\0';
-                        this.EntradaFechaCobro.PlaceholderText = null;
-                        this.EntradaFechaCobro.Prefijo = "";
                         this.EntradaFechaCobro.ReadOnly = false;
-                        this.EntradaFechaCobro.SelectOnFocus = true;
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaFechaCobro.Sufijo = "";
                         this.EntradaFechaCobro.TabIndex = 9;
                         // 
                         // label2
@@ -189,22 +158,13 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // EntradaFechaEmision
                         // 
-                        this.EntradaFechaEmision.AutoNav = true;
                         this.EntradaFechaEmision.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaEmision.DecimalPlaces = -1;
-                        this.EntradaFechaEmision.FieldName = null;
                         this.EntradaFechaEmision.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaEmision.Location = new System.Drawing.Point(140, 96);
-                        this.EntradaFechaEmision.MultiLine = false;
                         this.EntradaFechaEmision.Name = "EntradaFechaEmision";
                         this.EntradaFechaEmision.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaEmision.PasswordChar = '\0';
-                        this.EntradaFechaEmision.PlaceholderText = null;
-                        this.EntradaFechaEmision.Prefijo = "";
                         this.EntradaFechaEmision.ReadOnly = false;
-                        this.EntradaFechaEmision.SelectOnFocus = true;
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaFechaEmision.Sufijo = "";
                         this.EntradaFechaEmision.TabIndex = 7;
                         // 
                         // lblFecha1

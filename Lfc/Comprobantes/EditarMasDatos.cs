@@ -90,14 +90,6 @@ namespace Lfc.Comprobantes
                         this.EntradaBloqueada = new Lui.Forms.ComboBox();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
-                        // 
                         // lblHaciaSituacion
                         // 
                         this.lblHaciaSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
@@ -112,12 +104,11 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaHaciaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaHaciaSituacion.AutoNav = true;
+                        this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
                         this.EntradaHaciaSituacion.ExtraDetailFields = "";
-                        this.EntradaHaciaSituacion.FieldName = null;
                         this.EntradaHaciaSituacion.Filter = "";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(148, 52);
@@ -125,7 +116,6 @@ namespace Lfc.Comprobantes
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
                         this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHaciaSituacion.PlaceholderText = null;
-                        this.EntradaHaciaSituacion.ReadOnly = false;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(460, 24);
                         this.EntradaHaciaSituacion.TabIndex = 3;
@@ -147,12 +137,11 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaDesdeSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDesdeSituacion.AutoNav = true;
+                        this.EntradaDesdeSituacion.AutoTab = true;
                         this.EntradaDesdeSituacion.CanCreate = false;
                         this.EntradaDesdeSituacion.DataTextField = "nombre";
                         this.EntradaDesdeSituacion.DataValueField = "id_situacion";
                         this.EntradaDesdeSituacion.ExtraDetailFields = "";
-                        this.EntradaDesdeSituacion.FieldName = null;
                         this.EntradaDesdeSituacion.Filter = "facturable=1";
                         this.EntradaDesdeSituacion.FreeTextCode = "";
                         this.EntradaDesdeSituacion.Location = new System.Drawing.Point(148, 24);
@@ -160,7 +149,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
                         this.EntradaDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesdeSituacion.PlaceholderText = null;
-                        this.EntradaDesdeSituacion.ReadOnly = false;
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(460, 24);
                         this.EntradaDesdeSituacion.TabIndex = 1;
@@ -181,18 +169,14 @@ namespace Lfc.Comprobantes
                         // EntradaBloqueada
                         // 
                         this.EntradaBloqueada.AlwaysExpanded = true;
-                        this.EntradaBloqueada.AutoNav = true;
                         this.EntradaBloqueada.AutoSize = true;
-                        this.EntradaBloqueada.FieldName = null;
                         this.EntradaBloqueada.Location = new System.Drawing.Point(148, 80);
                         this.EntradaBloqueada.Name = "EntradaBloqueada";
                         this.EntradaBloqueada.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBloqueada.PlaceholderText = null;
-                        this.EntradaBloqueada.ReadOnly = false;
                         this.EntradaBloqueada.SetData = new string[] {
         "Editable|0",
         "Bloqueado|1"};
-                        this.EntradaBloqueada.Size = new System.Drawing.Size(152, 36);
+                        this.EntradaBloqueada.Size = new System.Drawing.Size(152, 40);
                         this.EntradaBloqueada.TabIndex = 5;
                         this.EntradaBloqueada.TextKey = "0";
                         this.EntradaBloqueada.TextChanged += new System.EventHandler(this.EntradaBloqueada_TextChanged);

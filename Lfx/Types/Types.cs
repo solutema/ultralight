@@ -43,7 +43,6 @@ namespace Lfx.Types
 		public const string CrLf = "\r\n";
 		public const char Tab = (char)9;
 		public const char Quote = '"';
-		public const char Null = (char)0;
 		public const char Space = ' ';
 		public const char Escape = (char)27;
 	}

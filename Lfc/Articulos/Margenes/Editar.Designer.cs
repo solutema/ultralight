@@ -64,22 +64,13 @@ namespace Lfc.Articulos.Margenes
                         // 
                         // EntradaPorcentaje
                         // 
-                        this.EntradaPorcentaje.AutoNav = true;
                         this.EntradaPorcentaje.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaPorcentaje.DecimalPlaces = -1;
-                        this.EntradaPorcentaje.FieldName = null;
                         this.EntradaPorcentaje.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPorcentaje.Location = new System.Drawing.Point(140, 32);
-                        this.EntradaPorcentaje.MultiLine = false;
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPorcentaje.PasswordChar = '\0';
-                        this.EntradaPorcentaje.PlaceholderText = null;
-                        this.EntradaPorcentaje.Prefijo = "";
                         this.EntradaPorcentaje.ReadOnly = false;
-                        this.EntradaPorcentaje.SelectOnFocus = false;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaPorcentaje.Sufijo = "";
                         this.EntradaPorcentaje.TabIndex = 3;
                         this.EntradaPorcentaje.Text = "0.0000";
                         // 
@@ -95,22 +86,12 @@ namespace Lfc.Articulos.Margenes
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(140, 0);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(404, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
@@ -126,13 +107,10 @@ namespace Lfc.Articulos.Margenes
                         // EntradaPredet
                         // 
                         this.EntradaPredet.AlwaysExpanded = true;
-                        this.EntradaPredet.AutoNav = true;
                         this.EntradaPredet.AutoSize = true;
-                        this.EntradaPredet.FieldName = null;
                         this.EntradaPredet.Location = new System.Drawing.Point(140, 64);
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPredet.PlaceholderText = null;
                         this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",

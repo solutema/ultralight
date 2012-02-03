@@ -93,6 +93,9 @@
     <Compile Include="Articulos\TablaDetalles.Designer.cs">
       <DependentUpon>TablaDetalles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Articulos\VerMovimientos.Designer.cs">
+      <DependentUpon>VerMovimientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bancos\Cheques\InicioRecibidos.cs">
       <SubType>Form</SubType>
     </Compile>

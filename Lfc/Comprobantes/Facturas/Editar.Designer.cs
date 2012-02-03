@@ -61,19 +61,16 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EntradaFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFormaPago.AutoNav = true;
                         this.EntradaFormaPago.CanCreate = true;
                         this.EntradaFormaPago.DataTextField = "nombre";
                         this.EntradaFormaPago.DataValueField = "id_formapago";
                         this.EntradaFormaPago.ExtraDetailFields = "";
-                        this.EntradaFormaPago.FieldName = null;
                         this.EntradaFormaPago.Filter = "cobros=1 AND estado=1";
                         this.EntradaFormaPago.FreeTextCode = "";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(112, 0);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFormaPago.PlaceholderText = null;
                         this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.Required = true;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(88, 24);
@@ -96,13 +93,10 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = false;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(72, 32);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = null;
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|FA",
@@ -130,22 +124,13 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaRemito
                         // 
                         this.EntradaRemito.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaRemito.AutoNav = true;
-                        this.EntradaRemito.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaRemito.DecimalPlaces = -1;
-                        this.EntradaRemito.FieldName = null;
                         this.EntradaRemito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRemito.Location = new System.Drawing.Point(464, 32);
-                        this.EntradaRemito.MultiLine = false;
                         this.EntradaRemito.Name = "EntradaRemito";
                         this.EntradaRemito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaRemito.PasswordChar = '\0';
                         this.EntradaRemito.PlaceholderText = "Ninguno";
-                        this.EntradaRemito.Prefijo = "";
                         this.EntradaRemito.ReadOnly = false;
-                        this.EntradaRemito.SelectOnFocus = true;
                         this.EntradaRemito.Size = new System.Drawing.Size(144, 24);
-                        this.EntradaRemito.Sufijo = "";
                         this.EntradaRemito.TabIndex = 15;
                         this.EntradaRemito.TextChanged += new System.EventHandler(this.EntradaRemito_TextChanged);
                         // 

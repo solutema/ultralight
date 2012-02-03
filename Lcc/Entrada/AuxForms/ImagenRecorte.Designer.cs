@@ -130,7 +130,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         // EntradaRatio
                         // 
-                        this.EntradaRatio.AutoNav = true;
                         this.EntradaRatio.AutoSize = true;
                         this.EntradaRatio.Location = new System.Drawing.Point(96, 4);
                         this.EntradaRatio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

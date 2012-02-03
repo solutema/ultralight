@@ -254,16 +254,12 @@ namespace Lfc.Reportes
                         // txtFacturacion
                         // 
                         this.EntradaFacturacion.AutoSize = false;
-                        this.EntradaFacturacion.AutoNav = true;
                         this.EntradaFacturacion.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaFacturacion.DecimalPlaces = -1;
                         this.EntradaFacturacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFacturacion.Location = new System.Drawing.Point(188, 68);
-                        this.EntradaFacturacion.MultiLine = false;
                         this.EntradaFacturacion.Name = "txtFacturacion";
                         this.EntradaFacturacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFacturacion.TemporaryReadOnly = true;
-                        this.EntradaFacturacion.SelectOnFocus = true;
                         this.EntradaFacturacion.Size = new System.Drawing.Size(104, 24);
                         this.EntradaFacturacion.TabIndex = 29;
                         this.EntradaFacturacion.TabStop = false;
@@ -273,16 +269,12 @@ namespace Lfc.Reportes
                         // txtCosto
                         // 
                         this.txtCosto.AutoSize = false;
-                        this.txtCosto.AutoNav = true;
                         this.txtCosto.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtCosto.DecimalPlaces = -1;
                         this.txtCosto.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCosto.Location = new System.Drawing.Point(188, 96);
-                        this.txtCosto.MultiLine = false;
                         this.txtCosto.Name = "txtCosto";
                         this.txtCosto.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCosto.TemporaryReadOnly = true;
-                        this.txtCosto.SelectOnFocus = true;
                         this.txtCosto.Size = new System.Drawing.Size(104, 24);
                         this.txtCosto.TabIndex = 31;
                         this.txtCosto.TabStop = false;
@@ -291,16 +283,12 @@ namespace Lfc.Reportes
                         // txtGastosFijos
                         // 
                         this.txtGastosFijos.AutoSize = false;
-                        this.txtGastosFijos.AutoNav = true;
                         this.txtGastosFijos.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtGastosFijos.DecimalPlaces = -1;
                         this.txtGastosFijos.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtGastosFijos.Location = new System.Drawing.Point(188, 220);
-                        this.txtGastosFijos.MultiLine = false;
                         this.txtGastosFijos.Name = "txtGastosFijos";
                         this.txtGastosFijos.Padding = new System.Windows.Forms.Padding(2);
                         this.txtGastosFijos.TemporaryReadOnly = true;
-                        this.txtGastosFijos.SelectOnFocus = true;
                         this.txtGastosFijos.Size = new System.Drawing.Size(104, 24);
                         this.txtGastosFijos.TabIndex = 17;
                         this.txtGastosFijos.TabStop = false;
@@ -309,16 +297,12 @@ namespace Lfc.Reportes
                         // txtGastosVariables
                         // 
                         this.txtGastosVariables.AutoSize = false;
-                        this.txtGastosVariables.AutoNav = true;
                         this.txtGastosVariables.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtGastosVariables.DecimalPlaces = -1;
                         this.txtGastosVariables.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtGastosVariables.Location = new System.Drawing.Point(188, 248);
-                        this.txtGastosVariables.MultiLine = false;
                         this.txtGastosVariables.Name = "txtGastosVariables";
                         this.txtGastosVariables.Padding = new System.Windows.Forms.Padding(2);
                         this.txtGastosVariables.TemporaryReadOnly = true;
-                        this.txtGastosVariables.SelectOnFocus = true;
                         this.txtGastosVariables.Size = new System.Drawing.Size(104, 24);
                         this.txtGastosVariables.TabIndex = 20;
                         this.txtGastosVariables.TabStop = false;
@@ -327,16 +311,12 @@ namespace Lfc.Reportes
                         // txtOtrosEgresos
                         // 
                         this.txtOtrosEgresos.AutoSize = false;
-                        this.txtOtrosEgresos.AutoNav = true;
                         this.txtOtrosEgresos.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtOtrosEgresos.DecimalPlaces = -1;
                         this.txtOtrosEgresos.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtOtrosEgresos.Location = new System.Drawing.Point(188, 276);
-                        this.txtOtrosEgresos.MultiLine = false;
                         this.txtOtrosEgresos.Name = "txtOtrosEgresos";
                         this.txtOtrosEgresos.Padding = new System.Windows.Forms.Padding(2);
                         this.txtOtrosEgresos.TemporaryReadOnly = true;
-                        this.txtOtrosEgresos.SelectOnFocus = true;
                         this.txtOtrosEgresos.Size = new System.Drawing.Size(104, 24);
                         this.txtOtrosEgresos.TabIndex = 23;
                         this.txtOtrosEgresos.TabStop = false;
@@ -351,7 +331,6 @@ namespace Lfc.Reportes
                         this.BotonGastosFijos.Location = new System.Drawing.Point(296, 220);
                         this.BotonGastosFijos.Name = "BotonGastosFijos";
                         this.BotonGastosFijos.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGastosFijos.TemporaryReadOnly = false;
                         this.BotonGastosFijos.Size = new System.Drawing.Size(28, 24);
                         this.BotonGastosFijos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonGastosFijos.Subtext = "";
@@ -368,7 +347,6 @@ namespace Lfc.Reportes
                         this.BotonGastosVariables.Location = new System.Drawing.Point(296, 248);
                         this.BotonGastosVariables.Name = "BotonGastosVariables";
                         this.BotonGastosVariables.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGastosVariables.TemporaryReadOnly = false;
                         this.BotonGastosVariables.Size = new System.Drawing.Size(28, 24);
                         this.BotonGastosVariables.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonGastosVariables.Subtext = "";
@@ -385,7 +363,6 @@ namespace Lfc.Reportes
                         this.BotonOtrosEgresos.Location = new System.Drawing.Point(296, 276);
                         this.BotonOtrosEgresos.Name = "BotonOtrosEgresos";
                         this.BotonOtrosEgresos.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonOtrosEgresos.TemporaryReadOnly = false;
                         this.BotonOtrosEgresos.Size = new System.Drawing.Size(28, 24);
                         this.BotonOtrosEgresos.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonOtrosEgresos.Subtext = "";
@@ -460,16 +437,12 @@ namespace Lfc.Reportes
                         // txtCobros
                         // 
                         this.txtCobros.AutoSize = false;
-                        this.txtCobros.AutoNav = true;
                         this.txtCobros.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtCobros.DecimalPlaces = -1;
                         this.txtCobros.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCobros.Location = new System.Drawing.Point(188, 372);
-                        this.txtCobros.MultiLine = false;
                         this.txtCobros.Name = "txtCobros";
                         this.txtCobros.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCobros.TemporaryReadOnly = true;
-                        this.txtCobros.SelectOnFocus = true;
                         this.txtCobros.Size = new System.Drawing.Size(104, 24);
                         this.txtCobros.TabIndex = 5;
                         this.txtCobros.TabStop = false;
@@ -493,7 +466,6 @@ namespace Lfc.Reportes
                         this.BotonCobros.Location = new System.Drawing.Point(296, 372);
                         this.BotonCobros.Name = "BotonCobros";
                         this.BotonCobros.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCobros.TemporaryReadOnly = false;
                         this.BotonCobros.Size = new System.Drawing.Size(28, 24);
                         this.BotonCobros.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCobros.Subtext = "";
@@ -504,16 +476,12 @@ namespace Lfc.Reportes
                         // txtDiferenciaNeta
                         // 
                         this.txtDiferenciaNeta.AutoSize = false;
-                        this.txtDiferenciaNeta.AutoNav = true;
                         this.txtDiferenciaNeta.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtDiferenciaNeta.DecimalPlaces = -1;
                         this.txtDiferenciaNeta.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtDiferenciaNeta.Location = new System.Drawing.Point(188, 320);
-                        this.txtDiferenciaNeta.MultiLine = false;
                         this.txtDiferenciaNeta.Name = "txtDiferenciaNeta";
                         this.txtDiferenciaNeta.Padding = new System.Windows.Forms.Padding(2);
                         this.txtDiferenciaNeta.TemporaryReadOnly = true;
-                        this.txtDiferenciaNeta.SelectOnFocus = true;
                         this.txtDiferenciaNeta.Size = new System.Drawing.Size(104, 24);
                         this.txtDiferenciaNeta.TabIndex = 26;
                         this.txtDiferenciaNeta.TabStop = false;
@@ -531,16 +499,12 @@ namespace Lfc.Reportes
                         // txtDiferenciaBruta
                         // 
                         this.txtDiferenciaBruta.AutoSize = false;
-                        this.txtDiferenciaBruta.AutoNav = true;
                         this.txtDiferenciaBruta.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtDiferenciaBruta.DecimalPlaces = -1;
                         this.txtDiferenciaBruta.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtDiferenciaBruta.Location = new System.Drawing.Point(188, 160);
-                        this.txtDiferenciaBruta.MultiLine = false;
                         this.txtDiferenciaBruta.Name = "txtDiferenciaBruta";
                         this.txtDiferenciaBruta.Padding = new System.Windows.Forms.Padding(2);
                         this.txtDiferenciaBruta.TemporaryReadOnly = true;
-                        this.txtDiferenciaBruta.SelectOnFocus = true;
                         this.txtDiferenciaBruta.Size = new System.Drawing.Size(104, 24);
                         this.txtDiferenciaBruta.TabIndex = 33;
                         this.txtDiferenciaBruta.TabStop = false;
@@ -610,16 +574,11 @@ namespace Lfc.Reportes
                         // txtFecha1
                         // 
                         this.txtFecha1.AutoSize = false;
-                        this.txtFecha1.AutoNav = true;
                         this.txtFecha1.DataType = Lui.Forms.DataTypes.Date;
-                        this.txtFecha1.DecimalPlaces = -1;
                         this.txtFecha1.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtFecha1.Location = new System.Drawing.Point(56, 12);
-                        this.txtFecha1.MultiLine = false;
                         this.txtFecha1.Name = "txtFecha1";
                         this.txtFecha1.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtFecha1.TemporaryReadOnly = false;
-                        this.txtFecha1.SelectOnFocus = true;
                         this.txtFecha1.Size = new System.Drawing.Size(92, 24);
                         this.txtFecha1.TabIndex = 1;
                         this.txtFecha1.LostFocus += new System.EventHandler(this.txtFecha12_LostFocus);
@@ -627,16 +586,11 @@ namespace Lfc.Reportes
                         // txtFecha2
                         // 
                         this.txtFecha2.AutoSize = false;
-                        this.txtFecha2.AutoNav = true;
                         this.txtFecha2.DataType = Lui.Forms.DataTypes.Date;
-                        this.txtFecha2.DecimalPlaces = -1;
                         this.txtFecha2.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtFecha2.Location = new System.Drawing.Point(192, 12);
-                        this.txtFecha2.MultiLine = false;
                         this.txtFecha2.Name = "txtFecha2";
                         this.txtFecha2.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtFecha2.TemporaryReadOnly = false;
-                        this.txtFecha2.SelectOnFocus = true;
                         this.txtFecha2.Size = new System.Drawing.Size(92, 24);
                         this.txtFecha2.TabIndex = 3;
                         this.txtFecha2.LostFocus += new System.EventHandler(this.txtFecha12_LostFocus);
@@ -679,7 +633,6 @@ namespace Lfc.Reportes
                         this.ChartButton.Location = new System.Drawing.Point(112, 498);
                         this.ChartButton.Name = "ChartButton";
                         this.ChartButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.ChartButton.TemporaryReadOnly = false;
                         this.ChartButton.Size = new System.Drawing.Size(96, 28);
                         this.ChartButton.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.ChartButton.Subtext = "";
@@ -697,7 +650,6 @@ namespace Lfc.Reportes
                         this.PorTipo.Location = new System.Drawing.Point(216, 498);
                         this.PorTipo.Name = "PorTipo";
                         this.PorTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.PorTipo.TemporaryReadOnly = false;
                         this.PorTipo.Size = new System.Drawing.Size(96, 28);
                         this.PorTipo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.PorTipo.Subtext = "F8";
@@ -708,16 +660,12 @@ namespace Lfc.Reportes
                         // txtCompraMateriales
                         // 
                         this.txtCompraMateriales.AutoSize = false;
-                        this.txtCompraMateriales.AutoNav = true;
                         this.txtCompraMateriales.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtCompraMateriales.DecimalPlaces = -1;
                         this.txtCompraMateriales.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCompraMateriales.Location = new System.Drawing.Point(188, 428);
-                        this.txtCompraMateriales.MultiLine = false;
                         this.txtCompraMateriales.Name = "txtCompraMateriales";
                         this.txtCompraMateriales.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCompraMateriales.TemporaryReadOnly = true;
-                        this.txtCompraMateriales.SelectOnFocus = true;
                         this.txtCompraMateriales.Size = new System.Drawing.Size(104, 24);
                         this.txtCompraMateriales.TabIndex = 11;
                         this.txtCompraMateriales.TabStop = false;
@@ -741,7 +689,6 @@ namespace Lfc.Reportes
                         this.BotonCostoCapital.Location = new System.Drawing.Point(296, 192);
                         this.BotonCostoCapital.Name = "BotonCostoCapital";
                         this.BotonCostoCapital.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCostoCapital.TemporaryReadOnly = false;
                         this.BotonCostoCapital.Size = new System.Drawing.Size(28, 24);
                         this.BotonCostoCapital.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCostoCapital.Subtext = "";
@@ -752,16 +699,12 @@ namespace Lfc.Reportes
                         // txtCostoCapital
                         // 
                         this.txtCostoCapital.AutoSize = false;
-                        this.txtCostoCapital.AutoNav = true;
                         this.txtCostoCapital.DataType = Lui.Forms.DataTypes.Currency;
-                        this.txtCostoCapital.DecimalPlaces = -1;
                         this.txtCostoCapital.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCostoCapital.Location = new System.Drawing.Point(188, 192);
-                        this.txtCostoCapital.MultiLine = false;
                         this.txtCostoCapital.Name = "txtCostoCapital";
                         this.txtCostoCapital.Padding = new System.Windows.Forms.Padding(2);
                         this.txtCostoCapital.TemporaryReadOnly = true;
-                        this.txtCostoCapital.SelectOnFocus = true;
                         this.txtCostoCapital.Size = new System.Drawing.Size(104, 24);
                         this.txtCostoCapital.TabIndex = 14;
                         this.txtCostoCapital.TabStop = false;
@@ -794,7 +737,6 @@ namespace Lfc.Reportes
                         this.BotonCostoMateriales.Location = new System.Drawing.Point(296, 428);
                         this.BotonCostoMateriales.Name = "BotonCostoMateriales";
                         this.BotonCostoMateriales.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCostoMateriales.TemporaryReadOnly = false;
                         this.BotonCostoMateriales.Size = new System.Drawing.Size(28, 24);
                         this.BotonCostoMateriales.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCostoMateriales.Subtext = "";
@@ -811,7 +753,6 @@ namespace Lfc.Reportes
                         this.BotonIngresosOtros.Location = new System.Drawing.Point(296, 400);
                         this.BotonIngresosOtros.Name = "BotonIngresosOtros";
                         this.BotonIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonIngresosOtros.TemporaryReadOnly = false;
                         this.BotonIngresosOtros.Size = new System.Drawing.Size(28, 24);
                         this.BotonIngresosOtros.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonIngresosOtros.Subtext = "";
@@ -822,16 +763,12 @@ namespace Lfc.Reportes
                         // EntradaIngresosOtros
                         // 
                         this.EntradaIngresosOtros.AutoSize = false;
-                        this.EntradaIngresosOtros.AutoNav = true;
                         this.EntradaIngresosOtros.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaIngresosOtros.DecimalPlaces = -1;
                         this.EntradaIngresosOtros.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaIngresosOtros.Location = new System.Drawing.Point(188, 400);
-                        this.EntradaIngresosOtros.MultiLine = false;
                         this.EntradaIngresosOtros.Name = "EntradaIngresosOtros";
                         this.EntradaIngresosOtros.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaIngresosOtros.TemporaryReadOnly = true;
-                        this.EntradaIngresosOtros.SelectOnFocus = true;
                         this.EntradaIngresosOtros.Size = new System.Drawing.Size(104, 24);
                         this.EntradaIngresosOtros.TabIndex = 8;
                         this.EntradaIngresosOtros.TabStop = false;
@@ -884,16 +821,12 @@ namespace Lfc.Reportes
                         // EntradaGestionCobro
                         // 
                         this.EntradaGestionCobro.AutoSize = false;
-                        this.EntradaGestionCobro.AutoNav = true;
                         this.EntradaGestionCobro.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaGestionCobro.DecimalPlaces = -1;
                         this.EntradaGestionCobro.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaGestionCobro.Location = new System.Drawing.Point(188, 124);
-                        this.EntradaGestionCobro.MultiLine = false;
                         this.EntradaGestionCobro.Name = "EntradaGestionCobro";
                         this.EntradaGestionCobro.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGestionCobro.TemporaryReadOnly = true;
-                        this.EntradaGestionCobro.SelectOnFocus = true;
                         this.EntradaGestionCobro.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGestionCobro.TabIndex = 72;
                         this.EntradaGestionCobro.TabStop = false;
@@ -908,7 +841,6 @@ namespace Lfc.Reportes
                         this.BotonGestionCobro.Location = new System.Drawing.Point(296, 124);
                         this.BotonGestionCobro.Name = "BotonGestionCobro";
                         this.BotonGestionCobro.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGestionCobro.TemporaryReadOnly = false;
                         this.BotonGestionCobro.Size = new System.Drawing.Size(28, 24);
                         this.BotonGestionCobro.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonGestionCobro.Subtext = "";

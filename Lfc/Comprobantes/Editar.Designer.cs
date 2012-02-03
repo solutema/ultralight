@@ -68,10 +68,8 @@ namespace Lfc.Comprobantes
                         this.EntradaProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaProductos.AutoNav = true;
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.EntradaProductos.FieldName = null;
                         this.EntradaProductos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
                         this.EntradaProductos.Location = new System.Drawing.Point(0, 32);
@@ -81,7 +79,6 @@ namespace Lfc.Comprobantes
                         this.EntradaProductos.Name = "EntradaProductos";
                         this.EntradaProductos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
-                        this.EntradaProductos.ReadOnly = false;
                         this.EntradaProductos.ShowStock = true;
                         this.EntradaProductos.Size = new System.Drawing.Size(640, 264);
                         this.EntradaProductos.TabIndex = 20;
@@ -102,12 +99,11 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCliente.AutoNav = true;
+                        this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.ExtraDetailFields = "";
-                        this.EntradaCliente.FieldName = null;
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(304, 0);
@@ -115,7 +111,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.PlaceholderText = null;
-                        this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(272, 24);
                         this.EntradaCliente.TabIndex = 4;
@@ -136,12 +131,11 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaVendedor
                         // 
-                        this.EntradaVendedor.AutoNav = true;
+                        this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
                         this.EntradaVendedor.ExtraDetailFields = "";
-                        this.EntradaVendedor.FieldName = null;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.Location = new System.Drawing.Point(72, 0);
@@ -149,7 +143,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Name = "EntradaVendedor";
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.PlaceholderText = null;
-                        this.EntradaVendedor.ReadOnly = false;
                         this.EntradaVendedor.Required = true;
                         this.EntradaVendedor.Size = new System.Drawing.Size(168, 24);
                         this.EntradaVendedor.TabIndex = 2;
@@ -160,22 +153,13 @@ namespace Lfc.Comprobantes
                         // EntradaTotal
                         // 
                         this.EntradaTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTotal.AutoNav = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaTotal.DecimalPlaces = -1;
-                        this.EntradaTotal.FieldName = null;
-                        this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaTotal.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaTotal.Location = new System.Drawing.Point(496, 328);
-                        this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTotal.PasswordChar = '\0';
-                        this.EntradaTotal.PlaceholderText = null;
                         this.EntradaTotal.Prefijo = "$";
-                        this.EntradaTotal.ReadOnly = false;
-                        this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
-                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 41;
                         this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
@@ -205,22 +189,13 @@ namespace Lfc.Comprobantes
                         // EntradaSubTotal
                         // 
                         this.EntradaSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EntradaSubTotal.AutoNav = true;
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaSubTotal.DecimalPlaces = -1;
-                        this.EntradaSubTotal.FieldName = null;
-                        this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaSubTotal.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(64, 304);
-                        this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSubTotal.PasswordChar = '\0';
-                        this.EntradaSubTotal.PlaceholderText = null;
                         this.EntradaSubTotal.Prefijo = "$";
-                        this.EntradaSubTotal.ReadOnly = false;
-                        this.EntradaSubTotal.SelectOnFocus = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(92, 24);
-                        this.EntradaSubTotal.Sufijo = "";
                         this.EntradaSubTotal.TabIndex = 22;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
@@ -229,20 +204,11 @@ namespace Lfc.Comprobantes
                         // EntradaDescuento
                         // 
                         this.EntradaDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EntradaDescuento.AutoNav = true;
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaDescuento.DecimalPlaces = -1;
-                        this.EntradaDescuento.FieldName = null;
-                        this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaDescuento.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaDescuento.Location = new System.Drawing.Point(224, 304);
-                        this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescuento.PasswordChar = '\0';
-                        this.EntradaDescuento.PlaceholderText = null;
-                        this.EntradaDescuento.Prefijo = "";
-                        this.EntradaDescuento.ReadOnly = false;
-                        this.EntradaDescuento.SelectOnFocus = true;
                         this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 24;
@@ -263,20 +229,11 @@ namespace Lfc.Comprobantes
                         // EntradaInteres
                         // 
                         this.EntradaInteres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EntradaInteres.AutoNav = true;
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaInteres.DecimalPlaces = -1;
-                        this.EntradaInteres.FieldName = null;
-                        this.EntradaInteres.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaInteres.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaInteres.Location = new System.Drawing.Point(224, 332);
-                        this.EntradaInteres.MultiLine = false;
                         this.EntradaInteres.Name = "EntradaInteres";
                         this.EntradaInteres.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaInteres.PasswordChar = '\0';
-                        this.EntradaInteres.PlaceholderText = null;
-                        this.EntradaInteres.Prefijo = "";
-                        this.EntradaInteres.ReadOnly = false;
-                        this.EntradaInteres.SelectOnFocus = true;
                         this.EntradaInteres.Size = new System.Drawing.Size(76, 24);
                         this.EntradaInteres.Sufijo = "%";
                         this.EntradaInteres.TabIndex = 26;
@@ -297,23 +254,13 @@ namespace Lfc.Comprobantes
                         // EntradaCuotas
                         // 
                         this.EntradaCuotas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EntradaCuotas.AutoNav = true;
                         this.EntradaCuotas.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCuotas.DecimalPlaces = -1;
-                        this.EntradaCuotas.FieldName = null;
-                        this.EntradaCuotas.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaCuotas.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaCuotas.Location = new System.Drawing.Point(52, 0);
                         this.EntradaCuotas.MaxLength = 2;
-                        this.EntradaCuotas.MultiLine = false;
                         this.EntradaCuotas.Name = "EntradaCuotas";
                         this.EntradaCuotas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuotas.PasswordChar = '\0';
-                        this.EntradaCuotas.PlaceholderText = null;
-                        this.EntradaCuotas.Prefijo = "";
-                        this.EntradaCuotas.ReadOnly = false;
-                        this.EntradaCuotas.SelectOnFocus = true;
                         this.EntradaCuotas.Size = new System.Drawing.Size(32, 24);
-                        this.EntradaCuotas.Sufijo = "";
                         this.EntradaCuotas.TabIndex = 28;
                         this.EntradaCuotas.Text = "0";
                         this.EntradaCuotas.TextChanged += new System.EventHandler(this.CambioValores);
@@ -332,22 +279,13 @@ namespace Lfc.Comprobantes
                         // EntradaValorCuota
                         // 
                         this.EntradaValorCuota.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EntradaValorCuota.AutoNav = true;
                         this.EntradaValorCuota.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaValorCuota.DecimalPlaces = -1;
-                        this.EntradaValorCuota.FieldName = null;
-                        this.EntradaValorCuota.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaValorCuota.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaValorCuota.Location = new System.Drawing.Point(108, 0);
-                        this.EntradaValorCuota.MultiLine = false;
                         this.EntradaValorCuota.Name = "EntradaValorCuota";
                         this.EntradaValorCuota.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaValorCuota.PasswordChar = '\0';
-                        this.EntradaValorCuota.PlaceholderText = null;
                         this.EntradaValorCuota.Prefijo = "$";
-                        this.EntradaValorCuota.ReadOnly = false;
-                        this.EntradaValorCuota.SelectOnFocus = true;
                         this.EntradaValorCuota.Size = new System.Drawing.Size(80, 24);
-                        this.EntradaValorCuota.Sufijo = "";
                         this.EntradaValorCuota.TabIndex = 30;
                         this.EntradaValorCuota.TabStop = false;
                         this.EntradaValorCuota.Text = "0.00";
@@ -365,9 +303,9 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaComprobanteId
                         // 
-                        this.EntradaComprobanteId.Location = new System.Drawing.Point(608, 344);
+                        this.EntradaComprobanteId.Location = new System.Drawing.Point(336, 336);
                         this.EntradaComprobanteId.Name = "EntradaComprobanteId";
-                        this.EntradaComprobanteId.Size = new System.Drawing.Size(28, 23);
+                        this.EntradaComprobanteId.Size = new System.Drawing.Size(28, 25);
                         this.EntradaComprobanteId.TabIndex = 52;
                         this.EntradaComprobanteId.Visible = false;
                         // 
@@ -385,23 +323,13 @@ namespace Lfc.Comprobantes
                         // EntradaPV
                         // 
                         this.EntradaPV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaPV.AutoNav = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPV.DecimalPlaces = -1;
-                        this.EntradaPV.FieldName = null;
-                        this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaPV.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaPV.Location = new System.Drawing.Point(608, 0);
                         this.EntradaPV.MaxLength = 2;
-                        this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPV.PasswordChar = '\0';
-                        this.EntradaPV.PlaceholderText = null;
-                        this.EntradaPV.Prefijo = "";
-                        this.EntradaPV.ReadOnly = false;
-                        this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
-                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 6;
                         this.EntradaPV.Text = "0";
                         // 
@@ -420,22 +348,13 @@ namespace Lfc.Comprobantes
                         // EntradaIva
                         // 
                         this.EntradaIva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EntradaIva.AutoNav = true;
                         this.EntradaIva.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaIva.DecimalPlaces = -1;
-                        this.EntradaIva.FieldName = null;
-                        this.EntradaIva.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaIva.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaIva.Location = new System.Drawing.Point(64, 332);
-                        this.EntradaIva.MultiLine = false;
                         this.EntradaIva.Name = "EntradaIva";
                         this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaIva.PasswordChar = '\0';
-                        this.EntradaIva.PlaceholderText = null;
                         this.EntradaIva.Prefijo = "$";
-                        this.EntradaIva.ReadOnly = false;
-                        this.EntradaIva.SelectOnFocus = true;
                         this.EntradaIva.Size = new System.Drawing.Size(92, 24);
-                        this.EntradaIva.Sufijo = "";
                         this.EntradaIva.TabIndex = 54;
                         this.EntradaIva.TabStop = false;
                         this.EntradaIva.Text = "0.00";

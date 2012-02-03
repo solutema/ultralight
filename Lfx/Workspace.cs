@@ -83,8 +83,10 @@ namespace Lfx
                                 this.RunTime = new Lfx.RunTimeServices();
                         }
 
-                        m_MasterConnection = new Lfx.Data.Connection(this, this.Name);
-                        m_MasterConnection.RequiresTransaction = false;
+                        if (m_MasterConnection == null) {
+                                m_MasterConnection = new Lfx.Data.Connection(this, this.Name);
+                                m_MasterConnection.RequiresTransaction = false;
+                        }
 
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
                                 Lfx.Data.DataBaseCache.DefaultCache = new Lfx.Data.DataBaseCache(m_MasterConnection);
@@ -187,7 +189,11 @@ namespace Lfx
                 public bool Disposing = false;
                 public void Dispose()
                 {
-                        this.CurrentConfig.Dispose();
+                        this.Disposing = true;
+
+                        if (this.CurrentConfig != null)
+                                this.CurrentConfig.Dispose();
+
                         if (this.DefaultScheduler != null)
                                 this.DefaultScheduler.Dispose();
 
@@ -203,7 +209,7 @@ namespace Lfx
 
                         this.ActiveConnections.Clear();
 
-                        GC.SuppressFinalize(this);
+                        //GC.SuppressFinalize(this);
                 }
 
                 public Lfx.Data.Connection GetNewConnection(string ownerName)

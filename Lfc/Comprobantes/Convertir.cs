@@ -111,22 +111,10 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaOrigen.AutoNav = true;
-                        this.EntradaOrigen.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaOrigen.DecimalPlaces = -1;
-                        this.EntradaOrigen.FieldName = null;
-                        this.EntradaOrigen.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaOrigen.Location = new System.Drawing.Point(328, 88);
-                        this.EntradaOrigen.MultiLine = false;
                         this.EntradaOrigen.Name = "EntradaOrigen";
                         this.EntradaOrigen.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaOrigen.PasswordChar = '\0';
-                        this.EntradaOrigen.PlaceholderText = null;
-                        this.EntradaOrigen.Prefijo = "";
-                        this.EntradaOrigen.ReadOnly = false;
-                        this.EntradaOrigen.SelectOnFocus = true;
                         this.EntradaOrigen.Size = new System.Drawing.Size(280, 24);
-                        this.EntradaOrigen.Sufijo = "";
                         this.EntradaOrigen.TabIndex = 1;
                         this.EntradaOrigen.TabStop = false;
                         // 
@@ -155,21 +143,17 @@ namespace Lfc.Comprobantes
                         this.EntradaDestinoTipo.AlwaysExpanded = true;
                         this.EntradaDestinoTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDestinoTipo.AutoNav = true;
                         this.EntradaDestinoTipo.AutoSize = true;
-                        this.EntradaDestinoTipo.FieldName = null;
                         this.EntradaDestinoTipo.Location = new System.Drawing.Point(328, 120);
                         this.EntradaDestinoTipo.Name = "EntradaDestinoTipo";
                         this.EntradaDestinoTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDestinoTipo.PlaceholderText = null;
-                        this.EntradaDestinoTipo.ReadOnly = false;
                         this.EntradaDestinoTipo.SetData = new string[] {
         "Factura|F",
         "Presupuesto|PS",
         "Remito|R",
         "Nota de Crédito|NC",
         "Nota de Débito B|ND"};
-                        this.EntradaDestinoTipo.Size = new System.Drawing.Size(280, 81);
+                        this.EntradaDestinoTipo.Size = new System.Drawing.Size(280, 91);
                         this.EntradaDestinoTipo.TabIndex = 3;
                         this.EntradaDestinoTipo.TextKey = "F";
                         this.EntradaDestinoTipo.TextChanged += new System.EventHandler(this.EntradaDestinoTipo_TextChanged);

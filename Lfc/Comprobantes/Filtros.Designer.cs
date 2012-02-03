@@ -129,7 +129,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCliente.AutoNav = true;
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
@@ -167,7 +166,6 @@ namespace Lfc.Comprobantes
                         // EntradaEstado
                         // 
                         this.EntradaEstado.AlwaysExpanded = false;
-                        this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
@@ -192,7 +190,6 @@ namespace Lfc.Comprobantes
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = false;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(3, 3);
                         this.EntradaTipo.Name = "EntradaTipo";
@@ -223,7 +220,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaVendedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaVendedor.AutoNav = true;
                         this.EntradaVendedor.CanCreate = false;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
@@ -252,7 +248,6 @@ namespace Lfc.Comprobantes
                         // EntradaAnuladas
                         // 
                         this.EntradaAnuladas.AlwaysExpanded = false;
-                        this.EntradaAnuladas.AutoNav = true;
                         this.EntradaAnuladas.AutoSize = true;
                         this.EntradaAnuladas.Location = new System.Drawing.Point(137, 243);
                         this.EntradaAnuladas.Name = "EntradaAnuladas";
@@ -277,7 +272,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaSucursal.AutoNav = true;
                         this.EntradaSucursal.CanCreate = false;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
@@ -307,7 +301,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFormaPago.AutoNav = true;
                         this.EntradaFormaPago.CanCreate = false;
                         this.EntradaFormaPago.DataTextField = "nombre";
                         this.EntradaFormaPago.DataValueField = "id_formapago";
@@ -336,7 +329,6 @@ namespace Lfc.Comprobantes
                         // EntradaLetra
                         // 
                         this.EntradaLetra.AlwaysExpanded = false;
-                        this.EntradaLetra.AutoNav = true;
                         this.EntradaLetra.AutoSize = true;
                         this.EntradaLetra.Location = new System.Drawing.Point(189, 3);
                         this.EntradaLetra.Name = "EntradaLetra";
@@ -363,15 +355,11 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaPv
                         // 
-                        this.EntradaPv.AutoNav = true;
                         this.EntradaPv.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPv.DecimalPlaces = -1;
                         this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPv.Location = new System.Drawing.Point(137, 122);
-                        this.EntradaPv.MultiLine = false;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(44, 24);
                         this.EntradaPv.TabIndex = 9;
                         this.EntradaPv.Text = "0";
@@ -464,32 +452,24 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaMontoHasta
                         // 
-                        this.EntradaMontoHasta.AutoNav = true;
                         this.EntradaMontoHasta.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaMontoHasta.DecimalPlaces = -1;
                         this.EntradaMontoHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMontoHasta.Location = new System.Drawing.Point(214, 3);
-                        this.EntradaMontoHasta.MultiLine = false;
                         this.EntradaMontoHasta.Name = "EntradaMontoHasta";
                         this.EntradaMontoHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMontoHasta.Prefijo = "$";
-                        this.EntradaMontoHasta.SelectOnFocus = true;
                         this.EntradaMontoHasta.Size = new System.Drawing.Size(109, 24);
                         this.EntradaMontoHasta.TabIndex = 3;
                         this.EntradaMontoHasta.Text = "0.00";
                         // 
                         // EntradaMontoDesde
                         // 
-                        this.EntradaMontoDesde.AutoNav = true;
                         this.EntradaMontoDesde.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaMontoDesde.DecimalPlaces = -1;
                         this.EntradaMontoDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMontoDesde.Location = new System.Drawing.Point(62, 3);
-                        this.EntradaMontoDesde.MultiLine = false;
                         this.EntradaMontoDesde.Name = "EntradaMontoDesde";
                         this.EntradaMontoDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMontoDesde.Prefijo = "$";
-                        this.EntradaMontoDesde.SelectOnFocus = true;
                         this.EntradaMontoDesde.Size = new System.Drawing.Size(114, 24);
                         this.EntradaMontoDesde.TabIndex = 1;
                         this.EntradaMontoDesde.Text = "0.00";

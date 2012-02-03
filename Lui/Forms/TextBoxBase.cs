@@ -63,19 +63,6 @@ namespace Lui.Forms
                         this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
                 }
 
-                /* [System.ComponentModel.Category("Comportamiento")]
-                public bool AutoTab
-                {
-                        get
-                        {
-                                return m_AutoTab;
-                        }
-                        set
-                        {
-                                m_AutoTab = value;
-                        }
-                } */
-
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
@@ -106,6 +93,7 @@ namespace Lui.Forms
                         }
                 }
 
+                [DefaultValue(null)]
                 public string PlaceholderText
                 {
                         get
@@ -211,8 +199,13 @@ namespace Lui.Forms
                                 IgnoreChanges--;
                         }
                         this.OnTextChanged(EventArgs.Empty);
-                }                
+                }
 
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+                        DefaultValue(false)]
                 public override bool TemporaryReadOnly
                 {
                         get
@@ -225,6 +218,7 @@ namespace Lui.Forms
                                 TextBox1.ReadOnly = value || this.ReadOnly;
                         }
                 }
+
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),

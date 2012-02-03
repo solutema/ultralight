@@ -140,14 +140,10 @@ namespace Lcc.Entrada.AuxForms
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBuscar.AutoNav = false;
                         this.EntradaBuscar.Cursor = System.Windows.Forms.Cursors.Default;
-                        this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaBuscar.DecimalPlaces = -1;
                         this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBuscar.Location = new System.Drawing.Point(4, 344);
-                        this.EntradaBuscar.MultiLine = false;
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBuscar.SelectOnFocus = false;
                         this.EntradaBuscar.Size = new System.Drawing.Size(524, 24);
                         this.EntradaBuscar.TabIndex = 0;
                         this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);

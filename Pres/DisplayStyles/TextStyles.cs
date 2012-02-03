@@ -40,6 +40,7 @@ namespace Lazaro.Pres.DisplayStyles
         {
                 Small,
                 Default,
+                DataEntry,
                 Big,
                 Bigger,
                 MainHeader,

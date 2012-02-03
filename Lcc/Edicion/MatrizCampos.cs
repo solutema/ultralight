@@ -174,11 +174,9 @@ namespace Lcc.Edicion
                                                                 TextField.ValueInt = m_Elemento.GetFieldValue<int>(Fld.MemberName);
                                                                 break;
                                                         case Lfx.Data.InputFieldTypes.Text:
-                                                                TextField.DataType = Lui.Forms.DataTypes.FreeText;
                                                                 TextField.Text = m_Elemento.GetFieldValue<string>(Fld.MemberName);
                                                                 break;
                                                         case Lfx.Data.InputFieldTypes.Memo:
-                                                                TextField.DataType = Lui.Forms.DataTypes.FreeText;
                                                                 TextField.MultiLine = true;
                                                                 TextField.Size = new Size(this.FieldContainer.ClientSize.Width, 72);
                                                                 TextField.Text = m_Elemento.GetFieldValue<string>(Fld.MemberName);

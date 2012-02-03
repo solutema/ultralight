@@ -128,7 +128,6 @@ namespace Lcc.Edicion
                         set
                         {
                                 // Los comentarios nunca son ReadOnly
-                                base.TemporaryReadOnly = false;
                         }
                 }
 

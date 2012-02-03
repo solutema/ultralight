@@ -83,22 +83,12 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(519, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
@@ -115,22 +105,12 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaUbicacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaUbicacion.AutoNav = true;
-                        this.EntradaUbicacion.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaUbicacion.DecimalPlaces = -1;
-                        this.EntradaUbicacion.FieldName = null;
                         this.EntradaUbicacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUbicacion.Location = new System.Drawing.Point(120, 160);
-                        this.EntradaUbicacion.MultiLine = false;
                         this.EntradaUbicacion.Name = "EntradaUbicacion";
                         this.EntradaUbicacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUbicacion.PasswordChar = '\0';
-                        this.EntradaUbicacion.PlaceholderText = null;
-                        this.EntradaUbicacion.Prefijo = "";
                         this.EntradaUbicacion.ReadOnly = false;
-                        this.EntradaUbicacion.SelectOnFocus = false;
                         this.EntradaUbicacion.Size = new System.Drawing.Size(519, 24);
-                        this.EntradaUbicacion.Sufijo = "";
                         this.EntradaUbicacion.TabIndex = 10;
                         // 
                         // label10
@@ -146,13 +126,10 @@ namespace Lfc.Comprobantes.Impresoras
                         // EntradaTalonario
                         // 
                         this.EntradaTalonario.AlwaysExpanded = true;
-                        this.EntradaTalonario.AutoNav = true;
                         this.EntradaTalonario.AutoSize = true;
-                        this.EntradaTalonario.FieldName = null;
                         this.EntradaTalonario.Location = new System.Drawing.Point(244, 196);
                         this.EntradaTalonario.Name = "EntradaTalonario";
                         this.EntradaTalonario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTalonario.PlaceholderText = null;
                         this.EntradaTalonario.ReadOnly = false;
                         this.EntradaTalonario.SetData = new string[] {
         "Si|1",
@@ -174,14 +151,11 @@ namespace Lfc.Comprobantes.Impresoras
                         // EntradaFiscalBps
                         // 
                         this.EntradaFiscalBps.AlwaysExpanded = true;
-                        this.EntradaFiscalBps.AutoNav = true;
                         this.EntradaFiscalBps.AutoSize = true;
                         this.EntradaFiscalBps.Enabled = false;
-                        this.EntradaFiscalBps.FieldName = null;
                         this.EntradaFiscalBps.Location = new System.Drawing.Point(244, 392);
                         this.EntradaFiscalBps.Name = "EntradaFiscalBps";
                         this.EntradaFiscalBps.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFiscalBps.PlaceholderText = null;
                         this.EntradaFiscalBps.ReadOnly = false;
                         this.EntradaFiscalBps.SetData = new string[] {
         "9600 bps|9600",
@@ -203,14 +177,11 @@ namespace Lfc.Comprobantes.Impresoras
                         // EntradaFiscalPuerto
                         // 
                         this.EntradaFiscalPuerto.AlwaysExpanded = true;
-                        this.EntradaFiscalPuerto.AutoNav = true;
                         this.EntradaFiscalPuerto.AutoSize = true;
                         this.EntradaFiscalPuerto.Enabled = false;
-                        this.EntradaFiscalPuerto.FieldName = null;
                         this.EntradaFiscalPuerto.Location = new System.Drawing.Point(244, 344);
                         this.EntradaFiscalPuerto.Name = "EntradaFiscalPuerto";
                         this.EntradaFiscalPuerto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFiscalPuerto.PlaceholderText = null;
                         this.EntradaFiscalPuerto.ReadOnly = false;
                         this.EntradaFiscalPuerto.SetData = new string[] {
         "COM1|1",
@@ -222,14 +193,11 @@ namespace Lfc.Comprobantes.Impresoras
                         // EntradaFiscalModelo
                         // 
                         this.EntradaFiscalModelo.AlwaysExpanded = true;
-                        this.EntradaFiscalModelo.AutoNav = true;
                         this.EntradaFiscalModelo.AutoSize = true;
                         this.EntradaFiscalModelo.Enabled = false;
-                        this.EntradaFiscalModelo.FieldName = null;
                         this.EntradaFiscalModelo.Location = new System.Drawing.Point(244, 284);
                         this.EntradaFiscalModelo.Name = "EntradaFiscalModelo";
                         this.EntradaFiscalModelo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFiscalModelo.PlaceholderText = null;
                         this.EntradaFiscalModelo.ReadOnly = false;
                         this.EntradaFiscalModelo.SetData = new string[] {
         "Hasar|100",
@@ -272,13 +240,10 @@ namespace Lfc.Comprobantes.Impresoras
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = true;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(120, 32);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = null;
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Nula|0",
@@ -302,13 +267,10 @@ namespace Lfc.Comprobantes.Impresoras
                         // EntradaCarga
                         // 
                         this.EntradaCarga.AlwaysExpanded = true;
-                        this.EntradaCarga.AutoNav = true;
                         this.EntradaCarga.AutoSize = true;
-                        this.EntradaCarga.FieldName = null;
                         this.EntradaCarga.Location = new System.Drawing.Point(244, 240);
                         this.EntradaCarga.Name = "EntradaCarga";
                         this.EntradaCarga.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCarga.PlaceholderText = null;
                         this.EntradaCarga.ReadOnly = false;
                         this.EntradaCarga.SetData = new string[] {
         "Automática|0",
@@ -329,22 +291,12 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // EntradaEstacion
                         // 
-                        this.EntradaEstacion.AutoNav = true;
-                        this.EntradaEstacion.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaEstacion.DecimalPlaces = -1;
-                        this.EntradaEstacion.FieldName = null;
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(120, 96);
-                        this.EntradaEstacion.MultiLine = false;
                         this.EntradaEstacion.Name = "EntradaEstacion";
                         this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstacion.PasswordChar = '\0';
-                        this.EntradaEstacion.PlaceholderText = null;
-                        this.EntradaEstacion.Prefijo = "";
                         this.EntradaEstacion.ReadOnly = false;
-                        this.EntradaEstacion.SelectOnFocus = true;
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
-                        this.EntradaEstacion.Sufijo = "";
                         this.EntradaEstacion.TabIndex = 4;
                         this.EntradaEstacion.TextChanged += new System.EventHandler(this.EntradaEstacion_TextChanged);
                         // 
@@ -366,22 +318,12 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // EntradaDispositivo
                         // 
-                        this.EntradaDispositivo.AutoNav = true;
-                        this.EntradaDispositivo.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaDispositivo.DecimalPlaces = -1;
-                        this.EntradaDispositivo.FieldName = null;
                         this.EntradaDispositivo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDispositivo.Location = new System.Drawing.Point(120, 128);
-                        this.EntradaDispositivo.MultiLine = false;
                         this.EntradaDispositivo.Name = "EntradaDispositivo";
                         this.EntradaDispositivo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDispositivo.PasswordChar = '\0';
-                        this.EntradaDispositivo.PlaceholderText = null;
-                        this.EntradaDispositivo.Prefijo = "";
                         this.EntradaDispositivo.ReadOnly = false;
-                        this.EntradaDispositivo.SelectOnFocus = false;
                         this.EntradaDispositivo.Size = new System.Drawing.Size(336, 24);
-                        this.EntradaDispositivo.Sufijo = "";
                         this.EntradaDispositivo.TabIndex = 7;
                         // 
                         // label4

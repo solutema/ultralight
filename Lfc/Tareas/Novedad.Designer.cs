@@ -99,7 +99,6 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaTecnico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTecnico.AutoNav = true;
                         this.EntradaTecnico.CanCreate = true;
                         this.EntradaTecnico.DataTextField = "nombre_visible";
                         this.EntradaTecnico.Filter = "(tipo&4)=4";
@@ -120,15 +119,11 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDescripcion.AutoNav = true;
-                        this.EntradaDescripcion.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaDescripcion.DecimalPlaces = -1;
                         this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescripcion.Location = new System.Drawing.Point(96, 56);
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
                         this.EntradaDescripcion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescripcion.SelectOnFocus = true;
                         this.EntradaDescripcion.Size = new System.Drawing.Size(516, 124);
                         this.EntradaDescripcion.TabIndex = 3;
                         // 
@@ -143,15 +138,10 @@ namespace Lfc.Tareas
                         // 
                         // EntradaMinutos
                         // 
-                        this.EntradaMinutos.AutoNav = true;
-                        this.EntradaMinutos.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaMinutos.DecimalPlaces = -1;
                         this.EntradaMinutos.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMinutos.Location = new System.Drawing.Point(344, 192);
-                        this.EntradaMinutos.MultiLine = false;
                         this.EntradaMinutos.Name = "EntradaMinutos";
                         this.EntradaMinutos.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMinutos.SelectOnFocus = true;
                         this.EntradaMinutos.Size = new System.Drawing.Size(76, 24);
                         this.EntradaMinutos.TabIndex = 5;
                         // 
@@ -160,7 +150,6 @@ namespace Lfc.Tareas
                         this.EntradaCondicion.AlwaysExpanded = true;
                         this.EntradaCondicion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCondicion.AutoNav = true;
                         this.EntradaCondicion.AutoSize = true;
                         this.EntradaCondicion.Location = new System.Drawing.Point(96, 192);
                         this.EntradaCondicion.Name = "EntradaCondicion";
@@ -194,7 +183,6 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTicket.AutoNav = true;
                         this.EntradaTicket.CanCreate = true;
                         this.EntradaTicket.DataTextField = "nombre";
                         this.EntradaTicket.Filter = "";

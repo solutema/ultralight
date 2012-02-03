@@ -72,7 +72,6 @@ namespace Lui.Forms
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.CancelCommandButton.AutoNav = true;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
@@ -92,7 +91,6 @@ namespace Lui.Forms
                         // OkButton
                         // 
                         this.OkButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.OkButton.AutoNav = true;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;

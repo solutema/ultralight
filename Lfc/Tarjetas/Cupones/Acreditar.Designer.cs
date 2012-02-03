@@ -108,13 +108,10 @@ namespace Lfc.Tarjetas.Cupones
                         // txtFormaPago
                         // 
                         this.txtFormaPago.AlwaysExpanded = true;
-                        this.txtFormaPago.AutoNav = true;
                         this.txtFormaPago.AutoSize = true;
-                        this.txtFormaPago.FieldName = null;
                         this.txtFormaPago.Location = new System.Drawing.Point(188, 244);
                         this.txtFormaPago.Name = "txtFormaPago";
                         this.txtFormaPago.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtFormaPago.PlaceholderText = null;
                         this.txtFormaPago.ReadOnly = false;
                         this.txtFormaPago.SetData = new string[] {
         "Efectivo|1",
@@ -136,22 +133,13 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // txtCupones
                         // 
-                        this.txtCupones.AutoNav = true;
                         this.txtCupones.DataType = Lui.Forms.DataTypes.Integer;
-                        this.txtCupones.DecimalPlaces = -1;
-                        this.txtCupones.FieldName = null;
                         this.txtCupones.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCupones.Location = new System.Drawing.Point(132, 20);
-                        this.txtCupones.MultiLine = false;
                         this.txtCupones.Name = "txtCupones";
                         this.txtCupones.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtCupones.PasswordChar = '\0';
-                        this.txtCupones.PlaceholderText = null;
-                        this.txtCupones.Prefijo = "";
                         this.txtCupones.ReadOnly = false;
-                        this.txtCupones.SelectOnFocus = true;
                         this.txtCupones.Size = new System.Drawing.Size(56, 24);
-                        this.txtCupones.Sufijo = "";
                         this.txtCupones.TabIndex = 1;
                         this.txtCupones.TabStop = false;
                         this.txtCupones.Text = "0";
@@ -178,44 +166,28 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaSubTotal
                         // 
-                        this.EntradaSubTotal.AutoNav = true;
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaSubTotal.DecimalPlaces = -1;
-                        this.EntradaSubTotal.FieldName = null;
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(360, 20);
-                        this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSubTotal.PasswordChar = '\0';
-                        this.EntradaSubTotal.PlaceholderText = null;
                         this.EntradaSubTotal.Prefijo = "$";
                         this.EntradaSubTotal.ReadOnly = false;
-                        this.EntradaSubTotal.SelectOnFocus = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaSubTotal.Sufijo = "";
                         this.EntradaSubTotal.TabIndex = 3;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
                         // 
                         // EntradaComisionTarjeta
                         // 
-                        this.EntradaComisionTarjeta.AutoNav = true;
                         this.EntradaComisionTarjeta.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaComisionTarjeta.DecimalPlaces = -1;
-                        this.EntradaComisionTarjeta.FieldName = null;
                         this.EntradaComisionTarjeta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionTarjeta.Location = new System.Drawing.Point(116, 36);
-                        this.EntradaComisionTarjeta.MultiLine = false;
                         this.EntradaComisionTarjeta.Name = "EntradaComisionTarjeta";
                         this.EntradaComisionTarjeta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaComisionTarjeta.PasswordChar = '\0';
-                        this.EntradaComisionTarjeta.PlaceholderText = null;
                         this.EntradaComisionTarjeta.Prefijo = "$";
                         this.EntradaComisionTarjeta.ReadOnly = false;
-                        this.EntradaComisionTarjeta.SelectOnFocus = true;
                         this.EntradaComisionTarjeta.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaComisionTarjeta.Sufijo = "";
                         this.EntradaComisionTarjeta.TabIndex = 6;
                         this.EntradaComisionTarjeta.TabStop = false;
                         this.EntradaComisionTarjeta.Text = "0.00";
@@ -258,22 +230,14 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaComisionPlan
                         // 
-                        this.EntradaComisionPlan.AutoNav = true;
                         this.EntradaComisionPlan.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaComisionPlan.DecimalPlaces = -1;
-                        this.EntradaComisionPlan.FieldName = null;
                         this.EntradaComisionPlan.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionPlan.Location = new System.Drawing.Point(116, 68);
-                        this.EntradaComisionPlan.MultiLine = false;
                         this.EntradaComisionPlan.Name = "EntradaComisionPlan";
                         this.EntradaComisionPlan.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaComisionPlan.PasswordChar = '\0';
-                        this.EntradaComisionPlan.PlaceholderText = null;
                         this.EntradaComisionPlan.Prefijo = "$";
                         this.EntradaComisionPlan.ReadOnly = false;
-                        this.EntradaComisionPlan.SelectOnFocus = true;
                         this.EntradaComisionPlan.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaComisionPlan.Sufijo = "";
                         this.EntradaComisionPlan.TabIndex = 9;
                         this.EntradaComisionPlan.TabStop = false;
                         this.EntradaComisionPlan.Text = "0.00";
@@ -281,22 +245,14 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaComisionUsuario
                         // 
-                        this.EntradaComisionUsuario.AutoNav = true;
                         this.EntradaComisionUsuario.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaComisionUsuario.DecimalPlaces = -1;
-                        this.EntradaComisionUsuario.FieldName = null;
                         this.EntradaComisionUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionUsuario.Location = new System.Drawing.Point(116, 100);
-                        this.EntradaComisionUsuario.MultiLine = false;
                         this.EntradaComisionUsuario.Name = "EntradaComisionUsuario";
                         this.EntradaComisionUsuario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaComisionUsuario.PasswordChar = '\0';
-                        this.EntradaComisionUsuario.PlaceholderText = null;
                         this.EntradaComisionUsuario.Prefijo = "$";
                         this.EntradaComisionUsuario.ReadOnly = false;
-                        this.EntradaComisionUsuario.SelectOnFocus = true;
                         this.EntradaComisionUsuario.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaComisionUsuario.Sufijo = "";
                         this.EntradaComisionUsuario.TabIndex = 12;
                         this.EntradaComisionUsuario.Text = "0.00";
                         this.EntradaComisionUsuario.TextChanged += new System.EventHandler(this.EntradaComisionUsuario_TextChanged);
@@ -383,22 +339,14 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaTotal
                         // 
-                        this.EntradaTotal.AutoNav = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaTotal.DecimalPlaces = -1;
-                        this.EntradaTotal.FieldName = null;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(188, 208);
-                        this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTotal.PasswordChar = '\0';
-                        this.EntradaTotal.PlaceholderText = null;
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.ReadOnly = false;
-                        this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
-                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 15;
                         this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);

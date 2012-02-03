@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Recibos
 {
-	public partial class Rapido : Lui.Forms.DialogForm
+	public partial class Rapido : Lui.Forms.ChildDialogForm
 	{
 		public Rapido()
 		{

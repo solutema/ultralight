@@ -298,6 +298,7 @@ namespace Lazaro.WinMain
                                         if (Aplicacion.FormularioPrincipal != null)
                                                 Aplicacion.FormularioPrincipal.Close();
                                         System.Threading.Thread.Sleep(200);
+                                        Lfx.Workspace.Master.Dispose();
                                         System.Environment.Exit(0);
                                         break;
 

@@ -91,22 +91,13 @@ namespace Lui.LogOn
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.AutoNav = true;
-                        this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaContrasena.DecimalPlaces = -1;
-                        this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(164, 156);
-                        this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.PlaceholderText = null;
-                        this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
-                        this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
-                        this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 4;
                         // 
                         // PictureBox2
@@ -131,23 +122,13 @@ namespace Lui.LogOn
                         // 
                         // EntradaUsuario
                         // 
-                        this.EntradaUsuario.AutoNav = true;
-                        this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaUsuario.DecimalPlaces = -1;
                         this.EntradaUsuario.Enabled = false;
-                        this.EntradaUsuario.FieldName = null;
                         this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUsuario.Location = new System.Drawing.Point(164, 124);
-                        this.EntradaUsuario.MultiLine = false;
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUsuario.PasswordChar = '\0';
-                        this.EntradaUsuario.PlaceholderText = null;
-                        this.EntradaUsuario.Prefijo = "";
                         this.EntradaUsuario.ReadOnly = false;
-                        this.EntradaUsuario.SelectOnFocus = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(272, 24);
-                        this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 2;
                         this.EntradaUsuario.Text = "0";
                         // 

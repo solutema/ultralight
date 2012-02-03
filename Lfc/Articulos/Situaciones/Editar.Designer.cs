@@ -79,22 +79,12 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(124, 0);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(412, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
@@ -110,13 +100,10 @@ namespace Lfc.Articulos.Situaciones
                         // EntradaCuentaStock
                         // 
                         this.EntradaCuentaStock.AlwaysExpanded = true;
-                        this.EntradaCuentaStock.AutoNav = true;
                         this.EntradaCuentaStock.AutoSize = true;
-                        this.EntradaCuentaStock.FieldName = null;
                         this.EntradaCuentaStock.Location = new System.Drawing.Point(124, 32);
                         this.EntradaCuentaStock.Name = "EntradaCuentaStock";
                         this.EntradaCuentaStock.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCuentaStock.PlaceholderText = null;
                         this.EntradaCuentaStock.ReadOnly = false;
                         this.EntradaCuentaStock.SetData = new string[] {
         "Si|1",
@@ -128,13 +115,10 @@ namespace Lfc.Articulos.Situaciones
                         // EntradaFacturable
                         // 
                         this.EntradaFacturable.AlwaysExpanded = true;
-                        this.EntradaFacturable.AutoNav = true;
                         this.EntradaFacturable.AutoSize = true;
-                        this.EntradaFacturable.FieldName = null;
                         this.EntradaFacturable.Location = new System.Drawing.Point(124, 80);
                         this.EntradaFacturable.Name = "EntradaFacturable";
                         this.EntradaFacturable.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFacturable.PlaceholderText = null;
                         this.EntradaFacturable.ReadOnly = false;
                         this.EntradaFacturable.SetData = new string[] {
         "Si|1",
@@ -165,22 +149,13 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // EntradaDeposito
                         // 
-                        this.EntradaDeposito.AutoNav = true;
                         this.EntradaDeposito.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaDeposito.DecimalPlaces = -1;
-                        this.EntradaDeposito.FieldName = null;
                         this.EntradaDeposito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDeposito.Location = new System.Drawing.Point(124, 128);
-                        this.EntradaDeposito.MultiLine = false;
                         this.EntradaDeposito.Name = "EntradaDeposito";
                         this.EntradaDeposito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDeposito.PasswordChar = '\0';
-                        this.EntradaDeposito.PlaceholderText = null;
-                        this.EntradaDeposito.Prefijo = "";
                         this.EntradaDeposito.ReadOnly = false;
-                        this.EntradaDeposito.SelectOnFocus = false;
                         this.EntradaDeposito.Size = new System.Drawing.Size(52, 24);
-                        this.EntradaDeposito.Sufijo = "";
                         this.EntradaDeposito.TabIndex = 7;
                         this.EntradaDeposito.Text = "0";
                         // 

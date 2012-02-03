@@ -134,7 +134,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "txtTarjeta";
                         this.EntradaFormaDePago.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFormaDePago.TemporaryReadOnly = false;
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(456, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
@@ -166,16 +165,12 @@ namespace Lfc.Tarjetas.Cupones
                         // txtPlanInteres
                         // 
                         this.txtPlanInteres.AutoSize = false;
-                        this.txtPlanInteres.AutoNav = true;
                         this.txtPlanInteres.DataType = Lui.Forms.DataTypes.Float;
-                        this.txtPlanInteres.DecimalPlaces = -1;
                         this.txtPlanInteres.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtPlanInteres.Location = new System.Drawing.Point(200, 0);
-                        this.txtPlanInteres.MultiLine = false;
                         this.txtPlanInteres.Name = "txtPlanInteres";
                         this.txtPlanInteres.Padding = new System.Windows.Forms.Padding(2);
                         this.txtPlanInteres.TemporaryReadOnly = true;
-                        this.txtPlanInteres.SelectOnFocus = true;
                         this.txtPlanInteres.Size = new System.Drawing.Size(56, 24);
                         this.txtPlanInteres.TabIndex = 3;
                         this.txtPlanInteres.TabStop = false;
@@ -193,16 +188,12 @@ namespace Lfc.Tarjetas.Cupones
                         // txtPlanCuotas
                         // 
                         this.txtPlanCuotas.AutoSize = false;
-                        this.txtPlanCuotas.AutoNav = true;
                         this.txtPlanCuotas.DataType = Lui.Forms.DataTypes.Integer;
-                        this.txtPlanCuotas.DecimalPlaces = -1;
                         this.txtPlanCuotas.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtPlanCuotas.Location = new System.Drawing.Point(76, 0);
-                        this.txtPlanCuotas.MultiLine = false;
                         this.txtPlanCuotas.Name = "txtPlanCuotas";
                         this.txtPlanCuotas.Padding = new System.Windows.Forms.Padding(2);
                         this.txtPlanCuotas.TemporaryReadOnly = true;
-                        this.txtPlanCuotas.SelectOnFocus = true;
                         this.txtPlanCuotas.Size = new System.Drawing.Size(56, 24);
                         this.txtPlanCuotas.TabIndex = 1;
                         this.txtPlanCuotas.TabStop = false;
@@ -231,7 +222,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "txtPlan";
                         this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPlan.TemporaryReadOnly = false;
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(456, 24);
                         this.EntradaPlan.TabIndex = 3;
@@ -265,7 +255,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "txtCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCliente.TemporaryReadOnly = false;
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(456, 24);
                         this.EntradaCliente.TabIndex = 8;
@@ -287,11 +276,9 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaEstado
                         // 
                         this.EntradaEstado.AutoSize = true;
-                        this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(85, 93);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.TemporaryReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "No Cobrados|-2",
         "Sin Presentar|0",
@@ -363,7 +350,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
                         this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechas.TemporaryReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(455, 30);
                         this.EntradaFechas.TabIndex = 10;
                         // 

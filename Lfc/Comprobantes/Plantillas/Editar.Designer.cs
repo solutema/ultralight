@@ -177,13 +177,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenes
                         // 
                         this.EntradaMargenes.AlwaysExpanded = true;
-                        this.EntradaMargenes.AutoNav = true;
                         this.EntradaMargenes.AutoSize = true;
-                        this.EntradaMargenes.FieldName = null;
                         this.EntradaMargenes.Location = new System.Drawing.Point(168, 156);
                         this.EntradaMargenes.Name = "EntradaMargenes";
                         this.EntradaMargenes.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenes.PlaceholderText = null;
                         this.EntradaMargenes.ReadOnly = false;
                         this.EntradaMargenes.SetData = new string[] {
         "Predeterminado|0",
@@ -195,20 +192,13 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaMargenAbajo
                         // 
-                        this.EntradaMargenAbajo.AutoNav = true;
                         this.EntradaMargenAbajo.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenAbajo.DecimalPlaces = -1;
-                        this.EntradaMargenAbajo.FieldName = null;
                         this.EntradaMargenAbajo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenAbajo.Location = new System.Drawing.Point(388, 172);
-                        this.EntradaMargenAbajo.MultiLine = false;
                         this.EntradaMargenAbajo.Name = "EntradaMargenAbajo";
                         this.EntradaMargenAbajo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenAbajo.PasswordChar = '\0';
                         this.EntradaMargenAbajo.PlaceholderText = "auto";
-                        this.EntradaMargenAbajo.Prefijo = "";
                         this.EntradaMargenAbajo.ReadOnly = false;
-                        this.EntradaMargenAbajo.SelectOnFocus = true;
                         this.EntradaMargenAbajo.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenAbajo.Sufijo = "aba.";
                         this.EntradaMargenAbajo.TabIndex = 11;
@@ -216,20 +206,13 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaMargenArriba
                         // 
-                        this.EntradaMargenArriba.AutoNav = true;
                         this.EntradaMargenArriba.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenArriba.DecimalPlaces = -1;
-                        this.EntradaMargenArriba.FieldName = null;
                         this.EntradaMargenArriba.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenArriba.Location = new System.Drawing.Point(388, 140);
-                        this.EntradaMargenArriba.MultiLine = false;
                         this.EntradaMargenArriba.Name = "EntradaMargenArriba";
                         this.EntradaMargenArriba.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenArriba.PasswordChar = '\0';
                         this.EntradaMargenArriba.PlaceholderText = "auto";
-                        this.EntradaMargenArriba.Prefijo = "";
                         this.EntradaMargenArriba.ReadOnly = false;
-                        this.EntradaMargenArriba.SelectOnFocus = true;
                         this.EntradaMargenArriba.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenArriba.Sufijo = "arr.";
                         this.EntradaMargenArriba.TabIndex = 10;
@@ -237,20 +220,13 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaMargenDerecha
                         // 
-                        this.EntradaMargenDerecha.AutoNav = true;
                         this.EntradaMargenDerecha.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenDerecha.DecimalPlaces = -1;
-                        this.EntradaMargenDerecha.FieldName = null;
                         this.EntradaMargenDerecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenDerecha.Location = new System.Drawing.Point(488, 156);
-                        this.EntradaMargenDerecha.MultiLine = false;
                         this.EntradaMargenDerecha.Name = "EntradaMargenDerecha";
                         this.EntradaMargenDerecha.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenDerecha.PasswordChar = '\0';
                         this.EntradaMargenDerecha.PlaceholderText = "auto";
-                        this.EntradaMargenDerecha.Prefijo = "";
                         this.EntradaMargenDerecha.ReadOnly = false;
-                        this.EntradaMargenDerecha.SelectOnFocus = true;
                         this.EntradaMargenDerecha.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenDerecha.Sufijo = "der.";
                         this.EntradaMargenDerecha.TabIndex = 12;
@@ -258,20 +234,13 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaMargenIzquierda
                         // 
-                        this.EntradaMargenIzquierda.AutoNav = true;
                         this.EntradaMargenIzquierda.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenIzquierda.DecimalPlaces = -1;
-                        this.EntradaMargenIzquierda.FieldName = null;
                         this.EntradaMargenIzquierda.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenIzquierda.Location = new System.Drawing.Point(292, 156);
-                        this.EntradaMargenIzquierda.MultiLine = false;
                         this.EntradaMargenIzquierda.Name = "EntradaMargenIzquierda";
                         this.EntradaMargenIzquierda.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenIzquierda.PasswordChar = '\0';
                         this.EntradaMargenIzquierda.PlaceholderText = "auto";
-                        this.EntradaMargenIzquierda.Prefijo = "";
                         this.EntradaMargenIzquierda.ReadOnly = false;
-                        this.EntradaMargenIzquierda.SelectOnFocus = true;
                         this.EntradaMargenIzquierda.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenIzquierda.Sufijo = "izq.";
                         this.EntradaMargenIzquierda.TabIndex = 9;
@@ -290,13 +259,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaLandscape
                         // 
                         this.EntradaLandscape.AlwaysExpanded = true;
-                        this.EntradaLandscape.AutoNav = true;
                         this.EntradaLandscape.AutoSize = true;
-                        this.EntradaLandscape.FieldName = null;
                         this.EntradaLandscape.Location = new System.Drawing.Point(264, 68);
                         this.EntradaLandscape.Name = "EntradaLandscape";
                         this.EntradaLandscape.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaLandscape.PlaceholderText = null;
                         this.EntradaLandscape.ReadOnly = false;
                         this.EntradaLandscape.SetData = new string[] {
         "alto|0",
@@ -340,20 +306,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaFuenteTamano
                         // 
-                        this.EntradaFuenteTamano.AutoNav = true;
                         this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaFuenteTamano.DecimalPlaces = -1;
-                        this.EntradaFuenteTamano.FieldName = null;
                         this.EntradaFuenteTamano.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(428, 268);
-                        this.EntradaFuenteTamano.MultiLine = false;
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFuenteTamano.PasswordChar = '\0';
-                        this.EntradaFuenteTamano.PlaceholderText = null;
-                        this.EntradaFuenteTamano.Prefijo = "";
                         this.EntradaFuenteTamano.ReadOnly = false;
-                        this.EntradaFuenteTamano.SelectOnFocus = true;
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(92, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
                         this.EntradaFuenteTamano.TabIndex = 17;
@@ -363,13 +321,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaFuente
                         // 
                         this.EntradaFuente.AlwaysExpanded = true;
-                        this.EntradaFuente.AutoNav = true;
                         this.EntradaFuente.AutoSize = true;
-                        this.EntradaFuente.FieldName = null;
                         this.EntradaFuente.Location = new System.Drawing.Point(168, 268);
                         this.EntradaFuente.Name = "EntradaFuente";
                         this.EntradaFuente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFuente.PlaceholderText = null;
                         this.EntradaFuente.ReadOnly = false;
                         this.EntradaFuente.SetData = new string[] {
         "Predeterminada|*",
@@ -405,13 +360,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaPapelTamano
                         // 
                         this.EntradaPapelTamano.AlwaysExpanded = true;
-                        this.EntradaPapelTamano.AutoNav = true;
                         this.EntradaPapelTamano.AutoSize = true;
-                        this.EntradaPapelTamano.FieldName = null;
                         this.EntradaPapelTamano.Location = new System.Drawing.Point(168, 68);
                         this.EntradaPapelTamano.Name = "EntradaPapelTamano";
                         this.EntradaPapelTamano.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPapelTamano.PlaceholderText = null;
                         this.EntradaPapelTamano.ReadOnly = false;
                         this.EntradaPapelTamano.SetData = new string[] {
         "Oficio|legal",
@@ -436,22 +388,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(168, 40);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = true;
                         this.EntradaNombre.Size = new System.Drawing.Size(284, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 3;
                         this.EntradaNombre.Text = "Factura A";
                         // 
@@ -467,22 +409,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaCodigo
                         // 
-                        this.EntradaCodigo.AutoNav = true;
-                        this.EntradaCodigo.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaCodigo.DecimalPlaces = -1;
-                        this.EntradaCodigo.FieldName = null;
                         this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo.Location = new System.Drawing.Point(168, 12);
-                        this.EntradaCodigo.MultiLine = false;
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo.PasswordChar = '\0';
-                        this.EntradaCodigo.PlaceholderText = null;
-                        this.EntradaCodigo.Prefijo = "";
                         this.EntradaCodigo.ReadOnly = false;
-                        this.EntradaCodigo.SelectOnFocus = true;
                         this.EntradaCodigo.Size = new System.Drawing.Size(284, 24);
-                        this.EntradaCodigo.Sufijo = "";
                         this.EntradaCodigo.TabIndex = 1;
                         this.EntradaCodigo.Text = "A";
                         // 
@@ -499,13 +431,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMembrete
                         // 
                         this.EntradaMembrete.AlwaysExpanded = true;
-                        this.EntradaMembrete.AutoNav = true;
                         this.EntradaMembrete.AutoSize = true;
-                        this.EntradaMembrete.FieldName = null;
                         this.EntradaMembrete.Location = new System.Drawing.Point(168, 208);
                         this.EntradaMembrete.Name = "EntradaMembrete";
                         this.EntradaMembrete.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMembrete.PlaceholderText = null;
                         this.EntradaMembrete.ReadOnly = false;
                         this.EntradaMembrete.SetData = new string[] {
         "Ninguno|0",
@@ -517,22 +446,13 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaCopias
                         // 
-                        this.EntradaCopias.AutoNav = true;
                         this.EntradaCopias.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCopias.DecimalPlaces = -1;
-                        this.EntradaCopias.FieldName = null;
                         this.EntradaCopias.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCopias.Location = new System.Drawing.Point(168, 356);
-                        this.EntradaCopias.MultiLine = false;
                         this.EntradaCopias.Name = "EntradaCopias";
                         this.EntradaCopias.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCopias.PasswordChar = '\0';
-                        this.EntradaCopias.PlaceholderText = null;
-                        this.EntradaCopias.Prefijo = "";
                         this.EntradaCopias.ReadOnly = false;
-                        this.EntradaCopias.SelectOnFocus = true;
                         this.EntradaCopias.Size = new System.Drawing.Size(56, 24);
-                        this.EntradaCopias.Sufijo = "";
                         this.EntradaCopias.TabIndex = 19;
                         this.EntradaCopias.Text = "1";
                         // 

@@ -86,12 +86,9 @@ namespace Lfc.Cajas.Vencimientos
                         // EntradaFrecuencia
                         // 
                         this.EntradaFrecuencia.AlwaysExpanded = true;
-                        this.EntradaFrecuencia.AutoNav = true;
-                        this.EntradaFrecuencia.FieldName = null;
                         this.EntradaFrecuencia.Location = new System.Drawing.Point(96, 76);
                         this.EntradaFrecuencia.Name = "EntradaFrecuencia";
                         this.EntradaFrecuencia.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFrecuencia.PlaceholderText = null;
                         this.EntradaFrecuencia.ReadOnly = false;
                         this.EntradaFrecuencia.SetData = new string[] {
         "Única|Unica",
@@ -121,22 +118,12 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(96, 0);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(540, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // lblLabel1
@@ -202,22 +189,13 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // EntradaFechaInicio
                         // 
-                        this.EntradaFechaInicio.AutoNav = true;
                         this.EntradaFechaInicio.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaInicio.DecimalPlaces = -1;
-                        this.EntradaFechaInicio.FieldName = null;
                         this.EntradaFechaInicio.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaInicio.Location = new System.Drawing.Point(96, 40);
-                        this.EntradaFechaInicio.MultiLine = false;
                         this.EntradaFechaInicio.Name = "EntradaFechaInicio";
                         this.EntradaFechaInicio.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaInicio.PasswordChar = '\0';
-                        this.EntradaFechaInicio.PlaceholderText = null;
-                        this.EntradaFechaInicio.Prefijo = "";
                         this.EntradaFechaInicio.ReadOnly = false;
-                        this.EntradaFechaInicio.SelectOnFocus = true;
                         this.EntradaFechaInicio.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaFechaInicio.Sufijo = "";
                         this.EntradaFechaInicio.TabIndex = 1;
                         // 
                         // label3
@@ -232,42 +210,24 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // EntradaFechaFin
                         // 
-                        this.EntradaFechaFin.AutoNav = true;
                         this.EntradaFechaFin.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaFin.DecimalPlaces = -1;
-                        this.EntradaFechaFin.FieldName = null;
                         this.EntradaFechaFin.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaFin.Location = new System.Drawing.Point(408, 40);
-                        this.EntradaFechaFin.MultiLine = false;
                         this.EntradaFechaFin.Name = "EntradaFechaFin";
                         this.EntradaFechaFin.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaFin.PasswordChar = '\0';
-                        this.EntradaFechaFin.PlaceholderText = null;
-                        this.EntradaFechaFin.Prefijo = "";
                         this.EntradaFechaFin.ReadOnly = false;
-                        this.EntradaFechaFin.SelectOnFocus = true;
                         this.EntradaFechaFin.Size = new System.Drawing.Size(104, 24);
-                        this.EntradaFechaFin.Sufijo = "";
                         this.EntradaFechaFin.TabIndex = 5;
                         // 
                         // EntradaRepetir
                         // 
-                        this.EntradaRepetir.AutoNav = true;
                         this.EntradaRepetir.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaRepetir.DecimalPlaces = -1;
-                        this.EntradaRepetir.FieldName = null;
                         this.EntradaRepetir.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRepetir.Location = new System.Drawing.Point(408, 68);
-                        this.EntradaRepetir.MultiLine = false;
                         this.EntradaRepetir.Name = "EntradaRepetir";
                         this.EntradaRepetir.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaRepetir.PasswordChar = '\0';
-                        this.EntradaRepetir.PlaceholderText = null;
-                        this.EntradaRepetir.Prefijo = "";
                         this.EntradaRepetir.ReadOnly = false;
-                        this.EntradaRepetir.SelectOnFocus = true;
                         this.EntradaRepetir.Size = new System.Drawing.Size(68, 24);
-                        this.EntradaRepetir.Sufijo = "";
                         this.EntradaRepetir.TabIndex = 7;
                         this.EntradaRepetir.Text = "0";
                         // 
@@ -285,20 +245,17 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaConcepto.AutoNav = true;
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
                         this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.ExtraDetailFields = "";
-                        this.EntradaConcepto.FieldName = null;
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.FreeTextCode = "";
                         this.EntradaConcepto.Location = new System.Drawing.Point(96, 36);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConcepto.PlaceholderText = null;
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(536, 24);
@@ -335,22 +292,13 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // EntradaImporte
                         // 
-                        this.EntradaImporte.AutoNav = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.DecimalPlaces = -1;
-                        this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(96, 68);
-                        this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImporte.PasswordChar = '\0';
-                        this.EntradaImporte.PlaceholderText = null;
-                        this.EntradaImporte.Prefijo = "";
                         this.EntradaImporte.ReadOnly = false;
-                        this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.Text = "0.00";
                         // 
@@ -367,12 +315,9 @@ namespace Lfc.Cajas.Vencimientos
                         // EntradaEstado
                         // 
                         this.EntradaEstado.AlwaysExpanded = false;
-                        this.EntradaEstado.AutoNav = true;
-                        this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(96, 32);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.PlaceholderText = null;
                         this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Inactivo|0",
@@ -386,22 +331,13 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaObs.AutoNav = true;
-                        this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(96, 64);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.PasswordChar = '\0';
-                        this.EntradaObs.PlaceholderText = null;
-                        this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
-                        this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(540, 56);
-                        this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 5;
                         // 
                         // label8

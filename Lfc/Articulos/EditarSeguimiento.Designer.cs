@@ -81,10 +81,8 @@ namespace Lfc.Articulos
                         this.VariacionesCantidades.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.VariacionesCantidades.AutoNav = true;
                         this.VariacionesCantidades.AutoScrollMargin = new System.Drawing.Size(4, 4);
                         this.VariacionesCantidades.EsNumeroDeSerie = false;
-                        this.VariacionesCantidades.FieldName = null;
                         this.VariacionesCantidades.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.VariacionesCantidades.Location = new System.Drawing.Point(24, 88);
                         this.VariacionesCantidades.Name = "VariacionesCantidades";

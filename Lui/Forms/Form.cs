@@ -45,11 +45,6 @@ namespace Lui.Forms
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-                public string FieldName { get; set; }              
-
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        System.ComponentModel.Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
                 public bool DisposeConnection { get; set; }
 
 		public Form()
@@ -94,19 +89,6 @@ namespace Lui.Forms
                 /// <summary>
                 /// IDataControl
                 /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Workspace Workspace
-                {
-                        get
-                        {
-                                return Lfx.Workspace.Master;
-                        }
-                }
-
-
-                /// <summary>
-                /// IDataControl
-                /// </summary>
                 public Lfx.Data.Connection Connection
                 {
                         get
@@ -129,7 +111,7 @@ namespace Lui.Forms
 
                                         m_Connection = value;
 
-                                        // Marco para no deshechar conexiones que fueron creadas por este formulario
+                                        // Marco para no deshechar conexiones que no fueron creadas por este formulario
                                         DisposeConnection = false;
                                 }
                         }
@@ -152,6 +134,9 @@ namespace Lui.Forms
                 }
 
 
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public bool ShowChanged
                 {
                         set
@@ -190,8 +175,6 @@ namespace Lui.Forms
                                         //Nada
                                 } else if (ctl is IEditableControl) {
                                         ((IEditableControl)ctl).Changed = newValue;
-                                } else if (ctl is IDataControl) {
-                                        ((IDataControl)ctl).Changed = newValue;
                                 } else if (ctl.Controls.Count > 0) {
                                         SetControlsChanged(ctl.Controls, newValue);
                                 }
@@ -285,6 +268,7 @@ namespace Lui.Forms
                                 base.OnKeyDown(e);
                 }
 
+
                 private bool ClicarBoton(Control.ControlCollection controls, string keyName)
                 {
                         foreach (System.Windows.Forms.Control ctl in controls) {
@@ -304,6 +288,10 @@ namespace Lui.Forms
                         return false;
                 }
 
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public virtual string StockImage
                 {
                         get

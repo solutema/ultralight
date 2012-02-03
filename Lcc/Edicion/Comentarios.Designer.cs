@@ -117,24 +117,14 @@ namespace Lcc.Edicion
                         // 
                         this.EntradaComentario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaComentario.AutoNav = true;
-                        this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaComentario.DecimalPlaces = -1;
                         this.EntradaComentario.Enabled = false;
-                        this.EntradaComentario.FieldName = null;
                         this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
                         this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaComentario.MultiLine = false;
                         this.EntradaComentario.Name = "EntradaComentario";
                         this.EntradaComentario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaComentario.PasswordChar = '\0';
-                        this.EntradaComentario.PlaceholderText = null;
-                        this.EntradaComentario.Prefijo = "";
                         this.EntradaComentario.ReadOnly = false;
-                        this.EntradaComentario.SelectOnFocus = true;
                         this.EntradaComentario.Size = new System.Drawing.Size(464, 24);
-                        this.EntradaComentario.Sufijo = "";
                         this.EntradaComentario.TabIndex = 0;
                         this.EntradaComentario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaComentario_KeyDown);
                         this.EntradaComentario.TextChanged += new System.EventHandler(this.EntradaComentario_TextChanged);

@@ -64,7 +64,6 @@ namespace Lui.Forms
                 {
                         this.MiContextMenu = new System.Windows.Forms.ContextMenu();
                         this.MenuItemCopiar = new System.Windows.Forms.MenuItem();
-                        this.MenuItem2 = new System.Windows.Forms.MenuItem();
                         this.MenuItemPegar = new System.Windows.Forms.MenuItem();
                         this.MenuItem4 = new System.Windows.Forms.MenuItem();
                         this.MenuItemCalculadora = new System.Windows.Forms.MenuItem();
@@ -72,7 +71,6 @@ namespace Lui.Forms
                         this.MenuItemAyer = new System.Windows.Forms.MenuItem();
                         this.MenuItemCalendario = new System.Windows.Forms.MenuItem();
                         this.MenuItemEditor = new System.Windows.Forms.MenuItem();
-                        this.menuItem1 = new System.Windows.Forms.MenuItem();
                         this.MenuItemPegadoRapido = new System.Windows.Forms.MenuItem();
                         this.MenuItemPegadoRapidoAgregar = new System.Windows.Forms.MenuItem();
                         this.EtiquetaPrefijo = new System.Windows.Forms.Label();
@@ -81,23 +79,23 @@ namespace Lui.Forms
                         // 
                         // TextBox1
                         // 
-                        this.TextBox1.Size = new System.Drawing.Size(376, 16);
+                        this.TextBox1.BackColor = System.Drawing.Color.White;
+                        this.TextBox1.ForeColor = System.Drawing.Color.Black;
+                        this.TextBox1.Size = new System.Drawing.Size(376, 18);
                         this.TextBox1.FontChanged += new System.EventHandler(this.TextBox1_FontChanged);
                         // 
                         // MiContextMenu
                         // 
                         this.MiContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.MenuItemCopiar,
-            this.MenuItem2,
             this.MenuItemPegar,
+            this.MenuItemPegadoRapido,
             this.MenuItem4,
+            this.MenuItemEditor,
             this.MenuItemCalculadora,
             this.MenuItemHoy,
             this.MenuItemAyer,
-            this.MenuItemCalendario,
-            this.MenuItemEditor,
-            this.menuItem1,
-            this.MenuItemPegadoRapido});
+            this.MenuItemCalendario});
                         this.MiContextMenu.Popup += new System.EventHandler(this.MiContextMenu_Popup);
                         // 
                         // MenuItemCopiar
@@ -106,14 +104,9 @@ namespace Lui.Forms
                         this.MenuItemCopiar.Text = "Copiar";
                         this.MenuItemCopiar.Click += new System.EventHandler(this.MenuItemCopiar_Click);
                         // 
-                        // MenuItem2
-                        // 
-                        this.MenuItem2.Index = 1;
-                        this.MenuItem2.Text = "-";
-                        // 
                         // MenuItemPegar
                         // 
-                        this.MenuItemPegar.Index = 2;
+                        this.MenuItemPegar.Index = 1;
                         this.MenuItemPegar.Text = "Pegar";
                         this.MenuItemPegar.Click += new System.EventHandler(this.MenuItemPegar_Click);
                         // 
@@ -124,41 +117,36 @@ namespace Lui.Forms
                         // 
                         // MenuItemCalculadora
                         // 
-                        this.MenuItemCalculadora.Index = 4;
+                        this.MenuItemCalculadora.Index = 5;
                         this.MenuItemCalculadora.Text = "Calculadora";
                         this.MenuItemCalculadora.Click += new System.EventHandler(this.MenuItemCalculadora_Click);
                         // 
                         // MenuItemHoy
                         // 
-                        this.MenuItemHoy.Index = 5;
+                        this.MenuItemHoy.Index = 6;
                         this.MenuItemHoy.Text = "Hoy";
                         this.MenuItemHoy.Click += new System.EventHandler(this.MenuItemHoy_Click);
                         // 
                         // MenuItemAyer
                         // 
-                        this.MenuItemAyer.Index = 6;
+                        this.MenuItemAyer.Index = 7;
                         this.MenuItemAyer.Text = "Ayer";
                         this.MenuItemAyer.Click += new System.EventHandler(this.MenuItemAyer_Click);
                         // 
                         // MenuItemCalendario
                         // 
-                        this.MenuItemCalendario.Index = 7;
+                        this.MenuItemCalendario.Index = 8;
                         this.MenuItemCalendario.Text = "Calendario";
                         // 
                         // MenuItemEditor
                         // 
-                        this.MenuItemEditor.Index = 8;
+                        this.MenuItemEditor.Index = 4;
                         this.MenuItemEditor.Text = "Editor Extendido";
                         this.MenuItemEditor.Click += new System.EventHandler(this.MenuItemEditor_Click);
                         // 
-                        // menuItem1
-                        // 
-                        this.menuItem1.Index = 9;
-                        this.menuItem1.Text = "-";
-                        // 
                         // MenuItemPegadoRapido
                         // 
-                        this.MenuItemPegadoRapido.Index = 10;
+                        this.MenuItemPegadoRapido.Index = 2;
                         this.MenuItemPegadoRapido.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.MenuItemPegadoRapidoAgregar});
                         this.MenuItemPegadoRapido.Text = "Pegado Rápido";
@@ -175,7 +163,7 @@ namespace Lui.Forms
                         this.EtiquetaPrefijo.AutoSize = true;
                         this.EtiquetaPrefijo.Location = new System.Drawing.Point(4, 4);
                         this.EtiquetaPrefijo.Name = "EtiquetaPrefijo";
-                        this.EtiquetaPrefijo.Size = new System.Drawing.Size(0, 16);
+                        this.EtiquetaPrefijo.Size = new System.Drawing.Size(0, 17);
                         this.EtiquetaPrefijo.TabIndex = 3;
                         this.EtiquetaPrefijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.EtiquetaPrefijo.UseMnemonic = false;
@@ -186,7 +174,7 @@ namespace Lui.Forms
                         this.EtiquetaSufijo.AutoSize = true;
                         this.EtiquetaSufijo.Location = new System.Drawing.Point(372, 4);
                         this.EtiquetaSufijo.Name = "EtiquetaSufijo";
-                        this.EtiquetaSufijo.Size = new System.Drawing.Size(0, 16);
+                        this.EtiquetaSufijo.Size = new System.Drawing.Size(0, 17);
                         this.EtiquetaSufijo.TabIndex = 4;
                         this.EtiquetaSufijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.EtiquetaSufijo.UseMnemonic = false;
@@ -210,7 +198,6 @@ namespace Lui.Forms
 
                 internal System.Windows.Forms.Label EtiquetaPrefijo;
                 internal System.Windows.Forms.Label EtiquetaSufijo;
-                internal System.Windows.Forms.MenuItem MenuItem2;
                 internal System.Windows.Forms.MenuItem MenuItem4;
                 internal System.Windows.Forms.MenuItem MenuItemCopiar;
                 internal System.Windows.Forms.MenuItem MenuItemPegar;

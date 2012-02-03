@@ -101,13 +101,10 @@ namespace Lfc.Pvs
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = true;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(140, 184);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = null;
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Inactivo|0",
@@ -140,33 +137,20 @@ namespace Lfc.Pvs
                         // 
                         // EntradaEstacion
                         // 
-                        this.EntradaEstacion.AutoNav = true;
-                        this.EntradaEstacion.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaEstacion.DecimalPlaces = -1;
-                        this.EntradaEstacion.FieldName = null;
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(140, 244);
-                        this.EntradaEstacion.MultiLine = false;
                         this.EntradaEstacion.Name = "EntradaEstacion";
                         this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstacion.PasswordChar = '\0';
-                        this.EntradaEstacion.PlaceholderText = null;
-                        this.EntradaEstacion.Prefijo = "";
                         this.EntradaEstacion.ReadOnly = false;
-                        this.EntradaEstacion.SelectOnFocus = true;
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
-                        this.EntradaEstacion.Sufijo = "";
                         this.EntradaEstacion.TabIndex = 11;
                         // 
                         // EntradaCarga
                         // 
                         this.EntradaCarga.AlwaysExpanded = false;
-                        this.EntradaCarga.AutoNav = true;
-                        this.EntradaCarga.FieldName = null;
                         this.EntradaCarga.Location = new System.Drawing.Point(212, 312);
                         this.EntradaCarga.Name = "EntradaCarga";
                         this.EntradaCarga.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCarga.PlaceholderText = null;
                         this.EntradaCarga.ReadOnly = false;
                         this.EntradaCarga.SetData = new string[] {
         "Automática|0",
@@ -203,12 +187,10 @@ namespace Lfc.Pvs
                         // 
                         // EntradaSucursal
                         // 
-                        this.EntradaSucursal.AutoNav = true;
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.ExtraDetailFields = "";
-                        this.EntradaSucursal.FieldName = null;
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(140, 32);
@@ -267,13 +249,10 @@ namespace Lfc.Pvs
                         // EntradaModelo
                         // 
                         this.EntradaModelo.AlwaysExpanded = false;
-                        this.EntradaModelo.AutoNav = true;
                         this.EntradaModelo.Enabled = false;
-                        this.EntradaModelo.FieldName = null;
                         this.EntradaModelo.Location = new System.Drawing.Point(212, 344);
                         this.EntradaModelo.Name = "EntradaModelo";
                         this.EntradaModelo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaModelo.PlaceholderText = null;
                         this.EntradaModelo.ReadOnly = false;
                         this.EntradaModelo.SetData = new string[] {
         "Hasar|100",
@@ -286,13 +265,10 @@ namespace Lfc.Pvs
                         // EntradaPuerto
                         // 
                         this.EntradaPuerto.AlwaysExpanded = false;
-                        this.EntradaPuerto.AutoNav = true;
                         this.EntradaPuerto.Enabled = false;
-                        this.EntradaPuerto.FieldName = null;
                         this.EntradaPuerto.Location = new System.Drawing.Point(212, 376);
                         this.EntradaPuerto.Name = "EntradaPuerto";
                         this.EntradaPuerto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPuerto.PlaceholderText = null;
                         this.EntradaPuerto.ReadOnly = false;
                         this.EntradaPuerto.SetData = new string[] {
         "COM1|1",
@@ -304,13 +280,10 @@ namespace Lfc.Pvs
                         // EntradaBps
                         // 
                         this.EntradaBps.AlwaysExpanded = false;
-                        this.EntradaBps.AutoNav = true;
                         this.EntradaBps.Enabled = false;
-                        this.EntradaBps.FieldName = null;
                         this.EntradaBps.Location = new System.Drawing.Point(212, 408);
                         this.EntradaBps.Name = "EntradaBps";
                         this.EntradaBps.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBps.PlaceholderText = null;
                         this.EntradaBps.ReadOnly = false;
                         this.EntradaBps.SetData = new string[] {
         "9600 bps|9600",
@@ -322,13 +295,10 @@ namespace Lfc.Pvs
                         // EntradaTipoFac
                         // 
                         this.EntradaTipoFac.AlwaysExpanded = true;
-                        this.EntradaTipoFac.AutoNav = true;
                         this.EntradaTipoFac.AutoSize = true;
-                        this.EntradaTipoFac.FieldName = null;
                         this.EntradaTipoFac.Location = new System.Drawing.Point(140, 96);
                         this.EntradaTipoFac.Name = "EntradaTipoFac";
                         this.EntradaTipoFac.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipoFac.PlaceholderText = null;
                         this.EntradaTipoFac.ReadOnly = false;
                         this.EntradaTipoFac.SetData = new string[] {
         "Facturas|F",
@@ -353,12 +323,9 @@ namespace Lfc.Pvs
                         // EntradaDeTalonario
                         // 
                         this.EntradaDeTalonario.AlwaysExpanded = false;
-                        this.EntradaDeTalonario.AutoNav = true;
-                        this.EntradaDeTalonario.FieldName = null;
                         this.EntradaDeTalonario.Location = new System.Drawing.Point(212, 280);
                         this.EntradaDeTalonario.Name = "EntradaDeTalonario";
                         this.EntradaDeTalonario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDeTalonario.PlaceholderText = null;
                         this.EntradaDeTalonario.ReadOnly = false;
                         this.EntradaDeTalonario.SetData = new string[] {
         "Si|1",
@@ -394,22 +361,13 @@ namespace Lfc.Pvs
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.AutoNav = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaNumero.DecimalPlaces = -1;
-                        this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(140, 0);
-                        this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PasswordChar = '\0';
-                        this.EntradaNumero.PlaceholderText = null;
-                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.ReadOnly = false;
-                        this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(72, 24);
-                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 1;
                         this.EntradaNumero.Text = "0";
                         // 
@@ -425,12 +383,10 @@ namespace Lfc.Pvs
                         // 
                         // EntradaImpresora
                         // 
-                        this.EntradaImpresora.AutoNav = true;
                         this.EntradaImpresora.CanCreate = true;
                         this.EntradaImpresora.DataTextField = "nombre";
                         this.EntradaImpresora.DataValueField = "id_impresora";
                         this.EntradaImpresora.ExtraDetailFields = "";
-                        this.EntradaImpresora.FieldName = null;
                         this.EntradaImpresora.Filter = "";
                         this.EntradaImpresora.FreeTextCode = "";
                         this.EntradaImpresora.Location = new System.Drawing.Point(140, 64);

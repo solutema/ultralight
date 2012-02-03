@@ -86,9 +86,7 @@ namespace Lfc
                         // 
                         // EntradaImagen
                         // 
-                        this.EntradaImagen.AutoNav = true;
                         this.EntradaImagen.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.EntradaImagen.FieldName = null;
                         this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaImagen.Location = new System.Drawing.Point(12, 12);
                         this.EntradaImagen.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
@@ -102,11 +100,9 @@ namespace Lfc
                         // 
                         // EntradaTags
                         // 
-                        this.EntradaTags.AutoNav = true;
                         this.EntradaTags.AutoScrollMargin = new System.Drawing.Size(0, 12);
                         this.EntradaTags.AutoSize = true;
                         this.EntradaTags.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.EntradaTags.FieldName = null;
                         this.EntradaTags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaTags.Location = new System.Drawing.Point(12, 372);
                         this.EntradaTags.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
@@ -120,9 +116,7 @@ namespace Lfc
                         // 
                         // EntradaComentarios
                         // 
-                        this.EntradaComentarios.AutoNav = true;
                         this.EntradaComentarios.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.EntradaComentarios.FieldName = null;
                         this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaComentarios.Location = new System.Drawing.Point(12, 196);
                         this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);

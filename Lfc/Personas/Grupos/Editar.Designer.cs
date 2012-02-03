@@ -72,20 +72,12 @@ namespace Lfc.Personas.Grupos
                         // 
                         // EntradaDescuento
                         // 
-                        this.EntradaDescuento.AutoNav = true;
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaDescuento.DecimalPlaces = -1;
-                        this.EntradaDescuento.FieldName = null;
                         this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescuento.Location = new System.Drawing.Point(120, 64);
-                        this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescuento.PasswordChar = '\0';
-                        this.EntradaDescuento.PlaceholderText = null;
-                        this.EntradaDescuento.Prefijo = "";
                         this.EntradaDescuento.ReadOnly = false;
-                        this.EntradaDescuento.SelectOnFocus = true;
                         this.EntradaDescuento.Size = new System.Drawing.Size(88, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 5;
@@ -103,22 +95,12 @@ namespace Lfc.Personas.Grupos
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 32);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(437, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 3;
                         // 
                         // Label1
@@ -134,13 +116,10 @@ namespace Lfc.Personas.Grupos
                         // EntradaPredet
                         // 
                         this.EntradaPredet.AlwaysExpanded = true;
-                        this.EntradaPredet.AutoNav = true;
                         this.EntradaPredet.AutoSize = true;
-                        this.EntradaPredet.FieldName = null;
                         this.EntradaPredet.Location = new System.Drawing.Point(120, 96);
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPredet.PlaceholderText = null;
                         this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",
@@ -161,13 +140,11 @@ namespace Lfc.Personas.Grupos
                         // 
                         // EntradaGrupo
                         // 
-                        this.EntradaGrupo.AutoNav = true;
                         this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
                         this.EntradaGrupo.DataTextField = "nombre";
                         this.EntradaGrupo.DataValueField = "id_grupo";
                         this.EntradaGrupo.ExtraDetailFields = "";
-                        this.EntradaGrupo.FieldName = null;
                         this.EntradaGrupo.Filter = "";
                         this.EntradaGrupo.FreeTextCode = "";
                         this.EntradaGrupo.Location = new System.Drawing.Point(120, 0);

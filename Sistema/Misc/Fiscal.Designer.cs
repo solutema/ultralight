@@ -124,7 +124,6 @@ namespace Lazaro.WinMain.Misc
                         // EntradaPv
                         // 
                         this.EntradaPv.AlwaysExpanded = true;
-                        this.EntradaPv.AutoNav = true;
                         this.EntradaPv.AutoSize = true;
                         this.EntradaPv.Location = new System.Drawing.Point(188, 24);
                         this.EntradaPv.Name = "EntradaPv";

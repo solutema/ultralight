@@ -86,23 +86,13 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(144, 0);
                         this.EntradaNombre.MaxLength = 200;
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(312, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
@@ -117,23 +107,13 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaNombreSing
                         // 
-                        this.EntradaNombreSing.AutoNav = true;
-                        this.EntradaNombreSing.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombreSing.DecimalPlaces = -1;
-                        this.EntradaNombreSing.FieldName = null;
                         this.EntradaNombreSing.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombreSing.Location = new System.Drawing.Point(144, 32);
                         this.EntradaNombreSing.MaxLength = 200;
-                        this.EntradaNombreSing.MultiLine = false;
                         this.EntradaNombreSing.Name = "EntradaNombreSing";
                         this.EntradaNombreSing.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombreSing.PasswordChar = '\0';
-                        this.EntradaNombreSing.PlaceholderText = null;
-                        this.EntradaNombreSing.Prefijo = "";
                         this.EntradaNombreSing.ReadOnly = false;
-                        this.EntradaNombreSing.SelectOnFocus = false;
                         this.EntradaNombreSing.Size = new System.Drawing.Size(312, 24);
-                        this.EntradaNombreSing.Sufijo = "";
                         this.EntradaNombreSing.TabIndex = 3;
                         // 
                         // Label1
@@ -148,23 +128,14 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaStockMinimo
                         // 
-                        this.EntradaStockMinimo.AutoNav = true;
                         this.EntradaStockMinimo.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaStockMinimo.DecimalPlaces = -1;
-                        this.EntradaStockMinimo.FieldName = null;
                         this.EntradaStockMinimo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaStockMinimo.Location = new System.Drawing.Point(144, 64);
                         this.EntradaStockMinimo.MaxLength = 20;
-                        this.EntradaStockMinimo.MultiLine = false;
                         this.EntradaStockMinimo.Name = "EntradaStockMinimo";
                         this.EntradaStockMinimo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockMinimo.PasswordChar = '\0';
-                        this.EntradaStockMinimo.PlaceholderText = null;
-                        this.EntradaStockMinimo.Prefijo = "";
                         this.EntradaStockMinimo.ReadOnly = false;
-                        this.EntradaStockMinimo.SelectOnFocus = true;
                         this.EntradaStockMinimo.Size = new System.Drawing.Size(72, 24);
-                        this.EntradaStockMinimo.Sufijo = "";
                         this.EntradaStockMinimo.TabIndex = 5;
                         this.EntradaStockMinimo.Text = "0";
                         // 
@@ -180,22 +151,13 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaItem
                         // 
-                        this.EntradaItem.AutoNav = true;
                         this.EntradaItem.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaItem.DecimalPlaces = -1;
-                        this.EntradaItem.FieldName = null;
                         this.EntradaItem.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaItem.Location = new System.Drawing.Point(188, 40);
-                        this.EntradaItem.MultiLine = false;
                         this.EntradaItem.Name = "EntradaItem";
                         this.EntradaItem.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaItem.PasswordChar = '\0';
-                        this.EntradaItem.PlaceholderText = null;
-                        this.EntradaItem.Prefijo = "";
                         this.EntradaItem.ReadOnly = false;
-                        this.EntradaItem.SelectOnFocus = true;
                         this.EntradaItem.Size = new System.Drawing.Size(104, 24);
-                        this.EntradaItem.Sufijo = "";
                         this.EntradaItem.TabIndex = 1;
                         this.EntradaItem.TabStop = false;
                         this.EntradaItem.Text = "0";
@@ -212,21 +174,14 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaGarantia
                         // 
-                        this.EntradaGarantia.AutoNav = true;
                         this.EntradaGarantia.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaGarantia.DecimalPlaces = -1;
-                        this.EntradaGarantia.FieldName = null;
                         this.EntradaGarantia.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaGarantia.Location = new System.Drawing.Point(144, 304);
                         this.EntradaGarantia.MaxLength = 20;
-                        this.EntradaGarantia.MultiLine = false;
                         this.EntradaGarantia.Name = "EntradaGarantia";
                         this.EntradaGarantia.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaGarantia.PasswordChar = '\0';
                         this.EntradaGarantia.PlaceholderText = "Precio de costo o de compra.";
-                        this.EntradaGarantia.Prefijo = "";
                         this.EntradaGarantia.ReadOnly = false;
-                        this.EntradaGarantia.SelectOnFocus = true;
                         this.EntradaGarantia.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGarantia.Sufijo = "meses";
                         this.EntradaGarantia.TabIndex = 15;
@@ -245,13 +200,10 @@ namespace Lfc.Articulos.Categorias
                         // EntradaSeguimiento
                         // 
                         this.EntradaSeguimiento.AlwaysExpanded = true;
-                        this.EntradaSeguimiento.AutoNav = true;
                         this.EntradaSeguimiento.AutoSize = true;
-                        this.EntradaSeguimiento.FieldName = null;
                         this.EntradaSeguimiento.Location = new System.Drawing.Point(144, 152);
                         this.EntradaSeguimiento.Name = "EntradaSeguimiento";
                         this.EntradaSeguimiento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSeguimiento.PlaceholderText = null;
                         this.EntradaSeguimiento.ReadOnly = false;
                         this.EntradaSeguimiento.SetData = new string[] {
         "Predeterminado|0",
@@ -274,13 +226,11 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaRubro
                         // 
-                        this.EntradaRubro.AutoNav = true;
                         this.EntradaRubro.AutoTab = true;
                         this.EntradaRubro.CanCreate = true;
                         this.EntradaRubro.DataTextField = "nombre";
                         this.EntradaRubro.DataValueField = "id_rubro";
                         this.EntradaRubro.ExtraDetailFields = "";
-                        this.EntradaRubro.FieldName = null;
                         this.EntradaRubro.Filter = "";
                         this.EntradaRubro.FreeTextCode = "";
                         this.EntradaRubro.Location = new System.Drawing.Point(144, 240);
@@ -299,13 +249,10 @@ namespace Lfc.Articulos.Categorias
                         // EntradaWeb
                         // 
                         this.EntradaWeb.AlwaysExpanded = true;
-                        this.EntradaWeb.AutoNav = true;
                         this.EntradaWeb.AutoSize = true;
-                        this.EntradaWeb.FieldName = null;
                         this.EntradaWeb.Location = new System.Drawing.Point(144, 96);
                         this.EntradaWeb.Name = "EntradaWeb";
                         this.EntradaWeb.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaWeb.PlaceholderText = null;
                         this.EntradaWeb.ReadOnly = false;
                         this.EntradaWeb.SetData = new string[] {
         "Si|1",
@@ -355,66 +302,40 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaItemStock
                         // 
-                        this.EntradaItemStock.AutoNav = true;
                         this.EntradaItemStock.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaItemStock.DecimalPlaces = -1;
-                        this.EntradaItemStock.FieldName = null;
                         this.EntradaItemStock.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaItemStock.Location = new System.Drawing.Point(188, 72);
-                        this.EntradaItemStock.MultiLine = false;
                         this.EntradaItemStock.Name = "EntradaItemStock";
                         this.EntradaItemStock.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaItemStock.PasswordChar = '\0';
-                        this.EntradaItemStock.PlaceholderText = null;
-                        this.EntradaItemStock.Prefijo = "";
                         this.EntradaItemStock.ReadOnly = false;
-                        this.EntradaItemStock.SelectOnFocus = true;
                         this.EntradaItemStock.Size = new System.Drawing.Size(104, 24);
-                        this.EntradaItemStock.Sufijo = "";
                         this.EntradaItemStock.TabIndex = 3;
                         this.EntradaItemStock.TabStop = false;
                         this.EntradaItemStock.Text = "0";
                         // 
                         // EntradaStockActual
                         // 
-                        this.EntradaStockActual.AutoNav = true;
                         this.EntradaStockActual.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaStockActual.DecimalPlaces = -1;
-                        this.EntradaStockActual.FieldName = null;
                         this.EntradaStockActual.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaStockActual.Location = new System.Drawing.Point(188, 104);
-                        this.EntradaStockActual.MultiLine = false;
                         this.EntradaStockActual.Name = "EntradaStockActual";
                         this.EntradaStockActual.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockActual.PasswordChar = '\0';
-                        this.EntradaStockActual.PlaceholderText = null;
-                        this.EntradaStockActual.Prefijo = "";
                         this.EntradaStockActual.ReadOnly = false;
-                        this.EntradaStockActual.SelectOnFocus = true;
                         this.EntradaStockActual.Size = new System.Drawing.Size(104, 24);
-                        this.EntradaStockActual.Sufijo = "";
                         this.EntradaStockActual.TabIndex = 5;
                         this.EntradaStockActual.TabStop = false;
                         this.EntradaStockActual.Text = "0";
                         // 
                         // EntradaCosto
                         // 
-                        this.EntradaCosto.AutoNav = true;
                         this.EntradaCosto.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCosto.DecimalPlaces = -1;
-                        this.EntradaCosto.FieldName = null;
                         this.EntradaCosto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCosto.Location = new System.Drawing.Point(188, 136);
-                        this.EntradaCosto.MultiLine = false;
                         this.EntradaCosto.Name = "EntradaCosto";
                         this.EntradaCosto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCosto.PasswordChar = '\0';
-                        this.EntradaCosto.PlaceholderText = null;
                         this.EntradaCosto.Prefijo = "$";
                         this.EntradaCosto.ReadOnly = false;
-                        this.EntradaCosto.SelectOnFocus = true;
                         this.EntradaCosto.Size = new System.Drawing.Size(104, 24);
-                        this.EntradaCosto.Sufijo = "";
                         this.EntradaCosto.TabIndex = 7;
                         this.EntradaCosto.TabStop = false;
                         this.EntradaCosto.Text = "0.00";
@@ -461,13 +382,11 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // EntradaAlicuota
                         // 
-                        this.EntradaAlicuota.AutoNav = true;
                         this.EntradaAlicuota.AutoTab = true;
                         this.EntradaAlicuota.CanCreate = true;
                         this.EntradaAlicuota.DataTextField = "nombre";
                         this.EntradaAlicuota.DataValueField = "id_alicuota";
                         this.EntradaAlicuota.ExtraDetailFields = "";
-                        this.EntradaAlicuota.FieldName = null;
                         this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.FreeTextCode = "";
                         this.EntradaAlicuota.Location = new System.Drawing.Point(144, 272);

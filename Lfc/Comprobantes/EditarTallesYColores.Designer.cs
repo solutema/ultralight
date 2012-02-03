@@ -76,122 +76,62 @@ namespace Lfc.Comprobantes
                         // 
                         // textBox1
                         // 
-                        this.textBox1.AutoNav = true;
-                        this.textBox1.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.textBox1.DecimalPlaces = -1;
-                        this.textBox1.FieldName = null;
                         this.textBox1.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox1.Location = new System.Drawing.Point(24, 24);
-                        this.textBox1.MultiLine = false;
                         this.textBox1.Name = "textBox1";
                         this.textBox1.Padding = new System.Windows.Forms.Padding(2);
-                        this.textBox1.PasswordChar = '\0';
-                        this.textBox1.PlaceholderText = null;
-                        this.textBox1.Prefijo = "";
                         this.textBox1.ReadOnly = false;
-                        this.textBox1.SelectOnFocus = true;
                         this.textBox1.Size = new System.Drawing.Size(316, 24);
-                        this.textBox1.Sufijo = "";
                         this.textBox1.TabIndex = 51;
                         // 
                         // textBox2
                         // 
-                        this.textBox2.AutoNav = true;
-                        this.textBox2.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.textBox2.DecimalPlaces = -1;
-                        this.textBox2.FieldName = null;
                         this.textBox2.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox2.Location = new System.Drawing.Point(348, 24);
-                        this.textBox2.MultiLine = false;
                         this.textBox2.Name = "textBox2";
                         this.textBox2.Padding = new System.Windows.Forms.Padding(2);
-                        this.textBox2.PasswordChar = '\0';
-                        this.textBox2.PlaceholderText = null;
-                        this.textBox2.Prefijo = "";
                         this.textBox2.ReadOnly = false;
-                        this.textBox2.SelectOnFocus = true;
                         this.textBox2.Size = new System.Drawing.Size(108, 24);
-                        this.textBox2.Sufijo = "";
                         this.textBox2.TabIndex = 52;
                         // 
                         // textBox3
                         // 
-                        this.textBox3.AutoNav = true;
-                        this.textBox3.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.textBox3.DecimalPlaces = -1;
-                        this.textBox3.FieldName = null;
                         this.textBox3.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox3.Location = new System.Drawing.Point(348, 56);
-                        this.textBox3.MultiLine = false;
                         this.textBox3.Name = "textBox3";
                         this.textBox3.Padding = new System.Windows.Forms.Padding(2);
-                        this.textBox3.PasswordChar = '\0';
-                        this.textBox3.PlaceholderText = null;
-                        this.textBox3.Prefijo = "";
                         this.textBox3.ReadOnly = false;
-                        this.textBox3.SelectOnFocus = true;
                         this.textBox3.Size = new System.Drawing.Size(108, 24);
-                        this.textBox3.Sufijo = "";
                         this.textBox3.TabIndex = 54;
                         // 
                         // textBox4
                         // 
-                        this.textBox4.AutoNav = true;
-                        this.textBox4.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.textBox4.DecimalPlaces = -1;
-                        this.textBox4.FieldName = null;
                         this.textBox4.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox4.Location = new System.Drawing.Point(24, 56);
-                        this.textBox4.MultiLine = false;
                         this.textBox4.Name = "textBox4";
                         this.textBox4.Padding = new System.Windows.Forms.Padding(2);
-                        this.textBox4.PasswordChar = '\0';
-                        this.textBox4.PlaceholderText = null;
-                        this.textBox4.Prefijo = "";
                         this.textBox4.ReadOnly = false;
-                        this.textBox4.SelectOnFocus = true;
                         this.textBox4.Size = new System.Drawing.Size(316, 24);
-                        this.textBox4.Sufijo = "";
                         this.textBox4.TabIndex = 53;
                         // 
                         // textBox5
                         // 
-                        this.textBox5.AutoNav = true;
-                        this.textBox5.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.textBox5.DecimalPlaces = -1;
-                        this.textBox5.FieldName = null;
                         this.textBox5.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox5.Location = new System.Drawing.Point(348, 88);
-                        this.textBox5.MultiLine = false;
                         this.textBox5.Name = "textBox5";
                         this.textBox5.Padding = new System.Windows.Forms.Padding(2);
-                        this.textBox5.PasswordChar = '\0';
-                        this.textBox5.PlaceholderText = null;
-                        this.textBox5.Prefijo = "";
                         this.textBox5.ReadOnly = false;
-                        this.textBox5.SelectOnFocus = true;
                         this.textBox5.Size = new System.Drawing.Size(108, 24);
-                        this.textBox5.Sufijo = "";
                         this.textBox5.TabIndex = 56;
                         // 
                         // textBox6
                         // 
-                        this.textBox6.AutoNav = true;
-                        this.textBox6.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.textBox6.DecimalPlaces = -1;
-                        this.textBox6.FieldName = null;
                         this.textBox6.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox6.Location = new System.Drawing.Point(24, 88);
-                        this.textBox6.MultiLine = false;
                         this.textBox6.Name = "textBox6";
                         this.textBox6.Padding = new System.Windows.Forms.Padding(2);
-                        this.textBox6.PasswordChar = '\0';
-                        this.textBox6.PlaceholderText = null;
-                        this.textBox6.Prefijo = "";
                         this.textBox6.ReadOnly = false;
-                        this.textBox6.SelectOnFocus = true;
                         this.textBox6.Size = new System.Drawing.Size(316, 24);
-                        this.textBox6.Sufijo = "";
                         this.textBox6.TabIndex = 55;
                         // 
                         // EditarTallesYColores

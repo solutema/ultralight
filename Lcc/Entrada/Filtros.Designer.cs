@@ -96,7 +96,6 @@ namespace Lcc.Entrada
                         // 
                         // BotonAplicar
                         // 
-                        this.BotonAplicar.AutoNav = true;
                         this.BotonAplicar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAplicar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAplicar.Image = null;

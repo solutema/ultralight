@@ -95,16 +95,12 @@ namespace Lfc.Articulos
                         // 
                         // EntradaRendimiento
                         // 
-                        this.EntradaRendimiento.AutoNav = true;
                         this.EntradaRendimiento.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaRendimiento.DecimalPlaces = -1;
                         this.EntradaRendimiento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRendimiento.Location = new System.Drawing.Point(100, 120);
-                        this.EntradaRendimiento.MultiLine = false;
                         this.EntradaRendimiento.Name = "EntradaRendimiento";
                         this.EntradaRendimiento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRendimiento.ReadOnly = false;
-                        this.EntradaRendimiento.SelectOnFocus = true;
                         this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
                         this.EntradaRendimiento.TabIndex = 3;
                         this.EntradaRendimiento.Text = "0.00";
@@ -122,7 +118,6 @@ namespace Lfc.Articulos
                         // EntradaUnidad
                         // 
                         this.EntradaUnidad.AlwaysExpanded = true;
-                        this.EntradaUnidad.AutoNav = true;
                         this.EntradaUnidad.AutoSize = true;
                         this.EntradaUnidad.Location = new System.Drawing.Point(200, 24);
                         this.EntradaUnidad.Name = "EntradaUnidad";
@@ -151,7 +146,6 @@ namespace Lfc.Articulos
                         // EntradaUnidadRend
                         // 
                         this.EntradaUnidadRend.AlwaysExpanded = true;
-                        this.EntradaUnidadRend.AutoNav = true;
                         this.EntradaUnidadRend.AutoSize = true;
                         this.EntradaUnidadRend.Location = new System.Drawing.Point(200, 120);
                         this.EntradaUnidadRend.Name = "EntradaUnidadRend";

@@ -116,22 +116,12 @@ namespace Lfc
                         // EntradaContador2
                         // 
                         this.EntradaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContador2.AutoNav = true;
-                        this.EntradaContador2.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaContador2.DecimalPlaces = -1;
-                        this.EntradaContador2.FieldName = null;
                         this.EntradaContador2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador2.Location = new System.Drawing.Point(100, 28);
-                        this.EntradaContador2.MultiLine = false;
                         this.EntradaContador2.Name = "EntradaContador2";
                         this.EntradaContador2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaContador2.PasswordChar = '\0';
-                        this.EntradaContador2.PlaceholderText = null;
-                        this.EntradaContador2.Prefijo = "";
                         this.EntradaContador2.ReadOnly = true;
-                        this.EntradaContador2.SelectOnFocus = true;
                         this.EntradaContador2.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaContador2.Sufijo = "";
                         this.EntradaContador2.TabIndex = 62;
                         this.EntradaContador2.TabStop = false;
                         this.EntradaContador2.Visible = false;
@@ -153,22 +143,12 @@ namespace Lfc
                         // EntradaContador1
                         // 
                         this.EntradaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContador1.AutoNav = true;
-                        this.EntradaContador1.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaContador1.DecimalPlaces = -1;
-                        this.EntradaContador1.FieldName = null;
                         this.EntradaContador1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador1.Location = new System.Drawing.Point(100, 0);
-                        this.EntradaContador1.MultiLine = false;
                         this.EntradaContador1.Name = "EntradaContador1";
                         this.EntradaContador1.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaContador1.PasswordChar = '\0';
-                        this.EntradaContador1.PlaceholderText = null;
-                        this.EntradaContador1.Prefijo = "";
                         this.EntradaContador1.ReadOnly = true;
-                        this.EntradaContador1.SelectOnFocus = true;
                         this.EntradaContador1.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaContador1.Sufijo = "";
                         this.EntradaContador1.TabIndex = 60;
                         this.EntradaContador1.TabStop = false;
                         this.EntradaContador1.Visible = false;
@@ -186,7 +166,6 @@ namespace Lfc
                         // BotonImprimir
                         // 
                         this.BotonImprimir.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.BotonImprimir.AutoNav = true;
                         this.BotonImprimir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonImprimir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonImprimir.Image = null;
@@ -206,7 +185,6 @@ namespace Lfc
                         // BotonFiltrar
                         // 
                         this.BotonFiltrar.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.BotonFiltrar.AutoNav = true;
                         this.BotonFiltrar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonFiltrar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonFiltrar.Image = null;
@@ -227,7 +205,6 @@ namespace Lfc
                         // BotonCancelar
                         // 
                         this.BotonCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.BotonCancelar.AutoNav = true;
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = null;
@@ -262,22 +239,12 @@ namespace Lfc
                         // EntradaContador4
                         // 
                         this.EntradaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContador4.AutoNav = true;
-                        this.EntradaContador4.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaContador4.DecimalPlaces = -1;
-                        this.EntradaContador4.FieldName = null;
                         this.EntradaContador4.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador4.Location = new System.Drawing.Point(100, 84);
-                        this.EntradaContador4.MultiLine = false;
                         this.EntradaContador4.Name = "EntradaContador4";
                         this.EntradaContador4.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaContador4.PasswordChar = '\0';
-                        this.EntradaContador4.PlaceholderText = null;
-                        this.EntradaContador4.Prefijo = "";
                         this.EntradaContador4.ReadOnly = true;
-                        this.EntradaContador4.SelectOnFocus = true;
                         this.EntradaContador4.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaContador4.Sufijo = "";
                         this.EntradaContador4.TabIndex = 66;
                         this.EntradaContador4.TabStop = false;
                         this.EntradaContador4.Visible = false;
@@ -299,22 +266,12 @@ namespace Lfc
                         // EntradaContador3
                         // 
                         this.EntradaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContador3.AutoNav = true;
-                        this.EntradaContador3.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaContador3.DecimalPlaces = -1;
-                        this.EntradaContador3.FieldName = null;
                         this.EntradaContador3.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador3.Location = new System.Drawing.Point(100, 56);
-                        this.EntradaContador3.MultiLine = false;
                         this.EntradaContador3.Name = "EntradaContador3";
                         this.EntradaContador3.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaContador3.PasswordChar = '\0';
-                        this.EntradaContador3.PlaceholderText = null;
-                        this.EntradaContador3.Prefijo = "";
                         this.EntradaContador3.ReadOnly = true;
-                        this.EntradaContador3.SelectOnFocus = true;
                         this.EntradaContador3.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaContador3.Sufijo = "";
                         this.EntradaContador3.TabIndex = 64;
                         this.EntradaContador3.TabStop = false;
                         this.EntradaContador3.Visible = false;

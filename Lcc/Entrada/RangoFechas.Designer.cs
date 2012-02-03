@@ -62,7 +62,6 @@ namespace Lcc.Entrada
                         // EntradaTipoDeRango
                         // 
                         this.EntradaTipoDeRango.AlwaysExpanded = false;
-                        this.EntradaTipoDeRango.AutoNav = true;
                         this.EntradaTipoDeRango.AutoSize = true;
                         this.EntradaTipoDeRango.Location = new System.Drawing.Point(0, 0);
                         this.EntradaTipoDeRango.Name = "EntradaTipoDeRango";
@@ -81,30 +80,22 @@ namespace Lcc.Entrada
                         // 
                         // EntradaDesde
                         // 
-                        this.EntradaDesde.AutoNav = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaDesde.DecimalPlaces = -1;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(120, 8);
-                        this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(108, 24);
                         this.EntradaDesde.TabIndex = 1;
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesde_TextChanged);
                         // 
                         // EntradaHasta
                         // 
-                        this.EntradaHasta.AutoNav = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaHasta.DecimalPlaces = -1;
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 8);
-                        this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaHasta.SelectOnFocus = true;
                         this.EntradaHasta.Size = new System.Drawing.Size(108, 24);
                         this.EntradaHasta.TabIndex = 3;
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaHasta_TextChanged);
@@ -114,7 +105,6 @@ namespace Lcc.Entrada
                         this.EntradaRango.AlwaysExpanded = false;
                         this.EntradaRango.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaRango.AutoNav = true;
                         this.EntradaRango.AutoSize = true;
                         this.EntradaRango.Location = new System.Drawing.Point(128, 0);
                         this.EntradaRango.Name = "EntradaRango";

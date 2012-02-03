@@ -41,13 +41,12 @@ namespace Lui.Forms
 	[System.ComponentModel.DefaultEvent("TextChanged")]
         public partial class TextBox : TextBoxBase
 	{
-		protected internal bool m_SelectOnFocus = true;
+                protected Lazaro.Pres.DisplayStyles.TextStyles m_LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
+                
                 protected internal TextCasing m_ForceCase = TextCasing.None;
-		protected internal char m_PasswordChar = Lfx.Types.ControlChars.Null;
+		protected internal char m_PasswordChar = '\0';
 		protected internal DataTypes m_DataType = DataTypes.FreeText;
-		protected internal int m_DecimalPlaces = -1;
-
-		private System.Windows.Forms.MenuItem menuItem1;
+                protected internal int m_DecimalPlaces = -1;
 		private System.Windows.Forms.MenuItem MenuItemPegadoRapido;
 		private System.Windows.Forms.MenuItem MenuItemPegadoRapidoAgregar;
 
@@ -75,7 +74,8 @@ namespace Lui.Forms
                 }
 
 
-                [System.ComponentModel.Category("Comportamiento")]
+                [Category("Comportamiento")]
+                [DefaultValue(TextCasing.None)]
                 public TextCasing ForceCase
                 {
                         get
@@ -90,6 +90,7 @@ namespace Lui.Forms
                 }
 
 
+                [DefaultValue("")]
 		public virtual string Prefijo
 		{
 			get
@@ -107,6 +108,7 @@ namespace Lui.Forms
 		}
 
 
+                [DefaultValue("")]
 		public string Sufijo
 		{
 			get
@@ -138,6 +140,7 @@ namespace Lui.Forms
                 }
 
 
+                [DefaultValue(-1)]
 		public int DecimalPlaces
 		{
 			get
@@ -169,6 +172,7 @@ namespace Lui.Forms
 			}
 		}
 
+
 		[EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public int SelectionLength
 		{
@@ -182,7 +186,9 @@ namespace Lui.Forms
 			}
 		}
 
-		[System.ComponentModel.Category("Comportamiento")]
+
+		[Category("Comportamiento")]
+                [DefaultValue('\0')]
 		public char PasswordChar
 		{
 			get
@@ -193,12 +199,14 @@ namespace Lui.Forms
 			{
 				m_PasswordChar = value;
 				TextBox1.PasswordChar = m_PasswordChar;
-                                if (m_PasswordChar != Lfx.Types.ControlChars.Null)
+                                if (m_PasswordChar != '\0')
                                         this.MultiLine = false;
 			}
 		}
 
+
 		[System.ComponentModel.Category("Comportamiento")]
+                [DefaultValue(false)]
 		public bool MultiLine
 		{
 			get
@@ -213,20 +221,9 @@ namespace Lui.Forms
 			}
 		}
 
-		[System.ComponentModel.Category("Comportamiento")]
-		public bool SelectOnFocus
-		{
-			get
-			{
-				return m_SelectOnFocus;
-			}
-			set
-			{
-				m_SelectOnFocus = value;
-			}
-		}
 
 		[System.ComponentModel.Category("Comportamiento")]
+                [DefaultValue(DataTypes.FreeText)]
 		public virtual DataTypes DataType
 		{
 			get
@@ -334,9 +331,9 @@ namespace Lui.Forms
 			MenuItemAyer.Visible = MenuItemCalendario.Visible;
 			MenuItemCalculadora.Visible = (m_DataType == DataTypes.Float || m_DataType == DataTypes.Currency  || m_DataType == DataTypes.Stock || m_DataType == DataTypes.Integer);
 			MenuItemCalculadora.Enabled = !(this.TemporaryReadOnly || this.ReadOnly);
-			MenuItemEditor.Enabled = (this.TemporaryReadOnly == false && this.ReadOnly == false && m_DataType == DataTypes.FreeText && m_PasswordChar == Lfx.Types.ControlChars.Null);
-			MenuItemCopiar.Enabled = m_PasswordChar == Lfx.Types.ControlChars.Null && this.Text.Length > 0;
-			if (m_PasswordChar == Lfx.Types.ControlChars.Null)
+                        MenuItemEditor.Enabled = (this.TemporaryReadOnly == false && this.ReadOnly == false && m_DataType == DataTypes.FreeText && m_PasswordChar == '\0');
+                        MenuItemCopiar.Enabled = m_PasswordChar == '\0' && this.Text.Length > 0;
+                        if (m_PasswordChar == '\0')
 			{
 				if (DatosPortapapeles == null || DatosPortapapeles.Length == 0)
 				{
@@ -431,13 +428,15 @@ namespace Lui.Forms
 			Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
 			Comando.Fields.AddWithValue("usuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
 			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                        this.Connection.Execute(Comando);
+                        Lfx.Workspace.Master.MasterConnection.Execute(Comando);
 		}
+
 
 		private void MenuItemPegadoRapidoTexto_Click(object sender, System.EventArgs e)
 		{
 			this.Text = FormatearDatos(((System.Windows.Forms.MenuItem)sender).Text);
 		}
+
 
                 public override System.String Text
                 {
@@ -452,11 +451,7 @@ namespace Lui.Forms
                                 else
                                         base.Text = FormatearDatos(value);
 
-                                if (m_SelectOnFocus && m_TemporaryReadOnly == false && this.ReadOnly == false) {
-                                        TextBox1.SelectAll();
-                                } else {
-                                        TextBox1.SelectionStart = this.TextRaw.Length;
-                                }
+                                TextBox1.Select(TextBox1.Text.Length, 0);
                         }
                 }
 
@@ -595,6 +590,7 @@ namespace Lui.Forms
                         return Res;
                 }
 
+
                 private void TextBox1_DoubleClick(object sender, System.EventArgs e)
                 {
                         if (this.TemporaryReadOnly == false && this.ReadOnly == false) {
@@ -603,6 +599,7 @@ namespace Lui.Forms
                                 }
                         }
                 }
+
 
                 private void TextBox1_LostFocus(object sender, System.EventArgs e)
                 {
@@ -613,13 +610,31 @@ namespace Lui.Forms
                         }
                 }
 
+
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {
                         if (IgnoreEvents == 0 && this.TemporaryReadOnly == false && this.ReadOnly == false) {
-                                if (m_SelectOnFocus && m_TemporaryReadOnly == false && this.ReadOnly == false)
-                                        TextBox1.SelectAll();
-                                else
-                                        TextBox1.SelectionStart = this.TextRaw.Length;
+                                if (m_TemporaryReadOnly == false && this.ReadOnly == false) {
+                                        if (m_TemporaryReadOnly == false && this.ReadOnly == false) {
+                                                switch (this.DataType) {
+                                                        case DataTypes.Currency:
+                                                        case DataTypes.Date:
+                                                        case DataTypes.Float:
+                                                        case DataTypes.Integer:
+                                                        case DataTypes.Stock:
+                                                                TextBox1.SelectAll();
+                                                                break;
+                                                        default:
+                                                                TextBox1.Select(TextBox1.Text.Length, 0);
+                                                                break;
+                                                }
+
+                                        } else {
+                                                TextBox1.Select(TextBox1.Text.Length, 0);
+                                        }
+                                } else {
+                                        TextBox1.Select(TextBox1.Text.Length, 0);
+                                }
                         }
                 }
 
@@ -662,17 +677,33 @@ namespace Lui.Forms
                         }
                 }
 
-                
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                new public Font CustomFont
+
+                public Lazaro.Pres.DisplayStyles.TextStyles LabelStyle
                 {
                         get
                         {
-                                return TextBox1.Font;
+                                return m_LabelStyle;
                         }
                         set
                         {
-                                TextBox1.Font = value;
+                                m_LabelStyle = value;
+                                switch(m_LabelStyle) {
+                                        case Lazaro.Pres.DisplayStyles.TextStyles.DataEntry:
+                                                TextBox1.Font = Lazaro.Pres.DisplayStyles.Template.Current.DataEntryFont;
+                                                break;
+                                        case Lazaro.Pres.DisplayStyles.TextStyles.Big:
+                                                TextBox1.Font = Lazaro.Pres.DisplayStyles.Template.Current.BigFont;
+                                                break;
+                                        case Lazaro.Pres.DisplayStyles.TextStyles.Bigger:
+                                                TextBox1.Font = Lazaro.Pres.DisplayStyles.Template.Current.BiggerFont;
+                                                break;
+                                        case Lazaro.Pres.DisplayStyles.TextStyles.Small:
+                                                TextBox1.Font = Lazaro.Pres.DisplayStyles.Template.Current.SmallFont;
+                                                break;
+                                        default:
+                                                TextBox1.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
+                                                break;
+                                }
                         }
                 }
 	}

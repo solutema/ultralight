@@ -962,7 +962,7 @@ LEFT JOIN pg_attribute
                                         DbConnection = null;
                                 }
 
-                                GC.SuppressFinalize(this);
+                                //GC.SuppressFinalize(this);
                         }
                 }
 

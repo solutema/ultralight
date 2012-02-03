@@ -98,16 +98,10 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaNumero
                         // 
                         this.EntradaNumero.AutoSize = false;
-                        this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNumero.DecimalPlaces = -1;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(348, 68);
-                        this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.TemporaryReadOnly = false;
-                        this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(96, 24);
                         this.EntradaNumero.TabIndex = 9;
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
@@ -124,11 +118,9 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AutoSize = false;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(84, 68);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.TemporaryReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|A",
         "Factura B|B",
@@ -153,16 +145,10 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaPv
                         // 
                         this.EntradaPv.AutoSize = false;
-                        this.EntradaPv.AutoNav = true;
-                        this.EntradaPv.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaPv.DecimalPlaces = -1;
                         this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPv.Location = new System.Drawing.Point(288, 68);
-                        this.EntradaPv.MultiLine = false;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPv.TemporaryReadOnly = false;
-                        this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(48, 24);
                         this.EntradaPv.TabIndex = 7;
                         this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
@@ -206,7 +192,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaVendedor.TemporaryReadOnly = false;
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(360, 24);
                         this.EntradaVendedor.TabIndex = 3;
@@ -294,7 +279,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCliente.TemporaryReadOnly = false;
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(360, 24);
                         this.EntradaCliente.TabIndex = 1;

@@ -66,32 +66,26 @@ namespace Lcc.Entrada
                         // 
                         // EntradaValor1
                         // 
-                        this.EntradaValor1.AutoNav = true;
                         this.EntradaValor1.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaValor1.DecimalPlaces = 2;
                         this.EntradaValor1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaValor1.Location = new System.Drawing.Point(56, 0);
-                        this.EntradaValor1.MultiLine = false;
                         this.EntradaValor1.Name = "EntradaValor1";
                         this.EntradaValor1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaValor1.ReadOnly = false;
-                        this.EntradaValor1.SelectOnFocus = true;
                         this.EntradaValor1.Size = new System.Drawing.Size(108, 24);
                         this.EntradaValor1.TabIndex = 5;
                         this.EntradaValor1.Text = "0.00";
                         // 
                         // EntradaValor2
                         // 
-                        this.EntradaValor2.AutoNav = true;
                         this.EntradaValor2.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaValor2.DecimalPlaces = 2;
                         this.EntradaValor2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaValor2.Location = new System.Drawing.Point(196, 0);
-                        this.EntradaValor2.MultiLine = false;
                         this.EntradaValor2.Name = "EntradaValor2";
                         this.EntradaValor2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaValor2.ReadOnly = false;
-                        this.EntradaValor2.SelectOnFocus = true;
                         this.EntradaValor2.Size = new System.Drawing.Size(108, 24);
                         this.EntradaValor2.TabIndex = 7;
                         this.EntradaValor2.Text = "0.00";

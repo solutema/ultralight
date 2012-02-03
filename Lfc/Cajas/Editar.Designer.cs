@@ -89,22 +89,12 @@ namespace Lfc.Cajas
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNumero.DecimalPlaces = -1;
-                        this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(124, 152);
-                        this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PasswordChar = '\0';
-                        this.EntradaNumero.PlaceholderText = null;
-                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.ReadOnly = false;
-                        this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(228, 24);
-                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 9;
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.NumeroBanco_TextChanged);
                         // 
@@ -132,19 +122,16 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaBanco.AutoNav = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.ExtraDetailFields = "";
-                        this.EntradaBanco.FieldName = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(124, 120);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBanco.PlaceholderText = null;
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(488, 24);
@@ -157,9 +144,7 @@ namespace Lfc.Cajas
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = true;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(124, 64);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
@@ -188,22 +173,12 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(124, 0);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(488, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaNombre_KeyPress);
                         // 
@@ -229,19 +204,16 @@ namespace Lfc.Cajas
                         // 
                         // EntradaMoneda
                         // 
-                        this.EntradaMoneda.AutoNav = true;
                         this.EntradaMoneda.CanCreate = true;
                         this.EntradaMoneda.DataTextField = "nombre";
                         this.EntradaMoneda.DataValueField = "id_moneda";
                         this.EntradaMoneda.ExtraDetailFields = "";
-                        this.EntradaMoneda.FieldName = null;
                         this.EntradaMoneda.Filter = "";
                         this.EntradaMoneda.FreeTextCode = "";
                         this.EntradaMoneda.Location = new System.Drawing.Point(124, 184);
                         this.EntradaMoneda.MaxLength = 200;
                         this.EntradaMoneda.Name = "EntradaMoneda";
                         this.EntradaMoneda.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMoneda.PlaceholderText = null;
                         this.EntradaMoneda.ReadOnly = false;
                         this.EntradaMoneda.Required = false;
                         this.EntradaMoneda.Size = new System.Drawing.Size(228, 24);
@@ -252,23 +224,13 @@ namespace Lfc.Cajas
                         // 
                         // EntradaClaveBancaria
                         // 
-                        this.EntradaClaveBancaria.AutoNav = true;
-                        this.EntradaClaveBancaria.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaClaveBancaria.DecimalPlaces = -1;
-                        this.EntradaClaveBancaria.FieldName = null;
                         this.EntradaClaveBancaria.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaClaveBancaria.Location = new System.Drawing.Point(124, 216);
                         this.EntradaClaveBancaria.MaxLength = 23;
-                        this.EntradaClaveBancaria.MultiLine = false;
                         this.EntradaClaveBancaria.Name = "EntradaClaveBancaria";
                         this.EntradaClaveBancaria.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaClaveBancaria.PasswordChar = '\0';
-                        this.EntradaClaveBancaria.PlaceholderText = null;
-                        this.EntradaClaveBancaria.Prefijo = "";
                         this.EntradaClaveBancaria.ReadOnly = false;
-                        this.EntradaClaveBancaria.SelectOnFocus = false;
                         this.EntradaClaveBancaria.Size = new System.Drawing.Size(228, 24);
-                        this.EntradaClaveBancaria.Sufijo = "";
                         this.EntradaClaveBancaria.TabIndex = 13;
                         // 
                         // EtiquetaClaveBancaria
@@ -283,22 +245,12 @@ namespace Lfc.Cajas
                         // 
                         // EntradaTitular
                         // 
-                        this.EntradaTitular.AutoNav = true;
-                        this.EntradaTitular.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaTitular.DecimalPlaces = -1;
-                        this.EntradaTitular.FieldName = null;
                         this.EntradaTitular.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTitular.Location = new System.Drawing.Point(124, 32);
-                        this.EntradaTitular.MultiLine = false;
                         this.EntradaTitular.Name = "EntradaTitular";
                         this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTitular.PasswordChar = '\0';
-                        this.EntradaTitular.PlaceholderText = null;
-                        this.EntradaTitular.Prefijo = "";
                         this.EntradaTitular.ReadOnly = false;
-                        this.EntradaTitular.SelectOnFocus = true;
                         this.EntradaTitular.Size = new System.Drawing.Size(436, 24);
-                        this.EntradaTitular.Sufijo = "";
                         this.EntradaTitular.TabIndex = 3;
                         // 
                         // label6
@@ -314,9 +266,7 @@ namespace Lfc.Cajas
                         // EntradaEstado
                         // 
                         this.EntradaEstado.AlwaysExpanded = true;
-                        this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
-                        this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(124, 248);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);

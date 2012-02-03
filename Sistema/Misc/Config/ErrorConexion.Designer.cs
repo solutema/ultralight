@@ -82,7 +82,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // BotonConfigurar
                         // 
-                        this.BotonConfigurar.AutoNav = true;
                         this.BotonConfigurar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonConfigurar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonConfigurar.Image = null;
@@ -101,7 +100,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // BotonReintentar
                         // 
-                        this.BotonReintentar.AutoNav = true;
                         this.BotonReintentar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonReintentar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonReintentar.Image = null;
@@ -121,7 +119,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // BotonSalir
                         // 
                         this.BotonSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonSalir.AutoNav = true;
                         this.BotonSalir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonSalir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSalir.Image = null;
@@ -153,7 +150,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EtiquetaErrorOriginal
                         // 
-                        this.EtiquetaErrorOriginal.AutoNav = true;
                         this.EtiquetaErrorOriginal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EtiquetaErrorOriginal.Location = new System.Drawing.Point(124, 200);
                         this.EtiquetaErrorOriginal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

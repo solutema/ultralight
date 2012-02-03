@@ -332,7 +332,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // BotonSalir
                         // 
-                        this.BotonSalir.AutoNav = true;
                         this.BotonSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.BotonSalir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSalir.Image = null;
@@ -352,7 +351,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // BotonSiguiente
                         // 
                         this.BotonSiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonSiguiente.AutoNav = true;
                         this.BotonSiguiente.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonSiguiente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSiguiente.Image = null;
@@ -372,7 +370,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // BotonAnterior
                         // 
                         this.BotonAnterior.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonAnterior.AutoNav = true;
                         this.BotonAnterior.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAnterior.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAnterior.Image = null;
@@ -462,22 +459,12 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaServidor
                         // 
-                        this.EntradaServidor.AutoNav = true;
-                        this.EntradaServidor.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaServidor.DecimalPlaces = -1;
-                        this.EntradaServidor.FieldName = null;
                         this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaServidor.Location = new System.Drawing.Point(144, 52);
-                        this.EntradaServidor.MultiLine = false;
                         this.EntradaServidor.Name = "EntradaServidor";
                         this.EntradaServidor.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.EntradaServidor.PasswordChar = '\0';
-                        this.EntradaServidor.PlaceholderText = null;
-                        this.EntradaServidor.Prefijo = "";
                         this.EntradaServidor.ReadOnly = false;
-                        this.EntradaServidor.SelectOnFocus = true;
                         this.EntradaServidor.Size = new System.Drawing.Size(208, 24);
-                        this.EntradaServidor.Sufijo = "";
                         this.EntradaServidor.TabIndex = 60;
                         // 
                         // label4
@@ -737,7 +724,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // BotonInstalar
                         // 
-                        this.BotonInstalar.AutoNav = true;
                         this.BotonInstalar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.BotonInstalar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonInstalar.Image = null;

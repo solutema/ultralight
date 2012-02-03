@@ -73,13 +73,10 @@ namespace Lfc.Personas.Usuarios
                         // EntradaAcceso
                         // 
                         this.EntradaAcceso.AlwaysExpanded = true;
-                        this.EntradaAcceso.AutoNav = true;
                         this.EntradaAcceso.AutoSize = true;
-                        this.EntradaAcceso.FieldName = null;
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
                         this.EntradaAcceso.Name = "EntradaAcceso";
                         this.EntradaAcceso.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAcceso.PlaceholderText = null;
                         this.EntradaAcceso.ReadOnly = false;
                         this.EntradaAcceso.SetData = new string[] {
         "Si|1",
@@ -100,22 +97,13 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.AutoNav = true;
-                        this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaContrasena.DecimalPlaces = -1;
-                        this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(348, 0);
-                        this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.PlaceholderText = null;
-                        this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
-                        this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
-                        this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 3;
                         // 
                         // label1
@@ -175,7 +163,6 @@ namespace Lfc.Personas.Usuarios
                         // BotonAgregar
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonAgregar.AutoNav = true;
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
@@ -194,7 +181,6 @@ namespace Lfc.Personas.Usuarios
                         // BotonQuitar
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonQuitar.AutoNav = true;
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;

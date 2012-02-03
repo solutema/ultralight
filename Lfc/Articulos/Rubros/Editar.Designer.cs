@@ -76,12 +76,10 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // EntradaAlicuota
                         // 
-                        this.EntradaAlicuota.AutoNav = true;
                         this.EntradaAlicuota.CanCreate = true;
                         this.EntradaAlicuota.DataTextField = "nombre";
                         this.EntradaAlicuota.DataValueField = "id_alicuota";
                         this.EntradaAlicuota.ExtraDetailFields = "";
-                        this.EntradaAlicuota.FieldName = null;
                         this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.FreeTextCode = "";
                         this.EntradaAlicuota.Location = new System.Drawing.Point(116, 32);
@@ -99,22 +97,12 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(388, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5

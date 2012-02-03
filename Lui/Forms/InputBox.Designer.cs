@@ -90,22 +90,12 @@ namespace Lui.Forms
                         // 
                         // Texto
                         // 
-                        this.Texto.AutoNav = true;
-                        this.Texto.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.Texto.DecimalPlaces = -1;
-                        this.Texto.FieldName = null;
                         this.Texto.ForceCase = Lui.Forms.TextCasing.None;
                         this.Texto.Location = new System.Drawing.Point(24, 224);
-                        this.Texto.MultiLine = false;
                         this.Texto.Name = "Texto";
                         this.Texto.Padding = new System.Windows.Forms.Padding(2);
-                        this.Texto.PasswordChar = '\0';
-                        this.Texto.PlaceholderText = null;
-                        this.Texto.Prefijo = "";
                         this.Texto.ReadOnly = false;
-                        this.Texto.SelectOnFocus = true;
                         this.Texto.Size = new System.Drawing.Size(424, 24);
-                        this.Texto.Sufijo = "";
                         this.Texto.TabIndex = 0;
                         this.Texto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Texto_KeyDown);
                         // 

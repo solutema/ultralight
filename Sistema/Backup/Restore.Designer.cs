@@ -172,22 +172,13 @@ namespace Lazaro.WinMain.Backup
                         // EntradaConfirmar
                         // 
                         this.EntradaConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaConfirmar.AutoNav = true;
-                        this.EntradaConfirmar.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaConfirmar.DecimalPlaces = -1;
-                        this.EntradaConfirmar.FieldName = null;
                         this.EntradaConfirmar.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaConfirmar.Location = new System.Drawing.Point(500, 264);
-                        this.EntradaConfirmar.MultiLine = false;
                         this.EntradaConfirmar.Name = "EntradaConfirmar";
                         this.EntradaConfirmar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConfirmar.PasswordChar = '\0';
                         this.EntradaConfirmar.PlaceholderText = "Escriba el texto de confirmación para poder continuar";
-                        this.EntradaConfirmar.Prefijo = "";
                         this.EntradaConfirmar.ReadOnly = false;
-                        this.EntradaConfirmar.SelectOnFocus = true;
                         this.EntradaConfirmar.Size = new System.Drawing.Size(80, 24);
-                        this.EntradaConfirmar.Sufijo = "";
                         this.EntradaConfirmar.TabIndex = 0;
                         this.EntradaConfirmar.TextChanged += new System.EventHandler(this.EntradaConfirmar_TextChanged);
                         // 

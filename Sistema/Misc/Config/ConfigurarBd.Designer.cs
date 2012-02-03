@@ -96,22 +96,12 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaServidor
                         // 
-                        this.EntradaServidor.AutoNav = true;
-                        this.EntradaServidor.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaServidor.DecimalPlaces = -1;
-                        this.EntradaServidor.FieldName = null;
                         this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaServidor.Location = new System.Drawing.Point(192, 164);
-                        this.EntradaServidor.MultiLine = false;
                         this.EntradaServidor.Name = "EntradaServidor";
                         this.EntradaServidor.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaServidor.PasswordChar = '\0';
-                        this.EntradaServidor.PlaceholderText = null;
-                        this.EntradaServidor.Prefijo = "";
                         this.EntradaServidor.ReadOnly = false;
-                        this.EntradaServidor.SelectOnFocus = false;
                         this.EntradaServidor.Size = new System.Drawing.Size(272, 25);
-                        this.EntradaServidor.Sufijo = "";
                         this.EntradaServidor.TabIndex = 4;
                         this.EntradaServidor.Leave += new System.EventHandler(this.EntradaServidor_Leave);
                         // 
@@ -139,7 +129,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // BotonServidorVista
                         // 
-                        this.BotonServidorVista.AutoNav = true;
                         this.BotonServidorVista.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonServidorVista.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonServidorVista.Image = null;
@@ -177,22 +166,13 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaSucursal
                         // 
-                        this.EntradaSucursal.AutoNav = true;
                         this.EntradaSucursal.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaSucursal.DecimalPlaces = -1;
-                        this.EntradaSucursal.FieldName = null;
                         this.EntradaSucursal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSucursal.Location = new System.Drawing.Point(232, 144);
-                        this.EntradaSucursal.MultiLine = false;
                         this.EntradaSucursal.Name = "EntradaSucursal";
                         this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaSucursal.PasswordChar = '\0';
-                        this.EntradaSucursal.PlaceholderText = null;
-                        this.EntradaSucursal.Prefijo = "";
                         this.EntradaSucursal.ReadOnly = false;
-                        this.EntradaSucursal.SelectOnFocus = true;
                         this.EntradaSucursal.Size = new System.Drawing.Size(60, 24);
-                        this.EntradaSucursal.Sufijo = "";
                         this.EntradaSucursal.TabIndex = 11;
                         this.EntradaSucursal.Text = "1";
                         // 
@@ -208,8 +188,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaSlowLink
                         // 
-                        this.EntradaSlowLink.AutoNav = true;
-                        this.EntradaSlowLink.FieldName = null;
                         this.EntradaSlowLink.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaSlowLink.Location = new System.Drawing.Point(232, 112);
                         this.EntradaSlowLink.Name = "EntradaSlowLink";
@@ -231,22 +209,12 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaBD
                         // 
-                        this.EntradaBD.AutoNav = true;
-                        this.EntradaBD.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaBD.DecimalPlaces = -1;
-                        this.EntradaBD.FieldName = null;
                         this.EntradaBD.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBD.Location = new System.Drawing.Point(124, 28);
-                        this.EntradaBD.MultiLine = false;
                         this.EntradaBD.Name = "EntradaBD";
                         this.EntradaBD.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBD.PasswordChar = '\0';
-                        this.EntradaBD.PlaceholderText = null;
-                        this.EntradaBD.Prefijo = "";
                         this.EntradaBD.ReadOnly = false;
-                        this.EntradaBD.SelectOnFocus = true;
                         this.EntradaBD.Size = new System.Drawing.Size(172, 24);
-                        this.EntradaBD.Sufijo = "";
                         this.EntradaBD.TabIndex = 3;
                         // 
                         // Label2
@@ -262,12 +230,9 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaConexion
                         // 
                         this.EntradaConexion.AlwaysExpanded = false;
-                        this.EntradaConexion.AutoNav = true;
-                        this.EntradaConexion.FieldName = null;
                         this.EntradaConexion.Location = new System.Drawing.Point(124, 0);
                         this.EntradaConexion.Name = "EntradaConexion";
                         this.EntradaConexion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConexion.PlaceholderText = null;
                         this.EntradaConexion.ReadOnly = false;
                         this.EntradaConexion.SetData = new string[] {
         "ODBC|odbc",
@@ -291,42 +256,23 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.AutoNav = true;
-                        this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaContrasena.DecimalPlaces = -1;
-                        this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(124, 84);
-                        this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.PlaceholderText = null;
-                        this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
-                        this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(124, 24);
-                        this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 7;
                         // 
                         // EntradaUsuario
                         // 
-                        this.EntradaUsuario.AutoNav = true;
-                        this.EntradaUsuario.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaUsuario.DecimalPlaces = -1;
-                        this.EntradaUsuario.FieldName = null;
                         this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUsuario.Location = new System.Drawing.Point(124, 55);
-                        this.EntradaUsuario.MultiLine = false;
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUsuario.PasswordChar = '\0';
-                        this.EntradaUsuario.PlaceholderText = null;
-                        this.EntradaUsuario.Prefijo = "";
                         this.EntradaUsuario.ReadOnly = false;
-                        this.EntradaUsuario.SelectOnFocus = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(124, 25);
-                        this.EntradaUsuario.Sufijo = "";
                         this.EntradaUsuario.TabIndex = 5;
                         // 
                         // Label28
@@ -364,7 +310,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.CancelCommandButton.AutoNav = true;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
@@ -384,7 +329,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // OkButton
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.OkButton.AutoNav = true;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;

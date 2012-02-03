@@ -75,22 +75,11 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.EntradaContrasena.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContrasena.AutoNav = true;
-                        this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaContrasena.DecimalPlaces = -1;
-                        this.EntradaContrasena.FieldName = null;
-                        this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(235, 187);
-                        this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.PlaceholderText = null;
-                        this.EntradaContrasena.Prefijo = "";
-                        this.EntradaContrasena.ReadOnly = false;
-                        this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(169, 24);
-                        this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 5;
                         this.EntradaContrasena.TextChanged += new System.EventHandler(this.CambioDatos);
                         // 
@@ -131,16 +120,14 @@ namespace Lazaro.WinMain.Misc
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.CancelCommandButton.AutoNav = true;
-                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(413, 12);
-                        this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(419, 12);
+                        this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-                        this.CancelCommandButton.ReadOnly = false;
                         this.CancelCommandButton.Size = new System.Drawing.Size(104, 40);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "";
@@ -151,17 +138,15 @@ namespace Lazaro.WinMain.Misc
                         // OkButton
                         // 
                         this.OkButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.OkButton.AutoNav = true;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.OkButton.Enabled = false;
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(303, 12);
-                        this.OkButton.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+                        this.OkButton.Location = new System.Drawing.Point(309, 12);
+                        this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-                        this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(104, 40);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "";
@@ -173,14 +158,12 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.EntradaUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaUsuario.AutoNav = true;
                         this.EntradaUsuario.AutoSize = true;
                         this.EntradaUsuario.AutoTab = true;
                         this.EntradaUsuario.CanCreate = false;
                         this.EntradaUsuario.DataTextField = "nombre_visible";
                         this.EntradaUsuario.DataValueField = "id_persona";
                         this.EntradaUsuario.ExtraDetailFields = "";
-                        this.EntradaUsuario.FieldName = null;
                         this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\' AND estado=1";
                         this.EntradaUsuario.FreeTextCode = "";
                         this.EntradaUsuario.Location = new System.Drawing.Point(235, 155);
@@ -189,7 +172,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaUsuario.PlaceholderText = null;
-                        this.EntradaUsuario.ReadOnly = false;
                         this.EntradaUsuario.Required = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(281, 24);
                         this.EntradaUsuario.TabIndex = 3;
@@ -250,7 +232,7 @@ namespace Lazaro.WinMain.Misc
                         this.BotonWebAyuda.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.BotonWebAyuda.Location = new System.Drawing.Point(416, 189);
                         this.BotonWebAyuda.Name = "BotonWebAyuda";
-                        this.BotonWebAyuda.Size = new System.Drawing.Size(47, 15);
+                        this.BotonWebAyuda.Size = new System.Drawing.Size(44, 17);
                         this.BotonWebAyuda.TabIndex = 7;
                         this.BotonWebAyuda.TabStop = true;
                         this.BotonWebAyuda.Text = "Ayuda";
@@ -260,6 +242,7 @@ namespace Lazaro.WinMain.Misc
                         // Ingreso
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+                        this.CancelButton = this.CancelCommandButton;
                         this.ClientSize = new System.Drawing.Size(547, 312);
                         this.ControlBox = false;
                         this.Controls.Add(this.BotonWebAyuda);

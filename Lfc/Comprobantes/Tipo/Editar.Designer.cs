@@ -89,22 +89,12 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(320, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
@@ -119,22 +109,12 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaLetra
                         // 
-                        this.EntradaLetra.AutoNav = true;
-                        this.EntradaLetra.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaLetra.DecimalPlaces = -1;
-                        this.EntradaLetra.FieldName = null;
                         this.EntradaLetra.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaLetra.Location = new System.Drawing.Point(120, 32);
-                        this.EntradaLetra.MultiLine = false;
                         this.EntradaLetra.Name = "EntradaLetra";
                         this.EntradaLetra.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaLetra.PasswordChar = '\0';
-                        this.EntradaLetra.PlaceholderText = null;
-                        this.EntradaLetra.Prefijo = "";
                         this.EntradaLetra.ReadOnly = false;
-                        this.EntradaLetra.SelectOnFocus = true;
                         this.EntradaLetra.Size = new System.Drawing.Size(320, 24);
-                        this.EntradaLetra.Sufijo = "";
                         this.EntradaLetra.TabIndex = 3;
                         // 
                         // label1
@@ -160,13 +140,10 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaMueveStock
                         // 
                         this.EntradaMueveStock.AlwaysExpanded = true;
-                        this.EntradaMueveStock.AutoNav = true;
                         this.EntradaMueveStock.AutoSize = true;
-                        this.EntradaMueveStock.FieldName = null;
                         this.EntradaMueveStock.Location = new System.Drawing.Point(120, 64);
                         this.EntradaMueveStock.Name = "EntradaMueveStock";
                         this.EntradaMueveStock.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMueveStock.PlaceholderText = null;
                         this.EntradaMueveStock.ReadOnly = false;
                         this.EntradaMueveStock.SetData = new string[] {
         "Saliente|-1",
@@ -189,12 +166,10 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaSituacionOrigen
                         // 
-                        this.EntradaSituacionOrigen.AutoNav = true;
                         this.EntradaSituacionOrigen.CanCreate = true;
                         this.EntradaSituacionOrigen.DataTextField = "nombre";
                         this.EntradaSituacionOrigen.DataValueField = "id_situacion";
                         this.EntradaSituacionOrigen.ExtraDetailFields = "";
-                        this.EntradaSituacionOrigen.FieldName = null;
                         this.EntradaSituacionOrigen.Filter = "";
                         this.EntradaSituacionOrigen.FreeTextCode = "";
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(144, 128);
@@ -222,12 +197,10 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaSituacionDestino
                         // 
-                        this.EntradaSituacionDestino.AutoNav = true;
                         this.EntradaSituacionDestino.CanCreate = true;
                         this.EntradaSituacionDestino.DataTextField = "nombre";
                         this.EntradaSituacionDestino.DataValueField = "id_situacion";
                         this.EntradaSituacionDestino.ExtraDetailFields = "";
-                        this.EntradaSituacionDestino.FieldName = null;
                         this.EntradaSituacionDestino.Filter = "";
                         this.EntradaSituacionDestino.FreeTextCode = "";
                         this.EntradaSituacionDestino.Location = new System.Drawing.Point(144, 156);
@@ -246,13 +219,10 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaNumerarAl
                         // 
                         this.EntradaNumerarAl.AlwaysExpanded = true;
-                        this.EntradaNumerarAl.AutoNav = true;
                         this.EntradaNumerarAl.AutoSize = true;
-                        this.EntradaNumerarAl.FieldName = null;
                         this.EntradaNumerarAl.Location = new System.Drawing.Point(124, 192);
                         this.EntradaNumerarAl.Name = "EntradaNumerarAl";
                         this.EntradaNumerarAl.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumerarAl.PlaceholderText = null;
                         this.EntradaNumerarAl.ReadOnly = false;
                         this.EntradaNumerarAl.SetData = new string[] {
         "Manualmente|0",
@@ -275,13 +245,10 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaImprimirRepetir
                         // 
                         this.EntradaImprimirRepetir.AlwaysExpanded = true;
-                        this.EntradaImprimirRepetir.AutoNav = true;
                         this.EntradaImprimirRepetir.AutoSize = true;
-                        this.EntradaImprimirRepetir.FieldName = null;
                         this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 272);
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
                         this.EntradaImprimirRepetir.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImprimirRepetir.PlaceholderText = null;
                         this.EntradaImprimirRepetir.ReadOnly = false;
                         this.EntradaImprimirRepetir.SetData = new string[] {
         "Si|1",
@@ -303,13 +270,10 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaImprimirModificar
                         // 
                         this.EntradaImprimirModificar.AlwaysExpanded = true;
-                        this.EntradaImprimirModificar.AutoNav = true;
                         this.EntradaImprimirModificar.AutoSize = true;
-                        this.EntradaImprimirModificar.FieldName = null;
                         this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 320);
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
                         this.EntradaImprimirModificar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImprimirModificar.PlaceholderText = null;
                         this.EntradaImprimirModificar.ReadOnly = false;
                         this.EntradaImprimirModificar.SetData = new string[] {
         "Si|1",
@@ -331,13 +295,10 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaImprimirGuardar
                         // 
                         this.EntradaImprimirGuardar.AlwaysExpanded = true;
-                        this.EntradaImprimirGuardar.AutoNav = true;
                         this.EntradaImprimirGuardar.AutoSize = true;
-                        this.EntradaImprimirGuardar.FieldName = null;
                         this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 368);
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
                         this.EntradaImprimirGuardar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImprimirGuardar.PlaceholderText = null;
                         this.EntradaImprimirGuardar.ReadOnly = false;
                         this.EntradaImprimirGuardar.SetData = new string[] {
         "Si|1",

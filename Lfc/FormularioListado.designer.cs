@@ -67,22 +67,13 @@ namespace Lfc
                         // 
                         // EntradaBuscar
                         // 
-                        this.EntradaBuscar.AutoNav = true;
-                        this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaBuscar.DecimalPlaces = -1;
-                        this.EntradaBuscar.FieldName = null;
                         this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBuscar.Location = new System.Drawing.Point(8, 8);
-                        this.EntradaBuscar.MultiLine = false;
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaBuscar.PasswordChar = '\0';
                         this.EntradaBuscar.PlaceholderText = "Buscar (F3)";
-                        this.EntradaBuscar.Prefijo = "";
                         this.EntradaBuscar.ReadOnly = false;
-                        this.EntradaBuscar.SelectOnFocus = true;
                         this.EntradaBuscar.Size = new System.Drawing.Size(212, 24);
-                        this.EntradaBuscar.Sufijo = "";
                         this.EntradaBuscar.TabIndex = 1;
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
                         this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);

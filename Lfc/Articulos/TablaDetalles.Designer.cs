@@ -77,7 +77,6 @@ namespace Lfc.Articulos
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.CancelCommandButton.Location = new System.Drawing.Point(580, 8);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.TemporaryReadOnly = false;
                         this.CancelCommandButton.Size = new System.Drawing.Size(104, 44);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.CancelCommandButton.Subtext = "Esc";

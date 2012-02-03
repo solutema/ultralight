@@ -44,21 +44,21 @@ namespace Lfc.Articulos
                 internal Lui.Forms.ComboBox EntradaMovimiento;
                 internal Lui.Forms.TextBox EntradaCantidad;
                 internal Lui.Forms.TextBox EntradaObs;
-                internal Lui.Forms.TextBox EntradaStockActual;
-                internal Lui.Forms.TextBox EntradaStockResult;
+                internal Lui.Forms.TextBox EntradaDesdeAntes;
+                internal Lui.Forms.TextBox EntradaDesdeDespues;
                 internal Lcc.Entrada.CodigoDetalle EntradaDesdeSituacion;
                 internal Lui.Forms.Label Label7;
                 internal Lcc.Entrada.CodigoDetalle EntradaHaciaSituacion;
                 internal Lui.Forms.Label Label8;
-                internal Lui.Forms.TextBox EntradaStockResult2;
-                internal Lui.Forms.TextBox EntradaStockActual2;
-                internal Lui.Forms.Label lblDesdeSituacion;
-                internal Lui.Forms.Label lblHaciaSituacion;
+                internal Lui.Forms.TextBox EntradaHaciaDespues;
+                internal Lui.Forms.TextBox EntradaHaciaAntes;
+                internal Lui.Forms.Label EtiquetaDesdeSituacion;
+                internal Lui.Forms.Label EtiquetaHaciaSituacion;
                 internal Lui.Forms.Label Label5;
                 internal Lui.Forms.Label Label6;
                 public Lcc.Entrada.Articulos.DetalleComprobante EntradaArticulo;
-                internal Lui.Forms.Label lblStockFlecha2;
-                internal Lui.Forms.Label lblStockFlecha;
+                internal Lui.Forms.Label EtiquetaHaciaFlecha;
+                internal Lui.Forms.Label EtiquetaDesdeFlecha;
 
                 #region Código generado por el Diseñador de Windows Forms
 
@@ -82,37 +82,31 @@ namespace Lfc.Articulos
                         this.EntradaMovimiento = new Lui.Forms.ComboBox();
                         this.EntradaCantidad = new Lui.Forms.TextBox();
                         this.EntradaObs = new Lui.Forms.TextBox();
-                        this.lblDesdeSituacion = new Lui.Forms.Label();
-                        this.lblHaciaSituacion = new Lui.Forms.Label();
-                        this.EntradaStockActual = new Lui.Forms.TextBox();
-                        this.EntradaStockResult = new Lui.Forms.TextBox();
+                        this.EtiquetaDesdeSituacion = new Lui.Forms.Label();
+                        this.EtiquetaHaciaSituacion = new Lui.Forms.Label();
+                        this.EntradaDesdeAntes = new Lui.Forms.TextBox();
+                        this.EntradaDesdeDespues = new Lui.Forms.TextBox();
                         this.EntradaDesdeSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.Label7 = new Lui.Forms.Label();
                         this.EntradaHaciaSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.Label8 = new Lui.Forms.Label();
-                        this.EntradaStockResult2 = new Lui.Forms.TextBox();
-                        this.EntradaStockActual2 = new Lui.Forms.TextBox();
-                        this.lblStockFlecha = new Lui.Forms.Label();
-                        this.lblStockFlecha2 = new Lui.Forms.Label();
+                        this.EntradaHaciaDespues = new Lui.Forms.TextBox();
+                        this.EntradaHaciaAntes = new Lui.Forms.TextBox();
+                        this.EtiquetaDesdeFlecha = new Lui.Forms.Label();
+                        this.EtiquetaHaciaFlecha = new Lui.Forms.Label();
                         this.Label5 = new Lui.Forms.Label();
                         this.Label6 = new Lui.Forms.Label();
                         this.EntradaArticulo = new Lcc.Entrada.Articulos.DetalleComprobante();
+                        this.formHeader1 = new Lui.Forms.FormHeader();
+                        this.label9 = new Lui.Forms.Label();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
                         // Label1
                         // 
                         this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label1.Location = new System.Drawing.Point(32, 88);
+                        this.Label1.Location = new System.Drawing.Point(24, 224);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(108, 24);
+                        this.Label1.Size = new System.Drawing.Size(112, 24);
                         this.Label1.TabIndex = 2;
                         this.Label1.Text = "Artículo";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,9 +114,9 @@ namespace Lfc.Articulos
                         // Label2
                         // 
                         this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label2.Location = new System.Drawing.Point(32, 144);
+                        this.Label2.Location = new System.Drawing.Point(24, 256);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(108, 24);
+                        this.Label2.Size = new System.Drawing.Size(112, 24);
                         this.Label2.TabIndex = 4;
                         this.Label2.Text = "Cantidad";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,19 +124,19 @@ namespace Lfc.Articulos
                         // Label3
                         // 
                         this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label3.Location = new System.Drawing.Point(32, 320);
+                        this.Label3.Location = new System.Drawing.Point(24, 448);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(108, 24);
+                        this.Label3.Size = new System.Drawing.Size(112, 24);
                         this.Label3.TabIndex = 20;
-                        this.Label3.Text = "Obs.";
+                        this.Label3.Text = "Observaciones";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label4
                         // 
                         this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label4.Location = new System.Drawing.Point(32, 32);
+                        this.Label4.Location = new System.Drawing.Point(24, 160);
                         this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(108, 24);
+                        this.Label4.Size = new System.Drawing.Size(112, 24);
                         this.Label4.TabIndex = 0;
                         this.Label4.Text = "Movimiento";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -150,149 +144,101 @@ namespace Lfc.Articulos
                         // EntradaMovimiento
                         // 
                         this.EntradaMovimiento.AlwaysExpanded = true;
-                        this.EntradaMovimiento.AutoNav = true;
                         this.EntradaMovimiento.AutoSize = true;
-                        this.EntradaMovimiento.FieldName = null;
-                        this.EntradaMovimiento.Location = new System.Drawing.Point(140, 32);
+                        this.EntradaMovimiento.Location = new System.Drawing.Point(136, 160);
                         this.EntradaMovimiento.Name = "EntradaMovimiento";
                         this.EntradaMovimiento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMovimiento.PlaceholderText = null;
-                        this.EntradaMovimiento.ReadOnly = false;
                         this.EntradaMovimiento.SetData = new string[] {
         "Entrada|e",
         "Salida|s",
         "Otro|o"};
-                        this.EntradaMovimiento.Size = new System.Drawing.Size(192, 51);
+                        this.EntradaMovimiento.Size = new System.Drawing.Size(192, 57);
                         this.EntradaMovimiento.TabIndex = 1;
                         this.EntradaMovimiento.TextKey = "e";
                         this.EntradaMovimiento.TextChanged += new System.EventHandler(this.EntradaMovimiento_TextChanged);
                         // 
                         // EntradaCantidad
                         // 
-                        this.EntradaCantidad.AutoNav = true;
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
-                        this.EntradaCantidad.DecimalPlaces = -1;
-                        this.EntradaCantidad.FieldName = null;
-                        this.EntradaCantidad.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCantidad.Location = new System.Drawing.Point(140, 144);
-                        this.EntradaCantidad.MultiLine = false;
+                        this.EntradaCantidad.Location = new System.Drawing.Point(136, 256);
+                        this.EntradaCantidad.MaxLength = 20;
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCantidad.PasswordChar = '\0';
-                        this.EntradaCantidad.PlaceholderText = null;
-                        this.EntradaCantidad.Prefijo = "";
-                        this.EntradaCantidad.ReadOnly = false;
-                        this.EntradaCantidad.SelectOnFocus = true;
                         this.EntradaCantidad.Size = new System.Drawing.Size(96, 24);
-                        this.EntradaCantidad.Sufijo = "";
                         this.EntradaCantidad.TabIndex = 5;
                         this.EntradaCantidad.Text = "0.00";
                         this.EntradaCantidad.TextChanged += new System.EventHandler(this.EntradaArticulo_TextChanged);
                         // 
                         // EntradaObs
                         // 
-                        this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaObs.AutoNav = true;
-                        this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaObs.Location = new System.Drawing.Point(140, 320);
-                        this.EntradaObs.MultiLine = false;
+                        this.EntradaObs.Location = new System.Drawing.Point(136, 448);
+                        this.EntradaObs.MaximumSize = new System.Drawing.Size(480, 64);
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.PasswordChar = '\0';
-                        this.EntradaObs.PlaceholderText = null;
-                        this.EntradaObs.Prefijo = "";
-                        this.EntradaObs.ReadOnly = false;
-                        this.EntradaObs.SelectOnFocus = true;
-                        this.EntradaObs.Size = new System.Drawing.Size(456, 24);
-                        this.EntradaObs.Sufijo = "";
+                        this.EntradaObs.Size = new System.Drawing.Size(440, 24);
                         this.EntradaObs.TabIndex = 21;
                         // 
-                        // lblDesdeSituacion
+                        // EtiquetaDesdeSituacion
                         // 
-                        this.lblDesdeSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.lblDesdeSituacion.Location = new System.Drawing.Point(140, 256);
-                        this.lblDesdeSituacion.Name = "lblDesdeSituacion";
-                        this.lblDesdeSituacion.Size = new System.Drawing.Size(168, 24);
-                        this.lblDesdeSituacion.TabIndex = 12;
-                        this.lblDesdeSituacion.Text = "Situación 1";
-                        this.lblDesdeSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaDesdeSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.EtiquetaDesdeSituacion.Location = new System.Drawing.Point(136, 376);
+                        this.EtiquetaDesdeSituacion.Name = "EtiquetaDesdeSituacion";
+                        this.EtiquetaDesdeSituacion.Size = new System.Drawing.Size(168, 24);
+                        this.EtiquetaDesdeSituacion.TabIndex = 12;
+                        this.EtiquetaDesdeSituacion.Text = "Situación 1";
+                        this.EtiquetaDesdeSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblHaciaSituacion
+                        // EtiquetaHaciaSituacion
                         // 
-                        this.lblHaciaSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.lblHaciaSituacion.Location = new System.Drawing.Point(140, 288);
-                        this.lblHaciaSituacion.Name = "lblHaciaSituacion";
-                        this.lblHaciaSituacion.Size = new System.Drawing.Size(168, 24);
-                        this.lblHaciaSituacion.TabIndex = 16;
-                        this.lblHaciaSituacion.Text = "Situación 2";
-                        this.lblHaciaSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHaciaSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.EtiquetaHaciaSituacion.Location = new System.Drawing.Point(136, 408);
+                        this.EtiquetaHaciaSituacion.Name = "EtiquetaHaciaSituacion";
+                        this.EtiquetaHaciaSituacion.Size = new System.Drawing.Size(168, 24);
+                        this.EtiquetaHaciaSituacion.TabIndex = 16;
+                        this.EtiquetaHaciaSituacion.Text = "Situación 2";
+                        this.EtiquetaHaciaSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaStockActual
+                        // EntradaDesdeAntes
                         // 
-                        this.EntradaStockActual.AutoNav = true;
-                        this.EntradaStockActual.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaStockActual.DecimalPlaces = -1;
-                        this.EntradaStockActual.FieldName = null;
-                        this.EntradaStockActual.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockActual.Location = new System.Drawing.Point(308, 256);
-                        this.EntradaStockActual.MultiLine = false;
-                        this.EntradaStockActual.Name = "EntradaStockActual";
-                        this.EntradaStockActual.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockActual.PasswordChar = '\0';
-                        this.EntradaStockActual.PlaceholderText = null;
-                        this.EntradaStockActual.Prefijo = "";
-                        this.EntradaStockActual.ReadOnly = false;
-                        this.EntradaStockActual.SelectOnFocus = true;
-                        this.EntradaStockActual.Size = new System.Drawing.Size(96, 24);
-                        this.EntradaStockActual.Sufijo = "";
-                        this.EntradaStockActual.TabIndex = 13;
-                        this.EntradaStockActual.TabStop = false;
+                        this.EntradaDesdeAntes.Location = new System.Drawing.Point(304, 376);
+                        this.EntradaDesdeAntes.Name = "EntradaDesdeAntes";
+                        this.EntradaDesdeAntes.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDesdeAntes.Size = new System.Drawing.Size(96, 24);
+                        this.EntradaDesdeAntes.TabIndex = 13;
+                        this.EntradaDesdeAntes.TabStop = false;
                         // 
-                        // EntradaStockResult
+                        // EntradaDesdeDespues
                         // 
-                        this.EntradaStockResult.AutoNav = true;
-                        this.EntradaStockResult.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaStockResult.DecimalPlaces = -1;
-                        this.EntradaStockResult.FieldName = null;
-                        this.EntradaStockResult.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockResult.Location = new System.Drawing.Point(428, 256);
-                        this.EntradaStockResult.MultiLine = false;
-                        this.EntradaStockResult.Name = "EntradaStockResult";
-                        this.EntradaStockResult.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockResult.PasswordChar = '\0';
-                        this.EntradaStockResult.PlaceholderText = null;
-                        this.EntradaStockResult.Prefijo = "";
-                        this.EntradaStockResult.ReadOnly = false;
-                        this.EntradaStockResult.SelectOnFocus = true;
-                        this.EntradaStockResult.Size = new System.Drawing.Size(96, 24);
-                        this.EntradaStockResult.Sufijo = "";
-                        this.EntradaStockResult.TabIndex = 15;
-                        this.EntradaStockResult.TabStop = false;
+                        this.EntradaDesdeDespues.Location = new System.Drawing.Point(440, 376);
+                        this.EntradaDesdeDespues.Name = "EntradaDesdeDespues";
+                        this.EntradaDesdeDespues.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDesdeDespues.Size = new System.Drawing.Size(96, 24);
+                        this.EntradaDesdeDespues.TabIndex = 15;
+                        this.EntradaDesdeDespues.TabStop = false;
                         // 
                         // EntradaDesdeSituacion
                         // 
                         this.EntradaDesdeSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDesdeSituacion.AutoNav = true;
+                        this.EntradaDesdeSituacion.AutoTab = true;
                         this.EntradaDesdeSituacion.CanCreate = false;
                         this.EntradaDesdeSituacion.DataTextField = "nombre";
                         this.EntradaDesdeSituacion.DataValueField = "id_situacion";
                         this.EntradaDesdeSituacion.ExtraDetailFields = "";
-                        this.EntradaDesdeSituacion.FieldName = null;
                         this.EntradaDesdeSituacion.Filter = "";
                         this.EntradaDesdeSituacion.FreeTextCode = "";
-                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(140, 172);
+                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(136, 288);
+                        this.EntradaDesdeSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
                         this.EntradaDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesdeSituacion.PlaceholderText = null;
-                        this.EntradaDesdeSituacion.ReadOnly = false;
                         this.EntradaDesdeSituacion.Required = true;
-                        this.EntradaDesdeSituacion.Size = new System.Drawing.Size(456, 24);
+                        this.EntradaDesdeSituacion.Size = new System.Drawing.Size(440, 24);
                         this.EntradaDesdeSituacion.TabIndex = 7;
                         this.EntradaDesdeSituacion.Table = "articulos_situaciones";
                         this.EntradaDesdeSituacion.Text = "0";
@@ -302,9 +248,9 @@ namespace Lfc.Articulos
                         // Label7
                         // 
                         this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label7.Location = new System.Drawing.Point(32, 172);
+                        this.Label7.Location = new System.Drawing.Point(24, 288);
                         this.Label7.Name = "Label7";
-                        this.Label7.Size = new System.Drawing.Size(108, 24);
+                        this.Label7.Size = new System.Drawing.Size(112, 24);
                         this.Label7.TabIndex = 6;
                         this.Label7.Text = "Origen";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -313,22 +259,21 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaHaciaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaHaciaSituacion.AutoNav = true;
+                        this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
                         this.EntradaHaciaSituacion.ExtraDetailFields = "";
-                        this.EntradaHaciaSituacion.FieldName = null;
                         this.EntradaHaciaSituacion.Filter = "";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
-                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(140, 200);
+                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(136, 320);
+                        this.EntradaHaciaSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
                         this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHaciaSituacion.PlaceholderText = null;
-                        this.EntradaHaciaSituacion.ReadOnly = false;
                         this.EntradaHaciaSituacion.Required = true;
-                        this.EntradaHaciaSituacion.Size = new System.Drawing.Size(456, 24);
+                        this.EntradaHaciaSituacion.Size = new System.Drawing.Size(440, 24);
                         this.EntradaHaciaSituacion.TabIndex = 9;
                         this.EntradaHaciaSituacion.Table = "articulos_situaciones";
                         this.EntradaHaciaSituacion.Text = "0";
@@ -338,79 +283,55 @@ namespace Lfc.Articulos
                         // Label8
                         // 
                         this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label8.Location = new System.Drawing.Point(32, 200);
+                        this.Label8.Location = new System.Drawing.Point(24, 320);
                         this.Label8.Name = "Label8";
-                        this.Label8.Size = new System.Drawing.Size(108, 24);
+                        this.Label8.Size = new System.Drawing.Size(112, 24);
                         this.Label8.TabIndex = 8;
                         this.Label8.Text = "Destino";
                         this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaStockResult2
+                        // EntradaHaciaDespues
                         // 
-                        this.EntradaStockResult2.AutoNav = true;
-                        this.EntradaStockResult2.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaStockResult2.DecimalPlaces = -1;
-                        this.EntradaStockResult2.FieldName = null;
-                        this.EntradaStockResult2.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockResult2.Location = new System.Drawing.Point(428, 288);
-                        this.EntradaStockResult2.MultiLine = false;
-                        this.EntradaStockResult2.Name = "EntradaStockResult2";
-                        this.EntradaStockResult2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockResult2.PasswordChar = '\0';
-                        this.EntradaStockResult2.PlaceholderText = null;
-                        this.EntradaStockResult2.Prefijo = "";
-                        this.EntradaStockResult2.ReadOnly = false;
-                        this.EntradaStockResult2.SelectOnFocus = true;
-                        this.EntradaStockResult2.Size = new System.Drawing.Size(96, 24);
-                        this.EntradaStockResult2.Sufijo = "";
-                        this.EntradaStockResult2.TabIndex = 19;
-                        this.EntradaStockResult2.TabStop = false;
+                        this.EntradaHaciaDespues.Location = new System.Drawing.Point(440, 408);
+                        this.EntradaHaciaDespues.Name = "EntradaHaciaDespues";
+                        this.EntradaHaciaDespues.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaHaciaDespues.Size = new System.Drawing.Size(96, 24);
+                        this.EntradaHaciaDespues.TabIndex = 19;
+                        this.EntradaHaciaDespues.TabStop = false;
                         // 
-                        // EntradaStockActual2
+                        // EntradaHaciaAntes
                         // 
-                        this.EntradaStockActual2.AutoNav = true;
-                        this.EntradaStockActual2.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaStockActual2.DecimalPlaces = -1;
-                        this.EntradaStockActual2.FieldName = null;
-                        this.EntradaStockActual2.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaStockActual2.Location = new System.Drawing.Point(308, 288);
-                        this.EntradaStockActual2.MultiLine = false;
-                        this.EntradaStockActual2.Name = "EntradaStockActual2";
-                        this.EntradaStockActual2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaStockActual2.PasswordChar = '\0';
-                        this.EntradaStockActual2.PlaceholderText = null;
-                        this.EntradaStockActual2.Prefijo = "";
-                        this.EntradaStockActual2.ReadOnly = false;
-                        this.EntradaStockActual2.SelectOnFocus = true;
-                        this.EntradaStockActual2.Size = new System.Drawing.Size(96, 24);
-                        this.EntradaStockActual2.Sufijo = "";
-                        this.EntradaStockActual2.TabIndex = 17;
-                        this.EntradaStockActual2.TabStop = false;
+                        this.EntradaHaciaAntes.Location = new System.Drawing.Point(304, 408);
+                        this.EntradaHaciaAntes.Name = "EntradaHaciaAntes";
+                        this.EntradaHaciaAntes.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaHaciaAntes.Size = new System.Drawing.Size(96, 24);
+                        this.EntradaHaciaAntes.TabIndex = 17;
+                        this.EntradaHaciaAntes.TabStop = false;
                         // 
-                        // lblStockFlecha
+                        // EtiquetaDesdeFlecha
                         // 
-                        this.lblStockFlecha.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.lblStockFlecha.Location = new System.Drawing.Point(404, 256);
-                        this.lblStockFlecha.Name = "lblStockFlecha";
-                        this.lblStockFlecha.Size = new System.Drawing.Size(24, 24);
-                        this.lblStockFlecha.TabIndex = 14;
-                        this.lblStockFlecha.Text = "->";
-                        this.lblStockFlecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaDesdeFlecha.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.EtiquetaDesdeFlecha.Location = new System.Drawing.Point(408, 376);
+                        this.EtiquetaDesdeFlecha.Name = "EtiquetaDesdeFlecha";
+                        this.EtiquetaDesdeFlecha.Size = new System.Drawing.Size(24, 24);
+                        this.EtiquetaDesdeFlecha.TabIndex = 14;
+                        this.EtiquetaDesdeFlecha.Text = "»";
+                        this.EtiquetaDesdeFlecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
-                        // lblStockFlecha2
+                        // EtiquetaHaciaFlecha
                         // 
-                        this.lblStockFlecha2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.lblStockFlecha2.Location = new System.Drawing.Point(404, 288);
-                        this.lblStockFlecha2.Name = "lblStockFlecha2";
-                        this.lblStockFlecha2.Size = new System.Drawing.Size(24, 24);
-                        this.lblStockFlecha2.TabIndex = 18;
-                        this.lblStockFlecha2.Text = "->";
-                        this.lblStockFlecha2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaHaciaFlecha.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.EtiquetaHaciaFlecha.Location = new System.Drawing.Point(408, 408);
+                        this.EtiquetaHaciaFlecha.Name = "EtiquetaHaciaFlecha";
+                        this.EtiquetaHaciaFlecha.Size = new System.Drawing.Size(24, 24);
+                        this.EtiquetaHaciaFlecha.TabIndex = 18;
+                        this.EtiquetaHaciaFlecha.Text = "»";
+                        this.EtiquetaHaciaFlecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
                         // Label5
                         // 
                         this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label5.Location = new System.Drawing.Point(308, 232);
+                        this.Label5.Location = new System.Drawing.Point(304, 352);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(96, 24);
                         this.Label5.TabIndex = 10;
@@ -420,7 +341,7 @@ namespace Lfc.Articulos
                         // Label6
                         // 
                         this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label6.Location = new System.Drawing.Point(428, 232);
+                        this.Label6.Location = new System.Drawing.Point(440, 352);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(96, 24);
                         this.Label6.TabIndex = 11;
@@ -431,15 +352,14 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaArticulo.AutoNav = true;
                         this.EntradaArticulo.CantidadSoloLectura = false;
                         this.EntradaArticulo.ControlStock = Lcc.Entrada.Articulos.ControlesSock.Ambos;
                         this.EntradaArticulo.DataTextField = null;
                         this.EntradaArticulo.DataValueField = null;
-                        this.EntradaArticulo.FieldName = null;
                         this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaArticulo.FreeTextCode = "";
-                        this.EntradaArticulo.Location = new System.Drawing.Point(140, 88);
+                        this.EntradaArticulo.Location = new System.Drawing.Point(136, 224);
+                        this.EntradaArticulo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaArticulo.MuestraPrecio = false;
                         this.EntradaArticulo.MuestraStock = false;
                         this.EntradaArticulo.Name = "EntradaArticulo";
@@ -448,9 +368,8 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.EntradaArticulo.PrecioSoloLectura = false;
                         this.EntradaArticulo.ProductoSoloLectura = false;
-                        this.EntradaArticulo.ReadOnly = false;
                         this.EntradaArticulo.Required = true;
-                        this.EntradaArticulo.Size = new System.Drawing.Size(456, 24);
+                        this.EntradaArticulo.Size = new System.Drawing.Size(440, 24);
                         this.EntradaArticulo.TabIndex = 3;
                         this.EntradaArticulo.Table = null;
                         this.EntradaArticulo.Text = "0";
@@ -458,25 +377,50 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.PrecioCantidadChanged += new System.EventHandler(this.EntradaArticulo_PrecioCantidadChanged);
                         this.EntradaArticulo.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaArticulo_ObtenerDatosSeguimiento);
                         // 
+                        // formHeader1
+                        // 
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(599, 64);
+                        this.formHeader1.TabIndex = 101;
+                        this.formHeader1.Text = "Entrada y salida de mercadería";
+                        // 
+                        // label9
+                        // 
+                        this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label9.Location = new System.Drawing.Point(24, 88);
+                        this.label9.MaximumSize = new System.Drawing.Size(600, 96);
+                        this.label9.Name = "label9";
+                        this.label9.Size = new System.Drawing.Size(544, 64);
+                        this.label9.TabIndex = 102;
+                        this.label9.Text = "Va a realizar un movimiento de mercadería de una situación a otra. Es recomendabl" +
+    "e que haga este movimiento a través de un comprobante si fuera posible, por ejem" +
+    "plo un remito o una nota de crédito.";
+                        // 
                         // Movimiento
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(634, 419);
+                        this.ClientSize = new System.Drawing.Size(599, 550);
+                        this.Controls.Add(this.label9);
+                        this.Controls.Add(this.EtiquetaHaciaFlecha);
+                        this.Controls.Add(this.EtiquetaDesdeFlecha);
+                        this.Controls.Add(this.EntradaHaciaDespues);
+                        this.Controls.Add(this.EntradaHaciaAntes);
+                        this.Controls.Add(this.EntradaDesdeDespues);
+                        this.Controls.Add(this.EntradaDesdeAntes);
+                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.EntradaArticulo);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.Label5);
-                        this.Controls.Add(this.lblStockFlecha2);
-                        this.Controls.Add(this.lblStockFlecha);
-                        this.Controls.Add(this.EntradaStockResult2);
-                        this.Controls.Add(this.EntradaStockActual2);
                         this.Controls.Add(this.EntradaHaciaSituacion);
                         this.Controls.Add(this.Label8);
                         this.Controls.Add(this.EntradaDesdeSituacion);
                         this.Controls.Add(this.Label7);
-                        this.Controls.Add(this.EntradaStockResult);
-                        this.Controls.Add(this.EntradaStockActual);
-                        this.Controls.Add(this.lblHaciaSituacion);
-                        this.Controls.Add(this.lblDesdeSituacion);
+                        this.Controls.Add(this.EtiquetaHaciaSituacion);
+                        this.Controls.Add(this.EtiquetaDesdeSituacion);
                         this.Controls.Add(this.EntradaObs);
                         this.Controls.Add(this.EntradaCantidad);
                         this.Controls.Add(this.EntradaMovimiento);
@@ -484,7 +428,6 @@ namespace Lfc.Articulos
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
-                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Name = "Movimiento";
                         this.Text = "Artículos: Entrada y Salida";
                         this.Controls.SetChildIndex(this.Label1, 0);
@@ -494,26 +437,31 @@ namespace Lfc.Articulos
                         this.Controls.SetChildIndex(this.EntradaMovimiento, 0);
                         this.Controls.SetChildIndex(this.EntradaCantidad, 0);
                         this.Controls.SetChildIndex(this.EntradaObs, 0);
-                        this.Controls.SetChildIndex(this.lblDesdeSituacion, 0);
-                        this.Controls.SetChildIndex(this.lblHaciaSituacion, 0);
-                        this.Controls.SetChildIndex(this.EntradaStockActual, 0);
-                        this.Controls.SetChildIndex(this.EntradaStockResult, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaDesdeSituacion, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHaciaSituacion, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
                         this.Controls.SetChildIndex(this.EntradaDesdeSituacion, 0);
                         this.Controls.SetChildIndex(this.Label8, 0);
                         this.Controls.SetChildIndex(this.EntradaHaciaSituacion, 0);
-                        this.Controls.SetChildIndex(this.EntradaStockActual2, 0);
-                        this.Controls.SetChildIndex(this.EntradaStockResult2, 0);
-                        this.Controls.SetChildIndex(this.lblStockFlecha, 0);
-                        this.Controls.SetChildIndex(this.lblStockFlecha2, 0);
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.Label6, 0);
                         this.Controls.SetChildIndex(this.EntradaArticulo, 0);
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
+                        this.Controls.SetChildIndex(this.EntradaDesdeAntes, 0);
+                        this.Controls.SetChildIndex(this.EntradaDesdeDespues, 0);
+                        this.Controls.SetChildIndex(this.EntradaHaciaAntes, 0);
+                        this.Controls.SetChildIndex(this.EntradaHaciaDespues, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaDesdeFlecha, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHaciaFlecha, 0);
+                        this.Controls.SetChildIndex(this.label9, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
                 }
 
                 #endregion
+
+                private Lui.Forms.FormHeader formHeader1;
+                protected Lui.Forms.Label label9;
         }
 }

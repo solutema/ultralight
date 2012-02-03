@@ -90,7 +90,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaConcepto.TemporaryReadOnly = false;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(496, 24);
                         this.EntradaConcepto.TabIndex = 1;
@@ -103,17 +102,12 @@ namespace Lfc.CuentasCorrientes
                         // EntradaImporte
                         // 
                         this.EntradaImporte.AutoSize = false;
-                        this.EntradaImporte.AutoNav = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(120, 56);
-                        this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Prefijo = "$";
-                        this.EntradaImporte.TemporaryReadOnly = false;
-                        this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.Text = "0.00";
@@ -142,16 +136,11 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.AutoSize = false;
-                        this.EntradaObs.AutoNav = true;
-                        this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaObs.DecimalPlaces = -1;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(120, 120);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.TemporaryReadOnly = false;
-                        this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(496, 92);
                         this.EntradaObs.TabIndex = 7;
                         // 
@@ -167,11 +156,9 @@ namespace Lfc.CuentasCorrientes
                         // EntradaDireccion
                         // 
                         this.EntradaDireccion.AutoSize = false;
-                        this.EntradaDireccion.AutoNav = true;
                         this.EntradaDireccion.Location = new System.Drawing.Point(120, 88);
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDireccion.TemporaryReadOnly = false;
                         this.EntradaDireccion.SetData = new string[] {
         "Débito|1",
         "Crédito|0"};
@@ -193,17 +180,13 @@ namespace Lfc.CuentasCorrientes
                         // EntradaNuevoSaldo
                         // 
                         this.EntradaNuevoSaldo.AutoSize = false;
-                        this.EntradaNuevoSaldo.AutoNav = true;
                         this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaNuevoSaldo.DecimalPlaces = -1;
                         this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNuevoSaldo.Location = new System.Drawing.Point(376, 56);
-                        this.EntradaNuevoSaldo.MultiLine = false;
                         this.EntradaNuevoSaldo.Name = "EntradaNuevoSaldo";
                         this.EntradaNuevoSaldo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNuevoSaldo.Prefijo = "$";
                         this.EntradaNuevoSaldo.TemporaryReadOnly = true;
-                        this.EntradaNuevoSaldo.SelectOnFocus = true;
                         this.EntradaNuevoSaldo.Size = new System.Drawing.Size(128, 24);
                         this.EntradaNuevoSaldo.TabIndex = 52;
                         this.EntradaNuevoSaldo.TabStop = false;

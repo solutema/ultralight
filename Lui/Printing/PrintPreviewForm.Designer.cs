@@ -90,7 +90,6 @@ namespace Lui.Printing
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.CancelCommandButton.Location = new System.Drawing.Point(524, 6);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.TemporaryReadOnly = false;
                         this.CancelCommandButton.Size = new System.Drawing.Size(84, 40);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.CancelCommandButton.Subtext = "Esc";
@@ -106,7 +105,6 @@ namespace Lui.Printing
                         this.SaveButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.SaveButton.Location = new System.Drawing.Point(432, 6);
                         this.SaveButton.Name = "SaveButton";
-                        this.SaveButton.TemporaryReadOnly = false;
                         this.SaveButton.Size = new System.Drawing.Size(84, 40);
                         this.SaveButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.SaveButton.Subtext = "F8";
@@ -131,7 +129,6 @@ namespace Lui.Printing
                         this.BotonZoom.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonZoom.Location = new System.Drawing.Point(8, 6);
                         this.BotonZoom.Name = "BotonZoom";
-                        this.BotonZoom.TemporaryReadOnly = false;
                         this.BotonZoom.Size = new System.Drawing.Size(84, 40);
                         this.BotonZoom.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonZoom.Subtext = "F2";

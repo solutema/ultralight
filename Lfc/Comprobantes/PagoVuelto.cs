@@ -79,9 +79,8 @@ namespace Lfc.Comprobantes
                 internal Lui.Forms.Label Label2;
                 internal Lui.Forms.TextBox EntradaCambio;
                 internal Lui.Forms.Label Label3;
+                private Lui.Forms.FormHeader formHeader1;
                 internal System.Windows.Forms.PictureBox PictureBox1;
-                internal Lui.Forms.Label Label4;
-                internal Lui.Forms.Label Label5;
 
                 private void InitializeComponent()
                 {
@@ -92,20 +91,9 @@ namespace Lfc.Comprobantes
                         this.EntradaCambio = new Lui.Forms.TextBox();
                         this.Label3 = new Lui.Forms.Label();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.Label4 = new Lui.Forms.Label();
-                        this.Label5 = new Lui.Forms.Label();
+                        this.formHeader1 = new Lui.Forms.FormHeader();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(178, 8);
-                        this.OkButton.Padding = new System.Windows.Forms.Padding(2);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(298, 8);
-                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
                         // 
                         // Label1
                         // 
@@ -115,28 +103,19 @@ namespace Lfc.Comprobantes
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(164, 32);
                         this.Label1.TabIndex = 0;
-                        this.Label1.Text = "Importe a Cobrar";
+                        this.Label1.Text = "Importe a cobrar";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaTotal
                         // 
                         this.EntradaTotal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.EntradaTotal.AutoNav = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaTotal.DecimalPlaces = -1;
-                        this.EntradaTotal.FieldName = null;
-                        this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaTotal.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 92);
-                        this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTotal.PasswordChar = '\0';
-                        this.EntradaTotal.PlaceholderText = null;
                         this.EntradaTotal.Prefijo = "$";
-                        this.EntradaTotal.ReadOnly = false;
-                        this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(152, 32);
-                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 1;
                         this.EntradaTotal.TabStop = false;
                         this.EntradaTotal.Text = "0.00";
@@ -144,22 +123,13 @@ namespace Lfc.Comprobantes
                         // EntradaPago
                         // 
                         this.EntradaPago.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.EntradaPago.AutoNav = true;
                         this.EntradaPago.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaPago.DecimalPlaces = -1;
-                        this.EntradaPago.FieldName = null;
-                        this.EntradaPago.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaPago.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaPago.Location = new System.Drawing.Point(212, 140);
-                        this.EntradaPago.MultiLine = false;
                         this.EntradaPago.Name = "EntradaPago";
                         this.EntradaPago.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPago.PasswordChar = '\0';
-                        this.EntradaPago.PlaceholderText = null;
                         this.EntradaPago.Prefijo = "$";
-                        this.EntradaPago.ReadOnly = false;
-                        this.EntradaPago.SelectOnFocus = true;
                         this.EntradaPago.Size = new System.Drawing.Size(152, 32);
-                        this.EntradaPago.Sufijo = "";
                         this.EntradaPago.TabIndex = 3;
                         this.EntradaPago.Text = "0.00";
                         this.EntradaPago.TextChanged += new System.EventHandler(this.EntradaPago_TextChanged);
@@ -172,32 +142,22 @@ namespace Lfc.Comprobantes
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(164, 32);
                         this.Label2.TabIndex = 2;
-                        this.Label2.Text = "Pago del Cliente";
+                        this.Label2.Text = "Pago recibido";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaCambio
                         // 
                         this.EntradaCambio.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.EntradaCambio.AutoNav = true;
                         this.EntradaCambio.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCambio.DecimalPlaces = -1;
-                        this.EntradaCambio.FieldName = null;
-                        this.EntradaCambio.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaCambio.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaCambio.Location = new System.Drawing.Point(212, 216);
-                        this.EntradaCambio.MultiLine = false;
                         this.EntradaCambio.Name = "EntradaCambio";
                         this.EntradaCambio.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCambio.PasswordChar = '\0';
-                        this.EntradaCambio.PlaceholderText = null;
                         this.EntradaCambio.Prefijo = "$";
-                        this.EntradaCambio.ReadOnly = false;
-                        this.EntradaCambio.SelectOnFocus = true;
                         this.EntradaCambio.Size = new System.Drawing.Size(152, 32);
-                        this.EntradaCambio.Sufijo = "";
                         this.EntradaCambio.TabIndex = 6;
                         this.EntradaCambio.TabStop = false;
                         this.EntradaCambio.Text = "0.00";
-                        this.EntradaCambio.Visible = false;
                         // 
                         // Label3
                         // 
@@ -207,7 +167,7 @@ namespace Lfc.Comprobantes
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(164, 32);
                         this.Label3.TabIndex = 5;
-                        this.Label3.Text = "Cambio";
+                        this.Label3.Text = "Cambio a entregar";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // PictureBox1
@@ -219,34 +179,21 @@ namespace Lfc.Comprobantes
                         this.PictureBox1.TabIndex = 51;
                         this.PictureBox1.TabStop = false;
                         // 
-                        // Label4
+                        // formHeader1
                         // 
-                        this.Label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label4.Location = new System.Drawing.Point(24, 28);
-                        this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(372, 20);
-                        this.Label4.TabIndex = 52;
-                        this.Label4.Text = "Escriba el importe recibido para calcular el cambio.";
-                        this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        // 
-                        // Label5
-                        // 
-                        this.Label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label5.Location = new System.Drawing.Point(24, 48);
-                        this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(372, 20);
-                        this.Label5.TabIndex = 53;
-                        this.Label5.Text = "O pulse la tecla <Esc> para cancelar.";
-                        this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(418, 64);
+                        this.formHeader1.TabIndex = 60;
+                        this.formHeader1.Text = "Cambio";
                         // 
                         // PagoVuelto
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(418, 355);
-                        this.Controls.Add(this.Label5);
-                        this.Controls.Add(this.Label4);
+                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.EntradaCambio);
                         this.Controls.Add(this.EntradaPago);
@@ -263,8 +210,7 @@ namespace Lfc.Comprobantes
                         this.Controls.SetChildIndex(this.EntradaPago, 0);
                         this.Controls.SetChildIndex(this.EntradaCambio, 0);
                         this.Controls.SetChildIndex(this.PictureBox1, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
                         this.ResumeLayout(false);
 
@@ -287,7 +233,6 @@ namespace Lfc.Comprobantes
                 private void EntradaPago_TextChanged(object sender, System.EventArgs e)
                 {
                         EntradaCambio.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaPago.Text) - Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
-                        EntradaCambio.Visible = Lfx.Types.Parsing.ParseCurrency(EntradaCambio.Text) >= 0;
                 }
         }
 }

@@ -68,13 +68,11 @@ namespace Lfc.Articulos.Marcas
                         // 
                         this.EntradaProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaProveedor.AutoNav = true;
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.ExtraDetailFields = "";
-                        this.EntradaProveedor.FieldName = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.Location = new System.Drawing.Point(88, 64);
@@ -102,23 +100,14 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // EntradaUrl
                         // 
-                        this.EntradaUrl.AutoNav = true;
-                        this.EntradaUrl.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaUrl.DecimalPlaces = -1;
-                        this.EntradaUrl.FieldName = null;
                         this.EntradaUrl.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUrl.Location = new System.Drawing.Point(88, 32);
                         this.EntradaUrl.MaxLength = 200;
-                        this.EntradaUrl.MultiLine = false;
                         this.EntradaUrl.Name = "EntradaUrl";
                         this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaUrl.PasswordChar = '\0';
                         this.EntradaUrl.PlaceholderText = "Dirección de la página web del producto.";
-                        this.EntradaUrl.Prefijo = "";
                         this.EntradaUrl.ReadOnly = false;
-                        this.EntradaUrl.SelectOnFocus = false;
                         this.EntradaUrl.Size = new System.Drawing.Size(444, 24);
-                        this.EntradaUrl.Sufijo = "";
                         this.EntradaUrl.TabIndex = 3;
                         // 
                         // Label12
@@ -133,23 +122,13 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(88, 0);
                         this.EntradaNombre.MaxLength = 200;
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(444, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
@@ -164,22 +143,13 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // EntradaObs
                         // 
-                        this.EntradaObs.AutoNav = true;
-                        this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaObs.DecimalPlaces = -1;
-                        this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(88, 96);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.PasswordChar = '\0';
-                        this.EntradaObs.PlaceholderText = null;
-                        this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
-                        this.EntradaObs.SelectOnFocus = false;
                         this.EntradaObs.Size = new System.Drawing.Size(444, 112);
-                        this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 7;
                         // 
                         // Label13

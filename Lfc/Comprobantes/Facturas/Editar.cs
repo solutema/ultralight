@@ -312,7 +312,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
 
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
 
-                        if (Comprob.Impreso && this.EsCancelable()) {
+                        if (Comprob.Impreso) {
                                 switch (Comprob.FormaDePago.Tipo) {
                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                                 //El pago lo asentó la rutina de impresión
@@ -326,7 +326,8 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                         case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                         case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                         case Lbl.Pagos.TiposFormasDePago.Caja:
-                                                EditarPago();
+                                                if (this.EsCancelable())
+                                                        EditarPago();
                                                 break;
                                 }
                         }
@@ -463,11 +464,11 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
 
                 internal bool EsCancelable()
                 {
-                        Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
-                        if (Registro == null || Registro.ImporteImpago == 0) {
+                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
+                        if (Comprob == null || Comprob.ImporteImpago == 0) {
                                 return false;
                         } else {
-                                return (Registro.Impreso && Registro.Existe && Registro.FormaDePago != null && (Registro.FormaDePago.Tipo != Lbl.Pagos.TiposFormasDePago.Efectivo));
+                                return (Comprob.Impreso && Comprob.Existe && Comprob.FormaDePago != null && (Comprob.FormaDePago.Tipo != Lbl.Pagos.TiposFormasDePago.Efectivo));
                         }
                 }
 

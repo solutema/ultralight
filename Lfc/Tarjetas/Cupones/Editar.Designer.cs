@@ -67,22 +67,12 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNumero.DecimalPlaces = -1;
-                        this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(160, 0);
-                        this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.PasswordChar = '\0';
-                        this.EntradaNumero.PlaceholderText = null;
-                        this.EntradaNumero.Prefijo = "";
                         this.EntradaNumero.ReadOnly = false;
-                        this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 1;
                         // 
                         // Label3
@@ -107,12 +97,10 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaTarjeta
                         // 
-                        this.EntradaTarjeta.AutoNav = true;
                         this.EntradaTarjeta.CanCreate = false;
                         this.EntradaTarjeta.DataTextField = "nombre";
                         this.EntradaTarjeta.DataValueField = "id_tarjeta";
                         this.EntradaTarjeta.ExtraDetailFields = "";
-                        this.EntradaTarjeta.FieldName = null;
                         this.EntradaTarjeta.Filter = "";
                         this.EntradaTarjeta.FreeTextCode = "";
                         this.EntradaTarjeta.Location = new System.Drawing.Point(160, 28);
@@ -140,12 +128,10 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaPlan
                         // 
-                        this.EntradaPlan.AutoNav = true;
                         this.EntradaPlan.CanCreate = true;
                         this.EntradaPlan.DataTextField = "nombre";
                         this.EntradaPlan.DataValueField = "id_plan";
                         this.EntradaPlan.ExtraDetailFields = "";
-                        this.EntradaPlan.FieldName = null;
                         this.EntradaPlan.Filter = "";
                         this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.Location = new System.Drawing.Point(160, 56);
@@ -173,22 +159,13 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaFechaPresentacion
                         // 
-                        this.EntradaFechaPresentacion.AutoNav = true;
                         this.EntradaFechaPresentacion.DataType = Lui.Forms.DataTypes.DateTime;
-                        this.EntradaFechaPresentacion.DecimalPlaces = -1;
-                        this.EntradaFechaPresentacion.FieldName = null;
                         this.EntradaFechaPresentacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaPresentacion.Location = new System.Drawing.Point(160, 84);
-                        this.EntradaFechaPresentacion.MultiLine = false;
                         this.EntradaFechaPresentacion.Name = "EntradaFechaPresentacion";
                         this.EntradaFechaPresentacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaPresentacion.PasswordChar = '\0';
-                        this.EntradaFechaPresentacion.PlaceholderText = null;
-                        this.EntradaFechaPresentacion.Prefijo = "";
                         this.EntradaFechaPresentacion.ReadOnly = false;
-                        this.EntradaFechaPresentacion.SelectOnFocus = true;
                         this.EntradaFechaPresentacion.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaFechaPresentacion.Sufijo = "";
                         this.EntradaFechaPresentacion.TabIndex = 7;
                         // 
                         // label2
@@ -203,22 +180,13 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaFechaAcreditacion
                         // 
-                        this.EntradaFechaAcreditacion.AutoNav = true;
                         this.EntradaFechaAcreditacion.DataType = Lui.Forms.DataTypes.DateTime;
-                        this.EntradaFechaAcreditacion.DecimalPlaces = -1;
-                        this.EntradaFechaAcreditacion.FieldName = null;
                         this.EntradaFechaAcreditacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaAcreditacion.Location = new System.Drawing.Point(160, 112);
-                        this.EntradaFechaAcreditacion.MultiLine = false;
                         this.EntradaFechaAcreditacion.Name = "EntradaFechaAcreditacion";
                         this.EntradaFechaAcreditacion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaAcreditacion.PasswordChar = '\0';
-                        this.EntradaFechaAcreditacion.PlaceholderText = null;
-                        this.EntradaFechaAcreditacion.Prefijo = "";
                         this.EntradaFechaAcreditacion.ReadOnly = false;
-                        this.EntradaFechaAcreditacion.SelectOnFocus = true;
                         this.EntradaFechaAcreditacion.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaFechaAcreditacion.Sufijo = "";
                         this.EntradaFechaAcreditacion.TabIndex = 9;
                         // 
                         // Editar

@@ -160,7 +160,6 @@ namespace Lfc.Reportes
                         this.PorMes.Location = new System.Drawing.Point(48, 136);
                         this.PorMes.Name = "PorMes";
                         this.PorMes.Padding = new System.Windows.Forms.Padding(2);
-                        this.PorMes.TemporaryReadOnly = false;
                         this.PorMes.Size = new System.Drawing.Size(100, 40);
                         this.PorMes.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.PorMes.Subtext = "";
@@ -176,7 +175,6 @@ namespace Lfc.Reportes
                         this.PorRentabilidad.Location = new System.Drawing.Point(48, 308);
                         this.PorRentabilidad.Name = "PorRentabilidad";
                         this.PorRentabilidad.Padding = new System.Windows.Forms.Padding(2);
-                        this.PorRentabilidad.TemporaryReadOnly = false;
                         this.PorRentabilidad.Size = new System.Drawing.Size(100, 40);
                         this.PorRentabilidad.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.PorRentabilidad.Subtext = "";
@@ -349,7 +347,6 @@ namespace Lfc.Reportes
                         this.BotonPorDiaDelMes.Location = new System.Drawing.Point(48, 480);
                         this.BotonPorDiaDelMes.Name = "BotonPorDiaDelMes";
                         this.BotonPorDiaDelMes.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonPorDiaDelMes.TemporaryReadOnly = false;
                         this.BotonPorDiaDelMes.Size = new System.Drawing.Size(100, 40);
                         this.BotonPorDiaDelMes.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonPorDiaDelMes.Subtext = "";

@@ -248,9 +248,14 @@ namespace Lazaro.WinMain.Principal
 
                 private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
                 {
-                        if (Lfx.Workspace.Master != null)
+                        TimerProgramador.Stop();
+
+                        if (Lfx.Workspace.Master != null) {
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
-                        System.Environment.Exit(0);
+                                Lfx.Workspace.Master.Dispose();
+                        }
+
+                        //System.Environment.Exit(0);
                 }
 
 

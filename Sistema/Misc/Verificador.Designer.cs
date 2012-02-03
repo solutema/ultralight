@@ -64,8 +64,8 @@ namespace Lazaro.WinMain.Misc
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.Label27 = new Lui.Forms.Label();
                         this.LowerPanel = new Lui.Forms.ButtonPanel();
-                        this.OkButton = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
+                        this.OkButton = new Lui.Forms.Button();
                         this.EtiquetaEstado = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.LowerPanel.SuspendLayout();
@@ -127,44 +127,40 @@ namespace Lazaro.WinMain.Misc
                         this.LowerPanel.Size = new System.Drawing.Size(474, 58);
                         this.LowerPanel.TabIndex = 106;
                         // 
+                        // CancelCommandButton
+                        // 
+                        this.CancelCommandButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.CancelCommandButton.Image = null;
+                        this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.CancelCommandButton.Location = new System.Drawing.Point(346, 12);
+                        this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.CancelCommandButton.Name = "CancelCommandButton";
+                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.CancelCommandButton.Size = new System.Drawing.Size(104, 34);
+                        this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.CancelCommandButton.Subtext = "";
+                        this.CancelCommandButton.TabIndex = 51;
+                        this.CancelCommandButton.Text = "Cancelar";
+                        // 
                         // OkButton
                         // 
                         this.OkButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.OkButton.AutoNav = true;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(242, 12);
+                        this.OkButton.Location = new System.Drawing.Point(236, 12);
                         this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-                        this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(104, 34);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "F8";
                         this.OkButton.TabIndex = 50;
                         this.OkButton.Text = "Iniciar";
                         this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.CancelCommandButton.AutoNav = true;
-                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.CancelCommandButton.Image = null;
-                        this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(346, 12);
-                        this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(0);
-                        this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-                        this.CancelCommandButton.ReadOnly = false;
-                        this.CancelCommandButton.Size = new System.Drawing.Size(104, 34);
-                        this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.CancelCommandButton.Subtext = "";
-                        this.CancelCommandButton.TabIndex = 51;
-                        this.CancelCommandButton.Text = "Cancelar";
                         // 
                         // EtiquetaEstado
                         // 
@@ -180,6 +176,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                        this.CancelButton = this.CancelCommandButton;
                         this.ClientSize = new System.Drawing.Size(474, 290);
                         this.Controls.Add(this.EtiquetaEstado);
                         this.Controls.Add(this.LowerPanel);

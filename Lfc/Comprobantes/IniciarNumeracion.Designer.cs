@@ -65,20 +65,13 @@ namespace Lfc.Comprobantes
                         this.EntradaDesde = new Lui.Forms.TextBox();
                         this.Label1 = new Lui.Forms.Label();
                         this.LabelAyuda = new Lui.Forms.Label();
+                        this.formHeader1 = new Lui.Forms.FormHeader();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(384, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(504, 8);
                         // 
                         // label4
                         // 
                         this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.label4.Location = new System.Drawing.Point(316, 24);
+                        this.label4.Location = new System.Drawing.Point(316, 88);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(132, 24);
                         this.label4.TabIndex = 2;
@@ -88,14 +81,10 @@ namespace Lfc.Comprobantes
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = true;
-                        this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.FieldName = null;
-                        this.EntradaTipo.Location = new System.Drawing.Point(152, 24);
+                        this.EntradaTipo.Location = new System.Drawing.Point(152, 88);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTipo.PlaceholderText = null;
-                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Facturas A|A",
         "Facturas B|B",
@@ -103,7 +92,7 @@ namespace Lfc.Comprobantes
         "Facturas E|E",
         "Facturas M|M",
         "Remitos|R"};
-                        this.EntradaTipo.Size = new System.Drawing.Size(144, 81);
+                        this.EntradaTipo.Size = new System.Drawing.Size(144, 91);
                         this.EntradaTipo.TabIndex = 1;
                         this.EntradaTipo.TextKey = "B";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
@@ -111,7 +100,7 @@ namespace Lfc.Comprobantes
                         // Label7
                         // 
                         this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label7.Location = new System.Drawing.Point(316, 56);
+                        this.Label7.Location = new System.Drawing.Point(316, 120);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(132, 24);
                         this.Label7.TabIndex = 4;
@@ -120,44 +109,22 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaPv
                         // 
-                        this.EntradaPv.AutoNav = true;
                         this.EntradaPv.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPv.DecimalPlaces = -1;
-                        this.EntradaPv.FieldName = null;
-                        this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPv.Location = new System.Drawing.Point(448, 24);
-                        this.EntradaPv.MultiLine = false;
+                        this.EntradaPv.Location = new System.Drawing.Point(448, 88);
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPv.PasswordChar = '\0';
-                        this.EntradaPv.PlaceholderText = null;
-                        this.EntradaPv.Prefijo = "";
-                        this.EntradaPv.ReadOnly = false;
-                        this.EntradaPv.SelectOnFocus = true;
                         this.EntradaPv.Size = new System.Drawing.Size(52, 24);
-                        this.EntradaPv.Sufijo = "";
                         this.EntradaPv.TabIndex = 3;
                         this.EntradaPv.Text = "1";
                         this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
                         // 
                         // EntradaDesde
                         // 
-                        this.EntradaDesde.AutoNav = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaDesde.DecimalPlaces = -1;
-                        this.EntradaDesde.FieldName = null;
-                        this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaDesde.Location = new System.Drawing.Point(448, 56);
-                        this.EntradaDesde.MultiLine = false;
+                        this.EntradaDesde.Location = new System.Drawing.Point(448, 120);
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDesde.PasswordChar = '\0';
-                        this.EntradaDesde.PlaceholderText = null;
-                        this.EntradaDesde.Prefijo = "";
-                        this.EntradaDesde.ReadOnly = false;
-                        this.EntradaDesde.SelectOnFocus = true;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
-                        this.EntradaDesde.Sufijo = "";
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaTipoPvDesde_TextChanged);
@@ -165,7 +132,7 @@ namespace Lfc.Comprobantes
                         // Label1
                         // 
                         this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label1.Location = new System.Drawing.Point(24, 24);
+                        this.Label1.Location = new System.Drawing.Point(24, 88);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
                         this.Label1.TabIndex = 0;
@@ -178,17 +145,28 @@ namespace Lfc.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelAyuda.AutoEllipsis = true;
                         this.LabelAyuda.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.LabelAyuda.Location = new System.Drawing.Point(24, 120);
+                        this.LabelAyuda.Location = new System.Drawing.Point(24, 192);
                         this.LabelAyuda.Name = "LabelAyuda";
-                        this.LabelAyuda.Size = new System.Drawing.Size(576, 100);
+                        this.LabelAyuda.Size = new System.Drawing.Size(576, 92);
                         this.LabelAyuda.TabIndex = 6;
                         this.LabelAyuda.Text = "...";
+                        // 
+                        // formHeader1
+                        // 
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(624, 64);
+                        this.formHeader1.TabIndex = 101;
+                        this.formHeader1.Text = "Iniciar numeración";
                         // 
                         // IniciarNumeracion
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(624, 362);
+                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.LabelAyuda);
                         this.Controls.Add(this.EntradaPv);
                         this.Controls.Add(this.EntradaDesde);
@@ -197,7 +175,7 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.Label7);
                         this.Controls.Add(this.Label1);
                         this.Name = "IniciarNumeracion";
-                        this.Text = "Reiniciar Numeración";
+                        this.Text = "Iniciar Numeración";
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);
@@ -205,6 +183,7 @@ namespace Lfc.Comprobantes
                         this.Controls.SetChildIndex(this.EntradaDesde, 0);
                         this.Controls.SetChildIndex(this.EntradaPv, 0);
                         this.Controls.SetChildIndex(this.LabelAyuda, 0);
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -219,5 +198,6 @@ namespace Lfc.Comprobantes
                 internal Lui.Forms.TextBox EntradaDesde;
                 internal Lui.Forms.Label Label1;
                 private Lui.Forms.Label LabelAyuda;
+                private Lui.Forms.FormHeader formHeader1;
         }
 }

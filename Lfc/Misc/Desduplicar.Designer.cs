@@ -95,19 +95,16 @@ namespace Lfc.Misc
                         // 
                         // EntradaElementoDuplicado
                         // 
-                        this.EntradaElementoDuplicado.AutoNav = true;
                         this.EntradaElementoDuplicado.CanCreate = true;
                         this.EntradaElementoDuplicado.DataTextField = "nombre_visible";
                         this.EntradaElementoDuplicado.DataValueField = "id_persona";
                         this.EntradaElementoDuplicado.ExtraDetailFields = "";
-                        this.EntradaElementoDuplicado.FieldName = null;
                         this.EntradaElementoDuplicado.Filter = "";
                         this.EntradaElementoDuplicado.FreeTextCode = "";
                         this.EntradaElementoDuplicado.Location = new System.Drawing.Point(152, 88);
                         this.EntradaElementoDuplicado.MaxLength = 200;
                         this.EntradaElementoDuplicado.Name = "EntradaElementoDuplicado";
                         this.EntradaElementoDuplicado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaElementoDuplicado.PlaceholderText = null;
                         this.EntradaElementoDuplicado.ReadOnly = false;
                         this.EntradaElementoDuplicado.Required = true;
                         this.EntradaElementoDuplicado.Size = new System.Drawing.Size(456, 24);
@@ -129,19 +126,16 @@ namespace Lfc.Misc
                         // 
                         // EntradaElementoOriginal
                         // 
-                        this.EntradaElementoOriginal.AutoNav = true;
                         this.EntradaElementoOriginal.CanCreate = true;
                         this.EntradaElementoOriginal.DataTextField = "nombre_visible";
                         this.EntradaElementoOriginal.DataValueField = "id_persona";
                         this.EntradaElementoOriginal.ExtraDetailFields = "";
-                        this.EntradaElementoOriginal.FieldName = null;
                         this.EntradaElementoOriginal.Filter = "";
                         this.EntradaElementoOriginal.FreeTextCode = "";
                         this.EntradaElementoOriginal.Location = new System.Drawing.Point(152, 56);
                         this.EntradaElementoOriginal.MaxLength = 200;
                         this.EntradaElementoOriginal.Name = "EntradaElementoOriginal";
                         this.EntradaElementoOriginal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaElementoOriginal.PlaceholderText = null;
                         this.EntradaElementoOriginal.ReadOnly = false;
                         this.EntradaElementoOriginal.Required = true;
                         this.EntradaElementoOriginal.Size = new System.Drawing.Size(456, 24);
@@ -154,13 +148,10 @@ namespace Lfc.Misc
                         // txtTipo
                         // 
                         this.txtTipo.AlwaysExpanded = true;
-                        this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoSize = true;
-                        this.txtTipo.FieldName = null;
                         this.txtTipo.Location = new System.Drawing.Point(152, 24);
                         this.txtTipo.Name = "txtTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
-                        this.txtTipo.PlaceholderText = null;
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
         "Persona|personas"};
@@ -209,22 +200,14 @@ namespace Lfc.Misc
                         // 
                         // EntradaCtaCteFinal
                         // 
-                        this.EntradaCtaCteFinal.AutoNav = true;
                         this.EntradaCtaCteFinal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCtaCteFinal.DecimalPlaces = -1;
-                        this.EntradaCtaCteFinal.FieldName = null;
                         this.EntradaCtaCteFinal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCteFinal.Location = new System.Drawing.Point(276, 72);
-                        this.EntradaCtaCteFinal.MultiLine = false;
                         this.EntradaCtaCteFinal.Name = "EntradaCtaCteFinal";
                         this.EntradaCtaCteFinal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCtaCteFinal.PasswordChar = '\0';
-                        this.EntradaCtaCteFinal.PlaceholderText = null;
                         this.EntradaCtaCteFinal.Prefijo = "$";
                         this.EntradaCtaCteFinal.ReadOnly = false;
-                        this.EntradaCtaCteFinal.SelectOnFocus = true;
                         this.EntradaCtaCteFinal.Size = new System.Drawing.Size(120, 24);
-                        this.EntradaCtaCteFinal.Sufijo = "";
                         this.EntradaCtaCteFinal.TabIndex = 5;
                         this.EntradaCtaCteFinal.TabStop = false;
                         this.EntradaCtaCteFinal.Text = "0.00";
@@ -241,22 +224,14 @@ namespace Lfc.Misc
                         // 
                         // EntradaCtaCte2
                         // 
-                        this.EntradaCtaCte2.AutoNav = true;
                         this.EntradaCtaCte2.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCtaCte2.DecimalPlaces = -1;
-                        this.EntradaCtaCte2.FieldName = null;
                         this.EntradaCtaCte2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCte2.Location = new System.Drawing.Point(276, 36);
-                        this.EntradaCtaCte2.MultiLine = false;
                         this.EntradaCtaCte2.Name = "EntradaCtaCte2";
                         this.EntradaCtaCte2.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCtaCte2.PasswordChar = '\0';
-                        this.EntradaCtaCte2.PlaceholderText = null;
                         this.EntradaCtaCte2.Prefijo = "$";
                         this.EntradaCtaCte2.ReadOnly = false;
-                        this.EntradaCtaCte2.SelectOnFocus = true;
                         this.EntradaCtaCte2.Size = new System.Drawing.Size(120, 24);
-                        this.EntradaCtaCte2.Sufijo = "";
                         this.EntradaCtaCte2.TabIndex = 3;
                         this.EntradaCtaCte2.TabStop = false;
                         this.EntradaCtaCte2.Text = "0.00";
@@ -274,22 +249,14 @@ namespace Lfc.Misc
                         // 
                         // EntradaCtaCte1
                         // 
-                        this.EntradaCtaCte1.AutoNav = true;
                         this.EntradaCtaCte1.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCtaCte1.DecimalPlaces = -1;
-                        this.EntradaCtaCte1.FieldName = null;
                         this.EntradaCtaCte1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCte1.Location = new System.Drawing.Point(276, 8);
-                        this.EntradaCtaCte1.MultiLine = false;
                         this.EntradaCtaCte1.Name = "EntradaCtaCte1";
                         this.EntradaCtaCte1.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCtaCte1.PasswordChar = '\0';
-                        this.EntradaCtaCte1.PlaceholderText = null;
                         this.EntradaCtaCte1.Prefijo = "$";
                         this.EntradaCtaCte1.ReadOnly = false;
-                        this.EntradaCtaCte1.SelectOnFocus = true;
                         this.EntradaCtaCte1.Size = new System.Drawing.Size(120, 24);
-                        this.EntradaCtaCte1.Sufijo = "";
                         this.EntradaCtaCte1.TabIndex = 1;
                         this.EntradaCtaCte1.TabStop = false;
                         this.EntradaCtaCte1.Text = "0.00";

@@ -104,34 +104,21 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
-                        this.EntradaNombre.DecimalPlaces = -1;
-                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(104, 32);
-                        this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.PasswordChar = '\0';
-                        this.EntradaNombre.PlaceholderText = null;
-                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(504, 24);
-                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 5;
                         // 
                         // EntradaDireccion
                         // 
                         this.EntradaDireccion.AlwaysExpanded = true;
-                        this.EntradaDireccion.AutoNav = true;
                         this.EntradaDireccion.AutoSize = true;
-                        this.EntradaDireccion.FieldName = null;
                         this.EntradaDireccion.Location = new System.Drawing.Point(104, 64);
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDireccion.PlaceholderText = null;
                         this.EntradaDireccion.ReadOnly = false;
                         this.EntradaDireccion.SetData = new string[] {
         "Ambas|0",
@@ -144,13 +131,10 @@ namespace Lfc.Cajas.Conceptos
                         // EntradaGrupo
                         // 
                         this.EntradaGrupo.AlwaysExpanded = true;
-                        this.EntradaGrupo.AutoNav = true;
                         this.EntradaGrupo.AutoSize = true;
-                        this.EntradaGrupo.FieldName = null;
                         this.EntradaGrupo.Location = new System.Drawing.Point(100, 128);
                         this.EntradaGrupo.Name = "EntradaGrupo";
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaGrupo.PlaceholderText = null;
                         this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.SetData = new string[] {
         "Ninguno|0",
@@ -171,23 +155,14 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         // EntradaCodigo
                         // 
-                        this.EntradaCodigo.AutoNav = true;
                         this.EntradaCodigo.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCodigo.DecimalPlaces = -1;
                         this.EntradaCodigo.Enabled = false;
-                        this.EntradaCodigo.FieldName = null;
                         this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo.Location = new System.Drawing.Point(104, 0);
-                        this.EntradaCodigo.MultiLine = false;
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo.PasswordChar = '\0';
-                        this.EntradaCodigo.PlaceholderText = null;
-                        this.EntradaCodigo.Prefijo = "";
                         this.EntradaCodigo.ReadOnly = false;
-                        this.EntradaCodigo.SelectOnFocus = true;
                         this.EntradaCodigo.Size = new System.Drawing.Size(76, 24);
-                        this.EntradaCodigo.Sufijo = "";
                         this.EntradaCodigo.TabIndex = 3;
                         this.EntradaCodigo.Text = "0";
                         // 
