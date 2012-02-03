@@ -194,7 +194,8 @@
     <Compile Include="Cajas\Concepto.cs" />
     <Compile Include="CuentasCorrientes\CuentaCorriente.cs" />
     <Compile Include="Cajas\Caja.cs" />
-    <Compile Include="Cajas\Vencimiento.cs" />
+    <Compile Include="Vencimientos\Frecuencias.cs" />
+    <Compile Include="Vencimientos\Vencimiento.cs" />
     <Compile Include="ElementoDeDatos.cs" />
     <Compile Include="Bancos\Banco.cs" />
     <Compile Include="Entidades\Localidad.cs" />

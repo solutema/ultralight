@@ -41,7 +41,7 @@ namespace Lfc.Cajas.Vencimientos
                 {
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
-                                ElementoTipo = typeof(Lbl.Cajas.Vencimiento),
+                                ElementoTipo = typeof(Lbl.Vencimientos.Vencimiento),
 
                                 TableName = "vencimientos",
                                 KeyColumnName = new Lazaro.Pres.Field("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),

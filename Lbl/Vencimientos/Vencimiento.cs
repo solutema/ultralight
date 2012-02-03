@@ -33,21 +33,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lbl.Cajas
+namespace Lbl.Vencimientos
 {
-        public enum Frecuencias
-        {
-                Unica,
-                Diaria,
-                Semanal,
-                Mensual,
-                Bimestral,
-                Trimestral,
-                Cuatrimestral,
-                Semestral,
-                Anual
-        }
-
         [Lbl.Atributos.Nomenclatura(NombreSingular = "Vencimiento", Grupo = "Cajas")]
         [Lbl.Atributos.Datos(TablaDatos = "vencimientos", CampoId = "id_vencimiento")]
         [Lbl.Atributos.Presentacion()]
@@ -241,6 +228,7 @@ namespace Lbl.Cajas
                         Comando.Fields.AddWithValue("repetir", this.Repetir);
                         Comando.Fields.AddWithValue("ocurrencia", this.Ocurrencia);
                         Comando.Fields.AddWithValue("obs", this.Obs);
+                        Comando.Fields.AddWithValue("estado", this.Estado);
 
                         if (this.Concepto == null)
                                 Comando.Fields.AddWithValue("id_concepto", null);

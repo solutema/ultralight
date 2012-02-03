@@ -130,7 +130,7 @@ namespace Lfc
                                 }));
 
                         Res.Add(new Lfx.Components.RegisteredType(
-                                typeof(Lbl.Cajas.Vencimiento),
+                                typeof(Lbl.Vencimientos.Vencimiento),
                                 new Lfx.Components.ActionCollection() {
                                         new Lfx.Components.Action("list", typeof(Lfc.Cajas.Vencimientos.Inicio)),
                                         new Lfx.Components.Action("edit", typeof(Lfc.Cajas.Vencimientos.Editar))

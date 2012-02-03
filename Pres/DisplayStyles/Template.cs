@@ -71,7 +71,7 @@ namespace Lazaro.Pres.DisplayStyles
                 public Template()
                 {
                         bool TengoSegoe = false;
-                        if (Lfx.Environment.SystemInformation.DesignMode && System.Drawing.SystemFonts.MessageBoxFont.Name == "Segoe UI") {
+                        if (System.Drawing.SystemFonts.MessageBoxFont.Name == "Segoe UI") {
                                 TengoSegoe = true;
                         }
 

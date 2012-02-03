@@ -43,14 +43,14 @@ namespace Lfc.Cajas.Vencimientos
         {
                 public Editar()
                 {
-                        ElementoTipo = typeof(Lbl.Cajas.Vencimiento);
+                        ElementoTipo = typeof(Lbl.Vencimientos.Vencimiento);
 
                         InitializeComponent();
                 }
 
                 public override void ActualizarControl()
                 {
-                        Lbl.Cajas.Vencimiento Res = this.Elemento as Lbl.Cajas.Vencimiento;
+                        Lbl.Vencimientos.Vencimiento Res = this.Elemento as Lbl.Vencimientos.Vencimiento;
 
                         EntradaConcepto.Elemento = Res.Concepto;
                         EntradaFechaFin.Text = Lfx.Types.Formatting.FormatDate(Res.FechaFin);
@@ -67,7 +67,7 @@ namespace Lfc.Cajas.Vencimientos
 
                 public override void ActualizarElemento()
                 {
-                        Lbl.Cajas.Vencimiento Res = this.Elemento as Lbl.Cajas.Vencimiento;
+                        Lbl.Vencimientos.Vencimiento Res = this.Elemento as Lbl.Vencimientos.Vencimiento;
 
                         Res.Concepto = EntradaConcepto.Elemento as Lbl.Cajas.Concepto;
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);
@@ -75,31 +75,31 @@ namespace Lfc.Cajas.Vencimientos
                         Res.FechaInicio = Lfx.Types.Parsing.ParseDate(EntradaFechaInicio.Text);
                         switch (EntradaFrecuencia.TextKey) {
                                 case "Unica":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Unica;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Unica;
                                         break;
                                 case "Diaria":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Diaria;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Diaria;
                                         break;
                                 case "Semanal":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Semanal;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Semanal;
                                         break;
                                 case "Mensual":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Mensual;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Mensual;
                                         break;
                                 case "Bimestral":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Bimestral;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Bimestral;
                                         break;
                                 case "Trimestral":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Trimestral;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Trimestral;
                                         break;
                                 case "Cuatrimestral":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Cuatrimestral;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Cuatrimestral;
                                         break;
                                 case "Semestral":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Semestral;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Semestral;
                                         break;
                                 case "Anual":
-                                        Res.Frecuencia = Lbl.Cajas.Frecuencias.Anual;
+                                        Res.Frecuencia = Lbl.Vencimientos.Frecuencias.Anual;
                                         break;
                         }
 
