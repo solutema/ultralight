@@ -204,24 +204,6 @@ namespace Lui.Forms
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
-                        DefaultValue(false)]
-                public override bool TemporaryReadOnly
-                {
-                        get
-                        {
-                                return base.TemporaryReadOnly;
-                        }
-                        set
-                        {
-                                base.TemporaryReadOnly = value;
-                                TextBox1.ReadOnly = value || this.ReadOnly;
-                        }
-                }
-
-
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public string TextRaw
                 {

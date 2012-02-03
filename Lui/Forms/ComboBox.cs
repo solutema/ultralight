@@ -104,6 +104,10 @@ namespace Lui.Forms
                 }
 
 
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+                        DefaultValue(false)]
                 public override bool TemporaryReadOnly
                 {
                         get
