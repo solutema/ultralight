@@ -60,6 +60,7 @@ namespace Lfc.Cajas.Vencimientos
                         };
 
                         Listado.CheckBoxes = true;
+                        this.HabilitarCrear = true;
                         this.HabilitarFiltrar = true;
                 }
 

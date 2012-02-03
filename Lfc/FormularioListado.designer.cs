@@ -122,6 +122,7 @@ namespace Lfc
                         // 
                         this.Controls.Add(this.EtiquetaListadoVacio);
                         this.Controls.Add(this.EntradaBuscar);
+                        this.PanelAcciones.Controls.Add(BotonCrear);
                         this.Name = "FormularioListado";
                         this.Text = "Listado";
                         this.Controls.SetChildIndex(this.PanelContadores, 0);
@@ -133,15 +134,13 @@ namespace Lfc
                         this.PanelContadores.ResumeLayout(false);
                         ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).EndInit();
                         this.ResumeLayout(false);
-
                 }
 
                 #endregion
 
-                private Lui.Forms.TextBox EntradaBuscar;
-                protected internal Lui.Forms.Button BotonCrear;
-                private System.Windows.Forms.Timer TimerBuscar;
-                private Lui.Forms.Label EtiquetaListadoVacio;
-
+                protected Lui.Forms.TextBox EntradaBuscar;
+                protected Lui.Forms.Button BotonCrear;
+                protected System.Windows.Forms.Timer TimerBuscar;
+                protected Lui.Forms.Label EtiquetaListadoVacio;
         }
 }
