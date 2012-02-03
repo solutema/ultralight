@@ -95,7 +95,6 @@ namespace Lfc.Cajas
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(124, 152);
-                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
@@ -162,7 +161,6 @@ namespace Lfc.Cajas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(124, 64);
-                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = "¿El producto usa control de stock?";
@@ -196,7 +194,6 @@ namespace Lfc.Cajas
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(124, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -292,7 +289,6 @@ namespace Lfc.Cajas
                         this.EntradaTitular.FieldName = null;
                         this.EntradaTitular.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTitular.Location = new System.Drawing.Point(124, 32);
-                        this.EntradaTitular.MaxLength = 32767;
                         this.EntradaTitular.MultiLine = false;
                         this.EntradaTitular.Name = "EntradaTitular";
                         this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
@@ -322,7 +318,6 @@ namespace Lfc.Cajas
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(124, 248);
-                        this.EntradaEstado.MaxLength = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = "¿El producto usa control de stock?";

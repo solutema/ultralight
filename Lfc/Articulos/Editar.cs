@@ -60,14 +60,17 @@ namespace Lfc.Articulos
                                         EtiquetaAlicuota.Text = "(más " + Alic.ToString() + ")";
                                 else
                                         EtiquetaAlicuota.Text = "";
-
-                                if (CustomName == false) {
-                                        string NombreSing = Cat.NombreSingular;
-                                        string Texto = (NombreSing + " " + EntradaMarca.TextDetail + " " + EntradaModelo.Text + " " + EntradaSerie.Text).Trim();
-                                        if (Texto.Length > 0)
-                                                EntradaNombre.Text = Texto;
-                                }
                         }
+
+                        if (CustomName == false) {
+                                string NombreSing = "";
+                                if (Cat != null)
+                                        NombreSing = Cat.NombreSingular;
+                                string Texto = (NombreSing + " " + EntradaMarca.TextDetail + " " + EntradaModelo.Text + " " + EntradaSerie.Text).Trim();
+                                if (Texto.Length > 0)
+                                        EntradaNombre.Text = Texto;
+                        }
+
                         EntradaSeguimiento_TextChanged(sender, e);
                 }
 

@@ -112,7 +112,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtFormaPago.AutoSize = true;
                         this.txtFormaPago.FieldName = null;
                         this.txtFormaPago.Location = new System.Drawing.Point(188, 244);
-                        this.txtFormaPago.MaxLength = 32767;
                         this.txtFormaPago.Name = "txtFormaPago";
                         this.txtFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.txtFormaPago.PlaceholderText = null;
@@ -143,7 +142,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtCupones.FieldName = null;
                         this.txtCupones.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtCupones.Location = new System.Drawing.Point(132, 20);
-                        this.txtCupones.MaxLength = 32767;
                         this.txtCupones.MultiLine = false;
                         this.txtCupones.Name = "txtCupones";
                         this.txtCupones.Padding = new System.Windows.Forms.Padding(2);
@@ -186,7 +184,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaSubTotal.FieldName = null;
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(360, 20);
-                        this.EntradaSubTotal.MaxLength = 32767;
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
@@ -209,7 +206,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionTarjeta.FieldName = null;
                         this.EntradaComisionTarjeta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionTarjeta.Location = new System.Drawing.Point(116, 36);
-                        this.EntradaComisionTarjeta.MaxLength = 32767;
                         this.EntradaComisionTarjeta.MultiLine = false;
                         this.EntradaComisionTarjeta.Name = "EntradaComisionTarjeta";
                         this.EntradaComisionTarjeta.Padding = new System.Windows.Forms.Padding(2);
@@ -268,7 +264,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionPlan.FieldName = null;
                         this.EntradaComisionPlan.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionPlan.Location = new System.Drawing.Point(116, 68);
-                        this.EntradaComisionPlan.MaxLength = 32767;
                         this.EntradaComisionPlan.MultiLine = false;
                         this.EntradaComisionPlan.Name = "EntradaComisionPlan";
                         this.EntradaComisionPlan.Padding = new System.Windows.Forms.Padding(2);
@@ -292,7 +287,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionUsuario.FieldName = null;
                         this.EntradaComisionUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComisionUsuario.Location = new System.Drawing.Point(116, 100);
-                        this.EntradaComisionUsuario.MaxLength = 32767;
                         this.EntradaComisionUsuario.MultiLine = false;
                         this.EntradaComisionUsuario.Name = "EntradaComisionUsuario";
                         this.EntradaComisionUsuario.Padding = new System.Windows.Forms.Padding(2);
@@ -395,7 +389,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaTotal.FieldName = null;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(188, 208);
-                        this.EntradaTotal.MaxLength = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);

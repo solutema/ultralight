@@ -75,7 +75,7 @@ namespace Lfc.Alicuotas
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
-                        this.EntradaNombre.MaxLength = 32767;
+                        this.EntradaNombre.MaxLength = 200;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -106,7 +106,6 @@ namespace Lfc.Alicuotas
                         this.EntradaPorcentaje.FieldName = null;
                         this.EntradaPorcentaje.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPorcentaje.Location = new System.Drawing.Point(120, 32);
-                        this.EntradaPorcentaje.MaxLength = 32767;
                         this.EntradaPorcentaje.MultiLine = false;
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
@@ -115,7 +114,7 @@ namespace Lfc.Alicuotas
                         this.EntradaPorcentaje.Prefijo = "";
                         this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.SelectOnFocus = true;
-                        this.EntradaPorcentaje.Size = new System.Drawing.Size(120, 24);
+                        this.EntradaPorcentaje.Size = new System.Drawing.Size(104, 24);
                         this.EntradaPorcentaje.Sufijo = "%";
                         this.EntradaPorcentaje.TabIndex = 3;
                         this.EntradaPorcentaje.Text = "0.0000";
@@ -148,7 +147,6 @@ namespace Lfc.Alicuotas
                         this.EntradaImporteMinimo.FieldName = null;
                         this.EntradaImporteMinimo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporteMinimo.Location = new System.Drawing.Point(120, 64);
-                        this.EntradaImporteMinimo.MaxLength = 32767;
                         this.EntradaImporteMinimo.MultiLine = false;
                         this.EntradaImporteMinimo.Name = "EntradaImporteMinimo";
                         this.EntradaImporteMinimo.Padding = new System.Windows.Forms.Padding(2);
@@ -157,7 +155,7 @@ namespace Lfc.Alicuotas
                         this.EntradaImporteMinimo.Prefijo = "";
                         this.EntradaImporteMinimo.ReadOnly = false;
                         this.EntradaImporteMinimo.SelectOnFocus = true;
-                        this.EntradaImporteMinimo.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaImporteMinimo.Size = new System.Drawing.Size(104, 24);
                         this.EntradaImporteMinimo.Sufijo = "";
                         this.EntradaImporteMinimo.TabIndex = 5;
                         this.EntradaImporteMinimo.Text = "0.00";

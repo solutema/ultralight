@@ -69,6 +69,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoNav = true;
+                        this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.DataValueField = "id_persona";
@@ -107,7 +108,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaUrl.FieldName = null;
                         this.EntradaUrl.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUrl.Location = new System.Drawing.Point(88, 32);
-                        this.EntradaUrl.MaxLength = 32767;
+                        this.EntradaUrl.MaxLength = 200;
                         this.EntradaUrl.MultiLine = false;
                         this.EntradaUrl.Name = "EntradaUrl";
                         this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
@@ -136,9 +137,9 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.FieldName = null;
-                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(88, 0);
-                        this.EntradaNombre.MaxLength = 32767;
+                        this.EntradaNombre.MaxLength = 200;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -167,9 +168,8 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
                         this.EntradaObs.FieldName = null;
-                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(88, 96);
-                        this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);

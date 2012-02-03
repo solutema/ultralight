@@ -95,7 +95,6 @@ namespace Lfc.Tareas
                         this.MatrizArticulos.LockPrice = false;
                         this.MatrizArticulos.LockQuantity = false;
                         this.MatrizArticulos.LockText = false;
-                        this.MatrizArticulos.MaxLength = 200;
                         this.MatrizArticulos.Name = "MatrizArticulos";
                         this.MatrizArticulos.Padding = new System.Windows.Forms.Padding(2);
                         this.MatrizArticulos.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
@@ -137,7 +136,6 @@ namespace Lfc.Tareas
                         this.EntradaTotal.FieldName = null;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(504, 336);
-                        this.EntradaTotal.MaxLength = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
@@ -161,7 +159,6 @@ namespace Lfc.Tareas
                         this.EntradaDescuento.FieldName = null;
                         this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescuento.Location = new System.Drawing.Point(252, 336);
-                        this.EntradaDescuento.MaxLength = 32767;
                         this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
@@ -196,7 +193,6 @@ namespace Lfc.Tareas
                         this.EntradaSubTotal.FieldName = null;
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(80, 336);
-                        this.EntradaSubTotal.MaxLength = 32767;
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);

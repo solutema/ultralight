@@ -101,7 +101,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
-                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = null;
@@ -126,7 +125,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaDesde.FieldName = null;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(292, 20);
-                        this.EntradaDesde.MaxLength = 32767;
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
@@ -160,7 +158,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(148, 48);
-                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
@@ -192,7 +189,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaAnularPagos.AutoSize = true;
                         this.EntradaAnularPagos.FieldName = null;
                         this.EntradaAnularPagos.Location = new System.Drawing.Point(508, 20);
-                        this.EntradaAnularPagos.MaxLength = 32767;
                         this.EntradaAnularPagos.Name = "EntradaAnularPagos";
                         this.EntradaAnularPagos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAnularPagos.PlaceholderText = null;
@@ -240,7 +236,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaHasta.FieldName = null;
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 48);
-                        this.EntradaHasta.MaxLength = 32767;
                         this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);

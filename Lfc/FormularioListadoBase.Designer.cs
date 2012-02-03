@@ -122,7 +122,6 @@ namespace Lfc
                         this.EntradaContador2.FieldName = null;
                         this.EntradaContador2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador2.Location = new System.Drawing.Point(100, 28);
-                        this.EntradaContador2.MaxLength = 32767;
                         this.EntradaContador2.MultiLine = false;
                         this.EntradaContador2.Name = "EntradaContador2";
                         this.EntradaContador2.Padding = new System.Windows.Forms.Padding(2);
@@ -160,7 +159,6 @@ namespace Lfc
                         this.EntradaContador1.FieldName = null;
                         this.EntradaContador1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador1.Location = new System.Drawing.Point(100, 0);
-                        this.EntradaContador1.MaxLength = 32767;
                         this.EntradaContador1.MultiLine = false;
                         this.EntradaContador1.Name = "EntradaContador1";
                         this.EntradaContador1.Padding = new System.Windows.Forms.Padding(2);
@@ -270,7 +268,6 @@ namespace Lfc
                         this.EntradaContador4.FieldName = null;
                         this.EntradaContador4.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador4.Location = new System.Drawing.Point(100, 84);
-                        this.EntradaContador4.MaxLength = 32767;
                         this.EntradaContador4.MultiLine = false;
                         this.EntradaContador4.Name = "EntradaContador4";
                         this.EntradaContador4.Padding = new System.Windows.Forms.Padding(2);
@@ -308,7 +305,6 @@ namespace Lfc
                         this.EntradaContador3.FieldName = null;
                         this.EntradaContador3.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContador3.Location = new System.Drawing.Point(100, 56);
-                        this.EntradaContador3.MaxLength = 32767;
                         this.EntradaContador3.MultiLine = false;
                         this.EntradaContador3.Name = "EntradaContador3";
                         this.EntradaContador3.Padding = new System.Windows.Forms.Padding(2);

@@ -93,7 +93,6 @@ namespace Lfc.Ciudades
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -114,7 +113,6 @@ namespace Lfc.Ciudades
                         this.EntradaCp.FieldName = null;
                         this.EntradaCp.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCp.Location = new System.Drawing.Point(116, 76);
-                        this.EntradaCp.MaxLength = 32767;
                         this.EntradaCp.MultiLine = false;
                         this.EntradaCp.Name = "EntradaCp";
                         this.EntradaCp.Padding = new System.Windows.Forms.Padding(2);
@@ -179,7 +177,6 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.AutoSize = true;
                         this.EntradaNivel.FieldName = null;
                         this.EntradaNivel.Location = new System.Drawing.Point(116, 32);
-                        this.EntradaNivel.MaxLength = 32767;
                         this.EntradaNivel.Name = "EntradaNivel";
                         this.EntradaNivel.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNivel.PlaceholderText = null;
@@ -199,7 +196,6 @@ namespace Lfc.Ciudades
                         this.EntradaIva.AutoSize = true;
                         this.EntradaIva.FieldName = null;
                         this.EntradaIva.Location = new System.Drawing.Point(116, 140);
-                        this.EntradaIva.MaxLength = 32767;
                         this.EntradaIva.Name = "EntradaIva";
                         this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaIva.PlaceholderText = null;

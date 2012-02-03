@@ -58,7 +58,7 @@ namespace Lfc.Articulos
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.ProductArray = new Lcc.Entrada.Articulos.MatrizDetalleComprobante();
+                        this.MatrizArticulos = new Lcc.Entrada.Articulos.MatrizDetalleComprobante();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -71,39 +71,38 @@ namespace Lfc.Articulos
                         // 
                         // ProductArray
                         // 
-                        this.ProductArray.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.MatrizArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ProductArray.AutoScroll = true;
-                        this.ProductArray.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.ProductArray.Count = 0;
-                        this.ProductArray.FreeTextCode = "*";
-                        this.ProductArray.Location = new System.Drawing.Point(12, 12);
-                        this.ProductArray.LockPrice = true;
-                        this.ProductArray.LockQuantity = false;
-                        this.ProductArray.LockText = false;
-                        this.ProductArray.MaxLength = 200;
-                        this.ProductArray.Name = "ProductArray";
-                        this.ProductArray.Precio = Lcc.Entrada.Articulos.Precios.Costo;
-                        this.ProductArray.ShowStock = false;
-                        this.ProductArray.Size = new System.Drawing.Size(610, 294);
-                        this.ProductArray.TabIndex = 0;
+                        this.MatrizArticulos.AutoScroll = true;
+                        this.MatrizArticulos.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.MatrizArticulos.Count = 0;
+                        this.MatrizArticulos.FreeTextCode = "*";
+                        this.MatrizArticulos.Location = new System.Drawing.Point(12, 12);
+                        this.MatrizArticulos.LockPrice = true;
+                        this.MatrizArticulos.LockQuantity = false;
+                        this.MatrizArticulos.LockText = false;
+                        this.MatrizArticulos.Name = "ProductArray";
+                        this.MatrizArticulos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
+                        this.MatrizArticulos.ShowStock = false;
+                        this.MatrizArticulos.Size = new System.Drawing.Size(610, 294);
+                        this.MatrizArticulos.TabIndex = 0;
                         // 
                         // Receta
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(634, 372);
-                        this.Controls.Add(this.ProductArray);
+                        this.Controls.Add(this.MatrizArticulos);
                         this.Name = "Receta";
                         this.Text = "Receta";
-                        this.Controls.SetChildIndex(this.ProductArray, 0);
+                        this.Controls.SetChildIndex(this.MatrizArticulos, 0);
                         this.ResumeLayout(false);
 
                 }
 
                 #endregion
 
-                public Lcc.Entrada.Articulos.MatrizDetalleComprobante ProductArray;
+                public Lcc.Entrada.Articulos.MatrizDetalleComprobante MatrizArticulos;
         }
 }

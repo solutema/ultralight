@@ -228,17 +228,6 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                public int MaxLength
-                {
-                        get
-                        {
-                                return EntradaArticulo.MaxLength;
-                        }
-                        set
-                        {
-                                EntradaArticulo.MaxLength = value;
-                        }
-                }
 
                 public bool ProductoSoloLectura
                 {
@@ -251,6 +240,7 @@ namespace Lcc.Entrada.Articulos
                                 EntradaArticulo.TemporaryReadOnly = value;
                         }
                 }
+
 
                 public bool CantidadSoloLectura
                 {

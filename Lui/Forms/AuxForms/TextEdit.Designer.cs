@@ -65,7 +65,6 @@ namespace Lui.Forms.AuxForms
                         this.EntradaTexto.DecimalPlaces = -1;
                         this.EntradaTexto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTexto.Location = new System.Drawing.Point(28, 28);
-                        this.EntradaTexto.MaxLength = 32767;
                         this.EntradaTexto.MultiLine = true;
                         this.EntradaTexto.Name = "EntradaTexto";
                         this.EntradaTexto.Padding = new System.Windows.Forms.Padding(1);

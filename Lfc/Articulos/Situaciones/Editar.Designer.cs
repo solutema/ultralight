@@ -85,7 +85,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(124, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -115,7 +114,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaCuentaStock.AutoSize = true;
                         this.EntradaCuentaStock.FieldName = null;
                         this.EntradaCuentaStock.Location = new System.Drawing.Point(124, 32);
-                        this.EntradaCuentaStock.MaxLength = 32767;
                         this.EntradaCuentaStock.Name = "EntradaCuentaStock";
                         this.EntradaCuentaStock.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuentaStock.PlaceholderText = null;
@@ -134,7 +132,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaFacturable.AutoSize = true;
                         this.EntradaFacturable.FieldName = null;
                         this.EntradaFacturable.Location = new System.Drawing.Point(124, 80);
-                        this.EntradaFacturable.MaxLength = 32767;
                         this.EntradaFacturable.Name = "EntradaFacturable";
                         this.EntradaFacturable.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFacturable.PlaceholderText = null;
@@ -174,7 +171,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaDeposito.FieldName = null;
                         this.EntradaDeposito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDeposito.Location = new System.Drawing.Point(124, 128);
-                        this.EntradaDeposito.MaxLength = 32767;
                         this.EntradaDeposito.MultiLine = false;
                         this.EntradaDeposito.Name = "EntradaDeposito";
                         this.EntradaDeposito.Padding = new System.Windows.Forms.Padding(2);

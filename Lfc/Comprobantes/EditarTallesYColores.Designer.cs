@@ -82,7 +82,6 @@ namespace Lfc.Comprobantes
                         this.textBox1.FieldName = null;
                         this.textBox1.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox1.Location = new System.Drawing.Point(24, 24);
-                        this.textBox1.MaxLength = 32767;
                         this.textBox1.MultiLine = false;
                         this.textBox1.Name = "textBox1";
                         this.textBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -103,7 +102,6 @@ namespace Lfc.Comprobantes
                         this.textBox2.FieldName = null;
                         this.textBox2.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox2.Location = new System.Drawing.Point(348, 24);
-                        this.textBox2.MaxLength = 32767;
                         this.textBox2.MultiLine = false;
                         this.textBox2.Name = "textBox2";
                         this.textBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -124,7 +122,6 @@ namespace Lfc.Comprobantes
                         this.textBox3.FieldName = null;
                         this.textBox3.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox3.Location = new System.Drawing.Point(348, 56);
-                        this.textBox3.MaxLength = 32767;
                         this.textBox3.MultiLine = false;
                         this.textBox3.Name = "textBox3";
                         this.textBox3.Padding = new System.Windows.Forms.Padding(2);
@@ -145,7 +142,6 @@ namespace Lfc.Comprobantes
                         this.textBox4.FieldName = null;
                         this.textBox4.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox4.Location = new System.Drawing.Point(24, 56);
-                        this.textBox4.MaxLength = 32767;
                         this.textBox4.MultiLine = false;
                         this.textBox4.Name = "textBox4";
                         this.textBox4.Padding = new System.Windows.Forms.Padding(2);
@@ -166,7 +162,6 @@ namespace Lfc.Comprobantes
                         this.textBox5.FieldName = null;
                         this.textBox5.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox5.Location = new System.Drawing.Point(348, 88);
-                        this.textBox5.MaxLength = 32767;
                         this.textBox5.MultiLine = false;
                         this.textBox5.Name = "textBox5";
                         this.textBox5.Padding = new System.Windows.Forms.Padding(2);
@@ -187,7 +182,6 @@ namespace Lfc.Comprobantes
                         this.textBox6.FieldName = null;
                         this.textBox6.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox6.Location = new System.Drawing.Point(24, 88);
-                        this.textBox6.MaxLength = 32767;
                         this.textBox6.MultiLine = false;
                         this.textBox6.Name = "textBox6";
                         this.textBox6.Padding = new System.Windows.Forms.Padding(2);

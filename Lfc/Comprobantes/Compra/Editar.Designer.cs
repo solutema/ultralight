@@ -94,7 +94,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(312, 0);
-                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = null;
@@ -129,7 +128,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.AutoNav = true;
                         this.EntradaFormaPago.FieldName = null;
                         this.EntradaFormaPago.Location = new System.Drawing.Point(188, 28);
-                        this.EntradaFormaPago.MaxLength = 32767;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPago.PlaceholderText = null;
@@ -150,7 +148,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFecha.FieldName = null;
                         this.EntradaFecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFecha.Location = new System.Drawing.Point(80, 28);
-                        this.EntradaFecha.MaxLength = 32767;
                         this.EntradaFecha.MultiLine = false;
                         this.EntradaFecha.Name = "EntradaFecha";
                         this.EntradaFecha.Padding = new System.Windows.Forms.Padding(2);
@@ -172,7 +169,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(480, 0);
-                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
@@ -221,7 +217,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(540, 0);
-                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
@@ -251,7 +246,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.LockPrice = false;
                         this.EntradaProductos.LockQuantity = false;
                         this.EntradaProductos.LockText = false;
-                        this.EntradaProductos.MaxLength = 200;
                         this.EntradaProductos.Name = "EntradaProductos";
                         this.EntradaProductos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
@@ -336,7 +330,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(288, 311);
-                        this.EntradaEstado.MaxLength = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = null;
@@ -390,7 +383,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaOtrosGastos.FieldName = null;
                         this.EntradaOtrosGastos.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaOtrosGastos.Location = new System.Drawing.Point(116, 340);
-                        this.EntradaOtrosGastos.MaxLength = 32767;
                         this.EntradaOtrosGastos.MultiLine = false;
                         this.EntradaOtrosGastos.Name = "EntradaOtrosGastos";
                         this.EntradaOtrosGastos.Padding = new System.Windows.Forms.Padding(2);
@@ -414,7 +406,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaCancelado.FieldName = null;
                         this.EntradaCancelado.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCancelado.Location = new System.Drawing.Point(516, 372);
-                        this.EntradaCancelado.MaxLength = 32767;
                         this.EntradaCancelado.MultiLine = false;
                         this.EntradaCancelado.Name = "EntradaCancelado";
                         this.EntradaCancelado.Padding = new System.Windows.Forms.Padding(2);
@@ -438,7 +429,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaGastosEnvio.FieldName = null;
                         this.EntradaGastosEnvio.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaGastosEnvio.Location = new System.Drawing.Point(116, 312);
-                        this.EntradaGastosEnvio.MaxLength = 32767;
                         this.EntradaGastosEnvio.MultiLine = false;
                         this.EntradaGastosEnvio.Name = "EntradaGastosEnvio";
                         this.EntradaGastosEnvio.Padding = new System.Windows.Forms.Padding(2);
@@ -462,7 +452,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTotal.FieldName = null;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(516, 340);
-                        this.EntradaTotal.MaxLength = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);

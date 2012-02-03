@@ -59,7 +59,7 @@ namespace Lfc.Articulos
                         {
                                 m_ReadOnly = value;
                                 //ProductArray.Enabled = !this.ReadOnly;
-                                ProductArray.TemporaryReadOnly = m_ReadOnly;
+                                MatrizArticulos.TemporaryReadOnly = m_ReadOnly;
                         }
                 }
 
@@ -74,15 +74,15 @@ namespace Lfc.Articulos
                                 m_Articulo = value;
 
                                 if (m_Articulo != null) {
-                                        ProductArray.Count = Articulo.Receta.Count;
+                                        MatrizArticulos.Count = Articulo.Receta.Count;
 
                                         for (int i = 0; i < Articulo.Receta.Count; i++) {
                                                 if (Articulo.Receta[i].Articulo == null)
-                                                        ProductArray.ChildControls[i].Text = ProductArray.FreeTextCode;
+                                                        MatrizArticulos.ChildControls[i].Text = MatrizArticulos.FreeTextCode;
                                                 else
-                                                        ProductArray.ChildControls[i].Elemento = Articulo.Receta[i].Articulo;
+                                                        MatrizArticulos.ChildControls[i].Elemento = Articulo.Receta[i].Articulo;
 
-                                                ProductArray.ChildControls[i].Cantidad = Articulo.Receta[i].Cantidad;
+                                                MatrizArticulos.ChildControls[i].Cantidad = Articulo.Receta[i].Cantidad;
                                         }
                                 }
                         }
@@ -92,9 +92,9 @@ namespace Lfc.Articulos
                 {
                         this.Articulo.Receta.Clear();
 
-                        for (int i = 0; i <= ProductArray.Count - 1; i++) {
-                                if (ProductArray.ChildControls[i].Text == ProductArray.FreeTextCode || ProductArray.ChildControls[i].Elemento != null) {
-                                        Lbl.Articulos.ItemReceta Itm = new Lbl.Articulos.ItemReceta(ProductArray.ChildControls[i].Articulo, ProductArray.ChildControls[i].Cantidad);
+                        for (int i = 0; i <= MatrizArticulos.Count - 1; i++) {
+                                if (MatrizArticulos.ChildControls[i].Text == MatrizArticulos.FreeTextCode || MatrizArticulos.ChildControls[i].Elemento != null) {
+                                        Lbl.Articulos.ItemReceta Itm = new Lbl.Articulos.ItemReceta(MatrizArticulos.ChildControls[i].Articulo, MatrizArticulos.ChildControls[i].Cantidad);
                                         this.Articulo.Receta.Add(Itm);
                                 }
                         }

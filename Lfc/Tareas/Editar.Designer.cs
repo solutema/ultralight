@@ -219,7 +219,6 @@ namespace Lfc.Tareas
                         this.EntradaAsunto.FieldName = null;
                         this.EntradaAsunto.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaAsunto.Location = new System.Drawing.Point(84, 96);
-                        this.EntradaAsunto.MaxLength = 32767;
                         this.EntradaAsunto.MultiLine = false;
                         this.EntradaAsunto.Name = "EntradaAsunto";
                         this.EntradaAsunto.Padding = new System.Windows.Forms.Padding(2);
@@ -263,7 +262,6 @@ namespace Lfc.Tareas
                         this.EntradaDescripcion.FieldName = null;
                         this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescripcion.Location = new System.Drawing.Point(84, 128);
-                        this.EntradaDescripcion.MaxLength = 32767;
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
                         this.EntradaDescripcion.Padding = new System.Windows.Forms.Padding(2);
@@ -318,7 +316,6 @@ namespace Lfc.Tareas
                         this.EntradaEntregaEstimada.FieldName = null;
                         this.EntradaEntregaEstimada.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaEntregaEstimada.Location = new System.Drawing.Point(608, 64);
-                        this.EntradaEntregaEstimada.MaxLength = 32767;
                         this.EntradaEntregaEstimada.MultiLine = false;
                         this.EntradaEntregaEstimada.Name = "EntradaEntregaEstimada";
                         this.EntradaEntregaEstimada.Padding = new System.Windows.Forms.Padding(2);
@@ -340,7 +337,6 @@ namespace Lfc.Tareas
                         this.EntradaEntregaLimite.FieldName = null;
                         this.EntradaEntregaLimite.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaEntregaLimite.Location = new System.Drawing.Point(608, 96);
-                        this.EntradaEntregaLimite.MaxLength = 32767;
                         this.EntradaEntregaLimite.MultiLine = false;
                         this.EntradaEntregaLimite.Name = "EntradaEntregaLimite";
                         this.EntradaEntregaLimite.Padding = new System.Windows.Forms.Padding(2);
@@ -362,7 +358,6 @@ namespace Lfc.Tareas
                         this.EntradaPresupuesto.FieldName = null;
                         this.EntradaPresupuesto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPresupuesto.Location = new System.Drawing.Point(556, 160);
-                        this.EntradaPresupuesto.MaxLength = 32767;
                         this.EntradaPresupuesto.MultiLine = false;
                         this.EntradaPresupuesto.Name = "EntradaPresupuesto";
                         this.EntradaPresupuesto.Padding = new System.Windows.Forms.Padding(2);
@@ -386,7 +381,6 @@ namespace Lfc.Tareas
                         this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(84, 224);
-                        this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
@@ -499,7 +493,6 @@ namespace Lfc.Tareas
                         this.EntradaFechaIngreso.FieldName = null;
                         this.EntradaFechaIngreso.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaIngreso.Location = new System.Drawing.Point(608, 32);
-                        this.EntradaFechaIngreso.MaxLength = 32767;
                         this.EntradaFechaIngreso.MultiLine = false;
                         this.EntradaFechaIngreso.Name = "EntradaFechaIngreso";
                         this.EntradaFechaIngreso.Padding = new System.Windows.Forms.Padding(2);
@@ -533,7 +526,6 @@ namespace Lfc.Tareas
                         this.EntradaComprobante.FieldName = null;
                         this.EntradaComprobante.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComprobante.Location = new System.Drawing.Point(556, 192);
-                        this.EntradaComprobante.MaxLength = 32767;
                         this.EntradaComprobante.MultiLine = false;
                         this.EntradaComprobante.Name = "EntradaComprobante";
                         this.EntradaComprobante.Padding = new System.Windows.Forms.Padding(2);
@@ -576,7 +568,6 @@ namespace Lfc.Tareas
                         this.EntradaPresupuesto2.FieldName = null;
                         this.EntradaPresupuesto2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPresupuesto2.Location = new System.Drawing.Point(652, 160);
-                        this.EntradaPresupuesto2.MaxLength = 32767;
                         this.EntradaPresupuesto2.MultiLine = false;
                         this.EntradaPresupuesto2.Name = "EntradaPresupuesto2";
                         this.EntradaPresupuesto2.Padding = new System.Windows.Forms.Padding(2);
@@ -599,7 +590,6 @@ namespace Lfc.Tareas
                         this.EntradaPrioridad.AutoSize = true;
                         this.EntradaPrioridad.FieldName = null;
                         this.EntradaPrioridad.Location = new System.Drawing.Point(556, 128);
-                        this.EntradaPrioridad.MaxLength = 32767;
                         this.EntradaPrioridad.Name = "EntradaPrioridad";
                         this.EntradaPrioridad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPrioridad.PlaceholderText = null;

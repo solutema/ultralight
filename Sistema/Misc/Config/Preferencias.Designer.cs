@@ -515,7 +515,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaActualizaciones.AutoSize = true;
                         this.EntradaActualizaciones.FieldName = null;
                         this.EntradaActualizaciones.Location = new System.Drawing.Point(248, 220);
-                        this.EntradaActualizaciones.MaxLength = 32767;
                         this.EntradaActualizaciones.Name = "EntradaActualizaciones";
                         this.EntradaActualizaciones.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaActualizaciones.PlaceholderText = null;
@@ -545,7 +544,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaAislacion.AutoSize = true;
                         this.EntradaAislacion.FieldName = null;
                         this.EntradaAislacion.Location = new System.Drawing.Point(248, 176);
-                        this.EntradaAislacion.MaxLength = 32767;
                         this.EntradaAislacion.Name = "EntradaAislacion";
                         this.EntradaAislacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAislacion.PlaceholderText = null;
@@ -564,7 +562,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaModoPantalla.AutoSize = true;
                         this.EntradaModoPantalla.FieldName = null;
                         this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 88);
-                        this.EntradaModoPantalla.MaxLength = 32767;
                         this.EntradaModoPantalla.Name = "EntradaModoPantalla";
                         this.EntradaModoPantalla.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaModoPantalla.PlaceholderText = null;
@@ -586,7 +583,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaBackup.AutoSize = true;
                         this.EntradaBackup.FieldName = null;
                         this.EntradaBackup.Location = new System.Drawing.Point(248, 32);
-                        this.EntradaBackup.MaxLength = 32767;
                         this.EntradaBackup.Name = "EntradaBackup";
                         this.EntradaBackup.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBackup.PlaceholderText = null;
@@ -635,7 +631,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaStockDecimales.AutoNav = true;
                         this.EntradaStockDecimales.FieldName = null;
                         this.EntradaStockDecimales.Location = new System.Drawing.Point(192, 92);
-                        this.EntradaStockDecimales.MaxLength = 32767;
                         this.EntradaStockDecimales.Name = "EntradaStockDecimales";
                         this.EntradaStockDecimales.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockDecimales.PlaceholderText = null;
@@ -702,7 +697,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaStockMultideposito.AutoNav = true;
                         this.EntradaStockMultideposito.FieldName = null;
                         this.EntradaStockMultideposito.Location = new System.Drawing.Point(192, 64);
-                        this.EntradaStockMultideposito.MaxLength = 32767;
                         this.EntradaStockMultideposito.Name = "EntradaStockMultideposito";
                         this.EntradaStockMultideposito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockMultideposito.PlaceholderText = null;
@@ -730,7 +724,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaArticulosCodigoPredet.AutoNav = true;
                         this.EntradaArticulosCodigoPredet.FieldName = null;
                         this.EntradaArticulosCodigoPredet.Location = new System.Drawing.Point(192, 36);
-                        this.EntradaArticulosCodigoPredet.MaxLength = 32767;
                         this.EntradaArticulosCodigoPredet.Name = "EntradaArticulosCodigoPredet";
                         this.EntradaArticulosCodigoPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaArticulosCodigoPredet.PlaceholderText = null;
@@ -763,7 +756,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(248, 100);
-                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
@@ -795,7 +787,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaPVND.FieldName = null;
                         this.EntradaPVND.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPVND.Location = new System.Drawing.Point(248, 184);
-                        this.EntradaPVND.MaxLength = 32767;
                         this.EntradaPVND.MultiLine = false;
                         this.EntradaPVND.Name = "EntradaPVND";
                         this.EntradaPVND.Padding = new System.Windows.Forms.Padding(2);
@@ -847,7 +838,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaPVNC.FieldName = null;
                         this.EntradaPVNC.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPVNC.Location = new System.Drawing.Point(248, 156);
-                        this.EntradaPVNC.MaxLength = 32767;
                         this.EntradaPVNC.MultiLine = false;
                         this.EntradaPVNC.Name = "EntradaPVNC";
                         this.EntradaPVNC.Padding = new System.Windows.Forms.Padding(2);
@@ -869,7 +859,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaPVABC.FieldName = null;
                         this.EntradaPVABC.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPVABC.Location = new System.Drawing.Point(248, 128);
-                        this.EntradaPVABC.MaxLength = 32767;
                         this.EntradaPVABC.MultiLine = false;
                         this.EntradaPVABC.Name = "EntradaPVABC";
                         this.EntradaPVABC.Padding = new System.Windows.Forms.Padding(2);
@@ -1042,7 +1031,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaMonedaDecimalesCosto.AutoNav = true;
                         this.EntradaMonedaDecimalesCosto.FieldName = null;
                         this.EntradaMonedaDecimalesCosto.Location = new System.Drawing.Point(192, 216);
-                        this.EntradaMonedaDecimalesCosto.MaxLength = 32767;
                         this.EntradaMonedaDecimalesCosto.Name = "EntradaMonedaDecimalesCosto";
                         this.EntradaMonedaDecimalesCosto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMonedaDecimalesCosto.PlaceholderText = null;
@@ -1073,7 +1061,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaMonedaDecimalesUnitarios.AutoNav = true;
                         this.EntradaMonedaDecimalesUnitarios.FieldName = null;
                         this.EntradaMonedaDecimalesUnitarios.Location = new System.Drawing.Point(192, 244);
-                        this.EntradaMonedaDecimalesUnitarios.MaxLength = 32767;
                         this.EntradaMonedaDecimalesUnitarios.Name = "EntradaMonedaDecimalesUnitarios";
                         this.EntradaMonedaDecimalesUnitarios.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMonedaDecimalesUnitarios.PlaceholderText = null;
@@ -1104,7 +1091,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaMonedaDecimalesFinal.AutoNav = true;
                         this.EntradaMonedaDecimalesFinal.FieldName = null;
                         this.EntradaMonedaDecimalesFinal.Location = new System.Drawing.Point(192, 272);
-                        this.EntradaMonedaDecimalesFinal.MaxLength = 32767;
                         this.EntradaMonedaDecimalesFinal.Name = "EntradaMonedaDecimalesFinal";
                         this.EntradaMonedaDecimalesFinal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMonedaDecimalesFinal.PlaceholderText = null;
@@ -1173,7 +1159,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaMonedaUnidadMonetariaMinima.FieldName = null;
                         this.EntradaMonedaUnidadMonetariaMinima.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMonedaUnidadMonetariaMinima.Location = new System.Drawing.Point(252, 304);
-                        this.EntradaMonedaUnidadMonetariaMinima.MaxLength = 32767;
                         this.EntradaMonedaUnidadMonetariaMinima.MultiLine = false;
                         this.EntradaMonedaUnidadMonetariaMinima.Name = "EntradaMonedaUnidadMonetariaMinima";
                         this.EntradaMonedaUnidadMonetariaMinima.Padding = new System.Windows.Forms.Padding(2);
@@ -1242,7 +1227,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaPVRC.FieldName = null;
                         this.EntradaPVRC.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPVRC.Location = new System.Drawing.Point(248, 240);
-                        this.EntradaPVRC.MaxLength = 32767;
                         this.EntradaPVRC.MultiLine = false;
                         this.EntradaPVRC.Name = "EntradaPVRC";
                         this.EntradaPVRC.Padding = new System.Windows.Forms.Padding(2);
@@ -1284,7 +1268,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaLimiteCredito.FieldName = null;
                         this.EntradaLimiteCredito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaLimiteCredito.Location = new System.Drawing.Point(248, 316);
-                        this.EntradaLimiteCredito.MaxLength = 32767;
                         this.EntradaLimiteCredito.MultiLine = false;
                         this.EntradaLimiteCredito.Name = "EntradaLimiteCredito";
                         this.EntradaLimiteCredito.Padding = new System.Windows.Forms.Padding(2);
@@ -1339,7 +1322,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaPVR.FieldName = null;
                         this.EntradaPVR.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPVR.Location = new System.Drawing.Point(248, 212);
-                        this.EntradaPVR.MaxLength = 32767;
                         this.EntradaPVR.MultiLine = false;
                         this.EntradaPVR.Name = "EntradaPVR";
                         this.EntradaPVR.Padding = new System.Windows.Forms.Padding(2);

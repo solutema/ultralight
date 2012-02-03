@@ -100,7 +100,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(72, 32);
-                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = null;
@@ -137,7 +136,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaRemito.FieldName = null;
                         this.EntradaRemito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRemito.Location = new System.Drawing.Point(464, 32);
-                        this.EntradaRemito.MaxLength = 32767;
                         this.EntradaRemito.MultiLine = false;
                         this.EntradaRemito.Name = "EntradaRemito";
                         this.EntradaRemito.Padding = new System.Windows.Forms.Padding(2);

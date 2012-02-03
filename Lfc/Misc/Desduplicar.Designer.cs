@@ -158,7 +158,6 @@ namespace Lfc.Misc
                         this.txtTipo.AutoSize = true;
                         this.txtTipo.FieldName = null;
                         this.txtTipo.Location = new System.Drawing.Point(152, 24);
-                        this.txtTipo.MaxLength = 32767;
                         this.txtTipo.Name = "txtTipo";
                         this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.PlaceholderText = null;
@@ -216,7 +215,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCteFinal.FieldName = null;
                         this.EntradaCtaCteFinal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCteFinal.Location = new System.Drawing.Point(276, 72);
-                        this.EntradaCtaCteFinal.MaxLength = 32767;
                         this.EntradaCtaCteFinal.MultiLine = false;
                         this.EntradaCtaCteFinal.Name = "EntradaCtaCteFinal";
                         this.EntradaCtaCteFinal.Padding = new System.Windows.Forms.Padding(2);
@@ -249,7 +247,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte2.FieldName = null;
                         this.EntradaCtaCte2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCte2.Location = new System.Drawing.Point(276, 36);
-                        this.EntradaCtaCte2.MaxLength = 32767;
                         this.EntradaCtaCte2.MultiLine = false;
                         this.EntradaCtaCte2.Name = "EntradaCtaCte2";
                         this.EntradaCtaCte2.Padding = new System.Windows.Forms.Padding(2);
@@ -283,7 +280,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte1.FieldName = null;
                         this.EntradaCtaCte1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCte1.Location = new System.Drawing.Point(276, 8);
-                        this.EntradaCtaCte1.MaxLength = 32767;
                         this.EntradaCtaCte1.MultiLine = false;
                         this.EntradaCtaCte1.Name = "EntradaCtaCte1";
                         this.EntradaCtaCte1.Padding = new System.Windows.Forms.Padding(2);

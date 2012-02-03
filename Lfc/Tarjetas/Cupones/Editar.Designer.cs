@@ -73,7 +73,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(160, 0);
-                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
@@ -180,7 +179,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechaPresentacion.FieldName = null;
                         this.EntradaFechaPresentacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaPresentacion.Location = new System.Drawing.Point(160, 84);
-                        this.EntradaFechaPresentacion.MaxLength = 32767;
                         this.EntradaFechaPresentacion.MultiLine = false;
                         this.EntradaFechaPresentacion.Name = "EntradaFechaPresentacion";
                         this.EntradaFechaPresentacion.Padding = new System.Windows.Forms.Padding(2);
@@ -211,7 +209,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechaAcreditacion.FieldName = null;
                         this.EntradaFechaAcreditacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaAcreditacion.Location = new System.Drawing.Point(160, 112);
-                        this.EntradaFechaAcreditacion.MaxLength = 32767;
                         this.EntradaFechaAcreditacion.MultiLine = false;
                         this.EntradaFechaAcreditacion.Name = "EntradaFechaAcreditacion";
                         this.EntradaFechaAcreditacion.Padding = new System.Windows.Forms.Padding(2);

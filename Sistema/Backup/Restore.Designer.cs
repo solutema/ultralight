@@ -178,7 +178,6 @@ namespace Lazaro.WinMain.Backup
                         this.EntradaConfirmar.FieldName = null;
                         this.EntradaConfirmar.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaConfirmar.Location = new System.Drawing.Point(500, 264);
-                        this.EntradaConfirmar.MaxLength = 32767;
                         this.EntradaConfirmar.MultiLine = false;
                         this.EntradaConfirmar.Name = "EntradaConfirmar";
                         this.EntradaConfirmar.Padding = new System.Windows.Forms.Padding(2);

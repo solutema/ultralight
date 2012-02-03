@@ -185,7 +185,6 @@ namespace Lfc.Comprobantes
                         this.EntradaBloqueada.AutoSize = true;
                         this.EntradaBloqueada.FieldName = null;
                         this.EntradaBloqueada.Location = new System.Drawing.Point(148, 80);
-                        this.EntradaBloqueada.MaxLength = 32767;
                         this.EntradaBloqueada.Name = "EntradaBloqueada";
                         this.EntradaBloqueada.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBloqueada.PlaceholderText = null;

@@ -96,7 +96,6 @@ namespace Lui.Forms
                         this.Texto.FieldName = null;
                         this.Texto.ForceCase = Lui.Forms.TextCasing.None;
                         this.Texto.Location = new System.Drawing.Point(24, 224);
-                        this.Texto.MaxLength = 32767;
                         this.Texto.MultiLine = false;
                         this.Texto.Name = "Texto";
                         this.Texto.Padding = new System.Windows.Forms.Padding(2);

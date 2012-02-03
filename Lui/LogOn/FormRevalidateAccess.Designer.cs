@@ -97,7 +97,6 @@ namespace Lui.LogOn
                         this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(164, 156);
-                        this.EntradaContrasena.MaxLength = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
@@ -139,7 +138,6 @@ namespace Lui.LogOn
                         this.EntradaUsuario.FieldName = null;
                         this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUsuario.Location = new System.Drawing.Point(164, 124);
-                        this.EntradaUsuario.MaxLength = 32767;
                         this.EntradaUsuario.MultiLine = false;
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);

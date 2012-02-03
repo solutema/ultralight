@@ -73,7 +73,6 @@ namespace Lfc
                         this.EntradaBuscar.FieldName = null;
                         this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBuscar.Location = new System.Drawing.Point(8, 8);
-                        this.EntradaBuscar.MaxLength = 32767;
                         this.EntradaBuscar.MultiLine = false;
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);

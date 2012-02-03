@@ -81,7 +81,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(235, 187);
-                        this.EntradaContrasena.MaxLength = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);

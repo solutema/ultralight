@@ -47,7 +47,6 @@ namespace Lcc.Entrada.Articulos
                 private bool m_LockPrice;
                 private bool m_AutoUpdate = true;
                 private bool m_LockQuantity;
-                private int m_MaxLength = 200;
                 private Precios m_Precio = Precios.Pvp;
 
                 public event System.EventHandler TotalChanged;
@@ -202,22 +201,6 @@ namespace Lcc.Entrada.Articulos
                                 m_Precio = value;
                                 foreach (DetalleComprobante Control in this.ChildControls) {
                                         Control.Precio = m_Precio;
-                                }
-                        }
-                }
-
-
-                public int MaxLength
-                {
-                        get
-                        {
-                                return m_MaxLength;
-                        }
-                        set
-                        {
-                                m_MaxLength = value;
-                                foreach (DetalleComprobante Control in this.ChildControls) {
-                                        Control.MaxLength = m_MaxLength;
                                 }
                         }
                 }

@@ -125,7 +125,6 @@ namespace Lcc.Edicion
                         this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
                         this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaComentario.MaxLength = 32767;
                         this.EntradaComentario.MultiLine = false;
                         this.EntradaComentario.Name = "EntradaComentario";
                         this.EntradaComentario.Padding = new System.Windows.Forms.Padding(2);

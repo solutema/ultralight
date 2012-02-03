@@ -50,6 +50,7 @@ namespace Lazaro.Pres.DisplayStyles
 
                 // Microsoft Sans Serif, Segoe UI, Bitstream Vera Sans
                 public string DefaultFontName { get; set; }
+                public string DefaultCaptionFontName { get; set; }
                 public string DefaultPrintFontName { get; set; }
                 public string DefaultMonoFontName { get; set; }
                 public System.Drawing.Font DefaultFont { get; set; }
@@ -76,10 +77,12 @@ namespace Lazaro.Pres.DisplayStyles
                         }
 
                         // Microsoft Sans Serif, Segoe UI, Bitstream Vera Sans
-                        if (TengoSegoe) {
+                        if (Lfx.Environment.SystemInformation.DesignMode == false && TengoSegoe) {
                                 DefaultFontName = "Segoe UI";
+                                DefaultCaptionFontName = "Segoe UI";
                         } else {
                                 DefaultFontName = "Bitstream Vera Sans";
+                                DefaultCaptionFontName = DefaultFontName;
                         }
                         DefaultPrintFontName = "Bitstream Vera Sans";
                         DefaultMonoFontName = "Bitstream Vera Sans Mono";
@@ -90,9 +93,9 @@ namespace Lazaro.Pres.DisplayStyles
                         SmallerFont = new System.Drawing.Font(DefaultFontName, 6.75F);
                         BigFont = new System.Drawing.Font(DefaultFontName, 12F);
                         BiggerFont = new System.Drawing.Font(DefaultFontName, 14F);
-                        MainHeaderFont = new System.Drawing.Font(DefaultFontName, 16F);
-                        GroupHeaderFont = new System.Drawing.Font(DefaultFontName, 13F);
-                        GroupHeader2Font = new System.Drawing.Font(DefaultFontName, 11F);
+                        MainHeaderFont = new System.Drawing.Font(DefaultCaptionFontName, 16F);
+                        GroupHeaderFont = new System.Drawing.Font(DefaultCaptionFontName, 13F);
+                        GroupHeader2Font = new System.Drawing.Font(DefaultCaptionFontName, 11F);
                         MonospacedFont = new System.Drawing.Font(DefaultMonoFontName, 10F);
                 }
         }

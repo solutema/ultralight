@@ -181,7 +181,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenes.AutoSize = true;
                         this.EntradaMargenes.FieldName = null;
                         this.EntradaMargenes.Location = new System.Drawing.Point(168, 156);
-                        this.EntradaMargenes.MaxLength = 32767;
                         this.EntradaMargenes.Name = "EntradaMargenes";
                         this.EntradaMargenes.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenes.PlaceholderText = null;
@@ -202,7 +201,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenAbajo.FieldName = null;
                         this.EntradaMargenAbajo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenAbajo.Location = new System.Drawing.Point(388, 172);
-                        this.EntradaMargenAbajo.MaxLength = 32767;
                         this.EntradaMargenAbajo.MultiLine = false;
                         this.EntradaMargenAbajo.Name = "EntradaMargenAbajo";
                         this.EntradaMargenAbajo.Padding = new System.Windows.Forms.Padding(2);
@@ -224,7 +222,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenArriba.FieldName = null;
                         this.EntradaMargenArriba.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenArriba.Location = new System.Drawing.Point(388, 140);
-                        this.EntradaMargenArriba.MaxLength = 32767;
                         this.EntradaMargenArriba.MultiLine = false;
                         this.EntradaMargenArriba.Name = "EntradaMargenArriba";
                         this.EntradaMargenArriba.Padding = new System.Windows.Forms.Padding(2);
@@ -246,7 +243,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenDerecha.FieldName = null;
                         this.EntradaMargenDerecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenDerecha.Location = new System.Drawing.Point(488, 156);
-                        this.EntradaMargenDerecha.MaxLength = 32767;
                         this.EntradaMargenDerecha.MultiLine = false;
                         this.EntradaMargenDerecha.Name = "EntradaMargenDerecha";
                         this.EntradaMargenDerecha.Padding = new System.Windows.Forms.Padding(2);
@@ -268,7 +264,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenIzquierda.FieldName = null;
                         this.EntradaMargenIzquierda.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenIzquierda.Location = new System.Drawing.Point(292, 156);
-                        this.EntradaMargenIzquierda.MaxLength = 32767;
                         this.EntradaMargenIzquierda.MultiLine = false;
                         this.EntradaMargenIzquierda.Name = "EntradaMargenIzquierda";
                         this.EntradaMargenIzquierda.Padding = new System.Windows.Forms.Padding(2);
@@ -299,7 +294,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaLandscape.AutoSize = true;
                         this.EntradaLandscape.FieldName = null;
                         this.EntradaLandscape.Location = new System.Drawing.Point(264, 68);
-                        this.EntradaLandscape.MaxLength = 32767;
                         this.EntradaLandscape.Name = "EntradaLandscape";
                         this.EntradaLandscape.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLandscape.PlaceholderText = null;
@@ -352,7 +346,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.FieldName = null;
                         this.EntradaFuenteTamano.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(428, 268);
-                        this.EntradaFuenteTamano.MaxLength = 32767;
                         this.EntradaFuenteTamano.MultiLine = false;
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
@@ -374,7 +367,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuente.AutoSize = true;
                         this.EntradaFuente.FieldName = null;
                         this.EntradaFuente.Location = new System.Drawing.Point(168, 268);
-                        this.EntradaFuente.MaxLength = 32767;
                         this.EntradaFuente.Name = "EntradaFuente";
                         this.EntradaFuente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuente.PlaceholderText = null;
@@ -417,7 +409,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaPapelTamano.AutoSize = true;
                         this.EntradaPapelTamano.FieldName = null;
                         this.EntradaPapelTamano.Location = new System.Drawing.Point(168, 68);
-                        this.EntradaPapelTamano.MaxLength = 32767;
                         this.EntradaPapelTamano.Name = "EntradaPapelTamano";
                         this.EntradaPapelTamano.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPapelTamano.PlaceholderText = null;
@@ -451,7 +442,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(168, 40);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -483,7 +473,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCodigo.FieldName = null;
                         this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo.Location = new System.Drawing.Point(168, 12);
-                        this.EntradaCodigo.MaxLength = 32767;
                         this.EntradaCodigo.MultiLine = false;
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
@@ -514,7 +503,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMembrete.AutoSize = true;
                         this.EntradaMembrete.FieldName = null;
                         this.EntradaMembrete.Location = new System.Drawing.Point(168, 208);
-                        this.EntradaMembrete.MaxLength = 32767;
                         this.EntradaMembrete.Name = "EntradaMembrete";
                         this.EntradaMembrete.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMembrete.PlaceholderText = null;
@@ -535,7 +523,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCopias.FieldName = null;
                         this.EntradaCopias.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCopias.Location = new System.Drawing.Point(168, 356);
-                        this.EntradaCopias.MaxLength = 32767;
                         this.EntradaCopias.MultiLine = false;
                         this.EntradaCopias.Name = "EntradaCopias";
                         this.EntradaCopias.Padding = new System.Windows.Forms.Padding(2);

@@ -154,7 +154,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(104, 52);
-                        this.EntradaImporte.MaxLength = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);

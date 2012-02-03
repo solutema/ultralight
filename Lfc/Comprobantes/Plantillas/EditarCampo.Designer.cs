@@ -110,7 +110,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaTexto.FieldName = null;
                         this.EntradaTexto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTexto.Location = new System.Drawing.Point(108, 24);
-                        this.EntradaTexto.MaxLength = 32767;
                         this.EntradaTexto.MultiLine = false;
                         this.EntradaTexto.Name = "EntradaTexto";
                         this.EntradaTexto.Padding = new System.Windows.Forms.Padding(2);
@@ -152,7 +151,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaX.FieldName = null;
                         this.EntradaX.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaX.Location = new System.Drawing.Point(108, 88);
-                        this.EntradaX.MaxLength = 32767;
                         this.EntradaX.MultiLine = false;
                         this.EntradaX.Name = "EntradaX";
                         this.EntradaX.Padding = new System.Windows.Forms.Padding(2);
@@ -173,7 +171,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaY.FieldName = null;
                         this.EntradaY.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaY.Location = new System.Drawing.Point(176, 88);
-                        this.EntradaY.MaxLength = 32767;
                         this.EntradaY.MultiLine = false;
                         this.EntradaY.Name = "EntradaY";
                         this.EntradaY.Padding = new System.Windows.Forms.Padding(2);
@@ -202,7 +199,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteNombre.AutoNav = true;
                         this.EntradaFuenteNombre.FieldName = null;
                         this.EntradaFuenteNombre.Location = new System.Drawing.Point(108, 120);
-                        this.EntradaFuenteNombre.MaxLength = 32767;
                         this.EntradaFuenteNombre.Name = "EntradaFuenteNombre";
                         this.EntradaFuenteNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuenteNombre.PlaceholderText = null;
@@ -236,7 +232,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlto.FieldName = null;
                         this.EntradaAlto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAlto.Location = new System.Drawing.Point(396, 88);
-                        this.EntradaAlto.MaxLength = 32767;
                         this.EntradaAlto.MultiLine = false;
                         this.EntradaAlto.Name = "EntradaAlto";
                         this.EntradaAlto.Padding = new System.Windows.Forms.Padding(2);
@@ -257,7 +252,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAncho.FieldName = null;
                         this.EntradaAncho.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAncho.Location = new System.Drawing.Point(324, 88);
-                        this.EntradaAncho.MaxLength = 32767;
                         this.EntradaAncho.MultiLine = false;
                         this.EntradaAncho.Name = "EntradaAncho";
                         this.EntradaAncho.Padding = new System.Windows.Forms.Padding(2);
@@ -298,7 +292,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.FieldName = null;
                         this.EntradaFuenteTamano.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(372, 120);
-                        this.EntradaFuenteTamano.MaxLength = 32767;
                         this.EntradaFuenteTamano.MultiLine = false;
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
@@ -320,7 +313,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlienacionHorizontal.AutoSize = true;
                         this.EntradaAlienacionHorizontal.FieldName = null;
                         this.EntradaAlienacionHorizontal.Location = new System.Drawing.Point(108, 152);
-                        this.EntradaAlienacionHorizontal.MaxLength = 32767;
                         this.EntradaAlienacionHorizontal.Name = "EntradaAlienacionHorizontal";
                         this.EntradaAlienacionHorizontal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAlienacionHorizontal.PlaceholderText = null;
@@ -350,7 +342,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlienacionVertical.AutoSize = true;
                         this.EntradaAlienacionVertical.FieldName = null;
                         this.EntradaAlienacionVertical.Location = new System.Drawing.Point(256, 152);
-                        this.EntradaAlienacionVertical.MaxLength = 32767;
                         this.EntradaAlienacionVertical.Name = "EntradaAlienacionVertical";
                         this.EntradaAlienacionVertical.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAlienacionVertical.PlaceholderText = null;
@@ -371,7 +362,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAnchoBorde.FieldName = null;
                         this.EntradaAnchoBorde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAnchoBorde.Location = new System.Drawing.Point(108, 264);
-                        this.EntradaAnchoBorde.MaxLength = 32767;
                         this.EntradaAnchoBorde.MultiLine = false;
                         this.EntradaAnchoBorde.Name = "EntradaAnchoBorde";
                         this.EntradaAnchoBorde.Padding = new System.Windows.Forms.Padding(2);
@@ -434,7 +424,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAjusteTexto.AutoSize = true;
                         this.EntradaAjusteTexto.FieldName = null;
                         this.EntradaAjusteTexto.Location = new System.Drawing.Point(108, 216);
-                        this.EntradaAjusteTexto.MaxLength = 32767;
                         this.EntradaAjusteTexto.Name = "EntradaAjusteTexto";
                         this.EntradaAjusteTexto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAjusteTexto.PlaceholderText = null;
@@ -463,7 +452,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFormato.Enabled = false;
                         this.EntradaFormato.FieldName = null;
                         this.EntradaFormato.Location = new System.Drawing.Point(108, 56);
-                        this.EntradaFormato.MaxLength = 32767;
                         this.EntradaFormato.Name = "EntradaFormato";
                         this.EntradaFormato.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormato.PlaceholderText = null;

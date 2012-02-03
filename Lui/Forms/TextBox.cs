@@ -89,6 +89,7 @@ namespace Lui.Forms
                         }
                 }
 
+
 		public virtual string Prefijo
 		{
 			get
@@ -104,6 +105,7 @@ namespace Lui.Forms
 				this.ResumeLayout();
 			}
 		}
+
 
 		public string Sufijo
 		{
@@ -121,6 +123,21 @@ namespace Lui.Forms
 			}
 		}
 
+
+                [DefaultValue(32767)]
+                public int MaxLength
+                {
+                        get
+                        {
+                                return TextBox1.MaxLength;
+                        }
+                        set
+                        {
+                                TextBox1.MaxLength = value;
+                        }
+                }
+
+
 		public int DecimalPlaces
 		{
 			get
@@ -135,6 +152,7 @@ namespace Lui.Forms
 				IgnoreChanges--;
 			}
 		}
+
 
 		[EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),

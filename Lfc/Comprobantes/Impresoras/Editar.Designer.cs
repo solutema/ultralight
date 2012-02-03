@@ -89,7 +89,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -122,7 +121,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaUbicacion.FieldName = null;
                         this.EntradaUbicacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUbicacion.Location = new System.Drawing.Point(120, 160);
-                        this.EntradaUbicacion.MaxLength = 32767;
                         this.EntradaUbicacion.MultiLine = false;
                         this.EntradaUbicacion.Name = "EntradaUbicacion";
                         this.EntradaUbicacion.Padding = new System.Windows.Forms.Padding(2);
@@ -152,7 +150,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTalonario.AutoSize = true;
                         this.EntradaTalonario.FieldName = null;
                         this.EntradaTalonario.Location = new System.Drawing.Point(244, 196);
-                        this.EntradaTalonario.MaxLength = 32767;
                         this.EntradaTalonario.Name = "EntradaTalonario";
                         this.EntradaTalonario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTalonario.PlaceholderText = null;
@@ -182,7 +179,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalBps.Enabled = false;
                         this.EntradaFiscalBps.FieldName = null;
                         this.EntradaFiscalBps.Location = new System.Drawing.Point(244, 392);
-                        this.EntradaFiscalBps.MaxLength = 32767;
                         this.EntradaFiscalBps.Name = "EntradaFiscalBps";
                         this.EntradaFiscalBps.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFiscalBps.PlaceholderText = null;
@@ -212,7 +208,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalPuerto.Enabled = false;
                         this.EntradaFiscalPuerto.FieldName = null;
                         this.EntradaFiscalPuerto.Location = new System.Drawing.Point(244, 344);
-                        this.EntradaFiscalPuerto.MaxLength = 32767;
                         this.EntradaFiscalPuerto.Name = "EntradaFiscalPuerto";
                         this.EntradaFiscalPuerto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFiscalPuerto.PlaceholderText = null;
@@ -232,7 +227,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalModelo.Enabled = false;
                         this.EntradaFiscalModelo.FieldName = null;
                         this.EntradaFiscalModelo.Location = new System.Drawing.Point(244, 284);
-                        this.EntradaFiscalModelo.MaxLength = 32767;
                         this.EntradaFiscalModelo.Name = "EntradaFiscalModelo";
                         this.EntradaFiscalModelo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFiscalModelo.PlaceholderText = null;
@@ -282,7 +276,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(120, 32);
-                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = null;
@@ -313,7 +306,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaCarga.AutoSize = true;
                         this.EntradaCarga.FieldName = null;
                         this.EntradaCarga.Location = new System.Drawing.Point(244, 240);
-                        this.EntradaCarga.MaxLength = 32767;
                         this.EntradaCarga.Name = "EntradaCarga";
                         this.EntradaCarga.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCarga.PlaceholderText = null;
@@ -343,7 +335,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaEstacion.FieldName = null;
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(120, 96);
-                        this.EntradaEstacion.MaxLength = 32767;
                         this.EntradaEstacion.MultiLine = false;
                         this.EntradaEstacion.Name = "EntradaEstacion";
                         this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
@@ -381,7 +372,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaDispositivo.FieldName = null;
                         this.EntradaDispositivo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDispositivo.Location = new System.Drawing.Point(120, 128);
-                        this.EntradaDispositivo.MaxLength = 32767;
                         this.EntradaDispositivo.MultiLine = false;
                         this.EntradaDispositivo.Name = "EntradaDispositivo";
                         this.EntradaDispositivo.Padding = new System.Windows.Forms.Padding(2);

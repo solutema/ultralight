@@ -105,7 +105,6 @@ namespace Lfc.Pvs
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(140, 184);
-                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = null;
@@ -147,7 +146,6 @@ namespace Lfc.Pvs
                         this.EntradaEstacion.FieldName = null;
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(140, 244);
-                        this.EntradaEstacion.MaxLength = 32767;
                         this.EntradaEstacion.MultiLine = false;
                         this.EntradaEstacion.Name = "EntradaEstacion";
                         this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
@@ -166,7 +164,6 @@ namespace Lfc.Pvs
                         this.EntradaCarga.AutoNav = true;
                         this.EntradaCarga.FieldName = null;
                         this.EntradaCarga.Location = new System.Drawing.Point(212, 312);
-                        this.EntradaCarga.MaxLength = 32767;
                         this.EntradaCarga.Name = "EntradaCarga";
                         this.EntradaCarga.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCarga.PlaceholderText = null;
@@ -274,7 +271,6 @@ namespace Lfc.Pvs
                         this.EntradaModelo.Enabled = false;
                         this.EntradaModelo.FieldName = null;
                         this.EntradaModelo.Location = new System.Drawing.Point(212, 344);
-                        this.EntradaModelo.MaxLength = 32767;
                         this.EntradaModelo.Name = "EntradaModelo";
                         this.EntradaModelo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaModelo.PlaceholderText = null;
@@ -294,7 +290,6 @@ namespace Lfc.Pvs
                         this.EntradaPuerto.Enabled = false;
                         this.EntradaPuerto.FieldName = null;
                         this.EntradaPuerto.Location = new System.Drawing.Point(212, 376);
-                        this.EntradaPuerto.MaxLength = 32767;
                         this.EntradaPuerto.Name = "EntradaPuerto";
                         this.EntradaPuerto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPuerto.PlaceholderText = null;
@@ -313,7 +308,6 @@ namespace Lfc.Pvs
                         this.EntradaBps.Enabled = false;
                         this.EntradaBps.FieldName = null;
                         this.EntradaBps.Location = new System.Drawing.Point(212, 408);
-                        this.EntradaBps.MaxLength = 32767;
                         this.EntradaBps.Name = "EntradaBps";
                         this.EntradaBps.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBps.PlaceholderText = null;
@@ -332,7 +326,6 @@ namespace Lfc.Pvs
                         this.EntradaTipoFac.AutoSize = true;
                         this.EntradaTipoFac.FieldName = null;
                         this.EntradaTipoFac.Location = new System.Drawing.Point(140, 96);
-                        this.EntradaTipoFac.MaxLength = 32767;
                         this.EntradaTipoFac.Name = "EntradaTipoFac";
                         this.EntradaTipoFac.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipoFac.PlaceholderText = null;
@@ -363,7 +356,6 @@ namespace Lfc.Pvs
                         this.EntradaDeTalonario.AutoNav = true;
                         this.EntradaDeTalonario.FieldName = null;
                         this.EntradaDeTalonario.Location = new System.Drawing.Point(212, 280);
-                        this.EntradaDeTalonario.MaxLength = 32767;
                         this.EntradaDeTalonario.Name = "EntradaDeTalonario";
                         this.EntradaDeTalonario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDeTalonario.PlaceholderText = null;
@@ -408,7 +400,6 @@ namespace Lfc.Pvs
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(140, 0);
-                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);

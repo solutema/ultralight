@@ -127,7 +127,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaPv.AutoNav = true;
                         this.EntradaPv.AutoSize = true;
                         this.EntradaPv.Location = new System.Drawing.Point(188, 24);
-                        this.EntradaPv.MaxLength = 32767;
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPv.ReadOnly = false;

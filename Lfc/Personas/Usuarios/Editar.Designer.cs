@@ -77,7 +77,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaAcceso.AutoSize = true;
                         this.EntradaAcceso.FieldName = null;
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
-                        this.EntradaAcceso.MaxLength = 32767;
                         this.EntradaAcceso.Name = "EntradaAcceso";
                         this.EntradaAcceso.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAcceso.PlaceholderText = null;
@@ -85,7 +84,7 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaAcceso.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaAcceso.Size = new System.Drawing.Size(72, 36);
+                        this.EntradaAcceso.Size = new System.Drawing.Size(72, 40);
                         this.EntradaAcceso.TabIndex = 1;
                         this.EntradaAcceso.TextKey = "1";
                         // 
@@ -107,7 +106,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(348, 0);
-                        this.EntradaContrasena.MaxLength = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
@@ -115,7 +113,7 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaContrasena.PlaceholderText = null;
                         this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
-                        this.EntradaContrasena.SelectOnFocus = false;
+                        this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
                         this.EntradaContrasena.Sufijo = "";
                         this.EntradaContrasena.TabIndex = 3;
@@ -177,7 +175,9 @@ namespace Lfc.Personas.Usuarios
                         // BotonAgregar
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonAgregar.AutoNav = true;
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(532, 368);
@@ -194,7 +194,9 @@ namespace Lfc.Personas.Usuarios
                         // BotonQuitar
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonQuitar.AutoNav = true;
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(420, 368);

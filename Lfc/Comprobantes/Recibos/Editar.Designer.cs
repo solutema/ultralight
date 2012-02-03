@@ -156,7 +156,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(112, 0);
-                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
@@ -444,7 +443,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConceptoTexto.FieldName = null;
                         this.EntradaConceptoTexto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaConceptoTexto.Location = new System.Drawing.Point(84, 28);
-                        this.EntradaConceptoTexto.MaxLength = 32767;
                         this.EntradaConceptoTexto.MultiLine = false;
                         this.EntradaConceptoTexto.Name = "EntradaConceptoTexto";
                         this.EntradaConceptoTexto.Padding = new System.Windows.Forms.Padding(2);
@@ -523,7 +521,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(76, 0);
-                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);

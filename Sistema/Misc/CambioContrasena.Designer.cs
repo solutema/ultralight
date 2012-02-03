@@ -82,7 +82,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(312, 136);
-                        this.EntradaContrasena.MaxLength = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
@@ -201,7 +200,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaContrasenaNueva1.FieldName = null;
                         this.EntradaContrasenaNueva1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasenaNueva1.Location = new System.Drawing.Point(312, 167);
-                        this.EntradaContrasenaNueva1.MaxLength = 32767;
                         this.EntradaContrasenaNueva1.MultiLine = false;
                         this.EntradaContrasenaNueva1.Name = "EntradaContrasenaNueva1";
                         this.EntradaContrasenaNueva1.Padding = new System.Windows.Forms.Padding(2);
@@ -235,7 +233,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaContrasenaNueva2.FieldName = null;
                         this.EntradaContrasenaNueva2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasenaNueva2.Location = new System.Drawing.Point(312, 196);
-                        this.EntradaContrasenaNueva2.MaxLength = 32767;
                         this.EntradaContrasenaNueva2.MultiLine = false;
                         this.EntradaContrasenaNueva2.Name = "EntradaContrasenaNueva2";
                         this.EntradaContrasenaNueva2.Padding = new System.Windows.Forms.Padding(2);

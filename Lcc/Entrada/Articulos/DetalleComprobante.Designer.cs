@@ -103,7 +103,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaDescuento.FieldName = null;
                         this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescuento.Location = new System.Drawing.Point(376, 24);
-                        this.EntradaDescuento.MaxLength = 32767;
                         this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
@@ -128,7 +127,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(412, 0);
-                        this.EntradaImporte.MaxLength = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
@@ -152,7 +150,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaUnitario.FieldName = null;
                         this.EntradaUnitario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUnitario.Location = new System.Drawing.Point(240, 0);
-                        this.EntradaUnitario.MaxLength = 32767;
                         this.EntradaUnitario.MultiLine = false;
                         this.EntradaUnitario.Name = "EntradaUnitario";
                         this.EntradaUnitario.Padding = new System.Windows.Forms.Padding(2);
@@ -178,7 +175,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.FieldName = null;
                         this.EntradaCantidad.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCantidad.Location = new System.Drawing.Point(320, 0);
-                        this.EntradaCantidad.MaxLength = 32767;
                         this.EntradaCantidad.MultiLine = false;
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);

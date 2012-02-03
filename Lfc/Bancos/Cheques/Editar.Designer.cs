@@ -71,7 +71,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaEmisor.FieldName = null;
                         this.EntradaEmisor.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaEmisor.Location = new System.Drawing.Point(140, 0);
-                        this.EntradaEmisor.MaxLength = 32767;
                         this.EntradaEmisor.MultiLine = false;
                         this.EntradaEmisor.Name = "EntradaEmisor";
                         this.EntradaEmisor.Padding = new System.Windows.Forms.Padding(2);
@@ -92,7 +91,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(140, 64);
-                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
@@ -167,7 +165,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaCobro.FieldName = null;
                         this.EntradaFechaCobro.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaCobro.Location = new System.Drawing.Point(140, 128);
-                        this.EntradaFechaCobro.MaxLength = 32767;
                         this.EntradaFechaCobro.MultiLine = false;
                         this.EntradaFechaCobro.Name = "EntradaFechaCobro";
                         this.EntradaFechaCobro.Padding = new System.Windows.Forms.Padding(2);
@@ -198,7 +195,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaEmision.FieldName = null;
                         this.EntradaFechaEmision.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaEmision.Location = new System.Drawing.Point(140, 96);
-                        this.EntradaFechaEmision.MaxLength = 32767;
                         this.EntradaFechaEmision.MultiLine = false;
                         this.EntradaFechaEmision.Name = "EntradaFechaEmision";
                         this.EntradaFechaEmision.Padding = new System.Windows.Forms.Padding(2);

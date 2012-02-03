@@ -89,7 +89,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFrecuencia.AutoNav = true;
                         this.EntradaFrecuencia.FieldName = null;
                         this.EntradaFrecuencia.Location = new System.Drawing.Point(96, 76);
-                        this.EntradaFrecuencia.MaxLength = 32767;
                         this.EntradaFrecuencia.Name = "EntradaFrecuencia";
                         this.EntradaFrecuencia.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFrecuencia.PlaceholderText = null;
@@ -128,7 +127,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(96, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -210,7 +208,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFechaInicio.FieldName = null;
                         this.EntradaFechaInicio.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaInicio.Location = new System.Drawing.Point(96, 40);
-                        this.EntradaFechaInicio.MaxLength = 32767;
                         this.EntradaFechaInicio.MultiLine = false;
                         this.EntradaFechaInicio.Name = "EntradaFechaInicio";
                         this.EntradaFechaInicio.Padding = new System.Windows.Forms.Padding(2);
@@ -241,7 +238,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFechaFin.FieldName = null;
                         this.EntradaFechaFin.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaFin.Location = new System.Drawing.Point(408, 40);
-                        this.EntradaFechaFin.MaxLength = 32767;
                         this.EntradaFechaFin.MultiLine = false;
                         this.EntradaFechaFin.Name = "EntradaFechaFin";
                         this.EntradaFechaFin.Padding = new System.Windows.Forms.Padding(2);
@@ -262,7 +258,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaRepetir.FieldName = null;
                         this.EntradaRepetir.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRepetir.Location = new System.Drawing.Point(408, 68);
-                        this.EntradaRepetir.MaxLength = 32767;
                         this.EntradaRepetir.MultiLine = false;
                         this.EntradaRepetir.Name = "EntradaRepetir";
                         this.EntradaRepetir.Padding = new System.Windows.Forms.Padding(2);
@@ -346,7 +341,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(96, 68);
-                        this.EntradaImporte.MaxLength = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
@@ -376,7 +370,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(96, 32);
-                        this.EntradaEstado.MaxLength = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = null;
@@ -399,7 +392,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(96, 64);
-                        this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);

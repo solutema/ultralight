@@ -246,17 +246,6 @@ namespace Lui.Forms
                         }
                 }
 
-                public int MaxLength
-                {
-                        get
-                        {
-                                return TextBox1.MaxLength;
-                        }
-                        set
-                        {
-                                TextBox1.MaxLength = value;
-                        }
-                }
 
                 private void TextBoxBase_GotFocus(object sender, System.EventArgs e)
                 {

@@ -132,7 +132,7 @@ namespace Lfc.Personas
                         this.EntradaEmail.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaEmail.Location = new System.Drawing.Point(128, 200);
                         this.EntradaEmail.MaximumSize = new System.Drawing.Size(480, 32);
-                        this.EntradaEmail.MaxLength = 32767;
+                        this.EntradaEmail.MaxLength = 200;
                         this.EntradaEmail.MultiLine = false;
                         this.EntradaEmail.Name = "EntradaEmail";
                         this.EntradaEmail.Padding = new System.Windows.Forms.Padding(2);
@@ -140,7 +140,7 @@ namespace Lfc.Personas
                         this.EntradaEmail.PlaceholderText = null;
                         this.EntradaEmail.Prefijo = "";
                         this.EntradaEmail.ReadOnly = false;
-                        this.EntradaEmail.SelectOnFocus = true;
+                        this.EntradaEmail.SelectOnFocus = false;
                         this.EntradaEmail.Size = new System.Drawing.Size(212, 24);
                         this.EntradaEmail.Sufijo = "";
                         this.EntradaEmail.TabIndex = 7;
@@ -184,7 +184,7 @@ namespace Lfc.Personas
                         this.EntradaDomicilio.ForceCase = Lui.Forms.TextCasing.Caption;
                         this.EntradaDomicilio.Location = new System.Drawing.Point(128, 40);
                         this.EntradaDomicilio.MaximumSize = new System.Drawing.Size(480, 32);
-                        this.EntradaDomicilio.MaxLength = 32767;
+                        this.EntradaDomicilio.MaxLength = 200;
                         this.EntradaDomicilio.MultiLine = false;
                         this.EntradaDomicilio.Name = "EntradaDomicilio";
                         this.EntradaDomicilio.Padding = new System.Windows.Forms.Padding(2);
@@ -205,7 +205,7 @@ namespace Lfc.Personas
                         this.EntradaNumDoc.FieldName = null;
                         this.EntradaNumDoc.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumDoc.Location = new System.Drawing.Point(208, 136);
-                        this.EntradaNumDoc.MaxLength = 10;
+                        this.EntradaNumDoc.MaxLength = 50;
                         this.EntradaNumDoc.MultiLine = false;
                         this.EntradaNumDoc.Name = "EntradaNumDoc";
                         this.EntradaNumDoc.Padding = new System.Windows.Forms.Padding(2);
@@ -213,7 +213,7 @@ namespace Lfc.Personas
                         this.EntradaNumDoc.PlaceholderText = null;
                         this.EntradaNumDoc.Prefijo = "";
                         this.EntradaNumDoc.ReadOnly = false;
-                        this.EntradaNumDoc.SelectOnFocus = true;
+                        this.EntradaNumDoc.SelectOnFocus = false;
                         this.EntradaNumDoc.Size = new System.Drawing.Size(136, 24);
                         this.EntradaNumDoc.Sufijo = "";
                         this.EntradaNumDoc.TabIndex = 7;
@@ -254,7 +254,7 @@ namespace Lfc.Personas
                         this.EntradaApellido.ForceCase = Lui.Forms.TextCasing.Caption;
                         this.EntradaApellido.Location = new System.Drawing.Point(112, 72);
                         this.EntradaApellido.MaximumSize = new System.Drawing.Size(480, 32);
-                        this.EntradaApellido.MaxLength = 32767;
+                        this.EntradaApellido.MaxLength = 200;
                         this.EntradaApellido.MultiLine = false;
                         this.EntradaApellido.Name = "EntradaApellido";
                         this.EntradaApellido.Padding = new System.Windows.Forms.Padding(2);
@@ -262,7 +262,7 @@ namespace Lfc.Personas
                         this.EntradaApellido.PlaceholderText = null;
                         this.EntradaApellido.Prefijo = "";
                         this.EntradaApellido.ReadOnly = false;
-                        this.EntradaApellido.SelectOnFocus = true;
+                        this.EntradaApellido.SelectOnFocus = false;
                         this.EntradaApellido.Size = new System.Drawing.Size(232, 24);
                         this.EntradaApellido.Sufijo = "";
                         this.EntradaApellido.TabIndex = 3;
@@ -287,7 +287,7 @@ namespace Lfc.Personas
                         this.EntradaNombre.PlaceholderText = null;
                         this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
-                        this.EntradaNombre.SelectOnFocus = true;
+                        this.EntradaNombre.SelectOnFocus = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(232, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
@@ -301,7 +301,7 @@ namespace Lfc.Personas
                         this.EntradaClaveTributaria.FieldName = null;
                         this.EntradaClaveTributaria.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaClaveTributaria.Location = new System.Drawing.Point(128, 72);
-                        this.EntradaClaveTributaria.MaxLength = 32767;
+                        this.EntradaClaveTributaria.MaxLength = 50;
                         this.EntradaClaveTributaria.MultiLine = false;
                         this.EntradaClaveTributaria.Name = "EntradaClaveTributaria";
                         this.EntradaClaveTributaria.Padding = new System.Windows.Forms.Padding(2);
@@ -309,7 +309,7 @@ namespace Lfc.Personas
                         this.EntradaClaveTributaria.PlaceholderText = null;
                         this.EntradaClaveTributaria.Prefijo = "";
                         this.EntradaClaveTributaria.ReadOnly = false;
-                        this.EntradaClaveTributaria.SelectOnFocus = true;
+                        this.EntradaClaveTributaria.SelectOnFocus = false;
                         this.EntradaClaveTributaria.Size = new System.Drawing.Size(142, 24);
                         this.EntradaClaveTributaria.Sufijo = "";
                         this.EntradaClaveTributaria.TabIndex = 3;
@@ -334,7 +334,7 @@ namespace Lfc.Personas
                         this.EntradaRazonSocial.PlaceholderText = null;
                         this.EntradaRazonSocial.Prefijo = "";
                         this.EntradaRazonSocial.ReadOnly = false;
-                        this.EntradaRazonSocial.SelectOnFocus = true;
+                        this.EntradaRazonSocial.SelectOnFocus = false;
                         this.EntradaRazonSocial.Size = new System.Drawing.Size(212, 24);
                         this.EntradaRazonSocial.Sufijo = "";
                         this.EntradaRazonSocial.TabIndex = 1;
@@ -469,7 +469,7 @@ namespace Lfc.Personas
                         this.EntradaFechaNac.FieldName = null;
                         this.EntradaFechaNac.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaNac.Location = new System.Drawing.Point(208, 168);
-                        this.EntradaFechaNac.MaxLength = 32767;
+                        this.EntradaFechaNac.MaxLength = 10;
                         this.EntradaFechaNac.MultiLine = false;
                         this.EntradaFechaNac.Name = "EntradaFechaNac";
                         this.EntradaFechaNac.Padding = new System.Windows.Forms.Padding(2);
@@ -477,7 +477,7 @@ namespace Lfc.Personas
                         this.EntradaFechaNac.PlaceholderText = null;
                         this.EntradaFechaNac.Prefijo = "";
                         this.EntradaFechaNac.ReadOnly = false;
-                        this.EntradaFechaNac.SelectOnFocus = true;
+                        this.EntradaFechaNac.SelectOnFocus = false;
                         this.EntradaFechaNac.Size = new System.Drawing.Size(136, 24);
                         this.EntradaFechaNac.Sufijo = "";
                         this.EntradaFechaNac.TabIndex = 13;
@@ -545,7 +545,6 @@ namespace Lfc.Personas
                         this.EntradaTipoFac.AutoNav = true;
                         this.EntradaTipoFac.FieldName = null;
                         this.EntradaTipoFac.Location = new System.Drawing.Point(128, 136);
-                        this.EntradaTipoFac.MaxLength = 32767;
                         this.EntradaTipoFac.Name = "EntradaTipoFac";
                         this.EntradaTipoFac.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipoFac.PlaceholderText = null;
@@ -732,7 +731,6 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.AutoSize = true;
                         this.EntradaEstadoCredito.FieldName = null;
                         this.EntradaEstadoCredito.Location = new System.Drawing.Point(176, 232);
-                        this.EntradaEstadoCredito.MaxLength = 32767;
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
                         this.EntradaEstadoCredito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstadoCredito.PlaceholderText = null;
@@ -742,7 +740,7 @@ namespace Lfc.Personas
         "En Plan de Pagos|5",
         "Suspendido con React. Automática|10",
         "Susp. con Reactivación Manual|100"};
-                        this.EntradaEstadoCredito.Size = new System.Drawing.Size(168, 66);
+                        this.EntradaEstadoCredito.Size = new System.Drawing.Size(168, 74);
                         this.EntradaEstadoCredito.TabIndex = 9;
                         this.EntradaEstadoCredito.TextKey = "100";
                         // 
@@ -766,7 +764,6 @@ namespace Lfc.Personas
                         this.EntradaClaveBancaria.FieldName = null;
                         this.EntradaClaveBancaria.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaClaveBancaria.Location = new System.Drawing.Point(112, 168);
-                        this.EntradaClaveBancaria.MaxLength = 32767;
                         this.EntradaClaveBancaria.MultiLine = false;
                         this.EntradaClaveBancaria.Name = "EntradaClaveBancaria";
                         this.EntradaClaveBancaria.Padding = new System.Windows.Forms.Padding(2);
@@ -774,7 +771,7 @@ namespace Lfc.Personas
                         this.EntradaClaveBancaria.PlaceholderText = null;
                         this.EntradaClaveBancaria.Prefijo = "";
                         this.EntradaClaveBancaria.ReadOnly = false;
-                        this.EntradaClaveBancaria.SelectOnFocus = true;
+                        this.EntradaClaveBancaria.SelectOnFocus = false;
                         this.EntradaClaveBancaria.Size = new System.Drawing.Size(232, 24);
                         this.EntradaClaveBancaria.Sufijo = "";
                         this.EntradaClaveBancaria.TabIndex = 13;
@@ -807,7 +804,7 @@ namespace Lfc.Personas
                         this.EntradaNumeroCuenta.PlaceholderText = null;
                         this.EntradaNumeroCuenta.Prefijo = "";
                         this.EntradaNumeroCuenta.ReadOnly = false;
-                        this.EntradaNumeroCuenta.SelectOnFocus = true;
+                        this.EntradaNumeroCuenta.SelectOnFocus = false;
                         this.EntradaNumeroCuenta.Size = new System.Drawing.Size(232, 24);
                         this.EntradaNumeroCuenta.Sufijo = "";
                         this.EntradaNumeroCuenta.TabIndex = 11;
@@ -966,7 +963,6 @@ namespace Lfc.Personas
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(128, 40);
-                        this.EntradaEstado.MaxLength = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = null;
@@ -974,7 +970,7 @@ namespace Lfc.Personas
                         this.EntradaEstado.SetData = new string[] {
         "Inactivo|0",
         "Activo|1"};
-                        this.EntradaEstado.Size = new System.Drawing.Size(131, 36);
+                        this.EntradaEstado.Size = new System.Drawing.Size(131, 40);
                         this.EntradaEstado.TabIndex = 1;
                         this.EntradaEstado.TextKey = "1";
                         // 
@@ -989,7 +985,6 @@ namespace Lfc.Personas
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(472, 40);
                         this.EntradaObs.Margin = new System.Windows.Forms.Padding(6);
-                        this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
@@ -1051,7 +1046,6 @@ namespace Lfc.Personas
                         this.EntradaFechaBaja.FieldName = null;
                         this.EntradaFechaBaja.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaBaja.Location = new System.Drawing.Point(128, 112);
-                        this.EntradaFechaBaja.MaxLength = 32767;
                         this.EntradaFechaBaja.MultiLine = false;
                         this.EntradaFechaBaja.Name = "EntradaFechaBaja";
                         this.EntradaFechaBaja.Padding = new System.Windows.Forms.Padding(2);
@@ -1083,7 +1077,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAlta.FieldName = null;
                         this.EntradaFechaAlta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaAlta.Location = new System.Drawing.Point(128, 80);
-                        this.EntradaFechaAlta.MaxLength = 32767;
                         this.EntradaFechaAlta.MultiLine = false;
                         this.EntradaFechaAlta.Name = "EntradaFechaAlta";
                         this.EntradaFechaAlta.Padding = new System.Windows.Forms.Padding(2);

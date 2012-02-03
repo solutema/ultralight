@@ -114,7 +114,6 @@ namespace Lfc.Cajas
                         this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(136, 192);
-                        this.EntradaImporte.MaxLength = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
@@ -181,7 +180,6 @@ namespace Lfc.Cajas
                         this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaObs.Location = new System.Drawing.Point(136, 288);
-                        this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
@@ -213,7 +211,6 @@ namespace Lfc.Cajas
                         this.EntradaComprob.FieldName = null;
                         this.EntradaComprob.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComprob.Location = new System.Drawing.Point(136, 256);
-                        this.EntradaComprob.MaxLength = 32767;
                         this.EntradaComprob.MultiLine = false;
                         this.EntradaComprob.Name = "EntradaComprob";
                         this.EntradaComprob.Padding = new System.Windows.Forms.Padding(2);
@@ -280,7 +277,6 @@ namespace Lfc.Cajas
                         this.EntradaImporteDestino.FieldName = null;
                         this.EntradaImporteDestino.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporteDestino.Location = new System.Drawing.Point(280, 192);
-                        this.EntradaImporteDestino.MaxLength = 32767;
                         this.EntradaImporteDestino.MultiLine = false;
                         this.EntradaImporteDestino.Name = "EntradaImporteDestino";
                         this.EntradaImporteDestino.Padding = new System.Windows.Forms.Padding(2);

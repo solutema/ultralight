@@ -99,7 +99,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(108, 84);
-                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
@@ -122,7 +121,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(184, 84);
-                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
@@ -154,7 +152,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(108, 24);
-                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = null;
@@ -197,7 +194,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.FieldName = null;
                         this.EntradaCliente.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCliente.Location = new System.Drawing.Point(108, 204);
-                        this.EntradaCliente.MaxLength = 32767;
                         this.EntradaCliente.MultiLine = false;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
@@ -229,7 +225,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(108, 176);
-                        this.EntradaImporte.MaxLength = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
@@ -262,7 +257,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFecha.FieldName = null;
                         this.EntradaFecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFecha.Location = new System.Drawing.Point(108, 148);
-                        this.EntradaFecha.MaxLength = 32767;
                         this.EntradaFecha.MultiLine = false;
                         this.EntradaFecha.Name = "EntradaFecha";
                         this.EntradaFecha.Padding = new System.Windows.Forms.Padding(2);

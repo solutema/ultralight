@@ -115,7 +115,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaDesde.FieldName = null;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(184, 64);
-                        this.EntradaDesde.MaxLength = 32767;
                         this.EntradaDesde.MultiLine = false;
                         this.EntradaDesde.Name = "EntradaDesde";
                         this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
@@ -146,7 +145,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaHasta.FieldName = null;
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(368, 64);
-                        this.EntradaHasta.MaxLength = 32767;
                         this.EntradaHasta.MultiLine = false;
                         this.EntradaHasta.Name = "EntradaHasta";
                         this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
@@ -213,7 +211,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(120, 160);
-                        this.EntradaEstado.MaxLength = 32767;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = "Estado para esta chequera.";
@@ -256,7 +253,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaTitular.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTitular.Location = new System.Drawing.Point(120, 0);
                         this.EntradaTitular.MaximumSize = new System.Drawing.Size(480, 32);
-                        this.EntradaTitular.MaxLength = 32767;
                         this.EntradaTitular.MultiLine = false;
                         this.EntradaTitular.Name = "EntradaTitular";
                         this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);

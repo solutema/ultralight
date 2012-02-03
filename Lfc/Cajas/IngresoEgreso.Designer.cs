@@ -91,7 +91,6 @@ namespace Lfc.Cajas
                         this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(144, 152);
-                        this.EntradaImporte.MaxLength = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
@@ -152,7 +151,6 @@ namespace Lfc.Cajas
                         this.EntradaComprobante.FieldName = null;
                         this.EntradaComprobante.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComprobante.Location = new System.Drawing.Point(144, 216);
-                        this.EntradaComprobante.MaxLength = 32767;
                         this.EntradaComprobante.MultiLine = false;
                         this.EntradaComprobante.Name = "EntradaComprobante";
                         this.EntradaComprobante.Padding = new System.Windows.Forms.Padding(2);
@@ -186,7 +184,6 @@ namespace Lfc.Cajas
                         this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(144, 248);
-                        this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
@@ -289,7 +286,6 @@ namespace Lfc.Cajas
                         this.EntradaNuevoSaldo.FieldName = null;
                         this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNuevoSaldo.Location = new System.Drawing.Point(372, 152);
-                        this.EntradaNuevoSaldo.MaxLength = 32767;
                         this.EntradaNuevoSaldo.MultiLine = false;
                         this.EntradaNuevoSaldo.Name = "EntradaNuevoSaldo";
                         this.EntradaNuevoSaldo.Padding = new System.Windows.Forms.Padding(2);

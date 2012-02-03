@@ -110,7 +110,6 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(104, 32);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -130,7 +129,6 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaDireccion.AutoSize = true;
                         this.EntradaDireccion.FieldName = null;
                         this.EntradaDireccion.Location = new System.Drawing.Point(104, 64);
-                        this.EntradaDireccion.MaxLength = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDireccion.PlaceholderText = null;
@@ -150,7 +148,6 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaGrupo.AutoSize = true;
                         this.EntradaGrupo.FieldName = null;
                         this.EntradaGrupo.Location = new System.Drawing.Point(100, 128);
-                        this.EntradaGrupo.MaxLength = 32767;
                         this.EntradaGrupo.Name = "EntradaGrupo";
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGrupo.PlaceholderText = null;
@@ -181,7 +178,6 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaCodigo.FieldName = null;
                         this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo.Location = new System.Drawing.Point(104, 0);
-                        this.EntradaCodigo.MaxLength = 32767;
                         this.EntradaCodigo.MultiLine = false;
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);

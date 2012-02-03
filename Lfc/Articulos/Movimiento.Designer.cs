@@ -154,7 +154,6 @@ namespace Lfc.Articulos
                         this.EntradaMovimiento.AutoSize = true;
                         this.EntradaMovimiento.FieldName = null;
                         this.EntradaMovimiento.Location = new System.Drawing.Point(140, 32);
-                        this.EntradaMovimiento.MaxLength = 32767;
                         this.EntradaMovimiento.Name = "EntradaMovimiento";
                         this.EntradaMovimiento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMovimiento.PlaceholderText = null;
@@ -176,7 +175,6 @@ namespace Lfc.Articulos
                         this.EntradaCantidad.FieldName = null;
                         this.EntradaCantidad.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCantidad.Location = new System.Drawing.Point(140, 144);
-                        this.EntradaCantidad.MaxLength = 32767;
                         this.EntradaCantidad.MultiLine = false;
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);
@@ -201,7 +199,6 @@ namespace Lfc.Articulos
                         this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(140, 320);
-                        this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = false;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
@@ -242,7 +239,6 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.FieldName = null;
                         this.EntradaStockActual.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaStockActual.Location = new System.Drawing.Point(308, 256);
-                        this.EntradaStockActual.MaxLength = 32767;
                         this.EntradaStockActual.MultiLine = false;
                         this.EntradaStockActual.Name = "EntradaStockActual";
                         this.EntradaStockActual.Padding = new System.Windows.Forms.Padding(2);
@@ -264,7 +260,6 @@ namespace Lfc.Articulos
                         this.EntradaStockResult.FieldName = null;
                         this.EntradaStockResult.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaStockResult.Location = new System.Drawing.Point(428, 256);
-                        this.EntradaStockResult.MaxLength = 32767;
                         this.EntradaStockResult.MultiLine = false;
                         this.EntradaStockResult.Name = "EntradaStockResult";
                         this.EntradaStockResult.Padding = new System.Windows.Forms.Padding(2);
@@ -358,7 +353,6 @@ namespace Lfc.Articulos
                         this.EntradaStockResult2.FieldName = null;
                         this.EntradaStockResult2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaStockResult2.Location = new System.Drawing.Point(428, 288);
-                        this.EntradaStockResult2.MaxLength = 32767;
                         this.EntradaStockResult2.MultiLine = false;
                         this.EntradaStockResult2.Name = "EntradaStockResult2";
                         this.EntradaStockResult2.Padding = new System.Windows.Forms.Padding(2);
@@ -380,7 +374,6 @@ namespace Lfc.Articulos
                         this.EntradaStockActual2.FieldName = null;
                         this.EntradaStockActual2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaStockActual2.Location = new System.Drawing.Point(308, 288);
-                        this.EntradaStockActual2.MaxLength = 32767;
                         this.EntradaStockActual2.MultiLine = false;
                         this.EntradaStockActual2.Name = "EntradaStockActual2";
                         this.EntradaStockActual2.Padding = new System.Windows.Forms.Padding(2);
@@ -447,7 +440,6 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaArticulo.FreeTextCode = "";
                         this.EntradaArticulo.Location = new System.Drawing.Point(140, 88);
-                        this.EntradaArticulo.MaxLength = 200;
                         this.EntradaArticulo.MuestraPrecio = false;
                         this.EntradaArticulo.MuestraStock = false;
                         this.EntradaArticulo.Name = "EntradaArticulo";

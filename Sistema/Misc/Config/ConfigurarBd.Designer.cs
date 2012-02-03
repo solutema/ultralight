@@ -102,7 +102,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaServidor.FieldName = null;
                         this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaServidor.Location = new System.Drawing.Point(192, 164);
-                        this.EntradaServidor.MaxLength = 32767;
                         this.EntradaServidor.MultiLine = false;
                         this.EntradaServidor.Name = "EntradaServidor";
                         this.EntradaServidor.Padding = new System.Windows.Forms.Padding(2);
@@ -184,7 +183,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaSucursal.FieldName = null;
                         this.EntradaSucursal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSucursal.Location = new System.Drawing.Point(232, 144);
-                        this.EntradaSucursal.MaxLength = 32767;
                         this.EntradaSucursal.MultiLine = false;
                         this.EntradaSucursal.Name = "EntradaSucursal";
                         this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
@@ -239,7 +237,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaBD.FieldName = null;
                         this.EntradaBD.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBD.Location = new System.Drawing.Point(124, 28);
-                        this.EntradaBD.MaxLength = 32767;
                         this.EntradaBD.MultiLine = false;
                         this.EntradaBD.Name = "EntradaBD";
                         this.EntradaBD.Padding = new System.Windows.Forms.Padding(2);
@@ -268,7 +265,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaConexion.AutoNav = true;
                         this.EntradaConexion.FieldName = null;
                         this.EntradaConexion.Location = new System.Drawing.Point(124, 0);
-                        this.EntradaConexion.MaxLength = 32767;
                         this.EntradaConexion.Name = "EntradaConexion";
                         this.EntradaConexion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConexion.PlaceholderText = null;
@@ -301,7 +297,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(124, 84);
-                        this.EntradaContrasena.MaxLength = 32767;
                         this.EntradaContrasena.MultiLine = false;
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
@@ -322,7 +317,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaUsuario.FieldName = null;
                         this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUsuario.Location = new System.Drawing.Point(124, 55);
-                        this.EntradaUsuario.MaxLength = 32767;
                         this.EntradaUsuario.MultiLine = false;
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);

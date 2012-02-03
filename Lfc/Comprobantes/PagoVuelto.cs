@@ -127,7 +127,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.FieldName = null;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 92);
-                        this.EntradaTotal.MaxLength = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
@@ -151,7 +150,6 @@ namespace Lfc.Comprobantes
                         this.EntradaPago.FieldName = null;
                         this.EntradaPago.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPago.Location = new System.Drawing.Point(212, 140);
-                        this.EntradaPago.MaxLength = 32767;
                         this.EntradaPago.MultiLine = false;
                         this.EntradaPago.Name = "EntradaPago";
                         this.EntradaPago.Padding = new System.Windows.Forms.Padding(2);
@@ -186,7 +184,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCambio.FieldName = null;
                         this.EntradaCambio.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCambio.Location = new System.Drawing.Point(212, 216);
-                        this.EntradaCambio.MaxLength = 32767;
                         this.EntradaCambio.MultiLine = false;
                         this.EntradaCambio.Name = "EntradaCambio";
                         this.EntradaCambio.Padding = new System.Windows.Forms.Padding(2);

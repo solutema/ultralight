@@ -78,7 +78,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaDescuento.FieldName = null;
                         this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescuento.Location = new System.Drawing.Point(120, 64);
-                        this.EntradaDescuento.MaxLength = 32767;
                         this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
@@ -87,7 +86,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaDescuento.Prefijo = "";
                         this.EntradaDescuento.ReadOnly = false;
                         this.EntradaDescuento.SelectOnFocus = true;
-                        this.EntradaDescuento.Size = new System.Drawing.Size(84, 24);
+                        this.EntradaDescuento.Size = new System.Drawing.Size(88, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 5;
                         this.EntradaDescuento.Text = "0.0000";
@@ -110,7 +109,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 32);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -140,7 +138,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaPredet.AutoSize = true;
                         this.EntradaPredet.FieldName = null;
                         this.EntradaPredet.Location = new System.Drawing.Point(120, 96);
-                        this.EntradaPredet.MaxLength = 32767;
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPredet.PlaceholderText = null;
@@ -148,7 +145,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaPredet.Size = new System.Drawing.Size(84, 36);
+                        this.EntradaPredet.Size = new System.Drawing.Size(88, 40);
                         this.EntradaPredet.TabIndex = 7;
                         this.EntradaPredet.TextKey = "0";
                         // 
@@ -165,6 +162,7 @@ namespace Lfc.Personas.Grupos
                         // EntradaGrupo
                         // 
                         this.EntradaGrupo.AutoNav = true;
+                        this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
                         this.EntradaGrupo.DataTextField = "nombre";
                         this.EntradaGrupo.DataValueField = "id_grupo";
@@ -207,7 +205,7 @@ namespace Lfc.Personas.Grupos
                         this.Controls.Add(this.label4);
                         this.Controls.Add(this.EntradaNombre);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(565, 137);
+                        this.Size = new System.Drawing.Size(565, 141);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

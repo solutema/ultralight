@@ -103,7 +103,6 @@ namespace Lfc.Sucursales
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(96, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -126,7 +125,6 @@ namespace Lfc.Sucursales
                         this.EntradaDireccion.FieldName = null;
                         this.EntradaDireccion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDireccion.Location = new System.Drawing.Point(96, 32);
-                        this.EntradaDireccion.MaxLength = 32767;
                         this.EntradaDireccion.MultiLine = false;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);

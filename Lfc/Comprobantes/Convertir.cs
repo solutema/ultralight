@@ -117,7 +117,6 @@ namespace Lfc.Comprobantes
                         this.EntradaOrigen.FieldName = null;
                         this.EntradaOrigen.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaOrigen.Location = new System.Drawing.Point(328, 88);
-                        this.EntradaOrigen.MaxLength = 32767;
                         this.EntradaOrigen.MultiLine = false;
                         this.EntradaOrigen.Name = "EntradaOrigen";
                         this.EntradaOrigen.Padding = new System.Windows.Forms.Padding(2);
@@ -160,7 +159,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDestinoTipo.AutoSize = true;
                         this.EntradaDestinoTipo.FieldName = null;
                         this.EntradaDestinoTipo.Location = new System.Drawing.Point(328, 120);
-                        this.EntradaDestinoTipo.MaxLength = 32767;
                         this.EntradaDestinoTipo.Name = "EntradaDestinoTipo";
                         this.EntradaDestinoTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDestinoTipo.PlaceholderText = null;

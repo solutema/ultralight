@@ -73,7 +73,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCantidad.Location = new System.Drawing.Point(368, 0);
                         this.EntradaCantidad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaCantidad.MaxLength = 32767;
                         this.EntradaCantidad.MultiLine = false;
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -101,7 +100,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaVariacion.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaVariacion.Location = new System.Drawing.Point(0, 0);
                         this.EntradaVariacion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.EntradaVariacion.MaxLength = 32767;
                         this.EntradaVariacion.MultiLine = false;
                         this.EntradaVariacion.Name = "EntradaVariacion";
                         this.EntradaVariacion.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);

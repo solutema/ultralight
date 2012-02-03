@@ -79,7 +79,6 @@ namespace Lcc.Entrada
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNombre.Location = new System.Drawing.Point(352, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -103,7 +102,6 @@ namespace Lcc.Entrada
                         this.EntradaCaracteristica.FieldName = null;
                         this.EntradaCaracteristica.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCaracteristica.Location = new System.Drawing.Point(12, 0);
-                        this.EntradaCaracteristica.MaxLength = 32767;
                         this.EntradaCaracteristica.MultiLine = false;
                         this.EntradaCaracteristica.Name = "EntradaCaracteristica";
                         this.EntradaCaracteristica.Padding = new System.Windows.Forms.Padding(2);
@@ -128,7 +126,6 @@ namespace Lcc.Entrada
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(84, 0);
-                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);

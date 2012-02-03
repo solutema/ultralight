@@ -95,7 +95,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -126,7 +125,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaLetra.FieldName = null;
                         this.EntradaLetra.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaLetra.Location = new System.Drawing.Point(120, 32);
-                        this.EntradaLetra.MaxLength = 32767;
                         this.EntradaLetra.MultiLine = false;
                         this.EntradaLetra.Name = "EntradaLetra";
                         this.EntradaLetra.Padding = new System.Windows.Forms.Padding(2);
@@ -166,7 +164,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaMueveStock.AutoSize = true;
                         this.EntradaMueveStock.FieldName = null;
                         this.EntradaMueveStock.Location = new System.Drawing.Point(120, 64);
-                        this.EntradaMueveStock.MaxLength = 32767;
                         this.EntradaMueveStock.Name = "EntradaMueveStock";
                         this.EntradaMueveStock.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMueveStock.PlaceholderText = null;
@@ -253,7 +250,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaNumerarAl.AutoSize = true;
                         this.EntradaNumerarAl.FieldName = null;
                         this.EntradaNumerarAl.Location = new System.Drawing.Point(124, 192);
-                        this.EntradaNumerarAl.MaxLength = 32767;
                         this.EntradaNumerarAl.Name = "EntradaNumerarAl";
                         this.EntradaNumerarAl.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumerarAl.PlaceholderText = null;
@@ -283,7 +279,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirRepetir.AutoSize = true;
                         this.EntradaImprimirRepetir.FieldName = null;
                         this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 272);
-                        this.EntradaImprimirRepetir.MaxLength = 32767;
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
                         this.EntradaImprimirRepetir.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImprimirRepetir.PlaceholderText = null;
@@ -312,7 +307,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirModificar.AutoSize = true;
                         this.EntradaImprimirModificar.FieldName = null;
                         this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 320);
-                        this.EntradaImprimirModificar.MaxLength = 32767;
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
                         this.EntradaImprimirModificar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImprimirModificar.PlaceholderText = null;
@@ -341,7 +335,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirGuardar.AutoSize = true;
                         this.EntradaImprimirGuardar.FieldName = null;
                         this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 368);
-                        this.EntradaImprimirGuardar.MaxLength = 32767;
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
                         this.EntradaImprimirGuardar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImprimirGuardar.PlaceholderText = null;

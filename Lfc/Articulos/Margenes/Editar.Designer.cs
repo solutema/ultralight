@@ -70,7 +70,6 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPorcentaje.FieldName = null;
                         this.EntradaPorcentaje.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPorcentaje.Location = new System.Drawing.Point(140, 32);
-                        this.EntradaPorcentaje.MaxLength = 32767;
                         this.EntradaPorcentaje.MultiLine = false;
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
@@ -102,7 +101,6 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(140, 0);
-                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
@@ -132,7 +130,6 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPredet.AutoSize = true;
                         this.EntradaPredet.FieldName = null;
                         this.EntradaPredet.Location = new System.Drawing.Point(140, 64);
-                        this.EntradaPredet.MaxLength = 32767;
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPredet.PlaceholderText = null;

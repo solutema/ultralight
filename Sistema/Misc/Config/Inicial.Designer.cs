@@ -468,7 +468,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaServidor.FieldName = null;
                         this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaServidor.Location = new System.Drawing.Point(144, 52);
-                        this.EntradaServidor.MaxLength = 32767;
                         this.EntradaServidor.MultiLine = false;
                         this.EntradaServidor.Name = "EntradaServidor";
                         this.EntradaServidor.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);

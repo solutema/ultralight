@@ -117,7 +117,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaImpuestos.FieldName = null;
                         this.EntradaImpuestos.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImpuestos.Location = new System.Drawing.Point(412, 100);
-                        this.EntradaImpuestos.MaxLength = 32767;
                         this.EntradaImpuestos.MultiLine = false;
                         this.EntradaImpuestos.Name = "EntradaImpuestos";
                         this.EntradaImpuestos.Padding = new System.Windows.Forms.Padding(2);
@@ -150,7 +149,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSubTotal.FieldName = null;
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(412, 68);
-                        this.EntradaSubTotal.MaxLength = 32767;
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
@@ -184,7 +182,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCantidad.FieldName = null;
                         this.EntradaCantidad.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCantidad.Location = new System.Drawing.Point(172, 68);
-                        this.EntradaCantidad.MaxLength = 32767;
                         this.EntradaCantidad.MultiLine = false;
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);
@@ -250,7 +247,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaTotal.FieldName = null;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 196);
-                        this.EntradaTotal.MaxLength = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
