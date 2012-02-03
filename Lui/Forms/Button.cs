@@ -48,9 +48,6 @@ namespace Lui.Forms
                 private ImagePositions m_ImagePos = ImagePositions.Top;
                 private System.Windows.Forms.DialogResult m_DialogResult = DialogResult.None;
 
-                new public event System.EventHandler Click;
-                new public event System.Windows.Forms.KeyEventHandler KeyDown;
-
                 public Button()
                 {
                         InitializeComponent();
@@ -253,31 +250,28 @@ namespace Lui.Forms
                 private void MainText_Click(System.Object sender, System.EventArgs e)
                 {
                         this.Select();
-                        if (this.Enabled && this.Click != null)
-                                this.Click(this, e);
+                        this.RaiseClick(e);
                 }
+
 
                 private void MainText_DoubleClick(object sender, System.EventArgs e)
                 {
                         this.Select();
-                        if (this.Enabled && this.Click != null)
-                                this.Click(this, e);
+                        this.RaiseClick(e);
                 }
 
 
                 private void SubText_Click(System.Object sender, System.EventArgs e)
                 {
                         this.Select();
-                        if (this.Enabled && this.Click != null)
-                                this.Click(this, e);
+                        this.RaiseClick(e);
                 }
 
 
                 private void SubText_DoubleClick(object sender, System.EventArgs e)
                 {
                         this.Select();
-                        if (this.Enabled && this.Click != null)
-                                this.Click(this, e);
+                        this.RaiseClick(e);
                 }
 
 
@@ -285,8 +279,7 @@ namespace Lui.Forms
                 {
                         base.OnClick(e);
                         this.Select();
-                        if (this.Enabled && this.Click != null)
-                                this.Click(this, e);
+                        this.RaiseClick(e);
                 }
 
 
@@ -294,8 +287,7 @@ namespace Lui.Forms
                 {
                         base.OnDoubleClick(e);
                         this.Select();
-                        if (this.Enabled && this.Click != null)
-                                this.Click(this, e);
+                        this.RaiseClick(e);
                 }
 
 
@@ -311,8 +303,7 @@ namespace Lui.Forms
                                 e.Handled = true;
                                 this.PerformClick();
                         } else {
-                                if (null != KeyDown)
-                                        KeyDown(this, e);
+                                this.RaiseKeyDown(e);
                         }
 
                         base.OnKeyDown(e);

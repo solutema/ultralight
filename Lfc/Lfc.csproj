@@ -90,9 +90,6 @@
     <Compile Include="Articulos\Situaciones\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Articulos\TablaDetalles.Designer.cs">
-      <DependentUpon>TablaDetalles.cs</DependentUpon>
-    </Compile>
     <Compile Include="Articulos\VerMovimientos.Designer.cs">
       <DependentUpon>VerMovimientos.cs</DependentUpon>
     </Compile>
@@ -223,9 +220,6 @@
     </Compile>
     <Compile Include="Articulos\Rubros\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Articulos\TablaDetalles.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Articulos\Inicio.cs">
       <SubType>Form</SubType>
@@ -809,10 +803,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos\Receta.resx">
       <DependentUpon>Receta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Articulos\TablaDetalles.resx">
-      <DependentUpon>TablaDetalles.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulos\Marcas\Editar.resx">
       <DependentUpon>Editar.cs</DependentUpon>

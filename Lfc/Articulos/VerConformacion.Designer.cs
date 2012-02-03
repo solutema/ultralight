@@ -61,13 +61,14 @@ namespace Lfc.Articulos
                         this.ListaConformacion = new Lui.Forms.ListView();
                         this.ColSituacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColCantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.formHeader1 = new Lui.Forms.FormHeader();
                         this.SuspendLayout();
                         // 
                         // ListaConformacion
                         // 
-                        this.ListaConformacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListaConformacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListaConformacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaConformacion.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColSituacion,
@@ -75,10 +76,10 @@ namespace Lfc.Articulos
                         this.ListaConformacion.FullRowSelect = true;
                         this.ListaConformacion.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaConformacion.LabelWrap = false;
-                        this.ListaConformacion.Location = new System.Drawing.Point(8, 8);
+                        this.ListaConformacion.Location = new System.Drawing.Point(24, 88);
                         this.ListaConformacion.MultiSelect = false;
                         this.ListaConformacion.Name = "ListaConformacion";
-                        this.ListaConformacion.Size = new System.Drawing.Size(676, 400);
+                        this.ListaConformacion.Size = new System.Drawing.Size(640, 296);
                         this.ListaConformacion.TabIndex = 0;
                         this.ListaConformacion.UseCompatibleStateImageBehavior = false;
                         this.ListaConformacion.View = System.Windows.Forms.View.Details;
@@ -86,22 +87,34 @@ namespace Lfc.Articulos
                         // ColSituacion
                         // 
                         this.ColSituacion.Text = "Situación";
-                        this.ColSituacion.Width = 320;
+                        this.ColSituacion.Width = 480;
                         // 
                         // ColCantidad
                         // 
                         this.ColCantidad.Text = "Cantidad";
-                        this.ColCantidad.Width = 108;
+                        this.ColCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.ColCantidad.Width = 120;
+                        // 
+                        // formHeader1
+                        // 
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(689, 64);
+                        this.formHeader1.TabIndex = 101;
+                        this.formHeader1.Text = "Conformación de las existencias";
                         // 
                         // VerConformacion
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(692, 473);
+                        this.ClientSize = new System.Drawing.Size(689, 473);
+                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.ListaConformacion);
                         this.Name = "VerConformacion";
-                        this.Text = "Conformación del stock";
+                        this.Text = "Conformación de las existencias";
                         this.Controls.SetChildIndex(this.ListaConformacion, 0);
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -111,5 +124,6 @@ namespace Lfc.Articulos
                 private Lui.Forms.ListView ListaConformacion;
                 private System.Windows.Forms.ColumnHeader ColSituacion;
                 private System.Windows.Forms.ColumnHeader ColCantidad;
+                private Lui.Forms.FormHeader formHeader1;
         }
 }

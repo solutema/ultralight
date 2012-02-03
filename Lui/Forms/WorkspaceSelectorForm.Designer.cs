@@ -66,7 +66,7 @@ namespace Lui.Forms
                         this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.label1.Location = new System.Drawing.Point(124, 24);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(400, 24);
+                        this.label1.Size = new System.Drawing.Size(400, 32);
                         this.label1.TabIndex = 0;
                         this.label1.Text = "Seleccione el espacio de trabajo";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -79,9 +79,9 @@ namespace Lui.Forms
                         this.Espacios.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Espacios.IntegralHeight = false;
                         this.Espacios.ItemHeight = 15;
-                        this.Espacios.Location = new System.Drawing.Point(124, 52);
+                        this.Espacios.Location = new System.Drawing.Point(124, 56);
                         this.Espacios.Name = "Espacios";
-                        this.Espacios.Size = new System.Drawing.Size(400, 156);
+                        this.Espacios.Size = new System.Drawing.Size(400, 160);
                         this.Espacios.Sorted = true;
                         this.Espacios.TabIndex = 1;
                         this.Espacios.SelectedValueChanged += new System.EventHandler(this.Espacios_SelectedValueChanged);

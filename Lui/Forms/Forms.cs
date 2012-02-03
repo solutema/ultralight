@@ -57,8 +57,7 @@ namespace Lui.Forms
 		Currency,
                 Stock,
 		Date,
-		DateTime,
-		Set,
+		DateTime
 	}
 
 	public enum ImagePositions

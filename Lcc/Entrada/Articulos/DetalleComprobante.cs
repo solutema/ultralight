@@ -189,7 +189,7 @@ namespace Lcc.Entrada.Articulos
                                 EntradaCantidad.Visible = value;
                                 EntradaImporte.Visible = value;
                                 if (value)
-                                        EntradaArticulo.Width = EntradaUnitario.Left;
+                                        EntradaArticulo.Width = EntradaUnitario.Left - 1;
                                 else
                                         EntradaArticulo.Width = this.Width;
                         }
@@ -439,6 +439,7 @@ namespace Lcc.Entrada.Articulos
                                 if (this.Articulo != null) {
                                         EntradaUnitario.Enabled = true;
                                         EntradaCantidad.Enabled = true;
+                                        EntradaCantidad.TemporaryReadOnly = this.Articulo.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno;
                                         EntradaImporte.Enabled = true;
                                         if (this.Articulo.Unidad != "u")
                                                 EntradaCantidad.Sufijo = Articulo.Unidad;
@@ -457,10 +458,15 @@ namespace Lcc.Entrada.Articulos
                                 } else if (EntradaArticulo.Text == EntradaArticulo.FreeTextCode && EntradaArticulo.FreeTextCode.Length > 0) {
                                         EntradaUnitario.Enabled = true;
                                         EntradaCantidad.Enabled = true;
+                                        EntradaCantidad.TemporaryReadOnly = false;
                                         EntradaImporte.Enabled = true;
                                         if (this.Cantidad == 0)
                                                 this.Cantidad = 1;
                                 } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.TextInt == 0)) {
+                                        EntradaUnitario.Enabled = false;
+                                        EntradaCantidad.Enabled = false;
+                                        EntradaCantidad.TemporaryReadOnly = false;
+                                        EntradaImporte.Enabled = false;
                                         EntradaCantidad.ValueDecimal = 0;
                                         EntradaImporte.ValueDecimal = 0;
                                         EntradaUnitario.ValueDecimal = 0;
@@ -542,11 +548,19 @@ namespace Lcc.Entrada.Articulos
                                 }
                         }
                         if (e.Alt == false && e.Control == true && e.Shift == false) {
-                                if (e.KeyCode == Keys.S) {
-                                        if (this.ObtenerDatosSeguimiento != null)
-                                                this.ObtenerDatosSeguimiento(this, null);
+                                switch (e.KeyCode) {
+                                        case Keys.S:
+                                                this.ObtenerDatosSeguimientoSiEsNecesario();
+                                                break;
                                 }
                         }
+                }
+
+
+                protected void ObtenerDatosSeguimientoSiEsNecesario()
+                {
+                        if (this.Articulo != null && this.Articulo.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno && this.ObtenerDatosSeguimiento != null)
+                                this.ObtenerDatosSeguimiento(this, new EventArgs());
                 }
 
 
@@ -554,10 +568,8 @@ namespace Lcc.Entrada.Articulos
                 {
                         Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
 
-                        if (this.Cantidad != 0 && Art != null && Art.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno
-                                && (this.DatosSeguimiento == null || this.DatosSeguimiento.Count != this.Cantidad)) {
-                                if (this.ObtenerDatosSeguimiento != null)
-                                        this.ObtenerDatosSeguimiento(this, null);
+                        if (this.Cantidad != 0 && Art != null && Art.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno && (this.DatosSeguimiento == null || this.DatosSeguimiento.Count != this.Cantidad)) {
+                                this.ObtenerDatosSeguimientoSiEsNecesario();
                         }
 
                         base.OnLeave(e);
@@ -617,6 +629,20 @@ namespace Lcc.Entrada.Articulos
                                 case Keys.Down:
                                         System.Windows.Forms.SendKeys.Send("{tab}");
                                         break;
+                                case Keys.D0:
+                                case Keys.D1:
+                                case Keys.D2:
+                                case Keys.D3:
+                                case Keys.D4:
+                                case Keys.D5:
+                                case Keys.D6:
+                                case Keys.D7:
+                                case Keys.D8:
+                                case Keys.D9:
+                                case Keys.Space:
+                                        e.Handled = true;
+                                        this.ObtenerDatosSeguimientoSiEsNecesario();
+                                        break;
                                 default:
                                         if (KeyDown != null)
                                                 KeyDown(sender, e);
@@ -652,9 +678,9 @@ namespace Lcc.Entrada.Articulos
                 {
                         LabelSerialsCruz.Visible = LabelSerials.Visible;
                         if (LabelSerials.Visible)
-                                this.Height = 44;
+                                this.Height = this.LabelSerials.Bottom + this.EntradaArticulo.Top;
                         else
-                                this.Height = 24;
+                                this.Height = this.EntradaArticulo.Bottom + this.EntradaArticulo.Top;
                 }
 
                 private void EntradaCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -673,6 +699,11 @@ namespace Lcc.Entrada.Articulos
                                         e.Handled = true;
                                 }
                         }
+                }
+
+                private void EntradaCantidad_Click(object sender, EventArgs e)
+                {
+                        this.ObtenerDatosSeguimientoSiEsNecesario();
                 }
         }
 }

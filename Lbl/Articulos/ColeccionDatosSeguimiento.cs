@@ -118,7 +118,7 @@ namespace Lbl.Articulos
                                         Res.Append(Dat.Variacion + "; ");
                                 }
                         }
-                        return Res.ToString();
+                        return Res.ToString().Trim(new char[] { ';', ' ' });
                 }
 
 
@@ -126,10 +126,10 @@ namespace Lbl.Articulos
                 {
                         this.Clear();
                         if (rep != null) {
-                                string[] Lines = rep.Split(new char[] { ';', Lfx.Types.ControlChars.Cr, Lfx.Types.ControlChars.Lf }, StringSplitOptions.RemoveEmptyEntries);
+                                string[] Lines = rep.Split(new char[] { ';', ',', Lfx.Types.ControlChars.Cr, Lfx.Types.ControlChars.Lf }, StringSplitOptions.RemoveEmptyEntries);
                                 foreach (string Line in Lines) {
                                         if (Line.Length > 0) {
-                                                string[] Parts = Line.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                                                string[] Parts = Line.Split(new char[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
                                                 if (Parts.Length > 0 && Parts[0].Trim().Length > 0) {
                                                         // Si hay al menos 1 parte, y no está en blanco
                                                         if (Parts.Length == 1) {

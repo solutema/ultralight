@@ -68,8 +68,9 @@ namespace Lui.Forms
                         this.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.TextBox1.Location = new System.Drawing.Point(4, 4);
                         this.TextBox1.Name = "TextBox1";
-                        this.TextBox1.Size = new System.Drawing.Size(452, 13);
+                        this.TextBox1.Size = new System.Drawing.Size(452, 18);
                         this.TextBox1.TabIndex = 0;
+                        this.TextBox1.Click += new System.EventHandler(this.TextBox1_Click);
                         // 
                         // TextBoxBase
                         // 
@@ -77,7 +78,6 @@ namespace Lui.Forms
                         this.Controls.Add(this.TextBox1);
                         this.Name = "TextBoxBase";
                         this.Size = new System.Drawing.Size(460, 24);
-                        this.Controls.SetChildIndex(this.TextBox1, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

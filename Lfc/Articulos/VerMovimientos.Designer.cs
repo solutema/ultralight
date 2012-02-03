@@ -56,13 +56,13 @@ namespace Lfc.Articulos
                 private void InitializeComponent()
                 {
                         this.Listado = new Lui.Forms.ListView();
-                        this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.fecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.desde = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.hacia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.saldo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.obs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColCantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColDesde = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColHacia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColSaldo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColObs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ListadoPedidos = new Lui.Forms.ListView();
                         this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -70,78 +70,80 @@ namespace Lfc.Articulos
                         this.ColumnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.Label1 = new Lui.Forms.Label();
                         this.Label2 = new Lui.Forms.Label();
+                        this.formHeader1 = new Lui.Forms.FormHeader();
+                        this.ColSeguimiento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.SuspendLayout();
                         // 
-                        // lvItems
+                        // Listado
                         // 
                         this.Listado.AllowColumnReorder = true;
-                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.fecha,
-            this.cantidad,
-            this.desde,
-            this.hacia,
-            this.saldo,
-            this.obs});
+            this.ColId,
+            this.ColFecha,
+            this.ColCantidad,
+            this.ColSeguimiento,
+            this.ColDesde,
+            this.ColHacia,
+            this.ColSaldo,
+            this.ColObs});
                         this.Listado.FullRowSelect = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.HideSelection = false;
-                        this.Listado.Location = new System.Drawing.Point(8, 28);
+                        this.Listado.Location = new System.Drawing.Point(24, 88);
                         this.Listado.MultiSelect = false;
-                        this.Listado.Name = "lvItems";
-                        this.Listado.Size = new System.Drawing.Size(608, 135);
+                        this.Listado.Name = "Listado";
+                        this.Listado.Size = new System.Drawing.Size(576, 64);
                         this.Listado.TabIndex = 52;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
                         // 
-                        // id
+                        // ColId
                         // 
-                        this.id.Text = "Cód";
-                        this.id.Width = 0;
+                        this.ColId.Text = "Cód";
+                        this.ColId.Width = 0;
                         // 
-                        // fecha
+                        // ColFecha
                         // 
-                        this.fecha.Text = "Fecha";
-                        this.fecha.Width = 155;
+                        this.ColFecha.Text = "Fecha";
+                        this.ColFecha.Width = 155;
                         // 
-                        // cantidad
+                        // ColCantidad
                         // 
-                        this.cantidad.Text = "Cantidad";
-                        this.cantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                        this.cantidad.Width = 80;
+                        this.ColCantidad.Text = "Cantidad";
+                        this.ColCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.ColCantidad.Width = 80;
                         // 
-                        // desde
+                        // ColDesde
                         // 
-                        this.desde.Text = "Origen";
-                        this.desde.Width = 100;
+                        this.ColDesde.Text = "Origen";
+                        this.ColDesde.Width = 100;
                         // 
-                        // hacia
+                        // ColHacia
                         // 
-                        this.hacia.Text = "Destino";
-                        this.hacia.Width = 100;
+                        this.ColHacia.Text = "Destino";
+                        this.ColHacia.Width = 100;
                         // 
-                        // saldo
+                        // ColSaldo
                         // 
-                        this.saldo.Text = "Saldo";
-                        this.saldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                        this.saldo.Width = 80;
+                        this.ColSaldo.Text = "Saldo";
+                        this.ColSaldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.ColSaldo.Width = 80;
                         // 
-                        // obs
+                        // ColObs
                         // 
-                        this.obs.Text = "Obs.";
-                        this.obs.Width = 480;
+                        this.ColObs.Text = "Obs.";
+                        this.ColObs.Width = 480;
                         // 
-                        // lvPedidos
+                        // ListadoPedidos
                         // 
                         this.ListadoPedidos.AllowColumnReorder = true;
-                        this.ListadoPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListadoPedidos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListadoPedidos.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListadoPedidos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnHeader1,
@@ -153,10 +155,10 @@ namespace Lfc.Articulos
                         this.ListadoPedidos.FullRowSelect = true;
                         this.ListadoPedidos.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListadoPedidos.HideSelection = false;
-                        this.ListadoPedidos.Location = new System.Drawing.Point(8, 191);
+                        this.ListadoPedidos.Location = new System.Drawing.Point(24, 200);
                         this.ListadoPedidos.MultiSelect = false;
-                        this.ListadoPedidos.Name = "lvPedidos";
-                        this.ListadoPedidos.Size = new System.Drawing.Size(608, 104);
+                        this.ListadoPedidos.Name = "ListadoPedidos";
+                        this.ListadoPedidos.Size = new System.Drawing.Size(576, 87);
                         this.ListadoPedidos.TabIndex = 53;
                         this.ListadoPedidos.UseCompatibleStateImageBehavior = false;
                         this.ListadoPedidos.View = System.Windows.Forms.View.Details;
@@ -196,34 +198,38 @@ namespace Lfc.Articulos
                         this.ColumnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                         this.ColumnHeader5.Width = 96;
                         // 
-                        // Label1
-                        // 
-                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label1.Location = new System.Drawing.Point(8, 8);
-                        this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(608, 20);
-                        this.Label1.TabIndex = 54;
-                        this.Label1.Text = "Listado de Movimientos de Stock para este Artículo";
-                        this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // Label2
                         // 
-                        this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label2.Location = new System.Drawing.Point(8, 171);
+                        this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.Label2.Location = new System.Drawing.Point(24, 163);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(608, 20);
+                        this.Label2.Size = new System.Drawing.Size(576, 37);
                         this.Label2.TabIndex = 55;
                         this.Label2.Text = "Pedidos Activos";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // formHeader1
+                        // 
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(624, 64);
+                        this.formHeader1.TabIndex = 101;
+                        this.formHeader1.Text = "Movimientos de existencias";
+                        // 
+                        // ColSeguimiento
+                        // 
+                        this.ColSeguimiento.Text = "Seguimiento";
+                        this.ColSeguimiento.Width = 160;
                         // 
                         // VerMovimientos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(624, 364);
+                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.Label2);
-                        this.Controls.Add(this.Label1);
                         this.Controls.Add(this.ListadoPedidos);
                         this.Controls.Add(this.Listado);
                         this.Name = "VerMovimientos";
@@ -231,8 +237,8 @@ namespace Lfc.Articulos
                         this.Activated += new System.EventHandler(this.FormArticulosMovimDetalles_Activated);
                         this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.ListadoPedidos, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -240,21 +246,22 @@ namespace Lfc.Articulos
                 #endregion
 
                 internal Lui.Forms.ListView Listado;
-                internal System.Windows.Forms.ColumnHeader id;
-                internal System.Windows.Forms.ColumnHeader fecha;
-                internal System.Windows.Forms.ColumnHeader cantidad;
-                internal System.Windows.Forms.ColumnHeader obs;
-                internal System.Windows.Forms.ColumnHeader saldo;
+                internal System.Windows.Forms.ColumnHeader ColId;
+                internal System.Windows.Forms.ColumnHeader ColFecha;
+                internal System.Windows.Forms.ColumnHeader ColCantidad;
+                internal System.Windows.Forms.ColumnHeader ColObs;
+                internal System.Windows.Forms.ColumnHeader ColSaldo;
                 internal Lui.Forms.ListView ListadoPedidos;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader1;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader2;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader3;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader4;
-                internal Lui.Forms.Label Label1;
                 internal Lui.Forms.Label Label2;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader5;
                 internal System.Windows.Forms.ColumnHeader ColumnHeader6;
-                internal System.Windows.Forms.ColumnHeader desde;
-                internal System.Windows.Forms.ColumnHeader hacia;
+                internal System.Windows.Forms.ColumnHeader ColDesde;
+                internal System.Windows.Forms.ColumnHeader ColHacia;
+                private Lui.Forms.FormHeader formHeader1;
+                private System.Windows.Forms.ColumnHeader ColSeguimiento;
         }
 }

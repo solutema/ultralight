@@ -39,15 +39,18 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos
 {
-        public partial class VerConformacion : TablaDetalles
+        public partial class VerConformacion : Lui.Forms.ChildDialogForm
         {
                 public VerConformacion()
                 {
                         InitializeComponent();
+                        this.OkButton.Visible = false;
                 }
 
                 public void Mostrar(Lbl.Articulos.Articulo articulo)
                 {
+                        this.formHeader1.Text = "Conformación de existencias de " + articulo.ToString();
+
                         ListaConformacion.BeginUpdate();
                         ListaConformacion.Items.Clear();
                         System.Data.DataTable Situaciones = this.Connection.Select("SELECT id_situacion, nombre FROM articulos_situaciones WHERE id_situacion IN (SELECT DISTINCT id_situacion FROM articulos_stock WHERE id_articulo=" + articulo.Id.ToString() + ")");
@@ -59,7 +62,7 @@ namespace Lfc.Articulos
                                         string Serie = Articulo["serie"].ToString();
                                         ListViewItem Itm = ListaConformacion.Items.Add(Serie);
                                         Itm.SubItems[0].Text = Serie;
-                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatStock((decimal)Articulo["cantidad"]));
+                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatStock(System.Convert.ToDecimal(Articulo["cantidad"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock));
                                         Itm.Group = Grupo;
                                 }
                         }
@@ -73,7 +76,7 @@ namespace Lfc.Articulos
                                         Lfx.Data.Row Situacion = this.Connection.Row("articulos_situaciones", "id_situacion", System.Convert.ToInt32(Stock["id_situacion"]));
 
                                         ListViewItem Itm = ListaConformacion.Items.Add(Situacion["nombre"].ToString());
-                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Stock["cantidad"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock));
+                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatStock(System.Convert.ToDecimal(Stock["cantidad"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock));
 
                                         Itm.Group = Grupo;
                                 }

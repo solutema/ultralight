@@ -233,7 +233,6 @@ namespace Lui.Forms
 			set
 			{
 				m_DataType = value;
-				TextBox1.ReadOnly = (m_ReadOnly || m_TemporaryReadOnly || m_DataType == DataTypes.Set);
 				switch (m_DataType)
 				{
 					case DataTypes.Float:
@@ -249,6 +248,34 @@ namespace Lui.Forms
                                 this.TextRaw = FormatearDatos(this.TextRaw);
 			}
 		}
+
+
+                public override bool ReadOnly
+                {
+                        get
+                        {
+                                return base.ReadOnly;
+                        }
+                        set
+                        {
+                                base.ReadOnly = value;
+                                TextBox1.ReadOnly = (m_ReadOnly || m_TemporaryReadOnly);
+                        }
+                }
+
+
+                public override bool TemporaryReadOnly
+                {
+                        get
+                        {
+                                return base.TemporaryReadOnly;
+                        }
+                        set
+                        {
+                                base.TemporaryReadOnly = value;
+                                TextBox1.ReadOnly = (m_ReadOnly || m_TemporaryReadOnly);
+                        }
+                }
 
 
                 [EditorBrowsable(EditorBrowsableState.Never),
@@ -347,8 +374,6 @@ namespace Lui.Forms
 					MenuItemPegar.Text = @"Pegar """ + DatosPortapapeles + @"""";
 					if (m_DataType == DataTypes.Date)
 						MenuItemPegar.Enabled = this.TemporaryReadOnly == false && this.ReadOnly == false && System.Text.RegularExpressions.Regex.IsMatch(DatosPortapapeles, @"^[0-3]\d(-|/)[0-1]\d(-|/)(\d{2}|\d{4})$");
-					else if (m_DataType == DataTypes.Set)
-						MenuItemPegar.Enabled = false;
 					else
 						MenuItemPegar.Enabled = this.TemporaryReadOnly == false && this.ReadOnly == false;
 				}

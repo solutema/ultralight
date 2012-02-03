@@ -104,7 +104,7 @@ namespace Lfc.Articulos
                         // Label1
                         // 
                         this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label1.Location = new System.Drawing.Point(24, 224);
+                        this.Label1.Location = new System.Drawing.Point(24, 208);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(112, 24);
                         this.Label1.TabIndex = 2;
@@ -134,7 +134,7 @@ namespace Lfc.Articulos
                         // Label4
                         // 
                         this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label4.Location = new System.Drawing.Point(24, 160);
+                        this.Label4.Location = new System.Drawing.Point(24, 144);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(112, 24);
                         this.Label4.TabIndex = 0;
@@ -145,7 +145,7 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaMovimiento.AlwaysExpanded = true;
                         this.EntradaMovimiento.AutoSize = true;
-                        this.EntradaMovimiento.Location = new System.Drawing.Point(136, 160);
+                        this.EntradaMovimiento.Location = new System.Drawing.Point(136, 144);
                         this.EntradaMovimiento.Name = "EntradaMovimiento";
                         this.EntradaMovimiento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMovimiento.SetData = new string[] {
@@ -160,6 +160,7 @@ namespace Lfc.Articulos
                         // EntradaCantidad
                         // 
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
+                        this.EntradaCantidad.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaCantidad.Location = new System.Drawing.Point(136, 256);
                         this.EntradaCantidad.MaxLength = 20;
                         this.EntradaCantidad.Name = "EntradaCantidad";
@@ -175,11 +176,12 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
+                        this.EntradaObs.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaObs.Location = new System.Drawing.Point(136, 448);
                         this.EntradaObs.MaximumSize = new System.Drawing.Size(480, 64);
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.Size = new System.Drawing.Size(440, 24);
+                        this.EntradaObs.Size = new System.Drawing.Size(440, 36);
                         this.EntradaObs.TabIndex = 21;
                         // 
                         // EtiquetaDesdeSituacion
@@ -204,6 +206,7 @@ namespace Lfc.Articulos
                         // 
                         // EntradaDesdeAntes
                         // 
+                        this.EntradaDesdeAntes.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaDesdeAntes.Location = new System.Drawing.Point(304, 376);
                         this.EntradaDesdeAntes.Name = "EntradaDesdeAntes";
                         this.EntradaDesdeAntes.Padding = new System.Windows.Forms.Padding(2);
@@ -213,6 +216,7 @@ namespace Lfc.Articulos
                         // 
                         // EntradaDesdeDespues
                         // 
+                        this.EntradaDesdeDespues.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaDesdeDespues.Location = new System.Drawing.Point(440, 376);
                         this.EntradaDesdeDespues.Name = "EntradaDesdeDespues";
                         this.EntradaDesdeDespues.Padding = new System.Windows.Forms.Padding(2);
@@ -292,6 +296,7 @@ namespace Lfc.Articulos
                         // 
                         // EntradaHaciaDespues
                         // 
+                        this.EntradaHaciaDespues.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaHaciaDespues.Location = new System.Drawing.Point(440, 408);
                         this.EntradaHaciaDespues.Name = "EntradaHaciaDespues";
                         this.EntradaHaciaDespues.Padding = new System.Windows.Forms.Padding(2);
@@ -301,6 +306,7 @@ namespace Lfc.Articulos
                         // 
                         // EntradaHaciaAntes
                         // 
+                        this.EntradaHaciaAntes.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaHaciaAntes.Location = new System.Drawing.Point(304, 408);
                         this.EntradaHaciaAntes.Name = "EntradaHaciaAntes";
                         this.EntradaHaciaAntes.Padding = new System.Windows.Forms.Padding(2);
@@ -358,8 +364,8 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.DataValueField = null;
                         this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaArticulo.FreeTextCode = "";
-                        this.EntradaArticulo.Location = new System.Drawing.Point(136, 224);
-                        this.EntradaArticulo.MaximumSize = new System.Drawing.Size(480, 32);
+                        this.EntradaArticulo.Location = new System.Drawing.Point(136, 208);
+                        this.EntradaArticulo.MaximumSize = new System.Drawing.Size(480, 64);
                         this.EntradaArticulo.MuestraPrecio = false;
                         this.EntradaArticulo.MuestraStock = false;
                         this.EntradaArticulo.Name = "EntradaArticulo";
@@ -394,16 +400,16 @@ namespace Lfc.Articulos
                         this.label9.Location = new System.Drawing.Point(24, 88);
                         this.label9.MaximumSize = new System.Drawing.Size(600, 96);
                         this.label9.Name = "label9";
-                        this.label9.Size = new System.Drawing.Size(544, 64);
+                        this.label9.Size = new System.Drawing.Size(552, 48);
                         this.label9.TabIndex = 102;
                         this.label9.Text = "Va a realizar un movimiento de mercadería de una situación a otra. Es recomendabl" +
-    "e que haga este movimiento a través de un comprobante si fuera posible, por ejem" +
-    "plo un remito o una nota de crédito.";
+    "e que haga este movimiento por medio de un comprobante si fuera posible.";
                         // 
                         // Movimiento
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(599, 550);
+                        this.ClientSize = new System.Drawing.Size(599, 562);
+                        this.Controls.Add(this.EntradaArticulo);
                         this.Controls.Add(this.label9);
                         this.Controls.Add(this.EtiquetaHaciaFlecha);
                         this.Controls.Add(this.EtiquetaDesdeFlecha);
@@ -412,7 +418,6 @@ namespace Lfc.Articulos
                         this.Controls.Add(this.EntradaDesdeDespues);
                         this.Controls.Add(this.EntradaDesdeAntes);
                         this.Controls.Add(this.formHeader1);
-                        this.Controls.Add(this.EntradaArticulo);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.Label5);
                         this.Controls.Add(this.EntradaHaciaSituacion);
@@ -445,7 +450,6 @@ namespace Lfc.Articulos
                         this.Controls.SetChildIndex(this.EntradaHaciaSituacion, 0);
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.EntradaArticulo, 0);
                         this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.Controls.SetChildIndex(this.EntradaDesdeAntes, 0);
                         this.Controls.SetChildIndex(this.EntradaDesdeDespues, 0);
@@ -454,6 +458,7 @@ namespace Lfc.Articulos
                         this.Controls.SetChildIndex(this.EtiquetaDesdeFlecha, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHaciaFlecha, 0);
                         this.Controls.SetChildIndex(this.label9, 0);
+                        this.Controls.SetChildIndex(this.EntradaArticulo, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

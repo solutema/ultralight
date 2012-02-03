@@ -358,5 +358,10 @@ namespace Lui.Forms
                         else
                                 TextBox1.ForeColor = this.DisplayStyle.DataAreaTextColor;
                 }
+
+                private void TextBox1_Click(object sender, EventArgs e)
+                {
+                        this.RaiseClick(e);
+                }
         }
 }

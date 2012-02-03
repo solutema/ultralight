@@ -53,6 +53,8 @@ namespace Lui.Forms
 
                 [EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
                 new public event System.EventHandler TextChanged;
+                new public event System.EventHandler Click;
+                new public event System.Windows.Forms.KeyEventHandler KeyDown;
 
 		public enum BorderStyles
 		{
@@ -88,6 +90,20 @@ namespace Lui.Forms
 				Invalidate();
 			}
 		}
+
+
+                protected void RaiseClick(EventArgs e)
+                {
+                        if (this.Enabled && this.Click != null)
+                                this.Click(this, e);
+                }
+
+
+                protected void RaiseKeyDown(KeyEventArgs e)
+                {
+                        if (this.Enabled && this.KeyDown != null)
+                                this.KeyDown(this, e);
+                }
 
 
                 /// <summary>

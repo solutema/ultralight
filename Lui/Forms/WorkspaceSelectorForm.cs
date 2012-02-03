@@ -42,6 +42,7 @@ namespace Lui.Forms
                 {
                         InitializeComponent();
                         CancelCommandButton.Text = "Cancelar";
+                        Espacios.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
                 }
 
 

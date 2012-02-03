@@ -201,6 +201,10 @@ namespace Lfc.Articulos
                         if (e.Control == false && e.Alt == false && e.Shift == false) {
                                 switch (e.KeyCode) {
                                         case Keys.Return:
+                                                if (ListaDatosSeguimiento.CheckBoxes == true && ListaDatosSeguimiento.CheckedItems.Count == 0 && ListaDatosSeguimiento.SelectedItems.Count == 1)
+                                                        // Si no hay ninguno tildado, tildo el elemento seleccionado
+                                                        ListaDatosSeguimiento.SelectedItems[0].Checked = true;
+
                                                 OkButton.PerformClick();
                                                 e.Handled = true;
                                                 break;
