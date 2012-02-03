@@ -216,11 +216,11 @@ namespace Lfc.Tarjetas.Cupones
 
                                 FormularioAcreditacion.IgnorarCambios = true;
                                 FormularioAcreditacion.txtCupones.Text = iCantidad.ToString();
-                                FormularioAcreditacion.EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                FormularioAcreditacion.EntradaComisionTarjeta.Text = Lfx.Types.Formatting.FormatCurrency(ComisionTarjeta, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                FormularioAcreditacion.EntradaComisionPlan.Text = Lfx.Types.Formatting.FormatCurrency(ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.EntradaComisionTarjeta.Text = Lfx.Types.Formatting.FormatCurrency(ComisionTarjeta, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.EntradaComisionPlan.Text = Lfx.Types.Formatting.FormatCurrency(ComisionPlan, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 FormularioAcreditacion.EntradaComisionUsuario.Text = "0";
-                                FormularioAcreditacion.EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total - ComisionTarjeta - ComisionPlan, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total - ComisionTarjeta - ComisionPlan, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 FormularioAcreditacion.IgnorarCambios = false;
 
                                 bool Aceptar = false;
@@ -269,7 +269,7 @@ namespace Lfc.Tarjetas.Cupones
                                         Lbl.Comprobantes.Cobro MiCobro = FormularioPago.Cobro.ToCobro(Connection);
                                         switch (FormularioPago.Cobro.FormaDePago.Tipo) {
                                                 case Lbl.Pagos.TiposFormasDePago.Efectivo:
-                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
                                                         CajaDiaria.Movimiento(true,
                                                                 Lbl.Cajas.Concepto.IngresosPorFacturacion,
                                                                 "Acreditación de Cupones",

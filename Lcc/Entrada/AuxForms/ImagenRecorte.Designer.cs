@@ -56,7 +56,7 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaRatio = new Lui.Forms.ComboBox();
                         this.label2 = new Lui.Forms.Label();
                         this.BotonSinRecorte = new Lui.Forms.Button();
-                        this.panel1 = new System.Windows.Forms.Panel();
+                        this.panel1 = new Lui.Forms.Panel();
                         ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).BeginInit();
                         this.MenuEntradImagen.SuspendLayout();
                         this.panel1.SuspendLayout();
@@ -132,7 +132,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.EntradaRatio.AutoNav = true;
                         this.EntradaRatio.AutoSize = true;
-                        this.EntradaRatio.AutoTab = true;
                         this.EntradaRatio.Location = new System.Drawing.Point(96, 4);
                         this.EntradaRatio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaRatio.Name = "EntradaRatio";
@@ -188,7 +187,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         // ImagenRecorte
                         // 
-                        this.AcceptButton = this.BotonGuardar;
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.AutoSize = true;
@@ -223,6 +221,6 @@ namespace Lcc.Entrada.AuxForms
                 private System.Windows.Forms.ContextMenuStrip MenuEntradImagen;
                 private System.Windows.Forms.ToolStripMenuItem copiarAlPortapapelesToolStripMenuItem;
                 private System.Windows.Forms.ToolStripMenuItem guardarEnUnArchivoToolStripMenuItem;
-                private System.Windows.Forms.Panel panel1;
+                private Lui.Forms.Panel panel1;
         }
 }

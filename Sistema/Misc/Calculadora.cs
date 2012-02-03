@@ -52,7 +52,7 @@ namespace Lazaro.WinMain.Misc
 			InitializeComponent();
 
 			// agregar código de constructor después de llamar a InitializeComponent
-			EntradaHistorial.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+			EntradaHistorial.BackColor = this.DisplayStyle.BackgroundColor;
 
 		}
 
@@ -76,7 +76,7 @@ namespace Lazaro.WinMain.Misc
 		// No lo modifique con el editor de código.
 		internal System.Windows.Forms.TextBox EntradaHistorial;
 		internal Lui.Forms.TextBox EntradaFormula;
-		internal System.Windows.Forms.Panel Panel1;
+		internal Lui.Forms.Panel Panel1;
                 internal System.Windows.Forms.Label EtiquetaResultado;
 
 		private void InitializeComponent()
@@ -84,7 +84,7 @@ namespace Lazaro.WinMain.Misc
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calculadora));
                         this.EntradaHistorial = new System.Windows.Forms.TextBox();
                         this.EntradaFormula = new Lui.Forms.TextBox();
-                        this.Panel1 = new System.Windows.Forms.Panel();
+                        this.Panel1 = new Lui.Forms.Panel();
                         this.EtiquetaResultado = new Lui.Forms.Label();
                         this.Panel1.SuspendLayout();
                         this.SuspendLayout();
@@ -95,7 +95,7 @@ namespace Lazaro.WinMain.Misc
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHistorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.EntradaHistorial.Font = Lfx.Config.Display.MonospacedFont;
+                        this.EntradaHistorial.Font = Lazaro.Pres.DisplayStyles.Template.Current.MonospacedFont;
                         this.EntradaHistorial.Location = new System.Drawing.Point(11, 54);
                         this.EntradaHistorial.Multiline = true;
                         this.EntradaHistorial.Name = "txtHistorial";
@@ -110,7 +110,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaFormula.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormula.AutoNav = false;
-                        this.EntradaFormula.AutoTab = false;
                         this.EntradaFormula.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaFormula.DecimalPlaces = -1;
                         this.EntradaFormula.ForceCase = Lui.Forms.TextCasing.None;
@@ -139,7 +138,7 @@ namespace Lazaro.WinMain.Misc
                         this.EtiquetaResultado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaResultado.Font = Lfx.Config.Display.MonospacedFont;
+                        this.EtiquetaResultado.Font = Lazaro.Pres.DisplayStyles.Template.Current.MonospacedFont;
                         this.EtiquetaResultado.Location = new System.Drawing.Point(-59, 2);
                         this.EtiquetaResultado.Name = "lblResultado";
                         this.EtiquetaResultado.Size = new System.Drawing.Size(258, 32);

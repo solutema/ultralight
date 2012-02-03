@@ -52,7 +52,7 @@ namespace Lfc.Comprobantes.Tipo
 
                         EntradaNombre.Text = Tipo.Nombre;
                         EntradaLetra.Text = Tipo.Nomenclatura;
-                        EntradaMueveStock.ValueInt = System.Convert.ToInt32(Tipo.MueveStock);
+                        EntradaMueveStock.ValueInt = System.Convert.ToInt32(Tipo.MueveExistencias);
                         EntradaSituacionOrigen.Elemento = Tipo.SituacionOrigen;
                         EntradaSituacionDestino.Elemento = Tipo.SituacionDestino;
                         EntradaNumerarAl.TextKey = Tipo.NumerarAlGuardar ? "1" : (Tipo.NumerarAlImprimir ? "2" : "0");
@@ -71,7 +71,7 @@ namespace Lfc.Comprobantes.Tipo
 
                         Tipo.Nombre = EntradaNombre.Text;
                         Tipo.Nomenclatura = EntradaLetra.Text;
-                        Tipo.MueveStock = EntradaMueveStock.ValueInt;
+                        Tipo.MueveExistencias = EntradaMueveStock.ValueInt;
                         Tipo.SituacionOrigen = EntradaSituacionOrigen.Elemento as Lbl.Articulos.Situacion;
                         Tipo.SituacionDestino = EntradaSituacionDestino.Elemento as Lbl.Articulos.Situacion;
                         Tipo.NumerarAlGuardar = EntradaNumerarAl.TextKey == "1";
@@ -153,6 +153,15 @@ namespace Lfc.Comprobantes.Tipo
                                 Lbl.Impresion.TipoImpresora TipoImpr = FormularioAgregar.TipoImpresora;
                                 Tipo.Impresoras.Add(TipoImpr);
                                 this.MostrarImpresora(TipoImpr);
+                        }
+                }
+
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Comprobantes;
                         }
                 }
 	}

@@ -39,9 +39,8 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una Provincia, Departamento o Localidad.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Localidad",
-                TablaDatos = "ciudades",
-                CampoId = "id_ciudad")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Localidad")]
+        [Lbl.Atributos.Datos(TablaDatos = "ciudades", CampoId = "id_ciudad")]
         [Lbl.Atributos.Presentacion()]
 	public class Localidad : ElementoDeDatos
 	{

@@ -119,7 +119,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaActivosCajas.AutoSize = false;
                     this.EntradaActivosCajas.AutoNav = true;
-                    this.EntradaActivosCajas.AutoTab = true;
                     this.EntradaActivosCajas.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosCajas.DecimalPlaces = -1;
                     this.EntradaActivosCajas.ForceCase = Lui.Forms.TextCasing.None;
@@ -138,7 +137,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaFuturosTarjetas.AutoSize = false;
                     this.EntradaFuturosTarjetas.AutoNav = true;
-                    this.EntradaFuturosTarjetas.AutoTab = true;
                     this.EntradaFuturosTarjetas.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaFuturosTarjetas.DecimalPlaces = -1;
                     this.EntradaFuturosTarjetas.ForceCase = Lui.Forms.TextCasing.None;
@@ -167,7 +165,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaActivosStock.AutoSize = false;
                     this.EntradaActivosStock.AutoNav = true;
-                    this.EntradaActivosStock.AutoTab = true;
                     this.EntradaActivosStock.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosStock.DecimalPlaces = -1;
                     this.EntradaActivosStock.ForceCase = Lui.Forms.TextCasing.None;
@@ -196,7 +193,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaFuturosPedidos.AutoSize = false;
                     this.EntradaFuturosPedidos.AutoNav = true;
-                    this.EntradaFuturosPedidos.AutoTab = true;
                     this.EntradaFuturosPedidos.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaFuturosPedidos.DecimalPlaces = -1;
                     this.EntradaFuturosPedidos.ForceCase = Lui.Forms.TextCasing.None;
@@ -225,7 +221,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPasivosCheques.AutoSize = false;
                     this.EntradaPasivosCheques.AutoNav = true;
-                    this.EntradaPasivosCheques.AutoTab = true;
                     this.EntradaPasivosCheques.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosCheques.DecimalPlaces = -1;
                     this.EntradaPasivosCheques.ForceCase = Lui.Forms.TextCasing.None;
@@ -254,7 +249,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPasivosCajas.AutoSize = false;
                     this.EntradaPasivosCajas.AutoNav = true;
-                    this.EntradaPasivosCajas.AutoTab = true;
                     this.EntradaPasivosCajas.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosCajas.DecimalPlaces = -1;
                     this.EntradaPasivosCajas.ForceCase = Lui.Forms.TextCasing.None;
@@ -309,7 +303,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaActivosSubtotal.AutoSize = false;
                     this.EntradaActivosSubtotal.AutoNav = true;
-                    this.EntradaActivosSubtotal.AutoTab = true;
                     this.EntradaActivosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosSubtotal.DecimalPlaces = -1;
                     this.EntradaActivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
@@ -338,7 +331,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPasivosSubtotal.AutoSize = false;
                     this.EntradaPasivosSubtotal.AutoNav = true;
-                    this.EntradaPasivosSubtotal.AutoTab = true;
                     this.EntradaPasivosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosSubtotal.DecimalPlaces = -1;
                     this.EntradaPasivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
@@ -367,7 +359,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaFuturosSubtotal.AutoSize = false;
                     this.EntradaFuturosSubtotal.AutoNav = true;
-                    this.EntradaFuturosSubtotal.AutoTab = true;
                     this.EntradaFuturosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaFuturosSubtotal.DecimalPlaces = -1;
                     this.EntradaFuturosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
@@ -396,7 +387,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPatrimonioActual.AutoSize = false;
                     this.EntradaPatrimonioActual.AutoNav = true;
-                    this.EntradaPatrimonioActual.AutoTab = true;
                     this.EntradaPatrimonioActual.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPatrimonioActual.DecimalPlaces = -1;
                     this.EntradaPatrimonioActual.ForceCase = Lui.Forms.TextCasing.None;
@@ -438,7 +428,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPatrimonioFuturo.AutoSize = false;
                     this.EntradaPatrimonioFuturo.AutoNav = true;
-                    this.EntradaPatrimonioFuturo.AutoTab = true;
                     this.EntradaPatrimonioFuturo.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPatrimonioFuturo.DecimalPlaces = -1;
                     this.EntradaPatrimonioFuturo.ForceCase = Lui.Forms.TextCasing.None;
@@ -467,7 +456,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaActivosActualesFuturos.AutoSize = false;
                     this.EntradaActivosActualesFuturos.AutoNav = true;
-                    this.EntradaActivosActualesFuturos.AutoTab = true;
                     this.EntradaActivosActualesFuturos.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaActivosActualesFuturos.DecimalPlaces = -1;
                     this.EntradaActivosActualesFuturos.ForceCase = Lui.Forms.TextCasing.None;
@@ -496,7 +484,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPasivosStock.AutoSize = false;
                     this.EntradaPasivosStock.AutoNav = true;
-                    this.EntradaPasivosStock.AutoTab = true;
                     this.EntradaPasivosStock.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaPasivosStock.DecimalPlaces = -1;
                     this.EntradaPasivosStock.ForceCase = Lui.Forms.TextCasing.None;
@@ -525,7 +512,6 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaCC.AutoSize = false;
                     this.EntradaCC.AutoNav = true;
-                    this.EntradaCC.AutoTab = true;
                     this.EntradaCC.DataType = Lui.Forms.DataTypes.Currency;
                     this.EntradaCC.DecimalPlaces = -1;
                     this.EntradaCC.ForceCase = Lui.Forms.TextCasing.None;

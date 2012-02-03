@@ -69,7 +69,7 @@ namespace Lui.Forms
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelTitle.AutoEllipsis = true;
                         this.LabelTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.LabelTitle.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.LabelTitle.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.LabelTitle.Location = new System.Drawing.Point(4, 4);
                         this.LabelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.LabelTitle.Name = "LabelTitle";
@@ -85,7 +85,7 @@ namespace Lui.Forms
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelText.AutoEllipsis = true;
-                        this.LabelText.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.LabelText.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.LabelText.Location = new System.Drawing.Point(16, 36);
                         this.LabelText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.LabelText.Name = "LabelText";

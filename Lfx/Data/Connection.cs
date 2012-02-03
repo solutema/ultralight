@@ -45,7 +45,6 @@ namespace Lfx.Data
         {
                 public bool EnableRecover = false, RequiresTransaction = false, ReadOnly = false;
 
-                public Lfx.Workspace Workspace;
                 public int KeepAlive = 600;             // 10 minutos
                 
                 private string m_Name = null;
@@ -61,8 +60,7 @@ namespace Lfx.Data
                 public Connection(Lfx.Workspace workspace, string ownerName)
                 {
                         this.RequiresTransaction = true;
-                        this.Workspace = workspace;
-                        this.Workspace.ActiveConnections.Add(this);
+                        Lfx.Workspace.Master.ActiveConnections.Add(this);
                         this.Handle = LastHandle++;
                         this.Name = ownerName;
                         if (Lfx.Data.DataBaseCache.DefaultCache == null)
@@ -76,7 +74,7 @@ namespace Lfx.Data
                         if (DbConnection != null && DbConnection.State != System.Data.ConnectionState.Closed && DbConnection.State != System.Data.ConnectionState.Broken)
                                 return;
 
-                        this.Workspace.DebugLog(this.Handle, "Abriendo " + this.Name);
+                        Lfx.Workspace.Master.DebugLog(this.Handle, "Abriendo " + this.Name);
 
                         System.Text.StringBuilder ConnectionString = new System.Text.StringBuilder();
 
@@ -253,7 +251,7 @@ namespace Lfx.Data
                         set
                         {
                                 if (value == "Editar")
-                                        this.Workspace.DebugLog(this.Handle, "Ahora se llama " + value);
+                                        Lfx.Workspace.Master.DebugLog(this.Handle, "Ahora se llama " + value);
                                 m_Name = value;
                         }
                 }
@@ -947,11 +945,11 @@ LEFT JOIN pg_attribute
 
                 public void Dispose()
                 {
-                        if (this.Handle == 0 && this.Workspace.Disposing == false) {
+                        if (this.Handle == 0 && Lfx.Workspace.Master.Disposing == false) {
                                 throw new InvalidOperationException("No se puede deshechar el espacio de trabajo maestro");
                         } else {
-                                this.Workspace.ActiveConnections.Remove(this);
-                                this.Workspace.DebugLog(this.Handle, "Deshechando " + this.Name);
+                                Lfx.Workspace.Master.ActiveConnections.Remove(this);
+                                Lfx.Workspace.Master.DebugLog(this.Handle, "Deshechando " + this.Name);
                                 this.Close();
 
                                 if (KeepAliveTimer != null) {
@@ -1057,8 +1055,8 @@ LEFT JOIN pg_attribute
                         if (this.IsOpen() == false)
                                 this.Open();
 
-                        if (this.Workspace.TraceMode)
-                                this.Workspace.DebugLog(this.Handle, insertCommand.ToString());
+                        if (Lfx.Workspace.Master.TraceMode)
+                                Lfx.Workspace.Master.DebugLog(this.Handle, insertCommand.ToString());
 
                         System.Data.IDbCommand TempCommand = this.GetCommand(insertCommand);
                         try {
@@ -1077,8 +1075,8 @@ LEFT JOIN pg_attribute
                         if (this.ReadOnly)
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
 
-                        if (this.Workspace.TraceMode)
-                                this.Workspace.DebugLog(this.Handle, sqlCommand);
+                        if (Lfx.Workspace.Master.TraceMode)
+                                Lfx.Workspace.Master.DebugLog(this.Handle, sqlCommand);
 
                         // TODO: esto debería hacerlo no sólo en DebugMode
                         if (this.RequiresTransaction && m_InTransaction == false && Lfx.Workspace.Master.DebugMode)
@@ -1114,8 +1112,8 @@ LEFT JOIN pg_attribute
                         if (this.IsOpen() == false)
                                 this.Open();
 
-                        if (this.Workspace.TraceMode)
-                                this.Workspace.DebugLog(this.Handle, command.CommandText);
+                        if (Lfx.Workspace.Master.TraceMode)
+                                Lfx.Workspace.Master.DebugLog(this.Handle, command.CommandText);
 
                         int Intentos = 3;
                         while (true) {
@@ -1185,8 +1183,8 @@ LEFT JOIN pg_attribute
                         if (this.IsOpen() == false)
                                 this.Open();
 
-                        if (this.Workspace.TraceMode)
-                                this.Workspace.DebugLog(this.Handle, selectCommand);
+                        if (Lfx.Workspace.Master.TraceMode)
+                                Lfx.Workspace.Master.DebugLog(this.Handle, selectCommand);
 
                         System.Data.IDbCommand Cmd = this.GetCommand(selectCommand);
                         int Intentos = 3;
@@ -1350,8 +1348,8 @@ LEFT JOIN pg_attribute
                         if (this.IsOpen() == false)
                                 this.Open();
 
-                        if (this.Workspace.TraceMode)
-                                this.Workspace.DebugLog(this.Handle, selectCommand);
+                        if (Lfx.Workspace.Master.TraceMode)
+                                Lfx.Workspace.Master.DebugLog(this.Handle, selectCommand);
 
                         System.Data.IDbDataAdapter Adaptador = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetAdapter(selectCommand, this.DbConnection);
                         using (System.Data.DataSet Lector = new System.Data.DataSet()) {
@@ -1418,15 +1416,15 @@ LEFT JOIN pg_attribute
 
                 public void SetLock(bool enable, string lockName)
                 {
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Lock." + lockName, enable ? 1 : 0);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Lock." + lockName, enable ? 1 : 0);
                         if (enable)
                                 System.Threading.Thread.Sleep(5000);
                 }
 
                 public bool HasLock(string lockName)
                 {
-                        this.Workspace.CurrentConfig.ClearCache();
-                        return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Lock." + lockName, 0) != 0;
+                        Lfx.Workspace.Master.CurrentConfig.ClearCache();
+                        return Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Lock." + lockName, 0) != 0;
                 }
 
                 public bool HasGlobalLock()
@@ -1443,13 +1441,13 @@ LEFT JOIN pg_attribute
                 }
 
 
-                public System.Data.IDbTransaction BeginTransaction()
+                public Lfx.Data.Transaction BeginTransaction()
                 {
                         return this.BeginTransaction(Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel);
                 }
 
 
-                public System.Data.IDbTransaction BeginTransaction(System.Data.IsolationLevel il)
+                public Lfx.Data.Transaction BeginTransaction(System.Data.IsolationLevel il)
                 {
                         if (this.Handle == 0 && Lfx.Workspace.Master.DebugMode)
                                 throw new InvalidOperationException("No se pueden realizar transacciones en el espacio de trabajo maestro");

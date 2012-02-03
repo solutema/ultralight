@@ -47,8 +47,8 @@ namespace Lfc.Articulos.Situaciones
                         Lbl.Articulos.Situacion Item = this.Elemento as Lbl.Articulos.Situacion;
 
                         EntradaNombre.Text = Item.Nombre;
-                        EntradaCuentaStock.TextKey = Item.CuentaStock ? "1" : "0";
-                        EntradaCuentaStock.TextKey = Item.CuentaStock ? "1" : "0";
+                        EntradaCuentaStock.TextKey = Item.CuentaExistencias ? "1" : "0";
+                        EntradaCuentaStock.TextKey = Item.CuentaExistencias ? "1" : "0";
                         EntradaDeposito.ValueInt = Item.Deposito;
 
                         base.ActualizarControl();
@@ -59,11 +59,19 @@ namespace Lfc.Articulos.Situaciones
                         Lbl.Articulos.Situacion Item = this.Elemento as Lbl.Articulos.Situacion;
 
                         Item.Nombre = EntradaNombre.Text;
-                        Item.CuentaStock = EntradaCuentaStock.TextKey == "1";
-                        Item.CuentaStock = EntradaCuentaStock.TextKey == "1";
+                        Item.CuentaExistencias = EntradaCuentaStock.TextKey == "1";
+                        Item.CuentaExistencias = EntradaCuentaStock.TextKey == "1";
                         Item.Deposito = EntradaDeposito.ValueInt;
 
                         base.ActualizarElemento();
+                }
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Articulos;
+                        }
                 }
         }
 }

@@ -214,7 +214,7 @@ namespace Lfc.Comprobantes.Facturas
                 protected override Lfx.Types.OperationResult OnEdit(int itemId)
                 {
                         string Tipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + itemId.ToString());
-                        this.Workspace.RunTime.Execute("EDITAR " + Tipo + " " + itemId.ToString());
+                        Lfx.Workspace.Master.RunTime.Execute("EDITAR " + Tipo + " " + itemId.ToString());
                         return new Lfx.Types.SuccessOperationResult();
                 }
 

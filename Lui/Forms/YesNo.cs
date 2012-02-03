@@ -54,11 +54,11 @@ namespace Lui.Forms
                                 if(value) {
                                         EtiquetaSi.BackColor = System.Drawing.SystemColors.Highlight;
                                         EtiquetaSi.ForeColor = System.Drawing.SystemColors.HighlightText;
-                                        EtiquetaNo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlBackground;
-                                        EtiquetaNo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                                        EtiquetaNo.BackColor = this.DisplayStyle.BackgroundColor;
+                                        EtiquetaNo.ForeColor = this.DisplayStyle.TextColor;
                                 } else {
-                                        EtiquetaSi.BackColor = Lfx.Config.Display.CurrentTemplate.ControlBackground;
-                                        EtiquetaSi.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                                        EtiquetaSi.BackColor = this.DisplayStyle.BackgroundColor;
+                                        EtiquetaSi.ForeColor = this.DisplayStyle.TextColor;
                                         EtiquetaNo.BackColor = System.Drawing.SystemColors.Highlight;
                                         EtiquetaNo.ForeColor = System.Drawing.SystemColors.HighlightText;
                                 }
@@ -115,13 +115,13 @@ namespace Lui.Forms
 
                 private void EtiquetaSi_Click(object sender, EventArgs e)
                 {
-                        this.Focus();
+                        this.Select();
                         this.Value = true;
                 }
 
                 private void EtiquetaNo_Click(object sender, EventArgs e)
                 {
-                        this.Focus();
+                        this.Select();
                         this.Value = false;
                 }
         }

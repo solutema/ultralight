@@ -38,12 +38,9 @@ namespace Lbl.Personas
         /// <summary>
         /// Representa una persona física o jurídica.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Persona",
-                TablaDatos = "personas",
-                CampoId = "id_persona",
-                CampoNombre = "nombre_visible",
-                TablaImagenes = "personas_imagenes")]
-        [Lbl.Atributos.Presentacion()]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Persona")]
+        [Lbl.Atributos.Datos(TablaDatos = "personas", CampoId = "id_persona", CampoNombre = "nombre_visible", TablaImagenes = "personas_imagenes")]
+        [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Siempre)]
         public class Persona : ElementoDeDatos, IElementoConImagen, ICamposBaseEstandar
 	{
                 private Entidades.Localidad m_Localidad = null;
@@ -83,7 +80,7 @@ namespace Lbl.Personas
                                         this.TipoClaveTributaria = Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas;
                         }
                         this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.Connection, 1);
-                        this.Localidad = new Lbl.Entidades.Localidad(this.Connection, this.Workspace.CurrentConfig.Empresa.IdLocalidad);
+                        this.Localidad = new Lbl.Entidades.Localidad(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.IdLocalidad);
                         this.Estado = 1;
                         //this.Contrasena = new System.Random().Next(100000, 999999).ToString();
                 }

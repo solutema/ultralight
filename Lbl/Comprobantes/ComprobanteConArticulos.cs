@@ -35,11 +35,9 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Comprobante con Artículos",
-                TablaDatos = "comprob",
-                CampoId = "id_comprob",
-                TablaImagenes = "comprob_imagenes")]
-        [Lbl.Atributos.Presentacion(PanelExtendido = false)]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Comprobante con Artículos")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob", TablaImagenes = "comprob_imagenes")]
+        [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Nunca)]
 	public class ComprobanteConArticulos : Comprobante
 	{
                 private ColeccionComprobanteImporte m_ComprobRelacionados = null;
@@ -116,9 +114,9 @@ namespace Lbl.Comprobantes
                                 // Anulos los pagos y descancelo los comprobantes
                                 this.AsentarPago(true);
 
-                        if (this.Tipo.MueveStock != 0)
+                        if (this.Tipo.MueveExistencias != 0)
                                 // Vuelvo el stock a su posición original
-                                this.MoverStock(true);
+                                this.MoverExistencias(true);
 
                         Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.DeleteAndRevert, this, null);
                 }
@@ -292,7 +290,7 @@ namespace Lbl.Comprobantes
                                 foreach (DetalleArticulo Art in this.Articulos) {
                                         Res += Art.Importe;
                                 }
-                                return Math.Round(Res, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                return Math.Round(Res, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         }
                 }
 
@@ -378,9 +376,9 @@ namespace Lbl.Comprobantes
                 {
                         decimal Redondeo = Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
                         if (this.Compra || Redondeo == 0)
-                                return Lfx.Types.Currency.Truncate(importe, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                return Lfx.Types.Currency.Truncate(importe, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         else
-                                return Lfx.Types.Currency.Truncate(Math.Floor(importe / Redondeo) * Redondeo, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                return Lfx.Types.Currency.Truncate(Math.Floor(importe / Redondeo) * Redondeo, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                 }
 
 		public Lbl.Pagos.FormaDePago FormaDePago
@@ -429,9 +427,9 @@ namespace Lbl.Comprobantes
                 /// Asienta los movimientos de stock correspondientes al comprobante.
                 /// </summary>
                 /// <param name="anulacion">Indica si el movimiento es por anulación de comprobante.</param>
-                public void MoverStock(bool anulacion)
+                public void MoverExistencias(bool anulacion)
                 {
-                        if (this.Tipo.MueveStock != 0) {
+                        if (this.Tipo.MueveExistencias != 0) {
                                 if (this.Tipo.EsRemito || (this.Tipo.EsFacturaNCoND && this.IdRemito == 0)) {
                                         // Es un Remito, factura, NC o ND
                                         // Resta lo facturado del stock
@@ -450,13 +448,13 @@ namespace Lbl.Comprobantes
                                         foreach (Comprobantes.DetalleArticulo Det in this.Articulos) {
                                                 if (Det.Articulo != null && Det.Articulo.Id > 0) {
                                                         if (anulacion) {
-                                                                Det.Articulo.MoverStock(this, Det.Cantidad,
+                                                                Det.Articulo.MoverExistencias(this, Det.Cantidad,
                                                                         NombreMovim + NombreComprob + this.ToString(),
                                                                         this.SituacionDestino,
                                                                         this.SituacionOrigen,
                                                                         Det.DatosSeguimiento);
                                                         } else {
-                                                                Det.Articulo.MoverStock(this, Det.Cantidad,
+                                                                Det.Articulo.MoverExistencias(this, Det.Cantidad,
                                                                         NombreMovim + NombreComprob + this.ToString(),
                                                                         this.SituacionOrigen,
                                                                         this.SituacionDestino,
@@ -493,7 +491,7 @@ namespace Lbl.Comprobantes
                                 switch (this.FormaDePago.Tipo) {
                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                                 if (this.ImporteImpago > 0) {
-                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(this.Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
                                                         CajaDiaria.Movimiento(true,
                                                                 Lbl.Cajas.Concepto.IngresosPorFacturacion,
                                                                 this.ToString(),
@@ -553,7 +551,7 @@ namespace Lbl.Comprobantes
                                 switch (this.FormaDePago.Tipo) {
                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                                 // Hago un movimiento en caja diaria
-                                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
                                                 Caja.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación " + this.ToString(), this.Cliente, -ImporteMovimCtaCte, null, this, null, null);
                                                 break;
 
@@ -586,14 +584,14 @@ namespace Lbl.Comprobantes
                 }
 
 
-                public bool HayStock()
+                public bool HayExistencias()
                 {
-                        //Verifica si hay suficiente stock para el comprobante
+                        //Verifica si hay suficientes existencias para el comprobante
                         if (this.Articulos != null) {
                                 foreach (Comprobantes.DetalleArticulo Det in this.Articulos) {
                                         if (Det.Id > 0 && Det.Articulo != null
-                                                && Det.Articulo.ControlStock != Lbl.Articulos.ControlStock.No
-                                                && Det.Articulo.StockActual < Det.Cantidad)
+                                                && Det.Articulo.ControlExistencias != Lbl.Articulos.ControlExistencias.No
+                                                && Det.Articulo.Existencias < Det.Cantidad)
                                                 return false;
                                 }
                         }
@@ -724,7 +722,7 @@ namespace Lbl.Comprobantes
                                 Comando.Fields.AddWithValue("id_vendedor", this.Vendedor.Id);
                         
                         if (this.Sucursal == null)
-                                Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+                                Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
                         else
                                 Comando.Fields.AddWithValue("id_sucursal", this.Sucursal.Id);
 
@@ -774,7 +772,7 @@ namespace Lbl.Comprobantes
                         this.GuardarDetalle();
 
                         if (this.Compra) {
-                                if (this.Tipo.MueveStock != 0) {
+                                if (this.Tipo.MueveExistencias != 0) {
                                         // Comprobantes de compra mueven stock al guardar
                                         Lfx.Types.OperationResult Res = VerificarSeries();
                                         if (Res.Success == false)
@@ -784,8 +782,8 @@ namespace Lbl.Comprobantes
                                 if (this.Tipo.EsFacturaNCoND)
                                         this.AsentarPago(false);
 
-                                if (this.Tipo.MueveStock != 0) {
-                                        this.MoverStock(false);
+                                if (this.Tipo.MueveExistencias != 0) {
+                                        this.MoverExistencias(false);
 
                                         Lbl.ListaIds ArticulosAfectados = new Lbl.ListaIds();
                                         foreach (DetalleArticulo Det in m_Articulos) {

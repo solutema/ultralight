@@ -245,11 +245,11 @@ namespace Lfc.Comprobantes
                                         Detalle = "(Sin especificar)";
 
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Detalle));
-                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Comrob["cantart"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Comrob["cantart"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock)));
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToInt32(Comrob["cantfact"])));
-                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotalCosto, this.Workspace.CurrentConfig.Moneda.Decimales)));
-                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
-                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobDiferencia, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotalCosto, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobDiferencia, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
 
                                 Total += ComprobTotal;
                                 TotalCosto += ComprobTotalCosto;
@@ -334,7 +334,7 @@ namespace Lfc.Comprobantes
                                         if (SubTotal > 0) {
                                                 Lazaro.Pres.Spreadsheet.Row SubTotal1 = new Lazaro.Pres.Spreadsheet.Row();
                                                 SubTotal1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(NombreGrupo));
-                                                SubTotal1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                                SubTotal1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                                 ReportSheet.Rows.Add(SubTotal1);
                                                 SubTotal = 0;
                                         }
@@ -437,7 +437,7 @@ namespace Lfc.Comprobantes
                         if (m_Agrupar.Length > 0 && SubTotal > 0) {
                                 Lazaro.Pres.Spreadsheet.Row SubTotal2 = new Lazaro.Pres.Spreadsheet.Row();
                                 SubTotal2.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(NombreGrupo));
-                                SubTotal2.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                SubTotal2.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                 ReportSheet.Rows.Add(SubTotal2);
                                 SubTotal = 0;
                         }
@@ -448,7 +448,7 @@ namespace Lfc.Comprobantes
                         Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(""));
                         Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell("Total"));
                         Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(""));
-                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Total, this.Workspace.CurrentConfig.Moneda.Decimales)));
+                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                         ReportSheet.Rows.Add(Total1);
 
                         ReportListView.FromSheet(ReportSheet);

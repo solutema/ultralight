@@ -99,7 +99,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.BotonRemito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonRemito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonRemito.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonRemito.Image = null;
                         this.BotonRemito.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -118,7 +117,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.BotonPedido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonPedido.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonPedido.Image = null;
                         this.BotonPedido.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -137,7 +135,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.BotonRequerimiento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonRequerimiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonRequerimiento.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonRequerimiento.Image = null;
                         this.BotonRequerimiento.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -156,7 +153,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.BotonFactura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonFactura.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonFactura.Image = null;
                         this.BotonFactura.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -175,7 +171,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.BotonNotaDeCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonNotaDeCredito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonNotaDeCredito.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonNotaDeCredito.Image = null;
                         this.BotonNotaDeCredito.ImagePos = Lui.Forms.ImagePositions.Top;

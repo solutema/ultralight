@@ -68,8 +68,6 @@ namespace Lfc
                         // EntradaBuscar
                         // 
                         this.EntradaBuscar.AutoNav = true;
-                        this.EntradaBuscar.AutoTab = false;
-                        this.EntradaBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaBuscar.DecimalPlaces = -1;
                         this.EntradaBuscar.FieldName = null;
@@ -93,7 +91,6 @@ namespace Lfc
                         // BotonCrear
                         // 
                         this.BotonCrear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonCrear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonCrear.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCrear.Image = null;
                         this.BotonCrear.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -101,8 +98,8 @@ namespace Lfc
                         this.BotonCrear.Name = "BotonCrear";
                         this.BotonCrear.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonCrear.ReadOnly = false;
-                        this.BotonCrear.Size = new System.Drawing.Size(96, 28);
-                        this.BotonCrear.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonCrear.Size = new System.Drawing.Size(96, 40);
+                        this.BotonCrear.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonCrear.Subtext = "F6";
                         this.BotonCrear.TabIndex = 3;
                         this.BotonCrear.Text = "Crear";
@@ -118,7 +115,7 @@ namespace Lfc
                         this.EtiquetaListadoVacio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaListadoVacio.AutoEllipsis = true;
-                        this.EtiquetaListadoVacio.LabelStyle = Lui.Forms.LabelStyles.Info;
+                        this.EtiquetaListadoVacio.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Info;
                         this.EtiquetaListadoVacio.Location = new System.Drawing.Point(332, 192);
                         this.EtiquetaListadoVacio.Margin = new System.Windows.Forms.Padding(0);
                         this.EtiquetaListadoVacio.Name = "EtiquetaListadoVacio";
@@ -137,19 +134,15 @@ namespace Lfc
                         this.AutoSize = true;
                         this.ClientSize = new System.Drawing.Size(792, 472);
                         this.Controls.Add(this.EtiquetaListadoVacio);
-                        this.Controls.Add(this.BotonCrear);
                         this.Controls.Add(this.EntradaBuscar);
+                        this.PanelAcciones.Controls.Add(this.BotonCrear);
                         this.Name = "FormularioListado";
                         this.Text = "Listado";
                         this.Controls.SetChildIndex(this.PanelContadores, 0);
                         this.Controls.SetChildIndex(this.PicEsperar, 0);
                         this.Controls.SetChildIndex(this.EntradaBuscar, 0);
                         this.Controls.SetChildIndex(this.EtiquetaCantidad, 0);
-                        this.Controls.SetChildIndex(this.BotonCrear, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.BotonCancelar, 0);
-                        this.Controls.SetChildIndex(this.BotonFiltrar, 0);
-                        this.Controls.SetChildIndex(this.BotonImprimir, 0);
                         this.Controls.SetChildIndex(this.EtiquetaListadoVacio, 0);
                         this.PanelContadores.ResumeLayout(false);
                         ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).EndInit();

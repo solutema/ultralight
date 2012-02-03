@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Tipo de Comprobante",
-                Grupo = "Comprobantes",
-                TablaDatos = "documentos_tipos",
-                CampoId = "id_tipo")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Tipo de Comprobante", Grupo = "Comprobantes")]
+        [Lbl.Atributos.Datos(TablaDatos = "documentos_tipos", CampoId = "id_tipo")]
         [Lbl.Atributos.Presentacion()]
         public class Tipo : ElementoDeDatos
         {
@@ -135,7 +133,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                public decimal MueveStock
+                public decimal MueveExistencias
                 {
                         get
                         {
@@ -411,7 +409,7 @@ namespace Lbl.Comprobantes
 
                         Comando.Fields.AddWithValue("letra", this.Nomenclatura);
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
-                        Comando.Fields.AddWithValue("mueve_stock", this.MueveStock);
+                        Comando.Fields.AddWithValue("mueve_stock", this.MueveExistencias);
                         Comando.Fields.AddWithValue("direc_ctacte", this.DireccionCtaCte);
                         Comando.Fields.AddWithValue("numerar_guardar", this.NumerarAlGuardar ? 1 : 0);
                         Comando.Fields.AddWithValue("numerar_imprimir", this.NumerarAlImprimir ? 1 : 0);

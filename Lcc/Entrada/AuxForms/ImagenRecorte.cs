@@ -198,6 +198,7 @@ namespace Lcc.Entrada.AuxForms
                 private void EntradaRatio_TextChanged(object sender, EventArgs e)
                 {
                         this.SelectionRatio = Lfx.Types.Parsing.ParseDecimal(EntradaRatio.TextKey);
+                        CropRect.Width = System.Convert.ToInt32(CropRect.Height * SelectionRatio);
                 }
 
                 private void BotonSinRecorte_Click(object sender, EventArgs e)

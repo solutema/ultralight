@@ -50,13 +50,13 @@ namespace Lfc.Comprobantes.Compra
                 }
 
 
-                public override void OnWorkspaceChanged()
+                protected override void OnLoad(EventArgs e)
                 {
-                        if (this.HasWorkspace) {
-                                EntradaHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
-                                EtiquetaHaciaSituacion.Visible = this.Workspace.CurrentConfig.Productos.StockMultideposito;
+                        base.OnLoad(e);
+                        if (Lfx.Workspace.Master != null && Lfx.Workspace.Master.CurrentConfig != null) {
+                                EntradaHaciaSituacion.Visible = Lfx.Workspace.Master.CurrentConfig.Productos.StockMultideposito;
+                                EtiquetaHaciaSituacion.Visible = Lfx.Workspace.Master.CurrentConfig.Productos.StockMultideposito;
                         }
-                        base.OnWorkspaceChanged();
                 }
 
 
@@ -99,10 +99,10 @@ namespace Lfc.Comprobantes.Compra
                         EntradaHaciaSituacion.TemporaryReadOnly = Fac.Existe;
                         EntradaTipo.TextKey = Fac.Tipo.Nomenclatura;
                         EntradaEstado.TextKey = Fac.Estado.ToString();
-                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Fac.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaCancelado.Text = Lfx.Types.Formatting.FormatCurrency(Fac.ImporteCancelado, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaGastosEnvio.Text = Lfx.Types.Formatting.FormatCurrency(Fac.GastosDeEnvio, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaOtrosGastos.Text = Lfx.Types.Formatting.FormatCurrency(Fac.OtrosGastos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Fac.Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        EntradaCancelado.Text = Lfx.Types.Formatting.FormatCurrency(Fac.ImporteCancelado, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        EntradaGastosEnvio.Text = Lfx.Types.Formatting.FormatCurrency(Fac.GastosDeEnvio, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        EntradaOtrosGastos.Text = Lfx.Types.Formatting.FormatCurrency(Fac.OtrosGastos, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         EntradaFecha.Text = Lfx.Types.Formatting.FormatDate(Fac.Fecha);
                         EntradaObs.Text = Fac.Obs;
 
@@ -203,18 +203,6 @@ namespace Lfc.Comprobantes.Compra
                 }
 
 
-                public string Titulo
-                {
-                        get
-                        {
-                                return EtiquetaTitulo.Text;
-                        }
-                        set
-                        {
-                                EtiquetaTitulo.Text = value;
-                        }
-                }
-
                 private void BotonObs_Click(object sender, EventArgs e)
                 {
                         Lui.Forms.AuxForms.TextEdit FormularioObs = new Lui.Forms.AuxForms.TextEdit();
@@ -266,7 +254,7 @@ namespace Lfc.Comprobantes.Compra
                 {
                         decimal GastosEnvio = Lfx.Types.Parsing.ParseCurrency(EntradaGastosEnvio.Text);
                         decimal OtrosGastos = Lfx.Types.Parsing.ParseCurrency(EntradaOtrosGastos.Text);
-                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total + GastosEnvio + OtrosGastos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total + GastosEnvio + OtrosGastos, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                 }
 
 
@@ -306,9 +294,9 @@ namespace Lfc.Comprobantes.Compra
                                 EntradaFormaPago.Enabled = false;
 
                         if(EntradaNumero.ValueInt > 0)
-                                this.Titulo = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000") + "-" + EntradaNumero.ValueInt.ToString("00000000");
+                                this.Text = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000") + "-" + EntradaNumero.ValueInt.ToString("00000000");
                         else
-                                this.Titulo = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000");
+                                this.Text = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000");
 
                         if (Tipo.EsNotaCredito)
                                 EtiquetaHaciaSituacion.Text = "Origen";
@@ -323,6 +311,15 @@ namespace Lfc.Comprobantes.Compra
                                 Contenedor.Size = this.ClientSize;
 
                         base.OnResize(e);
+                }
+
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Comprobantes;
+                        }
                 }
         }
 }

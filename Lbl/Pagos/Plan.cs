@@ -38,10 +38,8 @@ namespace Lbl.Pagos
         /// <summary>
         /// Representa un plan de una tarjeta de crédito (p. ej.: "Plan 12 cuotas sin interés").
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Plan",
-                Grupo = "Pagos y Cobros",
-                TablaDatos = "tarjetas_planes",
-                CampoId = "id_plan")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Plan", Grupo = "Cobros y Pagos")]
+        [Lbl.Atributos.Datos(TablaDatos = "tarjetas_planes", CampoId = "id_plan")]
         [Lbl.Atributos.Presentacion()]
 	public class Plan : ElementoDeDatos
 	{

@@ -41,6 +41,7 @@ namespace Lazaro.WinMain.Principal
         public partial class Inicio : Form
         {
                 public Lfx.Types.ShowProgressDelegate ShowProgress = null;
+                private Lfc.Inicio.Inicio FormInicio = null;
 
                 private static System.Collections.Generic.Dictionary<string, MenuItemInfo> MenuItemInfoTable = null;
 
@@ -70,14 +71,14 @@ namespace Lazaro.WinMain.Principal
                                 ModoPredeterminado = "flotante";
                         }
 
-                        BarraInferior.Visible = this.Workspace.CurrentConfig.ReadLocalSettingInt("Sistema", "Apariencia.BarraInformacion", 1) != 0;
-                        switch (this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Apariencia.ModoPantalla", ModoPredeterminado)) {
+                        BarraInferior.Visible = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("Sistema", "Apariencia.BarraInformacion", 1) != 0;
+                        switch (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Apariencia.ModoPantalla", ModoPredeterminado)) {
                                 case "normal":
                                         this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombres + " en " + Lfx.Workspace.Master.ToString();
                                         break;
                                 case "maximizado":
                                         this.WindowState = FormWindowState.Maximized;
-                                        this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombres + " en " + this.Workspace.ToString();
+                                        this.Text = "Lázaro - " + Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombres + " en " + Lfx.Workspace.Master.ToString();
                                         break;
                                 case "completo":
                                         this.Text = "";
@@ -99,8 +100,11 @@ namespace Lazaro.WinMain.Principal
                         }
                         MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para activar el menú.");
 
-                        if (Lfx.Workspace.Master.DebugMode)
-                                this.Text += " - Versión " + Aplicacion.Version();
+                        if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Apariencia.NoMostrarInicio", 0) == 0) {
+                                FormInicio = new Lfc.Inicio.Inicio();
+                                FormInicio.MdiParent = this;
+                                FormInicio.Show();
+                        }
                 }
 
 
@@ -115,12 +119,12 @@ namespace Lazaro.WinMain.Principal
                                 Lfx.Services.Task ProximaTarea = null;
                                 // En conexiones lentas, 1 vez por minuto
                                 // En conexiones rápidas, cada 5 segundos
-                                if (this.Workspace.SlowLink) {
-                                        if (this.Workspace.DefaultScheduler.LastGetTask == System.DateTime.MinValue || (DateTime.Now - this.Workspace.DefaultScheduler.LastGetTask).Minutes >= 1)
-                                                ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("lazaro");
+                                if (Lfx.Workspace.Master.SlowLink) {
+                                        if (Lfx.Workspace.Master.DefaultScheduler.LastGetTask == System.DateTime.MinValue || (DateTime.Now - Lfx.Workspace.Master.DefaultScheduler.LastGetTask).Minutes >= 1)
+                                                ProximaTarea = Lfx.Workspace.Master.DefaultScheduler.GetNextTask("lazaro");
                                 } else {
-                                        if (this.Workspace.DefaultScheduler.LastGetTask == System.DateTime.MinValue || (DateTime.Now - this.Workspace.DefaultScheduler.LastGetTask).Seconds >= 5)
-                                                ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("lazaro");
+                                        if (Lfx.Workspace.Master.DefaultScheduler.LastGetTask == System.DateTime.MinValue || (DateTime.Now - Lfx.Workspace.Master.DefaultScheduler.LastGetTask).Seconds >= 5)
+                                                ProximaTarea = Lfx.Workspace.Master.DefaultScheduler.GetNextTask("lazaro");
                                 }
 
                                 if (ProximaTarea != null) {
@@ -174,7 +178,7 @@ namespace Lazaro.WinMain.Principal
                                                         System.IO.Stream Archivo = System.IO.File.OpenRead(DialogoArchivo.FileName);
                                                         System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default);
 
-                                                        using (Lfx.Data.Connection ConexionActualizar = this.Workspace.GetNewConnection("Inyectar SQL")) {
+                                                        using (Lfx.Data.Connection ConexionActualizar = Lfx.Workspace.Master.GetNewConnection("Inyectar SQL")) {
                                                                 IDbTransaction Trans = ConexionActualizar.BeginTransaction();
                                                                 string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
                                                                 do {
@@ -197,10 +201,10 @@ namespace Lazaro.WinMain.Principal
                                         if (e.Control && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
                                                 BarraInferior.Visible = !BarraInferior.Visible;
-                                                this.Workspace.CurrentConfig.WriteLocalSetting("Sistema", "Apariencia.BarraInformacion", BarraInferior.Visible ? 1 : 0);
+                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Sistema", "Apariencia.BarraInformacion", BarraInferior.Visible ? 1 : 0);
                                         }
                                         break;
-                                case Keys.R:
+                                case Keys.J:
                                         if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
                                                 string Cmd = Lui.Forms.InputBox.ShowInputBox("Comando");
@@ -226,6 +230,12 @@ namespace Lazaro.WinMain.Principal
                                                 Ejecutor.Exec("CREAR Lbl.Comprobantes.Presupuesto");
                                         }
                                         break;
+                                case Keys.R:
+                                        if (e.Control == true && e.Alt == false && e.Shift == false) {
+                                                e.Handled = true;
+                                                Ejecutor.Exec("CREAR Lbl.Comprobantes.ReciboDeCobro");
+                                        }
+                                        break;
                                 case Keys.L:
                                         if (e.Control == true && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
@@ -240,29 +250,7 @@ namespace Lazaro.WinMain.Principal
                 {
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
-                        System.IO.StreamWriter StdOut = new System.IO.StreamWriter(Console.OpenStandardOutput());
-                        StdOut.AutoFlush = true;
-                        Console.SetOut(StdOut);
                         System.Environment.Exit(0);
-                }
-
-
-                private void BarraTareas_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
-                {
-                        int FormId = ((int)e.Button.Tag);
-                        bool Encontre = false;
-                        foreach (Form Frm in this.MdiChildren) {
-                                Lui.Forms.ChildForm Frm2 = Frm as Lui.Forms.ChildForm;
-                                if (Frm2 != null && Frm2.Uid == FormId) {
-                                        Encontre = true;
-                                        Frm.Visible = true;
-                                        Frm.Show();
-                                        Frm.Activate();
-                                        break;
-                                }
-                        }
-                        if (Encontre == false)
-                                BarraTareas.Buttons.Remove(e.Button);
                 }
 
 
@@ -386,7 +374,7 @@ namespace Lazaro.WinMain.Principal
 
                                         /* if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja" && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Listar)) {
                                                 if (Conn == null)
-                                                        Conn = this.Workspace.GetNewConnection("Menú cajas");
+                                                        Conn = Lfx.Workspace.Master.GetNewConnection("Menú cajas");
                                                 DataTable Cajas = Conn.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
 
                                                 foreach (System.Data.DataRow Caja in Cajas.Rows) {
@@ -402,7 +390,7 @@ namespace Lazaro.WinMain.Principal
                                                 MenuItem ItmH = null;
                                                 MenuItemInfo ItmInfoH = new MenuItemInfo();
                                                 if (Conn == null)
-                                                        Conn = this.Workspace.GetNewConnection("Menú tareas");
+                                                        Conn = Lfx.Workspace.Master.GetNewConnection("Menú tareas");
                                                 DataTable Tipos = Conn.Select("SELECT id_tipo_ticket, nombre FROM tickets_tipos ORDER BY nombre");
 
                                                 if (Tipos.Rows.Count > 10) {
@@ -474,7 +462,7 @@ namespace Lazaro.WinMain.Principal
                                 e.ItemHeight = 4;
                                 e.ItemWidth = 24;
                         } else {
-                                SizeF ItemSize = e.Graphics.MeasureString(MiItem.Text.Replace("&", ""), Lfx.Config.Display.MenuFont);
+                                SizeF ItemSize = e.Graphics.MeasureString(MiItem.Text.Replace("&", ""), Lazaro.Pres.DisplayStyles.Template.Current.MenuFont);
 
                                 if (MiItem.Parent == this.MainMenu) {
                                         e.ItemHeight = System.Convert.ToInt32(ItemSize.Height + 2);
@@ -516,19 +504,22 @@ namespace Lazaro.WinMain.Principal
                                 e.Graphics.FillRectangle(Resalte, e.Bounds.X + 1, e.Bounds.Y, e.Bounds.Width - 2, e.Bounds.Height - 1);
                                 // e.Graphics.FillRectangle(New SolidBrush(PaletaCambiarBrillo(SystemColors.Highlight, 40)), e.Bounds.X + 1, e.Bounds.Y, 20, e.Bounds.Height - 1)
                                 e.Graphics.DrawRectangle(Recuadro, e.Bounds.X + 1, e.Bounds.Y, e.Bounds.Width - 2, e.Bounds.Height - 1);
-                                e.Graphics.DrawString(MiItem.Text, Lfx.Config.Display.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
-                                    FormatoTexto);
+                                e.Graphics.DrawString(MiItem.Text, Lazaro.Pres.DisplayStyles.Template.Current.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY, FormatoTexto);
+                                Recuadro.Dispose();
+                                Resalte.Dispose();
+                                Texto.Dispose();
                         } else if ((e.State & DrawItemState.Disabled) == DrawItemState.Disabled) {
                                 SolidBrush Texto = new SolidBrush(System.Drawing.SystemColors.GrayText);
                                 // e.Graphics.SmoothingMode = Drawing2D.SmoothingMode.None
-                                e.Graphics.DrawString(MiItem.Text, Lfx.Config.Display.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
-                                    FormatoTexto);
+                                e.Graphics.DrawString(MiItem.Text, Lazaro.Pres.DisplayStyles.Template.Current.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY, FormatoTexto);
+                                Texto.Dispose();
                         } else {
                                 SolidBrush Texto = new SolidBrush(System.Drawing.SystemColors.MenuText);
                                 // e.Graphics.SmoothingMode = Drawing2D.SmoothingMode.None
-                                e.Graphics.DrawString(MiItem.Text, Lfx.Config.Display.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY,
-                                    FormatoTexto);
+                                e.Graphics.DrawString(MiItem.Text, Lazaro.Pres.DisplayStyles.Template.Current.MenuFont, Texto, e.Bounds.X + MargenX, e.Bounds.Y + MargenY, FormatoTexto);
+                                Texto.Dispose();
                         }
+                        Fondo.Dispose();
                 }
 
                 /// <summary>
@@ -541,8 +532,8 @@ namespace Lazaro.WinMain.Principal
                         MenuItem ItemClicked = (MenuItem)sender;
                         MenuItemInfo ItmInfo = MenuItemInfoTable[ItemClicked.Tag.ToString()];
 
-                        int Hits = this.Workspace.CurrentConfig.ReadLocalSettingInt("MenuStats", ItmInfo.FullPath, 0);
-                        this.Workspace.CurrentConfig.WriteLocalSetting("MenuStats", ItmInfo.FullPath, Hits + 1);
+                        int Hits = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("MenuStats", ItmInfo.FullPath, 0);
+                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("MenuStats", ItmInfo.FullPath, Hits + 1);
                         if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja") {
                                 // Nada
                         } else {
@@ -557,7 +548,7 @@ namespace Lazaro.WinMain.Principal
                         MenuItemInfo ItmInfo = MenuItemInfoTable[ItemClicked.Tag.ToString()];
 
                         if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja" && ItemClicked.IsParent == false) {
-                                DataTable Cajas = this.Workspace.MasterConnection.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
+                                DataTable Cajas = Lfx.Workspace.Master.MasterConnection.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
 
                                 foreach (System.Data.DataRow Caja in Cajas.Rows) {
                                         MenuItem ItmH = new MenuItem(Caja["nombre"].ToString(), new System.EventHandler(Menu_Click));
@@ -606,6 +597,24 @@ namespace Lazaro.WinMain.Principal
                         {
                                 return Lfx.Workspace.Master;
                         }
+                }
+
+                private void BarraTareas_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+                {
+                        int FormId = ((int)e.ClickedItem.Tag);
+                        bool Encontre = false;
+                        foreach (Form Frm in this.MdiChildren) {
+                                Lui.Forms.ChildForm Frm2 = Frm as Lui.Forms.ChildForm;
+                                if (Frm2 != null && Frm2.Uid == FormId) {
+                                        Encontre = true;
+                                        Frm.Visible = true;
+                                        Frm.Show();
+                                        Frm.Activate();
+                                        break;
+                                }
+                        }
+                        if (Encontre == false)
+                                BarraTareas.Items.Remove(e.ClickedItem);
                 }
         }
 }

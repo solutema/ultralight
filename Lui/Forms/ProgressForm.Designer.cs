@@ -57,7 +57,6 @@ namespace Lui.Forms
 
 		private void InitializeComponent()
 		{
-                        this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressForm));
                         this.EtiquetaNombreOperacion = new Lui.Forms.Label();
                         this.EtiquetaDescripcion = new Lui.Forms.Label();
@@ -74,7 +73,7 @@ namespace Lui.Forms
                         this.EtiquetaNombreOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaNombreOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                        this.EtiquetaNombreOperacion.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.EtiquetaNombreOperacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaNombreOperacion.Location = new System.Drawing.Point(88, 24);
                         this.EtiquetaNombreOperacion.Name = "EtiquetaNombreOperacion";
                         this.EtiquetaNombreOperacion.Size = new System.Drawing.Size(364, 44);
@@ -87,7 +86,7 @@ namespace Lui.Forms
                         this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaDescripcion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaDescripcion.Location = new System.Drawing.Point(88, 108);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
                         this.EtiquetaDescripcion.Size = new System.Drawing.Size(364, 78);
@@ -118,7 +117,7 @@ namespace Lui.Forms
                         // 
                         this.EtiquetaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEstado.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaEstado.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(88, 196);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(364, 44);
@@ -126,8 +125,11 @@ namespace Lui.Forms
                         // 
                         // BotonCancelar
                         // 
+                        this.BotonCancelar.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonCancelar.Location = new System.Drawing.Point(356, 164);
+                        this.BotonCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+                        this.BotonCancelar.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+                        this.BotonCancelar.Location = new System.Drawing.Point(360, 168);
                         this.BotonCancelar.Name = "BotonCancelar";
                         this.BotonCancelar.Size = new System.Drawing.Size(96, 20);
                         this.BotonCancelar.TabIndex = 0;
@@ -141,7 +143,7 @@ namespace Lui.Forms
                         // 
                         this.EtiquetaOtrasOperaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaOtrasOperaciones.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaOtrasOperaciones.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaOtrasOperaciones.Location = new System.Drawing.Point(88, 72);
                         this.EtiquetaOtrasOperaciones.Name = "EtiquetaOtrasOperaciones";
                         this.EtiquetaOtrasOperaciones.Size = new System.Drawing.Size(364, 32);
@@ -160,6 +162,7 @@ namespace Lui.Forms
                         this.Controls.Add(this.EtiquetaDescripcion);
                         this.Controls.Add(this.EtiquetaNombreOperacion);
                         this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "ProgressForm";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

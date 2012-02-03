@@ -65,7 +65,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // lblHeaderDetalle
                         // 
-                        this.EtiquetaHeaderDetalle.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.EtiquetaHeaderDetalle.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderDetalle.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaHeaderDetalle.Name = "lblHeaderDetalle";
                         this.EtiquetaHeaderDetalle.Size = new System.Drawing.Size(176, 18);
@@ -75,7 +75,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // lblHeaderUnitario
                         // 
-                        this.EtiquetaHeaderUnitario.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.EtiquetaHeaderUnitario.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderUnitario.Location = new System.Drawing.Point(180, 0);
                         this.EtiquetaHeaderUnitario.Name = "lblHeaderUnitario";
                         this.EtiquetaHeaderUnitario.Size = new System.Drawing.Size(64, 18);
@@ -85,7 +85,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // lblHeaderCantidad
                         // 
-                        this.EtiquetaHeaderCantidad.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.EtiquetaHeaderCantidad.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderCantidad.Location = new System.Drawing.Point(248, 0);
                         this.EtiquetaHeaderCantidad.Name = "lblHeaderCantidad";
                         this.EtiquetaHeaderCantidad.Size = new System.Drawing.Size(72, 18);
@@ -95,7 +95,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // lblHeaderImporte
                         // 
-                        this.EtiquetaHeaderImporte.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.EtiquetaHeaderImporte.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderImporte.Location = new System.Drawing.Point(324, 0);
                         this.EtiquetaHeaderImporte.Name = "lblHeaderImporte";
                         this.EtiquetaHeaderImporte.Size = new System.Drawing.Size(80, 18);

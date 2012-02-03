@@ -40,6 +40,12 @@ namespace Lui.Forms
 {
         public partial class ChildDialogForm : Lui.Forms.ChildForm
 	{
+                public ChildDialogForm()
+                {
+                        InitializeComponent();
+                }
+
+
 		public virtual Lfx.Types.OperationResult Ok()
 		{
 			return new Lfx.Types.SuccessOperationResult();

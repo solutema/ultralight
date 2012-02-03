@@ -100,7 +100,6 @@ namespace Lfc.Tareas
                         this.EntradaTecnico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTecnico.AutoNav = true;
-                        this.EntradaTecnico.AutoTab = true;
                         this.EntradaTecnico.CanCreate = true;
                         this.EntradaTecnico.DataTextField = "nombre_visible";
                         this.EntradaTecnico.Filter = "(tipo&4)=4";
@@ -122,7 +121,6 @@ namespace Lfc.Tareas
                         this.EntradaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDescripcion.AutoNav = true;
-                        this.EntradaDescripcion.AutoTab = true;
                         this.EntradaDescripcion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDescripcion.DecimalPlaces = -1;
                         this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.None;
@@ -146,7 +144,6 @@ namespace Lfc.Tareas
                         // EntradaMinutos
                         // 
                         this.EntradaMinutos.AutoNav = true;
-                        this.EntradaMinutos.AutoTab = true;
                         this.EntradaMinutos.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaMinutos.DecimalPlaces = -1;
                         this.EntradaMinutos.ForceCase = Lui.Forms.TextCasing.None;
@@ -165,7 +162,6 @@ namespace Lfc.Tareas
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCondicion.AutoNav = true;
                         this.EntradaCondicion.AutoSize = true;
-                        this.EntradaCondicion.AutoTab = true;
                         this.EntradaCondicion.Location = new System.Drawing.Point(96, 192);
                         this.EntradaCondicion.Name = "EntradaCondicion";
                         this.EntradaCondicion.Padding = new System.Windows.Forms.Padding(2);
@@ -199,7 +195,6 @@ namespace Lfc.Tareas
                         this.EntradaTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTicket.AutoNav = true;
-                        this.EntradaTicket.AutoTab = true;
                         this.EntradaTicket.CanCreate = true;
                         this.EntradaTicket.DataTextField = "nombre";
                         this.EntradaTicket.Filter = "";
@@ -241,7 +236,6 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.Label1);
                         this.Name = "Novedad";
                         this.Text = "Novedad: Cargar";
-                        this.WorkspaceChanged += new System.EventHandler(this.Novedad_WorkspaceChanged);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);

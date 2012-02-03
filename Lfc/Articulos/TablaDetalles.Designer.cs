@@ -50,12 +50,12 @@ namespace Lfc.Articulos
 
                 private System.ComponentModel.IContainer components = null;
 
-                internal System.Windows.Forms.Panel LowerPanel;
+                internal Lui.Forms.ButtonPanel LowerPanel;
                 internal Lui.Forms.Button CancelCommandButton;
 
                 private void InitializeComponent()
                 {
-                        this.LowerPanel = new System.Windows.Forms.Panel();
+                        this.LowerPanel = new Lui.Forms.ButtonPanel();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.LowerPanel.SuspendLayout();
                         this.SuspendLayout();

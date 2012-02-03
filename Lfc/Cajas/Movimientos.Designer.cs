@@ -70,8 +70,8 @@ namespace Lfc.Cajas
                         this.BotonIngreso.Name = "BotonIngreso";
                         this.BotonIngreso.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonIngreso.TemporaryReadOnly = false;
-                        this.BotonIngreso.Size = new System.Drawing.Size(96, 29);
-                        this.BotonIngreso.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonIngreso.Size = new System.Drawing.Size(96, 40);
+                        this.BotonIngreso.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonIngreso.Subtext = "F3";
                         this.BotonIngreso.TabIndex = 40;
                         this.BotonIngreso.Text = "Ingreso";
@@ -88,8 +88,8 @@ namespace Lfc.Cajas
                         this.BotonEgreso.Name = "BotonEgreso";
                         this.BotonEgreso.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonEgreso.TemporaryReadOnly = false;
-                        this.BotonEgreso.Size = new System.Drawing.Size(96, 29);
-                        this.BotonEgreso.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonEgreso.Size = new System.Drawing.Size(96, 40);
+                        this.BotonEgreso.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonEgreso.Subtext = "F4";
                         this.BotonEgreso.TabIndex = 41;
                         this.BotonEgreso.Text = "Egreso";
@@ -106,8 +106,8 @@ namespace Lfc.Cajas
                         this.BotonMovim.Name = "BotonMovim";
                         this.BotonMovim.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonMovim.TemporaryReadOnly = false;
-                        this.BotonMovim.Size = new System.Drawing.Size(96, 29);
-                        this.BotonMovim.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonMovim.Size = new System.Drawing.Size(96, 40);
+                        this.BotonMovim.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonMovim.Subtext = "F5";
                         this.BotonMovim.TabIndex = 42;
                         this.BotonMovim.Text = "Movim.";
@@ -124,8 +124,8 @@ namespace Lfc.Cajas
                         this.BotonArqueo.Name = "BotonArqueo";
                         this.BotonArqueo.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonArqueo.TemporaryReadOnly = false;
-                        this.BotonArqueo.Size = new System.Drawing.Size(96, 29);
-                        this.BotonArqueo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonArqueo.Size = new System.Drawing.Size(96, 40);
+                        this.BotonArqueo.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonArqueo.Subtext = "F7";
                         this.BotonArqueo.TabIndex = 43;
                         this.BotonArqueo.Text = "Arqueo";
@@ -133,21 +133,12 @@ namespace Lfc.Cajas
                         // 
                         // Inicio
                         // 
-                        this.Controls.Add(this.BotonMovim);
-                        this.Controls.Add(this.BotonIngreso);
-                        this.Controls.Add(this.BotonEgreso);
-                        this.Controls.Add(this.BotonArqueo);
+                        this.PanelAcciones.Controls.Add(this.BotonMovim);
+                        this.PanelAcciones.Controls.Add(this.BotonIngreso);
+                        this.PanelAcciones.Controls.Add(this.BotonEgreso);
+                        this.PanelAcciones.Controls.Add(this.BotonArqueo);
                         this.Name = "Inicio";
-                        this.Controls.SetChildIndex(this.BotonCancelar, 0);
-                        this.Controls.SetChildIndex(this.BotonFiltrar, 0);
-                        this.Controls.SetChildIndex(this.BotonImprimir, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.BotonArqueo, 0);
-                        this.Controls.SetChildIndex(this.BotonEgreso, 0);
-                        this.Controls.SetChildIndex(this.BotonIngreso, 0);
-                        this.Controls.SetChildIndex(this.BotonMovim, 0);
                         this.ResumeLayout(false);
-
                 }
 
                 #endregion

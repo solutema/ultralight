@@ -82,11 +82,11 @@ namespace Lcc.Edicion
                         this.ListaComentarios.FullRowSelect = true;
                         this.ListaComentarios.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaComentarios.LabelWrap = false;
-                        this.ListaComentarios.Location = new System.Drawing.Point(0, 27);
+                        this.ListaComentarios.Location = new System.Drawing.Point(0, 32);
                         this.ListaComentarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.ListaComentarios.MultiSelect = false;
                         this.ListaComentarios.Name = "ListaComentarios";
-                        this.ListaComentarios.Size = new System.Drawing.Size(552, 205);
+                        this.ListaComentarios.Size = new System.Drawing.Size(552, 200);
                         this.ListaComentarios.TabIndex = 50;
                         this.ListaComentarios.TabStop = false;
                         this.ListaComentarios.UseCompatibleStateImageBehavior = false;
@@ -118,10 +118,9 @@ namespace Lcc.Edicion
                         this.EntradaComentario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComentario.AutoNav = true;
-                        this.EntradaComentario.AutoTab = true;
-                        this.EntradaComentario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaComentario.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaComentario.DecimalPlaces = -1;
+                        this.EntradaComentario.Enabled = false;
                         this.EntradaComentario.FieldName = null;
                         this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
@@ -144,7 +143,6 @@ namespace Lcc.Edicion
                         // BotonAgregar
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregar.Enabled = false;
                         this.BotonAgregar.Image = null;
@@ -166,7 +164,7 @@ namespace Lcc.Edicion
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.GroupLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(553, 24);
@@ -184,13 +182,7 @@ namespace Lcc.Edicion
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "Comentarios";
                         this.Size = new System.Drawing.Size(552, 260);
-                        this.Controls.SetChildIndex(this.ControlCaption, 0);
-                        this.Controls.SetChildIndex(this.ListaComentarios, 0);
-                        this.Controls.SetChildIndex(this.EntradaComentario, 0);
-                        this.Controls.SetChildIndex(this.BotonAgregar, 0);
-                        this.Controls.SetChildIndex(this.GroupLabel, 0);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 

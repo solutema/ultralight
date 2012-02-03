@@ -38,9 +38,8 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una moneda (divisa).
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Moneda",
-                TablaDatos = "monedas",
-                CampoId = "id_moneda")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Moneda", Grupo = "Cuentas")]
+        [Lbl.Atributos.Datos(TablaDatos = "monedas", CampoId = "id_moneda")]
         [Lbl.Atributos.Presentacion()]
         public class Moneda : ElementoDeDatos
         {

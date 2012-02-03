@@ -42,8 +42,9 @@ namespace Lui.Forms
 	[Designer("System.Windows.Forms.Design.ControlDesigner, System.Design", typeof(System.ComponentModel.Design.IDesigner)),
                 DefaultEvent("Click"),
                 DefaultProperty("Text")]
-        public partial class Control : System.Windows.Forms.UserControl, IControl
+        public partial class Control : System.Windows.Forms.UserControl, IControl, IDisplayStyleControl
 	{
+                protected bool m_AutoNav = true;
 		protected bool m_Highlighted;
                 protected Lui.Forms.Control.BorderStyles m_BorderStyle = Lui.Forms.Control.BorderStyles.Control;
                 protected bool m_Changed, m_ReadOnly = false, m_TemporaryReadOnly = false, m_ShowChanged, m_AutoHeight = false;
@@ -69,7 +70,8 @@ namespace Lui.Forms
                 {
                         InitializeComponent();
 
-                        base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                        this.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
+                        base.BackColor = this.DisplayStyle.BackgroundColor;
                 }
 
 		[EditorBrowsable(EditorBrowsableState.Never),
@@ -88,6 +90,23 @@ namespace Lui.Forms
 			}
 		}
 
+                /// <summary>
+                /// Obtiene o establece un valor que indica si el control tiene navegación con teclado mejorada.
+                /// </summary>
+                [System.ComponentModel.Category("Comportamiento")]
+                public bool AutoNav
+                {
+                        get
+                        {
+                                return m_AutoNav;
+                        }
+                        set
+                        {
+                                m_AutoNav = value;
+                        }
+                }
+
+
 
 		[EditorBrowsable(EditorBrowsableState.Always),
                         Browsable(true),
@@ -100,23 +119,33 @@ namespace Lui.Forms
 			}
 			set
 			{
+                                EventHandler Tc = null;
+                                if (base.Text != value)
+                                        Tc = this.TextChanged;
+
 				base.Text = value;
-				ControlCaption.Text = value;
-				ControlCaption.Visible = (value.Length > 0);
-				this.Refresh();
+
+                                if (Tc != null)
+                                        this.TextChanged(this, new EventArgs());
 			}
 		}
+
 
 		[EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		new protected System.Drawing.Color BackColor
+		new public System.Drawing.Color BackColor
 		{
 			get
 			{
-				return Lfx.Config.Display.CurrentTemplate.WindowBackground;
+				return base.BackColor;
 			}
+                        /* set
+                        {
+                                base.BackColor = value;
+                        } */
 		}
+
 
                 /// <summary>
                 /// Devuelve o establece si el control está temporalmente (o permanentemente) inhabilitado para realizar cambios.
@@ -277,52 +306,6 @@ namespace Lui.Forms
                 }
 
 
-		protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
-		{
-			switch (m_BorderStyle)
-			{
-				case BorderStyles.Button:
-					e.Graphics.Clear(Lfx.Config.Display.CurrentTemplate.ButtonFace);
-					break;
-				case BorderStyles.TextBox:
-					e.Graphics.Clear(Lfx.Config.Display.CurrentTemplate.ControlDataarea);
-					break;
-				default:
-					e.Graphics.Clear(Lfx.Config.Display.CurrentTemplate.WindowBackground);
-					break;
-			}
-
-                        switch (m_BorderStyle) {
-                                case BorderStyles.None:
-                                        if (m_Highlighted) {
-                                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-                                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-                                        }
-                                        break;
-                                case BorderStyles.TextBox:
-                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.ControlBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-                                        if (m_ShowChanged && m_Changed) {
-                                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Color.Red), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
-                                        } else if (m_Highlighted) {
-                                                if (m_ReadOnly || m_TemporaryReadOnly) {
-                                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-                                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionDisabled), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-                                                } else {
-                                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-                                                        e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-                                                        //e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-                                                        //e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-                                                }
-                                        }
-                                        if (m_Error != null && m_Error.Length > 0 && m_ShowChanged == false)
-                                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.SelectionError), new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
-                                        break;
-                        }
-
-                        base.OnPaint(e);
-		}
-
-
 		private void Control_Resize(object sender, System.EventArgs e)
 		{
 			this.Invalidate();
@@ -338,13 +321,19 @@ namespace Lui.Forms
                         get
                         {
                                 if (m_DataBase == null) {
-                                        System.Windows.Forms.Control MiParent = this.Parent;
-                                        while (MiParent != null) {
-                                                if (MiParent is Lui.Forms.IDataControl) {
-                                                        m_DataBase = ((Lui.Forms.IDataControl)(MiParent)).Connection;
-                                                        break;
-                                                } else {
-                                                        MiParent = MiParent.Parent;
+                                        if (this.ParentForm is IDataForm) {
+                                                // Obtengo la conexión del formulario
+                                                m_DataBase = ((IDataForm)(this.ParentForm)).Connection;
+                                        } else {
+                                                // De lo contrario, intento buscar una conexión en los controles parent
+                                                System.Windows.Forms.Control MiParent = this.Parent;
+                                                while (MiParent != null) {
+                                                        if (MiParent is Lui.Forms.IDataControl) {
+                                                                m_DataBase = ((Lui.Forms.IDataControl)(MiParent)).Connection;
+                                                                break;
+                                                        } else {
+                                                                MiParent = MiParent.Parent;
+                                                        }
                                                 }
                                         }
                                 }
@@ -362,6 +351,7 @@ namespace Lui.Forms
                         base.OnTextChanged(e);
                 }
 
+
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -377,15 +367,193 @@ namespace Lui.Forms
                         }
                 }
 
+
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                new public Color ForeColor
+                new protected Color ForeColor
                 {
                         get
                         {
                                 return base.ForeColor;
                         }
+                        set
+                        {
+                                base.ForeColor = value;
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Always),
+                        Browsable(true),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public virtual Lazaro.Pres.DisplayStyles.IDisplayStyle DisplayStyle
+                {
+                        get
+                        {
+                                if (this.Parent is IForm)
+                                        return ((IForm)(this.Parent)).DisplayStyle;
+                                else if (this.Parent is IDisplayStyleControl)
+                                        return ((IDisplayStyleControl)(this.Parent)).DisplayStyle;
+                                else
+                                        return Lazaro.Pres.DisplayStyles.Template.Current.Default;
+                        }
+                }
+
+
+                protected override void OnParentChanged(EventArgs e)
+                {
+                        base.OnParentChanged(e);
+                        this.DisposePens();
+                        this.ApplyStyle();
+                }
+
+                protected override void OnParentBackColorChanged(EventArgs e)
+                {
+                        base.OnParentBackColorChanged(e);
+                        this.DisposePens();
+                        this.ApplyStyle();
+                }
+
+                public virtual void ApplyStyle()
+                {
+                        base.BackColor = this.DisplayStyle.BackgroundColor;
+                        this.Invalidate();
+                }
+
+
+                private Pen m_PenBorderColor, m_PenActiveBorderColor, m_PenDataAreaGrayTextColor, m_PenLightColor, m_PenDataAreaColor;
+
+                private void DisposePens()
+                {
+                        if (m_PenBorderColor != null) {
+                                m_PenBorderColor.Dispose();
+                                m_PenBorderColor = null;
+                        }
+                        if (m_PenActiveBorderColor != null) {
+                                m_PenActiveBorderColor.Dispose();
+                                m_PenActiveBorderColor = null;
+                        }
+                        if (m_PenDataAreaGrayTextColor != null) {
+                                m_PenDataAreaGrayTextColor.Dispose();
+                                m_PenDataAreaGrayTextColor = null;
+                        }
+                        if (m_PenLightColor != null) {
+                                m_PenLightColor.Dispose();
+                                m_PenLightColor = null;
+                        }
+                        if (m_PenDataAreaColor != null) {
+                                m_PenDataAreaColor.Dispose();
+                                m_PenDataAreaColor = null;
+                        }
+                }
+
+                protected Pen PenBorderColor
+                {
+                        get
+                        {
+                                if (m_PenBorderColor == null)
+                                        m_PenBorderColor = new Pen(this.DisplayStyle.BorderColor);
+                                return m_PenBorderColor;
+                        }
+                }
+
+                protected Pen PenActiveBorderColor
+                {
+                        get
+                        {
+                                if (m_PenActiveBorderColor == null)
+                                        m_PenActiveBorderColor = new Pen(this.DisplayStyle.ActiveBorderColor);
+                                return m_PenActiveBorderColor;
+                        }
+                }
+
+                protected Pen PenDataAreaGrayTextColor
+                {
+                        get
+                        {
+                                if (m_PenDataAreaGrayTextColor == null)
+                                        m_PenDataAreaGrayTextColor = new Pen(this.DisplayStyle.DataAreaTextColor);
+                                return m_PenDataAreaGrayTextColor;
+                        }
+                }
+
+                protected Pen PenLightColor
+                {
+                        get
+                        {
+                                if (m_PenLightColor == null)
+                                        m_PenLightColor = new Pen(this.DisplayStyle.LightColor);
+                                return m_PenLightColor;
+                        }
+                }
+
+                protected Pen PenDataAreaColor
+                {
+                        get
+                        {
+                                if (m_PenDataAreaColor == null)
+                                        m_PenDataAreaColor = new Pen(this.DisplayStyle.DataAreaColor);
+                                return m_PenDataAreaColor;
+                        }
+                }
+
+                protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+                {
+                        switch (m_BorderStyle) {
+                                case BorderStyles.Button:
+                                        e.Graphics.Clear(this.BackColor);
+                                        break;
+                                case BorderStyles.TextBox:
+                                        e.Graphics.Clear(this.DisplayStyle.DataAreaColor);
+                                        break;
+                                default:
+                                        e.Graphics.Clear(this.DisplayStyle.BackgroundColor);
+                                        break;
+                        }
+
+                        switch (m_BorderStyle) {
+                                case BorderStyles.None:
+                                        if (m_Highlighted) {
+                                                e.Graphics.DrawRectangle(PenActiveBorderColor, new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                e.Graphics.DrawRectangle(PenActiveBorderColor, new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                        }
+                                        break;
+                                case BorderStyles.TextBox:
+                                        // Subrayado
+                                        // e.Graphics.DrawRectangle(new System.Drawing.Pen(Color.Silver), new System.Drawing.Rectangle(0, this.Height - 1, this.Width - 1, this.Height - 1));
+                                        if (m_ShowChanged && m_Changed && m_ReadOnly == false) {
+                                                e.Graphics.DrawRectangle(System.Drawing.Pens.Red, new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
+                                        } else if (m_Highlighted) {
+                                                if (m_ReadOnly || m_TemporaryReadOnly) {
+                                                        e.Graphics.DrawRectangle(PenDataAreaGrayTextColor, new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                        e.Graphics.DrawRectangle(PenDataAreaGrayTextColor, new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                                } else {
+                                                        e.Graphics.DrawRectangle(PenActiveBorderColor, new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                        e.Graphics.DrawRectangle(PenActiveBorderColor, new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                                        //Borde redondeado
+                                                        //e.Graphics.DrawRectangle(new System.Drawing.Pen(this.DisplayStyle.SelectionColor), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                        //e.Graphics.DrawRectangle(new System.Drawing.Pen(this.DisplayStyle.SelectionColor), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                                }
+                                        } else {
+                                                // Borde fino
+                                                e.Graphics.DrawRectangle(m_Highlighted ? PenActiveBorderColor : PenBorderColor, new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                        }
+                                        if (m_Error != null && m_Error.Length > 0 && m_ShowChanged == false)
+                                                e.Graphics.DrawRectangle(System.Drawing.Pens.DarkViolet, new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
+                                        break;
+                                case BorderStyles.Button:
+                                        if (m_Highlighted) {
+                                                e.Graphics.DrawRectangle(PenActiveBorderColor, new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                e.Graphics.DrawRectangle(PenActiveBorderColor, new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                        } else {
+                                                e.Graphics.DrawRectangle(PenLightColor, new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                e.Graphics.DrawRectangle(PenLightColor, new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                        }
+                                        break;
+                        }
+
+                        base.OnPaint(e);
                 }
 	}
 }

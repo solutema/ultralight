@@ -38,6 +38,8 @@ namespace Lfc.Cajas
 {
         public partial class Movimientos : Lfc.FormularioCuenta
         {
+                private string Parametros = null;
+
                 private Lbl.Cajas.Caja m_Caja = null;
                 private Lbl.Cajas.Concepto Concepto { get; set; }
                 private int TipoConcepto { get; set; }
@@ -108,10 +110,6 @@ namespace Lfc.Cajas
                         this.Definicion.Columns["cajas_movim.concepto"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.TotalName;
                         this.Definicion.Columns["cajas_movim.importe"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
 
-                        if (this.HasWorkspace) {
-                                this.Caja = new Lbl.Cajas.Caja(this.Connection, 999);
-                        }
-
                         this.Fechas = new Lfx.Types.DateRange("dia-0");
 
                         this.HabilitarFiltrar = true;
@@ -121,32 +119,45 @@ namespace Lfc.Cajas
                 public Movimientos(string comando)
                         : this()
                 {
-                        if(comando == "efectivo") {
-                                this.Caja = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.CajaDiaria;
-                        } else {
-                                int NumeroCaja = Lfx.Types.Parsing.ParseInt(comando);
-                                if(NumeroCaja > 0)
-                                        this.Caja = new Lbl.Cajas.Caja(this.Connection, NumeroCaja);
-                        }
+                        this.Parametros = comando;
+                }
 
-                        if (this.Caja != null) {
-                                // Busco un rango de fechas en el cual haya movimientos
-                                string[] FechasAProbar = new string[] { "dia-0", "semana-0", "mes-0", "mes-1", "mes-2", "mes-3", "mes-4" };
-                                foreach (string FechaAProbar in FechasAProbar) {
-                                        Lfx.Types.DateRange Rango = new Lfx.Types.DateRange(FechaAProbar);
-                                        qGen.Select SelMovs = new qGen.Select("cajas_movim");
-                                        SelMovs.Fields = "COUNT(id_movim)";
-                                        SelMovs.WhereClause = new qGen.Where("id_caja", this.Caja.Id);
-                                        SelMovs.WhereClause.AddWithValue("fecha", Rango.From, Rango.To);
-                                        int Movs = this.Connection.FieldInt(SelMovs);
 
-                                        if (Movs > 0) {
-                                                this.Fechas = Rango;
-                                                break;
+                protected override void OnLoad(EventArgs e)
+                {
+                        base.OnLoad(e);
+
+                        if (this.Connection != null) {
+                                if (Parametros == "efectivo") {
+                                        this.Caja = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.CajaDiaria;
+                                } else {
+                                        int NumeroCaja = Lfx.Types.Parsing.ParseInt(Parametros);
+                                        if (NumeroCaja > 0)
+                                                this.Caja = new Lbl.Cajas.Caja(this.Connection, NumeroCaja);
+                                        else
+                                                this.Caja = new Lbl.Cajas.Caja(this.Connection, 999);
+                                }
+
+                                if (this.Caja != null) {
+                                        // Busco un rango de fechas en el cual haya movimientos
+                                        string[] FechasAProbar = new string[] { "dia-0", "semana-0", "mes-0", "mes-1", "mes-2", "mes-3", "mes-4" };
+                                        foreach (string FechaAProbar in FechasAProbar) {
+                                                Lfx.Types.DateRange Rango = new Lfx.Types.DateRange(FechaAProbar);
+                                                qGen.Select SelMovs = new qGen.Select("cajas_movim");
+                                                SelMovs.Fields = "COUNT(id_movim)";
+                                                SelMovs.WhereClause = new qGen.Where("id_caja", this.Caja.Id);
+                                                SelMovs.WhereClause.AddWithValue("fecha", Rango.From, Rango.To);
+                                                int Movs = this.Connection.FieldInt(SelMovs);
+
+                                                if (Movs > 0) {
+                                                        this.Fechas = new Lfx.Types.DateRange(Rango.From, new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59));
+                                                        break;
+                                                }
                                         }
                                 }
                         }
                 }
+
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
@@ -192,13 +203,13 @@ namespace Lfc.Cajas
                                         // Calculo el transporte combinado de todas las cajas
                                         DataTable Cajas = this.Connection.Select("SELECT id_caja FROM cajas");
                                         foreach (System.Data.DataRow Caja in Cajas.Rows) {
-                                                Transporte += Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.Definicion.TableName + " WHERE  id_caja=" + Caja["id_caja"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                Transporte += Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.Definicion.TableName + " WHERE  id_caja=" + Caja["id_caja"].ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom).ToString() + " 00:00:00' ORDER BY id_movim DESC"), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                         }
                                 }
                         } else {
                                 this.Text = Caja.ToString();
                                 // Calculo el transporte de una cuenta
-                                Transporte = Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.Definicion.TableName + " WHERE  id_caja=" + this.Caja.Id.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                Transporte = Math.Round(this.Connection.FieldDecimal("SELECT saldo FROM " + this.Definicion.TableName + " WHERE  id_caja=" + this.Caja.Id.ToString() + " AND fecha<'" + Lfx.Types.Formatting.FormatDateSql(FechaFrom) + " 00:00:00' ORDER BY id_movim DESC LIMIT 1"), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         }
 
                         if (Direccion == 1)
@@ -297,8 +308,14 @@ namespace Lfc.Cajas
 
                 private void BotonArqueo_Click(object sender, System.EventArgs e)
                 {
-                        if(this.Caja == null || this.Cliente != null || Concepto != null || Direccion != 0 || this.Fechas.To < System.DateTime.Now) {
-                                Lui.Forms.MessageBox.Show("Sólo pueden realizar arqueos cuando está visualizando una sola caja y no están utilizando filtros.", "Arqueo");
+                        if (this.Fechas.To < System.DateTime.Now) {
+                                Lfx.Workspace.Master.RunTime.Toast("La vista actual muestra el estado de la caja en una fecha pasada. No puede asentar un arqueo con una fecha pasada. Para asentar un arqueo cambie el filtro de fechas para ver el estado actual de la caja.", "Arqueo");
+                                return;
+                        } else if (this.Caja == null) {
+                                Lfx.Workspace.Master.RunTime.Toast("La vista actual muestra los movimientos de varias cajas combinados. No se puede asentar un arqueo en este estado.", "Arqueo");
+                                return;
+                        } else if (this.Cliente != null || this.Concepto != null || this.Direccion != 0) {
+                                Lfx.Workspace.Master.RunTime.Toast("La vista actual no muestra todos los movimientos de la caja ya que existe un filtro activo (filtro por Cliente, Concepto, etc.). Quite todos los filtros para poder asentar un arqueo.", "Arqueo");
                                 return;
                         }
 
@@ -322,7 +339,7 @@ namespace Lfc.Cajas
                                 if (Movim.Fields["id_recibo"].Value != null) {
                                         int IdRecibo = Movim.Fields["id_recibo"].ValueInt;
                                         Type TipoRecibo = typeof(Lbl.Comprobantes.Recibo);
-                                        Lfx.Data.Connection NuevaDb = this.Workspace.GetNewConnection("Editar " + TipoRecibo.ToString() + " " + IdRecibo);
+                                        Lfx.Data.Connection NuevaDb = Lfx.Workspace.Master.GetNewConnection("Editar " + TipoRecibo.ToString() + " " + IdRecibo);
                                         Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(TipoRecibo, NuevaDb, IdRecibo);
                                         Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
                                         FormNuevo.DisposeConnection = true;
@@ -333,7 +350,7 @@ namespace Lfc.Cajas
                                 } else if (Movim.Fields["id_comprob"].Value != null) {
                                         int IdComprob = Movim.Fields["id_comprob"].ValueInt;
                                         Type TipoRecibo = typeof(Lbl.Comprobantes.ComprobanteConArticulos);
-                                        Lfx.Data.Connection NuevaDb = this.Workspace.GetNewConnection("Editar " + TipoRecibo.ToString() + " " + IdComprob);
+                                        Lfx.Data.Connection NuevaDb = Lfx.Workspace.Master.GetNewConnection("Editar " + TipoRecibo.ToString() + " " + IdComprob);
                                         Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(TipoRecibo, NuevaDb, IdComprob);
                                         Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
                                         FormNuevo.DisposeConnection = true;

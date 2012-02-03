@@ -132,9 +132,11 @@ namespace Lfc.Cajas
                         return aceptarReturn;
                 }
 
-                private void IngresoEgreso_WorkspaceChanged(object sender, EventArgs e)
+                protected override void OnLoad(EventArgs e)
                 {
-                        EntradaPersona.Elemento = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
+                        base.OnLoad(e);
+                        if (this.Connection != null)
+                                EntradaPersona.Elemento = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
                 }
 
                 private void EntradaImporte_TextChanged(object sender, EventArgs e)

@@ -202,7 +202,7 @@ namespace Lfc.Comprobantes.Facturas
 
                 private void ProcesarReimpresion(string tipo, int pv, int desde, int hasta)
                 {
-                        using (Lfx.Data.Connection Conn = this.Workspace.GetNewConnection("Reimpresión de comprobantes")) {
+                        using (Lfx.Data.Connection Conn = Lfx.Workspace.Master.GetNewConnection("Reimpresión de comprobantes")) {
 
                                 int Cantidad = Math.Abs(hasta - desde);
                                 Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Reimprimiendo...", "Se están reimprimiendo " + Cantidad.ToString() + " comprobantes.");

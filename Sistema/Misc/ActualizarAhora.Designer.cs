@@ -36,15 +36,8 @@ namespace Lazaro.WinMain.Misc
 {
         partial class ActualizarAhora
         {
-                /// <summary>
-                /// Variable del diseñador requerida.
-                /// </summary>
                 private System.ComponentModel.IContainer components = null;
 
-                /// <summary>
-                /// Limpiar los recursos que se estén utilizando.
-                /// </summary>
-                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing && (components != null)) {
@@ -64,7 +57,7 @@ namespace Lazaro.WinMain.Misc
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActualizarAhora));
                         this.BarraProgreso = new Lui.Forms.ProgressBar();
-                        this.panel1 = new System.Windows.Forms.Panel();
+                        this.panel1 = new Lui.Forms.Panel();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
                         this.labelH11 = new Lui.Forms.Label();
                         this.label1 = new Lui.Forms.Label();
@@ -107,7 +100,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // labelH11
                         // 
-                        this.labelH11.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.labelH11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.labelH11.Location = new System.Drawing.Point(136, 32);
                         this.labelH11.Name = "labelH11";
                         this.labelH11.Size = new System.Drawing.Size(464, 24);
@@ -117,7 +110,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(136, 68);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(464, 40);
@@ -127,7 +120,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaEstado
                         // 
-                        this.EtiquetaEstado.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaEstado.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(136, 148);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(380, 20);
@@ -137,7 +130,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaProgreso
                         // 
-                        this.EtiquetaProgreso.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaProgreso.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaProgreso.Location = new System.Drawing.Point(520, 148);
                         this.EtiquetaProgreso.Name = "EtiquetaProgreso";
                         this.EtiquetaProgreso.Size = new System.Drawing.Size(80, 20);
@@ -163,7 +156,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaAyuda
                         // 
-                        this.EtiquetaAyuda.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaAyuda.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaAyuda.Location = new System.Drawing.Point(136, 228);
                         this.EtiquetaAyuda.Name = "EtiquetaAyuda";
                         this.EtiquetaAyuda.Size = new System.Drawing.Size(464, 68);

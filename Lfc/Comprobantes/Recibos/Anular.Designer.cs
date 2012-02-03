@@ -83,6 +83,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label7
                         // 
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(168, 84);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(16, 24);
@@ -93,16 +94,22 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaPV
                         // 
                         this.EntradaPV.AutoNav = true;
-                        this.EntradaPV.AutoTab = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
+                        this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(108, 84);
+                        this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPV.PasswordChar = '\0';
+                        this.EntradaPV.PlaceholderText = null;
+                        this.EntradaPV.Prefijo = "";
+                        this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.SelectOnFocus = true;
                         this.EntradaPV.Size = new System.Drawing.Size(60, 24);
+                        this.EntradaPV.Sufijo = "";
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
                         this.EntradaPV.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
@@ -110,22 +117,29 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaNumero
                         // 
                         this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaNumero.DecimalPlaces = -1;
+                        this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(184, 84);
+                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNumero.PasswordChar = '\0';
+                        this.EntradaNumero.PlaceholderText = null;
+                        this.EntradaNumero.Prefijo = "";
+                        this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.SelectOnFocus = true;
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
+                        this.EntradaNumero.Sufijo = "";
                         this.EntradaNumero.TabIndex = 5;
                         this.EntradaNumero.Text = "0";
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.EntradaNumeroTipoPV);
                         // 
                         // Label2
                         // 
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(24, 84);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(84, 24);
@@ -138,10 +152,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.AlwaysExpanded = true;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.AutoTab = true;
+                        this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(108, 24);
+                        this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTipo.PlaceholderText = null;
+                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "De Pago|RCP",
         "De Cobro|RC"};
@@ -152,6 +169,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(24, 24);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(84, 24);
@@ -161,8 +179,9 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EtiquetaAviso
                         // 
-                        this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaAviso.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaAviso.Location = new System.Drawing.Point(112, 232);
                         this.EtiquetaAviso.Name = "EtiquetaAviso";
                         this.EtiquetaAviso.Size = new System.Drawing.Size(496, 56);
@@ -170,24 +189,31 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaCliente
                         // 
-                        this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoNav = true;
-                        this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCliente.DecimalPlaces = -1;
+                        this.EntradaCliente.FieldName = null;
                         this.EntradaCliente.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCliente.Location = new System.Drawing.Point(108, 204);
+                        this.EntradaCliente.MaxLength = 32767;
                         this.EntradaCliente.MultiLine = false;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCliente.PasswordChar = '\0';
+                        this.EntradaCliente.PlaceholderText = null;
+                        this.EntradaCliente.Prefijo = "";
+                        this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.SelectOnFocus = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(476, 24);
+                        this.EntradaCliente.Sufijo = "";
                         this.EntradaCliente.TabIndex = 11;
                         this.EntradaCliente.TabStop = false;
                         // 
                         // Label4
                         // 
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(24, 204);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(84, 24);
@@ -198,23 +224,29 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaImporte
                         // 
                         this.EntradaImporte.AutoNav = true;
-                        this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
+                        this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(108, 176);
+                        this.EntradaImporte.MaxLength = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImporte.PasswordChar = '\0';
+                        this.EntradaImporte.PlaceholderText = null;
                         this.EntradaImporte.Prefijo = "$";
+                        this.EntradaImporte.ReadOnly = false;
                         this.EntradaImporte.SelectOnFocus = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
+                        this.EntradaImporte.Sufijo = "";
                         this.EntradaImporte.TabIndex = 9;
                         this.EntradaImporte.TabStop = false;
                         this.EntradaImporte.Text = "0.00";
                         // 
                         // Label5
                         // 
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(24, 176);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(84, 24);
@@ -225,21 +257,28 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaFecha
                         // 
                         this.EntradaFecha.AutoNav = true;
-                        this.EntradaFecha.AutoTab = true;
                         this.EntradaFecha.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaFecha.DecimalPlaces = -1;
+                        this.EntradaFecha.FieldName = null;
                         this.EntradaFecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFecha.Location = new System.Drawing.Point(108, 148);
+                        this.EntradaFecha.MaxLength = 32767;
                         this.EntradaFecha.MultiLine = false;
                         this.EntradaFecha.Name = "EntradaFecha";
                         this.EntradaFecha.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFecha.PasswordChar = '\0';
+                        this.EntradaFecha.PlaceholderText = null;
+                        this.EntradaFecha.Prefijo = "";
+                        this.EntradaFecha.ReadOnly = false;
                         this.EntradaFecha.SelectOnFocus = true;
                         this.EntradaFecha.Size = new System.Drawing.Size(128, 24);
+                        this.EntradaFecha.Sufijo = "";
                         this.EntradaFecha.TabIndex = 7;
                         this.EntradaFecha.TabStop = false;
                         // 
                         // Label3
                         // 
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(24, 148);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(84, 24);
@@ -252,7 +291,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(634, 372);
-                        this.ControlBox = true;
                         this.Controls.Add(this.EtiquetaAviso);
                         this.Controls.Add(this.EntradaCliente);
                         this.Controls.Add(this.Label4);

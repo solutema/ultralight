@@ -31,10 +31,9 @@
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Factura",
-                TablaDatos = "comprob",
-                CampoId = "id_comprob")]
-        [Lbl.Atributos.Presentacion(PanelExtendido = false)]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Factura", Grupo = "Comprobantes")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob")]
+        [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Nunca)]
         public class Factura : ComprobanteFacturable
         {
                  //Heredar constructor

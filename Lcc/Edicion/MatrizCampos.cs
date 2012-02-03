@@ -72,7 +72,7 @@ namespace Lcc.Edicion
                         Lbl.Height = control.Height;
                         Lbl.TextAlign = ContentAlignment.TopLeft;
                         Lbl.AutoEllipsis = true;
-                        Lbl.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        Lbl.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         
                         this.FieldContainer.Controls.Add(Lbl);
                         this.FieldContainer.Controls.Add(control);

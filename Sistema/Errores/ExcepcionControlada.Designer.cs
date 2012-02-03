@@ -33,15 +33,8 @@ namespace Lazaro.WinMain.Errores
 {
         partial class ExcepcionControlada
         {
-                /// <summary>
-                /// Variable del diseñador requerida.
-                /// </summary>
                 private System.ComponentModel.IContainer components = null;
 
-                /// <summary>
-                /// Limpiar los recursos que se estén utilizando.
-                /// </summary>
-                /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing && (components != null)) {
@@ -85,7 +78,7 @@ namespace Lazaro.WinMain.Errores
                         this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                        this.EtiquetaDescripcion.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaDescripcion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaDescripcion.Location = new System.Drawing.Point(96, 63);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
                         this.EtiquetaDescripcion.Size = new System.Drawing.Size(468, 44);
@@ -96,7 +89,7 @@ namespace Lazaro.WinMain.Errores
                         // 
                         this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.EtiquetaTitulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 32);
                         this.EtiquetaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
@@ -109,7 +102,7 @@ namespace Lazaro.WinMain.Errores
                         // 
                         this.EtiquetaMasInformacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaMasInformacion.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaMasInformacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaMasInformacion.Location = new System.Drawing.Point(96, 112);
                         this.EtiquetaMasInformacion.Name = "EtiquetaMasInformacion";
                         this.EtiquetaMasInformacion.Size = new System.Drawing.Size(467, 128);
@@ -122,7 +115,7 @@ namespace Lazaro.WinMain.Errores
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(96, 64);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(467, 40);
@@ -165,7 +158,6 @@ namespace Lazaro.WinMain.Errores
                         this.Controls.Add(this.EtiquetaMasInformacion);
                         this.Controls.Add(this.EtiquetaDescripcion);
                         this.Controls.Add(this.label1);
-                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

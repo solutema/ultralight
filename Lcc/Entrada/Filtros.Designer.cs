@@ -66,13 +66,17 @@ namespace Lcc.Entrada
                         // 
                         // TablaFiltros
                         // 
+                        this.TablaFiltros.AutoScroll = true;
+                        this.TablaFiltros.AutoScrollMargin = new System.Drawing.Size(0, 24);
                         this.TablaFiltros.AutoSize = true;
                         this.TablaFiltros.ColumnCount = 2;
                         this.TablaFiltros.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                         this.TablaFiltros.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                         this.TablaFiltros.Dock = System.Windows.Forms.DockStyle.Fill;
                         this.TablaFiltros.Location = new System.Drawing.Point(3, 4);
+                        this.TablaFiltros.MaximumSize = new System.Drawing.Size(800, 600);
                         this.TablaFiltros.Name = "TablaFiltros";
+                        this.TablaFiltros.Padding = new System.Windows.Forms.Padding(12);
                         this.TablaFiltros.RowCount = 1;
                         this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
                         this.TablaFiltros.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -92,7 +96,9 @@ namespace Lcc.Entrada
                         // 
                         // BotonAplicar
                         // 
+                        this.BotonAplicar.AutoNav = true;
                         this.BotonAplicar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAplicar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAplicar.Image = null;
                         this.BotonAplicar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAplicar.Location = new System.Drawing.Point(261, 3);

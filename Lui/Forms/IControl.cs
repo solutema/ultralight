@@ -30,13 +30,14 @@
 #endregion
 
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
-using System.Text;
+using System.Drawing;
 
 namespace Lui.Forms
 {
         public interface IControl
         {
+                Size Size { get; set; }
+                Point Location { get; set; }
         }
 }

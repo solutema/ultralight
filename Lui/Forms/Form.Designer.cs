@@ -35,20 +35,6 @@ namespace Lui.Forms
 	{
 		private System.ComponentModel.IContainer components = null;
 
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing && (components != null)) {
-                                components.Dispose();
-                        }
-
-                        if (m_Connection != null && m_Connection.Handle > 0 && DisposeConnection) {
-                                m_Connection.Dispose();
-                                m_Connection = null;
-                        }
-
-                        base.Dispose(disposing);
-                }
-
 		#region Código generado por el Diseñador de Windows Forms
 
 		private void InitializeComponent()
@@ -58,10 +44,10 @@ namespace Lui.Forms
                         // 
                         // Form
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(792, 473);
-                        this.Font = Lfx.Config.Display.DefaultFont;
+                        this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.KeyPreview = true;
                         this.MaximizeBox = false;
@@ -74,5 +60,6 @@ namespace Lui.Forms
 		}
 
 		#endregion
-	}
+
+        }
 }

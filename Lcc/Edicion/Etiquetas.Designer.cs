@@ -99,7 +99,7 @@ namespace Lcc.Edicion
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.GroupLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(240, 24);
@@ -116,7 +116,6 @@ namespace Lcc.Edicion
                         this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.Name = "Etiquetas";
                         this.Size = new System.Drawing.Size(240, 173);
-                        this.Controls.SetChildIndex(this.ControlCaption, 0);
                         this.Controls.SetChildIndex(this.Lista, 0);
                         this.Controls.SetChildIndex(this.GroupLabel, 0);
                         this.ResumeLayout(false);

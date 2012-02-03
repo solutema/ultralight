@@ -51,6 +51,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DisplayStyles\Articulos.cs" />
+    <Compile Include="DisplayStyles\Blue.cs" />
+    <Compile Include="DisplayStyles\Comprobantes.cs" />
+    <Compile Include="DisplayStyles\Brown.cs" />
+    <Compile Include="DisplayStyles\Personas.cs" />
+    <Compile Include="DisplayStyles\Orange.cs" />
+    <Compile Include="DisplayStyles\LightColors.cs" />
+    <Compile Include="DisplayStyles\Red.cs" />
+    <Compile Include="DisplayStyles\DarkColors.cs" />
+    <Compile Include="DisplayStyles\Template.cs" />
+    <Compile Include="DisplayStyles\TextStyles.cs" />
+    <Compile Include="DisplayStyles\White.cs" />
+    <Compile Include="DisplayStyles\IDisplayStyle.cs" />
+    <Compile Include="DisplayStyles\Green.cs" />
+    <Compile Include="DisplayStyles\OldStyle.cs" />
     <Compile Include="Filters\DateRangeFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FilterCollection.cs" />
@@ -58,8 +73,9 @@
     <Compile Include="Filters\NumericRangeFilter.cs" />
     <Compile Include="Filters\RelationFilter.cs" />
     <Compile Include="Filters\SerFilter.cs" />
-    <Compile Include="Forms\Button.cs" />
+    <Compile Include="Forms\FormAction.cs" />
     <Compile Include="FieldCollection.cs" />
+    <Compile Include="Forms\FormActionCollection.cs" />
     <Compile Include="Forms\Form.cs" />
     <Compile Include="Forms\FormCaption.cs" />
     <Compile Include="Forms\Section.cs" />
@@ -68,6 +84,11 @@
     <Compile Include="Listings\Listing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\SidePanel.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Spreadsheet\AggregationRow.cs" />
     <Compile Include="Spreadsheet\Cell.cs" />
     <Compile Include="Spreadsheet\CellCollection.cs" />
@@ -84,12 +105,39 @@
     <Compile Include="Spreadsheet\Sheet.cs" />
     <Compile Include="Spreadsheet\Workbook.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lfx\Lfx.csproj">
       <Project>{BC643FE8-57FF-4E26-AAF2-19B229BE9B16}</Project>
       <Name>Lfx</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\add-item.png" />
+    <Content Include="Resources\addressbook.png" />
+    <Content Include="Resources\agent.png" />
+    <Content Include="Resources\calculator.png" />
+    <Content Include="Resources\container.png" />
+    <Content Include="Resources\copy-item.png" />
+    <Content Include="Resources\delete-item.png" />
+    <Content Include="Resources\dollar.png" />
+    <Content Include="Resources\edit.png" />
+    <Content Include="Resources\form.png" />
+    <Content Include="Resources\home.png" />
+    <Content Include="Resources\lock.png" />
+    <Content Include="Resources\recycle-full.png" />
+    <Content Include="Resources\save.png" />
+    <Content Include="Resources\search.png" />
+    <Content Include="Resources\star.png" />
+    <Content Include="Resources\tag.png" />
+    <Content Include="Resources\unlock.png" />
+    <Content Include="Resources\van.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

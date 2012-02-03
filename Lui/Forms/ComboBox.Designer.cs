@@ -94,7 +94,7 @@ namespace Lui.Forms
                         // 
                         this.ItemList.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ItemList.ForeColor = System.Drawing.SystemColors.InfoText;
-                        this.ItemList.ItemHeight = 15;
+                        this.ItemList.IntegralHeight = false;
                         this.ItemList.Location = new System.Drawing.Point(4, 4);
                         this.ItemList.Margin = new System.Windows.Forms.Padding(1);
                         this.ItemList.Name = "ItemList";

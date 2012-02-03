@@ -37,7 +37,7 @@ using System.Windows.Forms;
 
 namespace Lcc
 {
-        public partial class LccControl : Lui.Forms.DataControl, ILccControl
+        /* public partial class LccControl : Lui.Forms.DataControl, ILccControl
         {
                 private bool m_AutoNav = true;
 
@@ -59,17 +59,5 @@ namespace Lcc
                                 m_AutoNav = value;
                         }
                 }
-
-
-                protected override void OnParentChanged(EventArgs e)
-                {
-                        this.OnWorkspaceChanged();
-                        base.OnParentChanged(e);
-                }
-
-                public virtual void OnWorkspaceChanged()
-                {
-                        return;
-                }
-        }
+        } */
 }

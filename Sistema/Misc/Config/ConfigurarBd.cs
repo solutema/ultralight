@@ -40,8 +40,6 @@ namespace Lazaro.WinMain.Misc.Config
                 public ConfigurarBd()
                 {
                         InitializeComponent();
-
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
                 private void ConfigBD_Load(object sender, System.EventArgs e)

@@ -46,9 +46,8 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una Clave Única (por ejemplo un DNI, SSN, CBU, IBAN, etc.).
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Clave Única",
-                TablaDatos = "tipo_doc",
-                CampoId = "id_tipo_doc")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Clave Única")]
+        [Lbl.Atributos.Datos(TablaDatos = "tipo_doc", CampoId = "id_tipo_doc")]
         [Lbl.Atributos.Presentacion()]
         public class ClaveUnica : ElementoDeDatos
         {

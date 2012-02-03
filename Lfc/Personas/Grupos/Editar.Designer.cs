@@ -72,17 +72,20 @@ namespace Lfc.Personas.Grupos
                         // 
                         // EntradaDescuento
                         // 
-                        this.EntradaDescuento.AutoSize = false;
                         this.EntradaDescuento.AutoNav = true;
-                        this.EntradaDescuento.AutoTab = true;
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaDescuento.DecimalPlaces = -1;
+                        this.EntradaDescuento.FieldName = null;
                         this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescuento.Location = new System.Drawing.Point(120, 64);
+                        this.EntradaDescuento.MaxLength = 32767;
                         this.EntradaDescuento.MultiLine = false;
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescuento.TemporaryReadOnly = false;
+                        this.EntradaDescuento.PasswordChar = '\0';
+                        this.EntradaDescuento.PlaceholderText = null;
+                        this.EntradaDescuento.Prefijo = "";
+                        this.EntradaDescuento.ReadOnly = false;
                         this.EntradaDescuento.SelectOnFocus = true;
                         this.EntradaDescuento.Size = new System.Drawing.Size(84, 24);
                         this.EntradaDescuento.Sufijo = "%";
@@ -91,6 +94,7 @@ namespace Lfc.Personas.Grupos
                         // 
                         // label4
                         // 
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 64);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(120, 24);
@@ -100,25 +104,28 @@ namespace Lfc.Personas.Grupos
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaNombre.AutoSize = false;
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 32);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.TemporaryReadOnly = false;
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = null;
+                        this.EntradaNombre.Prefijo = "";
+                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
-                        this.EntradaNombre.Size = new System.Drawing.Size(432, 24);
+                        this.EntradaNombre.Size = new System.Drawing.Size(437, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 3;
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 32);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
@@ -128,23 +135,26 @@ namespace Lfc.Personas.Grupos
                         // 
                         // EntradaPredet
                         // 
-                        this.EntradaPredet.AutoSize = false;
+                        this.EntradaPredet.AlwaysExpanded = true;
                         this.EntradaPredet.AutoNav = true;
-                        this.EntradaPredet.AutoTab = true;
+                        this.EntradaPredet.AutoSize = true;
+                        this.EntradaPredet.FieldName = null;
                         this.EntradaPredet.Location = new System.Drawing.Point(120, 96);
+                        this.EntradaPredet.MaxLength = 32767;
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPredet.TemporaryReadOnly = false;
+                        this.EntradaPredet.PlaceholderText = null;
+                        this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaPredet.Size = new System.Drawing.Size(84, 24);
+                        this.EntradaPredet.Size = new System.Drawing.Size(84, 36);
                         this.EntradaPredet.TabIndex = 7;
-                        this.EntradaPredet.Text = "No";
                         this.EntradaPredet.TextKey = "0";
                         // 
                         // label2
                         // 
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 96);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(120, 24);
@@ -154,31 +164,30 @@ namespace Lfc.Personas.Grupos
                         // 
                         // EntradaGrupo
                         // 
-                        this.EntradaGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaGrupo.AutoSize = false;
                         this.EntradaGrupo.AutoNav = true;
-                        this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
                         this.EntradaGrupo.DataTextField = "nombre";
+                        this.EntradaGrupo.DataValueField = "id_grupo";
+                        this.EntradaGrupo.ExtraDetailFields = "";
+                        this.EntradaGrupo.FieldName = null;
                         this.EntradaGrupo.Filter = "";
                         this.EntradaGrupo.FreeTextCode = "";
-                        this.EntradaGrupo.DataValueField = "id_grupo";
                         this.EntradaGrupo.Location = new System.Drawing.Point(120, 0);
                         this.EntradaGrupo.MaxLength = 200;
                         this.EntradaGrupo.Name = "EntradaGrupo";
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaGrupo.TemporaryReadOnly = false;
+                        this.EntradaGrupo.PlaceholderText = "Ninguno";
+                        this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.Required = false;
-                        this.EntradaGrupo.Size = new System.Drawing.Size(432, 24);
+                        this.EntradaGrupo.Size = new System.Drawing.Size(440, 24);
                         this.EntradaGrupo.TabIndex = 1;
                         this.EntradaGrupo.Table = "personas_grupos";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
-                        this.EntradaGrupo.PlaceholderText = "Ninguno";
                         // 
                         // Label16
                         // 
+                        this.Label16.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label16.Location = new System.Drawing.Point(0, 0);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(120, 24);
@@ -198,15 +207,7 @@ namespace Lfc.Personas.Grupos
                         this.Controls.Add(this.label4);
                         this.Controls.Add(this.EntradaNombre);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(552, 125);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.EntradaDescuento, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.EntradaPredet, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaGrupo, 0);
-                        this.Controls.SetChildIndex(this.Label16, 0);
+                        this.Size = new System.Drawing.Size(565, 137);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -219,8 +220,8 @@ namespace Lfc.Personas.Grupos
                 internal Lui.Forms.Label Label1;
                 internal Lui.Forms.TextBox EntradaDescuento;
                 internal Lui.Forms.ComboBox EntradaPredet;
-                internal Label label2;
                 internal Lcc.Entrada.CodigoDetalle EntradaGrupo;
-                internal Label Label16;
+                internal Lui.Forms.Label label2;
+                internal Lui.Forms.Label Label16;
         }
 }

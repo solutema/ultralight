@@ -67,7 +67,7 @@ namespace Lfc.Articulos
                                         else
                                                 EntradaFechaPrecio.Text = "";
                                         decimal PrecioUltComp = this.Connection.FieldDecimal("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.compra=1 AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + m_Articulo.Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
-                                        EntradaCostoUltimaCompra.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                                        EntradaCostoUltimaCompra.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
 
                                         // Podra hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
                                         // no permite la cláusula LIMIT dentro de una subconsulta IN ()
@@ -80,7 +80,7 @@ namespace Lfc.Articulos
                                                 }
 
                                                 PrecioUltComp = PrecioUltComp / UltimasCompras.Rows.Count;
-                                                EntradaCostoUltimas5Compras.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                                                EntradaCostoUltimas5Compras.Text = Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
                                         }
 
                                         System.Data.DataTable Precios = this.Connection.Select("SELECT fecha, costo, pvp FROM articulos_precios WHERE id_articulo=" + m_Articulo.Id.ToString() + " ORDER BY fecha DESC LIMIT 100");
@@ -88,8 +88,8 @@ namespace Lfc.Articulos
 
                                         foreach (System.Data.DataRow Precio in Precios.Rows) {
                                                 ListViewItem Itm = lvItems.Items.Add(Lfx.Types.Formatting.FormatDate(Precio["fecha"]));
-                                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Precio["costo"]), this.Workspace.CurrentConfig.Moneda.DecimalesCosto)));
-                                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Precio["pvp"]), this.Workspace.CurrentConfig.Moneda.Decimales)));
+                                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Precio["costo"]), Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto)));
+                                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Precio["pvp"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                         }
                                 }
                         }

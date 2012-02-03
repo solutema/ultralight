@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Presupuesto",
-                TablaDatos = "comprob",
-                CampoId = "id_comprob",
-                TablaImagenes = "comprob_imagenes")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Presupuesto")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob", TablaImagenes = "comprob_imagenes")]
         [Lbl.Atributos.Presentacion()]
         public class Presupuesto : ComprobanteConArticulos
         {

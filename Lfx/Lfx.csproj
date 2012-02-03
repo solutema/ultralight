@@ -150,9 +150,7 @@
     <Compile Include="Config\CompanyConfig.cs" />
     <Compile Include="Config\ConfigManager.cs" />
     <Compile Include="Config\CurrencyConfig.cs" />
-    <Compile Include="Config\Display.cs" />
     <Compile Include="Config\ProductsConfig.cs" />
-    <Compile Include="Config\Templates.cs" />
     <Compile Include="Cpx\CommandList.cs" />
     <Compile Include="Cpx\CommandResponse.cs" />
     <Compile Include="Cpx\Commands.cs" />

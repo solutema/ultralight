@@ -37,9 +37,8 @@ namespace Lbl.Componentes
         /// <summary>
         /// Representa un componente.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Componente",
-                TablaDatos = "sys_components",
-                CampoId = "id_component")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Componente", Grupo = "Sistema")]
+        [Lbl.Atributos.Datos(TablaDatos = "sys_components", CampoId = "id_component")]
         [Lbl.Atributos.Presentacion()]
         public class Componente : ElementoDeDatos, Lfx.Components.IComponent
         {

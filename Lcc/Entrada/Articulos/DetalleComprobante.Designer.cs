@@ -75,7 +75,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         this.LabelSerials.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.LabelSerials.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.LabelSerials.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.LabelSerials.Location = new System.Drawing.Point(16, 26);
                         this.LabelSerials.Name = "LabelSerials";
                         this.LabelSerials.Size = new System.Drawing.Size(354, 12);
@@ -87,7 +87,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // LabelSerialsCruz
                         // 
-                        this.LabelSerialsCruz.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.LabelSerialsCruz.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.LabelSerialsCruz.Location = new System.Drawing.Point(4, 22);
                         this.LabelSerialsCruz.Name = "LabelSerialsCruz";
                         this.LabelSerialsCruz.Size = new System.Drawing.Size(12, 16);
@@ -98,7 +98,6 @@ namespace Lcc.Entrada.Articulos
                         // EntradaDescuento
                         // 
                         this.EntradaDescuento.AutoNav = false;
-                        this.EntradaDescuento.AutoTab = true;
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaDescuento.DecimalPlaces = -1;
                         this.EntradaDescuento.FieldName = null;
@@ -124,7 +123,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         this.EntradaImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImporte.AutoNav = true;
-                        this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.FieldName = null;
@@ -148,8 +146,7 @@ namespace Lcc.Entrada.Articulos
                         // EntradaUnitario
                         // 
                         this.EntradaUnitario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaUnitario.AutoNav = false;
-                        this.EntradaUnitario.AutoTab = false;
+                        this.EntradaUnitario.AutoNav = true;
                         this.EntradaUnitario.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaUnitario.DecimalPlaces = -1;
                         this.EntradaUnitario.FieldName = null;
@@ -164,7 +161,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaUnitario.Prefijo = "";
                         this.EntradaUnitario.ReadOnly = false;
                         this.EntradaUnitario.SelectOnFocus = true;
-                        this.EntradaUnitario.Size = new System.Drawing.Size(80, 24);
+                        this.EntradaUnitario.Size = new System.Drawing.Size(79, 24);
                         this.EntradaUnitario.Sufijo = "";
                         this.EntradaUnitario.TabIndex = 1;
                         this.EntradaUnitario.TabStop = false;
@@ -176,7 +173,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         this.EntradaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCantidad.AutoNav = false;
-                        this.EntradaCantidad.AutoTab = true;
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaCantidad.DecimalPlaces = -1;
                         this.EntradaCantidad.FieldName = null;
@@ -191,7 +187,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.Prefijo = "";
                         this.EntradaCantidad.ReadOnly = false;
                         this.EntradaCantidad.SelectOnFocus = true;
-                        this.EntradaCantidad.Size = new System.Drawing.Size(92, 24);
+                        this.EntradaCantidad.Size = new System.Drawing.Size(91, 24);
                         this.EntradaCantidad.Sufijo = "";
                         this.EntradaCantidad.TabIndex = 2;
                         this.EntradaCantidad.TabStop = false;
@@ -205,7 +201,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaArticulo.AutoNav = true;
-                        this.EntradaArticulo.AutoTab = true;
                         this.EntradaArticulo.CanCreate = true;
                         this.EntradaArticulo.DataTextField = "nombre";
                         this.EntradaArticulo.DataValueField = "id_articulo";
@@ -220,7 +215,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaArticulo.PlaceholderText = null;
                         this.EntradaArticulo.ReadOnly = false;
                         this.EntradaArticulo.Required = true;
-                        this.EntradaArticulo.Size = new System.Drawing.Size(240, 24);
+                        this.EntradaArticulo.Size = new System.Drawing.Size(239, 24);
                         this.EntradaArticulo.TabIndex = 0;
                         this.EntradaArticulo.Table = "articulos";
                         this.EntradaArticulo.Text = "0";
@@ -240,15 +235,7 @@ namespace Lcc.Entrada.Articulos
                         this.Name = "DetalleComprobante";
                         this.Size = new System.Drawing.Size(504, 44);
                         this.Enter += new System.EventHandler(this.Product_Enter);
-                        this.Controls.SetChildIndex(this.LabelSerialsCruz, 0);
-                        this.Controls.SetChildIndex(this.LabelSerials, 0);
-                        this.Controls.SetChildIndex(this.EntradaArticulo, 0);
-                        this.Controls.SetChildIndex(this.EntradaCantidad, 0);
-                        this.Controls.SetChildIndex(this.EntradaUnitario, 0);
-                        this.Controls.SetChildIndex(this.EntradaImporte, 0);
-                        this.Controls.SetChildIndex(this.EntradaDescuento, 0);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
                 #endregion

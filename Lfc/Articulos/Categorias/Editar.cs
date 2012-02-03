@@ -53,7 +53,7 @@ namespace Lfc.Articulos.Categorias
 
                         EntradaNombre.Text = Cat.Nombre;
                         EntradaNombreSing.Text = Cat.NombreSingular;
-                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatStock(Cat.StockMinimo);
+                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatStock(Cat.PuntoDeReposicion);
                         EntradaWeb.TextKey = Cat.PublicacionWeb.ToString();
                         EntradaSeguimiento.TextKey = ((int)(Cat.Seguimiento)).ToString();
                         EntradaItem.Text = Lfx.Types.Formatting.FormatStock(this.Connection.FieldDecimal("SELECT COUNT(id_articulo) FROM articulos WHERE id_categoria=" + Cat.Id.ToString()));
@@ -73,7 +73,7 @@ namespace Lfc.Articulos.Categorias
 
                         Cat.Nombre = EntradaNombre.Text;
                         Cat.NombreSingular = EntradaNombreSing.Text;
-                        Cat.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
+                        Cat.PuntoDeReposicion = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
                         Cat.PublicacionWeb = Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey);
                         Cat.Seguimiento = ((Lbl.Articulos.Seguimientos)(Lfx.Types.Parsing.ParseInt(EntradaSeguimiento.TextKey)));
                         Cat.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
@@ -81,6 +81,14 @@ namespace Lfc.Articulos.Categorias
                         Cat.Alicuota = EntradaAlicuota.Elemento as Lbl.Impuestos.Alicuota;
 
                         base.ActualizarElemento();
+                }
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Articulos;
+                        }
                 }
         }
 }

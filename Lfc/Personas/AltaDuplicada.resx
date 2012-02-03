@@ -121,7 +121,7 @@
   <data name="BotonCancelar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADdQAAA3UAe+RuhUAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfWBxoKDgAWI5Yh
+        YQUAAAAJcEhZcwAADdMAAA3TAb3VHGoAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfWBxoKDgAWI5Yh
         AAABpUlEQVQ4T2NgwAGOLGD4j0sOr/j+uQwiIM1kGVBbySoI0vj781rSDUDW/PuJKtgAEN63UPj57vmi
         53cvlF5SU8XGjdX5yJq/PTT8/+uxwv9fb4r//3qd///7izwgzvmxZ6HIlYOLRa4C1cqgGAIU4II5+9sD
         /f/fHxn9/3hb8/9XIBtEPz4r9v/NTbP/355n/n98zvHfwcXCT4B6jOCGIGv+AdQMMgCEYQa8uCT7H4ZB
@@ -135,7 +135,7 @@
   <data name="BotonContinuar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxAAAAsQAa0jvXUAAAAGYktHRAAAAAAAAPlDu38AAAAHdElNRQfVChoUCC+DFDSb
+        YQUAAAAJcEhZcwAACw8AAAsPAZL5A6UAAAAGYktHRAAAAAAAAPlDu38AAAAHdElNRQfVChoUCC+DFDSb
         AAABMklEQVQ4T52Ty06DQBSGeUNNfB5zVl6gtdWFl9SlSx/CBQhduHDBE4grLkPDIBQoHOfQTAsFC3GS
         PyTDnO//z5yMcjPXTq61Cxij2Z16phwudXJ5jogwRmTyJ2C1CiEMWUe0TyKDQcByacHi+fFTHMQxEu2/
         KrIF6aRNr0rhNmqRSQtACQSwBgjgUdGZDoDuQCYggGWZvaJ/HQAVm+b7/xMwFkAQ+IMJZGutBFVVge/7
@@ -147,7 +147,7 @@
   <data name="BotonCorregir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADdQAAA3UAe+RuhUAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfWBwwLGQvwwqlL
+        YQUAAAAJcEhZcwAADdMAAA3TAb3VHGoAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfWBwwLGQvwwqlL
         AAACB0lEQVQ4T5VTTWsTURSdatRdxa+N0B8giFhcuXMnolC1oAhFkKBFaUmRCAGli2pBq6ZQ0TZU09hI
         tYjVEiqIimTlRglJGpMoZFEdxTjfmcwwM+/NsW/E4NCK44XDfQ/uOffcC5fjAgb53tVG6se3EfFCD9WS
         l6lyo5NIF0MB6Ry3LLCZCOfj1HyruOSHTY1X74jQt5ebmp6cuzoyjH8hnYpBWLoNSjS4LoVj1tD4emmW
@@ -162,5 +162,8 @@
   </data>
   <metadata name="TimerHabilitarBotones.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>53</value>
   </metadata>
 </root>

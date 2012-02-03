@@ -40,7 +40,7 @@ namespace Lui.Printing
                 public System.Windows.Forms.PrintPreviewControl PrintPreview;
                 internal Lui.Forms.Button CancelCommandButton;
                 internal Lui.Forms.Button SaveButton;
-                internal System.Windows.Forms.Panel LowerPanel;
+                internal Lui.Forms.ButtonPanel LowerPanel;
                 internal Lui.Forms.Button BotonZoom;
 
                 #region Código generado por el Diseñador de Windows Forms
@@ -64,7 +64,7 @@ namespace Lui.Printing
                         this.PrintPreview = new System.Windows.Forms.PrintPreviewControl();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.SaveButton = new Lui.Forms.Button();
-                        this.LowerPanel = new System.Windows.Forms.Panel();
+                        this.LowerPanel = new Lui.Forms.ButtonPanel();
                         this.BotonZoom = new Lui.Forms.Button();
                         this.LowerPanel.SuspendLayout();
                         this.SuspendLayout();

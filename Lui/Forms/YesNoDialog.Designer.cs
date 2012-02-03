@@ -60,7 +60,7 @@ namespace Lui.Forms
                         // 
                         this.DialogCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.DialogCaption.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.DialogCaption.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.DialogCaption.Location = new System.Drawing.Point(20, 24);
                         this.DialogCaption.Name = "DialogCaption";
                         this.DialogCaption.Size = new System.Drawing.Size(552, 44);

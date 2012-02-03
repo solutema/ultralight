@@ -35,20 +35,6 @@ namespace Lui.Forms
 	{
 		#region Código generado por el Diseñador de Windows Forms
 
-		public DataSetHelp()
-			: base()
-		{
-
-
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-
-			this.BackColor = Lfx.Config.Display.CurrentTemplate.Selection;
-			Panel1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-			Listado.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-			Listado.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-		}
-
 		// Limpiar los recursos que se estén utilizando.
 		protected override void Dispose(bool disposing)
 		{
@@ -69,7 +55,7 @@ namespace Lui.Forms
 		// No lo modifique con el editor de código.
 		internal System.Windows.Forms.ListBox Listado;
 		internal System.Windows.Forms.Timer Timer1;
-		internal System.Windows.Forms.Panel Panel1;
+		internal Lui.Forms.Panel Panel1;
 
 		private void InitializeComponent()
 		{
@@ -77,7 +63,7 @@ namespace Lui.Forms
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataSetHelp));
                         this.Listado = new System.Windows.Forms.ListBox();
                         this.Timer1 = new System.Windows.Forms.Timer(this.components);
-                        this.Panel1 = new System.Windows.Forms.Panel();
+                        this.Panel1 = new Lui.Forms.Panel();
                         this.SuspendLayout();
                         // 
                         // Listado

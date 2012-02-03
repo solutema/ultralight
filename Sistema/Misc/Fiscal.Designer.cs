@@ -103,7 +103,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.lblCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblCierreZ.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblCierreZ.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblCierreZ.Location = new System.Drawing.Point(24, 144);
                         this.lblCierreZ.Name = "lblCierreZ";
                         this.lblCierreZ.Size = new System.Drawing.Size(164, 24);
@@ -113,7 +113,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(24, 24);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(164, 24);
@@ -126,7 +126,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaPv.AlwaysExpanded = true;
                         this.EntradaPv.AutoNav = true;
                         this.EntradaPv.AutoSize = true;
-                        this.EntradaPv.AutoTab = true;
                         this.EntradaPv.Location = new System.Drawing.Point(188, 24);
                         this.EntradaPv.MaxLength = 32767;
                         this.EntradaPv.Name = "EntradaPv";
@@ -159,7 +158,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(24, 228);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(164, 24);
@@ -171,7 +170,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.lblEstadoServidor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblEstadoServidor.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblEstadoServidor.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblEstadoServidor.Location = new System.Drawing.Point(184, 228);
                         this.lblEstadoServidor.Name = "lblEstadoServidor";
                         this.lblEstadoServidor.Size = new System.Drawing.Size(416, 24);
@@ -184,7 +183,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.lblUltimoCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblUltimoCierreZ.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblUltimoCierreZ.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblUltimoCierreZ.Location = new System.Drawing.Point(188, 144);
                         this.lblUltimoCierreZ.Name = "lblUltimoCierreZ";
                         this.lblUltimoCierreZ.Size = new System.Drawing.Size(412, 24);

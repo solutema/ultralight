@@ -34,17 +34,24 @@ using System.Collections.Generic;
 
 namespace Lbl.Atributos
 {
+        public enum PanelExtendido
+        {
+                Nunca,
+                Automatico,
+                Siempre
+        }
+
         public class Presentacion : System.Attribute
         {
                 public bool MensajeAlCrear { get; set; }
-                public bool PanelExtendido { get; set; }
+                public PanelExtendido PanelExtendido { get; set; }
 
                 public Presentacion()
                 {
-                        this.PanelExtendido = true;
+                        this.PanelExtendido = Atributos.PanelExtendido.Automatico;
                 }
 
-                public Presentacion(bool mensajeAlCrear = false, bool panelExtendido = true)
+                public Presentacion(bool mensajeAlCrear = false, PanelExtendido panelExtendido = Atributos.PanelExtendido.Automatico)
                 {
                         this.MensajeAlCrear = mensajeAlCrear;
                         this.PanelExtendido = panelExtendido;

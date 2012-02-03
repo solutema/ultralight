@@ -110,7 +110,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtFormaPago.AlwaysExpanded = true;
                         this.txtFormaPago.AutoNav = true;
                         this.txtFormaPago.AutoSize = true;
-                        this.txtFormaPago.AutoTab = true;
                         this.txtFormaPago.FieldName = null;
                         this.txtFormaPago.Location = new System.Drawing.Point(188, 244);
                         this.txtFormaPago.MaxLength = 32767;
@@ -128,7 +127,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label11
                         // 
-                        this.Label11.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label11.Location = new System.Drawing.Point(56, 244);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(132, 24);
@@ -139,7 +138,6 @@ namespace Lfc.Tarjetas.Cupones
                         // txtCupones
                         // 
                         this.txtCupones.AutoNav = true;
-                        this.txtCupones.AutoTab = true;
                         this.txtCupones.DataType = Lui.Forms.DataTypes.Integer;
                         this.txtCupones.DecimalPlaces = -1;
                         this.txtCupones.FieldName = null;
@@ -162,7 +160,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblLabel1
                         // 
-                        this.lblLabel1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblLabel1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblLabel1.Location = new System.Drawing.Point(20, 20);
                         this.lblLabel1.Name = "lblLabel1";
                         this.lblLabel1.Size = new System.Drawing.Size(112, 24);
@@ -172,7 +170,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(192, 20);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(168, 24);
@@ -183,7 +181,6 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaSubTotal
                         // 
                         this.EntradaSubTotal.AutoNav = true;
-                        this.EntradaSubTotal.AutoTab = true;
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaSubTotal.DecimalPlaces = -1;
                         this.EntradaSubTotal.FieldName = null;
@@ -207,7 +204,6 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaComisionTarjeta
                         // 
                         this.EntradaComisionTarjeta.AutoNav = true;
-                        this.EntradaComisionTarjeta.AutoTab = true;
                         this.EntradaComisionTarjeta.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionTarjeta.DecimalPlaces = -1;
                         this.EntradaComisionTarjeta.FieldName = null;
@@ -231,7 +227,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(8, 36);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(112, 24);
@@ -259,7 +255,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.Frame1.Location = new System.Drawing.Point(12, 56);
                         this.Frame1.Name = "Frame1";
                         this.Frame1.Padding = new System.Windows.Forms.Padding(2);
-                        this.Frame1.ReadOnly = false;
                         this.Frame1.Size = new System.Drawing.Size(608, 136);
                         this.Frame1.TabIndex = 4;
                         this.Frame1.TabStop = false;
@@ -268,7 +263,6 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaComisionPlan
                         // 
                         this.EntradaComisionPlan.AutoNav = true;
-                        this.EntradaComisionPlan.AutoTab = true;
                         this.EntradaComisionPlan.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionPlan.DecimalPlaces = -1;
                         this.EntradaComisionPlan.FieldName = null;
@@ -293,7 +287,6 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaComisionUsuario
                         // 
                         this.EntradaComisionUsuario.AutoNav = true;
-                        this.EntradaComisionUsuario.AutoTab = true;
                         this.EntradaComisionUsuario.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionUsuario.DecimalPlaces = -1;
                         this.EntradaComisionUsuario.FieldName = null;
@@ -316,7 +309,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblComisionTarjetaPct
                         // 
-                        this.lblComisionTarjetaPct.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblComisionTarjetaPct.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblComisionTarjetaPct.Location = new System.Drawing.Point(228, 36);
                         this.lblComisionTarjetaPct.Name = "lblComisionTarjetaPct";
                         this.lblComisionTarjetaPct.Size = new System.Drawing.Size(76, 24);
@@ -326,7 +319,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblComisionUsuarioPct
                         // 
-                        this.lblComisionUsuarioPct.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblComisionUsuarioPct.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblComisionUsuarioPct.Location = new System.Drawing.Point(228, 100);
                         this.lblComisionUsuarioPct.Name = "lblComisionUsuarioPct";
                         this.lblComisionUsuarioPct.Size = new System.Drawing.Size(76, 24);
@@ -336,7 +329,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(8, 100);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(112, 24);
@@ -346,7 +339,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblComisionPlanPct
                         // 
-                        this.lblComisionPlanPct.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblComisionPlanPct.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblComisionPlanPct.Location = new System.Drawing.Point(228, 68);
                         this.lblComisionPlanPct.Name = "lblComisionPlanPct";
                         this.lblComisionPlanPct.Size = new System.Drawing.Size(76, 24);
@@ -356,7 +349,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(8, 68);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(112, 24);
@@ -366,7 +359,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label5.Location = new System.Drawing.Point(308, 36);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(292, 24);
@@ -376,7 +369,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label7.Location = new System.Drawing.Point(308, 100);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(292, 24);
@@ -386,7 +379,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label6.Location = new System.Drawing.Point(308, 68);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(292, 24);
@@ -397,7 +390,6 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaTotal
                         // 
                         this.EntradaTotal.AutoNav = true;
-                        this.EntradaTotal.AutoTab = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
                         this.EntradaTotal.FieldName = null;
@@ -420,7 +412,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label8
                         // 
-                        this.Label8.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label8.Location = new System.Drawing.Point(56, 208);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(132, 28);

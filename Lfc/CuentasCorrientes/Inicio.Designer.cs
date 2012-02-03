@@ -48,12 +48,11 @@ namespace Lfc.CuentasCorrientes
                         this.BotonNotaDeb.AutoSize = false;
                         this.BotonNotaDeb.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonNotaDeb.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonNotaDeb.Location = new System.Drawing.Point(12, 272);
                         this.BotonNotaDeb.Name = "BotonNotaDeb";
                         this.BotonNotaDeb.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonNotaDeb.TemporaryReadOnly = false;
-                        this.BotonNotaDeb.Size = new System.Drawing.Size(96, 29);
-                        this.BotonNotaDeb.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonNotaDeb.Size = new System.Drawing.Size(100, 40);
+                        this.BotonNotaDeb.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonNotaDeb.Subtext = "F4";
                         this.BotonNotaDeb.TabIndex = 61;
                         this.BotonNotaDeb.Text = "Nota Déb";
@@ -70,8 +69,8 @@ namespace Lfc.CuentasCorrientes
                         this.BotonNotaCred.Name = "BotonNotaCred";
                         this.BotonNotaCred.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonNotaCred.TemporaryReadOnly = false;
-                        this.BotonNotaCred.Size = new System.Drawing.Size(96, 29);
-                        this.BotonNotaCred.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonNotaCred.Size = new System.Drawing.Size(96, 40);
+                        this.BotonNotaCred.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonNotaCred.Subtext = "F3";
                         this.BotonNotaCred.TabIndex = 60;
                         this.BotonNotaCred.Text = "Nota Créd";
@@ -88,8 +87,8 @@ namespace Lfc.CuentasCorrientes
                         this.BotonAjuste.Name = "BotonAjuste";
                         this.BotonAjuste.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAjuste.TemporaryReadOnly = false;
-                        this.BotonAjuste.Size = new System.Drawing.Size(96, 29);
-                        this.BotonAjuste.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonAjuste.Size = new System.Drawing.Size(96, 40);
+                        this.BotonAjuste.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonAjuste.Subtext = "F5";
                         this.BotonAjuste.TabIndex = 62;
                         this.BotonAjuste.Text = "Ajuste";
@@ -97,18 +96,11 @@ namespace Lfc.CuentasCorrientes
                         // 
                         // Inicio
                         // 
-                        this.Controls.Add(this.BotonNotaDeb);
-                        this.Controls.Add(this.BotonNotaCred);
-                        this.Controls.Add(this.BotonAjuste);
+                        this.PanelAcciones.Controls.Add(this.BotonNotaDeb);
+                        this.PanelAcciones.Controls.Add(this.BotonNotaCred);
+                        this.PanelAcciones.Controls.Add(this.BotonAjuste);
                         this.Name = "Inicio";
                         this.Text = "Cuenta Corriente";
-                        this.Controls.SetChildIndex(this.BotonCancelar, 0);
-                        this.Controls.SetChildIndex(this.BotonFiltrar, 0);
-                        this.Controls.SetChildIndex(this.BotonImprimir, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.BotonAjuste, 0);
-                        this.Controls.SetChildIndex(this.BotonNotaCred, 0);
-                        this.Controls.SetChildIndex(this.BotonNotaDeb, 0);
                         this.ResumeLayout(false);
 
                 }

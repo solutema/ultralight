@@ -66,5 +66,13 @@ namespace Lfc.Articulos.Marcas
 
                         base.ActualizarElemento();
                 }
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Articulos;
+                        }
+                }
         }
 }

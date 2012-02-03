@@ -36,7 +36,7 @@ using System.ComponentModel;
 
 namespace Lcc
 {
-        public class ControlDeDatos : Lcc.LccControl
+        public class ControlDeDatos : Lui.Forms.DataControl
         {
                 public Type m_ElementoTipo = null;
                 protected Lbl.IElementoDeDatos m_Elemento = null;
@@ -79,14 +79,6 @@ namespace Lcc
                 public virtual void ActualizarControl()
                 {
                         this.SetControlsChanged(this.Controls, false);
-                }
-
-                protected override void OnParentChanged(EventArgs e)
-                {
-                        if (this.HasWorkspace == false) {
-                                this.OnWorkspaceChanged();
-                        }
-                        base.OnParentChanged(e);
                 }
         }
 }

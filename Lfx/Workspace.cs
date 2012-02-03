@@ -70,6 +70,9 @@ namespace Lfx
 
                 public Workspace(string workspaceName, bool openConnection, bool webAppMode)
                 {
+                        if (Lfx.Workspace.Master == null)
+                                Lfx.Workspace.Master = this;
+
                         this.WebAppMode = webAppMode;
                         m_Name = workspaceName;
 
@@ -254,7 +257,7 @@ namespace Lfx
                                 }
 
                                 // Me fijo si ya hay alguien verificando la estructura
-                                string FechaInicioVerif = Conn.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.VerificarVersionBd.Inicio", string.Empty);
+                                string FechaInicioVerif = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.VerificarVersionBd.Inicio", string.Empty);
                                 string FechaInicioVerifMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddMinutes(10).ToUniversalTime());
 
                                 if (string.Compare(FechaInicioVerif, FechaInicioVerifMax) > 0)
@@ -276,8 +279,8 @@ namespace Lfx
                                 Progreso.Modal = true;
                                 Progreso.Begin();
 
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()));
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant());
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()));
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant());
 
                                 try {
                                         Conn.ExecuteSql("FLUSH TABLES");
@@ -309,7 +312,7 @@ namespace Lfx
                                         }
                                 }
 
-                                Conn.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", "0");
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", "0");
                                 Progreso.End();
                         }
                 }

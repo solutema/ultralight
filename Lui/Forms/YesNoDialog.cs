@@ -55,6 +55,7 @@ namespace Lui.Forms
                         InitializeComponent();
 
                         this.DialogText.BackColor = this.BackColor;
+                        this.DialogText.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
                         this.MessageText = messageText;
                         this.MessageCaption = messageCaption;
                 }

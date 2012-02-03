@@ -29,15 +29,19 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.ComponentModel;
 using System.Data;
 
 namespace Lcc.Edicion
 {
-        public class ControlEdicion : Lcc.ControlDeDatos
+        public class ControlEdicion : Lcc.ControlDeDatos, IControlEdicion
         {
                 [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
                 public event LccEventHandler SaveRequest;
+
+                [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
+                public event System.EventHandler FormActionsChanged;
 
                 /// <summary>
                 /// Actualiza el elemento con los datos del control.
@@ -166,6 +170,33 @@ namespace Lcc.Edicion
                 public virtual bool PuedeImprimir()
                 {
                         return Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Elemento, Lbl.Sys.Permisos.Operaciones.Imprimir);
+                }
+
+
+                public virtual Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Generica;
+                        }
+                }
+
+
+                protected void FireFormActionsChanged()
+                {
+                        if(this.FormActionsChanged != null)
+                                this.FormActionsChanged(this, null);
+                }
+
+
+                public virtual Lazaro.Pres.Forms.FormActionCollection GetFormActions()
+                {
+                        return new Lazaro.Pres.Forms.FormActionCollection();
+                }
+
+                public virtual Lfx.Types.OperationResult PerformFormAction(string name)
+                {
+                        return null;
                 }
         }
 }

@@ -38,10 +38,8 @@ namespace Lbl.Sys.Permisos
         /// <summary>
         /// Describe una instancia de un permiso en particular.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Permiso",
-                       Grupo = "Permisos",
-                       TablaDatos = "sys_permisos",
-                       CampoId = "id_permiso")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Permiso", Grupo = "Permisos")]
+        [Lbl.Atributos.Datos(TablaDatos = "sys_permisos", CampoId = "id_permiso")]
         [Lbl.Atributos.Presentacion()]
         public class Permiso : ElementoDeDatos
         {

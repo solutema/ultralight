@@ -77,7 +77,7 @@ namespace Lfx.Services
                         get
                         {
                                 if (m_DataBase == null) {
-                                        m_DataBase = this.Workspace.GetNewConnection("Programador de tareas");
+                                        m_DataBase = Lfx.Workspace.Master.GetNewConnection("Programador de tareas");
                                         m_DataBase.RequiresTransaction = false;
                                 }
                                 return m_DataBase;

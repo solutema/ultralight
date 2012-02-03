@@ -128,11 +128,11 @@ namespace Lazaro.Impresion
                 {
                         Graphics g = e.Graphics;
 
-                        this.TitleFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 12, FontStyle.Bold);
-                        this.HeaderFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 8, FontStyle.Bold);
-                        this.RowFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 8);
-                        this.TotalsFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 8, FontStyle.Bold);
-                        this.FooterFont = new Font(Lfx.Config.Display.DefaultPrintFontName, 7);
+                        this.TitleFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 12, FontStyle.Bold);
+                        this.HeaderFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 8, FontStyle.Bold);
+                        this.RowFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 8);
+                        this.TotalsFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 8, FontStyle.Bold);
+                        this.FooterFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 7);
 
                         // Rectángulo que incluye toda el área imprimible
                         FullBodyRect = new RectangleF(e.MarginBounds.Left - (e.PageBounds.Width - g.VisibleClipBounds.Width) / 2,

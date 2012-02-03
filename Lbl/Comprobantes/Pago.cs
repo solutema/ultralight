@@ -142,7 +142,7 @@ namespace Lbl.Comprobantes
 
                         switch (this.FormaDePago.Tipo) {
                                 case Lbl.Pagos.TiposFormasDePago.Efectivo:
-                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                        Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
                                         Caja.Movimiento(true, this.Concepto, DescripConcepto, Cliente, this.Importe, null, Factura, this.Recibo, null);
                                         break;
                                 case Pagos.TiposFormasDePago.ChequeTerceros:

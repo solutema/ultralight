@@ -86,9 +86,6 @@ namespace Lfc.Comprobantes
                         this.Contadores.Add(new Lfc.Contador("Pendiente", Lui.Forms.DataTypes.Currency));
 
                         this.HabilitarFiltrar = true;
-
-                        if (this.HasWorkspace)
-                                m_Sucursal = this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
                 }
 
 
@@ -96,6 +93,14 @@ namespace Lfc.Comprobantes
                         : this()
                 {
                         this.Letra = comando;
+                }
+
+
+                protected override void OnLoad(EventArgs e)
+                {
+                        base.OnLoad(e);
+                        if (Lfx.Workspace.Master != null)
+                                m_Sucursal = Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada;
                 }
 
 
@@ -148,7 +153,7 @@ namespace Lfc.Comprobantes
 
                 public override Lfx.Types.OperationResult OnCreate()
                 {
-                        this.Workspace.RunTime.Execute("CREAR " + this.Definicion.ElementoTipo.ToString() + " " + this.Letra);
+                        Lfx.Workspace.Master.RunTime.Execute("CREAR " + this.Definicion.ElementoTipo.ToString() + " " + this.Letra);
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
@@ -280,7 +285,7 @@ namespace Lfc.Comprobantes
                 protected override Lfx.Types.OperationResult OnEdit(int itemId)
                 {
                         string sTipo = this.Connection.FieldString("SELECT tipo_fac FROM comprob WHERE id_comprob=" + itemId.ToString());
-                        this.Workspace.RunTime.Execute("EDITAR " + sTipo + " " + itemId.ToString());
+                        Lfx.Workspace.Master.RunTime.Execute("EDITAR " + sTipo + " " + itemId.ToString());
                         return new Lfx.Types.SuccessOperationResult();
                 }
 

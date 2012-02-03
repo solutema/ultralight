@@ -75,7 +75,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaAcceso.AlwaysExpanded = true;
                         this.EntradaAcceso.AutoNav = true;
                         this.EntradaAcceso.AutoSize = true;
-                        this.EntradaAcceso.AutoTab = true;
                         this.EntradaAcceso.FieldName = null;
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
                         this.EntradaAcceso.MaxLength = 32767;
@@ -92,7 +91,7 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(0, 0);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(128, 24);
@@ -103,7 +102,6 @@ namespace Lfc.Personas.Usuarios
                         // EntradaContrasena
                         // 
                         this.EntradaContrasena.AutoNav = true;
-                        this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasena.DecimalPlaces = -1;
                         this.EntradaContrasena.FieldName = null;
@@ -124,7 +122,7 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(220, 0);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(128, 24);
@@ -222,13 +220,6 @@ namespace Lfc.Personas.Usuarios
                         this.MinimumSize = new System.Drawing.Size(640, 400);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(640, 400);
-                        this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.EntradaAcceso, 0);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaContrasena, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.BotonAgregar, 0);
-                        this.Controls.SetChildIndex(this.BotonQuitar, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

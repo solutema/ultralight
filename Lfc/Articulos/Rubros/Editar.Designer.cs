@@ -66,7 +66,7 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(0, 32);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(116, 24);
@@ -76,13 +76,11 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // EntradaAlicuota
                         // 
-                        this.EntradaAlicuota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaAlicuota.AutoNav = true;
-                        this.EntradaAlicuota.AutoTab = true;
                         this.EntradaAlicuota.CanCreate = true;
                         this.EntradaAlicuota.DataTextField = "nombre";
                         this.EntradaAlicuota.DataValueField = "id_alicuota";
+                        this.EntradaAlicuota.ExtraDetailFields = "";
                         this.EntradaAlicuota.FieldName = null;
                         this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.FreeTextCode = "";
@@ -93,7 +91,7 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaAlicuota.PlaceholderText = "Sin especificar";
                         this.EntradaAlicuota.ReadOnly = false;
                         this.EntradaAlicuota.Required = true;
-                        this.EntradaAlicuota.Size = new System.Drawing.Size(356, 24);
+                        this.EntradaAlicuota.Size = new System.Drawing.Size(388, 24);
                         this.EntradaAlicuota.TabIndex = 3;
                         this.EntradaAlicuota.Table = "alicuotas";
                         this.EntradaAlicuota.Text = "0";
@@ -101,10 +99,7 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.FieldName = null;
@@ -119,13 +114,13 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
-                        this.EntradaNombre.Size = new System.Drawing.Size(356, 24);
+                        this.EntradaNombre.Size = new System.Drawing.Size(388, 24);
                         this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(116, 24);
@@ -141,12 +136,7 @@ namespace Lfc.Articulos.Rubros
                         this.Controls.Add(this.Label5);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(488, 237);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.EntradaAlicuota, 0);
-                        this.Controls.SetChildIndex(this.label9, 0);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 

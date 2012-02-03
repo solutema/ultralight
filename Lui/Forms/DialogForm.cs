@@ -43,8 +43,6 @@ namespace Lui.Forms
                 public DialogForm()
                 {
                         InitializeComponent();
-
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
 		public virtual Lfx.Types.OperationResult Ok()

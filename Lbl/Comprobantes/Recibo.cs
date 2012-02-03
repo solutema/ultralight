@@ -35,11 +35,8 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Recibo",
-                Grupo = "Comprobantes",
-                TablaDatos = "recibos",
-                CampoId = "id_recibo",
-                TablaImagenes = "recibos_imagenes")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Recibo", Grupo = "Comprobantes")]
+        [Lbl.Atributos.Datos(TablaDatos = "recibos", CampoId = "id_recibo", TablaImagenes = "recibos_imagenes")]
         [Lbl.Atributos.Presentacion()]
         public class Recibo : Comprobante
         {
@@ -102,7 +99,7 @@ namespace Lbl.Comprobantes
                         if (this.Tipo == null)
                                 this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["RC"];
                         
-                        this.PV = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos." + this.Tipo.Nomenclatura + ".PV", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+                        this.PV = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos." + this.Tipo.Nomenclatura + ".PV", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
                         this.Vendedor = new Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                 }
 
@@ -196,7 +193,7 @@ namespace Lbl.Comprobantes
 
                                 // Cargo pagos asociados al registro
                                 // Pagos en efectivo
-                                using (System.Data.DataTable TablaPagos = Connection.Select("SELECT * FROM cajas_movim WHERE id_caja=" + this.Workspace.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString())) {
+                                using (System.Data.DataTable TablaPagos = Connection.Select("SELECT * FROM cajas_movim WHERE id_caja=" + Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_recibo=" + Id.ToString())) {
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                                 decimal ImporteCaja = System.Convert.ToDecimal(Pago["importe"]);
                                                 if (this.DePago && ImporteCaja < 0) {
@@ -235,7 +232,7 @@ namespace Lbl.Comprobantes
                                 }
 
                                 // Acreditaciones en cuenta regular (excepto caja diaria)
-                                using (System.Data.DataTable TablaPagos = this.Connection.Select("SELECT * FROM cajas_movim WHERE auto=1 AND id_caja<>" + this.Workspace.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_caja<>" + this.Workspace.CurrentConfig.Empresa.CajaCheques.ToString() + " AND id_recibo=" + this.Id.ToString())) {
+                                using (System.Data.DataTable TablaPagos = this.Connection.Select("SELECT * FROM cajas_movim WHERE auto=1 AND id_caja<>" + Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria.ToString() + " AND id_caja<>" + Lfx.Workspace.Master.CurrentConfig.Empresa.CajaCheques.ToString() + " AND id_recibo=" + this.Id.ToString())) {
                                         foreach (System.Data.DataRow Pago in TablaPagos.Rows) {
                                                 if (this.DePago) {
                                                         Pago Pg = new Pago(this.Connection, Lbl.Pagos.TiposFormasDePago.Caja, Math.Abs(System.Convert.ToDecimal(Pago["importe"])));
@@ -311,7 +308,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("nombre", this.PV.ToString("0000") + "-" + this.Numero.ToString("00000000"));
                         Comando.Fields.AddWithValue("id_vendedor", Lfx.Data.Connection.ConvertZeroToDBNull(this.Vendedor.Id));
                         Comando.Fields.AddWithValue("id_cliente", Lfx.Data.Connection.ConvertZeroToDBNull(this.Cliente.Id));
-                        Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+                        Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
                         Comando.Fields.AddWithValue("total", this.Total);
                         Comando.Fields.AddWithValue("obs", this.Obs);
 
@@ -339,7 +336,7 @@ namespace Lbl.Comprobantes
                                 Pg.ConceptoTexto = this.ConceptoTexto;
                                 switch (Pg.FormaDePago.Tipo) {
                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
-                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
                                                 CajaDiaria.Movimiento(true, this.Concepto, this.ConceptoTexto, Cliente, Pg.Importe, ObsPago, null, this, string.Empty);
                                                 break;
                                         case Lbl.Pagos.TiposFormasDePago.ChequePropio:
@@ -388,7 +385,7 @@ namespace Lbl.Comprobantes
                                 Pg.ConceptoTexto = this.ConceptoTexto;
                                 switch (Pg.FormaDePago.Tipo) {
                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
-                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.Connection, this.Workspace.CurrentConfig.Empresa.CajaDiaria);
+                                                Cajas.Caja CajaDiaria = new Cajas.Caja(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
                                                 CajaDiaria.Movimiento(true, Pg.Concepto, Pg.ConceptoTexto, this.Cliente, -Pg.Importe, ObsPago, null, this, string.Empty);
                                                 break;
                                         case Lbl.Pagos.TiposFormasDePago.ChequePropio:

@@ -49,235 +49,175 @@ namespace Lfc
 
                 private void InitializeComponent()
                 {
-                        this.BotonGuardar = new Lui.Forms.Button();
-                        this.BotonCancelar = new Lui.Forms.Button();
-                        this.LowerPanel = new System.Windows.Forms.Panel();
-                        this.BotonImprimir = new Lui.Forms.Button();
-                        this.BotonComentarios = new Lui.Forms.LinkLabel();
-                        this.BotonHistorial = new Lui.Forms.LinkLabel();
-                        this.SplitContainer = new System.Windows.Forms.SplitContainer();
-                        this.TablaElementosEstandar = new System.Windows.Forms.TableLayoutPanel();
+                        this.PanelAccionesPrimariasYSecundarias = new Lui.Forms.ActionsPanel();
+                        this.PanelEdicion = new Lui.Forms.Panel();
                         this.EntradaImagen = new Lcc.Entrada.Imagen();
                         this.EntradaTags = new Lcc.Edicion.MatrizTags();
                         this.EntradaComentarios = new Lcc.Edicion.Comentarios();
-                        this.LowerPanel.SuspendLayout();
-                        this.SplitContainer.Panel2.SuspendLayout();
-                        this.SplitContainer.SuspendLayout();
-                        this.TablaElementosEstandar.SuspendLayout();
+                        this.Encabezado = new Lui.Forms.FormHeader();
+                        this.PanelAccionesTerciarias = new Lui.Forms.SecondaryActionsPanel();
+                        this.PanelExtendido = new Lui.Forms.Panel();
+                        this.label1 = new System.Windows.Forms.Label();
+                        this.LabelSep1 = new System.Windows.Forms.Label();
+                        this.PanelExtendido.SuspendLayout();
                         this.SuspendLayout();
                         // 
-                        // BotonGuardar
+                        // PanelAccionesPrimariasYSecundarias
                         // 
-                        this.BotonGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonGuardar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonGuardar.Image = null;
-                        this.BotonGuardar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonGuardar.Location = new System.Drawing.Point(568, 8);
-                        this.BotonGuardar.Name = "BotonGuardar";
-                        this.BotonGuardar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGuardar.ReadOnly = false;
-                        this.BotonGuardar.Size = new System.Drawing.Size(104, 44);
-                        this.BotonGuardar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.BotonGuardar.Subtext = "F9";
-                        this.BotonGuardar.TabIndex = 100;
-                        this.BotonGuardar.Text = "Guardar";
-                        this.BotonGuardar.Click += new System.EventHandler(this.SaveButton_Click);
+                        this.PanelAccionesPrimariasYSecundarias.Dock = System.Windows.Forms.DockStyle.Bottom;
+                        this.PanelAccionesPrimariasYSecundarias.FormActions = null;
+                        this.PanelAccionesPrimariasYSecundarias.Location = new System.Drawing.Point(0, 409);
+                        this.PanelAccionesPrimariasYSecundarias.Name = "PanelAccionesPrimariasYSecundarias";
+                        this.PanelAccionesPrimariasYSecundarias.Padding = new System.Windows.Forms.Padding(12);
+                        this.PanelAccionesPrimariasYSecundarias.Size = new System.Drawing.Size(792, 64);
+                        this.PanelAccionesPrimariasYSecundarias.TabIndex = 2;
+                        this.PanelAccionesPrimariasYSecundarias.ButtonClick += new System.EventHandler(this.LowerPanel_ButtonClick);
                         // 
-                        // BotonCancelar
+                        // PanelEdicion
                         // 
-                        this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCancelar.Image = null;
-                        this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCancelar.Location = new System.Drawing.Point(680, 8);
-                        this.BotonCancelar.Name = "BotonCancelar";
-                        this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCancelar.ReadOnly = false;
-                        this.BotonCancelar.Size = new System.Drawing.Size(104, 44);
-                        this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.BotonCancelar.Subtext = "Esc";
-                        this.BotonCancelar.TabIndex = 101;
-                        this.BotonCancelar.Text = "Cancelar";
-                        this.BotonCancelar.Click += new System.EventHandler(this.CancelButton_Click);
-                        // 
-                        // LowerPanel
-                        // 
-                        this.LowerPanel.Controls.Add(this.BotonImprimir);
-                        this.LowerPanel.Controls.Add(this.BotonComentarios);
-                        this.LowerPanel.Controls.Add(this.BotonHistorial);
-                        this.LowerPanel.Controls.Add(this.BotonCancelar);
-                        this.LowerPanel.Controls.Add(this.BotonGuardar);
-                        this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 413);
-                        this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(792, 60);
-                        this.LowerPanel.TabIndex = 100;
-                        // 
-                        // BotonImprimir
-                        // 
-                        this.BotonImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonImprimir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonImprimir.Image = null;
-                        this.BotonImprimir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonImprimir.Location = new System.Drawing.Point(456, 8);
-                        this.BotonImprimir.Name = "BotonImprimir";
-                        this.BotonImprimir.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonImprimir.ReadOnly = false;
-                        this.BotonImprimir.Size = new System.Drawing.Size(104, 44);
-                        this.BotonImprimir.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
-                        this.BotonImprimir.Subtext = "F8";
-                        this.BotonImprimir.TabIndex = 102;
-                        this.BotonImprimir.Text = "Imprimir";
-                        this.BotonImprimir.Click += new System.EventHandler(this.BotonImprimir_Click);
-                        // 
-                        // BotonComentarios
-                        // 
-                        this.BotonComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonComentarios.Location = new System.Drawing.Point(12, 32);
-                        this.BotonComentarios.Name = "BotonComentarios";
-                        this.BotonComentarios.Size = new System.Drawing.Size(88, 16);
-                        this.BotonComentarios.TabIndex = 104;
-                        this.BotonComentarios.TabStop = true;
-                        this.BotonComentarios.Text = "Comentarios";
-                        this.BotonComentarios.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.BotonComentarios.Visible = false;
-                        this.BotonComentarios.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonComentarios_LinkClicked);
-                        // 
-                        // BotonHistorial
-                        // 
-                        this.BotonHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonHistorial.Location = new System.Drawing.Point(12, 16);
-                        this.BotonHistorial.Name = "BotonHistorial";
-                        this.BotonHistorial.Size = new System.Drawing.Size(88, 16);
-                        this.BotonHistorial.TabIndex = 103;
-                        this.BotonHistorial.TabStop = true;
-                        this.BotonHistorial.Text = "Historial";
-                        this.BotonHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.BotonHistorial.Visible = false;
-                        this.BotonHistorial.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonHistorial_LinkClicked);
-                        // 
-                        // SplitContainer
-                        // 
-                        this.SplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.SplitContainer.Location = new System.Drawing.Point(0, 0);
-                        this.SplitContainer.Name = "SplitContainer";
-                        // 
-                        // SplitContainer.Panel1
-                        // 
-                        this.SplitContainer.Panel1.AutoScroll = true;
-                        this.SplitContainer.Panel1.Padding = new System.Windows.Forms.Padding(16);
-                        this.SplitContainer.Panel1MinSize = 120;
-                        // 
-                        // SplitContainer.Panel2
-                        // 
-                        this.SplitContainer.Panel2.Controls.Add(this.TablaElementosEstandar);
-                        this.SplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(12);
-                        this.SplitContainer.Panel2MinSize = 120;
-                        this.SplitContainer.Size = new System.Drawing.Size(792, 408);
-                        this.SplitContainer.SplitterDistance = 544;
-                        this.SplitContainer.TabIndex = 0;
-                        this.SplitContainer.TabStop = false;
-                        this.SplitContainer.Visible = false;
-                        // 
-                        // TablaElementosEstandar
-                        // 
-                        this.TablaElementosEstandar.ColumnCount = 1;
-                        this.TablaElementosEstandar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-                        this.TablaElementosEstandar.Controls.Add(this.EntradaImagen, 0, 0);
-                        this.TablaElementosEstandar.Controls.Add(this.EntradaTags, 0, 2);
-                        this.TablaElementosEstandar.Controls.Add(this.EntradaComentarios, 0, 1);
-                        this.TablaElementosEstandar.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.TablaElementosEstandar.Location = new System.Drawing.Point(12, 12);
-                        this.TablaElementosEstandar.Margin = new System.Windows.Forms.Padding(8);
-                        this.TablaElementosEstandar.Name = "TablaElementosEstandar";
-                        this.TablaElementosEstandar.RowCount = 3;
-                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaElementosEstandar.RowStyles.Add(new System.Windows.Forms.RowStyle());
-                        this.TablaElementosEstandar.Size = new System.Drawing.Size(220, 384);
-                        this.TablaElementosEstandar.TabIndex = 1;
+                        this.PanelEdicion.AutoScroll = true;
+                        this.PanelEdicion.AutoScrollMargin = new System.Drawing.Size(0, 48);
+                        this.PanelEdicion.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.PanelEdicion.Location = new System.Drawing.Point(0, 64);
+                        this.PanelEdicion.Name = "PanelEdicion";
+                        this.PanelEdicion.Padding = new System.Windows.Forms.Padding(24, 24, 16, 16);
+                        this.PanelEdicion.Size = new System.Drawing.Size(432, 345);
+                        this.PanelEdicion.TabIndex = 0;
                         // 
                         // EntradaImagen
                         // 
                         this.EntradaImagen.AutoNav = true;
-                        this.EntradaImagen.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.EntradaImagen.Dock = System.Windows.Forms.DockStyle.Top;
                         this.EntradaImagen.FieldName = null;
                         this.EntradaImagen.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaImagen.Location = new System.Drawing.Point(0, 0);
-                        this.EntradaImagen.Margin = new System.Windows.Forms.Padding(0);
+                        this.EntradaImagen.Location = new System.Drawing.Point(12, 12);
+                        this.EntradaImagen.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
                         this.EntradaImagen.MinimumSize = new System.Drawing.Size(240, 160);
                         this.EntradaImagen.Name = "EntradaImagen";
                         this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImagen.ReadOnly = false;
-                        this.EntradaImagen.Size = new System.Drawing.Size(240, 160);
-                        this.EntradaImagen.TabIndex = 1;
+                        this.EntradaImagen.Size = new System.Drawing.Size(319, 172);
+                        this.EntradaImagen.TabIndex = 0;
                         this.EntradaImagen.Text = "Imagen";
                         // 
                         // EntradaTags
                         // 
                         this.EntradaTags.AutoNav = true;
-                        this.EntradaTags.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.EntradaTags.AutoScrollMargin = new System.Drawing.Size(0, 12);
+                        this.EntradaTags.AutoSize = true;
+                        this.EntradaTags.Dock = System.Windows.Forms.DockStyle.Top;
                         this.EntradaTags.FieldName = null;
                         this.EntradaTags.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaTags.Location = new System.Drawing.Point(0, 312);
-                        this.EntradaTags.Margin = new System.Windows.Forms.Padding(0);
+                        this.EntradaTags.Location = new System.Drawing.Point(12, 372);
+                        this.EntradaTags.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
                         this.EntradaTags.MinimumSize = new System.Drawing.Size(240, 160);
                         this.EntradaTags.Name = "EntradaTags";
                         this.EntradaTags.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTags.ReadOnly = false;
-                        this.EntradaTags.Size = new System.Drawing.Size(240, 480);
-                        this.EntradaTags.TabIndex = 3;
+                        this.EntradaTags.Size = new System.Drawing.Size(319, 160);
+                        this.EntradaTags.TabIndex = 2;
                         this.EntradaTags.Text = "Otros atributos";
                         // 
                         // EntradaComentarios
                         // 
                         this.EntradaComentarios.AutoNav = true;
-                        this.EntradaComentarios.Dock = System.Windows.Forms.DockStyle.Fill;
+                        this.EntradaComentarios.Dock = System.Windows.Forms.DockStyle.Top;
                         this.EntradaComentarios.FieldName = null;
                         this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaComentarios.Location = new System.Drawing.Point(0, 160);
-                        this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(0);
+                        this.EntradaComentarios.Location = new System.Drawing.Point(12, 196);
+                        this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
                         this.EntradaComentarios.MinimumSize = new System.Drawing.Size(240, 152);
                         this.EntradaComentarios.Name = "EntradaComentarios";
                         this.EntradaComentarios.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComentarios.ReadOnly = false;
-                        this.EntradaComentarios.Size = new System.Drawing.Size(240, 152);
-                        this.EntradaComentarios.TabIndex = 2;
+                        this.EntradaComentarios.Size = new System.Drawing.Size(319, 164);
+                        this.EntradaComentarios.TabIndex = 1;
                         this.EntradaComentarios.Text = "Comentarios";
+                        // 
+                        // Encabezado
+                        // 
+                        this.Encabezado.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.Encabezado.Location = new System.Drawing.Point(0, 0);
+                        this.Encabezado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.Encabezado.Name = "Encabezado";
+                        this.Encabezado.Size = new System.Drawing.Size(792, 64);
+                        this.Encabezado.TabIndex = 4;
+                        this.Encabezado.Text = "Encab";
+                        // 
+                        // PanelAccionesTerciarias
+                        // 
+                        this.PanelAccionesTerciarias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelAccionesTerciarias.FormActions = null;
+                        this.PanelAccionesTerciarias.Location = new System.Drawing.Point(432, 38);
+                        this.PanelAccionesTerciarias.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.PanelAccionesTerciarias.Name = "PanelAccionesTerciarias";
+                        this.PanelAccionesTerciarias.Size = new System.Drawing.Size(352, 24);
+                        this.PanelAccionesTerciarias.TabIndex = 3;
+                        this.PanelAccionesTerciarias.ButtonClick += new System.EventHandler(this.PanelAccionesTerciarias_ButtonClick);
+                        // 
+                        // PanelExtendido
+                        // 
+                        this.PanelExtendido.AutoScroll = true;
+                        this.PanelExtendido.AutoScrollMargin = new System.Drawing.Size(0, 48);
+                        this.PanelExtendido.Controls.Add(this.EntradaTags);
+                        this.PanelExtendido.Controls.Add(this.label1);
+                        this.PanelExtendido.Controls.Add(this.EntradaComentarios);
+                        this.PanelExtendido.Controls.Add(this.LabelSep1);
+                        this.PanelExtendido.Controls.Add(this.EntradaImagen);
+                        this.PanelExtendido.Dock = System.Windows.Forms.DockStyle.Right;
+                        this.PanelExtendido.Location = new System.Drawing.Point(432, 64);
+                        this.PanelExtendido.Name = "PanelExtendido";
+                        this.PanelExtendido.Padding = new System.Windows.Forms.Padding(12);
+                        this.PanelExtendido.Size = new System.Drawing.Size(360, 345);
+                        this.PanelExtendido.TabIndex = 1;
+                        this.PanelExtendido.Visible = false;
+                        // 
+                        // label1
+                        // 
+                        this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.label1.Location = new System.Drawing.Point(12, 360);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(319, 12);
+                        this.label1.TabIndex = 4;
+                        // 
+                        // LabelSep1
+                        // 
+                        this.LabelSep1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.LabelSep1.Location = new System.Drawing.Point(12, 184);
+                        this.LabelSep1.Name = "LabelSep1";
+                        this.LabelSep1.Size = new System.Drawing.Size(319, 12);
+                        this.LabelSep1.TabIndex = 3;
                         // 
                         // FormularioEdicion
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(792, 473);
-                        this.Controls.Add(this.SplitContainer);
-                        this.Controls.Add(this.LowerPanel);
+                        this.Controls.Add(this.PanelEdicion);
+                        this.Controls.Add(this.PanelExtendido);
+                        this.Controls.Add(this.PanelAccionesTerciarias);
+                        this.Controls.Add(this.PanelAccionesPrimariasYSecundarias);
+                        this.Controls.Add(this.Encabezado);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Name = "FormularioEdicion";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Editar";
-                        this.Closing += new System.ComponentModel.CancelEventHandler(this.EditForm_Closing);
-                        this.Load += new System.EventHandler(this.EditForm_Load);
-                        this.LowerPanel.ResumeLayout(false);
-                        this.SplitContainer.Panel2.ResumeLayout(false);
-                        this.SplitContainer.ResumeLayout(false);
-                        this.TablaElementosEstandar.ResumeLayout(false);
+                        this.PanelExtendido.ResumeLayout(false);
+                        this.PanelExtendido.PerformLayout();
                         this.ResumeLayout(false);
 
                 }
 
                 #endregion
 
-                private Lui.Forms.Button BotonGuardar;
-                private Lui.Forms.Button BotonCancelar;
-                private System.Windows.Forms.Panel LowerPanel;
-                private Lui.Forms.LinkLabel BotonHistorial;
-                private System.Windows.Forms.SplitContainer SplitContainer;
-                private Lui.Forms.LinkLabel BotonComentarios;
-                private Lui.Forms.Button BotonImprimir;
-                private System.Windows.Forms.TableLayoutPanel TablaElementosEstandar;
+                private Lui.Forms.ActionsPanel PanelAccionesPrimariasYSecundarias;
+                private Lui.Forms.Panel PanelEdicion;
                 private Lcc.Entrada.Imagen EntradaImagen;
                 private Lcc.Edicion.MatrizTags EntradaTags;
                 private Lcc.Edicion.Comentarios EntradaComentarios;
+                private Lui.Forms.FormHeader Encabezado;
+                private Lui.Forms.SecondaryActionsPanel PanelAccionesTerciarias;
+                private Lui.Forms.Panel PanelExtendido;
+                private System.Windows.Forms.Label label1;
+                private System.Windows.Forms.Label LabelSep1;
         }
 }

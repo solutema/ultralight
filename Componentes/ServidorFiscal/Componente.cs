@@ -77,23 +77,24 @@ namespace ServidorFiscal
                                 // Simplemente la ignoramos.
                         }
 
-                        Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(this.Workspace, new Lbl.Personas.Usuario(this.Workspace.MasterConnection, 1));
+                        Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Lfx.Workspace.Master, new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, 1));
                         FormEstado = new FiscalStatus();
                         FormEstado.ServidorAsociado = this;
                         this.FormEstado.lblVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
 
                         try {
-                                System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess();
-                                Yo.PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
+                                using (System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess()) {
+                                        Yo.PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
+                                }
                         } catch (Exception Ex) {
                                 System.Console.WriteLine("ServidorFiscal: Imposible elevar la prioridad del proceso (" + Ex.ToString() + "). Continuando de todos modos.");
                                 //Seguramente no me permitió cambiar la prioridad por ser un usuario sin privilegios.
                                 //No es crítico, así que continúo sin problema
                         }
 
-                        Impresora = new Lazaro.Impresion.Comprobantes.Fiscal.Impresora(this.Workspace);
+                        Impresora = new Lazaro.Impresion.Comprobantes.Fiscal.Impresora(Lfx.Workspace.Master);
 
-                        this.Workspace.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
+                        Lfx.Workspace.Master.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
                         Impresora.Notificacion += new Lazaro.Impresion.Comprobantes.Fiscal.NotificacionEventHandler(ConFiscal_EventoConexion);
 
                         Programador = new System.Timers.Timer(1000);
@@ -175,7 +176,7 @@ namespace ServidorFiscal
                         get
                         {
                                 if (m_PV == 0) {
-                                        m_PV = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
+                                        m_PV = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
                                         this.Impresora.PV = m_PV;
                                         this.FormEstado.lblPV.Text = m_PV.ToString();
 
@@ -205,7 +206,7 @@ namespace ServidorFiscal
                         Actualizar.Fields.AddWithValue("lsa", qGen.SqlFunctions.Now);
                         this.Impresora.DataBase.Execute(Actualizar);
                         Trans.Commit();
-                        Lfx.Services.Task ProximaTarea = this.Workspace.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
+                        Lfx.Services.Task ProximaTarea = Lfx.Workspace.Master.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
                         if (ProximaTarea != null) {
                                 string Comando = ProximaTarea.Command;
                                 string SubComando = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();

@@ -74,76 +74,87 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         // Label1
                         // 
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 32);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(84, 24);
+                        this.Label1.Size = new System.Drawing.Size(104, 24);
                         this.Label1.TabIndex = 4;
                         this.Label1.Text = "Nombre";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label2
                         // 
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 64);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(84, 24);
+                        this.Label2.Size = new System.Drawing.Size(104, 24);
                         this.Label2.TabIndex = 6;
                         this.Label2.Text = "Dirección";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(0, 96);
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label3.Location = new System.Drawing.Point(-4, 128);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(84, 24);
+                        this.Label3.Size = new System.Drawing.Size(100, 24);
                         this.Label3.TabIndex = 8;
                         this.Label3.Text = "Tipo";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaNombre.AutoSize = false;
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaNombre.Location = new System.Drawing.Point(84, 32);
+                        this.EntradaNombre.Location = new System.Drawing.Point(104, 32);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.TemporaryReadOnly = false;
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = null;
+                        this.EntradaNombre.Prefijo = "";
+                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
-                        this.EntradaNombre.Size = new System.Drawing.Size(536, 24);
+                        this.EntradaNombre.Size = new System.Drawing.Size(504, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 5;
                         // 
                         // EntradaDireccion
                         // 
-                        this.EntradaDireccion.AutoSize = false;
+                        this.EntradaDireccion.AlwaysExpanded = true;
                         this.EntradaDireccion.AutoNav = true;
-                        this.EntradaDireccion.AutoTab = true;
-                        this.EntradaDireccion.Location = new System.Drawing.Point(84, 64);
+                        this.EntradaDireccion.AutoSize = true;
+                        this.EntradaDireccion.FieldName = null;
+                        this.EntradaDireccion.Location = new System.Drawing.Point(104, 64);
+                        this.EntradaDireccion.MaxLength = 32767;
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDireccion.TemporaryReadOnly = false;
+                        this.EntradaDireccion.PlaceholderText = null;
+                        this.EntradaDireccion.ReadOnly = false;
                         this.EntradaDireccion.SetData = new string[] {
         "Ambas|0",
         "Entrada|1",
         "Salida|2"};
-                        this.EntradaDireccion.Size = new System.Drawing.Size(180, 24);
+                        this.EntradaDireccion.Size = new System.Drawing.Size(180, 51);
                         this.EntradaDireccion.TabIndex = 7;
                         this.EntradaDireccion.TextKey = "0";
                         // 
                         // EntradaGrupo
                         // 
-                        this.EntradaGrupo.AutoSize = false;
+                        this.EntradaGrupo.AlwaysExpanded = true;
                         this.EntradaGrupo.AutoNav = true;
-                        this.EntradaGrupo.AutoTab = true;
-                        this.EntradaGrupo.Location = new System.Drawing.Point(84, 96);
+                        this.EntradaGrupo.AutoSize = true;
+                        this.EntradaGrupo.FieldName = null;
+                        this.EntradaGrupo.Location = new System.Drawing.Point(100, 128);
+                        this.EntradaGrupo.MaxLength = 32767;
                         this.EntradaGrupo.Name = "EntradaGrupo";
                         this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaGrupo.TemporaryReadOnly = false;
+                        this.EntradaGrupo.PlaceholderText = null;
+                        this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.SetData = new string[] {
         "Ninguno|0",
         "Cobros|110",
@@ -157,34 +168,39 @@ namespace Lfc.Cajas.Conceptos
         "Costo capital|220",
         "Sueldos y salarios|231",
         "Movimientos y ajustes|300"};
-                        this.EntradaGrupo.Size = new System.Drawing.Size(284, 24);
+                        this.EntradaGrupo.Size = new System.Drawing.Size(284, 81);
                         this.EntradaGrupo.TabIndex = 9;
                         this.EntradaGrupo.TextKey = "200";
                         // 
                         // EntradaCodigo
                         // 
-                        this.EntradaCodigo.AutoSize = false;
                         this.EntradaCodigo.AutoNav = true;
-                        this.EntradaCodigo.AutoTab = true;
                         this.EntradaCodigo.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCodigo.DecimalPlaces = -1;
                         this.EntradaCodigo.Enabled = false;
+                        this.EntradaCodigo.FieldName = null;
                         this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaCodigo.Location = new System.Drawing.Point(84, 0);
+                        this.EntradaCodigo.Location = new System.Drawing.Point(104, 0);
+                        this.EntradaCodigo.MaxLength = 32767;
                         this.EntradaCodigo.MultiLine = false;
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo.TemporaryReadOnly = false;
+                        this.EntradaCodigo.PasswordChar = '\0';
+                        this.EntradaCodigo.PlaceholderText = null;
+                        this.EntradaCodigo.Prefijo = "";
+                        this.EntradaCodigo.ReadOnly = false;
                         this.EntradaCodigo.SelectOnFocus = true;
                         this.EntradaCodigo.Size = new System.Drawing.Size(76, 24);
+                        this.EntradaCodigo.Sufijo = "";
                         this.EntradaCodigo.TabIndex = 3;
                         this.EntradaCodigo.Text = "0";
                         // 
                         // label4
                         // 
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 0);
                         this.label4.Name = "label4";
-                        this.label4.Size = new System.Drawing.Size(84, 24);
+                        this.label4.Size = new System.Drawing.Size(104, 24);
                         this.label4.TabIndex = 0;
                         this.label4.Text = "Código";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,24 +209,16 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
                         this.AutoSize = true;
-                        this.Controls.Add(this.label4);
                         this.Controls.Add(this.EntradaCodigo);
-                        this.Controls.Add(this.Label1);
                         this.Controls.Add(this.EntradaGrupo);
                         this.Controls.Add(this.EntradaDireccion);
                         this.Controls.Add(this.EntradaNombre);
+                        this.Controls.Add(this.label4);
+                        this.Controls.Add(this.Label1);
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label2);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(620, 125);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.EntradaDireccion, 0);
-                        this.Controls.SetChildIndex(this.EntradaGrupo, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaCodigo, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
+                        this.Size = new System.Drawing.Size(620, 214);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

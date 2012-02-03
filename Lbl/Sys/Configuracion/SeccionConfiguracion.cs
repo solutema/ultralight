@@ -41,14 +41,14 @@ namespace Lbl.Sys.Configuracion
 
                 public SeccionConfiguracion(Lfx.Workspace workspace)
                 {
-                        this.Workspace = workspace;
+                        Lfx.Workspace.Master = workspace;
                 }
 
                 public Lfx.Data.Connection DataBase
                 {
                         get
                         {
-                                return this.Workspace.MasterConnection;
+                                return Lfx.Workspace.Master.MasterConnection;
                         }
                 }
         }

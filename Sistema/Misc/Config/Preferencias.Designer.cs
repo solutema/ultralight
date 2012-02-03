@@ -128,45 +128,51 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaPVR = new Lui.Forms.TextBox();
                         this.label12 = new Lui.Forms.Label();
                         this.FrmAvanzado = new Lui.Forms.Frame();
+                        this.buttonPanel1 = new Lui.Forms.ButtonPanel();
                         this.FrmGeneral.SuspendLayout();
                         this.FrmArticulos.SuspendLayout();
                         this.FrmComprobantes.SuspendLayout();
                         this.FrmAvanzado.SuspendLayout();
+                        this.buttonPanel1.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // BotonAceptar
                         // 
                         this.BotonAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.BotonAceptar.AutoNav = true;
                         this.BotonAceptar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAceptar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAceptar.Image = null;
                         this.BotonAceptar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAceptar.Location = new System.Drawing.Point(444, 405);
+                        this.BotonAceptar.Location = new System.Drawing.Point(372, 12);
+                        this.BotonAceptar.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonAceptar.Name = "BotonAceptar";
                         this.BotonAceptar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAceptar.ReadOnly = false;
-                        this.BotonAceptar.Size = new System.Drawing.Size(88, 32);
+                        this.BotonAceptar.Size = new System.Drawing.Size(116, 40);
                         this.BotonAceptar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAceptar.Subtext = "F9";
-                        this.BotonAceptar.TabIndex = 50;
+                        this.BotonAceptar.TabIndex = 1;
                         this.BotonAceptar.Text = "Guardar";
                         this.BotonAceptar.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.CancelCommandButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.CancelCommandButton.AutoNav = true;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(536, 405);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(494, 12);
+                        this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
                         this.CancelCommandButton.ReadOnly = false;
-                        this.CancelCommandButton.Size = new System.Drawing.Size(88, 32);
+                        this.CancelCommandButton.Size = new System.Drawing.Size(116, 40);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "Esc";
-                        this.CancelCommandButton.TabIndex = 51;
+                        this.CancelCommandButton.TabIndex = 2;
                         this.CancelCommandButton.Text = "Cancelar";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
@@ -176,7 +182,6 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEmpresaSituacion.AutoNav = true;
                         this.EntradaEmpresaSituacion.AutoTab = true;
-                        this.EntradaEmpresaSituacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaSituacion.CanCreate = true;
                         this.EntradaEmpresaSituacion.DataTextField = "nombre";
                         this.EntradaEmpresaSituacion.DataValueField = "id_situacion";
@@ -199,7 +204,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label19
                         // 
-                        this.Label19.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label19.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label19.Location = new System.Drawing.Point(32, 176);
                         this.Label19.Name = "Label19";
                         this.Label19.Size = new System.Drawing.Size(184, 24);
@@ -210,8 +215,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaEmpresaClaveTributaria
                         // 
                         this.EntradaEmpresaClaveTributaria.AutoNav = true;
-                        this.EntradaEmpresaClaveTributaria.AutoTab = true;
-                        this.EntradaEmpresaClaveTributaria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaClaveTributaria.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaClaveTributaria.DecimalPlaces = -1;
                         this.EntradaEmpresaClaveTributaria.FieldName = null;
@@ -232,7 +235,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EtiquetaClaveTributaria
                         // 
-                        this.EtiquetaClaveTributaria.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaClaveTributaria.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaClaveTributaria.Location = new System.Drawing.Point(32, 148);
                         this.EtiquetaClaveTributaria.Name = "EtiquetaClaveTributaria";
                         this.EtiquetaClaveTributaria.Size = new System.Drawing.Size(184, 24);
@@ -243,8 +246,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaEmpresaNombre
                         // 
                         this.EntradaEmpresaNombre.AutoNav = true;
-                        this.EntradaEmpresaNombre.AutoTab = true;
-                        this.EntradaEmpresaNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaNombre.DecimalPlaces = -1;
                         this.EntradaEmpresaNombre.FieldName = null;
@@ -265,7 +266,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label17
                         // 
-                        this.Label17.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label17.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label17.Location = new System.Drawing.Point(32, 92);
                         this.Label17.Name = "Label17";
                         this.Label17.Size = new System.Drawing.Size(184, 24);
@@ -278,7 +279,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.FrmGeneral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.FrmGeneral.Controls.Add(this.EntradaPais);
                         this.FrmGeneral.Controls.Add(this.label33);
                         this.FrmGeneral.Controls.Add(this.EntradaLocalidad);
@@ -297,11 +297,9 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmGeneral.Controls.Add(this.Label19);
                         this.FrmGeneral.Controls.Add(this.EtiquetaClaveTributaria);
                         this.FrmGeneral.Controls.Add(this.Label17);
-                        this.FrmGeneral.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FrmGeneral.Location = new System.Drawing.Point(8, 8);
                         this.FrmGeneral.Name = "FrmGeneral";
                         this.FrmGeneral.Padding = new System.Windows.Forms.Padding(2);
-                        this.FrmGeneral.ReadOnly = false;
                         this.FrmGeneral.Size = new System.Drawing.Size(620, 385);
                         this.FrmGeneral.TabIndex = 0;
                         this.FrmGeneral.Text = "Datos de la Empresa";
@@ -312,7 +310,6 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPais.AutoNav = true;
                         this.EntradaPais.AutoTab = true;
-                        this.EntradaPais.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPais.CanCreate = false;
                         this.EntradaPais.DataTextField = "nombre";
                         this.EntradaPais.DataValueField = "id_pais";
@@ -336,7 +333,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label33
                         // 
-                        this.label33.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label33.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label33.Location = new System.Drawing.Point(32, 44);
                         this.label33.Name = "label33";
                         this.label33.Size = new System.Drawing.Size(184, 24);
@@ -350,7 +347,6 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaLocalidad.AutoNav = true;
                         this.EntradaLocalidad.AutoTab = true;
-                        this.EntradaLocalidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaLocalidad.CanCreate = true;
                         this.EntradaLocalidad.DataTextField = "nombre";
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
@@ -373,7 +369,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label32
                         // 
-                        this.label32.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label32.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label32.Location = new System.Drawing.Point(32, 260);
                         this.label32.Name = "label32";
                         this.label32.Size = new System.Drawing.Size(184, 24);
@@ -387,7 +383,6 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProvincia.AutoNav = true;
                         this.EntradaProvincia.AutoTab = true;
-                        this.EntradaProvincia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaProvincia.CanCreate = true;
                         this.EntradaProvincia.DataTextField = "nombre";
                         this.EntradaProvincia.DataValueField = "id_ciudad";
@@ -411,7 +406,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label31
                         // 
-                        this.label31.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label31.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label31.Location = new System.Drawing.Point(32, 232);
                         this.label31.Name = "label31";
                         this.label31.Size = new System.Drawing.Size(184, 24);
@@ -422,8 +417,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaEmpresaRazonSocial
                         // 
                         this.EntradaEmpresaRazonSocial.AutoNav = true;
-                        this.EntradaEmpresaRazonSocial.AutoTab = true;
-                        this.EntradaEmpresaRazonSocial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaRazonSocial.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaRazonSocial.DecimalPlaces = -1;
                         this.EntradaEmpresaRazonSocial.FieldName = null;
@@ -445,8 +438,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaEmpresaEmail
                         // 
                         this.EntradaEmpresaEmail.AutoNav = true;
-                        this.EntradaEmpresaEmail.AutoTab = true;
-                        this.EntradaEmpresaEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaEmail.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmpresaEmail.DecimalPlaces = -1;
                         this.EntradaEmpresaEmail.FieldName = null;
@@ -468,8 +459,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaEmpresaId
                         // 
                         this.EntradaEmpresaId.AutoNav = true;
-                        this.EntradaEmpresaId.AutoTab = true;
-                        this.EntradaEmpresaId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEmpresaId.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaEmpresaId.DecimalPlaces = -1;
                         this.EntradaEmpresaId.FieldName = null;
@@ -491,7 +480,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(32, 120);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(184, 24);
@@ -501,7 +490,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label28
                         // 
-                        this.label28.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label28.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label28.Location = new System.Drawing.Point(32, 204);
                         this.label28.Name = "label28";
                         this.label28.Size = new System.Drawing.Size(184, 24);
@@ -511,7 +500,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(32, 288);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(184, 24);
@@ -524,8 +513,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaActualizaciones.AlwaysExpanded = true;
                         this.EntradaActualizaciones.AutoNav = true;
                         this.EntradaActualizaciones.AutoSize = true;
-                        this.EntradaActualizaciones.AutoTab = true;
-                        this.EntradaActualizaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaActualizaciones.FieldName = null;
                         this.EntradaActualizaciones.Location = new System.Drawing.Point(248, 220);
                         this.EntradaActualizaciones.MaxLength = 32767;
@@ -543,7 +530,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label30
                         // 
-                        this.label30.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label30.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label30.Location = new System.Drawing.Point(16, 220);
                         this.label30.Name = "label30";
                         this.label30.Size = new System.Drawing.Size(232, 24);
@@ -556,8 +543,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaAislacion.AlwaysExpanded = true;
                         this.EntradaAislacion.AutoNav = true;
                         this.EntradaAislacion.AutoSize = true;
-                        this.EntradaAislacion.AutoTab = true;
-                        this.EntradaAislacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaAislacion.FieldName = null;
                         this.EntradaAislacion.Location = new System.Drawing.Point(248, 176);
                         this.EntradaAislacion.MaxLength = 32767;
@@ -577,8 +562,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaModoPantalla.AlwaysExpanded = true;
                         this.EntradaModoPantalla.AutoNav = true;
                         this.EntradaModoPantalla.AutoSize = true;
-                        this.EntradaModoPantalla.AutoTab = true;
-                        this.EntradaModoPantalla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaModoPantalla.FieldName = null;
                         this.EntradaModoPantalla.Location = new System.Drawing.Point(248, 88);
                         this.EntradaModoPantalla.MaxLength = 32767;
@@ -601,8 +584,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaBackup.AlwaysExpanded = true;
                         this.EntradaBackup.AutoNav = true;
                         this.EntradaBackup.AutoSize = true;
-                        this.EntradaBackup.AutoTab = true;
-                        this.EntradaBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaBackup.FieldName = null;
                         this.EntradaBackup.Location = new System.Drawing.Point(248, 32);
                         this.EntradaBackup.MaxLength = 32767;
@@ -620,7 +601,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label29
                         // 
-                        this.label29.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label29.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label29.Location = new System.Drawing.Point(16, 176);
                         this.label29.Name = "label29";
                         this.label29.Size = new System.Drawing.Size(232, 24);
@@ -630,7 +611,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label27
                         // 
-                        this.label27.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label27.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label27.Location = new System.Drawing.Point(16, 88);
                         this.label27.Name = "label27";
                         this.label27.Size = new System.Drawing.Size(232, 24);
@@ -640,7 +621,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label14
                         // 
-                        this.label14.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label14.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label14.Location = new System.Drawing.Point(16, 32);
                         this.label14.Name = "label14";
                         this.label14.Size = new System.Drawing.Size(232, 24);
@@ -652,8 +633,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaStockDecimales.AlwaysExpanded = false;
                         this.EntradaStockDecimales.AutoNav = true;
-                        this.EntradaStockDecimales.AutoTab = true;
-                        this.EntradaStockDecimales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaStockDecimales.FieldName = null;
                         this.EntradaStockDecimales.Location = new System.Drawing.Point(192, 92);
                         this.EntradaStockDecimales.MaxLength = 32767;
@@ -673,17 +652,17 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label25
                         // 
-                        this.Label25.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label25.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label25.Location = new System.Drawing.Point(16, 92);
                         this.Label25.Name = "Label25";
                         this.Label25.Size = new System.Drawing.Size(176, 24);
                         this.Label25.TabIndex = 4;
-                        this.Label25.Text = "Precisión del Stock";
+                        this.Label25.Text = "Precisión de Existencias";
                         this.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label24
                         // 
-                        this.Label24.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label24.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label24.Location = new System.Drawing.Point(16, 120);
                         this.Label24.Name = "Label24";
                         this.Label24.Size = new System.Drawing.Size(176, 24);
@@ -697,7 +676,6 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaStockDepositoPredet.AutoNav = true;
                         this.EntradaStockDepositoPredet.AutoTab = true;
-                        this.EntradaStockDepositoPredet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaStockDepositoPredet.CanCreate = true;
                         this.EntradaStockDepositoPredet.DataTextField = "nombre";
                         this.EntradaStockDepositoPredet.DataValueField = "id_situacion";
@@ -722,8 +700,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaStockMultideposito.AlwaysExpanded = false;
                         this.EntradaStockMultideposito.AutoNav = true;
-                        this.EntradaStockMultideposito.AutoTab = true;
-                        this.EntradaStockMultideposito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaStockMultideposito.FieldName = null;
                         this.EntradaStockMultideposito.Location = new System.Drawing.Point(192, 64);
                         this.EntradaStockMultideposito.MaxLength = 32767;
@@ -740,7 +716,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label23
                         // 
-                        this.Label23.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label23.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label23.Location = new System.Drawing.Point(16, 64);
                         this.Label23.Name = "Label23";
                         this.Label23.Size = new System.Drawing.Size(176, 24);
@@ -752,8 +728,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaArticulosCodigoPredet.AlwaysExpanded = false;
                         this.EntradaArticulosCodigoPredet.AutoNav = true;
-                        this.EntradaArticulosCodigoPredet.AutoTab = true;
-                        this.EntradaArticulosCodigoPredet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaArticulosCodigoPredet.FieldName = null;
                         this.EntradaArticulosCodigoPredet.Location = new System.Drawing.Point(192, 36);
                         this.EntradaArticulosCodigoPredet.MaxLength = 32767;
@@ -773,7 +747,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label20
                         // 
-                        this.Label20.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label20.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label20.Location = new System.Drawing.Point(16, 36);
                         this.Label20.Name = "Label20";
                         this.Label20.Size = new System.Drawing.Size(176, 24);
@@ -784,8 +758,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaPV
                         // 
                         this.EntradaPV.AutoNav = true;
-                        this.EntradaPV.AutoTab = true;
-                        this.EntradaPV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.FieldName = null;
@@ -807,7 +779,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label9
                         // 
-                        this.Label9.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label9.Location = new System.Drawing.Point(308, 184);
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(284, 24);
@@ -818,8 +790,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaPVND
                         // 
                         this.EntradaPVND.AutoNav = true;
-                        this.EntradaPVND.AutoTab = true;
-                        this.EntradaPVND.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVND.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVND.DecimalPlaces = -1;
                         this.EntradaPVND.FieldName = null;
@@ -841,7 +811,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label10
                         // 
-                        this.Label10.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label10.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label10.Location = new System.Drawing.Point(12, 184);
                         this.Label10.Name = "Label10";
                         this.Label10.Size = new System.Drawing.Size(236, 24);
@@ -851,7 +821,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label8
                         // 
-                        this.Label8.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label8.Location = new System.Drawing.Point(308, 156);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(284, 24);
@@ -861,7 +831,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label7.Location = new System.Drawing.Point(308, 128);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(284, 24);
@@ -872,8 +842,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaPVNC
                         // 
                         this.EntradaPVNC.AutoNav = true;
-                        this.EntradaPVNC.AutoTab = true;
-                        this.EntradaPVNC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVNC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVNC.DecimalPlaces = -1;
                         this.EntradaPVNC.FieldName = null;
@@ -896,8 +864,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaPVABC
                         // 
                         this.EntradaPVABC.AutoNav = true;
-                        this.EntradaPVABC.AutoTab = true;
-                        this.EntradaPVABC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVABC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVABC.DecimalPlaces = -1;
                         this.EntradaPVABC.FieldName = null;
@@ -919,7 +885,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(12, 156);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(236, 24);
@@ -929,7 +895,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(12, 128);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(236, 24);
@@ -939,7 +905,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(12, 100);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(236, 24);
@@ -949,7 +915,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label16
                         // 
-                        this.Label16.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label16.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label16.Location = new System.Drawing.Point(12, 36);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(172, 24);
@@ -963,7 +929,6 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaClientePredet.AutoNav = true;
                         this.EntradaClientePredet.AutoTab = true;
-                        this.EntradaClientePredet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaClientePredet.CanCreate = true;
                         this.EntradaClientePredet.DataTextField = "nombre_visible";
                         this.EntradaClientePredet.DataValueField = "id_persona";
@@ -986,7 +951,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // Label15
                         // 
-                        this.Label15.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label15.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label15.Location = new System.Drawing.Point(12, 64);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(172, 24);
@@ -1000,7 +965,6 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaPagoPredet.AutoNav = true;
                         this.EntradaFormaPagoPredet.AutoTab = true;
-                        this.EntradaFormaPagoPredet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaFormaPagoPredet.CanCreate = true;
                         this.EntradaFormaPagoPredet.DataTextField = "nombre";
                         this.EntradaFormaPagoPredet.DataValueField = "id_formapago";
@@ -1024,18 +988,20 @@ namespace Lazaro.WinMain.Misc.Config
                         // BotonSiguiente
                         // 
                         this.BotonSiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.BotonSiguiente.AutoNav = true;
                         this.BotonSiguiente.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonSiguiente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSiguiente.Image = null;
                         this.BotonSiguiente.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSiguiente.Location = new System.Drawing.Point(8, 405);
+                        this.BotonSiguiente.Location = new System.Drawing.Point(250, 12);
+                        this.BotonSiguiente.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonSiguiente.Name = "BotonSiguiente";
                         this.BotonSiguiente.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSiguiente.ReadOnly = false;
-                        this.BotonSiguiente.Size = new System.Drawing.Size(96, 32);
+                        this.BotonSiguiente.Size = new System.Drawing.Size(116, 40);
                         this.BotonSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSiguiente.Subtext = "F9";
-                        this.BotonSiguiente.TabIndex = 52;
+                        this.BotonSiguiente.TabIndex = 0;
                         this.BotonSiguiente.Text = "Más...";
                         this.BotonSiguiente.Click += new System.EventHandler(this.BotonSiguiente_Click);
                         // 
@@ -1044,7 +1010,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.FrmArticulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.FrmArticulos.Controls.Add(this.EntradaMonedaDecimalesCosto);
                         this.FrmArticulos.Controls.Add(this.label35);
                         this.FrmArticulos.Controls.Add(this.EntradaMonedaDecimalesUnitarios);
@@ -1063,14 +1028,11 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmArticulos.Controls.Add(this.Label23);
                         this.FrmArticulos.Controls.Add(this.EntradaArticulosCodigoPredet);
                         this.FrmArticulos.Controls.Add(this.Label20);
-                        this.FrmArticulos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FrmArticulos.Location = new System.Drawing.Point(8, 8);
                         this.FrmArticulos.Name = "FrmArticulos";
                         this.FrmArticulos.Padding = new System.Windows.Forms.Padding(2);
-                        this.FrmArticulos.ReadOnly = false;
                         this.FrmArticulos.Size = new System.Drawing.Size(620, 385);
                         this.FrmArticulos.TabIndex = 0;
-                        this.FrmArticulos.TabStop = false;
                         this.FrmArticulos.Text = "Existencias y Precios";
                         this.FrmArticulos.Visible = false;
                         // 
@@ -1078,8 +1040,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaMonedaDecimalesCosto.AlwaysExpanded = false;
                         this.EntradaMonedaDecimalesCosto.AutoNav = true;
-                        this.EntradaMonedaDecimalesCosto.AutoTab = true;
-                        this.EntradaMonedaDecimalesCosto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaMonedaDecimalesCosto.FieldName = null;
                         this.EntradaMonedaDecimalesCosto.Location = new System.Drawing.Point(192, 216);
                         this.EntradaMonedaDecimalesCosto.MaxLength = 32767;
@@ -1099,7 +1059,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label35
                         // 
-                        this.label35.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label35.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label35.Location = new System.Drawing.Point(16, 216);
                         this.label35.Name = "label35";
                         this.label35.Size = new System.Drawing.Size(176, 24);
@@ -1111,8 +1071,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaMonedaDecimalesUnitarios.AlwaysExpanded = false;
                         this.EntradaMonedaDecimalesUnitarios.AutoNav = true;
-                        this.EntradaMonedaDecimalesUnitarios.AutoTab = true;
-                        this.EntradaMonedaDecimalesUnitarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaMonedaDecimalesUnitarios.FieldName = null;
                         this.EntradaMonedaDecimalesUnitarios.Location = new System.Drawing.Point(192, 244);
                         this.EntradaMonedaDecimalesUnitarios.MaxLength = 32767;
@@ -1132,7 +1090,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label34
                         // 
-                        this.label34.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label34.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label34.Location = new System.Drawing.Point(16, 244);
                         this.label34.Name = "label34";
                         this.label34.Size = new System.Drawing.Size(176, 24);
@@ -1144,8 +1102,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EntradaMonedaDecimalesFinal.AlwaysExpanded = false;
                         this.EntradaMonedaDecimalesFinal.AutoNav = true;
-                        this.EntradaMonedaDecimalesFinal.AutoTab = true;
-                        this.EntradaMonedaDecimalesFinal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaMonedaDecimalesFinal.FieldName = null;
                         this.EntradaMonedaDecimalesFinal.Location = new System.Drawing.Point(192, 272);
                         this.EntradaMonedaDecimalesFinal.MaxLength = 32767;
@@ -1165,7 +1121,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label18
                         // 
-                        this.label18.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label18.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label18.Location = new System.Drawing.Point(16, 272);
                         this.label18.Name = "label18";
                         this.label18.Size = new System.Drawing.Size(176, 24);
@@ -1175,7 +1131,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label26
                         // 
-                        this.label26.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label26.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label26.Location = new System.Drawing.Point(16, 148);
                         this.label26.Name = "label26";
                         this.label26.Size = new System.Drawing.Size(176, 24);
@@ -1189,7 +1145,6 @@ namespace Lazaro.WinMain.Misc.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaStockDepositoPredetSuc.AutoNav = true;
                         this.EntradaStockDepositoPredetSuc.AutoTab = true;
-                        this.EntradaStockDepositoPredetSuc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaStockDepositoPredetSuc.CanCreate = true;
                         this.EntradaStockDepositoPredetSuc.DataTextField = "nombre";
                         this.EntradaStockDepositoPredetSuc.DataValueField = "id_situacion";
@@ -1213,8 +1168,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaMonedaUnidadMonetariaMinima
                         // 
                         this.EntradaMonedaUnidadMonetariaMinima.AutoNav = true;
-                        this.EntradaMonedaUnidadMonetariaMinima.AutoTab = true;
-                        this.EntradaMonedaUnidadMonetariaMinima.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaMonedaUnidadMonetariaMinima.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaMonedaUnidadMonetariaMinima.DecimalPlaces = -1;
                         this.EntradaMonedaUnidadMonetariaMinima.FieldName = null;
@@ -1236,7 +1189,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label22
                         // 
-                        this.label22.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label22.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label22.Location = new System.Drawing.Point(16, 304);
                         this.label22.Name = "label22";
                         this.label22.Size = new System.Drawing.Size(236, 24);
@@ -1249,7 +1202,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmComprobantes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.FrmComprobantes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.FrmComprobantes.Controls.Add(this.EntradaPVRC);
                         this.FrmComprobantes.Controls.Add(this.label3);
                         this.FrmComprobantes.Controls.Add(this.label11);
@@ -1274,22 +1226,17 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmComprobantes.Controls.Add(this.EntradaClientePredet);
                         this.FrmComprobantes.Controls.Add(this.Label15);
                         this.FrmComprobantes.Controls.Add(this.EntradaFormaPagoPredet);
-                        this.FrmComprobantes.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FrmComprobantes.Location = new System.Drawing.Point(8, 8);
                         this.FrmComprobantes.Name = "FrmComprobantes";
                         this.FrmComprobantes.Padding = new System.Windows.Forms.Padding(2);
-                        this.FrmComprobantes.ReadOnly = false;
                         this.FrmComprobantes.Size = new System.Drawing.Size(620, 385);
                         this.FrmComprobantes.TabIndex = 0;
-                        this.FrmComprobantes.TabStop = false;
                         this.FrmComprobantes.Text = "Comprobantes";
                         this.FrmComprobantes.Visible = false;
                         // 
                         // EntradaPVRC
                         // 
                         this.EntradaPVRC.AutoNav = true;
-                        this.EntradaPVRC.AutoTab = true;
-                        this.EntradaPVRC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVRC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVRC.DecimalPlaces = -1;
                         this.EntradaPVRC.FieldName = null;
@@ -1311,7 +1258,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(12, 240);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(236, 24);
@@ -1321,7 +1268,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label11
                         // 
-                        this.label11.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label11.Location = new System.Drawing.Point(308, 212);
                         this.label11.Name = "label11";
                         this.label11.Size = new System.Drawing.Size(284, 24);
@@ -1332,8 +1279,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaLimiteCredito
                         // 
                         this.EntradaLimiteCredito.AutoNav = true;
-                        this.EntradaLimiteCredito.AutoTab = true;
-                        this.EntradaLimiteCredito.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaLimiteCredito.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaLimiteCredito.DecimalPlaces = -1;
                         this.EntradaLimiteCredito.FieldName = null;
@@ -1355,7 +1300,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label21
                         // 
-                        this.label21.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label21.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label21.Location = new System.Drawing.Point(12, 316);
                         this.label21.Name = "label21";
                         this.label21.Size = new System.Drawing.Size(236, 24);
@@ -1365,7 +1310,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EntradaCambiaPrecioComprob
                         // 
-                        this.EntradaCambiaPrecioComprob.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaCambiaPrecioComprob.AutoNav = true;
                         this.EntradaCambiaPrecioComprob.FieldName = null;
                         this.EntradaCambiaPrecioComprob.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCambiaPrecioComprob.Location = new System.Drawing.Point(420, 280);
@@ -1378,7 +1323,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label13
                         // 
-                        this.label13.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label13.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label13.Location = new System.Drawing.Point(12, 280);
                         this.label13.Name = "label13";
                         this.label13.Size = new System.Drawing.Size(408, 24);
@@ -1389,8 +1334,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // EntradaPVR
                         // 
                         this.EntradaPVR.AutoNav = true;
-                        this.EntradaPVR.AutoTab = true;
-                        this.EntradaPVR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPVR.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVR.DecimalPlaces = -1;
                         this.EntradaPVR.FieldName = null;
@@ -1412,7 +1355,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // label12
                         // 
-                        this.label12.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label12.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label12.Location = new System.Drawing.Point(12, 212);
                         this.label12.Name = "label12";
                         this.label12.Size = new System.Drawing.Size(236, 24);
@@ -1422,7 +1365,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // FrmAvanzado
                         // 
-                        this.FrmAvanzado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.FrmAvanzado.Controls.Add(this.label14);
                         this.FrmAvanzado.Controls.Add(this.label27);
                         this.FrmAvanzado.Controls.Add(this.EntradaBackup);
@@ -1431,27 +1373,37 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmAvanzado.Controls.Add(this.EntradaModoPantalla);
                         this.FrmAvanzado.Controls.Add(this.EntradaActualizaciones);
                         this.FrmAvanzado.Controls.Add(this.label30);
-                        this.FrmAvanzado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.FrmAvanzado.Location = new System.Drawing.Point(8, 8);
                         this.FrmAvanzado.Name = "FrmAvanzado";
                         this.FrmAvanzado.Padding = new System.Windows.Forms.Padding(2);
-                        this.FrmAvanzado.ReadOnly = false;
                         this.FrmAvanzado.Size = new System.Drawing.Size(620, 385);
                         this.FrmAvanzado.TabIndex = 8;
                         this.FrmAvanzado.Text = "Avanzado";
                         this.FrmAvanzado.Visible = false;
                         // 
+                        // buttonPanel1
+                        // 
+                        this.buttonPanel1.Controls.Add(this.CancelCommandButton);
+                        this.buttonPanel1.Controls.Add(this.BotonAceptar);
+                        this.buttonPanel1.Controls.Add(this.BotonSiguiente);
+                        this.buttonPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+                        this.buttonPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+                        this.buttonPanel1.Location = new System.Drawing.Point(0, 384);
+                        this.buttonPanel1.Name = "buttonPanel1";
+                        this.buttonPanel1.Padding = new System.Windows.Forms.Padding(12);
+                        this.buttonPanel1.Size = new System.Drawing.Size(634, 64);
+                        this.buttonPanel1.TabIndex = 100;
+                        // 
                         // Preferencias
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(634, 448);
-                        this.Controls.Add(this.BotonSiguiente);
-                        this.Controls.Add(this.CancelCommandButton);
-                        this.Controls.Add(this.BotonAceptar);
+                        this.Controls.Add(this.buttonPanel1);
                         this.Controls.Add(this.FrmArticulos);
                         this.Controls.Add(this.FrmAvanzado);
                         this.Controls.Add(this.FrmGeneral);
                         this.Controls.Add(this.FrmComprobantes);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "Preferencias";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1464,6 +1416,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.FrmComprobantes.PerformLayout();
                         this.FrmAvanzado.ResumeLayout(false);
                         this.FrmAvanzado.PerformLayout();
+                        this.buttonPanel1.ResumeLayout(false);
                         this.ResumeLayout(false);
 
 		}
@@ -1544,5 +1497,6 @@ namespace Lazaro.WinMain.Misc.Config
                 private Lui.Forms.Label label34;
                 private Lui.Forms.ComboBox EntradaMonedaDecimalesCosto;
                 private Lui.Forms.Label label35;
+                private Lui.Forms.ButtonPanel buttonPanel1;
 	}
 }

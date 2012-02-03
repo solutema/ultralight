@@ -67,7 +67,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCantidad.AutoNav = true;
-                        this.EntradaCantidad.AutoTab = true;
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaCantidad.DecimalPlaces = -1;
                         this.EntradaCantidad.FieldName = null;
@@ -96,7 +95,6 @@ namespace Lcc.Entrada.Articulos
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaVariacion.AutoNav = true;
-                        this.EntradaVariacion.AutoTab = true;
                         this.EntradaVariacion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaVariacion.DecimalPlaces = -1;
                         this.EntradaVariacion.FieldName = null;

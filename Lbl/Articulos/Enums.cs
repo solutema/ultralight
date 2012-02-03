@@ -45,7 +45,7 @@ namespace Lbl.Articulos
         {
                 Nunca = 0,
                 Siempre = 1,
-                SoloSiHayStockOPedidos = 2
+                SoloSiHayExistenciasOPedidos = 2
         }
 
         public enum Seguimientos

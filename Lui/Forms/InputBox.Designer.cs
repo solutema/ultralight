@@ -63,10 +63,10 @@ namespace Lui.Forms
                         // 
                         // EtiquetaInfo
                         // 
-                        this.EtiquetaInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaInfo.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaInfo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaInfo.Location = new System.Drawing.Point(28, 24);
                         this.EtiquetaInfo.Name = "EtiquetaInfo";
                         this.EtiquetaInfo.Size = new System.Drawing.Size(312, 192);
@@ -90,10 +90,10 @@ namespace Lui.Forms
                         // 
                         // Texto
                         // 
-                        this.Texto.AutoNav = false;
-                        this.Texto.AutoTab = false;
+                        this.Texto.AutoNav = true;
                         this.Texto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.Texto.DecimalPlaces = -1;
+                        this.Texto.FieldName = null;
                         this.Texto.ForceCase = Lui.Forms.TextCasing.None;
                         this.Texto.Location = new System.Drawing.Point(24, 224);
                         this.Texto.MaxLength = 32767;
@@ -101,6 +101,7 @@ namespace Lui.Forms
                         this.Texto.Name = "Texto";
                         this.Texto.Padding = new System.Windows.Forms.Padding(2);
                         this.Texto.PasswordChar = '\0';
+                        this.Texto.PlaceholderText = null;
                         this.Texto.Prefijo = "";
                         this.Texto.ReadOnly = false;
                         this.Texto.SelectOnFocus = true;
@@ -134,6 +135,7 @@ namespace Lui.Forms
                         this.Controls.Add(this.Texto);
                         this.Controls.Add(this.OkButton);
                         this.Controls.Add(this.EtiquetaInfo);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "InputBox";
                         this.Text = "Ingreso de datos";

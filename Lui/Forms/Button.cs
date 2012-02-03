@@ -42,7 +42,7 @@ namespace Lui.Forms
         /// <summary>
         /// Control botón estándar.
         /// </summary>
-        public partial class Button : Control, IControl, IButtonControl
+        public partial class Button : Control, IControl, IDisplayStyleControl, IButtonControl
         {
                 private SubLabelPositions m_SubLabelPos = SubLabelPositions.None;
                 private ImagePositions m_ImagePos = ImagePositions.Top;
@@ -54,13 +54,8 @@ namespace Lui.Forms
                 public Button()
                 {
                         InitializeComponent();
-
-                        MainText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonFace;
-                        MainText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonText;
-                        SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
-                        SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
-                        //this.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonBackground;
                         this.BorderStyle = BorderStyles.Button;
+                        this.ReubicarTodo();
                 }
 
 
@@ -77,6 +72,7 @@ namespace Lui.Forms
                                 base.Text = "";
                         }
                 }
+
 
                 public System.Drawing.Image Image
                 {
@@ -118,28 +114,6 @@ namespace Lui.Forms
                         }
                 }
 
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        System.ComponentModel.Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                new public Color ForeColor
-                {
-                        get
-                        {
-                                return base.ForeColor;
-                        }
-                }
-
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        System.ComponentModel.Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                new protected Color BackColor
-                {
-                        get
-                        {
-                                return base.BackColor;
-                        }
-                }
-
 
                 public SubLabelPositions SubLabelPos
                 {
@@ -154,10 +128,11 @@ namespace Lui.Forms
                         }
                 }
 
+
                 private void ReubicarTodo()
                 {
                         const int SmallSubTextHeight = 12;
-                        const int SmallSubTextWidth = 12;
+                        const int SmallSubTextWidth = 10;
                         int HorizontalMargin = 4;
                         int VerticalMargin = 4;
 
@@ -185,7 +160,7 @@ namespace Lui.Forms
                                         //No hay subtexto, el texto ocupa todo
                                         MainText.Width = this.Width - MainText.Left - HorizontalMargin;
                                         MainText.Height = this.Height - (VerticalMargin * 2);
-                                        MainText.Font = Lfx.Config.Display.DefaultFont;
+                                        MainText.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
 
                                         SubText.Visible = false;
                                         break;
@@ -194,17 +169,14 @@ namespace Lui.Forms
                                         MainText.Width = this.Width - MainText.Left - HorizontalMargin;
                                         MainText.Height = this.Height - SmallSubTextHeight - (VerticalMargin * 2);
                                         MainText.TextAlign = ContentAlignment.MiddleCenter;
-                                        MainText.Font = Lfx.Config.Display.DefaultFont;
+                                        MainText.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
 
                                         SubText.Left = MainText.Left;
                                         SubText.Width = MainText.Width;
                                         SubText.Height = SmallSubTextHeight;
                                         SubText.Top = MainText.Top + MainText.Height;
                                         SubText.TextAlign = ContentAlignment.MiddleCenter;
-                                        SubText.Font = Lfx.Config.Display.SmallerFont;
-
-                                        SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
-                                        SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
+                                        SubText.Font = Lazaro.Pres.DisplayStyles.Template.Current.SmallerFont;
                                         SubText.Visible = true;
                                         break;
                                 case SubLabelPositions.Right:
@@ -212,15 +184,12 @@ namespace Lui.Forms
                                         MainText.Width = this.Width - MainText.Left - HorizontalMargin - SmallSubTextWidth;
                                         MainText.Height = this.Height - VerticalMargin * 2;
                                         MainText.TextAlign = ContentAlignment.MiddleCenter;
-                                        MainText.Font = Lfx.Config.Display.DefaultFont;
+                                        MainText.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
 
                                         SubText.Size = new Size(SmallSubTextWidth, this.Height - VerticalMargin * 2);
                                         SubText.Location = new Point(this.Width - SubText.Width - HorizontalMargin, MainText.Top);
                                         SubText.TextAlign = ContentAlignment.MiddleCenter;
-                                        SubText.Font = Lfx.Config.Display.SmallerFont;
-
-                                        SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonSubBackground;
-                                        SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonSubText;
+                                        SubText.Font = Lazaro.Pres.DisplayStyles.Template.Current.SmallerFont;
                                         SubText.Visible = true;
                                         break;
                                 case SubLabelPositions.LongBottom:
@@ -231,20 +200,18 @@ namespace Lui.Forms
                                         else
                                                 MainText.Height = 22;
                                         MainText.TextAlign = ContentAlignment.MiddleLeft;
-                                        MainText.Font = Lfx.Config.Display.TitleFont;
+                                        MainText.Font = Lazaro.Pres.DisplayStyles.Template.Current.GroupHeaderFont;
 
                                         SubText.Left = MainText.Left;
                                         SubText.Width = MainText.Width;
                                         SubText.Top = MainText.Top + MainText.Height;
                                         SubText.Height = this.Height - SubText.Top - VerticalMargin;
                                         SubText.TextAlign = ContentAlignment.TopLeft;
-                                        SubText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonFace;
-                                        SubText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonText;
-                                        SubText.Font = Lfx.Config.Display.SmallFont;
-
+                                        SubText.Font = Lazaro.Pres.DisplayStyles.Template.Current.SmallFont;
                                         SubText.Visible = true;
                                         break;
                         }
+                        this.ApplyStyles();
                         this.ResumeLayout();
                 }
 
@@ -260,92 +227,79 @@ namespace Lui.Forms
                         }
                 }
 
-                private void Button_GotFocus(object sender, System.EventArgs e)
+                protected override void OnEnter(EventArgs e)
                 {
-                        //MainText.BackColor = Lfx.Config.Display.CurrentTemplate.Selection;
-                        //MainText.ForeColor = Lfx.Config.Display.CurrentTemplate.SelectionText;
-                        this.Highlighted = true;
+                        m_Highlighted = true;
+                        this.ApplyStyles();
+                        this.Invalidate();
+                        base.OnEnter(e);
                 }
 
-
-                private void Button_LostFocus(object sender, System.EventArgs e)
+                protected override void OnLeave(EventArgs e)
                 {
-                        //MainText.BackColor = Lfx.Config.Display.CurrentTemplate.ButtonBackground;
-                        //MainText.ForeColor = Lfx.Config.Display.CurrentTemplate.ButtonText;
-                        this.Highlighted = false;
+                        m_Highlighted = false;
+                        this.ApplyStyles();
+                        this.Invalidate();
+                        base.OnLeave(e);
                 }
 
 
                 private void MainText_MouseDown(System.Object sender, System.Windows.Forms.MouseEventArgs e)
                 {
-                        this.Focus();
+                        this.Select();
                 }
 
-                private void Button_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-                {
-                        switch (e.KeyChar) {
-                                case Lfx.Types.ControlChars.Cr:
-                                case Lfx.Types.ControlChars.Space:
-                                        if (this.Enabled) {
-                                                e.Handled = true;
-                                                if (this.Enabled && this.Click != null)
-                                                        this.Click(sender, e);
-                                        }
-                                        break;
-                        }
-                }
 
                 private void MainText_Click(System.Object sender, System.EventArgs e)
                 {
-                        this.Focus();
+                        this.Select();
                         if (this.Enabled && this.Click != null)
-                                this.Click(sender, e);
+                                this.Click(this, e);
                 }
 
                 private void MainText_DoubleClick(object sender, System.EventArgs e)
                 {
-                        this.Focus();
+                        this.Select();
                         if (this.Enabled && this.Click != null)
-                                this.Click(sender, e);
+                                this.Click(this, e);
                 }
 
 
                 private void SubText_Click(System.Object sender, System.EventArgs e)
                 {
-                        this.Focus();
+                        this.Select();
                         if (this.Enabled && this.Click != null)
-                                this.Click(sender, e);
+                                this.Click(this, e);
                 }
 
 
                 private void SubText_DoubleClick(object sender, System.EventArgs e)
                 {
-                        this.Focus();
+                        this.Select();
                         if (this.Enabled && this.Click != null)
-                                this.Click(sender, e);
+                                this.Click(this, e);
                 }
 
 
-                private void Button_Click(object sender, System.EventArgs e)
+                protected override void OnClick(EventArgs e)
                 {
-                        this.Focus();
+                        base.OnClick(e);
+                        this.Select();
                         if (this.Enabled && this.Click != null)
-                                this.Click(sender, e);
+                                this.Click(this, e);
                 }
 
-                private void Button_DoubleClick(object sender, System.EventArgs e)
+
+                protected override void OnDoubleClick(EventArgs e)
                 {
-                        this.Focus();
+                        base.OnDoubleClick(e);
+                        this.Select();
                         if (this.Enabled && this.Click != null)
-                                this.Click(sender, e);
+                                this.Click(this, e);
                 }
 
-                private void Button_SizeChanged(object sender, System.EventArgs e)
-                {
-                        this.ReubicarTodo();
-                }
 
-                private void Button_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                protected override void OnKeyDown(KeyEventArgs e)
                 {
                         if (e.KeyCode == Keys.Down) {
                                 e.Handled = true;
@@ -353,11 +307,17 @@ namespace Lui.Forms
                         } else if (e.KeyCode == Keys.Up) {
                                 e.Handled = true;
                                 System.Windows.Forms.SendKeys.Send("+{tab}");
+                        } else if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Space) {
+                                e.Handled = true;
+                                this.PerformClick();
                         } else {
                                 if (null != KeyDown)
-                                        KeyDown(sender, e);
+                                        KeyDown(this, e);
                         }
+
+                        base.OnKeyDown(e);
                 }
+
 
                 //IButtonControl
                 public void NotifyDefault(bool value)
@@ -387,24 +347,13 @@ namespace Lui.Forms
                         }
                 }
 
-                protected override void OnPaint(PaintEventArgs e)
-                {
-                        base.OnPaint(e);
-
-                        if (m_Highlighted) {
-                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
-                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.Selection), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-                        } else {
-                                e.Graphics.DrawRectangle(new System.Drawing.Pen(Lfx.Config.Display.CurrentTemplate.ButtonBorder), new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
-                        }
-                }
 
                 [System.Security.Permissions.UIPermission(System.Security.Permissions.SecurityAction.LinkDemand,
                         Window = System.Security.Permissions.UIPermissionWindow.AllWindows)]
                 protected override bool ProcessMnemonic(char charCode)
                 {
                         if (this.Enabled && this.Visible && IsMnemonic(charCode, this.Text)) {
-                                this.Focus();
+                                this.Select();
                                 this.PerformClick();
                                 return true;
                         } else {
@@ -412,5 +361,24 @@ namespace Lui.Forms
                         }
                 }
 
+
+                public void ApplyStyles()
+                {
+                        this.ForeColor = this.DisplayStyle.TextColor;
+                        if (this.Highlighted) {
+                                ((System.Windows.Forms.Control)(this)).BackColor = this.DisplayStyle.LightColor;
+                        } else {
+                                ((System.Windows.Forms.Control)(this)).BackColor = this.DisplayStyle.BackgroundColor;
+                        }
+                        MainText.BackColor = this.BackColor;
+                        MainText.ForeColor = this.ForeColor;
+                        SubText.BackColor = MainText.BackColor;
+                        SubText.ForeColor = MainText.ForeColor;
+                }
+
+                private void Button_SizeChanged(object sender, EventArgs e)
+                {
+                        this.ReubicarTodo();
+                }
         }
 }

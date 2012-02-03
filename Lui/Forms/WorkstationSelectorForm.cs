@@ -47,9 +47,6 @@ namespace Lui.Forms
                 public WorkstationSelectorForm()
 		{
 			InitializeComponent();
-
-                        if (this.HasWorkspace)
-                                this.MostrarDatos();
 		}
 
                 public override Lfx.Types.OperationResult Ok()
@@ -57,6 +54,14 @@ namespace Lui.Forms
                         if (Listado.SelectedItems != null && Listado.SelectedItems.Count > 0)
                                 this.Estacion = Listado.SelectedItems[0].Text;
                         return base.Ok();
+                }
+
+
+                protected override void OnLoad(EventArgs e)
+                {
+                        base.OnLoad(e);
+                        if (this.Connection != null)
+                                MostrarDatos();
                 }
 
 

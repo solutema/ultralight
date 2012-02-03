@@ -39,9 +39,8 @@ namespace Lbl.Impresion
         /// Representa una impresora configurada en Lázaro. Puede ser una impresora de Windows,
         /// un controlador fiscal o una impresora nula.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Impresora",
-                TablaDatos = "impresoras",
-                CampoId = "id_impresora")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Impresora")]
+        [Lbl.Atributos.Datos(TablaDatos = "impresoras", CampoId = "id_impresora")]
         [Lbl.Atributos.Presentacion()]
         public class Impresora : ElementoDeDatos
         {

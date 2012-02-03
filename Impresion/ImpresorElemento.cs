@@ -225,7 +225,7 @@ namespace Lazaro.Impresion
                         if (Fnt == null)
                                 Fnt = Plantilla.Font;
                         if (Fnt == null)
-                                Fnt = Lfx.Config.Display.DefaultFont;
+                                Fnt = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
                         e.Graphics.DrawString(Texto, Fnt, new SolidBrush(Cam.ColorTexto), Cam.Rectangle, Fmt);
                 }
 
@@ -247,12 +247,12 @@ namespace Lazaro.Impresion
                                 case "EMPRESA.NOMBRE":
                                         return Lbl.Sys.Config.Actual.Empresa.Nombre;
                                 case "EMPRESA.DOMICILIO":
-                                        return this.Workspace.CurrentConfig.Empresa.Domicilio;
+                                        return Lfx.Workspace.Master.CurrentConfig.Empresa.Domicilio;
                                 case "EMPRESA.CIUDAD":
                                 case "EMPRESA.LOCALIDAD":
-                                        return this.Workspace.CurrentConfig.Empresa.NombreLocalidad;
+                                        return Lfx.Workspace.Master.CurrentConfig.Empresa.NombreLocalidad;
                                 case "EMPRESA.TELEFONO":
-                                        return this.Workspace.CurrentConfig.Empresa.Telefono;
+                                        return Lfx.Workspace.Master.CurrentConfig.Empresa.Telefono;
 
                                 default:
                                         // Intento obtener por nombre de propiedad del objeto

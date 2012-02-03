@@ -35,9 +35,8 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Comprobante de Compra",
-                TablaDatos = "comprob",
-                CampoId = "id_comprob")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Comprobante de Compra")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob")]
         [Lbl.Atributos.Presentacion()]
         public class ComprobanteDeCompra : ComprobanteConArticulos, Lbl.IElementoConImagen
         {
@@ -61,7 +60,7 @@ namespace Lbl.Comprobantes
                         if (this.SituacionOrigen == null)
                                 this.SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, 998); //Proveedor
                         if (this.SituacionDestino == null)
-                                this.SituacionDestino = new Lbl.Articulos.Situacion(this.Connection, this.Workspace.CurrentConfig.Productos.DepositoPredeterminado);
+                                this.SituacionDestino = new Lbl.Articulos.Situacion(this.Connection, Lfx.Workspace.Master.CurrentConfig.Productos.DepositoPredeterminado);
                 }
 
                 public override Tipo Tipo

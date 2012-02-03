@@ -79,9 +79,9 @@ namespace Lcc.Entrada
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImagen.BackColor = System.Drawing.Color.White;
                         this.EntradaImagen.ContextMenuStrip = this.MenuImagen;
-                        this.EntradaImagen.Location = new System.Drawing.Point(0, 27);
+                        this.EntradaImagen.Location = new System.Drawing.Point(0, 32);
                         this.EntradaImagen.Name = "EntradaImagen";
-                        this.EntradaImagen.Size = new System.Drawing.Size(140, 130);
+                        this.EntradaImagen.Size = new System.Drawing.Size(140, 125);
                         this.EntradaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
                         this.EntradaImagen.TabIndex = 100;
                         this.EntradaImagen.TabStop = false;
@@ -92,7 +92,7 @@ namespace Lcc.Entrada
             this.guardarEnarchivoToolStripMenuItem,
             this.copiarAlPortapapelesToolStripMenuItem});
                         this.MenuImagen.Name = "MenuImagen";
-                        this.MenuImagen.Size = new System.Drawing.Size(193, 70);
+                        this.MenuImagen.Size = new System.Drawing.Size(193, 48);
                         // 
                         // guardarEnarchivoToolStripMenuItem
                         // 
@@ -110,16 +110,15 @@ namespace Lcc.Entrada
                         // 
                         // BotonQuitarImagen
                         // 
-                        this.BotonQuitarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonQuitarImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.BotonQuitarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitarImagen.Image = null;
                         this.BotonQuitarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitarImagen.Location = new System.Drawing.Point(143, 133);
+                        this.BotonQuitarImagen.Location = new System.Drawing.Point(144, 128);
                         this.BotonQuitarImagen.Name = "BotonQuitarImagen";
                         this.BotonQuitarImagen.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonQuitarImagen.ReadOnly = false;
-                        this.BotonQuitarImagen.Size = new System.Drawing.Size(96, 26);
+                        this.BotonQuitarImagen.Size = new System.Drawing.Size(96, 36);
                         this.BotonQuitarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitarImagen.Subtext = "";
                         this.BotonQuitarImagen.TabIndex = 2;
@@ -128,12 +127,11 @@ namespace Lcc.Entrada
                         // 
                         // BotonSeleccionarImagen
                         // 
-                        this.BotonSeleccionarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonSeleccionarImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.BotonSeleccionarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonSeleccionarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonSeleccionarImagen.Image = null;
                         this.BotonSeleccionarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSeleccionarImagen.Location = new System.Drawing.Point(143, 82);
+                        this.BotonSeleccionarImagen.Location = new System.Drawing.Point(144, 80);
                         this.BotonSeleccionarImagen.Name = "BotonSeleccionarImagen";
                         this.BotonSeleccionarImagen.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSeleccionarImagen.ReadOnly = false;
@@ -146,12 +144,11 @@ namespace Lcc.Entrada
                         // 
                         // BotonCapturarImagen
                         // 
-                        this.BotonCapturarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonCapturarImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.BotonCapturarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCapturarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCapturarImagen.Image = null;
                         this.BotonCapturarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCapturarImagen.Location = new System.Drawing.Point(143, 38);
+                        this.BotonCapturarImagen.Location = new System.Drawing.Point(144, 32);
                         this.BotonCapturarImagen.Name = "BotonCapturarImagen";
                         this.BotonCapturarImagen.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonCapturarImagen.ReadOnly = false;
@@ -166,7 +163,7 @@ namespace Lcc.Entrada
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.GroupLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(240, 24);
@@ -178,21 +175,15 @@ namespace Lcc.Entrada
                         // 
                         this.Controls.Add(this.GroupLabel);
                         this.Controls.Add(this.EntradaImagen);
+                        this.Controls.Add(this.BotonCapturarImagen);
                         this.Controls.Add(this.BotonQuitarImagen);
                         this.Controls.Add(this.BotonSeleccionarImagen);
-                        this.Controls.Add(this.BotonCapturarImagen);
+                        this.MinimumSize = new System.Drawing.Size(240, 160);
                         this.Name = "Imagen";
                         this.Size = new System.Drawing.Size(240, 160);
-                        this.Controls.SetChildIndex(this.ControlCaption, 0);
-                        this.Controls.SetChildIndex(this.BotonCapturarImagen, 0);
-                        this.Controls.SetChildIndex(this.BotonSeleccionarImagen, 0);
-                        this.Controls.SetChildIndex(this.BotonQuitarImagen, 0);
-                        this.Controls.SetChildIndex(this.EntradaImagen, 0);
-                        this.Controls.SetChildIndex(this.GroupLabel, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).EndInit();
                         this.MenuImagen.ResumeLayout(false);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 

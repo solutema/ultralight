@@ -105,7 +105,7 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Label1.Location = new System.Drawing.Point(80, 20);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(496, 20);
@@ -115,7 +115,7 @@ namespace Lazaro.WinMain.Backup
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(80, 60);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(112, 20);
@@ -127,7 +127,7 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.Label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(144, 88);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(436, 44);
@@ -138,7 +138,7 @@ namespace Lazaro.WinMain.Backup
                         // lblFecha
                         // 
                         this.lblFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblFecha.LabelStyle = Lui.Forms.LabelStyles.Big;
+                        this.lblFecha.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         this.lblFecha.Location = new System.Drawing.Point(336, 132);
                         this.lblFecha.Name = "lblFecha";
                         this.lblFecha.Size = new System.Drawing.Size(244, 28);
@@ -149,7 +149,7 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(80, 176);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(500, 52);
@@ -162,7 +162,7 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(80, 240);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(500, 24);
@@ -173,8 +173,6 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.EntradaConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConfirmar.AutoNav = true;
-                        this.EntradaConfirmar.AutoTab = false;
-                        this.EntradaConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaConfirmar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaConfirmar.DecimalPlaces = -1;
                         this.EntradaConfirmar.FieldName = null;

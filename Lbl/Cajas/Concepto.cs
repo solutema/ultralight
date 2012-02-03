@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Cajas
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Concepto",
-                       Grupo = "Cajas",
-                       TablaDatos = "conceptos",
-                       CampoId = "id_concepto")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Concepto", Grupo = "Cuentas")]
+        [Lbl.Atributos.Datos(TablaDatos = "conceptos", CampoId = "id_concepto")]
         [Lbl.Atributos.Presentacion()]
         public class Concepto : ElementoDeDatos
         {

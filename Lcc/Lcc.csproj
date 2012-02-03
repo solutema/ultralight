@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Edicion\Campo.cs" />
+    <Compile Include="Edicion\IControlEdicion.cs" />
     <Compile Include="Entrada\Articulos\Enums.cs" />
     <Compile Include="Entrada\AuxForms\ISearchForm.cs" />
     <Compile Include="Entrada\CampoTexto.cs">

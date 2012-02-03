@@ -78,14 +78,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Bracket.cs">
+    <Compile Include="Forms\ActionsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Bracket.Designer.cs">
-      <DependentUpon>Bracket.cs</DependentUpon>
+    <Compile Include="Forms\ActionsPanel.Designer.cs">
+      <DependentUpon>ActionsPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Button.Designer.cs">
       <DependentUpon>Button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ButtonPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
@@ -100,10 +103,17 @@
       <DependentUpon>ComboBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ContainerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\IControl.cs" />
+    <Compile Include="Forms\Panel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SecondaryActionsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\ContainerControl.Designer.cs">
-      <DependentUpon>ContainerControl.cs</DependentUpon>
+    <Compile Include="Forms\SecondaryActionsPanel.Designer.cs">
+      <DependentUpon>SecondaryActionsPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DataControl.cs">
       <SubType>UserControl</SubType>
@@ -111,10 +121,17 @@
     <Compile Include="Forms\EditableControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\IControl.cs" />
+    <Compile Include="Forms\FormHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHeader.Designer.cs">
+      <DependentUpon>FormHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IDisplayStyleControl.cs" />
     <Compile Include="Forms\IDataControl.cs" />
     <Compile Include="Forms\IDataForm.cs" />
     <Compile Include="Forms\IEditableControl.cs" />
+    <Compile Include="Forms\IForm.cs" />
     <Compile Include="Forms\InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
@@ -161,7 +178,7 @@
       <DependentUpon>Control.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Frame.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\Frame.Designer.cs">
       <DependentUpon>Frame.cs</DependentUpon>
@@ -293,9 +310,8 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Bracket.resx">
-      <DependentUpon>Bracket.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Forms\ActionsPanel.resx">
+      <DependentUpon>ActionsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChildDialogForm.resx">
       <DependentUpon>ChildDialogForm.cs</DependentUpon>
@@ -331,6 +347,12 @@
     <EmbeddedResource Include="Forms\Control.resx">
       <DependentUpon>Control.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SecondaryActionsPanel.resx">
+      <DependentUpon>SecondaryActionsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormHeader.resx">
+      <DependentUpon>FormHeader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frame.resx">
       <DependentUpon>Frame.cs</DependentUpon>
@@ -457,6 +479,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lazaro.ico" />
+    <None Include="Resources\form.png" />
+    <None Include="Resources\van.png" />
+    <None Include="Resources\unlock.png" />
+    <None Include="Resources\tag.png" />
+    <None Include="Resources\star.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\recycle-full.png" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\ID.png" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\dollar.png" />
+    <None Include="Resources\delete-item.png" />
+    <None Include="Resources\copy-item.png" />
+    <None Include="Resources\container.png" />
+    <None Include="Resources\calculator.png" />
+    <None Include="Resources\agent.png" />
+    <None Include="Resources\addressbook.png" />
+    <None Include="Resources\add-item.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

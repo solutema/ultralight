@@ -98,7 +98,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AlwaysExpanded = false;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
@@ -117,7 +116,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaDesde
                         // 
                         this.EntradaDesde.AutoNav = true;
-                        this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDesde.DecimalPlaces = -1;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
@@ -135,7 +133,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaPV
                         // 
                         this.EntradaPV.AutoNav = true;
-                        this.EntradaPV.AutoTab = true;
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
@@ -164,7 +161,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaOrden.AlwaysExpanded = true;
                         this.EntradaOrden.AutoNav = true;
                         this.EntradaOrden.AutoSize = true;
-                        this.EntradaOrden.AutoTab = true;
                         this.EntradaOrden.Location = new System.Drawing.Point(508, 20);
                         this.EntradaOrden.Name = "EntradaOrden";
                         this.EntradaOrden.Padding = new System.Windows.Forms.Padding(2);
@@ -204,7 +200,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaHasta
                         // 
                         this.EntradaHasta.AutoNav = true;
-                        this.EntradaHasta.AutoTab = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaHasta.DecimalPlaces = -1;
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;

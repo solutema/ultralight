@@ -40,6 +40,7 @@ namespace Lui.Forms
                         if (disposing && (components != null)) {
                                 components.Dispose();
                         }
+                        DisposePens();
                         base.Dispose(disposing);
                 }
 
@@ -47,41 +48,22 @@ namespace Lui.Forms
 
                 private void InitializeComponent()
                 {
-                        this.components = new System.ComponentModel.Container();
-                        this.ControlCaption = new Lui.Forms.Label();
                         this.SuspendLayout();
-                        // 
-                        // ControlCaption
-                        // 
-                        this.ControlCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ControlCaption.AutoSize = true;
-                        this.ControlCaption.LabelStyle = LabelStyles.Title;
-                        this.ControlCaption.Location = new System.Drawing.Point(4, 4);
-                        this.ControlCaption.Name = "ControlCaption";
-                        this.ControlCaption.Size = new System.Drawing.Size(0, 20);
-                        this.ControlCaption.TabIndex = 0;
-                        this.ControlCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.ControlCaption.Visible = false;
                         // 
                         // Control
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-                        this.Controls.Add(this.ControlCaption);
-                        this.Font = Lfx.Config.Display.DefaultFont;
                         this.Name = "Control";
                         this.Padding = new System.Windows.Forms.Padding(2);
                         this.Size = new System.Drawing.Size(460, 84);
                         this.TabStopChanged += new System.EventHandler(this.Control_TabStopChanged);
+                        this.Enter += new System.EventHandler(this.Control_Enter);
                         this.Leave += new System.EventHandler(this.Control_Leave);
                         this.Resize += new System.EventHandler(this.Control_Resize);
-                        this.Enter += new System.EventHandler(this.Control_Enter);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
                 #endregion
 
-                protected Lui.Forms.Label ControlCaption;
         }
 }

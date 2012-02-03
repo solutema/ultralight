@@ -57,15 +57,15 @@ namespace Lui.Forms
 
                         this.BorderStyle = BorderStyles.TextBox;
                         //this.BackColor = TextBox1.BackColor;
-                        TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                        TextBox1.BackColor = this.DisplayStyle.DataAreaColor;
+                        TextBox1.ForeColor = this.DisplayStyle.TextColor;
 
                         EtiquetaPrefijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8f);
                         EtiquetaSufijo.Font = EtiquetaPrefijo.Font;
-                        EtiquetaPrefijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                        EtiquetaPrefijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        EtiquetaSufijo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                        EtiquetaSufijo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        EtiquetaPrefijo.ForeColor = this.DisplayStyle.TextColor;
+                        EtiquetaPrefijo.BackColor = this.DisplayStyle.DataAreaColor;
+                        EtiquetaSufijo.ForeColor = this.DisplayStyle.TextColor;
+                        EtiquetaSufijo.BackColor = this.DisplayStyle.DataAreaColor;
                         
                         this.SizeChanged += new System.EventHandler(this.TextBox_SizeChanged);
                         this.TextBox1.ContextMenu = this.MiContextMenu;

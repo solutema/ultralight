@@ -38,10 +38,8 @@ namespace Lbl.Impresion
         /// <summary>
         /// Define una plantilla que se utiliza para imprimir un ElementoDeDatos.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Plantilla",
-                Grupo = "Comprobantes",
-                TablaDatos = "sys_plantillas",
-                CampoId = "id_plantilla")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Plantilla", Grupo = "Comprobantes")]
+        [Lbl.Atributos.Datos(TablaDatos = "sys_plantillas", CampoId = "id_plantilla")]
         [Lbl.Atributos.Presentacion()]
 	public class Plantilla : ElementoDeDatos
 	{

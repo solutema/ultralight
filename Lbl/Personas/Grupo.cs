@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Personas
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Grupo",
-                Grupo = "Personas",
-                TablaDatos = "personas_grupos",
-                CampoId = "id_grupo")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Grupo", Grupo = "Personas")]
+        [Lbl.Atributos.Datos(TablaDatos = "personas_grupos", CampoId = "id_grupo")]
         [Lbl.Atributos.Presentacion()]
 	public class Grupo : ElementoDeDatos
 	{

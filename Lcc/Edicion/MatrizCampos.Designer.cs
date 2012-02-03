@@ -59,14 +59,14 @@ namespace Lcc.Edicion
                 private void InitializeComponent()
                 {
                         this.GroupLabel = new Lui.Forms.Label();
-                        this.FieldContainer = new System.Windows.Forms.Panel();
+                        this.FieldContainer = new Lui.Forms.Panel();
                         this.SuspendLayout();
                         // 
                         // GroupLabel
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Header2;
+                        this.GroupLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(460, 24);
@@ -78,7 +78,7 @@ namespace Lcc.Edicion
                         // 
                         this.FieldContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.FieldContainer.Location = new System.Drawing.Point(0, 28);
+                        this.FieldContainer.Location = new System.Drawing.Point(0, 32);
                         this.FieldContainer.Margin = new System.Windows.Forms.Padding(0);
                         this.FieldContainer.Name = "FieldContainer";
                         this.FieldContainer.Size = new System.Drawing.Size(460, 0);
@@ -92,17 +92,13 @@ namespace Lcc.Edicion
                         this.Controls.Add(this.GroupLabel);
                         this.Name = "MatrizCampos";
                         this.Size = new System.Drawing.Size(460, 212);
-                        this.Controls.SetChildIndex(this.ControlCaption, 0);
-                        this.Controls.SetChildIndex(this.GroupLabel, 0);
-                        this.Controls.SetChildIndex(this.FieldContainer, 0);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 
                 #endregion
 
                 private Lui.Forms.Label GroupLabel;
-                protected System.Windows.Forms.Panel FieldContainer;
+                protected Lui.Forms.Panel FieldContainer;
         }
 }

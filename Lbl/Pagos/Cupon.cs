@@ -38,10 +38,8 @@ namespace Lbl.Pagos
         /// <summary>
         /// Describe un pago con un cupón (por ejemplo pagos con tarjeta de crédito, vales, mutuales, etc.)
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Cupón",
-                Grupo = "Pagos y Cobros",
-                TablaDatos = "tarjetas_cupones",
-                CampoId = "id_cupon")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Cupón", Grupo = "Pagos y Cobros")]
+        [Lbl.Atributos.Datos(TablaDatos = "tarjetas_cupones", CampoId = "id_cupon")]
         [Lbl.Atributos.Presentacion()]
 	public class Cupon : ElementoDeDatos
 	{

@@ -181,13 +181,17 @@ namespace Lfx.Environment
                 {
                         get
                         {
-                                System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess();
-                                if (Yo.ProcessName.IndexOf(".vshost") >= 0)
+                                if (System.Diagnostics.Debugger.IsAttached)
                                         return true;
-                                else if (Lfx.Environment.Folders.ApplicationFolder.IndexOf("/Sistema/bin/".Replace('/', System.IO.Path.DirectorySeparatorChar)) >= 0)
-                                        return true;
-                                else
-                                        return false;
+
+                                using (System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess()) {
+                                        if (Yo.ProcessName.IndexOf(".vshost") >= 0 || Yo.ProcessName.IndexOf("devenv") >= 0)
+                                                return true;
+                                        else if (Lfx.Environment.Folders.ApplicationFolder.IndexOf("Lazaro/Sistema/bin".Replace('/', System.IO.Path.DirectorySeparatorChar), StringComparison.InvariantCultureIgnoreCase) >= 0)
+                                                return true;
+                                        else
+                                                return false;
+                                }
                         }
                 }
 

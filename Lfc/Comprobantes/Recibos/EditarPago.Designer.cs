@@ -63,24 +63,27 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // OkButton
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(293, 8);
+                        this.OkButton.Location = new System.Drawing.Point(270, 8);
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(401, 8);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(390, 8);
                         // 
                         // Pago
                         // 
+                        this.Pago.AutoNav = true;
+                        this.Pago.FieldName = null;
+                        this.Pago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Pago.FormaDePagoEditable = true;
                         this.Pago.FormaDePagoVisible = true;
                         this.Pago.ImporteEditable = true;
                         this.Pago.ImporteVisible = true;
-                        this.Pago.Location = new System.Drawing.Point(12, 12);
+                        this.Pago.Location = new System.Drawing.Point(24, 24);
                         this.Pago.Name = "Pago";
                         this.Pago.ObsVisible = true;
                         this.Pago.Padding = new System.Windows.Forms.Padding(2);
-                        this.Pago.TemporaryReadOnly = false;
-                        this.Pago.Size = new System.Drawing.Size(484, 348);
+                        this.Pago.ReadOnly = false;
+                        this.Pago.Size = new System.Drawing.Size(464, 368);
                         this.Pago.TabIndex = 0;
                         this.Pago.Text = "Detalles";
                         this.Pago.TituloVisible = true;
@@ -89,10 +92,11 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(509, 435);
+                        this.ClientSize = new System.Drawing.Size(510, 452);
                         this.Controls.Add(this.Pago);
                         this.Name = "EditarPago";
                         this.Text = "Editar Pago";
+                        this.Controls.SetChildIndex(this.Pago, 0);
                         this.ResumeLayout(false);
 
                 }

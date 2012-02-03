@@ -87,7 +87,7 @@ namespace Lazaro.Impresion
 
                 public virtual Lfx.Types.OperationResult Imprimir()
                 {
-                        if (this.Workspace.DebugMode) {
+                        if (Lfx.Workspace.Master.DebugMode) {
                                 this.Print();
                         } else {
                                 try {

@@ -212,16 +212,6 @@ namespace Lbl
 			}
 		}
 
-                /// <summary>
-                /// Obtiene el espacio de trabajo actual.
-                /// </summary>
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return this.Connection.Workspace;
-			}
-		}
 
 		//Campos estándar
 		
@@ -488,7 +478,7 @@ namespace Lbl
 
                         this.GuardarEtiquetas();
                         this.GuardarLog();
-                        this.Workspace.NotifyTableChange(this.TablaDatos, this.Id);
+                        Lfx.Workspace.Master.NotifyTableChange(this.TablaDatos, this.Id);
 
                         this.m_RegistroOriginal = this.m_Registro.Clone();
                         this.m_EtiquetasOriginal = this.m_Etiquetas.Clone();

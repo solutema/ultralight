@@ -84,7 +84,7 @@ namespace Lfc.Sucursales
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 0);
                         this.Label1.Margin = new System.Windows.Forms.Padding(0);
                         this.Label1.Name = "Label1";
@@ -98,7 +98,6 @@ namespace Lfc.Sucursales
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.FieldName = null;
@@ -122,7 +121,6 @@ namespace Lfc.Sucursales
                         this.EntradaDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDireccion.AutoNav = true;
-                        this.EntradaDireccion.AutoTab = true;
                         this.EntradaDireccion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaDireccion.DecimalPlaces = -1;
                         this.EntradaDireccion.FieldName = null;
@@ -143,7 +141,7 @@ namespace Lfc.Sucursales
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 32);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(96, 24);
@@ -153,7 +151,7 @@ namespace Lfc.Sucursales
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(0, 96);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(96, 24);
@@ -164,7 +162,6 @@ namespace Lfc.Sucursales
                         // EntradaLocalidad
                         // 
                         this.EntradaLocalidad.AutoNav = true;
-                        this.EntradaLocalidad.AutoTab = true;
                         this.EntradaLocalidad.CanCreate = true;
                         this.EntradaLocalidad.DataTextField = "nombre";
                         this.EntradaLocalidad.DataValueField = "id_ciudad";
@@ -187,7 +184,7 @@ namespace Lfc.Sucursales
                         // 
                         // Label9
                         // 
-                        this.Label9.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label9.Location = new System.Drawing.Point(0, 64);
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(96, 24);
@@ -199,7 +196,6 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaSituacionOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSituacionOrigen.AutoNav = true;
-                        this.EntradaSituacionOrigen.AutoTab = true;
                         this.EntradaSituacionOrigen.CanCreate = true;
                         this.EntradaSituacionOrigen.DataTextField = "nombre";
                         this.EntradaSituacionOrigen.DataValueField = "id_situacion";
@@ -223,7 +219,7 @@ namespace Lfc.Sucursales
                         // label4
                         // 
                         this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(44, 240);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(104, 24);
@@ -235,7 +231,6 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaCajaDiaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaDiaria.AutoNav = true;
-                        this.EntradaCajaDiaria.AutoTab = true;
                         this.EntradaCajaDiaria.CanCreate = true;
                         this.EntradaCajaDiaria.DataTextField = "nombre";
                         this.EntradaCajaDiaria.DataValueField = "id_caja";
@@ -259,7 +254,7 @@ namespace Lfc.Sucursales
                         // label5
                         // 
                         this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(44, 268);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(104, 24);
@@ -271,7 +266,6 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaCajaCheques.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaCheques.AutoNav = true;
-                        this.EntradaCajaCheques.AutoTab = true;
                         this.EntradaCajaCheques.CanCreate = true;
                         this.EntradaCajaCheques.DataTextField = "nombre";
                         this.EntradaCajaCheques.DataValueField = "id_caja";
@@ -295,7 +289,7 @@ namespace Lfc.Sucursales
                         // label6
                         // 
                         this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(44, 296);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(104, 24);

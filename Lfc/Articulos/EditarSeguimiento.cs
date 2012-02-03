@@ -145,7 +145,7 @@ namespace Lfc.Articulos
 
                 private void RefreshList()
                 {
-                        if (SituacionOrigen != null && SituacionOrigen.CuentaStock) {
+                        if (SituacionOrigen != null && SituacionOrigen.CuentaExistencias) {
                                 Lbl.Articulos.ColeccionDatosSeguimiento SelectedSeries = new Lbl.Articulos.ColeccionDatosSeguimiento();
                                 if (m_DatosSeguimiento != null && m_DatosSeguimiento.Count > 0)
                                         SelectedSeries.AddRange(m_DatosSeguimiento);
@@ -163,7 +163,7 @@ namespace Lfc.Articulos
                                         Itm.SubItems[0].Text = Variacion;
                                         Itm.SubItems.Add("0");
                                         Itm.SubItems.Add(System.Convert.ToInt32(StockVariacion).ToString());
-                                        Itm.SubItems[2].ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
+                                        Itm.SubItems[2].ForeColor = this.DisplayStyle.DataAreaGrayTextColor;
                                         if (SelectedSeries.ContainsKey(Variacion)) {
                                                 if (SelectedSeries[Variacion].Cantidad-- > 0)
                                                         Itm.Checked = SelectedSeries.ContainsKey(Variacion);

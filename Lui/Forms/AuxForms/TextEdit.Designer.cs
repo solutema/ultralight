@@ -61,7 +61,6 @@ namespace Lui.Forms.AuxForms
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTexto.AutoNav = false;
-                        this.EntradaTexto.AutoTab = true;
                         this.EntradaTexto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaTexto.DecimalPlaces = -1;
                         this.EntradaTexto.ForceCase = Lui.Forms.TextCasing.None;

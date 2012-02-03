@@ -38,9 +38,8 @@ namespace Lbl.Personas
         /// <summary>
         /// Describe un usuario del sistema. En realidad es una vista diferente de un registro de la tabla de personas.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Usuario",
-                TablaDatos = "personas",
-                CampoId = "id_persona")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Usuario")]
+        [Lbl.Atributos.Datos(TablaDatos = "personas", CampoId = "id_persona")]
         [Lbl.Atributos.Presentacion()]
         public class Usuario : ElementoDeDatos
         {

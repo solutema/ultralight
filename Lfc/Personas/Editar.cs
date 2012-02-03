@@ -66,13 +66,13 @@ namespace Lfc.Personas
                                 //Busco un cliente con datos similares
                                 Lfx.Data.Row ClienteDup = null;
                                 string Sql = @"SELECT id_persona, nombre_visible, domicilio, telefono, cuit, email FROM personas WHERE (";
-                                if (EntradaNombreVisible.Text.Length > 0)
-                                        Sql += @"nombre_visible LIKE '%" + this.Connection.EscapeString(EntradaNombreVisible.Text.Replace("%", "").Replace("_", "")) + @"%'";
+                                if (this.Text.Length > 0)
+                                        Sql += @"nombre_visible LIKE '%" + this.Connection.EscapeString(this.Text.Replace("%", "").Replace("_", "")) + @"%'";
                                 if (EntradaDomicilio.Text.Length > 0)
-                                        Sql += @" OR domicilio LIKE '%" + Workspace.MasterConnection.EscapeString(EntradaDomicilio.Text) + @"%'";
+                                        Sql += @" OR domicilio LIKE '%" + Lfx.Workspace.Master.MasterConnection.EscapeString(EntradaDomicilio.Text) + @"%'";
 
                                 if (EntradaNumDoc.Text.Length > 0)
-                                        Sql += @" OR REPLACE(num_doc, '.', '') LIKE '%" + Workspace.MasterConnection.EscapeString(EntradaNumDoc.Text.Replace(".", "")) + @"%'";
+                                        Sql += @" OR REPLACE(num_doc, '.', '') LIKE '%" + Lfx.Workspace.Master.MasterConnection.EscapeString(EntradaNumDoc.Text.Replace(".", "")) + @"%'";
 
                                 if (EntradaTelefono.Text.Length > 0) {
                                         string Telefono = EntradaTelefono.Text.Replace(" -", "").Replace("- ", "").Replace("/", " ").Replace(",", " ").Replace(".", " ").Replace("  ", " ").Replace("%", "").Replace("_", "");
@@ -80,14 +80,14 @@ namespace Lfc.Personas
                                         if (Telefonos != null && Telefonos.Count > 0) {
                                                 foreach (string Tel in Telefonos) {
                                                         if (Tel != null && Tel.Length > 4)
-                                                                Sql += @" OR telefono LIKE '%" + Workspace.MasterConnection.EscapeString(Tel.Replace("%", "").Replace("_", "")) + @"%'";
+                                                                Sql += @" OR telefono LIKE '%" + Lfx.Workspace.Master.MasterConnection.EscapeString(Tel.Replace("%", "").Replace("_", "")) + @"%'";
                                                 }
                                         }
                                 }
                                 if (EntradaEmail.Text.Length > 0)
-                                        Sql += @" OR email LIKE '%" + Workspace.MasterConnection.EscapeString(EntradaEmail.Text.Replace("%", "").Replace("_", "")) + @"%'";
+                                        Sql += @" OR email LIKE '%" + Lfx.Workspace.Master.MasterConnection.EscapeString(EntradaEmail.Text.Replace("%", "").Replace("_", "")) + @"%'";
                                 if (EntradaClaveTributaria.Text.Length > 0)
-                                        Sql += @" OR cuit='" + Workspace.MasterConnection.EscapeString(EntradaClaveTributaria.Text.Replace("%", "").Replace("_", "")) + @"'";
+                                        Sql += @" OR cuit='" + Lfx.Workspace.Master.MasterConnection.EscapeString(EntradaClaveTributaria.Text.Replace("%", "").Replace("_", "")) + @"'";
                                 Sql += @") AND id_persona<>" + this.Elemento.Id.ToString();
 
                                 ClienteDup = this.Connection.FirstRowFromSelect(Sql);
@@ -97,7 +97,7 @@ namespace Lfc.Personas
                                                 ListViewItem itm;
                                                 itm = FormAltaDuplicada.ListaComparacion.Items.Add("Nombre");
                                                 itm.SubItems.Add(ClienteDup["nombre_visible"].ToString());
-                                                itm.SubItems.Add(EntradaNombreVisible.Text);
+                                                itm.SubItems.Add(this.Text);
                                                 itm = FormAltaDuplicada.ListaComparacion.Items.Add("Domicilio");
                                                 itm.SubItems.Add(ClienteDup["domicilio"].ToString());
                                                 itm.SubItems.Add(EntradaDomicilio.Text);
@@ -191,7 +191,7 @@ namespace Lfc.Personas
                         EntradaNombre.Enabled = PermitirEdicionAvanzada;
                         EntradaApellido.Text = Cliente.Apellido;
                         EntradaApellido.Enabled = PermitirEdicionAvanzada;
-                        EntradaNombreVisible.Text = Cliente.Nombre;
+                        this.Text = Cliente.Nombre;
                         EntradaTipoDoc.Elemento = Cliente.TipoDocumento;
                         EntradaTipoDoc.Enabled = PermitirEdicionAvanzada;
                         EntradaNumDoc.Text = Cliente.NumeroDocumento;
@@ -227,7 +227,7 @@ namespace Lfc.Personas
                         EntradaTelefono.Text = Cliente.Telefono;
                         EntradaEmail.Text = Cliente.Email;
                         EntradaVendedor.Elemento = Cliente.Vendedor;
-                        EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(Cliente.LimiteCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaLimiteCredito.Text = Lfx.Types.Formatting.FormatCurrency(Cliente.LimiteCredito, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         EntradaLimiteCredito.Enabled = PermitirEdicionCredito;
                         if (Cliente.FechaNacimiento == null)
                                 EntradaFechaNac.Text = "";
@@ -271,28 +271,26 @@ namespace Lfc.Personas
                         //EntradaTags.Enabled = PermitirEdicionAvanzada;
 
                         EntradaEstado.Enabled = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
-                        BotonPermisos.Visible = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Administrar);
 
                         base.ActualizarControl();
                 }
 
                 private void GenerarNombreVisible(System.Object sender, System.EventArgs e)
                 {
-
-                        EntradaNombreVisible.Text = "";
+                        string Res = "";
                         if (EntradaRazonSocial.Text.Length > 0) {
-                                EntradaNombreVisible.Text += EntradaRazonSocial.Text.Trim().ToTitleCase();
+                                Res += EntradaRazonSocial.Text.Trim().ToTitleCase();
                         } else {
                                 if (EntradaApellido.Text.Length > 0) {
-                                        EntradaNombreVisible.Text += EntradaApellido.Text.Trim();
+                                        Res += EntradaApellido.Text.Trim();
                                         if (EntradaNombre.Text.Length > 0)
-                                                EntradaNombreVisible.Text += ", " + EntradaNombre.Text.Trim();
+                                                Res += ", " + EntradaNombre.Text.Trim();
                                 } else {
                                         if (EntradaNombre.Text.Length > 0)
-                                                EntradaNombreVisible.Text += EntradaNombre.Text.Trim();
+                                                Res += EntradaNombre.Text.Trim();
                                 }
                         }
-
+                        this.Text = Res;
                 }
 
 
@@ -321,7 +319,7 @@ namespace Lfc.Personas
                 }
 
 
-                private void BotonPermisos_Click(object sender, System.EventArgs e)
+                private Lfx.Types.OperationResult EditarPermisos()
                 {
                         if (Lui.LogOn.LogOnData.ValidateAccess(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar)) {
                                 if (this.Changed || this.Elemento.Existe == false) {
@@ -329,14 +327,20 @@ namespace Lfc.Personas
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (this.Elemento.Existe)
                                                 this.ShowChanged = true;
-                                        DialogResult Res = Pregunta.ShowDialog();
+                                        DialogResult Respuesta = Pregunta.ShowDialog();
                                         this.ShowChanged = false;
-                                        if (Res != DialogResult.OK)
-                                                return;
-                                        else
-                                                this.Save();
+                                        if (Respuesta != DialogResult.OK) {
+                                                return new Lfx.Types.CancelOperationResult();
+                                        } else {
+                                                Lfx.Types.OperationResult ResultadoGuardar = this.Save();
+                                                if (ResultadoGuardar.Success == false)
+                                                        return ResultadoGuardar;
+                                        }
                                 }
-                                this.Workspace.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
+                                Lfx.Workspace.Master.RunTime.Execute("EDITAR Lbl.Personas.Usuario " + this.Elemento.Id.ToString());
+                                return new Lfx.Types.SuccessOperationResult();
+                        } else {
+                                return new Lfx.Types.NoAccessOperationResult();
                         }
                 }
 
@@ -350,7 +354,7 @@ namespace Lfc.Personas
                         Res.Nombres = EntradaNombre.Text.Trim();
                         Res.Apellido = EntradaApellido.Text.Trim();
                         Res.RazonSocial = EntradaRazonSocial.Text.Trim();
-                        Res.Nombre = EntradaNombreVisible.Text;
+                        Res.Nombre = this.Text;
                         Res.TipoDocumento = EntradaTipoDoc.Elemento as Lbl.Entidades.ClaveUnica;
                         Res.NumeroDocumento = EntradaNumDoc.Text;
                         if (EntradaClaveTributaria.Text.Length > 0)
@@ -400,7 +404,54 @@ namespace Lfc.Personas
 
                 private void EntradaTipo_TextChanged(object sender, EventArgs e)
                 {
-                        BotonPermisos.Visible = (EntradaTipo.TextInt & 4) == 4;
+                        this.FireFormActionsChanged();
+                }
+
+
+                public override Lazaro.Pres.Forms.FormActionCollection GetFormActions()
+                {
+                        Lazaro.Pres.Forms.FormActionCollection Res = base.GetFormActions();
+                        if (this.Elemento != null && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar) && (EntradaTipo.TextInt & 4) == 4)
+                                Res.Add(new Lazaro.Pres.Forms.FormAction("Permisos", "F2", "permisos", 10, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        return Res;
+                }
+
+
+                public override Lfx.Types.OperationResult PerformFormAction(string name)
+                {
+                        switch (name)
+                        {
+                                case "permisos":
+                                        return EditarPermisos();
+                                default:
+                                        return base.PerformFormAction(name);
+                        }
+                }
+
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Personas;
+                        }
+                }
+
+
+                protected override void OnSizeChanged(EventArgs e)
+                {
+                        base.OnSizeChanged(e);
+                        if (this.Created) {
+                                this.SuspendLayout();
+                                PanelI1.Width = (this.ClientRectangle.Width - 16) / 2;
+                                PanelI2.Width = PanelI1.Width;
+                                PanelD1.Width = PanelI1.Width;
+                                PanelD2.Width = PanelI1.Width;
+
+                                PanelD1.Left = PanelI1.Width + 16;
+                                PanelD2.Left = PanelD1.Left;
+                                this.ResumeLayout(true);
+                        }
                 }
         }
 }

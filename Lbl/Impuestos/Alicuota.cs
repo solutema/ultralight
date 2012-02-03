@@ -38,10 +38,8 @@ namespace Lbl.Impuestos
         /// <summary>
         /// Representa una alícuota de IVA.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Alícuota",
-                Grupo = "Impuestos",
-                TablaDatos = "alicuotas",
-                CampoId = "id_alicuota")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Alícuota", Grupo = "Impuestos")]
+        [Lbl.Atributos.Datos(TablaDatos = "alicuotas", CampoId = "id_alicuota")]
         [Lbl.Atributos.Presentacion()]
         public class Alicuota : ElementoDeDatos
         {

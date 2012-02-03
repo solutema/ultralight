@@ -71,66 +71,82 @@ namespace Lcc.Entrada
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNombre.Location = new System.Drawing.Point(352, 0);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = "Lugar";
+                        this.EntradaNombre.Prefijo = "";
+                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = true;
                         this.EntradaNombre.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 4;
-                        this.EntradaNombre.PlaceholderText = "Lugar";
                         this.EntradaNombre.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 
                         // EntradaCaracteristica
                         // 
-                        this.EntradaCaracteristica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)));
+                        this.EntradaCaracteristica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaCaracteristica.AutoNav = true;
-                        this.EntradaCaracteristica.AutoTab = true;
                         this.EntradaCaracteristica.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCaracteristica.DecimalPlaces = -1;
+                        this.EntradaCaracteristica.FieldName = null;
                         this.EntradaCaracteristica.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCaracteristica.Location = new System.Drawing.Point(12, 0);
+                        this.EntradaCaracteristica.MaxLength = 32767;
                         this.EntradaCaracteristica.MultiLine = false;
                         this.EntradaCaracteristica.Name = "EntradaCaracteristica";
                         this.EntradaCaracteristica.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCaracteristica.PasswordChar = '\0';
+                        this.EntradaCaracteristica.PlaceholderText = "Característica";
+                        this.EntradaCaracteristica.Prefijo = "";
+                        this.EntradaCaracteristica.ReadOnly = false;
                         this.EntradaCaracteristica.SelectOnFocus = true;
                         this.EntradaCaracteristica.Size = new System.Drawing.Size(60, 24);
+                        this.EntradaCaracteristica.Sufijo = "";
                         this.EntradaCaracteristica.TabIndex = 1;
-                        this.EntradaCaracteristica.PlaceholderText = "Característica";
                         this.EntradaCaracteristica.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
+                        this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(84, 0);
+                        this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumero.SelectOnFocus = true;
-                        this.EntradaNumero.Size = new System.Drawing.Size(268, 24);
-                        this.EntradaNumero.TabIndex = 3;
+                        this.EntradaNumero.PasswordChar = '\0';
                         this.EntradaNumero.PlaceholderText = "Número Telefónico";
+                        this.EntradaNumero.Prefijo = "";
+                        this.EntradaNumero.ReadOnly = false;
+                        this.EntradaNumero.SelectOnFocus = true;
+                        this.EntradaNumero.Size = new System.Drawing.Size(267, 24);
+                        this.EntradaNumero.Sufijo = "";
+                        this.EntradaNumero.TabIndex = 3;
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.Entradas_TextChanged);
                         // 
                         // label1
                         // 
-                        this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)));
+                        this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 0);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(12, 24);
@@ -140,8 +156,9 @@ namespace Lcc.Entrada
                         // 
                         // label2
                         // 
-                        this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)));
+                        this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(72, 0);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(12, 24);
@@ -158,13 +175,7 @@ namespace Lcc.Entrada
                         this.Controls.Add(this.label1);
                         this.Name = "Telefono";
                         this.Size = new System.Drawing.Size(460, 24);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.EntradaCaracteristica, 0);
-                        this.Controls.SetChildIndex(this.EntradaNumero, 0);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
         }

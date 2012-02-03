@@ -44,8 +44,6 @@ namespace Lazaro.WinMain.Misc
                 public Ingreso()
                 {
                         InitializeComponent();
-
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
 		private void FormIngreso_Load(object sender, System.EventArgs e)
@@ -99,8 +97,8 @@ namespace Lazaro.WinMain.Misc
 				OkButton.Refresh();
                                 Lbl.Personas.Persona Usuario = new Lbl.Personas.Persona(Lfx.Workspace.Master.MasterConnection, Usu.Id);
                                 Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Lfx.Workspace.Master, Usu);
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), System.Environment.MachineName.ToUpperInvariant());
-				this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), System.Environment.MachineName.ToUpperInvariant());
+				Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
                                 Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOn, Usuario, null);
 				this.Close();
 			}
@@ -119,5 +117,13 @@ namespace Lazaro.WinMain.Misc
 		{
 			OkButton.Enabled = EntradaUsuario.Text.Length > 0;
 		}
+
+                private void BotonWebAyuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        if (EntradaUsuario.TextInt == 1)
+                                Lui.Forms.MessageBox.Show("Si es la primera vez que utiliza el sistema, escriba la contraseña 'admin' (sin las comillas)", "Información");
+                        else
+                                Lui.Forms.MessageBox.Show("Si no dispone de una contraseña, por favor póngase en contacto con el administrador.", "Información");
+                }
 	}
 }

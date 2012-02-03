@@ -89,7 +89,7 @@ namespace Lfc.Articulos
 
                 private void EntradaCostoMargen_TextChanged(System.Object sender, System.EventArgs e)
                 {
-                        if (this.HasWorkspace == false)
+                        if (this.Connection == null)
                                 return;
 
                         if (EntradaCosto.ValueDecimal < 0)
@@ -128,7 +128,7 @@ namespace Lfc.Articulos
                                 if (EntradaCosto.ValueDecimal == 0)
                                         EntradaMargen.Text = "N/A";
                                 else
-                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(EntradaPvp.ValueDecimal / EntradaCosto.ValueDecimal * 100 - 100, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%)";
+                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(EntradaPvp.ValueDecimal / EntradaCosto.ValueDecimal * 100 - 100, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + "%)";
 
                                 IgnorarCostoTextChanged--;
                         }
@@ -226,8 +226,8 @@ namespace Lfc.Articulos
 
                                 decimal PrecioUltComp = this.Connection.FieldDecimal("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + this.Elemento.Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
                                 decimal PrecioUltFlete = this.Connection.FieldDecimal("SELECT (comprob.gastosenvio+comprob.otrosgastos)*(comprob_detalle.precio/comprob.total) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + this.Elemento.Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
-                                Res += "Costo de la última compra (sin gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
-                                Res += "Costo de la última compra (con gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
+                                Res += "Costo de la última compra (sin gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
+                                Res += "Costo de la última compra (con gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
 
                                 // Podría hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
                                 // no permite la cláusula LIMIT dentro de una subconsulta IN ()
@@ -240,7 +240,7 @@ namespace Lfc.Articulos
                                         }
 
                                         PrecioUlt5Comps = PrecioUlt5Comps / UltimasCompras.Rows.Count;
-                                        Res += "Promedio de las últimas " + UltimasCompras.Rows.Count.ToString() + " compras (sin gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUlt5Comps, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                                        Res += "Promedio de las últimas " + UltimasCompras.Rows.Count.ToString() + " compras (sin gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUlt5Comps, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
                                 }
 
                                 // TODO: EntradaCosto.ShowBalloon(Res, "Precio de Compra", 60);
@@ -272,7 +272,7 @@ namespace Lfc.Articulos
                 private void EntradaPvp_Enter(object sender, EventArgs e)
                 {
                         if (EntradaUnidad.TextKey.Length > 0 && UnidadRendimiento != null && UnidadRendimiento.Length > 0) {
-                                // TODO: EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Rendimiento.ToString() + " " + UnidadRendimiento + " a razón de " + Lbl.Sys.Config.Actual.Moneda.Simbolo + Lfx.Types.Formatting.FormatCurrency(EntradaPvp.ValueDecimal / Rendimiento, this.Workspace.CurrentConfig.Moneda.Decimales) + " (PVP) el " + UnidadRendimiento + ".");
+                                // TODO: EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Rendimiento.ToString() + " " + UnidadRendimiento + " a razón de " + Lbl.Sys.Config.Actual.Moneda.Simbolo + Lfx.Types.Formatting.FormatCurrency(EntradaPvp.ValueDecimal / Rendimiento, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " (PVP) el " + UnidadRendimiento + ".");
                         }
                 }
 
@@ -294,29 +294,29 @@ namespace Lfc.Articulos
                         EntradaProveedor.Elemento = Art.Proveedor;
                         EntradaDescripcion.Text = Art.Descripcion;
                         EntradaDescripcion2.Text = Art.Descripcion2;
-                        EntradaDestacado.TextKey = Art.Destacado ? "1" : "0";
-                        EntradaWeb.TextKey = System.Convert.ToInt32(Art.Destacado).ToString();
+                        EntradaDestacado.ValueInt = Art.Destacado ? 1 : 0;
+                        EntradaWeb.ValueInt = ((int)(Art.Publicacion));
 
                         IgnorarCostoTextChanged++;
-                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Art.Costo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Art.Costo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
                         if (Art.Margen == null) {
                                 EntradaMargen.TextKey = "";
                                 EntradaMargen.Text = "Otro";
                         } else {
                                 EntradaMargen.TextKey = Art.Margen.Id.ToString();
                         }
-                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Art.Pvp, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Art.Pvp, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
 
                         IgnorarCostoTextChanged--;
 
-                        EntradaUsaStock.ValueInt = (int)(Art.ControlStock);
+                        EntradaUsaStock.ValueInt = (int)(Art.ControlExistencias);
                         EntradaSeguimiento.ValueInt = (int)(Art.Seguimiento);
-                        EntradaSeguimiento.ReadOnly = Art.Existe && Art.StockActual != 0;
-                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.StockActual, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                        EntradaSeguimiento.ReadOnly = Art.Existe && Art.Existencias != 0;
+                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.Existencias, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
                         EntradaUnidad.TextKey = Art.Unidad;
                         Rendimiento = Art.Rendimiento;
                         UnidadRendimiento = Art.UnidadRendimiento;
-                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Art.StockMinimo, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Art.PuntoDeReposicion, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
                         EntradaGarantia.Text = Art.Garantia.ToString();
                         CustomName = Art.Existe;
 
@@ -350,15 +350,15 @@ namespace Lfc.Articulos
                                 Art.Margen = null;
 
                         Art.Pvp = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
-                        Art.ControlStock = (Lbl.Articulos.ControlStock)(EntradaUsaStock.ValueInt);
+                        Art.ControlExistencias = (Lbl.Articulos.ControlExistencias)(EntradaUsaStock.ValueInt);
                         Art.Seguimiento = (Lbl.Articulos.Seguimientos)(EntradaSeguimiento.ValueInt);
-                        Art.StockMinimo = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
+                        Art.PuntoDeReposicion = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
                         Art.Unidad = EntradaUnidad.TextKey;
                         Art.Rendimiento = Rendimiento;
                         Art.UnidadRendimiento = UnidadRendimiento;
                         Art.Estado = 1;
                         Art.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
-                        Art.Publicacion = ((Lbl.Articulos.Publicacion)Lfx.Types.Parsing.ParseInt(EntradaWeb.TextKey));
+                        Art.Publicacion = ((Lbl.Articulos.Publicacion)(EntradaWeb.ValueInt));
                         //EntradaTags.ActualizarElemento();
                         //EntradaImagen.ActualizarElemento();
 
@@ -400,20 +400,20 @@ namespace Lfc.Articulos
                                 if (Art.Receta == null)
                                         EntradaCosto.Text = "0";
                                 else
-                                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Art.Receta.Costo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Art.Receta.Costo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
 
-                                EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(Art.ObtenerStockActual());
+                                EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(Art.ObtenerExistencias());
                         }
                 }
 
-
-                public override void OnWorkspaceChanged()
+                protected override void OnLoad(EventArgs e)
                 {
-                        if (this.HasWorkspace) {
-                                EntradaStockActual.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
-                                EntradaStockMinimo.DecimalPlaces = this.Workspace.CurrentConfig.Productos.DecimalesStock;
-                                EntradaCosto.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesCosto;
-                                EntradaPvp.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.Decimales;
+                        base.OnLoad(e);
+                        if (this.Connection != null) {
+                                EntradaStockActual.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock;
+                                EntradaStockMinimo.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock;
+                                EntradaCosto.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto;
+                                EntradaPvp.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
 
                                 Lfx.Data.Row Nombre = null;
 
@@ -446,11 +446,9 @@ namespace Lfc.Articulos
                                 ListaMargenes[i] = "Otro|0";
                                 EntradaMargen.SetData = ListaMargenes;
                         }
-
-                        base.OnWorkspaceChanged();
                 }
 
-                private void BotonHistorial_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                private void VerHistorial()
                 {
                         Articulos.VerMovimientos FormularioDetalles = new Articulos.VerMovimientos();
                         FormularioDetalles.MdiParent = this.ParentForm.MdiParent;
@@ -458,7 +456,7 @@ namespace Lfc.Articulos
                         FormularioDetalles.Show();
                 }
 
-                private void BotonConformacion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                private void VerConformacion()
                 {
                         Articulos.VerConformacion FormularioDetalles = new Articulos.VerConformacion();
                         FormularioDetalles.MdiParent = this.ParentForm.MdiParent;
@@ -484,6 +482,41 @@ namespace Lfc.Articulos
                                 else
                                         // Para artículos nuevos, muestro cero
                                         EntradaStockActual.ValueDecimal = 0;
+                        }
+                }
+
+
+                public override Lazaro.Pres.Forms.FormActionCollection GetFormActions()
+                {
+                        Lazaro.Pres.Forms.FormActionCollection Res = base.GetFormActions();
+                        if (this.Elemento != null && this.Elemento.Existe) {
+                                Res.Add(new Lazaro.Pres.Forms.FormAction("Historial", "F7", "historial", 20, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                                Res.Add(new Lazaro.Pres.Forms.FormAction("Conformación", "F5", "conformacion", 10, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        }
+                        return Res;
+                }
+
+
+                public override Lfx.Types.OperationResult PerformFormAction(string name)
+                {
+                        switch (name) {
+                                case "historial":
+                                        VerHistorial();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                case "conformacion":
+                                        VerConformacion();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                default:
+                                        return base.PerformFormAction(name);
+                        }
+                }
+
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Articulos;
                         }
                 }
         }

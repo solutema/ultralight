@@ -59,7 +59,7 @@ namespace Lfc
                         // 
                         // EtiquetaTitulo
                         // 
-                        this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header1;
+                        this.EtiquetaTitulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(8, 8);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
                         this.EtiquetaTitulo.Size = new System.Drawing.Size(208, 72);
@@ -70,9 +70,6 @@ namespace Lfc
                         // 
                         // FormularioCuenta
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.AutoSize = true;
-                        this.ClientSize = new System.Drawing.Size(792, 472);
                         this.Controls.Add(this.EtiquetaTitulo);
                         this.Name = "FormularioCuenta";
                         this.Text = "Caja";
@@ -80,9 +77,6 @@ namespace Lfc
                         this.Controls.SetChildIndex(this.PicEsperar, 0);
                         this.Controls.SetChildIndex(this.EtiquetaCantidad, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.BotonCancelar, 0);
-                        this.Controls.SetChildIndex(this.BotonFiltrar, 0);
-                        this.Controls.SetChildIndex(this.BotonImprimir, 0);
                         this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.PanelContadores.ResumeLayout(false);
                         ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).EndInit();

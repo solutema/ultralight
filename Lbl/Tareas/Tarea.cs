@@ -38,10 +38,8 @@ namespace Lbl.Tareas
         /// <summary>
         /// Representa una tarea.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Tarea",
-                Grupo = "Tareas",
-                TablaDatos = "tickets",
-                CampoId = "id_ticket")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Tarea", Grupo = "Tareas")]
+        [Lbl.Atributos.Datos(TablaDatos = "tickets", CampoId = "id_ticket")]
         [Lbl.Atributos.Presentacion()]
         public class Tarea : ElementoDeDatos
         {
@@ -186,7 +184,7 @@ namespace Lbl.Tareas
                         if (this.Existe == false) {
                                 Comando = new qGen.Insert(this.Connection, this.TablaDatos);
                                 Comando.Fields.AddWithValue("fecha_ingreso", qGen.SqlFunctions.Now);
-                                Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+                                Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
                         } else {
                                 Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);

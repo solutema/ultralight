@@ -90,7 +90,6 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaFechaCreado.AutoSize = false;
                         this.EntradaFechaCreado.AutoNav = true;
-                        this.EntradaFechaCreado.AutoTab = true;
                         this.EntradaFechaCreado.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaFechaCreado.DecimalPlaces = -1;
                         this.EntradaFechaCreado.ForceCase = Lui.Forms.TextCasing.None;
@@ -107,7 +106,6 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaFechaPrecio.AutoSize = false;
                         this.EntradaFechaPrecio.AutoNav = true;
-                        this.EntradaFechaPrecio.AutoTab = true;
                         this.EntradaFechaPrecio.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaFechaPrecio.DecimalPlaces = -1;
                         this.EntradaFechaPrecio.ForceCase = Lui.Forms.TextCasing.None;
@@ -134,7 +132,6 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaCostoUltimaCompra.AutoSize = false;
                         this.EntradaCostoUltimaCompra.AutoNav = true;
-                        this.EntradaCostoUltimaCompra.AutoTab = true;
                         this.EntradaCostoUltimaCompra.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCostoUltimaCompra.DecimalPlaces = -1;
                         this.EntradaCostoUltimaCompra.ForceCase = Lui.Forms.TextCasing.None;
@@ -163,7 +160,6 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaCostoUltimas5Compras.AutoSize = false;
                         this.EntradaCostoUltimas5Compras.AutoNav = true;
-                        this.EntradaCostoUltimas5Compras.AutoTab = true;
                         this.EntradaCostoUltimas5Compras.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCostoUltimas5Compras.DecimalPlaces = -1;
                         this.EntradaCostoUltimas5Compras.ForceCase = Lui.Forms.TextCasing.None;

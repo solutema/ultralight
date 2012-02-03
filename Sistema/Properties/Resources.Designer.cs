@@ -39,7 +39,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lazaro.WinMain.Properties {
+namespace Lazaro.Properties {
     using System;
     
     
@@ -88,20 +88,6 @@ namespace Lazaro.WinMain.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        internal static System.Drawing.Bitmap ajax_loader {
-            get {
-                object obj = ResourceManager.GetObject("ajax-loader", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap drive_harddisk {
-            get {
-                object obj = ResourceManager.GetObject("drive-harddisk", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

@@ -63,7 +63,7 @@ namespace Lazaro.WinMain.Misc
                         this.label7 = new Lui.Forms.Label();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.Label27 = new Lui.Forms.Label();
-                        this.LowerPanel = new System.Windows.Forms.Panel();
+                        this.LowerPanel = new Lui.Forms.ButtonPanel();
                         this.OkButton = new Lui.Forms.Button();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.EtiquetaEstado = new Lui.Forms.Label();
@@ -73,8 +73,8 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // ProgressBar
                         // 
-                        this.ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ProgressBar.Location = new System.Drawing.Point(76, 112);
                         this.ProgressBar.Name = "ProgressBar";
                         this.ProgressBar.Size = new System.Drawing.Size(378, 20);
@@ -83,14 +83,15 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // label7
                         // 
-                        this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(80, 52);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(372, 52);
                         this.label7.TabIndex = 105;
                         this.label7.Text = "Este proceso realiza una verificación en búsqueda de inconsistencias en los datos" +
-                            ", saldos de las cuentas, existencias de stock, etc.";
+    ", saldos de las cuentas, existencias de stock, etc.";
                         // 
                         // PictureBox1
                         // 
@@ -104,8 +105,9 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // Label27
                         // 
-                        this.Label27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label27.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label27.Location = new System.Drawing.Point(80, 20);
                         this.Label27.Name = "Label27";
                         this.Label27.Size = new System.Drawing.Size(372, 32);
@@ -115,26 +117,30 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // LowerPanel
                         // 
-                        this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
+                        this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 238);
+                        this.LowerPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 232);
                         this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(474, 52);
+                        this.LowerPanel.Padding = new System.Windows.Forms.Padding(12);
+                        this.LowerPanel.Size = new System.Drawing.Size(474, 58);
                         this.LowerPanel.TabIndex = 106;
                         // 
                         // OkButton
                         // 
-                        this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.OkButton.AutoSize = false;
+                        this.OkButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.OkButton.AutoNav = true;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(248, 8);
+                        this.OkButton.Location = new System.Drawing.Point(242, 12);
+                        this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.OkButton.Name = "OkButton";
-                        this.OkButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.OkButton.TemporaryReadOnly = false;
-                        this.OkButton.Size = new System.Drawing.Size(104, 36);
+                        this.OkButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.OkButton.ReadOnly = false;
+                        this.OkButton.Size = new System.Drawing.Size(104, 34);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "F8";
                         this.OkButton.TabIndex = 50;
@@ -143,16 +149,18 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.CancelCommandButton.AutoSize = false;
+                        this.CancelCommandButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.CancelCommandButton.AutoNav = true;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(360, 8);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(346, 12);
+                        this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(0);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
-                        this.CancelCommandButton.TemporaryReadOnly = false;
-                        this.CancelCommandButton.Size = new System.Drawing.Size(104, 36);
+                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.CancelCommandButton.ReadOnly = false;
+                        this.CancelCommandButton.Size = new System.Drawing.Size(104, 34);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "";
                         this.CancelCommandButton.TabIndex = 51;
@@ -160,6 +168,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaEstado
                         // 
+                        this.EtiquetaEstado.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(76, 140);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(376, 20);
@@ -178,6 +187,7 @@ namespace Lazaro.WinMain.Misc
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.Label27);
                         this.Controls.Add(this.ProgressBar);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "Verificador";
                         this.Text = "Verificar Integridad de los Datos";
@@ -194,7 +204,7 @@ namespace Lazaro.WinMain.Misc
                 internal Lui.Forms.Label label7;
                 internal System.Windows.Forms.PictureBox PictureBox1;
                 internal Lui.Forms.Label Label27;
-                internal System.Windows.Forms.Panel LowerPanel;
+                internal Lui.Forms.ButtonPanel LowerPanel;
                 internal Lui.Forms.Button OkButton;
                 internal Lui.Forms.Button CancelCommandButton;
                 private Lui.Forms.Label EtiquetaEstado;

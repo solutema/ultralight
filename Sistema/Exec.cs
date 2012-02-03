@@ -425,7 +425,7 @@ namespace Lazaro.WinMain
                         string SubComando = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
 
                         System.Type TipoLbl = Lbl.Instanciador.InferirTipo(SubComando);
-                        Lbl.Atributos.Datos AtrDatos = TipoLbl.GetAttribute<Lbl.Atributos.Datos>();
+                        Lbl.Atributos.Nomenclatura AtrNombre = TipoLbl.GetAttribute<Lbl.Atributos.Nomenclatura>();
 
                         if (crear && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(TipoLbl, Lbl.Sys.Permisos.Operaciones.Crear) == false)
                                 return new Lfx.Types.NoAccessOperationResult();
@@ -433,7 +433,7 @@ namespace Lazaro.WinMain
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(TipoLbl, Lbl.Sys.Permisos.Operaciones.Ver) == false)
                                 return new Lfx.Types.NoAccessOperationResult();
 
-                        Lfx.Data.Connection DataBase = Lfx.Workspace.Master.GetNewConnection("Editar " + (AtrDatos == null ? SubComando : AtrDatos.NombreSingular));
+                        Lfx.Data.Connection DataBase = Lfx.Workspace.Master.GetNewConnection("Editar " + (AtrNombre == null ? SubComando : AtrNombre.NombreSingular));
                         Lbl.IElementoDeDatos Elemento = null;
                         if (crear) {
                                 Elemento = Lbl.Instanciador.Instanciar(TipoLbl, DataBase);

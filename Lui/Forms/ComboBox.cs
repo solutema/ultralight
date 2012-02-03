@@ -52,14 +52,12 @@ namespace Lui.Forms
                         InitializeComponent();
 
                         this.BorderStyle = BorderStyles.TextBox;
-                        //this.BackColor = TextBox1.BackColor;
-                        TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                         this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
                         this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
                         this.TextBox1.GotFocus += new System.EventHandler(this.TextBox1_GotFocus);
-                        TextBox1.Multiline = false;                        
+                        TextBox1.Multiline = false;
                 }
+
 
                 [System.ComponentModel.Category("Comportamiento")]
                 public string[] SetData
@@ -232,7 +230,7 @@ namespace Lui.Forms
                         if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
                         if (this.Focused == false)
-                                TextBox1.Focus();
+                                TextBox1.Select();
                 }
 
 
@@ -241,7 +239,7 @@ namespace Lui.Forms
                         if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
                         if (this.Focused == false)
-                                TextBox1.Focus();
+                                TextBox1.Select();
                 }
 
                 public void SetNextValueInSet()
@@ -344,7 +342,6 @@ namespace Lui.Forms
                         if (IgnoreEvents == 0) {
                                 if (PopUps.FormDataSetHelp != null && PopUps.FormDataSetHelp.Visible) {
                                         TimerOcultarPopup.Start();
-                                        // PopUps.FormDataSetHelp.Ocultar();
                                 }
                         }
                 }
@@ -421,8 +418,6 @@ namespace Lui.Forms
                                         // Manejo el tamaño de la lista de acuerdo al control
                                         ItemList.Height = this.ClientRectangle.Height - ItemList.Top - ItemList.Margin.Top + ItemList.Margin.Bottom;
                                 }
-                                if (this.ActiveControl != ItemList)
-                                        ItemList.Select();
 
                                 if (ItemList.SelectedIndex < ItemList.TopIndex)
                                         ItemList.TopIndex = ItemList.SelectedIndex;
@@ -536,6 +531,16 @@ namespace Lui.Forms
                                 this.MostrarPopup();
                                 IgnoreEvents--;
                         }
+                }
+
+
+                public override void ApplyStyle()
+                {
+                        base.ApplyStyle();
+                        this.TextBox1.BackColor = this.BackColor;
+                        this.TextBox1.ForeColor = this.ForeColor;
+                        this.ItemList.BackColor = this.BackColor;
+                        this.ItemList.ForeColor = this.ForeColor;
                 }
         }
 }

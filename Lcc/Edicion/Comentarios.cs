@@ -67,6 +67,7 @@ namespace Lcc.Edicion
                         ListaComentarios.EndUpdate();
 
                         EntradaComentario.Enabled = this.Elemento.Existe;
+                        BotonAgregar.Enabled = EntradaComentario.Enabled;
 
                         base.ActualizarControl();
                 }

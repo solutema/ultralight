@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Categorías",
-                Grupo = "Artículos",
-                TablaDatos = "articulos_categorias",
-                CampoId = "id_categoria")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Categoría de Artículos", Grupo = "Artículos")]
+        [Lbl.Atributos.Datos(TablaDatos = "articulos_categorias", CampoId = "id_categoria")]
         [Lbl.Atributos.Presentacion()]
         public class Categoria : ElementoDeDatos, IElementoConImagen
 	{
@@ -66,7 +64,7 @@ namespace Lbl.Articulos
 			}
 		}
 
-		public decimal StockMinimo
+		public decimal PuntoDeReposicion
 		{
 			get
 			{
@@ -184,7 +182,7 @@ namespace Lbl.Articulos
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
                         Comando.Fields.AddWithValue("nombresing", this.NombreSingular);
-                        Comando.Fields.AddWithValue("stock_minimo", this.StockMinimo);
+                        Comando.Fields.AddWithValue("stock_minimo", this.PuntoDeReposicion);
                         Comando.Fields.AddWithValue("web", this.PublicacionWeb);
                         Comando.Fields.AddWithValue("requierens", ((int)(this.Seguimiento)));
                         Comando.Fields.AddWithValue("obs", this.Obs);

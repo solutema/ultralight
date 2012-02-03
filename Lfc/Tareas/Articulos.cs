@@ -78,7 +78,7 @@ namespace Lfc.Tareas
 
                 private void ProductArray_TotalChanged(System.Object sender, System.EventArgs e)
                 {
-                        EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(MatrizArticulos.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(MatrizArticulos.Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                 }
 
 

@@ -77,7 +77,7 @@ namespace Lfc.Comprobantes
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(316, 24);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(132, 24);
@@ -90,7 +90,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.AlwaysExpanded = true;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(152, 24);
                         this.EntradaTipo.MaxLength = 32767;
@@ -112,7 +111,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(316, 56);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(132, 24);
@@ -123,7 +122,6 @@ namespace Lfc.Comprobantes
                         // EntradaPv
                         // 
                         this.EntradaPv.AutoNav = true;
-                        this.EntradaPv.AutoTab = true;
                         this.EntradaPv.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPv.DecimalPlaces = -1;
                         this.EntradaPv.FieldName = null;
@@ -147,7 +145,6 @@ namespace Lfc.Comprobantes
                         // EntradaDesde
                         // 
                         this.EntradaDesde.AutoNav = true;
-                        this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDesde.DecimalPlaces = -1;
                         this.EntradaDesde.FieldName = null;
@@ -170,7 +167,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(24, 24);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
@@ -183,7 +180,7 @@ namespace Lfc.Comprobantes
                         this.LabelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelAyuda.AutoEllipsis = true;
-                        this.LabelAyuda.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.LabelAyuda.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.LabelAyuda.Location = new System.Drawing.Point(24, 120);
                         this.LabelAyuda.Name = "LabelAyuda";
                         this.LabelAyuda.Size = new System.Drawing.Size(576, 100);

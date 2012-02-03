@@ -39,8 +39,7 @@ namespace Lui.Printing
                 {
                         InitializeComponent();
 
-                        PrintPreview.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+                        PrintPreview.BackColor = this.DisplayStyle.BackgroundColor;
                         CancelCommandButton.Text = "Volver";
                         SaveButton.Visible = false;
                 }

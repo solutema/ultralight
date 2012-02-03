@@ -178,7 +178,7 @@ namespace Lazaro.Impresion.Comprobantes
                         AlturaPie += 24;
 
                         // Detalle
-                        Fuente = new Font(Lfx.Config.Display.DefaultPrintFontName, 10);
+                        Fuente = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 10);
                         int RowNumber = 0;
 
                         foreach (Lbl.Comprobantes.DetalleArticulo Detalle in this.Presupuesto.Articulos) {
@@ -188,15 +188,15 @@ namespace Lazaro.Impresion.Comprobantes
                                 e.Graphics.DrawString(RowNumber.ToString(), Fuente, Brushes.DarkGray, Rect, FormatoRC);
                                 Rect = new RectangleF(MarginLeft + 26, iTop, 40, 20);
                                 e.Graphics.DrawString(
-                                    Lfx.Types.Formatting.FormatNumber(Detalle.Cantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock),
+                                    Lfx.Types.Formatting.FormatNumber(Detalle.Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock),
                                     Fuente,
                                     Brushes.Black, Rect, FormatoRC);
                                 Rect = new RectangleF(MarginLeft + 70, iTop, PrintAreaWidth - MarginLeft - 160, 20);
                                 e.Graphics.DrawString(Detalle.Nombre, Fuente, Brushes.Black, Rect, FormatoLC);
                                 Rect = new RectangleF(MarginLeft + PrintAreaWidth - 200, iTop, 100, 20);
-                                e.Graphics.DrawString(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatNumber(Detalle.Unitario, this.Workspace.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
+                                e.Graphics.DrawString(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatNumber(Detalle.Unitario, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
                                 Rect = new RectangleF(MarginLeft + PrintAreaWidth - 100, iTop, 100, 20);
-                                e.Graphics.DrawString(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatNumber(Detalle.Importe, this.Workspace.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
+                                e.Graphics.DrawString(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatNumber(Detalle.Importe, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
                                 iTop += 20;
 
                                 if (Detalle.Articulo != null) {
@@ -234,6 +234,7 @@ namespace Lazaro.Impresion.Comprobantes
                                 iTop += System.Convert.ToInt32(Rect.Height);
                                 Rect = new RectangleF(MarginLeft + PrintAreaWidth - 160, iTop, 160, 12);
                                 e.Graphics.DrawString("Continúa en pág. " + (m_Pagina + 1).ToString(), Fuente, Brushes.Black, Rect, FormatoRC);
+
                                 e.HasMorePages = true;
                         } else {
                                 iTop += 10;
@@ -253,19 +254,20 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 if (this.Presupuesto.Cuotas > 0) {
                                         Rect = new RectangleF(MarginLeft, iTop, 240, 14);
-                                        e.Graphics.DrawString(this.Presupuesto.Cuotas.ToString() + " cuotas de " + Lbl.Sys.Config.Actual.Moneda.Simbolo + Lfx.Types.Formatting.FormatCurrency(this.Presupuesto.Total / this.Presupuesto.Cuotas, this.Workspace.CurrentConfig.Moneda.Decimales), Fuente, Brushes.Black, Rect, FormatoLC);
+                                        e.Graphics.DrawString(this.Presupuesto.Cuotas.ToString() + " cuotas de " + Lbl.Sys.Config.Actual.Moneda.Simbolo + Lfx.Types.Formatting.FormatCurrency(this.Presupuesto.Total / this.Presupuesto.Cuotas, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales), Fuente, Brushes.Black, Rect, FormatoLC);
                                         iTop += System.Convert.ToInt32(Rect.Height);
                                 }
 
                                 iTop = iTopOld;
                                 Fuente = new Font("Arial", 12);
                                 Rect = new RectangleF(MarginLeft + PrintAreaWidth - 200, iTop, 200, 20);
-                                e.Graphics.DrawString("Subtotal: " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.Presupuesto.SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales), Fuente, Brushes.Black, Rect, FormatoRC);
+                                e.Graphics.DrawString("Subtotal: " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.Presupuesto.SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales), Fuente, Brushes.Black, Rect, FormatoRC);
                                 iTop += System.Convert.ToInt32(Rect.Height + 4);
 
+                                Fuente.Dispose();
                                 Fuente = new Font("Arial Black", 14);
                                 Rect = new RectangleF(MarginLeft + PrintAreaWidth - 220, iTop, 220, 28);
-                                string Total = "Total: " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.Presupuesto.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                string Total = "Total: " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.Presupuesto.Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 SizeF Tamano = e.Graphics.MeasureString(Total, Fuente, Rect.Location, FormatoLT);
                                 Rect.Width = Tamano.Width + 20;
                                 Rect.Height = Tamano.Height + 10;
@@ -273,6 +275,7 @@ namespace Lazaro.Impresion.Comprobantes
                                 e.Graphics.DrawRectangle(new Pen(Color.Gray, 2), Rect.X, Rect.Y, Rect.Width, Rect.Height);
                                 e.Graphics.DrawString(Total, Fuente, Brushes.Black, Rect, FormatoCC);
 
+                                Fuente.Dispose();
                                 Fuente = new Font("Arial", 8, FontStyle.Italic);
                                 iTop = MarginTop + PrintAreaHeight - 24;
                                 Rect = new RectangleF(MarginLeft + PrintAreaWidth - 160, iTop, 160, 12);
@@ -291,11 +294,13 @@ namespace Lazaro.Impresion.Comprobantes
                         }
 
                         // Pie Izq
+                        Fuente.Dispose();
                         Fuente = new Font("Arial", 9);
                         iTop = MarginTop + PrintAreaHeight - 12;
                         Rect = new RectangleF(MarginLeft, iTop, PrintAreaWidth - 160, 12);
                         e.Graphics.DrawString("Lo atendió: " + this.Presupuesto.Vendedor.Nombre, Fuente, Brushes.Black, Rect, FormatoLC);
 
+                        Fuente.Dispose();
                         base.OnPrintPage(e);
                 }
         }

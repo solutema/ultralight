@@ -62,7 +62,6 @@ namespace Lazaro.WinMain.Backup
                                 Itm = Listado.Items.Add(Backup.Name);
                                 if (BackupMasNuevo == Backup.Name) {
                                         Itm.Font = new Font(Itm.Font, FontStyle.Bold);
-                                        Itm.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                                 }
                                 Itm.SubItems.Add(System.Convert.ToString(i));
                                 Itm.SubItems.Add(Backup.BackupDate.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));

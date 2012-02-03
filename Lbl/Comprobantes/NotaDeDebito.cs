@@ -35,9 +35,8 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Nota de Débito",
-                TablaDatos = "comprob",
-                CampoId = "id_comprob")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Nota de Débito", Grupo = "Comprobantes")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob")]
         [Lbl.Atributos.Presentacion()]
         public class NotaDeDebito : ComprobanteFacturable
         {

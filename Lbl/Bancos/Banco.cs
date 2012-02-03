@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Bancos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Banco",
-                       Grupo = "Bancos",
-                       TablaDatos = "bancos",
-                       CampoId = "id_banco")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Banco", Grupo = "Bancos")]
+        [Lbl.Atributos.Datos(TablaDatos = "bancos", CampoId = "id_banco")]
         [Lbl.Atributos.Presentacion()]
 	public class Banco : ElementoDeDatos
 	{

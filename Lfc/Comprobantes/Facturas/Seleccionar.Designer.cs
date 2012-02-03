@@ -99,7 +99,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EntradaNumero.AutoSize = false;
                         this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
@@ -126,7 +125,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EntradaTipo.AutoSize = false;
                         this.EntradaTipo.AutoNav = true;
-                        this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(84, 68);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
@@ -156,7 +154,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EntradaPv.AutoSize = false;
                         this.EntradaPv.AutoNav = true;
-                        this.EntradaPv.AutoTab = true;
                         this.EntradaPv.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaPv.DecimalPlaces = -1;
                         this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
@@ -200,7 +197,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaVendedor
                         // 
                         this.EntradaVendedor.AutoSize = false;
-                        this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
@@ -289,7 +285,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaCliente
                         // 
                         this.EntradaCliente.AutoSize = false;
-                        this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.Filter = "";

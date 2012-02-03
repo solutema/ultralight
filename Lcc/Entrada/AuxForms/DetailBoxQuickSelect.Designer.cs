@@ -139,7 +139,6 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBuscar.AutoNav = false;
-                        this.EntradaBuscar.AutoTab = false;
                         this.EntradaBuscar.Cursor = System.Windows.Forms.Cursors.Default;
                         this.EntradaBuscar.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaBuscar.DecimalPlaces = -1;

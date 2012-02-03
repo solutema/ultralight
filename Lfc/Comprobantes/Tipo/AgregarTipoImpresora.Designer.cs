@@ -85,7 +85,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImpresora.AutoNav = true;
-                        this.EntradaImpresora.AutoTab = true;
                         this.EntradaImpresora.CanCreate = true;
                         this.EntradaImpresora.DataTextField = "nombre";
                         this.EntradaImpresora.Filter = "";
@@ -117,7 +116,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.AutoNav = true;
-                        this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.Filter = "";
@@ -181,7 +179,6 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaEstacion
                         // 
                         this.EntradaEstacion.AutoNav = true;
-                        this.EntradaEstacion.AutoTab = true;
                         this.EntradaEstacion.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEstacion.DecimalPlaces = -1;
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
@@ -196,7 +193,6 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaPuntoDeVenta
                         // 
                         this.EntradaPuntoDeVenta.AutoNav = true;
-                        this.EntradaPuntoDeVenta.AutoTab = true;
                         this.EntradaPuntoDeVenta.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPuntoDeVenta.DecimalPlaces = -1;
                         this.EntradaPuntoDeVenta.ForceCase = Lui.Forms.TextCasing.None;

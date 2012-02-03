@@ -48,10 +48,8 @@ namespace Lbl.Cajas
                 Anual
         }
 
-        [Lbl.Atributos.Datos(NombreSingular = "Vencimiento",
-                Grupo = "Cajas",
-                TablaDatos = "vencimientos",
-                CampoId = "id_vencimiento")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Vencimiento", Grupo = "Cajas")]
+        [Lbl.Atributos.Datos(TablaDatos = "vencimientos", CampoId = "id_vencimiento")]
         [Lbl.Atributos.Presentacion()]
         public class Vencimiento : ElementoDeDatos
         {

@@ -68,15 +68,17 @@ namespace Lfc
                         this.BotonImprimir = new Lui.Forms.Button();
                         this.BotonFiltrar = new Lui.Forms.Button();
                         this.BotonCancelar = new Lui.Forms.Button();
-                        this.PanelContadores = new System.Windows.Forms.Panel();
+                        this.PanelContadores = new Lui.Forms.Panel();
                         this.EntradaContador4 = new Lui.Forms.TextBox();
                         this.EtiquetaContador4 = new Lui.Forms.Label();
                         this.EntradaContador3 = new Lui.Forms.TextBox();
                         this.EtiquetaContador3 = new Lui.Forms.Label();
                         this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
                         this.PicEsperar = new System.Windows.Forms.PictureBox();
+                        this.PanelAcciones = new Lui.Forms.ButtonPanel();
                         this.PanelContadores.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).BeginInit();
+                        this.PanelAcciones.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // Listado
@@ -86,10 +88,10 @@ namespace Lfc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.FullRowSelect = true;
-                        this.Listado.Location = new System.Drawing.Point(228, 0);
+                        this.Listado.Location = new System.Drawing.Point(224, 0);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(564, 472);
+                        this.Listado.Size = new System.Drawing.Size(704, 418);
                         this.Listado.TabIndex = 3;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
@@ -101,7 +103,7 @@ namespace Lfc
                         // 
                         this.EtiquetaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaContador2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaContador2.Location = new System.Drawing.Point(0, 28);
                         this.EtiquetaContador2.Name = "EtiquetaContador2";
                         this.EtiquetaContador2.Size = new System.Drawing.Size(100, 24);
@@ -115,7 +117,6 @@ namespace Lfc
                         // 
                         this.EntradaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContador2.AutoNav = true;
-                        this.EntradaContador2.AutoTab = true;
                         this.EntradaContador2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador2.DecimalPlaces = -1;
                         this.EntradaContador2.FieldName = null;
@@ -128,7 +129,7 @@ namespace Lfc
                         this.EntradaContador2.PasswordChar = '\0';
                         this.EntradaContador2.PlaceholderText = null;
                         this.EntradaContador2.Prefijo = "";
-                        this.EntradaContador2.ReadOnly = false;
+                        this.EntradaContador2.ReadOnly = true;
                         this.EntradaContador2.SelectOnFocus = true;
                         this.EntradaContador2.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador2.Sufijo = "";
@@ -140,7 +141,7 @@ namespace Lfc
                         // 
                         this.EtiquetaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaContador1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaContador1.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaContador1.Name = "EtiquetaContador1";
                         this.EtiquetaContador1.Size = new System.Drawing.Size(100, 24);
@@ -154,7 +155,6 @@ namespace Lfc
                         // 
                         this.EntradaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContador1.AutoNav = true;
-                        this.EntradaContador1.AutoTab = true;
                         this.EntradaContador1.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador1.DecimalPlaces = -1;
                         this.EntradaContador1.FieldName = null;
@@ -167,7 +167,7 @@ namespace Lfc
                         this.EntradaContador1.PasswordChar = '\0';
                         this.EntradaContador1.PlaceholderText = null;
                         this.EntradaContador1.Prefijo = "";
-                        this.EntradaContador1.ReadOnly = false;
+                        this.EntradaContador1.ReadOnly = true;
                         this.EntradaContador1.SelectOnFocus = true;
                         this.EntradaContador1.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador1.Sufijo = "";
@@ -177,26 +177,29 @@ namespace Lfc
                         // 
                         // EtiquetaCantidad
                         // 
-                        this.EtiquetaCantidad.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.EtiquetaCantidad.Location = new System.Drawing.Point(28, 204);
+                        this.EtiquetaCantidad.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.EtiquetaCantidad.Location = new System.Drawing.Point(32, 208);
                         this.EtiquetaCantidad.Name = "EtiquetaCantidad";
-                        this.EtiquetaCantidad.Size = new System.Drawing.Size(200, 20);
+                        this.EtiquetaCantidad.Size = new System.Drawing.Size(184, 20);
                         this.EtiquetaCantidad.TabIndex = 59;
                         this.EtiquetaCantidad.Text = "Cargando...";
                         this.EtiquetaCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonImprimir
                         // 
-                        this.BotonImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonImprimir.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.BotonImprimir.AutoNav = true;
                         this.BotonImprimir.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonImprimir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonImprimir.Image = null;
                         this.BotonImprimir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonImprimir.Location = new System.Drawing.Point(12, 432);
+                        this.BotonImprimir.Location = new System.Drawing.Point(44, 68);
+                        this.BotonImprimir.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonImprimir.Name = "BotonImprimir";
                         this.BotonImprimir.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonImprimir.ReadOnly = false;
-                        this.BotonImprimir.Size = new System.Drawing.Size(96, 29);
-                        this.BotonImprimir.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonImprimir.Size = new System.Drawing.Size(136, 40);
+                        this.BotonImprimir.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonImprimir.Subtext = "F8";
                         this.BotonImprimir.TabIndex = 65;
                         this.BotonImprimir.Text = "Listado";
@@ -204,15 +207,19 @@ namespace Lfc
                         // 
                         // BotonFiltrar
                         // 
+                        this.BotonFiltrar.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.BotonFiltrar.AutoNav = true;
                         this.BotonFiltrar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonFiltrar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonFiltrar.Image = null;
                         this.BotonFiltrar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonFiltrar.Location = new System.Drawing.Point(12, 236);
+                        this.BotonFiltrar.Location = new System.Drawing.Point(44, 22);
+                        this.BotonFiltrar.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonFiltrar.Name = "BotonFiltrar";
                         this.BotonFiltrar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonFiltrar.ReadOnly = false;
-                        this.BotonFiltrar.Size = new System.Drawing.Size(96, 29);
-                        this.BotonFiltrar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonFiltrar.Size = new System.Drawing.Size(136, 40);
+                        this.BotonFiltrar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonFiltrar.Subtext = "F2";
                         this.BotonFiltrar.TabIndex = 64;
                         this.BotonFiltrar.Text = "Filtrar";
@@ -221,16 +228,19 @@ namespace Lfc
                         // 
                         // BotonCancelar
                         // 
-                        this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.BotonCancelar.AutoNav = true;
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = null;
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCancelar.Location = new System.Drawing.Point(120, 432);
+                        this.BotonCancelar.Location = new System.Drawing.Point(44, 114);
+                        this.BotonCancelar.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonCancelar.Name = "BotonCancelar";
                         this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonCancelar.ReadOnly = false;
-                        this.BotonCancelar.Size = new System.Drawing.Size(96, 29);
-                        this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
+                        this.BotonCancelar.Size = new System.Drawing.Size(136, 40);
+                        this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonCancelar.Subtext = "Esc";
                         this.BotonCancelar.TabIndex = 66;
                         this.BotonCancelar.Text = "Volver";
@@ -250,13 +260,11 @@ namespace Lfc
                         this.PanelContadores.Name = "PanelContadores";
                         this.PanelContadores.Size = new System.Drawing.Size(208, 108);
                         this.PanelContadores.TabIndex = 67;
-                        this.PanelContadores.Visible = false;
                         // 
                         // EntradaContador4
                         // 
                         this.EntradaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContador4.AutoNav = true;
-                        this.EntradaContador4.AutoTab = true;
                         this.EntradaContador4.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador4.DecimalPlaces = -1;
                         this.EntradaContador4.FieldName = null;
@@ -269,7 +277,7 @@ namespace Lfc
                         this.EntradaContador4.PasswordChar = '\0';
                         this.EntradaContador4.PlaceholderText = null;
                         this.EntradaContador4.Prefijo = "";
-                        this.EntradaContador4.ReadOnly = false;
+                        this.EntradaContador4.ReadOnly = true;
                         this.EntradaContador4.SelectOnFocus = true;
                         this.EntradaContador4.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador4.Sufijo = "";
@@ -281,7 +289,7 @@ namespace Lfc
                         // 
                         this.EtiquetaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaContador4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaContador4.Location = new System.Drawing.Point(0, 84);
                         this.EtiquetaContador4.Name = "EtiquetaContador4";
                         this.EtiquetaContador4.Size = new System.Drawing.Size(100, 24);
@@ -295,7 +303,6 @@ namespace Lfc
                         // 
                         this.EntradaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContador3.AutoNav = true;
-                        this.EntradaContador3.AutoTab = true;
                         this.EntradaContador3.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContador3.DecimalPlaces = -1;
                         this.EntradaContador3.FieldName = null;
@@ -308,7 +315,7 @@ namespace Lfc
                         this.EntradaContador3.PasswordChar = '\0';
                         this.EntradaContador3.PlaceholderText = null;
                         this.EntradaContador3.Prefijo = "";
-                        this.EntradaContador3.ReadOnly = false;
+                        this.EntradaContador3.ReadOnly = true;
                         this.EntradaContador3.SelectOnFocus = true;
                         this.EntradaContador3.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador3.Sufijo = "";
@@ -320,7 +327,7 @@ namespace Lfc
                         // 
                         this.EtiquetaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaContador3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaContador3.Location = new System.Drawing.Point(0, 56);
                         this.EtiquetaContador3.Name = "EtiquetaContador3";
                         this.EtiquetaContador3.Size = new System.Drawing.Size(100, 24);
@@ -334,36 +341,49 @@ namespace Lfc
                         // 
                         this.RefreshTimer.Interval = 50;
                         this.RefreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
-                        this.RefreshTimer.Enabled = false;
                         // 
                         // PicEsperar
                         // 
                         this.PicEsperar.Image = global::Lfc.Properties.Resources.ajax_loader;
-                        this.PicEsperar.Location = new System.Drawing.Point(8, 204);
+                        this.PicEsperar.Location = new System.Drawing.Point(8, 208);
                         this.PicEsperar.Name = "PicEsperar";
                         this.PicEsperar.Size = new System.Drawing.Size(16, 16);
                         this.PicEsperar.TabIndex = 68;
                         this.PicEsperar.TabStop = false;
+                        // 
+                        // PanelAcciones
+                        // 
+                        this.PanelAcciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+                        this.PanelAcciones.Controls.Add(this.BotonCancelar);
+                        this.PanelAcciones.Controls.Add(this.BotonImprimir);
+                        this.PanelAcciones.Controls.Add(this.BotonFiltrar);
+                        this.PanelAcciones.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+                        this.PanelAcciones.Location = new System.Drawing.Point(0, 240);
+                        this.PanelAcciones.Name = "PanelAcciones";
+                        this.PanelAcciones.Padding = new System.Windows.Forms.Padding(44, 12, 44, 12);
+                        this.PanelAcciones.Size = new System.Drawing.Size(224, 178);
+                        this.PanelAcciones.TabIndex = 4;
                         // 
                         // FormularioListadoBase
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.AutoSize = true;
-                        this.ClientSize = new System.Drawing.Size(792, 472);
+                        this.ClientSize = new System.Drawing.Size(928, 418);
+                        this.Controls.Add(this.PanelAcciones);
                         this.Controls.Add(this.PicEsperar);
                         this.Controls.Add(this.PanelContadores);
-                        this.Controls.Add(this.BotonImprimir);
-                        this.Controls.Add(this.BotonFiltrar);
-                        this.Controls.Add(this.BotonCancelar);
                         this.Controls.Add(this.Listado);
                         this.Controls.Add(this.EtiquetaCantidad);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Name = "FormularioListadoBase";
                         this.Text = "FormularioListadoBase";
                         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormularioListadoBase_FormClosing);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioListadoBase_KeyDown);
                         this.PanelContadores.ResumeLayout(false);
                         ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).EndInit();
+                        this.PanelAcciones.ResumeLayout(false);
                         this.ResumeLayout(false);
 
                 }
@@ -379,12 +399,13 @@ namespace Lfc
                 protected Lui.Forms.Button BotonImprimir;
                 protected Lui.Forms.Button BotonFiltrar;
                 protected Lui.Forms.Button BotonCancelar;
-                protected System.Windows.Forms.Panel PanelContadores;
+                protected Lui.Forms.Panel PanelContadores;
                 protected Lui.Forms.TextBox EntradaContador4;
                 protected Lui.Forms.Label EtiquetaContador4;
                 protected Lui.Forms.TextBox EntradaContador3;
                 protected Lui.Forms.Label EtiquetaContador3;
                 protected System.Windows.Forms.Timer RefreshTimer;
                 protected System.Windows.Forms.PictureBox PicEsperar;
+                protected Lui.Forms.ButtonPanel PanelAcciones;
         }
 }

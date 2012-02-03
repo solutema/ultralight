@@ -51,7 +51,7 @@ namespace Lui.Printing
                         // 
                         this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Label1.Location = new System.Drawing.Point(32, 32);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(568, 26);
@@ -64,7 +64,7 @@ namespace Lui.Printing
                         this.txtDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtDocumento.LabelStyle = Lui.Forms.LabelStyles.Bigger;
+                        this.txtDocumento.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.txtDocumento.Location = new System.Drawing.Point(32, 64);
                         this.txtDocumento.Name = "txtDocumento";
                         this.txtDocumento.Size = new System.Drawing.Size(568, 176);
@@ -76,7 +76,7 @@ namespace Lui.Printing
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(84, 260);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(516, 24);
@@ -88,7 +88,7 @@ namespace Lui.Printing
                         // 
                         this.txtImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.txtImpresora.LabelStyle = Lui.Forms.LabelStyles.Big;
+                        this.txtImpresora.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         this.txtImpresora.Location = new System.Drawing.Point(84, 287);
                         this.txtImpresora.Name = "txtImpresora";
                         this.txtImpresora.Size = new System.Drawing.Size(516, 24);
@@ -100,7 +100,7 @@ namespace Lui.Printing
                         // 
                         this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label6.Location = new System.Drawing.Point(84, 320);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(516, 24);

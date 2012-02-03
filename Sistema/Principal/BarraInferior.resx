@@ -214,4 +214,7 @@
         Avprmcx7/YT47ZbP86wQV/N0sk/7I5xEV1aPB80bfT4U+P8AqeQaLP3/SQEAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="$this.SnapToGrid" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

@@ -90,8 +90,6 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaNombre
                         // 
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
-                        this.EntradaNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.FieldName = null;
@@ -112,7 +110,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(116, 24);
@@ -123,8 +121,6 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaLetra
                         // 
                         this.EntradaLetra.AutoNav = true;
-                        this.EntradaLetra.AutoTab = true;
-                        this.EntradaLetra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaLetra.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaLetra.DecimalPlaces = -1;
                         this.EntradaLetra.FieldName = null;
@@ -145,7 +141,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 32);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(116, 24);
@@ -155,7 +151,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 64);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(116, 24);
@@ -165,10 +161,9 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaMueveStock
                         // 
-                        this.EntradaMueveStock.AlwaysExpanded = false;
+                        this.EntradaMueveStock.AlwaysExpanded = true;
                         this.EntradaMueveStock.AutoNav = true;
-                        this.EntradaMueveStock.AutoTab = true;
-                        this.EntradaMueveStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaMueveStock.AutoSize = true;
                         this.EntradaMueveStock.FieldName = null;
                         this.EntradaMueveStock.Location = new System.Drawing.Point(120, 64);
                         this.EntradaMueveStock.MaxLength = 32767;
@@ -180,15 +175,15 @@ namespace Lfc.Comprobantes.Tipo
         "Saliente|-1",
         "Entrante|1",
         "No|0"};
-                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 24);
+                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 51);
                         this.EntradaMueveStock.TabIndex = 5;
                         this.EntradaMueveStock.TextKey = "1";
                         this.EntradaMueveStock.TextChanged += new System.EventHandler(this.EntradaMueveStock_TextChanged);
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label7.Location = new System.Drawing.Point(64, 100);
+                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label7.Location = new System.Drawing.Point(68, 128);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(76, 24);
                         this.label7.TabIndex = 6;
@@ -198,8 +193,6 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaSituacionOrigen
                         // 
                         this.EntradaSituacionOrigen.AutoNav = true;
-                        this.EntradaSituacionOrigen.AutoTab = true;
-                        this.EntradaSituacionOrigen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaSituacionOrigen.CanCreate = true;
                         this.EntradaSituacionOrigen.DataTextField = "nombre";
                         this.EntradaSituacionOrigen.DataValueField = "id_situacion";
@@ -207,7 +200,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionOrigen.FieldName = null;
                         this.EntradaSituacionOrigen.Filter = "";
                         this.EntradaSituacionOrigen.FreeTextCode = "";
-                        this.EntradaSituacionOrigen.Location = new System.Drawing.Point(140, 100);
+                        this.EntradaSituacionOrigen.Location = new System.Drawing.Point(144, 128);
                         this.EntradaSituacionOrigen.MaxLength = 200;
                         this.EntradaSituacionOrigen.Name = "EntradaSituacionOrigen";
                         this.EntradaSituacionOrigen.Padding = new System.Windows.Forms.Padding(2);
@@ -222,8 +215,8 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label3.Location = new System.Drawing.Point(64, 128);
+                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label3.Location = new System.Drawing.Point(68, 156);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(76, 24);
                         this.label3.TabIndex = 8;
@@ -233,8 +226,6 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaSituacionDestino
                         // 
                         this.EntradaSituacionDestino.AutoNav = true;
-                        this.EntradaSituacionDestino.AutoTab = true;
-                        this.EntradaSituacionDestino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaSituacionDestino.CanCreate = true;
                         this.EntradaSituacionDestino.DataTextField = "nombre";
                         this.EntradaSituacionDestino.DataValueField = "id_situacion";
@@ -242,7 +233,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionDestino.FieldName = null;
                         this.EntradaSituacionDestino.Filter = "";
                         this.EntradaSituacionDestino.FreeTextCode = "";
-                        this.EntradaSituacionDestino.Location = new System.Drawing.Point(140, 128);
+                        this.EntradaSituacionDestino.Location = new System.Drawing.Point(144, 156);
                         this.EntradaSituacionDestino.MaxLength = 200;
                         this.EntradaSituacionDestino.Name = "EntradaSituacionDestino";
                         this.EntradaSituacionDestino.Padding = new System.Windows.Forms.Padding(2);
@@ -257,12 +248,11 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaNumerarAl
                         // 
-                        this.EntradaNumerarAl.AlwaysExpanded = false;
+                        this.EntradaNumerarAl.AlwaysExpanded = true;
                         this.EntradaNumerarAl.AutoNav = true;
-                        this.EntradaNumerarAl.AutoTab = true;
-                        this.EntradaNumerarAl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaNumerarAl.AutoSize = true;
                         this.EntradaNumerarAl.FieldName = null;
-                        this.EntradaNumerarAl.Location = new System.Drawing.Point(120, 164);
+                        this.EntradaNumerarAl.Location = new System.Drawing.Point(124, 192);
                         this.EntradaNumerarAl.MaxLength = 32767;
                         this.EntradaNumerarAl.Name = "EntradaNumerarAl";
                         this.EntradaNumerarAl.Padding = new System.Windows.Forms.Padding(2);
@@ -272,14 +262,14 @@ namespace Lfc.Comprobantes.Tipo
         "Manualmente|0",
         "Cuando se crea el comprobante|1",
         "Cuando se imprime el comprobante|2"};
-                        this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 24);
+                        this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 51);
                         this.EntradaNumerarAl.TabIndex = 11;
                         this.EntradaNumerarAl.TextKey = "1";
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label4.Location = new System.Drawing.Point(0, 164);
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label4.Location = new System.Drawing.Point(4, 192);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(116, 24);
                         this.label4.TabIndex = 10;
@@ -288,12 +278,11 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaImprimirRepetir
                         // 
-                        this.EntradaImprimirRepetir.AlwaysExpanded = false;
+                        this.EntradaImprimirRepetir.AlwaysExpanded = true;
                         this.EntradaImprimirRepetir.AutoNav = true;
-                        this.EntradaImprimirRepetir.AutoTab = true;
-                        this.EntradaImprimirRepetir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaImprimirRepetir.AutoSize = true;
                         this.EntradaImprimirRepetir.FieldName = null;
-                        this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 244);
+                        this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 272);
                         this.EntradaImprimirRepetir.MaxLength = 32767;
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
                         this.EntradaImprimirRepetir.Padding = new System.Windows.Forms.Padding(2);
@@ -302,14 +291,14 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirRepetir.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 24);
+                        this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 36);
                         this.EntradaImprimirRepetir.TabIndex = 13;
                         this.EntradaImprimirRepetir.TextKey = "1";
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label6.Location = new System.Drawing.Point(0, 244);
+                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label6.Location = new System.Drawing.Point(0, 272);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(376, 24);
                         this.label6.TabIndex = 12;
@@ -318,12 +307,11 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaImprimirModificar
                         // 
-                        this.EntradaImprimirModificar.AlwaysExpanded = false;
+                        this.EntradaImprimirModificar.AlwaysExpanded = true;
                         this.EntradaImprimirModificar.AutoNav = true;
-                        this.EntradaImprimirModificar.AutoTab = true;
-                        this.EntradaImprimirModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaImprimirModificar.AutoSize = true;
                         this.EntradaImprimirModificar.FieldName = null;
-                        this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 276);
+                        this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 320);
                         this.EntradaImprimirModificar.MaxLength = 32767;
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
                         this.EntradaImprimirModificar.Padding = new System.Windows.Forms.Padding(2);
@@ -332,14 +320,14 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirModificar.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 24);
+                        this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 36);
                         this.EntradaImprimirModificar.TabIndex = 15;
                         this.EntradaImprimirModificar.TextKey = "1";
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label8.Location = new System.Drawing.Point(0, 276);
+                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label8.Location = new System.Drawing.Point(0, 320);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(376, 24);
                         this.label8.TabIndex = 14;
@@ -348,12 +336,11 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaImprimirGuardar
                         // 
-                        this.EntradaImprimirGuardar.AlwaysExpanded = false;
+                        this.EntradaImprimirGuardar.AlwaysExpanded = true;
                         this.EntradaImprimirGuardar.AutoNav = true;
-                        this.EntradaImprimirGuardar.AutoTab = true;
-                        this.EntradaImprimirGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
+                        this.EntradaImprimirGuardar.AutoSize = true;
                         this.EntradaImprimirGuardar.FieldName = null;
-                        this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 308);
+                        this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 368);
                         this.EntradaImprimirGuardar.MaxLength = 32767;
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
                         this.EntradaImprimirGuardar.Padding = new System.Windows.Forms.Padding(2);
@@ -362,14 +349,14 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirGuardar.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 24);
+                        this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 36);
                         this.EntradaImprimirGuardar.TabIndex = 17;
                         this.EntradaImprimirGuardar.TextKey = "1";
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label9.Location = new System.Drawing.Point(0, 308);
+                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label9.Location = new System.Drawing.Point(0, 368);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(376, 24);
                         this.label9.TabIndex = 16;
@@ -380,7 +367,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.GroupLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.GroupLabel.Location = new System.Drawing.Point(468, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(368, 24);
@@ -407,7 +394,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.Listado.Location = new System.Drawing.Point(468, 32);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(368, 268);
+                        this.Listado.Size = new System.Drawing.Size(368, 336);
                         this.Listado.TabIndex = 19;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
@@ -440,15 +427,14 @@ namespace Lfc.Comprobantes.Tipo
                         // BotonQuitar
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonQuitar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitar.Location = new System.Drawing.Point(620, 308);
+                        this.BotonQuitar.Location = new System.Drawing.Point(608, 376);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonQuitar.ReadOnly = false;
-                        this.BotonQuitar.Size = new System.Drawing.Size(104, 28);
+                        this.BotonQuitar.Size = new System.Drawing.Size(108, 34);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "";
                         this.BotonQuitar.TabIndex = 20;
@@ -458,15 +444,14 @@ namespace Lfc.Comprobantes.Tipo
                         // BotonAgregar
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAgregar.Location = new System.Drawing.Point(732, 308);
+                        this.BotonAgregar.Location = new System.Drawing.Point(728, 376);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAgregar.ReadOnly = false;
-                        this.BotonAgregar.Size = new System.Drawing.Size(104, 28);
+                        this.BotonAgregar.Size = new System.Drawing.Size(108, 34);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregar.Subtext = "F6";
                         this.BotonAgregar.TabIndex = 21;
@@ -499,30 +484,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.Add(this.label8);
                         this.Controls.Add(this.label6);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(838, 337);
-                        this.Controls.SetChildIndex(this.ControlCaption, 0);
-                        this.Controls.SetChildIndex(this.label6, 0);
-                        this.Controls.SetChildIndex(this.label8, 0);
-                        this.Controls.SetChildIndex(this.label9, 0);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaLetra, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.EntradaMueveStock, 0);
-                        this.Controls.SetChildIndex(this.EntradaSituacionOrigen, 0);
-                        this.Controls.SetChildIndex(this.label7, 0);
-                        this.Controls.SetChildIndex(this.EntradaSituacionDestino, 0);
-                        this.Controls.SetChildIndex(this.label3, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.EntradaNumerarAl, 0);
-                        this.Controls.SetChildIndex(this.EntradaImprimirRepetir, 0);
-                        this.Controls.SetChildIndex(this.EntradaImprimirModificar, 0);
-                        this.Controls.SetChildIndex(this.EntradaImprimirGuardar, 0);
-                        this.Controls.SetChildIndex(this.GroupLabel, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.BotonAgregar, 0);
-                        this.Controls.SetChildIndex(this.BotonQuitar, 0);
+                        this.Size = new System.Drawing.Size(838, 411);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

@@ -46,12 +46,10 @@ namespace Lazaro.WinMain.Misc.Config
                 public Inicial()
                 {
                         InitializeComponent();
-
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
 
-                private void BotonSalir_Click(object sender, EventArgs e)
+                protected override void OnFormClosing(FormClosingEventArgs e)
                 {
                         if (this.ThreadBuscar != null) {
                                 this.ThreadBuscar.Abort();
@@ -62,7 +60,12 @@ namespace Lazaro.WinMain.Misc.Config
                                 this.ThreadDescargar.Abort();
                                 this.ThreadDescargar = null;
                         }
+                        base.OnFormClosing(e);
+                }
 
+
+                private void BotonSalir_Click(object sender, EventArgs e)
+                {
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.Close();
                 }
@@ -356,7 +359,15 @@ namespace Lazaro.WinMain.Misc.Config
 
                 private void BotonGuiaInstalacion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/19");
+                        using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
+                                this.Hide();
+                                if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
+                                        this.Show();
+                                } else {
+                                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                                        this.Close();
+                                }
+                        }
                 }
 
                 private void PanelInstalarAhora_VisibleChanged(object sender, EventArgs e)
@@ -437,8 +448,13 @@ namespace Lazaro.WinMain.Misc.Config
                         progreso.ChangeStatus("Descargando...");
 
                         string Instalador = "InstalarMySQL.exe";
+                        Lfx.Environment.Folders.EnsurePathExists(Lfx.Environment.Folders.TemporaryFolder);
                         using (WebClient Cliente = new WebClient()) {
-                                Cliente.DownloadFile("http://www.sistemalazaro.com.ar/aslnlwc/" + Instalador, Lfx.Environment.Folders.TemporaryFolder + Instalador);
+                                try {
+                                        Cliente.DownloadFile("http://www.sistemalazaro.com.ar/aslnlwc/" + Instalador, Lfx.Environment.Folders.TemporaryFolder + Instalador);
+                                } catch (Exception ex) {
+                                        progreso.ChangeStatus("Error al descargar " + ex.Message);
+                                }
                         }
                         
                         progreso.ChangeStatus("Instalando...");

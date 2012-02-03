@@ -46,7 +46,7 @@ namespace Lbl.Sys.Configuracion
                 public Empresa(Lfx.Workspace workspace)
                         : base(workspace)
                 {
-                        this.SucursalPredeterminada = new Entidades.Sucursal(this.DataBase, this.Workspace.CurrentConfig.ReadLocalSettingInt("Company", "Branch", 1));
+                        this.SucursalPredeterminada = new Entidades.Sucursal(this.DataBase, Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("Company", "Branch", 1));
                 }
 
 
@@ -54,11 +54,11 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Empresa.Situacion", 2);
+                                return Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Empresa.Situacion", 2);
                         }
                         set
                         {
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Situacion", value);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Situacion", value);
                         }
                 }
 
@@ -68,7 +68,7 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_Pais == null) {
-                                        int IdPais = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
+                                        int IdPais = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
                                         if (IdPais > 0)
                                                 m_Pais = new Lbl.Entidades.Pais(this.DataBase, IdPais);
                                         else
@@ -102,11 +102,11 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.Nombre", "Empresa Sin Nombre");
+                                return Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.Nombre", "Empresa Sin Nombre");
                         }
                         set
                         {
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Nombre", value);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Nombre", value);
                         }
                 }
 
@@ -115,11 +115,11 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Empresa.Id", 1);
+                                return Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Empresa.Id", 1);
                         }
                         set
                         {
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Id", value);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Id", value);
                         }
                 }
 
@@ -134,11 +134,11 @@ namespace Lbl.Sys.Configuracion
                                 else
                                         Predet = Nombre;
 
-                                return this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.RazonSocial", Predet);
+                                return Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.RazonSocial", Predet);
                         }
                         set
                         {
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.RazonSocial", value);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.RazonSocial", value);
                         }
                 }
 
@@ -146,7 +146,7 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                string Res = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.CUIT", "");
+                                string Res = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.CUIT", "");
                                 if (Res == "" || Res == "00-00000000-0")
                                         return null;
                                 else
@@ -155,9 +155,9 @@ namespace Lbl.Sys.Configuracion
                         set
                         {
                                 if (value == null)
-                                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.CUIT", "", 0);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.CUIT", "", 0);
                                 else
-                                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.CUIT", value.ToString(), 0);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.CUIT", value.ToString(), 0);
                         }
                 }
 
@@ -165,11 +165,11 @@ namespace Lbl.Sys.Configuracion
                 {
                         get
                         {
-                                return this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.Email", "");
+                                return Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.Email", "");
                         }
                         set
                         {
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Email", value);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Email", value);
                         }
                 }
 

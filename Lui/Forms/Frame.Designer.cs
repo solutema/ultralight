@@ -58,21 +58,36 @@ namespace Lui.Forms
 
                 private void InitializeComponent()
                 {
-                        this.components = new System.ComponentModel.Container();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.SuspendLayout();
+                        // 
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(0, 0);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(0, 25);
+                        this.EtiquetaTitulo.TabIndex = 2;
+                        this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaTitulo.Visible = false;
                         // 
                         // Frame
                         // 
-                        this.BorderStyle = BorderStyles.Frame;
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Name = "Frame";
-                        this.Size = new System.Drawing.Size(380, 184);
-                        this.Leave += new System.EventHandler(this.Frame_Leave);
-                        this.Enter += new System.EventHandler(this.Frame_Enter);
+                        this.Size = new System.Drawing.Size(640, 400);
                         this.ResumeLayout(false);
                         this.PerformLayout();
+
                 }
 
                 #endregion
+
+                protected Lui.Forms.Label EtiquetaTitulo;
+
 
         }
 }

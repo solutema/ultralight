@@ -65,7 +65,7 @@ namespace Lfc.Misc
                         this.txtTipo = new Lui.Forms.ComboBox();
                         this.label3 = new Lui.Forms.Label();
                         this.note1 = new Lui.Forms.Note();
-                        this.PanelPersona = new System.Windows.Forms.Panel();
+                        this.PanelPersona = new Lui.Forms.Panel();
                         this.EntradaCtaCteFinal = new Lui.Forms.TextBox();
                         this.label4 = new Lui.Forms.Label();
                         this.EntradaCtaCte2 = new Lui.Forms.TextBox();
@@ -85,7 +85,7 @@ namespace Lfc.Misc
                         // 
                         // EtiquetaElemento1
                         // 
-                        this.EtiquetaElemento1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaElemento1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaElemento1.Location = new System.Drawing.Point(28, 56);
                         this.EtiquetaElemento1.Name = "EtiquetaElemento1";
                         this.EtiquetaElemento1.Size = new System.Drawing.Size(124, 24);
@@ -96,10 +96,10 @@ namespace Lfc.Misc
                         // EntradaElementoDuplicado
                         // 
                         this.EntradaElementoDuplicado.AutoNav = true;
-                        this.EntradaElementoDuplicado.AutoTab = true;
                         this.EntradaElementoDuplicado.CanCreate = true;
                         this.EntradaElementoDuplicado.DataTextField = "nombre_visible";
                         this.EntradaElementoDuplicado.DataValueField = "id_persona";
+                        this.EntradaElementoDuplicado.ExtraDetailFields = "";
                         this.EntradaElementoDuplicado.FieldName = null;
                         this.EntradaElementoDuplicado.Filter = "";
                         this.EntradaElementoDuplicado.FreeTextCode = "";
@@ -119,7 +119,7 @@ namespace Lfc.Misc
                         // 
                         // EtiquetaElemento2
                         // 
-                        this.EtiquetaElemento2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaElemento2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaElemento2.Location = new System.Drawing.Point(28, 88);
                         this.EtiquetaElemento2.Name = "EtiquetaElemento2";
                         this.EtiquetaElemento2.Size = new System.Drawing.Size(124, 24);
@@ -130,10 +130,10 @@ namespace Lfc.Misc
                         // EntradaElementoOriginal
                         // 
                         this.EntradaElementoOriginal.AutoNav = true;
-                        this.EntradaElementoOriginal.AutoTab = true;
                         this.EntradaElementoOriginal.CanCreate = true;
                         this.EntradaElementoOriginal.DataTextField = "nombre_visible";
                         this.EntradaElementoOriginal.DataValueField = "id_persona";
+                        this.EntradaElementoOriginal.ExtraDetailFields = "";
                         this.EntradaElementoOriginal.FieldName = null;
                         this.EntradaElementoOriginal.Filter = "";
                         this.EntradaElementoOriginal.FreeTextCode = "";
@@ -156,7 +156,6 @@ namespace Lfc.Misc
                         this.txtTipo.AlwaysExpanded = true;
                         this.txtTipo.AutoNav = true;
                         this.txtTipo.AutoSize = true;
-                        this.txtTipo.AutoTab = true;
                         this.txtTipo.FieldName = null;
                         this.txtTipo.Location = new System.Drawing.Point(152, 24);
                         this.txtTipo.MaxLength = 32767;
@@ -172,7 +171,7 @@ namespace Lfc.Misc
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(28, 24);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(124, 24);
@@ -212,7 +211,6 @@ namespace Lfc.Misc
                         // EntradaCtaCteFinal
                         // 
                         this.EntradaCtaCteFinal.AutoNav = true;
-                        this.EntradaCtaCteFinal.AutoTab = true;
                         this.EntradaCtaCteFinal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCtaCteFinal.DecimalPlaces = -1;
                         this.EntradaCtaCteFinal.FieldName = null;
@@ -235,7 +233,7 @@ namespace Lfc.Misc
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(124, 72);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(156, 24);
@@ -246,7 +244,6 @@ namespace Lfc.Misc
                         // EntradaCtaCte2
                         // 
                         this.EntradaCtaCte2.AutoNav = true;
-                        this.EntradaCtaCte2.AutoTab = true;
                         this.EntradaCtaCte2.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCtaCte2.DecimalPlaces = -1;
                         this.EntradaCtaCte2.FieldName = null;
@@ -270,7 +267,7 @@ namespace Lfc.Misc
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(124, 36);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(152, 24);
@@ -281,7 +278,6 @@ namespace Lfc.Misc
                         // EntradaCtaCte1
                         // 
                         this.EntradaCtaCte1.AutoNav = true;
-                        this.EntradaCtaCte1.AutoTab = true;
                         this.EntradaCtaCte1.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCtaCte1.DecimalPlaces = -1;
                         this.EntradaCtaCte1.FieldName = null;
@@ -305,7 +301,7 @@ namespace Lfc.Misc
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(124, 8);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(152, 24);
@@ -351,7 +347,7 @@ namespace Lfc.Misc
                 internal Lui.Forms.ComboBox txtTipo;
                 internal Lui.Forms.Label label3;
                 private Lui.Forms.Note note1;
-                private System.Windows.Forms.Panel PanelPersona;
+                private Lui.Forms.Panel PanelPersona;
                 internal Lui.Forms.Label label1;
                 private Lui.Forms.TextBox EntradaCtaCte2;
                 internal Lui.Forms.Label label2;

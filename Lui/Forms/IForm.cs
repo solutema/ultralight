@@ -32,9 +32,10 @@
 using System;
 using System.Collections.Generic;
 
-namespace Lazaro.Pres.Forms
+namespace Lui.Forms
 {
-        public class Button
+        public interface IForm
         {
+                Lazaro.Pres.DisplayStyles.IDisplayStyle DisplayStyle { get; set; }
         }
 }

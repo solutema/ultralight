@@ -43,14 +43,33 @@ namespace Lfc
                 public Lbl.IElementoDeDatos Elemento;
                 public Type ElementoTipo = null;
 
+                Lazaro.Pres.Forms.FormActionCollection FormActions;
+
                 private bool MuestraPanel = true;
                 private bool m_ReadOnly = false;
 
                 public FormularioEdicion()
                 {
+                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.EditForm;
                         InitializeComponent();
-
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
+                        this.FormActions = new Lazaro.Pres.Forms.FormActionCollection()
+                        {
+                                new Lazaro.Pres.Forms.FormAction("Cancelar", "Esc", "cancelar", 20),
+                                new Lazaro.Pres.Forms.FormAction("Guardar", "F9", "aceptar", 10),
+                                new Lazaro.Pres.Forms.FormAction("Imprimir", "F8", "imprimir", 30, Lazaro.Pres.Forms.FormActionVisibility.Hidden),
+                                new Lazaro.Pres.Forms.FormAction("Comentarios", null, "comentarios", 30, Lazaro.Pres.Forms.FormActionVisibility.Tertiary),
+                                new Lazaro.Pres.Forms.FormAction("Historial", null, "historial", 20, Lazaro.Pres.Forms.FormActionVisibility.Tertiary),
+                                new Lazaro.Pres.Forms.FormAction("Más datos", null, "panelextendido", 10, Lazaro.Pres.Forms.FormActionVisibility.Hidden)
+                        };
+                        this.ActualizarFormActions();
+                        if(Screen.PrimaryScreen.Bounds.Width <= 1024) {
+                                // Más ajustado en pantallas más pequeñas
+                                this.PanelEdicion.Padding = new System.Windows.Forms.Padding(12, 12, 8, 8);
+                                this.PanelExtendido.Width = 320;
+                        } else {
+                                this.PanelEdicion.Padding = new System.Windows.Forms.Padding(24, 24, 16, 16);
+                                this.PanelExtendido.Width = 360;
+                        }
                 }
 
                 private Lcc.Edicion.ControlEdicion m_ControlUnico = null;
@@ -70,16 +89,30 @@ namespace Lfc
                                 this.ElementoTipo = m_ControlUnico.ElementoTipo;
 
                                 this.SuspendLayout();
-                                this.SplitContainer.Panel1.Padding = new System.Windows.Forms.Padding(12);
-                                this.SplitContainer.Visible = true;
                                 m_ControlUnico.TabIndex = 0;
                                 m_ControlUnico.Dock = System.Windows.Forms.DockStyle.Fill;
-                                this.SplitContainer.Panel1.AutoScrollMinSize = m_ControlUnico.MinimumSize;
-                                this.SplitContainer.Panel1.Controls.Add(m_ControlUnico);
-                                this.ResumeLayout(false);
-                                this.PerformLayout();
+
+                                if (m_ControlUnico.HeaderDisplayStyle == null) {
+                                        this.Encabezado.Visible = false;
+                                        this.PanelAccionesTerciarias.Visible = false;
+                                } else {
+                                        this.Encabezado.DisplayStyle = m_ControlUnico.HeaderDisplayStyle;
+                                        IntPtr Hicon = m_ControlUnico.HeaderDisplayStyle.Icon.GetHicon();
+                                        this.Icon = System.Drawing.Icon.FromHandle(Hicon);
+                                        this.Encabezado.Visible = true;
+                                        this.PanelAccionesTerciarias.Visible = true;
+                                }
+
+                                this.PanelEdicion.AutoScrollMinSize = m_ControlUnico.MinimumSize;
+                                this.PanelEdicion.Controls.Add(m_ControlUnico);
+                                this.PanelAccionesPrimariasYSecundarias.FormActions.AddAndUpdate(m_ControlUnico.GetFormActions());
+                                this.PanelAccionesPrimariasYSecundarias.ActualizarControl();
+
+                                this.ResumeLayout(true);
 
                                 m_ControlUnico.SaveRequest += new Lcc.LccEventHandler(this.ControlUnico_SaveRequest);
+                                m_ControlUnico.TextChanged += new EventHandler(this.ControlUnico_TextChanged);
+                                m_ControlUnico.FormActionsChanged += new EventHandler(this.ControlUnico_FormActionsChanged);
                         }
                 }
 
@@ -95,11 +128,12 @@ namespace Lfc
                 {
                         get
                         {
-                                return BotonGuardar.Visible && BotonGuardar.Enabled;
+                                return this.PanelAccionesPrimariasYSecundarias.FormActions["aceptar"].Enabled && this.PanelAccionesPrimariasYSecundarias.FormActions["aceptar"].Visibility != Lazaro.Pres.Forms.FormActionVisibility.Hidden;
                         }
                         set
                         {
-                                this.BotonGuardar.Visible = value;
+                                this.PanelAccionesPrimariasYSecundarias.FormActions["aceptar"].Visibility = value ? Lazaro.Pres.Forms.FormActionVisibility.Main : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
+                                this.ActualizarFormActions();
                         }
                 }
 
@@ -118,9 +152,10 @@ namespace Lfc
                                 m_ReadOnly = value;
                                 this.SaveEnable = !m_ReadOnly;
                                 if (value)
-                                        BotonCancelar.Text = "Cerrar";
+                                        this.PanelAccionesPrimariasYSecundarias.FormActions["cancelar"].Text = "Cerrar";
                                 else
-                                        BotonCancelar.Text = "Cancelar";
+                                        this.PanelAccionesPrimariasYSecundarias.FormActions["cancelar"].Text = "Cancelar";
+                                this.ActualizarFormActions();
                                 this.SetControlsReadOnly(this.Controls, m_ReadOnly);
                         }
                 }
@@ -192,7 +227,7 @@ namespace Lfc
                         return Resultado;
                 }
 
-                public virtual Lfx.Types.OperationResult Cancel()
+                public virtual Lfx.Types.OperationResult Cancelar()
                 {
                         this.Close();
 
@@ -205,30 +240,20 @@ namespace Lfc
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
-                private void SaveButton_Click(object sender, System.EventArgs e)
+                private void Guardar()
                 {
-                        if (BotonGuardar.Visible && BotonGuardar.Enabled) {
-                                BotonGuardar.Enabled = false;
+                        Lfx.Types.OperationResult Result = this.Save();
 
-                                Lfx.Types.OperationResult Result = this.Save();
-
-                                if (Result.Success == true) {
-                                        this.Close();
-                                } else {
-                                        if (Result.Message != null && Result.Message.Length > 0)
-                                                Lui.Forms.MessageBox.Show(Result.Message, "Error");
-                                        BotonGuardar.Enabled = true;
-                                }
+                        if (Result.Success == true) {
+                                this.Close();
+                        } else {
+                                if (Result.Message != null && Result.Message.Length > 0)
+                                        Lui.Forms.MessageBox.Show(Result.Message, "Error");
                         }
                 }
 
-                private void CancelButton_Click(object sender, System.EventArgs e)
-                {
-                        Cancel();
-                }
 
-
-                private void EditForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+                protected override void OnFormClosing(FormClosingEventArgs e)
                 {
                         if (this.GetControlsChanged(this.Controls)) {
                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Si cierra el formulario en este momento, no se guardarán los cambios realizados (subrayados en color rojo). ¿Desea cerrar el formulario de todos modos y perder los cambios realizados?", "Hay cambios sin guardar");
@@ -245,6 +270,7 @@ namespace Lfc
                                         e.Cancel = false;
                                 }
                         }
+                        base.OnFormClosing(e);
                 }
 
 
@@ -267,12 +293,6 @@ namespace Lfc
                         }
                 }
 
-                private void EditForm_Load(object sender, System.EventArgs e)
-                {
-                        if (this.MyToolBarButton != null)
-                                this.MyToolBarButton.ImageIndex = 1;
-                }
-
                 public void FromRow(Lbl.IElementoDeDatos row)
                 {
                         // Si todavía no conozco el tipo de elemento de este formulario, lo tomo de row
@@ -283,18 +303,27 @@ namespace Lfc
                         this.Connection = row.Connection;
                         this.Elemento = row;
 
-                        BotonHistorial.Visible = this.Elemento.Existe && Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal();
-                        BotonComentarios.Visible = this.Elemento.Existe;
+                        if (this.Encabezado.Visible && this.Encabezado.DisplayStyle.Icon == null) {
+                                if (this.Elemento.Existe)
+                                        this.StockImage = "editar";
+                                else
+                                        this.StockImage = "crear";
+                        }
+
+                        this.PanelAccionesTerciarias.FormActions["historial"].Visibility = (this.Elemento.Existe && Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal()) ? Lazaro.Pres.Forms.FormActionVisibility.Tertiary : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
+                        this.PanelAccionesTerciarias.FormActions["comentarios"].Visibility = this.Elemento.Existe ? Lazaro.Pres.Forms.FormActionVisibility.Tertiary : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
 
                         Lbl.Atributos.Presentacion AttrMuestraPanel = this.ElementoTipo.GetAttribute<Lbl.Atributos.Presentacion>();
-                        if (AttrMuestraPanel != null)
-                                MuestraPanel = AttrMuestraPanel.PanelExtendido;
+                        if (AttrMuestraPanel != null) {
+                                EntradaComentarios.Visible = this.Elemento.Existe;
+                                MuestraPanel = AttrMuestraPanel.PanelExtendido == Lbl.Atributos.PanelExtendido.Siempre;
+                                this.PanelAccionesTerciarias.FormActions["panelextendido"].Visibility = (AttrMuestraPanel.PanelExtendido != Lbl.Atributos.PanelExtendido.Nunca) ? Lazaro.Pres.Forms.FormActionVisibility.Tertiary : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
+                        }
 
                         if (this.ControlUnico != null) {
                                 this.ControlUnico.FromRow(row);
                                 if (this.MuestraPanel) {
-                                        SplitContainer.Panel2Collapsed = false;
-                                        SplitContainer.Panel2.Show();
+                                        PanelExtendido.Show();
                                         if (row is Lbl.IElementoConImagen) {
                                                 EntradaImagen.Elemento = row;
                                                 EntradaImagen.ActualizarControl();
@@ -309,15 +338,17 @@ namespace Lfc
                                         EntradaComentarios.ActualizarControl();
                                         EntradaTags.ActualizarControl();
                                 } else {
-                                        SplitContainer.Panel2Collapsed = true;
-                                        SplitContainer.Panel2.Hide();
+                                        PanelExtendido.Hide();
                                 }
                         }
 
+                        Lbl.Atributos.Nomenclatura Attr = this.ElementoTipo.GetAttribute<Lbl.Atributos.Nomenclatura>();
                         if (row != null && row.Existe) {
-                                this.Text = row.ToString();
+                                if (Attr != null && Attr.PrefijarNombreConTipo)
+                                        this.Text = Attr.NombreSingular + " " + row.ToString();
+                                else
+                                        this.Text = row.ToString();
                         } else {
-                                Lbl.Atributos.Datos Attr = this.ElementoTipo.GetAttribute<Lbl.Atributos.Datos>();
                                 if (Attr != null)
                                         this.Text = "Creando " + Attr.NombreSingular;
                                 else
@@ -325,7 +356,9 @@ namespace Lfc
                         }
 
                         this.ReadOnly = !this.PuedeEditar();
-                        BotonImprimir.Visible = this.PuedeImprimir();
+
+                        this.PanelAccionesPrimariasYSecundarias.FormActions["imprimir"].Visibility = this.PuedeImprimir() ? Lazaro.Pres.Forms.FormActionVisibility.Main : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
+                        this.ActualizarFormActions();
                         this.SetControlsChanged(this.Controls, false);
                 }
 
@@ -345,9 +378,9 @@ namespace Lfc
                         }
                 }
 
-                private void BotonHistorial_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                private void EditarHistorial()
                 {
-                        this.Workspace.RunTime.Execute("HISTORIAL", new string[] { this.Elemento.TablaDatos, this.Elemento.Id.ToString() });
+                        Lfx.Workspace.Master.RunTime.Execute("HISTORIAL", new string[] { this.Elemento.TablaDatos, this.Elemento.Id.ToString() });
                 }
 
                 public virtual bool PuedeEditar()
@@ -366,7 +399,7 @@ namespace Lfc
                                 return this.ControlUnico.PuedeImprimir();
                 }
 
-                private void BotonComentarios_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                private void EditarComentarios()
                 {
                         if (this.Elemento != null && this.Elemento.Existe) {
                                 Lfc.Etiquetas FormularioEtiquetas = new Lfc.Etiquetas();
@@ -375,7 +408,7 @@ namespace Lfc
                         }
                 }
 
-                private void BotonImprimir_Click(object sender, EventArgs e)
+                private void Imprimir()
                 {
                         Lfx.Types.OperationResult Res;
                         if (this.ReadOnly) {
@@ -466,5 +499,94 @@ namespace Lfc
                                 Lui.Forms.MessageBox.Show(Res.Message, "Imprimir");
                         }
                 }
+
+
+                protected override void OnTextChanged(EventArgs e)
+                {
+                        if (this.Encabezado != null)
+                                this.Encabezado.Text = this.Text;
+                        base.OnTextChanged(e);
+                }
+
+
+                private void EditarPanelExtendido()
+                {
+                        PanelExtendido.Visible = !PanelExtendido.Visible;
+                }
+
+                private void ControlUnico_TextChanged(object sender, EventArgs e)
+                {
+                        if (ControlUnico.Text != null && ControlUnico.Text.Length > 0)
+                                this.Text = ControlUnico.Text;
+                }
+
+                private void ControlUnico_FormActionsChanged(object sender, EventArgs e)
+                {
+                        ActualizarFormActions();
+                }
+
+                private void ActualizarFormActions()
+                {
+                        Lazaro.Pres.Forms.FormActionCollection CombinedFormActions = new Lazaro.Pres.Forms.FormActionCollection();
+
+                        CombinedFormActions.AddRange(this.FormActions);
+                        if (m_ControlUnico != null)
+                                CombinedFormActions.AddAndUpdate(m_ControlUnico.GetFormActions());
+
+                        this.PanelAccionesPrimariasYSecundarias.FormActions = CombinedFormActions;
+                        this.PanelAccionesTerciarias.FormActions = CombinedFormActions;
+                        this.PanelAccionesPrimariasYSecundarias.ActualizarControl();
+                        this.PanelAccionesTerciarias.ActualizarControl();
+                }
+
+                private void LowerPanel_ButtonClick(object sender, EventArgs e)
+                {
+                        string ActionName = null;
+                        Lui.Forms.Button SenderButton = sender as Lui.Forms.Button;
+                        if (SenderButton != null) {
+                                ActionName = SenderButton.Name;
+                        } else {
+                                Lui.Forms.LinkLabel SenderLinkLabel = sender as Lui.Forms.LinkLabel;
+                                if (SenderLinkLabel != null)
+                                        ActionName = SenderLinkLabel.Name;
+                        }
+
+                        if (ActionName != null) {
+                                // doy la oportunidad de que lo procese el ControlUnico.
+                                Lfx.Types.OperationResult Res = this.ControlUnico.PerformFormAction(ActionName);
+                                if (Res != null) {
+                                        if (Res.Success == false && Res.Cancel == false)
+                                                Lfx.Workspace.Master.RunTime.Toast(Res.Message, "Error");
+                                } else {
+                                        // No lo procesó, así que puedo hacerlo yo
+                                        switch (ActionName) {
+                                                case "aceptar":
+                                                        Guardar();
+                                                        break;
+                                                case "cancelar":
+                                                        Cancelar();
+                                                        break;
+                                                case "imprimir":
+                                                        Imprimir();
+                                                        break;
+                                                case "comentarios":
+                                                        EditarComentarios();
+                                                        break;
+                                                case "historial":
+                                                        EditarHistorial();
+                                                        break;
+                                                case "panelextendido":
+                                                        EditarPanelExtendido();
+                                                        break;
+                                        }
+                                }
+                        }
+                }
+
+                private void PanelAccionesTerciarias_ButtonClick(object sender, EventArgs e)
+                {
+                        LowerPanel_ButtonClick(sender, e);
+                }
+
         }
 }

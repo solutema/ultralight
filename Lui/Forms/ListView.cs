@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Lui.Forms
@@ -40,6 +41,15 @@ namespace Lui.Forms
         public class ListView : System.Windows.Forms.ListView
         {
                 private ListViewItem ItemUnderMouse = null;
+
+                public ListView()
+                {
+                        this.DoubleBuffered = true;
+                        // Enable the OnNotifyMessage event so we get a chance to filter out 
+                        // Windows messages before they get to the form's WndProc
+                        //this.SetStyle(ControlStyles.EnableNotifyMessage, true);
+                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
+                }
 
                 protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
                 {
@@ -69,6 +79,19 @@ namespace Lui.Forms
                         base.OnKeyDown(e);
                 }
 
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public System.Drawing.Font Font
+                {
+                        get
+                        {
+                                return base.Font;
+                        }
+                }
+
+
                 protected override void OnMouseHover(System.EventArgs e)
                 {
                         System.Drawing.Point localPoint = this.PointToClient(Cursor.Position);
@@ -96,24 +119,6 @@ namespace Lui.Forms
 
                         base.OnMouseLeave(e);
                 }
-
-
-                public ListView()
-                {
-                        this.DoubleBuffered = true;
-
-                        // Enable the OnNotifyMessage event so we get a chance to filter out 
-                        // Windows messages before they get to the form's WndProc
-                        this.SetStyle(ControlStyles.EnableNotifyMessage, true);
-                }
-
-                /* protected override void OnNotifyMessage(Message m)
-                {
-                        //Filter out the WM_ERASEBKGND message
-                        if (m.Msg != 0x14) {
-                                base.OnNotifyMessage(m);
-                        }
-                } */
 
 
                 public static Lui.Forms.ListView NewListViewFromSheet(Lazaro.Pres.Spreadsheet.Sheet sheet)

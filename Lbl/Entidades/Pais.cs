@@ -39,9 +39,8 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una País.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "País",
-                TablaDatos = "paises",
-                CampoId = "id_pais")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "País")]
+        [Lbl.Atributos.Datos(TablaDatos = "paises", CampoId = "id_pais")]
         [Lbl.Atributos.Presentacion()]
         public class Pais : ElementoDeDatos
         {

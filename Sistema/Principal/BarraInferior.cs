@@ -49,7 +49,7 @@ namespace Lazaro.WinMain.Principal
                 public BarraInferior()
                 {
                         InitializeComponent();
-                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                        this.BackColor = this.DisplayStyle.BackgroundColor;
 
                         TimerReloj_Tick(this, null);
                 }
@@ -69,7 +69,7 @@ namespace Lazaro.WinMain.Principal
                         get
                         {
                                 if (m_DataBase == null)
-                                        m_DataBase = this.Workspace.GetNewConnection("Formulario principal: Barra inferior");
+                                        m_DataBase = Lfx.Workspace.Master.GetNewConnection("Formulario principal: Barra inferior");
                                 return m_DataBase;
                         }
                 }
@@ -90,7 +90,7 @@ namespace Lazaro.WinMain.Principal
 
                 public void MostrarItem(string tabla, int item)
                 {
-                        if (this.Workspace == null)
+                        if (Lfx.Workspace.Master == null)
                                 return;
 
                         if (this.Visible == false)
@@ -99,7 +99,7 @@ namespace Lazaro.WinMain.Principal
                         TablaSolicitada = tabla;
                         ItemSolicitado = item;
 
-                        if (this.Workspace.SlowLink) {
+                        if (Lfx.Workspace.Master.SlowLink) {
                                 //Reinicio el contador
                                 TimerSlowLink.Stop();
                                 TimerSlowLink.Start();
@@ -140,8 +140,8 @@ namespace Lazaro.WinMain.Principal
                                                 ArticuloCodigos.Text = Codigos;
                                                 ArticuloNombre.Text = Art.ToString();
                                                 ArticuloDescripcion.Text = Art.Descripcion;
-                                                ArticuloPvp.Text = Lfx.Types.Formatting.FormatCurrency(Art.Pvp, this.Workspace.CurrentConfig.Moneda.Decimales);
-                                                ArticuloStock.Text = Lfx.Types.Formatting.FormatCurrency(Art.StockActual, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                ArticuloPvp.Text = Lfx.Types.Formatting.FormatCurrency(Art.Pvp, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                                                ArticuloStock.Text = Lfx.Types.Formatting.FormatCurrency(Art.Existencias, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                                 PanelArticulo.Visible = true;
                                         }
                                         break;
@@ -175,12 +175,12 @@ namespace Lazaro.WinMain.Principal
                                                         Saldo = 0;
                                                 }
                                                 if (Saldo > 0) {
-                                                        PersonaComentario.Text = "Registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
-                                                        PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.SmallWarning;
+                                                        PersonaComentario.Text = "Registra saldo impago en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(Saldo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                                        PersonaComentario.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.SmallWarning;
                                                         PersonaComentario.Visible = true;
                                                 } else if (Saldo < 0) {
-                                                        PersonaComentario.Text = "Registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
-                                                        PersonaComentario.LabelStyle = Lui.Forms.LabelStyles.Small;
+                                                        PersonaComentario.Text = "Registra saldo a favor en cuenta corriente por " + Lfx.Types.Formatting.FormatCurrency(-Saldo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                                        PersonaComentario.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                                                         PersonaComentario.Visible = true;
                                                 } else {
                                                         PersonaComentario.Visible = false;
@@ -249,6 +249,22 @@ namespace Lazaro.WinMain.Principal
                                 Lfc.Etiquetas FormularioEtiquetas = new Lfc.Etiquetas();
                                 FormularioEtiquetas.Elemento = ElementoActual;
                                 FormularioEtiquetas.Show();
+                        }
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Always),
+                        Browsable(true),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public virtual Lazaro.Pres.DisplayStyles.IDisplayStyle DisplayStyle
+                {
+                        get
+                        {
+                                if (this.Parent is Lui.Forms.IForm)
+                                        return ((Lui.Forms.IForm)(this.Parent)).DisplayStyle;
+                                else if (this.Parent is Lui.Forms.IDisplayStyleControl)
+                                        return ((Lui.Forms.IDisplayStyleControl)(this.Parent)).DisplayStyle;
+                                else
+                                        return Lazaro.Pres.DisplayStyles.Template.Current.Default;
                         }
                 }
         }

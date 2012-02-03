@@ -55,13 +55,6 @@ namespace Lcc.Entrada
                 public CodigoDetalle()
                 {
                         InitializeComponent();
-
-                        Label1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                        EntradaCodigo.BackColor = Label1.BackColor;
-                        EntradaCodigo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
-                        EntradaFreeText.BackColor = Label1.BackColor;
-                        EntradaFreeText.ForeColor = Label1.ForeColor;
                         this.BorderStyle = Lui.Forms.Control.BorderStyles.TextBox;
                 }
 
@@ -373,30 +366,26 @@ namespace Lcc.Entrada
 
                 private void TextBox1_GotFocus(System.Object sender, System.EventArgs e)
                 {
-                        if (m_TemporaryReadOnly == false) {
-                                EntradaCodigo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-                                EntradaCodigo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                        }
+                        if(this.ReadOnly == false && this.TemporaryReadOnly == false)
+                                EntradaCodigo.ForeColor = this.DisplayStyle.DataAreaTextColor;
+
                         if (m_SelectOnFocus)
                                 EntradaCodigo.SelectAll();
                 }
 
                 private void EntradaFreeText_GotFocus(object sender, System.EventArgs e)
                 {
-                        if (m_TemporaryReadOnly == false)
-                                EntradaFreeText.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
                         EntradaFreeText.SelectionStart = 1024;
                 }
 
                 private void TextBox1_LostFocus(System.Object sender, System.EventArgs e)
                 {
-                        EntradaCodigo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        EntradaCodigo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
+                        EntradaCodigo.ForeColor = this.DisplayStyle.DataAreaGrayTextColor;
                 }
 
                 private void EntradaFreeText_LostFocus(object sender, System.EventArgs e)
                 {
-                        EntradaFreeText.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                        EntradaFreeText.BackColor = this.DisplayStyle.DataAreaColor;
                 }
 
 
@@ -450,9 +439,9 @@ namespace Lcc.Entrada
                                 if (textChanged)
                                         this.OnTextChanged(EventArgs.Empty);
                         } else if (this.Relation.IsEmpty() == false && EntradaCodigo.Text.Length > 0 && EntradaCodigo.Text != "0") {
-                                Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                                Label1.ForeColor = this.DisplayStyle.TextColor;
                                 if (this.AutoUpdate) {
-                                        if (this.HasWorkspace == false || this.Workspace.SlowLink)
+                                        if (Lfx.Workspace.Master == null || Lfx.Workspace.Master.SlowLink)
                                                 TimerActualizar.Interval = 500;
                                         else
                                                 TimerActualizar.Interval = 200;
@@ -470,7 +459,7 @@ namespace Lcc.Entrada
                                 this.CurrentRow = null;
                                 m_LastText1 = "";
                                 Label1.Text = this.PlaceholderText;
-                                Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
+                                Label1.ForeColor = this.DisplayStyle.DataAreaGrayTextColor;
 
                                 if (textChanged)
                                         this.OnTextChanged(EventArgs.Empty);
@@ -480,7 +469,7 @@ namespace Lcc.Entrada
 
                 private void ActualizarDetalle()
                 {
-                        if (this.HasWorkspace && this.Connection != null) {
+                        if (this.Connection != null) {
                                 if (m_FreeTextCode.Length > 0 && EntradaCodigo.Text == m_FreeTextCode) {
                                         // *** Esta escribiendo texto libre
                                         m_ItemId = 0;
@@ -491,7 +480,7 @@ namespace Lcc.Entrada
                                         // *** Ingresó un código que parece válido
                                         string KeyFieldAlt = this.Relation.ReferenceColumn; // KeyField Alternativo
                                         if (this.Relation.ReferenceTable == "articulos" && KeyFieldAlt == "id_articulo")
-                                                KeyFieldAlt = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
+                                                KeyFieldAlt = Lfx.Workspace.Master.CurrentConfig.Productos.CodigoPredeterminado();
 
                                         if (EntradaCodigo.Text != m_LastText1) {
                                                 EntradaFreeText.Visible = false;
@@ -512,12 +501,12 @@ namespace Lcc.Entrada
                                                         m_ItemId = 0;
                                                         m_LastText1 = "";
                                                         Label1.Text = "???";
-                                                        Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
+                                                        Label1.ForeColor = this.DisplayStyle.DataAreaGrayTextColor;
                                                 } else {
                                                         m_ItemId = System.Convert.ToInt32(CurrentRow[this.Relation.ReferenceColumn]);
                                                         m_LastText1 = EntradaCodigo.Text;
                                                         Label1.Text = System.Convert.ToString(CurrentRow[this.Relation.DetailColumn]);
-                                                        Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                                                        Label1.ForeColor = this.DisplayStyle.TextColor;
                                                 }
                                         }
 
@@ -529,7 +518,7 @@ namespace Lcc.Entrada
                                         this.CurrentRow = null;
                                         m_LastText1 = "";
                                         Label1.Text = this.PlaceholderText;
-                                        Label1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
+                                        Label1.ForeColor = this.DisplayStyle.DataAreaGrayTextColor;
                                 }
                         } else {
                                 m_ItemId = 0;
@@ -539,7 +528,7 @@ namespace Lcc.Entrada
                         }
 
                         if (this.TextInt > 0 && this.Visible)
-                                this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Relation.ReferenceTable, this.Text });
+                                Lfx.Workspace.Master.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Relation.ReferenceTable, this.Text });
                 }
 
 
@@ -684,7 +673,7 @@ namespace Lcc.Entrada
                 public object Edit()
                 {
                         if (this.TextInt > 0)
-                                return this.Workspace.RunTime.Execute("EDIT", new string[] { this.Relation.ReferenceTable, this.TextInt.ToString() });
+                                return Lfx.Workspace.Master.RunTime.Execute("EDIT", new string[] { this.Relation.ReferenceTable, this.TextInt.ToString() });
                         else
                                 return null;
                 }
@@ -805,6 +794,18 @@ namespace Lcc.Entrada
                 {
                         if (EntradaFreeText.Text.Length == 1 || EntradaFreeText.Text.Length == 0)
                                 this.OnTextChanged(EventArgs.Empty);
+                }
+
+
+                public override void ApplyStyle()
+                {
+                        base.ApplyStyle();
+                        Label1.BackColor = this.DisplayStyle.DataAreaColor;
+                        Label1.ForeColor = this.DisplayStyle.DataAreaTextColor;
+                        EntradaCodigo.BackColor = Label1.BackColor;
+                        EntradaCodigo.ForeColor = this.DisplayStyle.DataAreaGrayTextColor;
+                        EntradaFreeText.BackColor = Label1.BackColor;
+                        EntradaFreeText.ForeColor = Label1.ForeColor;
                 }
         }
 }

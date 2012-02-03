@@ -34,11 +34,9 @@ using System.Collections.Generic;
 
 namespace Lbl.CuentasCorrientes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Movimiento de Cuenta Corriente",
-                TablaDatos = "ctacte",
-                CampoId = "id_movim",
-                CampoNombre = "concepto")]
-        [Lbl.Atributos.Presentacion(PanelExtendido = false)]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Movimiento de Cuenta Corriente")]
+        [Lbl.Atributos.Datos(TablaDatos = "ctacte", CampoId = "id_movim", CampoNombre = "concepto")]
+        [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Nunca)]
         public class Movimiento : ElementoDeDatos
         {
                 //Heredar constructor

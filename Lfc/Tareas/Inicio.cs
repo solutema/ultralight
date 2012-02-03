@@ -52,10 +52,6 @@ namespace Lfc.Tareas
 
                 public Inicio()
                 {
-                        if (this.HasWorkspace) {
-                                EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));
-                        }
-
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Tareas.Tarea),
@@ -68,7 +64,7 @@ namespace Lfc.Tareas
 			        {
 				        new Lazaro.Pres.Field("tickets.nombre", "Asunto", Lfx.Data.InputFieldTypes.Text, 320),
 				        new Lazaro.Pres.Field("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 240),
-				        new Lazaro.Pres.Field("tickets.estado", "Estado", 160, EstadosTickets),
+				        new Lazaro.Pres.Field("tickets.estado", "Estado", 160, new Dictionary<int,string>()),
 				        new Lazaro.Pres.Field("tickets.fecha_ingreso", "Ingreso", Lfx.Data.InputFieldTypes.DateTime, 160),
                                         new Lazaro.Pres.Field("tickets.entrega_limite", "Vencimiento", Lfx.Data.InputFieldTypes.Date, 96),
                                         new Lazaro.Pres.Field("tickets.id_tecnico_recibe", "Encargado", Lfx.Data.InputFieldTypes.Text, 240),
@@ -97,6 +93,16 @@ namespace Lfc.Tareas
                         this.Estado = "<50";
 
                         this.HabilitarFiltrar = true;
+                }
+
+
+                protected override void OnLoad(EventArgs e)
+                {
+                        base.OnLoad(e);
+                        if (this.Connection != null) {
+                                EstadosTickets = new Lbl.ColeccionCodigoDetalle(this.Connection.Select("SELECT id_ticket_estado, nombre FROM tickets_estados"));
+                                this.Definicion.Columns["tickets.estado"].SetValues = EstadosTickets;
+                        }
                 }
 
 

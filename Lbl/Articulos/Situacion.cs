@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Situación",
-                Grupo = "Artículos",
-                TablaDatos = "articulos_situaciones",
-                CampoId = "id_situacion")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Situación", Grupo = "Artículos")]
+        [Lbl.Atributos.Datos(TablaDatos = "articulos_situaciones", CampoId = "id_situacion")]
         [Lbl.Atributos.Presentacion()]
 	public class Situacion : ElementoDeDatos
 	{
@@ -55,7 +53,7 @@ namespace Lbl.Articulos
                 /// <summary>
                 /// Indica si los artículos en esta situación suman al stock.
                 /// </summary>
-		public bool CuentaStock
+		public bool CuentaExistencias
 		{
 			get
 			{
@@ -113,7 +111,7 @@ namespace Lbl.Articulos
                                 }
 
                                 Comando.Fields.AddWithValue("nombre", this.Registro["nombre"].ToString());
-                                Comando.Fields.AddWithValue("cuenta_stock", this.CuentaStock ? 1 : 0);
+                                Comando.Fields.AddWithValue("cuenta_stock", this.CuentaExistencias ? 1 : 0);
                                 Comando.Fields.AddWithValue("deposito", this.Deposito);
                                 Comando.Fields.AddWithValue("facturable", this.Facturable ? 1 : 0);
                                 Comando.Fields.AddWithValue("estado", this.Estado);

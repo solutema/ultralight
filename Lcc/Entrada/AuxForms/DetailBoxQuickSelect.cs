@@ -51,13 +51,16 @@ namespace Lcc.Entrada.AuxForms
                 public DetailBoxQuickSelect()
                 {
                         InitializeComponent();
+                }
 
-                        if (this.HasWorkspace) {
-                                if (this.Workspace.SlowLink)
-                                        Timer1.Interval = 750;
-                                else
-                                        Timer1.Interval = 75;
-                        }
+
+                protected override void OnLoad(EventArgs e)
+                {
+                        base.OnLoad(e);
+                        if (Lfx.Workspace.Master == null || Lfx.Workspace.Master.SlowLink)
+                                Timer1.Interval = 750;
+                        else
+                                Timer1.Interval = 75;
                 }
 
 
@@ -193,7 +196,7 @@ namespace Lcc.Entrada.AuxForms
                 internal void Refrescar()
                 {
                         ListaItem.Items.Clear();
-                        if (this.HasWorkspace && this.Connection != null) {
+                        if (this.Connection != null) {
                                 if (m_Table.Length > 0 && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0) {
                                         string TextoSql = null;
                                         string sBuscar = EntradaBuscar.Text;
@@ -250,7 +253,7 @@ namespace Lcc.Entrada.AuxForms
                                                         TextoSql += " ORDER BY " + m_DetailField;
 
                                                 // TODO: Código dependiente de MySql/PostgreSql. Pasar a qGen.SqlCommandBuilder
-                                                if (this.Workspace.SlowLink)
+                                                if (Lfx.Workspace.Master.SlowLink)
                                                         TextoSql += " LIMIT 40";
                                                 else
                                                         TextoSql += " LIMIT 100";
@@ -316,7 +319,7 @@ namespace Lcc.Entrada.AuxForms
 
                 private void EntradaBuscar_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (m_IgnoreEvents == false && this.HasWorkspace)
+                        if (m_IgnoreEvents == false && this.Connection != null)
                                 Timer1.Start();
                 }
 
@@ -407,7 +410,7 @@ namespace Lcc.Entrada.AuxForms
                 {
                         if (ListaItem.SelectedItems.Count > 0) {
                                 if (m_Table == "articulos") {
-                                        string Codigo = this.Connection.FieldString("SELECT " + this.Workspace.CurrentConfig.Productos.CodigoPredeterminado() + " FROM articulos WHERE id_articulo=" + int.Parse(ListaItem.SelectedItems[0].Text).ToString());
+                                        string Codigo = this.Connection.FieldString("SELECT " + Lfx.Workspace.Master.CurrentConfig.Productos.CodigoPredeterminado() + " FROM articulos WHERE id_articulo=" + int.Parse(ListaItem.SelectedItems[0].Text).ToString());
                                         if (Codigo.Length == 0)
                                                 Codigo = int.Parse(ListaItem.SelectedItems[0].Text).ToString();
                                         ControlDestino.Text = Codigo;
@@ -430,10 +433,10 @@ namespace Lcc.Entrada.AuxForms
 
                         try {
                                 if (this.ElementoTipo != null)
-                                        Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { ElementoTipo.ToString() });
+                                        Resultado = Lfx.Workspace.Master.RunTime.Execute("CREATE", new string[] { ElementoTipo.ToString() });
 
                                 if (Resultado == null)
-                                        Resultado = this.Workspace.RunTime.Execute("CREATE", new string[] { m_Table });
+                                        Resultado = Lfx.Workspace.Master.RunTime.Execute("CREATE", new string[] { m_Table });
                         } catch {
                                 Lfx.Workspace.Master.RunTime.Toast("No se puede crear el elemento.", "Error");
                         }
@@ -467,7 +470,7 @@ namespace Lcc.Entrada.AuxForms
                         if (ListaItem.SelectedItems.Count > 0) {
                                 int ItemId = int.Parse(ListaItem.SelectedItems[0].Text);
                                 if (ItemId > 0)
-                                        this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Table, ItemId.ToString() });
+                                        Lfx.Workspace.Master.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Table, ItemId.ToString() });
                         }
                 }
 

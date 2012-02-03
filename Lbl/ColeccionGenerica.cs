@@ -58,12 +58,12 @@ namespace Lbl
                 public ColeccionGenerica(Lfx.Data.Connection dataBase, System.Data.DataTable tabla)
                         : this(dataBase)
                 {
-                        this.DesdeDataTable(tabla);
+                        this.Clear();
+                        this.AddRange(tabla);
                 }
 
-                public void DesdeDataTable(System.Data.DataTable tabla)
+                public void AddRange(System.Data.DataTable tabla)
                 {
-                        this.Clear();
                         if (tabla != null) {
                                 foreach (System.Data.DataRow Rw in tabla.Rows) {
                                         Lfx.Data.Row Lrw = (Lfx.Data.Row)Rw;

@@ -81,7 +81,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConcepto.AutoSize = false;
-                        this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
                         this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.Filter = "";
@@ -105,7 +104,6 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.EntradaImporte.AutoSize = false;
                         this.EntradaImporte.AutoNav = true;
-                        this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
@@ -145,7 +143,6 @@ namespace Lfc.CuentasCorrientes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.AutoSize = false;
                         this.EntradaObs.AutoNav = true;
-                        this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
@@ -171,7 +168,6 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.EntradaDireccion.AutoSize = false;
                         this.EntradaDireccion.AutoNav = true;
-                        this.EntradaDireccion.AutoTab = true;
                         this.EntradaDireccion.Location = new System.Drawing.Point(120, 88);
                         this.EntradaDireccion.Name = "EntradaDireccion";
                         this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
@@ -198,7 +194,6 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.EntradaNuevoSaldo.AutoSize = false;
                         this.EntradaNuevoSaldo.AutoNav = true;
-                        this.EntradaNuevoSaldo.AutoTab = true;
                         this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaNuevoSaldo.DecimalPlaces = -1;
                         this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;

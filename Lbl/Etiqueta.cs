@@ -39,9 +39,8 @@ namespace Lbl
         /// Describe una etiqueta que se puede asociar a un ElementoDeDatos, por ejemplo "Destacado", "Nuevo", etc.
         /// Se pueden asociar cero o más etiquetas a un elemento mediante la propiedad Etiquetas y el método GuardarEtiquetas().
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Etiqueta",
-                       TablaDatos = "sys_labels",
-                       CampoId = "id_label")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Etiqueta")]
+        [Lbl.Atributos.Datos(TablaDatos = "sys_labels", CampoId = "id_label")]
         [Lbl.Atributos.Presentacion()]
         public class Etiqueta : ElementoDeDatos
         {

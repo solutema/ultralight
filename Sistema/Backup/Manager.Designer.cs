@@ -67,7 +67,7 @@ namespace Lazaro.WinMain.Backup
                         this.BotonEliminar = new Lui.Forms.Button();
                         this.BotonRestaurar = new Lui.Forms.Button();
                         this.BotonCopiar = new Lui.Forms.Button();
-                        this.note1 = new Lui.Forms.Note();
+                        this.Nota1 = new Lui.Forms.Note();
                         this.SuspendLayout();
                         // 
                         // OkButton
@@ -141,7 +141,7 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(24, 96);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(628, 20);
@@ -202,26 +202,25 @@ namespace Lazaro.WinMain.Backup
                         // 
                         // note1
                         // 
-                        this.note1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+                        this.Nota1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
-                        this.note1.Location = new System.Drawing.Point(24, 308);
-                        this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.note1.Name = "note1";
-                        this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.note1.ReadOnly = false;
-                        this.note1.Size = new System.Drawing.Size(748, 56);
-                        this.note1.TabIndex = 52;
-                        this.note1.TabStop = false;
-                        this.note1.Text = "Se mantienen automáticamente las últimas 7 copias de respaldo. La copia en letra " +
+                        this.Nota1.Location = new System.Drawing.Point(24, 308);
+                        this.Nota1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.Nota1.Name = "Nota1";
+                        this.Nota1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+                        this.Nota1.ReadOnly = false;
+                        this.Nota1.Size = new System.Drawing.Size(748, 56);
+                        this.Nota1.TabIndex = 52;
+                        this.Nota1.TabStop = false;
+                        this.Nota1.Text = "Se mantienen automáticamente las últimas 7 copias de respaldo. La copia en letra " +
     "negrita es la más reciente.";
-                        this.note1.Title = "Información";
+                        this.Nota1.Title = "Información";
                         // 
                         // Manager
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(794, 452);
-                        this.Controls.Add(this.note1);
+                        this.Controls.Add(this.Nota1);
                         this.Controls.Add(this.BotonCopiar);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.BotonRestaurar);
@@ -236,7 +235,7 @@ namespace Lazaro.WinMain.Backup
                         this.Controls.SetChildIndex(this.BotonRestaurar, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.BotonCopiar, 0);
-                        this.Controls.SetChildIndex(this.note1, 0);
+                        this.Controls.SetChildIndex(this.Nota1, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -253,6 +252,6 @@ namespace Lazaro.WinMain.Backup
                 internal Lui.Forms.Button BotonRestaurar;
                 internal System.Windows.Forms.ColumnHeader Numero;
                 internal Lui.Forms.Button BotonCopiar;
-                private Lui.Forms.Note note1;
+                private Lui.Forms.Note Nota1;
         }
 }

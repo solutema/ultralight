@@ -42,10 +42,8 @@ namespace Lbl.Comprobantes
                 Fiscal = 2
         }
 
-        [Lbl.Atributos.Datos(NombreSingular = "Punto de Venta",
-                TablaDatos = "pvs",
-                CampoId = "id_pv",
-                CampoNombre = "numero")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Punto de Venta")]
+        [Lbl.Atributos.Datos(TablaDatos = "pvs", CampoId = "id_pv", CampoNombre = "numero")]
         [Lbl.Atributos.Presentacion()]
         public class PuntoDeVenta : ElementoDeDatos
         {

@@ -72,27 +72,33 @@ namespace Lfc
                         // 
                         // EntradaEtiquetas
                         // 
-                        this.EntradaEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaEtiquetas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEtiquetas.AutoNav = true;
+                        this.EntradaEtiquetas.FieldName = null;
+                        this.EntradaEtiquetas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaEtiquetas.Location = new System.Drawing.Point(453, 11);
                         this.EntradaEtiquetas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.EntradaEtiquetas.Name = "EntradaEtiquetas";
                         this.EntradaEtiquetas.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEtiquetas.ReadOnly = false;
                         this.EntradaEtiquetas.Size = new System.Drawing.Size(160, 287);
                         this.EntradaEtiquetas.TabIndex = 3;
                         this.EntradaEtiquetas.Text = "Etiquetas";
                         // 
                         // EntradaComentarios
                         // 
-                        this.EntradaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaComentarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComentarios.AutoNav = true;
+                        this.EntradaComentarios.FieldName = null;
+                        this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaComentarios.Location = new System.Drawing.Point(13, 11);
                         this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaComentarios.Name = "EntradaComentarios";
                         this.EntradaComentarios.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaComentarios.ReadOnly = false;
                         this.EntradaComentarios.Size = new System.Drawing.Size(434, 287);
                         this.EntradaComentarios.TabIndex = 1;
                         this.EntradaComentarios.Text = "Comentarios";

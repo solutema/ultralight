@@ -70,28 +70,32 @@ namespace Lfc.Tareas
 
                 public override void ActualizarControl()
                 {
-                        Lbl.Tareas.Tarea Res = this.Elemento as Lbl.Tareas.Tarea;
+                        Lbl.Tareas.Tarea Tarea = this.Elemento as Lbl.Tareas.Tarea;
 
-                        EntradaNumero.Text = Res.Id.ToString();
-                        EntradaAsunto.Text = Res.Nombre;
-                        EntradaCliente.Elemento = Res.Cliente;
-                        EntradaTecnico.Elemento = Res.Encargado;
-                        EntradaTarea.Elemento = Res.Tipo;
-                        EntradaPrioridad.TextKey = Res.Prioridad.ToString();
-                        EntradaDescripcion.Text = Res.Descripcion;
-                        EntradaEstado.TextInt = Res.Estado;
-                        EntradaFechaIngreso.Text = Lfx.Types.Formatting.FormatDateAndTime(Res.Fecha);
-                        EntradaEntregaEstimada.Text = Lfx.Types.Formatting.FormatDate(Res.FechaEstimada);
-                        EntradaEntregaLimite.Text = Lfx.Types.Formatting.FormatDate(Res.FechaLimite);
-                        EntradaPresupuesto.Text = Lfx.Types.Formatting.FormatCurrency(Res.Presupuesto, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaObs.Text = Res.Obs;
+                        EntradaAsunto.Text = Tarea.Nombre;
+                        EntradaCliente.Elemento = Tarea.Cliente;
+                        EntradaTecnico.Elemento = Tarea.Encargado;
+                        EntradaTarea.Elemento = Tarea.Tipo;
+                        EntradaPrioridad.TextKey = Tarea.Prioridad.ToString();
+                        EntradaDescripcion.Text = Tarea.Descripcion;
+                        EntradaEstado.TextInt = Tarea.Estado;
+                        EntradaFechaIngreso.Text = Lfx.Types.Formatting.FormatDateAndTime(Tarea.Fecha);
+                        EntradaEntregaEstimada.Text = Lfx.Types.Formatting.FormatDate(Tarea.FechaEstimada);
+                        EntradaEntregaLimite.Text = Lfx.Types.Formatting.FormatDate(Tarea.FechaLimite);
+                        EntradaPresupuesto.Text = Lfx.Types.Formatting.FormatCurrency(Tarea.Presupuesto, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        EntradaObs.Text = Tarea.Obs;
 
-                        if (Res.Existe) {
+                        if (Tarea.Existe) {
                                 MostrarPresupuesto2();
                                 CargarHistorial();
                         }
 
                         base.ActualizarControl();
+
+                        if (Tarea.Existe)
+                                this.Text = Tarea.ToString() + " de " + Tarea.Cliente.ToString();
+                        else
+                                this.Text = "Creando nueva tarea";
                 }
 
 
@@ -156,36 +160,34 @@ namespace Lfc.Tareas
                 }
 
 
-                private void BotonNovedad_Click(object sender, System.EventArgs e)
+                private Lfx.Types.OperationResult CargarNovedad()
                 {
                         if (this.Elemento.Existe == false) {
-                                Lui.Forms.MessageBox.Show("No se puede cargar novedades en una Tarea que aun no ha sido creada.", "Error");
+                                return new Lfx.Types.FailureOperationResult("No se puede cargar novedades en una Tarea que aun no ha sido creada.");
                         } else {
                                 Tareas.Novedad FormularioNovedad = new Tareas.Novedad();
                                 FormularioNovedad.EntradaTicket.Elemento = this.Elemento;
                                 FormularioNovedad.EntradaTicket.Enabled = false;
                                 if (FormularioNovedad.ShowDialog() == DialogResult.OK)
                                         this.CargarHistorial();
+                                return new Lfx.Types.SuccessOperationResult();
                         }
                 }
 
-                private void BotonFacturar_Click(object sender, System.EventArgs e)
+                private Lfx.Types.OperationResult Facturar()
                 {
                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea guardar los cambios realizados y generar una factura a partir de esta tarea?", "Facturar");
                         if (Pregunta.ShowDialog() != DialogResult.OK)
-                                return;
+                                return new Lfx.Types.CancelOperationResult();
 
                         if (EntradaEstado.TextInt < 50)
                                 EntradaEstado.TextInt = 50;
 
                         Lfx.Types.OperationResult Res = this.Save();
-                        if (Res.Success == false) {
-                                if (Res.Message != null)
-                                        Lui.Forms.MessageBox.Show(Res.Message, "Error");
-                                return;
-                        }
+                        if (Res.Success == false)
+                                return Res;
 
-                        Lfx.Data.Connection ConnFacturaNueva = this.Workspace.GetNewConnection("Convertir tarea en factura");
+                        Lfx.Data.Connection ConnFacturaNueva = Lfx.Workspace.Master.GetNewConnection("Convertir tarea en factura");
                         Lbl.Comprobantes.Factura Factura;
 
                         int ComprobanteId = Lfx.Types.Parsing.ParseInt(EntradaComprobanteId.Text);
@@ -242,6 +244,7 @@ namespace Lfc.Tareas
                         FormularioFactura.ControlDestino = EntradaComprobanteId;
 
                         FormularioFactura.Show();
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
                 private void EntradaComprobanteId_TextChanged(object sender, System.EventArgs e)
@@ -278,12 +281,14 @@ namespace Lfc.Tareas
                 }
 
 
-                private void BotonArticulos_Click(object sender, System.EventArgs e)
+                private Lfx.Types.OperationResult EditarArticulos()
                 {
                         Tareas.Articulos FormularioArticulos = new Tareas.Articulos();
                         FormularioArticulos.MdiParent = this.ParentForm.MdiParent;
                         FormularioArticulos.Tarea = this.Elemento as Lbl.Tareas.Tarea;
                         FormularioArticulos.Show();
+
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
 
@@ -293,10 +298,36 @@ namespace Lfc.Tareas
                         EntradaPresupuesto2.ValueDecimal = ValorArticulos * (1 - Descuento / 100);
                 }
 
-                private void lvHistorial_SelectedIndexChanged(object sender, System.EventArgs e)
+
+                private void ListaHistorial_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
                         if (ListaHistorial.SelectedItems.Count > 0)
                                 ListaHistorial.SelectedItems[0].EnsureVisible();
+                }
+
+
+                public override Lazaro.Pres.Forms.FormActionCollection GetFormActions()
+                {
+                        Lazaro.Pres.Forms.FormActionCollection Res = base.GetFormActions();
+                        Res.Add(new Lazaro.Pres.Forms.FormAction("Facturar", "F4", "facturar", 30, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        Res.Add(new Lazaro.Pres.Forms.FormAction("Artículos", "F5", "articulos", 10, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        Res.Add(new Lazaro.Pres.Forms.FormAction("Novedad", "F6", "novedad", 20, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        return Res;
+                }
+
+
+                public override Lfx.Types.OperationResult PerformFormAction(string name)
+                {
+                        switch (name) {
+                                case "facturar":
+                                        return Facturar();
+                                case "articulos":
+                                        return EditarArticulos();
+                                case "novedad":
+                                        return CargarNovedad();
+                                default:
+                                        return base.PerformFormAction(name);
+                        }
                 }
         }
 }

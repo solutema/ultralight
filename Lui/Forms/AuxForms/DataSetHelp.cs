@@ -38,9 +38,8 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-	internal partial class DataSetHelp : System.Windows.Forms.Form
+	internal partial class DataSetHelp : Lui.Forms.Form
 	{
-
 		private string[] m_SetData = new string[1];
                 private string[] m_SetDataText = new string[1];
                 private string[] m_SetDataKey = new string[1];
@@ -51,6 +50,16 @@ namespace Lui.Forms
                 [System.ComponentModel.Browsable(false),
                         System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
                 public Lui.Forms.ComboBox ControlDestino { get; set; }
+
+                public DataSetHelp()
+                {
+                        InitializeComponent();
+
+                        this.BackColor = this.DisplayStyle.SelectionColor;
+                        Panel1.BackColor = this.DisplayStyle.DataAreaColor;
+                        Listado.BackColor = this.DisplayStyle.DataAreaColor;
+                        Listado.ForeColor = this.DisplayStyle.TextColor;
+                }
 
 		[System.ComponentModel.Category("Comportamiento")]
 		public string[] SetData
@@ -228,7 +237,7 @@ namespace Lui.Forms
                                         this.ControlDestino.TextKey = Key;
                         }
                         if (this.ControlDestino != null)
-                                this.ControlDestino.Focus();
+                                this.ControlDestino.Select();
 		}
 
 

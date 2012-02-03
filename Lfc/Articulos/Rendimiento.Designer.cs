@@ -96,7 +96,6 @@ namespace Lfc.Articulos
                         // EntradaRendimiento
                         // 
                         this.EntradaRendimiento.AutoNav = true;
-                        this.EntradaRendimiento.AutoTab = true;
                         this.EntradaRendimiento.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaRendimiento.DecimalPlaces = -1;
                         this.EntradaRendimiento.ForceCase = Lui.Forms.TextCasing.None;
@@ -125,7 +124,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.AlwaysExpanded = true;
                         this.EntradaUnidad.AutoNav = true;
                         this.EntradaUnidad.AutoSize = true;
-                        this.EntradaUnidad.AutoTab = true;
                         this.EntradaUnidad.Location = new System.Drawing.Point(200, 24);
                         this.EntradaUnidad.Name = "EntradaUnidad";
                         this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
@@ -155,7 +153,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidadRend.AlwaysExpanded = true;
                         this.EntradaUnidadRend.AutoNav = true;
                         this.EntradaUnidadRend.AutoSize = true;
-                        this.EntradaUnidadRend.AutoTab = true;
                         this.EntradaUnidadRend.Location = new System.Drawing.Point(200, 120);
                         this.EntradaUnidadRend.Name = "EntradaUnidadRend";
                         this.EntradaUnidadRend.Padding = new System.Windows.Forms.Padding(2);

@@ -70,22 +70,15 @@ namespace Lfc.Cajas
                         this.label6 = new Lui.Forms.Label();
                         this.EntradaNuevoSaldo = new Lui.Forms.TextBox();
                         this.label7 = new Lui.Forms.Label();
+                        this.formHeader1 = new Lui.Forms.FormHeader();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label1.Location = new System.Drawing.Point(20, 52);
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label1.Location = new System.Drawing.Point(24, 120);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(96, 24);
+                        this.Label1.Size = new System.Drawing.Size(120, 24);
                         this.Label1.TabIndex = 2;
                         this.Label1.Text = "Concepto";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,13 +86,11 @@ namespace Lfc.Cajas
                         // EntradaImporte
                         // 
                         this.EntradaImporte.AutoNav = true;
-                        this.EntradaImporte.AutoTab = true;
-                        this.EntradaImporte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.FieldName = null;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaImporte.Location = new System.Drawing.Point(116, 84);
+                        this.EntradaImporte.Location = new System.Drawing.Point(144, 152);
                         this.EntradaImporte.MaxLength = 32767;
                         this.EntradaImporte.MultiLine = false;
                         this.EntradaImporte.Name = "EntradaImporte";
@@ -117,10 +108,10 @@ namespace Lfc.Cajas
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label2.Location = new System.Drawing.Point(20, 84);
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label2.Location = new System.Drawing.Point(24, 152);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(96, 24);
+                        this.Label2.Size = new System.Drawing.Size(120, 24);
                         this.Label2.TabIndex = 4;
                         this.Label2.Text = "Importe";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -131,7 +122,6 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConcepto.AutoNav = true;
                         this.EntradaConcepto.AutoTab = true;
-                        this.EntradaConcepto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaConcepto.CanCreate = false;
                         this.EntradaConcepto.DataTextField = "nombre";
                         this.EntradaConcepto.DataValueField = "id_concepto";
@@ -139,14 +129,14 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.FieldName = null;
                         this.EntradaConcepto.Filter = "es=1";
                         this.EntradaConcepto.FreeTextCode = "*";
-                        this.EntradaConcepto.Location = new System.Drawing.Point(116, 52);
+                        this.EntradaConcepto.Location = new System.Drawing.Point(144, 120);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
                         this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.PlaceholderText = null;
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
-                        this.EntradaConcepto.Size = new System.Drawing.Size(500, 24);
+                        this.EntradaConcepto.Size = new System.Drawing.Size(464, 24);
                         this.EntradaConcepto.TabIndex = 3;
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.Text = "0";
@@ -157,13 +147,11 @@ namespace Lfc.Cajas
                         this.EntradaComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComprobante.AutoNav = true;
-                        this.EntradaComprobante.AutoTab = true;
-                        this.EntradaComprobante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaComprobante.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaComprobante.DecimalPlaces = -1;
                         this.EntradaComprobante.FieldName = null;
                         this.EntradaComprobante.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaComprobante.Location = new System.Drawing.Point(116, 148);
+                        this.EntradaComprobante.Location = new System.Drawing.Point(144, 216);
                         this.EntradaComprobante.MaxLength = 32767;
                         this.EntradaComprobante.MultiLine = false;
                         this.EntradaComprobante.Name = "EntradaComprobante";
@@ -173,16 +161,16 @@ namespace Lfc.Cajas
                         this.EntradaComprobante.Prefijo = "";
                         this.EntradaComprobante.ReadOnly = false;
                         this.EntradaComprobante.SelectOnFocus = true;
-                        this.EntradaComprobante.Size = new System.Drawing.Size(500, 24);
+                        this.EntradaComprobante.Size = new System.Drawing.Size(464, 24);
                         this.EntradaComprobante.Sufijo = "";
                         this.EntradaComprobante.TabIndex = 9;
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label3.Location = new System.Drawing.Point(20, 148);
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label3.Location = new System.Drawing.Point(24, 216);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(96, 24);
+                        this.Label3.Size = new System.Drawing.Size(120, 24);
                         this.Label3.TabIndex = 8;
                         this.Label3.Text = "Comprobante";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,13 +181,11 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.AutoNav = true;
-                        this.EntradaObs.AutoTab = true;
-                        this.EntradaObs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
                         this.EntradaObs.FieldName = null;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaObs.Location = new System.Drawing.Point(116, 180);
+                        this.EntradaObs.Location = new System.Drawing.Point(144, 248);
                         this.EntradaObs.MaxLength = 32767;
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
@@ -209,16 +195,16 @@ namespace Lfc.Cajas
                         this.EntradaObs.Prefijo = "";
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.SelectOnFocus = false;
-                        this.EntradaObs.Size = new System.Drawing.Size(500, 116);
+                        this.EntradaObs.Size = new System.Drawing.Size(464, 88);
                         this.EntradaObs.Sufijo = "";
                         this.EntradaObs.TabIndex = 11;
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label4.Location = new System.Drawing.Point(20, 180);
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label4.Location = new System.Drawing.Point(24, 248);
                         this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(96, 24);
+                        this.Label4.Size = new System.Drawing.Size(120, 24);
                         this.Label4.TabIndex = 10;
                         this.Label4.Text = "Obs.";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -229,7 +215,6 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPersona.AutoNav = true;
                         this.EntradaPersona.AutoTab = true;
-                        this.EntradaPersona.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPersona.CanCreate = false;
                         this.EntradaPersona.DataTextField = "nombre_visible";
                         this.EntradaPersona.DataValueField = "id_persona";
@@ -237,14 +222,14 @@ namespace Lfc.Cajas
                         this.EntradaPersona.FieldName = null;
                         this.EntradaPersona.Filter = "";
                         this.EntradaPersona.FreeTextCode = "";
-                        this.EntradaPersona.Location = new System.Drawing.Point(116, 116);
+                        this.EntradaPersona.Location = new System.Drawing.Point(144, 184);
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
                         this.EntradaPersona.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPersona.PlaceholderText = null;
                         this.EntradaPersona.ReadOnly = false;
                         this.EntradaPersona.Required = true;
-                        this.EntradaPersona.Size = new System.Drawing.Size(500, 24);
+                        this.EntradaPersona.Size = new System.Drawing.Size(464, 24);
                         this.EntradaPersona.TabIndex = 7;
                         this.EntradaPersona.Table = "personas";
                         this.EntradaPersona.Text = "0";
@@ -252,10 +237,10 @@ namespace Lfc.Cajas
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label5.Location = new System.Drawing.Point(20, 116);
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label5.Location = new System.Drawing.Point(24, 184);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(96, 24);
+                        this.Label5.Size = new System.Drawing.Size(120, 24);
                         this.Label5.TabIndex = 6;
                         this.Label5.Text = "Persona";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -266,7 +251,6 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.AutoNav = true;
                         this.EntradaCaja.AutoTab = true;
-                        this.EntradaCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.DataValueField = "id_caja";
@@ -274,14 +258,14 @@ namespace Lfc.Cajas
                         this.EntradaCaja.FieldName = null;
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "*";
-                        this.EntradaCaja.Location = new System.Drawing.Point(116, 20);
+                        this.EntradaCaja.Location = new System.Drawing.Point(144, 88);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.PlaceholderText = null;
                         this.EntradaCaja.ReadOnly = false;
                         this.EntradaCaja.Required = true;
-                        this.EntradaCaja.Size = new System.Drawing.Size(500, 24);
+                        this.EntradaCaja.Size = new System.Drawing.Size(464, 24);
                         this.EntradaCaja.TabIndex = 1;
                         this.EntradaCaja.Table = "cajas";
                         this.EntradaCaja.Text = "0";
@@ -289,10 +273,10 @@ namespace Lfc.Cajas
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label6.Location = new System.Drawing.Point(20, 20);
+                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label6.Location = new System.Drawing.Point(24, 88);
                         this.label6.Name = "label6";
-                        this.label6.Size = new System.Drawing.Size(96, 24);
+                        this.label6.Size = new System.Drawing.Size(120, 24);
                         this.label6.TabIndex = 0;
                         this.label6.Text = "Caja";
                         this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -300,13 +284,11 @@ namespace Lfc.Cajas
                         // EntradaNuevoSaldo
                         // 
                         this.EntradaNuevoSaldo.AutoNav = true;
-                        this.EntradaNuevoSaldo.AutoTab = true;
-                        this.EntradaNuevoSaldo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaNuevoSaldo.DecimalPlaces = -1;
                         this.EntradaNuevoSaldo.FieldName = null;
                         this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNuevoSaldo.Location = new System.Drawing.Point(352, 84);
+                        this.EntradaNuevoSaldo.Location = new System.Drawing.Point(372, 152);
                         this.EntradaNuevoSaldo.MaxLength = 32767;
                         this.EntradaNuevoSaldo.MultiLine = false;
                         this.EntradaNuevoSaldo.Name = "EntradaNuevoSaldo";
@@ -324,18 +306,29 @@ namespace Lfc.Cajas
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label7.Location = new System.Drawing.Point(256, 84);
+                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label7.Location = new System.Drawing.Point(284, 152);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(96, 24);
                         this.label7.TabIndex = 51;
                         this.label7.Text = "Nuevo Saldo";
                         this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // formHeader1
+                        // 
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(634, 74);
+                        this.formHeader1.TabIndex = 53;
+                        this.formHeader1.Text = "Movimiento de caja";
+                        // 
                         // IngresoEgreso
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(634, 374);
+                        this.ClientSize = new System.Drawing.Size(634, 420);
+                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.EntradaNuevoSaldo);
                         this.Controls.Add(this.label7);
                         this.Controls.Add(this.EntradaCaja);
@@ -352,7 +345,6 @@ namespace Lfc.Cajas
                         this.Controls.Add(this.Label1);
                         this.Name = "IngresoEgreso";
                         this.Text = "Caja: Movimiento";
-                        this.WorkspaceChanged += new System.EventHandler(this.IngresoEgreso_WorkspaceChanged);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.EntradaImporte, 0);
@@ -367,6 +359,7 @@ namespace Lfc.Cajas
                         this.Controls.SetChildIndex(this.EntradaCaja, 0);
                         this.Controls.SetChildIndex(this.label7, 0);
                         this.Controls.SetChildIndex(this.EntradaNuevoSaldo, 0);
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -387,5 +380,6 @@ namespace Lfc.Cajas
                 internal Lui.Forms.TextBox EntradaNuevoSaldo;
                 internal Lui.Forms.Label label6;
                 internal Lui.Forms.Label label7;
+                private Lui.Forms.FormHeader formHeader1;
         }
 }

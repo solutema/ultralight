@@ -94,8 +94,8 @@ namespace Lfc.Cajas
 			if (Saldo > 0)
                                 this.Contadores[1].AddValue(Saldo);
 			
-                        item.SubItems["0"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        item.SubItems["1"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        item.SubItems["0"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        item.SubItems["1"].Text = Lfx.Types.Formatting.FormatCurrency(Saldo - Pasivos, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
 		}
 	}
 }

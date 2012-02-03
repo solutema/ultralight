@@ -54,8 +54,8 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                 public Impresora(Lfx.Workspace workspace)
                 {
-                        this.Workspace = workspace;
-                        this.DataBase = this.Workspace.GetNewConnection("Servidor fiscal");
+                        Lfx.Workspace.Master = workspace;
+                        this.DataBase = Lfx.Workspace.Master.GetNewConnection("Servidor fiscal");
                         m_EstadoServidor = EstadoServidorFiscal.Esperando;
                 }
 
@@ -265,8 +265,9 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                 public Lazaro.Impresion.Comprobantes.Fiscal.Respuesta ImprimirComprobante(int idComprob)
                 {
                         try {
-                                System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess();
-                                Yo.PriorityClass = System.Diagnostics.ProcessPriorityClass.AboveNormal;
+                                using (System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess()) {
+                                        Yo.PriorityClass = System.Diagnostics.ProcessPriorityClass.AboveNormal;
+                                }
                         } catch {
                                 // No siempre puedo elevar mi propia prioridad (creo que sólo en Windows XP o en Vista/7 sin UAC)
                         }
@@ -571,7 +572,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                         // *** Imprimir Detalles
                         foreach (Lbl.Comprobantes.DetalleArticulo Detalle in Comprob.Articulos) {
-                                string StrCodigo = this.Workspace.CurrentConfig.Productos.CodigoPredeterminado();
+                                string StrCodigo = Lfx.Workspace.Master.CurrentConfig.Productos.CodigoPredeterminado();
 
                                 if (Detalle.Articulo != null) {
                                         if (StrCodigo == "id_articulo")
@@ -723,14 +724,14 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                         case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                         case Lbl.Impresion.ModelosFiscales.Emulacion:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
-                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Comprob.Recargo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%",
+                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Comprob.Recargo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + "%",
                                                         FormatearNumeroEpson(Comprob.SubTotal * (Comprob.Recargo / 100), 2).PadLeft(12, '0'),
                                                         "R");
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalDevolucionesYRecargos,
-                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Comprob.Recargo, this.Workspace.CurrentConfig.Moneda.DecimalesCosto) + "%",
+                                                        "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Comprob.Recargo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + "%",
                                                         FormatearNumeroHasar(Comprob.SubTotal * (Comprob.Recargo / 100), 2).PadLeft(10, '0'),
                                                         "M",
                                                         "00000000000",
@@ -801,7 +802,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                         Comprob.Numerar(Res.NumeroComprobante, true);
 
                                         // Mover stock si corresponde
-                                        Comprob.MoverStock(false);
+                                        Comprob.MoverExistencias(false);
 
                                         // Asentar pagos si corresponde
                                         Comprob.AsentarPago(false);
@@ -848,9 +849,9 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                         switch (comando.CodigoComando) {
                                 case CodigosComandosFiscales.EpsonDocumentoFiscalCerrar:
-                                        int LastComprob = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("ServidorFiscal.UltimoComprobEmulacionPV" + this.PV.ToString(), 0) + 1;
+                                        int LastComprob = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("ServidorFiscal.UltimoComprobEmulacionPV" + this.PV.ToString(), 0) + 1;
                                         Res.Campos.Add(LastComprob.ToString("00000000"));
-                                        this.Workspace.CurrentConfig.WriteGlobalSetting("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), LastComprob.ToString());
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), LastComprob.ToString());
                                         System.Console.WriteLine(m_TextEmulacion.ToString());
                                         m_TextEmulacion = new System.Text.StringBuilder();
                                         break;

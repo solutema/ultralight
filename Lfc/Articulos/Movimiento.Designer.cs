@@ -109,7 +109,7 @@ namespace Lfc.Articulos
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(32, 88);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(108, 24);
@@ -119,7 +119,7 @@ namespace Lfc.Articulos
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(32, 144);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(108, 24);
@@ -129,7 +129,7 @@ namespace Lfc.Articulos
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(32, 320);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(108, 24);
@@ -139,7 +139,7 @@ namespace Lfc.Articulos
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(32, 32);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(108, 24);
@@ -152,7 +152,6 @@ namespace Lfc.Articulos
                         this.EntradaMovimiento.AlwaysExpanded = true;
                         this.EntradaMovimiento.AutoNav = true;
                         this.EntradaMovimiento.AutoSize = true;
-                        this.EntradaMovimiento.AutoTab = true;
                         this.EntradaMovimiento.FieldName = null;
                         this.EntradaMovimiento.Location = new System.Drawing.Point(140, 32);
                         this.EntradaMovimiento.MaxLength = 32767;
@@ -172,7 +171,6 @@ namespace Lfc.Articulos
                         // EntradaCantidad
                         // 
                         this.EntradaCantidad.AutoNav = true;
-                        this.EntradaCantidad.AutoTab = true;
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaCantidad.DecimalPlaces = -1;
                         this.EntradaCantidad.FieldName = null;
@@ -198,7 +196,6 @@ namespace Lfc.Articulos
                         this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.AutoNav = true;
-                        this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
                         this.EntradaObs.FieldName = null;
@@ -219,7 +216,7 @@ namespace Lfc.Articulos
                         // 
                         // lblDesdeSituacion
                         // 
-                        this.lblDesdeSituacion.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblDesdeSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblDesdeSituacion.Location = new System.Drawing.Point(140, 256);
                         this.lblDesdeSituacion.Name = "lblDesdeSituacion";
                         this.lblDesdeSituacion.Size = new System.Drawing.Size(168, 24);
@@ -229,7 +226,7 @@ namespace Lfc.Articulos
                         // 
                         // lblHaciaSituacion
                         // 
-                        this.lblHaciaSituacion.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblHaciaSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblHaciaSituacion.Location = new System.Drawing.Point(140, 288);
                         this.lblHaciaSituacion.Name = "lblHaciaSituacion";
                         this.lblHaciaSituacion.Size = new System.Drawing.Size(168, 24);
@@ -240,7 +237,6 @@ namespace Lfc.Articulos
                         // EntradaStockActual
                         // 
                         this.EntradaStockActual.AutoNav = true;
-                        this.EntradaStockActual.AutoTab = true;
                         this.EntradaStockActual.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaStockActual.DecimalPlaces = -1;
                         this.EntradaStockActual.FieldName = null;
@@ -263,7 +259,6 @@ namespace Lfc.Articulos
                         // EntradaStockResult
                         // 
                         this.EntradaStockResult.AutoNav = true;
-                        this.EntradaStockResult.AutoTab = true;
                         this.EntradaStockResult.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaStockResult.DecimalPlaces = -1;
                         this.EntradaStockResult.FieldName = null;
@@ -288,7 +283,6 @@ namespace Lfc.Articulos
                         this.EntradaDesdeSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDesdeSituacion.AutoNav = true;
-                        this.EntradaDesdeSituacion.AutoTab = true;
                         this.EntradaDesdeSituacion.CanCreate = false;
                         this.EntradaDesdeSituacion.DataTextField = "nombre";
                         this.EntradaDesdeSituacion.DataValueField = "id_situacion";
@@ -312,7 +306,7 @@ namespace Lfc.Articulos
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(32, 172);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(108, 24);
@@ -325,7 +319,6 @@ namespace Lfc.Articulos
                         this.EntradaHaciaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoNav = true;
-                        this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
@@ -349,7 +342,7 @@ namespace Lfc.Articulos
                         // 
                         // Label8
                         // 
-                        this.Label8.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label8.Location = new System.Drawing.Point(32, 200);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(108, 24);
@@ -360,7 +353,6 @@ namespace Lfc.Articulos
                         // EntradaStockResult2
                         // 
                         this.EntradaStockResult2.AutoNav = true;
-                        this.EntradaStockResult2.AutoTab = true;
                         this.EntradaStockResult2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaStockResult2.DecimalPlaces = -1;
                         this.EntradaStockResult2.FieldName = null;
@@ -383,7 +375,6 @@ namespace Lfc.Articulos
                         // EntradaStockActual2
                         // 
                         this.EntradaStockActual2.AutoNav = true;
-                        this.EntradaStockActual2.AutoTab = true;
                         this.EntradaStockActual2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaStockActual2.DecimalPlaces = -1;
                         this.EntradaStockActual2.FieldName = null;
@@ -405,7 +396,7 @@ namespace Lfc.Articulos
                         // 
                         // lblStockFlecha
                         // 
-                        this.lblStockFlecha.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblStockFlecha.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblStockFlecha.Location = new System.Drawing.Point(404, 256);
                         this.lblStockFlecha.Name = "lblStockFlecha";
                         this.lblStockFlecha.Size = new System.Drawing.Size(24, 24);
@@ -415,7 +406,7 @@ namespace Lfc.Articulos
                         // 
                         // lblStockFlecha2
                         // 
-                        this.lblStockFlecha2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.lblStockFlecha2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblStockFlecha2.Location = new System.Drawing.Point(404, 288);
                         this.lblStockFlecha2.Name = "lblStockFlecha2";
                         this.lblStockFlecha2.Size = new System.Drawing.Size(24, 24);
@@ -425,7 +416,7 @@ namespace Lfc.Articulos
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(308, 232);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(96, 24);
@@ -435,7 +426,7 @@ namespace Lfc.Articulos
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(428, 232);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(96, 24);
@@ -501,9 +492,9 @@ namespace Lfc.Articulos
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Name = "Movimiento";
                         this.Text = "Artículos: Entrada y Salida";
-                        this.WorkspaceChanged += new System.EventHandler(this.FormArticulosMovim_WorkspaceChanged);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);

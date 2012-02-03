@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Tareas
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Estado",
-                Grupo = "Tareas",
-                TablaDatos = "tickets_estados",
-                CampoId = "id_ticket_estado")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Estado", Grupo = "Tareas")]
+        [Lbl.Atributos.Datos(TablaDatos = "tickets_estados", CampoId = "id_ticket_estado")]
         [Lbl.Atributos.Presentacion()]
         public class Estado : Lbl.ElementoDeDatos
         {

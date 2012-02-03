@@ -51,7 +51,7 @@ namespace Lfc.Tarjetas.Cupones
                 {
                         if (IgnorarCambios == false) {
                                 IgnorarCambios = true;
-                                EntradaComisionUsuario.Text = Lfx.Types.Formatting.FormatCurrency(EntradaSubTotal.Text.ParseCurrency() - EntradaTotal.Text.ParseCurrency() - EntradaComisionTarjeta.Text.ParseCurrency() - EntradaComisionPlan.Text.ParseCurrency(), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaComisionUsuario.Text = Lfx.Types.Formatting.FormatCurrency(EntradaSubTotal.Text.ParseCurrency() - EntradaTotal.Text.ParseCurrency() - EntradaComisionTarjeta.Text.ParseCurrency() - EntradaComisionPlan.Text.ParseCurrency(), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 IgnorarCambios = false;
                         }
                 }
@@ -71,7 +71,7 @@ namespace Lfc.Tarjetas.Cupones
                         lblComisionUsuarioPct.Text = "(" + Lfx.Types.Formatting.FormatNumber(EntradaComisionUsuario.Text.ParseCurrency() / EntradaSubTotal.Text.ParseCurrency() * 100, 2) + "%)";
                         if (IgnorarCambios == false) {
                                 IgnorarCambios = true;
-                                EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaSubTotal.Text.ParseCurrency() - EntradaComisionTarjeta.Text.ParseCurrency() - EntradaComisionPlan.Text.ParseCurrency() - EntradaComisionUsuario.Text.ParseCurrency(), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaSubTotal.Text.ParseCurrency() - EntradaComisionTarjeta.Text.ParseCurrency() - EntradaComisionPlan.Text.ParseCurrency() - EntradaComisionUsuario.Text.ParseCurrency(), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 IgnorarCambios = false;
                         }
                 }

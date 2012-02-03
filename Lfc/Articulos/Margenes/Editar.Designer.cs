@@ -64,25 +64,30 @@ namespace Lfc.Articulos.Margenes
                         // 
                         // EntradaPorcentaje
                         // 
-                        this.EntradaPorcentaje.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left))));
                         this.EntradaPorcentaje.AutoNav = true;
-                        this.EntradaPorcentaje.AutoTab = true;
                         this.EntradaPorcentaje.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaPorcentaje.DecimalPlaces = -1;
+                        this.EntradaPorcentaje.FieldName = null;
                         this.EntradaPorcentaje.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPorcentaje.Location = new System.Drawing.Point(148, 44);
+                        this.EntradaPorcentaje.Location = new System.Drawing.Point(140, 32);
+                        this.EntradaPorcentaje.MaxLength = 32767;
                         this.EntradaPorcentaje.MultiLine = false;
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
                         this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPorcentaje.PasswordChar = '\0';
+                        this.EntradaPorcentaje.PlaceholderText = null;
+                        this.EntradaPorcentaje.Prefijo = "";
                         this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.SelectOnFocus = false;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaPorcentaje.Sufijo = "";
                         this.EntradaPorcentaje.TabIndex = 3;
                         this.EntradaPorcentaje.Text = "0.0000";
                         // 
                         // Label12
                         // 
-                        this.Label12.Location = new System.Drawing.Point(8, 44);
+                        this.Label12.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label12.Location = new System.Drawing.Point(0, 32);
                         this.Label12.Name = "Label12";
                         this.Label12.Size = new System.Drawing.Size(140, 24);
                         this.Label12.TabIndex = 2;
@@ -91,25 +96,29 @@ namespace Lfc.Articulos.Margenes
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaNombre.Location = new System.Drawing.Point(148, 12);
+                        this.EntradaNombre.Location = new System.Drawing.Point(140, 0);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = null;
+                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
-                        this.EntradaNombre.Size = new System.Drawing.Size(392, 24);
+                        this.EntradaNombre.Size = new System.Drawing.Size(404, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(8, 12);
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(140, 24);
                         this.Label5.TabIndex = 0;
@@ -118,23 +127,27 @@ namespace Lfc.Articulos.Margenes
                         // 
                         // EntradaPredet
                         // 
-                        this.EntradaPredet.AlwaysExpanded = false;
+                        this.EntradaPredet.AlwaysExpanded = true;
                         this.EntradaPredet.AutoNav = true;
-                        this.EntradaPredet.AutoTab = true;
-                        this.EntradaPredet.Location = new System.Drawing.Point(148, 76);
+                        this.EntradaPredet.AutoSize = true;
+                        this.EntradaPredet.FieldName = null;
+                        this.EntradaPredet.Location = new System.Drawing.Point(140, 64);
+                        this.EntradaPredet.MaxLength = 32767;
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPredet.PlaceholderText = null;
                         this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaPredet.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaPredet.Size = new System.Drawing.Size(108, 36);
                         this.EntradaPredet.TabIndex = 5;
                         this.EntradaPredet.TextKey = "0";
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(8, 76);
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label7.Location = new System.Drawing.Point(0, 64);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(140, 24);
                         this.Label7.TabIndex = 4;
@@ -151,12 +164,6 @@ namespace Lfc.Articulos.Margenes
                         this.Controls.Add(this.Label5);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(556, 297);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.Label12, 0);
-                        this.Controls.SetChildIndex(this.EntradaPorcentaje, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.EntradaPredet, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

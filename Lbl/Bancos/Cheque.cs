@@ -35,9 +35,8 @@ using System.Text;
 
 namespace Lbl.Bancos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Cheque",
-                TablaDatos = "bancos_cheques",
-                CampoId = "id_cheque")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Cheque", Grupo = "Cobros y Pagos")]
+        [Lbl.Atributos.Datos(TablaDatos = "bancos_cheques", CampoId = "id_cheque")]
         [Lbl.Atributos.Presentacion()]
 	public class Cheque : ElementoDeDatos
 	{
@@ -297,7 +296,7 @@ namespace Lbl.Bancos
                                 Comando.Fields.AddWithValue("id_chequera", this.Chequera.Id);
 
 			Comando.Fields.AddWithValue("numero", this.Numero);
-			Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+			Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
 
                         if (this.ReciboCobro == null)
                                 Comando.Fields.AddWithValue("id_recibo", null);
@@ -349,7 +348,7 @@ namespace Lbl.Bancos
 
                         if (this.Emitido == false) {
                                 //Asiento en la cuenta cheques, sólo para cheques de cobro
-                                Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.Connection, this.Workspace.CurrentConfig.Empresa.CajaCheques);
+                                Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaCheques);
                                 Lbl.Personas.Persona UsarCliente = this.Cliente;
                                 if (UsarCliente == null && this.Factura != null)
                                         UsarCliente = this.Factura.Cliente;
@@ -372,7 +371,7 @@ namespace Lbl.Bancos
 
                                 if (this.Emitido == false) {
                                         //Asiento en la cuenta cheques, sólo para cheques de cobro
-                                        Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.Connection, this.Workspace.CurrentConfig.Empresa.CajaCheques);
+                                        Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaCheques);
                                         Lbl.Personas.Persona UsarCliente = this.Cliente;
                                         if (UsarCliente == null && this.Factura != null)
                                                 UsarCliente = this.Factura.Cliente;
@@ -389,7 +388,7 @@ namespace Lbl.Bancos
 
                 public void Efectivizar(Lbl.Cajas.Caja destino, decimal GestionDeCobro, decimal Impuestos)
                 {
-                        Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(Connection, this.Workspace.CurrentConfig.Empresa.CajaCheques);
+                        Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaCheques);
 
                         CajaCheques.Movimiento(true, Lbl.Cajas.Concepto.AjustesYMovimientos, "Efectivización de Cheques",
                                                 null, -this.Importe, this.ToString(), null, null, null);

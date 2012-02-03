@@ -69,7 +69,8 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // label9
                         // 
-                        this.label9.Location = new System.Drawing.Point(12, 48);
+                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label9.Location = new System.Drawing.Point(0, 32);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(120, 24);
                         this.label9.TabIndex = 2;
@@ -78,25 +79,29 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // EntradaNombre
                         // 
-                        this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
+                        this.EntradaNombre.FieldName = null;
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaNombre.Location = new System.Drawing.Point(136, 16);
+                        this.EntradaNombre.Location = new System.Drawing.Point(124, 0);
+                        this.EntradaNombre.MaxLength = 32767;
                         this.EntradaNombre.MultiLine = false;
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaNombre.PasswordChar = '\0';
+                        this.EntradaNombre.PlaceholderText = null;
+                        this.EntradaNombre.Prefijo = "";
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.SelectOnFocus = false;
-                        this.EntradaNombre.Size = new System.Drawing.Size(336, 24);
+                        this.EntradaNombre.Size = new System.Drawing.Size(412, 24);
+                        this.EntradaNombre.Sufijo = "";
                         this.EntradaNombre.TabIndex = 1;
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(12, 16);
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(120, 24);
                         this.Label5.TabIndex = 0;
@@ -105,39 +110,46 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // EntradaCuentaStock
                         // 
-                        this.EntradaCuentaStock.AlwaysExpanded = false;
+                        this.EntradaCuentaStock.AlwaysExpanded = true;
                         this.EntradaCuentaStock.AutoNav = true;
-                        this.EntradaCuentaStock.AutoTab = true;
-                        this.EntradaCuentaStock.Location = new System.Drawing.Point(136, 48);
+                        this.EntradaCuentaStock.AutoSize = true;
+                        this.EntradaCuentaStock.FieldName = null;
+                        this.EntradaCuentaStock.Location = new System.Drawing.Point(124, 32);
+                        this.EntradaCuentaStock.MaxLength = 32767;
                         this.EntradaCuentaStock.Name = "EntradaCuentaStock";
                         this.EntradaCuentaStock.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCuentaStock.PlaceholderText = null;
                         this.EntradaCuentaStock.ReadOnly = false;
                         this.EntradaCuentaStock.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaCuentaStock.Size = new System.Drawing.Size(88, 24);
+                        this.EntradaCuentaStock.Size = new System.Drawing.Size(88, 36);
                         this.EntradaCuentaStock.TabIndex = 3;
                         this.EntradaCuentaStock.TextKey = "0";
                         // 
                         // EntradaFacturable
                         // 
-                        this.EntradaFacturable.AlwaysExpanded = false;
+                        this.EntradaFacturable.AlwaysExpanded = true;
                         this.EntradaFacturable.AutoNav = true;
-                        this.EntradaFacturable.AutoTab = true;
-                        this.EntradaFacturable.Location = new System.Drawing.Point(136, 80);
+                        this.EntradaFacturable.AutoSize = true;
+                        this.EntradaFacturable.FieldName = null;
+                        this.EntradaFacturable.Location = new System.Drawing.Point(124, 80);
+                        this.EntradaFacturable.MaxLength = 32767;
                         this.EntradaFacturable.Name = "EntradaFacturable";
                         this.EntradaFacturable.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFacturable.PlaceholderText = null;
                         this.EntradaFacturable.ReadOnly = false;
                         this.EntradaFacturable.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaFacturable.Size = new System.Drawing.Size(88, 24);
+                        this.EntradaFacturable.Size = new System.Drawing.Size(88, 36);
                         this.EntradaFacturable.TabIndex = 5;
                         this.EntradaFacturable.TextKey = "0";
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(12, 80);
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label1.Location = new System.Drawing.Point(0, 80);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(120, 24);
                         this.label1.TabIndex = 4;
@@ -146,7 +158,8 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // label2
                         // 
-                        this.label2.Location = new System.Drawing.Point(12, 112);
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label2.Location = new System.Drawing.Point(0, 128);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(120, 24);
                         this.label2.TabIndex = 6;
@@ -156,16 +169,22 @@ namespace Lfc.Articulos.Situaciones
                         // EntradaDeposito
                         // 
                         this.EntradaDeposito.AutoNav = true;
-                        this.EntradaDeposito.AutoTab = true;
                         this.EntradaDeposito.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDeposito.DecimalPlaces = -1;
-                        this.EntradaDeposito.Location = new System.Drawing.Point(136, 112);
+                        this.EntradaDeposito.FieldName = null;
+                        this.EntradaDeposito.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaDeposito.Location = new System.Drawing.Point(124, 128);
+                        this.EntradaDeposito.MaxLength = 32767;
                         this.EntradaDeposito.MultiLine = false;
                         this.EntradaDeposito.Name = "EntradaDeposito";
                         this.EntradaDeposito.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaDeposito.PasswordChar = '\0';
+                        this.EntradaDeposito.PlaceholderText = null;
+                        this.EntradaDeposito.Prefijo = "";
                         this.EntradaDeposito.ReadOnly = false;
                         this.EntradaDeposito.SelectOnFocus = false;
                         this.EntradaDeposito.Size = new System.Drawing.Size(52, 24);
+                        this.EntradaDeposito.Sufijo = "";
                         this.EntradaDeposito.TabIndex = 7;
                         this.EntradaDeposito.Text = "0";
                         // 
@@ -181,14 +200,6 @@ namespace Lfc.Articulos.Situaciones
                         this.Controls.Add(this.Label5);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(488, 237);
-                        this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.label9, 0);
-                        this.Controls.SetChildIndex(this.EntradaCuentaStock, 0);
-                        this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaFacturable, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.EntradaDeposito, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

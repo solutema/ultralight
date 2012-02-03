@@ -44,10 +44,15 @@ namespace Lazaro.WinMain.Misc
                 public Fiscal()
                 {
                         InitializeComponent();
+                }
 
-                        if (this.HasWorkspace) {
+
+                protected override void OnLoad(EventArgs e)
+                {
+                        base.OnLoad(e);
+                        if (this.Connection != null) {
                                 //Lleno la tabla de PVs
-                                System.Data.DataTable PVs = this.Connection.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
+                                System.Data.DataTable PVs = this.Connection.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
                                 string[] PVDataSet = new string[PVs.Rows.Count];
                                 int i = 0;
                                 foreach (System.Data.DataRow PV in PVs.Rows) {
@@ -57,11 +62,11 @@ namespace Lazaro.WinMain.Misc
 
                                 if (EntradaPv.SetData.Length > 0) {
                                         //Busco el PV para esta estación, en esta sucursal
-                                        this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
+                                        this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
 
                                         if (this.Pv == 0)
                                                 //Busco el PV para alguna estación, en esta sucursal
-                                                this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
+                                                this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
 
                                         if (this.Pv != 0)
                                                 EntradaPv.TextKey = this.Pv.ToString();
@@ -133,7 +138,7 @@ namespace Lazaro.WinMain.Misc
 
                 private void BotonCierreZ_Click(object sender, System.EventArgs e)
                 {
-                        this.Workspace.DefaultScheduler.AddTask("CIERRE Z", "fiscal" + this.Pv.ToString(), "*");
+                        Lfx.Workspace.Master.DefaultScheduler.AddTask("CIERRE Z", "fiscal" + this.Pv.ToString(), "*");
                         Lui.Forms.MessageBox.Show("Se envió un comando de Cierre Z al punto de venta seleccionado.", "Cierre Z");
                         BotonCierreZ.Enabled = false;
                 }
@@ -141,17 +146,17 @@ namespace Lazaro.WinMain.Misc
                 private void BotonReiniciar_Click(object sender, System.EventArgs e)
                 {
                         Lui.Forms.MessageBox.Show("Se envió un comando de Reiniciar al punto de venta seleccionado.", "Reiniciar");
-                        this.Workspace.DefaultScheduler.AddTask("REBOOT", "fiscal" + this.Pv.ToString(), "*");
+                        Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + this.Pv.ToString(), "*");
                 }
 
                 private void BotonIniciarDetener_Click(object sender, System.EventArgs e)
                 {
                         if (BotonIniciarDetener.Text == "Iniciar") {
                                 string EstacionFiscal = Connection.FieldString("SELECT estacion FROM pvs WHERE id_pv=" + this.Pv.ToString());
-                                this.Workspace.DefaultScheduler.AddTask("FISCAL INICIAR", "lazaro", EstacionFiscal);
+                                Lfx.Workspace.Master.DefaultScheduler.AddTask("FISCAL INICIAR", "lazaro", EstacionFiscal);
                                 Lui.Forms.MessageBox.Show("Se envió una orden de Iniciar el servidor fiscal. Puede demorar varios segundos.", "Iniciar");
                         } else {
-                                this.Workspace.DefaultScheduler.AddTask("END", "fiscal" + this.Pv.ToString(), "*");
+                                Lfx.Workspace.Master.DefaultScheduler.AddTask("END", "fiscal" + this.Pv.ToString(), "*");
                                 Lui.Forms.MessageBox.Show("Se envió una orden de Detener el servidor fiscal. Puede demorar hasta 40 segundos y mientras tanto seguir apareciendo como Activo.", "Detener");
                         }
                 }

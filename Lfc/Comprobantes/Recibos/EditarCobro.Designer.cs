@@ -61,39 +61,43 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // OkButton
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(293, 8);
+                        this.OkButton.Location = new System.Drawing.Point(270, 8);
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(401, 8);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(390, 8);
                         // 
                         // Cobro
                         // 
-                        this.Cobro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Cobro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Cobro.AutoNav = true;
+                        this.Cobro.FieldName = null;
+                        this.Cobro.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Cobro.FormaDePagoEditable = true;
                         this.Cobro.FormaDePagoVisible = true;
                         this.Cobro.ImporteEditable = true;
                         this.Cobro.ImporteVisible = true;
-                        this.Cobro.Location = new System.Drawing.Point(12, 12);
+                        this.Cobro.Location = new System.Drawing.Point(24, 24);
                         this.Cobro.Name = "Cobro";
                         this.Cobro.ObsEditable = true;
                         this.Cobro.ObsVisible = true;
                         this.Cobro.Padding = new System.Windows.Forms.Padding(2);
-                        this.Cobro.TemporaryReadOnly = false;
-                        this.Cobro.Size = new System.Drawing.Size(484, 348);
+                        this.Cobro.ReadOnly = false;
+                        this.Cobro.Size = new System.Drawing.Size(464, 361);
                         this.Cobro.TabIndex = 0;
                         this.Cobro.Text = "Detalles";
                         this.Cobro.TituloVisible = true;
-                         // 
+                        // 
                         // EditarCobro
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(509, 435);
+                        this.ClientSize = new System.Drawing.Size(510, 452);
                         this.Controls.Add(this.Cobro);
                         this.Name = "EditarCobro";
                         this.Text = "Editar Cobro";
+                        this.Controls.SetChildIndex(this.Cobro, 0);
                         this.ResumeLayout(false);
 
                 }

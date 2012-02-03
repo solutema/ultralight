@@ -204,11 +204,11 @@ namespace Lfc.CuentasCorrientes
                                 if (Movim != null) {
                                         if (Movim["id_recibo"] != null) {
                                                 int IdRecibo = System.Convert.ToInt32(Movim["id_recibo"]);
-                                                this.Workspace.RunTime.Execute("EDITAR Lbl.Comprobantes.Recibo " + IdRecibo.ToString());
+                                                Lfx.Workspace.Master.RunTime.Execute("EDITAR Lbl.Comprobantes.Recibo " + IdRecibo.ToString());
                                         }
                                         if (Movim["id_comprob"] != null) {
                                                 int IdFactura = System.Convert.ToInt32(Movim["id_comprob"]);
-                                                this.Workspace.RunTime.Execute("EDITAR Lbl.Comprobantes.ComprobanteConArticulos " + IdFactura.ToString());
+                                                Lfx.Workspace.Master.RunTime.Execute("EDITAR Lbl.Comprobantes.ComprobanteConArticulos " + IdFactura.ToString());
                                         }
                                 }
                         }

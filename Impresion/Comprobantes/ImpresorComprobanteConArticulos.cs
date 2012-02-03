@@ -66,7 +66,7 @@ namespace Lazaro.Impresion.Comprobantes
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
 
-                        if (this.Reimpresion == false && this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.ActualizaCostoAlFacturar", 1) != 0) {
+                        if (this.Reimpresion == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.ActualizaCostoAlFacturar", 1) != 0) {
                                 // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)
                                 foreach (Lbl.Comprobantes.DetalleArticulo Det in this.Comprobante.Articulos) {
                                         if (Det.Articulo != null) {
@@ -83,7 +83,7 @@ namespace Lazaro.Impresion.Comprobantes
                         // Los movimientos de stock y de dinero los asienta el servidor fiscal en los comprobantes fiscales
                         if (this.Reimpresion == false && ResultadoImprimir.Success == true && this.ImprimiLocal) {
                                 //Resto el stock si corresponde
-                                this.Comprobante.MoverStock(false);
+                                this.Comprobante.MoverExistencias(false);
 
                                 // Asentar pagos si corresponde
                                 this.Comprobante.AsentarPago(false);
@@ -121,9 +121,9 @@ namespace Lazaro.Impresion.Comprobantes
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 if(Res == null)
-                                                        Res = Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                                                        Res = Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Articulos[i].Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
                                                 else
-                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Articulos[i].Cantidad, this.Workspace.CurrentConfig.Productos.DecimalesStock);
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Articulos[i].Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
                                         }
                                         return Res;
 
@@ -143,9 +143,9 @@ namespace Lazaro.Impresion.Comprobantes
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 if (Res == null)
-                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].IvaDiscriminado, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].IvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
                                                 else
-                                                        Res += Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].IvaDiscriminado, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                                        Res += Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].IvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
                                         }
                                         return Res;
 
@@ -176,7 +176,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 Lbl.Comprobantes.DetalleArticulo Det = this.Comprobante.Articulos[i];
-                                                string Linea = Lfx.Types.Formatting.FormatCurrencyForPrint(Det.UnitarioAFacturar, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                                string Linea = Lfx.Types.Formatting.FormatCurrencyForPrint(Det.UnitarioAFacturar, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
                                                 if (Res == null)
                                                         Res = Linea;
                                                 else
@@ -190,7 +190,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 Lbl.Comprobantes.DetalleArticulo Det = this.Comprobante.Articulos[i];
-                                                string Linea =Lfx.Types.Formatting.FormatCurrencyForPrint(Det.UnitarioAFacturar * Det.Cantidad, this.Workspace.CurrentConfig.Moneda.DecimalesFinal); 
+                                                string Linea =Lfx.Types.Formatting.FormatCurrencyForPrint(Det.UnitarioAFacturar * Det.Cantidad, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal); 
                                                 if (Res == null)
                                                         Res = Linea;
                                                 else
@@ -200,14 +200,14 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 case "SUBTOTAL":
                                 case "COMPROBANTE.SUBTOTAL":
-                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.SubTotalSinIva, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.SubTotalSinIva, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
 
                                 case "TOTAL":
                                 case "COMPROBANTE.TOTAL":
-                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Total, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Total, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
 
                                 case "COMPROBANTE.IVADISCRIMINADO":
-                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.ImporteIvaDiscriminado, this.Workspace.CurrentConfig.Moneda.DecimalesFinal);
+                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.ImporteIvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
 
                                 case "RECARGO":
                                 case "COMPROBANTE.RECARGO":

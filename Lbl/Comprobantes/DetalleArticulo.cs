@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Detalle de Comprobante",
-                Grupo = "Comprobantes",
-                TablaDatos = "comprob_detalle",
-                CampoId = "id_comprob_detalle")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Detalle de Comprobante", Grupo = "Comprobantes")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob_detalle", CampoId = "id_comprob_detalle")]
         [Lbl.Atributos.Presentacion()]
 	public class DetalleArticulo : ElementoDeDatos
 	{
@@ -146,7 +144,7 @@ namespace Lbl.Comprobantes
                                                 return this.Unitario;
                                         } else {
                                                 decimal IvaPct = this.ObtenerAlicuota().Porcentaje;
-                                                return Math.Round(this.Unitario * (1 + IvaPct / 100), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                return Math.Round(this.Unitario * (1 + IvaPct / 100), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                         }
                                 }
                         }
@@ -164,7 +162,7 @@ namespace Lbl.Comprobantes
                                 } else {
                                         if (this.Comprobante.Cliente.PagaIva != Impuestos.SituacionIva.Exento) {
                                                 decimal IvaPct = this.ObtenerAlicuota().Porcentaje;
-                                                return Math.Round(this.Importe * (IvaPct / 100), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                return Math.Round(this.Importe * (IvaPct / 100), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                         } else {
                                                 return 0;
                                         }
@@ -360,7 +358,7 @@ namespace Lbl.Comprobantes
 
                 public override string ToString()
                 {
-                        return this.Cantidad.ToString() + " " + this.Nombre + " a $ " + Lfx.Types.Formatting.FormatCurrency(this.Unitario, this.Workspace.CurrentConfig.Moneda.Decimales) + " c/u";
+                        return this.Cantidad.ToString() + " " + this.Nombre + " a $ " + Lfx.Types.Formatting.FormatCurrency(this.Unitario, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " c/u";
                 }
 	}
 }

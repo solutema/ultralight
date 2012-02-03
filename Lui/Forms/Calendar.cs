@@ -61,11 +61,11 @@ namespace Lui.Forms
                         for (int s = 1; s <= 6; s++) {
                                 for (int d = 1; d <= 7; d++) {
                                         System.Windows.Forms.Label EtiquetaDia = new System.Windows.Forms.Label();
-                                        EtiquetaDia.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                                        EtiquetaDia.BackColor = this.DisplayStyle.DataAreaColor;
                                         EtiquetaDia.Text = "";
                                         EtiquetaDia.Size = new Size(28, 20);
                                         EtiquetaDia.TextAlign = ContentAlignment.MiddleCenter;
-                                        EtiquetaDia.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                                        EtiquetaDia.ForeColor = this.DisplayStyle.TextColor;
                                         EtiquetaDia.BringToFront();
                                         this.Controls.Add(EtiquetaDia);
                                         Dias.Add(EtiquetaDia);
@@ -73,7 +73,7 @@ namespace Lui.Forms
                                         EtiquetaDia.DoubleClick += new System.EventHandler(EtiquetaDia_DoubleClick);
                                 }
                         }
-                        EtiquetaMes.BackColor = Lfx.Config.Display.CurrentTemplate.ControlBackground;
+                        EtiquetaMes.BackColor = this.DisplayStyle.BackgroundColor;
                         ReubicarDias();
                         MostrarCalendario();
 
@@ -163,17 +163,6 @@ namespace Lui.Forms
                         }
                 }
 
-                private void Calendar_GotFocus(object sender, System.EventArgs e)
-                {
-                        PanelFondo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-                }
-
-
-                private void Calendar_LostFocus(object sender, System.EventArgs e)
-                {
-                        PanelFondo.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                }
-
 
                 private void MostrarCalendario()
                 {
@@ -199,11 +188,11 @@ namespace Lui.Forms
                                 EtiquetaDia.Text = i.ToString();
 
                                 if (IsSelected(new DateTime(m_CurrentDate.Year, m_CurrentDate.Month, i))) {
-                                        EtiquetaDia.BackColor = Lfx.Config.Display.CurrentTemplate.Selection;
-                                        EtiquetaDia.ForeColor = Lfx.Config.Display.CurrentTemplate.SelectionText;
+                                        EtiquetaDia.BackColor = this.DisplayStyle.SelectionColor;
+                                        EtiquetaDia.ForeColor = this.DisplayStyle.TextColor;
                                 } else {
-                                        EtiquetaDia.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                                        EtiquetaDia.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                                        EtiquetaDia.BackColor = this.DisplayStyle.DataAreaColor;
+                                        EtiquetaDia.ForeColor = this.DisplayStyle.TextColor;
                                 }
 
                                 if (m_ShowFocusRect && i == m_CurrentDate.Day)
@@ -260,7 +249,7 @@ namespace Lui.Forms
                 private void EtiquetaDia_Click(object sender, System.Windows.Forms.MouseEventArgs e)
                 {
                         if (this.Focused == false)
-                                this.Focus();
+                                this.Select();
                         int Dia = (int)((System.Windows.Forms.Label)sender).Tag;
                         if (Dia > 0) {
                                 this.CurrentDate = new DateTime(m_CurrentDate.Year, m_CurrentDate.Month, Dia);

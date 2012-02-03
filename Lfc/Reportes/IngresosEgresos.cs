@@ -255,7 +255,6 @@ namespace Lfc.Reportes
                         // 
                         this.EntradaFacturacion.AutoSize = false;
                         this.EntradaFacturacion.AutoNav = true;
-                        this.EntradaFacturacion.AutoTab = true;
                         this.EntradaFacturacion.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaFacturacion.DecimalPlaces = -1;
                         this.EntradaFacturacion.ForceCase = Lui.Forms.TextCasing.None;
@@ -275,7 +274,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtCosto.AutoSize = false;
                         this.txtCosto.AutoNav = true;
-                        this.txtCosto.AutoTab = true;
                         this.txtCosto.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtCosto.DecimalPlaces = -1;
                         this.txtCosto.ForceCase = Lui.Forms.TextCasing.None;
@@ -294,7 +292,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtGastosFijos.AutoSize = false;
                         this.txtGastosFijos.AutoNav = true;
-                        this.txtGastosFijos.AutoTab = true;
                         this.txtGastosFijos.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtGastosFijos.DecimalPlaces = -1;
                         this.txtGastosFijos.ForceCase = Lui.Forms.TextCasing.None;
@@ -313,7 +310,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtGastosVariables.AutoSize = false;
                         this.txtGastosVariables.AutoNav = true;
-                        this.txtGastosVariables.AutoTab = true;
                         this.txtGastosVariables.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtGastosVariables.DecimalPlaces = -1;
                         this.txtGastosVariables.ForceCase = Lui.Forms.TextCasing.None;
@@ -332,7 +328,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtOtrosEgresos.AutoSize = false;
                         this.txtOtrosEgresos.AutoNav = true;
-                        this.txtOtrosEgresos.AutoTab = true;
                         this.txtOtrosEgresos.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtOtrosEgresos.DecimalPlaces = -1;
                         this.txtOtrosEgresos.ForceCase = Lui.Forms.TextCasing.None;
@@ -466,7 +461,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtCobros.AutoSize = false;
                         this.txtCobros.AutoNav = true;
-                        this.txtCobros.AutoTab = true;
                         this.txtCobros.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtCobros.DecimalPlaces = -1;
                         this.txtCobros.ForceCase = Lui.Forms.TextCasing.None;
@@ -511,7 +505,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtDiferenciaNeta.AutoSize = false;
                         this.txtDiferenciaNeta.AutoNav = true;
-                        this.txtDiferenciaNeta.AutoTab = true;
                         this.txtDiferenciaNeta.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtDiferenciaNeta.DecimalPlaces = -1;
                         this.txtDiferenciaNeta.ForceCase = Lui.Forms.TextCasing.None;
@@ -539,7 +532,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtDiferenciaBruta.AutoSize = false;
                         this.txtDiferenciaBruta.AutoNav = true;
-                        this.txtDiferenciaBruta.AutoTab = true;
                         this.txtDiferenciaBruta.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtDiferenciaBruta.DecimalPlaces = -1;
                         this.txtDiferenciaBruta.ForceCase = Lui.Forms.TextCasing.None;
@@ -619,7 +611,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtFecha1.AutoSize = false;
                         this.txtFecha1.AutoNav = true;
-                        this.txtFecha1.AutoTab = true;
                         this.txtFecha1.DataType = Lui.Forms.DataTypes.Date;
                         this.txtFecha1.DecimalPlaces = -1;
                         this.txtFecha1.ForceCase = Lui.Forms.TextCasing.None;
@@ -637,7 +628,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtFecha2.AutoSize = false;
                         this.txtFecha2.AutoNav = true;
-                        this.txtFecha2.AutoTab = true;
                         this.txtFecha2.DataType = Lui.Forms.DataTypes.Date;
                         this.txtFecha2.DecimalPlaces = -1;
                         this.txtFecha2.ForceCase = Lui.Forms.TextCasing.None;
@@ -719,7 +709,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtCompraMateriales.AutoSize = false;
                         this.txtCompraMateriales.AutoNav = true;
-                        this.txtCompraMateriales.AutoTab = true;
                         this.txtCompraMateriales.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtCompraMateriales.DecimalPlaces = -1;
                         this.txtCompraMateriales.ForceCase = Lui.Forms.TextCasing.None;
@@ -764,7 +753,6 @@ namespace Lfc.Reportes
                         // 
                         this.txtCostoCapital.AutoSize = false;
                         this.txtCostoCapital.AutoNav = true;
-                        this.txtCostoCapital.AutoTab = true;
                         this.txtCostoCapital.DataType = Lui.Forms.DataTypes.Currency;
                         this.txtCostoCapital.DecimalPlaces = -1;
                         this.txtCostoCapital.ForceCase = Lui.Forms.TextCasing.None;
@@ -835,7 +823,6 @@ namespace Lfc.Reportes
                         // 
                         this.EntradaIngresosOtros.AutoSize = false;
                         this.EntradaIngresosOtros.AutoNav = true;
-                        this.EntradaIngresosOtros.AutoTab = true;
                         this.EntradaIngresosOtros.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaIngresosOtros.DecimalPlaces = -1;
                         this.EntradaIngresosOtros.ForceCase = Lui.Forms.TextCasing.None;
@@ -898,7 +885,6 @@ namespace Lfc.Reportes
                         // 
                         this.EntradaGestionCobro.AutoSize = false;
                         this.EntradaGestionCobro.AutoNav = true;
-                        this.EntradaGestionCobro.AutoTab = true;
                         this.EntradaGestionCobro.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaGestionCobro.DecimalPlaces = -1;
                         this.EntradaGestionCobro.ForceCase = Lui.Forms.TextCasing.None;
@@ -1008,17 +994,17 @@ namespace Lfc.Reportes
 
                         decimal Facturacion = Facturas - NotasCredito;
 
-                        EntradaFacturacion.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaFacturacion.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Facturas, this.Workspace.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(NotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtCosto.Text = Lfx.Types.Formatting.FormatCurrency(Costo - CostoNotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtCosto.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Costo, this.Workspace.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(CostoNotasCredito, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaGestionCobro.Text = Lfx.Types.Formatting.FormatCurrency(GestionCobro, this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtDiferenciaBruta.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion - Costo + CostoNotasCredito - GestionCobro, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaFacturacion.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        EntradaFacturacion.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Facturas, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(NotasCredito, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        txtCosto.Text = Lfx.Types.Formatting.FormatCurrency(Costo - CostoNotasCredito, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        txtCosto.Tag = "Facturas: " + Lfx.Types.Formatting.FormatCurrency(Costo, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " - Notas de Crédito: " + Lfx.Types.Formatting.FormatCurrency(CostoNotasCredito, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        EntradaGestionCobro.Text = Lfx.Types.Formatting.FormatCurrency(GestionCobro, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        txtDiferenciaBruta.Text = Lfx.Types.Formatting.FormatCurrency(Facturacion - Costo + CostoNotasCredito - GestionCobro, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
 
-                        txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtCostoCapital.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=220) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        txtGastosFijos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=230) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        txtGastosVariables.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=240) AND id_concepto NOT IN (24010) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        txtOtrosEgresos.Text = Lfx.Types.Formatting.FormatCurrency(-(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE importe<0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND id_concepto<>26030 AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
 
                         if (Facturacion == 0)
                                 lblDiferenciaBrutaPct.Text = "N/A";
@@ -1033,7 +1019,7 @@ namespace Lfc.Reportes
                                         - Lfx.Types.Parsing.ParseCurrency(txtGastosFijos.Text)
                                         - Lfx.Types.Parsing.ParseCurrency(txtGastosVariables.Text)
                                         - Lfx.Types.Parsing.ParseCurrency(txtOtrosEgresos.Text),
-                                        this.Workspace.CurrentConfig.Moneda.Decimales);
+                                        Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
 
                         if (Facturacion == 0)
                                 lblDiferenciaNetaPct.Text = "N/A";
@@ -1042,9 +1028,9 @@ namespace Lfc.Reportes
 
 
                         //Ingresos y egresos
-                        txtCobros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE (id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) OR id_concepto=26030 ) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        EntradaIngresosOtros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), this.Workspace.CurrentConfig.Moneda.Decimales);
-                        txtCompraMateriales.Text = Lfx.Types.Formatting.FormatCurrency(-this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'"), this.Workspace.CurrentConfig.Moneda.Decimales);
+                        txtCobros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE (id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=110) OR id_concepto=26030 ) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        EntradaIngresosOtros.Text = Lfx.Types.Formatting.FormatCurrency(Math.Abs(this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE importe>0 AND id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo NOT IN (110, 210, 220, 230, 240, 300)) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'")), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        txtCompraMateriales.Text = Lfx.Types.Formatting.FormatCurrency(-this.Connection.FieldDecimal("SELECT SUM(importe) FROM cajas_movim WHERE id_concepto IN (SELECT id_concepto FROM conceptos WHERE grupo=210) AND fecha BETWEEN '" + Fecha1Sql + "' AND '" + Fecha2Sql + "'"), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
 
                 }
 
@@ -1069,7 +1055,7 @@ namespace Lfc.Reportes
                                 ListViewItem itm = Listado.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
                                 itm.SubItems.Add(Lfx.Types.Formatting.FormatDate(Detalle["fecha"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["concepto"]));
-                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Detalle["importe"]), this.Workspace.CurrentConfig.Moneda.Decimales));
+                                itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Detalle["importe"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["id_caja"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["comprob"]));
                                 itm.SubItems.Add(System.Convert.ToString(Detalle["obs"]));
@@ -1199,7 +1185,7 @@ namespace Lfc.Reportes
                         itm = Listado.Items.Add(System.Convert.ToString("total"));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("Total");
-                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Resultado, this.Workspace.CurrentConfig.Moneda.Decimales));
+                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Resultado, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");
@@ -1257,7 +1243,7 @@ namespace Lfc.Reportes
                         itm = Listado.Items.Add(System.Convert.ToString(idTipo.ToString()));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add(NombreConcepto);
-                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Monto, this.Workspace.CurrentConfig.Moneda.Decimales));
+                        itm.SubItems.Add(Lfx.Types.Formatting.FormatCurrency(Monto, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales));
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");
                         itm.SubItems.Add("-");

@@ -75,9 +75,9 @@ namespace Lfc.Log
                         // 
                         // ListaHistoral
                         // 
-                        this.ListaHistoral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ListaHistoral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ListaHistoral.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ListaHistoral.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColFecha,

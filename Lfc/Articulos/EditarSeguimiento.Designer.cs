@@ -136,7 +136,7 @@ namespace Lfc.Articulos
                         // EtiquetaArticulo
                         // 
                         this.EtiquetaArticulo.AutoEllipsis = true;
-                        this.EtiquetaArticulo.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.EtiquetaArticulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaArticulo.Location = new System.Drawing.Point(24, 28);
                         this.EtiquetaArticulo.Name = "EtiquetaArticulo";
                         this.EtiquetaArticulo.Size = new System.Drawing.Size(584, 24);
@@ -148,7 +148,7 @@ namespace Lfc.Articulos
                         // label1
                         // 
                         this.label1.AutoEllipsis = true;
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label1.Location = new System.Drawing.Point(24, 52);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(584, 36);
@@ -161,7 +161,7 @@ namespace Lfc.Articulos
                         // label2
                         // 
                         this.label2.AutoEllipsis = true;
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Small;
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label2.Location = new System.Drawing.Point(24, 276);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(584, 20);

@@ -57,13 +57,13 @@ namespace Lfc.Comprobantes
 
                 private bool IgnorarEventos = false;
 
-                public override void OnWorkspaceChanged()
+                protected override void OnLoad(EventArgs e)
                 {
-                        if (this.HasWorkspace) {
-                                EntradaTotal.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesFinal;
-                                EntradaProductos.LockPrice = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.CambiaPrecioItemFactura", 0) == 0;
+                        base.OnLoad(e);
+                        if (Lfx.Workspace.Master != null && Lfx.Workspace.Master.CurrentConfig != null) {
+                                EntradaTotal.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal;
+                                EntradaProductos.LockPrice = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.CambiaPrecioItemFactura", 0) == 0;
                         }
-                        base.OnWorkspaceChanged();
                 }
 
                 public override Lfx.Types.OperationResult ValidarControl()
@@ -107,7 +107,7 @@ namespace Lfc.Comprobantes
                         }
 
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
-                        if (Registro.Tipo.MueveStock != 0) {
+                        if (Registro.Tipo.MueveExistencias != 0) {
                                 if (Registro.SituacionOrigen == null || Registro.SituacionDestino == null || Registro.SituacionOrigen.Id == Registro.SituacionDestino.Id) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += "Seleccione la Situación de Origen y de Destino." + Environment.NewLine;
@@ -132,7 +132,7 @@ namespace Lfc.Comprobantes
                         EntradaCliente.Elemento = Comprob.Cliente;
                         Ignorar_EntradaCliente_TextChanged = false;
 
-                        EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Comprob.SubTotal, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Comprob.SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Comprob.Descuento, 2);
                         EntradaInteres.Text = Lfx.Types.Formatting.FormatNumber(Comprob.Recargo, 2);
                         EntradaCuotas.Text = Comprob.Cuotas.ToString();
@@ -230,12 +230,11 @@ namespace Lfc.Comprobantes
                                         NuevoTitulo += " PV " + Registro.PV.ToString("0000");
                         }
 
-                        this.EtiquetaTitulo.Text = NuevoTitulo;
-                        this.Text = "Comprob: " + NuevoTitulo;
+                        this.Text = NuevoTitulo;
                 }
 
 
-                private void BotonObs_Click(object sender, System.EventArgs e)
+                private void EditarObs()
                 {
                         Lui.Forms.AuxForms.TextEdit EditarObs = new Lui.Forms.AuxForms.TextEdit();
                         if (((Lbl.ICamposBaseEstandar)(this.Elemento)).Obs != null)
@@ -252,7 +251,7 @@ namespace Lfc.Comprobantes
                         }
                 }
 
-                private void BotonConvertir_Click(object sender, System.EventArgs e)
+                private void Convertir()
                 {
                         Comprobantes.Convertir FormConvertir = new Comprobantes.Convertir();
                         FormConvertir.OrigenTipo = this.Tipo.Nomenclatura;
@@ -300,7 +299,7 @@ namespace Lfc.Comprobantes
                 private void ProductArray_TotalChanged(System.Object sender, System.EventArgs e)
                 {
                         if (this.TemporaryReadOnly == false)
-                                EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                 }
 
 
@@ -340,7 +339,7 @@ namespace Lfc.Comprobantes
                 }
 
 
-                private void BotonMasDatos_Click(System.Object sender, System.EventArgs e)
+                private void EditarMasDatos()
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         Comprobantes.FormComprobanteMasDatos OFormMasDatos = new Comprobantes.FormComprobanteMasDatos();
@@ -478,6 +477,43 @@ namespace Lfc.Comprobantes
                         Editar.DatosSeguimiento = Prod.DatosSeguimiento;
                         if (Editar.ShowDialog() == DialogResult.OK) {
                                 Prod.DatosSeguimiento = Editar.DatosSeguimiento;
+                        }
+                }
+
+
+                public override Lazaro.Pres.Forms.FormActionCollection GetFormActions()
+                {
+                        Lazaro.Pres.Forms.FormActionCollection Res = base.GetFormActions();
+                        Res.Add(new Lazaro.Pres.Forms.FormAction("Observaciones", "F7", "obs", 20, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        Res.Add(new Lazaro.Pres.Forms.FormAction("Más datos", "F5", "masdatos", 10, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        Res.Add(new Lazaro.Pres.Forms.FormAction("Convertir", "F4", "convertir", 50, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        return Res;
+                }
+
+
+                public override Lfx.Types.OperationResult PerformFormAction(string name)
+                {
+                        switch(name)
+                        {
+                                case "obs":
+                                        EditarObs();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                case "masdatos":
+                                        EditarMasDatos();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                case "convertir":
+                                        Convertir();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                default:
+                                        return base.PerformFormAction(name);
+                        }
+                }
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Comprobantes;
                         }
                 }
         }

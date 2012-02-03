@@ -43,6 +43,11 @@ namespace Lfc
                 public System.Text.StringBuilder ListingContent = new System.Text.StringBuilder();
                 public Lazaro.Pres.Spreadsheet.Workbook Report;
 
+                public FormularioListadoTexto()
+                {
+                        InitializeComponent();
+                }
+
                 public virtual Lfx.Types.OperationResult RefreshList()
                 {
                         return new Lfx.Types.SuccessOperationResult();

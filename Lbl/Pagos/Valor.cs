@@ -35,9 +35,8 @@ using System.Text;
 
 namespace Lbl.Pagos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Valor de Pago",
-                TablaDatos = "pagos_valores",
-                CampoId = "id_valor")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Valor de Pago", Grupo = "Cobros y Pagos")]
+        [Lbl.Atributos.Datos(TablaDatos = "pagos_valores", CampoId = "id_valor")]
         [Lbl.Atributos.Presentacion()]
         public class Valor : ElementoDeDatos
         {
@@ -148,7 +147,7 @@ namespace Lbl.Pagos
                                 Comando.Fields.AddWithValue("nombre", this.Nombre);
 
                         Comando.Fields.AddWithValue("numero", this.Numero);
-                        Comando.Fields.AddWithValue("id_sucursal", this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada);
+                        Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
 
                         Comando.Fields.AddWithValue("importe", this.Importe);
                         Comando.Fields.AddWithValue("obs", this.Obs);

@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Márgen",
-                Grupo = "Artículos",
-                TablaDatos = "margenes",
-                CampoId = "id_margen")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Márgen", Grupo = "Artículos")]
+        [Lbl.Atributos.Datos(TablaDatos = "margenes", CampoId = "id_margen")]
         [Lbl.Atributos.Presentacion()]
 	public class Margen : ElementoDeDatos
 	{

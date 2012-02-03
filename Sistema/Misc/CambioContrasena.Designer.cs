@@ -58,8 +58,8 @@ namespace Lazaro.WinMain.Misc
                         this.Label2 = new Lui.Forms.Label();
                         this.CancelCommandButton = new Lui.Forms.Button();
                         this.OkButton = new Lui.Forms.Button();
-                        this.LowerPanel = new System.Windows.Forms.Panel();
-                        this.panel1 = new System.Windows.Forms.Panel();
+                        this.LowerPanel = new Lui.Forms.ButtonPanel();
+                        this.panel1 = new Lui.Forms.Panel();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.label3 = new Lui.Forms.Label();
                         this.EntradaContrasenaNueva1 = new Lui.Forms.TextBox();
@@ -74,12 +74,12 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaContrasena.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasena.AutoNav = true;
-                        this.EntradaContrasena.AutoTab = true;
                         this.EntradaContrasena.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasena.DecimalPlaces = -1;
+                        this.EntradaContrasena.FieldName = null;
                         this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(312, 136);
                         this.EntradaContrasena.MaxLength = 32767;
@@ -87,67 +87,76 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
+                        this.EntradaContrasena.PlaceholderText = null;
                         this.EntradaContrasena.Prefijo = "";
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.SelectOnFocus = true;
                         this.EntradaContrasena.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasena.Sufijo = "";
-                        this.EntradaContrasena.TabIndex = 1;
+                        this.EntradaContrasena.TabIndex = 3;
                         // 
                         // Label2
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(152, 136);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(164, 24);
-                        this.Label2.TabIndex = 0;
+                        this.Label2.TabIndex = 2;
                         this.Label2.Text = "Contraseña actual";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // CancelCommandButton
                         // 
-                        this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.CancelCommandButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.CancelCommandButton.AutoNav = true;
                         this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(424, 16);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(414, 12);
+                        this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(0);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
+                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.CancelCommandButton.ReadOnly = false;
-                        this.CancelCommandButton.Size = new System.Drawing.Size(108, 32);
+                        this.CancelCommandButton.Size = new System.Drawing.Size(108, 40);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "";
-                        this.CancelCommandButton.TabIndex = 8;
+                        this.CancelCommandButton.TabIndex = 1;
                         this.CancelCommandButton.Text = "Cancelar";
                         this.CancelCommandButton.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // OkButton
                         // 
-                        this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.OkButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+                        this.OkButton.AutoNav = true;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(304, 16);
+                        this.OkButton.Location = new System.Drawing.Point(300, 12);
+                        this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.OkButton.Name = "OkButton";
-                        this.OkButton.Padding = new System.Windows.Forms.Padding(2);
+                        this.OkButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.OkButton.ReadOnly = false;
-                        this.OkButton.Size = new System.Drawing.Size(108, 32);
+                        this.OkButton.Size = new System.Drawing.Size(108, 40);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "";
-                        this.OkButton.TabIndex = 7;
+                        this.OkButton.TabIndex = 0;
                         this.OkButton.Text = "Cambiar";
                         this.OkButton.Click += new System.EventHandler(this.BotonAceptar_Click);
                         // 
                         // LowerPanel
                         // 
-                        this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
+                        this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+                        this.LowerPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
                         this.LowerPanel.Location = new System.Drawing.Point(0, 248);
                         this.LowerPanel.Name = "LowerPanel";
+                        this.LowerPanel.Padding = new System.Windows.Forms.Padding(12);
                         this.LowerPanel.Size = new System.Drawing.Size(546, 64);
-                        this.LowerPanel.TabIndex = 12;
+                        this.LowerPanel.TabIndex = 8;
                         // 
                         // panel1
                         // 
@@ -172,24 +181,24 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // label3
                         // 
-                        this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(136, 68);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(380, 56);
-                        this.label3.TabIndex = 54;
+                        this.label3.TabIndex = 1;
                         this.label3.Text = "Por favor escriba su Contraseña actual y a continuación escriba la Contraseña nue" +
-                            "va. Por su seguridad, debe escribir la contraseña nueva dos veces.";
+    "va. Por su seguridad, debe escribir la contraseña nueva dos veces.";
                         // 
                         // EntradaContrasenaNueva1
                         // 
-                        this.EntradaContrasenaNueva1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaContrasenaNueva1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasenaNueva1.AutoNav = true;
-                        this.EntradaContrasenaNueva1.AutoTab = true;
                         this.EntradaContrasenaNueva1.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasenaNueva1.DecimalPlaces = -1;
+                        this.EntradaContrasenaNueva1.FieldName = null;
                         this.EntradaContrasenaNueva1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasenaNueva1.Location = new System.Drawing.Point(312, 167);
                         this.EntradaContrasenaNueva1.MaxLength = 32767;
@@ -197,32 +206,33 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaContrasenaNueva1.Name = "EntradaContrasenaNueva1";
                         this.EntradaContrasenaNueva1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasenaNueva1.PasswordChar = '*';
+                        this.EntradaContrasenaNueva1.PlaceholderText = null;
                         this.EntradaContrasenaNueva1.Prefijo = "";
                         this.EntradaContrasenaNueva1.ReadOnly = false;
                         this.EntradaContrasenaNueva1.SelectOnFocus = true;
                         this.EntradaContrasenaNueva1.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasenaNueva1.Sufijo = "";
-                        this.EntradaContrasenaNueva1.TabIndex = 3;
+                        this.EntradaContrasenaNueva1.TabIndex = 5;
                         // 
                         // label1
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(152, 167);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(164, 24);
-                        this.label1.TabIndex = 2;
+                        this.label1.TabIndex = 4;
                         this.label1.Text = "Contraseña nueva";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaContrasenaNueva2
                         // 
-                        this.EntradaContrasenaNueva2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaContrasenaNueva2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasenaNueva2.AutoNav = true;
-                        this.EntradaContrasenaNueva2.AutoTab = true;
                         this.EntradaContrasenaNueva2.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaContrasenaNueva2.DecimalPlaces = -1;
+                        this.EntradaContrasenaNueva2.FieldName = null;
                         this.EntradaContrasenaNueva2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasenaNueva2.Location = new System.Drawing.Point(312, 196);
                         this.EntradaContrasenaNueva2.MaxLength = 32767;
@@ -230,33 +240,34 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaContrasenaNueva2.Name = "EntradaContrasenaNueva2";
                         this.EntradaContrasenaNueva2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasenaNueva2.PasswordChar = '*';
+                        this.EntradaContrasenaNueva2.PlaceholderText = null;
                         this.EntradaContrasenaNueva2.Prefijo = "";
                         this.EntradaContrasenaNueva2.ReadOnly = false;
                         this.EntradaContrasenaNueva2.SelectOnFocus = true;
                         this.EntradaContrasenaNueva2.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasenaNueva2.Sufijo = "";
-                        this.EntradaContrasenaNueva2.TabIndex = 5;
+                        this.EntradaContrasenaNueva2.TabIndex = 7;
                         // 
                         // label4
                         // 
                         this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(152, 196);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(164, 24);
-                        this.label4.TabIndex = 4;
+                        this.label4.TabIndex = 6;
                         this.label4.Text = "Repita contraseña ";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Titulo
                         // 
-                        this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Titulo.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Titulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Titulo.Location = new System.Drawing.Point(136, 32);
                         this.Titulo.Name = "Titulo";
                         this.Titulo.Size = new System.Drawing.Size(380, 24);
-                        this.Titulo.TabIndex = 59;
+                        this.Titulo.TabIndex = 0;
                         this.Titulo.Text = "Cambio de Contraseña";
                         this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -275,6 +286,7 @@ namespace Lazaro.WinMain.Misc
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.LowerPanel);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "CambioContrasena";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -294,8 +306,8 @@ namespace Lazaro.WinMain.Misc
                 private Lui.Forms.Button OkButton;
                 private Lui.Forms.TextBox EntradaContrasena;
                 private Lui.Forms.Button CancelCommandButton;
-                private System.Windows.Forms.Panel LowerPanel;
-                private System.Windows.Forms.Panel panel1;
+                private Lui.Forms.ButtonPanel LowerPanel;
+                private Lui.Forms.Panel panel1;
                 private System.Windows.Forms.PictureBox PictureBox1;
                 private Lui.Forms.Label label3;
                 private Lui.Forms.TextBox EntradaContrasenaNueva1;

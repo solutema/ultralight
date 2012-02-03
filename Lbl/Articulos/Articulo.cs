@@ -35,11 +35,8 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Artículo",
-                Grupo = "Artículos",
-                TablaDatos = "articulos",
-                CampoId = "id_articulo",
-                TablaImagenes = "articulos_imagenes")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Artículo", Grupo = "Artículos")]
+        [Lbl.Atributos.Datos(TablaDatos = "articulos", CampoId = "id_articulo", TablaImagenes = "articulos_imagenes")]
         [Lbl.Atributos.Presentacion()]
 	public class Articulo : ElementoDeDatos, IElementoConImagen
 	{
@@ -170,7 +167,7 @@ namespace Lbl.Articulos
 			}
 		}
 
-                public decimal StockMinimo
+                public decimal PuntoDeReposicion
 		{
 			get
 			{
@@ -282,11 +279,11 @@ namespace Lbl.Articulos
 			}
 		}
 
-                public ControlStock ControlStock
+                public ControlExistencias ControlExistencias
 		{
 			get
 			{
-				return (ControlStock)(Registro.Fields["control_stock"].ValueInt);
+				return (ControlExistencias)(Registro.Fields["control_stock"].ValueInt);
 			}
 			set
 			{
@@ -364,14 +361,14 @@ namespace Lbl.Articulos
                         }
                 }
 
-                public decimal StockActual
+                public decimal Existencias
 		{
                         get
                         {
                                 if (this.Connection.SlowLink)
                                         return this.GetFieldValue<decimal>("stock_actual");
                                 else
-                                        return this.ObtenerStockActual();
+                                        return this.ObtenerExistencias();
                         }
 		}
 
@@ -385,40 +382,40 @@ namespace Lbl.Articulos
 
                 public decimal ObtenerCosto()
                 {
-                        if (this.ControlStock == Articulos.ControlStock.Compuesto && this.Receta != null) {
+                        if (this.ControlExistencias == Articulos.ControlExistencias.Compuesto && this.Receta != null) {
                                 return Receta.Costo;
                         } else {
                                 return this.Costo;
                         }
                 }
 
-                public decimal ObtenerStockActual()
+                public decimal ObtenerExistencias()
                 {
-                        switch(this.ControlStock) {
-                                case Articulos.ControlStock.No:
+                        switch(this.ControlExistencias) {
+                                case Articulos.ControlExistencias.No:
                                         return 0;
-                                case Articulos.ControlStock.Normal:
+                                case Articulos.ControlExistencias.Normal:
                                         return this.Connection.FieldDecimal(@"SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion IN (SELECT id_situacion FROM articulos_situaciones WHERE cuenta_stock<>0)");
-                                case Articulos.ControlStock.Compuesto:
+                                case Articulos.ControlExistencias.Compuesto:
                                         // Calculo el stock según el elemento de la receta que se acabe primero
                                         return this.Connection.FieldDecimal(@"SELECT MIN(articulos.stock_actual / articulos_recetas.cantidad) FROM articulos_recetas, articulos WHERE articulos_recetas.id_item=articulos.id_articulo AND articulos_recetas.id_articulo=" + this.Id.ToString());
                                 default:
-                                        throw new Lfx.Types.DomainException("ObtenerStockActual(): No se puede calcular el stock para " + this.ControlStock.ToString());
+                                        throw new Lfx.Types.DomainException("ObtenerExistencias(): No se puede calcular el stock para " + this.ControlExistencias.ToString());
                         }
                 }
 
-                public decimal ObtenerStockActual(Situacion situacion)
+                public decimal ObtenerExistencias(Situacion situacion)
 		{
-                        switch (this.ControlStock) {
-                                case Articulos.ControlStock.No:
+                        switch (this.ControlExistencias) {
+                                case Articulos.ControlExistencias.No:
                                         return 0;
-                                case Articulos.ControlStock.Normal:
+                                case Articulos.ControlExistencias.Normal:
                                         return this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacion.Id.ToString());
-                                case Articulos.ControlStock.Compuesto:
+                                case Articulos.ControlExistencias.Compuesto:
                                         // Calculo el stock según el elemento de la receta que se acabe primero
                                         decimal CantMin = decimal.MaxValue;
                                         foreach (ItemReceta Itm in this.Receta) {
-                                                decimal Cant = Itm.Articulo.ObtenerStockActual(situacion) / Itm.Cantidad;
+                                                decimal Cant = Itm.Articulo.ObtenerExistencias(situacion) / Itm.Cantidad;
                                                 if (Cant < CantMin)
                                                         CantMin = Cant;
                                         }
@@ -427,20 +424,20 @@ namespace Lbl.Articulos
                                         else
                                                 return CantMin;
                                 default:
-                                        throw new Lfx.Types.DomainException("ObtenerStockActual(Situacion): No se puede calcular el stock para " + this.ControlStock.ToString());
+                                        throw new Lfx.Types.DomainException("ObtenerExistencias(Situacion): No se puede calcular el stock para " + this.ControlExistencias.ToString());
                         }
 		}
 
 
-                public void MoverStock(Lbl.Comprobantes.ComprobanteConArticulos comprob, decimal cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino, Lbl.Articulos.ColeccionDatosSeguimiento seguimiento)
+                public void MoverExistencias(Lbl.Comprobantes.ComprobanteConArticulos comprob, decimal cantidad, string obs, Situacion situacionOrigen, Situacion situacionDestino, Lbl.Articulos.ColeccionDatosSeguimiento seguimiento)
 		{
                         decimal Saldo;
 
-                        if (this.ControlStock != Articulos.ControlStock.No) {
-                                decimal CantidadEntranteOSalienteDeStock = 0;
+                        if (this.ControlExistencias != Articulos.ControlExistencias.No) {
+                                decimal CantidadEntranteOSaliente = 0;
 
                                 // stock saliente (situación de origen)
-                                if (situacionOrigen != null && situacionOrigen.CuentaStock) {
+                                if (situacionOrigen != null && situacionOrigen.CuentaExistencias) {
                                         int Existe = this.Connection.FieldInt("SELECT COUNT(id_articulo) FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionOrigen.Id.ToString());
                                         if (Existe == 0) {
                                                 // No existen datos de stock para esta situación... la creo
@@ -475,11 +472,11 @@ namespace Lbl.Articulos
                                                 }
                                         }
 
-                                        CantidadEntranteOSalienteDeStock -= cantidad;
+                                        CantidadEntranteOSaliente -= cantidad;
                                 }
 
                                 // stock entrante (situación de destino)
-                                if (situacionDestino != null && situacionDestino.CuentaStock) {
+                                if (situacionDestino != null && situacionDestino.CuentaExistencias) {
                                         int ExisteSituacion = this.Connection.FieldInt("SELECT COUNT(id_articulo) FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacionDestino.Id.ToString());
                                         if (ExisteSituacion == 0) {
                                                 // No existen datos de stock para esta situación... la creo
@@ -524,23 +521,23 @@ namespace Lbl.Articulos
                                                 }
                                         }
 
-                                        CantidadEntranteOSalienteDeStock += cantidad;
+                                        CantidadEntranteOSaliente += cantidad;
                                 }
 
                                 // Actualizo el stock actual
-                                if (CantidadEntranteOSalienteDeStock != 0) {
+                                if (CantidadEntranteOSaliente != 0) {
                                         qGen.Update ActualizarCantidad = new qGen.Update("articulos");
-                                        ActualizarCantidad.Fields.AddWithValue("stock_actual", new qGen.SqlExpression(@"""stock_actual""+" + Lfx.Types.Formatting.FormatStockSql(CantidadEntranteOSalienteDeStock)));
+                                        ActualizarCantidad.Fields.AddWithValue("stock_actual", new qGen.SqlExpression(@"""stock_actual""+" + Lfx.Types.Formatting.FormatStockSql(CantidadEntranteOSaliente)));
                                         ActualizarCantidad.WhereClause = new qGen.Where("id_articulo", this.Id);
                                         this.Connection.Execute(ActualizarCantidad);
 
                                         // Si ees un artículo compuesto
                                         // Propagar los cambios de stock hacia abajo.
                                         // Es decir, hacer movimientos de stock de los ingredientes (sub artículos)
-                                        if (this.ControlStock == Articulos.ControlStock.Compuesto) {
+                                        if (this.ControlExistencias == Articulos.ControlExistencias.Compuesto) {
                                                 string ObsSubItems = "Movim. s/salida de " + this.ToString();
                                                 foreach (ItemReceta Itm in this.Receta) {
-                                                        Itm.Articulo.MoverStock(comprob, Itm.Cantidad * cantidad, ObsSubItems, situacionOrigen, situacionDestino, seguimiento);
+                                                        Itm.Articulo.MoverExistencias(comprob, Itm.Cantidad * cantidad, ObsSubItems, situacionOrigen, situacionDestino, seguimiento);
                                                 }
                                         }
 
@@ -550,7 +547,7 @@ namespace Lbl.Articulos
                                         if (SuperArts != null) {
                                                 foreach (Articulo SuperArt in SuperArts) {
                                                         qGen.Update UpdateSuperArt = new qGen.Update("articulos");
-                                                        UpdateSuperArt.Fields.AddWithValue("stock_actual", SuperArt.ObtenerStockActual());
+                                                        UpdateSuperArt.Fields.AddWithValue("stock_actual", SuperArt.ObtenerExistencias());
                                                         UpdateSuperArt.WhereClause = new qGen.Where("id_articulo", SuperArt.Id);
                                                         this.Connection.Execute(UpdateSuperArt);
                                                 }
@@ -649,7 +646,7 @@ namespace Lbl.Articulos
                         this.Margen = null;
                         this.Proveedor = null;
                         this.Unidad = "u";
-                        this.ControlStock = Articulos.ControlStock.Normal;
+                        this.ControlExistencias = Articulos.ControlExistencias.Normal;
                         int MargenPredet = this.Connection.FieldInt("SELECT id_margen FROM margenes WHERE predet=1 AND estado<50");
                         if (MargenPredet > 0)
                                 this.Margen = new Margen(this.Connection, MargenPredet);
@@ -793,11 +790,11 @@ namespace Lbl.Articulos
                         
                         Comando.Fields.AddWithValue("pvp", this.Pvp);
                         //control_stock, stock_minimo, unidad_stock, rendimiento, unidad_rend, estado, web, fecha_creado, fecha_precio
-                        Comando.Fields.AddWithValue("control_stock", (int)(this.ControlStock));
+                        Comando.Fields.AddWithValue("control_stock", (int)(this.ControlExistencias));
                         Comando.Fields.AddWithValue("seguimiento", (int)(this.Seguimiento));
-                        Comando.Fields.AddWithValue("stock_minimo", this.StockMinimo);
+                        Comando.Fields.AddWithValue("stock_minimo", this.PuntoDeReposicion);
                         if (this.Existe)
-                                Comando.Fields.AddWithValue("stock_actual", this.ObtenerStockActual());
+                                Comando.Fields.AddWithValue("stock_actual", this.ObtenerExistencias());
                         Comando.Fields.AddWithValue("unidad_stock", this.Unidad);
                         Comando.Fields.AddWithValue("rendimiento", this.Rendimiento);
                         Comando.Fields.AddWithValue("unidad_rend", this.UnidadRendimiento);
@@ -808,7 +805,7 @@ namespace Lbl.Articulos
                                 case Publicacion.Nunca:
                                         Comando.Fields.AddWithValue("web", 0);
                                         break;
-                                case Publicacion.SoloSiHayStockOPedidos:
+                                case Publicacion.SoloSiHayExistenciasOPedidos:
                                         Comando.Fields.AddWithValue("web", 1);
                                         break;
                                 case Publicacion.Siempre:
@@ -858,7 +855,7 @@ namespace Lbl.Articulos
                         this.Connection.Execute(EliminarReceta);
 
                         // Guardar la receta del artículo, si corresponde
-                        if (this.ControlStock == Articulos.ControlStock.Compuesto && this.Receta != null) {
+                        if (this.ControlExistencias == Articulos.ControlExistencias.Compuesto && this.Receta != null) {
                                 foreach (ItemReceta Itm in this.Receta) {
                                         qGen.Insert InsertarItemReceta = new qGen.Insert(this.Connection, "articulos_recetas");
                                         InsertarItemReceta.Fields.AddWithValue("id_articulo", this.Id);

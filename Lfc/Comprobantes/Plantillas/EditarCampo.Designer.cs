@@ -94,7 +94,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // Label15
                         // 
-                        this.Label15.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label15.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label15.Location = new System.Drawing.Point(24, 56);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(80, 24);
@@ -105,7 +105,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaTexto
                         // 
                         this.EntradaTexto.AutoNav = true;
-                        this.EntradaTexto.AutoTab = true;
                         this.EntradaTexto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaTexto.DecimalPlaces = -1;
                         this.EntradaTexto.FieldName = null;
@@ -127,7 +126,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(24, 24);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(80, 24);
@@ -137,7 +136,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(24, 88);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(80, 24);
@@ -148,7 +147,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaX
                         // 
                         this.EntradaX.AutoNav = true;
-                        this.EntradaX.AutoTab = true;
                         this.EntradaX.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaX.DecimalPlaces = -1;
                         this.EntradaX.FieldName = null;
@@ -170,7 +168,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaY
                         // 
                         this.EntradaY.AutoNav = true;
-                        this.EntradaY.AutoTab = true;
                         this.EntradaY.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaY.DecimalPlaces = -1;
                         this.EntradaY.FieldName = null;
@@ -191,7 +188,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(164, 88);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(20, 24);
@@ -203,7 +200,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaFuenteNombre.AlwaysExpanded = false;
                         this.EntradaFuenteNombre.AutoNav = true;
-                        this.EntradaFuenteNombre.AutoTab = true;
                         this.EntradaFuenteNombre.FieldName = null;
                         this.EntradaFuenteNombre.Location = new System.Drawing.Point(108, 120);
                         this.EntradaFuenteNombre.MaxLength = 32767;
@@ -224,7 +220,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(24, 120);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(80, 24);
@@ -235,7 +231,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaAlto
                         // 
                         this.EntradaAlto.AutoNav = true;
-                        this.EntradaAlto.AutoTab = true;
                         this.EntradaAlto.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAlto.DecimalPlaces = -1;
                         this.EntradaAlto.FieldName = null;
@@ -257,7 +252,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaAncho
                         // 
                         this.EntradaAncho.AutoNav = true;
-                        this.EntradaAncho.AutoTab = true;
                         this.EntradaAncho.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAncho.DecimalPlaces = -1;
                         this.EntradaAncho.FieldName = null;
@@ -278,7 +272,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label5
                         // 
-                        this.label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(380, 88);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(16, 24);
@@ -288,7 +282,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(264, 88);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(64, 24);
@@ -299,7 +293,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaFuenteTamano
                         // 
                         this.EntradaFuenteTamano.AutoNav = true;
-                        this.EntradaFuenteTamano.AutoTab = true;
                         this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaFuenteTamano.DecimalPlaces = -1;
                         this.EntradaFuenteTamano.FieldName = null;
@@ -322,9 +315,9 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaAlienacionHorizontal
                         // 
-                        this.EntradaAlienacionHorizontal.AlwaysExpanded = false;
+                        this.EntradaAlienacionHorizontal.AlwaysExpanded = true;
                         this.EntradaAlienacionHorizontal.AutoNav = true;
-                        this.EntradaAlienacionHorizontal.AutoTab = true;
+                        this.EntradaAlienacionHorizontal.AutoSize = true;
                         this.EntradaAlienacionHorizontal.FieldName = null;
                         this.EntradaAlienacionHorizontal.Location = new System.Drawing.Point(108, 152);
                         this.EntradaAlienacionHorizontal.MaxLength = 32767;
@@ -336,13 +329,13 @@ namespace Lfc.Comprobantes.Plantillas
         "Izquierda|Near",
         "Centro|Center",
         "Derecha|Far"};
-                        this.EntradaAlienacionHorizontal.Size = new System.Drawing.Size(140, 24);
+                        this.EntradaAlienacionHorizontal.Size = new System.Drawing.Size(140, 51);
                         this.EntradaAlienacionHorizontal.TabIndex = 16;
                         this.EntradaAlienacionHorizontal.TextKey = "Near";
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(24, 152);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(80, 24);
@@ -352,9 +345,9 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaAlienacionVertical
                         // 
-                        this.EntradaAlienacionVertical.AlwaysExpanded = false;
+                        this.EntradaAlienacionVertical.AlwaysExpanded = true;
                         this.EntradaAlienacionVertical.AutoNav = true;
-                        this.EntradaAlienacionVertical.AutoTab = true;
+                        this.EntradaAlienacionVertical.AutoSize = true;
                         this.EntradaAlienacionVertical.FieldName = null;
                         this.EntradaAlienacionVertical.Location = new System.Drawing.Point(256, 152);
                         this.EntradaAlienacionVertical.MaxLength = 32767;
@@ -366,19 +359,18 @@ namespace Lfc.Comprobantes.Plantillas
         "Arriba|Near",
         "Centro|Center",
         "Abajo|Far"};
-                        this.EntradaAlienacionVertical.Size = new System.Drawing.Size(140, 24);
+                        this.EntradaAlienacionVertical.Size = new System.Drawing.Size(140, 51);
                         this.EntradaAlienacionVertical.TabIndex = 17;
                         this.EntradaAlienacionVertical.TextKey = "Near";
                         // 
                         // EntradaAnchoBorde
                         // 
                         this.EntradaAnchoBorde.AutoNav = true;
-                        this.EntradaAnchoBorde.AutoTab = true;
                         this.EntradaAnchoBorde.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaAnchoBorde.DecimalPlaces = -1;
                         this.EntradaAnchoBorde.FieldName = null;
                         this.EntradaAnchoBorde.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaAnchoBorde.Location = new System.Drawing.Point(108, 216);
+                        this.EntradaAnchoBorde.Location = new System.Drawing.Point(108, 264);
                         this.EntradaAnchoBorde.MaxLength = 32767;
                         this.EntradaAnchoBorde.MultiLine = false;
                         this.EntradaAnchoBorde.Name = "EntradaAnchoBorde";
@@ -394,8 +386,8 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label8.Location = new System.Drawing.Point(24, 216);
+                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label8.Location = new System.Drawing.Point(24, 264);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(80, 24);
                         this.label8.TabIndex = 20;
@@ -404,9 +396,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // ColorFondo
                         // 
-                        this.ColorFondo.Location = new System.Drawing.Point(108, 252);
+                        this.ColorFondo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                        this.ColorFondo.Location = new System.Drawing.Point(104, 304);
                         this.ColorFondo.Name = "ColorFondo";
-                        this.ColorFondo.Size = new System.Drawing.Size(72, 24);
+                        this.ColorFondo.Size = new System.Drawing.Size(84, 28);
                         this.ColorFondo.TabIndex = 22;
                         this.ColorFondo.Text = "Fondo";
                         this.ColorFondo.UseVisualStyleBackColor = true;
@@ -414,9 +407,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // ColorTexto
                         // 
-                        this.ColorTexto.Location = new System.Drawing.Point(192, 252);
+                        this.ColorTexto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                        this.ColorTexto.Location = new System.Drawing.Point(208, 304);
                         this.ColorTexto.Name = "ColorTexto";
-                        this.ColorTexto.Size = new System.Drawing.Size(72, 24);
+                        this.ColorTexto.Size = new System.Drawing.Size(80, 28);
                         this.ColorTexto.TabIndex = 23;
                         this.ColorTexto.Text = "Texto";
                         this.ColorTexto.UseVisualStyleBackColor = true;
@@ -424,9 +418,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // ColorBorde
                         // 
-                        this.ColorBorde.Location = new System.Drawing.Point(276, 252);
+                        this.ColorBorde.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                        this.ColorBorde.Location = new System.Drawing.Point(304, 304);
                         this.ColorBorde.Name = "ColorBorde";
-                        this.ColorBorde.Size = new System.Drawing.Size(72, 24);
+                        this.ColorBorde.Size = new System.Drawing.Size(84, 28);
                         this.ColorBorde.TabIndex = 24;
                         this.ColorBorde.Text = "Borde";
                         this.ColorBorde.UseVisualStyleBackColor = true;
@@ -434,11 +429,11 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaAjusteTexto
                         // 
-                        this.EntradaAjusteTexto.AlwaysExpanded = false;
+                        this.EntradaAjusteTexto.AlwaysExpanded = true;
                         this.EntradaAjusteTexto.AutoNav = true;
-                        this.EntradaAjusteTexto.AutoTab = true;
+                        this.EntradaAjusteTexto.AutoSize = true;
                         this.EntradaAjusteTexto.FieldName = null;
-                        this.EntradaAjusteTexto.Location = new System.Drawing.Point(108, 184);
+                        this.EntradaAjusteTexto.Location = new System.Drawing.Point(108, 216);
                         this.EntradaAjusteTexto.MaxLength = 32767;
                         this.EntradaAjusteTexto.Name = "EntradaAjusteTexto";
                         this.EntradaAjusteTexto.Padding = new System.Windows.Forms.Padding(2);
@@ -447,14 +442,14 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAjusteTexto.SetData = new string[] {
         "Sólo un renglon|0",
         "Fluir texto hacia abajo|1"};
-                        this.EntradaAjusteTexto.Size = new System.Drawing.Size(288, 24);
+                        this.EntradaAjusteTexto.Size = new System.Drawing.Size(288, 36);
                         this.EntradaAjusteTexto.TabIndex = 19;
                         this.EntradaAjusteTexto.TextKey = "0";
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label9.Location = new System.Drawing.Point(24, 184);
+                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label9.Location = new System.Drawing.Point(24, 216);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(80, 24);
                         this.label9.TabIndex = 18;
@@ -465,7 +460,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaFormato.AlwaysExpanded = false;
                         this.EntradaFormato.AutoNav = true;
-                        this.EntradaFormato.AutoTab = true;
                         this.EntradaFormato.Enabled = false;
                         this.EntradaFormato.FieldName = null;
                         this.EntradaFormato.Location = new System.Drawing.Point(108, 56);
@@ -488,7 +482,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // EditarCampo
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(542, 380);
+                        this.ClientSize = new System.Drawing.Size(542, 410);
                         this.Controls.Add(this.EntradaAjusteTexto);
                         this.Controls.Add(this.label9);
                         this.Controls.Add(this.ColorBorde);
@@ -541,6 +535,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Controls.SetChildIndex(this.label9, 0);
                         this.Controls.SetChildIndex(this.EntradaAjusteTexto, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
                 #endregion

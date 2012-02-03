@@ -38,10 +38,8 @@ namespace Lbl.Tareas
         /// <summary>
         /// Representa una novedad de una tarea.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Novedad",
-                Grupo = "Tareas",
-                TablaDatos = "tickets_eventos",
-                CampoId = "id_evento")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Novedad", Grupo = "Tareas")]
+        [Lbl.Atributos.Datos(TablaDatos = "tickets_eventos", CampoId = "id_evento")]
         [Lbl.Atributos.Presentacion()]
         public class Novedad : ElementoDeDatos
         {

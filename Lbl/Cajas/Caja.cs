@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Cajas
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Caja",
-                Grupo = "Cajas",
-                TablaDatos = "cajas",
-                CampoId = "id_caja")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Caja", Grupo = "Cajas")]
+        [Lbl.Atributos.Datos(TablaDatos = "cajas", CampoId = "id_caja")]
         [Lbl.Atributos.Presentacion()]
 	public class Caja : ElementoDeDatos, Lbl.ICamposBaseEstandar, Lbl.ICuenta
 	{

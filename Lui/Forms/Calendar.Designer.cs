@@ -78,7 +78,7 @@ namespace Lui.Forms
                         // lblMes
                         // 
                         this.EtiquetaMes.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.EtiquetaMes.BackColor = Lfx.Config.Display.CurrentTemplate.ControlBackground;
+                        this.EtiquetaMes.BackColor = this.DisplayStyle.BackgroundColor;
                         this.EtiquetaMes.Location = new System.Drawing.Point(8, 8);
                         this.EtiquetaMes.Name = "lblMes";
                         this.EtiquetaMes.Size = new System.Drawing.Size(220, 24);
@@ -89,7 +89,6 @@ namespace Lui.Forms
                         // lblDia7
                         // 
                         this.EtiquetaDia7.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.EtiquetaDia7.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
                         this.EtiquetaDia7.Location = new System.Drawing.Point(200, 36);
                         this.EtiquetaDia7.Name = "lblDia7";
                         this.EtiquetaDia7.Size = new System.Drawing.Size(28, 20);
@@ -100,7 +99,6 @@ namespace Lui.Forms
                         // lblDia6
                         // 
                         this.EtiquetaDia6.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.EtiquetaDia6.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
                         this.EtiquetaDia6.Location = new System.Drawing.Point(168, 36);
                         this.EtiquetaDia6.Name = "lblDia6";
                         this.EtiquetaDia6.Size = new System.Drawing.Size(28, 20);
@@ -111,7 +109,6 @@ namespace Lui.Forms
                         // lblDia5
                         // 
                         this.EtiquetaDia5.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.EtiquetaDia5.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
                         this.EtiquetaDia5.Location = new System.Drawing.Point(136, 36);
                         this.EtiquetaDia5.Name = "lblDia5";
                         this.EtiquetaDia5.Size = new System.Drawing.Size(28, 20);
@@ -122,7 +119,6 @@ namespace Lui.Forms
                         // lblDia4
                         // 
                         this.EtiquetaDia4.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.EtiquetaDia4.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
                         this.EtiquetaDia4.Location = new System.Drawing.Point(104, 36);
                         this.EtiquetaDia4.Name = "lblDia4";
                         this.EtiquetaDia4.Size = new System.Drawing.Size(28, 20);
@@ -133,7 +129,6 @@ namespace Lui.Forms
                         // lblDia3
                         // 
                         this.EtiquetaDia3.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.EtiquetaDia3.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
                         this.EtiquetaDia3.Location = new System.Drawing.Point(72, 36);
                         this.EtiquetaDia3.Name = "lblDia3";
                         this.EtiquetaDia3.Size = new System.Drawing.Size(28, 20);
@@ -144,7 +139,6 @@ namespace Lui.Forms
                         // lblDia2
                         // 
                         this.EtiquetaDia2.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.EtiquetaDia2.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
                         this.EtiquetaDia2.Location = new System.Drawing.Point(40, 36);
                         this.EtiquetaDia2.Name = "lblDia2";
                         this.EtiquetaDia2.Size = new System.Drawing.Size(28, 20);
@@ -155,7 +149,6 @@ namespace Lui.Forms
                         // lblDia1
                         // 
                         this.EtiquetaDia1.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.EtiquetaDia1.BackColor = System.Drawing.Color.FromArgb(System.Convert.ToByte(240), System.Convert.ToByte(236), System.Convert.ToByte(236));
                         this.EtiquetaDia1.Location = new System.Drawing.Point(8, 36);
                         this.EtiquetaDia1.Name = "lblDia1";
                         this.EtiquetaDia1.Size = new System.Drawing.Size(28, 20);
@@ -188,8 +181,6 @@ namespace Lui.Forms
                         this.Size = new System.Drawing.Size(236, 212);
                         this.ResumeLayout(false);
 
-                        base.GotFocus += new System.EventHandler(Calendar_GotFocus);
-                        base.LostFocus += new System.EventHandler(Calendar_LostFocus);
                         base.Resize += new System.EventHandler(Calendar_Resize);
                         base.KeyDown += new System.Windows.Forms.KeyEventHandler(Calendar_KeyDown);
                 }

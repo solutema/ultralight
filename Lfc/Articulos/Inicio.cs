@@ -46,25 +46,6 @@ namespace Lfc.Articulos
 
                 public Inicio()
                 {
-                        string Cod1 = "Código 1", Cod2 = "Código 2", Cod3 = "Código 3", Cod4 = "Código 4";
-                        if (this.HasWorkspace) {
-                                Lfx.Data.Row CodRow = this.Connection.Tables["articulos_codigos"].FastRows[1];
-                                if (CodRow != null)
-                                        Cod1 = CodRow["nombre"].ToString();
-                                CodRow = this.Connection.Tables["articulos_codigos"].FastRows[2];
-                                if (CodRow != null)
-                                        Cod2 = CodRow["nombre"].ToString();
-                                CodRow = this.Connection.Tables["articulos_codigos"].FastRows[3];
-                                if (CodRow != null)
-                                        Cod3 = CodRow["nombre"].ToString();
-                                CodRow = this.Connection.Tables["articulos_codigos"].FastRows[4];
-                                if (CodRow != null)
-                                        Cod4 = CodRow["nombre"].ToString();
-
-                                // Cargo la tabla en memoria
-                                this.Connection.Tables["articulos_codigos"].PreLoad();
-                        }
-
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Articulos.Articulo),
@@ -84,15 +65,15 @@ namespace Lfc.Articulos
 				        new Lazaro.Pres.Field("articulos.pedido", "Pedidos", Lfx.Data.InputFieldTypes.Numeric, 96),
 				        new Lazaro.Pres.Field("articulos.apedir", "A Pedir", Lfx.Data.InputFieldTypes.Numeric, 96),
 				        new Lazaro.Pres.Field("articulos.destacado", "Destacado", Lfx.Data.InputFieldTypes.Bool, 0),
-				        new Lazaro.Pres.Field("articulos.codigo1", Cod1, Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lazaro.Pres.Field("articulos.codigo2", Cod2, Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lazaro.Pres.Field("articulos.codigo3", Cod3, Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("articulos.codigo1", "Código 1", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("articulos.codigo2", "Código 2", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("articulos.codigo3", "Código 3", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("articulos_categorias.nombre AS categorias_nombre", "Categoría", Lfx.Data.InputFieldTypes.Text, 120)
 			        },
 
                                 ExtraSearchColumns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lazaro.Pres.Field("articulos.codigo4", Cod4, Lfx.Data.InputFieldTypes.Text, 0),
+				        new Lazaro.Pres.Field("articulos.codigo4", "Código 4", Lfx.Data.InputFieldTypes.Text, 0),
 				        new Lazaro.Pres.Field("articulos.descripcion", "Descripción", Lfx.Data.InputFieldTypes.Memo, 0),
 				        new Lazaro.Pres.Field("articulos.descripcion2", "Descripción Extendida", Lfx.Data.InputFieldTypes.Memo, 0),
 				        new Lazaro.Pres.Field("articulos.obs", "Observaciones", Lfx.Data.InputFieldTypes.Memo, 0)

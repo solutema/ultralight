@@ -33,46 +33,28 @@ namespace Lui.Forms
 {
 	partial class ChildForm
 	{
-		/// <summary>
-		/// Variable del diseñador requerida.
-		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		// Limpiar los recursos que se estén utilizando.
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-
-                        base.Dispose(disposing);
-                }
 
 		#region Código generado por el Diseñador de Windows Forms
 
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido del método con el editor de código.
-		/// </summary>
 		private void InitializeComponent()
 		{
-                        this.components = new System.ComponentModel.Container();
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChildForm));
                         this.SuspendLayout();
                         // 
                         // ChildForm
                         // 
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.BackColor = System.Drawing.SystemColors.Control;
+                        this.ClientSize = new System.Drawing.Size(792, 473);
+                        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.MaximizeBox = true;
                         this.MinimizeBox = true;
                         this.Name = "ChildForm";
                         this.Text = "ChildForm";
                         this.Load += new System.EventHandler(this.ChildForm_Load);
-                        this.Activated += new System.EventHandler(this.ChildForm_Activated);
-                        this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChildForm_FormClosing);
                         this.ResumeLayout(false);
-
 		}
 
 		#endregion

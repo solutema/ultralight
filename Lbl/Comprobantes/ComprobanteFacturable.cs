@@ -31,9 +31,8 @@
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Comprobante Facturable",
-                TablaDatos = "comprob",
-                CampoId = "id_comprob")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Comprobante Facturable")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob")]
         [Lbl.Atributos.Presentacion()]
         public class ComprobanteFacturable : ComprobanteConArticulos
         {

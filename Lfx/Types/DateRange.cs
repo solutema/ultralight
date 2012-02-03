@@ -51,12 +51,27 @@ namespace Lfx.Types
                 public bool AllowPast { get; set; }
                 public bool AllowFuture { get; set; }
 
-                public DateRange(string rep)
+                public DateRange()
                 {
                         this.AllowFuture = false;
                         this.AllowPast = true;
+                }
+
+                public DateRange(string rep)
+                        : this()
+                {
                         this.Rep = rep;
                 }
+
+
+                public DateRange(DateTime from, DateTime to)
+                        : this()
+                {
+                        this.Rep = "-";
+                        this.From = from;
+                        this.To = to;
+                }
+
 
                 public bool HasRange
                 {

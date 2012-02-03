@@ -75,7 +75,6 @@ namespace Lcc.Edicion
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImagen.AutoSize = true;
-                        this.EntradaImagen.AutoNav = true;
                         this.EntradaImagen.Location = new System.Drawing.Point(8, 8);
                         this.EntradaImagen.Name = "EntradaImagen";
                         this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);

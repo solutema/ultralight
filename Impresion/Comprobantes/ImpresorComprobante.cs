@@ -128,7 +128,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         ImprimiLocal = false;
 
                                         // Lo mando a imprimir al servidor fiscal
-                                        this.Workspace.DefaultScheduler.AddTask("IMPRIMIR " + this.Elemento.Id.ToString(), "fiscal" + this.Comprobante.PV.ToString(), Impresora.Estacion);
+                                        Lfx.Workspace.Master.DefaultScheduler.AddTask("IMPRIMIR " + this.Elemento.Id.ToString(), "fiscal" + this.Comprobante.PV.ToString(), Impresora.Estacion);
 
                                         //Espero hasta que la factura está impresa o hasta que pasen X segundos
                                         System.DateTime FinEsperaFiscal = System.DateTime.Now.AddSeconds(90);
@@ -183,7 +183,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                 ImprimiLocal = false;
 
                                                 // Lo mando a imprimir a la estación remota
-                                                this.Workspace.DefaultScheduler.AddTask("IMPRIMIR " + this.Elemento.GetType().ToString() + " " + this.Elemento.Id.ToString() + " EN " + this.Impresora.Dispositivo, "lazaro", Impresora.Estacion);
+                                                Lfx.Workspace.Master.DefaultScheduler.AddTask("IMPRIMIR " + this.Elemento.GetType().ToString() + " " + this.Elemento.Id.ToString() + " EN " + this.Impresora.Dispositivo, "lazaro", Impresora.Estacion);
 
                                                 if (Comprobante.Impreso == false) {
                                                         //Espero hasta que la factura está impresa o hasta que pasen X segundos
@@ -261,7 +261,10 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 case "IVA":
                                 case "CLIENTE.IVA":
-                                        return this.Comprobante.Cliente.SituacionTributaria.ToString();
+                                        if (this.Comprobante.Cliente.SituacionTributaria == null)
+                                                return "Consumidor Final";
+                                        else
+                                                return this.Comprobante.Cliente.SituacionTributaria.ToString();
 
                                 case "CLIENTE.ID":
                                         return this.Comprobante.Cliente.Id.ToString();

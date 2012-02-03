@@ -90,7 +90,6 @@ namespace Lfc.Cajas
                         // EntradaNumero
                         // 
                         this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.AutoTab = true;
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
                         this.EntradaNumero.FieldName = null;
@@ -112,7 +111,7 @@ namespace Lfc.Cajas
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(0, 152);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(120, 24);
@@ -122,7 +121,7 @@ namespace Lfc.Cajas
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 120);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
@@ -135,10 +134,10 @@ namespace Lfc.Cajas
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.AutoNav = true;
-                        this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.DataValueField = "id_banco";
+                        this.EntradaBanco.ExtraDetailFields = "";
                         this.EntradaBanco.FieldName = null;
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
@@ -161,7 +160,6 @@ namespace Lfc.Cajas
                         this.EntradaTipo.AlwaysExpanded = true;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(124, 64);
                         this.EntradaTipo.MaxLength = 32767;
@@ -180,7 +178,7 @@ namespace Lfc.Cajas
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(0, 64);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(120, 24);
@@ -193,7 +191,6 @@ namespace Lfc.Cajas
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.FieldName = null;
@@ -215,7 +212,7 @@ namespace Lfc.Cajas
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 0);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(120, 24);
@@ -225,7 +222,7 @@ namespace Lfc.Cajas
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(0, 184);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(120, 24);
@@ -236,10 +233,10 @@ namespace Lfc.Cajas
                         // EntradaMoneda
                         // 
                         this.EntradaMoneda.AutoNav = true;
-                        this.EntradaMoneda.AutoTab = true;
                         this.EntradaMoneda.CanCreate = true;
                         this.EntradaMoneda.DataTextField = "nombre";
                         this.EntradaMoneda.DataValueField = "id_moneda";
+                        this.EntradaMoneda.ExtraDetailFields = "";
                         this.EntradaMoneda.FieldName = null;
                         this.EntradaMoneda.Filter = "";
                         this.EntradaMoneda.FreeTextCode = "";
@@ -259,7 +256,6 @@ namespace Lfc.Cajas
                         // EntradaClaveBancaria
                         // 
                         this.EntradaClaveBancaria.AutoNav = true;
-                        this.EntradaClaveBancaria.AutoTab = true;
                         this.EntradaClaveBancaria.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaClaveBancaria.DecimalPlaces = -1;
                         this.EntradaClaveBancaria.FieldName = null;
@@ -278,11 +274,11 @@ namespace Lfc.Cajas
                         this.EntradaClaveBancaria.Sufijo = "";
                         this.EntradaClaveBancaria.TabIndex = 13;
                         // 
-                        // label5
+                        // EtiquetaClaveBancaria
                         // 
-                        this.EtiquetaClaveBancaria.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaClaveBancaria.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaClaveBancaria.Location = new System.Drawing.Point(0, 216);
-                        this.EtiquetaClaveBancaria.Name = "label5";
+                        this.EtiquetaClaveBancaria.Name = "EtiquetaClaveBancaria";
                         this.EtiquetaClaveBancaria.Size = new System.Drawing.Size(120, 24);
                         this.EtiquetaClaveBancaria.TabIndex = 12;
                         this.EtiquetaClaveBancaria.Text = "Clave Bancaria";
@@ -291,7 +287,6 @@ namespace Lfc.Cajas
                         // EntradaTitular
                         // 
                         this.EntradaTitular.AutoNav = true;
-                        this.EntradaTitular.AutoTab = true;
                         this.EntradaTitular.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaTitular.DecimalPlaces = -1;
                         this.EntradaTitular.FieldName = null;
@@ -312,7 +307,7 @@ namespace Lfc.Cajas
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(0, 32);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(120, 24);
@@ -325,7 +320,6 @@ namespace Lfc.Cajas
                         this.EntradaEstado.AlwaysExpanded = true;
                         this.EntradaEstado.AutoNav = true;
                         this.EntradaEstado.AutoSize = true;
-                        this.EntradaEstado.AutoTab = true;
                         this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(124, 248);
                         this.EntradaEstado.MaxLength = 32767;
@@ -342,7 +336,7 @@ namespace Lfc.Cajas
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label8.Location = new System.Drawing.Point(0, 248);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(120, 24);
@@ -370,22 +364,6 @@ namespace Lfc.Cajas
                         this.Controls.Add(this.EntradaNumero);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(615, 352);
-                        this.Controls.SetChildIndex(this.EntradaNumero, 0);
-                        this.Controls.SetChildIndex(this.EntradaBanco, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.EntradaTipo, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.EntradaMoneda, 0);
-                        this.Controls.SetChildIndex(this.Label4, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaClaveBancaria, 0);
-                        this.Controls.SetChildIndex(this.EntradaClaveBancaria, 0);
-                        this.Controls.SetChildIndex(this.label6, 0);
-                        this.Controls.SetChildIndex(this.EntradaTitular, 0);
-                        this.Controls.SetChildIndex(this.label8, 0);
-                        this.Controls.SetChildIndex(this.EntradaEstado, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

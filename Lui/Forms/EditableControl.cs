@@ -68,7 +68,7 @@ namespace Lui.Forms
                         set
                         {
                                 base.Text = value;
-                                this.Changed = false;
+                                //this.Changed = false;
                         }
                 }
 

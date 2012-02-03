@@ -109,6 +109,7 @@ namespace Lcc.Entrada
 
                         this.SuspendLayout();
                         Ctrl.Size = new Size(this.Width - 20, 24);
+                        Ctrl.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
                         Ctrl.Location = new Point(0, Ctrl.Size.Height * this.Controles.Count + this.PanelGrilla.AutoScrollPosition.Y);
                         Ctrl.TabIndex = this.Controles.Count;
                         Ctrl.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
@@ -152,7 +153,9 @@ namespace Lcc.Entrada
                 /// <param name="index">El índice del control que se va a quitar.</param>
                 protected void Quitar(int index)
                 {
-                        this.PanelGrilla.Controls.Remove(this.Controles[index] as System.Windows.Forms.Control);
+                        System.Windows.Forms.Control Ctl = this.Controles[index] as System.Windows.Forms.Control;
+                        this.PanelGrilla.Controls.Remove(Ctl);
+                        Ctl.Dispose();
                         this.Controles.RemoveAt(index);
                 }
 
@@ -166,7 +169,7 @@ namespace Lcc.Entrada
                                 int ControlNumber = 0, AlturaActual = 0;
                                 foreach (T Control in this.Controles) {
                                         Control.Location = new Point(Control.Location.X, AlturaActual + this.PanelGrilla.AutoScrollPosition.Y);
-                                        AlturaActual += Control.Size.Height;
+                                        AlturaActual += Control.Size.Height + Control.Margin.Vertical;
                                         Control.TabIndex = ControlNumber;
                                         Control.Size = new Size(this.Width - 20, Control.Size.Height);
                                         ControlNumber++;

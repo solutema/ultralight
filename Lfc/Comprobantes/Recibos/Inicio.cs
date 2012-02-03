@@ -73,7 +73,7 @@ namespace Lfc.Comprobantes.Recibos
 		{
                         this.Contadores[0].AddValue(row.Fields["total"].ValueDecimal);
 
-                        if (this.Workspace.SlowLink || this.Listado.Items.Count > 300)
+                        if (Lfx.Workspace.Master.SlowLink || this.Listado.Items.Count > 300)
                                 item.SubItems["0"].Text = "";
                         else
                                 item.SubItems["0"].Text = Lbl.Comprobantes.Comprobante.FacturasDeUnRecibo(this.Connection, row.Fields["id_recibo"].ValueInt);
@@ -116,7 +116,7 @@ namespace Lfc.Comprobantes.Recibos
 
                 public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {
-                        this.Workspace.RunTime.Execute("INSTANCIAR Lfc.Comprobantes.Recibos.Anular " + itemIds[0].ToString());
+                        Lfx.Workspace.Master.RunTime.Execute("INSTANCIAR Lfc.Comprobantes.Recibos.Anular " + itemIds[0].ToString());
                         return base.OnDelete(itemIds);
                 }
 

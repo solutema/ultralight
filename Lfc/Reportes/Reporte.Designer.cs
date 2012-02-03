@@ -109,7 +109,6 @@ namespace Lfc.Reportes
                         // 
                         this.EntradaExpandirGrupos.AutoSize = false;
                         this.EntradaExpandirGrupos.AutoNav = true;
-                        this.EntradaExpandirGrupos.AutoTab = true;
                         this.EntradaExpandirGrupos.Name = "EntradaExpandirGrupos";
                         this.EntradaExpandirGrupos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaExpandirGrupos.TemporaryReadOnly = false;

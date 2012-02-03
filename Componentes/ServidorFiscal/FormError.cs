@@ -126,7 +126,7 @@ namespace ServidorFiscal
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(68, 56);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(82, 20);
@@ -137,7 +137,7 @@ namespace ServidorFiscal
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(68, 80);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(82, 20);
@@ -148,7 +148,7 @@ namespace ServidorFiscal
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(68, 104);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(82, 20);
@@ -160,7 +160,7 @@ namespace ServidorFiscal
                         // Label5
                         // 
                         this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(167, 162);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(139, 20);
@@ -172,7 +172,7 @@ namespace ServidorFiscal
                         // Label6
                         // 
                         this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label6.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(352, 162);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(110, 20);
@@ -183,7 +183,7 @@ namespace ServidorFiscal
                         // 
                         // EtiquetaError
                         // 
-                        this.EtiquetaError.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaError.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaError.Location = new System.Drawing.Point(142, 56);
                         this.EtiquetaError.Name = "EtiquetaError";
                         this.EtiquetaError.Size = new System.Drawing.Size(178, 20);
@@ -194,7 +194,7 @@ namespace ServidorFiscal
                         // 
                         this.EtiquetaLugar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaLugar.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaLugar.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaLugar.Location = new System.Drawing.Point(142, 80);
                         this.EtiquetaLugar.Name = "EtiquetaLugar";
                         this.EtiquetaLugar.Size = new System.Drawing.Size(402, 20);
@@ -206,7 +206,7 @@ namespace ServidorFiscal
                         this.EtiquetaMensaje.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaMensaje.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaMensaje.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaMensaje.Location = new System.Drawing.Point(142, 104);
                         this.EtiquetaMensaje.Name = "EtiquetaMensaje";
                         this.EtiquetaMensaje.Size = new System.Drawing.Size(402, 50);
@@ -216,7 +216,7 @@ namespace ServidorFiscal
                         // EtiquetaEstadoImpresora
                         // 
                         this.EtiquetaEstadoImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EtiquetaEstadoImpresora.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaEstadoImpresora.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaEstadoImpresora.Location = new System.Drawing.Point(167, 182);
                         this.EtiquetaEstadoImpresora.Name = "EtiquetaEstadoImpresora";
                         this.EtiquetaEstadoImpresora.Size = new System.Drawing.Size(178, 128);
@@ -227,7 +227,7 @@ namespace ServidorFiscal
                         // 
                         this.EtiquetaEstadoFiscal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEstadoFiscal.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaEstadoFiscal.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaEstadoFiscal.Location = new System.Drawing.Point(352, 182);
                         this.EtiquetaEstadoFiscal.Name = "EtiquetaEstadoFiscal";
                         this.EtiquetaEstadoFiscal.Size = new System.Drawing.Size(192, 128);
@@ -237,7 +237,7 @@ namespace ServidorFiscal
                         // EtiquetaCampos
                         // 
                         this.EtiquetaCampos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EtiquetaCampos.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaCampos.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaCampos.Location = new System.Drawing.Point(68, 182);
                         this.EtiquetaCampos.Name = "EtiquetaCampos";
                         this.EtiquetaCampos.Size = new System.Drawing.Size(92, 128);
@@ -247,7 +247,7 @@ namespace ServidorFiscal
                         // Label8
                         // 
                         this.Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label8.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label8.Location = new System.Drawing.Point(68, 162);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(82, 20);
@@ -260,7 +260,7 @@ namespace ServidorFiscal
                         // 
                         this.EtiquetaComando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaComando.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaComando.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaComando.Location = new System.Drawing.Point(402, 56);
                         this.EtiquetaComando.Name = "EtiquetaComando";
                         this.EtiquetaComando.Size = new System.Drawing.Size(142, 20);
@@ -269,7 +269,7 @@ namespace ServidorFiscal
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(327, 56);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(96, 20);
@@ -282,7 +282,7 @@ namespace ServidorFiscal
                         // 
                         this.Label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Warning;
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Warning;
                         this.Label7.Location = new System.Drawing.Point(68, 318);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(476, 24);
@@ -303,7 +303,7 @@ namespace ServidorFiscal
                         // 
                         this.DialogCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.DialogCaption.LabelStyle = Lui.Forms.LabelStyles.Title;
+                        this.DialogCaption.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.DialogCaption.Location = new System.Drawing.Point(68, 16);
                         this.DialogCaption.Name = "DialogCaption";
                         this.DialogCaption.Size = new System.Drawing.Size(334, 24);

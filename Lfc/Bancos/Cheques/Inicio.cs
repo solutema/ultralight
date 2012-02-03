@@ -136,7 +136,7 @@ namespace Lfc.Bancos.Cheques
                         if (this.Emitidos == false) {
                                 return Efectivizar();
                         } else {
-                                this.Workspace.RunTime.Execute("CREAR RCP");
+                                Lfx.Workspace.Master.RunTime.Execute("CREAR RCP");
                                 return new Lfx.Types.SuccessOperationResult();
                         }
                 }

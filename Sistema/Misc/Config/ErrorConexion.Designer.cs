@@ -56,9 +56,9 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonConfigurar = new Lui.Forms.Button();
                         this.BotonReintentar = new Lui.Forms.Button();
                         this.BotonSalir = new Lui.Forms.Button();
-                        this.LowerPanel = new System.Windows.Forms.Panel();
+                        this.LowerPanel = new Lui.Forms.ButtonPanel();
                         this.EtiquetaErrorOriginal = new Lui.Forms.Note();
-                        this.panel1 = new System.Windows.Forms.Panel();
+                        this.panel1 = new Lui.Forms.Panel();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
                         this.EtiquetaAyuda = new Lui.Forms.Label();
                         this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -70,42 +70,48 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EtiquetaEncab
                         // 
-                        this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEncab.LabelStyle = Lui.Forms.LabelStyles.Title;
-                        this.EtiquetaEncab.Location = new System.Drawing.Point(172, 28);
+                        this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaEncab.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.EtiquetaEncab.Location = new System.Drawing.Point(128, 28);
                         this.EtiquetaEncab.Name = "EtiquetaEncab";
-                        this.EtiquetaEncab.Size = new System.Drawing.Size(440, 24);
+                        this.EtiquetaEncab.Size = new System.Drawing.Size(484, 24);
                         this.EtiquetaEncab.TabIndex = 0;
                         this.EtiquetaEncab.Text = "No se puede establecer conexión con el servidor";
                         this.EtiquetaEncab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonConfigurar
                         // 
+                        this.BotonConfigurar.AutoNav = true;
                         this.BotonConfigurar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonConfigurar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonConfigurar.Image = null;
                         this.BotonConfigurar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonConfigurar.Location = new System.Drawing.Point(116, 16);
+                        this.BotonConfigurar.Location = new System.Drawing.Point(400, 12);
+                        this.BotonConfigurar.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonConfigurar.Name = "BotonConfigurar";
                         this.BotonConfigurar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonConfigurar.ReadOnly = false;
-                        this.BotonConfigurar.Size = new System.Drawing.Size(116, 32);
+                        this.BotonConfigurar.Size = new System.Drawing.Size(116, 40);
                         this.BotonConfigurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonConfigurar.Subtext = "F8";
-                        this.BotonConfigurar.TabIndex = 2;
+                        this.BotonConfigurar.TabIndex = 1;
                         this.BotonConfigurar.Text = "Configuración";
                         this.BotonConfigurar.Click += new System.EventHandler(this.BotonConfigurar_Click);
                         // 
                         // BotonReintentar
                         // 
+                        this.BotonReintentar.AutoNav = true;
                         this.BotonReintentar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonReintentar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonReintentar.Image = null;
                         this.BotonReintentar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonReintentar.Location = new System.Drawing.Point(484, 16);
+                        this.BotonReintentar.Location = new System.Drawing.Point(262, 12);
+                        this.BotonReintentar.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonReintentar.Name = "BotonReintentar";
                         this.BotonReintentar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonReintentar.ReadOnly = false;
-                        this.BotonReintentar.Size = new System.Drawing.Size(132, 32);
+                        this.BotonReintentar.Size = new System.Drawing.Size(132, 40);
                         this.BotonReintentar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonReintentar.Subtext = "F8";
                         this.BotonReintentar.TabIndex = 0;
@@ -115,34 +121,40 @@ namespace Lazaro.WinMain.Misc.Config
                         // BotonSalir
                         // 
                         this.BotonSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonSalir.AutoNav = true;
                         this.BotonSalir.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonSalir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSalir.Image = null;
                         this.BotonSalir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSalir.Location = new System.Drawing.Point(16, 16);
+                        this.BotonSalir.Location = new System.Drawing.Point(522, 12);
+                        this.BotonSalir.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonSalir.Name = "BotonSalir";
                         this.BotonSalir.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSalir.ReadOnly = false;
-                        this.BotonSalir.Size = new System.Drawing.Size(88, 32);
+                        this.BotonSalir.Size = new System.Drawing.Size(88, 40);
                         this.BotonSalir.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSalir.Subtext = "F8";
-                        this.BotonSalir.TabIndex = 1;
+                        this.BotonSalir.TabIndex = 2;
                         this.BotonSalir.Text = "Salir";
                         this.BotonSalir.Click += new System.EventHandler(this.BotonSalir_Click);
                         // 
                         // LowerPanel
                         // 
-                        this.LowerPanel.Controls.Add(this.BotonReintentar);
-                        this.LowerPanel.Controls.Add(this.BotonConfigurar);
                         this.LowerPanel.Controls.Add(this.BotonSalir);
+                        this.LowerPanel.Controls.Add(this.BotonConfigurar);
+                        this.LowerPanel.Controls.Add(this.BotonReintentar);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+                        this.LowerPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
                         this.LowerPanel.Location = new System.Drawing.Point(0, 308);
                         this.LowerPanel.Name = "LowerPanel";
+                        this.LowerPanel.Padding = new System.Windows.Forms.Padding(12);
                         this.LowerPanel.Size = new System.Drawing.Size(634, 64);
-                        this.LowerPanel.TabIndex = 20;
+                        this.LowerPanel.TabIndex = 0;
                         // 
                         // EtiquetaErrorOriginal
                         // 
-                        this.EtiquetaErrorOriginal.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
+                        this.EtiquetaErrorOriginal.AutoNav = true;
+                        this.EtiquetaErrorOriginal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EtiquetaErrorOriginal.Location = new System.Drawing.Point(124, 200);
                         this.EtiquetaErrorOriginal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EtiquetaErrorOriginal.Name = "EtiquetaErrorOriginal";
@@ -176,9 +188,9 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         // EtiquetaAyuda
                         // 
-                        this.EtiquetaAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAyuda.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaAyuda.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaAyuda.Location = new System.Drawing.Point(172, 64);
                         this.EtiquetaAyuda.Name = "EtiquetaAyuda";
                         this.EtiquetaAyuda.Size = new System.Drawing.Size(440, 120);
@@ -188,9 +200,9 @@ namespace Lazaro.WinMain.Misc.Config
                         // pictureBox3
                         // 
                         this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-                        this.pictureBox3.Location = new System.Drawing.Point(116, 60);
+                        this.pictureBox3.Location = new System.Drawing.Point(128, 64);
                         this.pictureBox3.Name = "pictureBox3";
-                        this.pictureBox3.Size = new System.Drawing.Size(48, 48);
+                        this.pictureBox3.Size = new System.Drawing.Size(36, 36);
                         this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
                         this.pictureBox3.TabIndex = 57;
                         this.pictureBox3.TabStop = false;
@@ -205,6 +217,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Controls.Add(this.EtiquetaErrorOriginal);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.EtiquetaEncab);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "ErrorConexion";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -225,10 +238,10 @@ namespace Lazaro.WinMain.Misc.Config
                 private Lui.Forms.Button BotonSalir;
                 private Lui.Forms.Label EtiquetaEncab;
                 private Lui.Forms.Note EtiquetaErrorOriginal;
-                private Panel panel1;
                 private PictureBox pictureBox2;
-                private System.Windows.Forms.Panel LowerPanel;
+                private Lui.Forms.ButtonPanel LowerPanel;
                 private PictureBox pictureBox3;
                 private Lui.Forms.Label EtiquetaAyuda;
+                private Lui.Forms.Panel panel1;
         }
 }

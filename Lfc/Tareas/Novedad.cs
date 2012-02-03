@@ -36,6 +36,9 @@ namespace Lfc.Tareas
                 public Novedad()
                 {
                         InitializeComponent();
+
+                        if (Lbl.Sys.Config.Actual != null && Lbl.Sys.Config.Actual.UsuarioConectado != null)
+                                EntradaTecnico.Elemento = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
                 }
 
                 public override Lfx.Types.OperationResult Ok()
@@ -55,11 +58,6 @@ namespace Lfc.Tareas
                         Trans.Commit();
 
                         return base.Ok();
-                }
-
-                private void Novedad_WorkspaceChanged(object sender, System.EventArgs e)
-                {
-                        EntradaTecnico.Elemento = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
                 }
         }
 }

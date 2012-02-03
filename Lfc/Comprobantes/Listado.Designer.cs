@@ -57,7 +57,6 @@ namespace Lfc.Comprobantes
                     this.EntradaAgrupar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                     this.EntradaAgrupar.AutoSize = false;
                     this.EntradaAgrupar.AutoNav = true;
-                    this.EntradaAgrupar.AutoTab = true;
                     this.EntradaAgrupar.Location = new System.Drawing.Point(400, 4);
                     this.EntradaAgrupar.Name = "EntradaAgrupar";
                     this.EntradaAgrupar.Padding = new System.Windows.Forms.Padding(2);

@@ -47,9 +47,10 @@ namespace Lfc.Pvs
 
                 }
 
-                public override void OnWorkspaceChanged()
+                protected override void OnLoad(EventArgs e)
                 {
-                        if (this.HasWorkspace) {
+                        base.OnLoad(e);
+                        if (this.Connection != null) {
                                 System.Collections.Generic.List<string> ListaTipos = new System.Collections.Generic.List<string>();
                                 ListaTipos.Add("Facutras|F");
                                 ListaTipos.Add("Notas de Débito|ND");
@@ -63,8 +64,6 @@ namespace Lfc.Pvs
                                 }
                                 EntradaTipoFac.SetData = ListaTipos.ToArray();
                         }
-
-                        base.OnWorkspaceChanged();
                 }
 
 

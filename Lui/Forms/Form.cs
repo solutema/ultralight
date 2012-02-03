@@ -38,34 +38,47 @@ namespace Lui.Forms
 {
         public partial class Form : System.Windows.Forms.Form, IDataForm
 	{
+                private Lfx.Data.Connection m_Connection = null;
+                private string m_StockImage = null;
+                private Lazaro.Pres.DisplayStyles.IDisplayStyle m_DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.Default;
+
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-                public string FieldName { get; set; }
+                public string FieldName { get; set; }              
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
                 public bool DisposeConnection { get; set; }
 
-                private Lfx.Data.Connection m_Connection = null;
-
-		public event System.EventHandler WorkspaceChanged;
-
 		public Form()
 		{
                         this.DisposeConnection = true;
 			InitializeComponent();
-                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                        this.BackColor = this.DisplayStyle.BackgroundColor;
 		}
+
+
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing && (components != null)) {
+                                components.Dispose();
+                        }
+
+                        if (m_Connection != null && m_Connection.Handle > 0 && DisposeConnection) {
+                                m_Connection.Dispose();
+                                m_Connection = null;
+                        }
+
+                        base.Dispose(disposing);
+                }
 
 
 		private void Form_Load(object sender, System.EventArgs e)
 		{
-                        this.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                        EventHandler WorkspaceChangedHandler = this.WorkspaceChanged;
-                        if (WorkspaceChangedHandler != null)
-                                WorkspaceChangedHandler(this, null);
+                        this.BackColor = this.DisplayStyle.BackgroundColor;
+                        this.ForeColor = this.DisplayStyle.TextColor;
 		}
 
 
@@ -94,24 +107,12 @@ namespace Lui.Forms
                 /// <summary>
                 /// IDataControl
                 /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public bool HasWorkspace
-                {
-                        get
-                        {
-                                return this.Workspace != null;
-                        }
-                }
-
-                /// <summary>
-                /// IDataControl
-                /// </summary>
                 public Lfx.Data.Connection Connection
                 {
                         get
                         {
-                                if (m_Connection == null && this.HasWorkspace) {
-                                        m_Connection = this.Workspace.GetNewConnection(this.Text);
+                                if (m_Connection == null && Lfx.Workspace.Master != null) {
+                                        m_Connection = Lfx.Workspace.Master.GetNewConnection(this.Text);
 
                                         // Marco para deshechar la conexión que estoy creando
                                         DisposeConnection = true;
@@ -122,7 +123,7 @@ namespace Lui.Forms
                         set
                         {
                                 if (m_Connection != value) {
-                                        if (m_Connection != null && m_Connection != value && DisposeConnection)
+                                        if (m_Connection != null && m_Connection != value && m_Connection.Handle > 0 && DisposeConnection)
                                                 // Deshecho la conexión vieja
                                                 m_Connection.Dispose();
 
@@ -301,6 +302,58 @@ namespace Lui.Forms
                                 }
                         }
                         return false;
+                }
+
+                public virtual string StockImage
+                {
+                        get
+                        {
+                                return m_StockImage;
+                        }
+                        set
+                        {
+                                m_StockImage = value;
+                                if (m_StockImage == null) {
+                                        this.StockImage = "form";
+                                } else {
+                                        Bitmap Img = (Bitmap)(global::Lui.Properties.Resources.ResourceManager.GetObject(m_StockImage));
+                                        IntPtr Hicon = Img.GetHicon();
+                                        this.Icon = Icon.FromHandle(Hicon);
+                                }
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public virtual Lazaro.Pres.DisplayStyles.IDisplayStyle DisplayStyle
+                {
+                        get
+                        {
+                                return m_DisplayStyle;
+                        }
+                        set
+                        {
+                                m_DisplayStyle = value;
+                                this.BackColor = this.DisplayStyle.BackgroundColor;
+                        }
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new protected Font Font
+                {
+                        get
+                        {
+                                return base.Font;
+                        }
+                        set
+                        {
+                                base.Font = value;
+                        }
                 }
 	}
 }

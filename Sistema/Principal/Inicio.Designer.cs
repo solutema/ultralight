@@ -63,8 +63,7 @@ namespace Lazaro.WinMain.Principal
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
                         this.TimerProgramador = new System.Windows.Forms.Timer(this.components);
                         this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
-                        this.BarraTareas = new System.Windows.Forms.ToolBar();
-                        this.BarraTareasImagenes = new System.Windows.Forms.ImageList(this.components);
+                        this.BarraTareas = new System.Windows.Forms.ToolStrip();
                         this.BarraInferior = new Lazaro.WinMain.Principal.BarraInferior();
                         this.SuspendLayout();
                         // 
@@ -76,39 +75,30 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // BarraTareas
                         // 
-                        this.BarraTareas.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
-                        this.BarraTareas.DropDownArrows = true;
-                        this.BarraTareas.ImageList = this.BarraTareasImagenes;
+                        this.BarraTareas.AllowItemReorder = true;
+                        this.BarraTareas.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
                         this.BarraTareas.Location = new System.Drawing.Point(0, 0);
                         this.BarraTareas.Name = "BarraTareas";
-                        this.BarraTareas.ShowToolTips = true;
-                        this.BarraTareas.Size = new System.Drawing.Size(950, 28);
-                        this.BarraTareas.TabIndex = 4;
-                        this.BarraTareas.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
-                        this.BarraTareas.Wrappable = false;
-                        this.BarraTareas.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler(this.BarraTareas_ButtonClick);
-                        // 
-                        // BarraTareasImagenes
-                        // 
-                        this.BarraTareasImagenes.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-                        this.BarraTareasImagenes.ImageSize = new System.Drawing.Size(16, 16);
-                        this.BarraTareasImagenes.TransparentColor = System.Drawing.Color.Transparent;
+                        this.BarraTareas.Padding = new System.Windows.Forms.Padding(3);
+                        this.BarraTareas.Size = new System.Drawing.Size(1008, 25);
+                        this.BarraTareas.TabIndex = 17;
+                        this.BarraTareas.Text = "Tareas";
+                        this.BarraTareas.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.BarraTareas_ItemClicked);
                         // 
                         // BarraInferior
                         // 
-                        this.BarraInferior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.BarraInferior.Location = new System.Drawing.Point(0, 380);
+                        this.BarraInferior.Location = new System.Drawing.Point(0, 639);
                         this.BarraInferior.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BarraInferior.Name = "BarraInferior";
-                        this.BarraInferior.Size = new System.Drawing.Size(950, 57);
+                        this.BarraInferior.Size = new System.Drawing.Size(1008, 57);
                         this.BarraInferior.TabIndex = 15;
                         // 
                         // Inicio
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(950, 437);
+                        this.ClientSize = new System.Drawing.Size(1024, 690);
                         this.Controls.Add(this.BarraTareas);
                         this.Controls.Add(this.BarraInferior);
                         this.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
@@ -131,8 +121,7 @@ namespace Lazaro.WinMain.Principal
 
                 internal System.Windows.Forms.Timer TimerProgramador;
                 internal System.Windows.Forms.MainMenu MainMenu;
-                public System.Windows.Forms.ToolBar BarraTareas;
-                private System.Windows.Forms.ImageList BarraTareasImagenes;
                 private BarraInferior BarraInferior;
+                public System.Windows.Forms.ToolStrip BarraTareas;
         }
 }

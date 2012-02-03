@@ -91,18 +91,22 @@ namespace Lfc.Bancos.Cheques
                         // EntradaSubTotal
                         // 
                         this.EntradaSubTotal.AutoNav = true;
-                        this.EntradaSubTotal.AutoTab = true;
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaSubTotal.DecimalPlaces = -1;
+                        this.EntradaSubTotal.FieldName = null;
                         this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(332, 68);
+                        this.EntradaSubTotal.MaxLength = 32767;
                         this.EntradaSubTotal.MultiLine = false;
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSubTotal.PasswordChar = '\0';
+                        this.EntradaSubTotal.PlaceholderText = null;
                         this.EntradaSubTotal.Prefijo = "$";
-                        this.EntradaSubTotal.TemporaryReadOnly = true;
+                        this.EntradaSubTotal.ReadOnly = false;
                         this.EntradaSubTotal.SelectOnFocus = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaSubTotal.Sufijo = "";
                         this.EntradaSubTotal.TabIndex = 4;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
@@ -110,6 +114,7 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // lblLabel1
                         // 
+                        this.lblLabel1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblLabel1.Location = new System.Drawing.Point(60, 68);
                         this.lblLabel1.Name = "lblLabel1";
                         this.lblLabel1.Size = new System.Drawing.Size(296, 24);
@@ -120,24 +125,29 @@ namespace Lfc.Bancos.Cheques
                         // EntradaGestionDeCobro
                         // 
                         this.EntradaGestionDeCobro.AutoNav = true;
-                        this.EntradaGestionDeCobro.AutoTab = true;
                         this.EntradaGestionDeCobro.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaGestionDeCobro.DecimalPlaces = -1;
+                        this.EntradaGestionDeCobro.FieldName = null;
                         this.EntradaGestionDeCobro.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaGestionDeCobro.Location = new System.Drawing.Point(332, 100);
+                        this.EntradaGestionDeCobro.MaxLength = 32767;
                         this.EntradaGestionDeCobro.MultiLine = false;
                         this.EntradaGestionDeCobro.Name = "EntradaGestionDeCobro";
                         this.EntradaGestionDeCobro.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaGestionDeCobro.PasswordChar = '\0';
+                        this.EntradaGestionDeCobro.PlaceholderText = null;
                         this.EntradaGestionDeCobro.Prefijo = "$";
-                        this.EntradaGestionDeCobro.TemporaryReadOnly = false;
+                        this.EntradaGestionDeCobro.ReadOnly = false;
                         this.EntradaGestionDeCobro.SelectOnFocus = true;
                         this.EntradaGestionDeCobro.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaGestionDeCobro.Sufijo = "";
                         this.EntradaGestionDeCobro.TabIndex = 6;
                         this.EntradaGestionDeCobro.Text = "0.00";
                         this.EntradaGestionDeCobro.TextChanged += new System.EventHandler(this.EntradaImportes_TextChanged);
                         // 
                         // Label2
                         // 
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(188, 100);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(132, 24);
@@ -148,23 +158,28 @@ namespace Lfc.Bancos.Cheques
                         // EntradaTotal
                         // 
                         this.EntradaTotal.AutoNav = true;
-                        this.EntradaTotal.AutoTab = true;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
+                        this.EntradaTotal.FieldName = null;
                         this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 196);
+                        this.EntradaTotal.MaxLength = 32767;
                         this.EntradaTotal.MultiLine = false;
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaTotal.PasswordChar = '\0';
+                        this.EntradaTotal.PlaceholderText = null;
                         this.EntradaTotal.Prefijo = "$";
-                        this.EntradaTotal.TemporaryReadOnly = false;
+                        this.EntradaTotal.ReadOnly = false;
                         this.EntradaTotal.SelectOnFocus = true;
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
+                        this.EntradaTotal.Sufijo = "";
                         this.EntradaTotal.TabIndex = 10;
                         this.EntradaTotal.Text = "0.00";
                         // 
                         // Label8
                         // 
+                        this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label8.Location = new System.Drawing.Point(60, 196);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(160, 28);
@@ -174,6 +189,7 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label3
                         // 
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(60, 232);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(160, 24);
@@ -183,20 +199,22 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // EntradaCajaDestino
                         // 
-                        this.EntradaCajaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaCajaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaDestino.AutoNav = true;
-                        this.EntradaCajaDestino.AutoTab = true;
                         this.EntradaCajaDestino.CanCreate = false;
                         this.EntradaCajaDestino.DataTextField = "nombre";
+                        this.EntradaCajaDestino.DataValueField = "id_caja";
+                        this.EntradaCajaDestino.ExtraDetailFields = "";
+                        this.EntradaCajaDestino.FieldName = null;
                         this.EntradaCajaDestino.Filter = "";
                         this.EntradaCajaDestino.FreeTextCode = "";
-                        this.EntradaCajaDestino.DataValueField = "id_caja";
                         this.EntradaCajaDestino.Location = new System.Drawing.Point(212, 232);
                         this.EntradaCajaDestino.MaxLength = 200;
                         this.EntradaCajaDestino.Name = "EntradaCajaDestino";
                         this.EntradaCajaDestino.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCajaDestino.TemporaryReadOnly = false;
+                        this.EntradaCajaDestino.PlaceholderText = null;
+                        this.EntradaCajaDestino.ReadOnly = false;
                         this.EntradaCajaDestino.Required = true;
                         this.EntradaCajaDestino.Size = new System.Drawing.Size(348, 24);
                         this.EntradaCajaDestino.TabIndex = 12;
@@ -207,24 +225,29 @@ namespace Lfc.Bancos.Cheques
                         // EntradaImpuestos
                         // 
                         this.EntradaImpuestos.AutoNav = true;
-                        this.EntradaImpuestos.AutoTab = true;
                         this.EntradaImpuestos.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImpuestos.DecimalPlaces = -1;
+                        this.EntradaImpuestos.FieldName = null;
                         this.EntradaImpuestos.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImpuestos.Location = new System.Drawing.Point(332, 128);
+                        this.EntradaImpuestos.MaxLength = 32767;
                         this.EntradaImpuestos.MultiLine = false;
                         this.EntradaImpuestos.Name = "EntradaImpuestos";
                         this.EntradaImpuestos.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImpuestos.PasswordChar = '\0';
+                        this.EntradaImpuestos.PlaceholderText = null;
                         this.EntradaImpuestos.Prefijo = "$";
-                        this.EntradaImpuestos.TemporaryReadOnly = false;
+                        this.EntradaImpuestos.ReadOnly = false;
                         this.EntradaImpuestos.SelectOnFocus = true;
                         this.EntradaImpuestos.Size = new System.Drawing.Size(108, 24);
+                        this.EntradaImpuestos.Sufijo = "";
                         this.EntradaImpuestos.TabIndex = 8;
                         this.EntradaImpuestos.Text = "0.00";
                         this.EntradaImpuestos.TextChanged += new System.EventHandler(this.EntradaImportes_TextChanged);
                         // 
                         // label4
                         // 
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(188, 128);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(132, 24);
@@ -234,14 +257,15 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // label5
                         // 
-                        this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(20, 16);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(596, 36);
                         this.label5.TabIndex = 0;
                         this.label5.Text = "Convertirá el valor de un cheque en efectivo o realizará un depósito bancario en " +
-                            "una cuenta propia.";
+    "una cuenta propia.";
                         // 
                         // Efectivizar
                         // 
@@ -259,7 +283,7 @@ namespace Lfc.Bancos.Cheques
                         this.Controls.Add(this.EntradaSubTotal);
                         this.Controls.Add(this.lblLabel1);
                         this.Name = "Efectivizar";
-                        this.Text = "Acreditar";
+                        this.Text = "Efectivizar";
                         this.Controls.SetChildIndex(this.lblLabel1, 0);
                         this.Controls.SetChildIndex(this.EntradaSubTotal, 0);
                         this.Controls.SetChildIndex(this.EntradaGestionDeCobro, 0);

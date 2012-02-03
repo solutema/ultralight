@@ -56,15 +56,14 @@ namespace Lui.Forms
                         this.MainText = new System.Windows.Forms.Label();
                         this.SubText = new System.Windows.Forms.Label();
                         this.IconPicture = new System.Windows.Forms.PictureBox();
+                        ((System.ComponentModel.ISupportInitialize)(this.IconPicture)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // MainText
                         // 
-                        this.MainText.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(231)), ((System.Byte)(226)), ((System.Byte)(222)));
-                        this.MainText.ForeColor = System.Drawing.Color.Black;
-                        this.MainText.Location = new System.Drawing.Point(4, 4);
+                        this.MainText.Location = new System.Drawing.Point(2, 2);
                         this.MainText.Name = "MainText";
-                        this.MainText.Size = new System.Drawing.Size(312, 60);
+                        this.MainText.Size = new System.Drawing.Size(316, 64);
                         this.MainText.TabIndex = 1;
                         this.MainText.Text = "Command asdasd";
                         this.MainText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -74,8 +73,7 @@ namespace Lui.Forms
                         // 
                         // SubText
                         // 
-                        this.SubText.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(198)), ((System.Byte)(190)), ((System.Byte)(176)));
-                        this.SubText.Location = new System.Drawing.Point(4, 68);
+                        this.SubText.Location = new System.Drawing.Point(2, 78);
                         this.SubText.Name = "SubText";
                         this.SubText.Size = new System.Drawing.Size(312, 8);
                         this.SubText.TabIndex = 2;
@@ -90,7 +88,7 @@ namespace Lui.Forms
                         this.IconPicture.BackColor = System.Drawing.Color.Transparent;
                         this.IconPicture.Location = new System.Drawing.Point(4, 4);
                         this.IconPicture.Name = "IconPicture";
-                        this.IconPicture.Size = new System.Drawing.Size(44, 40);
+                        this.IconPicture.Size = new System.Drawing.Size(44, 44);
                         this.IconPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
                         this.IconPicture.TabIndex = 3;
                         this.IconPicture.TabStop = false;
@@ -101,19 +99,12 @@ namespace Lui.Forms
                         this.Controls.Add(this.IconPicture);
                         this.Controls.Add(this.SubText);
                         this.Controls.Add(this.MainText);
-                        this.DockPadding.All = 2;
                         this.Name = "Button";
                         this.Size = new System.Drawing.Size(320, 80);
-                        this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Button_KeyPress);
-                        //base, no this!
-                        base.Click += new System.EventHandler(this.Button_Click);
-                        this.LostFocus += new System.EventHandler(this.Button_LostFocus);
-                        this.GotFocus += new System.EventHandler(this.Button_GotFocus);
                         this.SizeChanged += new System.EventHandler(this.Button_SizeChanged);
-                        //base, no this!
-                        base.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button_KeyDown);
-                        this.DoubleClick += new System.EventHandler(this.Button_DoubleClick);
+                        ((System.ComponentModel.ISupportInitialize)(this.IconPicture)).EndInit();
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 

@@ -110,7 +110,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoNav = true;
                         this.EntradaCliente.AutoSize = true;
-                        this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.DataValueField = "id_persona";
@@ -132,7 +131,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(3, 28);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(124, 24);
@@ -142,7 +141,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(3, 84);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(124, 24);
@@ -156,7 +155,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaVendedor.AutoNav = true;
                         this.EntradaVendedor.AutoSize = true;
-                        this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = false;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
                         this.EntradaVendedor.DataValueField = "id_persona";
@@ -178,7 +176,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(3, 56);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(124, 24);
@@ -192,7 +190,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.AutoNav = true;
                         this.EntradaSucursal.AutoSize = true;
-                        this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = false;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.DataValueField = "id_sucursal";
@@ -214,7 +211,7 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(3, 0);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(124, 24);

@@ -25,14 +25,12 @@
       <Opcion Nombre="Artículos Pedidos" Funcion="LISTAR Lbl.Articulos.Articulo PEDIDOS" />
     </Opcion>
     <Opcion Nombre="-" Funcion="" />
-    <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="&amp;Rubros" Funcion="LISTAR Lbl.Articulos.Rubro" />
-      <Opcion Nombre="&amp;Categorías" Funcion="LISTAR Lbl.Articulos.Categoria" />
-      <Opcion Nombre="&amp;Marcas" Funcion="LISTAR Lbl.Articulos.Marca" />
-      <Opcion Nombre="&amp;Alícuotas" Funcion="LISTAR Lbl.Impuestos.Alicuota" />
-      <Opcion Nombre="Már&amp;genes" Funcion="LISTAR Lbl.Articulos.Margen" />
-      <Opcion Nombre="Situaciones y Depósitos" Funcion="LISTAR Lbl.Articulos.Situacion" />
-    </Opcion>
+    <Opcion Nombre="&amp;Rubros" Funcion="LISTAR Lbl.Articulos.Rubro" />
+    <Opcion Nombre="&amp;Categorías" Funcion="LISTAR Lbl.Articulos.Categoria" />
+    <Opcion Nombre="&amp;Marcas" Funcion="LISTAR Lbl.Articulos.Marca" />
+    <Opcion Nombre="&amp;Alícuotas" Funcion="LISTAR Lbl.Impuestos.Alicuota" />
+    <Opcion Nombre="Már&amp;genes" Funcion="LISTAR Lbl.Articulos.Margen" />
+    <Opcion Nombre="Situaciones y Depósitos" Funcion="LISTAR Lbl.Articulos.Situacion" />
   </Opcion>
   <Opcion Nombre="&amp;Personas" Funcion="">
     <Opcion Nombre="&amp;Clientes" Funcion="LISTAR Lbl.Personas.Persona" />
@@ -41,9 +39,7 @@
     <Opcion Nombre="&amp;Proveedores" Funcion="LISTAR Lbl.Personas.Proveedor" />
     <Opcion Nombre="Nue&amp;vo Proveedor" Funcion="CREAR Lbl.Personas.Proveedor" />
     <Opcion Nombre="-" Funcion="" />
-    <Opcion Nombre="Tablas" Funcion="">
-      <Opcion Nombre="&amp;Grupos" Funcion="LISTAR Lbl.Personas.Grupo" />
-    </Opcion>
+    <Opcion Nombre="&amp;Grupos" Funcion="LISTAR Lbl.Personas.Grupo" />
   </Opcion>
   <Opcion Nombre="C&amp;omprobantes" Funcion="">
     <Opcion Nombre="&amp;Facturas" Funcion="">

@@ -58,7 +58,6 @@ namespace Lfc.Comprobantes.Compra
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
                         this.EntradaFormaPago = new Lui.Forms.ComboBox();
                         this.EntradaFecha = new Lui.Forms.TextBox();
@@ -84,31 +83,17 @@ namespace Lfc.Comprobantes.Compra
                         this.EtiquetaEstado = new Lui.Forms.Label();
                         this.label1 = new Lui.Forms.Label();
                         this.Label4 = new Lui.Forms.Label();
-                        this.Contenedor = new System.Windows.Forms.Panel();
+                        this.Contenedor = new Lui.Forms.Panel();
                         this.Contenedor.SuspendLayout();
                         this.SuspendLayout();
-                        // 
-                        // EtiquetaTitulo
-                        // 
-                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.LabelStyle = Lui.Forms.LabelStyles.Header1;
-                        this.EtiquetaTitulo.Location = new System.Drawing.Point(0, 0);
-                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
-                        this.EtiquetaTitulo.Size = new System.Drawing.Size(641, 40);
-                        this.EtiquetaTitulo.TabIndex = 1;
-                        this.EtiquetaTitulo.Text = "Comprobante";
-                        this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = false;
                         this.EntradaTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTipo.AutoNav = true;
-                        this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaTipo.FieldName = null;
-                        this.EntradaTipo.Location = new System.Drawing.Point(312, 44);
+                        this.EntradaTipo.Location = new System.Drawing.Point(312, 0);
                         this.EntradaTipo.MaxLength = 32767;
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
@@ -142,10 +127,8 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.EntradaFormaPago.AlwaysExpanded = false;
                         this.EntradaFormaPago.AutoNav = true;
-                        this.EntradaFormaPago.AutoTab = true;
-                        this.EntradaFormaPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaFormaPago.FieldName = null;
-                        this.EntradaFormaPago.Location = new System.Drawing.Point(188, 72);
+                        this.EntradaFormaPago.Location = new System.Drawing.Point(188, 28);
                         this.EntradaFormaPago.MaxLength = 32767;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
@@ -154,7 +137,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.SetData = new string[] {
         "No controla pago|0",
         "Efectivo|1",
-        "Cuenta Corriente|3" };
+        "Cuenta Corriente|3"};
                         this.EntradaFormaPago.Size = new System.Drawing.Size(176, 25);
                         this.EntradaFormaPago.TabIndex = 23;
                         this.EntradaFormaPago.TextKey = "0";
@@ -162,13 +145,11 @@ namespace Lfc.Comprobantes.Compra
                         // EntradaFecha
                         // 
                         this.EntradaFecha.AutoNav = true;
-                        this.EntradaFecha.AutoTab = true;
-                        this.EntradaFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaFecha.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFecha.DecimalPlaces = -1;
                         this.EntradaFecha.FieldName = null;
                         this.EntradaFecha.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaFecha.Location = new System.Drawing.Point(80, 72);
+                        this.EntradaFecha.Location = new System.Drawing.Point(80, 28);
                         this.EntradaFecha.MaxLength = 32767;
                         this.EntradaFecha.MultiLine = false;
                         this.EntradaFecha.Name = "EntradaFecha";
@@ -186,13 +167,11 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.EntradaPV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPV.AutoNav = true;
-                        this.EntradaPV.AutoTab = true;
-                        this.EntradaPV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.FieldName = null;
                         this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPV.Location = new System.Drawing.Point(480, 44);
+                        this.EntradaPV.Location = new System.Drawing.Point(480, 0);
                         this.EntradaPV.MaxLength = 32767;
                         this.EntradaPV.MultiLine = false;
                         this.EntradaPV.Name = "EntradaPV";
@@ -213,8 +192,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaHaciaSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoNav = true;
-                        this.EntradaHaciaSituacion.AutoTab = true;
-                        this.EntradaHaciaSituacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaHaciaSituacion.CanCreate = false;
                         this.EntradaHaciaSituacion.DataTextField = "nombre";
                         this.EntradaHaciaSituacion.DataValueField = "id_situacion";
@@ -222,7 +199,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaHaciaSituacion.FieldName = null;
                         this.EntradaHaciaSituacion.Filter = "deposito>0";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
-                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(444, 72);
+                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(444, 28);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
                         this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
@@ -239,13 +216,11 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.EntradaNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNumero.AutoNav = true;
-                        this.EntradaNumero.AutoTab = true;
-                        this.EntradaNumero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNumero.DecimalPlaces = -1;
                         this.EntradaNumero.FieldName = null;
                         this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNumero.Location = new System.Drawing.Point(540, 44);
+                        this.EntradaNumero.Location = new System.Drawing.Point(540, 0);
                         this.EntradaNumero.MaxLength = 32767;
                         this.EntradaNumero.MultiLine = false;
                         this.EntradaNumero.Name = "EntradaNumero";
@@ -269,11 +244,10 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.AutoNav = true;
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.EntradaProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaProductos.FieldName = null;
                         this.EntradaProductos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
-                        this.EntradaProductos.Location = new System.Drawing.Point(0, 104);
+                        this.EntradaProductos.Location = new System.Drawing.Point(0, 64);
                         this.EntradaProductos.LockPrice = false;
                         this.EntradaProductos.LockQuantity = false;
                         this.EntradaProductos.LockText = false;
@@ -283,7 +257,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
                         this.EntradaProductos.ReadOnly = false;
                         this.EntradaProductos.ShowStock = false;
-                        this.EntradaProductos.Size = new System.Drawing.Size(642, 200);
+                        this.EntradaProductos.Size = new System.Drawing.Size(642, 240);
                         this.EntradaProductos.TabIndex = 26;
                         this.EntradaProductos.TotalChanged += new System.EventHandler(this.RecalcularTotal);
                         this.EntradaProductos.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaProductos_ObtenerDatosSeguimiento);
@@ -294,8 +268,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoNav = true;
-                        this.EntradaProveedor.AutoTab = true;
-                        this.EntradaProveedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaProveedor.CanCreate = true;
                         this.EntradaProveedor.DataTextField = "nombre_visible";
                         this.EntradaProveedor.DataValueField = "id_persona";
@@ -303,7 +275,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.FieldName = null;
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
-                        this.EntradaProveedor.Location = new System.Drawing.Point(80, 44);
+                        this.EntradaProveedor.Location = new System.Drawing.Point(80, 0);
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
                         this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
@@ -318,8 +290,8 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.label7.Location = new System.Drawing.Point(0, 72);
+                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.label7.Location = new System.Drawing.Point(0, 28);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(80, 24);
                         this.label7.TabIndex = 20;
@@ -328,8 +300,8 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // EtiquetaHaciaSituacion
                         // 
-                        this.EtiquetaHaciaSituacion.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.EtiquetaHaciaSituacion.Location = new System.Drawing.Point(372, 72);
+                        this.EtiquetaHaciaSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.EtiquetaHaciaSituacion.Location = new System.Drawing.Point(372, 28);
                         this.EtiquetaHaciaSituacion.Name = "EtiquetaHaciaSituacion";
                         this.EtiquetaHaciaSituacion.Size = new System.Drawing.Size(68, 24);
                         this.EtiquetaHaciaSituacion.TabIndex = 24;
@@ -339,8 +311,8 @@ namespace Lfc.Comprobantes.Compra
                         // Label2
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label2.Location = new System.Drawing.Point(448, 44);
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label2.Location = new System.Drawing.Point(448, 0);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(28, 24);
                         this.Label2.TabIndex = 16;
@@ -349,8 +321,8 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lui.Forms.LabelStyles.Default;
-                        this.Label3.Location = new System.Drawing.Point(0, 44);
+                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        this.Label3.Location = new System.Drawing.Point(0, 0);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(80, 24);
                         this.Label3.TabIndex = 14;
@@ -362,8 +334,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.AlwaysExpanded = true;
                         this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaEstado.AutoNav = true;
-                        this.EntradaEstado.AutoTab = true;
-                        this.EntradaEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaEstado.FieldName = null;
                         this.EntradaEstado.Location = new System.Drawing.Point(288, 311);
                         this.EntradaEstado.MaxLength = 32767;
@@ -380,7 +350,6 @@ namespace Lfc.Comprobantes.Compra
                         // BotonObs
                         // 
                         this.BotonObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonObs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonObs.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonObs.Image = null;
                         this.BotonObs.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -398,7 +367,6 @@ namespace Lfc.Comprobantes.Compra
                         // BotonConvertir
                         // 
                         this.BotonConvertir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonConvertir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BotonConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonConvertir.Image = null;
                         this.BotonConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -417,8 +385,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.EntradaOtrosGastos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaOtrosGastos.AutoNav = true;
-                        this.EntradaOtrosGastos.AutoTab = true;
-                        this.EntradaOtrosGastos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaOtrosGastos.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaOtrosGastos.DecimalPlaces = -1;
                         this.EntradaOtrosGastos.FieldName = null;
@@ -443,8 +409,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.EntradaCancelado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCancelado.AutoNav = true;
-                        this.EntradaCancelado.AutoTab = true;
-                        this.EntradaCancelado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCancelado.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCancelado.DecimalPlaces = -1;
                         this.EntradaCancelado.FieldName = null;
@@ -469,8 +433,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.EntradaGastosEnvio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaGastosEnvio.AutoNav = true;
-                        this.EntradaGastosEnvio.AutoTab = true;
-                        this.EntradaGastosEnvio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaGastosEnvio.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaGastosEnvio.DecimalPlaces = -1;
                         this.EntradaGastosEnvio.FieldName = null;
@@ -495,8 +457,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.EntradaTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTotal.AutoNav = true;
-                        this.EntradaTotal.AutoTab = true;
-                        this.EntradaTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.DecimalPlaces = -1;
                         this.EntradaTotal.FieldName = null;
@@ -529,7 +489,7 @@ namespace Lfc.Comprobantes.Compra
                         // label9
                         // 
                         this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label9.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(0, 340);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(116, 24);
@@ -540,7 +500,7 @@ namespace Lfc.Comprobantes.Compra
                         // label6
                         // 
                         this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label6.LabelStyle = Lui.Forms.LabelStyles.Big;
+                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         this.label6.Location = new System.Drawing.Point(412, 372);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(104, 28);
@@ -551,7 +511,7 @@ namespace Lfc.Comprobantes.Compra
                         // EtiquetaEstado
                         // 
                         this.EtiquetaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.EtiquetaEstado.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaEstado.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(226, 312);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(60, 24);
@@ -562,7 +522,7 @@ namespace Lfc.Comprobantes.Compra
                         // label1
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 312);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(116, 24);
@@ -573,7 +533,7 @@ namespace Lfc.Comprobantes.Compra
                         // Label4
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.LabelStyle = Lui.Forms.LabelStyles.Big;
+                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         this.Label4.Location = new System.Drawing.Point(412, 340);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(104, 28);
@@ -588,7 +548,6 @@ namespace Lfc.Comprobantes.Compra
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.Contenedor.Controls.Add(this.EntradaObs);
                         this.Contenedor.Controls.Add(this.EntradaEstado);
-                        this.Contenedor.Controls.Add(this.EtiquetaTitulo);
                         this.Contenedor.Controls.Add(this.BotonObs);
                         this.Contenedor.Controls.Add(this.Label3);
                         this.Contenedor.Controls.Add(this.BotonConvertir);
@@ -624,18 +583,14 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.Add(this.Contenedor);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(640, 400);
-                        this.Controls.SetChildIndex(this.ControlCaption, 0);
-                        this.Controls.SetChildIndex(this.Contenedor, 0);
                         this.Contenedor.ResumeLayout(false);
                         this.Contenedor.PerformLayout();
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 
                 #endregion
 
-                internal Lui.Forms.Label EtiquetaTitulo;
                 internal Lui.Forms.ComboBox EntradaTipo;
                 internal Lui.Forms.ComboBox EntradaFormaPago;
                 internal Lui.Forms.TextBox EntradaFecha;
@@ -661,6 +616,6 @@ namespace Lfc.Comprobantes.Compra
                 internal Lui.Forms.Label EtiquetaEstado;
                 internal Lui.Forms.Label label1;
                 internal Lui.Forms.Label Label4;
-                private System.Windows.Forms.Panel Contenedor;
+                private Lui.Forms.Panel Contenedor;
         }
 }

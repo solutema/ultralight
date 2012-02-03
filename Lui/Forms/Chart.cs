@@ -41,7 +41,7 @@ namespace Lui.Forms
         /// <summary>
         /// Descripción breve de Chart.
         /// </summary>
-        public class Chart : System.Windows.Forms.UserControl, IControl
+        public class Chart : System.Windows.Forms.UserControl, IControl, IDisplayStyleControl
         {
                 /// <summary> 
                 /// Variable del diseñador requerida.
@@ -79,15 +79,15 @@ namespace Lui.Forms
                         ((System.ComponentModel.ISupportInitialize)(this.ChartPic)).BeginInit();
                         this.SuspendLayout();
                         // 
-                        // Chart
+                        // ChartPic
                         // 
-                        this.ChartPic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ChartPic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ChartPic.BackColor = System.Drawing.Color.White;
-                        this.ChartPic.Location = new System.Drawing.Point(4, 28);
-                        this.ChartPic.Name = "Chart";
-                        this.ChartPic.Size = new System.Drawing.Size(440, 208);
+                        this.ChartPic.Location = new System.Drawing.Point(4, 32);
+                        this.ChartPic.Name = "ChartPic";
+                        this.ChartPic.Size = new System.Drawing.Size(440, 204);
                         this.ChartPic.TabIndex = 1;
                         this.ChartPic.TabStop = false;
                         this.ChartPic.Click += new System.EventHandler(this.ChartPic_Click);
@@ -96,10 +96,10 @@ namespace Lui.Forms
                         // TitleLabel
                         // 
                         this.TitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.TitleLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.TitleLabel.Location = new System.Drawing.Point(0, 0);
-                        this.TitleLabel.LabelStyle = LabelStyles.Header2;
                         this.TitleLabel.Name = "TitleLabel";
-                        this.TitleLabel.Size = new System.Drawing.Size(448, 24);
+                        this.TitleLabel.Size = new System.Drawing.Size(448, 32);
                         this.TitleLabel.TabIndex = 2;
                         this.TitleLabel.Text = "Title";
                         this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -303,6 +303,21 @@ namespace Lui.Forms
                 private void ChartPic_Paint(object sender, PaintEventArgs e)
                 {
                         this.Redraw();
+                }
+
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public virtual Lazaro.Pres.DisplayStyles.IDisplayStyle DisplayStyle
+                {
+                        get
+                        {
+                                return null;
+                        }
+                        set
+                        {
+                        }
                 }
 
         }

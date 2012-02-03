@@ -81,7 +81,7 @@ namespace Lcc.Edicion.Comprobantes
                         }
                         set
                         {
-                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(value, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(value, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         }
                 }
 
@@ -133,11 +133,11 @@ namespace Lcc.Edicion.Comprobantes
                                                 return new Lfx.Types.FailureOperationResult("Debe seleccionar un banco.");
                                         }  else {
                                                 int Numero = Lfx.Types.Parsing.ParseInt(EntradaNumeroCheque.Text);
-                                                int IdChequera = this.Connection.FieldInt("SELECT id_chequera FROM chequeras WHERE estado=1 AND id_banco=" + EntradaBanco.TextInt.ToString() + " AND " + Numero.ToString() + " BETWEEN desde AND hasta AND (id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " OR id_sucursal IS NULL)");
+                                                int IdChequera = this.Connection.FieldInt("SELECT id_chequera FROM chequeras WHERE estado=1 AND id_banco=" + EntradaBanco.TextInt.ToString() + " AND " + Numero.ToString() + " BETWEEN desde AND hasta AND (id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " OR id_sucursal IS NULL)");
                                                 if (IdChequera == 0)
                                                         return new Lfx.Types.FailureOperationResult("El Número de cheque no corresponde a ninguna Chequera del banco seleccionado.");
 
-                                                int IdChequePrevio = this.Connection.FieldInt("SELECT id_cheque FROM bancos_cheques WHERE estado<>90 AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumeroCheque.Text).ToString() + " AND (id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " OR id_sucursal IS NULL)");
+                                                int IdChequePrevio = this.Connection.FieldInt("SELECT id_cheque FROM bancos_cheques WHERE estado<>90 AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumeroCheque.Text).ToString() + " AND (id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " OR id_sucursal IS NULL)");
                                                 if (IdChequePrevio != 0)
                                                         return new Lfx.Types.FailureOperationResult("El Número corresponde a un cheque que ya fue emitido.");
 
@@ -184,7 +184,7 @@ namespace Lcc.Edicion.Comprobantes
                                         this.ElementoPago.Cheque.FechaEmision = Lfx.Types.Parsing.ParseDate(EntradaFechaEmision.Text);
                                         this.ElementoPago.Cheque.Importe = Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text);
                                         this.ElementoPago.Cheque.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumeroCheque.Text);
-                                        int IdChequera = this.Connection.FieldInt("SELECT id_chequera FROM chequeras WHERE estado=1 AND id_banco=" + EntradaBanco.TextInt.ToString() + " AND " + this.ElementoPago.Cheque.Numero.ToString() + " BETWEEN desde AND hasta AND (id_sucursal=" + this.Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " OR id_sucursal IS NULL)");
+                                        int IdChequera = this.Connection.FieldInt("SELECT id_chequera FROM chequeras WHERE estado=1 AND id_banco=" + EntradaBanco.TextInt.ToString() + " AND " + this.ElementoPago.Cheque.Numero.ToString() + " BETWEEN desde AND hasta AND (id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " OR id_sucursal IS NULL)");
                                         if (IdChequera == 0)
                                                 this.ElementoPago.Cheque.Chequera = null;
                                         else
@@ -257,7 +257,7 @@ namespace Lcc.Edicion.Comprobantes
                                                 EntradaValor.TextInt = this.ElementoPago.Valor.Id;
                                         break;
                         }
-                        EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(this.ElementoPago.Importe, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(this.ElementoPago.Importe, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         EntradaObs.Text = this.ElementoPago.Obs;
                 }
 

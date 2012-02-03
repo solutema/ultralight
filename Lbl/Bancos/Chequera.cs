@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Bancos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Chequera",
-                Grupo = "Bancos",
-                TablaDatos = "chequeras",
-                CampoId = "id_chequera")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Chequera", Grupo = "Bancos")]
+        [Lbl.Atributos.Datos(TablaDatos = "chequeras", CampoId = "id_chequera")]
         [Lbl.Atributos.Presentacion()]
         public class Chequera : ElementoDeDatos
         {

@@ -35,9 +35,8 @@ using System.Text;
 
 namespace Lbl.Sys.Log
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Entrada de Registro de Actividades",
-                       TablaDatos = "sys_log",
-                       CampoId = "id_log")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Entrada de Registro de Actividades")]
+        [Lbl.Atributos.Datos(TablaDatos = "sys_log", CampoId = "id_log")]
         [Lbl.Atributos.Presentacion()]
         public class Entrada : Lbl.ElementoDeDatos
         {

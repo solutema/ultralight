@@ -31,9 +31,8 @@
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Ticket",
-                TablaDatos = "comprob",
-                CampoId = "id_comprob")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Ticket")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob")]
         [Lbl.Atributos.Presentacion()]
         public class Ticket : ComprobanteFacturable
         {

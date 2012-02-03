@@ -60,8 +60,8 @@ namespace Lcc.Edicion.Comprobantes
                 {
                         this.EntradaImporte = new Lui.Forms.TextBox();
                         this.label1 = new Lui.Forms.Label();
-                        this.PanelImporte = new System.Windows.Forms.Panel();
-                        this.PanelChequeTerceros = new System.Windows.Forms.Panel();
+                        this.PanelImporte = new Lui.Forms.Panel();
+                        this.PanelChequeTerceros = new Lui.Forms.Panel();
                         this.EntradaEmisor = new Lui.Forms.TextBox();
                         this.EntradaFechaCobro = new Lui.Forms.TextBox();
                         this.EntradaFechaEmision = new Lui.Forms.TextBox();
@@ -72,14 +72,14 @@ namespace Lcc.Edicion.Comprobantes
                         this.label6 = new Lui.Forms.Label();
                         this.lblFecha1 = new Lui.Forms.Label();
                         this.label5 = new Lui.Forms.Label();
-                        this.PanelTitulo = new System.Windows.Forms.Panel();
+                        this.PanelTitulo = new Lui.Forms.Panel();
                         this.FrameTitulo = new Lui.Forms.Frame();
-                        this.PanelCaja = new System.Windows.Forms.Panel();
+                        this.PanelCaja = new Lui.Forms.Panel();
                         this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.label9 = new Lui.Forms.Label();
-                        this.PanelEfectivo = new System.Windows.Forms.Panel();
+                        this.PanelEfectivo = new Lui.Forms.Panel();
                         this.label8 = new Lui.Forms.Label();
-                        this.PanelTarjeta = new System.Windows.Forms.Panel();
+                        this.PanelTarjeta = new Lui.Forms.Panel();
                         this.EntradaCupon = new Lui.Forms.TextBox();
                         this.EntradaInteres = new Lui.Forms.TextBox();
                         this.Label14 = new Lui.Forms.Label();
@@ -88,17 +88,17 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
                         this.Label11 = new Lui.Forms.Label();
                         this.Label15 = new Lui.Forms.Label();
-                        this.PanelObs = new System.Windows.Forms.Panel();
+                        this.PanelObs = new Lui.Forms.Panel();
                         this.EntradaObs = new Lui.Forms.TextBox();
                         this.Label20 = new Lui.Forms.Label();
-                        this.PanelCuentaCorriente = new System.Windows.Forms.Panel();
+                        this.PanelCuentaCorriente = new Lui.Forms.Panel();
                         this.label7 = new Lui.Forms.Label();
-                        this.PanelFormaDePago = new System.Windows.Forms.Panel();
+                        this.PanelFormaDePago = new Lui.Forms.Panel();
                         this.EntradaFormaDePago = new Lcc.Entrada.CodigoDetalle();
                         this.AyudaFormaDePago = new Lui.Forms.Label();
                         this.label12 = new Lui.Forms.Label();
-                        this.PanelSeparadorInferior = new System.Windows.Forms.Panel();
-                        this.PanelValor = new System.Windows.Forms.Panel();
+                        this.PanelSeparadorInferior = new Lui.Forms.Panel();
+                        this.PanelValor = new Lui.Forms.Panel();
                         this.EntradaValorNumero = new Lui.Forms.TextBox();
                         this.label16 = new Lui.Forms.Label();
                         this.PanelImporte.SuspendLayout();
@@ -116,7 +116,6 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaImporte
                         // 
                         this.EntradaImporte.AutoNav = true;
-                        this.EntradaImporte.AutoTab = true;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.DecimalPlaces = -1;
                         this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
@@ -174,7 +173,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaEmisor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEmisor.AutoNav = true;
-                        this.EntradaEmisor.AutoTab = true;
                         this.EntradaEmisor.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaEmisor.DecimalPlaces = -1;
                         this.EntradaEmisor.ForceCase = Lui.Forms.TextCasing.Automatic;
@@ -190,7 +188,6 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaFechaCobro
                         // 
                         this.EntradaFechaCobro.AutoNav = true;
-                        this.EntradaFechaCobro.AutoTab = true;
                         this.EntradaFechaCobro.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaCobro.DecimalPlaces = -1;
                         this.EntradaFechaCobro.ForceCase = Lui.Forms.TextCasing.None;
@@ -207,7 +204,6 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaFechaEmision
                         // 
                         this.EntradaFechaEmision.AutoNav = true;
-                        this.EntradaFechaEmision.AutoTab = true;
                         this.EntradaFechaEmision.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaEmision.DecimalPlaces = -1;
                         this.EntradaFechaEmision.ForceCase = Lui.Forms.TextCasing.None;
@@ -224,7 +220,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaNumeroCheque.AutoSize = false;
                         this.EntradaNumeroCheque.AutoNav = true;
-                        this.EntradaNumeroCheque.AutoTab = true;
                         this.EntradaNumeroCheque.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaNumeroCheque.DecimalPlaces = -1;
                         this.EntradaNumeroCheque.ForceCase = Lui.Forms.TextCasing.None;
@@ -243,7 +238,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.Filter = "";
@@ -323,7 +317,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.FrameTitulo.Location = new System.Drawing.Point(0, 0);
                         this.FrameTitulo.Name = "FrameTitulo";
                         this.FrameTitulo.Padding = new System.Windows.Forms.Padding(2);
-                        this.FrameTitulo.TemporaryReadOnly = false;
                         this.FrameTitulo.Size = new System.Drawing.Size(460, 32);
                         this.FrameTitulo.TabIndex = 0;
                         this.FrameTitulo.TabStop = false;
@@ -344,7 +337,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.Filter = "";
@@ -411,7 +403,6 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaCupon
                         // 
                         this.EntradaCupon.AutoNav = true;
-                        this.EntradaCupon.AutoTab = true;
                         this.EntradaCupon.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCupon.DecimalPlaces = -1;
                         this.EntradaCupon.ForceCase = Lui.Forms.TextCasing.None;
@@ -427,7 +418,6 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaInteres
                         // 
                         this.EntradaInteres.AutoNav = true;
-                        this.EntradaInteres.AutoTab = true;
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaInteres.DecimalPlaces = -1;
                         this.EntradaInteres.ForceCase = Lui.Forms.TextCasing.None;
@@ -455,7 +445,6 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaCuotas
                         // 
                         this.EntradaCuotas.AutoNav = true;
-                        this.EntradaCuotas.AutoTab = true;
                         this.EntradaCuotas.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCuotas.DecimalPlaces = -1;
                         this.EntradaCuotas.ForceCase = Lui.Forms.TextCasing.None;
@@ -483,7 +472,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaPlan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaPlan.AutoTab = true;
                         this.EntradaPlan.CanCreate = false;
                         this.EntradaPlan.DataTextField = "nombre";
                         this.EntradaPlan.Filter = "";
@@ -538,7 +526,6 @@ namespace Lcc.Edicion.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.AutoNav = true;
-                        this.EntradaObs.AutoTab = true;
                         this.EntradaObs.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaObs.DecimalPlaces = -1;
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
@@ -595,7 +582,6 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaFormaDePago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFormaDePago.AutoTab = true;
                         this.EntradaFormaDePago.CanCreate = true;
                         this.EntradaFormaDePago.DataTextField = "nombre";
                         this.EntradaFormaDePago.Filter = "cobros=1";
@@ -658,7 +644,6 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaValorNumero
                         // 
                         this.EntradaValorNumero.AutoNav = true;
-                        this.EntradaValorNumero.AutoTab = true;
                         this.EntradaValorNumero.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaValorNumero.DecimalPlaces = -1;
                         this.EntradaValorNumero.ForceCase = Lui.Forms.TextCasing.None;
@@ -713,8 +698,8 @@ namespace Lcc.Edicion.Comprobantes
 
                 internal Lui.Forms.TextBox EntradaImporte;
                 private Lui.Forms.Label label1;
-                private System.Windows.Forms.Panel PanelImporte;
-                private System.Windows.Forms.Panel PanelChequeTerceros;
+                private Lui.Forms.Panel PanelImporte;
+                private Lui.Forms.Panel PanelChequeTerceros;
                 private Lui.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaFechaCobro;
                 private Lui.Forms.Label label3;
@@ -724,13 +709,13 @@ namespace Lcc.Edicion.Comprobantes
                 internal Lui.Forms.Label lblFecha1;
                 internal Lcc.Entrada.CodigoDetalle EntradaBanco;
                 private Lui.Forms.Label label5;
-                private System.Windows.Forms.Panel PanelTitulo;
+                private Lui.Forms.Panel PanelTitulo;
                 private Lui.Forms.Frame FrameTitulo;
-                private System.Windows.Forms.Panel PanelCaja;
+                private Lui.Forms.Panel PanelCaja;
                 public Lcc.Entrada.CodigoDetalle EntradaCaja;
-                private System.Windows.Forms.Panel PanelEfectivo;
+                private Lui.Forms.Panel PanelEfectivo;
                 private Lui.Forms.Label label8;
-                private System.Windows.Forms.Panel PanelTarjeta;
+                private Lui.Forms.Panel PanelTarjeta;
                 public Lui.Forms.TextBox EntradaCupon;
                 public Lui.Forms.TextBox EntradaInteres;
                 internal Lui.Forms.Label Label14;
@@ -739,19 +724,19 @@ namespace Lcc.Edicion.Comprobantes
                 public Lcc.Entrada.CodigoDetalle EntradaPlan;
                 internal Lui.Forms.Label Label11;
                 internal Lui.Forms.Label Label15;
-                private System.Windows.Forms.Panel PanelObs;
+                private Lui.Forms.Panel PanelObs;
                 private Lui.Forms.Label label9;
                 public Lui.Forms.TextBox EntradaObs;
                 internal Lui.Forms.Label Label20;
-                private System.Windows.Forms.Panel PanelCuentaCorriente;
+                private Lui.Forms.Panel PanelCuentaCorriente;
                 private Lui.Forms.Label label7;
                 internal Lui.Forms.TextBox EntradaEmisor;
-                private System.Windows.Forms.Panel PanelFormaDePago;
+                private Lui.Forms.Panel PanelFormaDePago;
                 private Lui.Forms.Label AyudaFormaDePago;
                 private Lui.Forms.Label label12;
-                private System.Windows.Forms.Panel PanelSeparadorInferior;
+                private Lui.Forms.Panel PanelSeparadorInferior;
                 internal Lcc.Entrada.CodigoDetalle EntradaFormaDePago;
-                private System.Windows.Forms.Panel PanelValor;
+                private Lui.Forms.Panel PanelValor;
                 public Lui.Forms.TextBox EntradaValorNumero;
                 internal Lui.Forms.Label label16;
         }

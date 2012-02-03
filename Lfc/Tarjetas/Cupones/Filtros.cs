@@ -105,7 +105,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.Label1 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.label3 = new Lui.Forms.Label();
-                        this.panel1 = new System.Windows.Forms.Panel();
+                        this.panel1 = new Lui.Forms.Panel();
                         this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.panel1.SuspendLayout();
@@ -125,7 +125,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaDePago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaDePago.AutoSize = true;
-                        this.EntradaFormaDePago.AutoTab = true;
                         this.EntradaFormaDePago.CanCreate = false;
                         this.EntradaFormaDePago.DataTextField = "nombre";
                         this.EntradaFormaDePago.Filter = "tipo=4";
@@ -168,7 +167,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         this.txtPlanInteres.AutoSize = false;
                         this.txtPlanInteres.AutoNav = true;
-                        this.txtPlanInteres.AutoTab = true;
                         this.txtPlanInteres.DataType = Lui.Forms.DataTypes.Float;
                         this.txtPlanInteres.DecimalPlaces = -1;
                         this.txtPlanInteres.ForceCase = Lui.Forms.TextCasing.None;
@@ -196,7 +194,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         this.txtPlanCuotas.AutoSize = false;
                         this.txtPlanCuotas.AutoNav = true;
-                        this.txtPlanCuotas.AutoTab = true;
                         this.txtPlanCuotas.DataType = Lui.Forms.DataTypes.Integer;
                         this.txtPlanCuotas.DecimalPlaces = -1;
                         this.txtPlanCuotas.ForceCase = Lui.Forms.TextCasing.None;
@@ -225,7 +222,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPlan.AutoSize = true;
-                        this.EntradaPlan.AutoTab = true;
                         this.EntradaPlan.CanCreate = false;
                         this.EntradaPlan.DataTextField = "nombre";
                         this.EntradaPlan.Filter = "";
@@ -260,7 +256,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoSize = true;
-                        this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.Filter = "";
@@ -293,7 +288,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.AutoNav = true;
-                        this.EntradaEstado.AutoTab = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(85, 93);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);

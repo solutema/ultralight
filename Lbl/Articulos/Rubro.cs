@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Rubro",
-                Grupo = "Artículos",
-                TablaDatos = "articulos_rubros",
-                CampoId = "id_rubro")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Rubro", Grupo = "Artículos")]
+        [Lbl.Atributos.Datos(TablaDatos = "articulos_rubros", CampoId = "id_rubro")]
         [Lbl.Atributos.Presentacion()]
 	public class Rubro : ElementoDeDatos
 	{

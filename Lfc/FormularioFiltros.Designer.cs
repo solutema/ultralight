@@ -54,42 +54,44 @@ namespace Lfc
                 private void InitializeComponent()
                 {
                         this.ControlFiltros = new Lcc.Entrada.Filtros();
+                        this.formHeader1 = new Lui.Forms.FormHeader();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
                         // ControlFiltros
                         // 
                         this.ControlFiltros.AutoScroll = true;
+                        this.ControlFiltros.AutoScrollMargin = new System.Drawing.Size(0, 24);
                         this.ControlFiltros.AutoSize = true;
                         this.ControlFiltros.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.ControlFiltros.Location = new System.Drawing.Point(0, 0);
-                        this.ControlFiltros.Margin = new System.Windows.Forms.Padding(8);
+                        this.ControlFiltros.Location = new System.Drawing.Point(0, 64);
                         this.ControlFiltros.Name = "ControlFiltros";
-                        this.ControlFiltros.Padding = new System.Windows.Forms.Padding(16);
                         this.ControlFiltros.ShowApplyButton = false;
-                        this.ControlFiltros.Size = new System.Drawing.Size(634, 312);
+                        this.ControlFiltros.Size = new System.Drawing.Size(634, 244);
                         this.ControlFiltros.TabIndex = 0;
+                        // 
+                        // formHeader1
+                        // 
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(634, 64);
+                        this.formHeader1.TabIndex = 51;
+                        this.formHeader1.Text = "Filtros";
                         // 
                         // FormularioFiltros
                         // 
-                        this.AcceptButton = this.OkButton;
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoSize = true;
-                        this.CancelButton = this.CancelCommandButton;
                         this.ClientSize = new System.Drawing.Size(634, 372);
                         this.Controls.Add(this.ControlFiltros);
+                        this.Controls.Add(this.formHeader1);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-                        this.MinimumSize = new System.Drawing.Size(320, 200);
+                        this.MaximumSize = new System.Drawing.Size(1000, 720);
+                        this.MinimumSize = new System.Drawing.Size(480, 320);
                         this.Name = "FormularioFiltros";
                         this.Text = "Filtros";
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.Controls.SetChildIndex(this.ControlFiltros, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
@@ -99,6 +101,7 @@ namespace Lfc
                 #endregion
 
                 private Lcc.Entrada.Filtros ControlFiltros;
+                private Lui.Forms.FormHeader formHeader1;
 
         }
 }

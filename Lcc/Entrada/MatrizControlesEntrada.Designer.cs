@@ -57,7 +57,7 @@ namespace Lcc.Entrada
 
                 private void InitializeComponent()
                 {
-                        this.PanelGrilla = new System.Windows.Forms.Panel();
+                        this.PanelGrilla = new Lui.Forms.Panel();
                         this.SuspendLayout();
                         // 
                         // PanelGrilla
@@ -86,6 +86,6 @@ namespace Lcc.Entrada
 
                 }
 
-                internal System.Windows.Forms.Panel PanelGrilla;
+                internal Lui.Forms.Panel PanelGrilla;
         }
 }

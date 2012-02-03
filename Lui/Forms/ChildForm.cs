@@ -41,8 +41,8 @@ namespace Lui.Forms
 	public partial class ChildForm : Lui.Forms.Form
 	{
                 public int Uid;
-                private ToolBar m_ParentToolBar = null;
-                private ToolBarButton m_MyToolBarButton = null;
+                private ToolStrip m_ParentToolStrip = null;
+                private ToolStripButton m_MyToolStripButton = null;
 
 		public ChildForm()
 		{
@@ -51,66 +51,113 @@ namespace Lui.Forms
                         this.Uid = new Random().Next();
 		}
 
-                protected ToolBarButton MyToolBarButton
+                protected override void Dispose(bool disposing)
+                {
+                        if (disposing) {
+                                if (components != null) {
+                                        components.Dispose();
+                                }
+                        }
+
+                        if (m_MyToolStripButton != null) {
+                                m_MyToolStripButton.Dispose();
+                                m_MyToolStripButton = null;
+                        }
+
+                        base.Dispose(disposing);
+                }
+
+
+                protected ToolStripButton MyToolStripButton
                 {
                         get
                         {
-                                return m_MyToolBarButton;
+                                return m_MyToolStripButton;
                         }
                 }
 
-                internal ToolBar ParentToolBar
+
+                private ToolStrip ParentToolStrip
                 {
                         get
                         {
-                                if (m_ParentToolBar == null && this.MdiParent != null) {
+                                if (m_ParentToolStrip == null && this.MdiParent != null) {
                                         foreach (System.Windows.Forms.Control TmpCtl in this.MdiParent.Controls) {
-                                                if (TmpCtl is System.Windows.Forms.ToolBar && TmpCtl.Name == "BarraTareas")
-                                                        m_ParentToolBar = (ToolBar)TmpCtl;
+                                                if (TmpCtl is System.Windows.Forms.ToolStrip && TmpCtl.Name == "BarraTareas")
+                                                        m_ParentToolStrip = (ToolStrip)TmpCtl;
                                         }
                                 }
-                                return m_ParentToolBar;
+                                return m_ParentToolStrip;
                         }
                 }
+
 
                 private void ChildForm_Load(object sender, System.EventArgs e)
                 {
-                        m_MyToolBarButton = new ToolBarButton(this.Text); ;
-                        m_MyToolBarButton.Tag = this.Uid;
-                        m_MyToolBarButton.ImageIndex = 0;
-                        m_MyToolBarButton.Pushed = true;
-                        if (this.ParentToolBar != null)
-                                this.ParentToolBar.Buttons.Add(m_MyToolBarButton);
+                        m_MyToolStripButton = new ToolStripButton(this.Text);
+                        m_MyToolStripButton.Margin = new System.Windows.Forms.Padding(2);
+                        m_MyToolStripButton.Padding = new System.Windows.Forms.Padding(2);
+                        m_MyToolStripButton.Tag = this.Uid;
+                        m_MyToolStripButton.Checked = true;
+                        if (m_MyToolStripButton.Image != null)
+                                m_MyToolStripButton.Image.Dispose();
+                        m_MyToolStripButton.Image = this.Icon.ToBitmap();
+                        if (this.ParentToolStrip != null)
+                                this.ParentToolStrip.Items.Add(m_MyToolStripButton);
 
                         if (this.MdiParent != null)
                                 this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
                 }
 
-                private void ChildForm_Activated(object sender, System.EventArgs e)
+
+                protected override void OnActivated(EventArgs e)
                 {
                         try {
-                                if (this.ParentToolBar != null && this.ParentToolBar.Buttons != null) {
-                                        foreach (System.Windows.Forms.ToolBarButton Btn in this.ParentToolBar.Buttons) {
-                                                Btn.Pushed = ((int)Btn.Tag) == this.Uid;
+                                if (this.ParentToolStrip != null && this.ParentToolStrip.Items != null) {
+                                        foreach (System.Windows.Forms.ToolStripButton Btn in this.ParentToolStrip.Items) {
+                                                Btn.Checked = ((int)Btn.Tag) == this.Uid;
                                         }
                                 }
                         } catch {
                                 // Nada
                         }
+                        base.OnActivated(e);
                 }
 
-		protected override void OnTextChanged(System.EventArgs e)
+
+                protected override void OnTextChanged(System.EventArgs e)
 		{
-                        if (this.MyToolBarButton != null)
-                                this.MyToolBarButton.Text = this.Text;
+                        if (this.MyToolStripButton != null) {
+                                this.MyToolStripButton.Text = this.Text;
+                                this.MyToolStripButton.Image = this.Icon.ToBitmap();
+                        }
 
                         base.OnTextChanged(e);
 		}
 
-		private void ChildForm_FormClosing(object sender, FormClosingEventArgs e)
-		{
-                        if (this.ParentToolBar != null && this.MyToolBarButton != null)
-                                this.ParentToolBar.Buttons.Remove(this.MyToolBarButton);
+
+                protected override void OnFormClosing(FormClosingEventArgs e)
+                {
+                        if (e.Cancel == false) {
+                                if (this.ParentToolStrip != null && this.ParentToolStrip.Items != null && this.MyToolStripButton != null)
+                                        this.ParentToolStrip.Items.Remove(this.MyToolStripButton);
+                        }
+                        base.OnFormClosing(e);
 		}
+
+                public override string StockImage
+                {
+                        get
+                        {
+                                return base.StockImage;
+                        }
+                        set
+                        {
+                                base.StockImage = value;
+                                if (value != null && this.MyToolStripButton != null) {
+                                        this.MyToolStripButton.Image = (Image)(global::Lui.Properties.Resources.ResourceManager.GetObject(value));
+                                }
+                        }
+                }
 	}
 }

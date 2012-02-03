@@ -86,7 +86,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(20, 20);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
@@ -99,8 +99,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AlwaysExpanded = false;
                         this.EntradaTipo.AutoNav = true;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.AutoTab = true;
-                        this.EntradaTipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaTipo.FieldName = null;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.MaxLength = 32767;
@@ -123,8 +121,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaDesde
                         // 
                         this.EntradaDesde.AutoNav = true;
-                        this.EntradaDesde.AutoTab = true;
-                        this.EntradaDesde.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDesde.DecimalPlaces = -1;
                         this.EntradaDesde.FieldName = null;
@@ -149,7 +145,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAviso.LabelStyle = Lui.Forms.LabelStyles.Warning;
+                        this.EtiquetaAviso.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Warning;
                         this.EtiquetaAviso.Location = new System.Drawing.Point(20, 80);
                         this.EtiquetaAviso.Name = "EtiquetaAviso";
                         this.EtiquetaAviso.Size = new System.Drawing.Size(756, 28);
@@ -159,8 +155,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaPV
                         // 
                         this.EntradaPV.AutoNav = true;
-                        this.EntradaPV.AutoTab = true;
-                        this.EntradaPV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.DecimalPlaces = -1;
                         this.EntradaPV.FieldName = null;
@@ -183,7 +177,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(228, 20);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(64, 24);
@@ -196,8 +190,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaAnularPagos.AlwaysExpanded = true;
                         this.EntradaAnularPagos.AutoNav = true;
                         this.EntradaAnularPagos.AutoSize = true;
-                        this.EntradaAnularPagos.AutoTab = true;
-                        this.EntradaAnularPagos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaAnularPagos.FieldName = null;
                         this.EntradaAnularPagos.Location = new System.Drawing.Point(508, 20);
                         this.EntradaAnularPagos.MaxLength = 32767;
@@ -214,7 +206,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(436, 20);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(72, 24);
@@ -228,7 +220,6 @@ namespace Lfc.Comprobantes.Facturas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.ComprobanteVistaPrevia.AutoNav = true;
                         this.ComprobanteVistaPrevia.AutoSize = true;
-                        this.ComprobanteVistaPrevia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.ComprobanteVistaPrevia.FieldName = null;
                         this.ComprobanteVistaPrevia.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.ComprobanteVistaPrevia.Location = new System.Drawing.Point(20, 112);
@@ -244,8 +235,6 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaHasta
                         // 
                         this.EntradaHasta.AutoNav = true;
-                        this.EntradaHasta.AutoTab = true;
-                        this.EntradaHasta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaHasta.DecimalPlaces = -1;
                         this.EntradaHasta.FieldName = null;
@@ -269,7 +258,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(228, 48);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(64, 24);
@@ -327,7 +316,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(20, 48);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(128, 24);

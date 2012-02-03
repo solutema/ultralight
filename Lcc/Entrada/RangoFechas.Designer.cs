@@ -53,8 +53,8 @@ namespace Lcc.Entrada
                         this.EntradaRango = new Lui.Forms.ComboBox();
                         this.EtiquetaDesde = new Lui.Forms.Label();
                         this.EtiquetaHasta = new Lui.Forms.Label();
-                        this.PanelCombos = new System.Windows.Forms.Panel();
-                        this.PanelFechas = new System.Windows.Forms.Panel();
+                        this.PanelCombos = new Lui.Forms.Panel();
+                        this.PanelFechas = new Lui.Forms.Panel();
                         this.PanelCombos.SuspendLayout();
                         this.PanelFechas.SuspendLayout();
                         this.SuspendLayout();
@@ -64,7 +64,6 @@ namespace Lcc.Entrada
                         this.EntradaTipoDeRango.AlwaysExpanded = false;
                         this.EntradaTipoDeRango.AutoNav = true;
                         this.EntradaTipoDeRango.AutoSize = true;
-                        this.EntradaTipoDeRango.AutoTab = true;
                         this.EntradaTipoDeRango.Location = new System.Drawing.Point(0, 0);
                         this.EntradaTipoDeRango.Name = "EntradaTipoDeRango";
                         this.EntradaTipoDeRango.Padding = new System.Windows.Forms.Padding(2);
@@ -83,7 +82,6 @@ namespace Lcc.Entrada
                         // EntradaDesde
                         // 
                         this.EntradaDesde.AutoNav = true;
-                        this.EntradaDesde.AutoTab = true;
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaDesde.DecimalPlaces = -1;
                         this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
@@ -99,7 +97,6 @@ namespace Lcc.Entrada
                         // EntradaHasta
                         // 
                         this.EntradaHasta.AutoNav = true;
-                        this.EntradaHasta.AutoTab = true;
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaHasta.DecimalPlaces = -1;
                         this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
@@ -119,7 +116,6 @@ namespace Lcc.Entrada
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaRango.AutoNav = true;
                         this.EntradaRango.AutoSize = true;
-                        this.EntradaRango.AutoTab = true;
                         this.EntradaRango.Location = new System.Drawing.Point(128, 0);
                         this.EntradaRango.Name = "EntradaRango";
                         this.EntradaRango.Padding = new System.Windows.Forms.Padding(2);
@@ -200,7 +196,7 @@ namespace Lcc.Entrada
                 private Lui.Forms.ComboBox EntradaRango;
                 private Lui.Forms.Label EtiquetaDesde;
                 private Lui.Forms.Label EtiquetaHasta;
-                private System.Windows.Forms.Panel PanelCombos;
-                private System.Windows.Forms.Panel PanelFechas;
+                private Lui.Forms.Panel PanelCombos;
+                private Lui.Forms.Panel PanelFechas;
         }
 }

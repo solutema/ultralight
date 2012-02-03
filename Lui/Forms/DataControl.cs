@@ -38,31 +38,6 @@ namespace Lui.Forms
 {
         public class DataControl : EditableControl, IDataControl
         {
-                /// <summary>
-                /// IDataControl
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Lfx.Workspace Workspace
-                {
-                        get
-                        {
-                                if (m_DataBase == null)
-                                        return Lfx.Workspace.Master;
-                                else
-                                        return this.Connection.Workspace;
-                        }
-                }
-
-                /// <summary>
-                /// IDataControl
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public bool HasWorkspace
-                {
-                        get
-                        {
-                                return this.Parent != null && this.Workspace != null;
-                        }
-                }
+                
         }
 }

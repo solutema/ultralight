@@ -38,8 +38,6 @@ namespace Lazaro.WinMain.Misc.Config
                 public ErrorConexion()
                 {
                         InitializeComponent();
-
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
 

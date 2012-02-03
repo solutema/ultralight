@@ -190,5 +190,14 @@ namespace Lfc.Personas.Usuarios
                                 }
                         }
                 }
+
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Personas;
+                        }
+                }
 	}
 }

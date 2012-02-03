@@ -35,16 +35,6 @@ namespace Lfc
 	{
 		#region Código generado por el Diseñador de Windows Forms
 
-		public FormularioListadoTexto()
-			:
-		    base()
-		{
-			// Necesario para admitir el Diseñador de Windows Forms
-			InitializeComponent();
-
-			LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
-		}
-
 		// Limpiar los recursos que se estén utilizando.
 		protected override void Dispose(bool disposing)
 		{
@@ -65,7 +55,7 @@ namespace Lfc
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal System.Windows.Forms.Panel LowerPanel;
+                internal Lui.Forms.ButtonPanel LowerPanel;
 		internal Lui.Forms.Button CancelCommandButton;
 		internal Lui.Forms.Button BotonMostrar;
 		internal Lui.Forms.Button PrintButton;
@@ -73,7 +63,7 @@ namespace Lfc
 
 		private void InitializeComponent()
 		{
-			this.LowerPanel = new System.Windows.Forms.Panel();
+			this.LowerPanel = new Lui.Forms.ButtonPanel();
 			this.BotonCopiar = new Lui.Forms.Button();
 			this.PrintButton = new Lui.Forms.Button();
 			this.BotonMostrar = new Lui.Forms.Button();

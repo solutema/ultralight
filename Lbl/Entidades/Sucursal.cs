@@ -38,9 +38,8 @@ namespace Lbl.Entidades
         /// <summary>
         /// Representa una sucursal de la empresa.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Sucursal",
-                TablaDatos = "sucursales",
-                CampoId = "id_sucursal")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Sucursal")]
+        [Lbl.Atributos.Datos(TablaDatos = "sucursales", CampoId = "id_sucursal")]
         [Lbl.Atributos.Presentacion()]
 	public class Sucursal : ElementoDeDatos
 	{
@@ -108,7 +107,7 @@ namespace Lbl.Entidades
 
                         this.CajaDiaria = new Cajas.Caja(this.Connection, 999);
                         this.SituacionOrigen = new Articulos.Situacion(this.Connection, 1);
-                        this.Localidad = new Localidad(this.Connection, this.Workspace.CurrentConfig.Empresa.IdLocalidad);
+                        this.Localidad = new Localidad(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.IdLocalidad);
                 }
 
                 public Cajas.Caja CajaDiaria

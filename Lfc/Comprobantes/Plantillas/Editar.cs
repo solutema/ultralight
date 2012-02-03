@@ -47,7 +47,7 @@ namespace Lfc.Comprobantes.Plantillas
                 private float Zoom = 100;
 
                 private System.Drawing.Pen LapizBordeCampos = new Pen(Color.Silver, 1);
-                private Brush BrushSeleccion = new System.Drawing.SolidBrush(Color.FromArgb(100, SystemColors.Highlight));
+                private Brush BrushSeleccion = new System.Drawing.SolidBrush(SystemColors.Highlight);
 
                 public Editar()
                 {
@@ -223,7 +223,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 StrFmt.LineAlignment = Cam.LineAlignment;
 
                                 if (FuenteItem == null)
-                                        FuenteItem = Lfx.Config.Display.DefaultFont;
+                                        FuenteItem = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
                                 e.Graphics.DrawString(Texto, FuenteItem, new SolidBrush(Cam.ColorTexto), DrawRect, StrFmt);
 
                                 if (CampoSeleccionado == Cam) {
@@ -616,6 +616,15 @@ namespace Lfc.Comprobantes.Plantillas
                         EntradaMargenDerecha.Visible = EntradaMargenIzquierda.Visible;
                         EntradaMargenArriba.Visible = EntradaMargenIzquierda.Visible;
                         EntradaMargenAbajo.Visible = EntradaMargenIzquierda.Visible;
+                }
+
+
+                public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
+                {
+                        get
+                        {
+                                return Lazaro.Pres.DisplayStyles.Template.Current.Comprobantes;
+                        }
                 }
         }
 }

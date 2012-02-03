@@ -60,7 +60,7 @@ namespace Lui.Forms
                 {
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageBoxForm));
                         this.OkButton = new Lui.Forms.Button();
-                        this.LowerPanel = new System.Windows.Forms.Panel();
+                        this.LowerPanel = new Lui.Forms.ButtonPanel();
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
                         this.MessageText = new System.Windows.Forms.TextBox();
                         this.LowerPanel.SuspendLayout();
@@ -70,14 +70,17 @@ namespace Lui.Forms
                         // OkButton
                         // 
                         this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.OkButton.AutoNav = true;
                         this.OkButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(369, 8);
+                        this.OkButton.Location = new System.Drawing.Point(350, 12);
+                        this.OkButton.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(2);
                         this.OkButton.ReadOnly = false;
-                        this.OkButton.Size = new System.Drawing.Size(104, 41);
+                        this.OkButton.Size = new System.Drawing.Size(104, 40);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "F9";
                         this.OkButton.TabIndex = 3;
@@ -88,9 +91,11 @@ namespace Lui.Forms
                         // 
                         this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 207);
+                        this.LowerPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 200);
                         this.LowerPanel.Name = "LowerPanel";
-                        this.LowerPanel.Size = new System.Drawing.Size(484, 57);
+                        this.LowerPanel.Padding = new System.Windows.Forms.Padding(12);
+                        this.LowerPanel.Size = new System.Drawing.Size(484, 64);
                         this.LowerPanel.TabIndex = 4;
                         // 
                         // pictureBox1
@@ -104,9 +109,9 @@ namespace Lui.Forms
                         // 
                         // MessageText
                         // 
-                        this.MessageText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.MessageText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.MessageText.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.MessageText.Location = new System.Drawing.Point(84, 15);
                         this.MessageText.Multiline = true;
@@ -125,6 +130,7 @@ namespace Lui.Forms
                         this.Controls.Add(this.MessageText);
                         this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.LowerPanel);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "MessageBoxForm";
                         this.ShowIcon = false;
@@ -141,7 +147,7 @@ namespace Lui.Forms
                 #endregion
 
                 public Lui.Forms.Button OkButton;
-                private System.Windows.Forms.Panel LowerPanel;
+                private Lui.Forms.ButtonPanel LowerPanel;
                 private System.Windows.Forms.PictureBox pictureBox1;
                 protected internal System.Windows.Forms.TextBox MessageText;
         }

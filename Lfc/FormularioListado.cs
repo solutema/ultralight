@@ -41,9 +41,9 @@ namespace Lfc
                 {
                         InitializeComponent();
 
-                        Listado.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        Listado.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
-                        Listado.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                        Listado.BackColor = this.DisplayStyle.DataAreaColor;
+                        Listado.BackColor = this.DisplayStyle.DataAreaColor;
+                        Listado.ForeColor = this.DisplayStyle.TextColor;
                 }
 
 
@@ -119,7 +119,7 @@ namespace Lfc
 
                 public virtual Lbl.IElementoDeDatos Crear()
                 {
-                        Lbl.IElementoDeDatos El = Lbl.Instanciador.Instanciar(this.Definicion.ElementoTipo, this.Workspace.GetNewConnection("Crear " + this.Definicion.ElementoTipo.ToString()));
+                        Lbl.IElementoDeDatos El = Lbl.Instanciador.Instanciar(this.Definicion.ElementoTipo, Lfx.Workspace.Master.GetNewConnection("Crear " + this.Definicion.ElementoTipo.ToString()));
                         El.Crear();
                         return El;
                 }
@@ -193,7 +193,7 @@ namespace Lfc
 
                 public virtual void ItemSelected(ListViewItem itm)
                 {
-                        this.Workspace.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Definicion.TableName, itm.Text });
+                        Lfx.Workspace.Master.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Definicion.TableName, itm.Text });
                 }
 
 

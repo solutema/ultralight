@@ -67,7 +67,6 @@ namespace Lcc.Entrada
                         // EntradaValor1
                         // 
                         this.EntradaValor1.AutoNav = true;
-                        this.EntradaValor1.AutoTab = true;
                         this.EntradaValor1.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaValor1.DecimalPlaces = 2;
                         this.EntradaValor1.ForceCase = Lui.Forms.TextCasing.None;
@@ -84,7 +83,6 @@ namespace Lcc.Entrada
                         // EntradaValor2
                         // 
                         this.EntradaValor2.AutoNav = true;
-                        this.EntradaValor2.AutoTab = true;
                         this.EntradaValor2.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaValor2.DecimalPlaces = 2;
                         this.EntradaValor2.ForceCase = Lui.Forms.TextCasing.None;

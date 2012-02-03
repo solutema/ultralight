@@ -40,7 +40,7 @@ namespace Lfx
         /// </summary>
         public static class Lic
         {
-                public static void QuitarBasura()
+                public static void Limpiar()
                 {
                         string[] Archivos = System.IO.Directory.GetFiles(@"C:\Projects\Lazaro\", "*.cs", System.IO.SearchOption.AllDirectories);
                         foreach (string Archivo in Archivos) {
@@ -49,7 +49,7 @@ namespace Lfx
                                 using (System.IO.StreamReader Lector = System.IO.File.OpenText(Archivo)) {
                                         while (Lector.EndOfStream == false) {
                                                 string Contenido = Lector.ReadLine();
-                                                if (Contenido.IndexOf(".ExtraDetailFields = \"\";") >= 0)
+                                                if (Contenido.IndexOf(@".BackColor = System.Drawing.Color.FromArgb") >= 0)
                                                         Encontre = true;
                                                 else
                                                         Salida.AppendLine(Contenido);

@@ -82,7 +82,7 @@ namespace Lfc.Misc
                                 EntradaCtaCte1.Text = "0";
                         } else {
                                 PersonaOriginal = EntradaElementoOriginal.Elemento as Lbl.Personas.Persona;
-                                EntradaCtaCte1.Text = Lfx.Types.Formatting.FormatCurrency(PersonaOriginal.CuentaCorriente.ObtenerSaldo(false), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaCtaCte1.Text = Lfx.Types.Formatting.FormatCurrency(PersonaOriginal.CuentaCorriente.ObtenerSaldo(false), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         }
                 }
 
@@ -93,7 +93,7 @@ namespace Lfc.Misc
                                 EntradaCtaCte2.Text = "0";
                         } else {
                                 PersonaDuplicada = EntradaElementoDuplicado.Elemento as Lbl.Personas.Persona;
-                                EntradaCtaCte2.Text = Lfx.Types.Formatting.FormatCurrency(PersonaDuplicada.CuentaCorriente.ObtenerSaldo(false), this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaCtaCte2.Text = Lfx.Types.Formatting.FormatCurrency(PersonaDuplicada.CuentaCorriente.ObtenerSaldo(false), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         }
                 }
 
@@ -107,7 +107,7 @@ namespace Lfc.Misc
                         if (PersonaDuplicada != null)
                                 Cta2 = EntradaCtaCte2.ValueDecimal;
 
-                        EntradaCtaCteFinal.Text = Lfx.Types.Formatting.FormatCurrency(Cta1 + Cta2, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaCtaCteFinal.Text = Lfx.Types.Formatting.FormatCurrency(Cta1 + Cta2, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                 }
         }
 }

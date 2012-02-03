@@ -35,29 +35,14 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public enum LabelStyles
+        public class Label : System.Windows.Forms.Label, IControl, IDisplayStyleControl
         {
-                Small,
-                Default,
-                Big,
-                Bigger,
-                Title,
-                Header1,
-                Header2,
-                Warning,
-                SmallWarning,
-                Info
-        }
-
-        public class Label : System.Windows.Forms.Label, IControl
-        {
-                private LabelStyles m_LabelStyle = LabelStyles.Default;
+                protected Lazaro.Pres.DisplayStyles.TextStyles m_LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
 
                 public Label()
                 {
-                        base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                        base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
                 }
+
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
@@ -106,7 +91,7 @@ namespace Lui.Forms
                         }
                 }
 
-                public LabelStyles LabelStyle
+                public Lazaro.Pres.DisplayStyles.TextStyles LabelStyle
                 {
                         get
                         {
@@ -115,68 +100,111 @@ namespace Lui.Forms
                         set
                         {
                                 m_LabelStyle = value;
-                                switch(m_LabelStyle) {
-                                        case LabelStyles.Title:
-                                                base.Font = Lfx.Config.Display.TitleFont;
-                                                base.Padding = new Padding(0, 2, 0, 2);
-                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.TitleBackground;
-                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.TitleText;
-                                                break;
-                                        case LabelStyles.Small:
-                                                base.Font = Lfx.Config.Display.SmallFont;
-                                                base.Padding = new Padding(0, 0, 0, 0);
-                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                                                break;
-                                        case LabelStyles.Default:
-                                                base.Font = Lfx.Config.Display.DefaultFont;
-                                                base.Padding = new Padding(0, 4, 0, 0);
-                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                                                break;
-                                        case LabelStyles.Big:
-                                                base.Font = Lfx.Config.Display.BigFont;
-                                                base.Padding = new Padding(4);
-                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                                                break;
-                                        case LabelStyles.Bigger:
-                                                base.Font = Lfx.Config.Display.BiggerFont;
-                                                base.Padding = new Padding(4);
-                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
-                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
-                                                break;
-                                        case LabelStyles.Header1:
-                                                base.Font = Lfx.Config.Display.HeaderFont;
-                                                base.Padding = new Padding(8);
-                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.HeaderBackground;
-                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.HeaderText;
-                                                break;
-                                        case LabelStyles.Header2:
-                                                base.Font = Lfx.Config.Display.Header2Font;
-                                                base.Padding = new Padding(2);
-                                                base.BackColor = Lfx.Config.Display.CurrentTemplate.Header2Background;
-                                                base.ForeColor = Lfx.Config.Display.CurrentTemplate.Header2Text;
-                                                break;
-                                        case LabelStyles.Warning:
-                                                base.Font = Lfx.Config.Display.DefaultFont;
-                                                base.Padding = new Padding(0, 4, 0, 4);
-                                                base.BackColor = System.Drawing.Color.Tomato;
-                                                base.ForeColor = System.Drawing.Color.White;
-                                                break;
-                                        case LabelStyles.SmallWarning:
-                                                base.Font = Lfx.Config.Display.SmallFont;
-                                                base.Padding = new Padding(0, 2, 0, 2);
-                                                base.BackColor = System.Drawing.Color.Tomato;
-                                                base.ForeColor = System.Drawing.Color.White;
-                                                break;
-                                        case LabelStyles.Info:
-                                                base.Font = Lfx.Config.Display.DefaultFont;
-                                                base.Padding = new Padding(0, 4, 0, 4);
-                                                base.BackColor = System.Drawing.SystemColors.Info;
-                                                base.ForeColor = System.Drawing.SystemColors.InfoText;
-                                                break;
-                                }
+                                this.ApplyStyle();
+                        }
+                }
+
+
+                protected override void OnParentChanged(System.EventArgs e)
+                {
+                        base.OnParentChanged(e);
+                        this.ApplyStyle();
+                }
+
+
+                protected override void OnParentBackColorChanged(System.EventArgs e)
+                {
+                        base.OnParentBackColorChanged(e);
+                        this.ApplyStyle();
+                }
+
+
+                public void ApplyStyle()
+                {
+                        switch (m_LabelStyle) {
+                                case Lazaro.Pres.DisplayStyles.TextStyles.MainHeader:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.MainHeaderFont;
+                                        base.Padding = new Padding(0);
+                                        if (this.Parent != null)
+                                                base.BackColor = this.Parent.BackColor;
+                                        base.ForeColor = Color.MidnightBlue;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.GroupHeaderFont;
+                                        base.Padding = new Padding(0, 2, 0, 2);
+                                        if (this.Parent != null)
+                                                base.BackColor = this.Parent.BackColor;
+                                        base.ForeColor = Color.MidnightBlue;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.GroupHeader2Font;
+                                        base.Padding = new Padding(0, 2, 0, 2);
+                                        if (this.Parent != null)
+                                                base.BackColor = this.Parent.BackColor;
+                                        base.ForeColor = Color.MidnightBlue;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.Small:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.SmallFont;
+                                        base.Padding = new Padding(0, 0, 0, 0);
+                                        if (this.Parent != null)
+                                                base.BackColor = this.Parent.BackColor;
+                                        base.ForeColor = this.DisplayStyle.TextColor;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.Default:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
+                                        base.Padding = new Padding(0, 4, 0, 0);
+                                        if (this.Parent != null)
+                                                base.BackColor = this.Parent.BackColor;
+                                        base.ForeColor = this.DisplayStyle.TextColor;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.Big:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.BigFont;
+                                        base.Padding = new Padding(3);
+                                        base.BackColor = Color.Transparent;
+                                        base.ForeColor = this.DisplayStyle.TextColor;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.Bigger:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.BiggerFont;
+                                        base.Padding = new Padding(3);
+                                        if (this.Parent != null)
+                                                base.BackColor = this.Parent.BackColor;
+                                        base.ForeColor = this.DisplayStyle.TextColor;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.Warning:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
+                                        base.Padding = new Padding(0, 4, 0, 4);
+                                        base.BackColor = System.Drawing.Color.Tomato;
+                                        base.ForeColor = System.Drawing.Color.White;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.SmallWarning:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.SmallFont;
+                                        base.Padding = new Padding(0, 2, 0, 2);
+                                        base.BackColor = System.Drawing.Color.Tomato;
+                                        base.ForeColor = System.Drawing.Color.White;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.Info:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
+                                        base.Padding = new Padding(0, 4, 0, 4);
+                                        base.BackColor = System.Drawing.SystemColors.Info;
+                                        base.ForeColor = System.Drawing.SystemColors.InfoText;
+                                        break;
+                        }
+                }
+                
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public virtual Lazaro.Pres.DisplayStyles.IDisplayStyle DisplayStyle
+                {
+                        get
+                        {
+                                if (this.Parent is IForm)
+                                        return ((IForm)(this.Parent)).DisplayStyle;
+                                else if (this.Parent is IDisplayStyleControl)
+                                        return ((IDisplayStyleControl)(this.Parent)).DisplayStyle;
+                                else
+                                        return Lazaro.Pres.DisplayStyles.Template.Current.Default;
                         }
                 }
         }

@@ -38,9 +38,8 @@ namespace Lbl.Impresion
         /// <summary>
         /// Representa la relación entre un tipo de comprobante y una impresora.
         /// </summary>
-        [Lbl.Atributos.Datos(NombreSingular = "Tipo de Comprobante-Impresora",
-                TablaDatos = "comprob_tipo_impresoras",
-                CampoId = "id_tipo_impresora")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Tipo de Comprobante-Impresora")]
+        [Lbl.Atributos.Datos(TablaDatos = "comprob_tipo_impresoras", CampoId = "id_tipo_impresora")]
         [Lbl.Atributos.Presentacion()]
         public class TipoImpresora : ElementoDeDatos
         {

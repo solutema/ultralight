@@ -33,7 +33,7 @@ using System.ComponentModel;
 
 namespace Lui.Forms
 {
-        public interface IEditableControl : IControl
+        public interface IEditableControl : IDisplayStyleControl
         {
                 string FieldName { get; set; }
 

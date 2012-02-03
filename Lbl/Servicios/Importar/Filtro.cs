@@ -109,7 +109,7 @@ namespace Lbl.Servicios.Importar
                         ReadTable.Load(TableCommand.ExecuteReader());
 
                         if (mapa.AutoSaltear) {
-                                mapa.Saltear = this.Connection.Workspace.CurrentConfig.ReadGlobalSetting<int>("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, 0);
+                                mapa.Saltear = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, 0);
                                 if (mapa.Saltear > 1)
                                         mapa.Saltear--;
                         }
@@ -129,7 +129,7 @@ namespace Lbl.Servicios.Importar
 
                                 if ((RowNumber % 200) == 0) {
                                         Progreso.Advance(200);
-                                        this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, RowNumber);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, RowNumber);
                                         Trans.Commit();
                                         Trans.Dispose();
                                         Trans = this.Connection.BeginTransaction();
@@ -139,7 +139,7 @@ namespace Lbl.Servicios.Importar
                                         break;
                         }
                         Trans.Commit();
-                        this.Connection.Workspace.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, RowNumber);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, RowNumber);
                 }
                 
 
@@ -167,12 +167,12 @@ namespace Lbl.Servicios.Importar
                                         // Actualizo el stock
                                         Lbl.Articulos.Articulo Art = Elem as Lbl.Articulos.Articulo;
 
-                                        decimal StockActual = Art.ObtenerStockActual();
+                                        decimal StockActual = Art.ObtenerExistencias();
                                         decimal NuevoStock = System.Convert.ToDecimal(importedRow["stock_actual"]);
                                         decimal Diferencia = NuevoStock - StockActual;
 
                                         if (Diferencia != 0)
-                                                Art.MoverStock(null, Diferencia, "Stock importado desde " + this.Nombre, null, new Articulos.Situacion(this.Connection, this.Connection.Workspace.CurrentConfig.Productos.DepositoPredeterminado), null);
+                                                Art.MoverExistencias(null, Diferencia, "Stock importado desde " + this.Nombre, null, new Articulos.Situacion(this.Connection, Lfx.Workspace.Master.CurrentConfig.Productos.DepositoPredeterminado), null);
                                 }
                         }
                 }

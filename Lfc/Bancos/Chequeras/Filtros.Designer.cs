@@ -77,7 +77,6 @@ namespace Lfc.Bancos.Chequeras
                         // EntradaEstado
                         // 
                         this.EntradaEstado.AutoNav = true;
-                        this.EntradaEstado.AutoTab = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(140, 20);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
@@ -114,7 +113,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.FreeTextCode = "";
@@ -145,7 +143,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.FreeTextCode = "";

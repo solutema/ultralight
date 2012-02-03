@@ -57,13 +57,13 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_Decimales == -1)
-                                        m_Decimales = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.Decimales", 2);
+                                        m_Decimales = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.Decimales", 2);
                                 return m_Decimales;
                         }
                         set
                         {
                                 m_Decimales = value;
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.Decimales", m_Decimales);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.Decimales", m_Decimales);
                         }
                 }
 
@@ -77,13 +77,13 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_DecimalesCosto == -1)
-                                        m_DecimalesCosto = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesCosto", this.Decimales);
+                                        m_DecimalesCosto = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesCosto", this.Decimales);
                                 return m_DecimalesCosto;
                         }
                         set
                         {
                                 m_DecimalesCosto = value;
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.DecimalesCosto", m_DecimalesCosto);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.DecimalesCosto", m_DecimalesCosto);
                         }
                 }
 
@@ -97,13 +97,13 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_DecimalesFinal == -1)
-                                        m_DecimalesFinal = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesFinal", this.Decimales);
+                                        m_DecimalesFinal = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesFinal", this.Decimales);
                                 return m_DecimalesFinal;
                         }
                         set
                         {
                                 m_DecimalesFinal = value;
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.DecimalesFinal", m_DecimalesFinal);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.DecimalesFinal", m_DecimalesFinal);
                         }
                 }
 
@@ -124,13 +124,13 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_UnidadMonetariaMinima == -1)
-                                        m_UnidadMonetariaMinima = this.DataBase.Workspace.CurrentConfig.ReadGlobalSetting<decimal>("Sistema.Moneda.Redondeo", 0);
+                                        m_UnidadMonetariaMinima = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<decimal>("Sistema.Moneda.Redondeo", 0);
                                 return m_UnidadMonetariaMinima;
                         }
                         set
                         {
                                 m_UnidadMonetariaMinima = value;
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.Redondeo", m_UnidadMonetariaMinima);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.Redondeo", m_UnidadMonetariaMinima);
                         }
                 }
         }

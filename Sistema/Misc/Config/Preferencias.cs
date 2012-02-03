@@ -44,9 +44,13 @@ namespace Lazaro.WinMain.Misc.Config
                 public Preferencias()
                 {
                         InitializeComponent();
+                }
 
-                        if(this.HasWorkspace)
-                                CargarConfig();
+
+                protected override void OnLoad(System.EventArgs e)
+                {
+                        base.OnLoad(e);
+                        CargarConfig();
                 }
 
 		private void BotonCancelar_Click(object sender, System.EventArgs e)
@@ -82,6 +86,9 @@ namespace Lazaro.WinMain.Misc.Config
 
 		private void CargarConfig()
 		{
+                        if (Lfx.Workspace.Master == null)
+                                return;
+
 			string[] ListaCodigos = new string[5];
 			ListaCodigos[0] = "Código Autonumérico Incorporado|0";
 			DataTable Codigos = this.Connection.Select("SELECT * FROM articulos_codigos");
@@ -90,12 +97,12 @@ namespace Lazaro.WinMain.Misc.Config
 				ListaCodigos[System.Convert.ToInt32(Codigo["id_codigo"])] += System.Convert.ToString(Codigo["nombre"]) + "|" + System.Convert.ToString(Codigo["id_codigo"]);
 			}
 			EntradaArticulosCodigoPredet.SetData = ListaCodigos;
-			EntradaArticulosCodigoPredet.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.CodigoPredet", "*");
+			EntradaArticulosCodigoPredet.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.CodigoPredet", "*");
 
-			EntradaStockMultideposito.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.Multideposito", "0");
-			EntradaStockDepositoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.DepositoPredet", "0");
-			EntradaStockDepositoPredetSuc.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.DepositoPredet", "0");
-			EntradaStockDecimales.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.Decimales", "0");
+			EntradaStockMultideposito.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.Multideposito", "0");
+			EntradaStockDepositoPredet.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.DepositoPredet", "0");
+			EntradaStockDepositoPredetSuc.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.DepositoPredet", "0");
+			EntradaStockDecimales.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.Decimales", "0");
 
                         EntradaEmpresaNombre.Text = Lbl.Sys.Config.Actual.Empresa.Nombre;
                         EntradaEmpresaRazonSocial.Text = Lbl.Sys.Config.Actual.Empresa.RazonSocial;
@@ -107,30 +114,30 @@ namespace Lazaro.WinMain.Misc.Config
                         EntradaEmpresaEmail.Text = Lbl.Sys.Config.Actual.Empresa.Email;
                         EntradaEmpresaId.ValueInt = Lbl.Sys.Config.Actual.Empresa.Id;
 
-                        EntradaBackup.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Tipo", "0");
-                        EntradaModoPantalla.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Apariencia.ModoPantalla", "maximizado");
-                        EntradaAislacion.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Datos.Aislacion", "Serializable");
-                        EntradaActualizaciones.TextKey = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Actualizaciones.Nivel", "stable");
+                        EntradaBackup.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Tipo", "0");
+                        EntradaModoPantalla.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Apariencia.ModoPantalla", "maximizado");
+                        EntradaAislacion.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Datos.Aislacion", "Serializable");
+                        EntradaActualizaciones.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Actualizaciones.Nivel", "stable");
 
-			EntradaPV.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.PV", "1");
-			EntradaPVABC.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.ABC.PV", "0");
-			EntradaPVNC.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.NC.PV", "0");
-			EntradaPVND.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.ND.PV", "0");
-			EntradaPVR.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.R.PV", "0");
-                        EntradaPVRC.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.RC.PV", "0");
+			EntradaPV.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.PV", "1");
+			EntradaPVABC.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.ABC.PV", "0");
+			EntradaPVNC.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.NC.PV", "0");
+			EntradaPVND.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.ND.PV", "0");
+			EntradaPVR.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.R.PV", "0");
+                        EntradaPVRC.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.RC.PV", "0");
 
-			EntradaClientePredet.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.ClientePredet", "");
-			EntradaFormaPagoPredet.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.FormaPagoPredet", "");
+			EntradaClientePredet.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.ClientePredet", "");
+			EntradaFormaPagoPredet.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.FormaPagoPredet", "");
 
-			EntradaCambiaPrecioComprob.Value = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.CambiaPrecioItemFactura", "1") == "1";
+			EntradaCambiaPrecioComprob.Value = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Documentos.CambiaPrecioItemFactura", "1") == "1";
 
-                        EntradaLimiteCredito.Text = this.Workspace.CurrentConfig.ReadGlobalSetting<string>("Sistema.Cuentas.LimiteCreditoPredet", "0");
+                        EntradaLimiteCredito.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Cuentas.LimiteCreditoPredet", "0");
 
-                        EntradaPais.TextInt = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
+                        EntradaPais.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
                         if (EntradaPais.TextInt > 0)
                                 EntradaPais.ReadOnly = true;
-                        EntradaProvincia.TextInt = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Provincia", 0);
-                        EntradaLocalidad.TextInt = this.Workspace.CurrentConfig.ReadGlobalSetting<int>("Sistema.Localidad", 0);
+                        EntradaProvincia.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Provincia", 0);
+                        EntradaLocalidad.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Localidad", 0);
 
                         EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
                         EntradaMonedaDecimalesCosto.TextKey = Lbl.Sys.Config.Actual.Moneda.DecimalesCosto.ToString();
@@ -147,16 +154,16 @@ namespace Lazaro.WinMain.Misc.Config
                                 return true;
                         }
 
-			int Sucursal = this.Workspace.CurrentConfig.ReadLocalSettingInt("Estacion", "Sucursal", 1);
+			int Sucursal = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("Estacion", "Sucursal", 1);
 
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Stock.CodigoPredet", EntradaArticulosCodigoPredet.TextKey, 0);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Stock.Multideposito", EntradaStockMultideposito.TextKey, 0);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Stock.Decimales", EntradaStockDecimales.TextKey, 0);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Stock.DepositoPredet", EntradaStockDepositoPredet.Text, 0); ;
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.CodigoPredet", EntradaArticulosCodigoPredet.TextKey, 0);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.Multideposito", EntradaStockMultideposito.TextKey, 0);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.Decimales", EntradaStockDecimales.TextKey, 0);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.DepositoPredet", EntradaStockDepositoPredet.Text, 0); ;
 			if (EntradaStockDepositoPredetSuc.TextInt > 0)
-				this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Stock.DepositoPredet", EntradaStockDepositoPredetSuc.Text, Sucursal);
+				Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.DepositoPredet", EntradaStockDepositoPredetSuc.Text, Sucursal);
 			else
-				this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema.Stock.DepositoPredet", Sucursal);
+				Lfx.Workspace.Master.CurrentConfig.DeleteGlobalSetting("Sistema.Stock.DepositoPredet", Sucursal);
 
                         Lbl.Sys.Config.Actual.Empresa.Nombre = EntradaEmpresaNombre.Text;
                         Lbl.Sys.Config.Actual.Empresa.RazonSocial = EntradaEmpresaRazonSocial.Text;
@@ -168,32 +175,32 @@ namespace Lazaro.WinMain.Misc.Config
                         Lbl.Sys.Config.Actual.Empresa.Email = EntradaEmpresaEmail.Text;
                         Lbl.Sys.Config.Actual.Empresa.Id = EntradaEmpresaId.ValueInt;
 
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         if (EntradaModoPantalla.TextKey == "*")
-                                this.Workspace.CurrentConfig.DeleteGlobalSetting("Sistema.Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());
+                                Lfx.Workspace.Master.CurrentConfig.DeleteGlobalSetting("Sistema.Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());
                         else
-                                this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, System.Environment.MachineName.ToUpperInvariant());
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Datos.Aislacion", EntradaAislacion.TextKey);
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Actualizaciones.Nivel", EntradaActualizaciones.TextKey);
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, System.Environment.MachineName.ToUpperInvariant());
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Datos.Aislacion", EntradaAislacion.TextKey);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Actualizaciones.Nivel", EntradaActualizaciones.TextKey);
 
 			//Guardo información sobre los PV
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.PV", EntradaPV.Text, Sucursal);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.ABC.PV", EntradaPVABC.Text, Sucursal);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.NC.PV", EntradaPVNC.Text, Sucursal);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.ND.PV", EntradaPVND.Text, Sucursal);
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.R.PV", EntradaPVR.Text, Sucursal);
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.RC.PV", EntradaPVRC.Text, System.Environment.MachineName);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.PV", EntradaPV.Text, Sucursal);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.ABC.PV", EntradaPVABC.Text, Sucursal);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.NC.PV", EntradaPVNC.Text, Sucursal);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.ND.PV", EntradaPVND.Text, Sucursal);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.R.PV", EntradaPVR.Text, Sucursal);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.RC.PV", EntradaPVRC.Text, System.Environment.MachineName);
 
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.ClientePredet", EntradaClientePredet.Text);
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.FormaPagoPredet", EntradaFormaPagoPredet.Text);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.ClientePredet", EntradaClientePredet.Text);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.FormaPagoPredet", EntradaFormaPagoPredet.Text);
 
-			this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.CambiaPrecioItemFactura", EntradaCambiaPrecioComprob.Value ? 1 : 0);
+			Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Documentos.CambiaPrecioItemFactura", EntradaCambiaPrecioComprob.Value ? 1 : 0);
 
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.ValueDecimal);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.ValueDecimal);
 
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Pais", EntradaPais.TextInt);
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Provincia", EntradaProvincia.TextInt);
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Localidad", EntradaLocalidad.TextInt);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Pais", EntradaPais.TextInt);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Provincia", EntradaProvincia.TextInt);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Localidad", EntradaLocalidad.TextInt);
 
                         EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
                         Lbl.Sys.Config.Actual.Moneda.DecimalesCosto= EntradaMonedaDecimalesCosto.ValueInt;
@@ -201,7 +208,7 @@ namespace Lazaro.WinMain.Misc.Config
                         Lbl.Sys.Config.Actual.Moneda.DecimalesFinal = EntradaMonedaDecimalesFinal.ValueInt;
 
 
-                        this.Workspace.CurrentConfig.WriteGlobalSetting("Sistema.Configurado", "1", 0);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Configurado", "1", 0);
 
                         if (this.PrimeraVez) {
                                 // Hago cambios referentes al país donde está configurado el sistema

@@ -81,7 +81,6 @@ namespace Lfc.Bancos.Cheques
                         // EntradaEstado
                         // 
                         this.EntradaEstado.AutoNav = true;
-                        this.EntradaEstado.AutoTab = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(108, 20);
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
@@ -120,7 +119,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaPersona.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaPersona.AutoTab = true;
                         this.EntradaPersona.CanCreate = true;
                         this.EntradaPersona.DataTextField = "nombre_visible";
                         this.EntradaPersona.FreeTextCode = "";
@@ -151,7 +149,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.FreeTextCode = "";
@@ -203,7 +200,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.FreeTextCode = "";

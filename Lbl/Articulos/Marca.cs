@@ -35,10 +35,8 @@ using System.Text;
 
 namespace Lbl.Articulos
 {
-        [Lbl.Atributos.Datos(NombreSingular = "Marca",
-                Grupo = "Artículos",
-                TablaDatos = "marcas",
-                CampoId = "id_marca")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Marca", Grupo = "Artículos")]
+        [Lbl.Atributos.Datos(TablaDatos = "marcas", CampoId = "id_marca")]
         [Lbl.Atributos.Presentacion()]
 	public class Marca : ElementoDeDatos
 	{

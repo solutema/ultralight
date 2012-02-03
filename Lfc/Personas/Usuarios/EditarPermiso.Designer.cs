@@ -94,7 +94,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaObjeto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObjeto.AutoNav = true;
-                        this.EntradaObjeto.AutoTab = true;
                         this.EntradaObjeto.CanCreate = true;
                         this.EntradaObjeto.DataTextField = "nombre";
                         this.EntradaObjeto.Filter = "";
@@ -289,7 +288,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaItems.AutoNav = true;
-                        this.EntradaItems.AutoTab = true;
                         this.EntradaItems.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaItems.DecimalPlaces = -1;
                         this.EntradaItems.ForceCase = Lui.Forms.TextCasing.Caption;

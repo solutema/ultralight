@@ -64,6 +64,7 @@ namespace Lfc
                 public FormularioListadoBase()
                 {
                         InitializeComponent();
+                        this.StockImage = "listado";
 
                         RefreshTimer.Start();
                 }
@@ -293,7 +294,7 @@ namespace Lfc
                 {
                         try {
                                 foreach (ColumnHeader Ch in Listado.Columns) {
-                                        this.Workspace.CurrentConfig.WriteLocalSetting(this.GetType().ToString(), "Columns." + Ch.Name + ".Width", Ch.Width);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting(this.GetType().ToString(), "Columns." + Ch.Name + ".Width", Ch.Width);
                                 }
                         } catch {
                         }
@@ -306,7 +307,7 @@ namespace Lfc
                         if (ColumnsLoaded == false) {
                                 try {
                                         foreach (ColumnHeader Ch in Listado.Columns) {
-                                                Ch.Width = this.Workspace.CurrentConfig.ReadLocalSettingInt(this.GetType().ToString(), "Columns." + Ch.Name + ".Width", Ch.Width);
+                                                Ch.Width = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt(this.GetType().ToString(), "Columns." + Ch.Name + ".Width", Ch.Width);
                                         }
                                         ColumnsLoaded = true;
                                 } catch {
@@ -495,7 +496,7 @@ namespace Lfc
                 protected virtual Lfx.Types.OperationResult OnEdit(int itemId)
                 {
                         if (itemId > 0 && this.Definicion.ElementoTipo != null && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Ver)) {
-                                Lfx.Data.Connection NuevaDb = this.Workspace.GetNewConnection("Editar " + this.Definicion.ElementoTipo.ToString() + " " + itemId);
+                                Lfx.Data.Connection NuevaDb = Lfx.Workspace.Master.GetNewConnection("Editar " + this.Definicion.ElementoTipo.ToString() + " " + itemId);
                                 Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.Definicion.ElementoTipo, NuevaDb, itemId);
                                 Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
                                 if (FormNuevo != null) {
@@ -556,7 +557,7 @@ namespace Lfc
 
                 protected void UpdateFormFields()
                 {
-                        if (this.HasWorkspace && this.Connection != null && this.Definicion.Columns != null) {
+                        if (this.Connection != null && this.Definicion.Columns != null) {
                                 SubItemToFormField.Clear();
                                 FormFieldToSubItem.Clear();
 
@@ -624,7 +625,7 @@ namespace Lfc
 
                 public virtual void RefreshList()
                 {
-                        if (this.HasWorkspace == false || this.Connection == null)
+                        if (this.Connection == null)
                                 return;
 
                         LastGroup = null;
@@ -641,7 +642,7 @@ namespace Lfc
 
                 protected qGen.Select SelectCommand(bool forCount)
                 {
-                        if (this.HasWorkspace && this.Connection != null && this.Definicion.TableName != null) {
+                        if (this.Connection != null && this.Definicion.TableName != null) {
                                 qGen.Select ComandoSelect = new qGen.Select(this.Connection.SqlMode);
 
                                 // Genero la lista de tablas, con JOIN y todo
@@ -792,7 +793,7 @@ namespace Lfc
 
                         CancelFill = false;
 
-                        if (this.HasWorkspace == false || command == null)
+                        if (this.Connection == null || command == null)
                                 return;
 
                         System.Data.DataTable Tabla = this.Connection.Select(command);
@@ -801,7 +802,7 @@ namespace Lfc
                         Lbl.ListaIds CheckedItems = null;
 
                         if (command.Window == null) {
-                                if (this.Workspace.SlowLink)
+                                if (Lfx.Workspace.Master.SlowLink)
                                         command.Window = new qGen.Window(1000 > m_Limit ? 1000 : m_Limit);
                                 else if (m_Limit > 0)
                                         command.Window = new qGen.Window(m_Limit);
@@ -1100,7 +1101,7 @@ namespace Lfc
                                         if (ValorCur == 0)
                                                 FieldValueAsText = "-";
                                         else
-                                                FieldValueAsText = Lfx.Types.Formatting.FormatCurrency(ValorCur, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                                FieldValueAsText = Lfx.Types.Formatting.FormatCurrency(ValorCur, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                         break;
 
                                 case Lfx.Data.InputFieldTypes.Numeric:
@@ -1209,7 +1210,7 @@ namespace Lfc
                 protected override void OnActivated(EventArgs e)
                 {
                         if (this.Text == "Listado" && this.Definicion.ElementoTipo != null) {
-                                Lbl.Atributos.Datos Attr = this.Definicion.ElementoTipo.GetAttribute<Lbl.Atributos.Datos>();
+                                Lbl.Atributos.Nomenclatura Attr = this.Definicion.ElementoTipo.GetAttribute<Lbl.Atributos.Nomenclatura>();
                                 if (Attr != null)
                                         this.Text = "Listado de " + Attr.NombrePlural;
                         }

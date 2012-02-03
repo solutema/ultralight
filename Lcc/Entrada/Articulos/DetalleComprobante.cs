@@ -53,20 +53,24 @@ namespace Lcc.Entrada.Articulos
                 public DetalleComprobante()
                 {
                         InitializeComponent();
+                }
 
-                        if (this.HasWorkspace) {
+
+                protected override void OnLoad(EventArgs e)
+                {
+                        base.OnLoad(e);
+                        if (Lfx.Workspace.Master != null) {
                                 switch (m_Precio) {
                                         case Precios.Costo:
-                                                EntradaUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesCosto;
-                                                EntradaImporte.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.DecimalesCosto;
+                                                EntradaUnitario.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto;
+                                                EntradaImporte.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto;
                                                 break;
                                         case Precios.Pvp:
-                                                EntradaUnitario.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.Decimales;
-                                                EntradaImporte.DecimalPlaces = this.Workspace.CurrentConfig.Moneda.Decimales;
+                                                EntradaUnitario.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
+                                                EntradaImporte.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
                                                 break;
                                 }
                         }
-
                 }
 
                 public ControlesSock ControlStock
@@ -433,7 +437,7 @@ namespace Lcc.Entrada.Articulos
 
                 private void EntradaArticulo_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (this.HasWorkspace == false)
+                        if (this.Connection == null)
                                 return;
 
                         if (this.Elemento != EntradaArticulo.Elemento)
@@ -481,8 +485,8 @@ namespace Lcc.Entrada.Articulos
 
                 private void EntradaPrecioCantidad_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (this.HasWorkspace) {
-                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaUnitario.Text) * this.Cantidad, this.Workspace.CurrentConfig.Moneda.DecimalesCosto);
+                        if (this.Connection != null) {
+                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaUnitario.Text) * this.Cantidad, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
                                 VerificarStock();
                                 this.Changed = true;
                                 if (null != PrecioCantidadChanged)
@@ -494,8 +498,8 @@ namespace Lcc.Entrada.Articulos
                 private void VerificarStock()
                 {
                         if (m_MostrarStock && Articulo != null) {
-                                if (this.TemporaryReadOnly == false && this.Articulo.ControlStock != Lbl.Articulos.ControlStock.No && this.Articulo.StockActual < this.Cantidad) {
-                                        if (this.Articulo.StockActual + this.Articulo.Pedido >= this.Cantidad) {
+                                if (this.TemporaryReadOnly == false && this.Articulo.ControlExistencias != Lbl.Articulos.ControlExistencias.No && this.Articulo.Existencias < this.Cantidad) {
+                                        if (this.Articulo.Existencias + this.Articulo.Pedido >= this.Cantidad) {
                                                 //EntradaArticulo.Font = null;
                                                 EntradaArticulo.ForeColor = Color.OrangeRed;
                                         } else {
@@ -504,11 +508,11 @@ namespace Lcc.Entrada.Articulos
                                         }
                                 } else {
                                         //EntradaArticulo.Font = null;
-                                        EntradaArticulo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                                        EntradaArticulo.ForeColor = this.DisplayStyle.TextColor;
                                 }
                         } else {
                                 //EntradaArticulo.Font = null;
-                                EntradaArticulo.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlText;
+                                EntradaArticulo.ForeColor = this.DisplayStyle.TextColor;
                         }
                 }
 

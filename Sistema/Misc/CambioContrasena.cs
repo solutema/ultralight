@@ -44,8 +44,6 @@ namespace Lazaro.WinMain.Misc
                 public CambioContrasena()
                 {
                         InitializeComponent();
-
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
                 }
 
 

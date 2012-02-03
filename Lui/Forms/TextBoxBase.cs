@@ -38,9 +38,8 @@ namespace Lui.Forms
 {
         public partial class TextBoxBase : EditableControl
         {
-                protected bool m_AutoTab = true;
-                protected bool m_AutoNav = true;
                 protected string m_PlaceholderText = null;
+                protected bool Grayed { get; set; }
 
                 new public event KeyPressEventHandler KeyPress;
                 new public event System.Windows.Forms.KeyEventHandler KeyDown;
@@ -64,7 +63,7 @@ namespace Lui.Forms
                         this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
                 }
 
-                [System.ComponentModel.Category("Comportamiento")]
+                /* [System.ComponentModel.Category("Comportamiento")]
                 public bool AutoTab
                 {
                         get
@@ -75,20 +74,20 @@ namespace Lui.Forms
                         {
                                 m_AutoTab = value;
                         }
-                }
+                } */
 
-                [System.ComponentModel.Category("Comportamiento")]
-                public bool AutoNav
+
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Color BackColor
                 {
                         get
                         {
-                                return m_AutoNav;
-                        }
-                        set
-                        {
-                                m_AutoNav = value;
+                                return base.BackColor;
                         }
                 }
+
 
                 [EditorBrowsable(EditorBrowsableState.Always),
                         System.ComponentModel.Browsable(true),
@@ -115,7 +114,7 @@ namespace Lui.Forms
                         }
                         set
                         {
-                                if (TextBox1.Text == m_PlaceholderText && TextBox1.ForeColor == System.Drawing.SystemColors.GrayText) {
+                                if (TextBox1.Text == m_PlaceholderText && this.Grayed) {
                                         IgnoreEvents++;
                                         TextBox1.Text = "";
                                         this.SetTipIfBlank();
@@ -136,14 +135,12 @@ namespace Lui.Forms
                 {
                         if (e.KeyChar == Lfx.Types.ControlChars.Cr && TextBox1.Multiline) {
                                 //Es multilinea.
-                                if (m_AutoTab && (this.TextRaw.Length == 0 ||
-                                        (this.TextRaw.Length >= System.Environment.NewLine.Length
-                                        && this.TextRaw.Substring(this.TextRaw.Length - System.Environment.NewLine.Length) == System.Environment.NewLine))) {
-                                        // Es AutoTab y estoy intentando dar Enter a un campo vacío o estoy intentando dar dos Enter seguidos
+                                if (m_AutoNav && (this.TextRaw.Length == 0 || (this.TextRaw.Length >= System.Environment.NewLine.Length && this.TextRaw.Substring(this.TextRaw.Length - System.Environment.NewLine.Length) == System.Environment.NewLine))) {
+                                        // Es AutoNav y estoy intentando dar Enter a un campo vacío o estoy intentando dar dos Enter seguidos
                                         System.Windows.Forms.SendKeys.Send("{tab}");
                                         e.Handled = true;
                                 }
-                        } else if (e.KeyChar == Lfx.Types.ControlChars.Cr && m_AutoTab) {
+                        } else if (e.KeyChar == Lfx.Types.ControlChars.Cr && m_AutoNav) {
                                 // Es autonav. Paso un tab
                                 e.Handled = true;
                                 System.Windows.Forms.SendKeys.Send("{tab}");
@@ -236,7 +233,7 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                if (TextBox1.ForeColor == Lfx.Config.Display.CurrentTemplate.ControlGrayText)
+                                if (this.Grayed)
                                         return "";
                                 else
                                         return TextBox1.Text;
@@ -263,13 +260,13 @@ namespace Lui.Forms
 
                 private void TextBoxBase_GotFocus(object sender, System.EventArgs e)
                 {
-                        TextBox1.Focus();
+                        TextBox1.Select();
                 }
 
 
                 private void TextBoxBase_Enter(object sender, System.EventArgs e)
                 {
-                        TextBox1.Focus();
+                        TextBox1.Select();
                 }
 
 
@@ -277,7 +274,7 @@ namespace Lui.Forms
                 {
                         if (IgnoreEvents == 0) {
                                 IgnoreEvents++;
-                                TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataarea;
+                                TextBox1.BackColor = this.DisplayStyle.DataAreaColor;
                                 if (this.LostFocus != null)
                                         this.LostFocus(this, e);
 
@@ -289,14 +286,16 @@ namespace Lui.Forms
                 private void SetTipIfBlank()
                 {
                         if (TextBox1.Text == "" && this.PlaceholderText != null && this.PlaceholderText.Length > 0) {
-                                TextBox1.ForeColor = Lfx.Config.Display.CurrentTemplate.ControlGrayText;
+                                this.Grayed = true;
+                                this.ApplyStyle();
                                 IgnoreChanges++;
                                 TextBox1.Text = this.PlaceholderText;
                                 IgnoreChanges--;
                                 TextBox1.SelectionStart = 0;
                                 TextBox1.SelectionLength = 0;
                         } else {
-                                TextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+                                this.Grayed = false;
+                                this.ApplyStyle();
                         }
                 }
 
@@ -305,17 +304,16 @@ namespace Lui.Forms
                         if (IgnoreEvents == 0) {
                                 IgnoreEvents++;
                                 if (m_TemporaryReadOnly == false && m_ReadOnly == false) {
-                                        TextBox1.BackColor = Lfx.Config.Display.CurrentTemplate.ControlDataareaActive;
-
-                                        if (TextBox1.ForeColor == Lfx.Config.Display.CurrentTemplate.ControlGrayText) {
+                                        if (this.Grayed) {
                                                 IgnoreChanges++;
                                                 this.TextBox1.Text = "";
                                                 IgnoreChanges--;
-                                                TextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+                                                this.Grayed = false;
+                                                this.ApplyStyle();
                                         }
                                 }
 
-                                TextBox1.Focus();
+                                TextBox1.Select();
                                 IgnoreEvents--;
 
                                 if (null != GotFocus)
@@ -367,16 +365,15 @@ namespace Lui.Forms
                 }
 
 
-                new public Color ForeColor
+                public override void ApplyStyle()
                 {
-                        get
-                        {
-                                return TextBox1.ForeColor;
-                        }
-                        set
-                        {
-                                TextBox1.ForeColor = value;
-                        }
+                        base.ApplyStyle();
+                        ((System.Windows.Forms.Control)(this)).BackColor = this.DisplayStyle.DataAreaColor;
+                        TextBox1.BackColor = this.BackColor;
+                        if (this.Grayed)
+                                TextBox1.ForeColor = this.DisplayStyle.DataAreaGrayTextColor;
+                        else
+                                TextBox1.ForeColor = this.DisplayStyle.DataAreaTextColor;
                 }
         }
 }

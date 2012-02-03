@@ -44,9 +44,8 @@ namespace Lui.Forms
                 public MessageBoxForm()
                 {
                         InitializeComponent();
-
-                        LowerPanel.BackColor = Lfx.Config.Display.CurrentTemplate.FooterBackground;
-                        this.MessageText.BackColor = Lfx.Config.Display.CurrentTemplate.WindowBackground;
+                        this.MessageText.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
+                        this.MessageText.BackColor = this.DisplayStyle.BackgroundColor;
                 }
 
                 private void OkButton_Click(object sender, EventArgs e)

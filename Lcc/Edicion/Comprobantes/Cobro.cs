@@ -85,7 +85,7 @@ namespace Lcc.Edicion.Comprobantes
                         }
                         set
                         {
-                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(value, this.Workspace.CurrentConfig.Moneda.Decimales);
+                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(value, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         }
                 }
 
@@ -254,7 +254,7 @@ namespace Lcc.Edicion.Comprobantes
                                         }
                                         break;
                         }
-                        EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(this.ElementoCobro.Importe, this.Workspace.CurrentConfig.Moneda.Decimales);
+                        EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(this.ElementoCobro.Importe, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         EntradaObs.Text = this.ElementoCobro.Obs;
                 }
 

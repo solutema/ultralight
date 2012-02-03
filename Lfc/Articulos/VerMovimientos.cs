@@ -312,10 +312,10 @@ namespace Lfc.Articulos
 
 				itm = Listado.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(Detalle["fecha"]))));
-				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
+				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["cantidad"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock)));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, DesdeSituacion));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, HaciaSituacion));
-				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["saldo"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
+				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["saldo"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock)));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Detalle["obs"])));
 			}
 			Listado.EndUpdate();
@@ -344,8 +344,8 @@ namespace Lfc.Articulos
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.Connection.ConvertDBNullToZero(Pedido["id_cliente"]).ToString())));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Pedido["numero"])));
 				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(Pedido["fecha"]))));
-				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Pedido["cantidad"]), this.Workspace.CurrentConfig.Productos.DecimalesStock)));
-				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Pedido["precio"]), this.Workspace.CurrentConfig.Moneda.DecimalesCosto)));
+				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Pedido["cantidad"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock)));
+				itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Pedido["precio"]), Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto)));
 				switch (System.Convert.ToInt32(Pedido["estado"]))
 				{
 					case 50:
@@ -374,7 +374,7 @@ namespace Lfc.Articulos
 			if (ListadoPedidos.SelectedItems.Count > 0)
 			{
 				ListViewItem Itm = ListadoPedidos.SelectedItems[0];
-				this.Workspace.RunTime.Execute("EDITAR PD " + Itm.Text);
+				Lfx.Workspace.Master.RunTime.Execute("EDITAR PD " + Itm.Text);
 			}
 		}
 

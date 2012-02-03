@@ -65,7 +65,7 @@ namespace Lfc.Ciudades
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 0);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
@@ -75,7 +75,7 @@ namespace Lfc.Ciudades
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 76);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(120, 24);
@@ -88,8 +88,6 @@ namespace Lfc.Ciudades
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.AutoNav = true;
-                        this.EntradaNombre.AutoTab = true;
-                        this.EntradaNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNombre.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaNombre.DecimalPlaces = -1;
                         this.EntradaNombre.FieldName = null;
@@ -111,8 +109,6 @@ namespace Lfc.Ciudades
                         // EntradaCp
                         // 
                         this.EntradaCp.AutoNav = true;
-                        this.EntradaCp.AutoTab = true;
-                        this.EntradaCp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaCp.DataType = Lui.Forms.DataTypes.FreeText;
                         this.EntradaCp.DecimalPlaces = -1;
                         this.EntradaCp.FieldName = null;
@@ -136,7 +132,6 @@ namespace Lfc.Ciudades
                         this.EntradaParent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaParent.AutoNav = true;
-                        this.EntradaParent.AutoTab = true;
                         this.EntradaParent.CanCreate = true;
                         this.EntradaParent.DataTextField = "nombre";
                         this.EntradaParent.DataValueField = "id_ciudad";
@@ -159,7 +154,7 @@ namespace Lfc.Ciudades
                         // 
                         // EtiquetaParent
                         // 
-                        this.EtiquetaParent.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.EtiquetaParent.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaParent.Location = new System.Drawing.Point(0, 108);
                         this.EtiquetaParent.Name = "EtiquetaParent";
                         this.EtiquetaParent.Size = new System.Drawing.Size(120, 24);
@@ -169,7 +164,7 @@ namespace Lfc.Ciudades
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(0, 32);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(120, 24);
@@ -182,8 +177,6 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.AlwaysExpanded = true;
                         this.EntradaNivel.AutoNav = true;
                         this.EntradaNivel.AutoSize = true;
-                        this.EntradaNivel.AutoTab = true;
-                        this.EntradaNivel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaNivel.FieldName = null;
                         this.EntradaNivel.Location = new System.Drawing.Point(116, 32);
                         this.EntradaNivel.MaxLength = 32767;
@@ -204,8 +197,6 @@ namespace Lfc.Ciudades
                         this.EntradaIva.AlwaysExpanded = true;
                         this.EntradaIva.AutoNav = true;
                         this.EntradaIva.AutoSize = true;
-                        this.EntradaIva.AutoTab = true;
-                        this.EntradaIva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.EntradaIva.FieldName = null;
                         this.EntradaIva.Location = new System.Drawing.Point(116, 140);
                         this.EntradaIva.MaxLength = 32767;
@@ -222,7 +213,7 @@ namespace Lfc.Ciudades
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lui.Forms.LabelStyles.Default;
+                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 140);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(120, 24);
@@ -245,17 +236,6 @@ namespace Lfc.Ciudades
                         this.Controls.Add(this.Label2);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(788, 197);
-                        this.Controls.SetChildIndex(this.ControlCaption, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaParent, 0);
-                        this.Controls.SetChildIndex(this.label3, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.EntradaCp, 0);
-                        this.Controls.SetChildIndex(this.EntradaParent, 0);
-                        this.Controls.SetChildIndex(this.EntradaNombre, 0);
-                        this.Controls.SetChildIndex(this.EntradaNivel, 0);
-                        this.Controls.SetChildIndex(this.EntradaIva, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
