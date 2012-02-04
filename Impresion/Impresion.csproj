@@ -72,6 +72,9 @@
     <Compile Include="Comprobantes\ImpresorComprobanteConArticulos.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Comprobantes\ImpresorPlantilla.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Comprobantes\ImpresorRecibo.cs">
       <SubType>Component</SubType>
     </Compile>

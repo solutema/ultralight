@@ -155,10 +155,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuenteNombre.SetData = new string[] {
         "Predeterminada|*",
-        "Serif|Bitstream Vera Serif",
-        "Sans Serif|Bitstream Vera Sans",
-        "Monoespaciada Bitstream|Bitstream Vera Sans Mono",
-        "Monoespaciada Courier|Courier New"};
+        "Vera Serif|Bitstream Vera Serif",
+        "Vera Sans Serif|Bitstream Vera Sans",
+        "Vera Monoespaciada|Bitstream Vera Sans Mono",
+        "Segoe UI|Segoe UI",
+        "Courier|Courier New"};
                         this.EntradaFuenteNombre.Size = new System.Drawing.Size(256, 24);
                         this.EntradaFuenteNombre.TabIndex = 13;
                         this.EntradaFuenteNombre.TextKey = "*";

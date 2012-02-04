@@ -509,6 +509,7 @@ namespace Lfc.Comprobantes
                         }
                 }
 
+
                 public override Lazaro.Pres.DisplayStyles.IDisplayStyle HeaderDisplayStyle
                 {
                         get

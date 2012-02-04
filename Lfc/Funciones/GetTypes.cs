@@ -265,7 +265,8 @@ namespace Lfc
                                 typeof(Lbl.Impresion.Plantilla),
                                 new Lfx.Components.ActionCollection() {
                                         new Lfx.Components.Action("list", typeof(Lfc.Comprobantes.Plantillas.Inicio)),
-                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Plantillas.Editar))
+                                        new Lfx.Components.Action("edit", typeof(Lfc.Comprobantes.Plantillas.Editar)),
+                                        new Lfx.Components.Action("print", typeof(Lazaro.Impresion.Comprobantes.ImpresorPlantilla))
                                 }));
 
                         Res.Add(new Lfx.Components.RegisteredType(

@@ -51,7 +51,6 @@ namespace Lfc.Comprobantes.Plantillas
                 internal Lui.Forms.TextBox EntradaCodigo;
                 internal Lui.Forms.TextBox EntradaNombre;
                 internal Lui.Forms.Label label8;
-                internal Lui.Forms.ComboBox EntradaMembrete;
                 internal Lui.Forms.ComboBox EntradaPapelTamano;
                 private System.ComponentModel.IContainer components = null;
 
@@ -74,19 +73,15 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenIzquierda = new Lui.Forms.TextBox();
                         this.label3 = new Lui.Forms.Label();
                         this.EntradaLandscape = new Lui.Forms.ComboBox();
-                        this.BotonCargarDesdeArchivo = new Lui.Forms.Button();
-                        this.BotonGuardarEnArchivo = new Lui.Forms.Button();
                         this.EntradaFuenteTamano = new Lui.Forms.TextBox();
                         this.EntradaFuente = new Lui.Forms.ComboBox();
                         this.label4 = new Lui.Forms.Label();
-                        this.label5 = new Lui.Forms.Label();
                         this.EntradaPapelTamano = new Lui.Forms.ComboBox();
                         this.label8 = new Lui.Forms.Label();
                         this.EntradaNombre = new Lui.Forms.TextBox();
                         this.label7 = new Lui.Forms.Label();
                         this.EntradaCodigo = new Lui.Forms.TextBox();
                         this.label6 = new Lui.Forms.Label();
-                        this.EntradaMembrete = new Lui.Forms.ComboBox();
                         this.EntradaCopias = new Lui.Forms.TextBox();
                         this.label1 = new Lui.Forms.Label();
                         this.TabCampos = new System.Windows.Forms.TabPage();
@@ -118,7 +113,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ListaCampos.Location = new System.Drawing.Point(8, 8);
                         this.ListaCampos.MultiSelect = false;
                         this.ListaCampos.Name = "ListaCampos";
-                        this.ListaCampos.Size = new System.Drawing.Size(140, 240);
+                        this.ListaCampos.Size = new System.Drawing.Size(140, 234);
                         this.ListaCampos.Sorting = System.Windows.Forms.SortOrder.Ascending;
                         this.ListaCampos.TabIndex = 0;
                         this.ListaCampos.UseCompatibleStateImageBehavior = false;
@@ -141,7 +136,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.TabControl.Location = new System.Drawing.Point(0, 0);
                         this.TabControl.Name = "TabControl";
                         this.TabControl.SelectedIndex = 0;
-                        this.TabControl.Size = new System.Drawing.Size(870, 420);
+                        this.TabControl.Size = new System.Drawing.Size(870, 506);
                         this.TabControl.TabIndex = 0;
                         // 
                         // TabGeneral
@@ -153,24 +148,20 @@ namespace Lfc.Comprobantes.Plantillas
                         this.TabGeneral.Controls.Add(this.EntradaMargenIzquierda);
                         this.TabGeneral.Controls.Add(this.label3);
                         this.TabGeneral.Controls.Add(this.EntradaLandscape);
-                        this.TabGeneral.Controls.Add(this.BotonCargarDesdeArchivo);
-                        this.TabGeneral.Controls.Add(this.BotonGuardarEnArchivo);
                         this.TabGeneral.Controls.Add(this.EntradaFuenteTamano);
                         this.TabGeneral.Controls.Add(this.EntradaFuente);
                         this.TabGeneral.Controls.Add(this.label4);
-                        this.TabGeneral.Controls.Add(this.label5);
                         this.TabGeneral.Controls.Add(this.EntradaPapelTamano);
                         this.TabGeneral.Controls.Add(this.label8);
                         this.TabGeneral.Controls.Add(this.EntradaNombre);
                         this.TabGeneral.Controls.Add(this.label7);
                         this.TabGeneral.Controls.Add(this.EntradaCodigo);
                         this.TabGeneral.Controls.Add(this.label6);
-                        this.TabGeneral.Controls.Add(this.EntradaMembrete);
                         this.TabGeneral.Controls.Add(this.EntradaCopias);
                         this.TabGeneral.Controls.Add(this.label1);
                         this.TabGeneral.Location = new System.Drawing.Point(4, 26);
                         this.TabGeneral.Name = "TabGeneral";
-                        this.TabGeneral.Size = new System.Drawing.Size(862, 390);
+                        this.TabGeneral.Size = new System.Drawing.Size(862, 476);
                         this.TabGeneral.TabIndex = 0;
                         this.TabGeneral.Text = "General";
                         // 
@@ -178,7 +169,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaMargenes.AlwaysExpanded = true;
                         this.EntradaMargenes.AutoSize = true;
-                        this.EntradaMargenes.Location = new System.Drawing.Point(168, 156);
+                        this.EntradaMargenes.Location = new System.Drawing.Point(172, 176);
                         this.EntradaMargenes.Name = "EntradaMargenes";
                         this.EntradaMargenes.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenes.SetData = new string[] {
@@ -192,7 +183,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenAbajo
                         // 
                         this.EntradaMargenAbajo.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenAbajo.Location = new System.Drawing.Point(388, 172);
+                        this.EntradaMargenAbajo.Location = new System.Drawing.Point(392, 192);
                         this.EntradaMargenAbajo.Name = "EntradaMargenAbajo";
                         this.EntradaMargenAbajo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenAbajo.PlaceholderText = "auto";
@@ -204,7 +195,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenArriba
                         // 
                         this.EntradaMargenArriba.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenArriba.Location = new System.Drawing.Point(388, 140);
+                        this.EntradaMargenArriba.Location = new System.Drawing.Point(392, 160);
                         this.EntradaMargenArriba.Name = "EntradaMargenArriba";
                         this.EntradaMargenArriba.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenArriba.PlaceholderText = "auto";
@@ -216,7 +207,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenDerecha
                         // 
                         this.EntradaMargenDerecha.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenDerecha.Location = new System.Drawing.Point(488, 156);
+                        this.EntradaMargenDerecha.Location = new System.Drawing.Point(492, 176);
                         this.EntradaMargenDerecha.Name = "EntradaMargenDerecha";
                         this.EntradaMargenDerecha.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenDerecha.PlaceholderText = "auto";
@@ -228,7 +219,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenIzquierda
                         // 
                         this.EntradaMargenIzquierda.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenIzquierda.Location = new System.Drawing.Point(292, 156);
+                        this.EntradaMargenIzquierda.Location = new System.Drawing.Point(296, 176);
                         this.EntradaMargenIzquierda.Name = "EntradaMargenIzquierda";
                         this.EntradaMargenIzquierda.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenIzquierda.PlaceholderText = "auto";
@@ -239,7 +230,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label3
                         // 
-                        this.label3.Location = new System.Drawing.Point(12, 156);
+                        this.label3.Location = new System.Drawing.Point(16, 176);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(156, 24);
                         this.label3.TabIndex = 7;
@@ -250,7 +241,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaLandscape.AlwaysExpanded = true;
                         this.EntradaLandscape.AutoSize = true;
-                        this.EntradaLandscape.Location = new System.Drawing.Point(264, 68);
+                        this.EntradaLandscape.Location = new System.Drawing.Point(268, 80);
                         this.EntradaLandscape.Name = "EntradaLandscape";
                         this.EntradaLandscape.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLandscape.SetData = new string[] {
@@ -261,43 +252,11 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaLandscape.TextKey = "0";
                         this.EntradaLandscape.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
                         // 
-                        // BotonCargarDesdeArchivo
-                        // 
-                        this.BotonCargarDesdeArchivo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCargarDesdeArchivo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonCargarDesdeArchivo.Image = null;
-                        this.BotonCargarDesdeArchivo.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCargarDesdeArchivo.Location = new System.Drawing.Point(488, 76);
-                        this.BotonCargarDesdeArchivo.Name = "BotonCargarDesdeArchivo";
-                        this.BotonCargarDesdeArchivo.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCargarDesdeArchivo.Size = new System.Drawing.Size(104, 32);
-                        this.BotonCargarDesdeArchivo.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.BotonCargarDesdeArchivo.Subtext = "Tecla";
-                        this.BotonCargarDesdeArchivo.TabIndex = 15;
-                        this.BotonCargarDesdeArchivo.Text = "Cargar";
-                        this.BotonCargarDesdeArchivo.Click += new System.EventHandler(this.BotonCargar_Click);
-                        // 
-                        // BotonGuardarEnArchivo
-                        // 
-                        this.BotonGuardarEnArchivo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonGuardarEnArchivo.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonGuardarEnArchivo.Image = null;
-                        this.BotonGuardarEnArchivo.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonGuardarEnArchivo.Location = new System.Drawing.Point(488, 40);
-                        this.BotonGuardarEnArchivo.Name = "BotonGuardarEnArchivo";
-                        this.BotonGuardarEnArchivo.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGuardarEnArchivo.Size = new System.Drawing.Size(104, 32);
-                        this.BotonGuardarEnArchivo.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.BotonGuardarEnArchivo.Subtext = "Tecla";
-                        this.BotonGuardarEnArchivo.TabIndex = 14;
-                        this.BotonGuardarEnArchivo.Text = "Guardar";
-                        this.BotonGuardarEnArchivo.Click += new System.EventHandler(this.BotonGuardar_Click);
-                        // 
                         // EntradaFuenteTamano
                         // 
                         this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaFuenteTamano.DecimalPlaces = 2;
-                        this.EntradaFuenteTamano.Location = new System.Drawing.Point(428, 268);
+                        this.EntradaFuenteTamano.Location = new System.Drawing.Point(432, 224);
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(116, 24);
@@ -310,15 +269,16 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaFuente.AlwaysExpanded = true;
                         this.EntradaFuente.AutoSize = true;
-                        this.EntradaFuente.Location = new System.Drawing.Point(168, 268);
+                        this.EntradaFuente.Location = new System.Drawing.Point(172, 224);
                         this.EntradaFuente.Name = "EntradaFuente";
                         this.EntradaFuente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuente.SetData = new string[] {
         "Predeterminada|*",
-        "Serif|Bitstream Vera Serif",
-        "Sans Serif|Bitstream Vera Sans",
-        "Monoespaciada Bitstream|Bitstream Vera Sans Mono",
-        "Monoespaciada Courier|Courier New"};
+        "Vera Serif|Bitstream Vera Serif",
+        "Vera Sans Serif|Bitstream Vera Sans",
+        "Vera Monoespaciada|Bitstream Vera Sans Mono",
+        "Segoe UI|Segoe UI",
+        "Courier|Courier New"};
                         this.EntradaFuente.Size = new System.Drawing.Size(256, 91);
                         this.EntradaFuente.TabIndex = 16;
                         this.EntradaFuente.TextKey = "*";
@@ -326,27 +286,18 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label4
                         // 
-                        this.label4.Location = new System.Drawing.Point(12, 268);
+                        this.label4.Location = new System.Drawing.Point(16, 224);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(156, 24);
                         this.label4.TabIndex = 15;
                         this.label4.Text = "Fuente";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // label5
-                        // 
-                        this.label5.Location = new System.Drawing.Point(12, 208);
-                        this.label5.Name = "label5";
-                        this.label5.Size = new System.Drawing.Size(156, 24);
-                        this.label5.TabIndex = 13;
-                        this.label5.Text = "Membrete";
-                        this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaPapelTamano
                         // 
                         this.EntradaPapelTamano.AlwaysExpanded = true;
                         this.EntradaPapelTamano.AutoSize = true;
-                        this.EntradaPapelTamano.Location = new System.Drawing.Point(168, 68);
+                        this.EntradaPapelTamano.Location = new System.Drawing.Point(172, 80);
                         this.EntradaPapelTamano.Name = "EntradaPapelTamano";
                         this.EntradaPapelTamano.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPapelTamano.SetData = new string[] {
@@ -362,7 +313,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label8
                         // 
-                        this.label8.Location = new System.Drawing.Point(12, 68);
+                        this.label8.Location = new System.Drawing.Point(16, 80);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(156, 24);
                         this.label8.TabIndex = 4;
@@ -372,7 +323,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaNombre
                         // 
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaNombre.Location = new System.Drawing.Point(168, 40);
+                        this.EntradaNombre.Location = new System.Drawing.Point(172, 48);
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.Size = new System.Drawing.Size(284, 24);
@@ -381,7 +332,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label7
                         // 
-                        this.label7.Location = new System.Drawing.Point(12, 40);
+                        this.label7.Location = new System.Drawing.Point(16, 48);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(156, 24);
                         this.label7.TabIndex = 2;
@@ -390,7 +341,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaCodigo
                         // 
-                        this.EntradaCodigo.Location = new System.Drawing.Point(168, 12);
+                        this.EntradaCodigo.Location = new System.Drawing.Point(172, 16);
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigo.Size = new System.Drawing.Size(284, 24);
@@ -399,32 +350,17 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label6
                         // 
-                        this.label6.Location = new System.Drawing.Point(12, 12);
+                        this.label6.Location = new System.Drawing.Point(16, 16);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(156, 24);
                         this.label6.TabIndex = 0;
                         this.label6.Text = "Código";
                         this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaMembrete
-                        // 
-                        this.EntradaMembrete.AlwaysExpanded = true;
-                        this.EntradaMembrete.AutoSize = true;
-                        this.EntradaMembrete.Location = new System.Drawing.Point(168, 208);
-                        this.EntradaMembrete.Name = "EntradaMembrete";
-                        this.EntradaMembrete.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMembrete.SetData = new string[] {
-        "Ninguno|0",
-        "Encabezado|1",
-        "Recuadro|2"};
-                        this.EntradaMembrete.Size = new System.Drawing.Size(256, 57);
-                        this.EntradaMembrete.TabIndex = 14;
-                        this.EntradaMembrete.TextKey = "0";
-                        // 
                         // EntradaCopias
                         // 
                         this.EntradaCopias.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCopias.Location = new System.Drawing.Point(168, 356);
+                        this.EntradaCopias.Location = new System.Drawing.Point(172, 328);
                         this.EntradaCopias.Name = "EntradaCopias";
                         this.EntradaCopias.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCopias.Size = new System.Drawing.Size(56, 24);
@@ -433,7 +369,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(12, 356);
+                        this.label1.Location = new System.Drawing.Point(16, 328);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(156, 24);
                         this.label1.TabIndex = 18;
@@ -452,7 +388,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.TabCampos.Controls.Add(this.ListaCampos);
                         this.TabCampos.Location = new System.Drawing.Point(4, 26);
                         this.TabCampos.Name = "TabCampos";
-                        this.TabCampos.Size = new System.Drawing.Size(862, 390);
+                        this.TabCampos.Size = new System.Drawing.Size(862, 476);
                         this.TabCampos.TabIndex = 1;
                         this.TabCampos.Text = "Campos";
                         // 
@@ -463,7 +399,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.button1.Image = null;
                         this.button1.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.button1.Location = new System.Drawing.Point(8, 284);
+                        this.button1.Location = new System.Drawing.Point(8, 278);
                         this.button1.Name = "button1";
                         this.button1.Padding = new System.Windows.Forms.Padding(2);
                         this.button1.Size = new System.Drawing.Size(68, 24);
@@ -479,7 +415,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.button2.Image = null;
                         this.button2.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.button2.Location = new System.Drawing.Point(80, 284);
+                        this.button2.Location = new System.Drawing.Point(80, 278);
                         this.button2.Name = "button2";
                         this.button2.Padding = new System.Windows.Forms.Padding(2);
                         this.button2.Size = new System.Drawing.Size(68, 24);
@@ -491,7 +427,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // label2
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label2.Location = new System.Drawing.Point(8, 318);
+                        this.label2.Location = new System.Drawing.Point(8, 312);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(140, 24);
                         this.label2.TabIndex = 112;
@@ -502,7 +438,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.ZoomBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.ZoomBar.LargeChange = 25;
-                        this.ZoomBar.Location = new System.Drawing.Point(8, 342);
+                        this.ZoomBar.Location = new System.Drawing.Point(8, 336);
                         this.ZoomBar.Maximum = 250;
                         this.ZoomBar.Minimum = 25;
                         this.ZoomBar.Name = "ZoomBar";
@@ -520,7 +456,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ImagePreview.BackColor = System.Drawing.Color.Ivory;
                         this.ImagePreview.Location = new System.Drawing.Point(156, 4);
                         this.ImagePreview.Name = "ImagePreview";
-                        this.ImagePreview.Size = new System.Drawing.Size(702, 384);
+                        this.ImagePreview.Size = new System.Drawing.Size(702, 378);
                         this.ImagePreview.TabIndex = 105;
                         this.ImagePreview.TabStop = false;
                         this.ImagePreview.Paint += new System.Windows.Forms.PaintEventHandler(this.ImagePreview_Paint);
@@ -536,7 +472,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitar.Location = new System.Drawing.Point(8, 256);
+                        this.BotonQuitar.Location = new System.Drawing.Point(8, 250);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonQuitar.Size = new System.Drawing.Size(68, 24);
@@ -553,7 +489,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAgregar.Location = new System.Drawing.Point(80, 256);
+                        this.BotonAgregar.Location = new System.Drawing.Point(80, 250);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAgregar.Size = new System.Drawing.Size(68, 24);
@@ -568,7 +504,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.AutoSize = true;
                         this.Controls.Add(this.TabControl);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(868, 421);
+                        this.Size = new System.Drawing.Size(868, 507);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Editar_KeyDown);
                         this.TabControl.ResumeLayout(false);
                         this.TabGeneral.ResumeLayout(false);
@@ -588,8 +524,6 @@ namespace Lfc.Comprobantes.Plantillas
                 internal Lui.Forms.TextBox EntradaFuenteTamano;
                 internal Lui.Forms.ComboBox EntradaFuente;
                 private TrackBar ZoomBar;
-                private Lui.Forms.Button BotonCargarDesdeArchivo;
-                private Lui.Forms.Button BotonGuardarEnArchivo;
                 internal Lui.Forms.ComboBox EntradaLandscape;
                 internal Lui.Forms.TextBox EntradaMargenAbajo;
                 internal Lui.Forms.TextBox EntradaMargenArriba;
@@ -598,7 +532,6 @@ namespace Lfc.Comprobantes.Plantillas
                 internal Lui.Forms.ComboBox EntradaMargenes;
                 private Lui.Forms.Button button1;
                 private Lui.Forms.Button button2;
-                internal Lui.Forms.Label label5;
                 internal Lui.Forms.Label label4;
                 internal Lui.Forms.Label label2;
                 internal Lui.Forms.Label label3;

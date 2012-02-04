@@ -84,7 +84,6 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
-                        EntradaMembrete.TextKey = Plantilla.Membrete.ToString();
                         EntradaCodigo.Text = Plantilla.Codigo;
                         EntradaCodigo.TemporaryReadOnly = !Plantilla.Existe;
                         EntradaNombre.Text = Plantilla.Nombre;
@@ -134,8 +133,7 @@ namespace Lfc.Comprobantes.Plantillas
                         Plantilla.Nombre = EntradaNombre.Text;
                         Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
                         Plantilla.Landscape = EntradaLandscape.TextKey == "1";
-                        Plantilla.Copias = Lfx.Types.Parsing.ParseInt(EntradaCopias.Text);
-                        Plantilla.Membrete = Lfx.Types.Parsing.ParseInt(EntradaMembrete.TextKey);
+                        Plantilla.Copias = EntradaCopias.ValueInt;
 
                         if (EntradaMargenes.TextKey == "1") {
                                 Plantilla.Margenes = new System.Drawing.Printing.Margins(
@@ -434,10 +432,10 @@ namespace Lfc.Comprobantes.Plantillas
                                 FormEditarCampo.ColorTexto.BackColor = CampoSeleccionado.ColorTexto;
                                 if (CampoSeleccionado.Font != null) {
                                         FormEditarCampo.EntradaFuenteNombre.TextKey = CampoSeleccionado.Font.Name;
-                                        FormEditarCampo.EntradaFuenteTamano.Text = CampoSeleccionado.Font.Size.ToString();
+                                        FormEditarCampo.EntradaFuenteTamano.Text = CampoSeleccionado.Font.Size.ToString("#.00");
                                 } else {
                                         FormEditarCampo.EntradaFuenteNombre.TextKey = "*";
-                                        FormEditarCampo.EntradaFuenteTamano.Text = "0";
+                                        FormEditarCampo.EntradaFuenteTamano.ValueDecimal = 10;
                                 }
                                 if (FormEditarCampo.ShowDialog() == DialogResult.OK) {
                                         if (FormEditarCampo.EntradaFormato.TextKey == "*")
@@ -450,8 +448,8 @@ namespace Lfc.Comprobantes.Plantillas
                                         CampoSeleccionado.ColorBorde = FormEditarCampo.ColorBorde.BackColor;
                                         CampoSeleccionado.ColorFondo = FormEditarCampo.ColorFondo.BackColor;
                                         CampoSeleccionado.ColorTexto = FormEditarCampo.ColorTexto.BackColor;
-                                        if (FormEditarCampo.EntradaFuenteNombre.TextKey != "*" && Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaFuenteTamano.Text) > 0) {
-                                                CampoSeleccionado.Font = new Font(FormEditarCampo.EntradaFuenteNombre.TextKey, Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaFuenteTamano.Text));
+                                        if (FormEditarCampo.EntradaFuenteNombre.TextKey != "*" && FormEditarCampo.EntradaFuenteTamano.ValueDecimal > 1) {
+                                                CampoSeleccionado.Font = new Font(FormEditarCampo.EntradaFuenteNombre.TextKey, ((float)(FormEditarCampo.EntradaFuenteTamano.ValueDecimal)));
                                         } else {
                                                 CampoSeleccionado.Font = null;
                                         }
@@ -580,7 +578,7 @@ namespace Lfc.Comprobantes.Plantillas
                         ImagePreview.Invalidate();
                 }
 
-                private void BotonGuardar_Click(object sender, EventArgs e)
+                private void Guardar()
                 {
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
@@ -595,7 +593,7 @@ namespace Lfc.Comprobantes.Plantillas
                         }
                 }
 
-                private void BotonCargar_Click(object sender, EventArgs e)
+                private void Cargar()
                 {
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
@@ -647,6 +645,30 @@ namespace Lfc.Comprobantes.Plantillas
                         get
                         {
                                 return Lazaro.Pres.DisplayStyles.Template.Current.Comprobantes;
+                        }
+                }
+
+
+                public override Lazaro.Pres.Forms.FormActionCollection GetFormActions()
+                {
+                        Lazaro.Pres.Forms.FormActionCollection Res = base.GetFormActions();
+                        Res.Add(new Lazaro.Pres.Forms.FormAction("Guardar", "F4", "guardar", 20, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        Res.Add(new Lazaro.Pres.Forms.FormAction("Cargar", "F5", "cargar", 10, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                        return Res;
+                }
+
+
+                public override Lfx.Types.OperationResult PerformFormAction(string name)
+                {
+                        switch (name) {
+                                case "guardar":
+                                        Guardar();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                case "cargar":
+                                        Cargar();
+                                        return new Lfx.Types.SuccessOperationResult();
+                                default:
+                                        return base.PerformFormAction(name);
                         }
                 }
         }

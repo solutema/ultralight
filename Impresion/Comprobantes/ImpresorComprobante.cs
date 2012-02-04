@@ -93,10 +93,12 @@ namespace Lazaro.Impresion.Comprobantes
                                 return Res;
                 }
 
+
                 public override Lbl.Comprobantes.Tipo ObtenerTipo()
                 {
                         return Comprobante.Tipo;
                 }
+
 
                 public override Lfx.Types.OperationResult Imprimir()
                 {

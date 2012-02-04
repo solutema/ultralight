@@ -64,6 +64,8 @@ namespace Lazaro.Impresion
                 private static Type InferirImpresor(string tipoOTabla)
                 {
                         switch (tipoOTabla) {
+                                case "Lbl.Impresion.Plantilla":
+                                        return typeof(Impresion.Comprobantes.ImpresorPlantilla);
                                 case "Lbl.Comprobantes.Comprobante":
                                         return typeof(Impresion.Comprobantes.ImpresorComprobante);
                                 case "Lbl.Comprobantes.Presupuesto":
