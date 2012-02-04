@@ -65,7 +65,6 @@ namespace Lfc.Ciudades
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 0);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
@@ -75,7 +74,6 @@ namespace Lfc.Ciudades
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 76);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(120, 24);
@@ -129,7 +127,6 @@ namespace Lfc.Ciudades
                         // 
                         // EtiquetaParent
                         // 
-                        this.EtiquetaParent.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaParent.Location = new System.Drawing.Point(0, 108);
                         this.EtiquetaParent.Name = "EtiquetaParent";
                         this.EtiquetaParent.Size = new System.Drawing.Size(120, 24);
@@ -139,7 +136,6 @@ namespace Lfc.Ciudades
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(0, 32);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(120, 24);
@@ -178,7 +174,6 @@ namespace Lfc.Ciudades
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 140);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(120, 24);

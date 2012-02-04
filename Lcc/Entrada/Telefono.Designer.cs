@@ -116,7 +116,6 @@ namespace Lcc.Entrada
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 0);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(12, 24);
@@ -128,7 +127,6 @@ namespace Lcc.Entrada
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(72, 0);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(12, 24);

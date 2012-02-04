@@ -91,7 +91,9 @@ namespace Lui.Forms
                         }
                 }
 
-                public Lazaro.Pres.DisplayStyles.TextStyles LabelStyle
+
+                [DefaultValue(Lazaro.Pres.DisplayStyles.TextStyles.Default)]
+                public Lazaro.Pres.DisplayStyles.TextStyles TextStyle
                 {
                         get
                         {

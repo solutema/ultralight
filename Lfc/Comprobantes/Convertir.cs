@@ -120,7 +120,6 @@ namespace Lfc.Comprobantes
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(24, 88);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(304, 24);
@@ -130,7 +129,6 @@ namespace Lfc.Comprobantes
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(24, 120);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(304, 24);
@@ -161,7 +159,6 @@ namespace Lfc.Comprobantes
                         // lblInfo
                         // 
                         this.lblInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblInfo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblInfo.Location = new System.Drawing.Point(304, 292);
                         this.lblInfo.Name = "lblInfo";
                         this.lblInfo.Size = new System.Drawing.Size(304, 36);
@@ -171,7 +168,6 @@ namespace Lfc.Comprobantes
                         // lblOrigenTipo
                         // 
                         this.lblOrigenTipo.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblOrigenTipo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblOrigenTipo.Location = new System.Drawing.Point(48, 224);
                         this.lblOrigenTipo.Name = "lblOrigenTipo";
                         this.lblOrigenTipo.Size = new System.Drawing.Size(112, 36);
@@ -182,7 +178,6 @@ namespace Lfc.Comprobantes
                         // lblDestinoTipo
                         // 
                         this.lblDestinoTipo.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDestinoTipo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblDestinoTipo.Location = new System.Drawing.Point(180, 224);
                         this.lblDestinoTipo.Name = "lblDestinoTipo";
                         this.lblDestinoTipo.Size = new System.Drawing.Size(116, 36);
@@ -193,7 +188,6 @@ namespace Lfc.Comprobantes
                         // lblDuplicado
                         // 
                         this.lblDuplicado.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDuplicado.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblDuplicado.Location = new System.Drawing.Point(304, 252);
                         this.lblDuplicado.Name = "lblDuplicado";
                         this.lblDuplicado.Size = new System.Drawing.Size(304, 36);

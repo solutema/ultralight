@@ -61,7 +61,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.EtiquetaCopyright.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaCopyright.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.EtiquetaCopyright.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.EtiquetaCopyright.Location = new System.Drawing.Point(184, 48);
                         this.EtiquetaCopyright.Name = "EtiquetaCopyright";
                         this.EtiquetaCopyright.Size = new System.Drawing.Size(431, 16);
@@ -100,7 +100,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.EtiquetaCreditos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaCreditos.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.EtiquetaCreditos.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.EtiquetaCreditos.Location = new System.Drawing.Point(112, 92);
                         this.EtiquetaCreditos.Name = "EtiquetaCreditos";
                         this.EtiquetaCreditos.Size = new System.Drawing.Size(503, 92);
@@ -110,7 +110,7 @@ namespace Lazaro.WinMain.Misc
                         // Label6
                         // 
                         this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.Label6.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label6.Location = new System.Drawing.Point(112, 191);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(123, 16);
@@ -122,7 +122,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.EtiquetaUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaUsuario.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.EtiquetaUsuario.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.EtiquetaUsuario.Location = new System.Drawing.Point(235, 191);
                         this.EtiquetaUsuario.Name = "EtiquetaUsuario";
                         this.EtiquetaUsuario.Size = new System.Drawing.Size(381, 16);
@@ -167,7 +167,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.EtiquetaFramework.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaFramework.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.EtiquetaFramework.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.EtiquetaFramework.Location = new System.Drawing.Point(235, 207);
                         this.EtiquetaFramework.Name = "EtiquetaFramework";
                         this.EtiquetaFramework.Size = new System.Drawing.Size(381, 16);
@@ -179,7 +179,7 @@ namespace Lazaro.WinMain.Misc
                         // Label7
                         // 
                         this.Label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.Label7.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label7.Location = new System.Drawing.Point(112, 207);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(123, 16);

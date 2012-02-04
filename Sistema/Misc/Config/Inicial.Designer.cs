@@ -174,7 +174,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label8.Location = new System.Drawing.Point(88, 200);
                         this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label8.Name = "label8";
@@ -182,6 +181,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.label8.TabIndex = 7;
                         this.label8.Text = "Marque esta casilla si quiere instalar el servidor SQL en este equipo ahora y que" +
     " este sea el equipo principal.";
+                        this.label8.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         // 
                         // CheckInstalarAhora
                         // 
@@ -237,7 +237,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label3.Location = new System.Drawing.Point(88, 264);
                         this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label3.Name = "label3";
@@ -245,6 +244,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.label3.TabIndex = 0;
                         this.label3.Text = "Utilice la configuración avanzada si necesita ingresar parámetros adicionales par" +
     "a conectar al almacén de datos.";
+                        this.label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         // 
                         // CheckConfigAvanzada
                         // 
@@ -261,7 +261,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label2.Location = new System.Drawing.Point(88, 128);
                         this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label2.Name = "label2";
@@ -269,6 +268,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.label2.TabIndex = 5;
                         this.label2.Text = "Marque esta casilla si ya instaló el servidor SQL en otro equipo y desea acceder " +
     "al almacén de datos a través de una conexión de red o de Internet.";
+                        this.label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         // 
                         // CheckOtroEquipo
                         // 
@@ -285,13 +285,13 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label1.Location = new System.Drawing.Point(88, 72);
                         this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(404, 20);
                         this.label1.TabIndex = 3;
                         this.label1.Text = "Marque esta casilla si instaló el servidor SQL en este equipo.";
+                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         // 
                         // CheckEsteEquipo
                         // 
@@ -308,7 +308,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAyuda.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaAyuda.Location = new System.Drawing.Point(44, 0);
                         this.EtiquetaAyuda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaAyuda.Name = "EtiquetaAyuda";
@@ -340,7 +339,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonSalir.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonSalir.Name = "BotonSalir";
                         this.BotonSalir.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonSalir.ReadOnly = false;
                         this.BotonSalir.Size = new System.Drawing.Size(116, 40);
                         this.BotonSalir.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSalir.Subtext = "F8";
@@ -359,7 +357,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonSiguiente.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonSiguiente.Name = "BotonSiguiente";
                         this.BotonSiguiente.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonSiguiente.ReadOnly = false;
                         this.BotonSiguiente.Size = new System.Drawing.Size(116, 40);
                         this.BotonSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSiguiente.Subtext = "F8";
@@ -378,7 +375,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonAnterior.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonAnterior.Name = "BotonAnterior";
                         this.BotonAnterior.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonAnterior.ReadOnly = false;
                         this.BotonAnterior.Size = new System.Drawing.Size(116, 40);
                         this.BotonAnterior.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAnterior.Subtext = "F8";
@@ -436,7 +432,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(44, 96);
                         this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label7.Name = "label7";
@@ -448,7 +443,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(44, 52);
                         this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label6.Name = "label6";
@@ -463,7 +457,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.EntradaServidor.Location = new System.Drawing.Point(144, 52);
                         this.EntradaServidor.Name = "EntradaServidor";
                         this.EntradaServidor.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.EntradaServidor.ReadOnly = false;
                         this.EntradaServidor.Size = new System.Drawing.Size(208, 24);
                         this.EntradaServidor.TabIndex = 60;
                         // 
@@ -471,7 +464,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(44, 0);
                         this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label4.Name = "label4";
@@ -500,13 +492,13 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.label5.Location = new System.Drawing.Point(44, 0);
                         this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(452, 63);
                         this.label5.TabIndex = 69;
                         this.label5.Text = "¡Felicitaciones!";
+                        this.label5.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         // 
                         // pictureBox8
                         // 
@@ -522,7 +514,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label11.Location = new System.Drawing.Point(44, 72);
                         this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label11.Name = "label11";
@@ -562,7 +553,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaPruebaError.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaPruebaError.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaPruebaError.Location = new System.Drawing.Point(0, 68);
                         this.EtiquetaPruebaError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaPruebaError.Name = "EtiquetaPruebaError";
@@ -573,7 +563,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaPruebaResultado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaPruebaResultado.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaPruebaResultado.Location = new System.Drawing.Point(44, 0);
                         this.EtiquetaPruebaResultado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaPruebaResultado.Name = "EtiquetaPruebaResultado";
@@ -585,13 +574,13 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEncab.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         this.EtiquetaEncab.Location = new System.Drawing.Point(120, 8);
                         this.EtiquetaEncab.Name = "EtiquetaEncab";
                         this.EtiquetaEncab.Size = new System.Drawing.Size(496, 40);
                         this.EtiquetaEncab.TabIndex = 0;
                         this.EtiquetaEncab.Text = "Bienvenido a Lázaro";
                         this.EtiquetaEncab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaEncab.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // PanelBuscando
                         // 
@@ -623,7 +612,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaBuscarEspere.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaBuscarEspere.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaBuscarEspere.Location = new System.Drawing.Point(48, 64);
                         this.EtiquetaBuscarEspere.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaBuscarEspere.Name = "EtiquetaBuscarEspere";
@@ -649,7 +637,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonGuiaInstalacion.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.BotonGuiaInstalacion.Location = new System.Drawing.Point(304, 280);
                         this.BotonGuiaInstalacion.Name = "BotonGuiaInstalacion";
-                        this.BotonGuiaInstalacion.Size = new System.Drawing.Size(160, 15);
+                        this.BotonGuiaInstalacion.Size = new System.Drawing.Size(148, 17);
                         this.BotonGuiaInstalacion.TabIndex = 73;
                         this.BotonGuiaInstalacion.TabStop = true;
                         this.BotonGuiaInstalacion.Text = "Configuración avanzada";
@@ -660,7 +648,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaBuscando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaBuscando.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaBuscando.Location = new System.Drawing.Point(48, 112);
                         this.EtiquetaBuscando.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaBuscando.Name = "EtiquetaBuscando";
@@ -682,7 +669,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(48, 0);
                         this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label9.Name = "label9";
@@ -695,7 +681,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label10.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Info;
                         this.label10.Location = new System.Drawing.Point(48, 192);
                         this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label10.Name = "label10";
@@ -703,6 +688,7 @@ namespace Lazaro.WinMain.Misc.Config
                         this.label10.TabIndex = 74;
                         this.label10.Text = resources.GetString("label10.Text");
                         this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label10.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Info;
                         this.label10.UseMnemonic = false;
                         // 
                         // PanelInstalarAhora
@@ -731,7 +717,6 @@ namespace Lazaro.WinMain.Misc.Config
                         this.BotonInstalar.Location = new System.Drawing.Point(44, 144);
                         this.BotonInstalar.Name = "BotonInstalar";
                         this.BotonInstalar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonInstalar.ReadOnly = false;
                         this.BotonInstalar.Size = new System.Drawing.Size(108, 32);
                         this.BotonInstalar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonInstalar.Subtext = "F8";
@@ -743,7 +728,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label12.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label12.Location = new System.Drawing.Point(44, 96);
                         this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label12.Name = "label12";
@@ -765,7 +749,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaDescargando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaDescargando.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaDescargando.Location = new System.Drawing.Point(44, 184);
                         this.EtiquetaDescargando.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaDescargando.Name = "EtiquetaDescargando";
@@ -778,7 +761,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label13.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label13.Location = new System.Drawing.Point(44, 32);
                         this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label13.Name = "label13";
@@ -802,13 +784,13 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label14.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.label14.Location = new System.Drawing.Point(44, 0);
                         this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label14.Name = "label14";
                         this.label14.Size = new System.Drawing.Size(452, 32);
                         this.label14.TabIndex = 69;
                         this.label14.Text = "Instalar un servidor SQL ahora";
+                        this.label14.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         // 
                         // Inicial
                         // 
@@ -820,12 +802,12 @@ namespace Lazaro.WinMain.Misc.Config
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.EtiquetaEncab);
-                        this.Controls.Add(this.PanelPruebaServidor);
-                        this.Controls.Add(this.PanelFinal);
-                        this.Controls.Add(this.PanelBienvenido);
                         this.Controls.Add(this.PanelBuscando);
                         this.Controls.Add(this.PanelInstalarAhora);
                         this.Controls.Add(this.PanelAlmacenDeDatos);
+                        this.Controls.Add(this.PanelPruebaServidor);
+                        this.Controls.Add(this.PanelFinal);
+                        this.Controls.Add(this.PanelBienvenido);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

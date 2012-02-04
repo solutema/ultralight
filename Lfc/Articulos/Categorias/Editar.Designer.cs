@@ -97,7 +97,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(136, 24);
@@ -118,7 +117,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 32);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(136, 24);
@@ -141,7 +139,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Label11
                         // 
-                        this.Label11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label11.Location = new System.Drawing.Point(0, 64);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(136, 24);
@@ -164,7 +161,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(8, 40);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(180, 24);
@@ -189,7 +185,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // label20
                         // 
-                        this.label20.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label20.Location = new System.Drawing.Point(0, 304);
                         this.label20.Name = "label20";
                         this.label20.Size = new System.Drawing.Size(136, 24);
@@ -216,7 +211,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label8.Location = new System.Drawing.Point(0, 152);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(136, 24);
@@ -263,7 +257,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(0, 96);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(136, 24);
@@ -273,7 +266,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(0, 240);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(136, 24);
@@ -342,7 +334,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(8, 72);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(180, 24);
@@ -352,7 +343,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(8, 104);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(180, 24);
@@ -362,7 +352,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(8, 136);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(180, 24);
@@ -372,7 +361,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         // label10
                         // 
-                        this.label10.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label10.Location = new System.Drawing.Point(0, 272);
                         this.label10.Name = "label10";
                         this.label10.Size = new System.Drawing.Size(136, 24);

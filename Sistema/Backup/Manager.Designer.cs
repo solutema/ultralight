@@ -67,32 +67,23 @@ namespace Lazaro.WinMain.Backup
                         this.BotonEliminar = new Lui.Forms.Button();
                         this.BotonRestaurar = new Lui.Forms.Button();
                         this.BotonCopiar = new Lui.Forms.Button();
-                        this.Nota1 = new Lui.Forms.Note();
+                        this.formHeader1 = new Lui.Forms.FormHeader();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(554, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(674, 8);
                         // 
                         // BotonBackup
                         // 
                         this.BotonBackup.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonBackup.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonBackup.Image = ((System.Drawing.Image)(resources.GetObject("BotonBackup.Image")));
                         this.BotonBackup.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonBackup.Location = new System.Drawing.Point(20, 16);
+                        this.BotonBackup.Location = new System.Drawing.Point(24, 88);
                         this.BotonBackup.Name = "BotonBackup";
                         this.BotonBackup.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonBackup.ReadOnly = false;
-                        this.BotonBackup.Size = new System.Drawing.Size(632, 68);
+                        this.BotonBackup.Size = new System.Drawing.Size(432, 72);
                         this.BotonBackup.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-                        this.BotonBackup.Subtext = "Haga clic aquí para dejar en este equipo una copia completa de los datos del sist" +
-    "ema.";
+                        this.BotonBackup.Subtext = "Haga clic aquí para crear una copia de respaldo en este equipo.";
                         this.BotonBackup.TabIndex = 0;
-                        this.BotonBackup.Text = "Crear una Copia de Respaldo ahora";
+                        this.BotonBackup.Text = "Crear una copia de respaldo ahora";
                         this.BotonBackup.Click += new System.EventHandler(this.BotonBackup_Click);
                         // 
                         // Listado
@@ -109,10 +100,9 @@ namespace Lazaro.WinMain.Backup
                         this.Listado.FullRowSelect = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.HideSelection = false;
-                        this.Listado.Location = new System.Drawing.Point(24, 120);
+                        this.Listado.Location = new System.Drawing.Point(28, 208);
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(628, 176);
-                        this.Listado.Sorting = System.Windows.Forms.SortOrder.Ascending;
+                        this.Listado.Size = new System.Drawing.Size(620, 160);
                         this.Listado.TabIndex = 3;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
@@ -141,25 +131,25 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
-                        this.Label2.Location = new System.Drawing.Point(24, 96);
+                        this.Label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.Label2.Location = new System.Drawing.Point(28, 168);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(628, 20);
+                        this.Label2.Size = new System.Drawing.Size(620, 40);
                         this.Label2.TabIndex = 2;
-                        this.Label2.Text = "Copias de respaldo presentes en el sistema:";
+                        this.Label2.Text = "Copias de respaldo presentes en este equipo";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonEliminar
                         // 
                         this.BotonEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonEliminar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonEliminar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonEliminar.Image = null;
                         this.BotonEliminar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonEliminar.Location = new System.Drawing.Point(660, 184);
+                        this.BotonEliminar.Location = new System.Drawing.Point(664, 232);
                         this.BotonEliminar.Name = "BotonEliminar";
                         this.BotonEliminar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonEliminar.ReadOnly = false;
-                        this.BotonEliminar.Size = new System.Drawing.Size(108, 32);
+                        this.BotonEliminar.Size = new System.Drawing.Size(108, 40);
                         this.BotonEliminar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonEliminar.Subtext = "F3";
                         this.BotonEliminar.TabIndex = 4;
@@ -170,13 +160,13 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.BotonRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonRestaurar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonRestaurar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonRestaurar.Image = null;
                         this.BotonRestaurar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonRestaurar.Location = new System.Drawing.Point(660, 224);
+                        this.BotonRestaurar.Location = new System.Drawing.Point(664, 280);
                         this.BotonRestaurar.Name = "BotonRestaurar";
                         this.BotonRestaurar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonRestaurar.ReadOnly = false;
-                        this.BotonRestaurar.Size = new System.Drawing.Size(108, 32);
+                        this.BotonRestaurar.Size = new System.Drawing.Size(108, 40);
                         this.BotonRestaurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonRestaurar.Subtext = "F6";
                         this.BotonRestaurar.TabIndex = 5;
@@ -187,40 +177,33 @@ namespace Lazaro.WinMain.Backup
                         // 
                         this.BotonCopiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCopiar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCopiar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCopiar.Image = null;
                         this.BotonCopiar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCopiar.Location = new System.Drawing.Point(660, 264);
+                        this.BotonCopiar.Location = new System.Drawing.Point(664, 328);
                         this.BotonCopiar.Name = "BotonCopiar";
                         this.BotonCopiar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCopiar.ReadOnly = false;
-                        this.BotonCopiar.Size = new System.Drawing.Size(108, 32);
+                        this.BotonCopiar.Size = new System.Drawing.Size(108, 40);
                         this.BotonCopiar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCopiar.Subtext = "F6";
                         this.BotonCopiar.TabIndex = 6;
                         this.BotonCopiar.Text = "Examinar";
                         this.BotonCopiar.Click += new System.EventHandler(this.BotonCopiar_Click);
                         // 
-                        // note1
+                        // formHeader1
                         // 
-                        this.Nota1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Nota1.Location = new System.Drawing.Point(24, 308);
-                        this.Nota1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.Nota1.Name = "Nota1";
-                        this.Nota1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.Nota1.ReadOnly = false;
-                        this.Nota1.Size = new System.Drawing.Size(748, 56);
-                        this.Nota1.TabIndex = 52;
-                        this.Nota1.TabStop = false;
-                        this.Nota1.Text = "Se mantienen automáticamente las últimas 7 copias de respaldo. La copia en letra " +
-    "negrita es la más reciente.";
-                        this.Nota1.Title = "Información";
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(794, 64);
+                        this.formHeader1.TabIndex = 101;
+                        this.formHeader1.Text = "Copias de respaldo";
                         // 
                         // Manager
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(794, 452);
-                        this.Controls.Add(this.Nota1);
+                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.BotonCopiar);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.BotonRestaurar);
@@ -228,14 +211,14 @@ namespace Lazaro.WinMain.Backup
                         this.Controls.Add(this.Listado);
                         this.Controls.Add(this.BotonBackup);
                         this.Name = "Manager";
-                        this.Text = "Administrador de Copias de Respaldo";
+                        this.Text = "Administrador de copias de respaldo";
                         this.Controls.SetChildIndex(this.BotonBackup, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.BotonEliminar, 0);
                         this.Controls.SetChildIndex(this.BotonRestaurar, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.BotonCopiar, 0);
-                        this.Controls.SetChildIndex(this.Nota1, 0);
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -252,6 +235,6 @@ namespace Lazaro.WinMain.Backup
                 internal Lui.Forms.Button BotonRestaurar;
                 internal System.Windows.Forms.ColumnHeader Numero;
                 internal Lui.Forms.Button BotonCopiar;
-                private Lui.Forms.Note Nota1;
+                private Lui.Forms.FormHeader formHeader1;
         }
 }

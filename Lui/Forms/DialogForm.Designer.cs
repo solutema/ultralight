@@ -127,7 +127,7 @@ namespace Lui.Forms
 
 		#endregion
 
-                private Lui.Forms.ButtonPanel LowerPanel;
+                protected Lui.Forms.ButtonPanel LowerPanel;
                 protected Lui.Forms.Button OkButton;
                 protected Lui.Forms.Button CancelCommandButton;
         }

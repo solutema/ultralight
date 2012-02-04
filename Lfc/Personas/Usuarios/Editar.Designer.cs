@@ -87,7 +87,6 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(0, 0);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(128, 24);
@@ -108,7 +107,6 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(220, 0);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(128, 24);

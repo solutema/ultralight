@@ -70,7 +70,6 @@ namespace Lfc.Comprobantes
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(316, 88);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(132, 24);
@@ -99,7 +98,6 @@ namespace Lfc.Comprobantes
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(316, 120);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(132, 24);
@@ -131,7 +129,6 @@ namespace Lfc.Comprobantes
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(24, 88);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
@@ -144,7 +141,6 @@ namespace Lfc.Comprobantes
                         this.LabelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelAyuda.AutoEllipsis = true;
-                        this.LabelAyuda.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.LabelAyuda.Location = new System.Drawing.Point(24, 192);
                         this.LabelAyuda.Name = "LabelAyuda";
                         this.LabelAyuda.Size = new System.Drawing.Size(576, 92);

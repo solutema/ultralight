@@ -38,7 +38,7 @@ namespace Lfc.Comprobantes.Plantillas
         public partial class Editar : Lcc.Edicion.ControlEdicion
         {
                 private Lbl.Impresion.Campo CampoSeleccionado;
-                private int KnobSize = 24, GridSize = 10;
+                private int KnobSize = 32, GridSize = 10;
                 private PointF Escala;
                 private Point Desplazamiento = new Point(0, 0);
                 private Point ButtonDown;
@@ -47,7 +47,9 @@ namespace Lfc.Comprobantes.Plantillas
                 private float Zoom = 100;
 
                 private System.Drawing.Pen LapizBordeCampos = new Pen(Color.Silver, 1);
-                private Brush BrushSeleccion = new System.Drawing.SolidBrush(SystemColors.Highlight);
+                private Brush BrushSeleccion = new SolidBrush(Color.FromArgb(200, SystemColors.Highlight));
+                private Brush BrushKnob = new SolidBrush(Color.FromArgb(200, Color.Black));
+                private Pen BrushKnobBorder = new Pen(Color.FromArgb(200, Color.White));
 
                 public Editar()
                 {
@@ -88,8 +90,15 @@ namespace Lfc.Comprobantes.Plantillas
                         EntradaNombre.Text = Plantilla.Nombre;
                         EntradaPapelTamano.TextKey = Plantilla.TamanoPapel;
                         if (Plantilla.Font != null) {
+                                Ingorar_EntradaFuenteFuenteTamano_TextChanged++;
                                 EntradaFuente.TextKey = Plantilla.Font.Name;
-                                EntradaFuenteTamano.Text = Plantilla.Font.Size.ToString();
+                                EntradaFuenteTamano.ValueDecimal = System.Convert.ToDecimal(Plantilla.Font.Size);
+                                Ingorar_EntradaFuenteFuenteTamano_TextChanged--;
+                        } else {
+                                Ingorar_EntradaFuenteFuenteTamano_TextChanged++;
+                                EntradaFuente.TextKey = "*";
+                                EntradaFuenteTamano.ValueDecimal = 10;
+                                Ingorar_EntradaFuenteFuenteTamano_TextChanged--;
                         }
                         EntradaLandscape.TextKey = Plantilla.Landscape ? "1" : "0";
 
@@ -104,6 +113,8 @@ namespace Lfc.Comprobantes.Plantillas
                                 EntradaMargenAbajo.ValueInt = Margen.Bottom;
                         }
 
+                        EntradaFuenteFuenteTamano_TextChanged(this, null);
+
                         this.MostrarListaCampos();
 
                         base.ActualizarControl();
@@ -114,6 +125,11 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
+                        if (EntradaFuente.TextKey == "*" && EntradaFuenteTamano.ValueDecimal > 1)
+                                Plantilla.Font = null;
+                        else
+                                Plantilla.Font = new Font(EntradaFuente.TextKey, (float)(EntradaFuenteTamano.ValueDecimal));
+                        Plantilla.Codigo = EntradaCodigo.Text;
                         Plantilla.Codigo = EntradaCodigo.Text;
                         Plantilla.Nombre = EntradaNombre.Text;
                         Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
@@ -238,7 +254,8 @@ namespace Lfc.Comprobantes.Plantillas
                                         e.Graphics.DrawString(Lbl, LblFont, SystemBrushes.InfoText, LabelRect, StrFmt);
 
                                         Rectangle RectKnob = new Rectangle(Cam.Rectangle.Right - KnobSize / 2, Cam.Rectangle.Bottom - KnobSize / 2, KnobSize, KnobSize);
-                                        e.Graphics.FillRectangle(Brushes.Black, RectKnob);
+                                        e.Graphics.FillEllipse(BrushKnob, RectKnob);
+                                        e.Graphics.DrawEllipse(BrushKnobBorder, RectKnob);
                                 }
                         }
                 }
@@ -345,6 +362,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 this.Desplazamiento = OldDesplazamiento;
                                 this.Desplazamiento.Offset(Diferencia);
                                 ButtonDown = new Point(e.X, e.Y);
+                                this.CampoSeleccionado = null;
                                 ImagePreview.Invalidate();
                         } else if (e.Button == System.Windows.Forms.MouseButtons.Left) {
                                 if (CampoSeleccionado != null) {
@@ -540,13 +558,18 @@ namespace Lfc.Comprobantes.Plantillas
                         }
                 }
 
+
+                private int Ingorar_EntradaFuenteFuenteTamano_TextChanged = 0;
                 private void EntradaFuenteFuenteTamano_TextChanged(object sender, EventArgs e)
                 {
+                        if (Ingorar_EntradaFuenteFuenteTamano_TextChanged > 0)
+                                return;
+
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         EntradaFuenteTamano.Enabled = (EntradaFuente.TextKey != "*");
-                        if (EntradaFuente.TextKey != "*" && Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text) > 0)
-                                Plantilla.Font = new Font(EntradaFuente.TextKey, Lfx.Types.Parsing.ParseInt(EntradaFuenteTamano.Text));
+                        if (EntradaFuente.TextKey != "*" && EntradaFuenteTamano.ValueDecimal > 0)
+                                Plantilla.Font = new Font(EntradaFuente.TextKey, ((float)(EntradaFuenteTamano.ValueDecimal)));
                         else
                                 Plantilla.Font = new Font("Courier New", 10);
                 }

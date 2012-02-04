@@ -74,7 +74,6 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 32);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(104, 24);
@@ -84,7 +83,6 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 64);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(104, 24);
@@ -94,7 +92,6 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(-4, 128);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(100, 24);
@@ -168,7 +165,6 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 0);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(104, 24);

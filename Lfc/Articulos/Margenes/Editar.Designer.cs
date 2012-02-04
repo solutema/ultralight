@@ -76,7 +76,6 @@ namespace Lfc.Articulos.Margenes
                         // 
                         // Label12
                         // 
-                        this.Label12.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label12.Location = new System.Drawing.Point(0, 32);
                         this.Label12.Name = "Label12";
                         this.Label12.Size = new System.Drawing.Size(140, 24);
@@ -96,7 +95,6 @@ namespace Lfc.Articulos.Margenes
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(140, 24);
@@ -121,7 +119,6 @@ namespace Lfc.Articulos.Margenes
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(0, 64);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(140, 24);

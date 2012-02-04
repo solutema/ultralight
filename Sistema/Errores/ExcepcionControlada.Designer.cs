@@ -78,7 +78,6 @@ namespace Lazaro.WinMain.Errores
                         this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                        this.EtiquetaDescripcion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaDescripcion.Location = new System.Drawing.Point(96, 63);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
                         this.EtiquetaDescripcion.Size = new System.Drawing.Size(468, 44);
@@ -89,7 +88,7 @@ namespace Lazaro.WinMain.Errores
                         // 
                         this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 32);
                         this.EtiquetaTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
@@ -102,7 +101,6 @@ namespace Lazaro.WinMain.Errores
                         // 
                         this.EtiquetaMasInformacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaMasInformacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaMasInformacion.Location = new System.Drawing.Point(96, 112);
                         this.EtiquetaMasInformacion.Name = "EtiquetaMasInformacion";
                         this.EtiquetaMasInformacion.Size = new System.Drawing.Size(467, 128);
@@ -115,7 +113,6 @@ namespace Lazaro.WinMain.Errores
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(96, 64);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(467, 40);

@@ -93,7 +93,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(120, 24);
@@ -115,7 +114,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label10
                         // 
-                        this.label10.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label10.Location = new System.Drawing.Point(0, 160);
                         this.label10.Name = "label10";
                         this.label10.Size = new System.Drawing.Size(120, 24);
@@ -140,7 +138,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(120, 196);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(124, 24);
@@ -166,7 +163,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(120, 240);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(124, 24);
@@ -209,7 +205,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(120, 392);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(124, 24);
@@ -219,7 +214,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(120, 344);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(124, 24);
@@ -229,7 +223,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(120, 288);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(124, 24);
@@ -256,7 +249,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // Label16
                         // 
-                        this.Label16.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label16.Location = new System.Drawing.Point(0, 32);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(120, 24);
@@ -281,7 +273,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(0, 96);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(120, 24);
@@ -328,7 +319,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 128);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(120, 24);

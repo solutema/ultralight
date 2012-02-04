@@ -80,7 +80,6 @@ namespace Lfc.Alicuotas
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(116, 24);
@@ -103,7 +102,6 @@ namespace Lfc.Alicuotas
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 32);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(116, 24);
@@ -113,7 +111,6 @@ namespace Lfc.Alicuotas
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 64);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(116, 24);

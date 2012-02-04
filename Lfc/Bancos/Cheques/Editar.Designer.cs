@@ -107,7 +107,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // label5
                         // 
-                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(0, 0);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(140, 24);
@@ -117,7 +116,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(0, 64);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(140, 24);
@@ -127,7 +125,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 32);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(140, 24);
@@ -148,7 +145,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 128);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(140, 24);
@@ -169,7 +165,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // lblFecha1
                         // 
-                        this.lblFecha1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblFecha1.Location = new System.Drawing.Point(0, 96);
                         this.lblFecha1.Name = "lblFecha1";
                         this.lblFecha1.Size = new System.Drawing.Size(140, 24);

@@ -124,7 +124,7 @@ namespace Lfc.Inicio
                         // label1
                         // 
                         this.label1.AutoSize = true;
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
+                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         this.label1.Location = new System.Drawing.Point(16, 12);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(194, 25);

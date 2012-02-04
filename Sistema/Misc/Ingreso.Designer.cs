@@ -86,7 +86,6 @@ namespace Lazaro.WinMain.Misc
                         // Label1
                         // 
                         this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(136, 155);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(104, 24);
@@ -97,7 +96,6 @@ namespace Lazaro.WinMain.Misc
                         // Label2
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(136, 187);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(104, 24);
@@ -109,7 +107,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Titulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.Titulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Titulo.Location = new System.Drawing.Point(136, 32);
                         this.Titulo.Name = "Titulo";
                         this.Titulo.Size = new System.Drawing.Size(380, 32);
@@ -217,7 +215,6 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(136, 72);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(380, 76);

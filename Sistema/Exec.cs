@@ -216,7 +216,8 @@ namespace Lazaro.WinMain
                                                                 WinMain.Backup.Manager OFormBackup = (WinMain.Backup.Manager)BuscarVentana("WinMain.Misc.Backup.Manager");
                                                                 if (OFormBackup == null)
                                                                         OFormBackup = new WinMain.Backup.Manager();
-                                                                OFormBackup.ShowDialog(Aplicacion.FormularioPrincipal);
+                                                                OFormBackup.MdiParent = Aplicacion.FormularioPrincipal;
+                                                                OFormBackup.Show();
                                                                 break;
 
                                                         case "NOW":

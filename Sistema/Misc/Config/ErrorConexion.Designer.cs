@@ -72,7 +72,7 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaEncab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEncab.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.EtiquetaEncab.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaEncab.Location = new System.Drawing.Point(128, 28);
                         this.EtiquetaEncab.Name = "EtiquetaEncab";
                         this.EtiquetaEncab.Size = new System.Drawing.Size(484, 24);
@@ -186,7 +186,6 @@ namespace Lazaro.WinMain.Misc.Config
                         // 
                         this.EtiquetaAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAyuda.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaAyuda.Location = new System.Drawing.Point(172, 64);
                         this.EtiquetaAyuda.Name = "EtiquetaAyuda";
                         this.EtiquetaAyuda.Size = new System.Drawing.Size(440, 120);

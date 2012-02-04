@@ -109,7 +109,7 @@ namespace Lui.Forms
                         // LabelCaption
                         // 
                         this.LabelCaption.AutoSize = true;
-                        this.LabelCaption.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
+                        this.LabelCaption.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         this.LabelCaption.Location = new System.Drawing.Point(72, 16);
                         this.LabelCaption.Name = "LabelCaption";
                         this.LabelCaption.Size = new System.Drawing.Size(233, 25);

@@ -87,7 +87,7 @@ namespace Lfc.Personas
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.label1.Location = new System.Drawing.Point(20, 20);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(552, 24);
@@ -96,7 +96,6 @@ namespace Lfc.Personas
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(20, 48);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(552, 48);
@@ -146,7 +145,7 @@ namespace Lfc.Personas
                         // label3
                         // 
                         this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.label3.Location = new System.Drawing.Point(20, 224);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(552, 25);

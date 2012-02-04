@@ -106,7 +106,7 @@ namespace Lfc.Tareas
                         // 
                         this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
                         this.EtiquetaTitulo.Size = new System.Drawing.Size(624, 40);
@@ -117,7 +117,7 @@ namespace Lfc.Tareas
                         // Label4
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
+                        this.Label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.Label4.Location = new System.Drawing.Point(428, 336);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(76, 32);
@@ -158,7 +158,6 @@ namespace Lfc.Tareas
                         // Label6
                         // 
                         this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(176, 336);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(76, 24);
@@ -185,7 +184,6 @@ namespace Lfc.Tareas
                         // Label5
                         // 
                         this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(16, 336);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(64, 24);

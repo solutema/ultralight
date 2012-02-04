@@ -96,7 +96,7 @@ namespace Lui.Forms
                         // TitleLabel
                         // 
                         this.TitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.TitleLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.TitleLabel.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.TitleLabel.Location = new System.Drawing.Point(0, 0);
                         this.TitleLabel.Name = "TitleLabel";
                         this.TitleLabel.Size = new System.Drawing.Size(448, 32);

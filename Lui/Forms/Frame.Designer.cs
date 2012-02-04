@@ -66,7 +66,7 @@ namespace Lui.Forms
                         this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaTitulo.AutoSize = true;
-                        this.EtiquetaTitulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
                         this.EtiquetaTitulo.Size = new System.Drawing.Size(0, 25);

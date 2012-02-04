@@ -76,7 +76,7 @@ namespace Lcc.Entrada.Articulos
                         this.LabelSerials.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelSerials.AutoEllipsis = true;
-                        this.LabelSerials.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.LabelSerials.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.LabelSerials.Location = new System.Drawing.Point(16, 26);
                         this.LabelSerials.Name = "LabelSerials";
                         this.LabelSerials.Size = new System.Drawing.Size(354, 16);
@@ -88,7 +88,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // LabelSerialsCruz
                         // 
-                        this.LabelSerialsCruz.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.LabelSerialsCruz.Location = new System.Drawing.Point(4, 18);
                         this.LabelSerialsCruz.Name = "LabelSerialsCruz";
                         this.LabelSerialsCruz.Size = new System.Drawing.Size(14, 20);
@@ -100,7 +99,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         this.EntradaDescuento.AutoNav = false;
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaDescuento.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.EntradaDescuento.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.EntradaDescuento.Location = new System.Drawing.Point(376, 24);
                         this.EntradaDescuento.Name = "EntradaDescuento";
                         this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
@@ -117,7 +116,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         this.EntradaImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaImporte.Location = new System.Drawing.Point(404, 0);
                         this.EntradaImporte.MaxLength = 20;
                         this.EntradaImporte.Name = "EntradaImporte";
@@ -133,7 +131,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         this.EntradaUnitario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaUnitario.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaUnitario.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaUnitario.Location = new System.Drawing.Point(216, 0);
                         this.EntradaUnitario.MaxLength = 20;
                         this.EntradaUnitario.Name = "EntradaUnitario";
@@ -152,7 +149,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCantidad.AutoNav = false;
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
-                        this.EntradaCantidad.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaCantidad.Location = new System.Drawing.Point(312, 0);
                         this.EntradaCantidad.MaxLength = 20;
                         this.EntradaCantidad.Name = "EntradaCantidad";

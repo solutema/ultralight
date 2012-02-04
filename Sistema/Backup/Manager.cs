@@ -37,7 +37,7 @@ using System.Windows.Forms;
 
 namespace Lazaro.WinMain.Backup
 {
-        public partial class Manager : Lui.Forms.DialogForm
+        public partial class Manager : Lui.Forms.ChildDialogForm
         {
                 Lfx.Backups.Manager BackupManager = new Lfx.Backups.Manager();
 
@@ -46,6 +46,13 @@ namespace Lazaro.WinMain.Backup
                         InitializeComponent();
 
                         OkButton.Visible = false;
+                        MostrarListaBackups();
+                }
+
+
+                protected override void OnActivated(EventArgs e)
+                {
+                        base.OnActivated(e);
                         MostrarListaBackups();
                 }
 
@@ -58,18 +65,18 @@ namespace Lazaro.WinMain.Backup
                         Listado.Items.Clear();
                         int i = 1;
                         foreach (Lfx.Backups.BackupInfo Backup in Backups) {
-                                ListViewItem Itm = new ListViewItem();
+                                ListViewItem Itm = new ListViewItem(i.ToString("0000"));
                                 Itm = Listado.Items.Add(Backup.Name);
                                 if (BackupMasNuevo == Backup.Name) {
                                         Itm.Font = new Font(Itm.Font, FontStyle.Bold);
                                 }
-                                Itm.SubItems.Add(System.Convert.ToString(i));
-                                Itm.SubItems.Add(Backup.BackupDate.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern));
+                                Itm.SubItems.Add(i.ToString("00"));
+                                Itm.SubItems.Add(Lfx.Types.Formatting.FormatSmartDateAndTime(Backup.BackupDate));
                                 Itm.SubItems.Add(Backup.UserName);
                                 i++;
                         }
-                        Listado.Sorting = SortOrder.Descending;
-                        Listado.Sort();
+                        //Listado.Sorting = SortOrder.Descending;
+                        //Listado.Sort();
                         Listado.EndUpdate();
                 }
 
@@ -78,7 +85,6 @@ namespace Lazaro.WinMain.Backup
                 {
                         BotonBackup.Enabled = false;
                         Ejecutor.Exec("BACKUP NOW");
-                        this.Close();
                 }
 
 

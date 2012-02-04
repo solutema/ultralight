@@ -81,7 +81,7 @@ namespace Lui.LogOn
                         // 
                         this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Titulo.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.Titulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Titulo.Location = new System.Drawing.Point(36, 36);
                         this.Titulo.Name = "Titulo";
                         this.Titulo.Size = new System.Drawing.Size(400, 24);
@@ -112,7 +112,6 @@ namespace Lui.LogOn
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(76, 156);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(88, 24);
@@ -134,7 +133,6 @@ namespace Lui.LogOn
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(76, 124);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(88, 24);
@@ -146,7 +144,6 @@ namespace Lui.LogOn
                         // 
                         this.LabelExplain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.LabelExplain.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.LabelExplain.Location = new System.Drawing.Point(36, 68);
                         this.LabelExplain.Name = "LabelExplain";
                         this.LabelExplain.Size = new System.Drawing.Size(400, 40);

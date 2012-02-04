@@ -69,7 +69,6 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(0, 32);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(120, 24);
@@ -89,7 +88,6 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(120, 24);
@@ -129,7 +127,6 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 80);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(120, 24);
@@ -139,7 +136,6 @@ namespace Lfc.Articulos.Situaciones
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 128);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(120, 24);

@@ -83,7 +83,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(168, 84);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(16, 24);
@@ -119,7 +118,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(24, 84);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(84, 24);
@@ -145,7 +143,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(24, 24);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(84, 24);
@@ -157,7 +154,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAviso.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaAviso.Location = new System.Drawing.Point(112, 232);
                         this.EtiquetaAviso.Name = "EtiquetaAviso";
                         this.EtiquetaAviso.Size = new System.Drawing.Size(496, 56);
@@ -178,7 +174,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(24, 204);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(84, 24);
@@ -202,7 +197,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(24, 176);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(84, 24);
@@ -223,7 +217,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(24, 148);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(84, 24);

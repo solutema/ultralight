@@ -53,11 +53,8 @@ namespace Lui.Forms
                 public YesNoDialog(string messageText, string messageCaption)
                 {
                         InitializeComponent();
-
-                        this.DialogText.BackColor = this.BackColor;
-                        this.DialogText.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
-                        this.MessageText = messageText;
                         this.MessageCaption = messageCaption;
+                        this.MessageText = messageText;
                 }
 
 
@@ -89,7 +86,7 @@ namespace Lui.Forms
 
                                 switch (m_DialogButtons) {
                                         case DialogButtons.YesNo:
-                                                OkButton.Text = "Si";
+                                                OkButton.Text = "Sí";
                                                 CancelCommandButton.Text = "No";
                                                 CancelCommandButton.Visible = true;
                                                 this.DialogIcon = DialogIcons.Question;
@@ -152,8 +149,20 @@ namespace Lui.Forms
                 }
 
 
-                private void YesNoDialog_Load(object sender, System.EventArgs e)
+                protected override void OnResize(System.EventArgs e)
                 {
+                        base.OnResize(e);
+                        if (this.Created) {
+                                this.DialogText.MaximumSize = new Size(DialogCaption.Right - DialogText.Left, 0);
+                                this.DialogText.AutoSize = true;
+                                this.Height = this.DialogText.Bottom + this.LowerPanel.Height + 24 + (this.Height - this.ClientRectangle.Height);
+                        }
+                }
+
+
+                protected override void OnLoad(System.EventArgs e)
+                {
+                        base.OnLoad(e);
                         this.Size = new Size(480, 320);
                         this.CenterToParent();
                 }

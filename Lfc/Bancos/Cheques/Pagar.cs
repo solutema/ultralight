@@ -102,7 +102,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(20, 16);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(556, 36);
@@ -125,7 +124,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(276, 100);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(132, 24);
@@ -150,7 +148,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(236, 68);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(176, 24);
@@ -173,7 +170,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // lblLabel1
                         // 
-                        this.lblLabel1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblLabel1.Location = new System.Drawing.Point(60, 68);
                         this.lblLabel1.Name = "lblLabel1";
                         this.lblLabel1.Size = new System.Drawing.Size(112, 24);
@@ -203,7 +199,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(60, 232);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(160, 24);
@@ -226,7 +221,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Label8
                         // 
-                        this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label8.Location = new System.Drawing.Point(60, 196);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(160, 28);

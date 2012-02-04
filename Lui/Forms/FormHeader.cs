@@ -125,7 +125,7 @@ namespace Lui.Forms
                                 m_DisplayStyle = value;
                                 if (DisplayStyle != null) {
                                         //base.BackColor = m_DisplayStyle.LightColor;
-                                        LabelCaption.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
+                                        LabelCaption.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                                         LabelColor.BackColor = m_DisplayStyle.LightColor;
                                         LabelColor2.BackColor = m_DisplayStyle.BackgroundColor;
                                         ImageIcon.Image = m_DisplayStyle.Icon;

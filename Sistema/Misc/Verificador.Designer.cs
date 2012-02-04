@@ -85,7 +85,6 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(80, 52);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(372, 52);
@@ -107,7 +106,6 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.Label27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label27.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label27.Location = new System.Drawing.Point(80, 20);
                         this.Label27.Name = "Label27";
                         this.Label27.Size = new System.Drawing.Size(372, 32);
@@ -164,7 +162,6 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaEstado
                         // 
-                        this.EtiquetaEstado.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(76, 140);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(376, 20);

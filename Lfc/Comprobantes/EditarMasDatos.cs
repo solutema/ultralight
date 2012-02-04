@@ -92,7 +92,6 @@ namespace Lfc.Comprobantes
                         // 
                         // lblHaciaSituacion
                         // 
-                        this.lblHaciaSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblHaciaSituacion.Location = new System.Drawing.Point(24, 52);
                         this.lblHaciaSituacion.Name = "lblHaciaSituacion";
                         this.lblHaciaSituacion.Size = new System.Drawing.Size(124, 24);
@@ -125,7 +124,6 @@ namespace Lfc.Comprobantes
                         // 
                         // lblDesdeSituacion
                         // 
-                        this.lblDesdeSituacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblDesdeSituacion.Location = new System.Drawing.Point(24, 24);
                         this.lblDesdeSituacion.Name = "lblDesdeSituacion";
                         this.lblDesdeSituacion.Size = new System.Drawing.Size(124, 24);
@@ -158,7 +156,6 @@ namespace Lfc.Comprobantes
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(24, 80);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(124, 24);

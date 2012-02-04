@@ -103,7 +103,6 @@ namespace Lfc
                         // 
                         this.EtiquetaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaContador2.Location = new System.Drawing.Point(0, 28);
                         this.EtiquetaContador2.Name = "EtiquetaContador2";
                         this.EtiquetaContador2.Size = new System.Drawing.Size(100, 24);
@@ -116,7 +115,6 @@ namespace Lfc
                         // EntradaContador2
                         // 
                         this.EntradaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContador2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaContador2.Location = new System.Drawing.Point(100, 28);
                         this.EntradaContador2.Name = "EntradaContador2";
                         this.EntradaContador2.Padding = new System.Windows.Forms.Padding(2);
@@ -130,7 +128,6 @@ namespace Lfc
                         // 
                         this.EtiquetaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaContador1.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaContador1.Name = "EtiquetaContador1";
                         this.EtiquetaContador1.Size = new System.Drawing.Size(100, 24);
@@ -143,7 +140,6 @@ namespace Lfc
                         // EntradaContador1
                         // 
                         this.EntradaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContador1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaContador1.Location = new System.Drawing.Point(100, 0);
                         this.EntradaContador1.Name = "EntradaContador1";
                         this.EntradaContador1.Padding = new System.Windows.Forms.Padding(2);
@@ -155,7 +151,6 @@ namespace Lfc
                         // 
                         // EtiquetaCantidad
                         // 
-                        this.EtiquetaCantidad.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaCantidad.Location = new System.Drawing.Point(32, 208);
                         this.EtiquetaCantidad.Name = "EtiquetaCantidad";
                         this.EtiquetaCantidad.Size = new System.Drawing.Size(184, 24);
@@ -236,7 +231,6 @@ namespace Lfc
                         // EntradaContador4
                         // 
                         this.EntradaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContador4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaContador4.Location = new System.Drawing.Point(100, 84);
                         this.EntradaContador4.Name = "EntradaContador4";
                         this.EntradaContador4.Padding = new System.Windows.Forms.Padding(2);
@@ -250,7 +244,6 @@ namespace Lfc
                         // 
                         this.EtiquetaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaContador4.Location = new System.Drawing.Point(0, 84);
                         this.EtiquetaContador4.Name = "EtiquetaContador4";
                         this.EtiquetaContador4.Size = new System.Drawing.Size(100, 24);
@@ -263,7 +256,6 @@ namespace Lfc
                         // EntradaContador3
                         // 
                         this.EntradaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContador3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaContador3.Location = new System.Drawing.Point(100, 56);
                         this.EntradaContador3.Name = "EntradaContador3";
                         this.EntradaContador3.Padding = new System.Windows.Forms.Padding(2);
@@ -277,7 +269,6 @@ namespace Lfc
                         // 
                         this.EtiquetaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaContador3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaContador3.Location = new System.Drawing.Point(0, 56);
                         this.EtiquetaContador3.Name = "EtiquetaContador3";
                         this.EtiquetaContador3.Size = new System.Drawing.Size(100, 24);

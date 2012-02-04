@@ -97,7 +97,7 @@ namespace Lfc.Comprobantes.Recibos
                         // Label3
                         // 
                         this.Label3.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.Label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Label3.Location = new System.Drawing.Point(0, 0);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(372, 32);
@@ -106,7 +106,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(224, 0);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(80, 24);
@@ -137,7 +136,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 0);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(76, 24);
@@ -147,7 +145,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaNumero.Location = new System.Drawing.Point(112, 0);
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
@@ -209,7 +206,7 @@ namespace Lfc.Comprobantes.Recibos
                         // EtiquetaFacturasImporte
                         // 
                         this.EtiquetaFacturasImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaFacturasImporte.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
+                        this.EtiquetaFacturasImporte.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EtiquetaFacturasImporte.Location = new System.Drawing.Point(260, 372);
                         this.EtiquetaFacturasImporte.Name = "EtiquetaFacturasImporte";
                         this.EtiquetaFacturasImporte.Size = new System.Drawing.Size(112, 31);
@@ -365,7 +362,7 @@ namespace Lfc.Comprobantes.Recibos
                         // Label4
                         // 
                         this.Label4.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.Label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Label4.Location = new System.Drawing.Point(0, 0);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(372, 32);
@@ -375,7 +372,7 @@ namespace Lfc.Comprobantes.Recibos
                         // EtiquetaValoresImporte
                         // 
                         this.EtiquetaValoresImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaValoresImporte.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
+                        this.EtiquetaValoresImporte.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EtiquetaValoresImporte.Location = new System.Drawing.Point(260, 372);
                         this.EtiquetaValoresImporte.Name = "EtiquetaValoresImporte";
                         this.EtiquetaValoresImporte.Size = new System.Drawing.Size(112, 31);
@@ -385,7 +382,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(512, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(52, 24);
@@ -420,7 +416,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaConceptoTexto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaConceptoTexto.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaConceptoTexto.Location = new System.Drawing.Point(84, 28);
                         this.EntradaConceptoTexto.Name = "EntradaConceptoTexto";
                         this.EntradaConceptoTexto.Padding = new System.Windows.Forms.Padding(2);
@@ -429,7 +424,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(0, 28);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(84, 24);
@@ -487,7 +481,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaPV
                         // 
-                        this.EntradaPV.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaPV.Location = new System.Drawing.Point(76, 0);
                         this.EntradaPV.Name = "EntradaPV";
                         this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
@@ -497,7 +490,6 @@ namespace Lfc.Comprobantes.Recibos
                         // label7
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(440, 28);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(76, 24);

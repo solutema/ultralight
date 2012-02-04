@@ -84,17 +84,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFormato = new Lui.Forms.ComboBox();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(302, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(422, 8);
-                        // 
                         // Label15
                         // 
-                        this.Label15.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label15.Location = new System.Drawing.Point(24, 56);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(80, 24);
@@ -104,18 +95,15 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaTexto
                         // 
-                        this.EntradaTexto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTexto.Location = new System.Drawing.Point(108, 24);
                         this.EntradaTexto.Name = "EntradaTexto";
                         this.EntradaTexto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTexto.ReadOnly = false;
                         this.EntradaTexto.Size = new System.Drawing.Size(408, 24);
                         this.EntradaTexto.TabIndex = 1;
                         this.EntradaTexto.TextChanged += new System.EventHandler(this.EntradaTexto_TextChanged);
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(24, 24);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(80, 24);
@@ -125,7 +113,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(24, 88);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(80, 24);
@@ -135,29 +122,24 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaX
                         // 
-                        this.EntradaX.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaX.Location = new System.Drawing.Point(108, 88);
                         this.EntradaX.Name = "EntradaX";
                         this.EntradaX.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaX.ReadOnly = false;
                         this.EntradaX.Size = new System.Drawing.Size(56, 24);
                         this.EntradaX.Sufijo = "x";
                         this.EntradaX.TabIndex = 5;
                         // 
                         // EntradaY
                         // 
-                        this.EntradaY.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaY.Location = new System.Drawing.Point(176, 88);
                         this.EntradaY.Name = "EntradaY";
                         this.EntradaY.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaY.ReadOnly = false;
                         this.EntradaY.Size = new System.Drawing.Size(56, 24);
                         this.EntradaY.Sufijo = "y";
                         this.EntradaY.TabIndex = 7;
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(164, 88);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(20, 24);
@@ -171,7 +153,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteNombre.Location = new System.Drawing.Point(108, 120);
                         this.EntradaFuenteNombre.Name = "EntradaFuenteNombre";
                         this.EntradaFuenteNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFuenteNombre.ReadOnly = false;
                         this.EntradaFuenteNombre.SetData = new string[] {
         "Predeterminada|*",
         "Serif|Bitstream Vera Serif",
@@ -185,7 +166,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(24, 120);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(80, 24);
@@ -195,29 +175,24 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaAlto
                         // 
-                        this.EntradaAlto.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAlto.Location = new System.Drawing.Point(396, 88);
                         this.EntradaAlto.Name = "EntradaAlto";
                         this.EntradaAlto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAlto.ReadOnly = false;
                         this.EntradaAlto.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAlto.Sufijo = "v";
                         this.EntradaAlto.TabIndex = 11;
                         // 
                         // EntradaAncho
                         // 
-                        this.EntradaAncho.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAncho.Location = new System.Drawing.Point(324, 88);
                         this.EntradaAncho.Name = "EntradaAncho";
                         this.EntradaAncho.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAncho.ReadOnly = false;
                         this.EntradaAncho.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAncho.Sufijo = "h";
                         this.EntradaAncho.TabIndex = 9;
                         // 
                         // label5
                         // 
-                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(380, 88);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(16, 24);
@@ -227,7 +202,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(264, 88);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(64, 24);
@@ -237,16 +211,15 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaFuenteTamano
                         // 
-                        this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaFuenteTamano.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Float;
+                        this.EntradaFuenteTamano.DecimalPlaces = 2;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(372, 120);
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFuenteTamano.ReadOnly = false;
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(92, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
                         this.EntradaFuenteTamano.TabIndex = 14;
-                        this.EntradaFuenteTamano.Text = "10";
+                        this.EntradaFuenteTamano.Text = "10.00";
                         this.EntradaFuenteTamano.TextChanged += new System.EventHandler(this.txtFuente_TextChanged);
                         // 
                         // EntradaAlienacionHorizontal
@@ -256,18 +229,16 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlienacionHorizontal.Location = new System.Drawing.Point(108, 152);
                         this.EntradaAlienacionHorizontal.Name = "EntradaAlienacionHorizontal";
                         this.EntradaAlienacionHorizontal.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAlienacionHorizontal.ReadOnly = false;
                         this.EntradaAlienacionHorizontal.SetData = new string[] {
         "Izquierda|Near",
         "Centro|Center",
         "Derecha|Far"};
-                        this.EntradaAlienacionHorizontal.Size = new System.Drawing.Size(140, 51);
+                        this.EntradaAlienacionHorizontal.Size = new System.Drawing.Size(140, 57);
                         this.EntradaAlienacionHorizontal.TabIndex = 16;
                         this.EntradaAlienacionHorizontal.TextKey = "Near";
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(24, 152);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(80, 24);
@@ -282,29 +253,25 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlienacionVertical.Location = new System.Drawing.Point(256, 152);
                         this.EntradaAlienacionVertical.Name = "EntradaAlienacionVertical";
                         this.EntradaAlienacionVertical.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAlienacionVertical.ReadOnly = false;
                         this.EntradaAlienacionVertical.SetData = new string[] {
         "Arriba|Near",
         "Centro|Center",
         "Abajo|Far"};
-                        this.EntradaAlienacionVertical.Size = new System.Drawing.Size(140, 51);
+                        this.EntradaAlienacionVertical.Size = new System.Drawing.Size(140, 57);
                         this.EntradaAlienacionVertical.TabIndex = 17;
                         this.EntradaAlienacionVertical.TextKey = "Near";
                         // 
                         // EntradaAnchoBorde
                         // 
-                        this.EntradaAnchoBorde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAnchoBorde.Location = new System.Drawing.Point(108, 264);
                         this.EntradaAnchoBorde.Name = "EntradaAnchoBorde";
                         this.EntradaAnchoBorde.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAnchoBorde.ReadOnly = false;
                         this.EntradaAnchoBorde.Size = new System.Drawing.Size(88, 24);
                         this.EntradaAnchoBorde.Sufijo = "ptos.";
                         this.EntradaAnchoBorde.TabIndex = 21;
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label8.Location = new System.Drawing.Point(24, 264);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(80, 24);
@@ -352,17 +319,15 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAjusteTexto.Location = new System.Drawing.Point(108, 216);
                         this.EntradaAjusteTexto.Name = "EntradaAjusteTexto";
                         this.EntradaAjusteTexto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAjusteTexto.ReadOnly = false;
                         this.EntradaAjusteTexto.SetData = new string[] {
         "Sólo un renglon|0",
         "Fluir texto hacia abajo|1"};
-                        this.EntradaAjusteTexto.Size = new System.Drawing.Size(288, 36);
+                        this.EntradaAjusteTexto.Size = new System.Drawing.Size(288, 40);
                         this.EntradaAjusteTexto.TabIndex = 19;
                         this.EntradaAjusteTexto.TextKey = "0";
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(24, 216);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(80, 24);
@@ -377,7 +342,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFormato.Location = new System.Drawing.Point(108, 56);
                         this.EntradaFormato.Name = "EntradaFormato";
                         this.EntradaFormato.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFormato.ReadOnly = false;
                         this.EntradaFormato.SetData = new string[] {
         "Predeterminado|*",
         "Fecha corta (01/01/2001)|dd/MM/yyyy",
@@ -419,6 +383,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.Label15);
                         this.Name = "EditarCampo";
+                        this.Text = "Editar campo";
                         this.Controls.SetChildIndex(this.Label15, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.EntradaFormato, 0);

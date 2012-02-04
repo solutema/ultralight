@@ -86,7 +86,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(20, 20);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(128, 24);
@@ -131,7 +130,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAviso.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Warning;
+                        this.EtiquetaAviso.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Warning;
                         this.EtiquetaAviso.Location = new System.Drawing.Point(20, 80);
                         this.EtiquetaAviso.Name = "EtiquetaAviso";
                         this.EtiquetaAviso.Size = new System.Drawing.Size(756, 28);
@@ -153,7 +152,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(228, 20);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(64, 24);
@@ -178,7 +176,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(436, 20);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(72, 24);
@@ -218,7 +215,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(228, 48);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(64, 24);
@@ -276,7 +272,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(20, 48);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(128, 24);

@@ -73,7 +73,7 @@ namespace Lui.Forms
                         this.EtiquetaNombreOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaNombreOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                        this.EtiquetaNombreOperacion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.EtiquetaNombreOperacion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaNombreOperacion.Location = new System.Drawing.Point(88, 24);
                         this.EtiquetaNombreOperacion.Name = "EtiquetaNombreOperacion";
                         this.EtiquetaNombreOperacion.Size = new System.Drawing.Size(364, 44);
@@ -86,7 +86,6 @@ namespace Lui.Forms
                         this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaDescripcion.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaDescripcion.Location = new System.Drawing.Point(88, 108);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
                         this.EtiquetaDescripcion.Size = new System.Drawing.Size(364, 78);
@@ -117,7 +116,6 @@ namespace Lui.Forms
                         // 
                         this.EtiquetaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaEstado.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaEstado.Location = new System.Drawing.Point(88, 196);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(364, 44);
@@ -143,7 +141,6 @@ namespace Lui.Forms
                         // 
                         this.EtiquetaOtrasOperaciones.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaOtrasOperaciones.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaOtrasOperaciones.Location = new System.Drawing.Point(88, 72);
                         this.EtiquetaOtrasOperaciones.Name = "EtiquetaOtrasOperaciones";
                         this.EtiquetaOtrasOperaciones.Size = new System.Drawing.Size(364, 32);

@@ -133,7 +133,7 @@ namespace Lazaro.WinMain.Misc.Config
 
                         EntradaLimiteCredito.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Cuentas.LimiteCreditoPredet", "0");
 
-                        EntradaPais.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
+                        EntradaPais.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 1);
                         if (EntradaPais.TextInt > 0)
                                 EntradaPais.ReadOnly = true;
                         EntradaProvincia.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Provincia", 0);

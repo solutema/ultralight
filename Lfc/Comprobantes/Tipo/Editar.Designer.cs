@@ -99,7 +99,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(116, 24);
@@ -119,7 +118,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 32);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(116, 24);
@@ -129,7 +127,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 64);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(116, 24);
@@ -156,7 +153,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(68, 128);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(76, 24);
@@ -187,7 +183,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(68, 156);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(76, 24);
@@ -234,7 +229,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(4, 192);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(116, 24);
@@ -259,7 +253,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(0, 272);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(376, 24);
@@ -284,7 +277,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label8.Location = new System.Drawing.Point(0, 320);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(376, 24);
@@ -309,7 +301,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(0, 368);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(376, 24);
@@ -321,7 +312,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.GroupLabel.Location = new System.Drawing.Point(468, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(368, 24);

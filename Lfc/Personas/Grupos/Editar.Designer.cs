@@ -85,7 +85,6 @@ namespace Lfc.Personas.Grupos
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 64);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(120, 24);
@@ -105,7 +104,6 @@ namespace Lfc.Personas.Grupos
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 32);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
@@ -130,7 +128,6 @@ namespace Lfc.Personas.Grupos
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 96);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(120, 24);
@@ -162,7 +159,6 @@ namespace Lfc.Personas.Grupos
                         // 
                         // Label16
                         // 
-                        this.Label16.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label16.Location = new System.Drawing.Point(0, 0);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(120, 24);

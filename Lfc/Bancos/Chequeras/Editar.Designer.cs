@@ -72,7 +72,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 32);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
@@ -115,7 +114,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(0, 64);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(120, 24);
@@ -134,7 +132,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(308, 64);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(60, 24);
@@ -144,7 +141,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // LabelCaja
                         // 
-                        this.LabelCaja.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.LabelCaja.Location = new System.Drawing.Point(0, 128);
                         this.LabelCaja.Name = "LabelCaja";
                         this.LabelCaja.Size = new System.Drawing.Size(120, 24);
@@ -193,7 +189,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(0, 160);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(120, 24);
@@ -203,7 +198,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // label5
                         // 
-                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(0, 0);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(120, 24);
@@ -226,7 +220,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(120, 64);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(64, 24);
@@ -236,7 +229,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label8.Location = new System.Drawing.Point(0, 96);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(120, 24);
@@ -270,7 +262,6 @@ namespace Lfc.Bancos.Chequeras
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(484, 64);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(96, 24);

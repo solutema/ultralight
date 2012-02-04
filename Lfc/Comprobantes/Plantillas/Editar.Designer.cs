@@ -168,9 +168,9 @@ namespace Lfc.Comprobantes.Plantillas
                         this.TabGeneral.Controls.Add(this.EntradaMembrete);
                         this.TabGeneral.Controls.Add(this.EntradaCopias);
                         this.TabGeneral.Controls.Add(this.label1);
-                        this.TabGeneral.Location = new System.Drawing.Point(4, 24);
+                        this.TabGeneral.Location = new System.Drawing.Point(4, 26);
                         this.TabGeneral.Name = "TabGeneral";
-                        this.TabGeneral.Size = new System.Drawing.Size(862, 392);
+                        this.TabGeneral.Size = new System.Drawing.Size(862, 390);
                         this.TabGeneral.TabIndex = 0;
                         this.TabGeneral.Text = "General";
                         // 
@@ -181,11 +181,10 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenes.Location = new System.Drawing.Point(168, 156);
                         this.EntradaMargenes.Name = "EntradaMargenes";
                         this.EntradaMargenes.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMargenes.ReadOnly = false;
                         this.EntradaMargenes.SetData = new string[] {
         "Predeterminado|0",
         "Personalizado|1"};
-                        this.EntradaMargenes.Size = new System.Drawing.Size(116, 36);
+                        this.EntradaMargenes.Size = new System.Drawing.Size(116, 40);
                         this.EntradaMargenes.TabIndex = 8;
                         this.EntradaMargenes.TextKey = "1";
                         this.EntradaMargenes.TextChanged += new System.EventHandler(this.EntradaMargenes_TextChanged);
@@ -193,12 +192,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenAbajo
                         // 
                         this.EntradaMargenAbajo.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenAbajo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenAbajo.Location = new System.Drawing.Point(388, 172);
                         this.EntradaMargenAbajo.Name = "EntradaMargenAbajo";
                         this.EntradaMargenAbajo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenAbajo.PlaceholderText = "auto";
-                        this.EntradaMargenAbajo.ReadOnly = false;
                         this.EntradaMargenAbajo.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenAbajo.Sufijo = "aba.";
                         this.EntradaMargenAbajo.TabIndex = 11;
@@ -207,12 +204,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenArriba
                         // 
                         this.EntradaMargenArriba.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenArriba.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenArriba.Location = new System.Drawing.Point(388, 140);
                         this.EntradaMargenArriba.Name = "EntradaMargenArriba";
                         this.EntradaMargenArriba.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenArriba.PlaceholderText = "auto";
-                        this.EntradaMargenArriba.ReadOnly = false;
                         this.EntradaMargenArriba.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenArriba.Sufijo = "arr.";
                         this.EntradaMargenArriba.TabIndex = 10;
@@ -221,12 +216,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenDerecha
                         // 
                         this.EntradaMargenDerecha.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenDerecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenDerecha.Location = new System.Drawing.Point(488, 156);
                         this.EntradaMargenDerecha.Name = "EntradaMargenDerecha";
                         this.EntradaMargenDerecha.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenDerecha.PlaceholderText = "auto";
-                        this.EntradaMargenDerecha.ReadOnly = false;
                         this.EntradaMargenDerecha.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenDerecha.Sufijo = "der.";
                         this.EntradaMargenDerecha.TabIndex = 12;
@@ -235,12 +228,10 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaMargenIzquierda
                         // 
                         this.EntradaMargenIzquierda.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenIzquierda.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMargenIzquierda.Location = new System.Drawing.Point(292, 156);
                         this.EntradaMargenIzquierda.Name = "EntradaMargenIzquierda";
                         this.EntradaMargenIzquierda.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenIzquierda.PlaceholderText = "auto";
-                        this.EntradaMargenIzquierda.ReadOnly = false;
                         this.EntradaMargenIzquierda.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenIzquierda.Sufijo = "izq.";
                         this.EntradaMargenIzquierda.TabIndex = 9;
@@ -248,7 +239,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(12, 156);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(156, 24);
@@ -263,11 +253,10 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaLandscape.Location = new System.Drawing.Point(264, 68);
                         this.EntradaLandscape.Name = "EntradaLandscape";
                         this.EntradaLandscape.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaLandscape.ReadOnly = false;
                         this.EntradaLandscape.SetData = new string[] {
         "alto|0",
         "apaisado|1"};
-                        this.EntradaLandscape.Size = new System.Drawing.Size(96, 36);
+                        this.EntradaLandscape.Size = new System.Drawing.Size(96, 40);
                         this.EntradaLandscape.TabIndex = 6;
                         this.EntradaLandscape.TextKey = "0";
                         this.EntradaLandscape.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
@@ -275,12 +264,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // BotonCargarDesdeArchivo
                         // 
                         this.BotonCargarDesdeArchivo.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCargarDesdeArchivo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCargarDesdeArchivo.Image = null;
                         this.BotonCargarDesdeArchivo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCargarDesdeArchivo.Location = new System.Drawing.Point(488, 76);
                         this.BotonCargarDesdeArchivo.Name = "BotonCargarDesdeArchivo";
                         this.BotonCargarDesdeArchivo.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCargarDesdeArchivo.ReadOnly = false;
                         this.BotonCargarDesdeArchivo.Size = new System.Drawing.Size(104, 32);
                         this.BotonCargarDesdeArchivo.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCargarDesdeArchivo.Subtext = "Tecla";
@@ -291,12 +280,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // BotonGuardarEnArchivo
                         // 
                         this.BotonGuardarEnArchivo.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonGuardarEnArchivo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonGuardarEnArchivo.Image = null;
                         this.BotonGuardarEnArchivo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonGuardarEnArchivo.Location = new System.Drawing.Point(488, 40);
                         this.BotonGuardarEnArchivo.Name = "BotonGuardarEnArchivo";
                         this.BotonGuardarEnArchivo.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonGuardarEnArchivo.ReadOnly = false;
                         this.BotonGuardarEnArchivo.Size = new System.Drawing.Size(104, 32);
                         this.BotonGuardarEnArchivo.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonGuardarEnArchivo.Subtext = "Tecla";
@@ -306,16 +295,15 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaFuenteTamano
                         // 
-                        this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaFuenteTamano.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Float;
+                        this.EntradaFuenteTamano.DecimalPlaces = 2;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(428, 268);
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFuenteTamano.ReadOnly = false;
-                        this.EntradaFuenteTamano.Size = new System.Drawing.Size(92, 24);
+                        this.EntradaFuenteTamano.Size = new System.Drawing.Size(116, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
                         this.EntradaFuenteTamano.TabIndex = 17;
-                        this.EntradaFuenteTamano.Text = "10";
+                        this.EntradaFuenteTamano.Text = "10.00";
                         this.EntradaFuenteTamano.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
                         // EntradaFuente
@@ -325,21 +313,19 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuente.Location = new System.Drawing.Point(168, 268);
                         this.EntradaFuente.Name = "EntradaFuente";
                         this.EntradaFuente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFuente.ReadOnly = false;
                         this.EntradaFuente.SetData = new string[] {
         "Predeterminada|*",
         "Serif|Bitstream Vera Serif",
         "Sans Serif|Bitstream Vera Sans",
         "Monoespaciada Bitstream|Bitstream Vera Sans Mono",
         "Monoespaciada Courier|Courier New"};
-                        this.EntradaFuente.Size = new System.Drawing.Size(256, 81);
+                        this.EntradaFuente.Size = new System.Drawing.Size(256, 91);
                         this.EntradaFuente.TabIndex = 16;
                         this.EntradaFuente.TextKey = "*";
                         this.EntradaFuente.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(12, 268);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(156, 24);
@@ -349,7 +335,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // label5
                         // 
-                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(12, 208);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(156, 24);
@@ -364,21 +349,19 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaPapelTamano.Location = new System.Drawing.Point(168, 68);
                         this.EntradaPapelTamano.Name = "EntradaPapelTamano";
                         this.EntradaPapelTamano.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPapelTamano.ReadOnly = false;
                         this.EntradaPapelTamano.SetData = new string[] {
         "Oficio|legal",
         "Carta|letter",
         "A4|a4",
         "A5|a5",
         "Continuo|cont"};
-                        this.EntradaPapelTamano.Size = new System.Drawing.Size(88, 81);
+                        this.EntradaPapelTamano.Size = new System.Drawing.Size(88, 91);
                         this.EntradaPapelTamano.TabIndex = 5;
                         this.EntradaPapelTamano.TextKey = "a4";
                         this.EntradaPapelTamano.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label8.Location = new System.Drawing.Point(12, 68);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(156, 24);
@@ -392,14 +375,12 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaNombre.Location = new System.Drawing.Point(168, 40);
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(284, 24);
                         this.EntradaNombre.TabIndex = 3;
                         this.EntradaNombre.Text = "Factura A";
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(12, 40);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(156, 24);
@@ -409,18 +390,15 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // EntradaCodigo
                         // 
-                        this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo.Location = new System.Drawing.Point(168, 12);
                         this.EntradaCodigo.Name = "EntradaCodigo";
                         this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCodigo.ReadOnly = false;
                         this.EntradaCodigo.Size = new System.Drawing.Size(284, 24);
                         this.EntradaCodigo.TabIndex = 1;
                         this.EntradaCodigo.Text = "A";
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(12, 12);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(156, 24);
@@ -435,30 +413,26 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMembrete.Location = new System.Drawing.Point(168, 208);
                         this.EntradaMembrete.Name = "EntradaMembrete";
                         this.EntradaMembrete.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMembrete.ReadOnly = false;
                         this.EntradaMembrete.SetData = new string[] {
         "Ninguno|0",
         "Encabezado|1",
         "Recuadro|2"};
-                        this.EntradaMembrete.Size = new System.Drawing.Size(256, 51);
+                        this.EntradaMembrete.Size = new System.Drawing.Size(256, 57);
                         this.EntradaMembrete.TabIndex = 14;
                         this.EntradaMembrete.TextKey = "0";
                         // 
                         // EntradaCopias
                         // 
                         this.EntradaCopias.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCopias.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCopias.Location = new System.Drawing.Point(168, 356);
                         this.EntradaCopias.Name = "EntradaCopias";
                         this.EntradaCopias.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCopias.ReadOnly = false;
                         this.EntradaCopias.Size = new System.Drawing.Size(56, 24);
                         this.EntradaCopias.TabIndex = 19;
                         this.EntradaCopias.Text = "1";
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(12, 356);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(156, 24);
@@ -476,9 +450,9 @@ namespace Lfc.Comprobantes.Plantillas
                         this.TabCampos.Controls.Add(this.BotonQuitar);
                         this.TabCampos.Controls.Add(this.BotonAgregar);
                         this.TabCampos.Controls.Add(this.ListaCampos);
-                        this.TabCampos.Location = new System.Drawing.Point(4, 24);
+                        this.TabCampos.Location = new System.Drawing.Point(4, 26);
                         this.TabCampos.Name = "TabCampos";
-                        this.TabCampos.Size = new System.Drawing.Size(862, 392);
+                        this.TabCampos.Size = new System.Drawing.Size(862, 390);
                         this.TabCampos.TabIndex = 1;
                         this.TabCampos.Text = "Campos";
                         // 
@@ -486,12 +460,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.button1.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.button1.Image = null;
                         this.button1.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.button1.Location = new System.Drawing.Point(8, 284);
                         this.button1.Name = "button1";
                         this.button1.Padding = new System.Windows.Forms.Padding(2);
-                        this.button1.ReadOnly = false;
                         this.button1.Size = new System.Drawing.Size(68, 24);
                         this.button1.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.button1.Subtext = "Tecla";
@@ -502,12 +476,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.button2.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.button2.Image = null;
                         this.button2.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.button2.Location = new System.Drawing.Point(80, 284);
                         this.button2.Name = "button2";
                         this.button2.Padding = new System.Windows.Forms.Padding(2);
-                        this.button2.ReadOnly = false;
                         this.button2.Size = new System.Drawing.Size(68, 24);
                         this.button2.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.button2.Subtext = "Tecla";
@@ -517,7 +491,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // label2
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(8, 318);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(140, 24);
@@ -560,12 +533,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(8, 256);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonQuitar.ReadOnly = false;
                         this.BotonQuitar.Size = new System.Drawing.Size(68, 24);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "Tecla";
@@ -577,12 +550,12 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(80, 256);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonAgregar.ReadOnly = false;
                         this.BotonAgregar.Size = new System.Drawing.Size(68, 24);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAgregar.Subtext = "Tecla";

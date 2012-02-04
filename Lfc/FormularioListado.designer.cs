@@ -67,7 +67,6 @@ namespace Lfc
                         // 
                         // EntradaBuscar
                         // 
-                        this.EntradaBuscar.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaBuscar.Location = new System.Drawing.Point(8, 8);
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
@@ -105,7 +104,7 @@ namespace Lfc
                         this.EtiquetaListadoVacio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EtiquetaListadoVacio.AutoEllipsis = true;
-                        this.EtiquetaListadoVacio.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Info;
+                        this.EtiquetaListadoVacio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Info;
                         this.EtiquetaListadoVacio.Location = new System.Drawing.Point(332, 192);
                         this.EtiquetaListadoVacio.Margin = new System.Windows.Forms.Padding(0);
                         this.EtiquetaListadoVacio.Name = "EtiquetaListadoVacio";

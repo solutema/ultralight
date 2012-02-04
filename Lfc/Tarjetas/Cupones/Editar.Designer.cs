@@ -77,7 +77,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(0, 0);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(160, 24);
@@ -87,7 +86,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(0, 28);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(160, 24);
@@ -118,7 +116,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // label10
                         // 
-                        this.label10.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label10.Location = new System.Drawing.Point(0, 56);
                         this.label10.Name = "label10";
                         this.label10.Size = new System.Drawing.Size(160, 24);
@@ -149,7 +146,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(0, 84);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(160, 24);
@@ -170,7 +166,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 112);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(160, 24);

@@ -210,7 +210,7 @@ namespace Lbl.Impresion
                                 Plant.Attributes.Append(Attr);
 
                                 Attr = XmlDef.CreateAttribute("TamanoFuente");
-                                Attr.Value = this.Font.Size.ToString();
+                                Attr.Value = this.Font.Size.ToString("#.00");
                                 Plant.Attributes.Append(Attr);
                         }
 
@@ -278,7 +278,7 @@ namespace Lbl.Impresion
                                         CampoXml.Attributes.Append(Attr);
 
                                         Attr = XmlDef.CreateAttribute("TamanoFuente");
-                                        Attr.Value = Cam.Font.Size.ToString();
+                                        Attr.Value = Cam.Font.Size.ToString("#.00");
                                         CampoXml.Attributes.Append(Attr);
                                 }
                         }
@@ -333,7 +333,8 @@ namespace Lbl.Impresion
                         this.Campos.Clear();
                         XmlNode Plant = xmlDoc.SelectSingleNode("/Plantilla");
                         if (Plant.Attributes["Fuente"] != null && Plant.Attributes["TamanoFuente"] != null) {
-                                this.Font = new System.Drawing.Font(Plant.Attributes["Fuente"].Value, Lfx.Types.Parsing.ParseInt(Plant.Attributes["TamanoFuente"].Value));
+                                float TamanoFuente = ((float)(Lfx.Types.Parsing.ParseDecimal(Plant.Attributes["TamanoFuente"].Value)));
+                                this.Font = new System.Drawing.Font(Plant.Attributes["Fuente"].Value, TamanoFuente);
                         }
                         foreach (XmlNode Cam in Plant.ChildNodes) {
                                 if (Cam.Name == "Campo") {
@@ -380,7 +381,8 @@ namespace Lbl.Impresion
                                                 }
                                         }
                                         if (Cam.Attributes["Fuente"] != null && Cam.Attributes["TamanoFuente"] != null) {
-                                                NuevoCampo.Font = new System.Drawing.Font(Cam.Attributes["Fuente"].Value, Lfx.Types.Parsing.ParseInt(Cam.Attributes["TamanoFuente"].Value));
+                                                float TamanoFuenteCampo = ((float)(Lfx.Types.Parsing.ParseDecimal(Cam.Attributes["TamanoFuente"].Value)));
+                                                NuevoCampo.Font = new System.Drawing.Font(Cam.Attributes["Fuente"].Value, TamanoFuenteCampo);
                                         }
                                         if (Cam.Attributes["Wrap"] != null)
                                                 NuevoCampo.Wrap = Lfx.Types.Parsing.ParseInt(Cam.Attributes["Ancho"].Value) != 0;

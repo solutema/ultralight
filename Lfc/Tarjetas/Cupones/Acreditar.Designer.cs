@@ -123,7 +123,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label11
                         // 
-                        this.Label11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label11.Location = new System.Drawing.Point(56, 244);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(132, 24);
@@ -146,7 +145,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblLabel1
                         // 
-                        this.lblLabel1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblLabel1.Location = new System.Drawing.Point(20, 20);
                         this.lblLabel1.Name = "lblLabel1";
                         this.lblLabel1.Size = new System.Drawing.Size(112, 24);
@@ -156,7 +154,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(192, 20);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(168, 24);
@@ -195,7 +192,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(8, 36);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(112, 24);
@@ -259,7 +255,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblComisionTarjetaPct
                         // 
-                        this.lblComisionTarjetaPct.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblComisionTarjetaPct.Location = new System.Drawing.Point(228, 36);
                         this.lblComisionTarjetaPct.Name = "lblComisionTarjetaPct";
                         this.lblComisionTarjetaPct.Size = new System.Drawing.Size(76, 24);
@@ -269,7 +264,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblComisionUsuarioPct
                         // 
-                        this.lblComisionUsuarioPct.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblComisionUsuarioPct.Location = new System.Drawing.Point(228, 100);
                         this.lblComisionUsuarioPct.Name = "lblComisionUsuarioPct";
                         this.lblComisionUsuarioPct.Size = new System.Drawing.Size(76, 24);
@@ -279,7 +273,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(8, 100);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(112, 24);
@@ -289,7 +282,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblComisionPlanPct
                         // 
-                        this.lblComisionPlanPct.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblComisionPlanPct.Location = new System.Drawing.Point(228, 68);
                         this.lblComisionPlanPct.Name = "lblComisionPlanPct";
                         this.lblComisionPlanPct.Size = new System.Drawing.Size(76, 24);
@@ -299,7 +291,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(8, 68);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(112, 24);
@@ -309,7 +300,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.Label5.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label5.Location = new System.Drawing.Point(308, 36);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(292, 24);
@@ -319,7 +310,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.Label7.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label7.Location = new System.Drawing.Point(308, 100);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(292, 24);
@@ -329,7 +320,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        this.Label6.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.Label6.Location = new System.Drawing.Point(308, 68);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(292, 24);
@@ -353,7 +344,6 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Label8
                         // 
-                        this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label8.Location = new System.Drawing.Point(56, 208);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(132, 28);

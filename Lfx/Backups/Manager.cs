@@ -125,6 +125,9 @@ namespace Lfx.Backups
                                 Res.Add(Backup);
                         }
 
+                        Res.Sort(delegate(BackupInfo b1, BackupInfo b2) { return b1.BackupDate.CompareTo(b2.BackupDate); });
+                        Res.Reverse();
+
                         return Res;
                 }
 
@@ -390,7 +393,7 @@ namespace Lfx.Backups
                         Progreso.ChangeStatus(Progreso.Value + 1);
                         System.IO.Directory.Move(Lfx.Environment.Folders.TemporaryFolder + WorkFolder, this.BackupPath + WorkFolder);
 
-                        int GuardarBackups = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sisteam.Backup.CantMax", 7);
+                        int GuardarBackups = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sisteam.Backup.CantMax", 14);
                         if (GuardarBackups > 0) {
                                 List<BackupInfo> ListaDeBackups = this.GetBackups();
                                 if (ListaDeBackups.Count > GuardarBackups) {

@@ -66,7 +66,6 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // label9
                         // 
-                        this.label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label9.Location = new System.Drawing.Point(0, 32);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(116, 24);
@@ -107,7 +106,6 @@ namespace Lfc.Articulos.Rubros
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(116, 24);

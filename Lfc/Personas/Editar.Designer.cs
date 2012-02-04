@@ -257,7 +257,6 @@ namespace Lfc.Personas
                         // 
                         // Label10
                         // 
-                        this.Label10.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label10.Location = new System.Drawing.Point(8, 100);
                         this.Label10.Name = "Label10";
                         this.Label10.Size = new System.Drawing.Size(120, 24);
@@ -267,7 +266,6 @@ namespace Lfc.Personas
                         // 
                         // Label9
                         // 
-                        this.Label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label9.Location = new System.Drawing.Point(8, 232);
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(120, 24);
@@ -277,7 +275,6 @@ namespace Lfc.Personas
                         // 
                         // Label8
                         // 
-                        this.Label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label8.Location = new System.Drawing.Point(8, 40);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(120, 24);
@@ -287,7 +284,6 @@ namespace Lfc.Personas
                         // 
                         // Label6
                         // 
-                        this.Label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label6.Location = new System.Drawing.Point(8, 136);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(200, 24);
@@ -297,7 +293,6 @@ namespace Lfc.Personas
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(8, 104);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(200, 24);
@@ -307,7 +302,6 @@ namespace Lfc.Personas
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(8, 72);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(104, 24);
@@ -317,7 +311,6 @@ namespace Lfc.Personas
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(8, 40);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(104, 24);
@@ -327,7 +320,6 @@ namespace Lfc.Personas
                         // 
                         // EtiquetaClaveTributaria
                         // 
-                        this.EtiquetaClaveTributaria.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaClaveTributaria.Location = new System.Drawing.Point(8, 72);
                         this.EtiquetaClaveTributaria.Name = "EtiquetaClaveTributaria";
                         this.EtiquetaClaveTributaria.Size = new System.Drawing.Size(120, 24);
@@ -337,7 +329,6 @@ namespace Lfc.Personas
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(8, 40);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(120, 24);
@@ -347,7 +338,6 @@ namespace Lfc.Personas
                         // 
                         // Label11
                         // 
-                        this.Label11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label11.Location = new System.Drawing.Point(8, 200);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(120, 24);
@@ -388,7 +378,6 @@ namespace Lfc.Personas
                         // 
                         // label18
                         // 
-                        this.label18.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label18.Location = new System.Drawing.Point(8, 168);
                         this.label18.Name = "label18";
                         this.label18.Size = new System.Drawing.Size(200, 24);
@@ -459,7 +448,6 @@ namespace Lfc.Personas
                         // 
                         // Label12
                         // 
-                        this.Label12.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label12.Location = new System.Drawing.Point(8, 104);
                         this.Label12.Name = "Label12";
                         this.Label12.Size = new System.Drawing.Size(120, 24);
@@ -469,7 +457,6 @@ namespace Lfc.Personas
                         // 
                         // Label15
                         // 
-                        this.Label15.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label15.Location = new System.Drawing.Point(8, 136);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(120, 24);
@@ -504,7 +491,6 @@ namespace Lfc.Personas
                         // 
                         // Label14
                         // 
-                        this.Label14.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label14.Location = new System.Drawing.Point(8, 104);
                         this.Label14.Name = "Label14";
                         this.Label14.Size = new System.Drawing.Size(104, 24);
@@ -539,7 +525,6 @@ namespace Lfc.Personas
                         // 
                         // Label16
                         // 
-                        this.Label16.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label16.Location = new System.Drawing.Point(8, 40);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(104, 24);
@@ -561,7 +546,6 @@ namespace Lfc.Personas
                         // 
                         // label17
                         // 
-                        this.label17.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label17.Location = new System.Drawing.Point(8, 200);
                         this.label17.Name = "label17";
                         this.label17.Size = new System.Drawing.Size(168, 24);
@@ -584,7 +568,6 @@ namespace Lfc.Personas
                         // 
                         // label19
                         // 
-                        this.label19.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label19.Location = new System.Drawing.Point(8, 72);
                         this.label19.Name = "label19";
                         this.label19.Size = new System.Drawing.Size(120, 24);
@@ -612,7 +595,6 @@ namespace Lfc.Personas
                         // 
                         // label21
                         // 
-                        this.label21.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label21.Location = new System.Drawing.Point(8, 232);
                         this.label21.Name = "label21";
                         this.label21.Size = new System.Drawing.Size(168, 24);
@@ -632,7 +614,6 @@ namespace Lfc.Personas
                         // 
                         // EtiquetaClaveBancaria
                         // 
-                        this.EtiquetaClaveBancaria.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaClaveBancaria.Location = new System.Drawing.Point(8, 168);
                         this.EtiquetaClaveBancaria.Name = "EtiquetaClaveBancaria";
                         this.EtiquetaClaveBancaria.Size = new System.Drawing.Size(104, 24);
@@ -653,7 +634,6 @@ namespace Lfc.Personas
                         // 
                         // label22
                         // 
-                        this.label22.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label22.Location = new System.Drawing.Point(8, 136);
                         this.label22.Name = "label22";
                         this.label22.Size = new System.Drawing.Size(104, 24);
@@ -722,7 +702,6 @@ namespace Lfc.Personas
                         // 
                         // label23
                         // 
-                        this.label23.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label23.Location = new System.Drawing.Point(8, 264);
                         this.label23.Name = "label23";
                         this.label23.Size = new System.Drawing.Size(120, 24);
@@ -781,7 +760,6 @@ namespace Lfc.Personas
                         // 
                         // label13
                         // 
-                        this.label13.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label13.Location = new System.Drawing.Point(8, 72);
                         this.label13.Name = "label13";
                         this.label13.Size = new System.Drawing.Size(104, 24);
@@ -839,7 +817,6 @@ namespace Lfc.Personas
                         // 
                         // label24
                         // 
-                        this.label24.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label24.Location = new System.Drawing.Point(8, 40);
                         this.label24.Name = "label24";
                         this.label24.Size = new System.Drawing.Size(128, 24);
@@ -849,7 +826,6 @@ namespace Lfc.Personas
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(328, 40);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(144, 24);
@@ -870,7 +846,6 @@ namespace Lfc.Personas
                         // 
                         // label26
                         // 
-                        this.label26.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label26.Location = new System.Drawing.Point(8, 120);
                         this.label26.Name = "label26";
                         this.label26.Size = new System.Drawing.Size(128, 24);
@@ -892,7 +867,6 @@ namespace Lfc.Personas
                         // 
                         // label25
                         // 
-                        this.label25.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label25.Location = new System.Drawing.Point(8, 88);
                         this.label25.Name = "label25";
                         this.label25.Size = new System.Drawing.Size(128, 24);

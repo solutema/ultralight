@@ -392,16 +392,17 @@ namespace Lfx.Types
                                                 Res += fecha.ToString(@"dd ""de"" MMMM");
                                         }
                                 } else {
-                                        Res += fecha.ToString(@"dd ""de"" MMMM");
+                                        Res += fecha.ToString(@"dd ""de"" MMMM, HH:mm");
                                 }
                         } else {
-                                Res += fecha.ToString(@"dd ""de"" MMMM ""de"" yyyy");
+                                Res += fecha.ToString(@"dd ""de"" MMMM ""de"" yyyy, HH:mm");
                         }
                         return Res;
                 }
 
                 /// <summary>
                 /// Devuelve una fecha en un formato inteligente, como "hoy", "12/abr" o "3/feb/09".
+                /// Lo hace en el formato más compacto posible, a diferencia de FormatSmartDateAndTime que lo hace en un formato más legible.
                 /// </summary>
                 public static string FormatShortSmartDateAndTime(System.DateTime fecha)
                 {

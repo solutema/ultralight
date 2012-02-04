@@ -202,7 +202,7 @@ namespace Lfc.Articulos
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.Label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Label2.Location = new System.Drawing.Point(24, 163);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(576, 37);

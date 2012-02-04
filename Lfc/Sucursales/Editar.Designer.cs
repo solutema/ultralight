@@ -84,7 +84,6 @@ namespace Lfc.Sucursales
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 0);
                         this.Label1.Margin = new System.Windows.Forms.Padding(0);
                         this.Label1.Name = "Label1";
@@ -119,7 +118,6 @@ namespace Lfc.Sucursales
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(0, 32);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(96, 24);
@@ -129,7 +127,6 @@ namespace Lfc.Sucursales
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(0, 96);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(96, 24);
@@ -159,7 +156,6 @@ namespace Lfc.Sucursales
                         // 
                         // Label9
                         // 
-                        this.Label9.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label9.Location = new System.Drawing.Point(0, 64);
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(96, 24);
@@ -191,7 +187,6 @@ namespace Lfc.Sucursales
                         // label4
                         // 
                         this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(44, 240);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(104, 24);
@@ -223,7 +218,6 @@ namespace Lfc.Sucursales
                         // label5
                         // 
                         this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(44, 268);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(104, 24);
@@ -255,7 +249,6 @@ namespace Lfc.Sucursales
                         // label6
                         // 
                         this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(44, 296);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(104, 24);

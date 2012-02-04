@@ -583,7 +583,7 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
 
                         if (Lfx.Workspace.Master.IsPrepared() == false) {
                                 using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"Aparentemente es la primera vez que utiliza este almacén de datos. Antes de poder utilizarlo debe prepararlo con una carga inicial de datos.
-Responda 'Si' sólamente si es la primera vez que utiliza Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor?")) {
+Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor?")) {
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                                 Lfx.Types.OperationResult Res;

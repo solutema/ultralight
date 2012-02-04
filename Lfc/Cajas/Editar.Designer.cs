@@ -100,7 +100,6 @@ namespace Lfc.Cajas
                         // 
                         // Label3
                         // 
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(0, 152);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(120, 24);
@@ -110,7 +109,6 @@ namespace Lfc.Cajas
                         // 
                         // Label1
                         // 
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(0, 120);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(120, 24);
@@ -161,7 +159,6 @@ namespace Lfc.Cajas
                         // 
                         // Label7
                         // 
-                        this.Label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label7.Location = new System.Drawing.Point(0, 64);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(120, 24);
@@ -184,7 +181,6 @@ namespace Lfc.Cajas
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 0);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(120, 24);
@@ -194,7 +190,6 @@ namespace Lfc.Cajas
                         // 
                         // Label4
                         // 
-                        this.Label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label4.Location = new System.Drawing.Point(0, 184);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(120, 24);
@@ -235,7 +230,6 @@ namespace Lfc.Cajas
                         // 
                         // EtiquetaClaveBancaria
                         // 
-                        this.EtiquetaClaveBancaria.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.EtiquetaClaveBancaria.Location = new System.Drawing.Point(0, 216);
                         this.EtiquetaClaveBancaria.Name = "EtiquetaClaveBancaria";
                         this.EtiquetaClaveBancaria.Size = new System.Drawing.Size(120, 24);
@@ -255,7 +249,6 @@ namespace Lfc.Cajas
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(0, 32);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(120, 24);
@@ -281,7 +274,6 @@ namespace Lfc.Cajas
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label8.Location = new System.Drawing.Point(0, 248);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(120, 24);

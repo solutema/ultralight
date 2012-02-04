@@ -40,9 +40,16 @@ namespace Lazaro.WinMain.Backup
 {
         public partial class Restore : Lui.Forms.DialogForm
         {
+                public Restore()
+                {
+                        InitializeComponent();
+                        OkButton.Enabled = false;
+                }
+
                 private void EntradaConfirmar_TextChanged(object sender, System.EventArgs e)
                 {
-                        OkButton.Visible = (EntradaConfirmar.Text == "si");
+                        string Texto = EntradaConfirmar.Text.Replace("\"", "").ToUpperInvariant().Trim();
+                        OkButton.Enabled = (Texto == "SÍ" || Texto == "SI");
                 }
         }
 }

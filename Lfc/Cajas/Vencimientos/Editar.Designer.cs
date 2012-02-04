@@ -105,7 +105,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // Label11
                         // 
-                        this.Label11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label11.Location = new System.Drawing.Point(8, 72);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(112, 24);
@@ -118,7 +117,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaNombre.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
                         this.EntradaNombre.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaNombre.Name = "EntradaNombre";
@@ -128,7 +126,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // lblLabel1
                         // 
-                        this.lblLabel1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.lblLabel1.Location = new System.Drawing.Point(0, 0);
                         this.lblLabel1.Name = "lblLabel1";
                         this.lblLabel1.Size = new System.Drawing.Size(120, 24);
@@ -159,7 +156,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // label4
                         // 
-                        this.label4.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label4.Location = new System.Drawing.Point(488, 72);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(68, 24);
@@ -169,7 +165,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // label1
                         // 
-                        this.label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label1.Location = new System.Drawing.Point(8, 40);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(112, 24);
@@ -179,7 +174,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // label2
                         // 
-                        this.label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label2.Location = new System.Drawing.Point(320, 40);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(96, 24);
@@ -190,7 +184,6 @@ namespace Lfc.Cajas.Vencimientos
                         // EntradaFechaInicio
                         // 
                         this.EntradaFechaInicio.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaInicio.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaFechaInicio.Location = new System.Drawing.Point(120, 40);
                         this.EntradaFechaInicio.Name = "EntradaFechaInicio";
                         this.EntradaFechaInicio.Padding = new System.Windows.Forms.Padding(2);
@@ -199,7 +192,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // label3
                         // 
-                        this.label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label3.Location = new System.Drawing.Point(320, 72);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(96, 24);
@@ -210,7 +202,6 @@ namespace Lfc.Cajas.Vencimientos
                         // EntradaFechaFin
                         // 
                         this.EntradaFechaFin.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaFin.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaFechaFin.Location = new System.Drawing.Point(416, 40);
                         this.EntradaFechaFin.Name = "EntradaFechaFin";
                         this.EntradaFechaFin.Padding = new System.Windows.Forms.Padding(2);
@@ -220,7 +211,6 @@ namespace Lfc.Cajas.Vencimientos
                         // EntradaRepetir
                         // 
                         this.EntradaRepetir.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaRepetir.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaRepetir.Location = new System.Drawing.Point(416, 72);
                         this.EntradaRepetir.MaxLength = 3;
                         this.EntradaRepetir.Name = "EntradaRepetir";
@@ -231,7 +221,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // label5
                         // 
-                        this.label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label5.Location = new System.Drawing.Point(8, 40);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(112, 24);
@@ -281,7 +270,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // label6
                         // 
-                        this.label6.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label6.Location = new System.Drawing.Point(8, 72);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(112, 24);
@@ -292,7 +280,6 @@ namespace Lfc.Cajas.Vencimientos
                         // EntradaImporte
                         // 
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaImporte.Location = new System.Drawing.Point(120, 72);
                         this.EntradaImporte.MaxLength = 20;
                         this.EntradaImporte.Name = "EntradaImporte";
@@ -303,7 +290,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // label7
                         // 
-                        this.label7.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label7.Location = new System.Drawing.Point(0, 32);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(120, 24);
@@ -331,7 +317,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaObs.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EntradaObs.Location = new System.Drawing.Point(120, 96);
                         this.EntradaObs.MaximumSize = new System.Drawing.Size(480, 56);
                         this.EntradaObs.MultiLine = true;
@@ -342,7 +327,6 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         // label8
                         // 
-                        this.label8.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.label8.Location = new System.Drawing.Point(0, 96);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(120, 24);

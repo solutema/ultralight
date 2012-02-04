@@ -153,7 +153,7 @@ namespace Lcc.Edicion
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.GroupLabel.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(553, 24);

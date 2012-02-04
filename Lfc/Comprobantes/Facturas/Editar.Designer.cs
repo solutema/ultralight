@@ -49,7 +49,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label2
                         // 
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(0, 0);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(108, 24);
@@ -82,7 +81,6 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label10
                         // 
-                        this.Label10.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label10.Location = new System.Drawing.Point(0, 32);
                         this.Label10.Name = "Label10";
                         this.Label10.Size = new System.Drawing.Size(72, 24);
@@ -113,7 +111,6 @@ namespace Lfc.Comprobantes.Facturas
                         // Label11
                         // 
                         this.Label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label11.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label11.Location = new System.Drawing.Point(408, 32);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(56, 24);

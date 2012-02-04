@@ -90,7 +90,6 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // Label14
                         // 
-                        this.Label14.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label14.Location = new System.Drawing.Point(0, 64);
                         this.Label14.Name = "Label14";
                         this.Label14.Size = new System.Drawing.Size(88, 24);
@@ -112,7 +111,6 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // Label12
                         // 
-                        this.Label12.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label12.Location = new System.Drawing.Point(0, 32);
                         this.Label12.Name = "Label12";
                         this.Label12.Size = new System.Drawing.Size(88, 24);
@@ -133,7 +131,6 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // Label5
                         // 
-                        this.Label5.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label5.Location = new System.Drawing.Point(0, 0);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(88, 24);
@@ -154,7 +151,6 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // Label13
                         // 
-                        this.Label13.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label13.Location = new System.Drawing.Point(0, 96);
                         this.Label13.Name = "Label13";
                         this.Label13.Size = new System.Drawing.Size(88, 24);

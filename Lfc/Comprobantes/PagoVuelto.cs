@@ -98,7 +98,6 @@ namespace Lfc.Comprobantes
                         // Label1
                         // 
                         this.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label1.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label1.Location = new System.Drawing.Point(48, 92);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(164, 32);
@@ -110,7 +109,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaTotal.Anchor = System.Windows.Forms.AnchorStyles.Top;
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaTotal.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
+                        this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 92);
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
@@ -124,7 +123,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaPago.Anchor = System.Windows.Forms.AnchorStyles.Top;
                         this.EntradaPago.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaPago.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
+                        this.EntradaPago.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaPago.Location = new System.Drawing.Point(212, 140);
                         this.EntradaPago.Name = "EntradaPago";
                         this.EntradaPago.Padding = new System.Windows.Forms.Padding(2);
@@ -137,7 +136,6 @@ namespace Lfc.Comprobantes
                         // Label2
                         // 
                         this.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label2.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label2.Location = new System.Drawing.Point(48, 140);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(164, 32);
@@ -149,7 +147,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaCambio.Anchor = System.Windows.Forms.AnchorStyles.Top;
                         this.EntradaCambio.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCambio.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
+                        this.EntradaCambio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaCambio.Location = new System.Drawing.Point(212, 216);
                         this.EntradaCambio.Name = "EntradaCambio";
                         this.EntradaCambio.Padding = new System.Windows.Forms.Padding(2);
@@ -162,7 +160,6 @@ namespace Lfc.Comprobantes
                         // Label3
                         // 
                         this.Label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-                        this.Label3.LabelStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         this.Label3.Location = new System.Drawing.Point(48, 216);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(164, 32);
