@@ -112,12 +112,12 @@ namespace Lcc.Entrada
                         // 
                         this.BotonQuitarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonQuitarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitarImagen.Image = null;
                         this.BotonQuitarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitarImagen.Location = new System.Drawing.Point(144, 128);
                         this.BotonQuitarImagen.Name = "BotonQuitarImagen";
                         this.BotonQuitarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonQuitarImagen.ReadOnly = false;
                         this.BotonQuitarImagen.Size = new System.Drawing.Size(96, 36);
                         this.BotonQuitarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitarImagen.Subtext = "";
@@ -129,12 +129,12 @@ namespace Lcc.Entrada
                         // 
                         this.BotonSeleccionarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonSeleccionarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonSeleccionarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSeleccionarImagen.Image = null;
                         this.BotonSeleccionarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSeleccionarImagen.Location = new System.Drawing.Point(144, 80);
                         this.BotonSeleccionarImagen.Name = "BotonSeleccionarImagen";
                         this.BotonSeleccionarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonSeleccionarImagen.ReadOnly = false;
                         this.BotonSeleccionarImagen.Size = new System.Drawing.Size(96, 40);
                         this.BotonSeleccionarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSeleccionarImagen.Subtext = "";
@@ -146,12 +146,12 @@ namespace Lcc.Entrada
                         // 
                         this.BotonCapturarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCapturarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCapturarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCapturarImagen.Image = null;
                         this.BotonCapturarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCapturarImagen.Location = new System.Drawing.Point(144, 32);
                         this.BotonCapturarImagen.Name = "BotonCapturarImagen";
                         this.BotonCapturarImagen.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonCapturarImagen.ReadOnly = false;
                         this.BotonCapturarImagen.Size = new System.Drawing.Size(96, 40);
                         this.BotonCapturarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCapturarImagen.Subtext = "";
@@ -163,12 +163,12 @@ namespace Lcc.Entrada
                         // 
                         this.GroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.GroupLabel.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.GroupLabel.Location = new System.Drawing.Point(0, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(240, 24);
                         this.GroupLabel.TabIndex = 2;
                         this.GroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.GroupLabel.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.GroupLabel.UseMnemonic = false;
                         // 
                         // Imagen

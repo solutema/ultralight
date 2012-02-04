@@ -40,8 +40,8 @@ namespace Lbl.Impresion
         /// </summary>
         [Lbl.Atributos.Nomenclatura(NombreSingular = "Plantilla", Grupo = "Comprobantes")]
         [Lbl.Atributos.Datos(TablaDatos = "sys_plantillas", CampoId = "id_plantilla")]
-        [Lbl.Atributos.Presentacion()]
-	public class Plantilla : ElementoDeDatos
+        [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Automatico)]
+	public class Plantilla : ElementoDeDatos, IElementoConImagen
 	{
                 public IList<Campo> Campos;
                 public System.Drawing.Font Font;

@@ -45,7 +45,7 @@ namespace Lfc
 
                 Lazaro.Pres.Forms.FormActionCollection FormActions;
 
-                private bool MuestraPanel = true;
+                private Lbl.Atributos.PanelExtendido MuestraPanel = Lbl.Atributos.PanelExtendido.Automatico;
                 private bool m_ReadOnly = false;
 
                 public FormularioEdicion()
@@ -316,14 +316,13 @@ namespace Lfc
                         Lbl.Atributos.Presentacion AttrMuestraPanel = this.ElementoTipo.GetAttribute<Lbl.Atributos.Presentacion>();
                         if (AttrMuestraPanel != null) {
                                 EntradaComentarios.Visible = this.Elemento.Existe;
-                                MuestraPanel = AttrMuestraPanel.PanelExtendido == Lbl.Atributos.PanelExtendido.Siempre;
-                                this.PanelAccionesTerciarias.FormActions["panelextendido"].Visibility = (AttrMuestraPanel.PanelExtendido != Lbl.Atributos.PanelExtendido.Nunca) ? Lazaro.Pres.Forms.FormActionVisibility.Tertiary : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
+                                MuestraPanel = AttrMuestraPanel.PanelExtendido;
+                                this.PanelAccionesTerciarias.FormActions["panelextendido"].Visibility = (MuestraPanel != Lbl.Atributos.PanelExtendido.Nunca) ? Lazaro.Pres.Forms.FormActionVisibility.Tertiary : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
                         }
 
                         if (this.ControlUnico != null) {
                                 this.ControlUnico.FromRow(row);
-                                if (this.MuestraPanel) {
-                                        PanelExtendido.Show();
+                                if (this.MuestraPanel != Lbl.Atributos.PanelExtendido.Nunca) {
                                         if (row is Lbl.IElementoConImagen) {
                                                 EntradaImagen.Elemento = row;
                                                 EntradaImagen.ActualizarControl();
@@ -337,8 +336,9 @@ namespace Lfc
 
                                         EntradaComentarios.ActualizarControl();
                                         EntradaTags.ActualizarControl();
-                                } else {
-                                        PanelExtendido.Hide();
+
+                                        if (MuestraPanel == Lbl.Atributos.PanelExtendido.Siempre)
+                                                PanelExtendido.Show();
                                 }
                         }
 
@@ -366,7 +366,7 @@ namespace Lfc
                 {
                         if (this.ControlUnico != null) {
                                 Lbl.IElementoDeDatos Res = this.ControlUnico.ToRow();
-                                if (this.MuestraPanel) {
+                                if (this.MuestraPanel != Lbl.Atributos.PanelExtendido.Nunca) {
                                         if (Res is Lbl.IElementoConImagen)
                                                 EntradaImagen.ActualizarElemento();
                                         //EntradaComentarios.ActualizarElemento();

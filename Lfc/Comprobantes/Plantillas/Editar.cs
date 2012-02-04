@@ -47,7 +47,7 @@ namespace Lfc.Comprobantes.Plantillas
                 private float Zoom = 100;
 
                 private System.Drawing.Pen LapizBordeCampos = new Pen(Color.Silver, 1);
-                private Brush BrushSeleccion = new SolidBrush(Color.FromArgb(200, SystemColors.Highlight));
+                private Brush BrushSeleccion = new SolidBrush(Color.FromArgb(150, SystemColors.Highlight));
                 private Brush BrushKnob = new SolidBrush(Color.FromArgb(200, Color.Black));
                 private Pen BrushKnobBorder = new Pen(Color.FromArgb(200, Color.White));
 
@@ -172,8 +172,11 @@ namespace Lfc.Comprobantes.Plantillas
                         if (Plantilla.Landscape)
                                 TamPap = new Size(TamPap.Height, TamPap.Width);
 
+                        System.Drawing.RectangleF RectPagina = new System.Drawing.RectangleF(0 * EscalaMm.X, 0 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y);
                         e.Graphics.FillRectangle(Brushes.DarkGray, new System.Drawing.RectangleF(2 * EscalaMm.X, 2 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
-                        e.Graphics.FillRectangle(Brushes.White, new System.Drawing.RectangleF(0 * EscalaMm.X, 0 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
+                        e.Graphics.FillRectangle(Brushes.White, RectPagina);
+                        if (Plantilla.Imagen != null)
+                                e.Graphics.DrawImage(Plantilla.Imagen, RectPagina);
 
                         foreach (Lbl.Impresion.Campo Cam in Plantilla.Campos) {
                                 Rectangle DrawRect = Cam.Rectangle;
@@ -312,7 +315,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 bool Select = false;
                                 foreach (Lbl.Impresion.Campo Cam in Plantilla.Campos) {
                                         //Busco el campo del clic (según coordenadas)
-                                        //if (CampoSeleccionadoOriginal != Cam) {
+                                        if (CampoSeleccionadoOriginal != Cam) {
                                                 if (Cam.Valor == null || Cam.Valor.Length == 0 && Cam.AnchoBorde > 0) {
                                                         //En el caso particular de los rectángulos con borde y sin texto, tiene que hacer clic en el contorno
                                                         if ((MyButtonDown.X >= (Cam.Rectangle.Left - 5) && (MyButtonDown.X <= (Cam.Rectangle.Left + 5)) ||
@@ -328,7 +331,7 @@ namespace Lfc.Comprobantes.Plantillas
                                                         Select = true;
                                                         KnobGrabbed = false;
                                                 }
-                                        //}
+                                        }
 
                                         if (Select) {
                                                 //Encontré el campo del Click
