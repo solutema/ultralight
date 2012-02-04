@@ -155,7 +155,7 @@ namespace Lui.Forms
                         if (this.Created) {
                                 this.DialogText.MaximumSize = new Size(DialogCaption.Right - DialogText.Left, 0);
                                 this.DialogText.AutoSize = true;
-                                this.Height = this.DialogText.Bottom + this.LowerPanel.Height + 24 + (this.Height - this.ClientRectangle.Height);
+                                this.Height = this.DialogText.Bottom + this.LowerPanel.Height + 32 + (this.Height - this.ClientRectangle.Height);
                         }
                 }
 

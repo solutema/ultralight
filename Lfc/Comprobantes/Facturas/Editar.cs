@@ -214,7 +214,7 @@ namespace Lfc.Comprobantes.Facturas
                                 return new Lfx.Types.FailureOperationResult("Debe proporcionar un Cliente válido.");
 
                         else if (Comprob.Cliente.SituacionTributaria == null)
-                                return new Lfx.Types.FailureOperationResult("El Cliente no tiene una Situación Tributaria definida.");
+                                return new Lfx.Types.FailureOperationResult("El Cliente no tiene una Situación tributaria definida.");
 
                         if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
                                 Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
@@ -222,7 +222,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
 ¿Desea continuar de todos modos?", "Tipo de comprobante incorrecto");
                                 OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (OPregunta.ShowDialog() == DialogResult.Cancel)
-                                        return new Lfx.Types.FailureOperationResult("Corrija la Situación Tributaria del Cliente o el Tipo de Comprobante.");
+                                        return new Lfx.Types.FailureOperationResult("Corrija la Situación tributaria del Cliente o el Tipo de Comprobante.");
                         }
 
                         if (Comprob.Tipo.Letra.ToUpperInvariant() == "A") {

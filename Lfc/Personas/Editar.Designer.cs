@@ -324,7 +324,7 @@ namespace Lfc.Personas
                         this.EtiquetaClaveTributaria.Name = "EtiquetaClaveTributaria";
                         this.EtiquetaClaveTributaria.Size = new System.Drawing.Size(120, 24);
                         this.EtiquetaClaveTributaria.TabIndex = 2;
-                        this.EtiquetaClaveTributaria.Text = "Clave Tributaria";
+                        this.EtiquetaClaveTributaria.Text = "Clave tributaria";
                         this.EtiquetaClaveTributaria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3

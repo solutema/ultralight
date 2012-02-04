@@ -700,10 +700,10 @@
     <Column name="id_tipo_doc" inputtype="Relation" section="Personas Físicas" label="Tipo de Documento" nullable="1"
             relation_table="tipo_doc" relation_key="id_tipo_doc" relation_detail="nombre" />
     <Column name="num_doc" inputtype="Text" section="Personas Físicas" label="Documento" nullable="1" lenght="50" />
-    <Column name="id_tipo_cuit" inputtype="Relation" section="Personas Jurídicas" label="Tipo de Clave Tributaria" nullable="1"
+    <Column name="id_tipo_cuit" inputtype="Relation" section="Personas Jurídicas" label="Tipo de clave tributaria" nullable="1"
             relation_table="tipo_doc" relation_key="id_tipo_doc" relation_detail="nombre" />
-    <Column name="cuit" inputtype="Text" section="Personas Jurídicas" label="Clave Tributaria" nullable="1" lenght="16" />
-    <Column name="id_situacion" inputtype="Relation" section="Personas Jurídicas" label="Situación Tributaria" nullable="1"
+    <Column name="cuit" inputtype="Text" section="Personas Jurídicas" label="Clave tributaria" nullable="1" lenght="16" />
+    <Column name="id_situacion" inputtype="Relation" section="Personas Jurídicas" label="Situación tributaria" nullable="1"
             relation_table="situaciones" relation_key="id_situacion" relation_detail="nombre" />
     <Column name="domicilio" inputtype="Text" label="Domicilio Particular" section="Locación" nullable="1" lenght="200" />
     <Column name="domiciliotrabajo" inputtype="Text" label="Domicilio Laboral" section="Locación" nullable="1" lenght="200" />

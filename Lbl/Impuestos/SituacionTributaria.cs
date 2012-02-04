@@ -38,7 +38,7 @@ namespace Lbl.Impuestos
         /// <summary>
         /// Representa la situación de una persona frente al fisco.
         /// </summary>
-        [Lbl.Atributos.Nomenclatura(NombreSingular = "Situación Tributaria", Grupo = "Impuestos")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Situación tributaria", Grupo = "Impuestos")]
         [Lbl.Atributos.Datos(TablaDatos = "situaciones", CampoId = "id_situacion")]
         [Lbl.Atributos.Presentacion()]
 	public class SituacionTributaria : ElementoDeDatos

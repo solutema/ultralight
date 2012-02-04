@@ -93,7 +93,7 @@ namespace Lbl.Entidades
                 {
                         get
                         {
-                                if (m_ClavePersonasJuridicas == null)
+                                if (m_ClavePersonasJuridicas == null && this.GetFieldValue<int>("clavejur") > 0)
                                         m_ClavePersonasJuridicas = new ClaveUnica(this.Connection, this.GetFieldValue<int>("clavejur"));
                                 return m_ClavePersonasJuridicas;
                         }

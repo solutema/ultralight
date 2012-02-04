@@ -583,20 +583,20 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
 
                         if (Lfx.Workspace.Master.IsPrepared() == false) {
                                 using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"Aparentemente es la primera vez que utiliza este almacén de datos. Antes de poder utilizarlo debe prepararlo con una carga inicial de datos.
-Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el servidor?")) {
+Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está restaurando desde una copia de seguridad.", @"¿Desea preparar el almacén de datos?")) {
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                                 Lfx.Types.OperationResult Res;
-                                                using (Lfx.Data.Connection DataBase = Lfx.Workspace.Master.GetNewConnection("Preparar servidor")) {
+                                                using (Lfx.Data.Connection DataBase = Lfx.Workspace.Master.GetNewConnection("Preparar almacén de datos")) {
                                                         DataBase.RequiresTransaction = false;
                                                         Res = Lfx.Workspace.Master.Prepare();
                                                 }
                                                 if (Res.Success == false)
                                                         return Res;
                                                 else
-                                                        Lui.Forms.MessageBox.Show("El servidor fue preparado con éxito. Puede comenzar a utilizar el sistema. La primera vez que ingrese al sistema, utilice el usuario Nº 1 (Administrador) y la contraseña 'admin' (sin las comillas).", "Preparar Servidor");
+                                                        Lui.Forms.MessageBox.Show("El almacén de datos fue preparado con éxito. Puede comenzar a utilizar el sistema. La primera vez que ingrese al sistema, utilice el usuario Nº 1 (Administrador) y la contraseña 'admin' (sin las comillas).", "Preparar el almacén de datos");
                                         } else {
-                                                return new Lfx.Types.FailureOperationResult("Debe preparar el servidor.");
+                                                return new Lfx.Types.FailureOperationResult("Debe preparar el almacén de datos.");
                                         }
                                 }
                         }

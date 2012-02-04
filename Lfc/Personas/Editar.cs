@@ -167,11 +167,11 @@ namespace Lfc.Personas
                                 Lfx.Data.Row RowPersMismaClave = this.Connection.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaClaveTributaria.Text + "' AND id_persona<>" + this.Elemento.Id.ToString());
                                 if (RowPersMismaClave != null) {
                                         if (Cliente.Existe == false || System.Convert.ToInt32(RowPersMismaClave["id_persona"]) != this.Elemento.Id) {
-                                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa Clave Tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "Clave Tributaria duplicada");
+                                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa clave tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "Clave tributaria duplicada");
                                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                 if (Pregunta.ShowDialog() != DialogResult.OK) {
                                                         validarReturn.Success = false;
-                                                        validarReturn.Message += "Cambie la Clave Tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") para antes de continuar." + Environment.NewLine;
+                                                        validarReturn.Message += "Cambie la Clave tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") para antes de continuar." + Environment.NewLine;
                                                 }
                                         }
                                 }
@@ -312,7 +312,7 @@ namespace Lfc.Personas
                 {
                         if (EntradaClaveTributaria.Text.Length > 0) {
                                 if (EntradaSituacion.TextInt == 1)
-                                        EntradaSituacion.ErrorText = "La Situación Tributaria del cliente no se corresponde con la CUIT.";
+                                        EntradaSituacion.ErrorText = "La Situación tributaria del cliente no se corresponde con la CUIT.";
                                 else
                                         EntradaSituacion.ErrorText = "";
                         }
