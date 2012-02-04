@@ -312,7 +312,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 bool Select = false;
                                 foreach (Lbl.Impresion.Campo Cam in Plantilla.Campos) {
                                         //Busco el campo del clic (según coordenadas)
-                                        if (CampoSeleccionadoOriginal != Cam) {
+                                        //if (CampoSeleccionadoOriginal != Cam) {
                                                 if (Cam.Valor == null || Cam.Valor.Length == 0 && Cam.AnchoBorde > 0) {
                                                         //En el caso particular de los rectángulos con borde y sin texto, tiene que hacer clic en el contorno
                                                         if ((MyButtonDown.X >= (Cam.Rectangle.Left - 5) && (MyButtonDown.X <= (Cam.Rectangle.Left + 5)) ||
@@ -328,7 +328,7 @@ namespace Lfc.Comprobantes.Plantillas
                                                         Select = true;
                                                         KnobGrabbed = false;
                                                 }
-                                        }
+                                        //}
 
                                         if (Select) {
                                                 //Encontré el campo del Click
@@ -360,15 +360,14 @@ namespace Lfc.Comprobantes.Plantillas
                                 this.Desplazamiento = OldDesplazamiento;
                                 this.Desplazamiento.Offset(Diferencia);
                                 ButtonDown = new Point(e.X, e.Y);
-                                this.CampoSeleccionado = null;
                                 ImagePreview.Invalidate();
                         } else if (e.Button == System.Windows.Forms.MouseButtons.Left) {
                                 if (CampoSeleccionado != null) {
                                         if (KnobGrabbed) {
                                                 //Point NewCampoPos = new Point(CampoDown.Right, CampoDown.Bottom);
                                                 Point PosCursor = PuntoDesdePantalla(new Point(e.X, e.Y));
-                                                PosCursor.X -= CampoDown.Left;
-                                                PosCursor.Y -= CampoDown.Top;
+                                                PosCursor.X -= CampoSeleccionado.Rectangle.Left;
+                                                PosCursor.Y -= CampoSeleccionado.Rectangle.Top;
                                                 CampoSeleccionado.Rectangle.Width = PosCursor.X;
                                                 CampoSeleccionado.Rectangle.Height = PosCursor.Y;
                                         } else {

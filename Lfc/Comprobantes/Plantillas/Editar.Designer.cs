@@ -141,6 +141,8 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         // TabGeneral
                         // 
+                        this.TabGeneral.AutoScroll = true;
+                        this.TabGeneral.AutoScrollMargin = new System.Drawing.Size(0, 24);
                         this.TabGeneral.Controls.Add(this.EntradaMargenes);
                         this.TabGeneral.Controls.Add(this.EntradaMargenAbajo);
                         this.TabGeneral.Controls.Add(this.EntradaMargenArriba);
@@ -456,7 +458,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ImagePreview.BackColor = System.Drawing.Color.Ivory;
                         this.ImagePreview.Location = new System.Drawing.Point(156, 4);
                         this.ImagePreview.Name = "ImagePreview";
-                        this.ImagePreview.Size = new System.Drawing.Size(702, 378);
+                        this.ImagePreview.Size = new System.Drawing.Size(702, 468);
                         this.ImagePreview.TabIndex = 105;
                         this.ImagePreview.TabStop = false;
                         this.ImagePreview.Paint += new System.Windows.Forms.PaintEventHandler(this.ImagePreview_Paint);

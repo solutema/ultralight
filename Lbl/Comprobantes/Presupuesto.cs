@@ -37,7 +37,7 @@ namespace Lbl.Comprobantes
 {
         [Lbl.Atributos.Nomenclatura(NombreSingular = "Presupuesto")]
         [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob", TablaImagenes = "comprob_imagenes")]
-        [Lbl.Atributos.Presentacion()]
+        [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Automatico)]
         public class Presupuesto : ComprobanteConArticulos
         {
                 //Heredar constructor
