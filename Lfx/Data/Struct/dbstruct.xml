@@ -1020,12 +1020,19 @@
     <Column name="margen_abajo" datatype="Integer" nullable="0" default="-1" />
     <Column name="membrete" datatype="TinyInt" nullable="0" default="0" />
     <Column name="defxml" datatype="Text" nullable="1" />
-    <Column name="imagen" datatype="Blob" nullable="1" />
     <Index table="sys_plantillas" name="PRIMARY" columns="id_plantilla" unique="1" primary="1" />
     <Index table="sys_plantillas" name="sys_plantillas_codigo" columns="codigo" unique="1" primary="0" />
   </Table>
-  
-  
+
+  <Table name="sys_plantillas_imagenes" label="Imágenes de Plantillas">
+    <Column name="id_plantilla" inputtype="Relation" nullable="0" primary_key="1" default="0" />
+    <Column name="imagen" datatype="Blob" nullable="1" />
+    <Index table="sys_plantillas_imagenes" name="PRIMARY" columns="id_plantilla" unique="1" primary="1" />
+    <OldIndex table="sys_plantillas_imagenes" name="sys_plantillas_imagenes_id_plantilla" columns="id_plantilla" unique="0" primary="0" />
+  </Table>
+  <Constraint name="sys_plantillas_imagenes_id_plantilla" table="sys_plantillas_imagenes" column="id_plantilla" reference_table="sys_plantillas" reference_column="id_plantilla" />
+
+
   <Table name="sys_programador" label="Programador de Tareas">
     <Column name="id_evento" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="crea_estacion" datatype="VarChar" nullable="0" lenght="200" />
