@@ -31,6 +31,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Xml;
 
 namespace Lbl.Impresion
@@ -257,15 +258,18 @@ namespace Lbl.Impresion
                                 CampoXml.Attributes.Append(Attr);
 
                                 Attr = XmlDef.CreateAttribute("ColorBorde");
-                                Attr.Value = Cam.ColorBorde.ToArgb().ToString();
+                                if (Cam.ColorBorde != Color.Transparent)
+                                        Attr.Value = Cam.ColorBorde.ToArgb().ToString();
                                 CampoXml.Attributes.Append(Attr);
 
                                 Attr = XmlDef.CreateAttribute("ColorFondo");
-                                Attr.Value = Cam.ColorFondo.ToArgb().ToString();
+                                if (Cam.ColorFondo != Color.Transparent)
+                                        Attr.Value = Cam.ColorFondo.ToArgb().ToString();
                                 CampoXml.Attributes.Append(Attr);
 
                                 Attr = XmlDef.CreateAttribute("ColorTexto");
-                                Attr.Value = Cam.ColorTexto.ToArgb().ToString();
+                                if (Cam.ColorTexto != Color.Black)
+                                        Attr.Value = Cam.ColorTexto.ToArgb().ToString();
                                 CampoXml.Attributes.Append(Attr);
 
                                 Attr = XmlDef.CreateAttribute("Wrap");

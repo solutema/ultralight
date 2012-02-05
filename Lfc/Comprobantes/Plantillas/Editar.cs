@@ -45,11 +45,14 @@ namespace Lfc.Comprobantes.Plantillas
                 private Rectangle CampoDown;
                 private bool KnobGrabbed = false;
                 private float Zoom = 100;
+                private Size TamanoPapel;
+                private PointF EscalaMm = new PointF(300f / 25.4f, 300f / 25.4f);
+                private Font FieldInfoFont = new Font("Arial", 7);
 
                 private System.Drawing.Pen LapizBordeCampos = new Pen(Color.Silver, 1);
                 private Brush BrushSeleccion = new SolidBrush(Color.FromArgb(150, SystemColors.Highlight));
                 private Brush BrushKnob = new SolidBrush(Color.FromArgb(200, Color.Black));
-                private Pen BrushKnobBorder = new Pen(Color.FromArgb(200, Color.White));
+                private Pen BrushKnobBorder = new Pen(Color.FromArgb(100, Color.White));
 
                 public Editar()
                 {
@@ -74,6 +77,9 @@ namespace Lfc.Comprobantes.Plantillas
                                 }
                                 LapizBordeCampos.Dispose();
                                 BrushSeleccion.Dispose();
+                                BrushKnob.Dispose();
+                                BrushKnobBorder.Dispose();
+                                FieldInfoFont.Dispose();
                         }
 
                         base.Dispose(disposing);
@@ -114,6 +120,7 @@ namespace Lfc.Comprobantes.Plantillas
 
                         EntradaFuenteFuenteTamano_TextChanged(this, null);
 
+                        RecalcularTamanoVistaPrevia();
                         this.MostrarListaCampos();
 
                         base.ActualizarControl();
@@ -155,28 +162,25 @@ namespace Lfc.Comprobantes.Plantillas
 
                         e.Graphics.Clear(Color.Beige);
                         e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                        e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+                        e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                         e.Graphics.PageUnit = GraphicsUnit.Document;
-                        e.Graphics.ScaleTransform(Zoom / 100F, Zoom / 100F);
+                        e.Graphics.ScaleTransform(Zoom / 100f, Zoom / 100f);
                         e.Graphics.TranslateTransform(Desplazamiento.X, Desplazamiento.Y);
 
                         PointF[] Pts = new PointF[] { new Point(1000, 1000) };
                         e.Graphics.TransformPoints(System.Drawing.Drawing2D.CoordinateSpace.Device, System.Drawing.Drawing2D.CoordinateSpace.Page, Pts);
-                        this.Escala = new PointF(1000F / Pts[0].X, 1000F / Pts[0].Y);
-
-                        PointF EscalaMm = new PointF(300F / 25.4F, 300F / 25.4F);
+                        this.Escala = new PointF(1000f / Pts[0].X, 1000f / Pts[0].Y);
 
                         if (Plantilla == null || Plantilla.Campos == null)
                                 return;
 
-                        Size TamPap = TamanoPapel(EntradaPapelTamano.TextKey);
-                        if (Plantilla.Landscape)
-                                TamPap = new Size(TamPap.Height, TamPap.Width);
-
-                        System.Drawing.RectangleF RectPagina = new System.Drawing.RectangleF(0 * EscalaMm.X, 0 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y);
-                        e.Graphics.FillRectangle(Brushes.DarkGray, new System.Drawing.RectangleF(2 * EscalaMm.X, 2 * EscalaMm.Y, TamPap.Width * EscalaMm.X, TamPap.Height * EscalaMm.Y));
-                        e.Graphics.FillRectangle(Brushes.White, RectPagina);
+                        System.Drawing.RectangleF RectPagina = new System.Drawing.RectangleF(0 * this.EscalaMm.X, 0 * this.EscalaMm.Y, TamanoPapel.Width * this.EscalaMm.X, TamanoPapel.Height * this.EscalaMm.Y);
+                        e.Graphics.FillRectangle(Brushes.DarkGray, new System.Drawing.RectangleF(2 * this.EscalaMm.X, 2 * this.EscalaMm.Y, TamanoPapel.Width * this.EscalaMm.X, TamanoPapel.Height * this.EscalaMm.Y));
                         if (Plantilla.Imagen != null)
                                 e.Graphics.DrawImage(Plantilla.Imagen, RectPagina);
+                        else
+                                e.Graphics.FillRectangle(Brushes.White, RectPagina);
 
                         foreach (Lbl.Impresion.Campo Cam in Plantilla.Campos) {
                                 Rectangle DrawRect = Cam.Rectangle;
@@ -198,10 +202,6 @@ namespace Lfc.Comprobantes.Plantillas
 
                                 if (Cam.ColorFondo != Color.Transparent)
                                         e.Graphics.FillRectangle(new SolidBrush(Cam.ColorFondo), DrawRect);
-
-                                if (Cam == CampoSeleccionado) {
-                                        e.Graphics.FillRectangle(BrushSeleccion, DrawRect);
-                                }
 
                                 System.Drawing.Font FuenteItem;
                                 if (Cam.Font != null)
@@ -244,15 +244,16 @@ namespace Lfc.Comprobantes.Plantillas
                                 e.Graphics.DrawString(Texto, FuenteItem, new SolidBrush(Cam.ColorTexto), DrawRect, StrFmt);
 
                                 if (CampoSeleccionado == Cam) {
+                                        e.Graphics.FillRectangle(BrushSeleccion, DrawRect);
+
                                         string Lbl = DrawRect.Location.ToString();
-                                        Font LblFont = new Font("Arial", 7);
-                                        RectangleF LabelRect = new RectangleF(new PointF(DrawRect.X + 10, DrawRect.Y + DrawRect.Height + 11), e.Graphics.MeasureString(Lbl, LblFont));
+                                        RectangleF LabelRect = new RectangleF(new PointF(DrawRect.X + 10, DrawRect.Y + DrawRect.Height + 11), e.Graphics.MeasureString(Lbl, FieldInfoFont));
                                         LabelRect.Inflate(10, 10);
                                         e.Graphics.FillRectangle(SystemBrushes.Info, LabelRect);
                                         StrFmt = new StringFormat(StringFormatFlags.NoClip);
                                         StrFmt.Alignment = StringAlignment.Center;
                                         StrFmt.LineAlignment = StringAlignment.Center;
-                                        e.Graphics.DrawString(Lbl, LblFont, SystemBrushes.InfoText, LabelRect, StrFmt);
+                                        e.Graphics.DrawString(Lbl, FieldInfoFont, SystemBrushes.InfoText, LabelRect, StrFmt);
 
                                         Rectangle RectKnob = new Rectangle(Cam.Rectangle.Right - KnobSize / 2, Cam.Rectangle.Bottom - KnobSize / 2, KnobSize, KnobSize);
                                         e.Graphics.FillEllipse(BrushKnob, RectKnob);
@@ -260,6 +261,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 }
                         }
                 }
+
 
                 private void ListaCampos_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
@@ -313,24 +315,23 @@ namespace Lfc.Comprobantes.Plantillas
                                 Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                                 bool Select = false;
+                                CampoSeleccionado = null;
                                 foreach (Lbl.Impresion.Campo Cam in Plantilla.Campos) {
                                         //Busco el campo del clic (según coordenadas)
-                                        if (CampoSeleccionadoOriginal != Cam) {
-                                                if (Cam.Valor == null || Cam.Valor.Length == 0 && Cam.AnchoBorde > 0) {
-                                                        //En el caso particular de los rectángulos con borde y sin texto, tiene que hacer clic en el contorno
-                                                        if ((MyButtonDown.X >= (Cam.Rectangle.Left - 5) && (MyButtonDown.X <= (Cam.Rectangle.Left + 5)) ||
-                                                                MyButtonDown.X >= (Cam.Rectangle.Right - 5) && (MyButtonDown.X <= (Cam.Rectangle.Right + 5)) ||
-                                                                MyButtonDown.Y >= (Cam.Rectangle.Top - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Top + 5)) ||
-                                                                MyButtonDown.Y >= (Cam.Rectangle.Bottom - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Bottom + 5))))
-                                                                Select = true;
-                                                        else
-                                                                Select = false;
-                                                        KnobGrabbed = false;
-                                                } else if (Cam.Rectangle.Contains(MyButtonDown)) {
-                                                        //El resto de los campos, se seleccionan haciendo clic en cualquier parte del rectángulo
+                                        if (Cam.Valor == null || Cam.Valor.Length == 0 && Cam.AnchoBorde > 0) {
+                                                //En el caso particular de los rectángulos con borde y sin texto, tiene que hacer clic en el contorno
+                                                if ((MyButtonDown.X >= (Cam.Rectangle.Left - 5) && (MyButtonDown.X <= (Cam.Rectangle.Left + 5)) ||
+                                                        MyButtonDown.X >= (Cam.Rectangle.Right - 5) && (MyButtonDown.X <= (Cam.Rectangle.Right + 5)) ||
+                                                        MyButtonDown.Y >= (Cam.Rectangle.Top - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Top + 5)) ||
+                                                        MyButtonDown.Y >= (Cam.Rectangle.Bottom - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Bottom + 5))))
                                                         Select = true;
-                                                        KnobGrabbed = false;
-                                                }
+                                                else
+                                                        Select = false;
+                                                KnobGrabbed = false;
+                                        } else if (Cam.Rectangle.Contains(MyButtonDown)) {
+                                                //El resto de los campos, se seleccionan haciendo clic en cualquier parte del rectángulo
+                                                Select = true;
+                                                KnobGrabbed = false;
                                         }
 
                                         if (Select) {
@@ -339,17 +340,15 @@ namespace Lfc.Comprobantes.Plantillas
                                                 CampoSeleccionado = Cam;
                                                 this.SeleccionarCampo(Cam);
                                                 break;
-                                        } else {
-                                                while (ListaCampos.SelectedItems.Count > 0) {
-                                                        ListaCampos.SelectedItems[0].Selected = false;
-                                                }
                                         }
                                 }
 
-                                if (CampoSeleccionado == null)
-                                        CampoSeleccionado = CampoSeleccionadoOriginal;
+                                //if (CampoSeleccionado == null)
+                                //        CampoSeleccionado = CampoSeleccionadoOriginal;
 
-                                if (CampoSeleccionado != null)
+                                if (CampoSeleccionado == null)
+                                        this.SeleccionarCampo(null);
+                                else
                                         CampoDown = CampoSeleccionado.Rectangle;
                         }
                 }
@@ -390,10 +389,11 @@ namespace Lfc.Comprobantes.Plantillas
 
                         Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
                         Plantilla.Landscape = EntradaLandscape.TextKey == "1";
-                        ImagePreview.Invalidate();
+
+                        RecalcularTamanoVistaPrevia();
                 }
 
-                private static System.Drawing.Size TamanoPapel(string tipoPapel)
+                private static System.Drawing.Size ObtenerTamanoPapel(string tipoPapel)
                 {
                         switch (tipoPapel.ToLower()) {
                                 case "a4":
@@ -414,81 +414,27 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void ListaCampos_DoubleClick(object sender, System.EventArgs e)
                 {
+                        EditarCampoSeleccionado();
+                }
+
+
+                private void ImagePreview_DoubleClick(object sender, System.EventArgs e)
+                {
+                        EditarCampoSeleccionado();
+                }
+
+
+                private void EditarCampoSeleccionado()
+                {
                         if (CampoSeleccionado != null) {
-                                EditarCampo FormEditarCampo = new EditarCampo();
-                                FormEditarCampo.EntradaTexto.Text = CampoSeleccionado.Valor;
-                                if (CampoSeleccionado.Formato == null || CampoSeleccionado.Formato.Length == 0)
-                                        FormEditarCampo.EntradaFormato.TextKey = "*";
-                                else
-                                        FormEditarCampo.EntradaFormato.TextKey = CampoSeleccionado.Formato;
-                                FormEditarCampo.EntradaX.ValueInt = CampoSeleccionado.Rectangle.X;
-                                FormEditarCampo.EntradaY.ValueInt = CampoSeleccionado.Rectangle.Y;
-                                FormEditarCampo.EntradaAncho.ValueInt = CampoSeleccionado.Rectangle.Width;
-                                FormEditarCampo.EntradaAlto.ValueInt = CampoSeleccionado.Rectangle.Height;
-                                FormEditarCampo.EntradaAlienacionHorizontal.TextKey = CampoSeleccionado.Alignment.ToString();
-                                FormEditarCampo.EntradaAlienacionVertical.TextKey = CampoSeleccionado.LineAlignment.ToString();
-                                FormEditarCampo.EntradaAjusteTexto.TextKey = CampoSeleccionado.Wrap ? "1" : "0";
-                                FormEditarCampo.EntradaAnchoBorde.ValueInt = CampoSeleccionado.AnchoBorde;
-                                FormEditarCampo.ColorBorde.BackColor = CampoSeleccionado.ColorBorde;
-                                FormEditarCampo.ColorFondo.BackColor = CampoSeleccionado.ColorFondo;
-                                FormEditarCampo.ColorTexto.BackColor = CampoSeleccionado.ColorTexto;
-                                if (CampoSeleccionado.Font != null) {
-                                        FormEditarCampo.EntradaFuenteNombre.TextKey = CampoSeleccionado.Font.Name;
-                                        FormEditarCampo.EntradaFuenteTamano.Text = CampoSeleccionado.Font.Size.ToString("#.00");
-                                } else {
-                                        FormEditarCampo.EntradaFuenteNombre.TextKey = "*";
-                                        FormEditarCampo.EntradaFuenteTamano.ValueDecimal = 10;
-                                }
+                                EditarCampo FormEditarCampo = new EditarCampo(CampoSeleccionado);
                                 if (FormEditarCampo.ShowDialog() == DialogResult.OK) {
-                                        if (FormEditarCampo.EntradaFormato.TextKey == "*")
-                                                CampoSeleccionado.Formato = null;
-                                        else
-                                                CampoSeleccionado.Formato = FormEditarCampo.EntradaFormato.TextKey;
-                                        CampoSeleccionado.Rectangle = new Rectangle(FormEditarCampo.EntradaX.ValueInt, FormEditarCampo.EntradaY.ValueInt, FormEditarCampo.EntradaAncho.ValueInt, FormEditarCampo.EntradaAlto.ValueInt);
-                                        CampoSeleccionado.Valor = FormEditarCampo.EntradaTexto.Text;
-                                        CampoSeleccionado.AnchoBorde = Lfx.Types.Parsing.ParseInt(FormEditarCampo.EntradaAnchoBorde.Text);
-                                        CampoSeleccionado.ColorBorde = FormEditarCampo.ColorBorde.BackColor;
-                                        CampoSeleccionado.ColorFondo = FormEditarCampo.ColorFondo.BackColor;
-                                        CampoSeleccionado.ColorTexto = FormEditarCampo.ColorTexto.BackColor;
-                                        if (FormEditarCampo.EntradaFuenteNombre.TextKey != "*" && FormEditarCampo.EntradaFuenteTamano.ValueDecimal > 1) {
-                                                CampoSeleccionado.Font = new Font(FormEditarCampo.EntradaFuenteNombre.TextKey, ((float)(FormEditarCampo.EntradaFuenteTamano.ValueDecimal)));
-                                        } else {
-                                                CampoSeleccionado.Font = null;
-                                        }
-                                        switch (FormEditarCampo.EntradaAlienacionHorizontal.TextKey) {
-                                                case "Far":
-                                                        CampoSeleccionado.Alignment = StringAlignment.Far;
-                                                        break;
-                                                case "Center":
-                                                        CampoSeleccionado.Alignment = StringAlignment.Center;
-                                                        break;
-                                                default:
-                                                        CampoSeleccionado.Alignment = StringAlignment.Near;
-                                                        break;
-                                        }
-                                        switch (FormEditarCampo.EntradaAlienacionVertical.TextKey) {
-                                                case "Far":
-                                                        CampoSeleccionado.LineAlignment = StringAlignment.Far;
-                                                        break;
-                                                case "Center":
-                                                        CampoSeleccionado.LineAlignment = StringAlignment.Center;
-                                                        break;
-                                                default:
-                                                        CampoSeleccionado.LineAlignment = StringAlignment.Near;
-                                                        break;
-                                        }
-                                        CampoSeleccionado.Wrap = FormEditarCampo.EntradaAjusteTexto.TextKey == "1";
                                         this.ActualizarCampos();
                                         ImagePreview.Invalidate();
                                 }
                         }
                 }
 
-
-                private void ImagenPreview_DoubleClick(object sender, System.EventArgs e)
-                {
-                        ListaCampos_DoubleClick(sender, e);
-                }
 
                 private void BotonAgregar_Click(object sender, EventArgs e)
                 {
@@ -577,6 +523,20 @@ namespace Lfc.Comprobantes.Plantillas
                 private void ZoomBar_Scroll(object sender, EventArgs e)
                 {
                         this.Zoom = ZoomBar.Value;
+                        RecalcularTamanoVistaPrevia();
+                }
+
+                public void RecalcularTamanoVistaPrevia()
+                {
+                        Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
+
+                        if (Plantilla == null)
+                                return;
+
+                        TamanoPapel = ObtenerTamanoPapel(Plantilla.TamanoPapel);
+                        if (Plantilla.Landscape)
+                                TamanoPapel = new Size(TamanoPapel.Height, TamanoPapel.Width);
+
                         ImagePreview.Invalidate();
                 }
 
@@ -672,6 +632,18 @@ namespace Lfc.Comprobantes.Plantillas
                                 default:
                                         return base.PerformFormAction(name);
                         }
+                }
+
+                private void BotonGeneral_Click(object sender, EventArgs e)
+                {
+                        PanelGeneral.Visible = true;
+                        PanelDiseno.Visible = false;
+                }
+
+                private void BotonDiseno_Click(object sender, EventArgs e)
+                {
+                        PanelGeneral.Visible = false;
+                        PanelDiseno.Visible = true;
                 }
         }
 }

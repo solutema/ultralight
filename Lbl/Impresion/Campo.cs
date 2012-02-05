@@ -44,7 +44,7 @@ namespace Lbl.Impresion
                 public string Valor { get; set; }
                 public string Formato { get; set; }
                 public int AnchoBorde { get; set; }
-                public Color ColorTexto = Color.Black, ColorFondo = Color.Transparent, ColorBorde = Color.Transparent;
+                public Color ColorTexto = Color.Black, ColorFondo = Color.Transparent, ColorBorde = Color.Gray;
                 public Rectangle Rectangle;
                 public Font Font { get; set; }
                 public StringAlignment Alignment = StringAlignment.Near;
