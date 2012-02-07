@@ -77,17 +77,8 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // Inicio
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(792, 472);
-                        this.Controls.Add(this.DepositarPagar);
+                        this.PanelAcciones.Controls.Add(this.DepositarPagar);
                         this.Name = "Listado de Cheques";
-                        this.Controls.SetChildIndex(this.EtiquetaCantidad, 0);
-                        this.Controls.SetChildIndex(this.BotonCrear, 0);
-                        this.Controls.SetChildIndex(this.BotonCancelar, 0);
-                        this.Controls.SetChildIndex(this.BotonFiltrar, 0);
-                        this.Controls.SetChildIndex(this.BotonImprimir, 0);
-                        this.Controls.SetChildIndex(this.DepositarPagar, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
                         this.ResumeLayout(false);
 
                 }

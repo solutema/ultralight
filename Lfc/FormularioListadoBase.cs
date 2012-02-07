@@ -557,7 +557,7 @@ namespace Lfc
 
                 protected void UpdateFormFields()
                 {
-                        if (this.Connection != null && this.Definicion.Columns != null) {
+                        if (this.Connection != null && this.Definicion != null && this.Definicion.Columns != null) {
                                 SubItemToFormField.Clear();
                                 FormFieldToSubItem.Clear();
 
@@ -642,7 +642,7 @@ namespace Lfc
 
                 protected qGen.Select SelectCommand(bool forCount)
                 {
-                        if (this.Connection != null && this.Definicion.TableName != null) {
+                        if (this.Connection != null && this.Definicion != null && this.Definicion.TableName != null) {
                                 qGen.Select ComandoSelect = new qGen.Select(this.Connection.SqlMode);
 
                                 // Genero la lista de tablas, con JOIN y todo

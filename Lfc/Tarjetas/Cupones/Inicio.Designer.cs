@@ -96,22 +96,12 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // Inicio
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(1284, 480);
-                        this.Controls.Add(this.BotonPresentar);
-                        this.Controls.Add(this.BotonAnular);
-                        this.Controls.Add(this.BotonAcreditar);
+                        this.PanelAcciones.Controls.Add(this.BotonPresentar);
+                        this.PanelAcciones.Controls.Add(this.BotonAnular);
+                        this.PanelAcciones.Controls.Add(this.BotonAcreditar);
                         this.Name = "Inicio";
                         this.Text = "Cobros con Cupón";
                         this.Controls.SetChildIndex(this.EtiquetaCantidad, 0);
-                        this.Controls.SetChildIndex(this.BotonCrear, 0);
-                        this.Controls.SetChildIndex(this.BotonCancelar, 0);
-                        this.Controls.SetChildIndex(this.BotonFiltrar, 0);
-                        this.Controls.SetChildIndex(this.BotonImprimir, 0);
-                        this.Controls.SetChildIndex(this.BotonAcreditar, 0);
-                        this.Controls.SetChildIndex(this.BotonAnular, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.BotonPresentar, 0);
                         this.ResumeLayout(false);
 
                 }

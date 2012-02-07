@@ -180,9 +180,7 @@ namespace Lui.Forms
                         this.Name = "Calendar";
                         this.Size = new System.Drawing.Size(236, 212);
                         this.ResumeLayout(false);
-
                         base.Resize += new System.EventHandler(Calendar_Resize);
-                        base.KeyDown += new System.Windows.Forms.KeyEventHandler(Calendar_KeyDown);
                 }
 
 

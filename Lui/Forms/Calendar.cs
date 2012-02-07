@@ -261,38 +261,49 @@ namespace Lui.Forms
                         }
                 }
 
-                private void Calendar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+
+                protected override void OnKeyDown(KeyEventArgs e)
                 {
                         switch (e.KeyCode) {
                                 case Keys.Up:
                                         this.CurrentDate = m_CurrentDate.AddDays(-7);
+                                        e.Handled = true;
                                         break;
                                 case Keys.Down:
                                         this.CurrentDate = m_CurrentDate.AddDays(7);
+                                        e.Handled = true;
                                         break;
                                 case Keys.Left:
                                         this.CurrentDate = m_CurrentDate.AddDays(-1);
+                                        e.Handled = true;
                                         break;
                                 case Keys.Right:
                                         this.CurrentDate = m_CurrentDate.AddDays(1);
+                                        e.Handled = true;
                                         break;
                                 case Keys.PageUp:
                                         this.CurrentDate = m_CurrentDate.AddMonths(-1);
+                                        e.Handled = true;
                                         break;
                                 case Keys.PageDown:
                                         this.CurrentDate = m_CurrentDate.AddMonths(1);
+                                        e.Handled = true;
                                         break;
                                 case Keys.Space:
-                                        if (m_MultiSelect)
+                                        if (m_MultiSelect) {
                                                 InvertSelectedState(m_CurrentDate);
-                                        MostrarCalendario();
+                                                MostrarCalendario();
+                                                e.Handled = true;
+                                        }
                                         break;
                                 case Keys.Return:
                                         e.Handled = true;
                                         System.Windows.Forms.SendKeys.Send("{tab}");
                                         break;
                         }
+                        base.OnKeyDown(e);
                 }
+
 
                 public void InvertSelectedState(DateTime fecha)
                 {

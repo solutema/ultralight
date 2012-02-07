@@ -105,8 +105,7 @@ namespace Lcc.Entrada
                                                                 this.Changed = true;
                                                         }
 
-                                                        // No puedo cerrar el archivo ahora... lo hago en Dispose()
-                                                        //Arch.Close();
+                                                        this.ActualizarElemento();
                                                 }
                                         }
                                 }
@@ -127,20 +126,21 @@ namespace Lcc.Entrada
 
                                 if (WiaImage != null) {
                                         WIA.Vector vector = WiaImage.FileData;
-                                        Entrada.AuxForms.ImagenRecorte Recorte = new Entrada.AuxForms.ImagenRecorte();
-                                        Recorte.Imagen = System.Drawing.Image.FromStream(new System.IO.MemoryStream((byte[])vector.get_BinaryData()));
-                                        if (Recorte.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                                                EntradaImagen.Image = Recorte.Imagen;
-                                                this.Changed = true;
+                                        using (Entrada.AuxForms.ImagenRecorte Recorte = new Entrada.AuxForms.ImagenRecorte()) {
+                                                Recorte.Imagen = System.Drawing.Image.FromStream(new System.IO.MemoryStream((byte[])vector.get_BinaryData()));
+                                                if (Recorte.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                                                        EntradaImagen.Image = Recorte.Imagen;
+                                                        this.Changed = true;
+                                                }
                                         }
-                                        Recorte.Dispose();
+                                        this.ActualizarElemento();
                                 }
                         } catch (Exception ex) {
                                 Lui.Forms.MessageBox.Show("No se puede conectar con el dispositivo de captura. " + ex.Message, "Error");
                         }
                 }
 
-                private void guardarEnarchivoToolStripMenuItem_Click(object sender, EventArgs e)
+                private void GuardarEnarchivoToolStripMenuItem_Click(object sender, EventArgs e)
                 {
                         System.Windows.Forms.SaveFileDialog DialogoGuardar = new System.Windows.Forms.SaveFileDialog();
                         DialogoGuardar.DefaultExt = ".jpg";

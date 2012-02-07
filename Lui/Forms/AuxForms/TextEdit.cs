@@ -70,7 +70,6 @@ namespace Lui.Forms.AuxForms
                         {
                                 EntradaTexto.TemporaryReadOnly = value;
                                 this.OkButton.Visible = !value;
-                                this.ReadOnly = value;
                         }
                 }
 	}

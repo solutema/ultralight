@@ -99,7 +99,7 @@ namespace Lcc.Entrada
                         this.guardarEnarchivoToolStripMenuItem.Name = "guardarEnarchivoToolStripMenuItem";
                         this.guardarEnarchivoToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
                         this.guardarEnarchivoToolStripMenuItem.Text = "Guardar en &archivo...";
-                        this.guardarEnarchivoToolStripMenuItem.Click += new System.EventHandler(this.guardarEnarchivoToolStripMenuItem_Click);
+                        this.guardarEnarchivoToolStripMenuItem.Click += new System.EventHandler(this.GuardarEnarchivoToolStripMenuItem_Click);
                         // 
                         // copiarAlPortapapelesToolStripMenuItem
                         // 
