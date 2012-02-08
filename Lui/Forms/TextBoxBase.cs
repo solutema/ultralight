@@ -225,13 +225,13 @@ namespace Lui.Forms
 
                 private void TextBoxBase_GotFocus(object sender, System.EventArgs e)
                 {
-                        TextBox1.Select();
+                        TextBox1.Focus();
                 }
 
 
                 private void TextBoxBase_Enter(object sender, System.EventArgs e)
                 {
-                        TextBox1.Select();
+                        TextBox1.Focus();
                 }
 
 

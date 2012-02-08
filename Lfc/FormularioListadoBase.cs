@@ -47,7 +47,7 @@ namespace Lfc
 
                 protected Dictionary<string, int> FormFieldToSubItem = new Dictionary<string, int>();
                 protected Dictionary<string, int> SubItemToFormField = new Dictionary<string, int>();
-                protected int m_Limit = 5000;
+                protected int m_Limit = 2000;
                 protected qGen.Where m_CustomFilters = new qGen.Where();
 
                 // Grouping
@@ -1254,9 +1254,8 @@ namespace Lfc
                                         this.Text = "Listado de " + Attr.NombrePlural;
                         }
 
-                        // Sólo refresco si no hay filtros y cuando son pocos elementos
-                        // if (this.Visible && this.Listado.Items.Count < 500 && (this.Connection.SlowLink == false || this.Listado.Items.Count == 0))
-                        //        RefreshTimer.Start();
+                        if (this.Visible && (this.Connection.SlowLink == false || this.Listado.Items.Count < 500))
+                                RefreshTimer.Start();
 
                         base.OnActivated(e);
                 }

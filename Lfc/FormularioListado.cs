@@ -202,6 +202,8 @@ namespace Lfc
                         switch (e.KeyCode) {
                                 case Keys.Return:
                                         e.Handled = true;
+                                        // Fuerzo volver a cargar el listado
+                                        this.SearchText = null;
                                         this.Search(EntradaBuscar.Text);
                                         break;
                         }
