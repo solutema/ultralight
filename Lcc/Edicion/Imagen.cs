@@ -157,9 +157,13 @@ namespace Lcc.Entrada
                         }
                 }
 
-                private void copiarAlPortapapelesToolStripMenuItem_Click(object sender, EventArgs e)
+                private void CopiarAlPortapapelesToolStripMenuItem_Click(object sender, EventArgs e)
                 {
-                        System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.Bitmap, EntradaImagen.Image);
+                        try {
+                                System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.Bitmap, EntradaImagen.Image);
+                        } catch {
+                                // Nada
+                        }
                 }
         }
 }

@@ -88,6 +88,7 @@ namespace Lfc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.FullRowSelect = true;
+                        this.Listado.HideSelection = false;
                         this.Listado.Location = new System.Drawing.Point(224, 0);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
@@ -151,12 +152,13 @@ namespace Lfc
                         // 
                         // EtiquetaCantidad
                         // 
-                        this.EtiquetaCantidad.Location = new System.Drawing.Point(32, 208);
+                        this.EtiquetaCantidad.AutoEllipsis = true;
+                        this.EtiquetaCantidad.Location = new System.Drawing.Point(32, 192);
                         this.EtiquetaCantidad.Name = "EtiquetaCantidad";
-                        this.EtiquetaCantidad.Size = new System.Drawing.Size(184, 24);
+                        this.EtiquetaCantidad.Size = new System.Drawing.Size(184, 40);
                         this.EtiquetaCantidad.TabIndex = 59;
                         this.EtiquetaCantidad.Text = "Cargando...";
-                        this.EtiquetaCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaCantidad.UseMnemonic = false;
                         // 
                         // BotonImprimir
                         // 
@@ -223,7 +225,7 @@ namespace Lfc
                         this.PanelContadores.Controls.Add(this.EntradaContador2);
                         this.PanelContadores.Controls.Add(this.EtiquetaContador1);
                         this.PanelContadores.Controls.Add(this.EtiquetaContador2);
-                        this.PanelContadores.Location = new System.Drawing.Point(8, 88);
+                        this.PanelContadores.Location = new System.Drawing.Point(8, 72);
                         this.PanelContadores.Name = "PanelContadores";
                         this.PanelContadores.Size = new System.Drawing.Size(208, 108);
                         this.PanelContadores.TabIndex = 67;
@@ -286,7 +288,7 @@ namespace Lfc
                         // PicEsperar
                         // 
                         this.PicEsperar.Image = global::Lfc.Properties.Resources.ajax_loader;
-                        this.PicEsperar.Location = new System.Drawing.Point(8, 212);
+                        this.PicEsperar.Location = new System.Drawing.Point(8, 196);
                         this.PicEsperar.Name = "PicEsperar";
                         this.PicEsperar.Size = new System.Drawing.Size(16, 16);
                         this.PicEsperar.TabIndex = 68;

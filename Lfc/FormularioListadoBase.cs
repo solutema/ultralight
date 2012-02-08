@@ -40,7 +40,7 @@ namespace Lfc
         public partial class FormularioListadoBase : Lui.Forms.ChildForm
         {
                 // Miembros privados
-                protected string m_SearchText = null;
+                protected string m_SearchText = string.Empty;
 
                 // La definición del listado
                 public Lazaro.Pres.Listings.Listing Definicion = null;
@@ -60,6 +60,8 @@ namespace Lfc
                 protected string m_LabelField = null;
 
                 public List<Contador> Contadores = new List<Contador>();
+
+                private Dictionary<int, ListViewItem> ItemListado = new Dictionary<int, ListViewItem>();
 
                 public FormularioListadoBase()
                 {
@@ -179,18 +181,17 @@ namespace Lfc
                         }
                         set
                         {
-                                if (value == "")
-                                        m_SearchText = null;
-                                else
-                                        m_SearchText = value;
+                                m_SearchText = value;
                         }
                 }
 
 
-                public void Search(string text)
+                public virtual void Search(string text)
                 {
-                        this.SearchText = text;
-                        this.RefreshList();
+                        if (this.SearchText != text) {
+                                this.SearchText = text;
+                                this.RefreshList();
+                        }
                 }
 
 
@@ -278,6 +279,10 @@ namespace Lfc
                 {
                         if (e.Control == true & e.Alt == false & e.Shift == false) {
                                 switch (e.KeyCode) {
+                                        case Keys.Space:
+                                                e.Handled = true;
+                                                this.RefreshList();
+                                                break;
                                         case Keys.U:
                                                 e.Handled = true;
                                                 foreach (Lazaro.Pres.Field Fld in this.Definicion.Columns) {
@@ -564,7 +569,7 @@ namespace Lfc
                                 Listado.BeginUpdate();
                                 Listado.SuspendLayout();
 
-                                Listado.Items.Clear();
+                                //Listado.Items.Clear();
                                 Listado.Groups.Clear();
 
                                 int ColNum = 0;
@@ -630,7 +635,8 @@ namespace Lfc
 
                         LastGroup = null;
 
-                        this.UpdateFormFields();
+                        if (Listado.Columns.Count <= 1)
+                                this.UpdateFormFields();
                         this.LoadColumns();
                         this.OnBeginRefreshList();
 
@@ -674,7 +680,7 @@ namespace Lfc
                                 qGen.Where WhereBuscarTexto = new qGen.Where();
                                 WhereBuscarTexto.Operator = qGen.AndOr.Or;
 
-                                if (this.SearchText != null) {
+                                if (this.SearchText != string.Empty) {
                                         bool EsNumero = this.SearchText.IsNumericInt() || this.SearchText.IsNumericFloat();
                                         if (this.SearchText.IsNumericInt())
                                                 WhereBuscarTexto.AddWithValue(this.Definicion.KeyColumnName.MemberName, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
@@ -796,11 +802,6 @@ namespace Lfc
                         if (this.Connection == null || command == null)
                                 return;
 
-                        System.Data.DataTable Tabla = this.Connection.Select(command);
-
-                        ListViewItem CurItem = null;
-                        Lbl.ListaIds CheckedItems = null;
-
                         if (command.Window == null) {
                                 if (Lfx.Workspace.Master.SlowLink)
                                         command.Window = new qGen.Window(1000 > m_Limit ? 1000 : m_Limit);
@@ -810,46 +811,60 @@ namespace Lfc
                                         command.Window = null;
                         }
 
+                        System.Data.DataTable Tabla = this.Connection.Select(command);
+
+                        ListViewItem CurItem = null;
+
                         if (Listado.SelectedItems.Count > 0)
                                 CurItem = (ListViewItem)Listado.SelectedItems[0].Clone();
                         else
                                 CurItem = null;
 
-                        if (Listado.CheckedItems != null && Listado.CheckedItems.Count > 0) {
-                                CheckedItems = new Lbl.ListaIds();
-                                foreach (ListViewItem Itm in Listado.CheckedItems) {
-                                        CheckedItems.Add(Lfx.Types.Parsing.ParseInt(Itm.Text));
-                                }
+                        if (ItemListado.Count > 0) {
+                                EtiquetaCantidad.Text = "Actualizando...";
+                        } else {
+                                Listado.Items.Clear();
+                                EtiquetaCantidad.Text = "Cargando...";
                         }
-
-                        EtiquetaCantidad.Text = "Cargando...";
                         PicEsperar.Visible = true;
                         EtiquetaCantidad.Refresh();
                         PicEsperar.Refresh();
 
                         Listado.SuspendLayout();
                         Listado.BeginUpdate();
-                        Listado.Items.Clear();
+
+                        foreach (ListViewItem Itm in ItemListado.Values) {
+                                Itm.Tag = null;
+                        }
 
                         if (Tabla != null && Tabla.Rows.Count > 0) {
+                                int FillCount = 0;
                                 foreach (System.Data.DataRow DtRow in Tabla.Rows) {
                                         Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
 
                                         string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.MemberName);
                                         int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
-                                        ListViewItem Itm = this.FormatListViewItem(ItemId, Registro);
+                                        ListViewItem Itm;
+                                        string ItemKey = ItemId.ToString();
+                                        if (ItemListado.ContainsKey(ItemId)) {
+                                                Itm = this.FormatListViewItem(ItemListado[ItemId], ItemId, Registro);
+                                        } else {
+                                                Itm = this.FormatListViewItem(new ListViewItem(ItemKey), ItemId, Registro);
+                                                ItemListado.Add(ItemId, Itm);
+                                                Listado.Items.Add(Itm);
+                                        }
 
-                                        if (CheckedItems != null && CheckedItems.Contains(ItemId))
-                                                Itm.Checked = true;
+                                        Itm.Tag = Registro;
 
                                         if (CancelFill) {
-                                                Listado.EndUpdate();
-                                                Listado.ResumeLayout();
+                                                if (Listado.Created) {
+                                                        Listado.EndUpdate();
+                                                        Listado.ResumeLayout();
+                                                }
                                                 return;
                                         }
 
-                                        Listado.Items.Add(Itm);
                                         // Agrego el item a un grupo, si hay agrupación activa
                                         if (m_GroupingColumnName != null) {
                                                 string FormattedGroupingValue = this.FormatValue(Registro[m_GroupingColumnName], this.Definicion.Columns[m_GroupingColumnName]);
@@ -862,22 +877,39 @@ namespace Lfc
                                                 }
                                         }
                                         Itm.Group = LastGroup;
-                                        Itm.Tag = Registro;
-
+                                        
                                         OnItemAdded(Itm, Registro);
+                                        
                                         if (CurItem != null && Itm.Text == CurItem.Text)
                                                 CurItem = Itm;
 
-                                        if ((Listado.Items.Count % 100) == 0) {
+                                        if ((++FillCount % 100) == 0) {
                                                 // Cuando ya tengo algunos como para mostrar, actualizo el listview
                                                 // así parece que el listado ya cargó, cuando en realidad sigue cargando
-                                                EtiquetaCantidad.Text = "Cargando " + Listado.Items.Count.ToString() + " elementos";
-                                                Listado.EndUpdate();
-                                                System.Windows.Forms.Application.DoEvents();
-                                                Listado.BeginUpdate();
-                                                Listado.SuspendLayout();
+                                                double Pct = Math.Round(FillCount * 100D / Tabla.Rows.Count);
+                                                if (ItemListado.Count > 0) {
+                                                        EtiquetaCantidad.Text = "Actualizando, " + Pct.ToString() + "%";
+                                                        System.Windows.Forms.Application.DoEvents();
+                                                } else {
+                                                        EtiquetaCantidad.Text = "Cargando, " + Pct.ToString() + "%";
+                                                        Listado.EndUpdate();
+                                                        System.Windows.Forms.Application.DoEvents();
+                                                        Listado.BeginUpdate();
+                                                        Listado.SuspendLayout();
+                                                }
                                         }
                                 }
+                        }
+
+                        List<int> ItemQueYaNoExisten = new List<int>();
+                        foreach (ListViewItem Itm in Listado.Items) {
+                                if (Itm.Tag == null)
+                                        ItemQueYaNoExisten.Add(int.Parse(Itm.Text));
+                        }
+
+                        foreach (int ItmId in ItemQueYaNoExisten) {
+                                ItemListado[ItmId].Remove();
+                                ItemListado.Remove(ItmId);
                         }
 
                         if (Listado.Items.Count > 0 && Listado.SelectedItems.Count == 0) {
@@ -885,10 +917,13 @@ namespace Lfc
                                 Listado.Items[0].Selected = true;
                         }
 
-                        if (Listado.Items.Count == m_Limit)
-                                EtiquetaCantidad.Text = "";
-                        else
+                        if (Listado.Items.Count == m_Limit) {
+                                EtiquetaCantidad.Text = "Mostrando sólo los primeros " + m_Limit.ToString() + " elementos";
+                                EtiquetaCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        } else {
                                 EtiquetaCantidad.Text = Listado.Items.Count.ToString() + " elementos";
+                                EtiquetaCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        }
                         PicEsperar.Visible = false;
 
                         // Muestro los totales de grupo
@@ -1029,10 +1064,8 @@ namespace Lfc
                 }
 
 
-                private ListViewItem FormatListViewItem(int itemId, Lfx.Data.Row row)
+                private ListViewItem FormatListViewItem(ListViewItem itm, int itemId, Lfx.Data.Row row)
                 {
-                        ListViewItem Itm = new ListViewItem(itemId.ToString("000000"));
-
                         for (int ColNum = 1; ColNum < Listado.Columns.Count; ColNum++) {
                                 string FieldName = Listado.Columns[ColNum].Name;
 
@@ -1054,13 +1087,19 @@ namespace Lfc
                                 FieldValueAsText = this.FormatValue(row[RowField], this.Definicion.Columns[FieldNum]);
 
                                 if (FieldNum == -1) {
-                                        Itm.Text = FieldValueAsText;
+                                        itm.Text = FieldValueAsText;
                                 } else {
-                                        ListViewItem.ListViewSubItem SubItm = Itm.SubItems.Add(FieldValueAsText);
-                                        SubItm.Name = FieldName;
+                                        ListViewItem.ListViewSubItem SubItm;
+                                        if (itm.SubItems.Count - 1 < ColNum) {
+                                                SubItm = itm.SubItems.Add(FieldValueAsText);
+                                                SubItm.Name = FieldName;
+                                        } else {
+                                                SubItm = itm.SubItems[ColNum];
+                                                SubItm.Text = FieldValueAsText;
+                                        }
                                 }
                         }
-                        return Itm;
+                        return itm;
                 }
 
 

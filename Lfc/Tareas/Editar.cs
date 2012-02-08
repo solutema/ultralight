@@ -101,27 +101,17 @@ namespace Lfc.Tareas
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {
-                        Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
+                        if (EntradaAsunto.Text.Length == 0) 
+                                return new Lfx.Types.FailureOperationResult("Debe escribir el nombre de la tarea.");
 
-                        if (EntradaAsunto.Text.Length == 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Debe escribir el Nombre de la Tarea." + Environment.NewLine;
-                        }
+                        if (EntradaTecnico.Elemento == null)
+                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el Encargado.");
 
-                        if (EntradaTecnico.Elemento == null) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Debe seleccionar el Encargado." + Environment.NewLine;
-                        }
+                        if (EntradaCliente.Elemento == null)
+                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el Cliente.");
 
-                        if (EntradaCliente.Elemento == null) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Debe seleccionar el Cliente." + Environment.NewLine;
-                        }
-
-                        if (EntradaTarea.Elemento == null) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Debe seleccionar el tipo de Tarea." + Environment.NewLine;
-                        }
+                        if (EntradaTarea.Elemento == null)
+                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el tipo de Tarea.");
 
                         return base.ValidarControl(); ;
                 }

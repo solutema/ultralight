@@ -50,18 +50,13 @@ namespace Lfc.Personas
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {
-                        Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
-
-                        if (EntradaTipo.TextInt <= 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Seleccione el tipo de cliente" + Environment.NewLine;
-                        }
+                        if (EntradaTipo.TextInt <= 0)
+                                return new Lfx.Types.FailureOperationResult("Seleccione el tipo de cliente");
 
                         Lbl.Personas.Persona Cliente = this.Elemento as Lbl.Personas.Persona;
 
                         if (EntradaRazonSocial.Text.Length == 0 && EntradaNombre.Text.Length == 0 && EntradaApellido.Text.Length == 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Escriba el Nombre y el Apellido o la Razón Social" + Environment.NewLine;
+                                return new Lfx.Types.FailureOperationResult("Escriba el nombre y el apellido o la razón social");
                         } else {
                                 //Busco un cliente con datos similares
                                 Lfx.Data.Row ClienteDup = null;
@@ -134,8 +129,7 @@ namespace Lfc.Personas
                         switch (Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre) {
                                 case "CBU":
                                         if (EntradaClaveBancaria.Text.Length > 0 && Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {
-                                                validarReturn.Success = false;
-                                                validarReturn.Message += "La CBU es incorrecta." + Environment.NewLine;
+                                                return new Lfx.Types.FailureOperationResult("La CBU es incorrecta.");
                                         }
                                         break;
                         }
@@ -144,8 +138,7 @@ namespace Lfc.Personas
                                 case "CUIT":
                                         if (EntradaClaveTributaria.Text.Length > 0) {
                                                 if (EntradaSituacion.TextInt == 1) {
-                                                        validarReturn.Success = false;
-                                                        validarReturn.Message += @"Un Cliente con CUIT no debe estar en Situación de ""Consumidor Final""." + Environment.NewLine;
+                                                        return new Lfx.Types.FailureOperationResult(@"Un Cliente con CUIT no debe estar en Situación de ""Consumidor Final"".");
                                                 }
                                                 if (System.Text.RegularExpressions.Regex.IsMatch(EntradaClaveTributaria.Text, @"^\d{11}$")) {
                                                         EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
@@ -156,8 +149,7 @@ namespace Lfc.Personas
                                                         EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
 
                                                 if (Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text) == false) {
-                                                        validarReturn.Success = false;
-                                                        validarReturn.Message += "La CUIT no es correcta." + Environment.NewLine + "El sistema le permite dejar la CUIT en blanco, pero no aceptará una incorrecta." + Environment.NewLine;
+                                                        return new Lfx.Types.FailureOperationResult("La CUIT no es correcta." + Environment.NewLine + "El sistema le permite dejar la CUIT en blanco, pero no aceptará una incorrecta.");
                                                 }
                                         }
                                         break;
@@ -170,14 +162,13 @@ namespace Lfc.Personas
                                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa clave tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "Clave tributaria duplicada");
                                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                 if (Pregunta.ShowDialog() != DialogResult.OK) {
-                                                        validarReturn.Success = false;
-                                                        validarReturn.Message += "Cambie la Clave tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") para antes de continuar." + Environment.NewLine;
+                                                        return new Lfx.Types.FailureOperationResult("Cambie la Clave tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") para antes de continuar.");
                                                 }
                                         }
                                 }
                         }
 
-                        return validarReturn;
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
                 public override void ActualizarControl()

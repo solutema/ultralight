@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lcc.Entrada.AuxForms
 {
-        public partial class ImagenRecorte : Lui.Forms.Form
+        public partial class ImagenRecorte : Lui.Forms.DialogForm
         {
                 public enum MouseActions
                 {
@@ -82,23 +82,13 @@ namespace Lcc.Entrada.AuxForms
                         set
                         {
                                 m_Imagen = value;
-                                Size NewSize;
-                                if(Imagen.Size.Width > Imagen.Size.Height) {
-                                        double Ratio = System.Convert.ToDouble(m_Imagen.Width) / System.Convert.ToDouble(m_Imagen.Height);
-                                        NewSize = new Size(((int)(EntradaImagen.Height * Ratio)), EntradaImagen.Height);
-                                } else {
-                                        double Ratio = System.Convert.ToDouble(m_Imagen.Width) / System.Convert.ToDouble(m_Imagen.Height);
-                                        NewSize = new Size(((int)(EntradaImagen.Width * Ratio)), EntradaImagen.Width);
-                                }
-                                EntradaImagen.Size = NewSize;
-                                this.ClientSize = new Size(EntradaImagen.Width + EntradaImagen.Left * 2, EntradaImagen.Height + EntradaImagen.Top + BotonGuardar.Height + 20);
-                                EntradaImagen.Left = (this.ClientSize.Width - EntradaImagen.Width) / 2;
                         }
                         get
                         {
                                 return this.m_Imagen;
                         }
                 }
+
 
                 private void EntradaImagen_MouseDown(object sender, MouseEventArgs e)
                 {
@@ -163,19 +153,31 @@ namespace Lcc.Entrada.AuxForms
                         if (Imagen != null) {
                                 if (SelectionBrush == null)
                                         SelectionBrush = new SolidBrush(Color.FromArgb(50, Color.White));
-                                e.Graphics.DrawImage(Imagen, new Rectangle(0,0, EntradaImagen.ClientSize.Width, EntradaImagen.ClientSize.Height));
+
+                                double UsarZoom;
+                                double ZoomAncho = System.Convert.ToDouble(EntradaImagen.ClientRectangle.Width) / System.Convert.ToDouble(this.Imagen.Size.Width);
+                                double ZoomAlto = System.Convert.ToDouble(EntradaImagen.ClientRectangle.Height) / System.Convert.ToDouble(this.Imagen.Size.Height);
+                                if (this.Imagen.Height * ZoomAncho > EntradaImagen.ClientRectangle.Height) {
+                                        // Usando a todo el ancho se pasa de alto
+                                        UsarZoom = ZoomAlto;
+                                } else {
+                                        UsarZoom = ZoomAncho;
+                                }
+
+                                Size TamImagen = new Size(System.Convert.ToInt32(this.Imagen.Width * UsarZoom), System.Convert.ToInt32(this.Imagen.Height * UsarZoom));
+                                Point UbicImagen = new Point((EntradaImagen.ClientRectangle.Width - TamImagen.Width) / 2,(EntradaImagen.ClientRectangle.Height - TamImagen.Height) / 2);
+                                Rectangle RectImagen = new Rectangle(UbicImagen, TamImagen);
+                                
+                                e.Graphics.DrawImage(Imagen, RectImagen);
                                 if (CropRect != System.Drawing.Rectangle.Empty) {
                                         e.Graphics.FillRectangle(SelectionBrush, CropRect);
                                         e.Graphics.DrawRectangle(Pens.Black, CropRect);
-                                        BotonSinRecorte.Visible = true;
-                                } else {
-                                        BotonSinRecorte.Visible = false;
                                 }
                         }
                 }
 
-                private void BotonGuardar_Click(object sender, EventArgs e)
-                {
+                public override Lfx.Types.OperationResult  Ok()
+{
                         if(CropRect != System.Drawing.Rectangle.Empty) {
                                 double ZoomX = System.Convert.ToDouble(m_Imagen.Width) / System.Convert.ToDouble(EntradaImagen.ClientSize.Width);
                                 double ZoomY = System.Convert.ToDouble(m_Imagen.Height) / System.Convert.ToDouble(EntradaImagen.ClientSize.Height);
@@ -191,29 +193,32 @@ namespace Lcc.Entrada.AuxForms
 
                                 m_Imagen = Target;
                         }
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        return base.Ok();
                 }
 
                 private void EntradaRatio_TextChanged(object sender, EventArgs e)
                 {
-                        this.SelectionRatio = Lfx.Types.Parsing.ParseDecimal(EntradaRatio.TextKey);
-                        CropRect.Width = System.Convert.ToInt32(CropRect.Height * SelectionRatio);
-                }
-
-                private void BotonSinRecorte_Click(object sender, EventArgs e)
-                {
-                        this.CropRect = System.Drawing.Rectangle.Empty;
+                        if (EntradaRatio.TextKey == "-1") {
+                                this.CropRect = System.Drawing.Rectangle.Empty;
+                                this.SelectionRatio = -1;
+                        } else {
+                                this.SelectionRatio = Lfx.Types.Parsing.ParseDecimal(EntradaRatio.TextKey);
+                                CropRect.Width = System.Convert.ToInt32(CropRect.Height * SelectionRatio);
+                        }
                         EntradaImagen.Invalidate();
-                        BotonGuardar.Focus();
                 }
 
-                private void copiarAlPortapapelesToolStripMenuItem_Click(object sender, EventArgs e)
+
+                private void CopiarAlPortapapelesToolStripMenuItem_Click(object sender, EventArgs e)
                 {
-                        System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.Bitmap, EntradaImagen.Image);
+                        try {
+                                System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.Bitmap, EntradaImagen.Image);
+                        } catch {
+                                // Nada
+                        }
                 }
 
-                private void guardarEnUnArchivoToolStripMenuItem_Click(object sender, EventArgs e)
+                private void GuardarEnUnArchivoToolStripMenuItem_Click(object sender, EventArgs e)
                 {
                         System.Windows.Forms.SaveFileDialog Guardar = new SaveFileDialog();
                         Guardar.DefaultExt = ".jpg";
@@ -226,6 +231,19 @@ namespace Lcc.Entrada.AuxForms
                 private void EntradaImagen_MouseUp(object sender, MouseEventArgs e)
                 {
                         MouseAction = MouseActions.None;
+                }
+
+                private void BotonRotarDer_Click(object sender, EventArgs e)
+                {
+                        Bitmap RotatedImage = ((Bitmap)(EntradaImagen.Image));
+                        this.Imagen.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        this.EntradaImagen.Invalidate();
+                }
+
+                private void BotonRotarIzq_Click(object sender, EventArgs e)
+                {
+                        this.Imagen.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        this.EntradaImagen.Invalidate();
                 }
         }
 }

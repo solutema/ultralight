@@ -213,14 +213,14 @@ namespace Lfc
                         TimerBuscar.Start();
                 }
 
-                private string UltimoBuscar = "";
                 private void TimerBuscar_Tick(object sender, System.EventArgs e)
                 {
                         TimerBuscar.Stop();
-                        if (EntradaBuscar.Text.Length == 0 || EntradaBuscar.Text.Length > 5) {
-                                if (EntradaBuscar.Text != UltimoBuscar) {
+                        if (EntradaBuscar.Text.Length == 0 || EntradaBuscar.Text.Length > 5 || this.SearchText.Length > 0){
+                                // Si el texto a buscar está en blaco, o es de más de 5 caracteres,
+                                // o es de menos de 5 pero hay un texto previo (vengo borrando con backspace)
+                                if (EntradaBuscar.Text != this.SearchText) {
                                         this.Search(EntradaBuscar.Text);
-                                        UltimoBuscar = EntradaBuscar.Text;
                                 }
                         }
                 }

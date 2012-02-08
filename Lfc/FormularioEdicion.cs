@@ -495,7 +495,9 @@ namespace Lfc
                                                 this.ControlUnico.AfterPrint();
                                         }
                                 }
-                        } else if (Res.Message != null) {
+                        } 
+                        
+                        if (Res.Success == false && Res.Message != null) {
                                 Lui.Forms.MessageBox.Show(Res.Message, "Imprimir");
                         }
                 }

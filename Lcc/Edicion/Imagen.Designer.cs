@@ -106,7 +106,7 @@ namespace Lcc.Entrada
                         this.copiarAlPortapapelesToolStripMenuItem.Name = "copiarAlPortapapelesToolStripMenuItem";
                         this.copiarAlPortapapelesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
                         this.copiarAlPortapapelesToolStripMenuItem.Text = "&Copiar al portapapeles";
-                        this.copiarAlPortapapelesToolStripMenuItem.Click += new System.EventHandler(this.copiarAlPortapapelesToolStripMenuItem_Click);
+                        this.copiarAlPortapapelesToolStripMenuItem.Click += new System.EventHandler(this.CopiarAlPortapapelesToolStripMenuItem_Click);
                         // 
                         // BotonQuitarImagen
                         // 

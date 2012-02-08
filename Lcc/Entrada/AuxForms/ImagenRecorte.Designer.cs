@@ -51,24 +51,25 @@ namespace Lcc.Entrada.AuxForms
                         this.MenuEntradImagen = new System.Windows.Forms.ContextMenuStrip(this.components);
                         this.copiarAlPortapapelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
                         this.guardarEnUnArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-                        this.BotonGuardar = new Lui.Forms.Button();
                         this.label1 = new Lui.Forms.Label();
                         this.EntradaRatio = new Lui.Forms.ComboBox();
                         this.label2 = new Lui.Forms.Label();
-                        this.BotonSinRecorte = new Lui.Forms.Button();
-                        this.panel1 = new Lui.Forms.Panel();
+                        this.BotonRotarDer = new Lui.Forms.Button();
+                        this.BotonRotarIzq = new Lui.Forms.Button();
                         ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).BeginInit();
                         this.MenuEntradImagen.SuspendLayout();
-                        this.panel1.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // EntradaImagen
                         // 
+                        this.EntradaImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImagen.ContextMenuStrip = this.MenuEntradImagen;
-                        this.EntradaImagen.Location = new System.Drawing.Point(12, 48);
+                        this.EntradaImagen.Location = new System.Drawing.Point(168, 64);
                         this.EntradaImagen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaImagen.Name = "EntradaImagen";
-                        this.EntradaImagen.Size = new System.Drawing.Size(556, 292);
+                        this.EntradaImagen.Size = new System.Drawing.Size(438, 294);
                         this.EntradaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
                         this.EntradaImagen.TabIndex = 0;
                         this.EntradaImagen.TabStop = false;
@@ -90,110 +91,102 @@ namespace Lcc.Entrada.AuxForms
                         this.copiarAlPortapapelesToolStripMenuItem.Name = "copiarAlPortapapelesToolStripMenuItem";
                         this.copiarAlPortapapelesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
                         this.copiarAlPortapapelesToolStripMenuItem.Text = "&Copiar al portapapeles";
-                        this.copiarAlPortapapelesToolStripMenuItem.Click += new System.EventHandler(this.copiarAlPortapapelesToolStripMenuItem_Click);
+                        this.copiarAlPortapapelesToolStripMenuItem.Click += new System.EventHandler(this.CopiarAlPortapapelesToolStripMenuItem_Click);
                         // 
                         // guardarEnUnArchivoToolStripMenuItem
                         // 
                         this.guardarEnUnArchivoToolStripMenuItem.Name = "guardarEnUnArchivoToolStripMenuItem";
                         this.guardarEnUnArchivoToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
                         this.guardarEnUnArchivoToolStripMenuItem.Text = "&Guardar en un archivo";
-                        this.guardarEnUnArchivoToolStripMenuItem.Click += new System.EventHandler(this.guardarEnUnArchivoToolStripMenuItem_Click);
-                        // 
-                        // BotonGuardar
-                        // 
-                        this.BotonGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonGuardar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonGuardar.Image = null;
-                        this.BotonGuardar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonGuardar.Location = new System.Drawing.Point(471, 10);
-                        this.BotonGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.BotonGuardar.Name = "BotonGuardar";
-                        this.BotonGuardar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonGuardar.Size = new System.Drawing.Size(104, 36);
-                        this.BotonGuardar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.BotonGuardar.Subtext = "";
-                        this.BotonGuardar.TabIndex = 3;
-                        this.BotonGuardar.Text = "Aceptar";
-                        this.BotonGuardar.Click += new System.EventHandler(this.BotonGuardar_Click);
+                        this.guardarEnUnArchivoToolStripMenuItem.Click += new System.EventHandler(this.GuardarEnUnArchivoToolStripMenuItem_Click);
                         // 
                         // label1
                         // 
-                        this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label1.Location = new System.Drawing.Point(12, 12);
+                        this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label1.Location = new System.Drawing.Point(16, 16);
                         this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(557, 32);
+                        this.label1.Size = new System.Drawing.Size(590, 48);
                         this.label1.TabIndex = 0;
-                        this.label1.Text = "Arrastre el mouse para seleccionar el área de la imagen a utilizar. Utilice el bo" +
-                            "tón del medio para mover la selección.";
+                        this.label1.Text = "Arrastre el ratón desde la esquina superior izquierda para seleccionar el área de" +
+    " la imagen a utilizar.";
                         // 
                         // EntradaRatio
                         // 
-                        this.EntradaRatio.AutoSize = true;
-                        this.EntradaRatio.Location = new System.Drawing.Point(96, 4);
+                        this.EntradaRatio.AlwaysExpanded = true;
+                        this.EntradaRatio.Location = new System.Drawing.Point(16, 88);
                         this.EntradaRatio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaRatio.Name = "EntradaRatio";
                         this.EntradaRatio.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaRatio.SetData = new string[] {
-        "1:1|1",
-        "4:3|1.333333",
+        "Sin recorte|-1",
+        "Cuadrado (1:1)|1",
+        "Rectangular 4:3|1.333333",
+        "Rectangular 16:9|1.777777",
+        "Rectangular 16:10|1.6",
         "Libre|0"};
-                        this.EntradaRatio.Size = new System.Drawing.Size(136, 22);
-                        this.EntradaRatio.TabIndex = 1;
-                        this.EntradaRatio.Text = "Libre";
+                        this.EntradaRatio.Size = new System.Drawing.Size(136, 112);
+                        this.EntradaRatio.TabIndex = 2;
                         this.EntradaRatio.TextKey = "0";
                         this.EntradaRatio.TextChanged += new System.EventHandler(this.EntradaRatio_TextChanged);
                         // 
                         // label2
                         // 
-                        this.label2.Location = new System.Drawing.Point(8, 4);
+                        this.label2.Location = new System.Drawing.Point(16, 64);
                         this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(88, 20);
-                        this.label2.TabIndex = 0;
-                        this.label2.Text = "Selección";
-                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label2.Size = new System.Drawing.Size(136, 24);
+                        this.label2.TabIndex = 1;
+                        this.label2.Text = "Recorte";
                         // 
-                        // BotonSinRecorte
+                        // BotonRotarDer
                         // 
-                        this.BotonSinRecorte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.BotonSinRecorte.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonSinRecorte.Image = null;
-                        this.BotonSinRecorte.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSinRecorte.Location = new System.Drawing.Point(362, 10);
-                        this.BotonSinRecorte.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-                        this.BotonSinRecorte.Name = "BotonSinRecorte";
-                        this.BotonSinRecorte.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonSinRecorte.Size = new System.Drawing.Size(104, 36);
-                        this.BotonSinRecorte.SubLabelPos = Lui.Forms.SubLabelPositions.None;
-                        this.BotonSinRecorte.Subtext = "";
-                        this.BotonSinRecorte.TabIndex = 2;
-                        this.BotonSinRecorte.Text = "Sin Recorte";
-                        this.BotonSinRecorte.Click += new System.EventHandler(this.BotonSinRecorte_Click);
+                        this.BotonRotarDer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonRotarDer.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonRotarDer.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonRotarDer.Image = null;
+                        this.BotonRotarDer.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonRotarDer.Location = new System.Drawing.Point(16, 288);
+                        this.BotonRotarDer.Name = "BotonRotarDer";
+                        this.BotonRotarDer.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonRotarDer.Size = new System.Drawing.Size(136, 32);
+                        this.BotonRotarDer.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonRotarDer.Subtext = "Tecla";
+                        this.BotonRotarDer.TabIndex = 3;
+                        this.BotonRotarDer.Text = "Rotar a la derecha";
+                        this.BotonRotarDer.Click += new System.EventHandler(this.BotonRotarDer_Click);
                         // 
-                        // panel1
+                        // BotonRotarIzq
                         // 
-                        this.panel1.Controls.Add(this.label2);
-                        this.panel1.Controls.Add(this.EntradaRatio);
-                        this.panel1.Controls.Add(this.BotonSinRecorte);
-                        this.panel1.Controls.Add(this.BotonGuardar);
-                        this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.panel1.Location = new System.Drawing.Point(0, 346);
-                        this.panel1.Name = "panel1";
-                        this.panel1.Size = new System.Drawing.Size(582, 56);
-                        this.panel1.TabIndex = 1;
+                        this.BotonRotarIzq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonRotarIzq.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonRotarIzq.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonRotarIzq.Image = null;
+                        this.BotonRotarIzq.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonRotarIzq.Location = new System.Drawing.Point(16, 328);
+                        this.BotonRotarIzq.Name = "BotonRotarIzq";
+                        this.BotonRotarIzq.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonRotarIzq.Size = new System.Drawing.Size(136, 32);
+                        this.BotonRotarIzq.SubLabelPos = Lui.Forms.SubLabelPositions.None;
+                        this.BotonRotarIzq.Subtext = "Tecla";
+                        this.BotonRotarIzq.TabIndex = 4;
+                        this.BotonRotarIzq.Text = "Rotar a la izquierda";
+                        this.BotonRotarIzq.Click += new System.EventHandler(this.BotonRotarIzq_Click);
                         // 
                         // ImagenRecorte
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.AutoSize = true;
-                        this.ClientSize = new System.Drawing.Size(582, 402);
-                        this.Controls.Add(this.panel1);
+                        this.ClientSize = new System.Drawing.Size(624, 442);
+                        this.Controls.Add(this.BotonRotarIzq);
+                        this.Controls.Add(this.BotonRotarDer);
+                        this.Controls.Add(this.label2);
+                        this.Controls.Add(this.EntradaRatio);
                         this.Controls.Add(this.EntradaImagen);
                         this.Controls.Add(this.label1);
-                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.MinimumSize = new System.Drawing.Size(480, 400);
                         this.Name = "ImagenRecorte";
@@ -201,10 +194,14 @@ namespace Lcc.Entrada.AuxForms
                         this.ShowInTaskbar = false;
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Recortar Imagen";
+                        this.Controls.SetChildIndex(this.label1, 0);
+                        this.Controls.SetChildIndex(this.EntradaImagen, 0);
+                        this.Controls.SetChildIndex(this.EntradaRatio, 0);
+                        this.Controls.SetChildIndex(this.label2, 0);
+                        this.Controls.SetChildIndex(this.BotonRotarDer, 0);
+                        this.Controls.SetChildIndex(this.BotonRotarIzq, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.EntradaImagen)).EndInit();
                         this.MenuEntradImagen.ResumeLayout(false);
-                        this.panel1.ResumeLayout(false);
-                        this.panel1.PerformLayout();
                         this.ResumeLayout(false);
 
                 }
@@ -212,14 +209,13 @@ namespace Lcc.Entrada.AuxForms
                 #endregion
 
                 private System.Windows.Forms.PictureBox EntradaImagen;
-                internal Lui.Forms.Button BotonGuardar;
                 private Lui.Forms.Label label1;
                 private Lui.Forms.ComboBox EntradaRatio;
-                private Lui.Forms.Label label2;
-                internal Lui.Forms.Button BotonSinRecorte;
                 private System.Windows.Forms.ContextMenuStrip MenuEntradImagen;
                 private System.Windows.Forms.ToolStripMenuItem copiarAlPortapapelesToolStripMenuItem;
                 private System.Windows.Forms.ToolStripMenuItem guardarEnUnArchivoToolStripMenuItem;
-                private Lui.Forms.Panel panel1;
+                private Lui.Forms.Label label2;
+                private Lui.Forms.Button BotonRotarDer;
+                private Lui.Forms.Button BotonRotarIzq;
         }
 }
