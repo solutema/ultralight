@@ -46,7 +46,7 @@ namespace Lfc.Articulos.Rubros
                                 ElementoTipo = typeof(Lbl.Articulos.Rubro),
 
                                 TableName = "articulos_rubros",
-                                KeyColumnName = new Lazaro.Pres.Field("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("articulos_rubros.id_rubro", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "articulos_rubros.nombre",
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {

@@ -41,7 +41,7 @@ namespace Lfc.Bancos
                         ElementoTipo = typeof(Lbl.Bancos.Banco);
 
                         TableName = "bancos";
-                        KeyColumnName = new Lazaro.Pres.Field("bancos.id_banco", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        KeyColumn = new Lazaro.Pres.Field("bancos.id_banco", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         Columns = new Lazaro.Pres.FieldCollection() 
 			{
 				new Lazaro.Pres.Field("bancos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),

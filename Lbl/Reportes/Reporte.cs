@@ -88,11 +88,11 @@ namespace Lbl.Reportes
                                                         SubTotales = new Lazaro.Pres.Spreadsheet.Row(Res);
                                                 for (int i = 0; i < this.Fields.Count; i++) {
                                                         Lazaro.Pres.Spreadsheet.Cell FuncCell = null;
-                                                        if (this.Grouping != null && this.Fields[i].MemberName == this.Grouping.FieldName && this.ExpandGroups == false) {
+                                                        if (this.Grouping != null && this.Fields[i].Name == this.Grouping.FieldName && this.ExpandGroups == false) {
                                                                 FuncCell = new Cell(this.Grouping.LastValue);
                                                         } else {
                                                                 foreach (Lfx.Data.Aggregate SubtAgru in this.Aggregates) {
-                                                                        if (SubtAgru.FieldName == this.Fields[i].MemberName) {
+                                                                        if (SubtAgru.FieldName == this.Fields[i].Name) {
                                                                                 switch (SubtAgru.Function) {
                                                                                         case Lfx.Data.AggregationFunctions.Count:
                                                                                                 FuncCell = new Cell(SubtAgru.Count);
@@ -141,7 +141,7 @@ namespace Lbl.Reportes
                                 if (ExpandGroups) {
                                         Lazaro.Pres.Spreadsheet.Row Renglon = new Lazaro.Pres.Spreadsheet.Row();
                                         foreach (Lazaro.Pres.Field Field in this.Fields) {
-                                                Lazaro.Pres.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.Connection.GetFieldName(Field.MemberName)]);
+                                                Lazaro.Pres.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.Connection.GetFieldName(Field.Name)]);
                                                 Renglon.Cells.Add(Celda);
                                         }
                                         Res.Rows.Add(Renglon);

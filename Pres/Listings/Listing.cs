@@ -40,10 +40,15 @@ namespace Lazaro.Pres.Listings
         [Serializable]
         public class Listing
         {
+                public Listing()
+                {
+                        this.Sortable = true;
+                }
+
                 public Type ElementoTipo { get; set; }
 
                 public string TableName { get; set; }
-                public Lazaro.Pres.Field KeyColumnName { get; set; }
+                public Lazaro.Pres.Field KeyColumn { get; set; }
                 public string DetailColumnName { get; set; }
                 public Lazaro.Pres.FieldCollection Columns { get; set; }
                 public Lazaro.Pres.FieldCollection ExtraSearchColumns { get; set; }
@@ -56,5 +61,7 @@ namespace Lazaro.Pres.Listings
 
                 public qGen.Where Having { get; set; }
                 public qGen.Where Where { get; set; }
+
+                public bool Sortable { get; set; }
         }
 }

@@ -41,7 +41,7 @@ namespace Lfc.Pagos.Planes
                         ElementoTipo = typeof(Lbl.Pagos.Plan);
 
                         TableName = "tarjetas_planes";
-                        KeyColumnName = new Lazaro.Pres.Field("tarjetas_planes.id_plan", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        KeyColumn = new Lazaro.Pres.Field("tarjetas_planes.id_plan", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         Columns = new Lazaro.Pres.FieldCollection() 
 			{
 				new Lazaro.Pres.Field("tarjetas_planes.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),

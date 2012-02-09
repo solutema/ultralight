@@ -55,7 +55,7 @@ namespace Lfc.Comprobantes
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteConArticulos),
 
                                 TableName = "comprob",
-                                KeyColumnName = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "comprob.id_cliente=personas.id_persona") },
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
@@ -277,7 +277,7 @@ namespace Lfc.Comprobantes
                         else if (m_MontoHasta != 0)
                                 this.CustomFilters.AddWithValue("total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));
 
-                        this.UpdateFormFields();
+                        this.SetupListviewColumns();
 
                         base.OnBeginRefreshList();
                 }

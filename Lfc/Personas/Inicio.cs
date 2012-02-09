@@ -61,7 +61,7 @@ namespace Lfc.Personas
                                 ElementoTipo = typeof(Lbl.Personas.Persona),
 
                                 TableName = "personas",
-                                KeyColumnName = new Lazaro.Pres.Field("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                KeyColumn = new Lazaro.Pres.Field("personas.id_persona", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre_visible",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas_grupos", "personas_grupos.id_grupo=personas.id_grupo"), new qGen.Join("ciudades", "personas.id_ciudad=ciudades.id_ciudad") },
                                 OrderBy = "personas.nombre_visible",

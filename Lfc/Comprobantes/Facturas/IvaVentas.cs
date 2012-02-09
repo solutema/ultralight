@@ -52,7 +52,7 @@ namespace Lfc.Comprobantes.Facturas
                                 ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteFacturable),
 
                                 TableName = "comprob",
-                                KeyColumnName = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"), new qGen.Join("situaciones", "personas.id_situacion=situaciones.id_situacion") },
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
@@ -206,7 +206,7 @@ namespace Lfc.Comprobantes.Facturas
 
                         this.CustomFilters.AddWithValue("comprob.impresa", 1);
 
-                        this.UpdateFormFields();
+                        this.SetupListviewColumns();
 
                         base.OnBeginRefreshList();
                 }

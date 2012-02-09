@@ -58,7 +58,7 @@ namespace Lfc.Tareas
 
                                 TableName = "tickets",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "tickets.id_persona=personas.id_persona") },
-                                KeyColumnName = new Lazaro.Pres.Field("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                KeyColumn = new Lazaro.Pres.Field("tickets.id_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {

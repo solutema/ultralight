@@ -48,7 +48,7 @@ namespace Lfc.Tareas.Estados
                                 ElementoTipo = typeof(Lbl.Tareas.Estado),
 
                                 TableName = "tickets_estados",
-                                KeyColumnName = new Lazaro.Pres.Field("tickets_estados.id_ticket_estado", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                KeyColumn = new Lazaro.Pres.Field("tickets_estados.id_ticket_estado", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {

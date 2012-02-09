@@ -44,7 +44,7 @@ namespace Lfc.Cajas.Vencimientos
                                 ElementoTipo = typeof(Lbl.Vencimientos.Vencimiento),
 
                                 TableName = "vencimientos",
-                                KeyColumnName = new Lazaro.Pres.Field("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
+                                KeyColumn = new Lazaro.Pres.Field("vencimientos.id_vencimiento", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("conceptos", "vencimientos.id_concepto=conceptos.id_concepto") },
                                 OrderBy = "vencimientos.fecha_proxima DESC",
                                 Columns = new Lazaro.Pres.FieldCollection()

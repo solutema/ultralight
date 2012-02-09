@@ -41,7 +41,7 @@ namespace Lfc.Pagos.FormasDePago
                         ElementoTipo = typeof(Lbl.Pagos.FormaDePago);
 
                         TableName = "formaspago";
-                        KeyColumnName = new Lazaro.Pres.Field("formaspago.id_formapago", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
+                        KeyColumn = new Lazaro.Pres.Field("formaspago.id_formapago", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0);
                         Columns = new Lazaro.Pres.FieldCollection() 
 			{
 				new Lazaro.Pres.Field("formaspago.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),

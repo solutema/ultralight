@@ -41,7 +41,7 @@ namespace Lazaro.Pres
                 /// <summary>
                 /// Nombre de la propiedad o campo asociado con este control de entrada de datos.
                 /// </summary>
-                public string MemberName { get; set; }
+                public string Name { get; set; }
 
                 public Lfx.Data.InputFieldTypes DataType { get; set; }
                 public string Format { get; set; }
@@ -64,16 +64,16 @@ namespace Lazaro.Pres
                         this.Printable = true;
                 }
 
-                public Field(string columnName, string label)
+                public Field(string name, string label)
                         : this()
 		{
-			this.MemberName = columnName;
+			this.Name = name;
 			this.Label = label;
 		}
 
 
-                public Field(string columnName, string label, Lfx.Data.InputFieldTypes dataType)
-                        : this(columnName, label)
+                public Field(string name, string label, Lfx.Data.InputFieldTypes dataType)
+                        : this(name, label)
                 {
                         this.DataType = dataType;
                         if (this.Width < 28) {
@@ -83,8 +83,8 @@ namespace Lazaro.Pres
                 }
 
 
-                public Field(string columnName, string label, Lfx.Data.InputFieldTypes dataType, int width)
-                        : this(columnName, label, dataType)
+                public Field(string name, string label, Lfx.Data.InputFieldTypes dataType, int width)
+                        : this(name, label, dataType)
                 {
                         this.Width = width;
                         if (this.Width < 28) {
@@ -94,28 +94,28 @@ namespace Lazaro.Pres
                 }
 
 
-                public Field(string columnName, string label, IDictionary<int, string> setValues)
-                        : this(columnName, label, Lfx.Data.InputFieldTypes.Set)
+                public Field(string name, string label, IDictionary<int, string> setValues)
+                        : this(name, label, Lfx.Data.InputFieldTypes.Set)
                 {
                         this.SetValues = setValues;
                 }
 
 
-                public Field(string columnName, string label, int width, Lfx.Data.Relation relation)
-                        : this(columnName, label, Lfx.Data.InputFieldTypes.Relation, width)
+                public Field(string name, string label, int width, Lfx.Data.Relation relation)
+                        : this(name, label, Lfx.Data.InputFieldTypes.Relation, width)
                 {
                         this.Relation = relation;
                 }
 
 
-                public Field(string columnName, string label, int width, IDictionary<int, string> setValues)
-                        : this(columnName, label, Lfx.Data.InputFieldTypes.Set, width)
+                public Field(string name, string label, int width, IDictionary<int, string> setValues)
+                        : this(name, label, Lfx.Data.InputFieldTypes.Set, width)
                 {
                         this.SetValues = setValues;
                 }
 
-                public Field(string columnName, string label, Lfx.Data.InputFieldTypes dataType, int width, string format)
-                        : this(columnName, label, dataType, width)
+                public Field(string name, string label, Lfx.Data.InputFieldTypes dataType, int width, string format)
+                        : this(name, label, dataType, width)
                 {
                         this.Format = format;
                 }
@@ -123,7 +123,7 @@ namespace Lazaro.Pres
 
                 public override string ToString()
                 {
-                        return this.MemberName;
+                        return this.Name;
                 }
 
 
@@ -150,7 +150,7 @@ namespace Lazaro.Pres
                 {
                         Field Res = new Field();
 
-                        Res.MemberName = this.MemberName;
+                        Res.Name = this.Name;
                         Res.Label = this.Label;
                         Res.DataType = this.DataType;
                         Res.Format = this.Format;

@@ -54,7 +54,7 @@ namespace Lfc.Bancos.Cheques
                                 ElementoTipo = typeof(Lbl.Bancos.Cheque),
 
                                 TableName = "bancos_cheques",
-                                KeyColumnName = new Lazaro.Pres.Field("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
+                                KeyColumn = new Lazaro.Pres.Field("bancos_cheques.id_cheque", "Cód.", Lfx.Data.InputFieldTypes.Serial, 20),
                                 OrderBy = "bancos_cheques.fecha DESC",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("bancos", "bancos_cheques.id_banco=bancos.id_banco") },
 

@@ -58,7 +58,7 @@ namespace Lfc.CuentasCorrientes
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 TableName = "ctacte",
-                                KeyColumnName = new Lazaro.Pres.Field("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection() {
                                         new Lazaro.Pres.Field("personas.nombre_visible", "Persona", 320, new Lfx.Data.Relation("id_cliente", "personas", "id_persona")),
                                         new Lazaro.Pres.Field("ctacte.id_concepto", "Concepto", Lfx.Data.InputFieldTypes.Relation, 0),
@@ -137,10 +137,10 @@ namespace Lfc.CuentasCorrientes
                                 this.Definicion.Columns["obs"].Visible = false;
                                 this.Definicion.Columns["comprob"].Visible = false;
 
-                                this.Definicion.Columns["saldo"].MemberName = "SUM(ctacte.importe) AS saldo";
+                                this.Definicion.Columns["saldo"].Name = "SUM(ctacte.importe) AS saldo";
                                 this.Definicion.Having = new qGen.Where("saldo", qGen.ComparisonOperators.NotEqual, 0);
 
-                                this.UpdateFormFields();
+                                this.SetupListviewColumns();
 
                                 this.Contadores[1].Etiqueta = "Créditos";
                                 this.Contadores[2].Etiqueta = "Pasivos";
@@ -168,10 +168,10 @@ namespace Lfc.CuentasCorrientes
                                 this.Definicion.Columns["obs"].Visible = true;
                                 this.Definicion.Columns["comprob"].Visible = true;
 
-                                this.Definicion.Columns["saldo"].MemberName = "ctacte.saldo";
+                                this.Definicion.Columns["saldo"].Name = "ctacte.saldo";
                                 this.Definicion.Having = null;
 
-                                this.UpdateFormFields();
+                                this.SetupListviewColumns();
 
                                 this.Contadores[1].Etiqueta = "Créditos";
                                 this.Contadores[2].Etiqueta = "Débitos";

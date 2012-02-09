@@ -49,11 +49,11 @@ namespace Lfc.Comprobantes.Recibos
 
                                 TableName = "recibos",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("personas", "recibos.id_cliente=personas.id_persona") },
-                                KeyColumnName = new Lazaro.Pres.Field("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("recibos.id_recibo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "recibos.fecha DESC",
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lazaro.Pres.Field("recibos.nombre", "Número", Lfx.Data.InputFieldTypes.Integer, 120),
+				        new Lazaro.Pres.Field("recibos.nombre", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lazaro.Pres.Field("recibos.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
 				        new Lazaro.Pres.Field("recibos.total", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
 				        new Lazaro.Pres.Field("0", "Facturas", Lfx.Data.InputFieldTypes.Text, 160),

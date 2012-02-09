@@ -63,7 +63,7 @@ namespace Lfc.Tarjetas.Cupones
                                 ElementoTipo = typeof(Lbl.Pagos.Cupon),
                                 TableName = "tarjetas_cupones",
                                 Joins = new qGen.JoinCollection() { new qGen.Join("formaspago", "tarjetas_cupones.id_tarjeta=formaspago.id_formapago"), new qGen.Join("personas", "tarjetas_cupones.id_cliente=personas.id_persona") },
-                                KeyColumnName = new Lazaro.Pres.Field("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28),
+                                KeyColumn = new Lazaro.Pres.Field("tarjetas_cupones.id_cupon", "Cód.", Lfx.Data.InputFieldTypes.Serial, 28),
 
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {

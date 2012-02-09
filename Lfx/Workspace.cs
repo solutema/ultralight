@@ -343,7 +343,7 @@ namespace Lfx
                 /// </summary>
                 public Lfx.Types.OperationResult Prepare()
                 {
-                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Preparando Almacén de Datos", "Se están creando las estructuras de datos y se va realizar una carga inicial de datos.");
+                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Preparando el almacén de datos", "Se están creando las tablas de datos y se va realizar una carga inicial de datos. Esta operación puede demorar varios minutos.");
                         Progreso.Modal = true;
                         Progreso.Begin();
 
@@ -375,14 +375,14 @@ namespace Lfx
 
                         Progreso.ChangeStatus("Carga inicial de datos");
                         Progreso.Max = Sql.Length;
-                        this.MasterConnection.ExecuteSql(Sql);
+                        //this.MasterConnection.ExecuteSql(Sql);
                         
-                        /* do {
+                        do {
                                 string Comando = Lfx.Data.Connection.GetNextCommand(ref Sql);
                                 this.MasterConnection.ExecuteSql(Comando);
                                 Progreso.ChangeStatus(Progreso.Max - Sql.Length);
                         }
-                        while (Sql.Length > 0); */
+                        while (Sql.Length > 0);
 
                         Progreso.ChangeStatus("Carga de TagList");
                         // Cargar TagList y volver a verificar la estructura

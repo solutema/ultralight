@@ -62,6 +62,7 @@ namespace Lfc
                 public List<Contador> Contadores = new List<Contador>();
 
                 private Dictionary<int, ListViewItem> ItemListado = new Dictionary<int, ListViewItem>();
+                private Lui.Forms.ListViewColumnSorter Sorter = new Lui.Forms.ListViewColumnSorter();
 
                 public FormularioListadoBase()
                 {
@@ -286,8 +287,8 @@ namespace Lfc
                                         case Keys.U:
                                                 e.Handled = true;
                                                 foreach (Lazaro.Pres.Field Fld in this.Definicion.Columns) {
-                                                        if (FormFieldToSubItem.ContainsKey(Lfx.Data.Connection.GetFieldName(Fld.MemberName)))
-                                                                Listado.Columns[FormFieldToSubItem[Lfx.Data.Connection.GetFieldName(Fld.MemberName)]].Width = Fld.Width;
+                                                        if (FormFieldToSubItem.ContainsKey(Lfx.Data.Connection.GetFieldName(Fld.Name)))
+                                                                Listado.Columns[FormFieldToSubItem[Lfx.Data.Connection.GetFieldName(Fld.Name)]].Width = Fld.Width;
                                                 }
                                                 break;
                                 }
@@ -523,7 +524,12 @@ namespace Lfc
                 protected virtual Lfx.Types.OperationResult OnItemClick(ListViewItem itm)
                 {
                         int SelectedId = Lfx.Types.Parsing.ParseInt(Listado.SelectedItems[0].Text);
-                        return this.OnEdit(SelectedId);
+                        if (SelectedId > 0) {
+                                this.CancelFill = true;
+                                return this.OnEdit(SelectedId);
+                        } else {
+                                return new Lfx.Types.CancelOperationResult();
+                        }
                 }
 
 
@@ -536,31 +542,55 @@ namespace Lfc
 
                 private void Listado_ColumnClick(object sender, System.Windows.Forms.ColumnClickEventArgs e)
                 {
+                        if (this.Definicion.Sortable == false)
+                                return;
+
                         string NuevoOrden = null;
-
-                        if (e.Column == 0)
-                                NuevoOrden = this.Definicion.KeyColumnName.MemberName;
-                        else if ((e.Column - 1) < this.Definicion.Columns.Count)
+                        if (e.Column == 0) {
+                                NuevoOrden = this.Definicion.KeyColumn.Name;
+                        } else if ((e.Column - 1) < this.Definicion.Columns.Count) {
                                 NuevoOrden = Listado.Columns[e.Column].Name;
+                        }
 
-                        if (NuevoOrden != null) {
-                                // quito la cláusula AS
-                                if (NuevoOrden.IndexOf(" AS ") > 0)
-                                        NuevoOrden = NuevoOrden.Substring(0, NuevoOrden.IndexOf(" AS ")).Trim();
+                        this.SetupSorter(NuevoOrden, this.Sorter.SortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending);
+                        Listado.ListViewItemSorter = this.Sorter;
+                        Listado.Sort();
+                }
 
-                                if (this.Definicion.OrderBy == NuevoOrden)
-                                        this.Definicion.OrderBy = NuevoOrden + " DESC";
-                                else if (this.Definicion.OrderBy == NuevoOrden + " DESC")
-                                        this.Definicion.OrderBy = null;
-                                else
-                                        this.Definicion.OrderBy = NuevoOrden;
+                private void SetupSorter(string nuevoOrden, SortOrder sortOrder)
+                {
+                        if (this.Definicion.Sortable == false) {
+                                this.Sorter.SortOrder = SortOrder.None;
+                                return;
+                        }
 
-                                this.RefreshList();
+                        if (nuevoOrden == null) {
+                                this.Sorter.SortOrder = SortOrder.None;
+                                return;
+                        }
+
+                        this.Sorter.SortColumn = Listado.Columns.IndexOfKey(nuevoOrden);
+                        if (nuevoOrden == this.Definicion.KeyColumn.Name) {
+                                this.Sorter.DataType = this.Definicion.KeyColumn.DataType;
+                        } else {
+                                this.Sorter.DataType = this.Definicion.Columns[nuevoOrden].DataType;
+                        }
+
+                        // quito la cláusula AS
+                        if (nuevoOrden.IndexOf(" AS ") > 0)
+                                nuevoOrden = nuevoOrden.Substring(0, nuevoOrden.IndexOf(" AS ")).Trim();
+
+                        if (sortOrder == SortOrder.Descending) {
+                                this.Definicion.OrderBy = nuevoOrden + " DESC";
+                                this.Sorter.SortOrder = SortOrder.Descending;
+                        } else {
+                                this.Definicion.OrderBy = nuevoOrden;
+                                this.Sorter.SortOrder = SortOrder.Ascending;
                         }
                 }
 
 
-                protected void UpdateFormFields()
+                protected void SetupListviewColumns()
                 {
                         if (this.Connection != null && this.Definicion != null && this.Definicion.Columns != null) {
                                 SubItemToFormField.Clear();
@@ -576,14 +606,14 @@ namespace Lfc
                                 Listado.Columns.Clear();
 
                                 Listado.Columns.Add(new ColumnHeader());
-                                Listado.Columns[ColNum].Name = this.Definicion.KeyColumnName.MemberName;
-                                Listado.Columns[ColNum].Width = this.Definicion.KeyColumnName.Width;
-                                Listado.Columns[ColNum].Text = this.Definicion.KeyColumnName.Label;
+                                Listado.Columns[ColNum].Name = this.Definicion.KeyColumn.Name;
+                                Listado.Columns[ColNum].Width = this.Definicion.KeyColumn.Width;
+                                Listado.Columns[ColNum].Text = this.Definicion.KeyColumn.Label;
 
                                 if (FormFieldToSubItem.ContainsKey(Listado.Columns[ColNum].Name) == false)
                                         FormFieldToSubItem.Add(Listado.Columns[ColNum].Name, ColNum);
-                                if (FormFieldToSubItem.ContainsKey(this.Definicion.KeyColumnName.MemberName) == false)
-                                        FormFieldToSubItem.Add(this.Definicion.KeyColumnName.MemberName, ColNum);
+                                if (FormFieldToSubItem.ContainsKey(this.Definicion.KeyColumn.Name) == false)
+                                        FormFieldToSubItem.Add(this.Definicion.KeyColumn.Name, ColNum);
 
                                 ColNum++;
 
@@ -592,14 +622,14 @@ namespace Lfc
                                                 if (Listado.Columns.Count <= ColNum)
                                                         Listado.Columns.Add(new ColumnHeader());
 
-                                                Listado.Columns[ColNum].Name = this.Definicion.Columns[i].MemberName;
+                                                Listado.Columns[ColNum].Name = this.Definicion.Columns[i].Name;
                                                 Listado.Columns[ColNum].Width = this.Definicion.Columns[i].Width;
                                                 Listado.Columns[ColNum].Text = this.Definicion.Columns[i].Label;
 
                                                 if (FormFieldToSubItem.ContainsKey(Listado.Columns[ColNum].Name) == false)
                                                         FormFieldToSubItem.Add(Listado.Columns[ColNum].Name, ColNum);
-                                                if (FormFieldToSubItem.ContainsKey(this.Definicion.Columns[i].MemberName) == false)
-                                                        FormFieldToSubItem.Add(this.Definicion.Columns[i].MemberName, ColNum);
+                                                if (FormFieldToSubItem.ContainsKey(this.Definicion.Columns[i].Name) == false)
+                                                        FormFieldToSubItem.Add(this.Definicion.Columns[i].Name, ColNum);
 
                                                 switch (this.Definicion.Columns[i].DataType) {
                                                         case Lfx.Data.InputFieldTypes.Integer:
@@ -617,10 +647,17 @@ namespace Lfc
                                         }
                                 }
 
-                                if (this.Definicion.KeyColumnName != null) {
-                                        Listado.Columns[0].Width = this.Definicion.KeyColumnName.Width;
-                                        Listado.Columns[0].Text = this.Definicion.KeyColumnName.Label;
+                                if (this.Definicion.KeyColumn != null) {
+                                        Listado.Columns[0].Width = this.Definicion.KeyColumn.Width;
+                                        Listado.Columns[0].Text = this.Definicion.KeyColumn.Label;
                                 }
+
+                                if (this.Definicion.OrderBy.Contains(","))
+                                        this.SetupSorter(null, SortOrder.None);
+                                else if (this.Definicion.OrderBy.EndsWith(" DESC"))
+                                        this.SetupSorter(this.Definicion.OrderBy.Substring(0, this.Definicion.OrderBy.Length - 5).Trim(), SortOrder.Descending);
+                                else
+                                        this.SetupSorter(this.Definicion.OrderBy, SortOrder.Ascending);
 
                                 Listado.ResumeLayout();
                                 Listado.EndUpdate();
@@ -636,7 +673,7 @@ namespace Lfc
                         LastGroup = null;
 
                         if (Listado.Columns.Count <= 1)
-                                this.UpdateFormFields();
+                                this.SetupListviewColumns();
                         this.LoadColumns();
                         this.OnBeginRefreshList();
 
@@ -668,12 +705,12 @@ namespace Lfc
 
                                 string ListaCampos;
                                 if (forCount) {
-                                        ListaCampos = "COUNT(" + this.Definicion.KeyColumnName.MemberName + ") AS row_count";
+                                        ListaCampos = "COUNT(" + this.Definicion.KeyColumn.Name + ") AS row_count";
                                 } else {
                                         // Genero la lista de campos
-                                        ListaCampos = this.Definicion.KeyColumnName.MemberName;
+                                        ListaCampos = this.Definicion.KeyColumn.Name;
                                         foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns)
-                                                ListaCampos += "," + CurField.MemberName;
+                                                ListaCampos += "," + CurField.Name;
                                 }
 
                                 // Genero las condiciones del WHERE
@@ -683,11 +720,11 @@ namespace Lfc
                                 if (this.SearchText != string.Empty) {
                                         bool EsNumero = this.SearchText.IsNumericInt() || this.SearchText.IsNumericFloat();
                                         if (this.SearchText.IsNumericInt())
-                                                WhereBuscarTexto.AddWithValue(this.Definicion.KeyColumnName.MemberName, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
+                                                WhereBuscarTexto.AddWithValue(this.Definicion.KeyColumn.Name, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
 
                                         if (this.Definicion.Columns != null) {
                                                 foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns) {
-                                                        if (CurField.MemberName.IndexOf(" AS ") == -1 && CurField.MemberName.IndexOf("(") == -1) {
+                                                        if (CurField.Name.IndexOf(" AS ") == -1 && CurField.Name.IndexOf("(") == -1) {
                                                                 switch(CurField.DataType) {
                                                                         case Lfx.Data.InputFieldTypes.Binary:
                                                                         case Lfx.Data.InputFieldTypes.Image:
@@ -703,7 +740,7 @@ namespace Lfc
                                                                                         DateTime SearchDate = Fecha.Value;
                                                                                         DateTime FromDate = new DateTime(SearchDate.Year, SearchDate.Month, SearchDate.Day, 0, 0, 0);
                                                                                         DateTime ToDate = new DateTime(SearchDate.Year, SearchDate.Month, SearchDate.Day, 23, 59, 59);
-                                                                                        WhereBuscarTexto.AddWithValue(CurField.MemberName, FromDate, ToDate);
+                                                                                        WhereBuscarTexto.AddWithValue(CurField.Name, FromDate, ToDate);
                                                                                 }
                                                                                 break;
                                                                         case Lfx.Data.InputFieldTypes.Currency:
@@ -713,11 +750,11 @@ namespace Lfc
                                                                         case Lfx.Data.InputFieldTypes.Serial:
                                                                                 // En estos tipos de campos busco sólo números
                                                                                 if(EsNumero)
-                                                                                        WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                                                        WhereBuscarTexto.AddWithValue(CurField.Name, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                                 break;
                                                                         case Lfx.Data.InputFieldTypes.Relation:
                                                                         default:
-                                                                                WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                                                WhereBuscarTexto.AddWithValue(CurField.Name, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                                 break;
                                                                 }
                                                                 
@@ -738,11 +775,11 @@ namespace Lfc
                                                                 case Lfx.Data.InputFieldTypes.Serial:
                                                                         // En estos tipos de campos busco sólo números
                                                                         if (EsNumero)
-                                                                                WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                                                WhereBuscarTexto.AddWithValue(CurField.Name, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                         break;
                                                                 case Lfx.Data.InputFieldTypes.Relation:
                                                                 default:
-                                                                        WhereBuscarTexto.AddWithValue(CurField.MemberName, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
+                                                                        WhereBuscarTexto.AddWithValue(CurField.Name, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                         break;
                                                         }
                                                 }
@@ -754,7 +791,7 @@ namespace Lfc
 
                                 if (m_Labels != null) {
                                         if (m_LabelField == null || m_LabelField.Length == 0)
-                                                m_LabelField = this.Definicion.KeyColumnName.MemberName;
+                                                m_LabelField = this.Definicion.KeyColumn.Name;
                                         if (m_Labels.Count == 1) {
                                                 // Ids negativos sólo cuando hay una sola etiqueta
                                                 if (m_Labels[0] > 0)
@@ -778,7 +815,7 @@ namespace Lfc
                                 ComandoSelect.WhereClause = WhereCompleto;
 
                                 if (this.Definicion.GroupBy != null)
-                                        ComandoSelect.Group = this.Definicion.GroupBy.MemberName;
+                                        ComandoSelect.Group = this.Definicion.GroupBy.Name;
 
                                 if (this.Definicion.Having != null)
                                         ComandoSelect.HavingClause = this.Definicion.Having;
@@ -795,7 +832,7 @@ namespace Lfc
                 protected void Fill(qGen.Select command)
                 {
                         if (this.Listado.Columns.Count == 0)
-                                this.UpdateFormFields();
+                                this.SetupListviewColumns();
 
                         CancelFill = false;
 
@@ -830,6 +867,7 @@ namespace Lfc
                         EtiquetaCantidad.Refresh();
                         PicEsperar.Refresh();
 
+                        Listado.ListViewItemSorter = null;
                         Listado.SuspendLayout();
                         Listado.BeginUpdate();
 
@@ -842,13 +880,15 @@ namespace Lfc
                                 foreach (System.Data.DataRow DtRow in Tabla.Rows) {
                                         Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
 
-                                        string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.MemberName);
+                                        string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumn.Name);
                                         int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
                                         ListViewItem Itm;
                                         string ItemKey = ItemId.ToString();
                                         if (ItemListado.ContainsKey(ItemId)) {
                                                 Itm = this.FormatListViewItem(ItemListado[ItemId], ItemId, Registro);
+                                                if (Listado.Items.Contains(Itm) == false)
+                                                        Listado.Items.Add(Itm);
                                         } else {
                                                 Itm = this.FormatListViewItem(new ListViewItem(ItemKey), ItemId, Registro);
                                                 ItemListado.Add(ItemId, Itm);
@@ -901,15 +941,10 @@ namespace Lfc
                                 }
                         }
 
-                        List<int> ItemQueYaNoExisten = new List<int>();
                         foreach (ListViewItem Itm in Listado.Items) {
-                                if (Itm.Tag == null)
-                                        ItemQueYaNoExisten.Add(int.Parse(Itm.Text));
-                        }
-
-                        foreach (int ItmId in ItemQueYaNoExisten) {
-                                ItemListado[ItmId].Remove();
-                                ItemListado.Remove(ItmId);
+                                if (Itm.Tag == null) {
+                                        Listado.Items.Remove(Itm);
+                                }
                         }
 
                         if (Listado.Items.Count > 0 && Listado.SelectedItems.Count == 0) {
@@ -935,7 +970,7 @@ namespace Lfc
                                         Itm.Font = new Font(Itm.Font, FontStyle.Bold);
                                         Itm.BackColor = Color.Lavender;
                                         foreach (ColumnHeader Col in Listado.Columns) {
-                                                if (Col.Name != this.Definicion.KeyColumnName.MemberName) {
+                                                if (Col.Name != this.Definicion.KeyColumn.Name) {
                                                         Itm.Group = Grp;
                                                         object ColFunc = this.Definicion.Columns[Col.Name].TotalFunction;
                                                         if (ColFunc == null) {
@@ -967,6 +1002,11 @@ namespace Lfc
                                 }
                         }
 
+                        if (this.Sorter != null && this.Sorter.SortOrder != SortOrder.None) {
+                                Listado.ListViewItemSorter = this.Sorter;
+                                Listado.Sort();
+                        }
+
                         Listado.EndUpdate();
                         Listado.ResumeLayout();
 
@@ -984,13 +1024,13 @@ namespace Lfc
                 {
                         Lazaro.Pres.Spreadsheet.Row Reng = new Lazaro.Pres.Spreadsheet.Row(sheet);
 
-                        if (this.Definicion.KeyColumnName != null) {
+                        if (this.Definicion.KeyColumn != null) {
                                 Lazaro.Pres.Spreadsheet.Cell KeyCell = Reng.Cells.Add();
                                 KeyCell.Content = itemId;
                         }
 
                         for (int FieldNum = 0; FieldNum < useFields.Count; FieldNum++) {
-                                string FieldName = Lfx.Data.Connection.GetFieldName(useFields[FieldNum].MemberName);
+                                string FieldName = Lfx.Data.Connection.GetFieldName(useFields[FieldNum].Name);
 
                                 if (FieldNum >= 0) {
                                         Lazaro.Pres.Spreadsheet.Cell NewCell = Reng.Cells.Add();
@@ -1073,7 +1113,7 @@ namespace Lfc
                                 int FieldNum = -1;
                                 if (SubItemToFormField.ContainsKey(FieldName) == false) {
                                         for (int fi = 0; fi < this.Definicion.Columns.Count; fi++) {
-                                                if (this.Definicion.Columns[fi].MemberName == FieldName) {
+                                                if (this.Definicion.Columns[fi].Name == FieldName) {
                                                         FieldNum = fi;
                                                         SubItemToFormField.Add(FieldName, FieldNum);
                                                         break;
@@ -1167,6 +1207,17 @@ namespace Lfc
                                                         FieldValueAsText = System.Convert.ToDateTime(cellValue).ToString(formField.Format).ToTitleCase();
                                                 else
                                                         FieldValueAsText = System.Convert.ToDateTime(cellValue).ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
+                                        } else {
+                                                FieldValueAsText = "";
+                                        }
+                                        break;
+
+                                case Lfx.Data.InputFieldTypes.YearMonth:
+                                        if (cellValue != null) {
+                                                if (formField.Format != null)
+                                                        FieldValueAsText = System.Convert.ToDateTime(cellValue).ToString(formField.Format).ToTitleCase();
+                                                else
+                                                        FieldValueAsText = System.Convert.ToDateTime(cellValue).ToString(Lfx.Types.Formatting.DateTime.ShortMonthAndYearPattern);
                                         } else {
                                                 FieldValueAsText = "";
                                         }
@@ -1321,16 +1372,16 @@ namespace Lfc
                         Res.Sheets.Add(Sheet);
 
                         // Exporto los encabezados de columna
-                        Sheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader(this.Definicion.KeyColumnName.Label, this.Definicion.KeyColumnName.Width));
-                        Sheet.ColumnHeaders[0].DataType = this.Definicion.KeyColumnName.DataType;
-                        Sheet.ColumnHeaders[0].Format = this.Definicion.KeyColumnName.Format;
-                        Sheet.ColumnHeaders[0].Printable = this.Definicion.KeyColumnName.Printable;
+                        Sheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader(this.Definicion.KeyColumn.Label, this.Definicion.KeyColumn.Width));
+                        Sheet.ColumnHeaders[0].DataType = this.Definicion.KeyColumn.DataType;
+                        Sheet.ColumnHeaders[0].Format = this.Definicion.KeyColumn.Format;
+                        Sheet.ColumnHeaders[0].Printable = this.Definicion.KeyColumn.Printable;
 
                         int OrderColumn = -1;
                         if (useFields != null) {
                                 for (int i = 0; i <= useFields.Count - 1; i++) {
                                         Lazaro.Pres.Spreadsheet.ColumnHeader ColHead = new Lazaro.Pres.Spreadsheet.ColumnHeader(useFields[i].Label, useFields[i].Width);
-                                        ColHead.Name = Lfx.Data.Connection.GetFieldName(useFields[i].MemberName);
+                                        ColHead.Name = Lfx.Data.Connection.GetFieldName(useFields[i].Name);
                                         ColHead.TextAlignment = useFields[i].Alignment;
                                         ColHead.DataType = useFields[i].DataType;
                                         ColHead.Format = useFields[i].Format;
@@ -1351,7 +1402,7 @@ namespace Lfc
                         foreach (System.Data.DataRow DtRow in Tabla.Rows) {
                                 Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
 
-                                string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumnName.MemberName);
+                                string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumn.Name);
                                 int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
                                 Lazaro.Pres.Spreadsheet.Row Reng = this.FormatRow(ItemId, Registro, Sheet, useFields);
@@ -1380,6 +1431,7 @@ namespace Lfc
 
                 private void FormularioListadoBase_FormClosing(object sender, FormClosingEventArgs e)
                 {
+                        RefreshTimer.Stop();
                         CancelFill = true;
                 }
         }

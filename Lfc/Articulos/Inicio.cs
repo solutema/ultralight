@@ -51,7 +51,7 @@ namespace Lfc.Articulos
                                 ElementoTipo = typeof(Lbl.Articulos.Articulo),
 
                                 TableName = "articulos",
-                                KeyColumnName = new Lazaro.Pres.Field("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                KeyColumn = new Lazaro.Pres.Field("articulos.id_articulo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre",
                                 Joins = this.FixedJoins(),
                                 OrderBy = "articulos.nombre",
@@ -179,15 +179,17 @@ namespace Lfc.Articulos
                         if (m_PvpHasta != 0)
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos.pvp", qGen.ComparisonOperators.LessOrEqual, m_PvpHasta));
 
-                        if (m_Situacion != null) {
+                        if (m_Situacion != null && this.Definicion.Columns[3].Name != "articulos_stock.cantidad") {
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.id_situacion", m_Situacion.Id));
                                 this.CustomFilters.Add(new qGen.ComparisonCondition("articulos_stock.cantidad", qGen.ComparisonOperators.NotEqual, 0));
                                 this.Definicion.Joins = this.FixedJoins();
                                 this.Definicion.Joins.Add(new qGen.Join("articulos_stock", "articulos.id_articulo=articulos_stock.id_articulo"));
-                                this.Definicion.Columns[3].MemberName = "articulos_stock.cantidad";
-                        } else {
+                                this.Definicion.Columns[3].Name = "articulos_stock.cantidad";
+                                this.SetupListviewColumns();
+                        } else if (this.Definicion.Columns[3].Name != "articulos.stock_actual") {
                                 this.Definicion.Joins = this.FixedJoins();
-                                this.Definicion.Columns[3].MemberName = "articulos.stock_actual";
+                                this.Definicion.Columns[3].Name = "articulos.stock_actual";
+                                this.SetupListviewColumns();
                         }
 
                         switch (m_Stock) {

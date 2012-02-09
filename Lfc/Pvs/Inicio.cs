@@ -44,7 +44,7 @@ namespace Lfc.Pvs
                                 ElementoTipo = typeof(Lbl.Comprobantes.PuntoDeVenta),
 
                                 TableName = "pvs",
-                                KeyColumnName = new Lazaro.Pres.Field("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("sucursales", "pvs.id_sucursal=sucursales.id_sucursal") },
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {

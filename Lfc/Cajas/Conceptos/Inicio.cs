@@ -47,7 +47,7 @@ namespace Lfc.Cajas.Conceptos
                                 ElementoTipo = typeof(Lbl.Cajas.Concepto),
 
                                 TableName = "conceptos",
-                                KeyColumnName = new Lazaro.Pres.Field("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("conceptos.id_concepto", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("conceptos.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),

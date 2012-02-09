@@ -48,7 +48,7 @@ namespace Lfc.Tareas.Tipos
                                 ElementoTipo = typeof(Lbl.Tareas.Tipo),
 
                                 TableName = "tickets_tipos",
-                                KeyColumnName = new Lazaro.Pres.Field("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
+                                KeyColumn = new Lazaro.Pres.Field("tickets_tipos.id_tipo_ticket", "Cód.", Lfx.Data.InputFieldTypes.Serial, 64),
 
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {

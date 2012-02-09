@@ -44,7 +44,7 @@ namespace Lfc.Articulos.Situaciones
                                 ElementoTipo = typeof(Lbl.Articulos.Situacion),
 
                                 TableName = "articulos_situaciones",
-                                KeyColumnName = new Lazaro.Pres.Field("articulos_situaciones.id_situacion", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
+                                KeyColumn = new Lazaro.Pres.Field("articulos_situaciones.id_situacion", "Cód.", Lfx.Data.InputFieldTypes.Serial, 80),
                                 DetailColumnName = "nombre",
                                 OrderBy = "articulos_situaciones.nombre",
                                 Columns = new Lazaro.Pres.FieldCollection()

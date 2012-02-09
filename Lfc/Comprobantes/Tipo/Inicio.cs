@@ -47,7 +47,7 @@ namespace Lfc.Comprobantes.Tipo
 
                                 TableName = "documentos_tipos",
                                 OrderBy = "nombre",
-                                KeyColumnName = new Lazaro.Pres.Field("id_tipo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("id_tipo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),

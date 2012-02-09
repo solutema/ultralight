@@ -48,7 +48,7 @@ namespace Lfc.Articulos.Marcas
 
                                 TableName = "marcas",
                                 OrderBy = "nombre",
-                                KeyColumnName = new Lazaro.Pres.Field("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("id_marca", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 480),

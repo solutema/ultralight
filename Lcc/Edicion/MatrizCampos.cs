@@ -130,13 +130,13 @@ namespace Lcc.Edicion
                                                 //BoolField.SetData = new string[] { "Si|1", "No|0" };
                                                 //BoolField.AlwaysExpanded = false;
                                                 //BoolField.AutoSize = false;
-                                                BoolField.Value = m_Elemento.GetFieldValue<bool>(Fld.MemberName);
+                                                BoolField.Value = m_Elemento.GetFieldValue<bool>(Fld.Name);
                                                 Ctrl = BoolField;
                                                 break;
                                         case Lfx.Data.InputFieldTypes.Set:
                                                 Lui.Forms.ComboBox SetField = new Lui.Forms.ComboBox();
                                                 SetField.FromDictionary(Fld.SetValues);
-                                                SetField.TextKey = m_Elemento.GetFieldValue<string>(Fld.MemberName);
+                                                SetField.TextKey = m_Elemento.GetFieldValue<string>(Fld.Name);
                                                 SetField.AlwaysExpanded = true;
                                                 SetField.AutoSize = true;
                                                 Ctrl = SetField;
@@ -144,7 +144,7 @@ namespace Lcc.Edicion
                                         case Lfx.Data.InputFieldTypes.Relation:
                                                 Entrada.CodigoDetalle RelationField = new Entrada.CodigoDetalle();
                                                 RelationField.Relation = Fld.Relation;
-                                                RelationField.TextInt = m_Elemento.GetFieldValue<int>(Fld.MemberName);
+                                                RelationField.TextInt = m_Elemento.GetFieldValue<int>(Fld.Name);
                                                 RelationField.PlaceholderText = Fld.Label;
                                                 RelationField.Required = false;
                                                 Ctrl = RelationField;
@@ -154,31 +154,31 @@ namespace Lcc.Edicion
                                                 switch (Fld.DataType) {
                                                         case Lfx.Data.InputFieldTypes.Currency:
                                                                 TextField.DataType = Lui.Forms.DataTypes.Currency;
-                                                                TextField.ValueDecimal = m_Elemento.GetFieldValue<decimal>(Fld.MemberName);
+                                                                TextField.ValueDecimal = m_Elemento.GetFieldValue<decimal>(Fld.Name);
                                                                 break;
                                                         case Lfx.Data.InputFieldTypes.Date:
                                                                 TextField.DataType = Lui.Forms.DataTypes.Date;
-                                                                TextField.Text = m_Elemento.GetFieldValue<DateTime>(Fld.MemberName).ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
+                                                                TextField.Text = m_Elemento.GetFieldValue<DateTime>(Fld.Name).ToString(Lfx.Types.Formatting.DateTime.ShortDatePattern);
                                                                 break;
                                                         case Lfx.Data.InputFieldTypes.DateTime:
                                                                 TextField.DataType = Lui.Forms.DataTypes.DateTime;
-                                                                TextField.Text = m_Elemento.GetFieldValue<DateTime>(Fld.MemberName).ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
+                                                                TextField.Text = m_Elemento.GetFieldValue<DateTime>(Fld.Name).ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
                                                                 break;
                                                         case Lfx.Data.InputFieldTypes.Numeric:
                                                                 TextField.DataType = Lui.Forms.DataTypes.Float;
-                                                                TextField.ValueDecimal = m_Elemento.GetFieldValue<decimal>(Fld.MemberName);
+                                                                TextField.ValueDecimal = m_Elemento.GetFieldValue<decimal>(Fld.Name);
                                                                 break;
                                                         case Lfx.Data.InputFieldTypes.Integer:
                                                                 TextField.DataType = Lui.Forms.DataTypes.Integer;
-                                                                TextField.ValueInt = m_Elemento.GetFieldValue<int>(Fld.MemberName);
+                                                                TextField.ValueInt = m_Elemento.GetFieldValue<int>(Fld.Name);
                                                                 break;
                                                         case Lfx.Data.InputFieldTypes.Text:
-                                                                TextField.Text = m_Elemento.GetFieldValue<string>(Fld.MemberName);
+                                                                TextField.Text = m_Elemento.GetFieldValue<string>(Fld.Name);
                                                                 break;
                                                         case Lfx.Data.InputFieldTypes.Memo:
                                                                 TextField.MultiLine = true;
                                                                 TextField.Size = new Size(this.FieldContainer.ClientSize.Width, 72);
-                                                                TextField.Text = m_Elemento.GetFieldValue<string>(Fld.MemberName);
+                                                                TextField.Text = m_Elemento.GetFieldValue<string>(Fld.Name);
                                                                 break;
                                                 }
                                                 TextField.PlaceholderText = Fld.Label;
@@ -189,7 +189,7 @@ namespace Lcc.Edicion
                                 if (Ctrl.Size == System.Drawing.Size.Empty)
                                         Ctrl.Size = new Size(this.FieldContainer.ClientSize.Width, 24);
                                 Ctrl.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Top;
-                                Ctrl.FieldName = Fld.MemberName;
+                                Ctrl.FieldName = Fld.Name;
                                 this.AgregarCampo(Fld.Label, Ctrl);
                         }
                 }

@@ -49,7 +49,7 @@ namespace Lfc.Articulos.Categorias
                                 ElementoTipo = typeof(Lbl.Articulos.Categoria),
 
                                 TableName = "articulos_categorias",
-                                KeyColumnName = new Lazaro.Pres.Field("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 GroupBy = new Lazaro.Pres.Field("articulos_categorias.id_categoria", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { new qGen.Join("articulos", "articulos_categorias.id_categoria") },
                                 OrderBy = "articulos_categorias.nombre",

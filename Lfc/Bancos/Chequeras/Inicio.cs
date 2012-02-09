@@ -57,7 +57,7 @@ namespace Lfc.Bancos.Chequeras
                                 ElementoTipo = typeof(Lbl.Bancos.Chequera),
 
                                 TableName = "chequeras",
-                                KeyColumnName = new Lazaro.Pres.Field("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("chequeras.id_chequera", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("bancos.nombre", "Banco", 240, new Lfx.Data.Relation("chequeras.id_banco", "bancos", "id_banco")),

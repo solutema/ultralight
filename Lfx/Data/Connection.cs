@@ -1624,58 +1624,26 @@ LEFT JOIN pg_attribute
                 /// <summary>
                 /// Obtiene el primer comando SQL en una lista separada por punto y coma. Elimina el comando de la lista.
                 /// </summary>
-                /// <param name="Comandos">La lista de comandos.</param>
+                /// <param name="comandos">La lista de comandos.</param>
                 /// <returns>El primer comando de la lista.</returns>
-                public static string GetNextCommand(ref string Comandos)
+                public static string GetNextCommand(ref string comandos)
                 {
-                        if (Comandos != null && Comandos.Length == 0)
+                        if (comandos != null && comandos.Length == 0)
                                 return "";
 
-                        if (Comandos.Substring(Comandos.Length - 1, 1) != ";")
-                                Comandos += ";";
-
-                        char[] Caracteres = { '\'', Lfx.Types.ControlChars.Quote, ';', '\\' };
-                        char Comilla = ' ';
-                        int r = 0;
-                        do {
-                                r = Comandos.IndexOfAny(Caracteres, r);
-                                switch (Comandos[r]) {
-                                        case '\\':
-                                                r++;
-                                                break;
-                                        case ';':
-                                                if (Comilla == ' ') {
-                                                        string Resultado = Comandos.Substring(0, r);
-                                                        Comandos = Comandos.Substring(r + 1, Comandos.Length - (r + 1));
-                                                        return Resultado;
-                                                }
-                                                break;
-                                        case '\'':
-                                                if (Comilla == Lfx.Types.ControlChars.Quote) {
-                                                        // Nada
-                                                } else if (Comandos.Length > r && Comandos[r + 1] == '\'') {
-                                                        // Comilla escapeada. Ignoro
-                                                        r++;
-                                                } else if (Comilla == '\'') {
-                                                        Comilla = ' ';
-                                                } else {
-                                                        Comilla = '\'';
-                                                }
-                                                break;
-                                        case Lfx.Types.ControlChars.Quote:
-                                                if (Comilla == '\'') {
-                                                        // Nada
-                                                } else if (Comilla == Lfx.Types.ControlChars.Quote) {
-                                                        Comilla = ' ';
-                                                } else {
-                                                        Comilla = Lfx.Types.ControlChars.Quote;
-                                                }
-                                                break;
-                                }
-
-                                r++;
+                        int r = comandos.IndexOf(@";
+");
+                        string Res;
+                        if (r < 0) {
+                                // No encontré... devuelvo el comando completo
+                                Res = comandos;
+                                comandos = "";
+                        } else {
+                                Res = comandos.Substring(0, r);
+                                comandos = comandos.Substring(r + 1, comandos.Length - (r + 1));
                         }
-                        while (true);
+
+                        return Res;
                 }
 
 

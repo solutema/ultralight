@@ -47,7 +47,7 @@ namespace Lfc.Sucursales
                                 ElementoTipo = typeof(Lbl.Entidades.Sucursal),
 
                                 TableName = "sucursales",
-                                KeyColumnName = new Lazaro.Pres.Field("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("sucursales.id_sucursal", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection() 
 			        {
 				        new Lazaro.Pres.Field("sucursales.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),

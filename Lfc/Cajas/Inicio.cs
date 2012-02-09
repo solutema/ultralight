@@ -60,7 +60,7 @@ namespace Lfc.Cajas
                                 ElementoTipo = typeof(Lbl.Cajas.Caja),
 
                                 TableName = "cajas",
-                                KeyColumnName = new Lazaro.Pres.Field("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
 
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {

@@ -46,7 +46,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 ElementoTipo = typeof(Lbl.Impresion.Plantilla),
 
                                 TableName = "sys_plantillas",
-                                KeyColumnName = new Lazaro.Pres.Field("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("sys_plantillas.id_plantilla", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("sys_plantillas.codigo", "Código", Lfx.Data.InputFieldTypes.Text, 240),

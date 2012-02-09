@@ -46,7 +46,7 @@ namespace Lfc.Personas.Grupos
                                 ElementoTipo = typeof(Lbl.Personas.Grupo),
 
                                 TableName = "personas_grupos",
-                                KeyColumnName = new Lazaro.Pres.Field("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("id_grupo", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 OrderBy = "parent, nombre",
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
