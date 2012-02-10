@@ -46,7 +46,7 @@ namespace Lazaro.Pres
                                 }
 
                                 foreach (Field Fld in this) {
-                                        if (Lfx.Data.Connection.GetFieldName(Fld.Name) == index)
+                                        if (Lfx.Data.Field.GetNameOnly(Fld.Name) == index)
                                                 return Fld;
                                 }
                                 return null;

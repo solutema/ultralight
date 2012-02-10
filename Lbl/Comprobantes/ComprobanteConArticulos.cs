@@ -271,7 +271,7 @@ namespace Lbl.Comprobantes
                                 if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(this.PV))
                                         IdPv = Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[this.PV].Id;
                                 if (IdPv == 0)
-                                        throw new Lfx.Types.DomainException("No existe el Punto de Venta " + this.PV.ToString());
+                                        throw new Lfx.Types.DomainException("No existe el punto de venta " + this.PV.ToString());
                                 PuntoDeVenta Pun = new PuntoDeVenta(this.Connection, IdPv);
                                 return Pun.Impresora;
                         } else {
@@ -563,7 +563,7 @@ namespace Lbl.Comprobantes
                                                 break;
 
                                         case Pagos.TiposFormasDePago.Caja:
-                                                throw new Lfx.Types.DomainException("No implementado: anular comprobante pagado con depósito en caja.");
+                                                throw new NotImplementedException("No implementado: anular comprobante pagado con depósito en caja.");
 
                                         case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
                                                 // Quito el saldo pagado de la cuenta corriente
@@ -590,7 +590,7 @@ namespace Lbl.Comprobantes
                         if (this.Articulos != null) {
                                 foreach (Comprobantes.DetalleArticulo Det in this.Articulos) {
                                         if (Det.Id > 0 && Det.Articulo != null
-                                                && Det.Articulo.ControlExistencias != Lbl.Articulos.ControlExistencias.No
+                                                && Det.Articulo.TipoDeArticulo != Lbl.Articulos.TiposDeArticulo.Servicio
                                                 && Det.Articulo.Existencias < Det.Cantidad)
                                                 return false;
                                 }
@@ -690,7 +690,7 @@ namespace Lbl.Comprobantes
 
                 public override Lfx.Types.OperationResult Guardar()
                 {
-                        this.Articulos.Comprobante = this;
+                        this.Articulos.ElementoPadre = this;
 
 			qGen.TableCommand Comando;
 
@@ -759,7 +759,8 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("compra", this.Compra ? 1 : 0);
                         Comando.Fields.AddWithValue("estado", this.Estado);
                         Comando.Fields.AddWithValue("series", this.Articulos.DatosSeguimiento);
-                        if (this.Tipo.EsNotaCredito) {
+                        if (this.Tipo.EsFacturaOTicket == false && this.Tipo.EsNotaDebito == false) {
+                                // Este comprobante no es cancelable
                                 this.ImporteCancelado = this.Total;
                                 Comando.Fields.AddWithValue("cancelado", this.Total);
                         }
@@ -839,7 +840,7 @@ namespace Lbl.Comprobantes
 
                 private void GuardarDetalle()
                 {
-                        this.Articulos.Comprobante = this;
+                        this.Articulos.ElementoPadre = this;
 
                         qGen.Delete EliminarDetallesViejos = new qGen.Delete("comprob_detalle");
                         EliminarDetallesViejos.WhereClause = new qGen.Where("id_comprob", this.Id);

@@ -29,57 +29,16 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Lazaro.WinMain.Misc.Config
+namespace Lbl.Articulos
 {
-	public partial class ErrorConexion : Lui.Forms.Form
-	{
-                public ErrorConexion()
-                {
-                        InitializeComponent();
-                }
-
-
-		private void BotonSalir_Click(object sender, System.EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-		}
-
-
-		private void BotonReintentar_Click(object sender, System.EventArgs e)
-		{
-			this.DialogResult = DialogResult.Retry;
-		}
-
-
-		private void BotonConfigurar_Click(object sender, System.EventArgs e)
-		{
-			this.DialogResult = DialogResult.Yes;
-		}
-
-		public string Ayuda
-		{
-                        get
-                        {
-                                return EtiquetaAyuda.Text;
-                        }
-			set
-			{
-                                EtiquetaAyuda.Text = value;
-			}
-		}
-
-                public string ErrorOriginal
-                {
-                        get
-                        {
-                                return EtiquetaErrorOriginal.Text;
-                        }
-                        set
-                        {
-                                EtiquetaErrorOriginal.Text = value;
-                        }
-                }
-	}
+        public enum TiposDeArticulo
+        {
+                Servicio = 0,
+                ProductoSimple = 1,
+                ProductoCompuesto = 2
+        }
 }

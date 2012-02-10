@@ -312,7 +312,7 @@ namespace Lfc.Articulos
 
                         IgnorarCostoTextChanged--;
 
-                        EntradaUsaStock.ValueInt = (int)(Art.ControlExistencias);
+                        EntradaUsaStock.ValueInt = (int)(Art.TipoDeArticulo);
                         EntradaSeguimiento.ValueInt = (int)(Art.Seguimiento);
                         EntradaSeguimiento.ReadOnly = Art.Existe && Art.Existencias != 0;
                         EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.Existencias, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
@@ -353,7 +353,7 @@ namespace Lfc.Articulos
                                 Art.Margen = null;
 
                         Art.Pvp = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
-                        Art.ControlExistencias = (Lbl.Articulos.ControlExistencias)(EntradaUsaStock.ValueInt);
+                        Art.TipoDeArticulo = (Lbl.Articulos.TiposDeArticulo)(EntradaUsaStock.ValueInt);
                         Art.Seguimiento = (Lbl.Articulos.Seguimientos)(EntradaSeguimiento.ValueInt);
                         Art.PuntoDeReposicion = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
                         Art.Unidad = EntradaUnidad.TextKey;

@@ -235,7 +235,7 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "CONFIG":
-                                        Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
+                                        Config.Preferencias FormConfig = new Config.Preferencias();
                                         FormConfig.ShowDialog(Aplicacion.FormularioPrincipal);
                                         break;
 

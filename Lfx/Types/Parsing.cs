@@ -65,6 +65,9 @@ namespace Lfx.Types
                 /// </summary>
                 public static NullableDateTime ParseDate(string fecha)
                 {
+                        if (fecha == null || fecha == string.Empty)
+                                return null;
+
                         // Toma una fecha DD-MM-YYYY y devuelve un Date
                         string FechaTemp = fecha.Replace(" ", "").Replace("/", "-").Trim();
 
@@ -88,6 +91,7 @@ namespace Lfx.Types
                                         "ddMMyyyy",
                                         "ddMMyy",
                                         "ddMM",
+                                        "dd-MM",
                                         "yyyy-MM-dd HH:mm:ss",
                                         "yyyy-MM-dd HH:mm",
                                         "dd-MM-yyyy HH:mm:ss",
@@ -96,9 +100,10 @@ namespace Lfx.Types
                                         "dd-MM-yy HH:mm"
 				};
 
-                        try {
-                                return new NullableDateTime(DateTime.ParseExact(FechaTemp, FormatosAceptados, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces));
-                        } catch {
+                        DateTime Res;
+                        if (DateTime.TryParseExact(FechaTemp, FormatosAceptados, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces, out Res)) {
+                                return new NullableDateTime(Res);
+                        } else {
                                 return null;
                         }
                 }
@@ -126,22 +131,6 @@ namespace Lfx.Types
                         }
                 }
 
-                /*
-                /// <summary>
-                /// Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.
-                /// </summary>
-                public static double ParseDouble(string valor)
-                {
-                        string ValorMejorado = valor.Replace("$", "").Trim();
-
-                        if (IsNumeric(ValorMejorado)) {
-                                double Resultado = 0;
-                                double.TryParse(ValorMejorado, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
-                                return Resultado;
-                        } else {
-                                return 0;
-                        }
-                } */
 
                 /// <summary>
                 /// Interpreta un valor de punto flotante. Devuelve cero para cualquier valor desconocido.
@@ -153,13 +142,9 @@ namespace Lfx.Types
 
                         string ValorMejorado = valor.Replace("$", "").Trim();
 
-                        if (IsNumeric(ValorMejorado)) {
-                                decimal Resultado = 0;
-                                decimal.TryParse(ValorMejorado, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
-                                return Resultado;
-                        } else {
-                                return 0;
-                        }
+                        decimal Resultado = 0;
+                        decimal.TryParse(ValorMejorado, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
+                        return Resultado;
                 }
 
 

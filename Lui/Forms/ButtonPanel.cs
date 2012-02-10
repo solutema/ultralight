@@ -85,6 +85,8 @@ namespace Lui.Forms
                         if (control.Created == false)
                                 return;
 
+                        control.MinimumSize = new Size(96, 32);
+
                         switch(this.FlowDirection)
                         {
                                 case System.Windows.Forms.FlowDirection.BottomUp:

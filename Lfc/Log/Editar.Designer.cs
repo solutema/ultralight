@@ -63,15 +63,8 @@ namespace Lfc.Log
                         this.ColPersona = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColAccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColDatos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.formHeader1 = new Lui.Forms.FormHeader();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(384, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(504, 8);
                         // 
                         // ListaHistoral
                         // 
@@ -86,10 +79,10 @@ namespace Lfc.Log
             this.ColDatos});
                         this.ListaHistoral.FullRowSelect = true;
                         this.ListaHistoral.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-                        this.ListaHistoral.Location = new System.Drawing.Point(8, 8);
+                        this.ListaHistoral.Location = new System.Drawing.Point(24, 88);
                         this.ListaHistoral.MultiSelect = false;
                         this.ListaHistoral.Name = "ListaHistoral";
-                        this.ListaHistoral.Size = new System.Drawing.Size(608, 288);
+                        this.ListaHistoral.Size = new System.Drawing.Size(696, 272);
                         this.ListaHistoral.TabIndex = 0;
                         this.ListaHistoral.UseCompatibleStateImageBehavior = false;
                         this.ListaHistoral.View = System.Windows.Forms.View.Details;
@@ -97,7 +90,7 @@ namespace Lfc.Log
                         // ColFecha
                         // 
                         this.ColFecha.Text = "Fecha";
-                        this.ColFecha.Width = 139;
+                        this.ColFecha.Width = 189;
                         // 
                         // ColPersona
                         // 
@@ -114,15 +107,26 @@ namespace Lfc.Log
                         this.ColDatos.Text = "Datos";
                         this.ColDatos.Width = 600;
                         // 
+                        // formHeader1
+                        // 
+                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
+                        this.formHeader1.Name = "formHeader1";
+                        this.formHeader1.Size = new System.Drawing.Size(738, 64);
+                        this.formHeader1.TabIndex = 101;
+                        this.formHeader1.Text = "Historial";
+                        // 
                         // Editar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(624, 362);
+                        this.ClientSize = new System.Drawing.Size(738, 443);
+                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.ListaHistoral);
                         this.Name = "Editar";
                         this.Text = "Historial";
                         this.Controls.SetChildIndex(this.ListaHistoral, 0);
+                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.ResumeLayout(false);
 
                 }
@@ -134,5 +138,6 @@ namespace Lfc.Log
                 private System.Windows.Forms.ColumnHeader ColPersona;
                 private System.Windows.Forms.ColumnHeader ColAccion;
                 private System.Windows.Forms.ColumnHeader ColDatos;
+                private Lui.Forms.FormHeader formHeader1;
         }
 }

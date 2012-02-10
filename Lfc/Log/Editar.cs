@@ -57,10 +57,11 @@ namespace Lfc.Log
                         this.Mostrar(elemento.TablaDatos, elemento.Id);
                 }
 
-                public void Mostrar(string tabla, int itemId) {
+                public void Mostrar(string tabla, int itemId)
+                {
                         this.Tabla = tabla;
                         this.ItemId = itemId;
-                        
+
                         System.Data.DataTable LogsTable = this.Connection.Select("SELECT * FROM sys_log WHERE tabla='" + this.Tabla + "' AND item_id=" + this.ItemId.ToString() + " ORDER BY fecha DESC");
                         Lbl.ColeccionGenerica<Lbl.Sys.Log.Entrada> Logs = new Lbl.ColeccionGenerica<Lbl.Sys.Log.Entrada>(this.Connection, LogsTable);
                         for (int i = 0; i < Logs.Count; i++) {
@@ -71,9 +72,31 @@ namespace Lfc.Log
                                         Itm.SubItems.Add("");
                                 else
                                         Itm.SubItems.Add(Usuario.Fields["nombre_visible"].Value.ToString());
-                                Itm.SubItems.Add(Log.Comando.ToString());
+                                switch (Log.Comando) {
+                                        case Lbl.Sys.Log.Acciones.Save:
+                                                Itm.SubItems.Add("Guardar");
+                                                break;
+                                        case Lbl.Sys.Log.Acciones.Print:
+                                                Itm.SubItems.Add("Imprimir");
+                                                break;
+                                        case Lbl.Sys.Log.Acciones.Delete:
+                                                Itm.SubItems.Add("Eliminar");
+                                                break;
+                                        case Lbl.Sys.Log.Acciones.DeleteAndRevert:
+                                                Itm.SubItems.Add("Eliminar y revertir");
+                                                break;
+                                        case Lbl.Sys.Log.Acciones.LogOn:
+                                                Itm.SubItems.Add("Ingreso al sistema");
+                                                break;
+                                        default:
+                                                Itm.SubItems.Add(Log.Comando.ToString());
+                                                break;
+                                }
+                                
                                 Itm.SubItems.Add(Log.ToString());
                         }
+
+                        ColDatos.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
                 }
         }
 }

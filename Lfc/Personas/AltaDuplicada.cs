@@ -30,20 +30,14 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Lfc.Personas
 {
         public partial class AltaDuplicada : Lui.Forms.Form
 	{
-
-
 		public AltaDuplicada()
 		{
-                        this.DisplayStyle = new Lazaro.Pres.DisplayStyles.Red();
 			InitializeComponent();
 		}
 

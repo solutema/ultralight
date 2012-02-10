@@ -33,7 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Lfc.Comprobantes.Facturas
+namespace Lfc.Comprobantes
 {
         public partial class Seleccionar
         {
@@ -56,7 +56,7 @@ namespace Lfc.Comprobantes.Facturas
 
                 private void InitializeComponent()
                 {
-                        this.lblAviso = new Lui.Forms.Label();
+                        this.EtiquetaAviso = new Lui.Forms.Label();
                         this.EntradaNumero = new Lui.Forms.TextBox();
                         this.Label2 = new Lui.Forms.Label();
                         this.EntradaTipo = new Lui.Forms.ComboBox();
@@ -67,39 +67,29 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label8 = new Lui.Forms.Label();
                         this.EntradaVendedor = new Lcc.Entrada.CodigoDetalle();
                         this.Listado = new Lui.Forms.ListView();
-                        this.ColumnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.ColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.ColumnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.ColumnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.ColumnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColNumero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColCliente = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColImporte = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColCancelada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
                         this.SuspendLayout();
                         // 
-                        // OkButton
+                        // EtiquetaAviso
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(454, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(574, 8);
-                        // 
-                        // lblAviso
-                        // 
-                        this.lblAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblAviso.Location = new System.Drawing.Point(8, 384);
-                        this.lblAviso.Name = "lblAviso";
-                        this.lblAviso.Size = new System.Drawing.Size(680, 24);
-                        this.lblAviso.TabIndex = 11;
-                        this.lblAviso.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaAviso.Location = new System.Drawing.Point(8, 384);
+                        this.EtiquetaAviso.Name = "EtiquetaAviso";
+                        this.EtiquetaAviso.Size = new System.Drawing.Size(684, 24);
+                        this.EtiquetaAviso.TabIndex = 11;
+                        this.EtiquetaAviso.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.AutoSize = false;
-                        this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaNumero.Location = new System.Drawing.Point(348, 68);
+                        this.EntradaNumero.Location = new System.Drawing.Point(400, 88);
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.Size = new System.Drawing.Size(96, 24);
@@ -108,7 +98,7 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(216, 68);
+                        this.Label2.Location = new System.Drawing.Point(256, 88);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(72, 24);
                         this.Label2.TabIndex = 6;
@@ -117,8 +107,8 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // EntradaTipo
                         // 
-                        this.EntradaTipo.AutoSize = false;
-                        this.EntradaTipo.Location = new System.Drawing.Point(84, 68);
+                        this.EntradaTipo.AlwaysExpanded = false;
+                        this.EntradaTipo.Location = new System.Drawing.Point(112, 88);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
@@ -135,18 +125,16 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label1
                         // 
-                        this.Label1.Location = new System.Drawing.Point(12, 68);
+                        this.Label1.Location = new System.Drawing.Point(24, 88);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(72, 24);
+                        this.Label1.Size = new System.Drawing.Size(88, 24);
                         this.Label1.TabIndex = 4;
                         this.Label1.Text = "Tipo";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaPv
                         // 
-                        this.EntradaPv.AutoSize = false;
-                        this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPv.Location = new System.Drawing.Point(288, 68);
+                        this.EntradaPv.Location = new System.Drawing.Point(328, 88);
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPv.Size = new System.Drawing.Size(48, 24);
@@ -155,168 +143,171 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(336, 68);
+                        this.Label7.Location = new System.Drawing.Point(376, 88);
                         this.Label7.Name = "Label7";
-                        this.Label7.Size = new System.Drawing.Size(12, 24);
+                        this.Label7.Size = new System.Drawing.Size(24, 24);
                         this.Label7.TabIndex = 8;
                         this.Label7.Text = "-";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
                         // Label4
                         // 
-                        this.Label4.Location = new System.Drawing.Point(12, 12);
+                        this.Label4.Location = new System.Drawing.Point(24, 24);
                         this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(72, 24);
+                        this.Label4.Size = new System.Drawing.Size(88, 24);
                         this.Label4.TabIndex = 0;
                         this.Label4.Text = "Cliente";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label8
                         // 
-                        this.Label8.Location = new System.Drawing.Point(12, 40);
+                        this.Label8.Location = new System.Drawing.Point(24, 56);
                         this.Label8.Name = "Label8";
-                        this.Label8.Size = new System.Drawing.Size(72, 24);
+                        this.Label8.Size = new System.Drawing.Size(88, 24);
                         this.Label8.TabIndex = 2;
                         this.Label8.Text = "Vendedor";
                         this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaVendedor
                         // 
-                        this.EntradaVendedor.AutoSize = false;
+                        this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.DataTextField = "nombre_visible";
+                        this.EntradaVendedor.DataValueField = "id_persona";
+                        this.EntradaVendedor.ExtraDetailFields = "";
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
-                        this.EntradaVendedor.DataValueField = "id_persona";
-                        this.EntradaVendedor.Location = new System.Drawing.Point(84, 40);
+                        this.EntradaVendedor.Location = new System.Drawing.Point(112, 56);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
                         this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaVendedor.PlaceholderText = null;
                         this.EntradaVendedor.Required = false;
-                        this.EntradaVendedor.Size = new System.Drawing.Size(360, 24);
+                        this.EntradaVendedor.Size = new System.Drawing.Size(432, 24);
                         this.EntradaVendedor.TabIndex = 3;
                         this.EntradaVendedor.Table = "personas";
-                        this.EntradaVendedor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
                         this.EntradaVendedor.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
-                        // lvItems
+                        // Listado
                         // 
-                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColumnHeader6,
+            this.ColId,
             this.ColFecha,
-            this.ColumnHeader1,
-            this.ColumnHeader2,
-            this.ColumnHeader3,
-            this.ColumnHeader4,
-            this.ColumnHeader5});
+            this.ColTipo,
+            this.ColNumero,
+            this.ColCliente,
+            this.ColImporte,
+            this.ColCancelada});
                         this.Listado.FullRowSelect = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.HideSelection = false;
                         this.Listado.LabelWrap = false;
-                        this.Listado.Location = new System.Drawing.Point(8, 100);
+                        this.Listado.Location = new System.Drawing.Point(24, 120);
                         this.Listado.MultiSelect = false;
-                        this.Listado.Name = "lvItems";
-                        this.Listado.Size = new System.Drawing.Size(680, 280);
+                        this.Listado.Name = "Listado";
+                        this.Listado.Size = new System.Drawing.Size(648, 272);
                         this.Listado.TabIndex = 10;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
-                        this.Listado.SelectedIndexChanged += new System.EventHandler(this.lvItems_SelectedIndexChanged);
-                        this.Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvItems_KeyDown);
+                        this.Listado.SelectedIndexChanged += new System.EventHandler(this.Listado_SelectedIndexChanged);
+                        this.Listado.DoubleClick += new System.EventHandler(this.Listado_DoubleClick);
+                        this.Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Listado_KeyDown);
                         // 
-                        // ColumnHeader6
+                        // ColId
                         // 
-                        this.ColumnHeader6.Text = "Id";
-                        this.ColumnHeader6.Width = 0;
+                        this.ColId.Text = "Cód.";
+                        this.ColId.Width = 0;
                         // 
                         // ColFecha
                         // 
                         this.ColFecha.Text = "Fecha";
                         this.ColFecha.Width = 86;
                         // 
-                        // ColumnHeader1
+                        // ColTipo
                         // 
-                        this.ColumnHeader1.Text = "Tipo";
-                        this.ColumnHeader1.Width = 42;
+                        this.ColTipo.Text = "Tipo";
+                        this.ColTipo.Width = 42;
                         // 
-                        // ColumnHeader2
+                        // ColNumero
                         // 
-                        this.ColumnHeader2.Text = "Número";
-                        this.ColumnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                        this.ColumnHeader2.Width = 116;
+                        this.ColNumero.Text = "Número";
+                        this.ColNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.ColNumero.Width = 116;
                         // 
-                        // ColumnHeader3
+                        // ColCliente
                         // 
-                        this.ColumnHeader3.Text = "Cliente";
-                        this.ColumnHeader3.Width = 196;
+                        this.ColCliente.Text = "Cliente";
+                        this.ColCliente.Width = 196;
                         // 
-                        // ColumnHeader4
+                        // ColImporte
                         // 
-                        this.ColumnHeader4.Text = "Importe";
-                        this.ColumnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                        this.ColumnHeader4.Width = 86;
+                        this.ColImporte.Text = "Importe";
+                        this.ColImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.ColImporte.Width = 86;
                         // 
-                        // ColumnHeader5
+                        // ColCancelada
                         // 
-                        this.ColumnHeader5.Text = "Cancelada";
-                        this.ColumnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                        this.ColumnHeader5.Width = 86;
+                        this.ColCancelada.Text = "Cancelada";
+                        this.ColCancelada.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                        this.ColCancelada.Width = 86;
                         // 
                         // EntradaCliente
                         // 
-                        this.EntradaCliente.AutoSize = false;
+                        this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.DataTextField = "nombre_visible";
+                        this.EntradaCliente.DataValueField = "id_persona";
+                        this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
-                        this.EntradaCliente.DataValueField = "id_persona";
-                        this.EntradaCliente.Location = new System.Drawing.Point(84, 12);
+                        this.EntradaCliente.Location = new System.Drawing.Point(112, 24);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = false;
-                        this.EntradaCliente.Size = new System.Drawing.Size(360, 24);
+                        this.EntradaCliente.Size = new System.Drawing.Size(432, 24);
                         this.EntradaCliente.TabIndex = 1;
                         this.EntradaCliente.Table = "personas";
-                        this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
-                        // FormSeleccionarFactura
+                        // Seleccionar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(694, 475);
+                        this.ClientSize = new System.Drawing.Size(698, 475);
                         this.Controls.Add(this.EntradaCliente);
+                        this.Controls.Add(this.EntradaVendedor);
+                        this.Controls.Add(this.EntradaPv);
+                        this.Controls.Add(this.EntradaNumero);
+                        this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.Listado);
+                        this.Controls.Add(this.Label7);
+                        this.Controls.Add(this.EtiquetaAviso);
+                        this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.Label8);
-                        this.Controls.Add(this.EntradaVendedor);
-                        this.Controls.Add(this.Label7);
-                        this.Controls.Add(this.EntradaPv);
-                        this.Controls.Add(this.lblAviso);
-                        this.Controls.Add(this.EntradaNumero);
-                        this.Controls.Add(this.Label2);
-                        this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.Label1);
-                        this.Name = "FormSeleccionarFactura";
-                        this.Text = "Seleccionar Factura";
+                        this.Name = "Seleccionar";
+                        this.Text = "Seleccionar comprobante";
                         this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaTipo, 0);
-                        this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.EntradaNumero, 0);
-                        this.Controls.SetChildIndex(this.lblAviso, 0);
-                        this.Controls.SetChildIndex(this.EntradaPv, 0);
-                        this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.Label8, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
+                        this.Controls.SetChildIndex(this.Label2, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaAviso, 0);
+                        this.Controls.SetChildIndex(this.Label7, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
+                        this.Controls.SetChildIndex(this.EntradaTipo, 0);
+                        this.Controls.SetChildIndex(this.EntradaNumero, 0);
+                        this.Controls.SetChildIndex(this.EntradaPv, 0);
+                        this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.ResumeLayout(false);
 
@@ -324,7 +315,7 @@ namespace Lfc.Comprobantes.Facturas
 
                 #endregion
 
-                internal Lui.Forms.Label lblAviso;
+                internal Lui.Forms.Label EtiquetaAviso;
                 internal Lui.Forms.TextBox EntradaNumero;
                 internal Lui.Forms.Label Label2;
                 internal Lui.Forms.ComboBox EntradaTipo;
@@ -335,13 +326,13 @@ namespace Lfc.Comprobantes.Facturas
                 internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
                 internal Lui.Forms.ListView Listado;
                 internal System.Windows.Forms.ColumnHeader ColFecha;
-                internal System.Windows.Forms.ColumnHeader ColumnHeader1;
-                internal System.Windows.Forms.ColumnHeader ColumnHeader2;
-                internal System.Windows.Forms.ColumnHeader ColumnHeader3;
-                internal System.Windows.Forms.ColumnHeader ColumnHeader4;
+                internal System.Windows.Forms.ColumnHeader ColTipo;
+                internal System.Windows.Forms.ColumnHeader ColNumero;
+                internal System.Windows.Forms.ColumnHeader ColCliente;
+                internal System.Windows.Forms.ColumnHeader ColImporte;
                 internal Lui.Forms.TextBox EntradaPv;
                 internal Lcc.Entrada.CodigoDetalle EntradaCliente;
-                internal System.Windows.Forms.ColumnHeader ColumnHeader5;
-                internal System.Windows.Forms.ColumnHeader ColumnHeader6;
+                internal System.Windows.Forms.ColumnHeader ColCancelada;
+                internal System.Windows.Forms.ColumnHeader ColId;
         }
 }

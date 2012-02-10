@@ -1507,31 +1507,6 @@ LEFT JOIN pg_attribute
                 }
 
 
-                /// <summary>
-                /// Toma "tabla.campo" y devulve "campo"
-                /// </summary>
-                public static string GetFieldName(string fieldName)
-                {
-                        int r = fieldName.IndexOf(" AS ");
-                        if (r >= 0) {
-                                // Si tiene una cláusula AS, ese es el nombre de la columna
-                                return fieldName.Substring(r + 4, fieldName.Length - r - 4).Trim();
-                        }
-
-                        r = fieldName.IndexOf("(") + 1;
-                        if (r > 0) {
-                                // Si hay un parntesis asumo que es una función sin cláusula AS y por lo tanto lo devuelvo como viene
-                                return fieldName;
-                        }
-
-                        r = fieldName.IndexOf(".") + 1;
-                        if (r > 0) {
-                                return fieldName.Substring(r, fieldName.Length - r).Trim();
-                        } else {
-                                return fieldName.Trim();
-                        }
-                }
-
                 public string EscapeString(string stringValue)
                 {
                         switch (this.SqlMode) {

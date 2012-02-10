@@ -86,6 +86,7 @@
     <Compile Include="Articulos\ColeccionDatosSeguimiento.cs" />
     <Compile Include="Articulos\DatosSeguimiento.cs" />
     <Compile Include="Articulos\ItemReceta.cs" />
+    <Compile Include="Articulos\Periodicidad.cs" />
     <Compile Include="Atributos\Datos.cs" />
     <Compile Include="Atributos\Nomenclatura.cs" />
     <Compile Include="Atributos\Presentacion.cs" />
@@ -147,7 +148,7 @@
     <Compile Include="Articulos\Rubro.cs" />
     <Compile Include="Articulos\Situacion.cs" />
     <Compile Include="Articulos\Stock.cs" />
-    <Compile Include="Articulos\ControlExistencias.cs" />
+    <Compile Include="Articulos\TiposDeArticulo.cs" />
     <Compile Include="Bancos\Cheque.cs" />
     <Compile Include="Bancos\Chequera.cs" />
     <Compile Include="Cajas\TiposDeCaja.cs" />

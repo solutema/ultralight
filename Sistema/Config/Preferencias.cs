@@ -33,7 +33,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
-namespace Lazaro.WinMain.Misc.Config
+namespace Lazaro.WinMain.Config
 {
         public partial class Preferencias : Lui.Forms.Form
         {

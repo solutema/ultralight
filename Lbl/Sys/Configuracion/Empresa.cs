@@ -85,8 +85,8 @@ namespace Lbl.Sys.Configuracion
                         get
                         {
                                 if (m_AlicuotaPredeterminada == null) {
-                                        if(this.SituacionTributaria == 4)
-                                                // Monotributistas usan alícuota del 0% por comodidad
+                                        if(this.SituacionTributaria == 4 || this.SituacionTributaria == 5)
+                                                // Monotributistas y exentos usan alícuota del 0%
                                                 m_AlicuotaPredeterminada = new Impuestos.Alicuota(this.DataBase, 4);
                                         else
                                                 // El resto usan 21%

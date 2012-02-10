@@ -287,8 +287,8 @@ namespace Lfc
                                         case Keys.U:
                                                 e.Handled = true;
                                                 foreach (Lazaro.Pres.Field Fld in this.Definicion.Columns) {
-                                                        if (FormFieldToSubItem.ContainsKey(Lfx.Data.Connection.GetFieldName(Fld.Name)))
-                                                                Listado.Columns[FormFieldToSubItem[Lfx.Data.Connection.GetFieldName(Fld.Name)]].Width = Fld.Width;
+                                                        if (FormFieldToSubItem.ContainsKey(Lfx.Data.Field.GetNameOnly(Fld.Name)))
+                                                                Listado.Columns[FormFieldToSubItem[Lfx.Data.Field.GetNameOnly(Fld.Name)]].Width = Fld.Width;
                                                 }
                                                 break;
                                 }
@@ -545,6 +545,10 @@ namespace Lfc
                         if (this.Definicion.Sortable == false)
                                 return;
 
+                        if (e.Column != this.Sorter.SortColumn)
+                                // Hago esto para que ante un cambio de columna el orden sea siempre ascendente
+                                this.Sorter.SortOrder = SortOrder.Descending;
+
                         string NuevoOrden = null;
                         if (e.Column == 0) {
                                 NuevoOrden = this.Definicion.KeyColumn.Name;
@@ -559,6 +563,9 @@ namespace Lfc
 
                 private void SetupSorter(string nuevoOrden, SortOrder sortOrder)
                 {
+                        if (this.Definicion == null)
+                                return;
+
                         if (this.Definicion.Sortable == false) {
                                 this.Sorter.SortOrder = SortOrder.None;
                                 return;
@@ -569,11 +576,16 @@ namespace Lfc
                                 return;
                         }
 
-                        this.Sorter.SortColumn = Listado.Columns.IndexOfKey(nuevoOrden);
-                        if (nuevoOrden == this.Definicion.KeyColumn.Name) {
+                        if (Lfx.Data.Field.HaveSameName(nuevoOrden, this.Definicion.KeyColumn.Name)) {
                                 this.Sorter.DataType = this.Definicion.KeyColumn.DataType;
-                        } else {
+                                this.Sorter.SortColumn = 0;
+                        } else if (Listado.Columns.ContainsKey(nuevoOrden)) {
                                 this.Sorter.DataType = this.Definicion.Columns[nuevoOrden].DataType;
+                                this.Sorter.SortColumn = Listado.Columns.IndexOfKey(nuevoOrden);
+                        } else {
+                                this.Sorter.SortColumn = 0;
+                                this.Sorter.SortOrder = SortOrder.None;
+                                this.Sorter.DataType = Lfx.Data.InputFieldTypes.Text;
                         }
 
                         // quito la cláusula AS
@@ -880,7 +892,7 @@ namespace Lfc
                                 foreach (System.Data.DataRow DtRow in Tabla.Rows) {
                                         Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
 
-                                        string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumn.Name);
+                                        string NombreCampoId = Lfx.Data.Field.GetNameOnly(this.Definicion.KeyColumn.Name);
                                         int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
                                         ListViewItem Itm;
@@ -1030,7 +1042,7 @@ namespace Lfc
                         }
 
                         for (int FieldNum = 0; FieldNum < useFields.Count; FieldNum++) {
-                                string FieldName = Lfx.Data.Connection.GetFieldName(useFields[FieldNum].Name);
+                                string FieldName = Lfx.Data.Field.GetNameOnly(useFields[FieldNum].Name);
 
                                 if (FieldNum >= 0) {
                                         Lazaro.Pres.Spreadsheet.Cell NewCell = Reng.Cells.Add();
@@ -1381,7 +1393,7 @@ namespace Lfc
                         if (useFields != null) {
                                 for (int i = 0; i <= useFields.Count - 1; i++) {
                                         Lazaro.Pres.Spreadsheet.ColumnHeader ColHead = new Lazaro.Pres.Spreadsheet.ColumnHeader(useFields[i].Label, useFields[i].Width);
-                                        ColHead.Name = Lfx.Data.Connection.GetFieldName(useFields[i].Name);
+                                        ColHead.Name = Lfx.Data.Field.GetNameOnly(useFields[i].Name);
                                         ColHead.TextAlignment = useFields[i].Alignment;
                                         ColHead.DataType = useFields[i].DataType;
                                         ColHead.Format = useFields[i].Format;
@@ -1402,7 +1414,7 @@ namespace Lfc
                         foreach (System.Data.DataRow DtRow in Tabla.Rows) {
                                 Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
 
-                                string NombreCampoId = Lfx.Data.Connection.GetFieldName(this.Definicion.KeyColumn.Name);
+                                string NombreCampoId = Lfx.Data.Field.GetNameOnly(this.Definicion.KeyColumn.Name);
                                 int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
                                 Lazaro.Pres.Spreadsheet.Row Reng = this.FormatRow(ItemId, Registro, Sheet, useFields);

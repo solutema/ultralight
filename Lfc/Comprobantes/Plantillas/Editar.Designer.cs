@@ -360,8 +360,10 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ImagePreview.Paint += new System.Windows.Forms.PaintEventHandler(this.ImagePreview_Paint);
                         this.ImagePreview.DoubleClick += new System.EventHandler(this.ImagePreview_DoubleClick);
                         this.ImagePreview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ImagePreview_MouseDown);
+                        this.ImagePreview.MouseEnter += new System.EventHandler(this.ImagePreview_MouseEnter);
                         this.ImagePreview.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImagePreview_MouseMove);
                         this.ImagePreview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ImagePreview_MouseUp);
+                        this.ImagePreview.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ImagePreview_MouseWheel);
                         // 
                         // BotonSubir
                         // 
@@ -540,8 +542,8 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.Controls.Add(this.BotonDiseno);
                         this.Controls.Add(this.BotonGeneral);
-                        this.Controls.Add(this.PanelGeneral);
                         this.Controls.Add(this.PanelDiseno);
+                        this.Controls.Add(this.PanelGeneral);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(840, 464);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Editar_KeyDown);

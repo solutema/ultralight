@@ -36,12 +36,21 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Lfc.Comprobantes.Facturas
+namespace Lfc.Comprobantes
 {
         public partial class Seleccionar : Lui.Forms.DialogForm
         {
+                public enum TiposComprob
+                {
+                        FacturasNDyND,
+                        Remitos,
+                        Presupuestos
+                }
+
                 public bool AceptarAnuladas = false, AceptarNoImpresas = false, AceptarCanceladas = true, DeCompra = false;
-                public int FacturaId = 0;
+                public int IdComprob = 0;
+
+                private TiposComprob m_TipoComprob;
 
                 public Seleccionar()
                 {
@@ -49,38 +58,80 @@ namespace Lfc.Comprobantes.Facturas
                 }
 
 
+                public Lbl.Personas.Persona Cliente
+                {
+                        get
+                        {
+                                return EntradaCliente.Elemento as Lbl.Personas.Persona;
+                        }
+                        set
+                        {
+                                EntradaCliente.Elemento = value;
+                        }
+                }
+
+
+                public TiposComprob TipoComprob
+                {
+                        get
+                        {
+                                return m_TipoComprob;
+                        }
+                        set
+                        {
+                                m_TipoComprob = value;
+                                switch (m_TipoComprob) {
+                                        case Seleccionar.TiposComprob.FacturasNDyND:
+                                                this.EntradaTipo.SetData = new string[] {
+                                                        "Facturas A|A",
+                                                        "Facturas B|B",
+                                                        "Facturas C|C",
+                                                        "Facturas E|E",
+                                                        "Facturas M|M",
+                                                        "Todas|*"};
+                                                this.EntradaTipo.TextKey = "*";
+                                                ColCancelada.Width = 120;
+                                                break;
+                                        case Seleccionar.TiposComprob.Presupuestos:
+                                                this.EntradaTipo.SetData = new string[] {
+                                                        "Presupuestos|PS"};
+                                                this.EntradaTipo.TextKey = "PS";
+                                                ColCancelada.Width = 0;
+                                                break;
+                                        case Seleccionar.TiposComprob.Remitos:
+                                                this.EntradaTipo.SetData = new string[] {
+                                                        "Remitos|R"};
+                                                this.EntradaTipo.TextKey = "R";
+                                                ColCancelada.Width = 0;
+                                                break;
+                                }
+                        }
+                }
+
+
                 private void EntradaVendedorClienteTipoPVNumero_TextChanged(System.Object sender, System.EventArgs e)
                 {
                         qGen.Select SelFac = new qGen.Select("comprob");
                         SelFac.WhereClause = new qGen.Where();
-                        SelFac.WhereClause.AddWithValue("id_formapago", qGen.ComparisonOperators.NotEqual, 0);
 
-                        //string Sql = "SELECT * FROM comprob WHERE id_formapago>0";
                         if (EntradaVendedor.TextInt > 0)
-                                //Sql += " AND id_vendedor=" + EntradaVendedor.TextInt.ToString();
                                 SelFac.WhereClause.AddWithValue("id_vendedor", EntradaVendedor.TextInt);
 
                         if (EntradaCliente.TextInt > 0)
-                                //Sql += " AND id_cliente=" + EntradaCliente.TextInt.ToString();
                                 SelFac.WhereClause.AddWithValue("id_cliente", EntradaCliente.TextInt);
 
-                        if (AceptarCanceladas == false)
-                                //Sql += " AND cancelado<total";
+                        if (this.AceptarCanceladas == false)
                                 SelFac.WhereClause.AddWithValue("cancelado", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("total"));
 
-                        if (DeCompra) {
-                                //Sql += " AND compra<>0";
+                        if (this.DeCompra) {
                                 SelFac.WhereClause.AddWithValue("compra", qGen.ComparisonOperators.NotEqual, 0);
                         } else {
-                                //Sql += " AND compra=0";
                                 SelFac.WhereClause.AddWithValue("compra", 0);
-                                if (AceptarNoImpresas == false)
-                                        //Sql += " AND impresa<>0";
+                                if (this.AceptarNoImpresas == false)
                                         SelFac.WhereClause.AddWithValue("impresa", qGen.ComparisonOperators.NotEqual, 0);
                         }
 
-                        if (AceptarAnuladas == false)
-                                //Sql += " AND anulada=0";
+                        if (this.AceptarAnuladas == false)
                                 SelFac.WhereClause.AddWithValue("anulada", 0);
 
                         switch (EntradaTipo.TextKey) {
@@ -89,24 +140,25 @@ namespace Lfc.Comprobantes.Facturas
                                 case "C":
                                 case "E":
                                 case "M":
-                                        //Sql += " AND tipo_fac IN ('FA', 'NCA', 'NDA')";
                                         SelFac.WhereClause.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "F" + EntradaTipo.TextKey, "NC" + EntradaTipo.TextKey, "ND" + EntradaTipo.TextKey });
                                         break;
-                                default:
-                                        //Sql += " AND tipo_fac IN ('FA', 'NCA', 'NDA', 'FB', 'NCB', 'NDB', 'FC', 'NCC', 'NDC', 'FE', 'NCE', 'NDE', 'FM', 'NCM', 'NDM')";
-                                        SelFac.WhereClause.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "NCA", "NDA", "FB", "NCB", "NDB", "FC", "NCC", "NDC", "FE", "NCE", "NDE", "FM", "NCM", "NDM" });
+                                case "*":
+                                        SelFac.WhereClause.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FM", "FE", "NCA", "NCB", "NCC", "NCM", "NCE", "NDA", "NDB", "NDC", "NDM", "NDE" });
+                                        break;
+                                case "PS":
+                                        SelFac.WhereClause.AddWithValue("tipo_fac", "PS");
+                                        break;
+                                case "R":
+                                        SelFac.WhereClause.AddWithValue("tipo_fac", "R");
                                         break;
                         }
 
                         if (EntradaPv.ValueInt > 0)
-                                //Sql += " AND pv=" + Lfx.Types.Parsing.ParseInt(EntradaPv.Text).ToString();
                                 SelFac.WhereClause.AddWithValue("pv", EntradaPv.ValueInt);
 
                         if (EntradaNumero.ValueInt > 0)
-                                //Sql += " AND numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString();
                                 SelFac.WhereClause.AddWithValue("numero", EntradaNumero.ValueInt);
 
-                        //Sql += " ORDER BY fecha DESC LIMIT 100";
                         SelFac.Order = "fecha DESC";
                         DataTable Facturas = this.Connection.Select(SelFac);
 
@@ -132,7 +184,7 @@ namespace Lfc.Comprobantes.Facturas
                 }
 
 
-                private void lvItems_SelectedIndexChanged(object sender, System.EventArgs e)
+                private void Listado_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
                         Lfx.Data.Row Factura = null;
                         ListViewItem Itm = null;
@@ -142,28 +194,28 @@ namespace Lfc.Comprobantes.Facturas
                         }
 
                         if (Factura != null) {
-                                FacturaId = System.Convert.ToInt32(Factura["id_comprob"]);
+                                IdComprob = System.Convert.ToInt32(Factura["id_comprob"]);
                                 if (System.Convert.ToInt32(Factura["anulada"]) != 0 && AceptarAnuladas == false) {
-                                        lblAviso.Text = "Esta factura fue anulada.";
+                                        EtiquetaAviso.Text = "Este comprobante fue anulado.";
                                         OkButton.Visible = false;
                                 } else if (Itm.SubItems[6].Text == "Si" && AceptarCanceladas == false) {
-                                        lblAviso.Text = "Esta factura ya fue pagada.";
+                                        EtiquetaAviso.Text = "Comprobante ya fue pagado.";
                                         OkButton.Visible = false;
                                 } else if (Lfx.Types.Parsing.ParseCurrency(Itm.SubItems[6].Text) > 0) {
-                                        lblAviso.Text = "Esta factura fue pagada parcialmente.";
+                                        EtiquetaAviso.Text = "Este comprobante fue pagado parcialmente.";
                                         OkButton.Visible = true;
                                 } else {
-                                        lblAviso.Text = "";
+                                        EtiquetaAviso.Text = "";
                                         OkButton.Visible = true;
                                 }
                         } else {
-                                lblAviso.Text = "";
+                                EtiquetaAviso.Text = "";
                                 OkButton.Visible = false;
                         }
                 }
 
 
-                private void lvItems_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+                private void Listado_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
                         switch (e.KeyCode) {
                                 case Keys.Up:
@@ -190,6 +242,12 @@ namespace Lfc.Comprobantes.Facturas
                                                 OkButton.PerformClick();
                                         break;
                         }
+                }
+
+                private void Listado_DoubleClick(object sender, EventArgs e)
+                {
+                        if (OkButton.Visible && OkButton.Enabled)
+                                OkButton.PerformClick();
                 }
         }
 }

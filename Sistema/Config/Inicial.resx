@@ -306,6 +306,9 @@
   <data name="label10.Text" xml:space="preserve">
     <value>Si acaba de instalar Lázaro por primera vez, haga clic en 'Siguiente' para continuar (no es necesario que espere a que termine la búsqueda). Si ya instaló Lázaro antes en este o en otro equipo, aguarde a que finalice la búsqueda.</value>
   </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Se va a descargar e instalar un servidor MySQL para utilizar como almacén de datos en este equipo. Es necesario que su PC esté conectada a internet y es posible que necesite privilegios administrativos.</value>
+  </data>
   <data name="pictureBox11.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
@@ -319,6 +322,46 @@
         YwH6HyOv1zuFB8Sku2xVp3cYP6DfAZpeYhWPqGEUfe2E4boAyjjEMcbVj8BuoNGNBNabQU743MRnzKGE
         IqbxEQ38wV/sN6/xPhVa/FP6v9nj8QzhLUpYQh1r2MAKaqhiEiNwt7NbbQdoZ1gn1/QC9HbgH9TnyRs3
         pR6sAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="pictureBox12.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAH5SURBVFhH7dY9SBtxGMfxGBCkYKEgCHkjWe3WrCII
+        3VJIMEMcMgSSIcRLjkCmDL7U1AyFLqUoOGTMJAGLgy4ubm1xU9sORXRSxHdU1F6/B+kYnzw5IUuGDwk8
+        9zz/3/3vzyUuy7Jc3dTVxe0b7wVQ70CxWHyB1xjDBNJI4h3eYEBzpsQADOxHDIvYxj2sJ9h1+7oyglKY
+        lgFM03SjjCNYHXqk7wtetQrSMoBhGGlYz+S7OkA2m83BeiY76gCZTCaHe8zjClYHtuhpQB8glUoZuLOT
+        8zmICXxCHZvYxSlucYBv+IpllDDS7J3h+556B5LJZB430imW6syYwU91gEQiUcCVtIBUZ8YsfqkDxONx
+        ExfSAlKdGe/xWx0gGo2acByAGRXoA0QikTzOpTuU6syoQH8GwuFwAWfSAlKdGfPQn4FQKGTC8Q4wowL9
+        IwgGgwU4PgPM+AD9DgQCgTwupS2W6sxYgP4M+P1+A47fA8yoQv8mpGkK19IdSvVmgF31e8Dn8+Xg+BEw
+        YwH6HyOv1zuFB8Sku2xVp3cYP6DfAZpeYhWPqGEUfe2E4boAyjjEMcbVj8BuoNGNBNabQU743MRnzKGE
+        IqbxEQ38wV/sN6/xPhVa/FP6v9nj8QzhLUpYQh1r2MAKaqhiEiNwt7NbbQdoZ1gn1/QC9HbgH9TnyRs3
+        pR6sAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="pictureBox13.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGlSURBVFhH7dY/S8NAHMbx+m/Szck2LS126to3IXSo
+        UKEgHTp06FAovUXfgaDvQh0dXQTBTdxdzlUQNxcHEZGf38gNQZqUPkSK4PAZerkn9yS5Ni2YWWGRFrp4
+        fOH/BTLvwGQyOcVNDk7S9llmgfF47GE5uJIKjEYjD8M5DgWXIa8VGA6HHoY95atKzoW8VmAwGHgYpALk
+        XMhrBfr9vodBKkDOhbxWoNfreRikAuRcyGsFut2uh0EqQM6FvFag0+l4GKQC5FzIawXa7baHQSpAzoW8
+        VqDVankYpALkXMhrBZrNpofhEfeC55DXCtRqNQ9L8cD4bsJrxlytQLVa9bAUd8lfR+a8ZMzVClQqFQ9L
+        8cT4UcJbxlytQLlcPsZZhguOfc6YE+cPpLfhrBcQJ97C+6x5Wcflv2RRFG1gHx/YwYpSJLNAqVTaRv2H
+        zXghxhqwhPUwHk3JFKVHwInefywSL3g8o8DtlMz13yxQLBZXp1iOr4bxBizh+xHweWVKJnV/yJuQRdZQ
+        h0OEpdw3oXLCeTPyHZh3IWkT5rXIr/wQ5VVu4Y/gC7VNNsWgpZjUAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="pictureBox14.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAFdSURBVFhH7dexSsNQFIDhWhycHdsUms3pUOioo1uE
+        DAGD0KFDwA6BkmfwAXwc4SKudVWc7ObqQxx/t6qNeji3tEOHb8u5988lTWhHVTvbtNXNP298H7C7J9A0
+        zTGqSC7bHvTWE2BjgUayNAfM53OB4gYjhwWz9oC6rgWKa897gvkAe8BsNhMoXAHMB9gDqqoSKFwBzAfY
+        A6bTqUDhCmA+wB4wmUwEClcA8wH2gLIsBQpXAPMB9oCiKAQKVwDzAfaAPM8FClcA8wH2gCzLBApXAPMB
+        9oDxeCxQuAKYD7AHpGkqULzgzuGdWXvAcDg8wTKSe/PHyPP+t8y2fo4Hg8EIt5GcmU+AjR+gkTyxTndd
+        xNoTSJLkHBrZ1b8C+v3+AR6hkb2y3uH3iB8nwEV55I1Xb6T6NYCNu3jeYMAbax+tRnw5gV6vd4rFhl20
+        Blh+v7Gu3d0/JrHu8K91tn4CH8cD+6MmpYNpAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

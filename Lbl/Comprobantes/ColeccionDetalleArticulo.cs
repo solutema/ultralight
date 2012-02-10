@@ -36,35 +36,35 @@ namespace Lbl.Comprobantes
 {
         public class ColeccionDetalleArticulos : Lbl.ColeccionGenerica<DetalleArticulo>
         {
-                private Lbl.Comprobantes.ComprobanteConArticulos m_Comprobante = null;
+                private Lbl.ElementoDeDatos m_ElementoPadre = null;
 
                 public ColeccionDetalleArticulos(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
-                public ColeccionDetalleArticulos(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
-                        : base(comprobante.Connection)
+                public ColeccionDetalleArticulos(Lbl.ElementoDeDatos elementoPadre)
+                        : base(elementoPadre.Connection)
                 {
-                        this.Comprobante = comprobante;
+                        this.ElementoPadre = elementoPadre;
                 }
 
 
-                public Lbl.Comprobantes.ComprobanteConArticulos Comprobante
+                public Lbl.ElementoDeDatos ElementoPadre
                 {
                         get
                         {
-                                return m_Comprobante;
+                                return m_ElementoPadre;
                         }
                         set
                         {
-                                m_Comprobante = value;
+                                m_ElementoPadre = value;
                                 foreach (Lbl.Comprobantes.DetalleArticulo det in this)
-                                        det.Comprobante = m_Comprobante;
+                                        det.ElementoPadre = m_ElementoPadre;
                         }
                 }
 
                 public new void Add(Lbl.Comprobantes.DetalleArticulo detalle)
                 {
-                        detalle.Comprobante = this.Comprobante;
+                        detalle.ElementoPadre = this.ElementoPadre;
                         base.Add(detalle);
                 }
                 
@@ -72,23 +72,23 @@ namespace Lbl.Comprobantes
                 public new void AddRange(IEnumerable<Lbl.Comprobantes.DetalleArticulo> detalles)
                 {
                         foreach (Lbl.Comprobantes.DetalleArticulo det in detalles)
-                                det.Comprobante = this.Comprobante;
+                                det.ElementoPadre = this.ElementoPadre;
                         base.AddRange(detalles);
                 }
                 
 
                 public void AddWithValue(Lbl.Articulos.Articulo articulo, decimal cantidad, decimal unitario, string obs)
                 {
-                        DetalleArticulo Det = new DetalleArticulo(this.Comprobante);
+                        DetalleArticulo Det = new DetalleArticulo(this.ElementoPadre);
                         Det.Articulo = articulo;
                         Det.Cantidad = cantidad;
                         Det.Unitario = unitario;
                         Det.Obs = obs;
                 }
 
-                public ColeccionDetalleArticulos Clone(ComprobanteConArticulos comprobante)
+                public ColeccionDetalleArticulos Clone(Lbl.ElementoDeDatos elementoPadre)
                 {
-                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(comprobante);
+                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(elementoPadre);
                         foreach (DetalleArticulo Det in this) {
                                 Res.Add(Det.Clone());
                         }
@@ -97,7 +97,7 @@ namespace Lbl.Comprobantes
 
                 new public ColeccionDetalleArticulos Clone()
                 {
-                        return this.Clone(this.Comprobante);
+                        return this.Clone(this.ElementoPadre);
                 }
 
 
@@ -108,7 +108,7 @@ namespace Lbl.Comprobantes
                 /// </summary>
                 public ColeccionDetalleArticulos Unificar()
                 {
-                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(this.Comprobante);
+                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(this.ElementoPadre);
                         foreach (DetalleArticulo Det in this) {
                                 bool Encontre = false;
                                 foreach (DetalleArticulo Det2 in Res) {
@@ -130,6 +130,19 @@ namespace Lbl.Comprobantes
                 }
 
 
+                public decimal ImporteTotal
+                {
+                        get
+                        {
+                                decimal Res = 0;
+                                foreach (DetalleArticulo Det in this) {
+                                        Res += Det.Importe;
+                                }
+                                return Res;
+                        }
+                }
+
+
                 /// <summary>
                 /// Hace una lista de movimientos necesarios para convertir "original" en "this".
                 /// </summary>
@@ -137,12 +150,12 @@ namespace Lbl.Comprobantes
                 {
                         ColeccionDetalleArticulos Desde;
                         if (original == null)
-                                Desde = new ColeccionDetalleArticulos(this.Comprobante);
+                                Desde = new ColeccionDetalleArticulos(this.ElementoPadre);
                         else
                                 Desde = original.Unificar();
                         ColeccionDetalleArticulos Hacia = this.Unificar();
 
-                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(this.Comprobante);
+                        ColeccionDetalleArticulos Res = new ColeccionDetalleArticulos(this.ElementoPadre);
 
                         foreach (DetalleArticulo DetHacia in Hacia) {
                                 bool Encontre = false;

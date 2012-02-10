@@ -60,7 +60,7 @@ namespace Lfc.Tareas
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaTarea = new Lcc.Entrada.CodigoDetalle();
                         this.Label3 = new Lui.Forms.Label();
-                        this.EntradaTecnico = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaEncargado = new Lcc.Entrada.CodigoDetalle();
                         this.Label4 = new Lui.Forms.Label();
                         this.Label5 = new Lui.Forms.Label();
                         this.EntradaAsunto = new Lui.Forms.TextBox();
@@ -72,7 +72,7 @@ namespace Lfc.Tareas
                         this.Label10 = new Lui.Forms.Label();
                         this.EntradaEntregaEstimada = new Lui.Forms.TextBox();
                         this.EntradaEntregaLimite = new Lui.Forms.TextBox();
-                        this.EntradaPresupuesto = new Lui.Forms.TextBox();
+                        this.EntradaImportePresupuesto = new Lui.Forms.TextBox();
                         this.EntradaObs = new Lui.Forms.TextBox();
                         this.Label11 = new Lui.Forms.Label();
                         this.Frame2 = new Lui.Forms.Frame();
@@ -98,7 +98,7 @@ namespace Lfc.Tareas
                         // 
                         this.Label1.Location = new System.Drawing.Point(0, 0);
                         this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(84, 24);
+                        this.Label1.Size = new System.Drawing.Size(104, 24);
                         this.Label1.TabIndex = 0;
                         this.Label1.Text = "Cliente";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -114,13 +114,13 @@ namespace Lfc.Tareas
                         this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
-                        this.EntradaCliente.Location = new System.Drawing.Point(84, 0);
+                        this.EntradaCliente.Location = new System.Drawing.Point(104, 0);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaCliente.ReadOnly = false;
+                        this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = true;
-                        this.EntradaCliente.Size = new System.Drawing.Size(348, 24);
+                        this.EntradaCliente.Size = new System.Drawing.Size(328, 24);
                         this.EntradaCliente.TabIndex = 1;
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
@@ -137,13 +137,13 @@ namespace Lfc.Tareas
                         this.EntradaTarea.ExtraDetailFields = "";
                         this.EntradaTarea.Filter = "";
                         this.EntradaTarea.FreeTextCode = "";
-                        this.EntradaTarea.Location = new System.Drawing.Point(84, 32);
+                        this.EntradaTarea.Location = new System.Drawing.Point(104, 32);
                         this.EntradaTarea.MaxLength = 200;
                         this.EntradaTarea.Name = "EntradaTarea";
                         this.EntradaTarea.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTarea.ReadOnly = false;
+                        this.EntradaTarea.PlaceholderText = null;
                         this.EntradaTarea.Required = true;
-                        this.EntradaTarea.Size = new System.Drawing.Size(348, 24);
+                        this.EntradaTarea.Size = new System.Drawing.Size(328, 24);
                         this.EntradaTarea.TabIndex = 3;
                         this.EntradaTarea.Table = "tickets_tipos";
                         this.EntradaTarea.Text = "0";
@@ -153,39 +153,39 @@ namespace Lfc.Tareas
                         // 
                         this.Label3.Location = new System.Drawing.Point(0, 32);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(84, 24);
+                        this.Label3.Size = new System.Drawing.Size(104, 24);
                         this.Label3.TabIndex = 2;
                         this.Label3.Text = "Tarea";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaTecnico
+                        // EntradaEncargado
                         // 
-                        this.EntradaTecnico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EntradaEncargado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTecnico.AutoTab = true;
-                        this.EntradaTecnico.CanCreate = false;
-                        this.EntradaTecnico.DataTextField = "nombre_visible";
-                        this.EntradaTecnico.DataValueField = "id_persona";
-                        this.EntradaTecnico.ExtraDetailFields = "";
-                        this.EntradaTecnico.Filter = "(tipo&4)=4";
-                        this.EntradaTecnico.FreeTextCode = "";
-                        this.EntradaTecnico.Location = new System.Drawing.Point(84, 64);
-                        this.EntradaTecnico.MaxLength = 200;
-                        this.EntradaTecnico.Name = "EntradaTecnico";
-                        this.EntradaTecnico.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTecnico.ReadOnly = false;
-                        this.EntradaTecnico.Required = true;
-                        this.EntradaTecnico.Size = new System.Drawing.Size(348, 24);
-                        this.EntradaTecnico.TabIndex = 5;
-                        this.EntradaTecnico.Table = "personas";
-                        this.EntradaTecnico.Text = "0";
-                        this.EntradaTecnico.TextDetail = "";
+                        this.EntradaEncargado.AutoTab = true;
+                        this.EntradaEncargado.CanCreate = false;
+                        this.EntradaEncargado.DataTextField = "nombre_visible";
+                        this.EntradaEncargado.DataValueField = "id_persona";
+                        this.EntradaEncargado.ExtraDetailFields = "";
+                        this.EntradaEncargado.Filter = "(tipo&4)=4";
+                        this.EntradaEncargado.FreeTextCode = "";
+                        this.EntradaEncargado.Location = new System.Drawing.Point(104, 64);
+                        this.EntradaEncargado.MaxLength = 200;
+                        this.EntradaEncargado.Name = "EntradaEncargado";
+                        this.EntradaEncargado.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaEncargado.PlaceholderText = null;
+                        this.EntradaEncargado.Required = true;
+                        this.EntradaEncargado.Size = new System.Drawing.Size(328, 24);
+                        this.EntradaEncargado.TabIndex = 5;
+                        this.EntradaEncargado.Table = "personas";
+                        this.EntradaEncargado.Text = "0";
+                        this.EntradaEncargado.TextDetail = "";
                         // 
                         // Label4
                         // 
                         this.Label4.Location = new System.Drawing.Point(0, 64);
                         this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(84, 24);
+                        this.Label4.Size = new System.Drawing.Size(104, 24);
                         this.Label4.TabIndex = 4;
                         this.Label4.Text = "Encargado";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -194,7 +194,7 @@ namespace Lfc.Tareas
                         // 
                         this.Label5.Location = new System.Drawing.Point(0, 96);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(84, 24);
+                        this.Label5.Size = new System.Drawing.Size(104, 24);
                         this.Label5.TabIndex = 6;
                         this.Label5.Text = "Asunto";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -204,11 +204,10 @@ namespace Lfc.Tareas
                         this.EntradaAsunto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaAsunto.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaAsunto.Location = new System.Drawing.Point(84, 96);
+                        this.EntradaAsunto.Location = new System.Drawing.Point(104, 96);
                         this.EntradaAsunto.Name = "EntradaAsunto";
                         this.EntradaAsunto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaAsunto.ReadOnly = false;
-                        this.EntradaAsunto.Size = new System.Drawing.Size(348, 24);
+                        this.EntradaAsunto.Size = new System.Drawing.Size(328, 24);
                         this.EntradaAsunto.TabIndex = 7;
                         // 
                         // Label6
@@ -225,7 +224,7 @@ namespace Lfc.Tareas
                         // 
                         this.Label7.Location = new System.Drawing.Point(0, 128);
                         this.Label7.Name = "Label7";
-                        this.Label7.Size = new System.Drawing.Size(88, 24);
+                        this.Label7.Size = new System.Drawing.Size(104, 24);
                         this.Label7.TabIndex = 8;
                         this.Label7.Text = "Descripción";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -235,12 +234,11 @@ namespace Lfc.Tareas
                         this.EntradaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaDescripcion.Location = new System.Drawing.Point(84, 128);
+                        this.EntradaDescripcion.Location = new System.Drawing.Point(104, 128);
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
                         this.EntradaDescripcion.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaDescripcion.ReadOnly = false;
-                        this.EntradaDescripcion.Size = new System.Drawing.Size(348, 88);
+                        this.EntradaDescripcion.Size = new System.Drawing.Size(328, 88);
                         this.EntradaDescripcion.TabIndex = 9;
                         // 
                         // Label8
@@ -250,7 +248,7 @@ namespace Lfc.Tareas
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(156, 24);
                         this.Label8.TabIndex = 17;
-                        this.Label8.Text = "Fecha Final. Estimada";
+                        this.Label8.Text = "Fecha final. estimada";
                         this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label9
@@ -260,13 +258,13 @@ namespace Lfc.Tareas
                         this.Label9.Name = "Label9";
                         this.Label9.Size = new System.Drawing.Size(156, 24);
                         this.Label9.TabIndex = 19;
-                        this.Label9.Text = "Fecha Final. Límite";
+                        this.Label9.Text = "Fecha final. límite";
                         this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label10
                         // 
                         this.Label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label10.Location = new System.Drawing.Point(456, 160);
+                        this.Label10.Location = new System.Drawing.Point(456, 208);
                         this.Label10.Name = "Label10";
                         this.Label10.Size = new System.Drawing.Size(100, 24);
                         this.Label10.TabIndex = 23;
@@ -277,11 +275,9 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaEntregaEstimada.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEntregaEstimada.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaEntregaEstimada.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaEntregaEstimada.Location = new System.Drawing.Point(608, 64);
                         this.EntradaEntregaEstimada.Name = "EntradaEntregaEstimada";
                         this.EntradaEntregaEstimada.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEntregaEstimada.ReadOnly = false;
                         this.EntradaEntregaEstimada.Size = new System.Drawing.Size(112, 24);
                         this.EntradaEntregaEstimada.TabIndex = 18;
                         // 
@@ -289,48 +285,43 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaEntregaLimite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEntregaLimite.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaEntregaLimite.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaEntregaLimite.Location = new System.Drawing.Point(608, 96);
                         this.EntradaEntregaLimite.Name = "EntradaEntregaLimite";
                         this.EntradaEntregaLimite.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEntregaLimite.ReadOnly = false;
                         this.EntradaEntregaLimite.Size = new System.Drawing.Size(112, 24);
                         this.EntradaEntregaLimite.TabIndex = 20;
                         // 
-                        // EntradaPresupuesto
+                        // EntradaImportePresupuesto
                         // 
-                        this.EntradaPresupuesto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaPresupuesto.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaPresupuesto.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPresupuesto.Location = new System.Drawing.Point(556, 160);
-                        this.EntradaPresupuesto.Name = "EntradaPresupuesto";
-                        this.EntradaPresupuesto.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPresupuesto.Prefijo = "$";
-                        this.EntradaPresupuesto.ReadOnly = false;
-                        this.EntradaPresupuesto.Size = new System.Drawing.Size(80, 24);
-                        this.EntradaPresupuesto.TabIndex = 24;
-                        this.EntradaPresupuesto.Text = "0.00";
+                        this.EntradaImportePresupuesto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaImportePresupuesto.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaImportePresupuesto.Location = new System.Drawing.Point(556, 208);
+                        this.EntradaImportePresupuesto.Name = "EntradaImportePresupuesto";
+                        this.EntradaImportePresupuesto.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImportePresupuesto.Prefijo = "$";
+                        this.EntradaImportePresupuesto.Size = new System.Drawing.Size(80, 24);
+                        this.EntradaImportePresupuesto.TabIndex = 24;
+                        this.EntradaImportePresupuesto.Text = "0.00";
                         // 
                         // EntradaObs
                         // 
                         this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaObs.Location = new System.Drawing.Point(84, 224);
+                        this.EntradaObs.Location = new System.Drawing.Point(104, 224);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaObs.ReadOnly = false;
-                        this.EntradaObs.Size = new System.Drawing.Size(348, 24);
+                        this.EntradaObs.Size = new System.Drawing.Size(328, 24);
                         this.EntradaObs.TabIndex = 11;
                         // 
                         // Label11
                         // 
                         this.Label11.Location = new System.Drawing.Point(0, 224);
                         this.Label11.Name = "Label11";
-                        this.Label11.Size = new System.Drawing.Size(84, 24);
+                        this.Label11.Size = new System.Drawing.Size(104, 24);
                         this.Label11.TabIndex = 10;
-                        this.Label11.Text = "Observac.";
+                        this.Label11.Text = "Observaciones";
                         this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Frame2
@@ -345,7 +336,7 @@ namespace Lfc.Tareas
                         this.Frame2.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame2.Size = new System.Drawing.Size(768, 217);
                         this.Frame2.TabIndex = 29;
-                        this.Frame2.Text = "Historial del Cliente";
+                        this.Frame2.Text = "Historial del cliente";
                         // 
                         // ListaHistorial
                         // 
@@ -368,7 +359,7 @@ namespace Lfc.Tareas
                         this.ListaHistorial.UseCompatibleStateImageBehavior = false;
                         this.ListaHistorial.View = System.Windows.Forms.View.Details;
                         this.ListaHistorial.SelectedIndexChanged += new System.EventHandler(this.ListaHistorial_SelectedIndexChanged);
-                        this.ListaHistorial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvHistorial_KeyDown);
+                        this.ListaHistorial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListaHistorial_KeyDown);
                         // 
                         // Ticket
                         // 
@@ -403,7 +394,7 @@ namespace Lfc.Tareas
                         this.EntradaEstado.MaxLength = 200;
                         this.EntradaEstado.Name = "EntradaEstado";
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaEstado.ReadOnly = false;
+                        this.EntradaEstado.PlaceholderText = null;
                         this.EntradaEstado.Required = true;
                         this.EntradaEstado.Size = new System.Drawing.Size(256, 24);
                         this.EntradaEstado.TabIndex = 14;
@@ -414,11 +405,9 @@ namespace Lfc.Tareas
                         // EntradaFechaIngreso
                         // 
                         this.EntradaFechaIngreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaFechaIngreso.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaIngreso.Location = new System.Drawing.Point(608, 32);
                         this.EntradaFechaIngreso.Name = "EntradaFechaIngreso";
                         this.EntradaFechaIngreso.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaFechaIngreso.ReadOnly = false;
                         this.EntradaFechaIngreso.Size = new System.Drawing.Size(160, 24);
                         this.EntradaFechaIngreso.TabIndex = 16;
                         this.EntradaFechaIngreso.TabStop = false;
@@ -430,17 +419,16 @@ namespace Lfc.Tareas
                         this.Label12.Name = "Label12";
                         this.Label12.Size = new System.Drawing.Size(156, 24);
                         this.Label12.TabIndex = 15;
-                        this.Label12.Text = "Fecha Ingreso";
+                        this.Label12.Text = "Fecha de ingreso";
                         this.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaComprobante
                         // 
                         this.EntradaComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaComprobante.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaComprobante.Location = new System.Drawing.Point(556, 192);
+                        this.EntradaComprobante.Location = new System.Drawing.Point(556, 240);
                         this.EntradaComprobante.Name = "EntradaComprobante";
                         this.EntradaComprobante.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaComprobante.ReadOnly = false;
+                        this.EntradaComprobante.ReadOnly = true;
                         this.EntradaComprobante.Size = new System.Drawing.Size(184, 24);
                         this.EntradaComprobante.TabIndex = 28;
                         this.EntradaComprobante.TabStop = false;
@@ -448,7 +436,7 @@ namespace Lfc.Tareas
                         // Label13
                         // 
                         this.Label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label13.Location = new System.Drawing.Point(456, 192);
+                        this.Label13.Location = new System.Drawing.Point(456, 240);
                         this.Label13.Name = "Label13";
                         this.Label13.Size = new System.Drawing.Size(100, 24);
                         this.Label13.TabIndex = 27;
@@ -468,12 +456,10 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaPresupuesto2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPresupuesto2.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaPresupuesto2.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPresupuesto2.Location = new System.Drawing.Point(652, 160);
+                        this.EntradaPresupuesto2.Location = new System.Drawing.Point(652, 208);
                         this.EntradaPresupuesto2.Name = "EntradaPresupuesto2";
                         this.EntradaPresupuesto2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPresupuesto2.Prefijo = "$";
-                        this.EntradaPresupuesto2.ReadOnly = false;
                         this.EntradaPresupuesto2.Size = new System.Drawing.Size(88, 24);
                         this.EntradaPresupuesto2.TabIndex = 26;
                         this.EntradaPresupuesto2.TabStop = false;
@@ -481,19 +467,18 @@ namespace Lfc.Tareas
                         // 
                         // EntradaPrioridad
                         // 
-                        this.EntradaPrioridad.AlwaysExpanded = false;
+                        this.EntradaPrioridad.AlwaysExpanded = true;
                         this.EntradaPrioridad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPrioridad.AutoSize = true;
                         this.EntradaPrioridad.Location = new System.Drawing.Point(556, 128);
                         this.EntradaPrioridad.Name = "EntradaPrioridad";
                         this.EntradaPrioridad.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPrioridad.ReadOnly = false;
                         this.EntradaPrioridad.SetData = new string[] {
         "Muy Alta|10",
         "Alta|5",
         "Normal|0",
         "Baja|-5"};
-                        this.EntradaPrioridad.Size = new System.Drawing.Size(164, 27);
+                        this.EntradaPrioridad.Size = new System.Drawing.Size(164, 74);
                         this.EntradaPrioridad.TabIndex = 22;
                         this.EntradaPrioridad.TextKey = "0";
                         // 
@@ -510,7 +495,7 @@ namespace Lfc.Tareas
                         // Label15
                         // 
                         this.Label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label15.Location = new System.Drawing.Point(636, 160);
+                        this.Label15.Location = new System.Drawing.Point(636, 208);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(16, 24);
                         this.Label15.TabIndex = 25;
@@ -529,27 +514,27 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.EntradaEstado);
                         this.Controls.Add(this.Frame2);
                         this.Controls.Add(this.EntradaObs);
-                        this.Controls.Add(this.Label11);
-                        this.Controls.Add(this.EntradaPresupuesto);
+                        this.Controls.Add(this.EntradaImportePresupuesto);
                         this.Controls.Add(this.EntradaEntregaLimite);
                         this.Controls.Add(this.EntradaEntregaEstimada);
                         this.Controls.Add(this.EntradaDescripcion);
-                        this.Controls.Add(this.Label7);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.EntradaAsunto);
-                        this.Controls.Add(this.Label5);
-                        this.Controls.Add(this.EntradaTecnico);
-                        this.Controls.Add(this.Label4);
+                        this.Controls.Add(this.EntradaEncargado);
                         this.Controls.Add(this.EntradaTarea);
-                        this.Controls.Add(this.Label3);
                         this.Controls.Add(this.EntradaCliente);
-                        this.Controls.Add(this.Label1);
                         this.Controls.Add(this.Label13);
                         this.Controls.Add(this.Label12);
                         this.Controls.Add(this.Label10);
                         this.Controls.Add(this.Label9);
                         this.Controls.Add(this.Label8);
                         this.Controls.Add(this.Label15);
+                        this.Controls.Add(this.Label11);
+                        this.Controls.Add(this.Label7);
+                        this.Controls.Add(this.Label5);
+                        this.Controls.Add(this.Label4);
+                        this.Controls.Add(this.Label3);
+                        this.Controls.Add(this.Label1);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(768, 486);
                         this.Frame2.ResumeLayout(false);
@@ -565,7 +550,7 @@ namespace Lfc.Tareas
                 internal Lcc.Entrada.CodigoDetalle EntradaCliente;
                 internal Lcc.Entrada.CodigoDetalle EntradaTarea;
                 internal Lui.Forms.Label Label3;
-                internal Lcc.Entrada.CodigoDetalle EntradaTecnico;
+                internal Lcc.Entrada.CodigoDetalle EntradaEncargado;
                 internal Lui.Forms.Label Label4;
                 internal Lui.Forms.Label Label5;
                 internal Lui.Forms.TextBox EntradaAsunto;
@@ -577,7 +562,7 @@ namespace Lfc.Tareas
                 internal Lui.Forms.Label Label10;
                 internal Lui.Forms.TextBox EntradaEntregaEstimada;
                 internal Lui.Forms.TextBox EntradaEntregaLimite;
-                internal Lui.Forms.TextBox EntradaPresupuesto;
+                internal Lui.Forms.TextBox EntradaImportePresupuesto;
                 internal Lui.Forms.TextBox EntradaObs;
                 internal Lui.Forms.Label Label11;
                 internal Lui.Forms.Frame Frame2;

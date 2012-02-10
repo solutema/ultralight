@@ -189,8 +189,7 @@ namespace Lfc.Comprobantes.Recibos
 
                 private void BotonFacturasAgregar_Click(object sender, System.EventArgs e)
                 {
-                        Comprobantes.Facturas.Seleccionar FormularioSeleccionarFactura = new Comprobantes.Facturas.Seleccionar();
-                        //FormularioSeleccionarFactura.Owner = this;
+                        Comprobantes.Seleccionar FormularioSeleccionarFactura = new Comprobantes.Seleccionar();
                         FormularioSeleccionarFactura.Connection = this.Connection;
                         FormularioSeleccionarFactura.AceptarAnuladas = false;
                         FormularioSeleccionarFactura.AceptarCanceladas = false;
@@ -202,8 +201,8 @@ namespace Lfc.Comprobantes.Recibos
                                 FormularioSeleccionarFactura.EntradaCliente.Enabled = false;
                         }
 
-                        if (FormularioSeleccionarFactura.ShowDialog() == DialogResult.OK && FormularioSeleccionarFactura.FacturaId != 0)
-                                AgregarFactura(FormularioSeleccionarFactura.FacturaId);
+                        if (FormularioSeleccionarFactura.ShowDialog() == DialogResult.OK && FormularioSeleccionarFactura.IdComprob != 0)
+                                AgregarFactura(FormularioSeleccionarFactura.IdComprob);
 
                         FormularioSeleccionarFactura = null;
                 }

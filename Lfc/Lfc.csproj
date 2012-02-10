@@ -121,7 +121,7 @@
     <Compile Include="Comprobantes\Facturas\Reimprimir.designer.cs">
       <DependentUpon>Reimprimir.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprobantes\Facturas\Seleccionar.Designer.cs">
+    <Compile Include="Comprobantes\Seleccionar.Designer.cs">
       <DependentUpon>Seleccionar.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\Filtros.Designer.cs">
@@ -500,7 +500,7 @@
     <Compile Include="Comprobantes\Facturas\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprobantes\Facturas\Seleccionar.cs">
+    <Compile Include="Comprobantes\Seleccionar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Filtros.cs">
@@ -950,7 +950,7 @@
       <DependentUpon>Editar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprobantes\Facturas\Seleccionar.resx">
+    <EmbeddedResource Include="Comprobantes\Seleccionar.resx">
       <DependentUpon>Seleccionar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

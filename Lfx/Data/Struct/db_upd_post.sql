@@ -2,6 +2,7 @@ SET FOREIGN_KEY_CHECKS=0;
 
 UPDATE comprob SET nombre=CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) WHERE nombre='';
 UPDATE recibos SET nombre=CONCAT(LPAD(recibos.pv, 4, '0'), '-', LPAD(recibos.numero, 8, '0')) WHERE nombre='';
+UPDATE comprob SET cancelado=total WHERE tipo_fac IN ('R', 'NV', 'PS', 'NP', 'PD');
 
 REPLACE INTO "documentos_tipos" ("id_tipo", "letra", "nombre", "obs", "estado", "fecha", "tabla", "tipo", "direc_ctacte", "mueve_stock", "situacionorigen", "situaciondestino", "numerar_guardar", "imprimir_guardar", "numerar_imprimir", "imprimir_repetir", "imprimir_modificar") VALUES
 	(1, 'FA', 'Factura A', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),

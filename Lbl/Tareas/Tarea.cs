@@ -43,11 +43,13 @@ namespace Lbl.Tareas
         [Lbl.Atributos.Presentacion()]
         public class Tarea : ElementoDeDatos
         {
-                private Lbl.ColeccionGenerica<Comprobantes.DetalleArticulo> m_Articulos = null;
+                private Comprobantes.ColeccionDetalleArticulos m_Articulos = null;
                 //private Lbl.ColeccionGenerica<Novedad> m_Novedades = null;
 
                 public Lbl.Personas.Persona Cliente {get;set;}
                 public Lbl.Personas.Persona Encargado { get; set; }
+                public Lbl.Comprobantes.Presupuesto Presupuesto { get; set; }
+                public Lbl.Comprobantes.ComprobanteFacturable Factura { get; set; }
                 public Lbl.Tareas.Tipo Tipo;
 
                 public Tarea(Lfx.Data.Connection dataBase)
@@ -84,7 +86,7 @@ namespace Lbl.Tareas
                         }
                 }
 
-                public decimal Presupuesto
+                public decimal ImportePresupuesto
                 {
                         get
                         {
@@ -163,6 +165,16 @@ namespace Lbl.Tareas
                                         this.Encargado = new Personas.Persona(this.Connection, this.GetFieldValue<int>("id_tecnico_recibe"));
                                 else
                                         this.Encargado = null;
+
+                                if (this.GetFieldValue<int>("id_presupuesto") != 0)
+                                        this.Presupuesto = new Comprobantes.Presupuesto(this.Connection, this.GetFieldValue<int>("id_presupuesto"));
+                                else
+                                        this.Presupuesto = null;
+
+                                if (this.GetFieldValue<int>("id_comprob") != 0)
+                                        this.Factura = new Comprobantes.ComprobanteFacturable(this.Connection, this.GetFieldValue<int>("id_comprob"));
+                                else
+                                        this.Factura = null;
                         }
                         base.OnLoad();
                 }
@@ -206,7 +218,15 @@ namespace Lbl.Tareas
                         Comando.Fields.AddWithValue("articulos_descuento", this.DescuentoArticulos);
                         Comando.Fields.AddWithValue("entrega_estimada", this.FechaEstimada);
                         Comando.Fields.AddWithValue("entrega_limite", this.FechaLimite);
-                        Comando.Fields.AddWithValue("presupuesto", this.Presupuesto);
+                        Comando.Fields.AddWithValue("presupuesto", this.ImportePresupuesto);
+                        if (this.Presupuesto == null)
+                                Comando.Fields.AddWithValue("id_presupuesto", null);
+                        else
+                                Comando.Fields.AddWithValue("id_presupuesto", this.Presupuesto.Id);
+                        if (this.Factura == null)
+                                Comando.Fields.AddWithValue("id_comprob", null);
+                        else
+                                Comando.Fields.AddWithValue("id_comprob", this.Factura.Id);
                         Comando.Fields.AddWithValue("obs", this.Obs);
 
                         this.AgregarTags(Comando);
@@ -244,19 +264,21 @@ namespace Lbl.Tareas
                         return base.Guardar();
                 }
 
-                public ColeccionGenerica<Comprobantes.DetalleArticulo> Articulos
+                public Comprobantes.ColeccionDetalleArticulos Articulos
                 {
                         get
                         {
                                 if (m_Articulos == null) {
-                                        m_Articulos = new ColeccionGenerica<Comprobantes.DetalleArticulo>(this.Connection);
-                                        System.Data.DataTable Arts = this.Connection.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + this.Id.ToString() + " ORDER BY orden");
-                                        foreach (System.Data.DataRow Art in Arts.Rows) {
-                                                Lbl.Comprobantes.DetalleArticulo Det = new Comprobantes.DetalleArticulo(this.Connection);
-                                                Det.Articulo = new Articulos.Articulo(this.Connection, System.Convert.ToInt32(Art["id_articulo"]));
-                                                Det.Cantidad = System.Convert.ToDecimal(Art["cantidad"]);
-                                                Det.Unitario = System.Convert.ToDecimal(Art["precio"]);
-                                                m_Articulos.Add(Det);
+                                        m_Articulos = new Comprobantes.ColeccionDetalleArticulos(this);
+                                        if (this.Existe) {
+                                                System.Data.DataTable Arts = this.Connection.Select("SELECT * FROM tickets_articulos WHERE id_ticket=" + this.Id.ToString() + " ORDER BY orden");
+                                                foreach (System.Data.DataRow Art in Arts.Rows) {
+                                                        Lbl.Comprobantes.DetalleArticulo Det = new Comprobantes.DetalleArticulo(this.Connection);
+                                                        Det.Articulo = new Articulos.Articulo(this.Connection, System.Convert.ToInt32(Art["id_articulo"]));
+                                                        Det.Cantidad = System.Convert.ToDecimal(Art["cantidad"]);
+                                                        Det.Unitario = System.Convert.ToDecimal(Art["precio"]);
+                                                        m_Articulos.Add(Det);
+                                                }
                                         }
                                         
                                 }

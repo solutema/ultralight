@@ -29,7 +29,7 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
-namespace Lazaro.WinMain.Misc.Config
+namespace Lazaro.WinMain.Config
 {
 	public partial class Preferencias
 	{

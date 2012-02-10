@@ -493,7 +493,7 @@ namespace Lcc.Entrada.Articulos
                 private void VerificarStock()
                 {
                         if (m_MostrarStock && Articulo != null) {
-                                if (this.TemporaryReadOnly == false && this.Articulo.ControlExistencias != Lbl.Articulos.ControlExistencias.No && this.Articulo.Existencias < this.Cantidad) {
+                                if (this.TemporaryReadOnly == false && this.Articulo.TipoDeArticulo != Lbl.Articulos.TiposDeArticulo.Servicio && this.Articulo.Existencias < this.Cantidad) {
                                         if (this.Articulo.Existencias + this.Articulo.Pedido >= this.Cantidad) {
                                                 //EntradaArticulo.Font = null;
                                                 EntradaArticulo.ForeColor = Color.OrangeRed;

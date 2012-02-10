@@ -34,12 +34,22 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
-namespace Lazaro.WinMain.Misc.Config
+namespace Lazaro.WinMain.Config
 {
         public partial class Inicial : Lui.Forms.Form
         {
-                private int Paso = 0;
-                private readonly int Pasos = 4;
+                public enum Pasos
+                {
+                        Inicio,
+                        Deteccion,
+                        SeleccionarAlmacen,
+                        InstalarServidor,
+                        NombreServidor,
+                        PruebaServidor,
+                        Final
+                }
+
+                private Pasos Paso = Pasos.Inicio;
                 private string ServidorDetectado = null;
                 private System.Threading.Thread ThreadBuscar = null, ThreadDescargar = null;
 
@@ -80,13 +90,13 @@ namespace Lazaro.WinMain.Misc.Config
 
                         switch (Lfx.Environment.SystemInformation.Platform) {
                                 case Lfx.Environment.SystemInformation.Platforms.Windows:
-                                        if (System.IO.File.Exists(@"C:\mysql\bin\mysqld.exe")) {
+                                        /* if (System.IO.File.Exists(@"C:\mysql\bin\mysqld.exe")) {
                                                 EtiquetaBuscando.Text = "Lázaro detectó un servidor SQL en este equipo. Haga clic en el botón 'Siguiente' para revisar la configuración detectada.";
                                                 EtiquetaBuscarEspere.Visible = false;
                                                 ProgresoBuscar.Visible = false;
                                                 EntradaServidor.Text = "localhost";
                                                 CheckEsteEquipo.Checked = true;
-                                        } else {
+                                        } else { */
                                                 Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Buscando un servidor", "Por favor aguarde mientras Lázaro busca un servidor en la red para utilizar como almacén de datos.");
                                                 ProgresoBuscar.Visible = true;
                                                 Progreso.Modal = false;
@@ -117,7 +127,7 @@ namespace Lazaro.WinMain.Misc.Config
                                                         CheckOtroEquipo.Checked = true;
                                                         EntradaServidor.Text = ServidorDetectado;
                                                 }
-                                        }
+                                        /* } */
                                         break;
                                 default:
                                         // No es Windows
@@ -179,32 +189,21 @@ namespace Lazaro.WinMain.Misc.Config
 
                 private void MostrarPaneles()
                 {
-                        PanelBuscando.Visible = Paso == 0;
-                        PanelBienvenido.Visible = Paso == 1;
-                        PanelAlmacenDeDatos.Visible = Paso == 2;
-                        PanelPruebaServidor.Visible = Paso == 3;
-                        PanelInstalarAhora.Visible = Paso == 99;
-                        PanelFinal.Visible = Paso == Pasos;
 
-                        if (PanelBienvenido.Visible)
-                                EtiquetaEncab.Text = PanelBienvenido.Tag.ToString();
-                        else if (PanelAlmacenDeDatos.Visible)
-                                EtiquetaEncab.Text = PanelAlmacenDeDatos.Tag.ToString();
-                        else if (PanelPruebaServidor.Visible)
-                                EtiquetaEncab.Text = PanelPruebaServidor.Tag.ToString();
-                        else if (PanelFinal.Visible)
-                                EtiquetaEncab.Text = PanelFinal.Tag.ToString();
-                        else if (PanelBuscando.Visible)
-                                EtiquetaEncab.Text = PanelBuscando.Tag.ToString();
-                        else if (PanelInstalarAhora.Visible)
-                                EtiquetaEncab.Text = PanelInstalarAhora.Tag.ToString();
-
-                        if (Paso == Pasos)
+                        if (Paso == Pasos.Final)
                                 BotonSiguiente.Text = "Finalizar";
                         else
                                 BotonSiguiente.Text = "Siguiente";
 
-                        BotonAnterior.Visible = Paso > 0;
+                        BotonAnterior.Enabled = Paso != Pasos.Inicio;
+
+                        PanelInicio.Visible = Paso == Inicial.Pasos.Inicio;
+                        PanelDeteccion.Visible = Paso == Inicial.Pasos.Deteccion;
+                        PanelSeleccionarAlmacen.Visible = Paso == Inicial.Pasos.SeleccionarAlmacen;
+                        PanelNombreServidor.Visible = Paso == Inicial.Pasos.NombreServidor;
+                        PanelPruebaServidor.Visible = Paso == Inicial.Pasos.PruebaServidor;
+                        PanelInstalacion.Visible = Paso == Inicial.Pasos.InstalarServidor;
+                        PanelFinal.Visible = Paso == Inicial.Pasos.Final;
                 }
 
                 private void PanelPruebaServidor_VisibleChanged(object sender, EventArgs e)
@@ -284,18 +283,24 @@ namespace Lazaro.WinMain.Misc.Config
                 private void BotonSiguiente_Click(object sender, EventArgs e)
                 {
                         switch (Paso) {
-                                case 0:
-                                        Paso = 1;
+                                case Inicial.Pasos.Inicio:
+                                        if (RadioInicioInstalacionLocal.Checked)
+                                                Paso = Inicial.Pasos.InstalarServidor;
+                                        else if (RadioInicioConexionRemota.Checked)
+                                                Paso = Inicial.Pasos.Deteccion;
                                         break;
-                                case 1:
+                                case Inicial.Pasos.Deteccion:
+                                        Paso = Inicial.Pasos.SeleccionarAlmacen;
+                                        break;
+                                case Inicial.Pasos.SeleccionarAlmacen:
                                         if (CheckEsteEquipo.Checked) {
-                                                Paso = 3;
+                                                Paso = Inicial.Pasos.PruebaServidor;
                                         } else if (CheckOtroEquipo.Checked) {
-                                                Paso = 2;
+                                                Paso = Inicial.Pasos.NombreServidor;
                                         } else if (CheckInstalarAhora.Checked) {
-                                                Paso = 99;
+                                                Paso = Inicial.Pasos.InstalarServidor;
                                         } else if (CheckConfigAvanzada.Checked) {
-                                                using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
+                                                using (Config.ConfigurarBd ConfigBD = new Config.ConfigurarBd()) {
                                                         this.Hide();
                                                         if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
                                                                 this.Show();
@@ -306,21 +311,21 @@ namespace Lazaro.WinMain.Misc.Config
                                                 }
                                         }
                                         break;
-                                case 2:
+                                case Inicial.Pasos.NombreServidor:
                                         if (EntradaServidor.Text.Length == 0) {
                                                 Lui.Forms.MessageBox.Show("Debe ingresar el nombre del equipo", "Error");
                                         } else {
-                                                Paso = 3;
+                                                Paso = Inicial.Pasos.PruebaServidor;
                                         }
                                         break;
-                                case 3:
-                                        Paso = 4;
+                                case Inicial.Pasos.PruebaServidor:
+                                        Paso = Inicial.Pasos.Final;
                                         break;
-                                case 4:
+                                case Inicial.Pasos.Final:
                                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
                                         this.Close();
                                         return;
-                                case 99:
+                                case Inicial.Pasos.InstalarServidor:
                                         if (BotonInstalar.Enabled)
                                                 BotonInstalar.PerformClick();
                                         else
@@ -334,32 +339,37 @@ namespace Lazaro.WinMain.Misc.Config
                 {
                         BotonSiguiente.Visible = true;
                         switch (Paso) {
-                                case  1:
-                                        Paso = 0;
+                                case Inicial.Pasos.Deteccion:
+                                        Paso = Inicial.Pasos.Inicio;
                                         break;
-                                case 2:
-                                        Paso = 1;
+                                case Inicial.Pasos.NombreServidor:
+                                        Paso = Inicial.Pasos.SeleccionarAlmacen;
                                         break;
-                                case 3:
-                                        if (CheckEsteEquipo.Checked)
-                                                Paso = 1;
+                                case Inicial.Pasos.PruebaServidor:
+                                        if (RadioInicioInstalacionLocal.Checked)
+                                                Paso = Inicial.Pasos.Inicio;
+                                        else if (CheckEsteEquipo.Checked)
+                                                Paso = Inicial.Pasos.SeleccionarAlmacen;
                                         else if (CheckOtroEquipo.Checked)
-                                                Paso = 2;
+                                                Paso = Inicial.Pasos.NombreServidor;
                                         break;
-                                case 4:
-                                        Paso = 3;
+                                case Inicial.Pasos.Final:
+                                        Paso = Inicial.Pasos.Inicio;
                                         break;
-                                case 99:
+                                case Inicial.Pasos.InstalarServidor:
                                         // Instalar un servidor SQL ahora.
-                                        Paso = 0;
+                                        Paso = Inicial.Pasos.Inicio;
+                                        break;
+                                default:
+                                        Paso = Inicial.Pasos.Inicio;
                                         break;
                         }
                         this.MostrarPaneles();
                 }
 
-                private void BotonGuiaInstalacion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                private void BotonConfiguracionAvanzada_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        using (Misc.Config.ConfigurarBd ConfigBD = new Misc.Config.ConfigurarBd()) {
+                        using (Config.ConfigurarBd ConfigBD = new Config.ConfigurarBd()) {
                                 this.Hide();
                                 if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
                                         this.Show();
@@ -372,10 +382,13 @@ namespace Lazaro.WinMain.Misc.Config
 
                 private void PanelInstalarAhora_VisibleChanged(object sender, EventArgs e)
                 {
-                        if (PanelInstalarAhora.Visible) {
+                        if (PanelInstalacion.Visible) {
+                                BotonInstalar.Enabled = true;
                                 BotonInstalar.Visible = true;
-                                EtiquetaDescargando.Visible = false;
+                                EtiquetaDescargando.Text = "Haga clic en el botón 'Instalar' para descargar e instalar un servidor SQL en este equipo.";
                                 ProgresoDescargando.Visible = false;
+                                if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\InstalarMySQL.exe"))
+                                        BotonInstalar.PerformClick();
                         } else {
                                 if (this.ThreadDescargar != null) {
                                         this.ThreadDescargar.Abort();
@@ -384,9 +397,9 @@ namespace Lazaro.WinMain.Misc.Config
                         }
                 }
 
-                private void PanelBuscando_VisibleChanged(object sender, EventArgs e)
+                private void PanelDeteccion_VisibleChanged(object sender, EventArgs e)
                 {
-                        if (PanelBuscando.Visible) {
+                        if (PanelDeteccion.Visible) {
                                 EtiquetaBuscando.Text = "Detectando configuración...";
                                 this.DetectarConfig();
                         } else {
@@ -439,28 +452,46 @@ namespace Lazaro.WinMain.Misc.Config
 
                         EtiquetaDescargando.Text = "Reiniciando el asistente...";
                         EntradaServidor.Text = "localhost";
-                        Paso = 3;
+                        Paso = Inicial.Pasos.PruebaServidor;
                         this.MostrarPaneles();
                 }
 
                 private void DescargarEInstalar(Lfx.Types.OperationProgress progreso)
                 {
-                        progreso.ChangeStatus("Descargando...");
+                        string InstaladorMySQL = "InstalarMySQL.exe";
+                        string CarpetaDescarga;
 
-                        string Instalador = "InstalarMySQL.exe";
-                        Lfx.Environment.Folders.EnsurePathExists(Lfx.Environment.Folders.TemporaryFolder);
-                        using (WebClient Cliente = new WebClient()) {
-                                try {
-                                        Cliente.DownloadFile("http://www.sistemalazaro.com.ar/aslnlwc/" + Instalador, Lfx.Environment.Folders.TemporaryFolder + Instalador);
-                                } catch (Exception ex) {
-                                        progreso.ChangeStatus("Error al descargar " + ex.Message);
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\" + InstaladorMySQL)) {
+                                progreso.ChangeStatus("Descargando...");
+                                CarpetaDescarga = Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\";
+                        } else {
+                                CarpetaDescarga = Lfx.Environment.Folders.TemporaryFolder;
+                                Lfx.Environment.Folders.EnsurePathExists(CarpetaDescarga);
+                                using (WebClient Cliente = new WebClient()) {
+                                        try {
+                                                Cliente.DownloadFile("http://www.sistemalazaro.com.ar/aslnlwc/" + InstaladorMySQL, CarpetaDescarga + InstaladorMySQL);
+                                        } catch (Exception ex) {
+                                                progreso.ChangeStatus("Error al descargar " + ex.Message);
+                                        }
                                 }
                         }
-                        
+
                         progreso.ChangeStatus("Instalando...");
-                        Lfx.Environment.Shell.Execute(Lfx.Environment.Folders.TemporaryFolder + Instalador, "/silent", System.Diagnostics.ProcessWindowStyle.Normal, true);
+                        Lfx.Environment.Shell.Execute(CarpetaDescarga + InstaladorMySQL, "/silent", System.Diagnostics.ProcessWindowStyle.Normal, true);
 
                         progreso.End();
+                }
+
+                private void BotonDetectar_Click(object sender, EventArgs e)
+                {
+                        Paso = Pasos.Deteccion;
+                        this.MostrarPaneles();
+                }
+
+                private void BotonConfiguracionAvanzada2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        Paso = Pasos.SeleccionarAlmacen;
+                        MostrarPaneles();
                 }
         }
 }

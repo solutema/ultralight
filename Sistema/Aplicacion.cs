@@ -230,7 +230,7 @@ namespace Lazaro.WinMain
 
                         if (MostrarAsistenteConfig || ReconfigDB) {
                                 // Presento el asistente de configurar almacén de datos
-                                using (Misc.Config.Inicial AsistenteInicial = new Misc.Config.Inicial()) {
+                                using (Config.Inicial AsistenteInicial = new Config.Inicial()) {
                                         if (AsistenteInicial.ShowDialog() == DialogResult.Cancel)
                                                 System.Environment.Exit(0);
                                 }
@@ -487,7 +487,7 @@ namespace Lazaro.WinMain
                                         bool MostrarConfig = true;
 
                                         if (Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DataSource", null) != null) {
-                                                using (Misc.Config.ErrorConexion FormError = new Misc.Config.ErrorConexion()) {
+                                                using (Config.ErrorConexion FormError = new Config.ErrorConexion()) {
                                                         if (Res.Message.IndexOf("Unable to connect to any of the specified MySQL hosts") >= 0) {
                                                                 if (Lfx.Data.DataBaseCache.DefaultCache.ServerName.ToLowerInvariant() == "localhost") {
                                                                         string TipoServidor = "";
@@ -536,7 +536,7 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                                         }
 
                                         if (MostrarConfig) {
-                                                using (Misc.Config.Inicial ConfigBD = new Misc.Config.Inicial()) {
+                                                using (Config.Inicial ConfigBD = new Config.Inicial()) {
                                                         if (ConfigBD.ShowDialog() == DialogResult.Cancel) {
                                                                 MostrarConfig = false;
                                                                 System.Environment.Exit(0);
@@ -614,7 +614,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                 {
                         int Configurado = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Configurado", 0);
                         if (Configurado == 0 && Lbl.Sys.Config.Actual.Empresa.ClaveTributaria == null) {
-                                Misc.Config.Preferencias FormConfig = new Misc.Config.Preferencias();
+                                Config.Preferencias FormConfig = new Config.Preferencias();
                                 FormConfig.PrimeraVez = true;
                                 if (FormConfig.ShowDialog() != DialogResult.OK)
                                         Ejecutor.Exec("QUIT");
@@ -634,11 +634,15 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 Lfx.Workspace.Master.RunTime.Toast("Existe una diferencia de " + DiferenciaExplicada + " entre el reloj del servidor SQL y el reloj de este equipo. Es necesario que revise y ajuste el reloj de ambos equipos a la brevedad.", "Error de fecha y hora");
                         }
 
-                        Lazaro.WinMain.Misc.Ingreso FormIngreso = new Lazaro.WinMain.Misc.Ingreso();
-                        FormIngreso.Connection = Lfx.Workspace.Master.MasterConnection;
-                        FormIngreso.ShowDialog();
-                        FormIngreso.Dispose();
-                        FormIngreso = null;
+                        if (Lfx.Environment.SystemInformation.DesignMode) {
+                                Lbl.Personas.Usuario Usu = new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, 1);
+                                Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Lfx.Workspace.Master, Usu);
+                        } else {
+                                using (Lazaro.WinMain.Misc.Ingreso FormIngreso = new Lazaro.WinMain.Misc.Ingreso()) {
+                                        FormIngreso.Connection = Lfx.Workspace.Master.MasterConnection;
+                                        FormIngreso.ShowDialog();
+                                }
+                        }
 
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.Id > 0) {
                                 if (Lfx.Workspace.Master.MasterConnection.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Tipo", "0") == "2") {

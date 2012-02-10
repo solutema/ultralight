@@ -78,7 +78,7 @@ namespace Lbl.Reportes
 
                         System.Data.DataTable Tabla = DataBase.Select(Sel);
                         foreach (System.Data.DataRow Registro in Tabla.Rows) {
-                                if (this.Grouping != null && Lfx.Types.Object.CompareByValue(this.Grouping.LastValue, Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.FieldName)]) != 0) {
+                                if (this.Grouping != null && Lfx.Types.Object.CompareByValue(this.Grouping.LastValue, Registro[Lfx.Data.Field.GetNameOnly(this.Grouping.FieldName)]) != 0) {
                                         // Agrego un renglón de subtotales
                                         if (this.Grouping.LastValue != null) {
                                                 Lazaro.Pres.Spreadsheet.Row SubTotales;
@@ -117,23 +117,23 @@ namespace Lbl.Reportes
                                                 }
                                                 Res.Rows.Add(SubTotales);
                                         }
-                                        this.Grouping.LastValue = Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.FieldName)];
+                                        this.Grouping.LastValue = Registro[Lfx.Data.Field.GetNameOnly(this.Grouping.FieldName)];
 
                                         // Agrego un encabezado
                                         if (ExpandGroups)
-                                                Res.Rows.Add(new Lazaro.Pres.Spreadsheet.HeaderRow(Registro[Lfx.Data.Connection.GetFieldName(this.Grouping.FieldName)].ToString()));
+                                                Res.Rows.Add(new Lazaro.Pres.Spreadsheet.HeaderRow(Registro[Lfx.Data.Field.GetNameOnly(this.Grouping.FieldName)].ToString()));
                                 }
 
                                 if (Aggregates != null) {
                                         // Calculo las funciones de agregación
                                         foreach (Lfx.Data.Aggregate Agru in this.Aggregates) {
-                                                string ColName = Lfx.Data.Connection.GetFieldName(Agru.FieldName);
+                                                string ColName = Lfx.Data.Field.GetNameOnly(Agru.FieldName);
                                                 switch (Agru.Function) {
                                                         case Lfx.Data.AggregationFunctions.Count:
                                                                 Agru.Count++;
                                                                 break;
                                                         case Lfx.Data.AggregationFunctions.Sum:
-                                                                Agru.Sum += System.Convert.ToDecimal(Registro[Lfx.Data.Connection.GetFieldName(Agru.FieldName)]);
+                                                                Agru.Sum += System.Convert.ToDecimal(Registro[Lfx.Data.Field.GetNameOnly(Agru.FieldName)]);
                                                                 break;
                                                 }
                                         }
@@ -141,7 +141,7 @@ namespace Lbl.Reportes
                                 if (ExpandGroups) {
                                         Lazaro.Pres.Spreadsheet.Row Renglon = new Lazaro.Pres.Spreadsheet.Row();
                                         foreach (Lazaro.Pres.Field Field in this.Fields) {
-                                                Lazaro.Pres.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.Connection.GetFieldName(Field.Name)]);
+                                                Lazaro.Pres.Spreadsheet.Cell Celda = new Cell(Registro[Lfx.Data.Field.GetNameOnly(Field.Name)]);
                                                 Renglon.Cells.Add(Celda);
                                         }
                                         Res.Rows.Add(Renglon);

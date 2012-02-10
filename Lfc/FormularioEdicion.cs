@@ -72,6 +72,21 @@ namespace Lfc
                         }
                 }
 
+
+                protected override void OnKeyDown(KeyEventArgs e)
+                {
+                        if (e.Control == true && e.Alt == false && e.Shift == false) {
+                                switch(e.KeyCode) {
+                                        case Keys.H:
+                                                e.Handled = true;
+                                                MostrarHistorial();
+                                                break;
+                                }
+                        }
+                        base.OnKeyDown(e);
+                }
+
+
                 private Lcc.Edicion.ControlEdicion m_ControlUnico = null;
 
                 public Lcc.Edicion.ControlEdicion ControlUnico
@@ -187,6 +202,10 @@ namespace Lfc
                                 } else {
                                         try {
                                                 Resultado = this.Elemento.Guardar();
+                                        } catch (Lfx.Types.DomainException ex) {
+                                                if (Trans != null)
+                                                        Trans.Rollback();
+                                                Resultado = new Lfx.Types.FailureOperationResult(ex.Message);
                                         } catch {
                                                 if (Trans != null)
                                                         Trans.Rollback();
@@ -378,7 +397,7 @@ namespace Lfc
                         }
                 }
 
-                private void EditarHistorial()
+                private void MostrarHistorial()
                 {
                         Lfx.Workspace.Master.RunTime.Execute("HISTORIAL", new string[] { this.Elemento.TablaDatos, this.Elemento.Id.ToString() });
                 }
@@ -575,7 +594,7 @@ namespace Lfc
                                                         EditarComentarios();
                                                         break;
                                                 case "historial":
-                                                        EditarHistorial();
+                                                        MostrarHistorial();
                                                         break;
                                                 case "panelextendido":
                                                         EditarPanelExtendido();

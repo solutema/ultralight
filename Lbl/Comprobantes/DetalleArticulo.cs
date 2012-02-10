@@ -41,7 +41,7 @@ namespace Lbl.Comprobantes
 	public class DetalleArticulo : ElementoDeDatos
 	{
                 private Articulos.Articulo m_Articulo = null;
-                private Lbl.Comprobantes.ComprobanteConArticulos m_Comprobante = null;
+                private Lbl.ElementoDeDatos m_ElementoPadre = null;
 
 		//Heredar constructor
                 public DetalleArticulo(Lfx.Data.Connection dataBase)
@@ -50,22 +50,22 @@ namespace Lbl.Comprobantes
                 public DetalleArticulo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
 
-                public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante)
-                        : base(comprobante.Connection)
+                public DetalleArticulo(Lbl.ElementoDeDatos elementoPadre)
+                        : base(elementoPadre.Connection)
                 {
-                        this.Comprobante = comprobante;
+                        this.ElementoPadre = elementoPadre;
                 }
 
                 public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante, int itemId)
                         : base(comprobante.Connection, itemId)
                 {
-                        this.Comprobante = comprobante;
+                        this.ElementoPadre = comprobante;
                 }
 
                 public DetalleArticulo(Lbl.Comprobantes.ComprobanteConArticulos comprobante, Lfx.Data.Row row)
                         : base(comprobante.Connection, row)
                 {
-                        this.Comprobante = comprobante;
+                        this.ElementoPadre = comprobante;
                 }
 
                 public decimal Unitario
@@ -135,17 +135,20 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                if (this.Comprobante == null) {
+                                if (this.ElementoPadre == null) {
                                         return this.Unitario;
-                                } else {
-                                        if(this.Comprobante.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
+                                } else if (ElementoPadre is Lbl.Comprobantes.ComprobanteConArticulos) {
+                                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
+                                        if (Comprob.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
                                                 return this.Unitario;
-                                        else if (this.Comprobante.DiscriminaIva) {
+                                        else if (Comprob.DiscriminaIva) {
                                                 return this.Unitario;
                                         } else {
                                                 decimal IvaPct = this.ObtenerAlicuota().Porcentaje;
                                                 return Math.Round(this.Unitario * (1 + IvaPct / 100), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                         }
+                                } else {
+                                        return this.Unitario;
                                 }
                         }
                 }
@@ -157,15 +160,18 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                if (this.Comprobante == null) {
+                                if (this.ElementoPadre == null) {
                                         return 0;
-                                } else {
-                                        if (this.Comprobante.Cliente.PagaIva != Impuestos.SituacionIva.Exento) {
+                                } else if (ElementoPadre is Lbl.Comprobantes.ComprobanteConArticulos) {
+                                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
+                                        if (Comprob.Cliente.PagaIva != Impuestos.SituacionIva.Exento) {
                                                 decimal IvaPct = this.ObtenerAlicuota().Porcentaje;
                                                 return Math.Round(this.Importe * (IvaPct / 100), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                         } else {
                                                 return 0;
                                         }
+                                } else {
+                                        return 0;
                                 }
                         }
                 }
@@ -177,14 +183,17 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                if (this.Comprobante == null) {
+                                if (this.ElementoPadre == null) {
                                         return 0;
-                                } else {
-                                        if (this.Comprobante.DiscriminaIva) {
+                                } else if (ElementoPadre is Lbl.Comprobantes.ComprobanteConArticulos) {
+                                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
+                                        if (Comprob.DiscriminaIva) {
                                                 return this.ImporteIva;
                                         } else {
                                                 return 0;
                                         }
+                                } else {
+                                        return 0;
                                 }
                         }
                 }
@@ -213,7 +222,7 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 this.Registro["id_comprob"] = value;
-                                m_Comprobante = null;
+                                m_ElementoPadre = null;
                         }
                 }
 
@@ -261,24 +270,24 @@ namespace Lbl.Comprobantes
                 }
 
 
-                public ComprobanteConArticulos Comprobante
+                public Lbl.ElementoDeDatos ElementoPadre
                 {
                         get
                         {
-                                if (m_Comprobante == null && this.IdComprobante != 0)
-                                        m_Comprobante = new Lbl.Comprobantes.ComprobanteConArticulos(this.Connection, this.IdComprobante);
+                                if (m_ElementoPadre == null && this.IdComprobante != 0)
+                                        m_ElementoPadre = new Lbl.Comprobantes.ComprobanteConArticulos(this.Connection, this.IdComprobante);
 
-                                return m_Comprobante;
+                                return m_ElementoPadre;
                         }
                         set
                         {
                                 if (value != null) {
                                         this.IdComprobante = value.Id;
-                                        m_Comprobante = value;
+                                        m_ElementoPadre = value;
                                         this.Connection = value.Connection;
                                 } else {
                                         this.IdComprobante = 0;
-                                        m_Comprobante = null; 
+                                        m_ElementoPadre = null; 
                                 }
                         }
                 }

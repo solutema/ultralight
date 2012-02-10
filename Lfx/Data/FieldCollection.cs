@@ -51,12 +51,12 @@ namespace Lfx.Data
 				}
 
                                 foreach (Field Itm in this) {
-                                        if (Itm.ColumnName != null && Lfx.Data.Connection.GetFieldName(Itm.ColumnName) == columnName)
+                                        if (Itm.ColumnName != null && Lfx.Data.Field.GetNameOnly(Itm.ColumnName) == columnName)
                                                 return Itm;
                                 }
 
                                 foreach (Field Itm in this) {
-                                        if (Itm.ColumnName == Lfx.Data.Connection.GetFieldName(columnName))
+                                        if (Itm.ColumnName == Lfx.Data.Field.GetNameOnly(columnName))
                                                 return Itm;
                                 }
 				//Si no existe, creo dinámicamente el campo

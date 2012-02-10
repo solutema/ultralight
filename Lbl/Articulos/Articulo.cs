@@ -243,18 +243,6 @@ namespace Lbl.Articulos
 			}
 		}
 
-		public Tipos Tipo
-		{
-			get
-			{
-				return (Tipos)this.GetFieldValue<int>("tipo");
-			}
-			set
-			{
-				Registro["tipo"] = value;
-			}
-		}
-
 		public Publicacion Publicacion
 		{
 			get
@@ -279,17 +267,34 @@ namespace Lbl.Articulos
 			}
 		}
 
-                public ControlExistencias ControlExistencias
+                public TiposDeArticulo TipoDeArticulo
 		{
 			get
 			{
-				return (ControlExistencias)(Registro.Fields["control_stock"].ValueInt);
+				return (TiposDeArticulo)(Registro.Fields["control_stock"].ValueInt);
 			}
 			set
 			{
 				Registro["control_stock"] = (int)value;
 			}
 		}
+
+
+                /// <summary>
+                /// Para los servicios: cómo o cada cuanto se facturan (por horas, por minutos, una vez al mes, etc.)
+                /// </summary>
+                public Periodicidad Periodicidad
+                {
+                        get
+                        {
+                                return (Periodicidad)(Registro.Fields["periodicidad"].ValueInt);
+                        }
+                        set
+                        {
+                                Registro["periodicidad"] = (int)value;
+                        }
+                }
+
 
                 public int Garantia
                 {
@@ -304,6 +309,9 @@ namespace Lbl.Articulos
                 }
 
 
+                /// <summary>
+                /// Para la trazabilidad por números de serie, o seguimiento por variaciones (como talles y colores).
+                /// </summary>
                 public Seguimientos Seguimiento
                 {
                         get
@@ -361,6 +369,10 @@ namespace Lbl.Articulos
                         }
                 }
 
+
+                /// <summary>
+                /// Las existencias actuales.
+                /// </summary>
                 public decimal Existencias
 		{
                         get
@@ -372,6 +384,10 @@ namespace Lbl.Articulos
                         }
 		}
 
+
+                /// <summary>
+                /// La cantidad pedida, pendiente de arribo.
+                /// </summary>
                 public decimal Pedido
                 {
                         get
@@ -382,7 +398,7 @@ namespace Lbl.Articulos
 
                 public decimal ObtenerCosto()
                 {
-                        if (this.ControlExistencias == Articulos.ControlExistencias.Compuesto && this.Receta != null) {
+                        if (this.TipoDeArticulo == Articulos.TiposDeArticulo.ProductoCompuesto && this.Receta != null) {
                                 return Receta.Costo;
                         } else {
                                 return this.Costo;
@@ -391,27 +407,27 @@ namespace Lbl.Articulos
 
                 public decimal ObtenerExistencias()
                 {
-                        switch(this.ControlExistencias) {
-                                case Articulos.ControlExistencias.No:
+                        switch(this.TipoDeArticulo) {
+                                case Articulos.TiposDeArticulo.Servicio:
                                         return 0;
-                                case Articulos.ControlExistencias.Normal:
+                                case Articulos.TiposDeArticulo.ProductoSimple:
                                         return this.Connection.FieldDecimal(@"SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion IN (SELECT id_situacion FROM articulos_situaciones WHERE cuenta_stock<>0)");
-                                case Articulos.ControlExistencias.Compuesto:
+                                case Articulos.TiposDeArticulo.ProductoCompuesto:
                                         // Calculo el stock según el elemento de la receta que se acabe primero
                                         return this.Connection.FieldDecimal(@"SELECT MIN(articulos.stock_actual / articulos_recetas.cantidad) FROM articulos_recetas, articulos WHERE articulos_recetas.id_item=articulos.id_articulo AND articulos_recetas.id_articulo=" + this.Id.ToString());
                                 default:
-                                        throw new Lfx.Types.DomainException("ObtenerExistencias(): No se puede calcular el stock para " + this.ControlExistencias.ToString());
+                                        throw new Lfx.Types.DomainException("ObtenerExistencias(): No se puede calcular el stock para " + this.TipoDeArticulo.ToString());
                         }
                 }
 
                 public decimal ObtenerExistencias(Situacion situacion)
 		{
-                        switch (this.ControlExistencias) {
-                                case Articulos.ControlExistencias.No:
+                        switch (this.TipoDeArticulo) {
+                                case Articulos.TiposDeArticulo.Servicio:
                                         return 0;
-                                case Articulos.ControlExistencias.Normal:
+                                case Articulos.TiposDeArticulo.ProductoSimple:
                                         return this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + this.Id.ToString() + " AND id_situacion=" + situacion.Id.ToString());
-                                case Articulos.ControlExistencias.Compuesto:
+                                case Articulos.TiposDeArticulo.ProductoCompuesto:
                                         // Calculo el stock según el elemento de la receta que se acabe primero
                                         decimal CantMin = decimal.MaxValue;
                                         foreach (ItemReceta Itm in this.Receta) {
@@ -424,7 +440,7 @@ namespace Lbl.Articulos
                                         else
                                                 return CantMin;
                                 default:
-                                        throw new Lfx.Types.DomainException("ObtenerExistencias(Situacion): No se puede calcular el stock para " + this.ControlExistencias.ToString());
+                                        throw new Lfx.Types.DomainException("ObtenerExistencias(Situacion): No se puede calcular el stock para " + this.TipoDeArticulo.ToString());
                         }
 		}
 
@@ -433,7 +449,7 @@ namespace Lbl.Articulos
 		{
                         decimal Saldo;
 
-                        if (this.ControlExistencias != Articulos.ControlExistencias.No) {
+                        if (this.TipoDeArticulo != Articulos.TiposDeArticulo.Servicio) {
                                 decimal CantidadEntranteOSaliente = 0;
 
                                 // stock saliente (situación de origen)
@@ -534,7 +550,7 @@ namespace Lbl.Articulos
                                         // Si ees un artículo compuesto
                                         // Propagar los cambios de stock hacia abajo.
                                         // Es decir, hacer movimientos de stock de los ingredientes (sub artículos)
-                                        if (this.ControlExistencias == Articulos.ControlExistencias.Compuesto) {
+                                        if (this.TipoDeArticulo == Articulos.TiposDeArticulo.ProductoCompuesto) {
                                                 string ObsSubItems = "Movim. s/salida de " + this.ToString();
                                                 foreach (ItemReceta Itm in this.Receta) {
                                                         Itm.Articulo.MoverExistencias(comprob, Itm.Cantidad * cantidad, ObsSubItems, situacionOrigen, situacionDestino, seguimiento);
@@ -601,6 +617,10 @@ namespace Lbl.Articulos
                         return Res;
                 }
 
+
+                /// <summary>
+                /// El precio de costo o de compra.
+                /// </summary>
                 public decimal Costo
 		{
 			get
@@ -613,6 +633,10 @@ namespace Lbl.Articulos
 			}
 		}
 
+
+                /// <summary>
+                /// La composición, sólo válida para productos compuestos.
+                /// </summary>
                 public Receta Receta
                 {
                         get
@@ -639,14 +663,13 @@ namespace Lbl.Articulos
                 {
                         base.Crear();
 
-                        this.Tipo = Lbl.Articulos.Tipos.Regular;
                         this.Categoria = null;
                         this.Marca = null;
                         this.Caja = null;
                         this.Margen = null;
                         this.Proveedor = null;
                         this.Unidad = "u";
-                        this.ControlExistencias = Articulos.ControlExistencias.Normal;
+                        this.TipoDeArticulo = Articulos.TiposDeArticulo.ProductoSimple;
                         int MargenPredet = this.Connection.FieldInt("SELECT id_margen FROM margenes WHERE predet=1 AND estado<50");
                         if (MargenPredet > 0)
                                 this.Margen = new Margen(this.Connection, MargenPredet);
@@ -790,7 +813,7 @@ namespace Lbl.Articulos
                         
                         Comando.Fields.AddWithValue("pvp", this.Pvp);
                         //control_stock, stock_minimo, unidad_stock, rendimiento, unidad_rend, estado, web, fecha_creado, fecha_precio
-                        Comando.Fields.AddWithValue("control_stock", (int)(this.ControlExistencias));
+                        Comando.Fields.AddWithValue("control_stock", (int)(this.TipoDeArticulo));
                         Comando.Fields.AddWithValue("seguimiento", (int)(this.Seguimiento));
                         Comando.Fields.AddWithValue("stock_minimo", this.PuntoDeReposicion);
                         if (this.Existe)
@@ -855,7 +878,7 @@ namespace Lbl.Articulos
                         this.Connection.Execute(EliminarReceta);
 
                         // Guardar la receta del artículo, si corresponde
-                        if (this.ControlExistencias == Articulos.ControlExistencias.Compuesto && this.Receta != null) {
+                        if (this.TipoDeArticulo == Articulos.TiposDeArticulo.ProductoCompuesto && this.Receta != null) {
                                 foreach (ItemReceta Itm in this.Receta) {
                                         qGen.Insert InsertarItemReceta = new qGen.Insert(this.Connection, "articulos_recetas");
                                         InsertarItemReceta.Fields.AddWithValue("id_articulo", this.Id);

@@ -40,12 +40,12 @@ namespace Lfc.Comprobantes.Plantillas
                 private Lbl.Impresion.Campo CampoSeleccionado;
                 private int KnobSize = 32, GridSize = 10;
                 private PointF Escala;
-                private Point Desplazamiento = new Point(0, 0);
+                private Point PosicionPagina = new Point(0, 0);
                 private Point ButtonDown;
                 private Rectangle CampoDown;
                 private bool KnobGrabbed = false;
                 private float Zoom = 100;
-                private Size TamanoPapel;
+                private Size TamanoPagina;
                 private PointF EscalaMm = new PointF(300f / 25.4f, 300f / 25.4f);
                 private Font FieldInfoFont = new Font("Arial", 7);
 
@@ -166,7 +166,7 @@ namespace Lfc.Comprobantes.Plantillas
                         e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                         e.Graphics.PageUnit = GraphicsUnit.Document;
                         e.Graphics.ScaleTransform(Zoom / 100f, Zoom / 100f);
-                        e.Graphics.TranslateTransform(Desplazamiento.X, Desplazamiento.Y);
+                        e.Graphics.TranslateTransform(PosicionPagina.X, PosicionPagina.Y);
 
                         PointF[] Pts = new PointF[] { new Point(1000, 1000) };
                         e.Graphics.TransformPoints(System.Drawing.Drawing2D.CoordinateSpace.Device, System.Drawing.Drawing2D.CoordinateSpace.Page, Pts);
@@ -175,8 +175,8 @@ namespace Lfc.Comprobantes.Plantillas
                         if (Plantilla == null || Plantilla.Campos == null)
                                 return;
 
-                        System.Drawing.RectangleF RectPagina = new System.Drawing.RectangleF(0 * this.EscalaMm.X, 0 * this.EscalaMm.Y, TamanoPapel.Width * this.EscalaMm.X, TamanoPapel.Height * this.EscalaMm.Y);
-                        e.Graphics.FillRectangle(Brushes.DarkGray, new System.Drawing.RectangleF(2 * this.EscalaMm.X, 2 * this.EscalaMm.Y, TamanoPapel.Width * this.EscalaMm.X, TamanoPapel.Height * this.EscalaMm.Y));
+                        System.Drawing.RectangleF RectPagina = new System.Drawing.RectangleF(0 * this.EscalaMm.X, 0 * this.EscalaMm.Y, TamanoPagina.Width * this.EscalaMm.X, TamanoPagina.Height * this.EscalaMm.Y);
+                        e.Graphics.FillRectangle(Brushes.DarkGray, new System.Drawing.RectangleF(2 * this.EscalaMm.X, 2 * this.EscalaMm.Y, TamanoPagina.Width * this.EscalaMm.X, TamanoPagina.Height * this.EscalaMm.Y));
                         if (Plantilla.Imagen != null)
                                 e.Graphics.DrawImage(Plantilla.Imagen, RectPagina);
                         else
@@ -284,13 +284,55 @@ namespace Lfc.Comprobantes.Plantillas
                 private Point PuntoDesdePantalla(Point pt, bool usarGrilla)
                 {
                         Point Res = new Point(System.Convert.ToInt32(pt.X * this.Escala.X / (this.Zoom / 100F)), System.Convert.ToInt32(pt.Y * this.Escala.Y / (this.Zoom / 100F)));
-                        Res.Offset(-Desplazamiento.X, -Desplazamiento.Y);
+                        Res.Offset(-PosicionPagina.X, -PosicionPagina.Y);
                         if (usarGrilla) {
                                 Res.X = System.Convert.ToInt32(Res.X / this.GridSize) * this.GridSize;
                                 Res.Y = System.Convert.ToInt32(Res.Y / this.GridSize) * this.GridSize;
                         }
                         return Res;
                 }
+
+
+                private void ImagePreview_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+                {
+                        if (e.Delta != 0) {
+                                float NewZoom = this.Zoom + (e.Delta / 10f);
+                                if (NewZoom < ZoomBar.Minimum)
+                                        NewZoom = ZoomBar.Minimum;
+                                else if (NewZoom > ZoomBar.Maximum)
+                                        NewZoom = ZoomBar.Maximum;
+
+                                this.ChangeZoom((int)NewZoom, e.Location);
+                        }
+                }
+
+
+                private void ChangeZoom(int newZoom, Point from)
+                {
+                        if (newZoom != this.Zoom) {
+                                // Si no si especifica un punto, se asume el centro de la imagen
+                                if (from == null || from == Point.Empty)
+                                        from = new Point(ImagePreview.ClientRectangle.Width / 2, ImagePreview.ClientRectangle.Height / 2);
+
+                                // Calculo el nuevo desplazamiento para que la página haga zoom desde el punto especificado
+                                float DifZoom = newZoom - this.Zoom;
+
+                                // Posición relativa del mouse, dentro de la página
+                                Point PosPagina = this.PosicionPagina;
+                                Point PosRelMouse = new Point(from.X - PosPagina.X, from.Y - PosPagina.Y);
+                                Point NuevaPosRelMouse = new Point(Convert.ToInt32(PosRelMouse.X / this.Zoom * newZoom), Convert.ToInt32(PosRelMouse.Y / this.Zoom * newZoom));
+                                Point NuevaPosicionPagina = new Point(Convert.ToInt32(from.X - NuevaPosRelMouse.X), Convert.ToInt32(from.Y - NuevaPosRelMouse.Y));
+
+                                this.Zoom = newZoom;
+                                //this.PosicionPagina = NuevaPosicionPagina;
+
+                                if (ZoomBar.Value != newZoom)
+                                        ZoomBar.Value = newZoom;
+
+                                RecalcularTamanoVistaPrevia();
+                        }
+                }
+
 
                 private void ImagePreview_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
                 {
@@ -356,11 +398,11 @@ namespace Lfc.Comprobantes.Plantillas
                 private void ImagePreview_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
                 {
                         if (e.Button == System.Windows.Forms.MouseButtons.Middle) {
-                                Point OldDesplazamiento = this.Desplazamiento;
-                                this.Desplazamiento = new Point(0, 0);
+                                Point OldDesplazamiento = this.PosicionPagina;
+                                this.PosicionPagina = new Point(0, 0);
                                 Point Diferencia = PuntoDesdePantalla(new Point(e.X - ButtonDown.X, e.Y - ButtonDown.Y), false);
-                                this.Desplazamiento = OldDesplazamiento;
-                                this.Desplazamiento.Offset(Diferencia);
+                                this.PosicionPagina = OldDesplazamiento;
+                                this.PosicionPagina.Offset(Diferencia);
                                 ButtonDown = new Point(e.X, e.Y);
                                 ImagePreview.Invalidate();
                         } else if (e.Button == System.Windows.Forms.MouseButtons.Left) {
@@ -522,8 +564,7 @@ namespace Lfc.Comprobantes.Plantillas
 
                 private void ZoomBar_Scroll(object sender, EventArgs e)
                 {
-                        this.Zoom = ZoomBar.Value;
-                        RecalcularTamanoVistaPrevia();
+                        this.ChangeZoom(ZoomBar.Value, Point.Empty);
                 }
 
                 public void RecalcularTamanoVistaPrevia()
@@ -533,9 +574,9 @@ namespace Lfc.Comprobantes.Plantillas
                         if (Plantilla == null)
                                 return;
 
-                        TamanoPapel = ObtenerTamanoPapel(Plantilla.TamanoPapel);
+                        TamanoPagina = ObtenerTamanoPapel(Plantilla.TamanoPapel);
                         if (Plantilla.Landscape)
-                                TamanoPapel = new Size(TamanoPapel.Height, TamanoPapel.Width);
+                                TamanoPagina = new Size(TamanoPagina.Height, TamanoPagina.Width);
 
                         ImagePreview.Invalidate();
                 }
@@ -644,6 +685,11 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         PanelGeneral.Visible = false;
                         PanelDiseno.Visible = true;
+                }
+
+                private void ImagePreview_MouseEnter(object sender, EventArgs e)
+                {
+                        ImagePreview.Focus();
                 }
         }
 }
