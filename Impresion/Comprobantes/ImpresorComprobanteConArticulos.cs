@@ -66,7 +66,7 @@ namespace Lazaro.Impresion.Comprobantes
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
 
-                        if (this.Reimpresion == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.ActualizaCostoAlFacturar", 1) != 0) {
+                        if (this.Comprobante.Impreso == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.ActualizaCostoAlFacturar", 1) != 0) {
                                 // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)
                                 foreach (Lbl.Comprobantes.DetalleArticulo Det in this.Comprobante.Articulos) {
                                         if (Det.Articulo != null) {
@@ -81,7 +81,7 @@ namespace Lazaro.Impresion.Comprobantes
                         ResultadoImprimir = base.Imprimir();
 
                         // Los movimientos de stock y de dinero los asienta el servidor fiscal en los comprobantes fiscales
-                        if (this.Reimpresion == false && ResultadoImprimir.Success == true && this.ImprimiLocal) {
+                        if (this.Comprobante.Impreso == false && ResultadoImprimir.Success == true && this.ImprimiLocal) {
                                 //Resto el stock si corresponde
                                 this.Comprobante.MoverExistencias(false);
 
@@ -206,6 +206,7 @@ namespace Lazaro.Impresion.Comprobantes
                                 case "COMPROBANTE.TOTAL":
                                         return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Total, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
 
+                                case "IVADISCRIMINADO":
                                 case "COMPROBANTE.IVADISCRIMINADO":
                                         return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.ImporteIvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
 

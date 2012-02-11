@@ -252,7 +252,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlienacionHorizontal.Size = new System.Drawing.Size(140, 57);
                         this.EntradaAlienacionHorizontal.TabIndex = 16;
                         this.EntradaAlienacionHorizontal.TextKey = "Near";
-                        this.EntradaAlienacionHorizontal.TextChanged += new System.EventHandler(this.EntradaAlienacionHorizontalVertical_TextChanged);
+                        this.EntradaAlienacionHorizontal.TextChanged += new System.EventHandler(this.EntradaAlienacionHorizontal_TextChanged);
                         // 
                         // label7
                         // 
@@ -277,7 +277,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlienacionVertical.Size = new System.Drawing.Size(140, 57);
                         this.EntradaAlienacionVertical.TabIndex = 17;
                         this.EntradaAlienacionVertical.TextKey = "Near";
-                        this.EntradaAlienacionVertical.TextChanged += new System.EventHandler(this.EntradaAlienacionHorizontalVertical_TextChanged);
+                        this.EntradaAlienacionVertical.TextChanged += new System.EventHandler(this.EntradaAlienacionVertical_TextChanged);
                         // 
                         // EntradaAnchoBorde
                         // 

@@ -93,7 +93,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
                         this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(320, 24);
                         this.EntradaNombre.TabIndex = 1;
                         // 
@@ -108,11 +107,9 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaLetra
                         // 
-                        this.EntradaLetra.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaLetra.Location = new System.Drawing.Point(120, 32);
                         this.EntradaLetra.Name = "EntradaLetra";
                         this.EntradaLetra.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaLetra.ReadOnly = false;
                         this.EntradaLetra.Size = new System.Drawing.Size(320, 24);
                         this.EntradaLetra.TabIndex = 3;
                         // 
@@ -141,12 +138,11 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaMueveStock.Location = new System.Drawing.Point(120, 64);
                         this.EntradaMueveStock.Name = "EntradaMueveStock";
                         this.EntradaMueveStock.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMueveStock.ReadOnly = false;
                         this.EntradaMueveStock.SetData = new string[] {
         "Saliente|-1",
         "Entrante|1",
         "No|0"};
-                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 51);
+                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 57);
                         this.EntradaMueveStock.TabIndex = 5;
                         this.EntradaMueveStock.TextKey = "1";
                         this.EntradaMueveStock.TextChanged += new System.EventHandler(this.EntradaMueveStock_TextChanged);
@@ -162,6 +158,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaSituacionOrigen
                         // 
+                        this.EntradaSituacionOrigen.AutoTab = true;
                         this.EntradaSituacionOrigen.CanCreate = true;
                         this.EntradaSituacionOrigen.DataTextField = "nombre";
                         this.EntradaSituacionOrigen.DataValueField = "id_situacion";
@@ -173,7 +170,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionOrigen.Name = "EntradaSituacionOrigen";
                         this.EntradaSituacionOrigen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSituacionOrigen.PlaceholderText = "Sin especificar";
-                        this.EntradaSituacionOrigen.ReadOnly = false;
                         this.EntradaSituacionOrigen.Required = true;
                         this.EntradaSituacionOrigen.Size = new System.Drawing.Size(240, 24);
                         this.EntradaSituacionOrigen.TabIndex = 7;
@@ -192,6 +188,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaSituacionDestino
                         // 
+                        this.EntradaSituacionDestino.AutoTab = true;
                         this.EntradaSituacionDestino.CanCreate = true;
                         this.EntradaSituacionDestino.DataTextField = "nombre";
                         this.EntradaSituacionDestino.DataValueField = "id_situacion";
@@ -203,7 +200,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionDestino.Name = "EntradaSituacionDestino";
                         this.EntradaSituacionDestino.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSituacionDestino.PlaceholderText = "Sin especificar";
-                        this.EntradaSituacionDestino.ReadOnly = false;
                         this.EntradaSituacionDestino.Required = true;
                         this.EntradaSituacionDestino.Size = new System.Drawing.Size(240, 24);
                         this.EntradaSituacionDestino.TabIndex = 9;
@@ -218,12 +214,11 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaNumerarAl.Location = new System.Drawing.Point(124, 192);
                         this.EntradaNumerarAl.Name = "EntradaNumerarAl";
                         this.EntradaNumerarAl.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaNumerarAl.ReadOnly = false;
                         this.EntradaNumerarAl.SetData = new string[] {
         "Manualmente|0",
         "Cuando se crea el comprobante|1",
         "Cuando se imprime el comprobante|2"};
-                        this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 51);
+                        this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 57);
                         this.EntradaNumerarAl.TabIndex = 11;
                         this.EntradaNumerarAl.TextKey = "1";
                         // 
@@ -243,11 +238,10 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 272);
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
                         this.EntradaImprimirRepetir.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImprimirRepetir.ReadOnly = false;
                         this.EntradaImprimirRepetir.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 36);
+                        this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 40);
                         this.EntradaImprimirRepetir.TabIndex = 13;
                         this.EntradaImprimirRepetir.TextKey = "1";
                         // 
@@ -267,11 +261,10 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 320);
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
                         this.EntradaImprimirModificar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImprimirModificar.ReadOnly = false;
                         this.EntradaImprimirModificar.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 36);
+                        this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 40);
                         this.EntradaImprimirModificar.TabIndex = 15;
                         this.EntradaImprimirModificar.TextKey = "1";
                         // 
@@ -291,11 +284,10 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 368);
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
                         this.EntradaImprimirGuardar.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaImprimirGuardar.ReadOnly = false;
                         this.EntradaImprimirGuardar.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 36);
+                        this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 40);
                         this.EntradaImprimirGuardar.TabIndex = 17;
                         this.EntradaImprimirGuardar.TextKey = "1";
                         // 
@@ -372,12 +364,12 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(608, 376);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonQuitar.ReadOnly = false;
                         this.BotonQuitar.Size = new System.Drawing.Size(108, 34);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "";
@@ -389,12 +381,12 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(728, 376);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
-                        this.BotonAgregar.ReadOnly = false;
                         this.BotonAgregar.Size = new System.Drawing.Size(108, 34);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregar.Subtext = "F6";

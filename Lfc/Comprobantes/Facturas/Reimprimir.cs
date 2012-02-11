@@ -246,7 +246,6 @@ namespace Lfc.Comprobantes.Facturas
                                                 Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Conn, IdFactura);
                                                 Progreso.ChangeStatus("Imprimiendo " + Fac.ToString());
                                                 Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impr = new Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos(Fac, null);
-                                                Impr.Reimpresion = true;
                                                 Impr.Imprimir();
                                         }
                                         Progreso.Advance(1);

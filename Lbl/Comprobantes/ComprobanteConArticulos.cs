@@ -784,6 +784,7 @@ namespace Lbl.Comprobantes
                                         this.AsentarPago(false);
 
                                 if (this.Tipo.MueveExistencias != 0) {
+                                        // Comprobantes de compra mueven stock al guardar
                                         this.MoverExistencias(false);
 
                                         Lbl.ListaIds ArticulosAfectados = new Lbl.ListaIds();

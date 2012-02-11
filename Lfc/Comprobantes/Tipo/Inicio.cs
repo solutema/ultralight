@@ -52,7 +52,9 @@ namespace Lfc.Comprobantes.Tipo
 			        {
 				        new Lazaro.Pres.Field("nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
 				        new Lazaro.Pres.Field("letra", "Letra", Lfx.Data.InputFieldTypes.Text, 60),
-				        new Lazaro.Pres.Field("mueve_stock", "Mueve Stock", Lfx.Data.InputFieldTypes.Bool, 120)
+				        new Lazaro.Pres.Field("mueve_stock", "Mueve Stock", Lfx.Data.InputFieldTypes.Bool, 120),
+                                        new Lazaro.Pres.Field("numerar_guardar", "Numerar al guardar", Lfx.Data.InputFieldTypes.Bool, 120),
+                                        new Lazaro.Pres.Field("numerar_imprimir", "Numerar al imprimir", Lfx.Data.InputFieldTypes.Bool, 120)
 			        }
                         };
 		}

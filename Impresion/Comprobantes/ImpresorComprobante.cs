@@ -45,9 +45,6 @@ namespace Lazaro.Impresion.Comprobantes
                 // movimientos ya que los asienta quien lo imprime
                 public bool ImprimiLocal { get; set; }
 
-                // Indica si es una reimpresión. Si es reimpresión, no hay que asentar movimientos.
-                public bool Reimpresion { get; set; }
-
                 public ImpresorComprobante(Lbl.ElementoDeDatos elemento, IDbTransaction transaction)
                         : base(elemento, transaction) { }
 
@@ -72,9 +69,6 @@ namespace Lazaro.Impresion.Comprobantes
                         } else if (this.Comprobante.Tipo.EsFacturaNCoND && Lbl.Impresion.Plantilla.TodasPorCodigo.ContainsKey("F" + this.Comprobante.Tipo.Letra)) {
                                 // En caso de NC y ND, pruebo utilizando la plantilla de facturas
                                 return Lbl.Impresion.Plantilla.TodasPorCodigo["F" + this.Comprobante.Tipo.Letra];
-                        } else if (this.Comprobante.Tipo.EsFacturaNCoND && Lbl.Impresion.Plantilla.TodasPorCodigo.ContainsKey("FA")) {
-                                // En caso de facturas B, C, E y M, pruebo utilizando la plantilla de facturas A
-                                return Lbl.Impresion.Plantilla.TodasPorCodigo["FA"];
                         } else {
                                 return base.ObtenerPlantilla();
                         }
@@ -102,9 +96,6 @@ namespace Lazaro.Impresion.Comprobantes
 
                 public override Lfx.Types.OperationResult Imprimir()
                 {
-                        if (this.Reimpresion == false && this.Comprobante.Impreso && this.Comprobante.Tipo.PermiteImprimirVariasVeces == false)
-                                return new Lfx.Types.FailureOperationResult("Este comprobante ya fue impreso y no puede volver a imprimirse");
-
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
 
@@ -118,7 +109,7 @@ namespace Lazaro.Impresion.Comprobantes
 
                         switch (ClaseImpr) {
                                 case Lbl.Impresion.ClasesImpresora.Fiscal:
-                                        if (this.Reimpresion)
+                                        if (this.Comprobante.Impreso == false)
                                                 throw new InvalidOperationException("No se permiten reimpresiones fiscales.");
 
                                         // Primero hago un COMMIT, porque si no el otro proceso no va a poder hacer movimientos
@@ -149,7 +140,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         }
                                         
                                 case Lbl.Impresion.ClasesImpresora.Nula:
-                                        if (this.Reimpresion == false && this.Comprobante.Tipo.NumerarAlImprimir)
+                                        if (this.Comprobante.Impreso == false && this.Comprobante.Tipo.NumerarAlImprimir)
                                                 this.Comprobante.Numerar(true);
                                         
                                         ImprimiLocal = true;
@@ -158,7 +149,7 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 case Lbl.Impresion.ClasesImpresora.Comun:
                                         if (this.Impresora == null || this.Impresora.EsLocal) {
-                                                if (this.Reimpresion == false == this.Comprobante.Tipo.NumerarAlImprimir)
+                                                if (this.Comprobante.Impreso == false && this.Comprobante.Tipo.NumerarAlImprimir)
                                                         this.Comprobante.Numerar(true);
 
                                                 this.Plantilla = this.ObtenerPlantilla();
@@ -173,7 +164,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                 ImprimiLocal = true;
                                                 return base.Imprimir();
                                         } else {
-                                                if (this.Reimpresion)
+                                                if (this.Comprobante.Impreso == false)
                                                         throw new InvalidOperationException("No se permiten reimpresiones remotas.");
 
                                                 // Primero hago un COMMIT, porque si no el otro proceso no va a poder hacer movimientos

@@ -54,7 +54,7 @@ namespace Lui.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.DialogCaption.Location = new System.Drawing.Point(24, 24);
                         this.DialogCaption.Name = "DialogCaption";
-                        this.DialogCaption.Size = new System.Drawing.Size(544, 44);
+                        this.DialogCaption.Size = new System.Drawing.Size(544, 56);
                         this.DialogCaption.TabIndex = 0;
                         this.DialogCaption.Text = "Pregunta";
                         this.DialogCaption.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -99,7 +99,7 @@ namespace Lui.Forms
                         this.DialogText.Location = new System.Drawing.Point(88, 80);
                         this.DialogText.MaximumSize = new System.Drawing.Size(480, 0);
                         this.DialogText.Name = "DialogText";
-                        this.DialogText.Size = new System.Drawing.Size(6, 27);
+                        this.DialogText.Size = new System.Drawing.Size(0, 21);
                         this.DialogText.TabIndex = 51;
                         // 
                         // YesNoDialog
@@ -107,16 +107,16 @@ namespace Lui.Forms
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(594, 372);
                         this.Controls.Add(this.DialogText);
-                        this.Controls.Add(this.DialogCaption);
                         this.Controls.Add(this.pctQuestion);
                         this.Controls.Add(this.pctInformation);
                         this.Controls.Add(this.pctExclamation);
+                        this.Controls.Add(this.DialogCaption);
                         this.Name = "YesNoDialog";
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.YesNoDialogForm_KeyDown);
+                        this.Controls.SetChildIndex(this.DialogCaption, 0);
                         this.Controls.SetChildIndex(this.pctExclamation, 0);
                         this.Controls.SetChildIndex(this.pctInformation, 0);
                         this.Controls.SetChildIndex(this.pctQuestion, 0);
-                        this.Controls.SetChildIndex(this.DialogCaption, 0);
                         this.Controls.SetChildIndex(this.DialogText, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.pctQuestion)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pctExclamation)).EndInit();

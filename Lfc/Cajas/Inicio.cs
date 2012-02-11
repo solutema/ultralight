@@ -61,6 +61,7 @@ namespace Lfc.Cajas
 
                                 TableName = "cajas",
                                 KeyColumn = new Lazaro.Pres.Field("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                OrderBy = "cajas.nombre",
 
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {

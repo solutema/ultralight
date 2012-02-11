@@ -65,8 +65,10 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAjusteTexto.TextKey = this.Campo.Wrap ? "1" : "0";
                         this.EntradaAnchoBorde.ValueInt = this.Campo.AnchoBorde;
                         if (this.Campo.Font != null) {
+                                Ignorar_EntradaFuenteFuenteTamano_TextChanged++;
                                 this.EntradaFuenteNombre.TextKey = this.Campo.Font.Name;
-                                this.EntradaFuenteTamano.Text = this.Campo.Font.Size.ToString("#.00");
+                                this.EntradaFuenteTamano.ValueDecimal = Convert.ToDecimal(this.Campo.Font.Size);
+                                Ignorar_EntradaFuenteFuenteTamano_TextChanged--;
                         } else {
                                 this.EntradaFuenteNombre.TextKey = "*";
                                 this.EntradaFuenteTamano.ValueDecimal = 10;
@@ -74,10 +76,13 @@ namespace Lfc.Comprobantes.Plantillas
 
                         this.ActualizarMuestra();
                 }
-		
 
+
+                private int Ignorar_EntradaFuenteFuenteTamano_TextChanged = 0;
                 private void EntradaFuenteFuenteTamano_TextChanged(object sender, EventArgs e)
                 {
+                        if (Ignorar_EntradaFuenteFuenteTamano_TextChanged > 0)
+                                return;
                         EntradaFuenteTamano.Enabled = (EntradaFuenteNombre.TextKey != "*");
                         if (this.EntradaFuenteNombre.TextKey != "*" && this.EntradaFuenteTamano.ValueDecimal > 1) {
                                 this.Campo.Font = new Font(this.EntradaFuenteNombre.TextKey, ((float)(this.EntradaFuenteTamano.ValueDecimal)));
@@ -92,7 +97,7 @@ namespace Lfc.Comprobantes.Plantillas
                         ColorDialog ColDlg = new ColorDialog();
                         ColDlg.Color = this.Campo.ColorFondo;
                         if (ColDlg.ShowDialog() == DialogResult.OK) {
-                                this.Campo.ColorFondo = ColDlg.Color;
+                                this.Campo.ColorFondo = Color.FromArgb(255, ColDlg.Color);
                                 ActualizarMuestra();
                         }
                 }
@@ -102,7 +107,7 @@ namespace Lfc.Comprobantes.Plantillas
                         ColorDialog ColDlg = new ColorDialog();
                         ColDlg.Color = this.Campo.ColorTexto;
                         if (ColDlg.ShowDialog() == DialogResult.OK) {
-                                this.Campo.ColorTexto = ColDlg.Color;
+                                this.Campo.ColorTexto = Color.FromArgb(255, ColDlg.Color);
                                 ActualizarMuestra();
                         }
                 }
@@ -112,7 +117,7 @@ namespace Lfc.Comprobantes.Plantillas
                         ColorDialog ColDlg = new ColorDialog();
                         ColDlg.Color = this.Campo.ColorBorde;
                         if (ColDlg.ShowDialog() == DialogResult.OK) {
-                                this.Campo.ColorBorde = ColDlg.Color;
+                                this.Campo.ColorBorde = Color.FromArgb(255, ColDlg.Color);
                                 if (this.Campo.ColorBorde != Color.Transparent && this.Campo.AnchoBorde == 0)
                                         EntradaAnchoBorde.ValueInt = 1;
                                 else
@@ -242,7 +247,7 @@ eum liber hendrerit an";
                         this.ActualizarMuestra();
                 }
 
-                private void EntradaAlienacionHorizontalVertical_TextChanged(object sender, EventArgs e)
+                private void EntradaAlienacionHorizontal_TextChanged(object sender, EventArgs e)
                 {
                         switch (this.EntradaAlienacionHorizontal.TextKey) {
                                 case "Far":
@@ -255,6 +260,13 @@ eum liber hendrerit an";
                                         this.Campo.Alignment = StringAlignment.Near;
                                         break;
                         }
+                        this.ActualizarMuestra();
+                }
+
+
+
+                private void EntradaAlienacionVertical_TextChanged(object sender, EventArgs e)
+                {
                         switch (this.EntradaAlienacionVertical.TextKey) {
                                 case "Far":
                                         this.Campo.LineAlignment = StringAlignment.Far;
@@ -266,9 +278,9 @@ eum liber hendrerit an";
                                         this.Campo.LineAlignment = StringAlignment.Near;
                                         break;
                         }
-
                         this.ActualizarMuestra();
                 }
+
 
                 private void EntradaAjusteTexto_TextChanged(object sender, EventArgs e)
                 {

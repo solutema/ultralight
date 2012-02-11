@@ -262,7 +262,9 @@ namespace Lazaro.Impresion
                                                 Val = this.Elemento.GetFieldValue<object>(nombreCampo.ToLowerInvariant());
                                         }
 
-                                        if (Val is DateTime) {
+                                        if (Val != null && Val is DateTime || Val is NullableDateTime) {
+                                                if (Val is NullableDateTime)
+                                                        Val = ((NullableDateTime)(Val)).Value;
                                                 if (formato != null) {
                                                         try {
                                                                 return ((DateTime)Val).ToString(formato);

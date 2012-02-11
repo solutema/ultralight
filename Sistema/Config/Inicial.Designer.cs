@@ -268,7 +268,6 @@ namespace Lazaro.WinMain.Config
                         this.CheckConfigAvanzada.Name = "CheckConfigAvanzada";
                         this.CheckConfigAvanzada.Size = new System.Drawing.Size(225, 19);
                         this.CheckConfigAvanzada.TabIndex = 8;
-                        this.CheckConfigAvanzada.TabStop = true;
                         this.CheckConfigAvanzada.Text = "Usar la configuración avanzada";
                         this.CheckConfigAvanzada.UseVisualStyleBackColor = true;
                         // 
@@ -288,6 +287,7 @@ namespace Lazaro.WinMain.Config
                         // CheckOtroEquipo
                         // 
                         this.CheckOtroEquipo.AutoSize = true;
+                        this.CheckOtroEquipo.Checked = true;
                         this.CheckOtroEquipo.Location = new System.Drawing.Point(88, 104);
                         this.CheckOtroEquipo.Name = "CheckOtroEquipo";
                         this.CheckOtroEquipo.Size = new System.Drawing.Size(212, 19);
@@ -315,7 +315,6 @@ namespace Lazaro.WinMain.Config
                         this.CheckEsteEquipo.Name = "CheckEsteEquipo";
                         this.CheckEsteEquipo.Size = new System.Drawing.Size(214, 19);
                         this.CheckEsteEquipo.TabIndex = 2;
-                        this.CheckEsteEquipo.TabStop = true;
                         this.CheckEsteEquipo.Text = "Está instalado en este equipo";
                         this.CheckEsteEquipo.UseVisualStyleBackColor = true;
                         // 
@@ -964,13 +963,13 @@ namespace Lazaro.WinMain.Config
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.EtiquetaEncab);
-                        this.Controls.Add(this.PanelInicio);
                         this.Controls.Add(this.PanelSeleccionarAlmacen);
                         this.Controls.Add(this.PanelFinal);
                         this.Controls.Add(this.PanelDeteccion);
                         this.Controls.Add(this.PanelInstalacion);
                         this.Controls.Add(this.PanelNombreServidor);
                         this.Controls.Add(this.PanelPruebaServidor);
+                        this.Controls.Add(this.PanelInicio);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

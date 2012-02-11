@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -37,17 +38,26 @@ namespace Lfc.Comprobantes.Plantillas
 {
         public partial class Editar : Lcc.Edicion.ControlEdicion
         {
+                public enum MouseOperations
+                { 
+                        None,
+                        KnobDrag,
+                        ObjectDrag,
+                        PageDrag
+                }
+
                 private Lbl.Impresion.Campo CampoSeleccionado;
                 private int KnobSize = 32, GridSize = 10;
                 private PointF Escala;
                 private Point PosicionPagina = new Point(0, 0);
                 private Point ButtonDown;
                 private Rectangle CampoDown;
-                private bool KnobGrabbed = false;
+                private MouseOperations MouseOperation = MouseOperations.None;
                 private float Zoom = 100;
                 private Size TamanoPagina;
                 private PointF EscalaMm = new PointF(300f / 25.4f, 300f / 25.4f);
                 private Font FieldInfoFont = new Font("Arial", 7);
+                private bool MostrarTextosDeEjemplo = true;
 
                 private System.Drawing.Pen LapizBordeCampos = new Pen(Color.Silver, 1);
                 private Brush BrushSeleccion = new SolidBrush(Color.FromArgb(150, SystemColors.Highlight));
@@ -61,7 +71,6 @@ namespace Lfc.Comprobantes.Plantillas
                         InitializeComponent();
 
                         LapizBordeCampos.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-
                         ZoomBar_Scroll(null, null);
                 }
 
@@ -90,8 +99,21 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
-                        EntradaCodigo.Text = Plantilla.Codigo;
-                        EntradaCodigo.TemporaryReadOnly = !Plantilla.Existe;
+                        List<string> CodigosValidos = new List<string>();
+                        foreach (string CodigoValido in EntradaCodigo.SetData) {
+                                string[] Partes = CodigoValido.Split('|');
+                                CodigosValidos.Add(Partes[1]);
+                        }
+                        if (CodigosValidos.Contains(Plantilla.Codigo)) {
+                                EntradaCodigo.TextKey = Plantilla.Codigo;
+                                EntradaCodigoPersonalizado.ReadOnly = true;
+                                EntradaNombre.ReadOnly = true;
+                        } else {
+                                EntradaCodigo.TextKey = "*";
+                                EntradaCodigoPersonalizado.Text = Plantilla.Codigo;
+                                EntradaCodigoPersonalizado.ReadOnly = false;
+                                EntradaNombre.ReadOnly = false;
+                        }
                         EntradaNombre.Text = Plantilla.Nombre;
                         EntradaPapelTamano.TextKey = Plantilla.TamanoPapel;
                         if (Plantilla.Font != null) {
@@ -127,6 +149,18 @@ namespace Lfc.Comprobantes.Plantillas
                 }
 
 
+                public override Lfx.Types.OperationResult ValidarControl()
+                {
+                        if (EntradaCodigoPersonalizado.Text == string.Empty)
+                                return new Lfx.Types.FailureOperationResult("Debe escribir el código de la plantilla o seleccionar uno de la lista 'Se utiliza para'.");
+
+                        if (EntradaNombre.Text == string.Empty)
+                                return new Lfx.Types.FailureOperationResult("Debe escribir el nombre de la plantilla.");
+
+                        return base.ValidarControl();
+                }
+
+
                 public override void ActualizarElemento()
                 {
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
@@ -135,8 +169,11 @@ namespace Lfc.Comprobantes.Plantillas
                                 Plantilla.Font = null;
                         else
                                 Plantilla.Font = new Font(EntradaFuente.TextKey, (float)(EntradaFuenteTamano.ValueDecimal));
-                        Plantilla.Codigo = EntradaCodigo.Text;
-                        Plantilla.Codigo = EntradaCodigo.Text;
+
+                        if (EntradaCodigo.TextKey == "*")
+                                Plantilla.Codigo = EntradaCodigoPersonalizado.Text;
+                        else
+                                Plantilla.Codigo = EntradaCodigo.TextKey;
                         Plantilla.Nombre = EntradaNombre.Text;
                         Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
                         Plantilla.Landscape = EntradaLandscape.TextKey == "1";
@@ -210,29 +247,39 @@ namespace Lfc.Comprobantes.Plantillas
                                         FuenteItem = Plantilla.Font;
 
                                 string Texto = Cam.Valor;
-                                Texto = Texto.Replace("{Cliente}", "Compañía La Estrella S.R.L.");
-                                Texto = Texto.Replace("{Cliente.Nombre}", "Compañía La Estrella S.R.L.");
-                                Texto = Texto.Replace("{Cliente.Documento}", "20-20123456-6");
-                                Texto = Texto.Replace("{IVA}", "Responsable no inscripto");
-                                Texto = Texto.Replace("{Cliente.Iva}", "Responsable no inscripto");
-                                Texto = Texto.Replace("{CUIT}", "30-12345678-9");
-                                Texto = Texto.Replace("{Cliente.Cuit}", "Responsable no inscripto");
-                                Texto = Texto.Replace("{Domicilio}", "Avenida San Martín 1234, 3ro. B");
-                                Texto = Texto.Replace("{Cliente.Domicilio}", "Avenida San Martín 1234, 3ro. B");
-                                //Texto = Texto.Replace("{Fecha}", System.DateTime.Now.ToString("dd-MM-yyyy"));
-                                Texto = Texto.Replace("{FormaPago}", "Cuenta corriente");
-                                Texto = Texto.Replace("{Total}", "$ 123.456.789,00");
-                                Texto = Texto.Replace("{Comprobante.Total}", "$ 123.456.789,00");
-                                Texto = Texto.Replace("{Comprobante.IvaDiscriminado}", "$ 123.456,00");
-                                Texto = Texto.Replace("{SubTotal}", "$ 123.456.789,00");
-                                Texto = Texto.Replace("{SonPesos}", "ciento veintitres mil seiscientos setenta y ocho con 00/100");
-                                Texto = Texto.Replace("{Codigos}", "00123456\r\n00123456\r\nABR012PM\r\nCODIGO99");
-                                Texto = Texto.Replace("{Cantidades}", "1\r\n2\r\n1\r\n1");
-                                Texto = Texto.Replace("{Precios}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");
-                                Texto = Texto.Replace("{Importes}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");
-                                Texto = Texto.Replace("{Detalles}", "Producto de ejemplo Nº 1\r\nProducto de ejemplo Nº 2\r\nProducto de ejemplo Nº 3\r\nProducto de ejemplo Nº 4");
-                                Texto = Texto.Replace("{Valores}", "Efectivo        : $ 100.\r\nCheque          : $ 100.\r\nTarjeta de Déb. : $ 100.\r\nTarjeta de Cré. : $ 100.");
-                                Texto = Texto.Replace("{Comprobante.Tipo}", "Nota de Crédito");
+
+                                if (this.MostrarTextosDeEjemplo) {
+                                        Texto = Texto.Replace("{Cliente}", "Nombre del cliente");
+                                        Texto = Texto.Replace("{Cliente.Nombre}", "Nombre del cliente");
+                                        Texto = Texto.Replace("{Cliente.Documento}", "20-20123456-6");
+                                        Texto = Texto.Replace("{IVA}", "Responsable no inscripto");
+                                        Texto = Texto.Replace("{Cliente.SituacionTributaria}", "Responsable no inscripto");
+                                        Texto = Texto.Replace("{CUIT}", "30-12345678-9");
+                                        Texto = Texto.Replace("{Cliente.ClaveTributaria}", "30-12345678-9");
+                                        Texto = Texto.Replace("{Cliente.Cuit}", "Responsable no inscripto");
+                                        Texto = Texto.Replace("{Domicilio}", "Avenida San Martín 1234, 3ro. B");
+                                        Texto = Texto.Replace("{Cliente.Domicilio}", "Avenida San Martín 1234, 3ro. B");
+                                        Texto = Texto.Replace("{Fecha}", System.DateTime.Now.ToString("dd-MM-yyyy"));
+                                        Texto = Texto.Replace("{FormaPago}", "Cuenta corriente");
+                                        Texto = Texto.Replace("{Total}", "$ 123.456.789,00");
+                                        Texto = Texto.Replace("{SubTotal}", "$ 123.456.789,00");
+                                        Texto = Texto.Replace("{IvaDiscriminado}", "$ 123.456,00");
+                                        Texto = Texto.Replace("{SonPesos}", "ciento veintitres mil seiscientos setenta y ocho con 00/100");
+                                        Texto = Texto.Replace("{Articulos.Codigos}", "00123456\r\n00123456\r\nABR012PM\r\nCODIGO99");
+                                        Texto = Texto.Replace("{Codigos}", "00123456\r\n00123456\r\nABR012PM\r\nCODIGO99");
+                                        Texto = Texto.Replace("{Articulos.Cantidades}", "1\r\n2\r\n1\r\n1");
+                                        Texto = Texto.Replace("{Cantidades}", "1\r\n2\r\n1\r\n1");
+                                        Texto = Texto.Replace("{Articulos.Precios}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");
+                                        Texto = Texto.Replace("{Precios}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");
+                                        Texto = Texto.Replace("{Articulos.Importes}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");
+                                        Texto = Texto.Replace("{Importes}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");
+                                        Texto = Texto.Replace("{Articulos.Detalles}", "Producto de ejemplo Nº 1\r\nProducto de ejemplo Nº 2\r\nProducto de ejemplo Nº 3\r\nProducto de ejemplo Nº 4");
+                                        Texto = Texto.Replace("{Detalles}", "Producto de ejemplo Nº 1\r\nProducto de ejemplo Nº 2\r\nProducto de ejemplo Nº 3\r\nProducto de ejemplo Nº 4");
+                                        Texto = Texto.Replace("{Valores}", "Efectivo        : $ 100.\r\nCheque          : $ 100.\r\nTarjeta de Déb. : $ 100.\r\nTarjeta de Cré. : $ 100.");
+                                        Texto = Texto.Replace("{Tipo}", "Nota de crédito");
+                                        Texto = Texto.Replace("{Numero}", "1234");
+                                        Texto = Texto.Replace("{espejo}", "Esta es una zona especial en la cual se imprime un duplicado del comprobante.");
+                                }
 
                                 StringFormat StrFmt = new StringFormat(StringFormatFlags.NoClip);
                                 StrFmt.Trimming = StringTrimming.None;
@@ -338,6 +385,7 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         if (e.Button == System.Windows.Forms.MouseButtons.Middle) {
                                 ButtonDown = new Point(e.X, e.Y);
+                                MouseOperation = MouseOperations.PageDrag;
                         } else if (e.Button == System.Windows.Forms.MouseButtons.Left) {
                                 ButtonDown = PuntoDesdePantalla(new Point(e.X, e.Y));
                                 Point MyButtonDown = PuntoDesdePantalla(new Point(e.X, e.Y), false);
@@ -347,10 +395,10 @@ namespace Lfc.Comprobantes.Plantillas
                                         Rectangle RectKnob = new Rectangle(CampoSeleccionado.Rectangle.Right - KnobSize / 2, CampoSeleccionado.Rectangle.Bottom - KnobSize / 2, KnobSize, KnobSize);
                                         if (CampoSeleccionado != null && RectKnob.Contains(MyButtonDown)) {
                                                 //Agarró el knob
-                                                KnobGrabbed = true;
+                                                MouseOperation = MouseOperations.KnobDrag;
                                                 return;
                                         } else {
-                                                KnobGrabbed = false;
+                                                MouseOperation = MouseOperations.None;
                                         }
                                 }
 
@@ -365,15 +413,17 @@ namespace Lfc.Comprobantes.Plantillas
                                                 if ((MyButtonDown.X >= (Cam.Rectangle.Left - 5) && (MyButtonDown.X <= (Cam.Rectangle.Left + 5)) ||
                                                         MyButtonDown.X >= (Cam.Rectangle.Right - 5) && (MyButtonDown.X <= (Cam.Rectangle.Right + 5)) ||
                                                         MyButtonDown.Y >= (Cam.Rectangle.Top - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Top + 5)) ||
-                                                        MyButtonDown.Y >= (Cam.Rectangle.Bottom - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Bottom + 5))))
+                                                        MyButtonDown.Y >= (Cam.Rectangle.Bottom - 5) && (MyButtonDown.Y <= (Cam.Rectangle.Bottom + 5)))) {
                                                         Select = true;
-                                                else
+                                                        MouseOperation = MouseOperations.ObjectDrag;
+                                                } else {
                                                         Select = false;
-                                                KnobGrabbed = false;
+                                                        MouseOperation = MouseOperations.None;
+                                                }
                                         } else if (Cam.Rectangle.Contains(MyButtonDown)) {
                                                 //El resto de los campos, se seleccionan haciendo clic en cualquier parte del rectángulo
                                                 Select = true;
-                                                KnobGrabbed = false;
+                                                MouseOperation = MouseOperations.ObjectDrag;
                                         }
 
                                         if (Select) {
@@ -381,6 +431,7 @@ namespace Lfc.Comprobantes.Plantillas
                                                 //Lo selecciono mediante la listview
                                                 CampoSeleccionado = Cam;
                                                 this.SeleccionarCampo(Cam);
+                                                MouseOperation = MouseOperations.ObjectDrag;
                                                 break;
                                         }
                                 }
@@ -388,39 +439,52 @@ namespace Lfc.Comprobantes.Plantillas
                                 //if (CampoSeleccionado == null)
                                 //        CampoSeleccionado = CampoSeleccionadoOriginal;
 
-                                if (CampoSeleccionado == null)
+                                if (CampoSeleccionado == null) {
                                         this.SeleccionarCampo(null);
-                                else
+                                        ButtonDown = new Point(e.X, e.Y);
+                                        MouseOperation = MouseOperations.PageDrag;
+                                } else {
                                         CampoDown = CampoSeleccionado.Rectangle;
+                                }
+                        } else if (e.Button == System.Windows.Forms.MouseButtons.Right) {
+                                this.MostrarTextosDeEjemplo = !this.MostrarTextosDeEjemplo;
+                                ImagePreview.Invalidate();
                         }
                 }
 
                 private void ImagePreview_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
                 {
-                        if (e.Button == System.Windows.Forms.MouseButtons.Middle) {
-                                Point OldDesplazamiento = this.PosicionPagina;
-                                this.PosicionPagina = new Point(0, 0);
-                                Point Diferencia = PuntoDesdePantalla(new Point(e.X - ButtonDown.X, e.Y - ButtonDown.Y), false);
-                                this.PosicionPagina = OldDesplazamiento;
-                                this.PosicionPagina.Offset(Diferencia);
-                                ButtonDown = new Point(e.X, e.Y);
-                                ImagePreview.Invalidate();
-                        } else if (e.Button == System.Windows.Forms.MouseButtons.Left) {
-                                if (CampoSeleccionado != null) {
-                                        if (KnobGrabbed) {
-                                                //Point NewCampoPos = new Point(CampoDown.Right, CampoDown.Bottom);
-                                                Point PosCursor = PuntoDesdePantalla(new Point(e.X, e.Y));
-                                                PosCursor.X -= CampoSeleccionado.Rectangle.Left;
-                                                PosCursor.Y -= CampoSeleccionado.Rectangle.Top;
-                                                CampoSeleccionado.Rectangle.Width = PosCursor.X;
-                                                CampoSeleccionado.Rectangle.Height = PosCursor.Y;
-                                        } else {
-                                                Point NewCampoPos = CampoDown.Location;
-                                                Point PosCursor = PuntoDesdePantalla(new Point(e.X, e.Y));
-                                                NewCampoPos.Offset(PosCursor.X - ButtonDown.X, PosCursor.Y - ButtonDown.Y);
-                                                CampoSeleccionado.Rectangle.Location = NewCampoPos;
-                                        }
-                                        ImagePreview.Invalidate();
+                        if (e.Button == System.Windows.Forms.MouseButtons.Left || e.Button == System.Windows.Forms.MouseButtons.Middle) {
+                                switch (MouseOperation) {
+                                        case MouseOperations.KnobDrag:
+                                                if (CampoSeleccionado != null) {
+                                                        //Point NewCampoPos = new Point(CampoDown.Right, CampoDown.Bottom);
+                                                        Point PosCursor = PuntoDesdePantalla(new Point(e.X, e.Y));
+                                                        PosCursor.X -= CampoSeleccionado.Rectangle.Left;
+                                                        PosCursor.Y -= CampoSeleccionado.Rectangle.Top;
+                                                        CampoSeleccionado.Rectangle.Width = PosCursor.X;
+                                                        CampoSeleccionado.Rectangle.Height = PosCursor.Y;
+                                                        ImagePreview.Invalidate();
+                                                }
+                                                break;
+                                        case MouseOperations.PageDrag:
+                                                Point OldDesplazamiento = this.PosicionPagina;
+                                                this.PosicionPagina = new Point(0, 0);
+                                                Point Diferencia = PuntoDesdePantalla(new Point(e.X - ButtonDown.X, e.Y - ButtonDown.Y), false);
+                                                this.PosicionPagina = OldDesplazamiento;
+                                                this.PosicionPagina.Offset(Diferencia);
+                                                ButtonDown = new Point(e.X, e.Y);
+                                                ImagePreview.Invalidate();
+                                                break;
+                                        case MouseOperations.ObjectDrag:
+                                                if (CampoSeleccionado != null) {
+                                                        Point NewCampoPos = CampoDown.Location;
+                                                        Point PosCursor = PuntoDesdePantalla(new Point(e.X, e.Y));
+                                                        NewCampoPos.Offset(PosCursor.X - ButtonDown.X, PosCursor.Y - ButtonDown.Y);
+                                                        CampoSeleccionado.Rectangle.Location = NewCampoPos;
+                                                        ImagePreview.Invalidate();
+                                                }
+                                                break;
                                 }
                         }
                 }
@@ -609,6 +673,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 Plantilla.CargarXml(Str.ReadToEnd());
                                 Str.Close();
                                 this.MostrarListaCampos();
+                                ImagePreview.Invalidate();
                         }
                 }
 
@@ -625,7 +690,9 @@ namespace Lfc.Comprobantes.Plantillas
                                 }
                                 ImagePreview.Invalidate();
                         }
+                        MouseOperation = MouseOperations.None;
                 }
+
 
                 private void Editar_KeyDown(object sender, KeyEventArgs e)
                 {
@@ -633,6 +700,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 BotonQuitar.PerformClick();
                         }
                 }
+
 
                 private void EntradaMargenes_TextChanged(object sender, EventArgs e)
                 {
@@ -690,6 +758,19 @@ namespace Lfc.Comprobantes.Plantillas
                 private void ImagePreview_MouseEnter(object sender, EventArgs e)
                 {
                         ImagePreview.Focus();
+                }
+
+                private void EntradaCodigo_TextChanged(object sender, EventArgs e)
+                {
+                        if(EntradaCodigo.TextKey == "*") {
+                                EntradaCodigoPersonalizado.ReadOnly = false;
+                                EntradaNombre.ReadOnly = false;
+                        } else {
+                                EntradaCodigoPersonalizado.ReadOnly = true;
+                                EntradaNombre.ReadOnly = true;
+                                EntradaCodigoPersonalizado.Text = EntradaCodigo.TextKey;
+                                EntradaNombre.Text = EntradaCodigo.Text;
+                        }
                 }
         }
 }
