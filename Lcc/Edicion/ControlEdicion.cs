@@ -41,6 +41,9 @@ namespace Lcc.Edicion
                 public event LccEventHandler SaveRequest;
 
                 [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
+                public event EventHandler CloseRequest;
+
+                [System.ComponentModel.EditorBrowsable(EditorBrowsableState.Always), Browsable(true)]
                 public event System.EventHandler FormActionsChanged;
 
                 /// <summary>
@@ -89,6 +92,14 @@ namespace Lcc.Edicion
                                 return new Lfx.Types.FailureOperationResult("No se puede grabar");
                         }
                 }
+
+
+                public void Close()
+                {
+                        if (this.CloseRequest != null)
+                                this.CloseRequest(this, new EventArgs());
+                }
+                
 
 
                 /// <summary>

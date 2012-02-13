@@ -55,6 +55,9 @@ namespace Lazaro.Impresion.Comprobantes
 
                 public override Lfx.Types.OperationResult Imprimir()
                 {
+                        if (this.Comprobante.Impreso && this.Reimpresion == false)
+                                this.Reimpresion = true;
+
                         Lfx.Types.OperationResult ResultadoImprimir = this.Comprobante.VerificarSeries();
 
                         if (ResultadoImprimir.Success == false)
@@ -66,7 +69,7 @@ namespace Lazaro.Impresion.Comprobantes
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
 
-                        if (this.Comprobante.Impreso == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.ActualizaCostoAlFacturar", 1) != 0) {
+                        if (this.Reimpresion == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.ActualizaCostoAlFacturar", 1) != 0) {
                                 // Asiento los precios de costo de los artículos de la factura (con fines estadsticos)
                                 foreach (Lbl.Comprobantes.DetalleArticulo Det in this.Comprobante.Articulos) {
                                         if (Det.Articulo != null) {
@@ -81,7 +84,7 @@ namespace Lazaro.Impresion.Comprobantes
                         ResultadoImprimir = base.Imprimir();
 
                         // Los movimientos de stock y de dinero los asienta el servidor fiscal en los comprobantes fiscales
-                        if (this.Comprobante.Impreso == false && ResultadoImprimir.Success == true && this.ImprimiLocal) {
+                        if (this.Reimpresion == false && ResultadoImprimir.Success == true && this.ImprimiLocal) {
                                 //Resto el stock si corresponde
                                 this.Comprobante.MoverExistencias(false);
 

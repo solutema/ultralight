@@ -39,11 +39,19 @@ namespace Lazaro.Impresion.Comprobantes
 {
         public class ImpresorComprobante : ImpresorElemento
 	{
-                // Indica si el comprobante fue impreso por esta misma instancia del sistema
-                // Para saber si tengo que asentar movimientos. Si lo imprimo yo, asiento los movimientos
-                // Si lo imprime otro (sea un ServidorFiscal o un Lázaro en otro equipo), no asiento los 
-                // movimientos ya que los asienta quien lo imprime
+                /// <summary>
+                /// Indica si el comprobante fue impreso por esta misma instancia del sistema
+                /// Para saber si tengo que asentar movimientos. Si lo imprimo yo, asiento los movimientos
+                /// Si lo imprime otro (sea un ServidorFiscal o un Lázaro en otro equipo), no asiento los 
+                /// movimientos ya que los asienta quien lo imprime
+                /// </summary>
                 public bool ImprimiLocal { get; set; }
+
+                /// <summary>
+                /// Indica que se trata de una reimpresión. En ese caso, no se asientan movimientos de existencias
+                /// ni de dinero, ya que se asentaron en la impresión original.
+                /// </summary>
+                public bool Reimpresion { get; set; }
 
                 public ImpresorComprobante(Lbl.ElementoDeDatos elemento, IDbTransaction transaction)
                         : base(elemento, transaction) { }
@@ -96,6 +104,9 @@ namespace Lazaro.Impresion.Comprobantes
 
                 public override Lfx.Types.OperationResult Imprimir()
                 {
+                        if (this.Comprobante.Impreso && this.Reimpresion == false)
+                                this.Reimpresion = true;
+
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
 
@@ -109,7 +120,7 @@ namespace Lazaro.Impresion.Comprobantes
 
                         switch (ClaseImpr) {
                                 case Lbl.Impresion.ClasesImpresora.Fiscal:
-                                        if (this.Comprobante.Impreso == false)
+                                        if (this.Reimpresion == false)
                                                 throw new InvalidOperationException("No se permiten reimpresiones fiscales.");
 
                                         // Primero hago un COMMIT, porque si no el otro proceso no va a poder hacer movimientos
@@ -140,7 +151,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         }
                                         
                                 case Lbl.Impresion.ClasesImpresora.Nula:
-                                        if (this.Comprobante.Impreso == false && this.Comprobante.Tipo.NumerarAlImprimir)
+                                        if (this.Reimpresion == false && this.Comprobante.Tipo.NumerarAlImprimir)
                                                 this.Comprobante.Numerar(true);
                                         
                                         ImprimiLocal = true;
@@ -149,7 +160,7 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 case Lbl.Impresion.ClasesImpresora.Comun:
                                         if (this.Impresora == null || this.Impresora.EsLocal) {
-                                                if (this.Comprobante.Impreso == false && this.Comprobante.Tipo.NumerarAlImprimir)
+                                                if (this.Reimpresion == false && this.Comprobante.Tipo.NumerarAlImprimir)
                                                         this.Comprobante.Numerar(true);
 
                                                 this.Plantilla = this.ObtenerPlantilla();
@@ -164,7 +175,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                 ImprimiLocal = true;
                                                 return base.Imprimir();
                                         } else {
-                                                if (this.Comprobante.Impreso == false)
+                                                if (this.Reimpresion)
                                                         throw new InvalidOperationException("No se permiten reimpresiones remotas.");
 
                                                 // Primero hago un COMMIT, porque si no el otro proceso no va a poder hacer movimientos
@@ -178,7 +189,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                 // Lo mando a imprimir a la estación remota
                                                 Lfx.Workspace.Master.DefaultScheduler.AddTask("IMPRIMIR " + this.Elemento.GetType().ToString() + " " + this.Elemento.Id.ToString() + " EN " + this.Impresora.Dispositivo, "lazaro", Impresora.Estacion);
 
-                                                if (Comprobante.Impreso == false) {
+                                                if (this.Reimpresion == false) {
                                                         //Espero hasta que la factura está impresa o hasta que pasen X segundos
                                                         System.DateTime FinEspera = System.DateTime.Now.AddSeconds(90);
                                                         int Impreso = 0;

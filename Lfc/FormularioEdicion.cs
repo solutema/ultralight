@@ -126,15 +126,24 @@ namespace Lfc
                                 this.ResumeLayout(true);
 
                                 m_ControlUnico.SaveRequest += new Lcc.LccEventHandler(this.ControlUnico_SaveRequest);
+                                m_ControlUnico.CloseRequest += new EventHandler(this.ControlUnico_CloseRequest);
                                 m_ControlUnico.TextChanged += new EventHandler(this.ControlUnico_TextChanged);
                                 m_ControlUnico.FormActionsChanged += new EventHandler(this.ControlUnico_FormActionsChanged);
                         }
                 }
 
+
+                private void ControlUnico_CloseRequest(object sender, EventArgs e)
+                {
+                        this.Close();
+                }
+
+
                 private void ControlUnico_SaveRequest(object sender, ref Lcc.LccEventArgs e)
                 {
                         e.Result = this.Save();
                 }
+
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
