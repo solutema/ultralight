@@ -113,7 +113,7 @@ namespace Lcc.Entrada.Articulos
                                 EntradaArticulo.AutoUpdate = value;
                         }
                 }
-                
+
 
                 public bool PermiteCrear
                 {
@@ -137,7 +137,7 @@ namespace Lcc.Entrada.Articulos
                 }
 
                 [EditorBrowsable(EditorBrowsableState.Never),
-                        Browsable(false), 
+                        Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 new public int TextInt
                 {
@@ -163,7 +163,7 @@ namespace Lcc.Entrada.Articulos
                         }
                         set
                         {
-                                if(m_DatosSeguimiento != value)
+                                if (m_DatosSeguimiento != value)
                                         this.Changed = true;
                                 m_DatosSeguimiento = value;
                                 if (m_DatosSeguimiento == null || m_DatosSeguimiento.Count == 0) {
@@ -339,7 +339,7 @@ namespace Lcc.Entrada.Articulos
                         }
                         set
                         {
-                                if(EntradaArticulo.Text != value)
+                                if (EntradaArticulo.Text != value)
                                         EntradaArticulo.Text = value;
                                 this.Changed = false;
                         }
@@ -421,7 +421,7 @@ namespace Lcc.Entrada.Articulos
 
                 private bool EstoyUsandoUnidadPrimaria()
                 {
-                        return (this.Articulo == null || Articulo.Unidad == null || EntradaCantidad.Sufijo == Articulo.Unidad || (EntradaCantidad.Sufijo.Length == 0 && Articulo.Unidad == "u") ||Articulo.Rendimiento == 0);
+                        return (this.Articulo == null || Articulo.Unidad == null || EntradaCantidad.Sufijo == Articulo.Unidad || (EntradaCantidad.Sufijo.Length == 0 && Articulo.Unidad == "u") || Articulo.Rendimiento == 0);
 
                 }
 
@@ -444,6 +444,7 @@ namespace Lcc.Entrada.Articulos
                                         if (this.Articulo.Unidad != "u")
                                                 EntradaCantidad.Sufijo = Articulo.Unidad;
                                         else
+                                                EntradaCantidad.Sufijo = "";
 
                                         if (m_Precio == Precios.Costo)
                                                 EntradaUnitario.ValueDecimal = Articulo.Costo;
