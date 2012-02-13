@@ -46,6 +46,7 @@ namespace Lfx.Cpx
                 Ready,                  // A (Ack)
                 WaitingForOperator,     // c
                 CardComplete,           // C
+                CardError,              // X
                 Busy,                   // NAK
                 OtherError              // any other
         }
@@ -166,6 +167,8 @@ namespace Lfx.Cpx
                                                         return PriterStatusCodes.Ready;
                                                 case "C":
                                                         return PriterStatusCodes.CardComplete;
+                                                case "X":
+                                                        return PriterStatusCodes.CardError;
                                                 case "NAK":
                                                 case "\x15":
                                                         return PriterStatusCodes.Busy;

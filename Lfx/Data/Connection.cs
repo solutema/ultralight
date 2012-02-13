@@ -1441,13 +1441,13 @@ LEFT JOIN pg_attribute
                 }
 
 
-                public Lfx.Data.Transaction BeginTransaction()
+                public IDbTransaction BeginTransaction()
                 {
                         return this.BeginTransaction(Lfx.Data.DataBaseCache.DefaultCache.DefaultIsolationLevel);
                 }
 
 
-                public Lfx.Data.Transaction BeginTransaction(System.Data.IsolationLevel il)
+                public IDbTransaction BeginTransaction(System.Data.IsolationLevel il)
                 {
                         if (this.Handle == 0 && Lfx.Workspace.Master.DebugMode)
                                 throw new InvalidOperationException("No se pueden realizar transacciones en el espacio de trabajo maestro");
