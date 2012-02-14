@@ -235,7 +235,7 @@ namespace Lfc.Comprobantes
                         if (m_Vendedor > 0)
                                 this.CustomFilters.AddWithValue("comprob.id_vendedor", m_Vendedor);
 
-                        if (SearchText == null) {
+                        if (SearchText == string.Empty) {
                                 if (m_Sucursal > 0)
                                         this.CustomFilters.AddWithValue("comprob.id_sucursal", m_Sucursal);
 
@@ -269,12 +269,6 @@ namespace Lfc.Comprobantes
 
                         if (m_Anuladas == 0)
                                 this.CustomFilters.AddWithValue("comprob.anulada", 0);
-
-                        if (m_FormaPago != 0)
-                                this.CustomFilters.AddWithValue("comprob.id_formapago", m_FormaPago);
-
-                        if (m_Fechas.HasRange)
-                                this.CustomFilters.AddWithValue("comprob.fecha", m_Fechas.From, m_Fechas.To);
 
                         if(m_MontoDesde != 0 && m_MontoHasta != 0)
                                 this.CustomFilters.AddWithValue("comprob.total BETWEEN " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde) + " AND " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));

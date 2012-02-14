@@ -149,7 +149,7 @@ namespace Lfc.Comprobantes.Recibos
                         else
                                 this.CustomFilters.AddWithValue("recibos.tipo_fac", "RCP");
 
-                        if (SearchText == null) {
+                        if (SearchText == null || SearchText.Length == 0) {
                                 if (m_Sucursal > 0)
                                         this.CustomFilters.AddWithValue("recibos.id_sucursal", m_Sucursal);
 
