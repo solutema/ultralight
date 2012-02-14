@@ -907,8 +907,6 @@ namespace Lfc
                                                 Listado.Items.Add(Itm);
                                         }
 
-                                        Itm.Tag = Registro;
-
                                         if (CancelFill) {
                                                 if (Listado.Created) {
                                                         Listado.EndUpdate();
@@ -916,6 +914,8 @@ namespace Lfc
                                                 }
                                                 return;
                                         }
+
+                                        Itm.Tag = Registro;
 
                                         // Agrego el item a un grupo, si hay agrupación activa
                                         if (m_GroupingColumnName != null) {

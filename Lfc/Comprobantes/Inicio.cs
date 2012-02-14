@@ -268,14 +268,20 @@ namespace Lfc.Comprobantes
                         }
 
                         if (m_Anuladas == 0)
-                                this.CustomFilters.AddWithValue("anulada", 0);
+                                this.CustomFilters.AddWithValue("comprob.anulada", 0);
+
+                        if (m_FormaPago != 0)
+                                this.CustomFilters.AddWithValue("comprob.id_formapago", m_FormaPago);
+
+                        if (m_Fechas.HasRange)
+                                this.CustomFilters.AddWithValue("comprob.fecha", m_Fechas.From, m_Fechas.To);
 
                         if(m_MontoDesde != 0 && m_MontoHasta != 0)
-                                this.CustomFilters.AddWithValue("total BETWEEN " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde) + " AND " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));
+                                this.CustomFilters.AddWithValue("comprob.total BETWEEN " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde) + " AND " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));
                         else if(m_MontoDesde != 0)
-                                this.CustomFilters.AddWithValue("total>=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde));
+                                this.CustomFilters.AddWithValue("comprob.total>=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde));
                         else if (m_MontoHasta != 0)
-                                this.CustomFilters.AddWithValue("total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));
+                                this.CustomFilters.AddWithValue("comprob.total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));
 
                         this.SetupListviewColumns();
 
@@ -302,6 +308,7 @@ namespace Lfc.Comprobantes
                         if (row.Fields["anulada"].ValueInt != 0) {
                                 // Si está anulada, la tacho
                                 item.Font = new Font(item.Font, FontStyle.Strikeout);
+                                item.ForeColor = System.Drawing.Color.Black;
                         } else if (row.Fields["impresa"].ValueInt == 0) {
                                 // No impresa, en gris
                                 item.ForeColor = System.Drawing.Color.Gray;
@@ -309,6 +316,8 @@ namespace Lfc.Comprobantes
                                 // Impaga, en rojo
                                 this.Contadores[1].AddValue(row.Fields["pendiente"].ValueDecimal);
                                 item.ForeColor = System.Drawing.Color.Red;
+                        } else {
+                                item.ForeColor = System.Drawing.Color.Black;
                         }
 
                         int IdVendedor = row.Fields["id_vendedor"].ValueInt;

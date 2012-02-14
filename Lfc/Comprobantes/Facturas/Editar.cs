@@ -346,7 +346,13 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         if (Factura.ImporteCancelado >= Factura.Total)
                                 return new Lfx.Types.FailureOperationResult("Este comprobante ya fue cancelado en su totalidad.");
 
-                        if (Factura.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
+                        if (Factura.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Efectivo) {
+                                IDbTransaction Trans = Factura.Connection.BeginTransaction();
+                                Factura.AsentarPago(false);
+                                Factura.MoverExistencias(false);
+                                Trans.Commit();
+                                this.PuedeEditarPago = false;
+                        } else if (Factura.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
                                 CrearReciboParaEstaFactura();
                         } else {
                                 using (Comprobantes.Recibos.EditarCobro FormularioEditarPago = new Comprobantes.Recibos.EditarCobro()) {
@@ -439,7 +445,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                 return new Lfx.Types.SuccessOperationResult();
                                         }
                                 }
-                                PuedeEditarPago = false;
+                                this.PuedeEditarPago = false;
                         }
 
                         return new Lfx.Types.SuccessOperationResult();
@@ -468,7 +474,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         if (Comprob == null || Comprob.ImporteImpago == 0) {
                                 return false;
                         } else {
-                                return (Comprob.Impreso && Comprob.Existe && Comprob.FormaDePago != null && (Comprob.FormaDePago.Tipo != Lbl.Pagos.TiposFormasDePago.Efectivo));
+                                return (Comprob.Impreso && Comprob.Anulado == false && Comprob.Existe && Comprob.FormaDePago != null);
                         }
                 }
 
