@@ -160,7 +160,7 @@ namespace Lazaro.WinMain
                                         Lbl.Servicios.Importar.FiltroEscorpion Fil = new Lbl.Servicios.Importar.FiltroEscorpion(ConexionFiltro, OpcionesFiltro);
                                         Fil.Dsn = "ventre";
 
-                                        System.Threading.ThreadStart ThreadFiltro = delegate { Fil.Importar(); ; };
+                                        System.Threading.ThreadStart ThreadFiltro = delegate { Fil.Importar(); };
                                         System.Threading.Thread Thr = new System.Threading.Thread(ThreadFiltro);
                                         Thr.IsBackground = true;
                                         Thr.Start();
