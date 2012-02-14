@@ -109,7 +109,7 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // PanelReloj
                         // 
-                        this.PanelReloj.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.PanelReloj.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelReloj.BackColor = System.Drawing.Color.Beige;
                         this.PanelReloj.Controls.Add(this.RelojFecha);
@@ -122,35 +122,35 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // RelojFecha
                         // 
-                        this.RelojFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        this.RelojFecha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.RelojFecha.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.RelojFecha.Location = new System.Drawing.Point(2, 30);
                         this.RelojFecha.Name = "RelojFecha";
                         this.RelojFecha.Size = new System.Drawing.Size(70, 16);
                         this.RelojFecha.TabIndex = 1;
                         this.RelojFecha.Text = "00/00/00";
                         this.RelojFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.RelojFecha.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.RelojFecha.UseMnemonic = false;
                         // 
                         // RelojHora
                         // 
-                        this.RelojHora.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+                        this.RelojHora.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.RelojHora.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.RelojHora.Location = new System.Drawing.Point(2, 2);
                         this.RelojHora.Name = "RelojHora";
                         this.RelojHora.Size = new System.Drawing.Size(70, 26);
                         this.RelojHora.TabIndex = 0;
                         this.RelojHora.Text = "00:00";
                         this.RelojHora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.RelojHora.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.RelojHora.UseMnemonic = false;
                         // 
                         // PanelArticulo
                         // 
-                        this.PanelArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+                        this.PanelArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelArticulo.Controls.Add(this.ArticuloStock);
                         this.PanelArticulo.Controls.Add(this.label5);
@@ -168,72 +168,72 @@ namespace Lazaro.WinMain.Principal
                         // ArticuloStock
                         // 
                         this.ArticuloStock.AutoEllipsis = true;
-                        this.ArticuloStock.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloStock.Location = new System.Drawing.Point(536, 0);
                         this.ArticuloStock.Name = "ArticuloStock";
                         this.ArticuloStock.Size = new System.Drawing.Size(80, 16);
                         this.ArticuloStock.TabIndex = 6;
                         this.ArticuloStock.Text = "12.345.67";
+                        this.ArticuloStock.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloStock.UseMnemonic = false;
                         // 
                         // label5
                         // 
                         this.label5.AutoEllipsis = true;
-                        this.label5.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label5.Location = new System.Drawing.Point(496, 0);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(42, 16);
                         this.label5.TabIndex = 5;
                         this.label5.Text = "Stock";
+                        this.label5.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label5.UseMnemonic = false;
                         // 
                         // ArticuloPvp
                         // 
                         this.ArticuloPvp.AutoEllipsis = true;
-                        this.ArticuloPvp.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloPvp.Location = new System.Drawing.Point(416, 0);
                         this.ArticuloPvp.Name = "ArticuloPvp";
                         this.ArticuloPvp.Size = new System.Drawing.Size(80, 16);
                         this.ArticuloPvp.TabIndex = 4;
                         this.ArticuloPvp.Text = "12.345.67";
+                        this.ArticuloPvp.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloPvp.UseMnemonic = false;
                         // 
                         // ArticuloPrecio
                         // 
                         this.ArticuloPrecio.AutoEllipsis = true;
-                        this.ArticuloPrecio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloPrecio.Location = new System.Drawing.Point(388, 0);
                         this.ArticuloPrecio.Name = "ArticuloPrecio";
                         this.ArticuloPrecio.Size = new System.Drawing.Size(30, 16);
                         this.ArticuloPrecio.TabIndex = 3;
                         this.ArticuloPrecio.Text = "PVP";
+                        this.ArticuloPrecio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloPrecio.UseMnemonic = false;
                         // 
                         // ArticuloDescripcion
                         // 
-                        this.ArticuloDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+                        this.ArticuloDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.ArticuloDescripcion.AutoEllipsis = true;
-                        this.ArticuloDescripcion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloDescripcion.Location = new System.Drawing.Point(70, 16);
                         this.ArticuloDescripcion.Name = "ArticuloDescripcion";
                         this.ArticuloDescripcion.Size = new System.Drawing.Size(850, 32);
                         this.ArticuloDescripcion.TabIndex = 2;
                         this.ArticuloDescripcion.Text = "Ejemplo de descripción de artículo";
+                        this.ArticuloDescripcion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloDescripcion.UseMnemonic = false;
                         // 
                         // ArticuloCodigos
                         // 
-                        this.ArticuloCodigos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        this.ArticuloCodigos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-                        this.ArticuloCodigos.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloCodigos.Location = new System.Drawing.Point(0, 0);
                         this.ArticuloCodigos.Name = "ArticuloCodigos";
                         this.ArticuloCodigos.Size = new System.Drawing.Size(68, 48);
                         this.ArticuloCodigos.TabIndex = 0;
                         this.ArticuloCodigos.Text = "00000000";
                         this.ArticuloCodigos.TextAlign = System.Drawing.ContentAlignment.TopRight;
+                        this.ArticuloCodigos.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.ArticuloCodigos.UseMnemonic = false;
                         // 
                         // ArticuloNombre
@@ -245,7 +245,7 @@ namespace Lazaro.WinMain.Principal
                         this.ArticuloNombre.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.ArticuloNombre.Location = new System.Drawing.Point(70, 0);
                         this.ArticuloNombre.Name = "ArticuloNombre";
-                        this.ArticuloNombre.Size = new System.Drawing.Size(208, 15);
+                        this.ArticuloNombre.Size = new System.Drawing.Size(196, 17);
                         this.ArticuloNombre.TabIndex = 7;
                         this.ArticuloNombre.TabStop = true;
                         this.ArticuloNombre.Text = "Nombre del artículo de ejemplo";
@@ -255,8 +255,8 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // PanelAyuda
                         // 
-                        this.PanelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+                        this.PanelAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelAyuda.Controls.Add(this.pictureBox1);
                         this.PanelAyuda.Controls.Add(this.AyudaTitulo);
@@ -278,18 +278,18 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // AyudaTitulo
                         // 
-                        this.AyudaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.AyudaTitulo.Location = new System.Drawing.Point(52, 0);
                         this.AyudaTitulo.Name = "AyudaTitulo";
                         this.AyudaTitulo.Size = new System.Drawing.Size(670, 28);
                         this.AyudaTitulo.TabIndex = 0;
                         this.AyudaTitulo.Text = "Ayuda dinámica";
+                        this.AyudaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.AyudaTitulo.UseMnemonic = false;
                         // 
                         // AyudaTexto
                         // 
-                        this.AyudaTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+                        this.AyudaTexto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.AyudaTexto.Location = new System.Drawing.Point(52, 28);
                         this.AyudaTexto.Name = "AyudaTexto";
@@ -313,8 +313,8 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // PanelPersona
                         // 
-                        this.PanelPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+                        this.PanelPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelPersona.Controls.Add(this.PersonaNombre);
                         this.PanelPersona.Controls.Add(this.PersonaImagen);
@@ -336,16 +336,17 @@ namespace Lazaro.WinMain.Principal
                         // PersonaNombre
                         // 
                         this.PersonaNombre.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-                        this.PersonaNombre.AutoEllipsis = false;
                         this.PersonaNombre.AutoSize = true;
                         this.PersonaNombre.Cursor = System.Windows.Forms.Cursors.Hand;
                         this.PersonaNombre.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.PersonaNombre.Location = new System.Drawing.Point(53, 3);
                         this.PersonaNombre.MaximumSize = new System.Drawing.Size(250, 16);
                         this.PersonaNombre.Name = "PersonaNombre";
+                        this.PersonaNombre.Size = new System.Drawing.Size(212, 16);
                         this.PersonaNombre.TabIndex = 12;
-                        this.PersonaNombre.TabStop = false;
+                        this.PersonaNombre.TabStop = true;
                         this.PersonaNombre.Text = "Nombre de la persona de ejemplo";
+                        this.PersonaNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         this.PersonaNombre.UseMnemonic = false;
                         this.PersonaNombre.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PersonaNombre_LinkClicked);
                         // 
@@ -378,104 +379,104 @@ namespace Lazaro.WinMain.Principal
                         // label3
                         // 
                         this.label3.AutoEllipsis = true;
-                        this.label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label3.Location = new System.Drawing.Point(351, 33);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(62, 16);
                         this.label3.TabIndex = 10;
                         this.label3.Text = "Grupo";
+                        this.label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label3.UseMnemonic = false;
                         // 
                         // PersonaGrupo
                         // 
                         this.PersonaGrupo.AutoEllipsis = true;
-                        this.PersonaGrupo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.PersonaGrupo.Location = new System.Drawing.Point(411, 31);
                         this.PersonaGrupo.Name = "PersonaGrupo";
                         this.PersonaGrupo.Size = new System.Drawing.Size(232, 16);
                         this.PersonaGrupo.TabIndex = 11;
                         this.PersonaGrupo.Text = "-";
+                        this.PersonaGrupo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.PersonaGrupo.UseMnemonic = false;
                         // 
                         // PersonaComentario
                         // 
                         this.PersonaComentario.AutoEllipsis = true;
-                        this.PersonaComentario.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.SmallWarning;
                         this.PersonaComentario.Location = new System.Drawing.Point(54, 16);
                         this.PersonaComentario.Name = "PersonaComentario";
                         this.PersonaComentario.Size = new System.Drawing.Size(291, 32);
                         this.PersonaComentario.TabIndex = 9;
                         this.PersonaComentario.Text = "Registra saldo impago en cta. cte. por $ 10000";
                         this.PersonaComentario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.PersonaComentario.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.SmallWarning;
                         this.PersonaComentario.UseMnemonic = false;
                         this.PersonaComentario.Visible = false;
                         // 
                         // label1
                         // 
                         this.label1.AutoEllipsis = true;
-                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label1.Location = new System.Drawing.Point(351, 17);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(62, 16);
                         this.label1.TabIndex = 8;
                         this.label1.Text = "Correo-e";
+                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label1.UseMnemonic = false;
                         // 
                         // PersonaEmail
                         // 
                         this.PersonaEmail.AutoEllipsis = true;
-                        this.PersonaEmail.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.PersonaEmail.Location = new System.Drawing.Point(411, 17);
                         this.PersonaEmail.Name = "PersonaEmail";
                         this.PersonaEmail.Size = new System.Drawing.Size(232, 16);
                         this.PersonaEmail.TabIndex = 9;
                         this.PersonaEmail.Text = "info@dominio.com";
+                        this.PersonaEmail.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.PersonaEmail.UseMnemonic = false;
                         // 
                         // label4
                         // 
                         this.label4.AutoEllipsis = true;
-                        this.label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label4.Location = new System.Drawing.Point(351, 1);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(62, 16);
                         this.label4.TabIndex = 3;
                         this.label4.Text = "Domicilio";
+                        this.label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label4.UseMnemonic = false;
                         // 
                         // PersonaDomicilio
                         // 
                         this.PersonaDomicilio.AutoEllipsis = true;
-                        this.PersonaDomicilio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.PersonaDomicilio.Location = new System.Drawing.Point(411, 1);
                         this.PersonaDomicilio.Name = "PersonaDomicilio";
                         this.PersonaDomicilio.Size = new System.Drawing.Size(232, 16);
                         this.PersonaDomicilio.TabIndex = 4;
                         this.PersonaDomicilio.Text = "12.345.67";
+                        this.PersonaDomicilio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.PersonaDomicilio.UseMnemonic = false;
                         // 
                         // PersonaTelefono
                         // 
-                        this.PersonaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        this.PersonaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.PersonaTelefono.AutoEllipsis = true;
-                        this.PersonaTelefono.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.PersonaTelefono.Location = new System.Drawing.Point(700, 0);
                         this.PersonaTelefono.Name = "PersonaTelefono";
                         this.PersonaTelefono.Size = new System.Drawing.Size(218, 16);
                         this.PersonaTelefono.TabIndex = 6;
                         this.PersonaTelefono.Text = "01234 555-12364";
+                        this.PersonaTelefono.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.PersonaTelefono.UseMnemonic = false;
                         // 
                         // label2
                         // 
                         this.label2.AutoEllipsis = true;
-                        this.label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label2.Location = new System.Drawing.Point(642, 0);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(64, 16);
                         this.label2.TabIndex = 5;
                         this.label2.Text = "Tel.";
+                        this.label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.label2.UseMnemonic = false;
                         // 
                         // TimerSlowLink
@@ -485,13 +486,13 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // PanelProgreso
                         // 
-                        this.PanelProgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+                        this.PanelProgreso.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelProgreso.Controls.Add(this.pictureBox2);
-                        this.PanelProgreso.Controls.Add(this.EtiquetaOperacion);
                         this.PanelProgreso.Controls.Add(this.EtiquetaDescripcion);
                         this.PanelProgreso.Controls.Add(this.ProgressBar);
+                        this.PanelProgreso.Controls.Add(this.EtiquetaOperacion);
                         this.PanelProgreso.Location = new System.Drawing.Point(2, 2);
                         this.PanelProgreso.Name = "PanelProgreso";
                         this.PanelProgreso.Size = new System.Drawing.Size(920, 48);
@@ -510,35 +511,35 @@ namespace Lazaro.WinMain.Principal
                         // 
                         // EtiquetaOperacion
                         // 
-                        this.EtiquetaOperacion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaOperacion.Location = new System.Drawing.Point(284, 0);
                         this.EtiquetaOperacion.Name = "EtiquetaOperacion";
-                        this.EtiquetaOperacion.Size = new System.Drawing.Size(437, 25);
+                        this.EtiquetaOperacion.Size = new System.Drawing.Size(636, 28);
                         this.EtiquetaOperacion.TabIndex = 4;
                         this.EtiquetaOperacion.Text = "Progreso...";
+                        this.EtiquetaOperacion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaOperacion.UseMnemonic = false;
                         // 
                         // EtiquetaDescripcion
                         // 
-                        this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+                        this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaDescripcion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
-                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(284, 26);
+                        this.EtiquetaDescripcion.Location = new System.Drawing.Point(284, 28);
                         this.EtiquetaDescripcion.Name = "EtiquetaDescripcion";
-                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(637, 22);
+                        this.EtiquetaDescripcion.Size = new System.Drawing.Size(637, 20);
                         this.EtiquetaDescripcion.TabIndex = 5;
                         this.EtiquetaDescripcion.Text = "...";
+                        this.EtiquetaDescripcion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.EtiquetaDescripcion.UseMnemonic = false;
                         // 
                         // BarraInferior
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-                        this.Controls.Add(this.PanelReloj);
-                        this.Controls.Add(this.PanelPersona);
                         this.Controls.Add(this.PanelAyuda);
                         this.Controls.Add(this.PanelProgreso);
+                        this.Controls.Add(this.PanelReloj);
                         this.Controls.Add(this.PanelArticulo);
+                        this.Controls.Add(this.PanelPersona);
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "BarraInferior";
                         this.Size = new System.Drawing.Size(1000, 52);
