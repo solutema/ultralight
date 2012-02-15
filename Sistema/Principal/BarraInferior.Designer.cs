@@ -95,8 +95,8 @@ namespace Lazaro.WinMain.Principal
                         this.TimerSlowLink = new System.Windows.Forms.Timer(this.components);
                         this.PanelProgreso = new Lui.Forms.Panel();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
-                        this.EtiquetaOperacion = new Lui.Forms.Label();
                         this.EtiquetaDescripcion = new Lui.Forms.Label();
+                        this.EtiquetaOperacion = new Lui.Forms.Label();
                         this.PanelReloj.SuspendLayout();
                         this.PanelArticulo.SuspendLayout();
                         this.PanelAyuda.SuspendLayout();
@@ -509,16 +509,6 @@ namespace Lazaro.WinMain.Principal
                         this.pictureBox2.TabIndex = 6;
                         this.pictureBox2.TabStop = false;
                         // 
-                        // EtiquetaOperacion
-                        // 
-                        this.EtiquetaOperacion.Location = new System.Drawing.Point(284, 0);
-                        this.EtiquetaOperacion.Name = "EtiquetaOperacion";
-                        this.EtiquetaOperacion.Size = new System.Drawing.Size(636, 28);
-                        this.EtiquetaOperacion.TabIndex = 4;
-                        this.EtiquetaOperacion.Text = "Progreso...";
-                        this.EtiquetaOperacion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
-                        this.EtiquetaOperacion.UseMnemonic = false;
-                        // 
                         // EtiquetaDescripcion
                         // 
                         this.EtiquetaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -532,14 +522,24 @@ namespace Lazaro.WinMain.Principal
                         this.EtiquetaDescripcion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.EtiquetaDescripcion.UseMnemonic = false;
                         // 
+                        // EtiquetaOperacion
+                        // 
+                        this.EtiquetaOperacion.Location = new System.Drawing.Point(284, 0);
+                        this.EtiquetaOperacion.Name = "EtiquetaOperacion";
+                        this.EtiquetaOperacion.Size = new System.Drawing.Size(636, 28);
+                        this.EtiquetaOperacion.TabIndex = 4;
+                        this.EtiquetaOperacion.Text = "Progreso...";
+                        this.EtiquetaOperacion.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        this.EtiquetaOperacion.UseMnemonic = false;
+                        // 
                         // BarraInferior
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-                        this.Controls.Add(this.PanelAyuda);
                         this.Controls.Add(this.PanelProgreso);
                         this.Controls.Add(this.PanelReloj);
                         this.Controls.Add(this.PanelArticulo);
                         this.Controls.Add(this.PanelPersona);
+                        this.Controls.Add(this.PanelAyuda);
                         this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "BarraInferior";
                         this.Size = new System.Drawing.Size(1000, 52);

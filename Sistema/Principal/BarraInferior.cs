@@ -115,8 +115,10 @@ namespace Lazaro.WinMain.Principal
                         switch (TablaSolicitada) {
                                 case "articulo":
                                 case "articulos":
+                                        PanelProgreso.Visible = false;
                                         PanelAyuda.Visible = false;
                                         PanelPersona.Visible = false;
+                                        PanelArticulo.Visible = true;
                                         Lbl.Articulos.Articulo Art;
                                         try {
                                                 Art = new Lbl.Articulos.Articulo(this.DataBase, ItemSolicitado);
@@ -147,7 +149,9 @@ namespace Lazaro.WinMain.Principal
                                         break;
                                 case "persona":
                                 case "personas":
+                                        PanelProgreso.Visible = false;
                                         PanelAyuda.Visible = false;
+                                        PanelPersona.Visible = true;
                                         PanelArticulo.Visible = false;
                                         Lbl.Personas.Persona Per;
                                         try {
@@ -196,11 +200,12 @@ namespace Lazaro.WinMain.Principal
                 public void MostrarAyuda(string titulo, string texto)
                 {
                         this.SuspendLayout();
-                        PanelArticulo.Visible = false;
-                        PanelPersona.Visible = false;
                         AyudaTitulo.Text = titulo;
                         AyudaTexto.Text = texto;
+                        PanelProgreso.Visible = false;
                         PanelAyuda.Visible = true;
+                        PanelPersona.Visible = false;
+                        PanelArticulo.Visible = false;
                         this.ResumeLayout();
                 }
 
@@ -209,6 +214,9 @@ namespace Lazaro.WinMain.Principal
                 {
                         if (progreso.IsDone) {
                                 PanelProgreso.Visible = false;
+                                PanelAyuda.Visible = true;
+                                PanelPersona.Visible = false;
+                                PanelArticulo.Visible = false;
                         } else {
                                 if (progreso.Value > 0) {
                                         ProgressBar.Maximum = progreso.Max;
@@ -219,6 +227,9 @@ namespace Lazaro.WinMain.Principal
                                         ProgressBar.Style = ProgressBarStyle.Marquee;
                                 }
                                 PanelProgreso.Visible = true;
+                                PanelAyuda.Visible = false;
+                                PanelPersona.Visible = false;
+                                PanelArticulo.Visible = false;
                                 EtiquetaOperacion.Text = progreso.Name;
                                 EtiquetaDescripcion.Text = progreso.Status;
                                 PanelProgreso.Refresh();
