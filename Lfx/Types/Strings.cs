@@ -32,56 +32,29 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Lfx.Types
 {
 	public static class Strings
 	{
-		public static IList<string> SplitDelimitedString(string CurrentLine)
+		public static IList<string> SplitDelimitedString(string text)
 		{
-			return SplitDelimitedString(CurrentLine, ',', Lfx.Types.ControlChars.Quote);
+			return SplitDelimitedString(text, ",", "\"");
 		}
 
-                public static IList<string> SplitDelimitedString(string CurrentLine, char Delimiter)
+                public static IList<string> SplitDelimitedString(string text, string delimiter)
 		{
-			return SplitDelimitedString(CurrentLine, Delimiter, Lfx.Types.ControlChars.Quote);
+                        return SplitDelimitedString(text, delimiter, "\"");
 		}
 
-                public static IList<string> SplitDelimitedString(string CurrentLine, char Delimiter, char Qualifier)
+                public static IList<string> SplitDelimitedString(string text, string delimiter, string qualifier)
 		{
-                        IList<string> Result = new List<string>();
+                        string Statement = String.Format("{0}(?=(?:[^{1}]*{1}[^{1}]*{1})*(?![^{1}]*{1}))", Regex.Escape(delimiter), Regex.Escape(qualifier));
 
-                        if (CurrentLine == null)
-                                return Result;
-
-			bool CountDelimiter = true;
-			int Total = 0;
-			System.Text.StringBuilder Section = new System.Text.StringBuilder();
-
-			for(int i = 1; i <= CurrentLine.Length; i++) {
-				char Ch = CurrentLine[i - 1];
-
-				if(Ch == Qualifier) {
-					CountDelimiter = !CountDelimiter;
-				} else if(Ch == Delimiter) {
-					if(CountDelimiter) {
-						//Add current section to collection
-						Result.Add(Section.ToString());
-						Section = new System.Text.StringBuilder();
-						Total = Total + 1;
-					}
-				} else {
-					Section.Append(Ch);
-				}
-			}
-
-			//  Get the last field - as most files will not have an ending delimiter
-			if(CountDelimiter) {
-				//  Add current section to collection
-				Result.Add(Section.ToString());
-			}
-
-                        return Result;
+                        RegexOptions Options = RegexOptions.Compiled | RegexOptions.Multiline;
+                        Regex Expression = new Regex(Statement, Options);
+                        return Expression.Split(text);
 		}
 
 		public static string GetNextToken(ref string stringValue)

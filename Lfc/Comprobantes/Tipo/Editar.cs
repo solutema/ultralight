@@ -151,8 +151,10 @@ namespace Lfc.Comprobantes.Tipo
 
                         if (FormularioAgregar.ShowDialog() == DialogResult.OK) {
                                 Lbl.Impresion.TipoImpresora TipoImpr = FormularioAgregar.TipoImpresora;
-                                Tipo.Impresoras.Add(TipoImpr);
-                                this.MostrarImpresora(TipoImpr);
+                                if (TipoImpr != null && TipoImpr.Impresora != null) {
+                                        Tipo.Impresoras.Add(TipoImpr);
+                                        this.MostrarImpresora(TipoImpr);
+                                }
                         }
                 }
 

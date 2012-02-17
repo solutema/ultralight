@@ -47,6 +47,7 @@ namespace Lbl.Articulos
                 private Lbl.Cajas.Caja m_Caja = null;
                 private ColeccionItem m_ListaItem = null;
                 private Receta m_Receta = null;
+                public decimal ExistenciasInicial { get; set; }
 
 		//Heredar constructor
 		public Articulo(Lfx.Data.Connection dataBase) 
@@ -843,6 +844,10 @@ namespace Lbl.Articulos
 
                         if (this.Existe == false) {
                                 this.ActualizarId();
+
+                                if (this.ExistenciasInicial != 0)
+                                        // Hago el movimiento de stock inicial
+                                        this.MoverExistencias(null, this.ExistenciasInicial, "Creación del artículo - Existencias iniciales", null, new Situacion(this.Connection, 1), null);
                         } else {
                                 if (CostoOriginal != this.Costo) {
                                         // Cambió el costo

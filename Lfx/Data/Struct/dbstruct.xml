@@ -682,22 +682,22 @@
 
   <Table name="personas" lsdet="1" label="Personas">
     <Column name="id_persona" datatype="Serial" nullable="0" primary_key="1" />
-    <Column name="nombre_visible" datatype="VarChar" nullable="0" lenght="200" />
+    <Column name="nombre_visible" datatype="VarChar" label="Nombre completo" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
-    <Column name="tipo" inputtype="NumericSet" nullable="0" default="0" />
+    <Column name="tipo" inputtype="NumericSet" label="Tipo" nullable="0" default="0" />
     <Column name="id_grupo" inputtype="Relation" label="Grupo" nullable="1"
             relation_table="personas_grupos" relation_key="id_grupo" relation_detail="nombre" />
     <Column name="id_subgrupo" inputtype="Relation" label="Sub Grupo" nullable="1"
             relation_table="personas_grupos" relation_key="id_grupo" relation_detail="nombre" />
-    <Column name="nombre" inputtype="Text" section="Personas Físicas" label="Nombre" nullable="1" lenght="50" />
-    <Column name="apellido" inputtype="Text" section="Personas Físicas" label="Apellido" nullable="1" lenght="50" />
-    <Column name="razon_social" inputtype="Text" section="Personas Jurídicas" label="Razón Social" nullable="1" lenght="200" />
+    <Column name="nombre" inputtype="Text" section="Personas físicas" label="Nombre" nullable="1" lenght="50" />
+    <Column name="apellido" inputtype="Text" section="Personas físicas" label="Apellido" nullable="1" lenght="50" />
+    <Column name="razon_social" inputtype="Text" section="Personas jurídicas" label="Razón social" nullable="1" lenght="200" />
     <Column name="contrasena" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="contrasena_sal" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
     <Column name="contrasena_fecha" datatype="DateTime" nullable="1" />
-    <Column name="id_tipo_doc" inputtype="Relation" section="Personas Físicas" label="Tipo de Documento" nullable="1"
+    <Column name="id_tipo_doc" inputtype="Relation" section="Personas físicas" label="Tipo de documento" nullable="1"
             relation_table="tipo_doc" relation_key="id_tipo_doc" relation_detail="nombre" />
     <Column name="num_doc" inputtype="Text" section="Personas Físicas" label="Documento" nullable="1" lenght="50" />
     <Column name="id_tipo_cuit" inputtype="Relation" section="Personas Jurídicas" label="Tipo de clave tributaria" nullable="1"
@@ -716,12 +716,13 @@
     <Column name="fechanac" inputtype="DateTime" section="Personas Físicas" nullable="1" />
     <Column name="fechaalta" datatype="DateTime" nullable="1" />
     <Column name="fechabaja" datatype="DateTime" nullable="1" />
-    <Column name="limitecredito" inputtype="Currency" section="Crédito" label="Límite de Crédito" default="0" />
-    <Column name="estadocredito" inputtype="NumericSet" section="Crédito" label="Estado de Crédito" nullable="0" default="0" />
+    <Column name="limitecredito" inputtype="Currency" section="Crédito" label="Límite de crédito" default="0" />
+    <Column name="estadocredito" inputtype="NumericSet" section="Crédito" label="Estado de crédito" nullable="0" default="0" />
     <Column name="numerocuenta" inputtype="Text" label="Número de Cuenta" section="Crédito" nullable="1" lenght="200" />
     <Column name="cbu" inputtype="Text" label="Cuenta Bancaria" section="Crédito" nullable="1" lenght="200" />
-    <Column name="id_vendedor" inputtype="Relation" nullable="1" />
-    <Column name="extra1" datatype="Text" nullable="1" />
+    <Column name="id_vendedor" inputtype="Relation" label="Vendedor" nullable="1"
+            relation_table="personas" relation_key="id_persona" relation_detail="nombre_visible" />
+    <Column name="extra1" datatype="Text" label="Extra1" nullable="1" />
     <Index table="personas" name="personas_id_situacion" columns="id_situacion" unique="0" primary="0" />
     <Index table="personas" name="personas_id_ciudad" columns="id_ciudad" unique="0" primary="0" />
     <Index table="personas" name="personas_id_grupo" columns="id_grupo" unique="0" primary="0" />

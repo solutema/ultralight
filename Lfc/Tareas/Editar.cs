@@ -58,10 +58,10 @@ namespace Lfc.Tareas
                         Tarea.Tipo = EntradaTarea.Elemento as Lbl.Tareas.Tipo;
                         Tarea.Prioridad = EntradaPrioridad.ValueInt;
                         Tarea.Nombre = EntradaAsunto.Text;
-                        if (Tarea.Presupuesto != null && EntradaDescripcion.Text.Trim() == Tarea.Presupuesto.Obs.Trim())
+                        if (Tarea.Presupuesto != null && EntradaDescripcion.Text.Trim() == Tarea.Presupuesto.Obs)
                                 Tarea.Descripcion = null;
                         else
-                                Tarea.Descripcion = EntradaDescripcion.Text;
+                                Tarea.Descripcion = EntradaDescripcion.Text.Trim();
                         Tarea.Estado = EntradaEstado.TextInt;
                         Tarea.FechaEstimada = Lfx.Types.Parsing.ParseDate(EntradaEntregaEstimada.Text);
                         Tarea.FechaLimite = Lfx.Types.Parsing.ParseDate(EntradaEntregaLimite.Text);

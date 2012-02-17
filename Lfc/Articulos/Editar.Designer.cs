@@ -40,8 +40,8 @@ namespace Lfc.Articulos
                         this.Frame2 = new Lui.Forms.Frame();
                         this.EntradaCosto = new Lui.Forms.TextBox();
                         this.EntradaMargen = new Lui.Forms.ComboBox();
-                        this.BotonInfoCosto = new Lui.Forms.Button();
                         this.EntradaPvp = new Lui.Forms.TextBox();
+                        this.BotonInfoCosto = new Lui.Forms.Button();
                         this.Label6 = new Lui.Forms.Label();
                         this.EntradaCaja = new Lcc.Entrada.CodigoDetalle();
                         this.Label8 = new Lui.Forms.Label();
@@ -147,6 +147,21 @@ namespace Lfc.Articulos
                         this.EntradaMargen.TextKey = "-1";
                         this.EntradaMargen.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
+                        // EntradaPvp
+                        // 
+                        this.EntradaPvp.DataType = Lui.Forms.DataTypes.Currency;
+                        this.EntradaPvp.Location = new System.Drawing.Point(136, 184);
+                        this.EntradaPvp.MaxLength = 20;
+                        this.EntradaPvp.Name = "EntradaPvp";
+                        this.EntradaPvp.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaPvp.PlaceholderText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
+    "definido a continuación";
+                        this.EntradaPvp.Prefijo = "$";
+                        this.EntradaPvp.Size = new System.Drawing.Size(104, 24);
+                        this.EntradaPvp.TabIndex = 6;
+                        this.EntradaPvp.Text = "0.00";
+                        this.EntradaPvp.TextChanged += new System.EventHandler(this.EntradaPvp_TextChanged);
+                        // 
                         // BotonInfoCosto
                         // 
                         this.BotonInfoCosto.DialogResult = System.Windows.Forms.DialogResult.None;
@@ -162,21 +177,6 @@ namespace Lfc.Articulos
                         this.BotonInfoCosto.TabIndex = 2;
                         this.BotonInfoCosto.Text = "...";
                         this.BotonInfoCosto.Click += new System.EventHandler(this.BotonMasInfo_Click);
-                        // 
-                        // EntradaPvp
-                        // 
-                        this.EntradaPvp.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaPvp.Location = new System.Drawing.Point(136, 184);
-                        this.EntradaPvp.MaxLength = 20;
-                        this.EntradaPvp.Name = "EntradaPvp";
-                        this.EntradaPvp.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPvp.PlaceholderText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
-    "definido a continuación";
-                        this.EntradaPvp.Prefijo = "$";
-                        this.EntradaPvp.Size = new System.Drawing.Size(104, 24);
-                        this.EntradaPvp.TabIndex = 6;
-                        this.EntradaPvp.Text = "0.00";
-                        this.EntradaPvp.TextChanged += new System.EventHandler(this.EntradaPvp_TextChanged);
                         // 
                         // Label6
                         // 
@@ -276,7 +276,7 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaUsaStock.AlwaysExpanded = true;
                         this.EntradaUsaStock.AutoSize = true;
-                        this.EntradaUsaStock.Location = new System.Drawing.Point(152, 32);
+                        this.EntradaUsaStock.Location = new System.Drawing.Point(152, 40);
                         this.EntradaUsaStock.Name = "EntradaUsaStock";
                         this.EntradaUsaStock.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUsaStock.PlaceholderText = "¿El artículo usa control de stock?";
@@ -295,7 +295,7 @@ namespace Lfc.Articulos
                         this.BotonReceta.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonReceta.Image = null;
                         this.BotonReceta.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonReceta.Location = new System.Drawing.Point(320, 32);
+                        this.BotonReceta.Location = new System.Drawing.Point(320, 40);
                         this.BotonReceta.Name = "BotonReceta";
                         this.BotonReceta.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonReceta.Size = new System.Drawing.Size(28, 24);
@@ -333,7 +333,7 @@ namespace Lfc.Articulos
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(8, 32);
+                        this.Label7.Location = new System.Drawing.Point(8, 40);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(136, 24);
                         this.Label7.TabIndex = 0;
@@ -376,9 +376,9 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.Location = new System.Drawing.Point(152, 312);
                         this.EntradaStockActual.Name = "EntradaStockActual";
                         this.EntradaStockActual.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaStockActual.ReadOnly = true;
                         this.EntradaStockActual.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockActual.TabIndex = 11;
-                        this.EntradaStockActual.TabStop = false;
                         this.EntradaStockActual.Text = "0.00";
                         this.EntradaStockActual.TextChanged += new System.EventHandler(this.EntradaStockActual_TextChanged);
                         // 
@@ -722,16 +722,16 @@ namespace Lfc.Articulos
                         // 
                         this.Frame3.Controls.Add(this.label19);
                         this.Frame3.Controls.Add(this.EntradaUnidad);
-                        this.Frame3.Controls.Add(this.Label7);
                         this.Frame3.Controls.Add(this.BotonUnidad);
+                        this.Frame3.Controls.Add(this.Label7);
                         this.Frame3.Controls.Add(this.label21);
                         this.Frame3.Controls.Add(this.Label11);
-                        this.Frame3.Controls.Add(this.BotonReceta);
                         this.Frame3.Controls.Add(this.EntradaSeguimiento);
+                        this.Frame3.Controls.Add(this.BotonReceta);
                         this.Frame3.Controls.Add(this.Label9);
                         this.Frame3.Controls.Add(this.EntradaStockActual);
-                        this.Frame3.Controls.Add(this.EntradaUsaStock);
                         this.Frame3.Controls.Add(this.EntradaStockMinimo);
+                        this.Frame3.Controls.Add(this.EntradaUsaStock);
                         this.Frame3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Frame3.Location = new System.Drawing.Point(372, 352);
                         this.Frame3.Margin = new System.Windows.Forms.Padding(0);

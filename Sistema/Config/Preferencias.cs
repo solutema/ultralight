@@ -154,9 +154,16 @@ namespace Lazaro.WinMain.Config
                 private bool GuardarConfig()
                 {
                         if (EntradaEmpresaEmail.Text.Length <= 5 || EntradaEmpresaEmail.Text.IndexOf('@') <= 0 || EntradaEmpresaEmail.Text.IndexOf('.') <= 0) {
-                                Lui.Forms.MessageBox.Show("Debe escribir una dirección de correo electrónico (e-mail) válida.", "Validación");
+                                Lui.Forms.MessageBox.Show("Por favor escriba una dirección de correo electrónico (e-mail) válida.", "Validación");
                                 return true;
                         }
+
+
+                        if (EntradaEmpresaNombre.Text.Length <= 5 || EntradaEmpresaNombre.Text == "Nombre de la Empresa") {
+                                Lui.Forms.MessageBox.Show("Por favor escriba el nombre de la empresa.", "Validación");
+                                return true;
+                        }
+
 
                         if (EntradaPais.TextInt == 0) {
                                 Lui.Forms.MessageBox.Show("Por favor seleccione el país.", "Validación");

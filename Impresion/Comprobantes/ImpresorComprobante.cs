@@ -120,8 +120,8 @@ namespace Lazaro.Impresion.Comprobantes
 
                         switch (ClaseImpr) {
                                 case Lbl.Impresion.ClasesImpresora.Fiscal:
-                                        if (this.Reimpresion == false)
-                                                throw new InvalidOperationException("No se permiten reimpresiones fiscales.");
+                                        if (this.Reimpresion)
+                                                return new Lfx.Types.FailureOperationResult("No se permiten reimpresiones fiscales");
 
                                         // Primero hago un COMMIT, porque si no el otro proceso no va a poder hacer movimientos
                                         if (this.Transaction != null) {
@@ -176,7 +176,7 @@ namespace Lazaro.Impresion.Comprobantes
                                                 return base.Imprimir();
                                         } else {
                                                 if (this.Reimpresion)
-                                                        throw new InvalidOperationException("No se permiten reimpresiones remotas.");
+                                                        throw new Lfx.Types.DomainException("No se permiten reimpresiones remotas");
 
                                                 // Primero hago un COMMIT, porque si no el otro proceso no va a poder hacer movimientos
                                                 if (this.Transaction != null) {

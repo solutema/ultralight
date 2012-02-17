@@ -350,6 +350,7 @@ namespace Lfx.Data
                                                 }
                                                 Columna.Nullable = Tg.Nullable;
                                                 Columna.PrimaryKey = false;
+                                                Columna.Label = Tg.Label;
 
                                                 if (Tg.DefaultValue != null)
                                                         Columna.DefaultValue = Tg.DefaultValue.ToString();

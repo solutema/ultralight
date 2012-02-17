@@ -131,8 +131,12 @@ namespace Lfx.Data
 
                         return t1.ToString() == t2.ToString();
                 }
+
                 public static bool operator !=(TableStructure t1, TableStructure t2)
                 {
+                        if (object.ReferenceEquals(t1, null) || object.ReferenceEquals(t2, null))
+                                return true;
+
                         return !(t1.ToString() == t2.ToString());
                 }
 

@@ -71,7 +71,7 @@ namespace Lfc.Personas
 
                                 if (EntradaTelefono.Text.Length > 0) {
                                         string Telefono = EntradaTelefono.Text.Replace(" -", "").Replace("- ", "").Replace("/", " ").Replace(",", " ").Replace(".", " ").Replace("  ", " ").Replace("%", "").Replace("_", "");
-                                        IList<string> Telefonos = Lfx.Types.Strings.SplitDelimitedString(Telefono, ';');
+                                        IList<string> Telefonos = Lfx.Types.Strings.SplitDelimitedString(Telefono, ";");
                                         if (Telefonos != null && Telefonos.Count > 0) {
                                                 foreach (string Tel in Telefonos) {
                                                         if (Tel != null && Tel.Length > 4)

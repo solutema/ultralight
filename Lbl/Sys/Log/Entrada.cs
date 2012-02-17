@@ -64,6 +64,14 @@ namespace Lbl.Sys.Log
                         }
                 }
 
+                public string Tabla
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("tabla");
+                        }
+                }
+
                 public Acciones Comando
                 {
                         get
@@ -76,6 +84,55 @@ namespace Lbl.Sys.Log
                                 }
                         }
                 }
+
+
+                public string Explain(bool multiLine)
+                {
+                        string Cambios = this.GetFieldValue<string>("extra1");
+
+                        if (this.Comando != Acciones.Save)
+                                return Cambios == null ? "" : Cambios;
+
+                        if (Cambios == null)
+                                return "sin cambios";
+
+                        IList<string> Campos = Lfx.Types.Strings.SplitDelimitedString(Cambios, ";", "\'" );
+                        StringBuilder Res = new StringBuilder();
+
+                        Lfx.Data.TableStructure EstrucTabla;
+                        if (Lfx.Workspace.Master.Structure.Tables.ContainsKey(this.Tabla))
+                                EstrucTabla = Lfx.Workspace.Master.Structure.Tables[this.Tabla];
+                        else
+                                EstrucTabla = null;
+
+                        foreach (string Campo in Campos) {
+                                IList<string> Partes = Campo.Split(new char[] { '=' });
+
+                                if (Partes.Count == 1)
+                                        Partes = new List<string>() { "", Campo };
+
+                                string NombreCampo = Partes[0].Trim();
+
+                                if (EstrucTabla != null && EstrucTabla.Columns.ContainsKey(NombreCampo)) {
+                                        NombreCampo = EstrucTabla.Columns[NombreCampo].Label;
+                                        if (NombreCampo == null || NombreCampo == string.Empty)
+                                                NombreCampo = Partes[0];
+                                } else {
+                                        NombreCampo = NombreCampo.ToTitleCase();
+                                }
+
+                                string ValorCampo = Partes[1];
+                                ValorCampo = ValorCampo.Replace("NULL->", "");
+                                ValorCampo = ValorCampo.Replace("->", " se cambió por ");
+                                if (multiLine)
+                                        Res.AppendLine(NombreCampo + ": " + ValorCampo + ".");
+                                else
+                                        Res.Append(NombreCampo + ": " + ValorCampo + "; ");
+                        }
+
+                        return Res.ToString();
+                }
+
 
                 public override string ToString()
                 {

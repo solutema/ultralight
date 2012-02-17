@@ -866,6 +866,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;
+                                Clipboard.SetText(Texto.ToString());
                         }
                         catch {
                                 Mensaje.Subject = "Excepción no controlada";

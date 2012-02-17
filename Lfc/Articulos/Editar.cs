@@ -316,6 +316,7 @@ namespace Lfc.Articulos
                         EntradaSeguimiento.ValueInt = (int)(Art.Seguimiento);
                         EntradaSeguimiento.ReadOnly = Art.Existe && Art.Existencias != 0;
                         EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.Existencias, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                        EntradaStockActual.ReadOnly = Art.Existe;
                         EntradaUnidad.TextKey = Art.Unidad;
                         Rendimiento = Art.Rendimiento;
                         UnidadRendimiento = Art.UnidadRendimiento;
@@ -348,7 +349,7 @@ namespace Lfc.Articulos
                         Art.Costo = Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text);
 
                         if (Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey) > 0)
-                                Art.Margen = new Lbl.Articulos.Margen(Art.Connection, Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey));
+                                Art.Margen = new Lbl.Articulos.Margen(Art.Connection, EntradaMargen.ValueInt);
                         else
                                 Art.Margen = null;
 
@@ -362,8 +363,8 @@ namespace Lfc.Articulos
                         Art.Estado = 1;
                         Art.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
                         Art.Publicacion = ((Lbl.Articulos.Publicacion)(EntradaWeb.ValueInt));
-                        //EntradaTags.ActualizarElemento();
-                        //EntradaImagen.ActualizarElemento();
+                        if (Art.Existe == false)
+                                Art.ExistenciasInicial = EntradaStockActual.ValueDecimal;
 
                         Lbl.Articulos.Seguimientos Seg = Art.ObtenerSeguimiento();
                         if (Seg != Lbl.Articulos.Seguimientos.Ninguno) {

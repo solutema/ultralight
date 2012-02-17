@@ -303,6 +303,9 @@ namespace Lazaro.WinMain
                                         System.Environment.Exit(0);
                                         break;
 
+                                case "ERROR":
+                                        throw new InsufficientMemoryException("Error de prueba.");
+
                                 default:
                                         if (Lfx.Workspace.Master.DebugMode)
                                                 throw new NotImplementedException(comando);

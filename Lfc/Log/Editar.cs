@@ -61,6 +61,14 @@ namespace Lfc.Log
                 {
                         this.Tabla = tabla;
                         this.ItemId = itemId;
+                }
+
+                private void TimerRefrescar_Tick(object sender, EventArgs e)
+                {
+                        TimerRefrescar.Stop();
+
+                        ListaHistoral.SuspendLayout();
+                        ListaHistoral.BeginUpdate();
 
                         System.Data.DataTable LogsTable = this.Connection.Select("SELECT * FROM sys_log WHERE tabla='" + this.Tabla + "' AND item_id=" + this.ItemId.ToString() + " ORDER BY fecha DESC");
                         Lbl.ColeccionGenerica<Lbl.Sys.Log.Entrada> Logs = new Lbl.ColeccionGenerica<Lbl.Sys.Log.Entrada>(this.Connection, LogsTable);
@@ -92,11 +100,52 @@ namespace Lfc.Log
                                                 Itm.SubItems.Add(Log.Comando.ToString());
                                                 break;
                                 }
-                                
-                                Itm.SubItems.Add(Log.ToString());
+
+                                Itm.SubItems.Add(Log.Explain(false));
+                                Itm.Tag = Log;
+
+                                if (ListaHistoral.Items.Count == 200) {
+                                        // Muestro un parcial
+                                        ListaHistoral.EndUpdate();
+                                        System.Windows.Forms.Application.DoEvents();
+                                        ListaHistoral.BeginUpdate();
+                                }
                         }
 
-                        ColDatos.AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+                        ColDatos.AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+                        ListaHistoral.EndUpdate();
+                        ListaHistoral.ResumeLayout(true);
+                }
+
+                private void ListaHistoral_MouseDoubleClick(object sender, MouseEventArgs e)
+                {
+                        MostrarSeleccionado();
+                }
+
+                private void ListaHistoral_KeyDown(object sender, KeyEventArgs e)
+                {
+                        if (e.Control == false && e.Shift == false && e.Alt == false) {
+                                switch(e.KeyCode) {
+                                        case Keys.Return:
+                                                e.Handled = true;
+                                                MostrarSeleccionado();
+                                                break;
+                                }
+                        }
+                }
+
+
+                private void MostrarSeleccionado()
+                {
+                        if (ListaHistoral.SelectedItems.Count == 0)
+                                return;
+
+                        Lbl.Sys.Log.Entrada Log = ListaHistoral.SelectedItems[0].Tag as Lbl.Sys.Log.Entrada;
+                        if (Log == null)
+                                return;
+
+                        Lui.Forms.MessageBox.Show(Log.Explain(true), "Acción");
                 }
         }
 }

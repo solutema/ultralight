@@ -72,38 +72,33 @@ namespace Lfc.Comprobantes.Tipo
                         this.label6 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
-                        // 
                         // EntradaImpresora
                         // 
-                        this.EntradaImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaImpresora.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaImpresora.AutoTab = true;
                         this.EntradaImpresora.CanCreate = true;
                         this.EntradaImpresora.DataTextField = "nombre";
+                        this.EntradaImpresora.DataValueField = "id_impresora";
+                        this.EntradaImpresora.ExtraDetailFields = "";
                         this.EntradaImpresora.Filter = "";
                         this.EntradaImpresora.FreeTextCode = "";
-                        this.EntradaImpresora.DataValueField = "id_impresora";
-                        this.EntradaImpresora.Location = new System.Drawing.Point(152, 52);
+                        this.EntradaImpresora.Location = new System.Drawing.Point(152, 56);
                         this.EntradaImpresora.MaxLength = 200;
                         this.EntradaImpresora.Name = "EntradaImpresora";
                         this.EntradaImpresora.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaImpresora.PlaceholderText = "Ninguno";
                         this.EntradaImpresora.Required = false;
                         this.EntradaImpresora.Size = new System.Drawing.Size(456, 24);
                         this.EntradaImpresora.TabIndex = 1;
                         this.EntradaImpresora.Table = "impresoras";
                         this.EntradaImpresora.Text = "0";
                         this.EntradaImpresora.TextDetail = "";
-                        this.EntradaImpresora.PlaceholderText = "Ninguno";
+                        this.EntradaImpresora.TextChanged += new System.EventHandler(this.EntradaImpresora_TextChanged);
                         // 
                         // Label16
                         // 
-                        this.Label16.Location = new System.Drawing.Point(24, 52);
+                        this.Label16.Location = new System.Drawing.Point(24, 56);
                         this.Label16.Name = "Label16";
                         this.Label16.Size = new System.Drawing.Size(128, 24);
                         this.Label16.TabIndex = 0;
@@ -112,28 +107,30 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // EntradaSucursal
                         // 
-                        this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
                         this.EntradaSucursal.DataTextField = "nombre";
+                        this.EntradaSucursal.DataValueField = "id_sucursal";
+                        this.EntradaSucursal.ExtraDetailFields = "";
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";
-                        this.EntradaSucursal.DataValueField = "id_sucursal";
-                        this.EntradaSucursal.Location = new System.Drawing.Point(152, 120);
+                        this.EntradaSucursal.Location = new System.Drawing.Point(152, 128);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
                         this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaSucursal.PlaceholderText = "Todas";
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(456, 24);
                         this.EntradaSucursal.TabIndex = 3;
                         this.EntradaSucursal.Table = "sucursales";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
-                        this.EntradaSucursal.PlaceholderText = "Todas";
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(24, 120);
+                        this.label1.Location = new System.Drawing.Point(24, 128);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(128, 24);
                         this.label1.TabIndex = 2;
@@ -142,30 +139,31 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(24, 152);
+                        this.Label3.Location = new System.Drawing.Point(24, 160);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(128, 24);
                         this.Label3.TabIndex = 4;
-                        this.Label3.Text = "Punto de Venta";
+                        this.Label3.Text = "Punto de venta";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label2
                         // 
-                        this.label2.Location = new System.Drawing.Point(24, 184);
+                        this.label2.Location = new System.Drawing.Point(24, 192);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(128, 24);
                         this.label2.TabIndex = 6;
                         this.label2.Text = "Estación";
                         this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // cmdEstacionSeleccionar
+                        // BotonSeleccionarEstacion
                         // 
                         this.BotonSeleccionarEstacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonSeleccionarEstacion.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonSeleccionarEstacion.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSeleccionarEstacion.Image = null;
                         this.BotonSeleccionarEstacion.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSeleccionarEstacion.Location = new System.Drawing.Point(352, 184);
-                        this.BotonSeleccionarEstacion.Name = "cmdEstacionSeleccionar";
+                        this.BotonSeleccionarEstacion.Location = new System.Drawing.Point(352, 192);
+                        this.BotonSeleccionarEstacion.Name = "BotonSeleccionarEstacion";
                         this.BotonSeleccionarEstacion.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSeleccionarEstacion.Size = new System.Drawing.Size(28, 24);
                         this.BotonSeleccionarEstacion.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -177,7 +175,7 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaEstacion
                         // 
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
-                        this.EntradaEstacion.Location = new System.Drawing.Point(152, 184);
+                        this.EntradaEstacion.Location = new System.Drawing.Point(152, 192);
                         this.EntradaEstacion.Name = "EntradaEstacion";
                         this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstacion.Size = new System.Drawing.Size(196, 24);
@@ -186,8 +184,7 @@ namespace Lfc.Comprobantes.Tipo
                         // EntradaPuntoDeVenta
                         // 
                         this.EntradaPuntoDeVenta.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPuntoDeVenta.ForceCase = Lui.Forms.TextCasing.None;
-                        this.EntradaPuntoDeVenta.Location = new System.Drawing.Point(152, 152);
+                        this.EntradaPuntoDeVenta.Location = new System.Drawing.Point(152, 160);
                         this.EntradaPuntoDeVenta.Name = "EntradaPuntoDeVenta";
                         this.EntradaPuntoDeVenta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPuntoDeVenta.Size = new System.Drawing.Size(72, 24);
@@ -198,27 +195,29 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.label4.Location = new System.Drawing.Point(24, 24);
                         this.label4.Name = "label4";
-                        this.label4.Size = new System.Drawing.Size(316, 24);
+                        this.label4.Size = new System.Drawing.Size(584, 28);
                         this.label4.TabIndex = 51;
                         this.label4.Text = "Este tipo de comprobante se imprimie en";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         // 
                         // label5
                         // 
-                        this.label5.Location = new System.Drawing.Point(24, 92);
+                        this.label5.Location = new System.Drawing.Point(24, 96);
                         this.label5.Name = "label5";
-                        this.label5.Size = new System.Drawing.Size(316, 24);
+                        this.label5.Size = new System.Drawing.Size(584, 28);
                         this.label5.TabIndex = 52;
                         this.label5.Text = "Dadas las siguientes condiciones";
                         this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label5.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         // 
                         // label6
                         // 
-                        this.label6.Location = new System.Drawing.Point(228, 152);
+                        this.label6.Location = new System.Drawing.Point(228, 160);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(316, 24);
                         this.label6.TabIndex = 53;
-                        this.label6.Text = "(0 para todos los Puntos de Venta)";
+                        this.label6.Text = "(0 para todos los puntos de venta)";
                         this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // AgregarTipoImpresora
@@ -228,7 +227,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.ClientSize = new System.Drawing.Size(634, 372);
                         this.Controls.Add(this.label6);
                         this.Controls.Add(this.label5);
-                        this.Controls.Add(this.label4);
                         this.Controls.Add(this.EntradaPuntoDeVenta);
                         this.Controls.Add(this.EntradaSucursal);
                         this.Controls.Add(this.Label3);
@@ -238,8 +236,10 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.Add(this.EntradaEstacion);
                         this.Controls.Add(this.Label16);
                         this.Controls.Add(this.EntradaImpresora);
+                        this.Controls.Add(this.label4);
                         this.Name = "AgregarTipoImpresora";
-                        this.Text = "AgregarTipoImpresora";
+                        this.Text = "Agregar impresora";
+                        this.Controls.SetChildIndex(this.label4, 0);
                         this.Controls.SetChildIndex(this.EntradaImpresora, 0);
                         this.Controls.SetChildIndex(this.Label16, 0);
                         this.Controls.SetChildIndex(this.EntradaEstacion, 0);
@@ -249,7 +249,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.SetChildIndex(this.Label3, 0);
                         this.Controls.SetChildIndex(this.EntradaSucursal, 0);
                         this.Controls.SetChildIndex(this.EntradaPuntoDeVenta, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
                         this.Controls.SetChildIndex(this.label5, 0);
                         this.Controls.SetChildIndex(this.label6, 0);
                         this.ResumeLayout(false);

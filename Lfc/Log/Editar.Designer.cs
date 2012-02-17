@@ -58,12 +58,14 @@ namespace Lfc.Log
                 /// </summary>
                 private void InitializeComponent()
                 {
+                        this.components = new System.ComponentModel.Container();
                         this.ListaHistoral = new Lui.Forms.ListView();
                         this.ColFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColPersona = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColAccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColDatos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.formHeader1 = new Lui.Forms.FormHeader();
+                        this.TimerRefrescar = new System.Windows.Forms.Timer(this.components);
                         this.SuspendLayout();
                         // 
                         // ListaHistoral
@@ -86,11 +88,13 @@ namespace Lfc.Log
                         this.ListaHistoral.TabIndex = 0;
                         this.ListaHistoral.UseCompatibleStateImageBehavior = false;
                         this.ListaHistoral.View = System.Windows.Forms.View.Details;
+                        this.ListaHistoral.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListaHistoral_KeyDown);
+                        this.ListaHistoral.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListaHistoral_MouseDoubleClick);
                         // 
                         // ColFecha
                         // 
                         this.ColFecha.Text = "Fecha";
-                        this.ColFecha.Width = 189;
+                        this.ColFecha.Width = 205;
                         // 
                         // ColPersona
                         // 
@@ -100,7 +104,7 @@ namespace Lfc.Log
                         // ColAccion
                         // 
                         this.ColAccion.Text = "Accion";
-                        this.ColAccion.Width = 80;
+                        this.ColAccion.Width = 151;
                         // 
                         // ColDatos
                         // 
@@ -115,6 +119,12 @@ namespace Lfc.Log
                         this.formHeader1.Size = new System.Drawing.Size(738, 64);
                         this.formHeader1.TabIndex = 101;
                         this.formHeader1.Text = "Historial";
+                        // 
+                        // TimerRefrescar
+                        // 
+                        this.TimerRefrescar.Enabled = true;
+                        this.TimerRefrescar.Interval = 500;
+                        this.TimerRefrescar.Tick += new System.EventHandler(this.TimerRefrescar_Tick);
                         // 
                         // Editar
                         // 
@@ -139,5 +149,6 @@ namespace Lfc.Log
                 private System.Windows.Forms.ColumnHeader ColAccion;
                 private System.Windows.Forms.ColumnHeader ColDatos;
                 private Lui.Forms.FormHeader formHeader1;
+                private System.Windows.Forms.Timer TimerRefrescar;
         }
 }

@@ -106,30 +106,30 @@ namespace Lfx.Types
 		public static System.Drawing.Rectangle ReadRectangle(string sIni, string sSectionName, string sClave, System.Drawing.Rectangle rDefault)
 		{
 			System.Drawing.Rectangle readRectangleReturn = new System.Drawing.Rectangle();
-			string sCadena = null;
-                        IList<string> cColXY = null;
-                        IList<string> cColHW = null;
+			string Cadena = null;
+                        IList<string> ColXY = null;
+                        IList<string> ColHW = null;
 
-			sCadena = ReadString(sIni, sSectionName, sClave, "");
+			Cadena = ReadString(sIni, sSectionName, sClave, "");
 
-			if(sCadena != null && sCadena.Length > 0) {
-				cColXY = Lfx.Types.Strings.SplitDelimitedString(sCadena, ',');
+			if(Cadena != null && Cadena.Length > 0) {
+				ColXY = Lfx.Types.Strings.SplitDelimitedString(Cadena, ",");
 
-				if(System.Convert.ToString(cColXY[0]).IndexOf("-") != -1) {
-					cColHW = Lfx.Types.Strings.SplitDelimitedString(System.Convert.ToString(cColXY[0]), '-');
-					readRectangleReturn.X = System.Convert.ToInt32(cColHW[0]);
-					readRectangleReturn.Width = System.Convert.ToInt32(cColHW[1]) - readRectangleReturn.X;
+				if(System.Convert.ToString(ColXY[0]).IndexOf("-") != -1) {
+					ColHW = Lfx.Types.Strings.SplitDelimitedString(System.Convert.ToString(ColXY[0]), "-");
+					readRectangleReturn.X = System.Convert.ToInt32(ColHW[0]);
+					readRectangleReturn.Width = System.Convert.ToInt32(ColHW[1]) - readRectangleReturn.X;
 				} else {
-					readRectangleReturn.X = System.Convert.ToInt32(cColXY[0]);
+					readRectangleReturn.X = System.Convert.ToInt32(ColXY[0]);
 					readRectangleReturn.Width = 0;
 				}
 
-				if(System.Convert.ToString(cColXY[1]).IndexOf("-") != -1) {
-					cColHW = Lfx.Types.Strings.SplitDelimitedString(System.Convert.ToString(cColXY[1]), '-');
-					readRectangleReturn.Y = System.Convert.ToInt32(cColHW[0]);
-					readRectangleReturn.Height = System.Convert.ToInt32(cColHW[1]) - readRectangleReturn.Y;
+				if(System.Convert.ToString(ColXY[1]).IndexOf("-") != -1) {
+					ColHW = Lfx.Types.Strings.SplitDelimitedString(System.Convert.ToString(ColXY[1]), "-");
+					readRectangleReturn.Y = System.Convert.ToInt32(ColHW[0]);
+					readRectangleReturn.Height = System.Convert.ToInt32(ColHW[1]) - readRectangleReturn.Y;
 				} else {
-					readRectangleReturn.Y = System.Convert.ToInt32(cColXY[1]);
+					readRectangleReturn.Y = System.Convert.ToInt32(ColXY[1]);
 					readRectangleReturn.Height = 0;
 				}
 			} else {

@@ -306,10 +306,11 @@ namespace Lfc.Comprobantes.Tipo
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.GroupLabel.Location = new System.Drawing.Point(468, 0);
                         this.GroupLabel.Name = "GroupLabel";
-                        this.GroupLabel.Size = new System.Drawing.Size(368, 24);
+                        this.GroupLabel.Size = new System.Drawing.Size(368, 32);
                         this.GroupLabel.TabIndex = 18;
-                        this.GroupLabel.Text = "Dónde se imprime";
+                        this.GroupLabel.Text = "Dónde se imprime:";
                         this.GroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.GroupLabel.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.GroupLabel.UseMnemonic = false;
                         // 
                         // Listado
@@ -400,7 +401,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.Add(this.BotonQuitar);
                         this.Controls.Add(this.BotonAgregar);
                         this.Controls.Add(this.Listado);
-                        this.Controls.Add(this.GroupLabel);
                         this.Controls.Add(this.EntradaImprimirGuardar);
                         this.Controls.Add(this.EntradaImprimirModificar);
                         this.Controls.Add(this.EntradaImprimirRepetir);
@@ -419,6 +419,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.Add(this.label9);
                         this.Controls.Add(this.label8);
                         this.Controls.Add(this.label6);
+                        this.Controls.Add(this.GroupLabel);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(838, 411);
                         this.ResumeLayout(false);

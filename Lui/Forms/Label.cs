@@ -154,7 +154,7 @@ namespace Lui.Forms
                                         break;
                                 case Lazaro.Pres.DisplayStyles.TextStyles.Default:
                                         base.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
-                                        base.Padding = new Padding(0, 4, 0, 0);
+                                        base.Padding = new Padding(0, 3, 0, 0);
                                         if (this.Parent != null)
                                                 base.BackColor = this.Parent.BackColor;
                                         base.ForeColor = this.DisplayStyle.TextColor;

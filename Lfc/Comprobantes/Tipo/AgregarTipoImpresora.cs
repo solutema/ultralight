@@ -46,6 +46,7 @@ namespace Lfc.Comprobantes.Tipo
                 public AgregarTipoImpresora()
                 {
                         InitializeComponent();
+                        OkButton.Enabled = false;
                 }
 
                 public Lbl.Impresion.TipoImpresora TipoImpresora
@@ -61,7 +62,7 @@ namespace Lfc.Comprobantes.Tipo
                                 else
                                         Res.Estacion = null;
 
-                                int Pv = Lfx.Types.Parsing.ParseInt(EntradaPuntoDeVenta.Text);
+                                int Pv = EntradaPuntoDeVenta.ValueInt;
                                 if (Pv > 0) {
                                         
                                         int IdPv = 0;
@@ -85,6 +86,11 @@ namespace Lfc.Comprobantes.Tipo
                         SelEst.Estacion = EntradaEstacion.Text;
                         if (SelEst.ShowDialog() == DialogResult.OK)
                                 EntradaEstacion.Text = SelEst.Estacion;
+                }
+
+                private void EntradaImpresora_TextChanged(object sender, EventArgs e)
+                {
+                        OkButton.Enabled = EntradaImpresora.Elemento != null;
                 }
         }
 }
