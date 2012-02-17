@@ -66,7 +66,12 @@ namespace Lbl.Tareas
                 {
                         get
                         {
-                                return this.GetFieldValue<string>("descripcion");
+                                string Res = this.GetFieldValue<string>("descripcion");
+                                if ((Res == null || Res == string.Empty) && this.Presupuesto != null) {
+                                        this.Presupuesto.Cargar();
+                                        Res = this.Presupuesto.Obs;
+                                }
+                                return Res;
                         }
                         set
                         {
@@ -213,7 +218,7 @@ namespace Lbl.Tareas
                                 Comando.Fields.AddWithValue("id_tecnico_recibe", this.Encargado.Id);
                         Comando.Fields.AddWithValue("prioridad", this.Prioridad);
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
-                        Comando.Fields.AddWithValue("descripcion", this.Descripcion);
+                        Comando.Fields.AddWithValue("descripcion", this.GetFieldValue<string>("descripcion"));
                         Comando.Fields.AddWithValue("estado", this.Estado);
                         Comando.Fields.AddWithValue("articulos_descuento", this.DescuentoArticulos);
                         Comando.Fields.AddWithValue("entrega_estimada", this.FechaEstimada);

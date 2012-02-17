@@ -51,19 +51,22 @@ namespace Lfc.Tareas
 
                 public override void ActualizarElemento()
                 {
-                        Lbl.Tareas.Tarea Res = this.Elemento as Lbl.Tareas.Tarea;
+                        Lbl.Tareas.Tarea Tarea = this.Elemento as Lbl.Tareas.Tarea;
 
-                        Res.Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
-                        Res.Encargado = EntradaEncargado.Elemento as Lbl.Personas.Persona;
-                        Res.Tipo = EntradaTarea.Elemento as Lbl.Tareas.Tipo;
-                        Res.Prioridad = EntradaPrioridad.ValueInt;
-                        Res.Nombre = EntradaAsunto.Text;
-                        Res.Descripcion = EntradaDescripcion.Text;
-                        Res.Estado = EntradaEstado.TextInt;
-                        Res.FechaEstimada = Lfx.Types.Parsing.ParseDate(EntradaEntregaEstimada.Text);
-                        Res.FechaLimite = Lfx.Types.Parsing.ParseDate(EntradaEntregaLimite.Text);
-                        Res.ImportePresupuesto = EntradaImportePresupuesto.ValueDecimal;
-                        Res.Obs = EntradaObs.Text;
+                        Tarea.Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
+                        Tarea.Encargado = EntradaEncargado.Elemento as Lbl.Personas.Persona;
+                        Tarea.Tipo = EntradaTarea.Elemento as Lbl.Tareas.Tipo;
+                        Tarea.Prioridad = EntradaPrioridad.ValueInt;
+                        Tarea.Nombre = EntradaAsunto.Text;
+                        if (Tarea.Presupuesto != null && EntradaDescripcion.Text.Trim() == Tarea.Presupuesto.Obs.Trim())
+                                Tarea.Descripcion = null;
+                        else
+                                Tarea.Descripcion = EntradaDescripcion.Text;
+                        Tarea.Estado = EntradaEstado.TextInt;
+                        Tarea.FechaEstimada = Lfx.Types.Parsing.ParseDate(EntradaEntregaEstimada.Text);
+                        Tarea.FechaLimite = Lfx.Types.Parsing.ParseDate(EntradaEntregaLimite.Text);
+                        Tarea.ImportePresupuesto = EntradaImportePresupuesto.ValueDecimal;
+                        Tarea.Obs = EntradaObs.Text;
 
                         base.ActualizarElemento();
                 }
@@ -110,13 +113,13 @@ namespace Lfc.Tareas
                                 return new Lfx.Types.FailureOperationResult("Debe escribir el nombre de la tarea.");
 
                         if (EntradaEncargado.Elemento == null)
-                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el Encargado.");
+                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el encargado.");
 
                         if (EntradaCliente.Elemento == null)
-                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el Cliente.");
+                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el cliente.");
 
                         if (EntradaTarea.Elemento == null)
-                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el tipo de Tarea.");
+                                return new Lfx.Types.FailureOperationResult("Debe seleccionar el tipo de tarea.");
 
                         return base.ValidarControl(); ;
                 }

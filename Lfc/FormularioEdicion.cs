@@ -505,7 +505,8 @@ namespace Lfc
                                         Progreso.Modal = false;
                                         Progreso.Begin();
 
-                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, this.Elemento.Connection.BeginTransaction());
+                                        IDbTransaction Trans = this.Elemento.Connection.BeginTransaction();
+                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, Trans);
                                         Impresor.Impresora = Impresora;
                                         Res = Impresor.Imprimir();
                                         Progreso.End();

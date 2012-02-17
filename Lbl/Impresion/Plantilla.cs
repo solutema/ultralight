@@ -348,12 +348,24 @@ namespace Lbl.Impresion
                                                 NuevoCampo.Formato = Cam.Attributes["Formato"].Value;
                                         if (Cam.Attributes["AnchoBorde"] != null)
                                                 NuevoCampo.AnchoBorde = Lfx.Types.Parsing.ParseInt(Cam.Attributes["AnchoBorde"].Value);
-                                        if (Cam.Attributes["ColorBorde"] != null)
-                                                NuevoCampo.ColorBorde = System.Drawing.Color.FromArgb(Lfx.Types.Parsing.ParseInt(Cam.Attributes["ColorBorde"].Value));
-                                        if (Cam.Attributes["ColorTexto"] != null)
-                                                NuevoCampo.ColorTexto = System.Drawing.Color.FromArgb(Lfx.Types.Parsing.ParseInt(Cam.Attributes["ColorTexto"].Value));
-                                        if (Cam.Attributes["ColorFondo"] != null)
-                                                NuevoCampo.ColorFondo = System.Drawing.Color.FromArgb(Lfx.Types.Parsing.ParseInt(Cam.Attributes["ColorFondo"].Value));
+                                        if (Cam.Attributes["ColorBorde"] != null) {
+                                                Color Col = System.Drawing.Color.FromArgb(Lfx.Types.Parsing.ParseInt(Cam.Attributes["ColorBorde"].Value));
+                                                // Quito el canal alfa
+                                                NuevoCampo.ColorBorde = System.Drawing.Color.FromArgb(255, Col);
+                                        }
+                                        if (Cam.Attributes["ColorTexto"] != null) {
+                                                Color Col = System.Drawing.Color.FromArgb(Lfx.Types.Parsing.ParseInt(Cam.Attributes["ColorTexto"].Value));
+                                                // Quito el canal alfa
+                                                NuevoCampo.ColorTexto = System.Drawing.Color.FromArgb(255, Col);
+                                        }
+                                        if (Cam.Attributes["ColorFondo"] != null) {
+                                                Color Col = System.Drawing.Color.FromArgb(Lfx.Types.Parsing.ParseInt(Cam.Attributes["ColorFondo"].Value));
+                                                // Quito el canal alfa
+                                                if (Col == Color.FromArgb(0, 0, 0, 0))
+                                                        NuevoCampo.ColorFondo = Color.Transparent;
+                                                else
+                                                        NuevoCampo.ColorFondo = System.Drawing.Color.FromArgb(255, Col);
+                                        }
                                         NuevoCampo.Rectangle.X = Lfx.Types.Parsing.ParseInt(Cam.Attributes["X"].Value);
                                         NuevoCampo.Rectangle.Y = Lfx.Types.Parsing.ParseInt(Cam.Attributes["Y"].Value);
                                         NuevoCampo.Rectangle.Width = Lfx.Types.Parsing.ParseInt(Cam.Attributes["Ancho"].Value);
