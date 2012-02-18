@@ -220,7 +220,7 @@ namespace Lazaro.WinMain
                         Lfx.Workspace.Master.DebugMode = DebugMode;
                         Lfx.Workspace.Master.TraceMode = TraceMode;
                         Lfx.Workspace.Master.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
-                        
+
                         // Asigno a la aplicación WinForms la misma cultura que se está usando en el espacio de trabajo
                         System.Windows.Forms.Application.CurrentCulture = Lfx.Workspace.Master.CultureInfo;
 
@@ -365,7 +365,7 @@ namespace Lazaro.WinMain
                                 Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Descargando archivos adicionales", "Se van a descargar algunos archivos necesarios para el funcionamiento de Lázaro");
                                 Progreso.Max = ArchivosFaltantes.Count;
                                 Progreso.Begin();
-                                
+
                                 bool CanWriteToAppFolder = Lfx.Environment.SystemInformation.CanWriteToAppFolder;
                                 using (WebClient Cliente = new WebClient()) {
                                         foreach (string Arch in ArchivosFaltantes) {
@@ -377,7 +377,7 @@ namespace Lazaro.WinMain
                                                 else
                                                         // Tengo UAC, lo descargo a la carpeta de actualizaciones y luego tengo que iniciar el ActualizadorLazaro.exe
                                                         ArchDestino = Lfx.Environment.Folders.UpdatesFolder + Arch + ".new";
-                                                
+
                                                 try {
                                                         Cliente.DownloadFile(@"http://www.sistemalazaro.com.ar/aslnlwc/" + Arch, ArchDestino);
                                                 } catch {
@@ -740,8 +740,8 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 // Nada
                         }
                 }
-                
-                
+
+
                 private static void ThreadExceptionHandler(object sender, System.Threading.ThreadExceptionEventArgs e)
                 {
                         GenericExceptionHandler(e.Exception);
@@ -760,7 +760,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 Exception ex2 = ex;
                                 bool Found = false;
                                 while (ex2 != null) {
-                                        if (string.Compare(ex2.Message,"Reading from the stream has failed.", true) == 0
+                                        if (string.Compare(ex2.Message, "Reading from the stream has failed.", true) == 0
                                                 || string.Compare(ex2.Message, "Unable to connect to any of the specified MySQL hosts.", true) == 0
                                                 || string.Compare(ex2.Message, "Connection unexpectedly terminated.", true) == 0
                                                 || string.Compare(ex2.Message, "error connecting: Timeout expired.", true) == 0
@@ -771,7 +771,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                         }
                                         ex2 = ex2.InnerException;
                                 }
-                                if(Found == false)
+                                if (Found == false)
                                         UnknownExceptionHandler(ex);
                         } else if (string.Compare(ex.Message, "El servidor RPC no está disponible", true) == 0) {
                                 KnownExceptionHandler(ex, "La impresora no está disponible");
@@ -822,14 +822,13 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 System.Diagnostics.StackTrace Traza = new System.Diagnostics.StackTrace(ex, true);
                                 Texto.AppendLine("Línea   : " + Traza.GetFrame(0).GetFileLineNumber());
                                 Texto.AppendLine("Columna : " + Traza.GetFrame(0).GetFileColumnNumber());
-                        }
-                        catch {
+                        } catch {
                                 //Nada
                         }
                         Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
                         Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.PlatformName);
                         Texto.AppendLine("RunTime : " + Lfx.Environment.SystemInformation.RuntimeName);
-                        if(ex.HelpLink != null)
+                        if (ex.HelpLink != null)
                                 Texto.AppendLine("Ayuda   : " + ex.HelpLink);
                         if (ex.Source != null)
                                 Texto.AppendLine("Origen  : " + ex.Source);
@@ -866,9 +865,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;
-                                Clipboard.SetText(Texto.ToString());
-                        }
-                        catch {
+                        } catch {
                                 Mensaje.Subject = "Excepción no controlada";
                                 Texto.Insert(0, ex.Message + System.Environment.NewLine);
                         }
@@ -879,8 +876,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         try {
                                 Cliente.Send(Mensaje);
                                 FormularioError.EtiquetaDescripcion.Text = "Se envió un reporte de error. Haga clic en Continuar.";
-                        }
-                        catch (Exception ExSnd) {
+                        } catch (Exception ExSnd) {
                                 FormularioError.EtiquetaDescripcion.Text = "No se puedo enviar el reporte de error (" + ExSnd.Message + "). Haga clic en Continuar.";
                         }
 

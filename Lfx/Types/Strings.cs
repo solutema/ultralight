@@ -50,10 +50,11 @@ namespace Lfx.Types
 
                 public static IList<string> SplitDelimitedString(string text, string delimiter, string qualifier)
 		{
-                        string Statement = String.Format("{0}(?=(?:[^{1}]*{1}[^{1}]*{1})*(?![^{1}]*{1}))", Regex.Escape(delimiter), Regex.Escape(qualifier));
+                        if (text == null || text == string.Empty)
+                                return new List<string>();
 
-                        RegexOptions Options = RegexOptions.Compiled | RegexOptions.Multiline;
-                        Regex Expression = new Regex(Statement, Options);
+                        string Statement = String.Format("{0}(?=(?:[^{1}]*{1}[^{1}]*{1})*(?![^{1}]*{1}))", Regex.Escape(delimiter), Regex.Escape(qualifier));
+                        Regex Expression = new Regex(Statement, RegexOptions.Compiled | RegexOptions.Multiline);
                         return Expression.Split(text);
 		}
 
