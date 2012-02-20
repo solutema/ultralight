@@ -256,6 +256,8 @@ namespace Lazaro.WinMain.Config
                                 }
 
                                 Trans.Commit();
+
+                                this.PrimeraVez = false;
                         }
 
                         return false;

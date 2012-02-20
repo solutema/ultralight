@@ -65,6 +65,7 @@ namespace Lbl.Impuestos
                         }
                 }
 
+
                 public decimal ImporteMinimo
                 {
                         get
@@ -76,6 +77,7 @@ namespace Lbl.Impuestos
                                 this.Registro["importe_minimo"] = value;
                         }
                 }
+
 
                 public override Lfx.Types.OperationResult Guardar()
                 {

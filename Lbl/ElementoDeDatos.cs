@@ -573,7 +573,7 @@ namespace Lbl
                 protected virtual void AgregarTags(qGen.Command comando, Lfx.Data.Row registro, string tabla)
                 {
                         Lfx.Data.Table Tabla = this.Connection.Tables[tabla];
-                        if (Tabla.Tags != null) {
+                        if (Tabla.Tags != null && Tabla.Tags.Count > 0) {
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
                                         if (Tg.Nullable == false && registro[Tg.FieldName] == null) {
                                                 switch (Tg.FieldType) {
