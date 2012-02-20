@@ -126,5 +126,37 @@ namespace Lbl.Entidades
                                 return m_Moneda;
                         }
                 }
+
+
+                /// <summary>
+                /// La tasa de IVA normal.
+                /// </summary>
+                public decimal Iva1
+                {
+                        get
+                        {
+                                return this.GetFieldValue<decimal>("iva1");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("iva1", value);
+                        }
+                }
+
+
+                /// <summary>
+                /// La tasa de IVA reducida.
+                /// </summary>
+                public decimal Iva2
+                {
+                        get
+                        {
+                                return this.GetFieldValue<decimal>("iva2");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("iva2", value);
+                        }
+                }
         }
 }

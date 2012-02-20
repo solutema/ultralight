@@ -644,6 +644,8 @@
     <Column name="clavejur" inputtype="Relation" label="Clave de Identificación de Personas Jurídicas" nullable="1" />
     <Column name="claveban" inputtype="Relation" label="Clave de Identificación de Cuentas Bancarias" nullable="1" />
     <Column name="id_moneda" inputtype="Relation" label="Moneda" nullable="1" />
+    <Column name="iva1" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
+    <Column name="iva2" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Index table="paises" name="PRIMARY" columns="id_pais" unique="1" primary="1" />
     <Index table="paises" name="paises_id_moneda" columns="id_moneda" unique="0" primary="0" />
     <Index table="paises" name="paises_clavefis" columns="clavefis" unique="0" primary="0" />

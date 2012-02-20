@@ -41,8 +41,8 @@ UPDATE personas SET fecha=fechaalta WHERE fecha IS NULL;
 UPDATE personas SET fecha=contrasena_fecha WHERE fecha IS NULL;
 UPDATE personas SET fecha=NOW() WHERE fecha IS NULL;
 
-REPLACE INTO articulos_rubros (id_rubro, nombre, estado, fecha, id_alicuota) VALUES (1, 'Productos o servicios IVA 21%', 1, NOW(), 1);
-REPLACE INTO articulos_rubros (id_rubro, nombre, estado, fecha, id_alicuota) VALUES (2, 'Productos o servicios IVA 10.5%', 1, NOW(), 2);
+REPLACE INTO articulos_rubros (id_rubro, nombre, estado, fecha, id_alicuota) VALUES (1, 'Artículos con IVA normal', 1, NOW(), 1);
+REPLACE INTO articulos_rubros (id_rubro, nombre, estado, fecha, id_alicuota) VALUES (2, 'Artículos con IVA reducido', 1, NOW(), 2);
 
 
 REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "signo", "iso", "cotizacion") VALUES (1,'Dólares',NULL,1,'USD','USD',1);

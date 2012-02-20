@@ -229,10 +229,23 @@ namespace Lazaro.WinMain.Config
                         if (this.PrimeraVez) {
                                 // Hago cambios referentes al país donde está configurado el sistema
 
+                                System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
+
+                                Lbl.Entidades.Pais Pais = EntradaPais.Elemento as Lbl.Entidades.Pais;
+                                if (Pais != null) {
+                                        // Configuro las alícuotas de IVA, normal y reducida
+                                        Lbl.Impuestos.Alicuota Alic1 = new Lbl.Impuestos.Alicuota(this.Connection, 1);
+                                        Alic1.Porcentaje = Pais.Iva1;
+                                        Alic1.Guardar();
+                                        
+                                        Lbl.Impuestos.Alicuota Alic2 = new Lbl.Impuestos.Alicuota(this.Connection, 2);
+                                        Alic2.Porcentaje = Pais.Iva2;
+                                        Alic2.Guardar();
+                                }
+
                                 // Cambio la sucursal 1 y el cliente consumidor final a la localidad proporcionada
                                 Lbl.Entidades.Localidad Loc = EntradaLocalidad.Elemento as Lbl.Entidades.Localidad;
                                 if (Loc != null) {
-                                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
                                         Lbl.Entidades.Sucursal Suc1 = new Lbl.Entidades.Sucursal(this.Connection, 1);
                                         Suc1.Localidad = Loc;
                                         Suc1.Guardar();
@@ -240,9 +253,9 @@ namespace Lazaro.WinMain.Config
                                         Lbl.Personas.Persona ConsFinal = new Lbl.Personas.Persona(this.Connection, 999);
                                         ConsFinal.Localidad = Loc;
                                         ConsFinal.Guardar();
-
-                                        Trans.Commit();
                                 }
+
+                                Trans.Commit();
                         }
 
                         return false;
