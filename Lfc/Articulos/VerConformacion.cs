@@ -57,7 +57,7 @@ namespace Lfc.Articulos
                         
                         foreach (System.Data.DataRow Situacion in Situaciones.Rows) {
                                 ListViewGroup Grupo = ListaConformacion.Groups.Add(Situacion["id_situacion"].ToString(), Situacion["nombre"].ToString());
-                                System.Data.DataTable Articulos = this.Connection.Select("SELECT serie, cantidad FROM articulos_series WHERE id_articulo=" + articulo.Id.ToString() + " AND id_situacion=" + Situacion["id_situacion"].ToString());
+                                System.Data.DataTable Articulos = this.Connection.Select("SELECT serie, cantidad FROM articulos_series WHERE cantidad<>0 AND id_articulo=" + articulo.Id.ToString() + " AND id_situacion=" + Situacion["id_situacion"].ToString());
                                 foreach(System.Data.DataRow Articulo in Articulos.Rows){
                                         string Serie = Articulo["serie"].ToString();
                                         ListViewItem Itm = ListaConformacion.Items.Add(Serie);
@@ -70,7 +70,7 @@ namespace Lfc.Articulos
                         DataTable Stocks = this.Connection.Select("SELECT id_articulo, id_situacion, cantidad FROM articulos_stock WHERE id_articulo=" + articulo.Id.ToString() + " AND cantidad<>0 AND id_situacion<>998 AND id_situacion<>999 ORDER BY id_situacion");
 
                         if (Stocks != null) {
-                                ListViewGroup Grupo = ListaConformacion.Groups.Add("000", "Totales por Depósito");
+                                ListViewGroup Grupo = ListaConformacion.Groups.Add("000", "Totales por depósito");
 
                                 foreach (System.Data.DataRow Stock in Stocks.Rows) {
                                         Lfx.Data.Row Situacion = this.Connection.Row("articulos_situaciones", "id_situacion", System.Convert.ToInt32(Stock["id_situacion"]));

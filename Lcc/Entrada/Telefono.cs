@@ -42,9 +42,9 @@ namespace Lcc.Entrada
                 {
                         InitializeComponent();
 
-                        /* EntradaNombre.AutoCompleteStringCollection = new System.Windows.Forms.AutoCompleteStringCollection() {
-                                "Trabajo", "Casa", "Móvil", "Fax", "Alternativo"
-                        }; */
+                        EntradaNombre.AutoCompleteStringCollection = new System.Windows.Forms.AutoCompleteStringCollection() {
+                                "Trabajo", "Casa", "Móvil", "Fax", "Celular"
+                        };
                 }
 
                 public override string Text

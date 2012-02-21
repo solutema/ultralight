@@ -107,12 +107,12 @@ namespace Lfc.Personas
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.EntradaObs = new Lui.Forms.TextBox();
                         this.frame5 = new Lui.Forms.Frame();
-                        this.label24 = new Lui.Forms.Label();
-                        this.label4 = new Lui.Forms.Label();
                         this.EntradaFechaBaja = new Lui.Forms.TextBox();
-                        this.label26 = new Lui.Forms.Label();
                         this.EntradaFechaAlta = new Lui.Forms.TextBox();
+                        this.label4 = new Lui.Forms.Label();
+                        this.label24 = new Lui.Forms.Label();
                         this.label25 = new Lui.Forms.Label();
+                        this.label26 = new Lui.Forms.Label();
                         this.matrizTelefonos1 = new Lcc.Entrada.MatrizTelefonos();
                         this.PanelI1.SuspendLayout();
                         this.PanelD1.SuspendLayout();
@@ -815,24 +815,6 @@ namespace Lfc.Personas
                         this.frame5.TabIndex = 4;
                         this.frame5.Text = "Estado";
                         // 
-                        // label24
-                        // 
-                        this.label24.Location = new System.Drawing.Point(8, 40);
-                        this.label24.Name = "label24";
-                        this.label24.Size = new System.Drawing.Size(128, 24);
-                        this.label24.TabIndex = 0;
-                        this.label24.Text = "Estado";
-                        this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // label4
-                        // 
-                        this.label4.Location = new System.Drawing.Point(328, 40);
-                        this.label4.Name = "label4";
-                        this.label4.Size = new System.Drawing.Size(144, 24);
-                        this.label4.TabIndex = 6;
-                        this.label4.Text = "Observaciones";
-                        this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
                         // EntradaFechaBaja
                         // 
                         this.EntradaFechaBaja.DataType = Lui.Forms.DataTypes.Date;
@@ -843,15 +825,6 @@ namespace Lfc.Personas
                         this.EntradaFechaBaja.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaBaja.TabIndex = 5;
                         this.EntradaFechaBaja.TabStop = false;
-                        // 
-                        // label26
-                        // 
-                        this.label26.Location = new System.Drawing.Point(8, 120);
-                        this.label26.Name = "label26";
-                        this.label26.Size = new System.Drawing.Size(128, 24);
-                        this.label26.TabIndex = 4;
-                        this.label26.Text = "Fecha de Baja";
-                        this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaFechaAlta
                         // 
@@ -865,6 +838,24 @@ namespace Lfc.Personas
                         this.EntradaFechaAlta.TabStop = false;
                         this.EntradaFechaAlta.Text = "01/01/2001";
                         // 
+                        // label4
+                        // 
+                        this.label4.Location = new System.Drawing.Point(328, 40);
+                        this.label4.Name = "label4";
+                        this.label4.Size = new System.Drawing.Size(144, 24);
+                        this.label4.TabIndex = 6;
+                        this.label4.Text = "Observaciones";
+                        this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label24
+                        // 
+                        this.label24.Location = new System.Drawing.Point(8, 40);
+                        this.label24.Name = "label24";
+                        this.label24.Size = new System.Drawing.Size(128, 24);
+                        this.label24.TabIndex = 0;
+                        this.label24.Text = "Estado";
+                        this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // label25
                         // 
                         this.label25.Location = new System.Drawing.Point(8, 88);
@@ -873,6 +864,15 @@ namespace Lfc.Personas
                         this.label25.TabIndex = 2;
                         this.label25.Text = "Fecha de Alta";
                         this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label26
+                        // 
+                        this.label26.Location = new System.Drawing.Point(8, 120);
+                        this.label26.Name = "label26";
+                        this.label26.Size = new System.Drawing.Size(128, 24);
+                        this.label26.TabIndex = 4;
+                        this.label26.Text = "Fecha de Baja";
+                        this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // matrizTelefonos1
                         // 

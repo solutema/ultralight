@@ -455,7 +455,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(136, 24);
                         this.Label11.TabIndex = 8;
-                        this.Label11.Text = "Número de Cupón";
+                        this.Label11.Text = "Número de cupón";
                         this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label15

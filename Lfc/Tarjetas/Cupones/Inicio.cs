@@ -54,7 +54,7 @@ namespace Lfc.Tarjetas.Cupones
                                 {(int)Lbl.Pagos.EstadosCupones.Anulado, "Anulado"},
                                 {(int)Lbl.Pagos.EstadosCupones.Presentado, "Presentado"},
                                 {(int)Lbl.Pagos.EstadosCupones.Rechazaro, "Rechazado"},
-                                {(int)Lbl.Pagos.EstadosCupones.SinPresentar, "Sin Presentar"}
+                                {(int)Lbl.Pagos.EstadosCupones.SinPresentar, "Sin presentar"}
 
                         };
 
@@ -215,8 +215,8 @@ namespace Lfc.Tarjetas.Cupones
                                 }
 
                                 FormularioAcreditacion.IgnorarCambios = true;
-                                FormularioAcreditacion.txtCupones.Text = iCantidad.ToString();
-                                FormularioAcreditacion.EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                                FormularioAcreditacion.EntradaCuponesCantidad.Text = iCantidad.ToString();
+                                FormularioAcreditacion.EntradaCuponesSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 FormularioAcreditacion.EntradaComisionTarjeta.Text = Lfx.Types.Formatting.FormatCurrency(ComisionTarjeta, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 FormularioAcreditacion.EntradaComisionPlan.Text = Lfx.Types.Formatting.FormatCurrency(ComisionPlan, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 FormularioAcreditacion.EntradaComisionUsuario.Text = "0";
@@ -229,7 +229,7 @@ namespace Lfc.Tarjetas.Cupones
                                         if (FormularioAcreditacion.ShowDialog() == DialogResult.OK) {
                                                 TotalAcreditar = Lfx.Types.Parsing.ParseCurrency(FormularioAcreditacion.EntradaTotal.Text);
                                                 GestionDeCobro = Total - TotalAcreditar;
-                                                FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.Connection, ((Lbl.Pagos.TiposFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.txtFormaPago.TextKey)))));
+                                                FormularioPago.Cobro.FromCobro(new Lbl.Comprobantes.Cobro(this.Connection, ((Lbl.Pagos.TiposFormasDePago)(Lfx.Types.Parsing.ParseInt(FormularioAcreditacion.EntradaFormaPago.TextKey)))));
                                                 FormularioPago.Cobro.FormaDePagoEditable = false;
                                                 FormularioPago.Cobro.Importe = TotalAcreditar;
                                                 FormularioPago.Cobro.ImporteEditable = false;
@@ -336,7 +336,7 @@ namespace Lfc.Tarjetas.Cupones
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
                                 if (itm.Checked) {
                                         CantidadCupones++;
-                                        if (itm.SubItems["estado"].Text != "Sin Presentar" && itm.SubItems["estado"].Text != "Presentado") {
+                                        if (itm.SubItems["tarjetas_cupones.estado"].Text != "Sin presentar" && itm.SubItems["estado"].Text != "Presentado") {
                                                 Lui.Forms.MessageBox.Show("Sólo se pueden anular cupones que no han sido acreditados o rechazados.", "Anular de cupones");
                                                 return;
                                         }
@@ -352,7 +352,7 @@ namespace Lfc.Tarjetas.Cupones
                         using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea eliminar de manera permanente los cupones seleccionados?", "Anular cupones")) {
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Anulando Cupones", "Se van a eleiminar los cupones seleccionados");
+                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Anulando cupones", "Se van a eleiminar los cupones seleccionados");
                                         Progreso.Max = CantidadCupones;
                                         Progreso.Begin();
                                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
@@ -380,7 +380,7 @@ namespace Lfc.Tarjetas.Cupones
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
                                 if (itm.Checked) {
                                         CantidadCupones++;
-                                        if (itm.SubItems["estado"].Text != "Sin Presentar") {
+                                        if (itm.SubItems["tarjetas_cupones.estado"].Text != "Sin presentar") {
                                                 Lui.Forms.MessageBox.Show("Sólo se pueden hacer presentaciones de cupones que no han sido presentados.", "Presentación de cupones");
                                                 return;
                                         }
@@ -396,7 +396,7 @@ namespace Lfc.Tarjetas.Cupones
                         using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Desea marcar los cupones seleccionados como presentados?", "Presentación de cupones")) {
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Presentación de Cupones", "Se están marcando los cupones seleccionados como 'Presentados'.");
+                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Presentación de cupones", "Se están marcando los cupones seleccionados como 'Presentados'.");
                                         Progreso.Max = CantidadCupones;
                                         Progreso.Begin();
                                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {

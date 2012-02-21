@@ -29,7 +29,7 @@ REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado"
 REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "tipo") VALUES ('25','RUC','Registro Único de Contribuyentes','Panamá, Perú y en Ecuador',1,3);
 REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "tipo") VALUES ('26','RTU','Registro Tributario Unificado','Guatemala',1,3);
 REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "tipo") VALUES ('27','CPF','Cadastro de Pessoas Físicas','Brazil',1,3);
-REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "tipo") VALUES ('80','Nº Cuenta','Número de cuenta bancaria',NULL,1,4);
+REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "tipo") VALUES ('80','Cta. Bancaria','Número de cuenta bancaria',NULL,1,4);
 REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "tipo") VALUES ('81','IBAN','International Bank Account Number','Europa, otros',1,4);
 REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "tipo") VALUES ('82','CBU','Clave Bancaria Uniforme','Argentina',1,4);
 REPLACE INTO "tipo_doc" ("id_tipo_doc", "nombre", "descripcion", "obs", "estado", "tipo") VALUES ('83','CLABE','Clave Bancaria Estandarizada','México',1,4);

@@ -782,10 +782,10 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
-                        this.EntradaProveedor.DataTextField = "nombre";
-                        this.EntradaProveedor.DataValueField = "id_marca";
+                        this.EntradaProveedor.DataTextField = "nombre_visible";
+                        this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.ExtraDetailFields = "";
-                        this.EntradaProveedor.Filter = "";
+                        this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.Location = new System.Drawing.Point(604, 304);
                         this.EntradaProveedor.MaximumSize = new System.Drawing.Size(480, 32);
@@ -796,7 +796,7 @@ namespace Lfc.Articulos
                         this.EntradaProveedor.Required = false;
                         this.EntradaProveedor.Size = new System.Drawing.Size(164, 24);
                         this.EntradaProveedor.TabIndex = 31;
-                        this.EntradaProveedor.Table = "marcas";
+                        this.EntradaProveedor.Table = "personas";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
                         // 

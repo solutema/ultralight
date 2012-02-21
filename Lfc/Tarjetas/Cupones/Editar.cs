@@ -53,7 +53,7 @@ namespace Lfc.Tarjetas.Cupones
                         Lbl.Pagos.Cupon Elem = this.Elemento as Lbl.Pagos.Cupon;
 
                         EntradaNumero.Text = Elem.Numero.ToString();
-                        EntradaTarjeta.Elemento = Elem.FormaDePago;
+                        EntradaFormaPago.Elemento = Elem.FormaDePago;
                         EntradaPlan.Elemento = Elem.Plan;
 
                         EntradaFechaPresentacion.Text = Lfx.Types.Formatting.FormatDate(Elem.FechaPresentacion);
@@ -67,7 +67,7 @@ namespace Lfc.Tarjetas.Cupones
                         Lbl.Pagos.Cupon Elem = this.Elemento as Lbl.Pagos.Cupon;
 
                         Elem.Numero = EntradaNumero.Text;
-                        Elem.FormaDePago = EntradaTarjeta.Elemento as Lbl.Pagos.FormaDePago;
+                        Elem.FormaDePago = EntradaFormaPago.Elemento as Lbl.Pagos.FormaDePago;
                         Elem.Plan = EntradaPlan.Elemento as Lbl.Pagos.Plan;
 
                         Elem.FechaPresentacion = Lfx.Types.Parsing.ParseDate(EntradaFechaPresentacion.Text);

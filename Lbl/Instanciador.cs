@@ -245,6 +245,15 @@ namespace Lbl
                                 case "tipo_doc":
                                 case "Lbl.Entidades.ClaveUnica":
                                         return typeof(Lbl.Entidades.ClaveUnica);
+
+                                case "tarjetas_cupones":
+                                case "Lbl.Pagos.Cupon":
+                                        return typeof(Lbl.Pagos.Cupon);
+                                        
+                                case "tarjetas_planes":
+                                case "Lbl.Pagos.Plan":
+                                        return typeof(Lbl.Pagos.Plan);
+
                                 default:
                                         // Intento cargarlo mediante reflexión
                                         if (Ensamblado == null)

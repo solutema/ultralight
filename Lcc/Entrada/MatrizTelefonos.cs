@@ -45,7 +45,7 @@ namespace Lcc.Entrada
                                 List<string> Tels = new List<string>();
                                 foreach (Telefono TelCtrl in this.Controles) {
                                         if (TelCtrl.IsEmpty == false)
-                                                Tels.Add(TelCtrl.Text);
+                                                Tels.Add("\"" + TelCtrl.Text + "\"");
                                 }
 
                                 return string.Join("; ", Tels.ToArray());
@@ -56,11 +56,12 @@ namespace Lcc.Entrada
                                         this.Count = 0;
                                         this.AutoAgregarOQuitar(false);
                                 } else {
-                                        string[] Tels = value.Split(new char[] { ';', '/' }, StringSplitOptions.RemoveEmptyEntries);
-                                        this.Count = Tels.Length;
+                                        IList<string> Tels = Lfx.Types.Strings.SplitDelimitedString(value, ";", "\"");
+                                        this.Count = Tels.Count;
                                         int i = 0;
                                         foreach (string Tel in Tels) {
-                                                this.Controles[i++].Text = Tel;
+                                                if (Tel.Length > 0)
+                                                        this.Controles[i++].Text = Tel.Trim(new char[] { ' ', '"' });
                                         }
                                 }
                         }

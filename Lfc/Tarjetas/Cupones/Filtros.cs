@@ -281,7 +281,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
         "No Cobrados|-2",
-        "Sin Presentar|0",
+        "Sin presentar|0",
         "Cancelados|1",
         "Rechazados|2",
         "Presentados|10",

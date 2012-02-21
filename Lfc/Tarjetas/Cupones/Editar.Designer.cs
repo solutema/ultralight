@@ -56,7 +56,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaNumero = new Lui.Forms.TextBox();
                         this.Label3 = new Lui.Forms.Label();
                         this.label4 = new Lui.Forms.Label();
-                        this.EntradaTarjeta = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaFormaPago = new Lcc.Entrada.CodigoDetalle();
                         this.label10 = new Lui.Forms.Label();
                         this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
                         this.label1 = new Lui.Forms.Label();
@@ -90,29 +90,29 @@ namespace Lfc.Tarjetas.Cupones
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(160, 24);
                         this.label4.TabIndex = 2;
-                        this.label4.Text = "Medio de Pago";
+                        this.label4.Text = "Forma de pago";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaTarjeta
+                        // EntradaFormaPago
                         // 
-                        this.EntradaTarjeta.CanCreate = false;
-                        this.EntradaTarjeta.DataTextField = "nombre";
-                        this.EntradaTarjeta.DataValueField = "id_tarjeta";
-                        this.EntradaTarjeta.ExtraDetailFields = "";
-                        this.EntradaTarjeta.Filter = "";
-                        this.EntradaTarjeta.FreeTextCode = "";
-                        this.EntradaTarjeta.Location = new System.Drawing.Point(160, 28);
-                        this.EntradaTarjeta.MaxLength = 200;
-                        this.EntradaTarjeta.Name = "EntradaTarjeta";
-                        this.EntradaTarjeta.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaTarjeta.PlaceholderText = "Sucursal";
-                        this.EntradaTarjeta.ReadOnly = false;
-                        this.EntradaTarjeta.Required = true;
-                        this.EntradaTarjeta.Size = new System.Drawing.Size(480, 24);
-                        this.EntradaTarjeta.TabIndex = 3;
-                        this.EntradaTarjeta.Table = "tarjetas";
-                        this.EntradaTarjeta.Text = "0";
-                        this.EntradaTarjeta.TextDetail = "";
+                        this.EntradaFormaPago.CanCreate = false;
+                        this.EntradaFormaPago.DataTextField = "nombre";
+                        this.EntradaFormaPago.DataValueField = "id_formapago";
+                        this.EntradaFormaPago.ExtraDetailFields = "";
+                        this.EntradaFormaPago.Filter = "";
+                        this.EntradaFormaPago.FreeTextCode = "";
+                        this.EntradaFormaPago.Location = new System.Drawing.Point(160, 28);
+                        this.EntradaFormaPago.MaxLength = 200;
+                        this.EntradaFormaPago.Name = "EntradaFormaPago";
+                        this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
+                        this.EntradaFormaPago.PlaceholderText = "Forma de pago";
+                        this.EntradaFormaPago.ReadOnly = false;
+                        this.EntradaFormaPago.Required = true;
+                        this.EntradaFormaPago.Size = new System.Drawing.Size(480, 24);
+                        this.EntradaFormaPago.TabIndex = 3;
+                        this.EntradaFormaPago.Table = "formaspago";
+                        this.EntradaFormaPago.Text = "0";
+                        this.EntradaFormaPago.TextDetail = "";
                         // 
                         // label10
                         // 
@@ -135,7 +135,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
                         this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaPlan.PlaceholderText = "Impresora";
+                        this.EntradaPlan.PlaceholderText = "Plan";
                         this.EntradaPlan.ReadOnly = false;
                         this.EntradaPlan.Required = true;
                         this.EntradaPlan.Size = new System.Drawing.Size(480, 24);
@@ -150,12 +150,12 @@ namespace Lfc.Tarjetas.Cupones
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(160, 24);
                         this.label1.TabIndex = 6;
-                        this.label1.Text = "Fecha de Presentación";
+                        this.label1.Text = "Fecha de presentación";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaFechaPresentacion
                         // 
-                        this.EntradaFechaPresentacion.DataType = Lui.Forms.DataTypes.DateTime;
+                        this.EntradaFechaPresentacion.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaPresentacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaPresentacion.Location = new System.Drawing.Point(160, 84);
                         this.EntradaFechaPresentacion.Name = "EntradaFechaPresentacion";
@@ -170,12 +170,12 @@ namespace Lfc.Tarjetas.Cupones
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(160, 24);
                         this.label2.TabIndex = 8;
-                        this.label2.Text = "Fecha de Acreditación";
+                        this.label2.Text = "Fecha de acreditación";
                         this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaFechaAcreditacion
                         // 
-                        this.EntradaFechaAcreditacion.DataType = Lui.Forms.DataTypes.DateTime;
+                        this.EntradaFechaAcreditacion.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaAcreditacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaAcreditacion.Location = new System.Drawing.Point(160, 112);
                         this.EntradaFechaAcreditacion.Name = "EntradaFechaAcreditacion";
@@ -193,7 +193,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.Controls.Add(this.EntradaPlan);
                         this.Controls.Add(this.label10);
                         this.Controls.Add(this.Label3);
-                        this.Controls.Add(this.EntradaTarjeta);
+                        this.Controls.Add(this.EntradaFormaPago);
                         this.Controls.Add(this.label4);
                         this.Controls.Add(this.EntradaNumero);
                         this.Name = "Editar";
@@ -206,7 +206,7 @@ namespace Lfc.Tarjetas.Cupones
                 internal Lui.Forms.TextBox EntradaNumero;
                 internal Lui.Forms.Label Label3;
                 internal Lui.Forms.Label label4;
-                internal Lcc.Entrada.CodigoDetalle EntradaTarjeta;
+                internal Lcc.Entrada.CodigoDetalle EntradaFormaPago;
                 internal Lui.Forms.Label label10;
                 internal Lcc.Entrada.CodigoDetalle EntradaPlan;
                 internal Lui.Forms.Label label1;
