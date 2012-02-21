@@ -138,6 +138,8 @@ namespace Lazaro.WinMain.Config
                         int PaisActual = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
                         if (PaisActual == 0)
                                 this.PrimeraVez = true;
+                        else
+                                this.PrimeraVez = false;
 
                         EntradaPais.TextInt = PaisActual == 0 ? 1 : PaisActual;
                         EntradaProvincia.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Provincia", 0);

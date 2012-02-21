@@ -152,7 +152,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaTotal.Location = new System.Drawing.Point(496, 328);
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
@@ -160,18 +159,19 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
                         this.EntradaTotal.TabIndex = 41;
                         this.EntradaTotal.Text = "0.00";
+                        this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
                         // 
                         // Label4
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         this.Label4.Location = new System.Drawing.Point(416, 328);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(80, 32);
                         this.Label4.TabIndex = 40;
                         this.Label4.Text = "Total";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        this.Label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         // 
                         // Label5
                         // 
@@ -191,6 +191,7 @@ namespace Lfc.Comprobantes
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSubTotal.Prefijo = "$";
+                        this.EntradaSubTotal.ReadOnly = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(92, 24);
                         this.EntradaSubTotal.TabIndex = 22;
                         this.EntradaSubTotal.TabStop = false;
@@ -339,11 +340,12 @@ namespace Lfc.Comprobantes
                         this.EntradaIva.Name = "EntradaIva";
                         this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaIva.Prefijo = "$";
+                        this.EntradaIva.ReadOnly = true;
                         this.EntradaIva.Size = new System.Drawing.Size(92, 24);
                         this.EntradaIva.TabIndex = 54;
                         this.EntradaIva.TabStop = false;
                         this.EntradaIva.Text = "0.00";
-                        this.EntradaIva.Visible = false;
+                        this.EntradaIva.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // EtiquetaIva
                         // 
@@ -354,7 +356,6 @@ namespace Lfc.Comprobantes
                         this.EtiquetaIva.TabIndex = 53;
                         this.EtiquetaIva.Text = "IVA";
                         this.EtiquetaIva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.EtiquetaIva.Visible = false;
                         // 
                         // Editar
                         // 

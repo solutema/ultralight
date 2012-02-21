@@ -137,12 +137,7 @@ namespace Lfc.Comprobantes
                         EntradaInteres.Text = Lfx.Types.Formatting.FormatNumber(Comprob.Recargo, 2);
                         EntradaCuotas.Text = Comprob.Cuotas.ToString();
 
-                        if (this.PuedeEditar() == false) {
-                                // Sólo muestro IVA en facturas que fueron impresas
-                                EntradaIva.ValueDecimal = Comprob.ImporteIva;
-                                EntradaIva.Visible = true;
-                                EtiquetaIva.Visible = true;
-                        }
+                        EntradaIva.ValueDecimal = Comprob.ImporteIva;
                         EntradaTotal.ValueDecimal = Comprob.Total;
 
                         if (this.Elemento.Existe == true || this.PuedeEditar() == false) {
@@ -298,8 +293,10 @@ namespace Lfc.Comprobantes
 
                 private void ProductArray_TotalChanged(System.Object sender, System.EventArgs e)
                 {
-                        if (this.TemporaryReadOnly == false)
-                                EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(EntradaProductos.Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        if (this.TemporaryReadOnly == false) {
+                                EntradaSubTotal.ValueDecimal = EntradaProductos.Total;
+                                EntradaIva.ValueDecimal = EntradaProductos.ImporteIva;
+                        }
                 }
 
 
@@ -388,9 +385,10 @@ namespace Lfc.Comprobantes
                         else
                                 Total = SubTotal * (1 + Recargo - Descuento);
 
-                        int Cuotas = Lfx.Types.Parsing.ParseInt(EntradaCuotas.Text);
+                        Total += EntradaIva.ValueDecimal;
                         EntradaTotal.ValueDecimal = Total;
 
+                        int Cuotas = EntradaCuotas.ValueInt;
                         if (Cuotas > 0)
                                 EntradaValorCuota.ValueDecimal = Total / Cuotas;
                         else

@@ -291,11 +291,29 @@ namespace Lcc.Entrada.Articulos
                 {
                         get
                         {
-                                decimal m_Total = 0;
+                                decimal Res = 0;
                                 foreach (DetalleComprobante Control in this.ChildControls) {
-                                        m_Total += Control.Importe;
+                                        Res += Control.Importe;
                                 }
-                                return m_Total;
+                                return Res;
+                        }
+                }
+
+
+                public decimal ImporteIva
+                {
+                        get
+                        {
+                                decimal Res = 0;
+                                foreach (DetalleComprobante Control in this.ChildControls) {
+                                        Lbl.Impuestos.Alicuota Alic;
+                                        if(Control.Articulo == null)
+                                                Alic = Lbl.Sys.Config.Actual.Empresa.AlicuotaPredeterminada;
+                                        else
+                                                Alic = Control.Articulo.ObtenerAlicuota();
+                                        Res += Control.Importe * Alic.Porcentaje / 100m;
+                                }
+                                return Res;
                         }
                 }
 
