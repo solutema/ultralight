@@ -242,7 +242,7 @@ namespace Lbl.Comprobantes
                 public Lbl.Impuestos.Alicuota ObtenerAlicuota()
                 {
                         if (this.Articulo == null)
-                                return Lbl.Sys.Config.Actual.Empresa.AlicuotaPredeterminada;
+                                return Lbl.Sys.Config.Empresa.AlicuotaPredeterminada;
                         else
                                 return this.Articulo.ObtenerAlicuota();
                 }

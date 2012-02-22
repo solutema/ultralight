@@ -256,7 +256,7 @@ namespace Lbl.Comprobantes
                         foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
                                 if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant()
                                         && Impr.PuntoDeVenta != null && Impr.PuntoDeVenta.Numero == this.PV
-                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Id)
+                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Empresa.SucursalActual.Id)
                                         return Impr.Impresora;
                         }
 
@@ -722,7 +722,7 @@ namespace Lbl.Comprobantes
                                 Comando.Fields.AddWithValue("id_vendedor", this.Vendedor.Id);
                         
                         if (this.Sucursal == null)
-                                Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
+                                Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual);
                         else
                                 Comando.Fields.AddWithValue("id_sucursal", this.Sucursal.Id);
 

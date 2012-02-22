@@ -99,7 +99,7 @@ namespace Lbl.Comprobantes
                         if (this.Tipo == null)
                                 this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["RC"];
                         
-                        this.PV = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos." + this.Tipo.Nomenclatura + ".PV", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
+                        this.PV = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos." + this.Tipo.Nomenclatura + ".PV", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual);
                         this.Vendedor = new Personas.Persona(this.Connection, Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                 }
 
@@ -308,7 +308,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("nombre", this.PV.ToString("0000") + "-" + this.Numero.ToString("00000000"));
                         Comando.Fields.AddWithValue("id_vendedor", Lfx.Data.Connection.ConvertZeroToDBNull(this.Vendedor.Id));
                         Comando.Fields.AddWithValue("id_cliente", Lfx.Data.Connection.ConvertZeroToDBNull(this.Cliente.Id));
-                        Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
+                        Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual);
                         Comando.Fields.AddWithValue("total", this.Total);
                         Comando.Fields.AddWithValue("obs", this.Obs);
 

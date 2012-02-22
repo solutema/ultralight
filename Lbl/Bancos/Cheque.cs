@@ -296,7 +296,7 @@ namespace Lbl.Bancos
                                 Comando.Fields.AddWithValue("id_chequera", this.Chequera.Id);
 
 			Comando.Fields.AddWithValue("numero", this.Numero);
-			Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
+			Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual);
 
                         if (this.ReciboCobro == null)
                                 Comando.Fields.AddWithValue("id_recibo", null);

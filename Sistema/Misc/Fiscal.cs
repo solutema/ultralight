@@ -52,7 +52,7 @@ namespace Lazaro.WinMain.Misc
                         base.OnLoad(e);
                         if (this.Connection != null) {
                                 //Lleno la tabla de PVs
-                                System.Data.DataTable PVs = this.Connection.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
+                                System.Data.DataTable PVs = this.Connection.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
                                 string[] PVDataSet = new string[PVs.Rows.Count];
                                 int i = 0;
                                 foreach (System.Data.DataRow PV in PVs.Rows) {
@@ -62,11 +62,11 @@ namespace Lazaro.WinMain.Misc
 
                                 if (EntradaPv.SetData.Length > 0) {
                                         //Busco el PV para esta estación, en esta sucursal
-                                        this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
+                                        this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
 
                                         if (this.Pv == 0)
                                                 //Busco el PV para alguna estación, en esta sucursal
-                                                this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
+                                                this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
 
                                         if (this.Pv != 0)
                                                 EntradaPv.TextKey = this.Pv.ToString();

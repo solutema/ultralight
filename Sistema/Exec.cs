@@ -194,7 +194,7 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "REBOOT":
-                                        int EstacionFiscal = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
+                                        int EstacionFiscal = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
                                         if (EstacionFiscal > 0) {
                                                 Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal);
                                                 System.Threading.Thread.Sleep(100);
@@ -223,7 +223,7 @@ namespace Lazaro.WinMain
                                                         case "NOW":
                                                                 Lfx.Backups.BackupInfo Bkp = new Lfx.Backups.BackupInfo();
                                                                 Bkp.Name = "Copia de seguridad de Lázaro del " + System.DateTime.Now.ToString("dd-MM-yyyy (HH.mm).lbk");
-                                                                Bkp.CompanyName = Lbl.Sys.Config.Actual.Empresa.Nombre;
+                                                                Bkp.CompanyName = Lbl.Sys.Config.Empresa.Nombre;
                                                                 Bkp.UserName = Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombre;
                                                                 Bkp.ProgramVersion = Aplicacion.Version() + " del " + Aplicacion.BuildDate();
 

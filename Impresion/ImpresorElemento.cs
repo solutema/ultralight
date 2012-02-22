@@ -92,7 +92,7 @@ namespace Lazaro.Impresion
                         // Intento obtener una impresora para esta susursal, para esta estación
                         foreach (Lbl.Impresion.TipoImpresora Impr in this.Tipo.Impresoras) {
                                 if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant()
-                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Id)
+                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Empresa.SucursalActual.Id)
                                         return Impr.Impresora;
                         }
 
@@ -106,7 +106,7 @@ namespace Lazaro.Impresion
                         // Intento obtener una impresora para esta sucursal, cualquier estacion
                         foreach (Lbl.Impresion.TipoImpresora Impr in this.Tipo.Impresoras) {
                                 if (Impr.Estacion == null
-                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Id)
+                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Empresa.SucursalActual.Id)
                                         return Impr.Impresora;
                         }
 
@@ -245,7 +245,7 @@ namespace Lazaro.Impresion
 
                                 case "EMPRESA":
                                 case "EMPRESA.NOMBRE":
-                                        return Lbl.Sys.Config.Actual.Empresa.Nombre;
+                                        return Lbl.Sys.Config.Empresa.Nombre;
                                 case "EMPRESA.DOMICILIO":
                                         return Lfx.Workspace.Master.CurrentConfig.Empresa.Domicilio;
                                 case "EMPRESA.CIUDAD":

@@ -567,7 +567,7 @@ namespace Lbl.Personas
                                 if (m_Localidad == null) {
                                         if (this.Id == 999)
                                                 // El cliente especial "Consumidor Final" está siempre en la ciudad actual
-                                                m_Localidad = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Localidad;
+                                                m_Localidad = Lbl.Sys.Config.Empresa.SucursalActual.Localidad;
                                         else if (this.GetFieldValue<int>("id_ciudad") > 0)
                                                 m_Localidad = new Lbl.Entidades.Localidad(this.Connection, this.GetFieldValue<int>("id_ciudad"));
                                 }
@@ -599,7 +599,7 @@ namespace Lbl.Personas
                 {
                         if (this.FacturaPreferida == null) {
                                 if (this.SituacionTributaria == null) {
-                                        if (Lbl.Sys.Config.Actual.Empresa.SituacionTributaria == 4)
+                                        if (Lbl.Sys.Config.Empresa.SituacionTributaria == 4)
                                                 // Soy monotributista
                                                 return "C";
                                         else

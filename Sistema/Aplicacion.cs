@@ -614,7 +614,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                 private static Lfx.Types.OperationResult IniciarGui()
                 {
                         int Configurado = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Configurado", 0);
-                        if (Configurado == 0 && Lbl.Sys.Config.Actual.Empresa.ClaveTributaria == null) {
+                        if (Configurado == 0 && Lbl.Sys.Config.Empresa.ClaveTributaria == null) {
                                 Config.Preferencias FormConfig = new Config.Preferencias();
                                 FormConfig.PrimeraVez = true;
                                 if (FormConfig.ShowDialog() != DialogResult.OK)
@@ -719,8 +719,8 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                                                 "estacion=" + System.Uri.EscapeUriString(System.Environment.MachineName),
                                                                 "so=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.PlatformName),
                                                                 "runtime=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.RuntimeName),
-                                                                "empresa=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Nombre),
-                                                                "email=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Actual.Empresa.Email),
+                                                                "empresa=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Empresa.Nombre),
+                                                                "email=" + System.Uri.EscapeUriString(Lbl.Sys.Config.Empresa.Email),
                                                                 "canal=" + System.Uri.EscapeUriString(Lfx.Updates.Updater.Master != null ? Lfx.Updates.Updater.Master.Channel : ""),
                                                                 "version=" + System.Uri.EscapeUriString(Aplicacion.Version()),
                                                                 "cpu=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.ProcessorName),
@@ -862,7 +862,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lbl.Sys.Config.Actual.Empresa.Email, Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Actual.Empresa.Nombre);
+                        Mensaje.From = new MailAddress(Lbl.Sys.Config.Empresa.Email, Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Empresa.Nombre);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;

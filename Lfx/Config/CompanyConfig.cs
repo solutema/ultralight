@@ -50,12 +50,12 @@ namespace Lfx.Config
                         get
                         {
                                 if (m_Sucursal == null)
-                                        m_Sucursal = ConfigManager.DataBase.Tables["sucursales"].FastRows[this.SucursalPredeterminada];
+                                        m_Sucursal = ConfigManager.DataBase.Tables["sucursales"].FastRows[this.SucursalActual];
                                 return m_Sucursal;
                         }
                 }
 
-                public int SucursalPredeterminada
+                public int SucursalActual
                 {
                         get
                         {
@@ -87,7 +87,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                return ConfigManager.DataBase.FieldString("SELECT nombre FROM ciudades WHERE id_ciudad=(SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + this.SucursalPredeterminada.ToString() + ")");
+                                return ConfigManager.DataBase.FieldString("SELECT nombre FROM ciudades WHERE id_ciudad=(SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + this.SucursalActual.ToString() + ")");
                         }
                 }
 
@@ -95,7 +95,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int City = ConfigManager.DataBase.FieldInt("SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalPredeterminada.ToString());
+                                int City = ConfigManager.DataBase.FieldInt("SELECT id_ciudad FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalActual.ToString());
                                 if (City > 0)
                                         return City;
                                 else
@@ -107,7 +107,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int SituacionOrigen = ConfigManager.DataBase.FieldInt("SELECT situacionorigen FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalPredeterminada.ToString());
+                                int SituacionOrigen = ConfigManager.DataBase.FieldInt("SELECT situacionorigen FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalActual.ToString());
                                 if (SituacionOrigen > 0)
                                         return SituacionOrigen;
                                 else
@@ -119,7 +119,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int IdCajaDiaria = ConfigManager.DataBase.FieldInt("SELECT id_caja_diaria FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalPredeterminada.ToString());
+                                int IdCajaDiaria = ConfigManager.DataBase.FieldInt("SELECT id_caja_diaria FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalActual.ToString());
                                 if (IdCajaDiaria > 0)
                                         return IdCajaDiaria;
                                 else
@@ -131,7 +131,7 @@ namespace Lfx.Config
                 {
                         get
                         {
-                                int IdCajaCheques = ConfigManager.DataBase.FieldInt("SELECT id_caja_cheques FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalPredeterminada.ToString());
+                                int IdCajaCheques = ConfigManager.DataBase.FieldInt("SELECT id_caja_cheques FROM sucursales WHERE id_sucursal=" + ConfigManager.Empresa.SucursalActual.ToString());
                                 if (IdCajaCheques > 0)
                                         return IdCajaCheques;
                                 else

@@ -129,7 +129,7 @@ namespace Lfc.Cajas
 
                         if (this.Connection != null) {
                                 if (Parametros == "efectivo") {
-                                        this.Caja = Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.CajaDiaria;
+                                        this.Caja = Lbl.Sys.Config.Empresa.SucursalActual.CajaDiaria;
                                 } else {
                                         int NumeroCaja = Lfx.Types.Parsing.ParseInt(Parametros);
                                         if (NumeroCaja > 0)

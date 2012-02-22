@@ -91,7 +91,7 @@ namespace Lbl.Impuestos
 
                 public string ObtenerLetraPredeterminada()
                 {
-                        if (Lbl.Sys.Config.Actual.Empresa.SituacionTributaria == 2) {
+                        if (Lbl.Sys.Config.Empresa.SituacionTributaria == 2) {
                                 //Si soy responsable inscripto, facturo según la siguiente tabla
                                 switch (this.Id) {
                                         case 2:

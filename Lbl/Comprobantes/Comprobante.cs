@@ -255,7 +255,7 @@ namespace Lbl.Comprobantes
                         // Intento obtener una impresora para esta susursal, para esta estación
                         foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
                                 if (Impr.Estacion != null && Impr.Estacion.Equals(System.Environment.MachineName, StringComparison.InvariantCultureIgnoreCase)
-                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Id)
+                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Empresa.SucursalActual.Id)
                                         return Impr.Impresora;
                         }
 
@@ -269,7 +269,7 @@ namespace Lbl.Comprobantes
                         // Intento obtener una impresora para esta sucursal, cualquier estacion
                         foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
                                 if (Impr.Estacion == null
-                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Actual.Empresa.SucursalPredeterminada.Id)
+                                        && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Empresa.SucursalActual.Id)
                                         return Impr.Impresora;
                         }
 

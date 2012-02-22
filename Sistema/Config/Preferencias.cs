@@ -106,15 +106,15 @@ namespace Lazaro.WinMain.Config
                         EntradaStockDepositoPredetSuc.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.DepositoPredet", "0");
                         EntradaStockDecimales.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Stock.Decimales", "0");
 
-                        EntradaEmpresaNombre.Text = Lbl.Sys.Config.Actual.Empresa.Nombre;
-                        EntradaEmpresaRazonSocial.Text = Lbl.Sys.Config.Actual.Empresa.RazonSocial;
-                        if (Lbl.Sys.Config.Actual.Empresa.ClaveTributaria == null)
+                        EntradaEmpresaNombre.Text = Lbl.Sys.Config.Empresa.Nombre;
+                        EntradaEmpresaRazonSocial.Text = Lbl.Sys.Config.Empresa.RazonSocial;
+                        if (Lbl.Sys.Config.Empresa.ClaveTributaria == null)
                                 EntradaEmpresaClaveTributaria.Text = "";
                         else
-                                EntradaEmpresaClaveTributaria.Text = Lbl.Sys.Config.Actual.Empresa.ClaveTributaria.ToString();
-                        EntradaEmpresaSituacion.TextInt = Lbl.Sys.Config.Actual.Empresa.SituacionTributaria;
-                        EntradaEmpresaEmail.Text = Lbl.Sys.Config.Actual.Empresa.Email;
-                        EntradaEmpresaId.ValueInt = Lbl.Sys.Config.Actual.Empresa.Id;
+                                EntradaEmpresaClaveTributaria.Text = Lbl.Sys.Config.Empresa.ClaveTributaria.ToString();
+                        EntradaEmpresaSituacion.TextInt = Lbl.Sys.Config.Empresa.SituacionTributaria;
+                        EntradaEmpresaEmail.Text = Lbl.Sys.Config.Empresa.Email;
+                        EntradaEmpresaId.ValueInt = Lbl.Sys.Config.Empresa.Id;
 
                         EntradaBackup.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Tipo", "0");
                         EntradaModoPantalla.TextKey = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Apariencia.ModoPantalla", "maximizado");
@@ -183,15 +183,15 @@ namespace Lazaro.WinMain.Config
                         else
                                 Lfx.Workspace.Master.CurrentConfig.DeleteGlobalSetting("Sistema.Stock.DepositoPredet", Sucursal);
 
-                        Lbl.Sys.Config.Actual.Empresa.Nombre = EntradaEmpresaNombre.Text;
-                        Lbl.Sys.Config.Actual.Empresa.RazonSocial = EntradaEmpresaRazonSocial.Text;
+                        Lbl.Sys.Config.Empresa.Nombre = EntradaEmpresaNombre.Text;
+                        Lbl.Sys.Config.Empresa.RazonSocial = EntradaEmpresaRazonSocial.Text;
                         if (EntradaEmpresaClaveTributaria.Text.Length > 0)
-                                Lbl.Sys.Config.Actual.Empresa.ClaveTributaria = new Lbl.Personas.Claves.Cuit(EntradaEmpresaClaveTributaria.Text);
+                                Lbl.Sys.Config.Empresa.ClaveTributaria = new Lbl.Personas.Claves.Cuit(EntradaEmpresaClaveTributaria.Text);
                         else
-                                Lbl.Sys.Config.Actual.Empresa.ClaveTributaria = null;
-                        Lbl.Sys.Config.Actual.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
-                        Lbl.Sys.Config.Actual.Empresa.Email = EntradaEmpresaEmail.Text;
-                        Lbl.Sys.Config.Actual.Empresa.Id = EntradaEmpresaId.ValueInt;
+                                Lbl.Sys.Config.Empresa.ClaveTributaria = null;
+                        Lbl.Sys.Config.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
+                        Lbl.Sys.Config.Empresa.Email = EntradaEmpresaEmail.Text;
+                        Lbl.Sys.Config.Empresa.Id = EntradaEmpresaId.ValueInt;
 
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
                         if (EntradaModoPantalla.TextKey == "*")

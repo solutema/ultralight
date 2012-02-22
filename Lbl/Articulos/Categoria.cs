@@ -166,7 +166,7 @@ namespace Lbl.Articulos
                         else if (this.Rubro != null && this.Rubro.Alicuota != null)
                                 return this.Rubro.Alicuota;
                         else
-                                return Lbl.Sys.Config.Actual.Empresa.AlicuotaPredeterminada;
+                                return Lbl.Sys.Config.Empresa.AlicuotaPredeterminada;
                 }
 
 		public override Lfx.Types.OperationResult Guardar()

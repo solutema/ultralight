@@ -100,7 +100,7 @@ namespace Lfc.Comprobantes
                 {
                         base.OnLoad(e);
                         if (Lfx.Workspace.Master != null)
-                                m_Sucursal = Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada;
+                                m_Sucursal = Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual;
                 }
 
 

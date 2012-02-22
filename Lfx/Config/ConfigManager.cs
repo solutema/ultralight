@@ -259,7 +259,7 @@ namespace Lfx.Config
                         }
 
                         //Busco una variable para la sucursal
-                        Busco = "*/" + m_Workspace.CurrentConfig.Empresa.SucursalPredeterminada.ToString() + "/" + DataBase.EscapeString(settingName);
+                        Busco = "*/" + m_Workspace.CurrentConfig.Empresa.SucursalActual.ToString() + "/" + DataBase.EscapeString(settingName);
                         if (terminalName == null && SysConfigCache.ContainsKey(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 if (Res.Length > 0)
@@ -281,7 +281,7 @@ namespace Lfx.Config
                 public bool DeleteGlobalSetting(string settingName, int branch)
                 {
                         if (branch == 0)
-                                branch = m_Workspace.CurrentConfig.Empresa.SucursalPredeterminada;
+                                branch = m_Workspace.CurrentConfig.Empresa.SucursalActual;
 
                         qGen.Delete DeleteCommand = new qGen.Delete("sys_config");
                         DeleteCommand.WhereClause = new qGen.Where(qGen.AndOr.And);

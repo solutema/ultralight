@@ -138,7 +138,7 @@ namespace Lfc.Comprobantes
                                         break;
                         }
                         InsertarComprob.Fields.AddWithValue("id_formapago", 3);
-                        InsertarComprob.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
+                        InsertarComprob.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual);
                         InsertarComprob.Fields.AddWithValue("pv", EntradaPv.ValueInt);
                         InsertarComprob.Fields.AddWithValue("numero", EntradaDesde.ValueInt - 1);
                         InsertarComprob.Fields.AddWithValue("fecha", new DateTime(1900, 1, 1, 0, 0, 0));

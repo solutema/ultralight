@@ -147,7 +147,7 @@ namespace Lbl.Pagos
                                 Comando.Fields.AddWithValue("nombre", this.Nombre);
 
                         Comando.Fields.AddWithValue("numero", this.Numero);
-                        Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada);
+                        Comando.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual);
 
                         Comando.Fields.AddWithValue("importe", this.Importe);
                         Comando.Fields.AddWithValue("obs", this.Obs);

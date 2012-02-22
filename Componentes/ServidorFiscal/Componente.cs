@@ -176,7 +176,7 @@ namespace ServidorFiscal
                         get
                         {
                                 if (m_PV == 0) {
-                                        m_PV = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalPredeterminada.ToString());
+                                        m_PV = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
                                         this.Impresora.PV = m_PV;
                                         this.FormEstado.lblPV.Text = m_PV.ToString();
 
@@ -378,7 +378,7 @@ namespace ServidorFiscal
 
                                 MailMessage Mensaje = new MailMessage();
                                 Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                                Mensaje.From = new MailAddress(Lbl.Sys.Config.Actual.Empresa.Email, Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Actual.Empresa.Nombre);
+                                Mensaje.From = new MailAddress(Lbl.Sys.Config.Empresa.Email, Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Empresa.Nombre);
                                 try {
                                         //No sé por qué, pero una vez dió un error al poner el asunto
                                         Mensaje.Subject = ex.Message;

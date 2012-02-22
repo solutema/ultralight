@@ -137,7 +137,7 @@ namespace Lfc.Comprobantes.Facturas
                         else
                                 Titulo = "Libro IVA Ventas";
 
-                        Titulo += " - " + Lbl.Sys.Config.Actual.Empresa.RazonSocial + " " + Lbl.Sys.Config.Actual.Empresa.ClaveTributaria.ToString();
+                        Titulo += " - " + Lbl.Sys.Config.Empresa.RazonSocial + " " + Lbl.Sys.Config.Empresa.ClaveTributaria.ToString();
                         this.Text = Titulo;
 
                         base.RefreshList();
