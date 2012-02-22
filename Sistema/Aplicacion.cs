@@ -756,7 +756,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                 private static void GenericExceptionHandler(Exception ex)
                 {
                         if (ex is System.Drawing.Printing.InvalidPrinterException) {
-                                KnownExceptionHandler(ex);
+                                KnownExceptionHandler(ex, null);
                         } else if (ex.Source == "MySql.Data") {
                                 Exception ex2 = ex;
                                 bool Found = false;
@@ -767,6 +767,10 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                                 || string.Compare(ex2.Message, "error connecting: Timeout expired.", true) == 0
                                                 || string.Compare(ex2.Message, "No se pueden leer los datos de la conexión de transporte: Se ha forzado la interrupción de una conexión existente por el host remoto.", true) == 0) {
                                                 KnownExceptionHandler(ex, "Error de comunicación con el servidor");
+                                                Found = true;
+                                                break;
+                                        } else if (string.Compare(ex2.Message, "Lock wait timeout exceeded; try restarting transaction", true) == 0) {
+                                                KnownExceptionHandler(ex, "El servidor está ocupado. Intente nuevamente más tarde.");
                                                 Found = true;
                                                 break;
                                         }
@@ -781,11 +785,6 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         }
                 }
 
-
-                private static void KnownExceptionHandler(Exception ex)
-                {
-                        KnownExceptionHandler(ex, null);
-                }
 
                 /// <summary>
                 /// Manejador de excepciones conocidas. Presenta una ventana con el error. Se utiliza para excepciones como InvalidPrinterException.

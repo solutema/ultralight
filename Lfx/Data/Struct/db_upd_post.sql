@@ -8,6 +8,7 @@ UPDATE documentos_tipos SET estado=1;
 UPDATE articulos SET unidad_stock='u' WHERE unidad_stock='' OR unidad_stock IS NULL;
 DELETE FROM sys_log WHERE comando='LogOff';
 UPDATE sys_log SET comando='LogOn' WHERE comando='Logon';
+UPDATE ciudades SET iva=1 WHERE id_ciudad=24;
 
 REPLACE INTO "documentos_tipos" ("id_tipo", "letra", "nombre", "obs", "estado", "fecha", "tabla", "tipo", "direc_ctacte", "mueve_stock", "situacionorigen", "situaciondestino", "numerar_guardar", "imprimir_guardar", "numerar_imprimir", "imprimir_repetir", "imprimir_modificar") VALUES
 	(1, 'FA', 'Factura A', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
