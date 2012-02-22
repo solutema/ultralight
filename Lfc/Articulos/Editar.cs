@@ -312,15 +312,16 @@ namespace Lfc.Articulos
 
                         IgnorarCostoTextChanged--;
 
-                        EntradaUsaStock.ValueInt = (int)(Art.TipoDeArticulo);
+                        EntradaTipoDeArticulo.ValueInt = (int)(Art.TipoDeArticulo);
                         EntradaSeguimiento.ValueInt = (int)(Art.Seguimiento);
+                        EntradaPeriodicidad.ValueInt = (int)(Art.Periodicidad);
                         EntradaSeguimiento.ReadOnly = Art.Existe && Art.Existencias != 0;
-                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.Existencias, Lbl.Sys.Config.Articulos.Decimales);
+                        EntradaStockActual.ValueDecimal = Art.Existencias;
                         EntradaStockActual.ReadOnly = Art.Existe;
                         EntradaUnidad.TextKey = Art.Unidad;
                         Rendimiento = Art.Rendimiento;
                         UnidadRendimiento = Art.UnidadRendimiento;
-                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Art.PuntoDeReposicion, Lbl.Sys.Config.Articulos.Decimales);
+                        EntradaStockMinimo.ValueDecimal = Art.PuntoDeReposicion;
                         EntradaGarantia.Text = Art.Garantia.ToString();
                         CustomName = Art.Existe;
 
@@ -354,8 +355,9 @@ namespace Lfc.Articulos
                                 Art.Margen = null;
 
                         Art.Pvp = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
-                        Art.TipoDeArticulo = (Lbl.Articulos.TiposDeArticulo)(EntradaUsaStock.ValueInt);
+                        Art.TipoDeArticulo = (Lbl.Articulos.TiposDeArticulo)(EntradaTipoDeArticulo.ValueInt);
                         Art.Seguimiento = (Lbl.Articulos.Seguimientos)(EntradaSeguimiento.ValueInt);
+                        Art.Periodicidad = (Lbl.Articulos.Periodicidad)(EntradaPeriodicidad.ValueInt);
                         Art.PuntoDeReposicion = Lfx.Types.Parsing.ParseStock(EntradaStockMinimo.Text);
                         Art.Unidad = EntradaUnidad.TextKey;
                         Art.Rendimiento = Rendimiento;
@@ -375,16 +377,19 @@ namespace Lfc.Articulos
                 }
 
 
-                private void EntradaUsaStock_TextChanged(object sender, EventArgs e)
+                private void EntradaTipoDeArticulo_TextChanged(object sender, EventArgs e)
                 {
-                        BotonReceta.Visible = EntradaUsaStock.TextKey == "2";
-                        EntradaCosto.Enabled = EntradaUsaStock.TextKey != "2";
+                        BotonReceta.Visible = EntradaTipoDeArticulo.TextKey == "2";
+                        EntradaCosto.Enabled = EntradaTipoDeArticulo.TextKey != "2";
+
+                        PanelServicio.Visible = EntradaTipoDeArticulo.ValueInt == 0;
+                        PanelProducto.Visible = !PanelServicio.Visible;
                         this.ActualizarCostoYStockSegunReceta();
                 }
 
                 private void BotonReceta_Click(object sender, EventArgs e)
                 {
-                        if (EntradaUsaStock.TextKey == "2") {
+                        if (EntradaTipoDeArticulo.TextKey == "2") {
                                 Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
                                 Receta FormReceta = new Receta();
                                 FormReceta.ReadOnly = this.TemporaryReadOnly;
@@ -400,7 +405,7 @@ namespace Lfc.Articulos
                 {
                         Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
 
-                        if (EntradaUsaStock.TextKey == "2") {
+                        if (EntradaTipoDeArticulo.TextKey == "2") {
                                 if (Art.Receta == null)
                                         EntradaCosto.Text = "0";
                                 else

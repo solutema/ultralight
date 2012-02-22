@@ -832,7 +832,9 @@ namespace Lfc
                                 if (this.Definicion.Having != null)
                                         ComandoSelect.HavingClause = this.Definicion.Having;
 
-                                ComandoSelect.Order = this.Definicion.OrderBy;
+                                if (forCount == false)
+                                        ComandoSelect.Order = this.Definicion.OrderBy;
+
                                 return ComandoSelect;
                         } else {
                                 return null;
@@ -964,17 +966,22 @@ namespace Lfc
                                 Listado.Items[0].Selected = true;
                         }
 
-                        if (Listado.Items.Count == m_Limit) {
-                                EtiquetaCantidad.Text = "Mostrando sólo los primeros " + m_Limit.ToString() + " elementos";
+                        if (Listado.Items.Count == 0) {
+                                EtiquetaCantidad.Text = "";
+                                EtiquetaCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
+                        } else if (Listado.Items.Count == m_Limit) {
+                                qGen.Select SelCount = this.SelectCommand(true);
+                                int Cantidad = this.Connection.FieldInt(SelCount);
+
+                                EtiquetaCantidad.Text = "Mostrando sólo los primeros " + m_Limit.ToString() + " de " + Cantidad.ToString() + " elementos";
                                 EtiquetaCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         } else {
                                 EtiquetaCantidad.Text = Listado.Items.Count.ToString() + " elementos";
                                 EtiquetaCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         }
-                        PicEsperar.Visible = false;
 
+                        
                         // Muestro los totales de grupo
-
                         if (m_GroupingColumnName != null) {
                                 foreach (ListViewGroup Grp in Listado.Groups) {
                                         Grp.Header = Grp.Name + " (" + Grp.Items.Count.ToString() + ")";
@@ -1014,6 +1021,7 @@ namespace Lfc
                                 }
                         }
 
+
                         if (this.Sorter != null && this.Sorter.SortOrder != SortOrder.None) {
                                 Listado.ListViewItemSorter = this.Sorter;
                                 Listado.Sort();
@@ -1021,6 +1029,8 @@ namespace Lfc
 
                         Listado.EndUpdate();
                         Listado.ResumeLayout();
+
+                        PicEsperar.Visible = false;
 
                         if (CurItem != null) {
                                 CurItem.Selected = true;

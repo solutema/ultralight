@@ -679,7 +679,7 @@ namespace Lui.Forms
                         int SufijoWidth;
                         if (EtiquetaSufijo.Visible) {
                                 EtiquetaSufijo.MinimumSize = new Size(0, this.ClientRectangle.Height - 4);
-                                EtiquetaSufijo.Location = new Point(3, this.ClientRectangle.Width - EtiquetaSufijo.Width - 3);
+                                EtiquetaSufijo.Location = new Point(this.ClientRectangle.Width - EtiquetaSufijo.Width - 3, 2);
                                 SufijoWidth = EtiquetaSufijo.Width + 3;
                         } else {
                                 SufijoWidth = 3;

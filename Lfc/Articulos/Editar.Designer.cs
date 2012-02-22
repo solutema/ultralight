@@ -49,7 +49,7 @@ namespace Lfc.Articulos
                         this.Label10 = new Lui.Forms.Label();
                         this.label17 = new Lui.Forms.Label();
                         this.EntradaUnidad = new Lui.Forms.ComboBox();
-                        this.EntradaUsaStock = new Lui.Forms.ComboBox();
+                        this.EntradaTipoDeArticulo = new Lui.Forms.ComboBox();
                         this.BotonReceta = new Lui.Forms.Button();
                         this.BotonUnidad = new Lui.Forms.Button();
                         this.label19 = new Lui.Forms.Label();
@@ -93,8 +93,14 @@ namespace Lfc.Articulos
                         this.EntradaSeguimiento = new Lui.Forms.ComboBox();
                         this.label14 = new Lui.Forms.Label();
                         this.EntradaProveedor = new Lcc.Entrada.CodigoDetalle();
+                        this.PanelProducto = new Lui.Forms.Panel();
+                        this.PanelServicio = new Lui.Forms.Panel();
+                        this.label22 = new Lui.Forms.Label();
+                        this.EntradaPeriodicidad = new Lui.Forms.ComboBox();
                         this.Frame2.SuspendLayout();
                         this.Frame3.SuspendLayout();
+                        this.PanelProducto.SuspendLayout();
+                        this.PanelServicio.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // Frame2
@@ -113,7 +119,7 @@ namespace Lfc.Articulos
                         this.Frame2.Location = new System.Drawing.Point(0, 352);
                         this.Frame2.Margin = new System.Windows.Forms.Padding(0);
                         this.Frame2.Name = "Frame2";
-                        this.Frame2.Size = new System.Drawing.Size(360, 336);
+                        this.Frame2.Size = new System.Drawing.Size(360, 280);
                         this.Frame2.TabIndex = 32;
                         this.Frame2.Text = "Precio y costo";
                         // 
@@ -194,7 +200,7 @@ namespace Lfc.Articulos
                         this.EntradaCaja.Location = new System.Drawing.Point(136, 248);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
-                        this.EntradaCaja.PlaceholderText = "Sin especificar";
+                        this.EntradaCaja.PlaceholderText = "Ninguna";
                         this.EntradaCaja.Required = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(224, 24);
                         this.EntradaCaja.TabIndex = 13;
@@ -242,9 +248,9 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaUnidad.AlwaysExpanded = true;
                         this.EntradaUnidad.AutoSize = true;
-                        this.EntradaUnidad.Location = new System.Drawing.Point(152, 104);
+                        this.EntradaUnidad.Location = new System.Drawing.Point(160, 0);
                         this.EntradaUnidad.Name = "EntradaUnidad";
-                        this.EntradaUnidad.PlaceholderText = "¿El artículo usa control de stock?";
+                        this.EntradaUnidad.PlaceholderText = "¿En qué unidad de medida se compra este producto?";
                         this.EntradaUnidad.SetData = new string[] {
         "N/A|",
         "Unidades|u",
@@ -260,26 +266,26 @@ namespace Lfc.Articulos
         "Centímetros³|cm³",
         "Litros|l",
         "Kg|kg"};
-                        this.EntradaUnidad.Size = new System.Drawing.Size(160, 91);
-                        this.EntradaUnidad.TabIndex = 4;
+                        this.EntradaUnidad.Size = new System.Drawing.Size(160, 90);
+                        this.EntradaUnidad.TabIndex = 1;
                         this.EntradaUnidad.TextKey = "u";
                         this.EntradaUnidad.Enter += new System.EventHandler(this.EntradaPvp_Enter);
                         // 
                         // EntradaUsaStock
                         // 
-                        this.EntradaUsaStock.AlwaysExpanded = true;
-                        this.EntradaUsaStock.AutoSize = true;
-                        this.EntradaUsaStock.Location = new System.Drawing.Point(152, 40);
-                        this.EntradaUsaStock.Name = "EntradaUsaStock";
-                        this.EntradaUsaStock.PlaceholderText = "¿El artículo usa control de stock?";
-                        this.EntradaUsaStock.SetData = new string[] {
+                        this.EntradaTipoDeArticulo.AlwaysExpanded = true;
+                        this.EntradaTipoDeArticulo.AutoSize = true;
+                        this.EntradaTipoDeArticulo.Location = new System.Drawing.Point(168, 40);
+                        this.EntradaTipoDeArticulo.Name = "EntradaUsaStock";
+                        this.EntradaTipoDeArticulo.PlaceholderText = "¿El artículo es un producto o un servicio?";
+                        this.EntradaTipoDeArticulo.SetData = new string[] {
         "Servicio|0",
         "Producto simple|1",
         "Producto compuesto|2"};
-                        this.EntradaUsaStock.Size = new System.Drawing.Size(160, 57);
-                        this.EntradaUsaStock.TabIndex = 1;
-                        this.EntradaUsaStock.TextKey = "1";
-                        this.EntradaUsaStock.TextChanged += new System.EventHandler(this.EntradaUsaStock_TextChanged);
+                        this.EntradaTipoDeArticulo.Size = new System.Drawing.Size(160, 56);
+                        this.EntradaTipoDeArticulo.TabIndex = 1;
+                        this.EntradaTipoDeArticulo.TextKey = "1";
+                        this.EntradaTipoDeArticulo.TextChanged += new System.EventHandler(this.EntradaTipoDeArticulo_TextChanged);
                         // 
                         // BotonReceta
                         // 
@@ -287,7 +293,7 @@ namespace Lfc.Articulos
                         this.BotonReceta.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonReceta.Image = null;
                         this.BotonReceta.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonReceta.Location = new System.Drawing.Point(320, 40);
+                        this.BotonReceta.Location = new System.Drawing.Point(336, 40);
                         this.BotonReceta.Name = "BotonReceta";
                         this.BotonReceta.Size = new System.Drawing.Size(28, 24);
                         this.BotonReceta.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -303,21 +309,21 @@ namespace Lfc.Articulos
                         this.BotonUnidad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonUnidad.Image = null;
                         this.BotonUnidad.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonUnidad.Location = new System.Drawing.Point(320, 104);
+                        this.BotonUnidad.Location = new System.Drawing.Point(328, 0);
                         this.BotonUnidad.Name = "BotonUnidad";
                         this.BotonUnidad.Size = new System.Drawing.Size(28, 24);
                         this.BotonUnidad.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonUnidad.Subtext = "";
-                        this.BotonUnidad.TabIndex = 5;
+                        this.BotonUnidad.TabIndex = 2;
                         this.BotonUnidad.Text = "...";
                         this.BotonUnidad.Click += new System.EventHandler(this.BotonUnidad_Click);
                         // 
                         // label19
                         // 
-                        this.label19.Location = new System.Drawing.Point(8, 104);
+                        this.label19.Location = new System.Drawing.Point(0, 0);
                         this.label19.Name = "label19";
-                        this.label19.Size = new System.Drawing.Size(136, 24);
-                        this.label19.TabIndex = 3;
+                        this.label19.Size = new System.Drawing.Size(152, 24);
+                        this.label19.TabIndex = 0;
                         this.label19.Text = "Unidad";
                         this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                         // 
@@ -325,7 +331,7 @@ namespace Lfc.Articulos
                         // 
                         this.Label7.Location = new System.Drawing.Point(8, 40);
                         this.Label7.Name = "Label7";
-                        this.Label7.Size = new System.Drawing.Size(136, 24);
+                        this.Label7.Size = new System.Drawing.Size(152, 24);
                         this.Label7.TabIndex = 0;
                         this.Label7.Text = "Tipo de artículo";
                         this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -333,41 +339,41 @@ namespace Lfc.Articulos
                         // EntradaStockMinimo
                         // 
                         this.EntradaStockMinimo.DataType = Lui.Forms.DataTypes.Stock;
-                        this.EntradaStockMinimo.Location = new System.Drawing.Point(152, 280);
+                        this.EntradaStockMinimo.Location = new System.Drawing.Point(160, 176);
                         this.EntradaStockMinimo.MaxLength = 20;
                         this.EntradaStockMinimo.Name = "EntradaStockMinimo";
-                        this.EntradaStockMinimo.PlaceholderText = "Stock mínimo o crítico";
+                        this.EntradaStockMinimo.PlaceholderText = "Nivel mínimo de existencias";
                         this.EntradaStockMinimo.Size = new System.Drawing.Size(96, 24);
-                        this.EntradaStockMinimo.TabIndex = 9;
-                        this.EntradaStockMinimo.Text = "0.00";
+                        this.EntradaStockMinimo.TabIndex = 6;
+                        this.EntradaStockMinimo.Text = "0";
                         // 
                         // Label11
                         // 
-                        this.Label11.Location = new System.Drawing.Point(8, 280);
+                        this.Label11.Location = new System.Drawing.Point(0, 176);
                         this.Label11.Name = "Label11";
-                        this.Label11.Size = new System.Drawing.Size(136, 24);
-                        this.Label11.TabIndex = 8;
+                        this.Label11.Size = new System.Drawing.Size(152, 24);
+                        this.Label11.TabIndex = 5;
                         this.Label11.Text = "Punto de reposición";
                         this.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                         // 
                         // Label9
                         // 
-                        this.Label9.Location = new System.Drawing.Point(8, 312);
+                        this.Label9.Location = new System.Drawing.Point(0, 208);
                         this.Label9.Name = "Label9";
-                        this.Label9.Size = new System.Drawing.Size(136, 24);
-                        this.Label9.TabIndex = 10;
+                        this.Label9.Size = new System.Drawing.Size(152, 24);
+                        this.Label9.TabIndex = 7;
                         this.Label9.Text = "Existencias";
                         this.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                         // 
                         // EntradaStockActual
                         // 
                         this.EntradaStockActual.DataType = Lui.Forms.DataTypes.Stock;
-                        this.EntradaStockActual.Location = new System.Drawing.Point(152, 312);
+                        this.EntradaStockActual.Location = new System.Drawing.Point(160, 208);
                         this.EntradaStockActual.Name = "EntradaStockActual";
                         this.EntradaStockActual.ReadOnly = true;
                         this.EntradaStockActual.Size = new System.Drawing.Size(96, 24);
-                        this.EntradaStockActual.TabIndex = 11;
-                        this.EntradaStockActual.Text = "0.00";
+                        this.EntradaStockActual.TabIndex = 8;
+                        this.EntradaStockActual.Text = "0";
                         this.EntradaStockActual.TextChanged += new System.EventHandler(this.EntradaStockActual_TextChanged);
                         // 
                         // EtiquetaCodigo1
@@ -457,7 +463,7 @@ namespace Lfc.Articulos
                         this.EntradaDestacado.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaDestacado.Size = new System.Drawing.Size(64, 40);
+                        this.EntradaDestacado.Size = new System.Drawing.Size(64, 39);
                         this.EntradaDestacado.TabIndex = 25;
                         this.EntradaDestacado.TextKey = "0";
                         // 
@@ -471,7 +477,7 @@ namespace Lfc.Articulos
         "Siempre|1",
         "Sólo si hay existencias|2",
         "Nunca|0"};
-                        this.EntradaWeb.Size = new System.Drawing.Size(176, 57);
+                        this.EntradaWeb.Size = new System.Drawing.Size(176, 56);
                         this.EntradaWeb.TabIndex = 27;
                         this.EntradaWeb.TextKey = "2";
                         // 
@@ -571,7 +577,7 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion.Location = new System.Drawing.Point(104, 160);
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
-                        this.EntradaDescripcion.PlaceholderText = "Descripción larga";
+                        this.EntradaDescripcion.PlaceholderText = "Descripción corta";
                         this.EntradaDescripcion.Size = new System.Drawing.Size(292, 104);
                         this.EntradaDescripcion.TabIndex = 21;
                         // 
@@ -671,7 +677,7 @@ namespace Lfc.Articulos
                         this.Label18.Name = "Label18";
                         this.Label18.Size = new System.Drawing.Size(100, 56);
                         this.Label18.TabIndex = 22;
-                        this.Label18.Text = "Descrip. extendida";
+                        this.Label18.Text = "Descripción extendida";
                         // 
                         // Label16
                         // 
@@ -693,18 +699,11 @@ namespace Lfc.Articulos
                         // 
                         // Frame3
                         // 
-                        this.Frame3.Controls.Add(this.label19);
-                        this.Frame3.Controls.Add(this.EntradaUnidad);
-                        this.Frame3.Controls.Add(this.BotonUnidad);
                         this.Frame3.Controls.Add(this.Label7);
-                        this.Frame3.Controls.Add(this.label21);
-                        this.Frame3.Controls.Add(this.Label11);
-                        this.Frame3.Controls.Add(this.EntradaSeguimiento);
                         this.Frame3.Controls.Add(this.BotonReceta);
-                        this.Frame3.Controls.Add(this.Label9);
-                        this.Frame3.Controls.Add(this.EntradaStockActual);
-                        this.Frame3.Controls.Add(this.EntradaStockMinimo);
-                        this.Frame3.Controls.Add(this.EntradaUsaStock);
+                        this.Frame3.Controls.Add(this.EntradaTipoDeArticulo);
+                        this.Frame3.Controls.Add(this.PanelProducto);
+                        this.Frame3.Controls.Add(this.PanelServicio);
                         this.Frame3.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Frame3.Location = new System.Drawing.Point(372, 352);
                         this.Frame3.Margin = new System.Windows.Forms.Padding(0);
@@ -715,10 +714,10 @@ namespace Lfc.Articulos
                         // 
                         // label21
                         // 
-                        this.label21.Location = new System.Drawing.Point(8, 200);
+                        this.label21.Location = new System.Drawing.Point(0, 96);
                         this.label21.Name = "label21";
-                        this.label21.Size = new System.Drawing.Size(136, 24);
-                        this.label21.TabIndex = 6;
+                        this.label21.Size = new System.Drawing.Size(152, 24);
+                        this.label21.TabIndex = 3;
                         this.label21.Text = "Seguimiento";
                         this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
                         // 
@@ -726,15 +725,15 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaSeguimiento.AlwaysExpanded = true;
                         this.EntradaSeguimiento.AutoSize = true;
-                        this.EntradaSeguimiento.Location = new System.Drawing.Point(152, 200);
+                        this.EntradaSeguimiento.Location = new System.Drawing.Point(160, 96);
                         this.EntradaSeguimiento.Name = "EntradaSeguimiento";
                         this.EntradaSeguimiento.SetData = new string[] {
         "Predeterminado|0",
         "Ninguno|1",
         "Por números de serie|3",
         "Por variaciones|5"};
-                        this.EntradaSeguimiento.Size = new System.Drawing.Size(160, 74);
-                        this.EntradaSeguimiento.TabIndex = 7;
+                        this.EntradaSeguimiento.Size = new System.Drawing.Size(160, 73);
+                        this.EntradaSeguimiento.TabIndex = 4;
                         this.EntradaSeguimiento.TextKey = "0";
                         this.EntradaSeguimiento.TextChanged += new System.EventHandler(this.EntradaSeguimiento_TextChanged);
                         // 
@@ -769,6 +768,63 @@ namespace Lfc.Articulos
                         this.EntradaProveedor.Table = "personas";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
+                        // 
+                        // PanelProducto
+                        // 
+                        this.PanelProducto.Controls.Add(this.label19);
+                        this.PanelProducto.Controls.Add(this.EntradaStockMinimo);
+                        this.PanelProducto.Controls.Add(this.EntradaStockActual);
+                        this.PanelProducto.Controls.Add(this.EntradaSeguimiento);
+                        this.PanelProducto.Controls.Add(this.EntradaUnidad);
+                        this.PanelProducto.Controls.Add(this.Label9);
+                        this.PanelProducto.Controls.Add(this.BotonUnidad);
+                        this.PanelProducto.Controls.Add(this.Label11);
+                        this.PanelProducto.Controls.Add(this.label21);
+                        this.PanelProducto.Location = new System.Drawing.Point(8, 104);
+                        this.PanelProducto.Name = "PanelProducto";
+                        this.PanelProducto.Size = new System.Drawing.Size(384, 240);
+                        this.PanelProducto.TabIndex = 3;
+                        // 
+                        // PanelServicio
+                        // 
+                        this.PanelServicio.Controls.Add(this.label22);
+                        this.PanelServicio.Controls.Add(this.EntradaPeriodicidad);
+                        this.PanelServicio.Location = new System.Drawing.Point(8, 104);
+                        this.PanelServicio.Name = "PanelServicio";
+                        this.PanelServicio.Size = new System.Drawing.Size(384, 232);
+                        this.PanelServicio.TabIndex = 4;
+                        this.PanelServicio.Visible = false;
+                        // 
+                        // label22
+                        // 
+                        this.label22.Location = new System.Drawing.Point(0, 0);
+                        this.label22.Name = "label22";
+                        this.label22.Size = new System.Drawing.Size(152, 24);
+                        this.label22.TabIndex = 0;
+                        this.label22.Text = "Periodicidad";
+                        this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        // 
+                        // EntradaPeriodicidad
+                        // 
+                        this.EntradaPeriodicidad.AlwaysExpanded = true;
+                        this.EntradaPeriodicidad.AutoSize = true;
+                        this.EntradaPeriodicidad.Location = new System.Drawing.Point(160, 0);
+                        this.EntradaPeriodicidad.Name = "EntradaPeriodicidad";
+                        this.EntradaPeriodicidad.PlaceholderText = "¿Cada cuánto tiempo se factura este servicio?";
+                        this.EntradaPeriodicidad.SetData = new string[] {
+        "Ninguna|0,",
+        "Por minuto|1",
+        "Por hora|2",
+        "Diaria|3",
+        "Semanal|4",
+        "Quincenal|5",
+        "Mensual|6",
+        "Bimestral|7",
+        "Semestral|8",
+        "Anual|9"};
+                        this.EntradaPeriodicidad.Size = new System.Drawing.Size(160, 90);
+                        this.EntradaPeriodicidad.TabIndex = 1;
+                        this.EntradaPeriodicidad.TextKey = "";
                         // 
                         // Editar
                         // 
@@ -808,12 +864,15 @@ namespace Lfc.Articulos
                         this.Controls.Add(this.Label16);
                         this.MinimumSize = new System.Drawing.Size(768, 688);
                         this.Name = "Editar";
-                        this.Padding = new System.Windows.Forms.Padding(0);
-                        this.Size = new System.Drawing.Size(768, 688);
+                        this.Size = new System.Drawing.Size(768, 694);
                         this.Frame2.ResumeLayout(false);
                         this.Frame2.PerformLayout();
                         this.Frame3.ResumeLayout(false);
                         this.Frame3.PerformLayout();
+                        this.PanelProducto.ResumeLayout(false);
+                        this.PanelProducto.PerformLayout();
+                        this.PanelServicio.ResumeLayout(false);
+                        this.PanelServicio.PerformLayout();
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -845,7 +904,7 @@ namespace Lfc.Articulos
                 internal Lui.Forms.Label Label9;
                 internal Lui.Forms.ComboBox EntradaMargen;
                 internal Lui.Forms.Label Label8;
-                internal Lui.Forms.ComboBox EntradaUsaStock;
+                internal Lui.Forms.ComboBox EntradaTipoDeArticulo;
                 internal Lui.Forms.Label Label7;
                 internal Lui.Forms.TextBox EntradaCosto;
                 internal Lui.Forms.Label Label6;
@@ -877,5 +936,9 @@ namespace Lfc.Articulos
                 internal Lui.Forms.Label label21;
                 internal Lui.Forms.Label label14;
                 internal Lcc.Entrada.CodigoDetalle EntradaProveedor;
+                private Lui.Forms.Panel PanelServicio;
+                internal Lui.Forms.Label label22;
+                internal Lui.Forms.ComboBox EntradaPeriodicidad;
+                private Lui.Forms.Panel PanelProducto;
         }
 }
