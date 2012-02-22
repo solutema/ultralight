@@ -89,5 +89,18 @@ namespace Lbl.Entidades
                                 this.Registro["cotizacion"] = value;
                         }
                 }
+
+
+                public int Decimales
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("decimales");
+                        }
+                        set
+                        {
+                                this.Registro["decimales"] = value;
+                        }
+                }
         }
 }

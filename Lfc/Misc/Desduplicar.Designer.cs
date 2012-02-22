@@ -103,7 +103,6 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.Location = new System.Drawing.Point(152, 88);
                         this.EntradaElementoDuplicado.MaxLength = 200;
                         this.EntradaElementoDuplicado.Name = "EntradaElementoDuplicado";
-                        this.EntradaElementoDuplicado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaElementoDuplicado.ReadOnly = false;
                         this.EntradaElementoDuplicado.Required = true;
                         this.EntradaElementoDuplicado.Size = new System.Drawing.Size(456, 24);
@@ -133,7 +132,6 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.Location = new System.Drawing.Point(152, 56);
                         this.EntradaElementoOriginal.MaxLength = 200;
                         this.EntradaElementoOriginal.Name = "EntradaElementoOriginal";
-                        this.EntradaElementoOriginal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaElementoOriginal.ReadOnly = false;
                         this.EntradaElementoOriginal.Required = true;
                         this.EntradaElementoOriginal.Size = new System.Drawing.Size(456, 24);
@@ -149,7 +147,6 @@ namespace Lfc.Misc
                         this.txtTipo.AutoSize = true;
                         this.txtTipo.Location = new System.Drawing.Point(152, 24);
                         this.txtTipo.Name = "txtTipo";
-                        this.txtTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
         "Persona|personas"};
@@ -198,10 +195,8 @@ namespace Lfc.Misc
                         // EntradaCtaCteFinal
                         // 
                         this.EntradaCtaCteFinal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCtaCteFinal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCteFinal.Location = new System.Drawing.Point(276, 72);
                         this.EntradaCtaCteFinal.Name = "EntradaCtaCteFinal";
-                        this.EntradaCtaCteFinal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCtaCteFinal.Prefijo = "$";
                         this.EntradaCtaCteFinal.ReadOnly = false;
                         this.EntradaCtaCteFinal.Size = new System.Drawing.Size(120, 24);
@@ -221,10 +216,8 @@ namespace Lfc.Misc
                         // EntradaCtaCte2
                         // 
                         this.EntradaCtaCte2.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCtaCte2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCte2.Location = new System.Drawing.Point(276, 36);
                         this.EntradaCtaCte2.Name = "EntradaCtaCte2";
-                        this.EntradaCtaCte2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCtaCte2.Prefijo = "$";
                         this.EntradaCtaCte2.ReadOnly = false;
                         this.EntradaCtaCte2.Size = new System.Drawing.Size(120, 24);
@@ -245,10 +238,8 @@ namespace Lfc.Misc
                         // EntradaCtaCte1
                         // 
                         this.EntradaCtaCte1.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCtaCte1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCtaCte1.Location = new System.Drawing.Point(276, 8);
                         this.EntradaCtaCte1.Name = "EntradaCtaCte1";
-                        this.EntradaCtaCte1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCtaCte1.Prefijo = "$";
                         this.EntradaCtaCte1.ReadOnly = false;
                         this.EntradaCtaCte1.Size = new System.Drawing.Size(120, 24);

@@ -62,7 +62,7 @@ namespace Lfc.Articulos
                                         string Serie = Articulo["serie"].ToString();
                                         ListViewItem Itm = ListaConformacion.Items.Add(Serie);
                                         Itm.SubItems[0].Text = Serie;
-                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatStock(System.Convert.ToDecimal(Articulo["cantidad"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock));
+                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatStock(System.Convert.ToDecimal(Articulo["cantidad"]), Lbl.Sys.Config.Articulos.Decimales));
                                         Itm.Group = Grupo;
                                 }
                         }
@@ -76,7 +76,7 @@ namespace Lfc.Articulos
                                         Lfx.Data.Row Situacion = this.Connection.Row("articulos_situaciones", "id_situacion", System.Convert.ToInt32(Stock["id_situacion"]));
 
                                         ListViewItem Itm = ListaConformacion.Items.Add(Situacion["nombre"].ToString());
-                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatStock(System.Convert.ToDecimal(Stock["cantidad"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock));
+                                        Itm.SubItems.Add(Lfx.Types.Formatting.FormatStock(System.Convert.ToDecimal(Stock["cantidad"]), Lbl.Sys.Config.Articulos.Decimales));
 
                                         Itm.Group = Grupo;
                                 }

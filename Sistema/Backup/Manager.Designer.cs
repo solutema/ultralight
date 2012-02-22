@@ -78,7 +78,6 @@ namespace Lazaro.WinMain.Backup
                         this.BotonBackup.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonBackup.Location = new System.Drawing.Point(24, 88);
                         this.BotonBackup.Name = "BotonBackup";
-                        this.BotonBackup.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonBackup.Size = new System.Drawing.Size(432, 72);
                         this.BotonBackup.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonBackup.Subtext = "Haga clic aquí para crear una copia de respaldo en este equipo.";
@@ -148,7 +147,6 @@ namespace Lazaro.WinMain.Backup
                         this.BotonEliminar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonEliminar.Location = new System.Drawing.Point(664, 232);
                         this.BotonEliminar.Name = "BotonEliminar";
-                        this.BotonEliminar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonEliminar.Size = new System.Drawing.Size(108, 40);
                         this.BotonEliminar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonEliminar.Subtext = "F3";
@@ -165,7 +163,6 @@ namespace Lazaro.WinMain.Backup
                         this.BotonRestaurar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRestaurar.Location = new System.Drawing.Point(664, 280);
                         this.BotonRestaurar.Name = "BotonRestaurar";
-                        this.BotonRestaurar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonRestaurar.Size = new System.Drawing.Size(108, 40);
                         this.BotonRestaurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonRestaurar.Subtext = "F6";
@@ -182,7 +179,6 @@ namespace Lazaro.WinMain.Backup
                         this.BotonCopiar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCopiar.Location = new System.Drawing.Point(664, 328);
                         this.BotonCopiar.Name = "BotonCopiar";
-                        this.BotonCopiar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonCopiar.Size = new System.Drawing.Size(108, 40);
                         this.BotonCopiar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCopiar.Subtext = "F6";

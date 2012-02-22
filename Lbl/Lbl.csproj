@@ -130,6 +130,7 @@
     <Compile Include="Personas\Usuario.cs" />
     <Compile Include="Servicios\Importar\ColeccionMapaDeTablas.cs" />
     <Compile Include="Servicios\Importar\Opciones.cs" />
+    <Compile Include="Sys\Configuracion\Articulos.cs" />
     <Compile Include="Sys\Configuracion\Comprobantes.cs" />
     <Compile Include="Sys\Configuracion\Formatos.cs" />
     <Compile Include="Sys\Configuracion\Impresion.cs" />

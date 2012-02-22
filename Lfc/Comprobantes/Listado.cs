@@ -245,7 +245,7 @@ namespace Lfc.Comprobantes
                                         Detalle = "(Sin especificar)";
 
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Detalle));
-                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Comrob["cantart"]), Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Comrob["cantart"]), Lbl.Sys.Config.Articulos.Decimales)));
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToInt32(Comrob["cantfact"])));
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotalCosto, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
@@ -315,7 +315,7 @@ namespace Lfc.Comprobantes
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Tipo", 48));
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Número", 120));
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Cliente", 240));
-                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader(Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre, 120));
+                                ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader(Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre, 120));
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Importe", 160, Lfx.Types.StringAlignment.Far));
                                 ReportSheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader("Cancelado", 160, Lfx.Types.StringAlignment.Far));
                         } else {
@@ -334,7 +334,7 @@ namespace Lfc.Comprobantes
                                         if (SubTotal > 0) {
                                                 Lazaro.Pres.Spreadsheet.Row SubTotal1 = new Lazaro.Pres.Spreadsheet.Row();
                                                 SubTotal1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(NombreGrupo));
-                                                SubTotal1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
+                                                SubTotal1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                                 ReportSheet.Rows.Add(SubTotal1);
                                                 SubTotal = 0;
                                         }
@@ -437,7 +437,7 @@ namespace Lfc.Comprobantes
                         if (m_Agrupar.Length > 0 && SubTotal > 0) {
                                 Lazaro.Pres.Spreadsheet.Row SubTotal2 = new Lazaro.Pres.Spreadsheet.Row();
                                 SubTotal2.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(NombreGrupo));
-                                SubTotal2.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
+                                SubTotal2.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                 ReportSheet.Rows.Add(SubTotal2);
                                 SubTotal = 0;
                         }
@@ -448,7 +448,7 @@ namespace Lfc.Comprobantes
                         Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(""));
                         Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell("Total"));
                         Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(""));
-                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
+                        Total1.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(Total, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                         ReportSheet.Rows.Add(Total1);
 
                         ReportListView.FromSheet(ReportSheet);

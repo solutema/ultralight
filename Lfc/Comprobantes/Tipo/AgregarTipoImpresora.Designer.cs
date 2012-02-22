@@ -86,7 +86,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImpresora.Location = new System.Drawing.Point(152, 56);
                         this.EntradaImpresora.MaxLength = 200;
                         this.EntradaImpresora.Name = "EntradaImpresora";
-                        this.EntradaImpresora.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImpresora.PlaceholderText = "Ninguno";
                         this.EntradaImpresora.Required = false;
                         this.EntradaImpresora.Size = new System.Drawing.Size(456, 24);
@@ -119,7 +118,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSucursal.Location = new System.Drawing.Point(152, 128);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
-                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.PlaceholderText = "Todas";
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(456, 24);
@@ -164,7 +162,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.BotonSeleccionarEstacion.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSeleccionarEstacion.Location = new System.Drawing.Point(352, 192);
                         this.BotonSeleccionarEstacion.Name = "BotonSeleccionarEstacion";
-                        this.BotonSeleccionarEstacion.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSeleccionarEstacion.Size = new System.Drawing.Size(28, 24);
                         this.BotonSeleccionarEstacion.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSeleccionarEstacion.Subtext = "";
@@ -177,7 +174,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(152, 192);
                         this.EntradaEstacion.Name = "EntradaEstacion";
-                        this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstacion.Size = new System.Drawing.Size(196, 24);
                         this.EntradaEstacion.TabIndex = 7;
                         // 
@@ -186,7 +182,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaPuntoDeVenta.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPuntoDeVenta.Location = new System.Drawing.Point(152, 160);
                         this.EntradaPuntoDeVenta.Name = "EntradaPuntoDeVenta";
-                        this.EntradaPuntoDeVenta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPuntoDeVenta.Size = new System.Drawing.Size(72, 24);
                         this.EntradaPuntoDeVenta.TabIndex = 5;
                         this.EntradaPuntoDeVenta.Text = "0";

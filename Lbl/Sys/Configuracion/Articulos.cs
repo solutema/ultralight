@@ -31,28 +31,39 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace Lbl.Sys.Configuracion
+namespace Lbl.Sys
 {
-        public class Impresion : SeccionConfiguracion
+        public partial class Config
         {
-                private ColeccionGenerica<Lbl.Impresion.Impresora> m_Impresoras = null;
-
-                public Impresion()
+                public class Articulos
                 {
-                }
+                        /// <summary>
+                        /// La cantidad de decimales para las existencias.
+                        /// </summary>
+                        public static int Decimales = 0;
 
-                public ColeccionGenerica<Lbl.Impresion.Impresora> Impresoras
-                {
-                        get
+                        /* 
+                        private int m_Decimales = -1;
+                        /// <summary>
+                        /// La cantidad de decimales para las existencias.
+                        /// </summary>
+                        public int Decimales
                         {
-                                if (m_Impresoras == null) {
-                                        System.Data.DataTable TablaImpresoras = this.DataBase.Select("SELECT * FROM impresoras");
-                                        m_Impresoras = new Lbl.ColeccionGenerica<Lbl.Impresion.Impresora>(this.DataBase, TablaImpresoras);
+                                get
+                                {
+                                        if (m_Decimales == -1)
+                                                m_Decimales = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Stock.Decimales", 0);
+                                        return m_Decimales;
                                 }
-                                return m_Impresoras;
-                        }
+                                set
+                                {
+                                        m_Decimales = value;
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.Decimales", m_Decimales);
+                                }
+                        } */
                 }
         }
 }

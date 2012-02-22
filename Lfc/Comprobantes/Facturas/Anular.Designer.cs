@@ -99,7 +99,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "A|A",
@@ -116,10 +115,8 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaDesde
                         // 
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(292, 20);
                         this.EntradaDesde.Name = "EntradaDesde";
-                        this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
                         this.EntradaDesde.TabIndex = 5;
@@ -140,10 +137,8 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaPV
                         // 
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(148, 48);
                         this.EntradaPV.Name = "EntradaPV";
-                        this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.Size = new System.Drawing.Size(52, 24);
                         this.EntradaPV.TabIndex = 3;
@@ -165,7 +160,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaAnularPagos.AutoSize = true;
                         this.EntradaAnularPagos.Location = new System.Drawing.Point(508, 20);
                         this.EntradaAnularPagos.Name = "EntradaAnularPagos";
-                        this.EntradaAnularPagos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAnularPagos.ReadOnly = false;
                         this.EntradaAnularPagos.SetData = new string[] {
         "Anular todos los pagos asociados|1",
@@ -192,7 +186,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.ComprobanteVistaPrevia.Location = new System.Drawing.Point(20, 112);
                         this.ComprobanteVistaPrevia.MinimumSize = new System.Drawing.Size(600, 320);
                         this.ComprobanteVistaPrevia.Name = "ComprobanteVistaPrevia";
-                        this.ComprobanteVistaPrevia.Padding = new System.Windows.Forms.Padding(2);
                         this.ComprobanteVistaPrevia.ReadOnly = false;
                         this.ComprobanteVistaPrevia.Size = new System.Drawing.Size(756, 320);
                         this.ComprobanteVistaPrevia.TabIndex = 12;
@@ -202,10 +195,8 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaHasta
                         // 
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 48);
                         this.EntradaHasta.Name = "EntradaHasta";
-                        this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHasta.ReadOnly = false;
                         this.EntradaHasta.Size = new System.Drawing.Size(100, 24);
                         this.EntradaHasta.TabIndex = 7;

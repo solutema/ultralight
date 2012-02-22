@@ -80,6 +80,16 @@ namespace Lbl.Cajas
                         }
                 }
 
+
+                public Entidades.Moneda ObtenerMoneda()
+                {
+                        if (this.Moneda == null)
+                                return Lbl.Sys.Config.Moneda.MonedaPredeterminada;
+                        else
+                                return this.Moneda;
+                }
+
+
                 public Entidades.Moneda Moneda
                 {
                         get

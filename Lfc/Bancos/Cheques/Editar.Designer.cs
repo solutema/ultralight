@@ -65,10 +65,8 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // EntradaEmisor
                         // 
-                        this.EntradaEmisor.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaEmisor.Location = new System.Drawing.Point(140, 0);
                         this.EntradaEmisor.Name = "EntradaEmisor";
-                        this.EntradaEmisor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmisor.PlaceholderText = "";
                         this.EntradaEmisor.ReadOnly = false;
                         this.EntradaEmisor.Size = new System.Drawing.Size(460, 24);
@@ -76,10 +74,8 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(140, 64);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.Size = new System.Drawing.Size(172, 24);
                         this.EntradaNumero.TabIndex = 5;
@@ -96,7 +92,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 32);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
-                        this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(460, 24);
@@ -135,10 +130,8 @@ namespace Lfc.Bancos.Cheques
                         // EntradaFechaCobro
                         // 
                         this.EntradaFechaCobro.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaCobro.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaCobro.Location = new System.Drawing.Point(140, 128);
                         this.EntradaFechaCobro.Name = "EntradaFechaCobro";
-                        this.EntradaFechaCobro.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaCobro.ReadOnly = false;
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.TabIndex = 9;
@@ -155,10 +148,8 @@ namespace Lfc.Bancos.Cheques
                         // EntradaFechaEmision
                         // 
                         this.EntradaFechaEmision.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaEmision.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaEmision.Location = new System.Drawing.Point(140, 96);
                         this.EntradaFechaEmision.Name = "EntradaFechaEmision";
-                        this.EntradaFechaEmision.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaEmision.ReadOnly = false;
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.TabIndex = 7;

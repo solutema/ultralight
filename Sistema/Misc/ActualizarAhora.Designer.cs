@@ -142,7 +142,6 @@ namespace Lazaro.WinMain.Misc
                         this.BotonInstalar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonInstalar.Location = new System.Drawing.Point(488, 324);
                         this.BotonInstalar.Name = "BotonInstalar";
-                        this.BotonInstalar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonInstalar.ReadOnly = false;
                         this.BotonInstalar.Size = new System.Drawing.Size(112, 36);
                         this.BotonInstalar.SubLabelPos = Lui.Forms.SubLabelPositions.None;

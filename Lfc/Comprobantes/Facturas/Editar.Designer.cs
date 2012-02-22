@@ -69,7 +69,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.Location = new System.Drawing.Point(112, 0);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
-                        this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.Required = true;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(88, 24);
@@ -94,7 +93,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(72, 32);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|FA",
@@ -121,10 +119,8 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaRemito
                         // 
                         this.EntradaRemito.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaRemito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRemito.Location = new System.Drawing.Point(464, 32);
                         this.EntradaRemito.Name = "EntradaRemito";
-                        this.EntradaRemito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRemito.PlaceholderText = "Ninguno";
                         this.EntradaRemito.ReadOnly = false;
                         this.EntradaRemito.Size = new System.Drawing.Size(144, 24);

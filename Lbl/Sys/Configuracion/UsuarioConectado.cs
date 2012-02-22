@@ -40,8 +40,7 @@ namespace Lbl.Sys.Configuracion
                 public Personas.Usuario Usuario;
                 private Personas.Persona m_Persona;
 
-                public UsuarioConectado(Lfx.Workspace workspace, Lbl.Personas.Usuario usuario)
-                        : base(workspace)
+                public UsuarioConectado(Lbl.Personas.Usuario usuario)
                 {
                         this.Usuario = usuario;
                 }

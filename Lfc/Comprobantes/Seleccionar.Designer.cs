@@ -91,7 +91,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaNumero.Location = new System.Drawing.Point(400, 88);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.Size = new System.Drawing.Size(96, 24);
                         this.EntradaNumero.TabIndex = 9;
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
@@ -110,7 +109,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.AlwaysExpanded = false;
                         this.EntradaTipo.Location = new System.Drawing.Point(112, 88);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|A",
         "Factura B|B",
@@ -136,7 +134,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaPv.Location = new System.Drawing.Point(328, 88);
                         this.EntradaPv.Name = "EntradaPv";
-                        this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPv.Size = new System.Drawing.Size(48, 24);
                         this.EntradaPv.TabIndex = 7;
                         this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
@@ -180,7 +177,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Location = new System.Drawing.Point(112, 56);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
-                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.PlaceholderText = null;
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(432, 24);
@@ -269,7 +265,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Location = new System.Drawing.Point(112, 24);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(432, 24);

@@ -78,7 +78,6 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaProveedor.Location = new System.Drawing.Point(88, 64);
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
-                        this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProveedor.PlaceholderText = "Sin especificar";
                         this.EntradaProveedor.ReadOnly = false;
                         this.EntradaProveedor.Required = false;
@@ -99,11 +98,9 @@ namespace Lfc.Articulos.Marcas
                         // 
                         // EntradaUrl
                         // 
-                        this.EntradaUrl.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUrl.Location = new System.Drawing.Point(88, 32);
                         this.EntradaUrl.MaxLength = 200;
                         this.EntradaUrl.Name = "EntradaUrl";
-                        this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUrl.PlaceholderText = "Dirección de la página web del producto.";
                         this.EntradaUrl.ReadOnly = false;
                         this.EntradaUrl.Size = new System.Drawing.Size(444, 24);
@@ -124,7 +121,6 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaNombre.Location = new System.Drawing.Point(88, 0);
                         this.EntradaNombre.MaxLength = 200;
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(444, 24);
                         this.EntradaNombre.TabIndex = 1;
@@ -144,7 +140,6 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaObs.Location = new System.Drawing.Point(88, 96);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.Size = new System.Drawing.Size(444, 112);
                         this.EntradaObs.TabIndex = 7;

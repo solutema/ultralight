@@ -76,7 +76,6 @@ namespace Lcc.Entrada
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(352, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PlaceholderText = "Lugar";
                         this.EntradaNombre.Size = new System.Drawing.Size(108, 24);
                         this.EntradaNombre.TabIndex = 4;
@@ -88,7 +87,6 @@ namespace Lcc.Entrada
             | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaCaracteristica.Location = new System.Drawing.Point(12, 0);
                         this.EntradaCaracteristica.Name = "EntradaCaracteristica";
-                        this.EntradaCaracteristica.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaracteristica.PlaceholderText = "Característica";
                         this.EntradaCaracteristica.Size = new System.Drawing.Size(60, 24);
                         this.EntradaCaracteristica.TabIndex = 1;
@@ -101,7 +99,6 @@ namespace Lcc.Entrada
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNumero.Location = new System.Drawing.Point(84, 0);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.PlaceholderText = "Número Telefónico";
                         this.EntradaNumero.Size = new System.Drawing.Size(267, 24);
                         this.EntradaNumero.TabIndex = 3;

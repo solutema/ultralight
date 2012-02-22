@@ -99,7 +99,6 @@ namespace Lfc.Sucursales
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(96, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(544, 24);
                         this.EntradaNombre.TabIndex = 1;
@@ -108,10 +107,8 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDireccion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDireccion.Location = new System.Drawing.Point(96, 32);
                         this.EntradaDireccion.Name = "EntradaDireccion";
-                        this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDireccion.ReadOnly = false;
                         this.EntradaDireccion.Size = new System.Drawing.Size(544, 24);
                         this.EntradaDireccion.TabIndex = 3;
@@ -145,7 +142,6 @@ namespace Lfc.Sucursales
                         this.EntradaLocalidad.Location = new System.Drawing.Point(96, 64);
                         this.EntradaLocalidad.MaxLength = 200;
                         this.EntradaLocalidad.Name = "EntradaLocalidad";
-                        this.EntradaLocalidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLocalidad.ReadOnly = false;
                         this.EntradaLocalidad.Required = true;
                         this.EntradaLocalidad.Size = new System.Drawing.Size(280, 24);
@@ -175,7 +171,6 @@ namespace Lfc.Sucursales
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(148, 240);
                         this.EntradaSituacionOrigen.MaxLength = 200;
                         this.EntradaSituacionOrigen.Name = "EntradaSituacionOrigen";
-                        this.EntradaSituacionOrigen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSituacionOrigen.ReadOnly = false;
                         this.EntradaSituacionOrigen.Required = true;
                         this.EntradaSituacionOrigen.Size = new System.Drawing.Size(280, 24);
@@ -206,7 +201,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaDiaria.Location = new System.Drawing.Point(148, 268);
                         this.EntradaCajaDiaria.MaxLength = 200;
                         this.EntradaCajaDiaria.Name = "EntradaCajaDiaria";
-                        this.EntradaCajaDiaria.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCajaDiaria.ReadOnly = false;
                         this.EntradaCajaDiaria.Required = true;
                         this.EntradaCajaDiaria.Size = new System.Drawing.Size(280, 24);
@@ -237,7 +231,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaCheques.Location = new System.Drawing.Point(148, 296);
                         this.EntradaCajaCheques.MaxLength = 200;
                         this.EntradaCajaCheques.Name = "EntradaCajaCheques";
-                        this.EntradaCajaCheques.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCajaCheques.ReadOnly = false;
                         this.EntradaCajaCheques.Required = true;
                         this.EntradaCajaCheques.Size = new System.Drawing.Size(280, 24);
@@ -265,7 +258,6 @@ namespace Lfc.Sucursales
                         this.EntradaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaTelefono.Location = new System.Drawing.Point(96, 96);
                         this.EntradaTelefono.Name = "EntradaTelefono";
-                        this.EntradaTelefono.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTelefono.ReadOnly = false;
                         this.EntradaTelefono.Size = new System.Drawing.Size(540, 132);
                         this.EntradaTelefono.TabIndex = 7;

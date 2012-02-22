@@ -73,10 +73,8 @@ namespace Lfc.Personas.Grupos
                         // EntradaDescuento
                         // 
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescuento.Location = new System.Drawing.Point(120, 64);
                         this.EntradaDescuento.Name = "EntradaDescuento";
-                        this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescuento.ReadOnly = false;
                         this.EntradaDescuento.Size = new System.Drawing.Size(88, 24);
                         this.EntradaDescuento.Sufijo = "%";
@@ -97,7 +95,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 32);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(437, 24);
                         this.EntradaNombre.TabIndex = 3;
@@ -117,7 +114,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaPredet.AutoSize = true;
                         this.EntradaPredet.Location = new System.Drawing.Point(120, 96);
                         this.EntradaPredet.Name = "EntradaPredet";
-                        this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",
@@ -147,7 +143,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaGrupo.Location = new System.Drawing.Point(120, 0);
                         this.EntradaGrupo.MaxLength = 200;
                         this.EntradaGrupo.Name = "EntradaGrupo";
-                        this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGrupo.PlaceholderText = "Ninguno";
                         this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.Required = false;

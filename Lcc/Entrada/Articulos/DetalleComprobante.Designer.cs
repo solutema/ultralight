@@ -102,7 +102,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaDescuento.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         this.EntradaDescuento.Location = new System.Drawing.Point(376, 24);
                         this.EntradaDescuento.Name = "EntradaDescuento";
-                        this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescuento.PlaceholderText = "Escriba el descuento para este ítem";
                         this.EntradaDescuento.Prefijo = "Desc.";
                         this.EntradaDescuento.Size = new System.Drawing.Size(128, 20);
@@ -119,7 +118,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaImporte.Location = new System.Drawing.Point(404, 0);
                         this.EntradaImporte.MaxLength = 20;
                         this.EntradaImporte.Name = "EntradaImporte";
-                        this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.ReadOnly = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(104, 24);
@@ -134,7 +132,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaUnitario.Location = new System.Drawing.Point(216, 0);
                         this.EntradaUnitario.MaxLength = 20;
                         this.EntradaUnitario.Name = "EntradaUnitario";
-                        this.EntradaUnitario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUnitario.PlaceholderText = "Escriba el precio unitario.";
                         this.EntradaUnitario.Prefijo = "$";
                         this.EntradaUnitario.Size = new System.Drawing.Size(95, 24);
@@ -152,7 +149,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.Location = new System.Drawing.Point(312, 0);
                         this.EntradaCantidad.MaxLength = 20;
                         this.EntradaCantidad.Name = "EntradaCantidad";
-                        this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCantidad.PlaceholderText = "Escriba la cantidad.";
                         this.EntradaCantidad.Size = new System.Drawing.Size(91, 24);
                         this.EntradaCantidad.TabIndex = 2;
@@ -177,7 +173,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaArticulo.Location = new System.Drawing.Point(0, 0);
                         this.EntradaArticulo.MaxLength = 200;
                         this.EntradaArticulo.Name = "EntradaArticulo";
-                        this.EntradaArticulo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaArticulo.PlaceholderText = null;
                         this.EntradaArticulo.Required = true;
                         this.EntradaArticulo.Size = new System.Drawing.Size(215, 24);

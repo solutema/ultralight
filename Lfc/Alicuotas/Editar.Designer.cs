@@ -73,7 +73,6 @@ namespace Lfc.Alicuotas
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
                         this.EntradaNombre.MaxLength = 200;
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(436, 24);
                         this.EntradaNombre.TabIndex = 1;
@@ -90,10 +89,8 @@ namespace Lfc.Alicuotas
                         // EntradaPorcentaje
                         // 
                         this.EntradaPorcentaje.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaPorcentaje.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPorcentaje.Location = new System.Drawing.Point(120, 32);
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
-                        this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(104, 24);
                         this.EntradaPorcentaje.Sufijo = "%";
@@ -121,10 +118,8 @@ namespace Lfc.Alicuotas
                         // EntradaImporteMinimo
                         // 
                         this.EntradaImporteMinimo.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporteMinimo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporteMinimo.Location = new System.Drawing.Point(120, 64);
                         this.EntradaImporteMinimo.Name = "EntradaImporteMinimo";
-                        this.EntradaImporteMinimo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporteMinimo.ReadOnly = false;
                         this.EntradaImporteMinimo.Size = new System.Drawing.Size(104, 24);
                         this.EntradaImporteMinimo.TabIndex = 5;

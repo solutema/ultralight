@@ -84,7 +84,6 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaAlicuota.Location = new System.Drawing.Point(116, 32);
                         this.EntradaAlicuota.MaxLength = 200;
                         this.EntradaAlicuota.Name = "EntradaAlicuota";
-                        this.EntradaAlicuota.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAlicuota.PlaceholderText = "Sin especificar";
                         this.EntradaAlicuota.ReadOnly = false;
                         this.EntradaAlicuota.Required = true;
@@ -99,7 +98,6 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(388, 24);
                         this.EntradaNombre.TabIndex = 1;

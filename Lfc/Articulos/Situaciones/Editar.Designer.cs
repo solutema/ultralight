@@ -81,7 +81,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(124, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(412, 24);
                         this.EntradaNombre.TabIndex = 1;
@@ -101,7 +100,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaCuentaStock.AutoSize = true;
                         this.EntradaCuentaStock.Location = new System.Drawing.Point(124, 32);
                         this.EntradaCuentaStock.Name = "EntradaCuentaStock";
-                        this.EntradaCuentaStock.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuentaStock.ReadOnly = false;
                         this.EntradaCuentaStock.SetData = new string[] {
         "Si|1",
@@ -116,7 +114,6 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaFacturable.AutoSize = true;
                         this.EntradaFacturable.Location = new System.Drawing.Point(124, 80);
                         this.EntradaFacturable.Name = "EntradaFacturable";
-                        this.EntradaFacturable.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFacturable.ReadOnly = false;
                         this.EntradaFacturable.SetData = new string[] {
         "Si|1",
@@ -146,10 +143,8 @@ namespace Lfc.Articulos.Situaciones
                         // EntradaDeposito
                         // 
                         this.EntradaDeposito.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaDeposito.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDeposito.Location = new System.Drawing.Point(124, 128);
                         this.EntradaDeposito.Name = "EntradaDeposito";
-                        this.EntradaDeposito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDeposito.ReadOnly = false;
                         this.EntradaDeposito.Size = new System.Drawing.Size(52, 24);
                         this.EntradaDeposito.TabIndex = 7;

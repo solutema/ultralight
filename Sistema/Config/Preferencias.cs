@@ -145,10 +145,10 @@ namespace Lazaro.WinMain.Config
                         EntradaProvincia.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Provincia", 0);
                         EntradaLocalidad.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Localidad", 0);
 
-                        EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
-                        EntradaMonedaDecimalesCosto.TextKey = Lbl.Sys.Config.Actual.Moneda.DecimalesCosto.ToString();
-                        EntradaMonedaDecimalesUnitarios.TextKey = Lbl.Sys.Config.Actual.Moneda.Decimales.ToString();
-                        EntradaMonedaDecimalesFinal.TextKey = Lbl.Sys.Config.Actual.Moneda.DecimalesFinal.ToString();
+                        EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
+                        EntradaMonedaDecimalesCosto.TextKey = Lbl.Sys.Config.Moneda.DecimalesCosto.ToString();
+                        EntradaMonedaDecimalesUnitarios.TextKey = Lbl.Sys.Config.Moneda.Decimales.ToString();
+                        EntradaMonedaDecimalesFinal.TextKey = Lbl.Sys.Config.Moneda.DecimalesFinal.ToString();
 
                 }
 
@@ -220,10 +220,10 @@ namespace Lazaro.WinMain.Config
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Provincia", EntradaProvincia.TextInt);
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Localidad", EntradaLocalidad.TextInt);
 
-                        EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
-                        Lbl.Sys.Config.Actual.Moneda.DecimalesCosto = EntradaMonedaDecimalesCosto.ValueInt;
-                        Lbl.Sys.Config.Actual.Moneda.Decimales = EntradaMonedaDecimalesUnitarios.ValueInt;
-                        Lbl.Sys.Config.Actual.Moneda.DecimalesFinal = EntradaMonedaDecimalesFinal.ValueInt;
+                        EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
+                        Lbl.Sys.Config.Moneda.DecimalesCosto = EntradaMonedaDecimalesCosto.ValueInt;
+                        Lbl.Sys.Config.Moneda.Decimales = EntradaMonedaDecimalesUnitarios.ValueInt;
+                        Lbl.Sys.Config.Moneda.DecimalesFinal = EntradaMonedaDecimalesFinal.ValueInt;
 
 
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Configurado", "1", 0);

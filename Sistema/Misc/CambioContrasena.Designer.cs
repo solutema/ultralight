@@ -78,7 +78,6 @@ namespace Lazaro.WinMain.Misc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasena.Location = new System.Drawing.Point(312, 136);
                         this.EntradaContrasena.Name = "EntradaContrasena";
-                        this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
                         this.EntradaContrasena.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasena.TabIndex = 3;
@@ -179,7 +178,6 @@ namespace Lazaro.WinMain.Misc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasenaNueva1.Location = new System.Drawing.Point(312, 167);
                         this.EntradaContrasenaNueva1.Name = "EntradaContrasenaNueva1";
-                        this.EntradaContrasenaNueva1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasenaNueva1.PasswordChar = '*';
                         this.EntradaContrasenaNueva1.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasenaNueva1.TabIndex = 5;
@@ -200,7 +198,6 @@ namespace Lazaro.WinMain.Misc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasenaNueva2.Location = new System.Drawing.Point(312, 196);
                         this.EntradaContrasenaNueva2.Name = "EntradaContrasenaNueva2";
-                        this.EntradaContrasenaNueva2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasenaNueva2.PasswordChar = '*';
                         this.EntradaContrasenaNueva2.Size = new System.Drawing.Size(176, 24);
                         this.EntradaContrasenaNueva2.TabIndex = 7;

@@ -59,7 +59,7 @@ namespace Lui.Forms
                         TextBox1.BackColor = this.DisplayStyle.DataAreaColor;
                         TextBox1.ForeColor = this.DisplayStyle.TextColor;
 
-                        EtiquetaPrefijo.Font = new Font(this.Font.Name, this.Font.Size * 0.8f);
+                        EtiquetaPrefijo.Font = Lazaro.Pres.DisplayStyles.Template.Current.SmallerFont;
                         EtiquetaSufijo.Font = EtiquetaPrefijo.Font;
                         EtiquetaPrefijo.ForeColor = this.DisplayStyle.TextColor;
                         EtiquetaPrefijo.BackColor = this.DisplayStyle.DataAreaColor;
@@ -100,8 +100,11 @@ namespace Lui.Forms
 			set
 			{
 				this.SuspendLayout();
-				EtiquetaPrefijo.Text = value;
-				EtiquetaPrefijo.Visible = EtiquetaPrefijo.Text.Length > 0;
+                                string Pref = value;
+                                if (Pref == "$" || this.DataType == DataTypes.Currency)
+                                        Pref = Lbl.Sys.Config.Moneda.Simbolo;
+				EtiquetaPrefijo.Text = Pref;
+                                EtiquetaPrefijo.Visible = Pref.Length > 0;
 				TextBox_SizeChanged(this, null);
 				this.ResumeLayout();
 			}
@@ -543,10 +546,8 @@ namespace Lui.Forms
                                         else
                                                 DatoDinero =Lfx.Types.Evaluator.EvaluateDecimal(datos.ToString());
 
-                                        if (m_DecimalPlaces == -1 && Lfx.Workspace.Master != null)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
-                                        else if (m_DecimalPlaces == -1)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, 2);
+                                        if (m_DecimalPlaces == -1)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, Lbl.Sys.Config.Moneda.Decimales);
                                         else
                                                 Res = Lfx.Types.Formatting.FormatCurrency(DatoDinero, m_DecimalPlaces);
                                         break;
@@ -558,10 +559,8 @@ namespace Lui.Forms
                                         else
                                                 DatoStock =Lfx.Types.Evaluator.EvaluateDecimal(datos.ToString());
 
-                                        if (m_DecimalPlaces == -1 && Lfx.Workspace.Master != null)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
-                                        else if (m_DecimalPlaces == -1)
-                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, 2);
+                                        if (m_DecimalPlaces == -1)
+                                                Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, Lbl.Sys.Config.Articulos.Decimales);
                                         else
                                                 Res = Lfx.Types.Formatting.FormatCurrency(DatoStock, m_DecimalPlaces);
                                         break;
@@ -670,22 +669,25 @@ namespace Lui.Forms
                 private void TextBox_SizeChanged(object sender, System.EventArgs e)
                 {
                         if (EtiquetaPrefijo.Visible) {
-                                EtiquetaPrefijo.Top = (this.Height - EtiquetaPrefijo.Height) / 2;
+                                EtiquetaPrefijo.MinimumSize = new Size(0, this.ClientRectangle.Height - 4);
+                                EtiquetaPrefijo.Location = new Point(3, 2);
                                 TextBox1.Left = EtiquetaPrefijo.Left + EtiquetaPrefijo.Width + 2;
                         } else {
-                                TextBox1.Left = 4;
+                                TextBox1.Left = 3;
                         }
-                        if (EtiquetaSufijo.Visible) {
-                                EtiquetaSufijo.Top = (this.Height - EtiquetaSufijo.Height) / 2;
-                                EtiquetaSufijo.Left = this.Width - EtiquetaSufijo.Width - 4;
-                        }
-                        int SufijoWidth = 4;
-                        if (EtiquetaSufijo.Visible)
-                                SufijoWidth = EtiquetaSufijo.Width + 4;
 
-                        TextBox1.Top = 4;
-                        TextBox1.Width = this.Width - TextBox1.Left - SufijoWidth;
-                        TextBox1.Height = this.Height - (TextBox1.Top * 2);
+                        int SufijoWidth;
+                        if (EtiquetaSufijo.Visible) {
+                                EtiquetaSufijo.MinimumSize = new Size(0, this.ClientRectangle.Height - 4);
+                                EtiquetaSufijo.Location = new Point(3, this.ClientRectangle.Width - EtiquetaSufijo.Width - 3);
+                                SufijoWidth = EtiquetaSufijo.Width + 3;
+                        } else {
+                                SufijoWidth = 3;
+                        }
+
+                        TextBox1.Top = 3;
+                        TextBox1.Width = this.ClientRectangle.Width - TextBox1.Left - SufijoWidth;
+                        TextBox1.Height = this.ClientRectangle.Height - (TextBox1.Top * 2);
                 }
 
 

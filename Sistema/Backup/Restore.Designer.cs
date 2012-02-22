@@ -135,7 +135,6 @@ namespace Lazaro.WinMain.Backup
                         this.EntradaConfirmar.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         this.EntradaConfirmar.Location = new System.Drawing.Point(504, 288);
                         this.EntradaConfirmar.Name = "EntradaConfirmar";
-                        this.EntradaConfirmar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConfirmar.PlaceholderText = "";
                         this.EntradaConfirmar.Size = new System.Drawing.Size(56, 32);
                         this.EntradaConfirmar.TabIndex = 0;

@@ -96,10 +96,8 @@ namespace Lfc.Articulos
                         // EntradaRendimiento
                         // 
                         this.EntradaRendimiento.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaRendimiento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaRendimiento.Location = new System.Drawing.Point(100, 120);
                         this.EntradaRendimiento.Name = "EntradaRendimiento";
-                        this.EntradaRendimiento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRendimiento.ReadOnly = false;
                         this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
                         this.EntradaRendimiento.TabIndex = 3;
@@ -121,7 +119,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.AutoSize = true;
                         this.EntradaUnidad.Location = new System.Drawing.Point(200, 24);
                         this.EntradaUnidad.Name = "EntradaUnidad";
-                        this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUnidad.ReadOnly = false;
                         this.EntradaUnidad.SetData = new string[] {
         "N/A|",
@@ -149,7 +146,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidadRend.AutoSize = true;
                         this.EntradaUnidadRend.Location = new System.Drawing.Point(200, 120);
                         this.EntradaUnidadRend.Name = "EntradaUnidadRend";
-                        this.EntradaUnidadRend.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUnidadRend.ReadOnly = false;
                         this.EntradaUnidadRend.SetData = new string[] {
         "N/A|",

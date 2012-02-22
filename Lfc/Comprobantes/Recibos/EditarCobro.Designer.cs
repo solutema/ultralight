@@ -81,7 +81,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Cobro.Name = "Cobro";
                         this.Cobro.ObsEditable = true;
                         this.Cobro.ObsVisible = true;
-                        this.Cobro.Padding = new System.Windows.Forms.Padding(2);
                         this.Cobro.ReadOnly = false;
                         this.Cobro.Size = new System.Drawing.Size(464, 361);
                         this.Cobro.TabIndex = 0;

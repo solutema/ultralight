@@ -58,7 +58,6 @@ namespace Lfc.Comprobantes
                     this.EntradaAgrupar.AutoSize = false;
                     this.EntradaAgrupar.Location = new System.Drawing.Point(400, 4);
                     this.EntradaAgrupar.Name = "EntradaAgrupar";
-                    this.EntradaAgrupar.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaAgrupar.SetData = new string[] {
         "Sin Agrupar|*",
         "Por Tipo de Comprobante|comprob.tipo_fac",

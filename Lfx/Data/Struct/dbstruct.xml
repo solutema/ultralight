@@ -335,7 +335,7 @@
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="titular" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="tipo" inputtype="TinyInt" nullable="0" default="0" />
-    <Column name="id_moneda" inputtype="Relation" nullable="0" default="0" />
+    <Column name="id_moneda" inputtype="Relation" nullable="1" />
     <Column name="cbu" datatype="VarChar" nullable="1" lenght="50" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
@@ -621,14 +621,15 @@
 
 
   <Table name="monedas" lsdet="1" label="Monedas">
-    <Column name="id_moneda" datatype="Serial" nullable="0" primary_key="1" />
-    <Column name="nombre" inputtype="Text" nullable="0" lenght="50" />
+    <Column name="id_moneda" datatype="Serial" label="Código" nullable="0" primary_key="1" />
+    <Column name="nombre" inputtype="Text" label="Nombre" nullable="0" lenght="50" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
-    <Column name="signo" datatype="VarChar" nullable="0" lenght="50" />
-    <Column name="iso" datatype="VarChar" nullable="0" lenght="50" />
-    <Column name="cotizacion" inputtype="Currency" default="0" />
+    <Column name="signo" datatype="VarChar" label="Símbolo" nullable="0" lenght="50" />
+    <Column name="iso" datatype="VarChar" label="Código ISO" nullable="0" lenght="50" />
+    <Column name="cotizacion" inputtype="Currency" label="Cotización" default="0" />
+    <Column name="decimales" inputtype="TinyInt" label="Decimales" nullable="0" />
     <Index table="monedas" name="PRIMARY" columns="id_moneda" unique="1" primary="1" />
   </Table>
 

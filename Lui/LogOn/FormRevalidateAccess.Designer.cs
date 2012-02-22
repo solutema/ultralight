@@ -91,10 +91,8 @@ namespace Lui.LogOn
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(164, 156);
                         this.EntradaContrasena.Name = "EntradaContrasena";
-                        this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.Size = new System.Drawing.Size(180, 24);
@@ -122,10 +120,8 @@ namespace Lui.LogOn
                         // EntradaUsuario
                         // 
                         this.EntradaUsuario.Enabled = false;
-                        this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUsuario.Location = new System.Drawing.Point(164, 124);
                         this.EntradaUsuario.Name = "EntradaUsuario";
-                        this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUsuario.ReadOnly = false;
                         this.EntradaUsuario.Size = new System.Drawing.Size(272, 24);
                         this.EntradaUsuario.TabIndex = 2;

@@ -66,7 +66,7 @@ namespace Lfc.Cajas
                         this.EntradaOrigen = new Lcc.Entrada.CodigoDetalle();
                         this.Label6 = new Lui.Forms.Label();
                         this.EntradaImporteDestino = new Lui.Forms.TextBox();
-                        this.lblImporteDestino = new Lui.Forms.Label();
+                        this.EtiquetaImporteDestino = new Lui.Forms.Label();
                         this.label7 = new Lui.Forms.Label();
                         this.formHeader1 = new Lui.Forms.FormHeader();
                         this.SuspendLayout();
@@ -83,7 +83,6 @@ namespace Lfc.Cajas
                         this.EntradaDestino.Location = new System.Drawing.Point(136, 168);
                         this.EntradaDestino.MaxLength = 200;
                         this.EntradaDestino.Name = "EntradaDestino";
-                        this.EntradaDestino.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDestino.PlaceholderText = null;
                         this.EntradaDestino.Required = false;
                         this.EntradaDestino.Size = new System.Drawing.Size(356, 24);
@@ -107,7 +106,6 @@ namespace Lfc.Cajas
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.Location = new System.Drawing.Point(136, 200);
                         this.EntradaImporte.Name = "EntradaImporte";
-                        this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporte.TabIndex = 5;
@@ -135,7 +133,6 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.Location = new System.Drawing.Point(136, 232);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.PlaceholderText = null;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(356, 24);
@@ -159,7 +156,6 @@ namespace Lfc.Cajas
                         this.EntradaObs.Location = new System.Drawing.Point(136, 296);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.Size = new System.Drawing.Size(432, 80);
                         this.EntradaObs.TabIndex = 13;
                         this.EntradaObs.Enter += new System.EventHandler(this.EntradaObs_Enter);
@@ -179,7 +175,6 @@ namespace Lfc.Cajas
                         this.EntradaComprob.Location = new System.Drawing.Point(136, 264);
                         this.EntradaComprob.MaxLength = 200;
                         this.EntradaComprob.Name = "EntradaComprob";
-                        this.EntradaComprob.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComprob.Size = new System.Drawing.Size(240, 24);
                         this.EntradaComprob.TabIndex = 11;
                         // 
@@ -204,7 +199,6 @@ namespace Lfc.Cajas
                         this.EntradaOrigen.Location = new System.Drawing.Point(136, 136);
                         this.EntradaOrigen.MaxLength = 200;
                         this.EntradaOrigen.Name = "EntradaOrigen";
-                        this.EntradaOrigen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaOrigen.PlaceholderText = null;
                         this.EntradaOrigen.Required = false;
                         this.EntradaOrigen.Size = new System.Drawing.Size(356, 24);
@@ -229,7 +223,6 @@ namespace Lfc.Cajas
                         this.EntradaImporteDestino.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporteDestino.Location = new System.Drawing.Point(280, 200);
                         this.EntradaImporteDestino.Name = "EntradaImporteDestino";
-                        this.EntradaImporteDestino.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporteDestino.Prefijo = "$";
                         this.EntradaImporteDestino.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporteDestino.TabIndex = 7;
@@ -238,13 +231,13 @@ namespace Lfc.Cajas
                         // 
                         // lblImporteDestino
                         // 
-                        this.lblImporteDestino.Location = new System.Drawing.Point(248, 200);
-                        this.lblImporteDestino.Name = "lblImporteDestino";
-                        this.lblImporteDestino.Size = new System.Drawing.Size(24, 24);
-                        this.lblImporteDestino.TabIndex = 6;
-                        this.lblImporteDestino.Text = "->";
-                        this.lblImporteDestino.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.lblImporteDestino.Visible = false;
+                        this.EtiquetaImporteDestino.Location = new System.Drawing.Point(248, 200);
+                        this.EtiquetaImporteDestino.Name = "lblImporteDestino";
+                        this.EtiquetaImporteDestino.Size = new System.Drawing.Size(24, 24);
+                        this.EtiquetaImporteDestino.TabIndex = 6;
+                        this.EtiquetaImporteDestino.Text = "->";
+                        this.EtiquetaImporteDestino.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaImporteDestino.Visible = false;
                         // 
                         // label7
                         // 
@@ -276,7 +269,7 @@ namespace Lfc.Cajas
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.EntradaDestino);
                         this.Controls.Add(this.Label3);
-                        this.Controls.Add(this.lblImporteDestino);
+                        this.Controls.Add(this.EtiquetaImporteDestino);
                         this.Controls.Add(this.EntradaOrigen);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.EntradaObs);
@@ -295,7 +288,7 @@ namespace Lfc.Cajas
                         this.Controls.SetChildIndex(this.EntradaObs, 0);
                         this.Controls.SetChildIndex(this.Label6, 0);
                         this.Controls.SetChildIndex(this.EntradaOrigen, 0);
-                        this.Controls.SetChildIndex(this.lblImporteDestino, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaImporteDestino, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
                         this.Controls.SetChildIndex(this.EntradaDestino, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
@@ -322,11 +315,10 @@ namespace Lfc.Cajas
                 protected internal Lcc.Entrada.CodigoDetalle EntradaDestino;
                 protected internal Lcc.Entrada.CodigoDetalle EntradaOrigen;
                 protected Lui.Forms.TextBox EntradaImporteDestino;
-                protected Lui.Forms.Label lblImporteDestino;
+                protected Lui.Forms.Label EtiquetaImporteDestino;
                 protected int iMonedaOrigen;
                 protected int iMonedaDestino;
-                protected Lfx.Data.Row MonedaOrigen, MonedaDestino;
                 protected Lui.Forms.Label label7;
-                private Lui.Forms.FormHeader formHeader1;
+                protected Lui.Forms.FormHeader formHeader1;
         }
 }

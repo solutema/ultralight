@@ -140,10 +140,8 @@ namespace Lcc.Entrada.AuxForms
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBuscar.AutoNav = false;
                         this.EntradaBuscar.Cursor = System.Windows.Forms.Cursors.Default;
-                        this.EntradaBuscar.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBuscar.Location = new System.Drawing.Point(4, 344);
                         this.EntradaBuscar.Name = "EntradaBuscar";
-                        this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBuscar.Size = new System.Drawing.Size(524, 24);
                         this.EntradaBuscar.TabIndex = 0;
                         this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);
@@ -158,7 +156,6 @@ namespace Lcc.Entrada.AuxForms
                         this.BotonNuevo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNuevo.Location = new System.Drawing.Point(532, 340);
                         this.BotonNuevo.Name = "BotonNuevo";
-                        this.BotonNuevo.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonNuevo.Size = new System.Drawing.Size(96, 30);
                         this.BotonNuevo.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonNuevo.Subtext = "F6";

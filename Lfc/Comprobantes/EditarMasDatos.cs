@@ -113,7 +113,6 @@ namespace Lfc.Comprobantes
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(148, 52);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
-                        this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHaciaSituacion.PlaceholderText = null;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(460, 24);
@@ -145,7 +144,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion.Location = new System.Drawing.Point(148, 24);
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
-                        this.EntradaDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesdeSituacion.PlaceholderText = null;
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(460, 24);
@@ -169,7 +167,6 @@ namespace Lfc.Comprobantes
                         this.EntradaBloqueada.AutoSize = true;
                         this.EntradaBloqueada.Location = new System.Drawing.Point(148, 80);
                         this.EntradaBloqueada.Name = "EntradaBloqueada";
-                        this.EntradaBloqueada.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBloqueada.SetData = new string[] {
         "Editable|0",
         "Bloqueado|1"};

@@ -77,7 +77,7 @@ namespace ServidorFiscal
                                 // Simplemente la ignoramos.
                         }
 
-                        Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Lfx.Workspace.Master, new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, 1));
+                        Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, 1));
                         FormEstado = new FiscalStatus();
                         FormEstado.ServidorAsociado = this;
                         this.FormEstado.lblVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;

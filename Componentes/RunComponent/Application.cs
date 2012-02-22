@@ -36,7 +36,9 @@ namespace RunComponent
                         }
 
                         Lfx.Workspace.Master = new Lfx.Workspace("default");
-                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global(Lfx.Workspace.Master);
+                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global();
+                        Lbl.Sys.Config.Cargar();
+
                         if (ComponentName != null && FunctionName != null) {
                                 //Console.WriteLine("Ejecutando " + ComponentName + "." + FunctionName);
                                 Lfx.Components.Function Funcion = null;

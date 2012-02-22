@@ -99,7 +99,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaServidor.Location = new System.Drawing.Point(192, 164);
                         this.EntradaServidor.Name = "EntradaServidor";
-                        this.EntradaServidor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaServidor.ReadOnly = false;
                         this.EntradaServidor.Size = new System.Drawing.Size(272, 25);
                         this.EntradaServidor.TabIndex = 4;
@@ -133,7 +132,6 @@ namespace Lazaro.WinMain.Config
                         this.BotonServidorVista.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonServidorVista.Location = new System.Drawing.Point(44, 200);
                         this.BotonServidorVista.Name = "BotonServidorVista";
-                        this.BotonServidorVista.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonServidorVista.ReadOnly = false;
                         this.BotonServidorVista.Size = new System.Drawing.Size(156, 32);
                         this.BotonServidorVista.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -165,10 +163,8 @@ namespace Lazaro.WinMain.Config
                         // EntradaSucursal
                         // 
                         this.EntradaSucursal.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaSucursal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSucursal.Location = new System.Drawing.Point(232, 144);
                         this.EntradaSucursal.Name = "EntradaSucursal";
-                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.ReadOnly = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(60, 24);
                         this.EntradaSucursal.TabIndex = 11;
@@ -188,7 +184,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaSlowLink.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaSlowLink.Location = new System.Drawing.Point(232, 112);
                         this.EntradaSlowLink.Name = "EntradaSlowLink";
-                        this.EntradaSlowLink.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSlowLink.ReadOnly = false;
                         this.EntradaSlowLink.Size = new System.Drawing.Size(60, 25);
                         this.EntradaSlowLink.TabIndex = 9;
@@ -205,10 +200,8 @@ namespace Lazaro.WinMain.Config
                         // 
                         // EntradaBD
                         // 
-                        this.EntradaBD.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaBD.Location = new System.Drawing.Point(124, 28);
                         this.EntradaBD.Name = "EntradaBD";
-                        this.EntradaBD.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBD.ReadOnly = false;
                         this.EntradaBD.Size = new System.Drawing.Size(172, 24);
                         this.EntradaBD.TabIndex = 3;
@@ -227,7 +220,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaConexion.AlwaysExpanded = false;
                         this.EntradaConexion.Location = new System.Drawing.Point(124, 0);
                         this.EntradaConexion.Name = "EntradaConexion";
-                        this.EntradaConexion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConexion.ReadOnly = false;
                         this.EntradaConexion.SetData = new string[] {
         "ODBC|odbc",
@@ -250,10 +242,8 @@ namespace Lazaro.WinMain.Config
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(124, 84);
                         this.EntradaContrasena.Name = "EntradaContrasena";
-                        this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.Size = new System.Drawing.Size(124, 24);
@@ -261,10 +251,8 @@ namespace Lazaro.WinMain.Config
                         // 
                         // EntradaUsuario
                         // 
-                        this.EntradaUsuario.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaUsuario.Location = new System.Drawing.Point(124, 55);
                         this.EntradaUsuario.Name = "EntradaUsuario";
-                        this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUsuario.ReadOnly = false;
                         this.EntradaUsuario.Size = new System.Drawing.Size(124, 25);
                         this.EntradaUsuario.TabIndex = 5;
@@ -309,7 +297,6 @@ namespace Lazaro.WinMain.Config
                         this.CancelCommandButton.Location = new System.Drawing.Point(466, 12);
                         this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
                         this.CancelCommandButton.ReadOnly = false;
                         this.CancelCommandButton.Size = new System.Drawing.Size(104, 36);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -328,7 +315,6 @@ namespace Lazaro.WinMain.Config
                         this.OkButton.Location = new System.Drawing.Point(356, 12);
                         this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.OkButton.Name = "OkButton";
-                        this.OkButton.Padding = new System.Windows.Forms.Padding(2);
                         this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(104, 36);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;

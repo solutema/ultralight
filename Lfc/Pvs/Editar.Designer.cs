@@ -104,7 +104,6 @@ namespace Lfc.Pvs
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(140, 184);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Inactivo|0",
@@ -138,7 +137,6 @@ namespace Lfc.Pvs
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(140, 244);
                         this.EntradaEstacion.Name = "EntradaEstacion";
-                        this.EntradaEstacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstacion.ReadOnly = false;
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
                         this.EntradaEstacion.TabIndex = 11;
@@ -148,7 +146,6 @@ namespace Lfc.Pvs
                         this.EntradaCarga.AlwaysExpanded = false;
                         this.EntradaCarga.Location = new System.Drawing.Point(212, 312);
                         this.EntradaCarga.Name = "EntradaCarga";
-                        this.EntradaCarga.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCarga.ReadOnly = false;
                         this.EntradaCarga.SetData = new string[] {
         "Automática|0",
@@ -173,7 +170,6 @@ namespace Lfc.Pvs
                         this.BotonEstacionSeleccionar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonEstacionSeleccionar.Location = new System.Drawing.Point(480, 232);
                         this.BotonEstacionSeleccionar.Name = "BotonEstacionSeleccionar";
-                        this.BotonEstacionSeleccionar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonEstacionSeleccionar.ReadOnly = false;
                         this.BotonEstacionSeleccionar.Size = new System.Drawing.Size(28, 24);
                         this.BotonEstacionSeleccionar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -193,7 +189,6 @@ namespace Lfc.Pvs
                         this.EntradaSucursal.Location = new System.Drawing.Point(140, 32);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
-                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.PlaceholderText = "Sucursal";
                         this.EntradaSucursal.ReadOnly = false;
                         this.EntradaSucursal.Required = true;
@@ -245,7 +240,6 @@ namespace Lfc.Pvs
                         this.EntradaModelo.Enabled = false;
                         this.EntradaModelo.Location = new System.Drawing.Point(212, 344);
                         this.EntradaModelo.Name = "EntradaModelo";
-                        this.EntradaModelo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaModelo.ReadOnly = false;
                         this.EntradaModelo.SetData = new string[] {
         "Hasar|100",
@@ -261,7 +255,6 @@ namespace Lfc.Pvs
                         this.EntradaPuerto.Enabled = false;
                         this.EntradaPuerto.Location = new System.Drawing.Point(212, 376);
                         this.EntradaPuerto.Name = "EntradaPuerto";
-                        this.EntradaPuerto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPuerto.ReadOnly = false;
                         this.EntradaPuerto.SetData = new string[] {
         "COM1|1",
@@ -276,7 +269,6 @@ namespace Lfc.Pvs
                         this.EntradaBps.Enabled = false;
                         this.EntradaBps.Location = new System.Drawing.Point(212, 408);
                         this.EntradaBps.Name = "EntradaBps";
-                        this.EntradaBps.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBps.ReadOnly = false;
                         this.EntradaBps.SetData = new string[] {
         "9600 bps|9600",
@@ -291,7 +283,6 @@ namespace Lfc.Pvs
                         this.EntradaTipoFac.AutoSize = true;
                         this.EntradaTipoFac.Location = new System.Drawing.Point(140, 96);
                         this.EntradaTipoFac.Name = "EntradaTipoFac";
-                        this.EntradaTipoFac.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipoFac.ReadOnly = false;
                         this.EntradaTipoFac.SetData = new string[] {
         "Facturas|F",
@@ -317,7 +308,6 @@ namespace Lfc.Pvs
                         this.EntradaDeTalonario.AlwaysExpanded = false;
                         this.EntradaDeTalonario.Location = new System.Drawing.Point(212, 280);
                         this.EntradaDeTalonario.Name = "EntradaDeTalonario";
-                        this.EntradaDeTalonario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDeTalonario.ReadOnly = false;
                         this.EntradaDeTalonario.SetData = new string[] {
         "Si|1",
@@ -353,10 +343,8 @@ namespace Lfc.Pvs
                         // EntradaNumero
                         // 
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(140, 0);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.Size = new System.Drawing.Size(72, 24);
                         this.EntradaNumero.TabIndex = 1;
@@ -382,7 +370,6 @@ namespace Lfc.Pvs
                         this.EntradaImpresora.Location = new System.Drawing.Point(140, 64);
                         this.EntradaImpresora.MaxLength = 200;
                         this.EntradaImpresora.Name = "EntradaImpresora";
-                        this.EntradaImpresora.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImpresora.PlaceholderText = "Impresora";
                         this.EntradaImpresora.ReadOnly = false;
                         this.EntradaImpresora.Required = true;

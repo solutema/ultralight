@@ -143,7 +143,6 @@ namespace Lfc.Articulos
                         this.EntradaMovimiento.AutoSize = true;
                         this.EntradaMovimiento.Location = new System.Drawing.Point(136, 144);
                         this.EntradaMovimiento.Name = "EntradaMovimiento";
-                        this.EntradaMovimiento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMovimiento.SetData = new string[] {
         "Entrada|e",
         "Salida|s",
@@ -159,7 +158,6 @@ namespace Lfc.Articulos
                         this.EntradaCantidad.Location = new System.Drawing.Point(136, 256);
                         this.EntradaCantidad.MaxLength = 20;
                         this.EntradaCantidad.Name = "EntradaCantidad";
-                        this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCantidad.Size = new System.Drawing.Size(96, 24);
                         this.EntradaCantidad.TabIndex = 5;
                         this.EntradaCantidad.Text = "0.00";
@@ -174,7 +172,6 @@ namespace Lfc.Articulos
                         this.EntradaObs.Location = new System.Drawing.Point(136, 448);
                         this.EntradaObs.MaximumSize = new System.Drawing.Size(480, 64);
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.Size = new System.Drawing.Size(440, 36);
                         this.EntradaObs.TabIndex = 21;
                         // 
@@ -200,7 +197,6 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaDesdeAntes.Location = new System.Drawing.Point(304, 376);
                         this.EntradaDesdeAntes.Name = "EntradaDesdeAntes";
-                        this.EntradaDesdeAntes.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesdeAntes.Size = new System.Drawing.Size(96, 24);
                         this.EntradaDesdeAntes.TabIndex = 13;
                         this.EntradaDesdeAntes.TabStop = false;
@@ -209,7 +205,6 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaDesdeDespues.Location = new System.Drawing.Point(440, 376);
                         this.EntradaDesdeDespues.Name = "EntradaDesdeDespues";
-                        this.EntradaDesdeDespues.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesdeDespues.Size = new System.Drawing.Size(96, 24);
                         this.EntradaDesdeDespues.TabIndex = 15;
                         this.EntradaDesdeDespues.TabStop = false;
@@ -229,7 +224,6 @@ namespace Lfc.Articulos
                         this.EntradaDesdeSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
-                        this.EntradaDesdeSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesdeSituacion.PlaceholderText = null;
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(440, 24);
@@ -263,7 +257,6 @@ namespace Lfc.Articulos
                         this.EntradaHaciaSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
-                        this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHaciaSituacion.PlaceholderText = null;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(440, 24);
@@ -286,7 +279,6 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaHaciaDespues.Location = new System.Drawing.Point(440, 408);
                         this.EntradaHaciaDespues.Name = "EntradaHaciaDespues";
-                        this.EntradaHaciaDespues.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHaciaDespues.Size = new System.Drawing.Size(96, 24);
                         this.EntradaHaciaDespues.TabIndex = 19;
                         this.EntradaHaciaDespues.TabStop = false;
@@ -295,7 +287,6 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaHaciaAntes.Location = new System.Drawing.Point(304, 408);
                         this.EntradaHaciaAntes.Name = "EntradaHaciaAntes";
-                        this.EntradaHaciaAntes.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHaciaAntes.Size = new System.Drawing.Size(96, 24);
                         this.EntradaHaciaAntes.TabIndex = 17;
                         this.EntradaHaciaAntes.TabStop = false;
@@ -351,7 +342,6 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.MuestraPrecio = false;
                         this.EntradaArticulo.MuestraStock = false;
                         this.EntradaArticulo.Name = "EntradaArticulo";
-                        this.EntradaArticulo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaArticulo.PermiteCrear = false;
                         this.EntradaArticulo.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.EntradaArticulo.PrecioSoloLectura = false;

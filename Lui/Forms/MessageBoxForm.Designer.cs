@@ -77,7 +77,6 @@ namespace Lui.Forms
                         this.OkButton.Location = new System.Drawing.Point(350, 12);
                         this.OkButton.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
                         this.OkButton.Name = "OkButton";
-                        this.OkButton.Padding = new System.Windows.Forms.Padding(2);
                         this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(104, 40);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;

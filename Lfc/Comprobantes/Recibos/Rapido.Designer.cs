@@ -84,7 +84,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCaja.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
-                        this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.PlaceholderText = null;
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(384, 24);
@@ -117,7 +116,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(384, 24);
@@ -142,7 +140,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.Location = new System.Drawing.Point(120, 176);
                         this.EntradaImporte.MaxLength = 20;
                         this.EntradaImporte.Name = "EntradaImporte";
-                        this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(104, 24);
                         this.EntradaImporte.TabIndex = 3;

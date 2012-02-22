@@ -89,10 +89,8 @@ namespace Lfc.Articulos
                         // EntradaFechaCreado
                         // 
                         this.EntradaFechaCreado.AutoSize = false;
-                        this.EntradaFechaCreado.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaCreado.Location = new System.Drawing.Point(144, 12);
                         this.EntradaFechaCreado.Name = "EntradaFechaCreado";
-                        this.EntradaFechaCreado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaCreado.TemporaryReadOnly = true;
                         this.EntradaFechaCreado.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaCreado.TabIndex = 51;
@@ -100,10 +98,8 @@ namespace Lfc.Articulos
                         // EntradaFechaPrecio
                         // 
                         this.EntradaFechaPrecio.AutoSize = false;
-                        this.EntradaFechaPrecio.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaPrecio.Location = new System.Drawing.Point(144, 40);
                         this.EntradaFechaPrecio.Name = "EntradaFechaPrecio";
-                        this.EntradaFechaPrecio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaPrecio.TemporaryReadOnly = true;
                         this.EntradaFechaPrecio.Size = new System.Drawing.Size(140, 24);
                         this.EntradaFechaPrecio.TabIndex = 53;
@@ -122,10 +118,8 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaCostoUltimaCompra.AutoSize = false;
                         this.EntradaCostoUltimaCompra.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCostoUltimaCompra.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCostoUltimaCompra.Location = new System.Drawing.Point(368, 251);
                         this.EntradaCostoUltimaCompra.Name = "EntradaCostoUlt";
-                        this.EntradaCostoUltimaCompra.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCostoUltimaCompra.Size = new System.Drawing.Size(92, 24);
                         this.EntradaCostoUltimaCompra.TabIndex = 55;
                         this.EntradaCostoUltimaCompra.Text = "0.00";
@@ -145,10 +139,8 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaCostoUltimas5Compras.AutoSize = false;
                         this.EntradaCostoUltimas5Compras.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaCostoUltimas5Compras.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCostoUltimas5Compras.Location = new System.Drawing.Point(368, 279);
                         this.EntradaCostoUltimas5Compras.Name = "EntradaCostoProm";
-                        this.EntradaCostoUltimas5Compras.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCostoUltimas5Compras.Size = new System.Drawing.Size(92, 24);
                         this.EntradaCostoUltimas5Compras.TabIndex = 57;
                         this.EntradaCostoUltimas5Compras.Text = "0.00";

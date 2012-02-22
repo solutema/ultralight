@@ -43,8 +43,8 @@ namespace Lfc.Personas
 
                         InitializeComponent();
 
-                        if (Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria != null)
-                                EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre;
+                        if (Lbl.Sys.Config.Pais.ClaveBancaria != null)
+                                EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Pais.ClaveBancaria.Nombre;
                 }
 
 
@@ -99,7 +99,7 @@ namespace Lfc.Personas
                                                 itm = FormAltaDuplicada.ListaComparacion.Items.Add("Teléfono");
                                                 itm.SubItems.Add(ClienteDup["telefono"].ToString());
                                                 itm.SubItems.Add(EntradaTelefono.Text);
-                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add(Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre);
+                                                itm = FormAltaDuplicada.ListaComparacion.Items.Add(Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre);
                                                 if (ClienteDup["cuit"] != null)
                                                         itm.SubItems.Add(ClienteDup["cuit"].ToString());
                                                 else
@@ -126,7 +126,7 @@ namespace Lfc.Personas
                                 }
                         }
 
-                        switch (Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre) {
+                        switch (Lbl.Sys.Config.Pais.ClaveBancaria.Nombre) {
                                 case "CBU":
                                         if (EntradaClaveBancaria.Text.Length > 0 && Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {
                                                 return new Lfx.Types.FailureOperationResult("La CBU es incorrecta.");
@@ -134,7 +134,7 @@ namespace Lfc.Personas
                                         break;
                         }
 
-                        switch (Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre) {
+                        switch (Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre) {
                                 case "CUIT":
                                         if (EntradaClaveTributaria.Text.Length > 0) {
                                                 if (EntradaSituacion.TextInt == 1) {
@@ -159,10 +159,10 @@ namespace Lfc.Personas
                                 Lfx.Data.Row RowPersMismaClave = this.Connection.FirstRowFromSelect("SELECT id_persona FROM personas WHERE cuit='" + EntradaClaveTributaria.Text + "' AND id_persona<>" + this.Elemento.Id.ToString());
                                 if (RowPersMismaClave != null) {
                                         if (Cliente.Existe == false || System.Convert.ToInt32(RowPersMismaClave["id_persona"]) != this.Elemento.Id) {
-                                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa clave tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "Clave tributaria duplicada");
+                                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Ya existe una empresa o persona con esa clave tributaria (" + Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre + ") en la base de datos. ¿Desea continuar y crear una nueva de todos modos?", "Clave tributaria duplicada");
                                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                 if (Pregunta.ShowDialog() != DialogResult.OK) {
-                                                        return new Lfx.Types.FailureOperationResult("Cambie la Clave tributaria (" + Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre + ") para antes de continuar.");
+                                                        return new Lfx.Types.FailureOperationResult("Cambie la Clave tributaria (" + Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre + ") para antes de continuar.");
                                                 }
                                         }
                                 }

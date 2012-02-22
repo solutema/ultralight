@@ -79,7 +79,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Pago.Location = new System.Drawing.Point(24, 24);
                         this.Pago.Name = "Pago";
                         this.Pago.ObsVisible = true;
-                        this.Pago.Padding = new System.Windows.Forms.Padding(2);
                         this.Pago.ReadOnly = false;
                         this.Pago.Size = new System.Drawing.Size(464, 368);
                         this.Pago.TabIndex = 0;

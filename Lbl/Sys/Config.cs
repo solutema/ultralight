@@ -35,9 +35,35 @@ using System.Text;
 
 namespace Lbl.Sys
 {
-        public class Config
+        public partial class Config
         {
                 public static Configuracion.Global Actual;
+
+                public static Lbl.Entidades.Pais Pais = null;
+
+                public static void Cargar()
+                {
+                        int IdPais = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
+                        if (IdPais > 0)
+                                Pais = new Lbl.Entidades.Pais(Lfx.Workspace.Master.MasterConnection, IdPais);
+                        else
+                                Pais = null;
+
+                        if (Pais != null)
+                                Moneda.MonedaPredeterminada = Pais.Moneda;
+                        else
+                                Moneda.MonedaPredeterminada = new Entidades.Moneda(Lfx.Workspace.Master.MasterConnection, 3);  // Pesos argentinos
+
+                        Moneda.Simbolo = Moneda.MonedaPredeterminada.Simbolo;
+
+                        Moneda.Decimales = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.Decimales", 2);
+                        Moneda.DecimalesCosto = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesCosto", Moneda.Decimales);
+                        Moneda.DecimalesFinal = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Moneda.DecimalesFinal", Moneda.Decimales);
+                        Moneda.UnidadMonetariaMinima = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<decimal>("Sistema.Moneda.Redondeo", 0);
+
+                        Articulos.Decimales = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Stock.Decimales", 0);
+                }
+
 
                 /// <summary>
                 /// Escribe un evento en la tabla sys_log. Se utiliza para registrar operaciones de datos (altas, bajas, ingresos, egresos, etc.)

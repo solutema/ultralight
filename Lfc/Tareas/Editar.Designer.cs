@@ -117,7 +117,6 @@ namespace Lfc.Tareas
                         this.EntradaCliente.Location = new System.Drawing.Point(104, 0);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(328, 24);
@@ -140,7 +139,6 @@ namespace Lfc.Tareas
                         this.EntradaTarea.Location = new System.Drawing.Point(104, 32);
                         this.EntradaTarea.MaxLength = 200;
                         this.EntradaTarea.Name = "EntradaTarea";
-                        this.EntradaTarea.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTarea.PlaceholderText = null;
                         this.EntradaTarea.Required = true;
                         this.EntradaTarea.Size = new System.Drawing.Size(328, 24);
@@ -172,7 +170,6 @@ namespace Lfc.Tareas
                         this.EntradaEncargado.Location = new System.Drawing.Point(104, 64);
                         this.EntradaEncargado.MaxLength = 200;
                         this.EntradaEncargado.Name = "EntradaEncargado";
-                        this.EntradaEncargado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEncargado.PlaceholderText = null;
                         this.EntradaEncargado.Required = true;
                         this.EntradaEncargado.Size = new System.Drawing.Size(328, 24);
@@ -206,7 +203,6 @@ namespace Lfc.Tareas
                         this.EntradaAsunto.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaAsunto.Location = new System.Drawing.Point(104, 96);
                         this.EntradaAsunto.Name = "EntradaAsunto";
-                        this.EntradaAsunto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAsunto.Size = new System.Drawing.Size(328, 24);
                         this.EntradaAsunto.TabIndex = 7;
                         // 
@@ -237,7 +233,6 @@ namespace Lfc.Tareas
                         this.EntradaDescripcion.Location = new System.Drawing.Point(104, 128);
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
-                        this.EntradaDescripcion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescripcion.Size = new System.Drawing.Size(328, 88);
                         this.EntradaDescripcion.TabIndex = 9;
                         // 
@@ -277,7 +272,6 @@ namespace Lfc.Tareas
                         this.EntradaEntregaEstimada.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaEntregaEstimada.Location = new System.Drawing.Point(608, 64);
                         this.EntradaEntregaEstimada.Name = "EntradaEntregaEstimada";
-                        this.EntradaEntregaEstimada.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEntregaEstimada.Size = new System.Drawing.Size(112, 24);
                         this.EntradaEntregaEstimada.TabIndex = 18;
                         // 
@@ -287,7 +281,6 @@ namespace Lfc.Tareas
                         this.EntradaEntregaLimite.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaEntregaLimite.Location = new System.Drawing.Point(608, 96);
                         this.EntradaEntregaLimite.Name = "EntradaEntregaLimite";
-                        this.EntradaEntregaLimite.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEntregaLimite.Size = new System.Drawing.Size(112, 24);
                         this.EntradaEntregaLimite.TabIndex = 20;
                         // 
@@ -297,7 +290,6 @@ namespace Lfc.Tareas
                         this.EntradaImportePresupuesto.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImportePresupuesto.Location = new System.Drawing.Point(556, 208);
                         this.EntradaImportePresupuesto.Name = "EntradaImportePresupuesto";
-                        this.EntradaImportePresupuesto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImportePresupuesto.Prefijo = "$";
                         this.EntradaImportePresupuesto.Size = new System.Drawing.Size(80, 24);
                         this.EntradaImportePresupuesto.TabIndex = 24;
@@ -311,7 +303,6 @@ namespace Lfc.Tareas
                         this.EntradaObs.Location = new System.Drawing.Point(104, 224);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.Size = new System.Drawing.Size(328, 24);
                         this.EntradaObs.TabIndex = 11;
                         // 
@@ -333,7 +324,6 @@ namespace Lfc.Tareas
                         this.Frame2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Frame2.Location = new System.Drawing.Point(0, 264);
                         this.Frame2.Name = "Frame2";
-                        this.Frame2.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame2.Size = new System.Drawing.Size(768, 217);
                         this.Frame2.TabIndex = 29;
                         this.Frame2.Text = "Historial del cliente";
@@ -393,7 +383,6 @@ namespace Lfc.Tareas
                         this.EntradaEstado.Location = new System.Drawing.Point(512, 0);
                         this.EntradaEstado.MaxLength = 200;
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = null;
                         this.EntradaEstado.Required = true;
                         this.EntradaEstado.Size = new System.Drawing.Size(256, 24);
@@ -407,7 +396,6 @@ namespace Lfc.Tareas
                         this.EntradaFechaIngreso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFechaIngreso.Location = new System.Drawing.Point(608, 32);
                         this.EntradaFechaIngreso.Name = "EntradaFechaIngreso";
-                        this.EntradaFechaIngreso.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaIngreso.Size = new System.Drawing.Size(160, 24);
                         this.EntradaFechaIngreso.TabIndex = 16;
                         this.EntradaFechaIngreso.TabStop = false;
@@ -427,7 +415,6 @@ namespace Lfc.Tareas
                         this.EntradaComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComprobante.Location = new System.Drawing.Point(556, 240);
                         this.EntradaComprobante.Name = "EntradaComprobante";
-                        this.EntradaComprobante.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComprobante.ReadOnly = true;
                         this.EntradaComprobante.Size = new System.Drawing.Size(184, 24);
                         this.EntradaComprobante.TabIndex = 28;
@@ -458,7 +445,6 @@ namespace Lfc.Tareas
                         this.EntradaPresupuesto2.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaPresupuesto2.Location = new System.Drawing.Point(652, 208);
                         this.EntradaPresupuesto2.Name = "EntradaPresupuesto2";
-                        this.EntradaPresupuesto2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPresupuesto2.Prefijo = "$";
                         this.EntradaPresupuesto2.Size = new System.Drawing.Size(88, 24);
                         this.EntradaPresupuesto2.TabIndex = 26;
@@ -472,7 +458,6 @@ namespace Lfc.Tareas
                         this.EntradaPrioridad.AutoSize = true;
                         this.EntradaPrioridad.Location = new System.Drawing.Point(556, 128);
                         this.EntradaPrioridad.Name = "EntradaPrioridad";
-                        this.EntradaPrioridad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPrioridad.SetData = new string[] {
         "Muy Alta|10",
         "Alta|5",

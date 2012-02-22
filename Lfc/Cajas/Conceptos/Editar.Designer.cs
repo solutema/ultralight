@@ -104,7 +104,6 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(104, 32);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(504, 24);
                         this.EntradaNombre.TabIndex = 5;
@@ -115,7 +114,6 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaDireccion.AutoSize = true;
                         this.EntradaDireccion.Location = new System.Drawing.Point(104, 64);
                         this.EntradaDireccion.Name = "EntradaDireccion";
-                        this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDireccion.ReadOnly = false;
                         this.EntradaDireccion.SetData = new string[] {
         "Ambas|0",
@@ -131,7 +129,6 @@ namespace Lfc.Cajas.Conceptos
                         this.EntradaGrupo.AutoSize = true;
                         this.EntradaGrupo.Location = new System.Drawing.Point(100, 128);
                         this.EntradaGrupo.Name = "EntradaGrupo";
-                        this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGrupo.ReadOnly = false;
                         this.EntradaGrupo.SetData = new string[] {
         "Ninguno|0",
@@ -154,10 +151,8 @@ namespace Lfc.Cajas.Conceptos
                         // 
                         this.EntradaCodigo.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCodigo.Enabled = false;
-                        this.EntradaCodigo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCodigo.Location = new System.Drawing.Point(104, 0);
                         this.EntradaCodigo.Name = "EntradaCodigo";
-                        this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigo.ReadOnly = false;
                         this.EntradaCodigo.Size = new System.Drawing.Size(76, 24);
                         this.EntradaCodigo.TabIndex = 3;

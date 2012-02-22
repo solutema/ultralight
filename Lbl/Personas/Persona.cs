@@ -73,11 +73,11 @@ namespace Lbl.Personas
                         if (IdGrupoPredet != 0)
                                 this.Grupo = new Lbl.Personas.Grupo(this.Connection, IdGrupoPredet);
                         this.SubGrupo = null;
-                        if (Lbl.Sys.Config.Actual.Empresa.Pais != null) {
-                                if (Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasFisicas != null)
-                                        this.TipoDocumento = Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasFisicas;
-                                if (Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasFisicas != null)
-                                        this.TipoClaveTributaria = Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas;
+                        if (Lbl.Sys.Config.Pais != null) {
+                                if (Lbl.Sys.Config.Pais.ClavePersonasFisicas != null)
+                                        this.TipoDocumento = Lbl.Sys.Config.Pais.ClavePersonasFisicas;
+                                if (Lbl.Sys.Config.Pais.ClavePersonasFisicas != null)
+                                        this.TipoClaveTributaria = Lbl.Sys.Config.Pais.ClavePersonasJuridicas;
                         }
                         this.SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.Connection, 1);
                         this.Localidad = new Lbl.Entidades.Localidad(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.IdLocalidad);

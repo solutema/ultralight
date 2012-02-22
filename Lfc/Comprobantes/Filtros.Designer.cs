@@ -137,7 +137,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Location = new System.Drawing.Point(137, 152);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(446, 24);
                         this.EntradaCliente.TabIndex = 11;
@@ -168,7 +167,6 @@ namespace Lfc.Comprobantes
                         this.EntradaEstado.AlwaysExpanded = false;
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
         "Todas|0",
         "Sólo las Impresas|3",
@@ -193,7 +191,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(3, 3);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
         "Comprob. Facturables|Lbl.Comprobantes.ComprobanteFacturable",
         "Facturas|Lbl.Comprobantes.Factura",
@@ -228,7 +225,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Location = new System.Drawing.Point(137, 182);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
-                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(446, 24);
                         this.EntradaVendedor.TabIndex = 13;
@@ -251,7 +247,6 @@ namespace Lfc.Comprobantes
                         this.EntradaAnuladas.AutoSize = true;
                         this.EntradaAnuladas.Location = new System.Drawing.Point(137, 243);
                         this.EntradaAnuladas.Name = "EntradaAnuladas";
-                        this.EntradaAnuladas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAnuladas.SetData = new string[] {
         "Ocultar|0",
         "Mostrar|1"};
@@ -280,7 +275,6 @@ namespace Lfc.Comprobantes
                         this.EntradaSucursal.Location = new System.Drawing.Point(137, 3);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
-                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(446, 24);
                         this.EntradaSucursal.TabIndex = 1;
@@ -309,7 +303,6 @@ namespace Lfc.Comprobantes
                         this.EntradaFormaPago.Location = new System.Drawing.Point(137, 33);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
-                        this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPago.Required = false;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(446, 24);
                         this.EntradaFormaPago.TabIndex = 3;
@@ -332,7 +325,6 @@ namespace Lfc.Comprobantes
                         this.EntradaLetra.AutoSize = true;
                         this.EntradaLetra.Location = new System.Drawing.Point(189, 3);
                         this.EntradaLetra.Name = "EntradaLetra";
-                        this.EntradaLetra.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLetra.SetData = new string[] {
         "Todas|*",
         "A|A",
@@ -356,10 +348,8 @@ namespace Lfc.Comprobantes
                         // EntradaPv
                         // 
                         this.EntradaPv.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPv.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPv.Location = new System.Drawing.Point(137, 122);
                         this.EntradaPv.Name = "EntradaPv";
-                        this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPv.Size = new System.Drawing.Size(44, 24);
                         this.EntradaPv.TabIndex = 9;
                         this.EntradaPv.Text = "0";
@@ -372,7 +362,6 @@ namespace Lfc.Comprobantes
                         this.EntradaFechas.Location = new System.Drawing.Point(137, 274);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
-                        this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechas.Size = new System.Drawing.Size(446, 33);
                         this.EntradaFechas.TabIndex = 19;
                         // 
@@ -453,10 +442,8 @@ namespace Lfc.Comprobantes
                         // EntradaMontoHasta
                         // 
                         this.EntradaMontoHasta.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaMontoHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMontoHasta.Location = new System.Drawing.Point(214, 3);
                         this.EntradaMontoHasta.Name = "EntradaMontoHasta";
-                        this.EntradaMontoHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMontoHasta.Prefijo = "$";
                         this.EntradaMontoHasta.Size = new System.Drawing.Size(109, 24);
                         this.EntradaMontoHasta.TabIndex = 3;
@@ -465,10 +452,8 @@ namespace Lfc.Comprobantes
                         // EntradaMontoDesde
                         // 
                         this.EntradaMontoDesde.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaMontoDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMontoDesde.Location = new System.Drawing.Point(62, 3);
                         this.EntradaMontoDesde.Name = "EntradaMontoDesde";
-                        this.EntradaMontoDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMontoDesde.Prefijo = "$";
                         this.EntradaMontoDesde.Size = new System.Drawing.Size(114, 24);
                         this.EntradaMontoDesde.TabIndex = 1;

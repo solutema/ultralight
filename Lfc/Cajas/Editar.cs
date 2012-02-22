@@ -48,7 +48,7 @@ namespace Lfc.Cajas
 
                         InitializeComponent();
 
-                        EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre;
+                        EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Pais.ClaveBancaria.Nombre;
                 }
 
                 public override Lfx.Types.OperationResult ValidarControl()
@@ -65,7 +65,7 @@ namespace Lfc.Cajas
                                 validarReturn.Message += "Seleccione el Nombre de la cuenta." + Environment.NewLine;
                         }
 
-                        switch(Lbl.Sys.Config.Actual.Empresa.Pais.ClaveBancaria.Nombre)
+                        switch(Lbl.Sys.Config.Pais.ClaveBancaria.Nombre)
                         {
                                 case "CBU":
                                         if (EntradaClaveBancaria.Text.Length > 0 && Lbl.Bancos.Claves.Cbu.EsValido(EntradaClaveBancaria.Text) == false) {

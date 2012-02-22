@@ -89,7 +89,6 @@ namespace Lazaro.WinMain.Config
                         this.BotonConfigurar.Location = new System.Drawing.Point(400, 12);
                         this.BotonConfigurar.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonConfigurar.Name = "BotonConfigurar";
-                        this.BotonConfigurar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonConfigurar.ReadOnly = false;
                         this.BotonConfigurar.Size = new System.Drawing.Size(116, 40);
                         this.BotonConfigurar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -107,7 +106,6 @@ namespace Lazaro.WinMain.Config
                         this.BotonReintentar.Location = new System.Drawing.Point(262, 12);
                         this.BotonReintentar.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonReintentar.Name = "BotonReintentar";
-                        this.BotonReintentar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonReintentar.ReadOnly = false;
                         this.BotonReintentar.Size = new System.Drawing.Size(132, 40);
                         this.BotonReintentar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -126,7 +124,6 @@ namespace Lazaro.WinMain.Config
                         this.BotonSalir.Location = new System.Drawing.Point(522, 12);
                         this.BotonSalir.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonSalir.Name = "BotonSalir";
-                        this.BotonSalir.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSalir.ReadOnly = false;
                         this.BotonSalir.Size = new System.Drawing.Size(88, 40);
                         this.BotonSalir.SubLabelPos = Lui.Forms.SubLabelPositions.None;

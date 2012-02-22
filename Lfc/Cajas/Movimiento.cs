@@ -36,6 +36,9 @@ namespace Lfc.Cajas
 {
         public partial class Movimiento : Lui.Forms.DialogForm
         {
+                protected Lbl.Entidades.Moneda MonedaOrigen, MonedaDestino;
+                protected Lbl.Cajas.Caja CajaOrigen, CajaDestino;
+
                 public Movimiento()
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Mover) == false) {
@@ -52,18 +55,15 @@ namespace Lfc.Cajas
                 {
                         Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
 
-                        int iOrigen = EntradaOrigen.TextInt;
-                        int iDestino = EntradaDestino.TextInt;
-
-                        if (iOrigen == 0) {
+                        if (CajaOrigen == null) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar la Caja de Origen." + Environment.NewLine;
                         }
-                        if (iDestino == 0) {
+                        if (CajaDestino == null) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar la Caja de Destino." + Environment.NewLine;
                         }
-                        if (Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) <= 0) {
+                        if (EntradaImporte.ValueDecimal <= 0) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar el importe." + Environment.NewLine;
                         }
@@ -75,16 +75,14 @@ namespace Lfc.Cajas
                         if (aceptarReturn.Success == true) {
                                 decimal Importe = EntradaImporte.ValueDecimal;
                                 IDbTransaction Trans = Connection.BeginTransaction(IsolationLevel.Serializable);
-                                Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(Connection, iOrigen);
-                                CajaOrigen.Movimiento(false, EntradaConcepto.Elemento as Lbl.Cajas.Concepto, 
+                                CajaOrigen.Movimiento(false, EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
                                         EntradaConcepto.TextDetail,
                                         Lbl.Sys.Config.Actual.UsuarioConectado.Persona,
-                                        -Importe, 
+                                        -Importe,
                                         EntradaObs.Text, null, null, EntradaComprob.Text);
                                 if (EntradaImporteDestino.Visible)
                                         Importe = EntradaImporteDestino.ValueDecimal;
-                                Lbl.Cajas.Caja CajaaDestino = new Lbl.Cajas.Caja(Connection, iDestino);
-                                CajaaDestino.Movimiento(false,
+                                CajaDestino.Movimiento(false,
                                         EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
                                         EntradaConcepto.TextDetail,
                                         Lbl.Sys.Config.Actual.UsuarioConectado.Persona,
@@ -98,46 +96,45 @@ namespace Lfc.Cajas
 
                 private void EntradaObs_Enter(object sender, System.EventArgs e)
                 {
-                        int iOrigen = EntradaOrigen.TextInt;
-                        int iDestino = EntradaDestino.TextInt;
-                        if (EntradaObs.Text.Length == 0 && iOrigen != 0 && iDestino != 0) {
-                                EntradaObs.Text = "Movimiento entre " + this.Connection.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + iOrigen.ToString()) + " y " + this.Connection.FieldString("SELECT nombre FROM cajas WHERE id_caja=" + iDestino.ToString());
+                        if (EntradaObs.Text.Length == 0 && CajaDestino != null && CajaDestino != null && CajaOrigen.Id != CajaDestino.Id) {
+                                EntradaObs.Text = "Movimiento entre " + CajaOrigen.ToString() + " y " + CajaDestino.ToString();
                         }
                 }
 
 
                 private void EntradaOrigenDestino_TextChanged(object sender, System.EventArgs e)
                 {
-                        iMonedaOrigen = this.Connection.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + EntradaOrigen.TextInt);
-                        iMonedaDestino = this.Connection.FieldInt("SELECT id_moneda FROM cajas WHERE id_caja=" + EntradaDestino.TextInt);
-                        MonedaOrigen = this.Connection.Row("monedas", "id_moneda", iMonedaOrigen);
-                        MonedaDestino = this.Connection.Row("monedas", "id_moneda", iMonedaDestino);
+                        CajaOrigen = EntradaOrigen.Elemento as Lbl.Cajas.Caja;
+                        CajaDestino = EntradaDestino.Elemento as Lbl.Cajas.Caja;
+                        if (CajaOrigen == null || CajaDestino == null)
+                                return;
+
+                        MonedaOrigen = CajaOrigen.ObtenerMoneda();
+                        MonedaDestino = CajaDestino.ObtenerMoneda();
+
                         if (MonedaOrigen != null && MonedaDestino != null) {
-                                EntradaImporte.Prefijo = System.Convert.ToString(MonedaOrigen["signo"]);
-                                EntradaImporteDestino.Prefijo = System.Convert.ToString(MonedaDestino["signo"]);
-                                if (System.Convert.ToInt32(MonedaOrigen["id_moneda"]) != System.Convert.ToInt32(MonedaDestino["id_moneda"])) {
-                                        EntradaImporteDestino.Text = Lfx.Types.Formatting.FormatCurrency(EntradaImporte.ValueDecimal * System.Convert.ToDecimal(MonedaDestino["cotizacion"]) / System.Convert.ToDecimal(MonedaOrigen["cotizacion"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                                EntradaImporte.Prefijo = MonedaOrigen.Simbolo;
+                                EntradaImporteDestino.Prefijo = MonedaDestino.Simbolo;
+                                if (MonedaDestino.Cotizacion != MonedaOrigen.Cotizacion) {
+                                        EntradaImporteDestino.ValueDecimal = EntradaImporte.ValueDecimal * MonedaDestino.Cotizacion / MonedaOrigen.Cotizacion;
                                         EntradaImporteDestino.Visible = true;
-                                        lblImporteDestino.Visible = true;
+                                        EtiquetaImporteDestino.Visible = true;
                                         // TODO: EntradaImporteDestino.ShowBalloon("Se realiza una conversión de moneda según la cotización " + System.Convert.ToString(MonedaOrigen["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(MonedaOrigen["cotizacion"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " = " + System.Convert.ToString(MonedaDestino["signo"]) + " " + Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(MonedaDestino["cotizacion"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales));
                                 } else {
                                         EntradaImporteDestino.Visible = false;
-                                        lblImporteDestino.Visible = false;
+                                        EtiquetaImporteDestino.Visible = false;
                                 }
                         } else {
                                 EntradaImporteDestino.Visible = false;
-                                lblImporteDestino.Visible = false;
+                                EtiquetaImporteDestino.Visible = false;
                         }
                 }
 
 
                 private void EntradaImporte_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (MonedaOrigen != null && MonedaDestino != null) {
-                                if (System.Convert.ToInt32(MonedaOrigen["id_moneda"]) != System.Convert.ToInt32(MonedaDestino["id_moneda"]))
-                                        EntradaImporteDestino.ValueDecimal = EntradaImporte.ValueDecimal * System.Convert.ToDecimal(MonedaDestino["cotizacion"]) / System.Convert.ToDecimal(MonedaOrigen["cotizacion"]);
-                        }
+                        if (MonedaOrigen != null && MonedaDestino != null && MonedaOrigen.Cotizacion != MonedaDestino.Cotizacion)
+                                EntradaImporteDestino.ValueDecimal = EntradaImporte.ValueDecimal * MonedaDestino.Cotizacion / MonedaOrigen.Cotizacion;
                 }
-
         }
 }

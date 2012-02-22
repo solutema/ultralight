@@ -67,10 +67,8 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(160, 0);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.Size = new System.Drawing.Size(112, 24);
                         this.EntradaNumero.TabIndex = 1;
@@ -104,7 +102,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaPago.Location = new System.Drawing.Point(160, 28);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
-                        this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPago.PlaceholderText = "Forma de pago";
                         this.EntradaFormaPago.ReadOnly = false;
                         this.EntradaFormaPago.Required = true;
@@ -134,7 +131,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.Location = new System.Drawing.Point(160, 56);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
-                        this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPlan.PlaceholderText = "Plan";
                         this.EntradaPlan.ReadOnly = false;
                         this.EntradaPlan.Required = true;
@@ -156,10 +152,8 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaFechaPresentacion
                         // 
                         this.EntradaFechaPresentacion.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaPresentacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaPresentacion.Location = new System.Drawing.Point(160, 84);
                         this.EntradaFechaPresentacion.Name = "EntradaFechaPresentacion";
-                        this.EntradaFechaPresentacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaPresentacion.ReadOnly = false;
                         this.EntradaFechaPresentacion.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaPresentacion.TabIndex = 7;
@@ -176,10 +170,8 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaFechaAcreditacion
                         // 
                         this.EntradaFechaAcreditacion.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaAcreditacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaAcreditacion.Location = new System.Drawing.Point(160, 112);
                         this.EntradaFechaAcreditacion.Name = "EntradaFechaAcreditacion";
-                        this.EntradaFechaAcreditacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaAcreditacion.ReadOnly = false;
                         this.EntradaFechaAcreditacion.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaAcreditacion.TabIndex = 9;

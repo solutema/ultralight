@@ -130,7 +130,6 @@ namespace Lfc.Personas
                         this.EntradaEmail.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaEmail.MaxLength = 200;
                         this.EntradaEmail.Name = "EntradaEmail";
-                        this.EntradaEmail.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmail.Size = new System.Drawing.Size(212, 24);
                         this.EntradaEmail.TabIndex = 7;
                         this.EntradaEmail.Leave += new System.EventHandler(this.EntradaEmail_Leave);
@@ -150,7 +149,6 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaLocalidad.MaxLength = 200;
                         this.EntradaLocalidad.Name = "EntradaLocalidad";
-                        this.EntradaLocalidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLocalidad.PlaceholderText = "Sin especificar";
                         this.EntradaLocalidad.Required = true;
                         this.EntradaLocalidad.Size = new System.Drawing.Size(212, 24);
@@ -168,7 +166,6 @@ namespace Lfc.Personas
                         this.EntradaDomicilio.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaDomicilio.MaxLength = 200;
                         this.EntradaDomicilio.Name = "EntradaDomicilio";
-                        this.EntradaDomicilio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDomicilio.Size = new System.Drawing.Size(212, 24);
                         this.EntradaDomicilio.TabIndex = 1;
                         // 
@@ -177,7 +174,6 @@ namespace Lfc.Personas
                         this.EntradaNumDoc.Location = new System.Drawing.Point(208, 136);
                         this.EntradaNumDoc.MaxLength = 50;
                         this.EntradaNumDoc.Name = "EntradaNumDoc";
-                        this.EntradaNumDoc.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumDoc.Size = new System.Drawing.Size(136, 24);
                         this.EntradaNumDoc.TabIndex = 7;
                         // 
@@ -194,7 +190,6 @@ namespace Lfc.Personas
                         this.EntradaTipoDoc.MaximumSize = new System.Drawing.Size(200, 32);
                         this.EntradaTipoDoc.MaxLength = 200;
                         this.EntradaTipoDoc.Name = "EntradaTipoDoc";
-                        this.EntradaTipoDoc.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipoDoc.PlaceholderText = null;
                         this.EntradaTipoDoc.Required = true;
                         this.EntradaTipoDoc.Size = new System.Drawing.Size(136, 24);
@@ -212,7 +207,6 @@ namespace Lfc.Personas
                         this.EntradaApellido.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaApellido.MaxLength = 200;
                         this.EntradaApellido.Name = "EntradaApellido";
-                        this.EntradaApellido.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaApellido.Size = new System.Drawing.Size(232, 24);
                         this.EntradaApellido.TabIndex = 3;
                         this.EntradaApellido.TextChanged += new System.EventHandler(this.GenerarNombreVisible);
@@ -226,7 +220,6 @@ namespace Lfc.Personas
                         this.EntradaNombre.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaNombre.MaxLength = 200;
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.Size = new System.Drawing.Size(232, 24);
                         this.EntradaNombre.TabIndex = 1;
                         this.EntradaNombre.TextChanged += new System.EventHandler(this.GenerarNombreVisible);
@@ -236,7 +229,6 @@ namespace Lfc.Personas
                         this.EntradaClaveTributaria.Location = new System.Drawing.Point(128, 72);
                         this.EntradaClaveTributaria.MaxLength = 50;
                         this.EntradaClaveTributaria.Name = "EntradaClaveTributaria";
-                        this.EntradaClaveTributaria.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaClaveTributaria.Size = new System.Drawing.Size(142, 24);
                         this.EntradaClaveTributaria.TabIndex = 3;
                         this.EntradaClaveTributaria.Leave += new System.EventHandler(this.EntradaClaveTributaria_Leave);
@@ -250,7 +242,6 @@ namespace Lfc.Personas
                         this.EntradaRazonSocial.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaRazonSocial.MaxLength = 200;
                         this.EntradaRazonSocial.Name = "EntradaRazonSocial";
-                        this.EntradaRazonSocial.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRazonSocial.Size = new System.Drawing.Size(212, 24);
                         this.EntradaRazonSocial.TabIndex = 1;
                         this.EntradaRazonSocial.TextChanged += new System.EventHandler(this.GenerarNombreVisible);
@@ -361,7 +352,6 @@ namespace Lfc.Personas
                         this.PanelI1.Location = new System.Drawing.Point(0, 0);
                         this.PanelI1.Margin = new System.Windows.Forms.Padding(6);
                         this.PanelI1.Name = "PanelI1";
-                        this.PanelI1.Padding = new System.Windows.Forms.Padding(2);
                         this.PanelI1.Size = new System.Drawing.Size(344, 216);
                         this.PanelI1.TabIndex = 0;
                         this.PanelI1.Text = "Personas Físicas";
@@ -372,7 +362,6 @@ namespace Lfc.Personas
                         this.EntradaFechaNac.Location = new System.Drawing.Point(208, 168);
                         this.EntradaFechaNac.MaxLength = 10;
                         this.EntradaFechaNac.Name = "EntradaFechaNac";
-                        this.EntradaFechaNac.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaNac.Size = new System.Drawing.Size(136, 24);
                         this.EntradaFechaNac.TabIndex = 9;
                         // 
@@ -399,7 +388,6 @@ namespace Lfc.Personas
                         this.PanelD1.Location = new System.Drawing.Point(360, 0);
                         this.PanelD1.Margin = new System.Windows.Forms.Padding(6);
                         this.PanelD1.Name = "PanelD1";
-                        this.PanelD1.Padding = new System.Windows.Forms.Padding(2);
                         this.PanelD1.Size = new System.Drawing.Size(344, 224);
                         this.PanelD1.TabIndex = 1;
                         this.PanelD1.Text = "Personas Jurídicas";
@@ -419,7 +407,6 @@ namespace Lfc.Personas
                         this.EntradaSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaSituacion.MaxLength = 200;
                         this.EntradaSituacion.Name = "EntradaSituacion";
-                        this.EntradaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSituacion.PlaceholderText = null;
                         this.EntradaSituacion.Required = true;
                         this.EntradaSituacion.Size = new System.Drawing.Size(212, 24);
@@ -434,7 +421,6 @@ namespace Lfc.Personas
                         this.EntradaTipoFac.AlwaysExpanded = true;
                         this.EntradaTipoFac.Location = new System.Drawing.Point(128, 136);
                         this.EntradaTipoFac.Name = "EntradaTipoFac";
-                        this.EntradaTipoFac.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipoFac.SetData = new string[] {
         "Predeterminada|*",
         "Factura A|A",
@@ -479,7 +465,6 @@ namespace Lfc.Personas
                         this.EntradaTipo.MaximumSize = new System.Drawing.Size(320, 32);
                         this.EntradaTipo.MaxLength = 200;
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = "Sin especificar";
                         this.EntradaTipo.Required = true;
                         this.EntradaTipo.Size = new System.Drawing.Size(232, 24);
@@ -513,7 +498,6 @@ namespace Lfc.Personas
                         this.EntradaGrupo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaGrupo.MaxLength = 200;
                         this.EntradaGrupo.Name = "EntradaGrupo";
-                        this.EntradaGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGrupo.PlaceholderText = "Ninguno";
                         this.EntradaGrupo.Required = false;
                         this.EntradaGrupo.Size = new System.Drawing.Size(232, 24);
@@ -538,7 +522,6 @@ namespace Lfc.Personas
                         this.EntradaLimiteCredito.Location = new System.Drawing.Point(176, 200);
                         this.EntradaLimiteCredito.MaxLength = 16;
                         this.EntradaLimiteCredito.Name = "EntradaLimiteCredito";
-                        this.EntradaLimiteCredito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLimiteCredito.Prefijo = "$";
                         this.EntradaLimiteCredito.Size = new System.Drawing.Size(120, 24);
                         this.EntradaLimiteCredito.TabIndex = 11;
@@ -562,7 +545,6 @@ namespace Lfc.Personas
                         this.EntradaDomicilioTrabajo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaDomicilioTrabajo.MaxLength = 200;
                         this.EntradaDomicilioTrabajo.Name = "EntradaDomicilioTrabajo";
-                        this.EntradaDomicilioTrabajo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDomicilioTrabajo.Size = new System.Drawing.Size(212, 24);
                         this.EntradaDomicilioTrabajo.TabIndex = 3;
                         // 
@@ -583,7 +565,6 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.AutoSize = true;
                         this.EntradaEstadoCredito.Location = new System.Drawing.Point(176, 232);
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
-                        this.EntradaEstadoCredito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstadoCredito.SetData = new string[] {
         "Normal|0",
         "En Plan de Pagos|5",
@@ -608,7 +589,6 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaClaveBancaria.Location = new System.Drawing.Point(112, 168);
                         this.EntradaClaveBancaria.Name = "EntradaClaveBancaria";
-                        this.EntradaClaveBancaria.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaClaveBancaria.Size = new System.Drawing.Size(232, 24);
                         this.EntradaClaveBancaria.TabIndex = 9;
                         // 
@@ -628,7 +608,6 @@ namespace Lfc.Personas
                         this.EntradaNumeroCuenta.Location = new System.Drawing.Point(112, 136);
                         this.EntradaNumeroCuenta.MaxLength = 200;
                         this.EntradaNumeroCuenta.Name = "EntradaNumeroCuenta";
-                        this.EntradaNumeroCuenta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumeroCuenta.Size = new System.Drawing.Size(232, 24);
                         this.EntradaNumeroCuenta.TabIndex = 7;
                         // 
@@ -659,7 +638,6 @@ namespace Lfc.Personas
                         this.PanelI2.Location = new System.Drawing.Point(0, 224);
                         this.PanelI2.Margin = new System.Windows.Forms.Padding(6);
                         this.PanelI2.Name = "PanelI2";
-                        this.PanelI2.Padding = new System.Windows.Forms.Padding(2);
                         this.PanelI2.Size = new System.Drawing.Size(344, 304);
                         this.PanelI2.TabIndex = 2;
                         this.PanelI2.Text = "Datos de Contacto";
@@ -679,7 +657,6 @@ namespace Lfc.Personas
                         this.EntradaVendedor.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
-                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.PlaceholderText = "Ninguno";
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(212, 24);
@@ -696,7 +673,6 @@ namespace Lfc.Personas
                         this.EntradaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
                         this.EntradaTelefono.Location = new System.Drawing.Point(128, 104);
                         this.EntradaTelefono.Name = "EntradaTelefono";
-                        this.EntradaTelefono.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTelefono.Size = new System.Drawing.Size(214, 88);
                         this.EntradaTelefono.TabIndex = 5;
                         // 
@@ -729,7 +705,6 @@ namespace Lfc.Personas
                         this.PanelD2.Location = new System.Drawing.Point(360, 224);
                         this.PanelD2.Margin = new System.Windows.Forms.Padding(6);
                         this.PanelD2.Name = "PanelD2";
-                        this.PanelD2.Padding = new System.Windows.Forms.Padding(2);
                         this.PanelD2.Size = new System.Drawing.Size(344, 304);
                         this.PanelD2.TabIndex = 3;
                         this.PanelD2.Text = "Otros datos";
@@ -749,7 +724,6 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaSubGrupo.MaxLength = 200;
                         this.EntradaSubGrupo.Name = "EntradaSubGrupo";
-                        this.EntradaSubGrupo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSubGrupo.PlaceholderText = "Ninguno";
                         this.EntradaSubGrupo.Required = false;
                         this.EntradaSubGrupo.Size = new System.Drawing.Size(232, 24);
@@ -773,7 +747,6 @@ namespace Lfc.Personas
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(136, 40);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
         "Inactivo|0",
         "Activo|1"};
@@ -790,7 +763,6 @@ namespace Lfc.Personas
                         this.EntradaObs.Margin = new System.Windows.Forms.Padding(6);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.Size = new System.Drawing.Size(232, 96);
                         this.EntradaObs.TabIndex = 7;
                         // 
@@ -810,7 +782,6 @@ namespace Lfc.Personas
                         this.frame5.Location = new System.Drawing.Point(0, 528);
                         this.frame5.Margin = new System.Windows.Forms.Padding(6);
                         this.frame5.Name = "frame5";
-                        this.frame5.Padding = new System.Windows.Forms.Padding(2);
                         this.frame5.Size = new System.Drawing.Size(704, 144);
                         this.frame5.TabIndex = 4;
                         this.frame5.Text = "Estado";
@@ -820,7 +791,6 @@ namespace Lfc.Personas
                         this.EntradaFechaBaja.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaBaja.Location = new System.Drawing.Point(136, 120);
                         this.EntradaFechaBaja.Name = "EntradaFechaBaja";
-                        this.EntradaFechaBaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaBaja.ReadOnly = true;
                         this.EntradaFechaBaja.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaBaja.TabIndex = 5;
@@ -831,7 +801,6 @@ namespace Lfc.Personas
                         this.EntradaFechaAlta.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaAlta.Location = new System.Drawing.Point(136, 88);
                         this.EntradaFechaAlta.Name = "EntradaFechaAlta";
-                        this.EntradaFechaAlta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaAlta.ReadOnly = true;
                         this.EntradaFechaAlta.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaAlta.TabIndex = 3;
@@ -880,7 +849,6 @@ namespace Lfc.Personas
                         this.matrizTelefonos1.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
                         this.matrizTelefonos1.Location = new System.Drawing.Point(0, 0);
                         this.matrizTelefonos1.Name = "matrizTelefonos1";
-                        this.matrizTelefonos1.Padding = new System.Windows.Forms.Padding(2);
                         this.matrizTelefonos1.Size = new System.Drawing.Size(536, 180);
                         this.matrizTelefonos1.TabIndex = 0;
                         // 

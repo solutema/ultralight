@@ -113,7 +113,6 @@ namespace Lfc.Articulos
                         this.Frame2.Location = new System.Drawing.Point(0, 352);
                         this.Frame2.Margin = new System.Windows.Forms.Padding(0);
                         this.Frame2.Name = "Frame2";
-                        this.Frame2.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame2.Size = new System.Drawing.Size(360, 336);
                         this.Frame2.TabIndex = 32;
                         this.Frame2.Text = "Precio y costo";
@@ -124,7 +123,6 @@ namespace Lfc.Articulos
                         this.EntradaCosto.Location = new System.Drawing.Point(136, 40);
                         this.EntradaCosto.MaxLength = 20;
                         this.EntradaCosto.Name = "EntradaCosto";
-                        this.EntradaCosto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCosto.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaCosto.Prefijo = "$";
                         this.EntradaCosto.Size = new System.Drawing.Size(104, 24);
@@ -138,7 +136,6 @@ namespace Lfc.Articulos
                         this.EntradaMargen.AlwaysExpanded = true;
                         this.EntradaMargen.Location = new System.Drawing.Point(136, 72);
                         this.EntradaMargen.Name = "EntradaMargen";
-                        this.EntradaMargen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargen.PlaceholderText = "Márgenes predefinidos";
                         this.EntradaMargen.SetData = new string[] {
         "Otro|-1"};
@@ -153,7 +150,6 @@ namespace Lfc.Articulos
                         this.EntradaPvp.Location = new System.Drawing.Point(136, 184);
                         this.EntradaPvp.MaxLength = 20;
                         this.EntradaPvp.Name = "EntradaPvp";
-                        this.EntradaPvp.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPvp.PlaceholderText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
     "definido a continuación";
                         this.EntradaPvp.Prefijo = "$";
@@ -170,7 +166,6 @@ namespace Lfc.Articulos
                         this.BotonInfoCosto.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonInfoCosto.Location = new System.Drawing.Point(248, 40);
                         this.BotonInfoCosto.Name = "BotonInfoCosto";
-                        this.BotonInfoCosto.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonInfoCosto.Size = new System.Drawing.Size(28, 24);
                         this.BotonInfoCosto.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonInfoCosto.Subtext = "";
@@ -199,7 +194,6 @@ namespace Lfc.Articulos
                         this.EntradaCaja.Location = new System.Drawing.Point(136, 248);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
-                        this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.PlaceholderText = "Sin especificar";
                         this.EntradaCaja.Required = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(224, 24);
@@ -250,7 +244,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.AutoSize = true;
                         this.EntradaUnidad.Location = new System.Drawing.Point(152, 104);
                         this.EntradaUnidad.Name = "EntradaUnidad";
-                        this.EntradaUnidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUnidad.PlaceholderText = "¿El artículo usa control de stock?";
                         this.EntradaUnidad.SetData = new string[] {
         "N/A|",
@@ -278,7 +271,6 @@ namespace Lfc.Articulos
                         this.EntradaUsaStock.AutoSize = true;
                         this.EntradaUsaStock.Location = new System.Drawing.Point(152, 40);
                         this.EntradaUsaStock.Name = "EntradaUsaStock";
-                        this.EntradaUsaStock.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUsaStock.PlaceholderText = "¿El artículo usa control de stock?";
                         this.EntradaUsaStock.SetData = new string[] {
         "Servicio|0",
@@ -297,7 +289,6 @@ namespace Lfc.Articulos
                         this.BotonReceta.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonReceta.Location = new System.Drawing.Point(320, 40);
                         this.BotonReceta.Name = "BotonReceta";
-                        this.BotonReceta.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonReceta.Size = new System.Drawing.Size(28, 24);
                         this.BotonReceta.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonReceta.Subtext = "";
@@ -314,7 +305,6 @@ namespace Lfc.Articulos
                         this.BotonUnidad.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonUnidad.Location = new System.Drawing.Point(320, 104);
                         this.BotonUnidad.Name = "BotonUnidad";
-                        this.BotonUnidad.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonUnidad.Size = new System.Drawing.Size(28, 24);
                         this.BotonUnidad.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonUnidad.Subtext = "";
@@ -346,7 +336,6 @@ namespace Lfc.Articulos
                         this.EntradaStockMinimo.Location = new System.Drawing.Point(152, 280);
                         this.EntradaStockMinimo.MaxLength = 20;
                         this.EntradaStockMinimo.Name = "EntradaStockMinimo";
-                        this.EntradaStockMinimo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockMinimo.PlaceholderText = "Stock mínimo o crítico";
                         this.EntradaStockMinimo.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockMinimo.TabIndex = 9;
@@ -375,7 +364,6 @@ namespace Lfc.Articulos
                         this.EntradaStockActual.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaStockActual.Location = new System.Drawing.Point(152, 312);
                         this.EntradaStockActual.Name = "EntradaStockActual";
-                        this.EntradaStockActual.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockActual.ReadOnly = true;
                         this.EntradaStockActual.Size = new System.Drawing.Size(96, 24);
                         this.EntradaStockActual.TabIndex = 11;
@@ -405,7 +393,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo1.Location = new System.Drawing.Point(104, 0);
                         this.EntradaCodigo1.MaxLength = 50;
                         this.EntradaCodigo1.Name = "EntradaCodigo1";
-                        this.EntradaCodigo1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigo1.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo1.TabIndex = 1;
                         // 
@@ -414,7 +401,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo4.Location = new System.Drawing.Point(796, 0);
                         this.EntradaCodigo4.MaxLength = 50;
                         this.EntradaCodigo4.Name = "EntradaCodigo4";
-                        this.EntradaCodigo4.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigo4.Size = new System.Drawing.Size(140, 24);
                         this.EntradaCodigo4.TabIndex = 7;
                         // 
@@ -424,7 +410,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo3.Location = new System.Drawing.Point(564, 0);
                         this.EntradaCodigo3.MaxLength = 50;
                         this.EntradaCodigo3.Name = "EntradaCodigo3";
-                        this.EntradaCodigo3.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigo3.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo3.TabIndex = 5;
                         // 
@@ -433,7 +418,6 @@ namespace Lfc.Articulos
                         this.EntradaCodigo2.Location = new System.Drawing.Point(336, 0);
                         this.EntradaCodigo2.MaxLength = 50;
                         this.EntradaCodigo2.Name = "EntradaCodigo2";
-                        this.EntradaCodigo2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigo2.Size = new System.Drawing.Size(132, 24);
                         this.EntradaCodigo2.TabIndex = 3;
                         // 
@@ -470,7 +454,6 @@ namespace Lfc.Articulos
                         this.EntradaDestacado.AutoSize = true;
                         this.EntradaDestacado.Location = new System.Drawing.Point(104, 272);
                         this.EntradaDestacado.Name = "EntradaDestacado";
-                        this.EntradaDestacado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDestacado.SetData = new string[] {
         "Si|1",
         "No|0"};
@@ -484,7 +467,6 @@ namespace Lfc.Articulos
                         this.EntradaWeb.AutoSize = true;
                         this.EntradaWeb.Location = new System.Drawing.Point(280, 272);
                         this.EntradaWeb.Name = "EntradaWeb";
-                        this.EntradaWeb.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaWeb.SetData = new string[] {
         "Siempre|1",
         "Sólo si hay existencias|2",
@@ -499,7 +481,6 @@ namespace Lfc.Articulos
                         this.EntradaModelo.Location = new System.Drawing.Point(104, 64);
                         this.EntradaModelo.MaxLength = 200;
                         this.EntradaModelo.Name = "EntradaModelo";
-                        this.EntradaModelo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaModelo.Size = new System.Drawing.Size(352, 24);
                         this.EntradaModelo.TabIndex = 13;
                         this.EntradaModelo.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
@@ -510,7 +491,6 @@ namespace Lfc.Articulos
                         this.EntradaGarantia.Location = new System.Drawing.Point(604, 272);
                         this.EntradaGarantia.MaxLength = 20;
                         this.EntradaGarantia.Name = "EntradaGarantia";
-                        this.EntradaGarantia.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGarantia.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaGarantia.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGarantia.Sufijo = "meses";
@@ -529,7 +509,6 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.Location = new System.Drawing.Point(104, 32);
                         this.EntradaCategoria.MaxLength = 0;
                         this.EntradaCategoria.Name = "EntradaCategoria";
-                        this.EntradaCategoria.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCategoria.PlaceholderText = "Rubro o categoría";
                         this.EntradaCategoria.Required = true;
                         this.EntradaCategoria.Size = new System.Drawing.Size(352, 24);
@@ -554,7 +533,6 @@ namespace Lfc.Articulos
                         this.EntradaMarca.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaMarca.MaxLength = 0;
                         this.EntradaMarca.Name = "EntradaMarca";
-                        this.EntradaMarca.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMarca.PlaceholderText = "Sin especificar";
                         this.EntradaMarca.Required = false;
                         this.EntradaMarca.Size = new System.Drawing.Size(216, 24);
@@ -572,7 +550,6 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion2.Location = new System.Drawing.Point(512, 160);
                         this.EntradaDescripcion2.MultiLine = true;
                         this.EntradaDescripcion2.Name = "EntradaDescripcion2";
-                        this.EntradaDescripcion2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescripcion2.PlaceholderText = "Descripción larga";
                         this.EntradaDescripcion2.Size = new System.Drawing.Size(256, 104);
                         this.EntradaDescripcion2.TabIndex = 23;
@@ -584,7 +561,6 @@ namespace Lfc.Articulos
                         this.EntradaUrl.Location = new System.Drawing.Point(104, 128);
                         this.EntradaUrl.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaUrl.Name = "EntradaUrl";
-                        this.EntradaUrl.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaUrl.PlaceholderText = "Dirección de la página web del producto.";
                         this.EntradaUrl.Size = new System.Drawing.Size(480, 24);
                         this.EntradaUrl.TabIndex = 19;
@@ -595,7 +571,6 @@ namespace Lfc.Articulos
                         this.EntradaDescripcion.Location = new System.Drawing.Point(104, 160);
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
-                        this.EntradaDescripcion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescripcion.PlaceholderText = "Descripción larga";
                         this.EntradaDescripcion.Size = new System.Drawing.Size(292, 104);
                         this.EntradaDescripcion.TabIndex = 21;
@@ -609,7 +584,6 @@ namespace Lfc.Articulos
                         this.EntradaNombre.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaNombre.MaxLength = 200;
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.PlaceholderText = "Nombre completo del artículo";
                         this.EntradaNombre.Size = new System.Drawing.Size(480, 24);
                         this.EntradaNombre.TabIndex = 17;
@@ -624,7 +598,6 @@ namespace Lfc.Articulos
                         this.EntradaSerie.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaSerie.MaxLength = 200;
                         this.EntradaSerie.Name = "EntradaSerie";
-                        this.EntradaSerie.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSerie.Size = new System.Drawing.Size(216, 24);
                         this.EntradaSerie.TabIndex = 15;
                         this.EntradaSerie.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
@@ -736,7 +709,6 @@ namespace Lfc.Articulos
                         this.Frame3.Location = new System.Drawing.Point(372, 352);
                         this.Frame3.Margin = new System.Windows.Forms.Padding(0);
                         this.Frame3.Name = "Frame3";
-                        this.Frame3.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame3.Size = new System.Drawing.Size(388, 336);
                         this.Frame3.TabIndex = 33;
                         this.Frame3.Text = "Existencias";
@@ -756,7 +728,6 @@ namespace Lfc.Articulos
                         this.EntradaSeguimiento.AutoSize = true;
                         this.EntradaSeguimiento.Location = new System.Drawing.Point(152, 200);
                         this.EntradaSeguimiento.Name = "EntradaSeguimiento";
-                        this.EntradaSeguimiento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSeguimiento.SetData = new string[] {
         "Predeterminado|0",
         "Ninguno|1",
@@ -791,7 +762,6 @@ namespace Lfc.Articulos
                         this.EntradaProveedor.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
-                        this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProveedor.PlaceholderText = "Sin especificar";
                         this.EntradaProveedor.Required = false;
                         this.EntradaProveedor.Size = new System.Drawing.Size(164, 24);

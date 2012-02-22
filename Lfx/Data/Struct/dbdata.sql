@@ -12439,8 +12439,8 @@ INSERT INTO "ciudades" ("id_ciudad", "nombre", "cp", "id_pais", "parent", "id_pr
 
 
 
-INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda, estado) VALUES (999, NULL, '', 'Caja Efectivo', 0, 3, 1);
-INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda, estado) VALUES (1000, NULL, '', 'Cheques', 0, 3, 1);
+INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda, estado) VALUES (999, NULL, '', 'Caja Efectivo', 0, NULL, 1);
+INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda, estado) VALUES (1000, NULL, '', 'Cheques', 0, NULL, 1);
 INSERT INTO cajas (id_caja, id_banco, numero, nombre, tipo, id_moneda, estado) VALUES (1001, NULL, '', 'Dólares', 0, 1, 1);
 
 

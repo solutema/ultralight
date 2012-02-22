@@ -177,16 +177,16 @@ namespace Lfc.Articulos
                                 decimal HaciaCantidad = this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaHaciaSituacion.TextInt.ToString());
 
                                 if (EntradaDesdeSituacion.TextInt < 998 || EntradaDesdeSituacion.TextInt > 999) {
-                                        EntradaDesdeAntes.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
-                                        EntradaDesdeDespues.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                                        EntradaDesdeAntes.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, Lbl.Sys.Config.Articulos.Decimales);
+                                        EntradaDesdeDespues.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, Lbl.Sys.Config.Articulos.Decimales);
                                 } else {
                                         EntradaDesdeAntes.Text = "N/A";
                                         EntradaDesdeDespues.Text = "N/A";
                                 }
 
                                 if (EntradaHaciaSituacion.TextInt < 998 || EntradaHaciaSituacion.TextInt > 999) {
-                                        EntradaHaciaAntes.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
-                                        EntradaHaciaDespues.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                                        EntradaHaciaAntes.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, Lbl.Sys.Config.Articulos.Decimales);
+                                        EntradaHaciaDespues.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, Lbl.Sys.Config.Articulos.Decimales);
                                 } else {
                                         EntradaHaciaAntes.Text = "N/A";
                                         EntradaHaciaDespues.Text = "N/A";

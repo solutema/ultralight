@@ -39,18 +39,15 @@ namespace Lbl.Sys.Configuracion
         {
                 public Empresa Empresa;
                 public UsuarioConectado UsuarioConectado;
-                public Moneda Moneda;
                 public Impresion Impresion;
                 public Comprobantes Comprobantes;
 
-                public Global(Lfx.Workspace workspace)
-                        : base(workspace)
+                public Global()
                 {
-                        this.Empresa = new Empresa(workspace);
-                        this.Moneda = new Moneda(workspace);
-                        this.Impresion = new Impresion(workspace);
-                        this.UsuarioConectado = new UsuarioConectado(workspace, null);
-                        this.Comprobantes = new Comprobantes(workspace);
+                        this.Empresa = new Empresa();
+                        this.Impresion = new Impresion();
+                        this.UsuarioConectado = new UsuarioConectado(null);
+                        this.Comprobantes = new Comprobantes();
                 }
         }
 }

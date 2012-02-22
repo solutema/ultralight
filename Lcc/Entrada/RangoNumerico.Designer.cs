@@ -68,10 +68,8 @@ namespace Lcc.Entrada
                         // 
                         this.EntradaValor1.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaValor1.DecimalPlaces = 2;
-                        this.EntradaValor1.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaValor1.Location = new System.Drawing.Point(56, 0);
                         this.EntradaValor1.Name = "EntradaValor1";
-                        this.EntradaValor1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaValor1.ReadOnly = false;
                         this.EntradaValor1.Size = new System.Drawing.Size(108, 24);
                         this.EntradaValor1.TabIndex = 5;
@@ -81,10 +79,8 @@ namespace Lcc.Entrada
                         // 
                         this.EntradaValor2.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaValor2.DecimalPlaces = 2;
-                        this.EntradaValor2.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaValor2.Location = new System.Drawing.Point(196, 0);
                         this.EntradaValor2.Name = "EntradaValor2";
-                        this.EntradaValor2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaValor2.ReadOnly = false;
                         this.EntradaValor2.Size = new System.Drawing.Size(108, 24);
                         this.EntradaValor2.TabIndex = 7;

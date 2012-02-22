@@ -76,60 +76,48 @@ namespace Lfc.Comprobantes
                         // 
                         // textBox1
                         // 
-                        this.textBox1.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox1.Location = new System.Drawing.Point(24, 24);
                         this.textBox1.Name = "textBox1";
-                        this.textBox1.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox1.ReadOnly = false;
                         this.textBox1.Size = new System.Drawing.Size(316, 24);
                         this.textBox1.TabIndex = 51;
                         // 
                         // textBox2
                         // 
-                        this.textBox2.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox2.Location = new System.Drawing.Point(348, 24);
                         this.textBox2.Name = "textBox2";
-                        this.textBox2.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox2.ReadOnly = false;
                         this.textBox2.Size = new System.Drawing.Size(108, 24);
                         this.textBox2.TabIndex = 52;
                         // 
                         // textBox3
                         // 
-                        this.textBox3.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox3.Location = new System.Drawing.Point(348, 56);
                         this.textBox3.Name = "textBox3";
-                        this.textBox3.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox3.ReadOnly = false;
                         this.textBox3.Size = new System.Drawing.Size(108, 24);
                         this.textBox3.TabIndex = 54;
                         // 
                         // textBox4
                         // 
-                        this.textBox4.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox4.Location = new System.Drawing.Point(24, 56);
                         this.textBox4.Name = "textBox4";
-                        this.textBox4.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox4.ReadOnly = false;
                         this.textBox4.Size = new System.Drawing.Size(316, 24);
                         this.textBox4.TabIndex = 53;
                         // 
                         // textBox5
                         // 
-                        this.textBox5.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox5.Location = new System.Drawing.Point(348, 88);
                         this.textBox5.Name = "textBox5";
-                        this.textBox5.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox5.ReadOnly = false;
                         this.textBox5.Size = new System.Drawing.Size(108, 24);
                         this.textBox5.TabIndex = 56;
                         // 
                         // textBox6
                         // 
-                        this.textBox6.ForceCase = Lui.Forms.TextCasing.None;
                         this.textBox6.Location = new System.Drawing.Point(24, 88);
                         this.textBox6.Name = "textBox6";
-                        this.textBox6.Padding = new System.Windows.Forms.Padding(2);
                         this.textBox6.ReadOnly = false;
                         this.textBox6.Size = new System.Drawing.Size(316, 24);
                         this.textBox6.TabIndex = 55;

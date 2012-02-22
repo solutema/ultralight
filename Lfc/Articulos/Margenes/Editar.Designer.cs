@@ -65,10 +65,8 @@ namespace Lfc.Articulos.Margenes
                         // EntradaPorcentaje
                         // 
                         this.EntradaPorcentaje.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaPorcentaje.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPorcentaje.Location = new System.Drawing.Point(140, 32);
                         this.EntradaPorcentaje.Name = "EntradaPorcentaje";
-                        this.EntradaPorcentaje.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPorcentaje.ReadOnly = false;
                         this.EntradaPorcentaje.Size = new System.Drawing.Size(108, 24);
                         this.EntradaPorcentaje.TabIndex = 3;
@@ -88,7 +86,6 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(140, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(404, 24);
                         this.EntradaNombre.TabIndex = 1;
@@ -108,7 +105,6 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPredet.AutoSize = true;
                         this.EntradaPredet.Location = new System.Drawing.Point(140, 64);
                         this.EntradaPredet.Name = "EntradaPredet";
-                        this.EntradaPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
         "Si|1",

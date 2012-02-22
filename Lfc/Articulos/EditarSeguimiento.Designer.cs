@@ -86,7 +86,6 @@ namespace Lfc.Articulos
                         this.VariacionesCantidades.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.VariacionesCantidades.Location = new System.Drawing.Point(24, 88);
                         this.VariacionesCantidades.Name = "VariacionesCantidades";
-                        this.VariacionesCantidades.Padding = new System.Windows.Forms.Padding(2);
                         this.VariacionesCantidades.ReadOnly = false;
                         this.VariacionesCantidades.Size = new System.Drawing.Size(584, 208);
                         this.VariacionesCantidades.TabIndex = 0;

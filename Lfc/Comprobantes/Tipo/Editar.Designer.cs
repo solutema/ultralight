@@ -92,7 +92,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.Size = new System.Drawing.Size(320, 24);
                         this.EntradaNombre.TabIndex = 1;
                         // 
@@ -109,7 +108,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaLetra.Location = new System.Drawing.Point(120, 32);
                         this.EntradaLetra.Name = "EntradaLetra";
-                        this.EntradaLetra.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLetra.Size = new System.Drawing.Size(320, 24);
                         this.EntradaLetra.TabIndex = 3;
                         // 
@@ -137,7 +135,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaMueveStock.AutoSize = true;
                         this.EntradaMueveStock.Location = new System.Drawing.Point(120, 64);
                         this.EntradaMueveStock.Name = "EntradaMueveStock";
-                        this.EntradaMueveStock.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMueveStock.SetData = new string[] {
         "Saliente|-1",
         "Entrante|1",
@@ -168,7 +165,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(144, 128);
                         this.EntradaSituacionOrigen.MaxLength = 200;
                         this.EntradaSituacionOrigen.Name = "EntradaSituacionOrigen";
-                        this.EntradaSituacionOrigen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSituacionOrigen.PlaceholderText = "Sin especificar";
                         this.EntradaSituacionOrigen.Required = true;
                         this.EntradaSituacionOrigen.Size = new System.Drawing.Size(240, 24);
@@ -198,7 +194,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionDestino.Location = new System.Drawing.Point(144, 156);
                         this.EntradaSituacionDestino.MaxLength = 200;
                         this.EntradaSituacionDestino.Name = "EntradaSituacionDestino";
-                        this.EntradaSituacionDestino.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSituacionDestino.PlaceholderText = "Sin especificar";
                         this.EntradaSituacionDestino.Required = true;
                         this.EntradaSituacionDestino.Size = new System.Drawing.Size(240, 24);
@@ -213,7 +208,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaNumerarAl.AutoSize = true;
                         this.EntradaNumerarAl.Location = new System.Drawing.Point(124, 192);
                         this.EntradaNumerarAl.Name = "EntradaNumerarAl";
-                        this.EntradaNumerarAl.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumerarAl.SetData = new string[] {
         "Manualmente|0",
         "Cuando se crea el comprobante|1",
@@ -237,7 +231,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirRepetir.AutoSize = true;
                         this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 272);
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
-                        this.EntradaImprimirRepetir.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImprimirRepetir.SetData = new string[] {
         "Si|1",
         "No|0"};
@@ -260,7 +253,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirModificar.AutoSize = true;
                         this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 320);
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
-                        this.EntradaImprimirModificar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImprimirModificar.SetData = new string[] {
         "Si|1",
         "No|0"};
@@ -283,7 +275,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirGuardar.AutoSize = true;
                         this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 368);
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
-                        this.EntradaImprimirGuardar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImprimirGuardar.SetData = new string[] {
         "Si|1",
         "No|0"};
@@ -370,7 +361,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(608, 376);
                         this.BotonQuitar.Name = "BotonQuitar";
-                        this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonQuitar.Size = new System.Drawing.Size(108, 34);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "";
@@ -387,7 +377,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(728, 376);
                         this.BotonAgregar.Name = "BotonAgregar";
-                        this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAgregar.Size = new System.Drawing.Size(108, 34);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregar.Subtext = "F6";

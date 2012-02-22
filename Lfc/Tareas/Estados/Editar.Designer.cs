@@ -66,7 +66,6 @@ namespace Lfc.Tareas.Estados
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(524, 24);
                         this.EntradaNombre.TabIndex = 1;
@@ -88,7 +87,6 @@ namespace Lfc.Tareas.Estados
                         this.EntradaObs.Location = new System.Drawing.Point(116, 28);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.Size = new System.Drawing.Size(524, 72);
                         this.EntradaObs.TabIndex = 3;

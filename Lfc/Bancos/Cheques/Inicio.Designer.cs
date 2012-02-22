@@ -67,7 +67,6 @@ namespace Lfc.Bancos.Cheques
                         this.DepositarPagar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.DepositarPagar.Location = new System.Drawing.Point(12, 283);
                         this.DepositarPagar.Name = "DepositarPagar";
-                        this.DepositarPagar.Padding = new System.Windows.Forms.Padding(2);
                         this.DepositarPagar.Size = new System.Drawing.Size(96, 29);
                         this.DepositarPagar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.DepositarPagar.Subtext = "F5";

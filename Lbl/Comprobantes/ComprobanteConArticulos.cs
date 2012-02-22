@@ -374,7 +374,7 @@ namespace Lbl.Comprobantes
                 /// <returns>El importe redondeado y truncado.</returns>
                 public decimal RedondearImporte(decimal importe)
                 {
-                        decimal Redondeo = Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
+                        decimal Redondeo = Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
                         if (this.Compra || Redondeo == 0)
                                 return Lfx.Types.Currency.Truncate(importe, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         else

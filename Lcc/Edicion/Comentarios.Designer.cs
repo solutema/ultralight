@@ -122,7 +122,6 @@ namespace Lcc.Edicion
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
                         this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaComentario.Name = "EntradaComentario";
-                        this.EntradaComentario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComentario.ReadOnly = false;
                         this.EntradaComentario.Size = new System.Drawing.Size(464, 24);
                         this.EntradaComentario.TabIndex = 0;

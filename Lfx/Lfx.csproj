@@ -249,24 +249,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Data\Struct\db_upd25_pre.sql" />
     <EmbeddedResource Include="Data\Struct\db_upd_post.sql" />
     <EmbeddedResource Include="Data\Struct\dbdata.sql" />
     <EmbeddedResource Include="Data\Struct\db_upd_pre.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd18_post.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd18_pre.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd19_post.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd19_pre.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd20_post.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd20_pre.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd21_post.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd22_post.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd22_pre.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd23_post.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd23_pre.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd24_post.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd24_pre.sql" />
-    <EmbeddedResource Include="Data\Struct\db_upd25_post.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Data\Struct\db_upd26_pre.sql" />

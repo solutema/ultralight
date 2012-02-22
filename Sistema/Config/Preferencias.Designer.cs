@@ -146,7 +146,6 @@ namespace Lazaro.WinMain.Config
                         this.BotonAceptar.Location = new System.Drawing.Point(372, 12);
                         this.BotonAceptar.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonAceptar.Name = "BotonAceptar";
-                        this.BotonAceptar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAceptar.Size = new System.Drawing.Size(116, 40);
                         this.BotonAceptar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAceptar.Subtext = "F9";
@@ -164,7 +163,6 @@ namespace Lazaro.WinMain.Config
                         this.CancelCommandButton.Location = new System.Drawing.Point(494, 12);
                         this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
                         this.CancelCommandButton.Size = new System.Drawing.Size(116, 40);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "Esc";
@@ -186,7 +184,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaEmpresaSituacion.Location = new System.Drawing.Point(200, 184);
                         this.EntradaEmpresaSituacion.MaxLength = 200;
                         this.EntradaEmpresaSituacion.Name = "EntradaEmpresaSituacion";
-                        this.EntradaEmpresaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaSituacion.PlaceholderText = null;
                         this.EntradaEmpresaSituacion.Required = true;
                         this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(240, 24);
@@ -209,7 +206,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaEmpresaClaveTributaria.Location = new System.Drawing.Point(200, 152);
                         this.EntradaEmpresaClaveTributaria.MaxLength = 50;
                         this.EntradaEmpresaClaveTributaria.Name = "EntradaEmpresaClaveTributaria";
-                        this.EntradaEmpresaClaveTributaria.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaClaveTributaria.Size = new System.Drawing.Size(172, 24);
                         this.EntradaEmpresaClaveTributaria.TabIndex = 7;
                         // 
@@ -228,7 +224,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaEmpresaNombre.Location = new System.Drawing.Point(200, 88);
                         this.EntradaEmpresaNombre.MaxLength = 200;
                         this.EntradaEmpresaNombre.Name = "EntradaEmpresaNombre";
-                        this.EntradaEmpresaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaNombre.Size = new System.Drawing.Size(368, 24);
                         this.EntradaEmpresaNombre.TabIndex = 3;
                         // 
@@ -266,7 +261,6 @@ namespace Lazaro.WinMain.Config
                         this.FrmGeneral.Controls.Add(this.label28);
                         this.FrmGeneral.Location = new System.Drawing.Point(24, 24);
                         this.FrmGeneral.Name = "FrmGeneral";
-                        this.FrmGeneral.Padding = new System.Windows.Forms.Padding(2);
                         this.FrmGeneral.Size = new System.Drawing.Size(584, 360);
                         this.FrmGeneral.TabIndex = 0;
                         this.FrmGeneral.Text = "Datos de la empresa";
@@ -286,7 +280,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaEmpresaId.Location = new System.Drawing.Point(200, 312);
                         this.EntradaEmpresaId.MaxLength = 3;
                         this.EntradaEmpresaId.Name = "EntradaEmpresaId";
-                        this.EntradaEmpresaId.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaId.Size = new System.Drawing.Size(48, 24);
                         this.EntradaEmpresaId.TabIndex = 17;
                         this.EntradaEmpresaId.Text = "0";
@@ -305,7 +298,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPais.Location = new System.Drawing.Point(200, 48);
                         this.EntradaPais.MaxLength = 200;
                         this.EntradaPais.Name = "EntradaPais";
-                        this.EntradaPais.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPais.PlaceholderText = null;
                         this.EntradaPais.Required = true;
                         this.EntradaPais.Size = new System.Drawing.Size(332, 24);
@@ -330,7 +322,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaEmpresaRazonSocial.Location = new System.Drawing.Point(200, 120);
                         this.EntradaEmpresaRazonSocial.MaxLength = 200;
                         this.EntradaEmpresaRazonSocial.Name = "EntradaEmpresaRazonSocial";
-                        this.EntradaEmpresaRazonSocial.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaRazonSocial.Size = new System.Drawing.Size(368, 24);
                         this.EntradaEmpresaRazonSocial.TabIndex = 5;
                         // 
@@ -357,7 +348,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaProvincia.Location = new System.Drawing.Point(200, 248);
                         this.EntradaProvincia.MaxLength = 200;
                         this.EntradaProvincia.Name = "EntradaProvincia";
-                        this.EntradaProvincia.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProvincia.PlaceholderText = null;
                         this.EntradaProvincia.Required = true;
                         this.EntradaProvincia.Size = new System.Drawing.Size(316, 24);
@@ -381,7 +371,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaLocalidad.Location = new System.Drawing.Point(200, 280);
                         this.EntradaLocalidad.MaxLength = 200;
                         this.EntradaLocalidad.Name = "EntradaLocalidad";
-                        this.EntradaLocalidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLocalidad.PlaceholderText = null;
                         this.EntradaLocalidad.Required = true;
                         this.EntradaLocalidad.Size = new System.Drawing.Size(316, 24);
@@ -414,7 +403,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaEmpresaEmail.Location = new System.Drawing.Point(200, 216);
                         this.EntradaEmpresaEmail.MaxLength = 200;
                         this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
-                        this.EntradaEmpresaEmail.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEmpresaEmail.Size = new System.Drawing.Size(352, 24);
                         this.EntradaEmpresaEmail.TabIndex = 11;
                         // 
@@ -433,7 +421,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaActualizaciones.AutoSize = true;
                         this.EntradaActualizaciones.Location = new System.Drawing.Point(240, 272);
                         this.EntradaActualizaciones.Name = "EntradaActualizaciones";
-                        this.EntradaActualizaciones.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaActualizaciones.SetData = new string[] {
         "Estables|stable",
         "Preliminares|gama",
@@ -457,7 +444,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaAislacion.AutoSize = true;
                         this.EntradaAislacion.Location = new System.Drawing.Point(240, 216);
                         this.EntradaAislacion.Name = "EntradaAislacion";
-                        this.EntradaAislacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAislacion.SetData = new string[] {
         "Mejor consitencia|Serializable",
         "Mejor concurrencia|RepeatableRead"};
@@ -471,7 +457,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaModoPantalla.AutoSize = true;
                         this.EntradaModoPantalla.Location = new System.Drawing.Point(240, 112);
                         this.EntradaModoPantalla.Name = "EntradaModoPantalla";
-                        this.EntradaModoPantalla.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaModoPantalla.SetData = new string[] {
         "Predeterminado|*",
         "Ventana normal|normal",
@@ -488,7 +473,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaBackup.AutoSize = true;
                         this.EntradaBackup.Location = new System.Drawing.Point(240, 40);
                         this.EntradaBackup.Name = "EntradaBackup";
-                        this.EntradaBackup.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBackup.SetData = new string[] {
         "Nunca|0",
         "Cuando se solicita|1",
@@ -529,7 +513,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaStockDecimales.AlwaysExpanded = false;
                         this.EntradaStockDecimales.Location = new System.Drawing.Point(184, 104);
                         this.EntradaStockDecimales.Name = "EntradaStockDecimales";
-                        this.EntradaStockDecimales.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockDecimales.SetData = new string[] {
         "Sin decimales|0",
         "Un decimal|1",
@@ -572,7 +555,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaStockDepositoPredet.Location = new System.Drawing.Point(184, 136);
                         this.EntradaStockDepositoPredet.MaxLength = 200;
                         this.EntradaStockDepositoPredet.Name = "EntradaStockDepositoPredet";
-                        this.EntradaStockDepositoPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockDepositoPredet.PlaceholderText = null;
                         this.EntradaStockDepositoPredet.Required = false;
                         this.EntradaStockDepositoPredet.Size = new System.Drawing.Size(380, 24);
@@ -586,7 +568,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaStockMultideposito.AlwaysExpanded = false;
                         this.EntradaStockMultideposito.Location = new System.Drawing.Point(184, 72);
                         this.EntradaStockMultideposito.Name = "EntradaStockMultideposito";
-                        this.EntradaStockMultideposito.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockMultideposito.SetData = new string[] {
         "Simple|0",
         "Multidepósito|1"};
@@ -608,7 +589,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaArticulosCodigoPredet.AlwaysExpanded = false;
                         this.EntradaArticulosCodigoPredet.Location = new System.Drawing.Point(184, 40);
                         this.EntradaArticulosCodigoPredet.Name = "EntradaArticulosCodigoPredet";
-                        this.EntradaArticulosCodigoPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaArticulosCodigoPredet.SetData = new string[] {
         "Autonumérico incorporado|0",
         "Cód. 1|1",
@@ -633,7 +613,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.Location = new System.Drawing.Point(244, 104);
                         this.EntradaPV.Name = "EntradaPV";
-                        this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPV.TabIndex = 5;
                         this.EntradaPV.Text = "0";
@@ -653,7 +632,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPVND.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVND.Location = new System.Drawing.Point(244, 188);
                         this.EntradaPVND.Name = "EntradaPVND";
-                        this.EntradaPVND.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVND.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVND.TabIndex = 13;
                         this.EntradaPVND.Text = "0";
@@ -692,7 +670,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPVNC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVNC.Location = new System.Drawing.Point(244, 160);
                         this.EntradaPVNC.Name = "EntradaPVNC";
-                        this.EntradaPVNC.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVNC.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVNC.TabIndex = 10;
                         this.EntradaPVNC.Text = "0";
@@ -702,7 +679,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPVABC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVABC.Location = new System.Drawing.Point(244, 132);
                         this.EntradaPVABC.Name = "EntradaPVABC";
-                        this.EntradaPVABC.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVABC.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVABC.TabIndex = 7;
                         this.EntradaPVABC.Text = "0";
@@ -757,7 +733,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaClientePredet.Location = new System.Drawing.Point(216, 40);
                         this.EntradaClientePredet.MaxLength = 200;
                         this.EntradaClientePredet.Name = "EntradaClientePredet";
-                        this.EntradaClientePredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaClientePredet.PlaceholderText = "Ninguno";
                         this.EntradaClientePredet.Required = false;
                         this.EntradaClientePredet.Size = new System.Drawing.Size(368, 24);
@@ -789,7 +764,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaFormaPagoPredet.Location = new System.Drawing.Point(216, 68);
                         this.EntradaFormaPagoPredet.MaxLength = 200;
                         this.EntradaFormaPagoPredet.Name = "EntradaFormaPagoPredet";
-                        this.EntradaFormaPagoPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPagoPredet.PlaceholderText = "Ninguna";
                         this.EntradaFormaPagoPredet.Required = false;
                         this.EntradaFormaPagoPredet.Size = new System.Drawing.Size(208, 24);
@@ -808,7 +782,6 @@ namespace Lazaro.WinMain.Config
                         this.BotonSiguiente.Location = new System.Drawing.Point(250, 12);
                         this.BotonSiguiente.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.BotonSiguiente.Name = "BotonSiguiente";
-                        this.BotonSiguiente.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSiguiente.Size = new System.Drawing.Size(116, 40);
                         this.BotonSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSiguiente.Subtext = "F9";
@@ -841,7 +814,6 @@ namespace Lazaro.WinMain.Config
                         this.FrmArticulos.Controls.Add(this.EntradaStockDepositoPredet);
                         this.FrmArticulos.Location = new System.Drawing.Point(24, 24);
                         this.FrmArticulos.Name = "FrmArticulos";
-                        this.FrmArticulos.Padding = new System.Windows.Forms.Padding(2);
                         this.FrmArticulos.Size = new System.Drawing.Size(584, 360);
                         this.FrmArticulos.TabIndex = 0;
                         this.FrmArticulos.Text = "Existencias y precios";
@@ -861,7 +833,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaMonedaDecimalesCosto.AlwaysExpanded = false;
                         this.EntradaMonedaDecimalesCosto.Location = new System.Drawing.Point(184, 216);
                         this.EntradaMonedaDecimalesCosto.Name = "EntradaMonedaDecimalesCosto";
-                        this.EntradaMonedaDecimalesCosto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMonedaDecimalesCosto.SetData = new string[] {
         "Sin decimales|0",
         "Un decimal|1",
@@ -877,7 +848,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaMonedaDecimalesUnitarios.AlwaysExpanded = false;
                         this.EntradaMonedaDecimalesUnitarios.Location = new System.Drawing.Point(184, 248);
                         this.EntradaMonedaDecimalesUnitarios.Name = "EntradaMonedaDecimalesUnitarios";
-                        this.EntradaMonedaDecimalesUnitarios.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMonedaDecimalesUnitarios.SetData = new string[] {
         "Sin decimales|0",
         "Un decimal|1",
@@ -902,7 +872,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaMonedaDecimalesFinal.AlwaysExpanded = false;
                         this.EntradaMonedaDecimalesFinal.Location = new System.Drawing.Point(184, 280);
                         this.EntradaMonedaDecimalesFinal.Name = "EntradaMonedaDecimalesFinal";
-                        this.EntradaMonedaDecimalesFinal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMonedaDecimalesFinal.SetData = new string[] {
         "Sin decimales|0",
         "Un decimal|1",
@@ -927,8 +896,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaMonedaUnidadMonetariaMinima.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaMonedaUnidadMonetariaMinima.Location = new System.Drawing.Point(240, 312);
                         this.EntradaMonedaUnidadMonetariaMinima.Name = "EntradaMonedaUnidadMonetariaMinima";
-                        this.EntradaMonedaUnidadMonetariaMinima.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaMonedaUnidadMonetariaMinima.Prefijo = "$";
                         this.EntradaMonedaUnidadMonetariaMinima.Size = new System.Drawing.Size(92, 24);
                         this.EntradaMonedaUnidadMonetariaMinima.TabIndex = 17;
                         this.EntradaMonedaUnidadMonetariaMinima.Text = "0.00";
@@ -956,7 +923,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaStockDepositoPredetSuc.Location = new System.Drawing.Point(184, 168);
                         this.EntradaStockDepositoPredetSuc.MaxLength = 200;
                         this.EntradaStockDepositoPredetSuc.Name = "EntradaStockDepositoPredetSuc";
-                        this.EntradaStockDepositoPredetSuc.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaStockDepositoPredetSuc.PlaceholderText = null;
                         this.EntradaStockDepositoPredetSuc.Required = false;
                         this.EntradaStockDepositoPredetSuc.Size = new System.Drawing.Size(380, 24);
@@ -1005,7 +971,6 @@ namespace Lazaro.WinMain.Config
                         this.FrmComprobantes.Controls.Add(this.Label15);
                         this.FrmComprobantes.Location = new System.Drawing.Point(24, 24);
                         this.FrmComprobantes.Name = "FrmComprobantes";
-                        this.FrmComprobantes.Padding = new System.Windows.Forms.Padding(2);
                         this.FrmComprobantes.Size = new System.Drawing.Size(584, 360);
                         this.FrmComprobantes.TabIndex = 0;
                         this.FrmComprobantes.Text = "Comprobantes";
@@ -1016,7 +981,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPVRC.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVRC.Location = new System.Drawing.Point(244, 244);
                         this.EntradaPVRC.Name = "EntradaPVRC";
-                        this.EntradaPVRC.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVRC.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVRC.TabIndex = 19;
                         this.EntradaPVRC.Text = "0";
@@ -1045,8 +1009,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaLimiteCredito.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaLimiteCredito.Location = new System.Drawing.Point(244, 320);
                         this.EntradaLimiteCredito.Name = "EntradaLimiteCredito";
-                        this.EntradaLimiteCredito.Padding = new System.Windows.Forms.Padding(2);
-                        this.EntradaLimiteCredito.Prefijo = "$";
                         this.EntradaLimiteCredito.Size = new System.Drawing.Size(124, 24);
                         this.EntradaLimiteCredito.TabIndex = 23;
                         this.EntradaLimiteCredito.Text = "0.00";
@@ -1065,7 +1027,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaCambiaPrecioComprob.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaCambiaPrecioComprob.Location = new System.Drawing.Point(416, 284);
                         this.EntradaCambiaPrecioComprob.Name = "EntradaCambiaPrecioComprob";
-                        this.EntradaCambiaPrecioComprob.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCambiaPrecioComprob.Size = new System.Drawing.Size(64, 24);
                         this.EntradaCambiaPrecioComprob.TabIndex = 21;
                         this.EntradaCambiaPrecioComprob.Value = true;
@@ -1084,7 +1045,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPVR.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPVR.Location = new System.Drawing.Point(244, 216);
                         this.EntradaPVR.Name = "EntradaPVR";
-                        this.EntradaPVR.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPVR.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPVR.TabIndex = 16;
                         this.EntradaPVR.Text = "0";
@@ -1110,7 +1070,6 @@ namespace Lazaro.WinMain.Config
                         this.FrmAvanzado.Controls.Add(this.label30);
                         this.FrmAvanzado.Location = new System.Drawing.Point(24, 24);
                         this.FrmAvanzado.Name = "FrmAvanzado";
-                        this.FrmAvanzado.Padding = new System.Windows.Forms.Padding(2);
                         this.FrmAvanzado.Size = new System.Drawing.Size(584, 360);
                         this.FrmAvanzado.TabIndex = 8;
                         this.FrmAvanzado.Text = "Avanzado";

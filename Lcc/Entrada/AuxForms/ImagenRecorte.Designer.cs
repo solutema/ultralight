@@ -118,7 +118,6 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaRatio.Location = new System.Drawing.Point(16, 88);
                         this.EntradaRatio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaRatio.Name = "EntradaRatio";
-                        this.EntradaRatio.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaRatio.SetData = new string[] {
         "Sin recorte|-1",
         "Cuadrado (1:1)|1",
@@ -149,7 +148,6 @@ namespace Lcc.Entrada.AuxForms
                         this.BotonRotarDer.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRotarDer.Location = new System.Drawing.Point(16, 288);
                         this.BotonRotarDer.Name = "BotonRotarDer";
-                        this.BotonRotarDer.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonRotarDer.Size = new System.Drawing.Size(136, 32);
                         this.BotonRotarDer.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonRotarDer.Subtext = "Tecla";
@@ -166,7 +164,6 @@ namespace Lcc.Entrada.AuxForms
                         this.BotonRotarIzq.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRotarIzq.Location = new System.Drawing.Point(16, 328);
                         this.BotonRotarIzq.Name = "BotonRotarIzq";
-                        this.BotonRotarIzq.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonRotarIzq.Size = new System.Drawing.Size(136, 32);
                         this.BotonRotarIzq.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonRotarIzq.Subtext = "Tecla";

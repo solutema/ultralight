@@ -93,10 +93,8 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaPV
                         // 
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaPV.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaPV.Location = new System.Drawing.Point(108, 84);
                         this.EntradaPV.Name = "EntradaPV";
-                        this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.Size = new System.Drawing.Size(60, 24);
                         this.EntradaPV.TabIndex = 3;
@@ -106,10 +104,8 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaNumero
                         // 
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(184, 84);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
                         this.EntradaNumero.TabIndex = 5;
@@ -131,7 +127,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(108, 24);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "De Pago|RCP",
@@ -163,10 +158,8 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCliente.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCliente.Location = new System.Drawing.Point(108, 204);
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(476, 24);
                         this.EntradaCliente.TabIndex = 11;
@@ -184,10 +177,8 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaImporte
                         // 
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(108, 176);
                         this.EntradaImporte.Name = "EntradaImporte";
-                        this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.ReadOnly = false;
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
@@ -206,10 +197,8 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // EntradaFecha
                         // 
-                        this.EntradaFecha.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFecha.Location = new System.Drawing.Point(108, 148);
                         this.EntradaFecha.Name = "EntradaFecha";
-                        this.EntradaFecha.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFecha.ReadOnly = false;
                         this.EntradaFecha.Size = new System.Drawing.Size(128, 24);
                         this.EntradaFecha.TabIndex = 7;

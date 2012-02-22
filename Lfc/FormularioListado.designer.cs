@@ -69,7 +69,6 @@ namespace Lfc
                         // 
                         this.EntradaBuscar.Location = new System.Drawing.Point(8, 8);
                         this.EntradaBuscar.Name = "EntradaBuscar";
-                        this.EntradaBuscar.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBuscar.PlaceholderText = "Buscar (F3)";
                         this.EntradaBuscar.Size = new System.Drawing.Size(212, 24);
                         this.EntradaBuscar.TabIndex = 1;
@@ -86,7 +85,6 @@ namespace Lfc
                         this.BotonCrear.Location = new System.Drawing.Point(180, 137);
                         this.BotonCrear.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonCrear.Name = "BotonCrear";
-                        this.BotonCrear.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonCrear.Size = new System.Drawing.Size(136, 40);
                         this.BotonCrear.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonCrear.Subtext = "F6";

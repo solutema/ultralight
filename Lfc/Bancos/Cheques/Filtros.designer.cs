@@ -82,7 +82,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaEstado.Location = new System.Drawing.Point(108, 20);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
         "Todos|-1",
         "A pagar|0",
@@ -124,7 +123,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.Location = new System.Drawing.Point(108, 116);
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
-                        this.EntradaPersona.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPersona.Required = false;
                         this.EntradaPersona.Size = new System.Drawing.Size(366, 24);
                         this.EntradaPersona.TabIndex = 7;
@@ -153,7 +151,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Location = new System.Drawing.Point(108, 84);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
-                        this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.Required = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(366, 24);
                         this.EntradaBanco.TabIndex = 5;
@@ -178,7 +175,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechas.Location = new System.Drawing.Point(108, 148);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
-                        this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechas.Size = new System.Drawing.Size(366, 68);
                         this.EntradaFechas.TabIndex = 9;
                         // 
@@ -202,7 +198,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.Location = new System.Drawing.Point(108, 52);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
-                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(366, 24);
                         this.EntradaSucursal.TabIndex = 3;

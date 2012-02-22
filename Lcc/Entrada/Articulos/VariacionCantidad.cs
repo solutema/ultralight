@@ -46,7 +46,7 @@ namespace Lcc.Entrada.Articulos
                         InitializeComponent();
 
                         if (Lfx.Workspace.Master != null) {
-                                EntradaCantidad.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock;
+                                EntradaCantidad.DecimalPlaces = Lbl.Sys.Config.Articulos.Decimales;
                         }
                 }
 

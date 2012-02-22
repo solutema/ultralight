@@ -36,10 +36,8 @@ namespace Lbl.Sys.Configuracion
 {
         public class Formatos : SeccionConfiguracion
         {
-                public Formatos(Lfx.Workspace workspace)
-                        : base(workspace)
+                public Formatos()
                 {
-                        
                 }
 
 

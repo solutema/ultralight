@@ -83,7 +83,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(152, 88);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
         "Facturas A|A",
         "Facturas B|B",
@@ -110,7 +109,6 @@ namespace Lfc.Comprobantes
                         this.EntradaPv.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPv.Location = new System.Drawing.Point(448, 88);
                         this.EntradaPv.Name = "EntradaPv";
-                        this.EntradaPv.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPv.Size = new System.Drawing.Size(52, 24);
                         this.EntradaPv.TabIndex = 3;
                         this.EntradaPv.Text = "1";
@@ -121,7 +119,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDesde.Location = new System.Drawing.Point(448, 120);
                         this.EntradaDesde.Name = "EntradaDesde";
-                        this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";

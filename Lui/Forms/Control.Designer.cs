@@ -54,7 +54,6 @@ namespace Lui.Forms
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
                         this.Name = "Control";
-                        this.Padding = new System.Windows.Forms.Padding(2);
                         this.Size = new System.Drawing.Size(460, 84);
                         this.TabStopChanged += new System.EventHandler(this.Control_TabStopChanged);
                         this.Enter += new System.EventHandler(this.Control_Enter);

@@ -96,7 +96,6 @@ namespace Lui.Forms
                 {
                         m_MyToolStripButton = new ToolStripButton(this.Text);
                         m_MyToolStripButton.Margin = new System.Windows.Forms.Padding(2);
-                        m_MyToolStripButton.Padding = new System.Windows.Forms.Padding(2);
                         m_MyToolStripButton.Tag = this.Uid;
                         m_MyToolStripButton.Checked = true;
                         if (m_MyToolStripButton.Image != null)

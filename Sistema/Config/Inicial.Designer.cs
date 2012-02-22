@@ -503,7 +503,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaServidor.ForceCase = Lui.Forms.TextCasing.LowerCase;
                         this.EntradaServidor.Location = new System.Drawing.Point(136, 96);
                         this.EntradaServidor.Name = "EntradaServidor";
-                        this.EntradaServidor.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaServidor.Size = new System.Drawing.Size(208, 24);
                         this.EntradaServidor.TabIndex = 3;
                         // 

@@ -77,7 +77,6 @@ namespace Lfc
                         this.BotonImprimir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonImprimir.Location = new System.Drawing.Point(24, 52);
                         this.BotonImprimir.Name = "BotonImprimir";
-                        this.BotonImprimir.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonImprimir.Size = new System.Drawing.Size(428, 72);
                         this.BotonImprimir.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonImprimir.Subtext = "Envía los datos directamente a la impresora.";
@@ -94,7 +93,6 @@ namespace Lfc
                         this.BotonExcel.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonExcel.Location = new System.Drawing.Point(24, 140);
                         this.BotonExcel.Name = "BotonExcel";
-                        this.BotonExcel.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonExcel.Size = new System.Drawing.Size(428, 88);
                         this.BotonExcel.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonExcel.Subtext = "Exporta los datos a una hoja de Microsoft Excel (en formato XML) para utilizar co" +
@@ -112,7 +110,6 @@ namespace Lfc
                         this.BotonHtml.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonHtml.Location = new System.Drawing.Point(24, 244);
                         this.BotonHtml.Name = "BotonHtml";
-                        this.BotonHtml.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonHtml.Size = new System.Drawing.Size(428, 88);
                         this.BotonHtml.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonHtml.Subtext = "Exporta los datos a una archivo HTML para abrir con un navegador o publicar en la" +
@@ -130,7 +127,6 @@ namespace Lfc
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCancelar.Location = new System.Drawing.Point(24, 360);
                         this.BotonCancelar.Name = "button1";
-                        this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonCancelar.Size = new System.Drawing.Size(428, 52);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonCancelar.Subtext = "Y volver al formulario anterior.";

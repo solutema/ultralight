@@ -78,7 +78,6 @@ namespace Lfc
                         this.EntradaEtiquetas.Location = new System.Drawing.Point(453, 11);
                         this.EntradaEtiquetas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
                         this.EntradaEtiquetas.Name = "EntradaEtiquetas";
-                        this.EntradaEtiquetas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEtiquetas.ReadOnly = false;
                         this.EntradaEtiquetas.Size = new System.Drawing.Size(160, 287);
                         this.EntradaEtiquetas.TabIndex = 3;
@@ -93,7 +92,6 @@ namespace Lfc
                         this.EntradaComentarios.Location = new System.Drawing.Point(13, 11);
                         this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaComentarios.Name = "EntradaComentarios";
-                        this.EntradaComentarios.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComentarios.ReadOnly = false;
                         this.EntradaComentarios.Size = new System.Drawing.Size(434, 287);
                         this.EntradaComentarios.TabIndex = 1;

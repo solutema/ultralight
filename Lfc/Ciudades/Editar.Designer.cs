@@ -89,7 +89,6 @@ namespace Lfc.Ciudades
                         this.EntradaNombre.Location = new System.Drawing.Point(116, 0);
                         this.EntradaNombre.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.Size = new System.Drawing.Size(262, 24);
                         this.EntradaNombre.TabIndex = 1;
                         // 
@@ -97,7 +96,6 @@ namespace Lfc.Ciudades
                         // 
                         this.EntradaCp.Location = new System.Drawing.Point(116, 76);
                         this.EntradaCp.Name = "EntradaCp";
-                        this.EntradaCp.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCp.Size = new System.Drawing.Size(172, 24);
                         this.EntradaCp.TabIndex = 5;
                         // 
@@ -116,7 +114,6 @@ namespace Lfc.Ciudades
                         this.EntradaParent.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaParent.MaxLength = 200;
                         this.EntradaParent.Name = "EntradaParent";
-                        this.EntradaParent.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaParent.PlaceholderText = "Ninguna";
                         this.EntradaParent.Required = false;
                         this.EntradaParent.Size = new System.Drawing.Size(262, 24);
@@ -149,7 +146,6 @@ namespace Lfc.Ciudades
                         this.EntradaNivel.AutoSize = true;
                         this.EntradaNivel.Location = new System.Drawing.Point(116, 32);
                         this.EntradaNivel.Name = "EntradaNivel";
-                        this.EntradaNivel.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNivel.SetData = new string[] {
         "Provincia|0",
         "Localidad|2"};
@@ -164,7 +160,6 @@ namespace Lfc.Ciudades
                         this.EntradaIva.AutoSize = true;
                         this.EntradaIva.Location = new System.Drawing.Point(116, 140);
                         this.EntradaIva.Name = "EntradaIva";
-                        this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaIva.SetData = new string[] {
         "Predeterminado|0",
         "Exento|1"};

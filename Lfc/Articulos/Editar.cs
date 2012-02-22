@@ -229,8 +229,8 @@ namespace Lfc.Articulos
 
                                 decimal PrecioUltComp = this.Connection.FieldDecimal("SELECT comprob_detalle.precio FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + this.Elemento.Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
                                 decimal PrecioUltFlete = this.Connection.FieldDecimal("SELECT (comprob.gastosenvio+comprob.otrosgastos)*(comprob_detalle.precio/comprob.total) FROM comprob, comprob_detalle WHERE comprob.id_comprob=comprob_detalle.id_comprob AND comprob.tipo_fac IN ('R', 'FA', 'FB', 'FC', 'FE', 'FM') AND comprob.compra=1 AND id_articulo=" + this.Elemento.Id.ToString() + " GROUP BY comprob.id_comprob ORDER BY comprob_detalle.id_comprob_detalle DESC");
-                                Res += "Costo de la última compra (sin gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
-                                Res += "Costo de la última compra (con gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
+                                Res += "Costo de la última compra (sin gastos): " + Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
+                                Res += "Costo de la última compra (con gastos): " + Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUltComp + PrecioUltFlete, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + Environment.NewLine;
 
                                 // Podría hacer esto con una subconsulta, pero la versión de MySql que estamos utilizando
                                 // no permite la cláusula LIMIT dentro de una subconsulta IN ()
@@ -243,7 +243,7 @@ namespace Lfc.Articulos
                                         }
 
                                         PrecioUlt5Comps = PrecioUlt5Comps / UltimasCompras.Rows.Count;
-                                        Res += "Promedio de las últimas " + UltimasCompras.Rows.Count.ToString() + " compras (sin gastos): " + Lbl.Sys.Config.Actual.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUlt5Comps, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
+                                        Res += "Promedio de las últimas " + UltimasCompras.Rows.Count.ToString() + " compras (sin gastos): " + Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(PrecioUlt5Comps, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
                                 }
 
                                 // TODO: EntradaCosto.ShowBalloon(Res, "Precio de Compra", 60);
@@ -275,7 +275,7 @@ namespace Lfc.Articulos
                 private void EntradaPvp_Enter(object sender, EventArgs e)
                 {
                         if (EntradaUnidad.TextKey.Length > 0 && UnidadRendimiento != null && UnidadRendimiento.Length > 0) {
-                                // TODO: EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Rendimiento.ToString() + " " + UnidadRendimiento + " a razón de " + Lbl.Sys.Config.Actual.Moneda.Simbolo + Lfx.Types.Formatting.FormatCurrency(EntradaPvp.ValueDecimal / Rendimiento, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " (PVP) el " + UnidadRendimiento + ".");
+                                // TODO: EntradaPvp.ShowBalloon("En " + EntradaUnidad.TextKey + " de " + Rendimiento.ToString() + " " + UnidadRendimiento + " a razón de " + Lbl.Sys.Config.Moneda.Simbolo + Lfx.Types.Formatting.FormatCurrency(EntradaPvp.ValueDecimal / Rendimiento, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " (PVP) el " + UnidadRendimiento + ".");
                         }
                 }
 
@@ -315,12 +315,12 @@ namespace Lfc.Articulos
                         EntradaUsaStock.ValueInt = (int)(Art.TipoDeArticulo);
                         EntradaSeguimiento.ValueInt = (int)(Art.Seguimiento);
                         EntradaSeguimiento.ReadOnly = Art.Existe && Art.Existencias != 0;
-                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.Existencias, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                        EntradaStockActual.Text = Lfx.Types.Formatting.FormatNumber(Art.Existencias, Lbl.Sys.Config.Articulos.Decimales);
                         EntradaStockActual.ReadOnly = Art.Existe;
                         EntradaUnidad.TextKey = Art.Unidad;
                         Rendimiento = Art.Rendimiento;
                         UnidadRendimiento = Art.UnidadRendimiento;
-                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Art.PuntoDeReposicion, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                        EntradaStockMinimo.Text = Lfx.Types.Formatting.FormatNumber(Art.PuntoDeReposicion, Lbl.Sys.Config.Articulos.Decimales);
                         EntradaGarantia.Text = Art.Garantia.ToString();
                         CustomName = Art.Existe;
 
@@ -414,8 +414,8 @@ namespace Lfc.Articulos
                 {
                         base.OnLoad(e);
                         if (this.Connection != null) {
-                                EntradaStockActual.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock;
-                                EntradaStockMinimo.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock;
+                                EntradaStockActual.DecimalPlaces = Lbl.Sys.Config.Articulos.Decimales;
+                                EntradaStockMinimo.DecimalPlaces = Lbl.Sys.Config.Articulos.Decimales;
                                 EntradaCosto.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto;
                                 EntradaPvp.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
 

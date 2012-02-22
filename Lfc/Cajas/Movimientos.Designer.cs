@@ -68,7 +68,6 @@ namespace Lfc.Cajas
                         this.BotonIngreso.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonIngreso.Location = new System.Drawing.Point(12, 352);
                         this.BotonIngreso.Name = "BotonIngreso";
-                        this.BotonIngreso.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonIngreso.Size = new System.Drawing.Size(96, 40);
                         this.BotonIngreso.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonIngreso.Subtext = "F3";
@@ -85,7 +84,6 @@ namespace Lfc.Cajas
                         this.BotonEgreso.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonEgreso.Location = new System.Drawing.Point(120, 352);
                         this.BotonEgreso.Name = "BotonEgreso";
-                        this.BotonEgreso.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonEgreso.Size = new System.Drawing.Size(96, 40);
                         this.BotonEgreso.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonEgreso.Subtext = "F4";
@@ -102,7 +100,6 @@ namespace Lfc.Cajas
                         this.BotonMovim.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonMovim.Location = new System.Drawing.Point(12, 388);
                         this.BotonMovim.Name = "BotonMovim";
-                        this.BotonMovim.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonMovim.Size = new System.Drawing.Size(96, 40);
                         this.BotonMovim.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonMovim.Subtext = "F5";
@@ -119,7 +116,6 @@ namespace Lfc.Cajas
                         this.BotonArqueo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonArqueo.Location = new System.Drawing.Point(120, 388);
                         this.BotonArqueo.Name = "BotonArqueo";
-                        this.BotonArqueo.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonArqueo.Size = new System.Drawing.Size(96, 40);
                         this.BotonArqueo.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonArqueo.Subtext = "F7";

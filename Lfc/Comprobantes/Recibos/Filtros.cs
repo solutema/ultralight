@@ -117,7 +117,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Location = new System.Drawing.Point(133, 31);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.ReadOnly = false;
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(448, 22);
@@ -157,7 +156,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.Location = new System.Drawing.Point(133, 59);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
-                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.ReadOnly = false;
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(448, 22);
@@ -188,7 +186,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaSucursal.Location = new System.Drawing.Point(133, 3);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
-                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.ReadOnly = false;
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(448, 22);
@@ -241,7 +238,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaFechas.Location = new System.Drawing.Point(133, 87);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
-                        this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechas.ReadOnly = false;
                         this.EntradaFechas.Size = new System.Drawing.Size(448, 33);
                         this.EntradaFechas.TabIndex = 9;

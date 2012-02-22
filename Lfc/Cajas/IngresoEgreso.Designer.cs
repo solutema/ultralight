@@ -85,10 +85,8 @@ namespace Lfc.Cajas
                         // EntradaImporte
                         // 
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(144, 152);
                         this.EntradaImporte.Name = "EntradaImporte";
-                        this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.ReadOnly = false;
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
@@ -119,7 +117,6 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.Location = new System.Drawing.Point(144, 120);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.ReadOnly = false;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(464, 24);
@@ -132,10 +129,8 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaComprobante.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaComprobante.Location = new System.Drawing.Point(144, 216);
                         this.EntradaComprobante.Name = "EntradaComprobante";
-                        this.EntradaComprobante.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComprobante.ReadOnly = false;
                         this.EntradaComprobante.Size = new System.Drawing.Size(464, 24);
                         this.EntradaComprobante.TabIndex = 9;
@@ -158,7 +153,6 @@ namespace Lfc.Cajas
                         this.EntradaObs.Location = new System.Drawing.Point(144, 248);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.ReadOnly = false;
                         this.EntradaObs.Size = new System.Drawing.Size(464, 88);
                         this.EntradaObs.TabIndex = 11;
@@ -186,7 +180,6 @@ namespace Lfc.Cajas
                         this.EntradaPersona.Location = new System.Drawing.Point(144, 184);
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
-                        this.EntradaPersona.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPersona.ReadOnly = false;
                         this.EntradaPersona.Required = true;
                         this.EntradaPersona.Size = new System.Drawing.Size(464, 24);
@@ -218,7 +211,6 @@ namespace Lfc.Cajas
                         this.EntradaCaja.Location = new System.Drawing.Point(144, 88);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
-                        this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.ReadOnly = false;
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(464, 24);
@@ -239,10 +231,8 @@ namespace Lfc.Cajas
                         // EntradaNuevoSaldo
                         // 
                         this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNuevoSaldo.Location = new System.Drawing.Point(372, 152);
                         this.EntradaNuevoSaldo.Name = "EntradaNuevoSaldo";
-                        this.EntradaNuevoSaldo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNuevoSaldo.Prefijo = "$";
                         this.EntradaNuevoSaldo.ReadOnly = false;
                         this.EntradaNuevoSaldo.Size = new System.Drawing.Size(120, 24);

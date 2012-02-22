@@ -37,13 +37,6 @@ namespace Lbl.Sys.Configuracion
 {
         public class SeccionConfiguracion
         {
-                public Lfx.Workspace Workspace;
-
-                public SeccionConfiguracion(Lfx.Workspace workspace)
-                {
-                        Lfx.Workspace.Master = workspace;
-                }
-
                 public Lfx.Data.Connection DataBase
                 {
                         get

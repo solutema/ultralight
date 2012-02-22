@@ -125,7 +125,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.Location = new System.Drawing.Point(304, 0);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
-                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.PlaceholderText = null;
                         this.EntradaVendedor.Required = true;
                         this.EntradaVendedor.Size = new System.Drawing.Size(200, 24);
@@ -147,7 +146,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaNumero.Location = new System.Drawing.Point(112, 0);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
                         this.EntradaNumero.TabIndex = 3;
                         // 
@@ -223,7 +221,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarFactura.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregarFactura.Location = new System.Drawing.Point(0, 372);
                         this.BotonAgregarFactura.Name = "BotonAgregarFactura";
-                        this.BotonAgregarFactura.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAgregarFactura.Size = new System.Drawing.Size(100, 31);
                         this.BotonAgregarFactura.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregarFactura.Subtext = "F2";
@@ -240,7 +237,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarFactura.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitarFactura.Location = new System.Drawing.Point(108, 372);
                         this.BotonQuitarFactura.Name = "BotonQuitarFactura";
-                        this.BotonQuitarFactura.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonQuitarFactura.Size = new System.Drawing.Size(100, 31);
                         this.BotonQuitarFactura.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonQuitarFactura.Subtext = "F3";
@@ -334,7 +330,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonAgregarValor.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregarValor.Location = new System.Drawing.Point(0, 372);
                         this.BotonAgregarValor.Name = "BotonAgregarValor";
-                        this.BotonAgregarValor.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAgregarValor.Size = new System.Drawing.Size(100, 31);
                         this.BotonAgregarValor.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregarValor.Subtext = "F4";
@@ -351,7 +346,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.BotonQuitarValor.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitarValor.Location = new System.Drawing.Point(108, 372);
                         this.BotonQuitarValor.Name = "BotonQuitarValor";
-                        this.BotonQuitarValor.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonQuitarValor.Size = new System.Drawing.Size(100, 31);
                         this.BotonQuitarValor.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonQuitarValor.Subtext = "F5";
@@ -403,7 +397,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Location = new System.Drawing.Point(564, 0);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(192, 24);
@@ -418,7 +411,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConceptoTexto.Location = new System.Drawing.Point(84, 28);
                         this.EntradaConceptoTexto.Name = "EntradaConceptoTexto";
-                        this.EntradaConceptoTexto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConceptoTexto.Size = new System.Drawing.Size(344, 24);
                         this.EntradaConceptoTexto.TabIndex = 9;
                         // 
@@ -483,7 +475,6 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaPV.Location = new System.Drawing.Point(76, 0);
                         this.EntradaPV.Name = "EntradaPV";
-                        this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
                         this.EntradaPV.TabIndex = 2;
                         // 
@@ -510,7 +501,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaConcepto.Location = new System.Drawing.Point(516, 28);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.PlaceholderText = "Sin especificar";
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(240, 24);

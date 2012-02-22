@@ -94,7 +94,6 @@ namespace Lfc.Tareas
                         this.MatrizArticulos.LockQuantity = false;
                         this.MatrizArticulos.LockText = false;
                         this.MatrizArticulos.Name = "MatrizArticulos";
-                        this.MatrizArticulos.Padding = new System.Windows.Forms.Padding(2);
                         this.MatrizArticulos.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.MatrizArticulos.ReadOnly = false;
                         this.MatrizArticulos.ShowStock = true;
@@ -129,10 +128,8 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(504, 336);
                         this.EntradaTotal.Name = "EntradaTotal";
-                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.ReadOnly = false;
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
@@ -144,10 +141,8 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaDescuento.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescuento.Location = new System.Drawing.Point(252, 336);
                         this.EntradaDescuento.Name = "EntradaDescuento";
-                        this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescuento.ReadOnly = false;
                         this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
                         this.EntradaDescuento.Sufijo = "%";
@@ -169,10 +164,8 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(80, 336);
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
-                        this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSubTotal.Prefijo = "$";
                         this.EntradaSubTotal.ReadOnly = false;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(84, 24);

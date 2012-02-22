@@ -93,7 +93,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTipo.Location = new System.Drawing.Point(312, 0);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.SetData = new string[] {
         "Remito|R",
         "Nota Pedido|NP",
@@ -123,7 +122,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.AlwaysExpanded = false;
                         this.EntradaFormaPago.Location = new System.Drawing.Point(188, 28);
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
-                        this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPago.SetData = new string[] {
         "No controla pago|0",
         "Efectivo|1",
@@ -137,7 +135,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFecha.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFecha.Location = new System.Drawing.Point(80, 28);
                         this.EntradaFecha.Name = "EntradaFecha";
-                        this.EntradaFecha.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFecha.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFecha.TabIndex = 21;
                         // 
@@ -147,7 +144,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.Location = new System.Drawing.Point(480, 0);
                         this.EntradaPV.Name = "EntradaPV";
-                        this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.Size = new System.Drawing.Size(56, 24);
                         this.EntradaPV.TabIndex = 18;
                         this.EntradaPV.Text = "0";
@@ -167,7 +163,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(444, 28);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
-                        this.EntradaHaciaSituacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHaciaSituacion.PlaceholderText = null;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(197, 24);
@@ -181,7 +176,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaNumero.Location = new System.Drawing.Point(540, 0);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.Size = new System.Drawing.Size(100, 24);
                         this.EntradaNumero.TabIndex = 19;
                         this.EntradaNumero.TextChanged += new System.EventHandler(this.EntradaTipoPvNumero_TextChanged);
@@ -201,7 +195,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.LockQuantity = false;
                         this.EntradaProductos.LockText = false;
                         this.EntradaProductos.Name = "EntradaProductos";
-                        this.EntradaProductos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
                         this.EntradaProductos.ShowStock = false;
                         this.EntradaProductos.Size = new System.Drawing.Size(642, 240);
@@ -224,7 +217,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.Location = new System.Drawing.Point(80, 0);
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
-                        this.EntradaProveedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProveedor.PlaceholderText = null;
                         this.EntradaProveedor.Required = true;
                         this.EntradaProveedor.Size = new System.Drawing.Size(228, 24);
@@ -276,7 +268,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaEstado.Location = new System.Drawing.Point(288, 311);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
         "N/A|0"};
                         this.EntradaEstado.Size = new System.Drawing.Size(164, 21);
@@ -292,7 +283,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonObs.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonObs.Location = new System.Drawing.Point(116, 368);
                         this.BotonObs.Name = "BotonObs";
-                        this.BotonObs.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonObs.Size = new System.Drawing.Size(108, 32);
                         this.BotonObs.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonObs.Subtext = "F7";
@@ -309,7 +299,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonConvertir.Location = new System.Drawing.Point(0, 368);
                         this.BotonConvertir.Name = "BotonConvertir";
-                        this.BotonConvertir.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonConvertir.Size = new System.Drawing.Size(108, 32);
                         this.BotonConvertir.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonConvertir.Subtext = "F4";
@@ -323,7 +312,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaOtrosGastos.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaOtrosGastos.Location = new System.Drawing.Point(116, 340);
                         this.EntradaOtrosGastos.Name = "EntradaOtrosGastos";
-                        this.EntradaOtrosGastos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaOtrosGastos.Prefijo = "$";
                         this.EntradaOtrosGastos.Size = new System.Drawing.Size(104, 24);
                         this.EntradaOtrosGastos.TabIndex = 53;
@@ -337,7 +325,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaCancelado.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaCancelado.Location = new System.Drawing.Point(516, 372);
                         this.EntradaCancelado.Name = "EntradaCancelado";
-                        this.EntradaCancelado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCancelado.Prefijo = "$";
                         this.EntradaCancelado.Size = new System.Drawing.Size(124, 28);
                         this.EntradaCancelado.TabIndex = 59;
@@ -350,7 +337,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaGastosEnvio.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaGastosEnvio.Location = new System.Drawing.Point(116, 312);
                         this.EntradaGastosEnvio.Name = "EntradaGastosEnvio";
-                        this.EntradaGastosEnvio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaGastosEnvio.Prefijo = "$";
                         this.EntradaGastosEnvio.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGastosEnvio.TabIndex = 51;
@@ -364,7 +350,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaTotal.Location = new System.Drawing.Point(516, 340);
                         this.EntradaTotal.Name = "EntradaTotal";
-                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.Size = new System.Drawing.Size(124, 28);
                         this.EntradaTotal.TabIndex = 57;

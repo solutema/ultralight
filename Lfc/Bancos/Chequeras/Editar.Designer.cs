@@ -94,7 +94,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
-                        this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.PlaceholderText = null;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(440, 24);
@@ -108,7 +107,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaDesde.Location = new System.Drawing.Point(184, 64);
                         this.EntradaDesde.MaxLength = 50;
                         this.EntradaDesde.Name = "EntradaDesde";
-                        this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesde.Size = new System.Drawing.Size(116, 24);
                         this.EntradaDesde.TabIndex = 8;
                         // 
@@ -126,7 +124,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaHasta.Location = new System.Drawing.Point(368, 64);
                         this.EntradaHasta.MaxLength = 50;
                         this.EntradaHasta.Name = "EntradaHasta";
-                        this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHasta.Size = new System.Drawing.Size(112, 24);
                         this.EntradaHasta.TabIndex = 10;
                         // 
@@ -163,7 +160,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
-                        this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.PlaceholderText = "Ninguna";
                         this.EntradaCaja.Required = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(440, 24);
@@ -178,7 +174,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(120, 160);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = "Estado para esta chequera.";
                         this.EntradaEstado.SetData = new string[] {
         "Fuera de uso|0",
@@ -213,7 +208,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaTitular.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaTitular.MaxLength = 200;
                         this.EntradaTitular.Name = "EntradaTitular";
-                        this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTitular.PlaceholderText = "";
                         this.EntradaTitular.Size = new System.Drawing.Size(440, 24);
                         this.EntradaTitular.TabIndex = 1;
@@ -251,7 +245,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaSucursal.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
-                        this.EntradaSucursal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSucursal.PlaceholderText = "Todas";
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(440, 24);

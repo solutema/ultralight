@@ -161,8 +161,9 @@ namespace Lui.Forms
                         // EtiquetaPrefijo
                         // 
                         this.EtiquetaPrefijo.AutoSize = true;
-                        this.EtiquetaPrefijo.Location = new System.Drawing.Point(4, 4);
+                        this.EtiquetaPrefijo.Location = new System.Drawing.Point(3, 3);
                         this.EtiquetaPrefijo.Name = "EtiquetaPrefijo";
+                        this.EtiquetaPrefijo.Padding = new System.Windows.Forms.Padding(0);
                         this.EtiquetaPrefijo.Size = new System.Drawing.Size(0, 17);
                         this.EtiquetaPrefijo.TabIndex = 3;
                         this.EtiquetaPrefijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -172,8 +173,9 @@ namespace Lui.Forms
                         // EtiquetaSufijo
                         // 
                         this.EtiquetaSufijo.AutoSize = true;
-                        this.EtiquetaSufijo.Location = new System.Drawing.Point(372, 4);
+                        this.EtiquetaSufijo.Location = new System.Drawing.Point(373, 3);
                         this.EtiquetaSufijo.Name = "EtiquetaSufijo";
+                        this.EtiquetaPrefijo.Padding = new System.Windows.Forms.Padding(0);
                         this.EtiquetaSufijo.Size = new System.Drawing.Size(0, 17);
                         this.EtiquetaSufijo.TabIndex = 4;
                         this.EtiquetaSufijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

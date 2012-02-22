@@ -37,10 +37,8 @@ namespace Lbl.Sys.Configuracion
 {
         public class Comprobantes : SeccionConfiguracion
         {
-                public Comprobantes(Lfx.Workspace workspace)
-                        : base(workspace)
+                public Comprobantes()
                 {
-                        
                 }
 
                 public int IdClientePredeterminado

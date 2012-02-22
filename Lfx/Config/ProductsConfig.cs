@@ -44,14 +44,6 @@ namespace Lfx.Config
                         this.ConfigManager = configManager;
                 }
 
-                // La cantidad de decimales para el stock
-                public int DecimalesStock
-                {
-                        get
-                        {
-                                return ConfigManager.ReadGlobalSetting<int>("Sistema.Stock.Decimales", 0);
-                        }
-                }
 
                 public int DepositoPredeterminado
                 {

@@ -89,7 +89,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaConcepto.Location = new System.Drawing.Point(120, 24);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(496, 24);
                         this.EntradaConcepto.TabIndex = 1;
@@ -103,10 +102,8 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.EntradaImporte.AutoSize = false;
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(120, 56);
                         this.EntradaImporte.Name = "EntradaImporte";
-                        this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
                         this.EntradaImporte.TabIndex = 3;
@@ -140,7 +137,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaObs.Location = new System.Drawing.Point(120, 120);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.Size = new System.Drawing.Size(496, 92);
                         this.EntradaObs.TabIndex = 7;
                         // 
@@ -158,7 +154,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaDireccion.AutoSize = false;
                         this.EntradaDireccion.Location = new System.Drawing.Point(120, 88);
                         this.EntradaDireccion.Name = "EntradaDireccion";
-                        this.EntradaDireccion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDireccion.SetData = new string[] {
         "Débito|1",
         "Crédito|0"};
@@ -181,10 +176,8 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.EntradaNuevoSaldo.AutoSize = false;
                         this.EntradaNuevoSaldo.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaNuevoSaldo.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNuevoSaldo.Location = new System.Drawing.Point(376, 56);
                         this.EntradaNuevoSaldo.Name = "EntradaNuevoSaldo";
-                        this.EntradaNuevoSaldo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNuevoSaldo.Prefijo = "$";
                         this.EntradaNuevoSaldo.TemporaryReadOnly = true;
                         this.EntradaNuevoSaldo.Size = new System.Drawing.Size(128, 24);

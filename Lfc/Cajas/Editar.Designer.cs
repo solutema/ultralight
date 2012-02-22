@@ -89,10 +89,8 @@ namespace Lfc.Cajas
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumero.Location = new System.Drawing.Point(124, 152);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.Size = new System.Drawing.Size(228, 24);
                         this.EntradaNumero.TabIndex = 9;
@@ -129,7 +127,6 @@ namespace Lfc.Cajas
                         this.EntradaBanco.Location = new System.Drawing.Point(124, 120);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
-                        this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.ReadOnly = false;
                         this.EntradaBanco.Required = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(488, 24);
@@ -145,7 +142,6 @@ namespace Lfc.Cajas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(124, 64);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipo.PlaceholderText = "¿El producto usa control de stock?";
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
@@ -173,7 +169,6 @@ namespace Lfc.Cajas
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(124, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(488, 24);
                         this.EntradaNombre.TabIndex = 1;
@@ -208,7 +203,6 @@ namespace Lfc.Cajas
                         this.EntradaMoneda.Location = new System.Drawing.Point(124, 184);
                         this.EntradaMoneda.MaxLength = 200;
                         this.EntradaMoneda.Name = "EntradaMoneda";
-                        this.EntradaMoneda.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMoneda.ReadOnly = false;
                         this.EntradaMoneda.Required = false;
                         this.EntradaMoneda.Size = new System.Drawing.Size(228, 24);
@@ -219,11 +213,9 @@ namespace Lfc.Cajas
                         // 
                         // EntradaClaveBancaria
                         // 
-                        this.EntradaClaveBancaria.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaClaveBancaria.Location = new System.Drawing.Point(124, 216);
                         this.EntradaClaveBancaria.MaxLength = 23;
                         this.EntradaClaveBancaria.Name = "EntradaClaveBancaria";
-                        this.EntradaClaveBancaria.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaClaveBancaria.ReadOnly = false;
                         this.EntradaClaveBancaria.Size = new System.Drawing.Size(228, 24);
                         this.EntradaClaveBancaria.TabIndex = 13;
@@ -239,10 +231,8 @@ namespace Lfc.Cajas
                         // 
                         // EntradaTitular
                         // 
-                        this.EntradaTitular.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTitular.Location = new System.Drawing.Point(124, 32);
                         this.EntradaTitular.Name = "EntradaTitular";
-                        this.EntradaTitular.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTitular.ReadOnly = false;
                         this.EntradaTitular.Size = new System.Drawing.Size(436, 24);
                         this.EntradaTitular.TabIndex = 3;
@@ -262,7 +252,6 @@ namespace Lfc.Cajas
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(124, 248);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.PlaceholderText = "¿El producto usa control de stock?";
                         this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {

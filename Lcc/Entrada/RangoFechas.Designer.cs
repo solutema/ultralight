@@ -65,7 +65,6 @@ namespace Lcc.Entrada
                         this.EntradaTipoDeRango.AutoSize = true;
                         this.EntradaTipoDeRango.Location = new System.Drawing.Point(0, 0);
                         this.EntradaTipoDeRango.Name = "EntradaTipoDeRango";
-                        this.EntradaTipoDeRango.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTipoDeRango.SetData = new string[] {
         "Por día|dia",
         "Por semana|semana",
@@ -81,10 +80,8 @@ namespace Lcc.Entrada
                         // EntradaDesde
                         // 
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaDesde.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDesde.Location = new System.Drawing.Point(120, 8);
                         this.EntradaDesde.Name = "EntradaDesde";
-                        this.EntradaDesde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDesde.Size = new System.Drawing.Size(108, 24);
                         this.EntradaDesde.TabIndex = 1;
                         this.EntradaDesde.TextChanged += new System.EventHandler(this.EntradaDesde_TextChanged);
@@ -92,10 +89,8 @@ namespace Lcc.Entrada
                         // EntradaHasta
                         // 
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaHasta.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 8);
                         this.EntradaHasta.Name = "EntradaHasta";
-                        this.EntradaHasta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaHasta.Size = new System.Drawing.Size(108, 24);
                         this.EntradaHasta.TabIndex = 3;
                         this.EntradaHasta.TextChanged += new System.EventHandler(this.EntradaHasta_TextChanged);
@@ -108,7 +103,6 @@ namespace Lcc.Entrada
                         this.EntradaRango.AutoSize = true;
                         this.EntradaRango.Location = new System.Drawing.Point(128, 0);
                         this.EntradaRango.Name = "EntradaRango";
-                        this.EntradaRango.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRango.SetData = new string[] {
         "a|1"};
                         this.EntradaRango.Size = new System.Drawing.Size(311, 25);

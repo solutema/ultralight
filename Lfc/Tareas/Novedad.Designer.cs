@@ -107,7 +107,6 @@ namespace Lfc.Tareas
                         this.EntradaTecnico.Location = new System.Drawing.Point(96, 240);
                         this.EntradaTecnico.MaxLength = 200;
                         this.EntradaTecnico.Name = "EntradaTecnico";
-                        this.EntradaTecnico.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTecnico.Required = true;
                         this.EntradaTecnico.Size = new System.Drawing.Size(516, 24);
                         this.EntradaTecnico.TabIndex = 9;
@@ -119,11 +118,9 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDescripcion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaDescripcion.Location = new System.Drawing.Point(96, 56);
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
-                        this.EntradaDescripcion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescripcion.Size = new System.Drawing.Size(516, 124);
                         this.EntradaDescripcion.TabIndex = 3;
                         // 
@@ -138,10 +135,8 @@ namespace Lfc.Tareas
                         // 
                         // EntradaMinutos
                         // 
-                        this.EntradaMinutos.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaMinutos.Location = new System.Drawing.Point(344, 192);
                         this.EntradaMinutos.Name = "EntradaMinutos";
-                        this.EntradaMinutos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMinutos.Size = new System.Drawing.Size(76, 24);
                         this.EntradaMinutos.TabIndex = 5;
                         // 
@@ -153,7 +148,6 @@ namespace Lfc.Tareas
                         this.EntradaCondicion.AutoSize = true;
                         this.EntradaCondicion.Location = new System.Drawing.Point(96, 192);
                         this.EntradaCondicion.Name = "EntradaCondicion";
-                        this.EntradaCondicion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCondicion.SetData = new string[] {
         "Publica|0",
         "Interna|1"};
@@ -191,7 +185,6 @@ namespace Lfc.Tareas
                         this.EntradaTicket.Location = new System.Drawing.Point(96, 24);
                         this.EntradaTicket.MaxLength = 200;
                         this.EntradaTicket.Name = "EntradaTicket";
-                        this.EntradaTicket.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTicket.Required = true;
                         this.EntradaTicket.Size = new System.Drawing.Size(516, 24);
                         this.EntradaTicket.TabIndex = 1;

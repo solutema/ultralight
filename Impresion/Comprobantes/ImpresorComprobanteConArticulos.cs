@@ -124,9 +124,9 @@ namespace Lazaro.Impresion.Comprobantes
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 if(Res == null)
-                                                        Res = Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Articulos[i].Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                                                        Res = Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Articulos[i].Cantidad, Lbl.Sys.Config.Articulos.Decimales);
                                                 else
-                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Articulos[i].Cantidad, Lfx.Workspace.Master.CurrentConfig.Productos.DecimalesStock);
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Articulos[i].Cantidad, Lbl.Sys.Config.Articulos.Decimales);
                                         }
                                         return Res;
 

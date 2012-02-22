@@ -104,7 +104,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaTexto.Location = new System.Drawing.Point(112, 24);
                         this.EntradaTexto.Name = "EntradaTexto";
-                        this.EntradaTexto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTexto.Size = new System.Drawing.Size(400, 24);
                         this.EntradaTexto.TabIndex = 1;
                         this.EntradaTexto.TextChanged += new System.EventHandler(this.EntradaTexto_TextChanged);
@@ -132,7 +131,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaX.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaX.Location = new System.Drawing.Point(112, 88);
                         this.EntradaX.Name = "EntradaX";
-                        this.EntradaX.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaX.Size = new System.Drawing.Size(56, 24);
                         this.EntradaX.Sufijo = "x";
                         this.EntradaX.TabIndex = 5;
@@ -143,7 +141,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaY.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaY.Location = new System.Drawing.Point(180, 88);
                         this.EntradaY.Name = "EntradaY";
-                        this.EntradaY.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaY.Size = new System.Drawing.Size(56, 24);
                         this.EntradaY.Sufijo = "y";
                         this.EntradaY.TabIndex = 7;
@@ -163,7 +160,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteNombre.AlwaysExpanded = false;
                         this.EntradaFuenteNombre.Location = new System.Drawing.Point(112, 120);
                         this.EntradaFuenteNombre.Name = "EntradaFuenteNombre";
-                        this.EntradaFuenteNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuenteNombre.SetData = new string[] {
         "Predeterminada|*",
         "Vera Serif|Bitstream Vera Serif",
@@ -190,7 +186,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlto.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaAlto.Location = new System.Drawing.Point(400, 88);
                         this.EntradaAlto.Name = "EntradaAlto";
-                        this.EntradaAlto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAlto.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAlto.Sufijo = "v";
                         this.EntradaAlto.TabIndex = 11;
@@ -201,7 +196,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAncho.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaAncho.Location = new System.Drawing.Point(328, 88);
                         this.EntradaAncho.Name = "EntradaAncho";
-                        this.EntradaAncho.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAncho.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAncho.Sufijo = "h";
                         this.EntradaAncho.TabIndex = 9;
@@ -231,7 +225,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.DecimalPlaces = 2;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(376, 120);
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
-                        this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(92, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
                         this.EntradaFuenteTamano.TabIndex = 14;
@@ -244,7 +237,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlienacionHorizontal.AutoSize = true;
                         this.EntradaAlienacionHorizontal.Location = new System.Drawing.Point(112, 152);
                         this.EntradaAlienacionHorizontal.Name = "EntradaAlienacionHorizontal";
-                        this.EntradaAlienacionHorizontal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAlienacionHorizontal.SetData = new string[] {
         "Izquierda|Near",
         "Centro|Center",
@@ -269,7 +261,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlienacionVertical.AutoSize = true;
                         this.EntradaAlienacionVertical.Location = new System.Drawing.Point(260, 152);
                         this.EntradaAlienacionVertical.Name = "EntradaAlienacionVertical";
-                        this.EntradaAlienacionVertical.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAlienacionVertical.SetData = new string[] {
         "Arriba|Near",
         "Centro|Center",
@@ -284,7 +275,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAnchoBorde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaAnchoBorde.Location = new System.Drawing.Point(112, 264);
                         this.EntradaAnchoBorde.Name = "EntradaAnchoBorde";
-                        this.EntradaAnchoBorde.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAnchoBorde.Size = new System.Drawing.Size(88, 24);
                         this.EntradaAnchoBorde.Sufijo = "ptos.";
                         this.EntradaAnchoBorde.TabIndex = 21;
@@ -308,7 +298,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ColorFondo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.ColorFondo.Location = new System.Drawing.Point(112, 304);
                         this.ColorFondo.Name = "ColorFondo";
-                        this.ColorFondo.Padding = new System.Windows.Forms.Padding(2);
                         this.ColorFondo.Size = new System.Drawing.Size(84, 28);
                         this.ColorFondo.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.ColorFondo.Subtext = "Tecla";
@@ -324,7 +313,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ColorTexto.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.ColorTexto.Location = new System.Drawing.Point(216, 304);
                         this.ColorTexto.Name = "ColorTexto";
-                        this.ColorTexto.Padding = new System.Windows.Forms.Padding(2);
                         this.ColorTexto.Size = new System.Drawing.Size(80, 28);
                         this.ColorTexto.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.ColorTexto.Subtext = "Tecla";
@@ -340,7 +328,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ColorBorde.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.ColorBorde.Location = new System.Drawing.Point(312, 304);
                         this.ColorBorde.Name = "ColorBorde";
-                        this.ColorBorde.Padding = new System.Windows.Forms.Padding(2);
                         this.ColorBorde.Size = new System.Drawing.Size(84, 28);
                         this.ColorBorde.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.ColorBorde.Subtext = "Tecla";
@@ -354,7 +341,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAjusteTexto.AutoSize = true;
                         this.EntradaAjusteTexto.Location = new System.Drawing.Point(112, 216);
                         this.EntradaAjusteTexto.Name = "EntradaAjusteTexto";
-                        this.EntradaAjusteTexto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAjusteTexto.SetData = new string[] {
         "Sólo un renglon|0",
         "Fluir texto hacia abajo|1"};
@@ -378,7 +364,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFormato.Enabled = false;
                         this.EntradaFormato.Location = new System.Drawing.Point(112, 56);
                         this.EntradaFormato.Name = "EntradaFormato";
-                        this.EntradaFormato.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormato.SetData = new string[] {
         "Predeterminado|*",
         "Fecha corta (01/01/2001)|dd/MM/yyyy",
@@ -396,7 +381,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EtiquetaMuestra.Dock = System.Windows.Forms.DockStyle.Fill;
                         this.EtiquetaMuestra.Location = new System.Drawing.Point(2, 2);
                         this.EtiquetaMuestra.Name = "EtiquetaMuestra";
-                        this.EtiquetaMuestra.Padding = new System.Windows.Forms.Padding(2);
                         this.EtiquetaMuestra.Size = new System.Drawing.Size(172, 68);
                         this.EtiquetaMuestra.TabIndex = 51;
                         this.EtiquetaMuestra.Text = "Texto de muestra";
@@ -417,7 +401,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.PanelMuestraBorde.Controls.Add(this.EtiquetaMuestra);
                         this.PanelMuestraBorde.Location = new System.Drawing.Point(24, 32);
                         this.PanelMuestraBorde.Name = "PanelMuestraBorde";
-                        this.PanelMuestraBorde.Padding = new System.Windows.Forms.Padding(2);
                         this.PanelMuestraBorde.Size = new System.Drawing.Size(176, 72);
                         this.PanelMuestraBorde.TabIndex = 52;
                         // 
@@ -438,7 +421,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonColorFondoPredet.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonColorFondoPredet.Location = new System.Drawing.Point(112, 336);
                         this.BotonColorFondoPredet.Name = "BotonColorFondoPredet";
-                        this.BotonColorFondoPredet.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonColorFondoPredet.Size = new System.Drawing.Size(84, 28);
                         this.BotonColorFondoPredet.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonColorFondoPredet.Subtext = "Tecla";

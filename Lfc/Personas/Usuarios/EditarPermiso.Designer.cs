@@ -101,7 +101,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaObjeto.Location = new System.Drawing.Point(120, 20);
                         this.EntradaObjeto.MaxLength = 200;
                         this.EntradaObjeto.Name = "EntradaObjeto";
-                        this.EntradaObjeto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObjeto.Required = false;
                         this.EntradaObjeto.Size = new System.Drawing.Size(488, 24);
                         this.EntradaObjeto.TabIndex = 1;
@@ -289,7 +288,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaItems.ForceCase = Lui.Forms.TextCasing.Caption;
                         this.EntradaItems.Location = new System.Drawing.Point(120, 272);
                         this.EntradaItems.Name = "EntradaItems";
-                        this.EntradaItems.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaItems.Size = new System.Drawing.Size(488, 24);
                         this.EntradaItems.TabIndex = 20;
                         // 

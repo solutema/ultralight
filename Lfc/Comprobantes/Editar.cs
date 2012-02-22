@@ -380,8 +380,8 @@ namespace Lfc.Comprobantes
 
                         decimal SubTotal = EntradaSubTotal.ValueDecimal;
                         decimal Total;
-                        if (Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima > 0)
-                                Total = Math.Floor((SubTotal * (1 + Recargo - Descuento)) / Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima) * Lbl.Sys.Config.Actual.Moneda.UnidadMonetariaMinima;
+                        if (Lbl.Sys.Config.Moneda.UnidadMonetariaMinima > 0)
+                                Total = Math.Floor((SubTotal * (1 + Recargo - Descuento)) / Lbl.Sys.Config.Moneda.UnidadMonetariaMinima) * Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
                         else
                                 Total = SubTotal * (1 + Recargo - Descuento);
 

@@ -549,7 +549,8 @@ Si necesita información sobre cómo instalar o configurar un servidor SQL para 
                         } while (true);
 
                         // Habilito el gestor de configuración
-                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global(Lfx.Workspace.Master);
+                        Lbl.Sys.Config.Actual = new Lbl.Sys.Configuracion.Global();
+                        Lbl.Sys.Config.Cargar();
 
                         // Habilito la recuperación de conexiones
                         Lfx.Workspace.Master.MasterConnection.EnableRecover = true;
@@ -636,7 +637,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
 
                         if (Lfx.Environment.SystemInformation.DesignMode) {
                                 Lbl.Personas.Usuario Usu = new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, 1);
-                                Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Lfx.Workspace.Master, Usu);
+                                Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Usu);
                         } else {
                                 using (Lazaro.WinMain.Misc.Ingreso FormIngreso = new Lazaro.WinMain.Misc.Ingreso()) {
                                         FormIngreso.Connection = Lfx.Workspace.Master.MasterConnection;

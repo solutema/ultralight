@@ -118,10 +118,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaActivosCajas.AutoSize = false;
                     this.EntradaActivosCajas.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaActivosCajas.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaActivosCajas.Location = new System.Drawing.Point(268, 52);
                     this.EntradaActivosCajas.Name = "EntradaActivosCajas";
-                    this.EntradaActivosCajas.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaActivosCajas.Prefijo = "$";
                     this.EntradaActivosCajas.TemporaryReadOnly = true;
                     this.EntradaActivosCajas.Size = new System.Drawing.Size(100, 24);
@@ -132,10 +130,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaFuturosTarjetas.AutoSize = false;
                     this.EntradaFuturosTarjetas.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaFuturosTarjetas.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaFuturosTarjetas.Location = new System.Drawing.Point(640, 52);
                     this.EntradaFuturosTarjetas.Name = "txtFuturosTarjetas";
-                    this.EntradaFuturosTarjetas.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaFuturosTarjetas.Prefijo = "$";
                     this.EntradaFuturosTarjetas.TemporaryReadOnly = true;
                     this.EntradaFuturosTarjetas.Size = new System.Drawing.Size(100, 24);
@@ -156,10 +152,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaActivosStock.AutoSize = false;
                     this.EntradaActivosStock.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaActivosStock.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaActivosStock.Location = new System.Drawing.Point(268, 80);
                     this.EntradaActivosStock.Name = "txtActivosStock";
-                    this.EntradaActivosStock.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaActivosStock.Prefijo = "$";
                     this.EntradaActivosStock.TemporaryReadOnly = true;
                     this.EntradaActivosStock.Size = new System.Drawing.Size(100, 24);
@@ -180,10 +174,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaFuturosPedidos.AutoSize = false;
                     this.EntradaFuturosPedidos.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaFuturosPedidos.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaFuturosPedidos.Location = new System.Drawing.Point(640, 114);
                     this.EntradaFuturosPedidos.Name = "txtFuturosPedidos";
-                    this.EntradaFuturosPedidos.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaFuturosPedidos.Prefijo = "$";
                     this.EntradaFuturosPedidos.TemporaryReadOnly = true;
                     this.EntradaFuturosPedidos.Size = new System.Drawing.Size(100, 24);
@@ -204,10 +196,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPasivosCheques.AutoSize = false;
                     this.EntradaPasivosCheques.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaPasivosCheques.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaPasivosCheques.Location = new System.Drawing.Point(268, 260);
                     this.EntradaPasivosCheques.Name = "txtPasivosCheques";
-                    this.EntradaPasivosCheques.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPasivosCheques.Prefijo = "$";
                     this.EntradaPasivosCheques.TemporaryReadOnly = true;
                     this.EntradaPasivosCheques.Size = new System.Drawing.Size(100, 24);
@@ -228,10 +218,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPasivosCajas.AutoSize = false;
                     this.EntradaPasivosCajas.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaPasivosCajas.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaPasivosCajas.Location = new System.Drawing.Point(268, 204);
                     this.EntradaPasivosCajas.Name = "EntradaPasivosCajas";
-                    this.EntradaPasivosCajas.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPasivosCajas.Prefijo = "$";
                     this.EntradaPasivosCajas.TemporaryReadOnly = true;
                     this.EntradaPasivosCajas.Size = new System.Drawing.Size(100, 24);
@@ -276,10 +264,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaActivosSubtotal.AutoSize = false;
                     this.EntradaActivosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaActivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaActivosSubtotal.Location = new System.Drawing.Point(268, 112);
                     this.EntradaActivosSubtotal.Name = "txtActivosSubtotal";
-                    this.EntradaActivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaActivosSubtotal.Prefijo = "$";
                     this.EntradaActivosSubtotal.TemporaryReadOnly = true;
                     this.EntradaActivosSubtotal.Size = new System.Drawing.Size(100, 24);
@@ -300,10 +286,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPasivosSubtotal.AutoSize = false;
                     this.EntradaPasivosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaPasivosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaPasivosSubtotal.Location = new System.Drawing.Point(268, 292);
                     this.EntradaPasivosSubtotal.Name = "txtPasivosSubtotal";
-                    this.EntradaPasivosSubtotal.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPasivosSubtotal.Prefijo = "$";
                     this.EntradaPasivosSubtotal.TemporaryReadOnly = true;
                     this.EntradaPasivosSubtotal.Size = new System.Drawing.Size(100, 24);
@@ -324,10 +308,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaFuturosSubtotal.AutoSize = false;
                     this.EntradaFuturosSubtotal.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaFuturosSubtotal.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaFuturosSubtotal.Location = new System.Drawing.Point(640, 146);
                     this.EntradaFuturosSubtotal.Name = "txtFuturosSubtotal";
-                    this.EntradaFuturosSubtotal.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaFuturosSubtotal.Prefijo = "$";
                     this.EntradaFuturosSubtotal.TemporaryReadOnly = true;
                     this.EntradaFuturosSubtotal.Size = new System.Drawing.Size(100, 24);
@@ -348,10 +330,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPatrimonioActual.AutoSize = false;
                     this.EntradaPatrimonioActual.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaPatrimonioActual.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaPatrimonioActual.Location = new System.Drawing.Point(644, 266);
                     this.EntradaPatrimonioActual.Name = "txtPatrimonioActual";
-                    this.EntradaPatrimonioActual.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPatrimonioActual.Prefijo = "$";
                     this.EntradaPatrimonioActual.TemporaryReadOnly = true;
                     this.EntradaPatrimonioActual.Size = new System.Drawing.Size(100, 24);
@@ -384,10 +364,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPatrimonioFuturo.AutoSize = false;
                     this.EntradaPatrimonioFuturo.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaPatrimonioFuturo.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaPatrimonioFuturo.Location = new System.Drawing.Point(644, 294);
                     this.EntradaPatrimonioFuturo.Name = "txtPatrimonioFuturo";
-                    this.EntradaPatrimonioFuturo.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPatrimonioFuturo.Prefijo = "$";
                     this.EntradaPatrimonioFuturo.TemporaryReadOnly = true;
                     this.EntradaPatrimonioFuturo.Size = new System.Drawing.Size(100, 24);
@@ -408,10 +386,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaActivosActualesFuturos.AutoSize = false;
                     this.EntradaActivosActualesFuturos.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaActivosActualesFuturos.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaActivosActualesFuturos.Location = new System.Drawing.Point(640, 178);
                     this.EntradaActivosActualesFuturos.Name = "txtActivosActualesFuturos";
-                    this.EntradaActivosActualesFuturos.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaActivosActualesFuturos.Prefijo = "$";
                     this.EntradaActivosActualesFuturos.TemporaryReadOnly = true;
                     this.EntradaActivosActualesFuturos.Size = new System.Drawing.Size(100, 24);
@@ -432,10 +408,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaPasivosStock.AutoSize = false;
                     this.EntradaPasivosStock.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaPasivosStock.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaPasivosStock.Location = new System.Drawing.Point(268, 232);
                     this.EntradaPasivosStock.Name = "txtPasivosStock";
-                    this.EntradaPasivosStock.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaPasivosStock.Prefijo = "$";
                     this.EntradaPasivosStock.TemporaryReadOnly = true;
                     this.EntradaPasivosStock.Size = new System.Drawing.Size(100, 24);
@@ -456,10 +430,8 @@ namespace Lfc.Reportes
                     // 
                     this.EntradaCC.AutoSize = false;
                     this.EntradaCC.DataType = Lui.Forms.DataTypes.Currency;
-                    this.EntradaCC.ForceCase = Lui.Forms.TextCasing.None;
                     this.EntradaCC.Location = new System.Drawing.Point(640, 83);
                     this.EntradaCC.Name = "txtCC";
-                    this.EntradaCC.Padding = new System.Windows.Forms.Padding(2);
                     this.EntradaCC.Prefijo = "$";
                     this.EntradaCC.TemporaryReadOnly = true;
                     this.EntradaCC.Size = new System.Drawing.Size(100, 24);

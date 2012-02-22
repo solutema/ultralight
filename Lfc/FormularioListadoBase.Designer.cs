@@ -118,7 +118,6 @@ namespace Lfc
                         this.EntradaContador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContador2.Location = new System.Drawing.Point(100, 28);
                         this.EntradaContador2.Name = "EntradaContador2";
-                        this.EntradaContador2.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador2.ReadOnly = true;
                         this.EntradaContador2.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador2.TabIndex = 62;
@@ -143,7 +142,6 @@ namespace Lfc
                         this.EntradaContador1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContador1.Location = new System.Drawing.Point(100, 0);
                         this.EntradaContador1.Name = "EntradaContador1";
-                        this.EntradaContador1.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador1.ReadOnly = true;
                         this.EntradaContador1.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador1.TabIndex = 60;
@@ -170,7 +168,6 @@ namespace Lfc
                         this.BotonImprimir.Location = new System.Drawing.Point(44, 91);
                         this.BotonImprimir.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonImprimir.Name = "BotonImprimir";
-                        this.BotonImprimir.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonImprimir.Size = new System.Drawing.Size(136, 40);
                         this.BotonImprimir.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonImprimir.Subtext = "F8";
@@ -188,7 +185,6 @@ namespace Lfc
                         this.BotonFiltrar.Location = new System.Drawing.Point(44, 45);
                         this.BotonFiltrar.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonFiltrar.Name = "BotonFiltrar";
-                        this.BotonFiltrar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonFiltrar.Size = new System.Drawing.Size(136, 40);
                         this.BotonFiltrar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonFiltrar.Subtext = "F2";
@@ -207,7 +203,6 @@ namespace Lfc
                         this.BotonCancelar.Location = new System.Drawing.Point(44, 137);
                         this.BotonCancelar.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonCancelar.Name = "BotonCancelar";
-                        this.BotonCancelar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonCancelar.Size = new System.Drawing.Size(136, 40);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonCancelar.Subtext = "Esc";
@@ -235,7 +230,6 @@ namespace Lfc
                         this.EntradaContador4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContador4.Location = new System.Drawing.Point(100, 84);
                         this.EntradaContador4.Name = "EntradaContador4";
-                        this.EntradaContador4.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador4.ReadOnly = true;
                         this.EntradaContador4.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador4.TabIndex = 66;
@@ -260,7 +254,6 @@ namespace Lfc
                         this.EntradaContador3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContador3.Location = new System.Drawing.Point(100, 56);
                         this.EntradaContador3.Name = "EntradaContador3";
-                        this.EntradaContador3.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContador3.ReadOnly = true;
                         this.EntradaContador3.Size = new System.Drawing.Size(108, 24);
                         this.EntradaContador3.TabIndex = 64;

@@ -121,7 +121,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenes.AutoSize = true;
                         this.EntradaMargenes.Location = new System.Drawing.Point(152, 288);
                         this.EntradaMargenes.Name = "EntradaMargenes";
-                        this.EntradaMargenes.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenes.SetData = new string[] {
         "Predeterminados|0",
         "Personalizados|1"};
@@ -135,7 +134,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenAbajo.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaMargenAbajo.Location = new System.Drawing.Point(372, 304);
                         this.EntradaMargenAbajo.Name = "EntradaMargenAbajo";
-                        this.EntradaMargenAbajo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenAbajo.PlaceholderText = "auto";
                         this.EntradaMargenAbajo.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenAbajo.Sufijo = "aba.";
@@ -147,7 +145,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenArriba.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaMargenArriba.Location = new System.Drawing.Point(372, 272);
                         this.EntradaMargenArriba.Name = "EntradaMargenArriba";
-                        this.EntradaMargenArriba.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenArriba.PlaceholderText = "auto";
                         this.EntradaMargenArriba.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenArriba.Sufijo = "arr.";
@@ -159,7 +156,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenDerecha.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaMargenDerecha.Location = new System.Drawing.Point(472, 288);
                         this.EntradaMargenDerecha.Name = "EntradaMargenDerecha";
-                        this.EntradaMargenDerecha.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenDerecha.PlaceholderText = "auto";
                         this.EntradaMargenDerecha.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenDerecha.Sufijo = "der.";
@@ -171,7 +167,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaMargenIzquierda.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaMargenIzquierda.Location = new System.Drawing.Point(276, 288);
                         this.EntradaMargenIzquierda.Name = "EntradaMargenIzquierda";
-                        this.EntradaMargenIzquierda.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaMargenIzquierda.PlaceholderText = "auto";
                         this.EntradaMargenIzquierda.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenIzquierda.Sufijo = "izq.";
@@ -193,7 +188,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaLandscape.AutoSize = true;
                         this.EntradaLandscape.Location = new System.Drawing.Point(248, 168);
                         this.EntradaLandscape.Name = "EntradaLandscape";
-                        this.EntradaLandscape.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaLandscape.SetData = new string[] {
         "alto|0",
         "apaisado|1"};
@@ -208,7 +202,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.DecimalPlaces = 2;
                         this.EntradaFuenteTamano.Location = new System.Drawing.Point(412, 352);
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
-                        this.EntradaFuenteTamano.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(96, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
                         this.EntradaFuenteTamano.TabIndex = 17;
@@ -221,7 +214,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuente.AutoSize = true;
                         this.EntradaFuente.Location = new System.Drawing.Point(152, 352);
                         this.EntradaFuente.Name = "EntradaFuente";
-                        this.EntradaFuente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFuente.SetData = new string[] {
         "Predeterminada|*",
         "Vera Serif|Bitstream Vera Serif",
@@ -249,7 +241,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaPapelTamano.AutoSize = true;
                         this.EntradaPapelTamano.Location = new System.Drawing.Point(152, 168);
                         this.EntradaPapelTamano.Name = "EntradaPapelTamano";
-                        this.EntradaPapelTamano.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPapelTamano.SetData = new string[] {
         "Oficio|legal",
         "Carta|letter",
@@ -275,7 +266,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(152, 136);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.ReadOnly = true;
                         this.EntradaNombre.Size = new System.Drawing.Size(296, 24);
                         this.EntradaNombre.TabIndex = 5;
@@ -304,7 +294,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCopias.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCopias.Location = new System.Drawing.Point(152, 456);
                         this.EntradaCopias.Name = "EntradaCopias";
-                        this.EntradaCopias.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCopias.Size = new System.Drawing.Size(56, 24);
                         this.EntradaCopias.TabIndex = 19;
                         this.EntradaCopias.Text = "1";
@@ -338,7 +327,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonSubir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSubir.Location = new System.Drawing.Point(104, 254);
                         this.BotonSubir.Name = "BotonSubir";
-                        this.BotonSubir.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonSubir.Size = new System.Drawing.Size(88, 32);
                         this.BotonSubir.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSubir.Subtext = "Tecla";
@@ -354,7 +342,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonBajar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonBajar.Location = new System.Drawing.Point(104, 294);
                         this.BotonBajar.Name = "BotonBajar";
-                        this.BotonBajar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonBajar.Size = new System.Drawing.Size(88, 32);
                         this.BotonBajar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonBajar.Subtext = "Tecla";
@@ -424,7 +411,6 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaCodigoPersonalizado.Location = new System.Drawing.Point(152, 104);
                         this.EntradaCodigoPersonalizado.Name = "EntradaCodigoPersonalizado";
-                        this.EntradaCodigoPersonalizado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigoPersonalizado.ReadOnly = true;
                         this.EntradaCodigoPersonalizado.Size = new System.Drawing.Size(296, 24);
                         this.EntradaCodigoPersonalizado.TabIndex = 3;
@@ -444,7 +430,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaCodigo.AutoSize = true;
                         this.EntradaCodigo.Location = new System.Drawing.Point(152, 0);
                         this.EntradaCodigo.Name = "EntradaCodigo";
-                        this.EntradaCodigo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCodigo.SetData = new string[] {
         "Facturas, notas de crédito y de débito|Lbl.Comprobantes.ComprobanteFacturable",
         "Todas las facturas|Lbl.Comprobantes.Factura",
@@ -506,7 +491,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(0, 254);
                         this.BotonAgregar.Name = "BotonAgregar";
-                        this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAgregar.Size = new System.Drawing.Size(88, 32);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAgregar.Subtext = "Tecla";
@@ -523,7 +507,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(0, 294);
                         this.BotonQuitar.Name = "BotonQuitar";
-                        this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonQuitar.Size = new System.Drawing.Size(88, 32);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "Tecla";
@@ -558,7 +541,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonGeneral.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonGeneral.Location = new System.Drawing.Point(0, 0);
                         this.BotonGeneral.Name = "BotonGeneral";
-                        this.BotonGeneral.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonGeneral.Size = new System.Drawing.Size(112, 40);
                         this.BotonGeneral.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonGeneral.Subtext = "Tecla";
@@ -574,7 +556,6 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonDiseno.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonDiseno.Location = new System.Drawing.Point(0, 48);
                         this.BotonDiseno.Name = "BotonDiseno";
-                        this.BotonDiseno.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonDiseno.Size = new System.Drawing.Size(112, 40);
                         this.BotonDiseno.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonDiseno.Subtext = "Tecla";

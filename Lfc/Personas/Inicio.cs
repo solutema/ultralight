@@ -71,7 +71,7 @@ namespace Lfc.Personas
 				        new Lazaro.Pres.Field("personas.telefono", "Teléfono", Lfx.Data.InputFieldTypes.Text, 140),
 				        new Lazaro.Pres.Field("personas.domicilio", "Domicilio", Lfx.Data.InputFieldTypes.Text, 160),
 				        new Lazaro.Pres.Field("personas.num_doc", "Núm. Doc.", Lfx.Data.InputFieldTypes.Text, 120),
-				        new Lazaro.Pres.Field("personas.cuit", Lbl.Sys.Config.Actual.Empresa.Pais.ClavePersonasJuridicas.Nombre, Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("personas.cuit", Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre, Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("personas_grupos.nombre", "Grupo", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("personas.id_subgrupo", "Sub-grupo", Lfx.Data.InputFieldTypes.Relation, 120),
                                         new Lazaro.Pres.Field("ciudades.nombre AS ciudad", "Localidad", Lfx.Data.InputFieldTypes.Text, 120),

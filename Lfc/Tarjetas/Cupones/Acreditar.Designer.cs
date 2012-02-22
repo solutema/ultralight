@@ -103,7 +103,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaPago.AutoSize = true;
                         this.EntradaFormaPago.Location = new System.Drawing.Point(244, 272);
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
-                        this.EntradaFormaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaPago.SetData = new string[] {
         "Efectivo|1",
         "Cheque|2",
@@ -126,7 +125,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCuponesCantidad.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCuponesCantidad.Location = new System.Drawing.Point(136, 24);
                         this.EntradaCuponesCantidad.Name = "EntradaCuponesCantidad";
-                        this.EntradaCuponesCantidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuponesCantidad.Size = new System.Drawing.Size(56, 24);
                         this.EntradaCuponesCantidad.TabIndex = 1;
                         this.EntradaCuponesCantidad.TabStop = false;
@@ -155,7 +153,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCuponesSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCuponesSubTotal.Location = new System.Drawing.Point(364, 24);
                         this.EntradaCuponesSubTotal.Name = "EntradaCuponesSubTotal";
-                        this.EntradaCuponesSubTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuponesSubTotal.Prefijo = "$";
                         this.EntradaCuponesSubTotal.Size = new System.Drawing.Size(100, 24);
                         this.EntradaCuponesSubTotal.TabIndex = 3;
@@ -167,7 +164,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionTarjeta.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionTarjeta.Location = new System.Drawing.Point(116, 40);
                         this.EntradaComisionTarjeta.Name = "EntradaComisionTarjeta";
-                        this.EntradaComisionTarjeta.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComisionTarjeta.Prefijo = "$";
                         this.EntradaComisionTarjeta.Size = new System.Drawing.Size(108, 24);
                         this.EntradaComisionTarjeta.TabIndex = 6;
@@ -203,7 +199,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.Frame1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.Frame1.Location = new System.Drawing.Point(24, 72);
                         this.Frame1.Name = "Frame1";
-                        this.Frame1.Padding = new System.Windows.Forms.Padding(2);
                         this.Frame1.Size = new System.Drawing.Size(600, 136);
                         this.Frame1.TabIndex = 4;
                         this.Frame1.Text = "Comisiones y otros decuentos";
@@ -213,7 +208,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionPlan.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionPlan.Location = new System.Drawing.Point(116, 72);
                         this.EntradaComisionPlan.Name = "EntradaComisionPlan";
-                        this.EntradaComisionPlan.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComisionPlan.Prefijo = "$";
                         this.EntradaComisionPlan.Size = new System.Drawing.Size(108, 24);
                         this.EntradaComisionPlan.TabIndex = 9;
@@ -226,7 +220,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionUsuario.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaComisionUsuario.Location = new System.Drawing.Point(116, 104);
                         this.EntradaComisionUsuario.Name = "EntradaComisionUsuario";
-                        this.EntradaComisionUsuario.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComisionUsuario.Prefijo = "$";
                         this.EntradaComisionUsuario.Size = new System.Drawing.Size(108, 24);
                         this.EntradaComisionUsuario.TabIndex = 12;
@@ -313,7 +306,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.Location = new System.Drawing.Point(244, 232);
                         this.EntradaTotal.Name = "EntradaTotal";
-                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
                         this.EntradaTotal.TabIndex = 15;

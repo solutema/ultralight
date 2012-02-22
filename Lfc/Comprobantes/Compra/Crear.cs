@@ -104,7 +104,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonRemito.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRemito.Location = new System.Drawing.Point(32, 160);
                         this.BotonRemito.Name = "BotonRemito";
-                        this.BotonRemito.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonRemito.ReadOnly = false;
                         this.BotonRemito.Size = new System.Drawing.Size(412, 52);
                         this.BotonRemito.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
@@ -122,7 +121,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonPedido.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonPedido.Location = new System.Drawing.Point(32, 96);
                         this.BotonPedido.Name = "BotonPedido";
-                        this.BotonPedido.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonPedido.ReadOnly = false;
                         this.BotonPedido.Size = new System.Drawing.Size(412, 52);
                         this.BotonPedido.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
@@ -140,7 +138,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonRequerimiento.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRequerimiento.Location = new System.Drawing.Point(32, 32);
                         this.BotonRequerimiento.Name = "BotonRequerimiento";
-                        this.BotonRequerimiento.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonRequerimiento.ReadOnly = false;
                         this.BotonRequerimiento.Size = new System.Drawing.Size(412, 52);
                         this.BotonRequerimiento.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
@@ -158,7 +155,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonFactura.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonFactura.Location = new System.Drawing.Point(32, 224);
                         this.BotonFactura.Name = "BotonFactura";
-                        this.BotonFactura.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonFactura.ReadOnly = false;
                         this.BotonFactura.Size = new System.Drawing.Size(412, 52);
                         this.BotonFactura.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
@@ -176,7 +172,6 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonNotaDeCredito.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNotaDeCredito.Location = new System.Drawing.Point(32, 288);
                         this.BotonNotaDeCredito.Name = "BotonNotaDeCredito";
-                        this.BotonNotaDeCredito.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonNotaDeCredito.ReadOnly = false;
                         this.BotonNotaDeCredito.Size = new System.Drawing.Size(412, 52);
                         this.BotonNotaDeCredito.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;

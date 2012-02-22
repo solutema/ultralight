@@ -76,7 +76,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaAcceso.AutoSize = true;
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
                         this.EntradaAcceso.Name = "EntradaAcceso";
-                        this.EntradaAcceso.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAcceso.ReadOnly = false;
                         this.EntradaAcceso.SetData = new string[] {
         "Si|1",
@@ -96,10 +95,8 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaContrasena.Location = new System.Drawing.Point(348, 0);
                         this.EntradaContrasena.Name = "EntradaContrasena";
-                        this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaContrasena.PasswordChar = '*';
                         this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
@@ -167,7 +164,6 @@ namespace Lfc.Personas.Usuarios
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(532, 368);
                         this.BotonAgregar.Name = "BotonAgregar";
-                        this.BotonAgregar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAgregar.ReadOnly = false;
                         this.BotonAgregar.Size = new System.Drawing.Size(104, 28);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
@@ -185,7 +181,6 @@ namespace Lfc.Personas.Usuarios
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(420, 368);
                         this.BotonQuitar.Name = "BotonQuitar";
-                        this.BotonQuitar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonQuitar.ReadOnly = false;
                         this.BotonQuitar.Size = new System.Drawing.Size(104, 28);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;

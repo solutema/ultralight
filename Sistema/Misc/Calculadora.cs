@@ -110,10 +110,8 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaFormula.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormula.AutoNav = false;
-                        this.EntradaFormula.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFormula.Location = new System.Drawing.Point(6, 239);
                         this.EntradaFormula.Name = "EntradaFormula";
-                        this.EntradaFormula.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormula.Size = new System.Drawing.Size(223, 29);
                         this.EntradaFormula.TabIndex = 1;
                         this.EntradaFormula.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFormula_KeyDown);

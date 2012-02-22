@@ -102,7 +102,6 @@ namespace Lcc.Entrada
                         this.BotonAplicar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAplicar.Location = new System.Drawing.Point(261, 3);
                         this.BotonAplicar.Name = "BotonAplicar";
-                        this.BotonAplicar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAplicar.ReadOnly = false;
                         this.BotonAplicar.Size = new System.Drawing.Size(72, 22);
                         this.BotonAplicar.SubLabelPos = Lui.Forms.SubLabelPositions.None;

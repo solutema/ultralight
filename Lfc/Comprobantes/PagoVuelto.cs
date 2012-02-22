@@ -112,7 +112,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 92);
                         this.EntradaTotal.Name = "EntradaTotal";
-                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.Size = new System.Drawing.Size(152, 32);
                         this.EntradaTotal.TabIndex = 1;
@@ -126,7 +125,6 @@ namespace Lfc.Comprobantes
                         this.EntradaPago.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaPago.Location = new System.Drawing.Point(212, 140);
                         this.EntradaPago.Name = "EntradaPago";
-                        this.EntradaPago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPago.Prefijo = "$";
                         this.EntradaPago.Size = new System.Drawing.Size(152, 32);
                         this.EntradaPago.TabIndex = 3;
@@ -150,7 +148,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCambio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaCambio.Location = new System.Drawing.Point(212, 216);
                         this.EntradaCambio.Name = "EntradaCambio";
-                        this.EntradaCambio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCambio.Prefijo = "$";
                         this.EntradaCambio.Size = new System.Drawing.Size(152, 32);
                         this.EntradaCambio.TabIndex = 6;

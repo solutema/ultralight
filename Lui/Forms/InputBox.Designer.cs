@@ -78,7 +78,6 @@ namespace Lui.Forms
                         this.CancelBtn.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.CancelBtn.Location = new System.Drawing.Point(352, 64);
                         this.CancelBtn.Name = "CancelBtn";
-                        this.CancelBtn.Padding = new System.Windows.Forms.Padding(2);
                         this.CancelBtn.ReadOnly = false;
                         this.CancelBtn.Size = new System.Drawing.Size(96, 32);
                         this.CancelBtn.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -89,10 +88,8 @@ namespace Lui.Forms
                         // 
                         // Texto
                         // 
-                        this.Texto.ForceCase = Lui.Forms.TextCasing.None;
                         this.Texto.Location = new System.Drawing.Point(24, 224);
                         this.Texto.Name = "Texto";
-                        this.Texto.Padding = new System.Windows.Forms.Padding(2);
                         this.Texto.ReadOnly = false;
                         this.Texto.Size = new System.Drawing.Size(424, 24);
                         this.Texto.TabIndex = 0;
@@ -105,7 +102,6 @@ namespace Lui.Forms
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.OkButton.Location = new System.Drawing.Point(352, 24);
                         this.OkButton.Name = "OkButton";
-                        this.OkButton.Padding = new System.Windows.Forms.Padding(2);
                         this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(96, 32);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;

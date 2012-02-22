@@ -38,13 +38,11 @@ namespace Lbl.Sys.Configuracion
         public class Empresa : SeccionConfiguracion
         {
                 private Lbl.Impuestos.Alicuota m_AlicuotaPredeterminada = null;
-                private Lbl.Entidades.Pais m_Pais = null;
                 private ColeccionGenerica<Lbl.Comprobantes.PuntoDeVenta> m_PuntosDeVenta = null;
 
                 public Lbl.Entidades.Sucursal SucursalPredeterminada { get; set; }
 
-                public Empresa(Lfx.Workspace workspace)
-                        : base(workspace)
+                public Empresa()
                 {
                         this.SucursalPredeterminada = new Entidades.Sucursal(this.DataBase, Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("Company", "Branch", 1));
                 }
@@ -63,29 +61,15 @@ namespace Lbl.Sys.Configuracion
                 }
 
 
-                public Lbl.Entidades.Pais Pais
-                {
-                        get
-                        {
-                                if (m_Pais == null) {
-                                        int IdPais = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
-                                        if (IdPais > 0)
-                                                m_Pais = new Lbl.Entidades.Pais(this.DataBase, IdPais);
-                                        else
-                                                m_Pais = new Lbl.Entidades.Pais(this.DataBase, 1);
-                                }
-
-                                return m_Pais;
-                        }
-                }
-
-
                 public Lbl.Impuestos.Alicuota AlicuotaPredeterminada
                 {
                         get
                         {
                                 if (m_AlicuotaPredeterminada == null) {
-                                        if(this.SituacionTributaria == 4 || this.SituacionTributaria == 5)
+                                        if(SucursalPredeterminada.Localidad.Iva == Impuestos.SituacionIva.Exento)
+                                                // Esta localidad no tienen IVA
+                                                m_AlicuotaPredeterminada = new Impuestos.Alicuota(this.DataBase, 4);
+                                        else if(this.SituacionTributaria == 4 || this.SituacionTributaria == 5)
                                                 // Monotributistas y exentos usan alícuota del 0%
                                                 m_AlicuotaPredeterminada = new Impuestos.Alicuota(this.DataBase, 4);
                                         else

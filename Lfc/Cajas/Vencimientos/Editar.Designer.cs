@@ -88,7 +88,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFrecuencia.AlwaysExpanded = true;
                         this.EntradaFrecuencia.Location = new System.Drawing.Point(120, 72);
                         this.EntradaFrecuencia.Name = "EntradaFrecuencia";
-                        this.EntradaFrecuencia.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFrecuencia.SetData = new string[] {
         "Única|Unica",
         "Diaria|Diaria",
@@ -120,7 +119,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
                         this.EntradaNombre.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNombre.Size = new System.Drawing.Size(436, 24);
                         this.EntradaNombre.TabIndex = 1;
                         // 
@@ -149,7 +147,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.frame1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.frame1.Location = new System.Drawing.Point(0, 280);
                         this.frame1.Name = "frame1";
-                        this.frame1.Padding = new System.Windows.Forms.Padding(2);
                         this.frame1.Size = new System.Drawing.Size(560, 160);
                         this.frame1.TabIndex = 7;
                         this.frame1.Text = "Periodicidad";
@@ -186,7 +183,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFechaInicio.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaInicio.Location = new System.Drawing.Point(120, 40);
                         this.EntradaFechaInicio.Name = "EntradaFechaInicio";
-                        this.EntradaFechaInicio.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaInicio.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFechaInicio.TabIndex = 1;
                         // 
@@ -204,7 +200,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaFechaFin.DataType = Lui.Forms.DataTypes.Date;
                         this.EntradaFechaFin.Location = new System.Drawing.Point(416, 40);
                         this.EntradaFechaFin.Name = "EntradaFechaFin";
-                        this.EntradaFechaFin.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaFin.Size = new System.Drawing.Size(104, 24);
                         this.EntradaFechaFin.TabIndex = 5;
                         // 
@@ -214,7 +209,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaRepetir.Location = new System.Drawing.Point(416, 72);
                         this.EntradaRepetir.MaxLength = 3;
                         this.EntradaRepetir.Name = "EntradaRepetir";
-                        this.EntradaRepetir.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaRepetir.Size = new System.Drawing.Size(68, 24);
                         this.EntradaRepetir.TabIndex = 7;
                         this.EntradaRepetir.Text = "0";
@@ -243,7 +237,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaConcepto.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaConcepto.PlaceholderText = null;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(432, 24);
@@ -263,7 +256,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.frame2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.frame2.Location = new System.Drawing.Point(0, 160);
                         this.frame2.Name = "frame2";
-                        this.frame2.Padding = new System.Windows.Forms.Padding(2);
                         this.frame2.Size = new System.Drawing.Size(560, 96);
                         this.frame2.TabIndex = 6;
                         this.frame2.Text = "Pago";
@@ -283,7 +275,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaImporte.Location = new System.Drawing.Point(120, 72);
                         this.EntradaImporte.MaxLength = 20;
                         this.EntradaImporte.Name = "EntradaImporte";
-                        this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Size = new System.Drawing.Size(76, 24);
                         this.EntradaImporte.TabIndex = 3;
                         this.EntradaImporte.Text = "0.00";
@@ -303,7 +294,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(120, 32);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
         "Inactivo|0",
         "Activo|1",
@@ -321,7 +311,6 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaObs.MaximumSize = new System.Drawing.Size(480, 56);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.Size = new System.Drawing.Size(436, 56);
                         this.EntradaObs.TabIndex = 5;
                         // 

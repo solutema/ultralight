@@ -77,7 +77,6 @@ namespace Lfc.Comprobantes
                         this.EntradaProductos.LockQuantity = false;
                         this.EntradaProductos.LockText = false;
                         this.EntradaProductos.Name = "EntradaProductos";
-                        this.EntradaProductos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.EntradaProductos.ShowStock = true;
                         this.EntradaProductos.Size = new System.Drawing.Size(640, 264);
@@ -108,7 +107,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Location = new System.Drawing.Point(304, 0);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(272, 24);
@@ -139,7 +137,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Location = new System.Drawing.Point(72, 0);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
-                        this.EntradaVendedor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaVendedor.PlaceholderText = null;
                         this.EntradaVendedor.Required = true;
                         this.EntradaVendedor.Size = new System.Drawing.Size(168, 24);
@@ -154,7 +151,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaTotal.Location = new System.Drawing.Point(496, 328);
                         this.EntradaTotal.Name = "EntradaTotal";
-                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
                         this.EntradaTotal.TabIndex = 41;
@@ -189,7 +185,6 @@ namespace Lfc.Comprobantes
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(64, 304);
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
-                        this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSubTotal.Prefijo = "$";
                         this.EntradaSubTotal.ReadOnly = true;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(92, 24);
@@ -204,7 +199,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaDescuento.Location = new System.Drawing.Point(224, 304);
                         this.EntradaDescuento.Name = "EntradaDescuento";
-                        this.EntradaDescuento.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 24;
@@ -227,7 +221,6 @@ namespace Lfc.Comprobantes
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaInteres.Location = new System.Drawing.Point(224, 332);
                         this.EntradaInteres.Name = "EntradaInteres";
-                        this.EntradaInteres.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaInteres.Size = new System.Drawing.Size(76, 24);
                         this.EntradaInteres.Sufijo = "%";
                         this.EntradaInteres.TabIndex = 26;
@@ -251,7 +244,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCuotas.Location = new System.Drawing.Point(52, 0);
                         this.EntradaCuotas.MaxLength = 2;
                         this.EntradaCuotas.Name = "EntradaCuotas";
-                        this.EntradaCuotas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuotas.Size = new System.Drawing.Size(32, 24);
                         this.EntradaCuotas.TabIndex = 28;
                         this.EntradaCuotas.Text = "0";
@@ -273,7 +265,6 @@ namespace Lfc.Comprobantes
                         this.EntradaValorCuota.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaValorCuota.Location = new System.Drawing.Point(108, 0);
                         this.EntradaValorCuota.Name = "EntradaValorCuota";
-                        this.EntradaValorCuota.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaValorCuota.Prefijo = "$";
                         this.EntradaValorCuota.Size = new System.Drawing.Size(80, 24);
                         this.EntradaValorCuota.TabIndex = 30;
@@ -315,7 +306,6 @@ namespace Lfc.Comprobantes
                         this.EntradaPV.Location = new System.Drawing.Point(608, 0);
                         this.EntradaPV.MaxLength = 2;
                         this.EntradaPV.Name = "EntradaPV";
-                        this.EntradaPV.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPV.Size = new System.Drawing.Size(32, 24);
                         this.EntradaPV.TabIndex = 6;
                         this.EntradaPV.Text = "0";
@@ -338,7 +328,6 @@ namespace Lfc.Comprobantes
                         this.EntradaIva.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaIva.Location = new System.Drawing.Point(64, 332);
                         this.EntradaIva.Name = "EntradaIva";
-                        this.EntradaIva.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaIva.Prefijo = "$";
                         this.EntradaIva.ReadOnly = true;
                         this.EntradaIva.Size = new System.Drawing.Size(92, 24);

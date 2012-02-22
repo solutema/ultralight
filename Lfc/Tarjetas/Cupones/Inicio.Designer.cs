@@ -54,7 +54,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.BotonAnular.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAnular.Location = new System.Drawing.Point(12, 348);
                         this.BotonAnular.Name = "BotonAnular";
-                        this.BotonAnular.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAnular.Size = new System.Drawing.Size(96, 29);
                         this.BotonAnular.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAnular.Subtext = "F6";
@@ -70,7 +69,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.BotonAcreditar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAcreditar.Location = new System.Drawing.Point(12, 312);
                         this.BotonAcreditar.Name = "BotonAcreditar";
-                        this.BotonAcreditar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonAcreditar.Size = new System.Drawing.Size(96, 29);
                         this.BotonAcreditar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAcreditar.Subtext = "F4";
@@ -86,7 +84,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.BotonPresentar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonPresentar.Location = new System.Drawing.Point(12, 276);
                         this.BotonPresentar.Name = "BotonPresentar";
-                        this.BotonPresentar.Padding = new System.Windows.Forms.Padding(2);
                         this.BotonPresentar.Size = new System.Drawing.Size(96, 29);
                         this.BotonPresentar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonPresentar.Subtext = "F3";

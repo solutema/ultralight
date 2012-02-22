@@ -111,10 +111,8 @@ namespace Lfc.Bancos.Cheques
                         // EntradaImpuestos
                         // 
                         this.EntradaImpuestos.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImpuestos.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImpuestos.Location = new System.Drawing.Point(412, 100);
                         this.EntradaImpuestos.Name = "EntradaImpuestos";
-                        this.EntradaImpuestos.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImpuestos.Prefijo = "$";
                         this.EntradaImpuestos.ReadOnly = false;
                         this.EntradaImpuestos.Size = new System.Drawing.Size(108, 24);
@@ -134,10 +132,8 @@ namespace Lfc.Bancos.Cheques
                         // EntradaSubTotal
                         // 
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaSubTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaSubTotal.Location = new System.Drawing.Point(412, 68);
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
-                        this.EntradaSubTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaSubTotal.Prefijo = "$";
                         this.EntradaSubTotal.ReadOnly = false;
                         this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
@@ -158,10 +154,8 @@ namespace Lfc.Bancos.Cheques
                         // EntradaCantidad
                         // 
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCantidad.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCantidad.Location = new System.Drawing.Point(172, 68);
                         this.EntradaCantidad.Name = "EntradaCantidad";
-                        this.EntradaCantidad.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCantidad.ReadOnly = false;
                         this.EntradaCantidad.Size = new System.Drawing.Size(56, 24);
                         this.EntradaCantidad.TabIndex = 2;
@@ -188,7 +182,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaCajaOrigen.Location = new System.Drawing.Point(212, 232);
                         this.EntradaCajaOrigen.MaxLength = 200;
                         this.EntradaCajaOrigen.Name = "EntradaCajaOrigen";
-                        this.EntradaCajaOrigen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCajaOrigen.ReadOnly = false;
                         this.EntradaCajaOrigen.Required = true;
                         this.EntradaCajaOrigen.Size = new System.Drawing.Size(308, 24);
@@ -209,10 +202,8 @@ namespace Lfc.Bancos.Cheques
                         // EntradaTotal
                         // 
                         this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaTotal.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaTotal.Location = new System.Drawing.Point(212, 196);
                         this.EntradaTotal.Name = "EntradaTotal";
-                        this.EntradaTotal.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.ReadOnly = false;
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);

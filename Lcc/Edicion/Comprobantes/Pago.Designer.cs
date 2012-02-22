@@ -120,10 +120,8 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaImporte
                         // 
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaImporte.Location = new System.Drawing.Point(140, 0);
                         this.EntradaImporte.Name = "EntradaImporte";
-                        this.EntradaImporte.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(116, 24);
                         this.EntradaImporte.TabIndex = 1;
@@ -177,10 +175,8 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaFechaCobro
                         // 
                         this.EntradaFechaCobro.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaCobro.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaCobro.Location = new System.Drawing.Point(140, 96);
                         this.EntradaFechaCobro.Name = "EntradaFechaCobro";
-                        this.EntradaFechaCobro.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaCobro.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaCobro.TabIndex = 7;
                         this.EntradaFechaCobro.Enter += new System.EventHandler(this.EntradaFechaCobro_Enter);
@@ -206,10 +202,8 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaFechaEmision
                         // 
                         this.EntradaFechaEmision.DataType = Lui.Forms.DataTypes.Date;
-                        this.EntradaFechaEmision.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaFechaEmision.Location = new System.Drawing.Point(140, 64);
                         this.EntradaFechaEmision.Name = "EntradaFechaEmision";
-                        this.EntradaFechaEmision.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechaEmision.Size = new System.Drawing.Size(112, 24);
                         this.EntradaFechaEmision.TabIndex = 5;
                         this.EntradaFechaEmision.Enter += new System.EventHandler(this.EntradaFechaEmision_Enter);
@@ -218,10 +212,8 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         this.EntradaNumeroCheque.AutoSize = false;
                         this.EntradaNumeroCheque.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaNumeroCheque.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaNumeroCheque.Location = new System.Drawing.Point(140, 32);
                         this.EntradaNumeroCheque.Name = "EntradaNumeroCheque";
-                        this.EntradaNumeroCheque.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaNumeroCheque.Size = new System.Drawing.Size(176, 24);
                         this.EntradaNumeroCheque.TabIndex = 3;
                         this.EntradaNumeroCheque.Text = "0";
@@ -248,7 +240,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 0);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
-                        this.EntradaBanco.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(320, 24);
                         this.EntradaBanco.TabIndex = 1;
@@ -272,7 +263,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.FrameTitulo.Dock = System.Windows.Forms.DockStyle.Top;
                         this.FrameTitulo.Location = new System.Drawing.Point(0, 0);
                         this.FrameTitulo.Name = "FrameTitulo";
-                        this.FrameTitulo.Padding = new System.Windows.Forms.Padding(2);
                         this.FrameTitulo.Size = new System.Drawing.Size(460, 32);
                         this.FrameTitulo.TabIndex = 0;
                         this.FrameTitulo.TabStop = false;
@@ -309,7 +299,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.Location = new System.Drawing.Point(140, 20);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
-                        this.EntradaCaja.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(320, 24);
                         this.EntradaCaja.TabIndex = 1;
@@ -359,29 +348,23 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // EntradaAutorizacion
                         // 
-                        this.EntradaAutorizacion.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaAutorizacion.Location = new System.Drawing.Point(140, 100);
                         this.EntradaAutorizacion.Name = "EntradaAutorizacion";
-                        this.EntradaAutorizacion.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaAutorizacion.Size = new System.Drawing.Size(164, 24);
                         this.EntradaAutorizacion.TabIndex = 11;
                         // 
                         // EntradaCupon
                         // 
-                        this.EntradaCupon.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCupon.Location = new System.Drawing.Point(140, 68);
                         this.EntradaCupon.Name = "EntradaCupon";
-                        this.EntradaCupon.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCupon.Size = new System.Drawing.Size(164, 24);
                         this.EntradaCupon.TabIndex = 9;
                         // 
                         // EntradaInteres
                         // 
                         this.EntradaInteres.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaInteres.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaInteres.Location = new System.Drawing.Point(368, 60);
                         this.EntradaInteres.Name = "EntradaInteres";
-                        this.EntradaInteres.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaInteres.TemporaryReadOnly = true;
                         this.EntradaInteres.Size = new System.Drawing.Size(80, 24);
                         this.EntradaInteres.Sufijo = "%";
@@ -401,10 +384,8 @@ namespace Lcc.Edicion.Comprobantes
                         // EntradaCuotas
                         // 
                         this.EntradaCuotas.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCuotas.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaCuotas.Location = new System.Drawing.Point(228, 28);
                         this.EntradaCuotas.Name = "EntradaCuotas";
-                        this.EntradaCuotas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCuotas.TemporaryReadOnly = true;
                         this.EntradaCuotas.Size = new System.Drawing.Size(60, 24);
                         this.EntradaCuotas.TabIndex = 5;
@@ -432,7 +413,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.Location = new System.Drawing.Point(140, 0);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
-                        this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(320, 24);
                         this.EntradaPlan.TabIndex = 3;
@@ -488,7 +468,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(140, 0);
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaObs.Size = new System.Drawing.Size(320, 52);
                         this.EntradaObs.TabIndex = 1;
                         // 
@@ -544,7 +523,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(136, 0);
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "EntradaFormaDePago";
-                        this.EntradaFormaDePago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(324, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
@@ -613,7 +591,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaChequeTerceros.Location = new System.Drawing.Point(140, 20);
                         this.EntradaChequeTerceros.MaxLength = 200;
                         this.EntradaChequeTerceros.Name = "EntradaChequeTerceros";
-                        this.EntradaChequeTerceros.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaChequeTerceros.Required = true;
                         this.EntradaChequeTerceros.Size = new System.Drawing.Size(320, 24);
                         this.EntradaChequeTerceros.TabIndex = 1;
@@ -655,7 +632,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaValor.Location = new System.Drawing.Point(140, 20);
                         this.EntradaValor.MaxLength = 200;
                         this.EntradaValor.Name = "EntradaValor";
-                        this.EntradaValor.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaValor.Required = true;
                         this.EntradaValor.Size = new System.Drawing.Size(320, 24);
                         this.EntradaValor.TabIndex = 1;

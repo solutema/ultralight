@@ -92,7 +92,6 @@ namespace Lfc
                         this.EntradaImagen.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
                         this.EntradaImagen.MinimumSize = new System.Drawing.Size(240, 160);
                         this.EntradaImagen.Name = "EntradaImagen";
-                        this.EntradaImagen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaImagen.Size = new System.Drawing.Size(319, 172);
                         this.EntradaImagen.TabIndex = 0;
                         this.EntradaImagen.Text = "Imagen";
@@ -107,7 +106,6 @@ namespace Lfc
                         this.EntradaTags.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
                         this.EntradaTags.MinimumSize = new System.Drawing.Size(240, 160);
                         this.EntradaTags.Name = "EntradaTags";
-                        this.EntradaTags.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTags.Size = new System.Drawing.Size(319, 160);
                         this.EntradaTags.TabIndex = 2;
                         this.EntradaTags.Text = "Otros atributos";
@@ -120,7 +118,6 @@ namespace Lfc
                         this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
                         this.EntradaComentarios.MinimumSize = new System.Drawing.Size(240, 152);
                         this.EntradaComentarios.Name = "EntradaComentarios";
-                        this.EntradaComentarios.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaComentarios.Size = new System.Drawing.Size(319, 164);
                         this.EntradaComentarios.TabIndex = 1;
                         this.EntradaComentarios.Text = "Comentarios";

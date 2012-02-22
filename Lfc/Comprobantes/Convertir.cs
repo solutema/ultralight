@@ -113,7 +113,6 @@ namespace Lfc.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaOrigen.Location = new System.Drawing.Point(328, 88);
                         this.EntradaOrigen.Name = "EntradaOrigen";
-                        this.EntradaOrigen.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaOrigen.Size = new System.Drawing.Size(280, 24);
                         this.EntradaOrigen.TabIndex = 1;
                         this.EntradaOrigen.TabStop = false;
@@ -144,7 +143,6 @@ namespace Lfc.Comprobantes
                         this.EntradaDestinoTipo.AutoSize = true;
                         this.EntradaDestinoTipo.Location = new System.Drawing.Point(328, 120);
                         this.EntradaDestinoTipo.Name = "EntradaDestinoTipo";
-                        this.EntradaDestinoTipo.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaDestinoTipo.SetData = new string[] {
         "Factura|F",
         "Presupuesto|PS",

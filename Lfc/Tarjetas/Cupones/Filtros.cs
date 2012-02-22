@@ -133,7 +133,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(85, 3);
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "txtTarjeta";
-                        this.EntradaFormaDePago.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(456, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
@@ -166,10 +165,8 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         this.txtPlanInteres.AutoSize = false;
                         this.txtPlanInteres.DataType = Lui.Forms.DataTypes.Float;
-                        this.txtPlanInteres.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtPlanInteres.Location = new System.Drawing.Point(200, 0);
                         this.txtPlanInteres.Name = "txtPlanInteres";
-                        this.txtPlanInteres.Padding = new System.Windows.Forms.Padding(2);
                         this.txtPlanInteres.TemporaryReadOnly = true;
                         this.txtPlanInteres.Size = new System.Drawing.Size(56, 24);
                         this.txtPlanInteres.TabIndex = 3;
@@ -189,10 +186,8 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         this.txtPlanCuotas.AutoSize = false;
                         this.txtPlanCuotas.DataType = Lui.Forms.DataTypes.Integer;
-                        this.txtPlanCuotas.ForceCase = Lui.Forms.TextCasing.None;
                         this.txtPlanCuotas.Location = new System.Drawing.Point(76, 0);
                         this.txtPlanCuotas.Name = "txtPlanCuotas";
-                        this.txtPlanCuotas.Padding = new System.Windows.Forms.Padding(2);
                         this.txtPlanCuotas.TemporaryReadOnly = true;
                         this.txtPlanCuotas.Size = new System.Drawing.Size(56, 24);
                         this.txtPlanCuotas.TabIndex = 1;
@@ -221,7 +216,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.Location = new System.Drawing.Point(85, 33);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "txtPlan";
-                        this.EntradaPlan.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(456, 24);
                         this.EntradaPlan.TabIndex = 3;
@@ -254,7 +248,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCliente.Location = new System.Drawing.Point(85, 123);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "txtCliente";
-                        this.EntradaCliente.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(456, 24);
                         this.EntradaCliente.TabIndex = 8;
@@ -278,7 +271,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(85, 93);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaEstado.SetData = new string[] {
         "No Cobrados|-2",
         "Sin presentar|0",
@@ -349,7 +341,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFechas.Location = new System.Drawing.Point(85, 153);
                         this.EntradaFechas.MuestraFuturos = false;
                         this.EntradaFechas.Name = "EntradaFechas";
-                        this.EntradaFechas.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaFechas.Size = new System.Drawing.Size(455, 30);
                         this.EntradaFechas.TabIndex = 10;
                         // 

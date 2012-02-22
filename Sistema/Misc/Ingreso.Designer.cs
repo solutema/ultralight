@@ -77,7 +77,6 @@ namespace Lazaro.WinMain.Misc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaContrasena.Location = new System.Drawing.Point(235, 187);
                         this.EntradaContrasena.Name = "EntradaContrasena";
-                        this.EntradaContrasena.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaContrasena.PasswordChar = '*';
                         this.EntradaContrasena.Size = new System.Drawing.Size(169, 24);
                         this.EntradaContrasena.TabIndex = 5;

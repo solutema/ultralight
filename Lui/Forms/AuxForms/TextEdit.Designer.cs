@@ -49,7 +49,6 @@ namespace Lui.Forms.AuxForms
                         this.EntradaTexto.Location = new System.Drawing.Point(24, 24);
                         this.EntradaTexto.MultiLine = true;
                         this.EntradaTexto.Name = "EntradaTexto";
-                        this.EntradaTexto.Padding = new System.Windows.Forms.Padding(2);
                         this.EntradaTexto.Size = new System.Drawing.Size(576, 248);
                         this.EntradaTexto.TabIndex = 0;
                         // 
