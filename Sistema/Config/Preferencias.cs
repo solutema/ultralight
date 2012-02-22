@@ -259,6 +259,8 @@ namespace Lazaro.WinMain.Config
 
                                 Trans.Commit();
 
+                                Lbl.Sys.Config.Cargar();
+
                                 this.PrimeraVez = false;
                         }
 
