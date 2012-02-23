@@ -970,10 +970,18 @@ namespace Lfc
                                 EtiquetaCantidad.Text = "";
                                 EtiquetaCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         } else if (Listado.Items.Count == m_Limit) {
-                                qGen.Select SelCount = this.SelectCommand(true);
-                                int Cantidad = this.Connection.FieldInt(SelCount);
+                                int Cantidad;
+                                try {
+                                        qGen.Select SelCount = this.SelectCommand(true);
+                                        Cantidad = this.Connection.FieldInt(SelCount);
+                                } catch {
+                                        Cantidad = 0;
+                                }
 
-                                EtiquetaCantidad.Text = "Mostrando sólo los primeros " + m_Limit.ToString() + " de " + Cantidad.ToString() + " elementos";
+                                if (Cantidad > 0)
+                                        EtiquetaCantidad.Text = "Mostrando sólo los primeros " + m_Limit.ToString() + " de un total de " + Cantidad.ToString();
+                                else
+                                        EtiquetaCantidad.Text = "Mostrando sólo los primeros " + m_Limit.ToString();
                                 EtiquetaCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         } else {
                                 EtiquetaCantidad.Text = Listado.Items.Count.ToString() + " elementos";

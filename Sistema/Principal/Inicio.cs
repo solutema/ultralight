@@ -89,8 +89,7 @@ namespace Lazaro.WinMain.Principal
                                         Aplicacion.Flotante = true;
                                         this.BarraTareas.Visible = false;
                                         this.Height = 108;
-                                        this.MinimumSize = new Size(128, 108);
-                                        this.MaximumSize = new Size(8192, 108);
+                                        this.MinimumSize = new Size(128, 112);
                                         if (Lfx.Environment.SystemInformation.Platform == Lfx.Environment.SystemInformation.Platforms.Windows)
                                                 //Sólo Windows permite la combinación de MaximumSize y Maximized
                                                 this.WindowState = FormWindowState.Maximized;
