@@ -40,7 +40,7 @@ namespace Lcc.Entrada
         {
                 bool IsEmpty { get; }
                 Size Size { get; set; }
-                Padding Margin { get; set; }
+                Padding Margin { get; }
                 Point Location { get; set; }
                 AnchorStyles Anchor { get; set; }
                 int TabIndex { get; set; }

@@ -126,7 +126,6 @@ namespace Lfc
                         // 
                         this.Encabezado.Dock = System.Windows.Forms.DockStyle.Top;
                         this.Encabezado.Location = new System.Drawing.Point(0, 0);
-                        this.Encabezado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Encabezado.Name = "Encabezado";
                         this.Encabezado.Size = new System.Drawing.Size(792, 64);
                         this.Encabezado.TabIndex = 4;
@@ -137,7 +136,6 @@ namespace Lfc
                         this.PanelAccionesTerciarias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelAccionesTerciarias.FormActions = null;
                         this.PanelAccionesTerciarias.Location = new System.Drawing.Point(432, 38);
-                        this.PanelAccionesTerciarias.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelAccionesTerciarias.Name = "PanelAccionesTerciarias";
                         this.PanelAccionesTerciarias.Size = new System.Drawing.Size(352, 24);
                         this.PanelAccionesTerciarias.TabIndex = 3;

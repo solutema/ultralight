@@ -165,7 +165,6 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\' AND estado=1";
                         this.EntradaUsuario.FreeTextCode = "";
                         this.EntradaUsuario.Location = new System.Drawing.Point(232, 160);
-                        this.EntradaUsuario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaUsuario.MaxLength = 200;
                         this.EntradaUsuario.Name = "EntradaUsuario";
                         this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);

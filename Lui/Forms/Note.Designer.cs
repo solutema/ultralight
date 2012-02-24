@@ -111,7 +111,6 @@ namespace Lui.Forms
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.LabelTitle);
                         this.Controls.Add(this.LabelText);
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "Note";
                         this.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.Size = new System.Drawing.Size(320, 160);

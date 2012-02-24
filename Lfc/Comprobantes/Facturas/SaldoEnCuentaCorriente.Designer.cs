@@ -145,7 +145,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.label1);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "SaldoEnCuentaCorriente";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Cliente con Saldo a Favor en Cuenta Corriente";

@@ -149,7 +149,6 @@ namespace Lazaro.WinMain.Config
                         // 
                         this.EtiquetaErrorOriginal.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EtiquetaErrorOriginal.Location = new System.Drawing.Point(124, 200);
-                        this.EtiquetaErrorOriginal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EtiquetaErrorOriginal.Name = "EtiquetaErrorOriginal";
                         this.EtiquetaErrorOriginal.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EtiquetaErrorOriginal.ReadOnly = false;

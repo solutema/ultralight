@@ -88,6 +88,18 @@ namespace Lui.Forms
                 }
 
 
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Padding Margin
+                {
+                        get
+                        {
+                                return base.Margin;
+                        }
+                }
+
+
                 [EditorBrowsable(EditorBrowsableState.Always),
                         System.ComponentModel.Browsable(true),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Visible),

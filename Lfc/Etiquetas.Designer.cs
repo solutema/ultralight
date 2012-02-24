@@ -90,7 +90,6 @@ namespace Lfc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaComentarios.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaComentarios.Location = new System.Drawing.Point(13, 11);
-                        this.EntradaComentarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaComentarios.Name = "EntradaComentarios";
                         this.EntradaComentarios.ReadOnly = false;
                         this.EntradaComentarios.Size = new System.Drawing.Size(434, 287);

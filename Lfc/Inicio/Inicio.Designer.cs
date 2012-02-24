@@ -200,7 +200,6 @@ namespace Lfc.Inicio
                         this.PanelComprobantes.ForeColor = System.Drawing.Color.White;
                         this.PanelComprobantes.Image = ((System.Drawing.Image)(resources.GetObject("PanelComprobantes.Image")));
                         this.PanelComprobantes.Location = new System.Drawing.Point(544, 224);
-                        this.PanelComprobantes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelComprobantes.MinimumSize = new System.Drawing.Size(416, 300);
                         this.PanelComprobantes.Name = "PanelComprobantes";
                         this.PanelComprobantes.Size = new System.Drawing.Size(416, 377);
@@ -217,7 +216,6 @@ namespace Lfc.Inicio
                         this.PanelPersonas.ForeColor = System.Drawing.Color.White;
                         this.PanelPersonas.Image = ((System.Drawing.Image)(resources.GetObject("PanelPersonas.Image")));
                         this.PanelPersonas.Location = new System.Drawing.Point(48, 272);
-                        this.PanelPersonas.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelPersonas.Name = "PanelPersonas";
                         this.PanelPersonas.Size = new System.Drawing.Size(480, 160);
                         this.PanelPersonas.TabIndex = 1;
@@ -232,7 +230,6 @@ namespace Lfc.Inicio
                         this.PanelArticulos.ForeColor = System.Drawing.Color.White;
                         this.PanelArticulos.Image = ((System.Drawing.Image)(resources.GetObject("PanelArticulos.Image")));
                         this.PanelArticulos.Location = new System.Drawing.Point(48, 48);
-                        this.PanelArticulos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelArticulos.Name = "PanelArticulos";
                         this.PanelArticulos.Size = new System.Drawing.Size(480, 208);
                         this.PanelArticulos.TabIndex = 0;

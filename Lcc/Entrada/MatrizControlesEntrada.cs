@@ -109,7 +109,7 @@ namespace Lcc.Entrada
 
                         this.SuspendLayout();
                         Ctrl.Size = new Size(this.Width - 20, 24);
-                        Ctrl.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+                        //Ctrl.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
                         Ctrl.Location = new Point(0, Ctrl.Size.Height * this.Controles.Count + this.PanelGrilla.AutoScrollPosition.Y);
                         Ctrl.TabIndex = this.Controles.Count;
                         Ctrl.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;

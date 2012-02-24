@@ -65,14 +65,14 @@ namespace Lui.Forms
                         this.MiContextMenu = new System.Windows.Forms.ContextMenu();
                         this.MenuItemCopiar = new System.Windows.Forms.MenuItem();
                         this.MenuItemPegar = new System.Windows.Forms.MenuItem();
+                        this.MenuItemPegadoRapido = new System.Windows.Forms.MenuItem();
+                        this.MenuItemPegadoRapidoAgregar = new System.Windows.Forms.MenuItem();
                         this.MenuItem4 = new System.Windows.Forms.MenuItem();
+                        this.MenuItemEditor = new System.Windows.Forms.MenuItem();
                         this.MenuItemCalculadora = new System.Windows.Forms.MenuItem();
                         this.MenuItemHoy = new System.Windows.Forms.MenuItem();
                         this.MenuItemAyer = new System.Windows.Forms.MenuItem();
                         this.MenuItemCalendario = new System.Windows.Forms.MenuItem();
-                        this.MenuItemEditor = new System.Windows.Forms.MenuItem();
-                        this.MenuItemPegadoRapido = new System.Windows.Forms.MenuItem();
-                        this.MenuItemPegadoRapidoAgregar = new System.Windows.Forms.MenuItem();
                         this.EtiquetaPrefijo = new System.Windows.Forms.Label();
                         this.EtiquetaSufijo = new System.Windows.Forms.Label();
                         this.SuspendLayout();
@@ -110,10 +110,30 @@ namespace Lui.Forms
                         this.MenuItemPegar.Text = "Pegar";
                         this.MenuItemPegar.Click += new System.EventHandler(this.MenuItemPegar_Click);
                         // 
+                        // MenuItemPegadoRapido
+                        // 
+                        this.MenuItemPegadoRapido.Index = 2;
+                        this.MenuItemPegadoRapido.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.MenuItemPegadoRapidoAgregar});
+                        this.MenuItemPegadoRapido.Text = "Pegado Rápido";
+                        this.MenuItemPegadoRapido.Popup += new System.EventHandler(this.MenuItemPegadoRapido_Popup);
+                        // 
+                        // MenuItemPegadoRapidoAgregar
+                        // 
+                        this.MenuItemPegadoRapidoAgregar.Index = 0;
+                        this.MenuItemPegadoRapidoAgregar.Text = "&Agregar al menú de Pegado Rápido";
+                        this.MenuItemPegadoRapidoAgregar.Click += new System.EventHandler(this.MenuItemPegadoRapidoAgregar_Click);
+                        // 
                         // MenuItem4
                         // 
                         this.MenuItem4.Index = 3;
                         this.MenuItem4.Text = "-";
+                        // 
+                        // MenuItemEditor
+                        // 
+                        this.MenuItemEditor.Index = 4;
+                        this.MenuItemEditor.Text = "Editor Extendido";
+                        this.MenuItemEditor.Click += new System.EventHandler(this.MenuItemEditor_Click);
                         // 
                         // MenuItemCalculadora
                         // 
@@ -138,32 +158,12 @@ namespace Lui.Forms
                         this.MenuItemCalendario.Index = 8;
                         this.MenuItemCalendario.Text = "Calendario";
                         // 
-                        // MenuItemEditor
-                        // 
-                        this.MenuItemEditor.Index = 4;
-                        this.MenuItemEditor.Text = "Editor Extendido";
-                        this.MenuItemEditor.Click += new System.EventHandler(this.MenuItemEditor_Click);
-                        // 
-                        // MenuItemPegadoRapido
-                        // 
-                        this.MenuItemPegadoRapido.Index = 2;
-                        this.MenuItemPegadoRapido.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.MenuItemPegadoRapidoAgregar});
-                        this.MenuItemPegadoRapido.Text = "Pegado Rápido";
-                        this.MenuItemPegadoRapido.Popup += new System.EventHandler(this.MenuItemPegadoRapido_Popup);
-                        // 
-                        // MenuItemPegadoRapidoAgregar
-                        // 
-                        this.MenuItemPegadoRapidoAgregar.Index = 0;
-                        this.MenuItemPegadoRapidoAgregar.Text = "&Agregar al menú de Pegado Rápido";
-                        this.MenuItemPegadoRapidoAgregar.Click += new System.EventHandler(this.MenuItemPegadoRapidoAgregar_Click);
-                        // 
                         // EtiquetaPrefijo
                         // 
                         this.EtiquetaPrefijo.AutoSize = true;
                         this.EtiquetaPrefijo.Location = new System.Drawing.Point(3, 3);
+                        this.EtiquetaPrefijo.Margin = new System.Windows.Forms.Padding(0);
                         this.EtiquetaPrefijo.Name = "EtiquetaPrefijo";
-                        this.EtiquetaPrefijo.Padding = new System.Windows.Forms.Padding(0);
                         this.EtiquetaPrefijo.Size = new System.Drawing.Size(0, 17);
                         this.EtiquetaPrefijo.TabIndex = 3;
                         this.EtiquetaPrefijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -174,8 +174,8 @@ namespace Lui.Forms
                         // 
                         this.EtiquetaSufijo.AutoSize = true;
                         this.EtiquetaSufijo.Location = new System.Drawing.Point(373, 3);
+                        this.EtiquetaSufijo.Margin = new System.Windows.Forms.Padding(0);
                         this.EtiquetaSufijo.Name = "EtiquetaSufijo";
-                        this.EtiquetaPrefijo.Padding = new System.Windows.Forms.Padding(0);
                         this.EtiquetaSufijo.Size = new System.Drawing.Size(0, 17);
                         this.EtiquetaSufijo.TabIndex = 4;
                         this.EtiquetaSufijo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

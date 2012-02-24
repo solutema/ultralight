@@ -252,7 +252,6 @@ namespace Lfc.Cajas
                         // 
                         this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
                         this.formHeader1.Location = new System.Drawing.Point(0, 0);
-                        this.formHeader1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.formHeader1.Name = "formHeader1";
                         this.formHeader1.Size = new System.Drawing.Size(594, 64);
                         this.formHeader1.TabIndex = 52;

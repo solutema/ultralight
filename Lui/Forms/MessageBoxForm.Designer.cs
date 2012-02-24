@@ -129,7 +129,6 @@ namespace Lui.Forms
                         this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.LowerPanel);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "MessageBoxForm";
                         this.ShowIcon = false;
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

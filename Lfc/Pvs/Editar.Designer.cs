@@ -330,7 +330,6 @@ namespace Lfc.Pvs
                         this.note2.Dock = System.Windows.Forms.DockStyle.Bottom;
                         this.note2.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.note2.Location = new System.Drawing.Point(2, 443);
-                        this.note2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.note2.Name = "note2";
                         this.note2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.note2.ReadOnly = false;

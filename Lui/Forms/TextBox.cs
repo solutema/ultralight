@@ -66,11 +66,12 @@ namespace Lui.Forms
                         EtiquetaSufijo.ForeColor = this.DisplayStyle.TextColor;
                         EtiquetaSufijo.BackColor = this.DisplayStyle.DataAreaColor;
                         
-                        this.SizeChanged += new System.EventHandler(this.TextBox_SizeChanged);
                         this.TextBox1.ContextMenu = this.MiContextMenu;
                         this.TextBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
                         this.TextBox1.LostFocus += new System.EventHandler(this.TextBox1_LostFocus);
                         this.TextBox1.GotFocus += new System.EventHandler(this.TextBox1_GotFocus);
+
+                        this.ReubicarControles();
                 }
 
 
@@ -99,14 +100,12 @@ namespace Lui.Forms
 			}
 			set
 			{
-				this.SuspendLayout();
                                 string Pref = value;
                                 if (Pref == "$" || this.DataType == DataTypes.Currency)
                                         Pref = Lbl.Sys.Config.Moneda.Simbolo;
 				EtiquetaPrefijo.Text = Pref;
                                 EtiquetaPrefijo.Visible = Pref.Length > 0;
-				TextBox_SizeChanged(this, null);
-				this.ResumeLayout();
+                                this.ReubicarControles();
 			}
 		}
 
@@ -120,11 +119,9 @@ namespace Lui.Forms
 			}
 			set
 			{
-				this.SuspendLayout();
 				EtiquetaSufijo.Text = value;
 				EtiquetaSufijo.Visible = EtiquetaSufijo.Text.Length > 0;
-				TextBox_SizeChanged(this, null);
-				this.ResumeLayout();
+                                this.ReubicarControles();
 			}
 		}
 
@@ -219,8 +216,7 @@ namespace Lui.Forms
 			set
 			{
                                 TextBox1.Multiline = value;
-                                if (value)
-                                        TextBox_SizeChanged(this, null);
+                                this.ReubicarControles();
 			}
 		}
 
@@ -666,8 +662,34 @@ namespace Lui.Forms
                 }
 
 
-                private void TextBox_SizeChanged(object sender, System.EventArgs e)
+                protected override void OnFontChanged(EventArgs e)
                 {
+                        base.OnFontChanged(e);
+                        this.ReubicarControles();
+                }
+
+
+                protected override void OnSizeChanged(EventArgs e)
+                {
+                        base.OnSizeChanged(e);
+                        this.ReubicarControles();
+                }
+
+
+                protected override void OnCreateControl()
+                {
+                        base.OnCreateControl();
+                        this.ReubicarControles();
+                }
+
+
+                private void ReubicarControles()
+                {
+                        if (this.Created == false)
+                                return;
+
+                        this.SuspendLayout();
+
                         if (EtiquetaPrefijo.Visible) {
                                 EtiquetaPrefijo.MinimumSize = new Size(0, this.ClientRectangle.Height - 4);
                                 EtiquetaPrefijo.Location = new Point(3, 2);
@@ -688,6 +710,8 @@ namespace Lui.Forms
                         TextBox1.Top = 3;
                         TextBox1.Width = this.ClientRectangle.Width - TextBox1.Left - SufijoWidth;
                         TextBox1.Height = this.ClientRectangle.Height - (TextBox1.Top * 2);
+
+                        this.ResumeLayout(false);
                 }
 
 

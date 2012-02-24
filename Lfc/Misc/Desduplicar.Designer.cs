@@ -167,7 +167,6 @@ namespace Lfc.Misc
                         // 
                         this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.note1.Location = new System.Drawing.Point(16, 232);
-                        this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.note1.Name = "note1";
                         this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.note1.ReadOnly = false;

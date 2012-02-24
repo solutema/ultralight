@@ -83,7 +83,6 @@ namespace Lcc.Edicion
                         this.ListaComentarios.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaComentarios.LabelWrap = false;
                         this.ListaComentarios.Location = new System.Drawing.Point(0, 32);
-                        this.ListaComentarios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.ListaComentarios.MultiSelect = false;
                         this.ListaComentarios.Name = "ListaComentarios";
                         this.ListaComentarios.Size = new System.Drawing.Size(552, 200);
@@ -120,7 +119,6 @@ namespace Lcc.Edicion
                         this.EntradaComentario.Enabled = false;
                         this.EntradaComentario.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaComentario.Location = new System.Drawing.Point(0, 236);
-                        this.EntradaComentario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaComentario.Name = "EntradaComentario";
                         this.EntradaComentario.ReadOnly = false;
                         this.EntradaComentario.Size = new System.Drawing.Size(464, 24);
@@ -136,7 +134,6 @@ namespace Lcc.Edicion
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(468, 236);
-                        this.BotonAgregar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.BotonAgregar.ReadOnly = false;
@@ -167,7 +164,6 @@ namespace Lcc.Edicion
                         this.Controls.Add(this.BotonAgregar);
                         this.Controls.Add(this.EntradaComentario);
                         this.Controls.Add(this.ListaComentarios);
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "Comentarios";
                         this.Size = new System.Drawing.Size(552, 260);
                         this.ResumeLayout(false);

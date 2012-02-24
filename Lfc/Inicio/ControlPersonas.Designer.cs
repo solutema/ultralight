@@ -86,7 +86,6 @@ namespace Lfc.Inicio
                         this.BotonListado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonListado.Image = ((System.Drawing.Image)(resources.GetObject("BotonListado.Image")));
                         this.BotonListado.Location = new System.Drawing.Point(371, 3);
-                        this.BotonListado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonListado.Name = "BotonListado";
                         this.BotonListado.Size = new System.Drawing.Size(108, 41);
                         this.BotonListado.TabIndex = 0;
@@ -99,7 +98,6 @@ namespace Lfc.Inicio
                         this.BotonCrearCliente.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonCrearCliente.Image = ((System.Drawing.Image)(resources.GetObject("BotonCrearCliente.Image")));
                         this.BotonCrearCliente.Location = new System.Drawing.Point(211, 3);
-                        this.BotonCrearCliente.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonCrearCliente.Name = "BotonCrearCliente";
                         this.BotonCrearCliente.Size = new System.Drawing.Size(152, 41);
                         this.BotonCrearCliente.TabIndex = 1;
@@ -112,7 +110,6 @@ namespace Lfc.Inicio
                         this.BotonCrearProveedor.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonCrearProveedor.Image = ((System.Drawing.Image)(resources.GetObject("BotonCrearProveedor.Image")));
                         this.BotonCrearProveedor.Location = new System.Drawing.Point(28, 3);
-                        this.BotonCrearProveedor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonCrearProveedor.Name = "BotonCrearProveedor";
                         this.BotonCrearProveedor.Size = new System.Drawing.Size(175, 41);
                         this.BotonCrearProveedor.TabIndex = 2;

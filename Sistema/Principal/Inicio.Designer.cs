@@ -89,7 +89,6 @@ namespace Lazaro.WinMain.Principal
                         // 
                         this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
                         this.BarraInferior.Location = new System.Drawing.Point(0, 639);
-                        this.BarraInferior.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BarraInferior.Name = "BarraInferior";
                         this.BarraInferior.Size = new System.Drawing.Size(1008, 57);
                         this.BarraInferior.TabIndex = 15;

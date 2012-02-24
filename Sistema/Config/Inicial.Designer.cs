@@ -170,7 +170,6 @@ namespace Lazaro.WinMain.Config
                         this.PanelSeleccionarAlmacen.Controls.Add(this.CheckEsteEquipo);
                         this.PanelSeleccionarAlmacen.Controls.Add(this.EtiquetaAyuda);
                         this.PanelSeleccionarAlmacen.Location = new System.Drawing.Point(120, 48);
-                        this.PanelSeleccionarAlmacen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelSeleccionarAlmacen.Name = "PanelSeleccionarAlmacen";
                         this.PanelSeleccionarAlmacen.Size = new System.Drawing.Size(496, 304);
                         this.PanelSeleccionarAlmacen.TabIndex = 4;
@@ -527,7 +526,6 @@ namespace Lazaro.WinMain.Config
                         this.PanelFinal.Controls.Add(this.pictureBox8);
                         this.PanelFinal.Controls.Add(this.label11);
                         this.PanelFinal.Location = new System.Drawing.Point(120, 48);
-                        this.PanelFinal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelFinal.Name = "PanelFinal";
                         this.PanelFinal.Size = new System.Drawing.Size(496, 304);
                         this.PanelFinal.TabIndex = 59;
@@ -577,7 +575,6 @@ namespace Lazaro.WinMain.Config
                         this.PanelPruebaServidor.Controls.Add(this.EtiquetaPruebaError);
                         this.PanelPruebaServidor.Controls.Add(this.EtiquetaPruebaResultado);
                         this.PanelPruebaServidor.Location = new System.Drawing.Point(120, 48);
-                        this.PanelPruebaServidor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelPruebaServidor.Name = "PanelPruebaServidor";
                         this.PanelPruebaServidor.Size = new System.Drawing.Size(496, 304);
                         this.PanelPruebaServidor.TabIndex = 0;
@@ -972,7 +969,6 @@ namespace Lazaro.WinMain.Config
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "Inicial";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Asistente de configuración";

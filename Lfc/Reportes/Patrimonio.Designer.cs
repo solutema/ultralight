@@ -106,7 +106,6 @@ namespace Lfc.Reportes
                     // 
                     this.note1.AutoSize = false;
                     this.note1.Location = new System.Drawing.Point(16, 16);
-                    this.note1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note1.Name = "note1";
                     this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                     this.note1.Size = new System.Drawing.Size(356, 36);
@@ -230,7 +229,6 @@ namespace Lfc.Reportes
                     // 
                     this.note2.AutoSize = false;
                     this.note2.Location = new System.Drawing.Point(16, 168);
-                    this.note2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note2.Name = "note2";
                     this.note2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                     this.note2.Size = new System.Drawing.Size(356, 36);
@@ -252,7 +250,6 @@ namespace Lfc.Reportes
                     // 
                     this.note3.AutoSize = false;
                     this.note3.Location = new System.Drawing.Point(388, 16);
-                    this.note3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note3.Name = "note3";
                     this.note3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                     this.note3.Size = new System.Drawing.Size(356, 36);
@@ -352,7 +349,6 @@ namespace Lfc.Reportes
                     // 
                     this.note4.AutoSize = false;
                     this.note4.Location = new System.Drawing.Point(392, 230);
-                    this.note4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                     this.note4.Name = "note4";
                     this.note4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                     this.note4.Size = new System.Drawing.Size(356, 36);

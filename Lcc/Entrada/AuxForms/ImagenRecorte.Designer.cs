@@ -67,7 +67,6 @@ namespace Lcc.Entrada.AuxForms
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImagen.ContextMenuStrip = this.MenuEntradImagen;
                         this.EntradaImagen.Location = new System.Drawing.Point(168, 64);
-                        this.EntradaImagen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaImagen.Name = "EntradaImagen";
                         this.EntradaImagen.Size = new System.Drawing.Size(438, 294);
                         this.EntradaImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -116,7 +115,6 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.EntradaRatio.AlwaysExpanded = true;
                         this.EntradaRatio.Location = new System.Drawing.Point(16, 88);
-                        this.EntradaRatio.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaRatio.Name = "EntradaRatio";
                         this.EntradaRatio.SetData = new string[] {
         "Sin recorte|-1",
@@ -184,7 +182,6 @@ namespace Lcc.Entrada.AuxForms
                         this.Controls.Add(this.EntradaImagen);
                         this.Controls.Add(this.label1);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.MinimumSize = new System.Drawing.Size(480, 400);
                         this.Name = "ImagenRecorte";
                         this.ShowIcon = false;

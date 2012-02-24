@@ -760,7 +760,6 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaObs.Location = new System.Drawing.Point(472, 40);
-                        this.EntradaObs.Margin = new System.Windows.Forms.Padding(6);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
                         this.EntradaObs.Size = new System.Drawing.Size(232, 96);

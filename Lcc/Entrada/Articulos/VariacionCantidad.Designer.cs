@@ -68,7 +68,6 @@ namespace Lcc.Entrada.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaCantidad.Location = new System.Drawing.Point(368, 0);
-                        this.EntradaCantidad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.ReadOnly = false;
                         this.EntradaCantidad.Size = new System.Drawing.Size(112, 24);
@@ -84,7 +83,6 @@ namespace Lcc.Entrada.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaVariacion.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaVariacion.Location = new System.Drawing.Point(0, 0);
-                        this.EntradaVariacion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.EntradaVariacion.Name = "EntradaVariacion";
                         this.EntradaVariacion.ReadOnly = false;
                         this.EntradaVariacion.Size = new System.Drawing.Size(364, 24);
@@ -98,7 +96,6 @@ namespace Lcc.Entrada.Articulos
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.Controls.Add(this.EntradaCantidad);
                         this.Controls.Add(this.EntradaVariacion);
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "VariacionCantidad";
                         this.Size = new System.Drawing.Size(480, 24);
                         this.Controls.SetChildIndex(this.EntradaVariacion, 0);

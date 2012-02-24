@@ -49,7 +49,7 @@ namespace Lfx
                                 using (System.IO.StreamReader Lector = System.IO.File.OpenText(Archivo)) {
                                         while (Lector.EndOfStream == false) {
                                                 string Contenido = Lector.ReadLine();
-                                                if (Contenido.IndexOf("." + @"ForceCase = Lui.Forms.TextCasing.None") >= 0)
+                                                if (Contenido.IndexOf("." + @"Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);") >= 0)
                                                         Encontre = true;
                                                 else
                                                         Salida.AppendLine(Contenido);

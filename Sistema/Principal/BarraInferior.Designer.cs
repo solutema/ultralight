@@ -115,7 +115,6 @@ namespace Lazaro.WinMain.Principal
                         this.PanelReloj.Controls.Add(this.RelojFecha);
                         this.PanelReloj.Controls.Add(this.RelojHora);
                         this.PanelReloj.Location = new System.Drawing.Point(924, 2);
-                        this.PanelReloj.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PanelReloj.Name = "PanelReloj";
                         this.PanelReloj.Size = new System.Drawing.Size(74, 48);
                         this.PanelReloj.TabIndex = 0;
@@ -540,7 +539,6 @@ namespace Lazaro.WinMain.Principal
                         this.Controls.Add(this.PanelArticulo);
                         this.Controls.Add(this.PanelPersona);
                         this.Controls.Add(this.PanelAyuda);
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "BarraInferior";
                         this.Size = new System.Drawing.Size(1000, 52);
                         this.PanelReloj.ResumeLayout(false);

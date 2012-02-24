@@ -134,7 +134,6 @@ namespace Lazaro.WinMain.Errores
                         // 
                         this.PicDiablito.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
                         this.PicDiablito.Location = new System.Drawing.Point(36, 32);
-                        this.PicDiablito.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.PicDiablito.Name = "pictureBox1";
                         this.PicDiablito.Size = new System.Drawing.Size(44, 40);
                         this.PicDiablito.TabIndex = 12;
@@ -156,7 +155,6 @@ namespace Lazaro.WinMain.Errores
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-                        this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.Name = "ExcepcionControlada";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Error";

@@ -91,7 +91,6 @@ namespace Lfc.Inicio
                         this.BotonListadoFacturas.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonListadoFacturas.Image = ((System.Drawing.Image)(resources.GetObject("BotonListadoFacturas.Image")));
                         this.BotonListadoFacturas.Location = new System.Drawing.Point(361, 3);
-                        this.BotonListadoFacturas.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonListadoFacturas.Name = "BotonListadoFacturas";
                         this.BotonListadoFacturas.Size = new System.Drawing.Size(115, 41);
                         this.BotonListadoFacturas.TabIndex = 0;
@@ -104,7 +103,6 @@ namespace Lfc.Inicio
                         this.BotonListadoRecibos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonListadoRecibos.Image = ((System.Drawing.Image)(resources.GetObject("BotonListadoRecibos.Image")));
                         this.BotonListadoRecibos.Location = new System.Drawing.Point(241, 3);
-                        this.BotonListadoRecibos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonListadoRecibos.Name = "BotonListadoRecibos";
                         this.BotonListadoRecibos.Size = new System.Drawing.Size(112, 41);
                         this.BotonListadoRecibos.TabIndex = 1;
@@ -117,7 +115,6 @@ namespace Lfc.Inicio
                         this.BotonCrearFactura.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonCrearFactura.Image = ((System.Drawing.Image)(resources.GetObject("BotonCrearFactura.Image")));
                         this.BotonCrearFactura.Location = new System.Drawing.Point(85, 3);
-                        this.BotonCrearFactura.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonCrearFactura.Name = "BotonCrearFactura";
                         this.BotonCrearFactura.Size = new System.Drawing.Size(148, 41);
                         this.BotonCrearFactura.TabIndex = 2;
@@ -130,7 +127,6 @@ namespace Lfc.Inicio
                         this.BotonCrearRecibo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonCrearRecibo.Image = ((System.Drawing.Image)(resources.GetObject("BotonCrearRecibo.Image")));
                         this.BotonCrearRecibo.Location = new System.Drawing.Point(328, 50);
-                        this.BotonCrearRecibo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonCrearRecibo.Name = "BotonCrearRecibo";
                         this.BotonCrearRecibo.Size = new System.Drawing.Size(148, 41);
                         this.BotonCrearRecibo.TabIndex = 3;

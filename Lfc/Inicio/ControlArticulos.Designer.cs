@@ -89,7 +89,6 @@ namespace Lfc.Inicio
                         this.BotonListado.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonListado.Image = ((System.Drawing.Image)(resources.GetObject("BotonListado.Image")));
                         this.BotonListado.Location = new System.Drawing.Point(371, 3);
-                        this.BotonListado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonListado.Name = "BotonListado";
                         this.BotonListado.Size = new System.Drawing.Size(108, 41);
                         this.BotonListado.TabIndex = 0;
@@ -102,7 +101,6 @@ namespace Lfc.Inicio
                         this.BotonCrearArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonCrearArticulo.Image = ((System.Drawing.Image)(resources.GetObject("BotonCrearArticulo.Image")));
                         this.BotonCrearArticulo.Location = new System.Drawing.Point(211, 3);
-                        this.BotonCrearArticulo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonCrearArticulo.Name = "BotonCrearArticulo";
                         this.BotonCrearArticulo.Size = new System.Drawing.Size(152, 41);
                         this.BotonCrearArticulo.TabIndex = 1;
@@ -115,7 +113,6 @@ namespace Lfc.Inicio
                         this.BotonCrearCategoria.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BotonCrearCategoria.Image = ((System.Drawing.Image)(resources.GetObject("BotonCrearCategoria.Image")));
                         this.BotonCrearCategoria.Location = new System.Drawing.Point(36, 3);
-                        this.BotonCrearCategoria.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
                         this.BotonCrearCategoria.Name = "BotonCrearCategoria";
                         this.BotonCrearCategoria.Size = new System.Drawing.Size(167, 41);
                         this.BotonCrearCategoria.TabIndex = 2;
