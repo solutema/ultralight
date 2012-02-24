@@ -152,6 +152,7 @@ namespace Lcc.Entrada
                         DialogoGuardar.OverwritePrompt = true;
                         DialogoGuardar.Title = "Guardar en archivo";
                         DialogoGuardar.ValidateNames = true;
+                        DialogoGuardar.FileName = this.Elemento.ToString();
                         if (DialogoGuardar.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                 EntradaImagen.Image.Save(DialogoGuardar.FileName);
                         }

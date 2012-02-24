@@ -112,6 +112,7 @@ namespace Lui.Forms
                         this.Controls.Add(this.pctExclamation);
                         this.Controls.Add(this.DialogCaption);
                         this.Name = "YesNoDialog";
+                        this.Text = "Pregunta";
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.YesNoDialogForm_KeyDown);
                         this.Controls.SetChildIndex(this.DialogCaption, 0);
                         this.Controls.SetChildIndex(this.pctExclamation, 0);
