@@ -34,9 +34,10 @@ using System.Collections.Generic;
 
 namespace Lfx.Backups
 {
-        public class BackupReader
+        public class BackupReader : IDisposable
         {
-                System.IO.Stream inputStream;
+                private System.IO.Stream inputStream;
+
                 public BackupReader(string path)
                 {
                         System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read);
@@ -44,6 +45,13 @@ namespace Lfx.Backups
                         inputStream = fs;
                         inputStream.Seek(0, System.IO.SeekOrigin.Begin);
                 }
+
+
+                public void Dispose()
+                {
+                        inputStream.Dispose();
+                }
+
 
                 public string ReadString(int length)
                 {

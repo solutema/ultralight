@@ -79,9 +79,10 @@ namespace Lcc.Edicion
 
                 private void BotonAgregar_Click(object sender, EventArgs e)
                 {
-                        IDbTransaction Trans = this.Elemento.Connection.BeginTransaction();
-                        this.Elemento.AgregarComentario(EntradaComentario.Text);
-                        Trans.Commit();
+                        using (IDbTransaction Trans = this.Elemento.Connection.BeginTransaction()) {
+                                this.Elemento.AgregarComentario(EntradaComentario.Text);
+                                Trans.Commit();
+                        }
 
                         ListaComentarios.BeginUpdate();
                         ListViewItem Itm = ListaComentarios.Items.Insert(0, new ListViewItem(new System.Random().Next().ToString()));

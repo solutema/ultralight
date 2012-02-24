@@ -99,9 +99,10 @@ namespace Lfx.Services
                         Comando.Fields.AddWithValue("fechaejecutar", null);
 
                         try {
-                                System.Data.IDbTransaction Trans = this.DataBase.BeginTransaction();
-                                this.DataBase.Execute(Comando);
-                                Trans.Commit();
+                                using (System.Data.IDbTransaction Trans = this.DataBase.BeginTransaction()) {
+                                        this.DataBase.Execute(Comando);
+                                        Trans.Commit();
+                                }
                         }
                         catch {
                                 return true;
@@ -157,10 +158,11 @@ namespace Lfx.Services
                                 qGen.Update Actualizar = new qGen.Update("sys_programador", new qGen.Where("id_evento", Result.Id));
                                 Actualizar.Fields.AddWithValue("estado", 1);
 
-                                System.Data.IDbTransaction Trans = this.DataBase.BeginTransaction();
-                                this.DataBase.Execute(Actualizar);
-                                this.DataBase.Execute(new qGen.Delete("sys_programador", new qGen.Where("fecha", qGen.ComparisonOperators.LessThan, System.DateTime.Now.AddDays(-7))));
-                                Trans.Commit();
+                                using (System.Data.IDbTransaction Trans = this.DataBase.BeginTransaction()) {
+                                        this.DataBase.Execute(Actualizar);
+                                        this.DataBase.Execute(new qGen.Delete("sys_programador", new qGen.Where("fecha", qGen.ComparisonOperators.LessThan, System.DateTime.Now.AddDays(-7))));
+                                        Trans.Commit();
+                                }
 
                                 return Result;
                         } else

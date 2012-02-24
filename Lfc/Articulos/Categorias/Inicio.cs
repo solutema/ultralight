@@ -84,9 +84,10 @@ namespace Lfc.Articulos.Categorias
 
                 protected override void OnBeginRefreshList()
                 {
-                        IDbTransaction Trans = this.Connection.BeginTransaction();
-                        this.Connection.ExecuteSql("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
-                        Trans.Commit();
+                        using (IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                this.Connection.ExecuteSql("UPDATE articulos_categorias SET cache_stock_actual=(SELECT SUM(stock_actual) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria), cache_costo=(SELECT SUM(stock_actual*costo) FROM articulos WHERE articulos.id_categoria=articulos_categorias.id_categoria)");
+                                Trans.Commit();
+                        }
                         m_ValorizacionCostoTotal = this.Connection.FieldDecimal("SELECT SUM(cache_costo) FROM articulos_categorias");
 
                         base.OnBeginRefreshList();

@@ -273,14 +273,15 @@ namespace Lfc.Tareas
                         if (ComprobanteId > 0) {
                                 EntradaComprobante.Text = Lbl.Comprobantes.Comprobante.TipoYNumeroCompleto(this.Connection, ComprobanteId);
                                 // Guardo el comprobante en la tarea (sólo si no tenía uno asociado)
-                                System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
-                                qGen.Update Actual = new qGen.Update("tickets");
-                                Actual.Fields.Add(new Lfx.Data.Field("id_comprob", ComprobanteId));
-                                Actual.WhereClause = new qGen.Where();
-                                Actual.WhereClause.AddWithValue("id_comprob", 0);
-                                Actual.WhereClause.AddWithValue("id_ticket", this.Elemento.Id);
-                                this.Connection.Execute(Actual);
-                                Trans.Commit();
+                                using (System.Data.IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                        qGen.Update Actual = new qGen.Update("tickets");
+                                        Actual.Fields.Add(new Lfx.Data.Field("id_comprob", ComprobanteId));
+                                        Actual.WhereClause = new qGen.Where();
+                                        Actual.WhereClause.AddWithValue("id_comprob", 0);
+                                        Actual.WhereClause.AddWithValue("id_ticket", this.Elemento.Id);
+                                        this.Connection.Execute(Actual);
+                                        Trans.Commit();
+                                }
                         } else {
                                 EntradaComprobante.Text = "";
                         }

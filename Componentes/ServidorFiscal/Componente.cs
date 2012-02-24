@@ -201,11 +201,12 @@ namespace ServidorFiscal
                         }
 
                         Watchdog.Stop();
-                        IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction();
-                        qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
-                        Actualizar.Fields.AddWithValue("lsa", qGen.SqlFunctions.Now);
-                        this.Impresora.DataBase.Execute(Actualizar);
-                        Trans.Commit();
+                        using (IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction()) {
+                                qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
+                                Actualizar.Fields.AddWithValue("lsa", qGen.SqlFunctions.Now);
+                                this.Impresora.DataBase.Execute(Actualizar);
+                                Trans.Commit();
+                        }
                         Lfx.Services.Task ProximaTarea = Lfx.Workspace.Master.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
                         if (ProximaTarea != null) {
                                 string Comando = ProximaTarea.Command;
@@ -233,9 +234,12 @@ namespace ServidorFiscal
                                                         Lazaro.Impresion.Comprobantes.Fiscal.Respuesta ResultadoCierre = Impresora.Cierre(SubComandoCierre, true);
                                                         if (SubComandoCierre == "Z" && ResultadoCierre.Error == Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok) {
                                                                 //Si hizo un cierre Z correctamente, actualizo la variable LCZ
-                                                                Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
-                                                                Actualizar.Fields.AddWithValue("ultimoz", qGen.SqlFunctions.Now);
-                                                                this.Impresora.DataBase.Execute(Actualizar);
+                                                                using (IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction()) {
+                                                                        qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
+                                                                        Actualizar.Fields.AddWithValue("ultimoz", qGen.SqlFunctions.Now);
+                                                                        this.Impresora.DataBase.Execute(Actualizar);
+                                                                        Trans.Commit();
+                                                                }
                                                         }
                                                         if (ResultadoCierre.Error != Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok) {
                                                                 MostrarErrorFiscal(ResultadoCierre);
@@ -309,11 +313,12 @@ namespace ServidorFiscal
                         Programador.Stop();
 
                         if (this.PV != 0) {
-                                System.Data.IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction();
-                                qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
-                                Actualizar.Fields.AddWithValue("lsa", null);
-                                this.Impresora.DataBase.Execute(Actualizar);
-                                Trans.Commit();
+                                using (System.Data.IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction()) {
+                                        qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
+                                        Actualizar.Fields.AddWithValue("lsa", null);
+                                        this.Impresora.DataBase.Execute(Actualizar);
+                                        Trans.Commit();
+                                }
                         }
 
                         Impresora.Terminar();

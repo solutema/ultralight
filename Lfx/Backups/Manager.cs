@@ -441,131 +441,132 @@ namespace Lfx.Backups
                                         Lfx.Workspace.Master.Structure.LoadFromFile(this.BackupPath + Carpeta + "dbstruct.xml");
                                         Lfx.Workspace.Master.CheckAndUpdateDataBaseVersion(true, true);
 
-                                        IDbTransaction Trans = DataBase.BeginTransaction();
-                                        DataBase.EnableConstraints(false);
+                                        using (BackupReader Lector = new BackupReader(this.BackupPath + Carpeta + "dbdata.lbd"))
+                                        using (IDbTransaction Trans = DataBase.BeginTransaction()) {
+                                                DataBase.EnableConstraints(false);
 
-                                        Progreso.ChangeStatus("Incorporando tablas de datos");
-                                        BackupReader Lector = new BackupReader(this.BackupPath + Carpeta + "dbdata.lbd");
+                                                Progreso.ChangeStatus("Incorporando tablas de datos");
 
-                                        Progreso.Max = (int)(Lector.Length / 1024);
-                                        string TablaActual = null;
-                                        string[] ListaCampos = null;
-                                        object[] ValoresCampos = null;
-                                        int CampoActual = 0;
-                                        bool EndTable = false;
-                                        qGen.BuilkInsert Insertador = new qGen.BuilkInsert();
-                                        do {
-                                                string Comando = Lector.ReadString(4);
-                                                switch (Comando) {
-                                                        case ":TBL":
-                                                                TablaActual = Lector.ReadPrefixedString4();
-                                                                EndTable = false;
-                                                                Progreso.ChangeStatus("Cargando " + TablaActual);
+                                                Progreso.Max = (int)(Lector.Length / 1024);
+                                                string TablaActual = null;
+                                                string[] ListaCampos = null;
+                                                object[] ValoresCampos = null;
+                                                int CampoActual = 0;
+                                                bool EndTable = false;
+                                                qGen.BuilkInsert Insertador = new qGen.BuilkInsert();
+                                                do {
+                                                        string Comando = Lector.ReadString(4);
+                                                        switch (Comando) {
+                                                                case ":TBL":
+                                                                        TablaActual = Lector.ReadPrefixedString4();
+                                                                        EndTable = false;
+                                                                        Progreso.ChangeStatus("Cargando " + TablaActual);
 
-                                                                qGen.Delete DelCmd = new qGen.Delete(TablaActual);
-                                                                DelCmd.EnableDeleleteWithoutWhere = true;
-                                                                DataBase.Execute(DelCmd);
-                                                                break;
-                                                        case ":FDL":
-                                                                ListaCampos = Lector.ReadPrefixedString4().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                                                                ValoresCampos = new object[ListaCampos.Length];
-                                                                CampoActual = 0;
-                                                                break;
-                                                        case ":FLD":
-                                                                ValoresCampos[CampoActual++] = Lector.ReadField();
-                                                                break;
-                                                        case ".ROW":
-                                                                qGen.Insert Insertar = new qGen.Insert(TablaActual);
-                                                                for (int i = 0; i < ListaCampos.Length; i++) {
-                                                                        Insertar.Fields.AddWithValue(ListaCampos[i], ValoresCampos[i]);
-                                                                }
-                                                                Insertador.Add(Insertar);
+                                                                        qGen.Delete DelCmd = new qGen.Delete(TablaActual);
+                                                                        DelCmd.EnableDeleleteWithoutWhere = true;
+                                                                        DataBase.Execute(DelCmd);
+                                                                        break;
+                                                                case ":FDL":
+                                                                        ListaCampos = Lector.ReadPrefixedString4().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                                                        ValoresCampos = new object[ListaCampos.Length];
+                                                                        CampoActual = 0;
+                                                                        break;
+                                                                case ":FLD":
+                                                                        ValoresCampos[CampoActual++] = Lector.ReadField();
+                                                                        break;
+                                                                case ".ROW":
+                                                                        qGen.Insert Insertar = new qGen.Insert(TablaActual);
+                                                                        for (int i = 0; i < ListaCampos.Length; i++) {
+                                                                                Insertar.Fields.AddWithValue(ListaCampos[i], ValoresCampos[i]);
+                                                                        }
+                                                                        Insertador.Add(Insertar);
 
-                                                                ValoresCampos = new object[ListaCampos.Length];
-                                                                CampoActual = 0;
-                                                                break;
-                                                        case ":REM":
-                                                                Lector.ReadPrefixedString4();
-                                                                break;
-                                                        case ".TBL":
-                                                                EndTable = true;
-                                                                break;
-                                                }
-                                                if (EndTable || Insertador.Count >= 1000) {
-                                                        DataBase.ExecuteSql(Insertador.ToString());
-                                                        Insertador.Clear();
-                                                        Progreso.Value = (int)(Lector.Position / 1024);
-                                                }
-                                        } while (Lector.Position < Lector.Length);
-                                        Lector.Close();
+                                                                        ValoresCampos = new object[ListaCampos.Length];
+                                                                        CampoActual = 0;
+                                                                        break;
+                                                                case ":REM":
+                                                                        Lector.ReadPrefixedString4();
+                                                                        break;
+                                                                case ".TBL":
+                                                                        EndTable = true;
+                                                                        break;
+                                                        }
+                                                        if (EndTable || Insertador.Count >= 1000) {
+                                                                DataBase.ExecuteSql(Insertador.ToString());
+                                                                Insertador.Clear();
+                                                                Progreso.Value = (int)(Lector.Position / 1024);
+                                                        }
+                                                } while (Lector.Position < Lector.Length);
+                                                Lector.Close();
 
-                                        if (Lfx.Workspace.Master.MasterConnection.SqlMode == qGen.SqlModes.PostgreSql) {
-                                                // PostgreSql: Tengo que actualizar las secuencias
-                                                Progreso.ChangeStatus("Actualizando secuencias");
-                                                string PatronSecuencia = @"nextval\(\'(.+)\'(.*)\)";
-                                                foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.GetTableNames()) {
-                                                        string OID = DataBase.FieldString("SELECT c.oid FROM pg_catalog.pg_class c LEFT JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE pg_catalog.pg_table_is_visible(c.oid) AND c.relname ~ '^" + Tabla + "$'");
-                                                        System.Data.DataTable Campos = DataBase.Select("SELECT a.attname,pg_catalog.format_type(a.atttypid, a.atttypmod),(SELECT substring(d.adsrc for 128) FROM pg_catalog.pg_attrdef d WHERE d.adrelid = a.attrelid AND d.adnum = a.attnum AND a.atthasdef), a.attnotnull, a.attnum FROM pg_catalog.pg_attribute a WHERE a.attrelid = '" + OID + "' AND a.attnum > 0 AND NOT a.attisdropped ORDER BY a.attnum");
-                                                        foreach (System.Data.DataRow Campo in Campos.Rows) {
-                                                                if (Campo[2] != DBNull.Value && Campo[2] != null) {
-                                                                        string DefaultCampo = System.Convert.ToString(Campo[2]);
-                                                                        if (Regex.IsMatch(DefaultCampo, PatronSecuencia)) {
-                                                                                string NombreCampo = System.Convert.ToString(Campo[0]);
-                                                                                foreach (System.Text.RegularExpressions.Match Ocurrencia in Regex.Matches(DefaultCampo, PatronSecuencia)) {
-                                                                                        string Secuencia = Ocurrencia.Groups[1].ToString();
-                                                                                        int MaxId = DataBase.FieldInt("SELECT MAX(" + NombreCampo + ") FROM " + Tabla) + 1;
-                                                                                        DataBase.ExecuteSql("ALTER SEQUENCE " + Secuencia + " RESTART WITH " + MaxId.ToString());
+                                                if (Lfx.Workspace.Master.MasterConnection.SqlMode == qGen.SqlModes.PostgreSql) {
+                                                        // PostgreSql: Tengo que actualizar las secuencias
+                                                        Progreso.ChangeStatus("Actualizando secuencias");
+                                                        string PatronSecuencia = @"nextval\(\'(.+)\'(.*)\)";
+                                                        foreach (string Tabla in Lfx.Data.DataBaseCache.DefaultCache.GetTableNames()) {
+                                                                string OID = DataBase.FieldString("SELECT c.oid FROM pg_catalog.pg_class c LEFT JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE pg_catalog.pg_table_is_visible(c.oid) AND c.relname ~ '^" + Tabla + "$'");
+                                                                System.Data.DataTable Campos = DataBase.Select("SELECT a.attname,pg_catalog.format_type(a.atttypid, a.atttypmod),(SELECT substring(d.adsrc for 128) FROM pg_catalog.pg_attrdef d WHERE d.adrelid = a.attrelid AND d.adnum = a.attnum AND a.atthasdef), a.attnotnull, a.attnum FROM pg_catalog.pg_attribute a WHERE a.attrelid = '" + OID + "' AND a.attnum > 0 AND NOT a.attisdropped ORDER BY a.attnum");
+                                                                foreach (System.Data.DataRow Campo in Campos.Rows) {
+                                                                        if (Campo[2] != DBNull.Value && Campo[2] != null) {
+                                                                                string DefaultCampo = System.Convert.ToString(Campo[2]);
+                                                                                if (Regex.IsMatch(DefaultCampo, PatronSecuencia)) {
+                                                                                        string NombreCampo = System.Convert.ToString(Campo[0]);
+                                                                                        foreach (System.Text.RegularExpressions.Match Ocurrencia in Regex.Matches(DefaultCampo, PatronSecuencia)) {
+                                                                                                string Secuencia = Ocurrencia.Groups[1].ToString();
+                                                                                                int MaxId = DataBase.FieldInt("SELECT MAX(" + NombreCampo + ") FROM " + Tabla) + 1;
+                                                                                                DataBase.ExecuteSql("ALTER SEQUENCE " + Secuencia + " RESTART WITH " + MaxId.ToString());
+                                                                                        }
                                                                                 }
                                                                         }
                                                                 }
                                                         }
                                                 }
-                                        }
 
-                                        if (System.IO.File.Exists(this.BackupPath + Carpeta + "blobs.lst")) {
-                                                // Incorporar Blobs
-                                                Progreso.ChangeStatus("Incorporando imágenes");
-                                                System.IO.StreamReader LectorBlobs = new System.IO.StreamReader(this.BackupPath + Carpeta + "blobs.lst", System.Text.Encoding.Default);
-                                                string InfoImagen = null;
-                                                do {
-                                                        InfoImagen = LectorBlobs.ReadLine();
-                                                        if (InfoImagen != null && InfoImagen.Length > 0) {
-                                                                string Tabla = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
-                                                                string Campo = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
-                                                                string CampoId = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
-                                                                string NombreArchivoImagen = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
+                                                if (System.IO.File.Exists(this.BackupPath + Carpeta + "blobs.lst")) {
+                                                        // Incorporar Blobs
+                                                        Progreso.ChangeStatus("Incorporando imágenes");
+                                                        System.IO.StreamReader LectorBlobs = new System.IO.StreamReader(this.BackupPath + Carpeta + "blobs.lst", System.Text.Encoding.Default);
+                                                        string InfoImagen = null;
+                                                        do {
+                                                                InfoImagen = LectorBlobs.ReadLine();
+                                                                if (InfoImagen != null && InfoImagen.Length > 0) {
+                                                                        string Tabla = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
+                                                                        string Campo = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
+                                                                        string CampoId = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
+                                                                        string NombreArchivoImagen = Lfx.Types.Strings.GetNextToken(ref InfoImagen, ",");
 
-                                                                // Guardar blob nuevo
-                                                                qGen.Update ActualizarBlob = new qGen.Update(DataBase, Tabla);
-                                                                ActualizarBlob.WhereClause = new qGen.Where(Campo, CampoId);
+                                                                        // Guardar blob nuevo
+                                                                        qGen.Update ActualizarBlob = new qGen.Update(DataBase, Tabla);
+                                                                        ActualizarBlob.WhereClause = new qGen.Where(Campo, CampoId);
 
-                                                                System.IO.FileStream ArchivoImagen = new System.IO.FileStream(this.BackupPath + Carpeta + NombreArchivoImagen, System.IO.FileMode.Open, System.IO.FileAccess.Read);
-                                                                byte[] Contenido = new byte[System.Convert.ToInt32(ArchivoImagen.Length) - 1 + 1];
-                                                                ArchivoImagen.Read(Contenido, 0, System.Convert.ToInt32(ArchivoImagen.Length));
-                                                                ArchivoImagen.Close();
+                                                                        System.IO.FileStream ArchivoImagen = new System.IO.FileStream(this.BackupPath + Carpeta + NombreArchivoImagen, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+                                                                        byte[] Contenido = new byte[System.Convert.ToInt32(ArchivoImagen.Length) - 1 + 1];
+                                                                        ArchivoImagen.Read(Contenido, 0, System.Convert.ToInt32(ArchivoImagen.Length));
+                                                                        ArchivoImagen.Close();
 
-                                                                ActualizarBlob.Fields.AddWithValue(Campo, Contenido);
-                                                                DataBase.Execute(ActualizarBlob);
+                                                                        ActualizarBlob.Fields.AddWithValue(Campo, Contenido);
+                                                                        DataBase.Execute(ActualizarBlob);
+                                                                }
+                                                        }
+                                                        while (InfoImagen != null);
+                                                        LectorBlobs.Close();
+                                                }
+
+                                                if (UsandoArchivoComprimido) {
+                                                        Progreso.ChangeStatus("Eliminando archivos temporales");
+                                                        // Borrar los archivos que descomprim temporalmente
+                                                        System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(this.BackupPath + Carpeta);
+                                                        foreach (System.IO.FileInfo DirItem in Dir.GetFiles()) {
+                                                                if (DirItem.Name != "backup.7z" && DirItem.Name != "info.txt") {
+                                                                        System.IO.File.Delete(this.BackupPath + Carpeta + DirItem.Name);
+                                                                }
                                                         }
                                                 }
-                                                while (InfoImagen != null);
-                                                LectorBlobs.Close();
+                                                Progreso.ChangeStatus("Terminando transacción");
+                                                Trans.Commit();
                                         }
-
-                                        if (UsandoArchivoComprimido) {
-                                                Progreso.ChangeStatus("Eliminando archivos temporales");
-                                                // Borrar los archivos que descomprim temporalmente
-                                                System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(this.BackupPath + Carpeta);
-                                                foreach (System.IO.FileInfo DirItem in Dir.GetFiles()) {
-                                                        if (DirItem.Name != "backup.7z" && DirItem.Name != "info.txt") {
-                                                                System.IO.File.Delete(this.BackupPath + Carpeta + DirItem.Name);
-                                                        }
-                                                }
-                                        }
-                                        Progreso.ChangeStatus("Terminando transacción");
-                                        Trans.Commit();
+                                        Progreso.End();
                                 }
-                                Progreso.End();
 
                                 Lfx.Workspace.Master.RunTime.Toast("La copia de seguridad se restauró con éxito. A continuación se va a reiniciar la aplicación.", "Copia Restaurada");
                         }

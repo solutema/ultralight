@@ -229,17 +229,18 @@ namespace Lfc.Personas
 
                 public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {
-                        IDbTransaction Trans = this.Connection.BeginTransaction();
-                        foreach (int IdPersona in itemIds) {
-                                qGen.Update DarDeBaja = new qGen.Update("personas");
-                                DarDeBaja.Fields.AddWithValue("estado", 0);
-                                DarDeBaja.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
-                                DarDeBaja.WhereClause = new qGen.Where();
-                                DarDeBaja.WhereClause.AddWithValue("id_persona", IdPersona);
-                                DarDeBaja.WhereClause.AddWithValue("estado", 1);
-                                this.Connection.Execute(DarDeBaja);
+                        using (IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                foreach (int IdPersona in itemIds) {
+                                        qGen.Update DarDeBaja = new qGen.Update("personas");
+                                        DarDeBaja.Fields.AddWithValue("estado", 0);
+                                        DarDeBaja.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
+                                        DarDeBaja.WhereClause = new qGen.Where();
+                                        DarDeBaja.WhereClause.AddWithValue("id_persona", IdPersona);
+                                        DarDeBaja.WhereClause.AddWithValue("estado", 1);
+                                        this.Connection.Execute(DarDeBaja);
+                                }
+                                Trans.Commit();
                         }
-                        Trans.Commit();
                         this.RefreshList();
                         return base.OnDelete(itemIds);
                 }

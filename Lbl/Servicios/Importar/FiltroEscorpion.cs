@@ -141,10 +141,10 @@ namespace Lbl.Servicios.Importar
                 {
                         base.PreImportar();
 
-                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
-                        this.Connection.ExecuteSql("UPDATE personas SET import_id=1 WHERE id_persona=999");
-                        Trans.Commit();
-                        Trans.Dispose();
+                        using (System.Data.IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                this.Connection.ExecuteSql("UPDATE personas SET import_id=1 WHERE id_persona=999");
+                                Trans.Commit();
+                        }
                 }
 
 
@@ -152,11 +152,11 @@ namespace Lbl.Servicios.Importar
                 {
                         base.PostImportar();
 
-                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
-                        this.Connection.ExecuteSql("UPDATE comprob a SET total=(SELECT SUM(importe) FROM comprob_detalle b WHERE a.id_comprob=b.id_comprob)");
-                        this.Connection.ExecuteSql("UPDATE comprob SET totalreal=total, subtotal=total, cancelado=total");
-                        Trans.Commit();
-                        Trans.Dispose();
+                        using (System.Data.IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                this.Connection.ExecuteSql("UPDATE comprob a SET total=(SELECT SUM(importe) FROM comprob_detalle b WHERE a.id_comprob=b.id_comprob)");
+                                this.Connection.ExecuteSql("UPDATE comprob SET totalreal=total, subtotal=total, cancelado=total");
+                                Trans.Commit();
+                        }
                 }
 
 

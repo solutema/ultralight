@@ -34,7 +34,7 @@ using System.Collections.Generic;
 
 namespace Lfx.Backups
 {
-        public class BackupWriter
+        public class BackupWriter : IDisposable
         {
                 public System.IO.Stream outputStream;
 
@@ -42,6 +42,13 @@ namespace Lfx.Backups
                 {
                         outputStream = new System.IO.FileStream(path, System.IO.FileMode.Create, System.IO.FileAccess.Write);
                 }
+
+
+                public void Dispose()
+                {
+                        outputStream.Dispose();
+                }
+
 
                 public void Close()
                 {

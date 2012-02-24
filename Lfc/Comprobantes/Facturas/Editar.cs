@@ -347,10 +347,11 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                 return new Lfx.Types.FailureOperationResult("Este comprobante ya fue cancelado en su totalidad.");
 
                         if (Factura.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Efectivo) {
-                                IDbTransaction Trans = Factura.Connection.BeginTransaction();
-                                Factura.AsentarPago(false);
-                                Factura.MoverExistencias(false);
-                                Trans.Commit();
+                                using (IDbTransaction Trans = Factura.Connection.BeginTransaction()) {
+                                        Factura.AsentarPago(false);
+                                        Factura.MoverExistencias(false);
+                                        Trans.Commit();
+                                }
                                 this.PuedeEditarPago = false;
                         } else if (Factura.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
                                 CrearReciboParaEstaFactura();
@@ -365,76 +366,81 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                 Lbl.Comprobantes.Cobro MiCobro = FormularioEditarPago.Cobro.ToCobro(Factura.Connection);
                                                 if (MiCobro.FormaDePago.Id != Factura.FormaDePago.Id) {
                                                         // Tengo que actualizar la forma de pago
-                                                        IDbTransaction Trans = Factura.Connection.BeginTransaction();
-                                                        Factura.FormaDePago = MiCobro.FormaDePago;
-                                                        EntradaFormaPago.Elemento = MiCobro;
-                                                        Factura.Connection.FieldInt("UPDATE comprob SET id_formapago=" + MiCobro.FormaDePago.Id.ToString() + " WHERE id_comprob=" + Factura.Id.ToString());
-                                                        if (MiCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
-                                                                // Si la nueva forma de pago es cta. cte., asiento el saldo
-                                                                // Y uso saldo a favor, si lo hay
-                                                                decimal Saldo = Factura.Cliente.CuentaCorriente.ObtenerSaldo(true);
-                                                                Factura.Cliente.CuentaCorriente.Movimiento(true,
-                                                                        Lbl.Cajas.Concepto.IngresosPorFacturacion,
-                                                                        "Saldo a Cta. Cte. s/" + Factura.ToString(),
-                                                                        Factura.ImporteImpago,
-                                                                        null,
-                                                                        Factura,
-                                                                        null,
-                                                                        null);
-                                                                if (Saldo < 0) {
-                                                                        Saldo = Math.Abs(Saldo);
-                                                                        if (Saldo > Factura.Total)
-                                                                                Factura.CancelarImporte(Factura.Total, null);
-                                                                        else
-                                                                                Factura.CancelarImporte(Saldo, null);
+                                                        using (IDbTransaction Trans = Factura.Connection.BeginTransaction()) {
+                                                                Factura.FormaDePago = MiCobro.FormaDePago;
+                                                                EntradaFormaPago.Elemento = MiCobro;
+                                                                Factura.Connection.FieldInt("UPDATE comprob SET id_formapago=" + MiCobro.FormaDePago.Id.ToString() + " WHERE id_comprob=" + Factura.Id.ToString());
+                                                                if (MiCobro.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
+                                                                        // Si la nueva forma de pago es cta. cte., asiento el saldo
+                                                                        // Y uso saldo a favor, si lo hay
+                                                                        decimal Saldo = Factura.Cliente.CuentaCorriente.ObtenerSaldo(true);
+                                                                        Factura.Cliente.CuentaCorriente.Movimiento(true,
+                                                                                Lbl.Cajas.Concepto.IngresosPorFacturacion,
+                                                                                "Saldo a Cta. Cte. s/" + Factura.ToString(),
+                                                                                Factura.ImporteImpago,
+                                                                                null,
+                                                                                Factura,
+                                                                                null,
+                                                                                null);
+                                                                        if (Saldo < 0) {
+                                                                                Saldo = Math.Abs(Saldo);
+                                                                                if (Saldo > Factura.Total)
+                                                                                        Factura.CancelarImporte(Factura.Total, null);
+                                                                                else
+                                                                                        Factura.CancelarImporte(Saldo, null);
+                                                                        }
                                                                 }
+                                                                Trans.Commit();
                                                         }
-                                                        Trans.Commit();
                                                 }
                                                 switch (Factura.FormaDePago.Tipo) {
                                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
-                                                                IDbTransaction TransEfe = Factura.Connection.BeginTransaction();
-                                                                Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Factura.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
-                                                                CajaDiaria.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, Factura.ToString(), Factura.Cliente, Factura.ImporteImpago, Factura.Obs, Factura, null, null);
-                                                                Factura.CancelarImporte(Factura.Total, null);
-                                                                TransEfe.Commit();
+                                                                using (IDbTransaction TransEfe = Factura.Connection.BeginTransaction()) {
+                                                                        Lbl.Cajas.Caja CajaDiaria = new Lbl.Cajas.Caja(Factura.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
+                                                                        CajaDiaria.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, Factura.ToString(), Factura.Cliente, Factura.ImporteImpago, Factura.Obs, Factura, null, null);
+                                                                        Factura.CancelarImporte(Factura.Total, null);
+                                                                        TransEfe.Commit();
+                                                                }
                                                                 break;
                                                         case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
                                                                 CrearReciboParaEstaFactura();
                                                                 break;
                                                         case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
-                                                                IDbTransaction TransCheTer = Factura.Connection.BeginTransaction();
-                                                                Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
-                                                                Cheque.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;
-                                                                Cheque.ConceptoTexto = "Cobro s/" + this.Elemento.ToString();
-                                                                Cheque.Factura = Factura;
-                                                                Cheque.Guardar();
-                                                                Factura.CancelarImporte(Factura.Total, null);
-                                                                TransCheTer.Commit();
+                                                                using (IDbTransaction TransCheTer = Factura.Connection.BeginTransaction()) {
+                                                                        Lbl.Bancos.Cheque Cheque = MiCobro.Cheque;
+                                                                        Cheque.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;
+                                                                        Cheque.ConceptoTexto = "Cobro s/" + this.Elemento.ToString();
+                                                                        Cheque.Factura = Factura;
+                                                                        Cheque.Guardar();
+                                                                        Factura.CancelarImporte(Factura.Total, null);
+                                                                        TransCheTer.Commit();
+                                                                }
                                                                 PuedeEditarPago = false;
                                                                 break;
                                                         case Lbl.Pagos.TiposFormasDePago.Tarjeta:
-                                                                IDbTransaction TransTarj = Factura.Connection.BeginTransaction();
-                                                                Lbl.Pagos.Cupon CuponCredito = MiCobro.Cupon;
-                                                                CuponCredito.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;
-                                                                CuponCredito.ConceptoTexto = "Cobro s/" + Factura.ToString();
+                                                                using (IDbTransaction TransTarj = Factura.Connection.BeginTransaction()) {
+                                                                        Lbl.Pagos.Cupon CuponCredito = MiCobro.Cupon;
+                                                                        CuponCredito.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;
+                                                                        CuponCredito.ConceptoTexto = "Cobro s/" + Factura.ToString();
 
-                                                                if (EntradaVendedor.TextInt > 0)
-                                                                        CuponCredito.Vendedor = new Lbl.Personas.Persona(Factura.Connection, EntradaVendedor.TextInt);
+                                                                        if (EntradaVendedor.TextInt > 0)
+                                                                                CuponCredito.Vendedor = new Lbl.Personas.Persona(Factura.Connection, EntradaVendedor.TextInt);
 
-                                                                CuponCredito.Factura = Factura;
-                                                                CuponCredito.Guardar();
+                                                                        CuponCredito.Factura = Factura;
+                                                                        CuponCredito.Guardar();
 
-                                                                Factura.CancelarImporte(Factura.Total, null);
-                                                                TransTarj.Commit();
+                                                                        Factura.CancelarImporte(Factura.Total, null);
+                                                                        TransTarj.Commit();
+                                                                }
                                                                 PuedeEditarPago = false;
                                                                 break;
                                                         case Lbl.Pagos.TiposFormasDePago.Caja:
-                                                                IDbTransaction TransCaja = Factura.Connection.BeginTransaction();
-                                                                Lbl.Cajas.Caja CajaDeposito = MiCobro.CajaDestino;
-                                                                CajaDeposito.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Cobro s/" + Factura.ToString(), Factura.Cliente, MiCobro.Importe, MiCobro.Obs, Factura, null, null);
-                                                                Factura.CancelarImporte(Factura.Total, null);
-                                                                TransCaja.Commit();
+                                                                using (IDbTransaction TransCaja = Factura.Connection.BeginTransaction()) {
+                                                                        Lbl.Cajas.Caja CajaDeposito = MiCobro.CajaDestino;
+                                                                        CajaDeposito.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Cobro s/" + Factura.ToString(), Factura.Cliente, MiCobro.Importe, MiCobro.Obs, Factura, null, null);
+                                                                        Factura.CancelarImporte(Factura.Total, null);
+                                                                        TransCaja.Commit();
+                                                                }
                                                                 PuedeEditarPago = false;
                                                                 break;
                                                         default:

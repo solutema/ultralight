@@ -271,9 +271,10 @@ namespace Lfc.CuentasCorrientes
                                                 if (this.Cliente != null) {
                                                         // Recalculo la cuenta del cliente
                                                         Lui.Forms.MessageBox.Show("Se va a recalcular la Cuenta Corriente", "Aviso");
-                                                        IDbTransaction Trans = this.Cliente.Connection.BeginTransaction();
-                                                        this.Cliente.CuentaCorriente.Recalcular();
-                                                        Trans.Commit();
+                                                        using (IDbTransaction Trans = this.Cliente.Connection.BeginTransaction()) {
+                                                                this.Cliente.CuentaCorriente.Recalcular();
+                                                                Trans.Commit();
+                                                        }
                                                         this.RefreshList();
                                                 }
                                                 e.Handled = true;
@@ -308,16 +309,17 @@ namespace Lfc.CuentasCorrientes
 
                                                 if (ClienteId > 0) {
                                                         Lbl.CuentasCorrientes.CuentaCorriente CtaCte = new Lbl.CuentasCorrientes.CuentaCorriente(new Lbl.Personas.Persona(this.Connection, ClienteId));
-                                                        IDbTransaction Trans = CtaCte.Connection.BeginTransaction();
-                                                        CtaCte.Movimiento(false,
-                                                                FormAjuste.EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
-                                                                FormAjuste.EntradaConcepto.TextDetail,
-                                                                Importe,
-                                                                FormAjuste.EntradaObs.Text,
-                                                                null,
-                                                                null,
-                                                                null);
-                                                        Trans.Commit();
+                                                        using (IDbTransaction Trans = CtaCte.Connection.BeginTransaction()) {
+                                                                CtaCte.Movimiento(false,
+                                                                        FormAjuste.EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
+                                                                        FormAjuste.EntradaConcepto.TextDetail,
+                                                                        Importe,
+                                                                        FormAjuste.EntradaObs.Text,
+                                                                        null,
+                                                                        null,
+                                                                        null);
+                                                                Trans.Commit();
+                                                        }
                                                         this.RefreshList();
                                                 }
                                         }

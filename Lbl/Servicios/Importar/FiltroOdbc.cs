@@ -68,6 +68,7 @@ namespace Lbl.Servicios.Importar
                                 if (ConexionExterna.State == System.Data.ConnectionState.Open)
                                         ConexionExterna.Close();
                                 ConexionExterna.Dispose();
+                                ConexionExterna = null;
                         }
 
                         base.PostImportar();

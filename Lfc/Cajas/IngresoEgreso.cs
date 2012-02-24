@@ -106,28 +106,29 @@ namespace Lfc.Cajas
                         }
 
                         if (aceptarReturn.Success == true) {
-                                IDbTransaction Trans = this.Caja.Connection.BeginTransaction();
-                                if (m_Ingreso)
-                                        this.Caja.Movimiento(false, 
-                                                EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
-                                                EntradaConcepto.TextDetail,
-                                                EntradaPersona.Elemento as Lbl.Personas.Persona,
-                                                EntradaImporte.ValueDecimal,
-                                                EntradaObs.Text,
-                                                null,
-                                                null,
-                                                EntradaComprobante.Text);
-                                else
-                                        this.Caja.Movimiento(false, 
-                                                EntradaConcepto.Elemento as Lbl.Cajas.Concepto, 
-                                                EntradaConcepto.TextDetail, 
-                                                EntradaPersona.Elemento as Lbl.Personas.Persona,
-                                                -EntradaImporte.ValueDecimal, 
-                                                EntradaObs.Text, 
-                                                null,
-                                                null, 
-                                                EntradaComprobante.Text);
-                                Trans.Commit();
+                                using (IDbTransaction Trans = this.Caja.Connection.BeginTransaction()) {
+                                        if (m_Ingreso)
+                                                this.Caja.Movimiento(false,
+                                                        EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
+                                                        EntradaConcepto.TextDetail,
+                                                        EntradaPersona.Elemento as Lbl.Personas.Persona,
+                                                        EntradaImporte.ValueDecimal,
+                                                        EntradaObs.Text,
+                                                        null,
+                                                        null,
+                                                        EntradaComprobante.Text);
+                                        else
+                                                this.Caja.Movimiento(false,
+                                                        EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
+                                                        EntradaConcepto.TextDetail,
+                                                        EntradaPersona.Elemento as Lbl.Personas.Persona,
+                                                        -EntradaImporte.ValueDecimal,
+                                                        EntradaObs.Text,
+                                                        null,
+                                                        null,
+                                                        EntradaComprobante.Text);
+                                        Trans.Commit();
+                                }
                         }
                         return aceptarReturn;
                 }

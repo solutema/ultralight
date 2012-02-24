@@ -322,9 +322,10 @@ namespace Lfc.Cajas
                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Si confirma que el saldo de la cuenta es el indicado se asentará una marca de 'Arqueo', para su propio control.", "¿Confirma que el saldo de la cuenta es de $ " + Lfx.Types.Formatting.FormatCurrency(this.Contadores[3].Total) + "?");
                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                IDbTransaction Trans = this.Caja.Connection.BeginTransaction();
-                                this.Caja.Arqueo();
-                                Trans.Commit();
+                                using (IDbTransaction Trans = this.Caja.Connection.BeginTransaction()) {
+                                        this.Caja.Arqueo();
+                                        Trans.Commit();
+                                }
                                 this.RefreshList();
                         } else {
                                 Lui.Forms.MessageBox.Show("Verifique el saldo de la cuenta y si es necesario realice un ajuste.", "Arqueo");
@@ -375,9 +376,10 @@ namespace Lfc.Cajas
                                                 if (this.Caja != null) {
                                                         // Recalculo la cuenta del cliente
                                                         Lui.Forms.MessageBox.Show("Se va a recalcular el transporte de la Caja", "Aviso");
-                                                        IDbTransaction Trans = this.Caja.Connection.BeginTransaction();
-                                                        this.Caja.Recalcular();
-                                                        Trans.Commit();
+                                                        using (IDbTransaction Trans = this.Caja.Connection.BeginTransaction()) {
+                                                                this.Caja.Recalcular();
+                                                                Trans.Commit();
+                                                        }
                                                         this.RefreshList();
                                                 }
                                                 e.Handled = true;

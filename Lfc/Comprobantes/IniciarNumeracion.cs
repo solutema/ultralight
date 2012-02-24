@@ -122,33 +122,34 @@ namespace Lfc.Comprobantes
                                 OkButton.Enabled = false;
                         }
 
-                        IDbTransaction Trans = this.Connection.BeginTransaction();
-                        qGen.Insert InsertarComprob = new qGen.Insert("comprob");
+                        using (IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                qGen.Insert InsertarComprob = new qGen.Insert("comprob");
 
-                        switch (EntradaTipo.TextKey) {
-                                case "A":
-                                case "B":
-                                case "C":
-                                case "E":
-                                case "M":
-                                        InsertarComprob.Fields.AddWithValue("tipo_fac", "F" + EntradaTipo.TextKey);
-                                        break;
-                                default:
-                                        InsertarComprob.Fields.AddWithValue("tipo_fac", EntradaTipo.TextKey);
-                                        break;
+                                switch (EntradaTipo.TextKey) {
+                                        case "A":
+                                        case "B":
+                                        case "C":
+                                        case "E":
+                                        case "M":
+                                                InsertarComprob.Fields.AddWithValue("tipo_fac", "F" + EntradaTipo.TextKey);
+                                                break;
+                                        default:
+                                                InsertarComprob.Fields.AddWithValue("tipo_fac", EntradaTipo.TextKey);
+                                                break;
+                                }
+                                InsertarComprob.Fields.AddWithValue("id_formapago", 3);
+                                InsertarComprob.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual);
+                                InsertarComprob.Fields.AddWithValue("pv", EntradaPv.ValueInt);
+                                InsertarComprob.Fields.AddWithValue("numero", EntradaDesde.ValueInt - 1);
+                                InsertarComprob.Fields.AddWithValue("fecha", new DateTime(1900, 1, 1, 0, 0, 0));
+                                InsertarComprob.Fields.AddWithValue("id_vendedor", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
+                                InsertarComprob.Fields.AddWithValue("id_cliente", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
+                                InsertarComprob.Fields.AddWithValue("obs", "Marcador de inicio de numeración.");
+                                InsertarComprob.Fields.AddWithValue("impresa", 1);
+                                InsertarComprob.Fields.AddWithValue("anulada", 1);
+                                this.Connection.Execute(InsertarComprob);
+                                Trans.Commit();
                         }
-                        InsertarComprob.Fields.AddWithValue("id_formapago", 3);
-                        InsertarComprob.Fields.AddWithValue("id_sucursal", Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual);
-                        InsertarComprob.Fields.AddWithValue("pv", EntradaPv.ValueInt);
-                        InsertarComprob.Fields.AddWithValue("numero", EntradaDesde.ValueInt - 1);
-                        InsertarComprob.Fields.AddWithValue("fecha", new DateTime(1900, 1, 1, 0, 0, 0));
-                        InsertarComprob.Fields.AddWithValue("id_vendedor", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
-                        InsertarComprob.Fields.AddWithValue("id_cliente", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
-                        InsertarComprob.Fields.AddWithValue("obs", "Marcador de inicio de numeración.");
-                        InsertarComprob.Fields.AddWithValue("impresa", 1);
-                        InsertarComprob.Fields.AddWithValue("anulada", 1);
-                        this.Connection.Execute(InsertarComprob);
-                        Trans.Commit();
 
                         return base.Ok();
                 }

@@ -139,8 +139,11 @@ namespace Lazaro.Impresion
                         else
                                 Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.PrintFail, this.Elemento, Res.Message);
 
-                        if (Trans != null)
+                        if (Trans != null) {
                                 Trans.Commit();
+                                Trans.Dispose();
+                                Trans = null;
+                        }
                         
                         return Res;
 

@@ -75,17 +75,18 @@ namespace Lfc.Comprobantes.Recibos
                                 Trans.Commit();
 
                                 if (Rec.Tipo.ImprimirAlGuardar) {
-                                        IDbTransaction TransImpr = Rec.Connection.BeginTransaction();
-                                        Lazaro.Impresion.Comprobantes.ImpresorRecibo Impresor = new Lazaro.Impresion.Comprobantes.ImpresorRecibo(Rec, TransImpr);
-                                        Lfx.Types.OperationResult ResImprimir = Impresor.Imprimir();
-                                        if (ResImprimir.Success) {
-                                                TransImpr.Commit();
-                                        } else {
-                                                TransImpr.Rollback();
-                                                if (ResImprimir.Message != null)
-                                                        Lui.Forms.MessageBox.Show(ResImprimir.Message, "Error");
-                                                else
-                                                        Lui.Forms.MessageBox.Show("Se creó el recibo, pero no se imprimió correctamente.", "Error");
+                                        using (IDbTransaction TransImpr = Rec.Connection.BeginTransaction()) {
+                                                Lazaro.Impresion.Comprobantes.ImpresorRecibo Impresor = new Lazaro.Impresion.Comprobantes.ImpresorRecibo(Rec, TransImpr);
+                                                Lfx.Types.OperationResult ResImprimir = Impresor.Imprimir();
+                                                if (ResImprimir.Success) {
+                                                        TransImpr.Commit();
+                                                } else {
+                                                        TransImpr.Rollback();
+                                                        if (ResImprimir.Message != null)
+                                                                Lui.Forms.MessageBox.Show(ResImprimir.Message, "Error");
+                                                        else
+                                                                Lui.Forms.MessageBox.Show("Se creó el recibo, pero no se imprimió correctamente.", "Error");
+                                                }
                                         }
                                 }
 

@@ -143,12 +143,13 @@ namespace Lfc.Bancos.Cheques
 
                 public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
                 {
-                        IDbTransaction Trans = this.Connection.BeginTransaction();
-                        qGen.Update Actua = new qGen.Update("bancos_cheques");
-                        Actua.Fields.AddWithValue("estado", 90);
-                        Actua.WhereClause = new qGen.Where("id_cheque", qGen.ComparisonOperators.In, itemIds);
-                        this.Connection.Execute(Actua);
-                        Trans.Commit();
+                        using (IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                qGen.Update Actua = new qGen.Update("bancos_cheques");
+                                Actua.Fields.AddWithValue("estado", 90);
+                                Actua.WhereClause = new qGen.Where("id_cheque", qGen.ComparisonOperators.In, itemIds);
+                                this.Connection.Execute(Actua);
+                                Trans.Commit();
+                        }
 
                         this.RefreshList();
 
@@ -259,14 +260,15 @@ namespace Lfc.Bancos.Cheques
                                 } else {
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Al depositar un cheque en una cuenta bancaria propia, puede marcarlo como depositado para control interno.\nSirve sólamente para depositos en cajas propias. Para depósitos en cajas de terceros utilice la opción 'Efectivizar'.", "¿Desea marcar los cheques seleccionados como depositados?");
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                                IDbTransaction Trans = this.Connection.BeginTransaction();
-                                                qGen.Update Depo = new qGen.Update("bancos_cheques");
-                                                Depo.Fields.AddWithValue("estado", 5);
-                                                Depo.WhereClause = new qGen.Where();
-                                                Depo.WhereClause.AddWithValue("estado", 0);
-                                                Depo.WhereClause.AddWithValue("id_cheque", qGen.ComparisonOperators.In, Codigos);
-                                                this.Connection.Execute(Depo);
-                                                Trans.Commit();
+                                                using (IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                                        qGen.Update Depo = new qGen.Update("bancos_cheques");
+                                                        Depo.Fields.AddWithValue("estado", 5);
+                                                        Depo.WhereClause = new qGen.Where();
+                                                        Depo.WhereClause.AddWithValue("estado", 0);
+                                                        Depo.WhereClause.AddWithValue("id_cheque", qGen.ComparisonOperators.In, Codigos);
+                                                        this.Connection.Execute(Depo);
+                                                        Trans.Commit();
+                                                }
                                                 this.RefreshList();
                                         }
                                 }

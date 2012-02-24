@@ -174,11 +174,10 @@ namespace Lazaro.WinMain.Principal
                                                 DialogoArchivo.Multiselect = false;
                                                 DialogoArchivo.Title = "Inyectar SQL";
                                                 if (DialogoArchivo.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                                                        System.IO.Stream Archivo = System.IO.File.OpenRead(DialogoArchivo.FileName);
-                                                        System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default);
-
-                                                        using (Lfx.Data.Connection ConexionActualizar = Lfx.Workspace.Master.GetNewConnection("Inyectar SQL")) {
-                                                                IDbTransaction Trans = ConexionActualizar.BeginTransaction();
+                                                        using(System.IO.Stream Archivo = System.IO.File.OpenRead(DialogoArchivo.FileName))
+                                                        using(System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default))
+                                                        using (Lfx.Data.Connection ConexionActualizar = Lfx.Workspace.Master.GetNewConnection("Inyectar SQL"))
+                                                        using (IDbTransaction Trans = ConexionActualizar.BeginTransaction()) {
                                                                 string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
                                                                 do {
                                                                         string Comando = Lfx.Data.Connection.GetNextCommand(ref SqlActualizacion);
@@ -190,8 +189,6 @@ namespace Lazaro.WinMain.Principal
                                                                 }
                                                                 while (SqlActualizacion.Length > 0);
                                                                 Trans.Commit();
-                                                                Lector.Dispose();
-                                                                Archivo.Dispose();
                                                         }
                                                 }
                                         }

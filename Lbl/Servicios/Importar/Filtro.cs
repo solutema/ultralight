@@ -138,7 +138,10 @@ namespace Lbl.Servicios.Importar
                                 if (mapa.Limite > 0 && RowNumber > mapa.Limite)
                                         break;
                         }
+
                         Trans.Commit();
+                        Trans.Dispose();
+                        Trans = null;
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Importar.RegistrosImportados." + this.Nombre + "." + mapa.Nombre, RowNumber);
                 }
                 
@@ -295,35 +298,36 @@ namespace Lbl.Servicios.Importar
                 /// </summary>
                 public void PrepararTablasLazaro()
                 {
-                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
-                        System.Collections.Generic.List<string> TablasModificadas = new List<string>();
-                        System.Console.WriteLine("Lbl.Servicios.Importar.Filtro: Preparando tablas internas...");
-                        foreach (MapaDeTabla Map in this.MapaDeTablas) {
-                                if (Map.ColumnaIdExterna != null) {
-                                        Lfx.Data.TableStructure Tabla = Lfx.Workspace.Master.Structure.Tables[Map.TablaLazaro];
-                                        if (Tabla.Columns.ContainsKey(Map.ColumnaIdLazaro) == false) {
-                                                // Si la columna Id no existe, agrego un tag
-                                                Lfx.Data.Tag ImportTag = new Lfx.Data.Tag(Map.TablaLazaro, Map.ColumnaIdLazaro, "ImportId");
-                                                ImportTag.DataBase = this.Connection;
-                                                ImportTag.FieldType = Lfx.Data.DbTypes.VarChar;
-                                                ImportTag.Nullable = true;
-                                                ImportTag.Internal = true;
-                                                this.Connection.Tables[Map.TablaLazaro].Tags.Add(ImportTag);
-                                                ImportTag.Save();
-                                                TablasModificadas.Add(Map.TablaLazaro);
-                                                Lfx.Workspace.Master.Structure.LoadBuiltIn();
+                        using (System.Data.IDbTransaction Trans = this.Connection.BeginTransaction()) {
+                                System.Collections.Generic.List<string> TablasModificadas = new List<string>();
+                                System.Console.WriteLine("Lbl.Servicios.Importar.Filtro: Preparando tablas internas...");
+                                foreach (MapaDeTabla Map in this.MapaDeTablas) {
+                                        if (Map.ColumnaIdExterna != null) {
+                                                Lfx.Data.TableStructure Tabla = Lfx.Workspace.Master.Structure.Tables[Map.TablaLazaro];
+                                                if (Tabla.Columns.ContainsKey(Map.ColumnaIdLazaro) == false) {
+                                                        // Si la columna Id no existe, agrego un tag
+                                                        Lfx.Data.Tag ImportTag = new Lfx.Data.Tag(Map.TablaLazaro, Map.ColumnaIdLazaro, "ImportId");
+                                                        ImportTag.DataBase = this.Connection;
+                                                        ImportTag.FieldType = Lfx.Data.DbTypes.VarChar;
+                                                        ImportTag.Nullable = true;
+                                                        ImportTag.Internal = true;
+                                                        this.Connection.Tables[Map.TablaLazaro].Tags.Add(ImportTag);
+                                                        ImportTag.Save();
+                                                        TablasModificadas.Add(Map.TablaLazaro);
+                                                        Lfx.Workspace.Master.Structure.LoadBuiltIn();
+                                                }
                                         }
                                 }
-                        }
 
-                        // Me aseguro de que los tags se incorporen a las estructuras de la base de datos
-                        if (TablasModificadas.Count > 0) {
-                                foreach (string NombreTabla in TablasModificadas) {
-                                        Lfx.Data.TableStructure Tabla = Lfx.Workspace.Master.Structure.Tables[NombreTabla];
-                                        this.Connection.SetTableStructure(Tabla);
+                                // Me aseguro de que los tags se incorporen a las estructuras de la base de datos
+                                if (TablasModificadas.Count > 0) {
+                                        foreach (string NombreTabla in TablasModificadas) {
+                                                Lfx.Data.TableStructure Tabla = Lfx.Workspace.Master.Structure.Tables[NombreTabla];
+                                                this.Connection.SetTableStructure(Tabla);
+                                        }
                                 }
+                                Trans.Commit();
                         }
-                        Trans.Commit();
                 }
 
 

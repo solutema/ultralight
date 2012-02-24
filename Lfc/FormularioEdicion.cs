@@ -505,23 +505,24 @@ namespace Lfc
                                         Progreso.Modal = false;
                                         Progreso.Begin();
 
-                                        IDbTransaction Trans = this.Elemento.Connection.BeginTransaction();
-                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, Trans);
-                                        Impresor.Impresora = Impresora;
-                                        Res = Impresor.Imprimir();
-                                        Progreso.End();
-                                        if (Res.Success == false) {
-                                                if (Impresor.Transaction != null)
-                                                        // Puede que la transacción ya haya sido finalizada por el impresor
-                                                        Impresor.Transaction.Rollback();
-                                                Lui.Forms.MessageBox.Show(Res.Message, "Error");
-                                        } else {
-                                                if (Impresor.Transaction != null)
-                                                        // Puede que la transacción ya haya sido finalizada por el impresor
-                                                        Impresor.Transaction.Commit();
-                                                this.Elemento.Cargar();
-                                                this.FromRow(this.Elemento);
-                                                this.ControlUnico.AfterPrint();
+                                        using (IDbTransaction Trans = this.Elemento.Connection.BeginTransaction()) {
+                                                Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, Trans);
+                                                Impresor.Impresora = Impresora;
+                                                Res = Impresor.Imprimir();
+                                                Progreso.End();
+                                                if (Res.Success == false) {
+                                                        if (Impresor.Transaction != null)
+                                                                // Puede que la transacción ya haya sido finalizada por el impresor
+                                                                Impresor.Transaction.Rollback();
+                                                        Lui.Forms.MessageBox.Show(Res.Message, "Error");
+                                                } else {
+                                                        if (Impresor.Transaction != null)
+                                                                // Puede que la transacción ya haya sido finalizada por el impresor
+                                                                Impresor.Transaction.Commit();
+                                                        this.Elemento.Cargar();
+                                                        this.FromRow(this.Elemento);
+                                                        this.ControlUnico.AfterPrint();
+                                                }
                                         }
                                 }
                         } 

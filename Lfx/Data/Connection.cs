@@ -1015,18 +1015,18 @@ LEFT JOIN pg_attribute
                         if (this.IsOpen() == false)
                                 this.Open();
 
-                        System.Data.IDbCommand TempCommand = this.GetCommand(updateCommand);
-                        while (true) {
-                                try {
-                                        TempCommand.Connection = this.DbConnection;
-                                        this.ResetKeepAliveTimer();
-                                        int Res = TempCommand.ExecuteNonQuery();
-                                        TempCommand.Dispose();
-                                        return Res;
-                                } catch (Exception ex) {
-                                        if (this.TryToRecover(ex)) {
-                                                ex.Data.Add("Command", updateCommand.ToString());
-                                                throw ex;
+                        using (System.Data.IDbCommand TempCommand = this.GetCommand(updateCommand)) {
+                                while (true) {
+                                        try {
+                                                TempCommand.Connection = this.DbConnection;
+                                                this.ResetKeepAliveTimer();
+                                                int Res = TempCommand.ExecuteNonQuery();
+                                                return Res;
+                                        } catch (Exception ex) {
+                                                if (this.TryToRecover(ex)) {
+                                                        ex.Data.Add("Command", updateCommand.ToString());
+                                                        throw ex;
+                                                }
                                         }
                                 }
                         }

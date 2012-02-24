@@ -357,8 +357,8 @@ namespace Lazaro.WinMain
 
                                         Lfx.Types.OperationResult ResultadoImpresion;
 
-                                        using (Lfx.Data.Connection DataBaseImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir comprobante")) {
-                                                System.Data.IDbTransaction Trans = DataBaseImprimir.BeginTransaction(System.Data.IsolationLevel.Serializable);
+                                        using (Lfx.Data.Connection DataBaseImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir comprobante"))
+                                        using (System.Data.IDbTransaction Trans = DataBaseImprimir.BeginTransaction()) {
                                                 Lbl.Comprobantes.ComprobanteConArticulos Comprob = new Lbl.Comprobantes.ComprobanteConArticulos(DataBaseImprimir, IdComprobante);
                                                 Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impresor = new Impresion.Comprobantes.ImpresorComprobanteConArticulos(Comprob, Trans);
                                                 ResultadoImpresion = Impresor.Imprimir();
@@ -366,8 +366,6 @@ namespace Lazaro.WinMain
                                                         Trans.Commit();
                                                 else
                                                         Trans.Rollback();
-                                                Trans.Dispose();
-                                                DataBaseImprimir.Dispose();
                                         }
 
                                         return ResultadoImpresion;
@@ -377,24 +375,25 @@ namespace Lazaro.WinMain
                                         if (TipoElem != null && itemId > 0) {
                                                 using (Lfx.Data.Connection DbImprimir = Lfx.Workspace.Master.GetNewConnection("Imprimir " + TipoElem.ToString() + " " + itemId.ToString())) {
                                                         Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(TipoElem, DbImprimir, itemId);
-                                                        System.Data.IDbTransaction Trans = DbImprimir.BeginTransaction();
-                                                        Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(Elem, Trans);
+                                                        Lfx.Types.OperationResult Res;
+                                                        using (System.Data.IDbTransaction Trans = DbImprimir.BeginTransaction()) {
+                                                                Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(Elem, Trans);
 
-                                                        string ImprimirEn = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
-                                                        if (ImprimirEn == "EN") {
-                                                                // El nombre de la impresora es lo que resta del comando
-                                                                // No lo puedo separar con GetNextToken porque puede contener espacios
-                                                                string NombreImpresora = comando;
-                                                                Impresor.Impresora = Lbl.Impresion.Impresora.InstanciarImpresoraLocal(DbImprimir, NombreImpresora);
-                                                        }
+                                                                string ImprimirEn = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
+                                                                if (ImprimirEn == "EN") {
+                                                                        // El nombre de la impresora es lo que resta del comando
+                                                                        // No lo puedo separar con GetNextToken porque puede contener espacios
+                                                                        string NombreImpresora = comando;
+                                                                        Impresor.Impresora = Lbl.Impresion.Impresora.InstanciarImpresoraLocal(DbImprimir, NombreImpresora);
+                                                                }
 
-                                                        Lfx.Types.OperationResult Res = Impresor.Imprimir();
-                                                        if (Res.Success) {
-                                                                Trans.Commit();
-                                                        } else {
-                                                                Trans.Rollback();
+                                                                Res = Impresor.Imprimir();
+                                                                if (Res.Success) {
+                                                                        Trans.Commit();
+                                                                } else {
+                                                                        Trans.Rollback();
+                                                                }
                                                         }
-                                                        Trans.Dispose();
                                                         return Res;
                                                 }
                                         }
