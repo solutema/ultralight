@@ -492,7 +492,8 @@ namespace Lfx.Backups
                                                                         break;
                                                         }
                                                         if (EndTable || Insertador.Count >= 1000) {
-                                                                DataBase.ExecuteSql(Insertador.ToString());
+                                                                if (Insertador.Count > 0)
+                                                                        DataBase.Execute(Insertador);
                                                                 Insertador.Clear();
                                                                 Progreso.Value = (int)(Lector.Position / 1024);
                                                         }

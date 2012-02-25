@@ -441,7 +441,7 @@ namespace Lfx
                 /// <param name="omitPreAndPostSql">Omitir la ejecución de comandos Pre- y Post-actualización de estructura. Esto es útil cuando se actualiza una estructura vacía, por ejemplo al crear una base de datos nueva.</param>
                 public void CheckAndUpdateDataBaseStructure(Lfx.Data.Connection dataBase, bool omitPreAndPostSql)
                 {
-                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Estructuras de Datos", "Se está analizando la estructura del almacén de datos y se van a realizar cambios si fuera necesario.");
+                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando estructuras de datos", "Se está analizando la estructura del almacén de datos y se van a realizar cambios si fuera necesario.");
                         Progreso.Modal = true;
                         Progreso.Begin();
 

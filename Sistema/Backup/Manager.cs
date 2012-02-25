@@ -108,10 +108,11 @@ namespace Lazaro.WinMain.Backup
                                 string NombreCarpeta = Listado.SelectedItems[0].Text;
                                 string FechaYHora = Listado.SelectedItems[0].SubItems[2].Text;
 
-                                WinMain.Backup.Restore OPregunta = new WinMain.Backup.Restore();
-                                OPregunta.lblFecha.Text = FechaYHora;
-                                if (OPregunta.ShowDialog() == DialogResult.OK) {
+                                WinMain.Backup.Restore Pregunta = new WinMain.Backup.Restore();
+                                Pregunta.lblFecha.Text = FechaYHora;
+                                if (Pregunta.ShowDialog() == DialogResult.OK) {
                                         this.BackupManager.Restore(NombreCarpeta);
+                                        Lfx.Workspace.Master.RunTime.Execute("REBOOT");
                                         this.Close();
                                 }
                         }
