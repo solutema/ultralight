@@ -205,7 +205,7 @@ namespace Lfc.Comprobantes.Facturas
                         using (Lfx.Data.Connection Conn = Lfx.Workspace.Master.GetNewConnection("Reimpresión de comprobantes")) {
 
                                 int Cantidad = Math.Abs(hasta - desde);
-                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Reimprimiendo...", "Se están reimprimiendo " + Cantidad.ToString() + " comprobantes.");
+                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Reimprimiendo", "Se están reimprimiendo " + Cantidad.ToString() + " comprobantes.");
                                 Progreso.Cancelable = true;
                                 Progreso.Max = Cantidad;
                                 Progreso.Modal = true;

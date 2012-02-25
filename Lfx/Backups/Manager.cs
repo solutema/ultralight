@@ -329,7 +329,7 @@ namespace Lfx.Backups
                         if (!System.IO.Directory.Exists(Lfx.Environment.Folders.TemporaryFolder + WorkFolder))
                                 System.IO.Directory.CreateDirectory(Lfx.Environment.Folders.TemporaryFolder + WorkFolder);
 
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Creando Copia de Respaldo", "Se está creando un volcado completo del almacén de datos en una carpeta, para resguardar.");
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Creando copia de respaldo", "Se está creando un volcado completo del almacén de datos en una carpeta, para resguardar.");
                         Progreso.Modal = true;
                         Progreso.Advertise = true;
                         Progreso.Begin();
@@ -422,7 +422,7 @@ namespace Lfx.Backups
                         if (Carpeta != null && Carpeta.Length > 0 && System.IO.Directory.Exists(this.BackupPath + Carpeta)) {
                                 bool UsandoArchivoComprimido = false;
 
-                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Restaurando Copia de Respaldo", "Este proceso va a demorar varios minutos. Por favor no lo interrumpa");
+                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Restaurando copia de respaldo", "Este proceso va a demorar varios minutos. Por favor no lo interrumpa");
                                 Progreso.Modal = true;
 
                                 /* Progreso.ChangeStatus("Descomprimiendo");

@@ -168,7 +168,7 @@ namespace Lfc.Tarjetas.Cupones
                         }
 
                         using (Lfc.Tarjetas.Cupones.Acreditar FormularioAcreditacion = new Lfc.Tarjetas.Cupones.Acreditar()) {
-                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Acreditando Cupones", "Se están marcando los cupones seleccionados como 'Acreditado'.");
+                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Acreditando cupones", "Se están marcando los cupones seleccionados como 'Acreditado'.");
                                 Progreso.Modal = false;
 
                                 decimal Total = 0;
