@@ -281,7 +281,7 @@ namespace Lfx
                                         return;
                                 }
 
-                                Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando Versión de los Datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
+                                Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando versión de los datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
                                 Progreso.Modal = true;
                                 Progreso.Begin();
 

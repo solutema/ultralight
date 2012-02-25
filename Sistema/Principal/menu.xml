@@ -3,7 +3,7 @@
     <Opcion Nombre="&amp;Acerca de Lázaro" Funcion="VER" />
     <Opcion Nombre="&amp;Calculadora" Funcion="CALC" />
     <Opcion Nombre="&amp;Fiscal" Funcion="FISCAL PANEL" />
-    <Opcion Nombre="&amp;Copia de Respaldo" Funcion="BACKUP MANAGER" />
+    <Opcion Nombre="Copia de &amp;Respaldo" Funcion="BACKUP MANAGER" />
     <Opcion Nombre="&amp;Preferencias" Funcion="CONFIG" />
     <Opcion Nombre="&amp;Usuarios" Funcion="LISTAR Lbl.Personas.Usuario" />
     <Opcion Nombre="&amp;Cambiar Contraseña" Funcion="CHANGEPWD" />
