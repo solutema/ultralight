@@ -813,6 +813,7 @@ namespace Lfc.Articulos
                         this.EntradaPeriodicidad.PlaceholderText = "¿Cada cuánto tiempo se factura este servicio?";
                         this.EntradaPeriodicidad.SetData = new string[] {
         "Ninguna|0,",
+        "Por ocasión|9",
         "Por minuto|1",
         "Por hora|2",
         "Diaria|3",
@@ -936,9 +937,9 @@ namespace Lfc.Articulos
                 internal Lui.Forms.Label label21;
                 internal Lui.Forms.Label label14;
                 internal Lcc.Entrada.CodigoDetalle EntradaProveedor;
-                private Lui.Forms.Panel PanelServicio;
+                internal Lui.Forms.Panel PanelServicio;
                 internal Lui.Forms.Label label22;
                 internal Lui.Forms.ComboBox EntradaPeriodicidad;
-                private Lui.Forms.Panel PanelProducto;
+                internal Lui.Forms.Panel PanelProducto;
         }
 }

@@ -45,6 +45,7 @@ namespace Lbl.Articulos
                 PorMes = 6,
                 PorBimestre = 7,
                 PorSemestre = 8,
-                PorAno = 9
+                PorAno = 9,
+                PorOcasion = 999
         }
 }
