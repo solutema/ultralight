@@ -33,13 +33,13 @@ using System.Windows.Forms;
 
 namespace Lfc.Comprobantes.Facturas
 {
-        public class IvaVentas : Lfc.FormularioListado
+        public class IvaCompras : Lfc.FormularioListado
         {
                 protected internal Lfx.Types.DateRange m_Fecha = new Lfx.Types.DateRange("mes-1");
                 protected internal int m_Sucursal, m_Anuladas = 1, m_PV = 0;
                 protected internal string m_Letra = "*";
 
-                public IvaVentas()
+                public IvaCompras()
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Factura), Lbl.Sys.Permisos.Operaciones.Listar) == false) {
                                 this.DialogResult = System.Windows.Forms.DialogResult.Abort;
@@ -133,9 +133,9 @@ namespace Lfc.Comprobantes.Facturas
                 {
                         string Titulo;
                         if (m_Fecha.HasRange)
-                                Titulo = "Libro IVA Ventas " + m_Fecha.From.ToString(Lfx.Types.Formatting.DateTime.MonthAndYearPattern);
+                                Titulo = "Libro IVA Compras " + m_Fecha.From.ToString(Lfx.Types.Formatting.DateTime.MonthAndYearPattern);
                         else
-                                Titulo = "Libro IVA Ventas";
+                                Titulo = "Libro IVA Compras";
 
                         Titulo += " - " + Lbl.Sys.Config.Empresa.RazonSocial;
 
@@ -150,7 +150,7 @@ namespace Lfc.Comprobantes.Facturas
                 protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
-                        this.CustomFilters.AddWithValue("compra", 0);
+                        this.CustomFilters.AddWithValue("compra", 1);
 
                         switch (this.Definicion.ElementoTipo.ToString()) {
                                 case "Lbl.Comprobantes.NotaDeCredito":

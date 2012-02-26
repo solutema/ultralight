@@ -61,31 +61,23 @@ namespace Lfc.Articulos
                         this.MatrizArticulos = new Lcc.Entrada.Articulos.MatrizDetalleComprobante();
                         this.SuspendLayout();
                         // 
-                        // OkButton
+                        // MatrizArticulos
                         // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
-                        // 
-                        // ProductArray
-                        // 
-                        this.MatrizArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.MatrizArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.MatrizArticulos.AutoScroll = true;
                         this.MatrizArticulos.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.MatrizArticulos.Count = 0;
+                        this.MatrizArticulos.Font = new System.Drawing.Font("Segoe UI", 9.75F);
                         this.MatrizArticulos.FreeTextCode = "*";
-                        this.MatrizArticulos.Location = new System.Drawing.Point(12, 12);
+                        this.MatrizArticulos.Location = new System.Drawing.Point(24, 24);
                         this.MatrizArticulos.LockPrice = true;
                         this.MatrizArticulos.LockQuantity = false;
                         this.MatrizArticulos.LockText = false;
-                        this.MatrizArticulos.Name = "ProductArray";
+                        this.MatrizArticulos.Name = "MatrizArticulos";
                         this.MatrizArticulos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
                         this.MatrizArticulos.ShowStock = false;
-                        this.MatrizArticulos.Size = new System.Drawing.Size(610, 294);
+                        this.MatrizArticulos.Size = new System.Drawing.Size(584, 272);
                         this.MatrizArticulos.TabIndex = 0;
                         // 
                         // Receta
@@ -95,7 +87,7 @@ namespace Lfc.Articulos
                         this.ClientSize = new System.Drawing.Size(634, 372);
                         this.Controls.Add(this.MatrizArticulos);
                         this.Name = "Receta";
-                        this.Text = "Receta";
+                        this.Text = "Conformación de producto compuesto";
                         this.Controls.SetChildIndex(this.MatrizArticulos, 0);
                         this.ResumeLayout(false);
 

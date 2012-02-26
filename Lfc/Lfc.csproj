@@ -109,6 +109,9 @@
     <Compile Include="Comprobantes\Compra\Editar.Designer.cs">
       <DependentUpon>Editar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprobantes\Facturas\IvaCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Comprobantes\Facturas\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
