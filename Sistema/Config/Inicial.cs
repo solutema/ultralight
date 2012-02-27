@@ -224,61 +224,68 @@ namespace Lazaro.WinMain.Config
                                 Lfx.Data.DataBaseCache.DefaultCache.SlowLink = false;
                                 Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "";
 
+                                Lfx.Types.OperationResult Res = this.ProbarServidor();
+                                EtiquetaPruebaResultado.Text = Res.Message;
+                                BotonSiguiente.Enabled = Res.Success;
+                        }
+                }
+
+
+                private Lfx.Types.OperationResult ProbarServidor()
+                {
+                        try {
+                                EtiquetaPruebaResultado.Text = "Probando la conexión...";
+                                EtiquetaPruebaError.Text = "";
+                                System.Windows.Forms.Application.DoEvents();
+
+                                Lfx.Workspace.Master.MasterConnection.Open();
+
+                                bool TengoDb = false;
                                 try {
-                                        EtiquetaPruebaResultado.Text = "Probando la conexión...";
-                                        EtiquetaPruebaError.Text = "";
-                                        System.Windows.Forms.Application.DoEvents();
-
-                                        Lfx.Workspace.Master.MasterConnection.Open();
-
-                                        bool TengoDb = false;
+                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("USE lazaro");
+                                        TengoDb = true;
+                                } catch {
                                         try {
+                                                Lfx.Workspace.Master.MasterConnection.ExecuteSql("CREATE DATABASE lazaro DEFAULT CHARACTER SET utf8");
                                                 Lfx.Workspace.Master.MasterConnection.ExecuteSql("USE lazaro");
                                                 TengoDb = true;
                                         } catch {
-                                                try {
-                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("CREATE DATABASE lazaro DEFAULT CHARACTER SET utf8");
-                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("USE lazaro");
-                                                        TengoDb = true;
-                                                } catch {
-                                                        TengoDb = false;
-                                                }
+                                                TengoDb = false;
                                         }
-
-                                        Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "lazaro";
-                                        Lfx.Workspace.Master.MasterConnection.Close();
-                                        Lfx.Workspace.Master.MasterConnection.Open();
-                                        if (TengoDb) {
-                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DataSource", Lfx.Data.DataBaseCache.DefaultCache.ServerName);
-                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
-                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", Lfx.Data.DataBaseCache.DefaultCache.DataBaseName);
-                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "User", Lfx.Data.DataBaseCache.DefaultCache.UserName);
-                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "Password", Lfx.Data.DataBaseCache.DefaultCache.Password);
-                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "SlowLink", Lfx.Data.DataBaseCache.DefaultCache.SlowLink ? "1" : "0");
-                                                Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Company", "Branch", 1);
-
-                                                try {
-                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("GRANT ALL ON lazaro.* TO 'lazaro'@'localhost' IDENTIFIED BY ''");
-                                                        Lfx.Workspace.Master.MasterConnection.ExecuteSql("GRANT ALL ON lazaro.* TO 'lazaro'@'%' IDENTIFIED BY ''");
-                                                } catch {
-                                                        // No pude crear el acceso para otros usuarios... supongo que no importa
-                                                }
-                                        } else {
-                                        }
-
-                                        EtiquetaPruebaResultado.Text = "Se realizó una prueba de la configuración del almacén de datos. Todo parece estar en orden. Haga clic en 'Siguiente' para continuar.";
-                                        if (CheckEsteEquipo.Checked)
-                                                EtiquetaPruebaError.Text = "Si va a instalar Lázaro en otros equipos de la red, puede utilizar este equipo como servidor. El nombre de este equipo es " + System.Environment.MachineName;
-                                        else
-                                                EtiquetaPruebaError.Text = "";
-                                        BotonSiguiente.Visible = true;
-                                } catch (Exception ex) {
-                                        EtiquetaPruebaResultado.Text = "No se pudo conectar al almacén de datos proporcionado. Haga clic en el botón 'Anterior' para ir a la pantalla anterior y volver a intentarlo.";
-                                        EtiquetaPruebaError.Text = "El mensaje de error es: " + ex.Message;
-                                        BotonSiguiente.Visible = false;
                                 }
+
+                                Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "lazaro";
+                                Lfx.Workspace.Master.MasterConnection.Close();
+                                Lfx.Workspace.Master.MasterConnection.Open();
+                                if (TengoDb) {
+                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DataSource", Lfx.Data.DataBaseCache.DefaultCache.ServerName);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "ConnectionType", "mysql");
+                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "DatabaseName", Lfx.Data.DataBaseCache.DefaultCache.DataBaseName);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "User", Lfx.Data.DataBaseCache.DefaultCache.UserName);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "Password", Lfx.Data.DataBaseCache.DefaultCache.Password);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Data", "SlowLink", Lfx.Data.DataBaseCache.DefaultCache.SlowLink ? "1" : "0");
+                                        Lfx.Workspace.Master.CurrentConfig.WriteLocalSetting("Company", "Branch", 1);
+
+                                        try {
+                                                Lfx.Workspace.Master.MasterConnection.ExecuteSql("GRANT ALL ON lazaro.* TO 'lazaro'@'localhost' IDENTIFIED BY ''");
+                                                Lfx.Workspace.Master.MasterConnection.ExecuteSql("GRANT ALL ON lazaro.* TO 'lazaro'@'%' IDENTIFIED BY ''");
+                                        } catch {
+                                                // No pude crear el acceso para otros usuarios... supongo que no importa
+                                        }
+                                } else {
+                                }
+
+                                if (CheckEsteEquipo.Checked)
+                                        EtiquetaPruebaError.Text = "Si va a instalar Lázaro en otros equipos de la red, puede utilizar este equipo como servidor. El nombre de este equipo es " + System.Environment.MachineName;
+                                else
+                                        EtiquetaPruebaError.Text = "";
+                                return new Lfx.Types.SuccessOperationResult("Se realizó una prueba de la configuración del almacén de datos. Todo parece estar en orden. Haga clic en 'Siguiente' para continuar.");
+                        } catch (Exception ex) {
+                                EtiquetaPruebaError.Text = "El mensaje de error es: " + ex.Message;
+                                return new Lfx.Types.SuccessOperationResult("No se pudo conectar al almacén de datos proporcionado. Haga clic en el botón 'Anterior' para ir a la pantalla anterior y volver a intentarlo.");
                         }
                 }
+
 
                 private void BotonSiguiente_Click(object sender, EventArgs e)
                 {
@@ -431,7 +438,7 @@ namespace Lazaro.WinMain.Config
                                 this.ThreadDescargar = null;
                         }
 
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Instalar servidor SQL", "Se está descargando e instalando un servidor SQL en este equipo");
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Instalar servidor SQL", "Se está descargando, instalando y configurando un servidor SQL en este equipo");
                         Progreso.Advertise = false;
                         Progreso.Modal = false;
                         Progreso.Begin();
@@ -451,8 +458,8 @@ namespace Lazaro.WinMain.Config
                         }
 
                         EtiquetaDescargando.Text = "Reiniciando el asistente...";
-                        EntradaServidor.Text = "localhost";
-                        Paso = Inicial.Pasos.PruebaServidor;
+                        //EntradaServidor.Text = "localhost";
+                        Paso = Inicial.Pasos.Final;
                         this.MostrarPaneles();
                 }
 
@@ -462,9 +469,9 @@ namespace Lazaro.WinMain.Config
                         string CarpetaDescarga;
 
                         if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\" + InstaladorMySQL)) {
-                                progreso.ChangeStatus("Descargando...");
                                 CarpetaDescarga = Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\";
                         } else {
+                                progreso.ChangeStatus("Descargando...");
                                 CarpetaDescarga = Lfx.Environment.Folders.TemporaryFolder;
                                 Lfx.Environment.Folders.EnsurePathExists(CarpetaDescarga);
                                 using (WebClient Cliente = new WebClient()) {
@@ -477,7 +484,20 @@ namespace Lazaro.WinMain.Config
                         }
 
                         progreso.ChangeStatus("Instalando...");
-                        Lfx.Environment.Shell.Execute(CarpetaDescarga + InstaladorMySQL, "/silent", System.Diagnostics.ProcessWindowStyle.Normal, true);
+                        Lfx.Environment.Shell.Execute(CarpetaDescarga + InstaladorMySQL, "/verysilent /sp- /norestart", System.Diagnostics.ProcessWindowStyle.Normal, true);
+
+                        Lfx.Data.DataBaseCache.DefaultCache.ServerName = "localhost";
+                        Lfx.Data.DataBaseCache.DefaultCache.UserName = "root";
+                        Lfx.Data.DataBaseCache.DefaultCache.Password = "";
+                        Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
+                        Lfx.Data.DataBaseCache.DefaultCache.SlowLink = false;
+                        Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "";
+                        
+                        Lfx.Types.OperationResult Res = this.ProbarServidor();
+                        if (Res.Success) {
+                                if (Lfx.Workspace.Master.IsPrepared() == false)
+                                        Lfx.Workspace.Master.Prepare(progreso);
+                        }
 
                         progreso.End();
                 }

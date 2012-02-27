@@ -111,7 +111,7 @@ namespace Lazaro.WinMain.Config
                         this.BotonReintentar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonReintentar.Subtext = "F8";
                         this.BotonReintentar.TabIndex = 0;
-                        this.BotonReintentar.Text = "Volver a Intentar";
+                        this.BotonReintentar.Text = "Volver a intentar";
                         this.BotonReintentar.Click += new System.EventHandler(this.BotonReintentar_Click);
                         // 
                         // BotonSalir

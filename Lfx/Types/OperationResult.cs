@@ -78,6 +78,11 @@ namespace Lfx.Types
 			: base(true)
 		{
 		}
+
+                public SuccessOperationResult(string message)
+                        : base(true, message)
+                {
+                }
 	}
 
         /// <summary>

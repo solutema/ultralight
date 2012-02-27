@@ -590,7 +590,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                                 Lfx.Types.OperationResult Res;
                                                 using (Lfx.Data.Connection DataBase = Lfx.Workspace.Master.GetNewConnection("Preparar almacén de datos")) {
                                                         DataBase.RequiresTransaction = false;
-                                                        Res = Lfx.Workspace.Master.Prepare();
+                                                        Res = Lfx.Workspace.Master.Prepare(null);
                                                 }
                                                 if (Res.Success == false)
                                                         return Res;

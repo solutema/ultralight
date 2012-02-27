@@ -85,10 +85,10 @@ namespace Lui.Forms
                         if (control.Created == false)
                                 return;
 
+                        control.MaximumSize = new System.Drawing.Size(108, 40);
                         control.MinimumSize = new Size(96, 32);
 
-                        switch(this.FlowDirection)
-                        {
+                        switch (this.FlowDirection) {
                                 case System.Windows.Forms.FlowDirection.BottomUp:
                                         control.Margin = new Padding(0, this.Padding.Bottom / 2, 0, 0);
                                         break;

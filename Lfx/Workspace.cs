@@ -281,7 +281,7 @@ namespace Lfx
                                         return;
                                 }
 
-                                Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando versión de los datos", "Se están analizando los datos del almacén de datos y se van a realizar cambios si fuera necesario.");
+                                Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando estructuras de datos", "Se está analizando la estructura del almacén de datos y se van a realizar cambios si fuera necesario");
                                 Progreso.Modal = true;
                                 Progreso.Begin();
 
@@ -305,7 +305,7 @@ namespace Lfx
                                 if (ignorarFecha || Diferencia.TotalHours > 1) {
                                         // Lázaro es más nuevo que la BD por más de 1 hora
                                         Progreso.ChangeStatus("Verificando estructuras");
-                                        this.CheckAndUpdateDataBaseStructure(Conn, false);
+                                        this.CheckAndUpdateDataBaseStructure(Conn, false, Progreso);
                                         if (noTocarDatos == false)
                                                 this.CurrentConfig.WriteGlobalSetting("Sistema.DB.VersionEstructura", Lfx.Types.Formatting.FormatDateTimeSql(FechaLazaroExe.ToUniversalTime()));
                                 }
@@ -341,15 +341,19 @@ namespace Lfx
                 /// <summary>
                 /// Prepara un servidor para ser utilizado por Lázaro. Crea estructuras y realiza una carga inicial de datos.
                 /// </summary>
-                public Lfx.Types.OperationResult Prepare()
+                public Lfx.Types.OperationResult Prepare(Lfx.Types.OperationProgress progreso)
                 {
-                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Preparando el almacén de datos", "Se están creando las tablas de datos y se va realizar una carga inicial de datos. Esta operación puede demorar varios minutos.");
-                        Progreso.Modal = true;
-                        Progreso.Begin();
+                        bool MiProgreso = false;
+                        if (progreso == null) {
+                                progreso = new Types.OperationProgress("Preparando el almacén de datos", "Se están creando las tablas de datos y se va realizar una carga inicial de datos. Esta operación puede demorar varios minutos.");
+                                progreso.Modal = true;
+                                progreso.Begin();
+                                MiProgreso = true;
+                        }
 
                         // Creación de tablas
-                        Progreso.ChangeStatus("Creando estructuras");
-                        this.CheckAndUpdateDataBaseStructure(this.MasterConnection, true);
+                        progreso.ChangeStatus("Creando estructuras");
+                        this.CheckAndUpdateDataBaseStructure(this.MasterConnection, true, progreso);
 
                         this.MasterConnection.EnableConstraints(false);
 
@@ -373,28 +377,29 @@ namespace Lfx
                                 }
                         }
 
-                        Progreso.ChangeStatus("Carga inicial de datos");
-                        Progreso.Max = Sql.Length;
+                        progreso.ChangeStatus("Carga inicial de datos");
+                        progreso.Max = Sql.Length;
                         //this.MasterConnection.ExecuteSql(Sql);
                         
                         do {
                                 string Comando = Lfx.Data.Connection.GetNextCommand(ref Sql);
                                 this.MasterConnection.ExecuteSql(Comando);
-                                Progreso.ChangeStatus(Progreso.Max - Sql.Length);
+                                progreso.ChangeStatus(progreso.Max - Sql.Length);
                         }
                         while (Sql.Length > 0);
 
-                        Progreso.ChangeStatus("Carga de TagList");
+                        progreso.ChangeStatus("Carga de TagList");
                         // Cargar TagList y volver a verificar la estructura
                         Lfx.Workspace.Master.Structure.TagList.Clear();
                         Lfx.Workspace.Master.Structure.LoadBuiltIn();
 
-                        this.CheckAndUpdateDataBaseStructure(this.MasterConnection, false);
+                        this.CheckAndUpdateDataBaseStructure(this.MasterConnection, false, progreso);
 
                         this.MasterConnection.EnableConstraints(true);
                         this.CurrentConfig.WriteGlobalSetting("Sistema.DB.Version", Lfx.Workspace.VersionUltima);
-                        
-                        Progreso.End();
+
+                        if (MiProgreso)
+                                progreso.End();
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
@@ -439,11 +444,9 @@ namespace Lfx
                 /// </summary>
                 /// <param name="dataBase">PrintDataBase mediante el cual se accede a la base de datos.</param>
                 /// <param name="omitPreAndPostSql">Omitir la ejecución de comandos Pre- y Post-actualización de estructura. Esto es útil cuando se actualiza una estructura vacía, por ejemplo al crear una base de datos nueva.</param>
-                public void CheckAndUpdateDataBaseStructure(Lfx.Data.Connection dataBase, bool omitPreAndPostSql)
+                public void CheckAndUpdateDataBaseStructure(Lfx.Data.Connection dataBase, bool omitPreAndPostSql, Lfx.Types.OperationProgress progreso)
                 {
-                        Lfx.Types.OperationProgress Progreso = new Types.OperationProgress("Verificando estructuras de datos", "Se está analizando la estructura del almacén de datos y se van a realizar cambios si fuera necesario.");
-                        Progreso.Modal = true;
-                        Progreso.Begin();
+                        progreso.ChangeStatus("Verificando estructuras de datos");
 
                         bool MustEnableConstraints = false;
                         if (dataBase.ConstraintsEnabled) {
@@ -452,12 +455,12 @@ namespace Lfx
                         }
 
                         if (omitPreAndPostSql == false) {
-                                Progreso.ChangeStatus("Ejecutando guión previo...");
+                                progreso.ChangeStatus("Ejecutando guión previo...");
                                 InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd_pre.sql");
                         }
 
                         //Primero borro claves foráneas (deleteOnly = true)
-                        Progreso.ChangeStatus("Eliminando claves obsoletas...");
+                        progreso.ChangeStatus("Eliminando claves obsoletas...");
                         dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, true);
 
                         try {
@@ -465,17 +468,17 @@ namespace Lfx
                         } catch {
                                 // No tengo permiso... no importa
                         }
-                        Progreso.Max = Lfx.Workspace.Master.Structure.Tables.Count;
+                        progreso.Max = Lfx.Workspace.Master.Structure.Tables.Count;
                         foreach (Lfx.Data.TableStructure Tab in Lfx.Workspace.Master.Structure.Tables.Values) {
                                 string TableLabel = Tab.Label;
                                 if (Tab.Label == null)
                                         TableLabel = Tab.Name.ToTitleCase();
-                                Progreso.ChangeStatus(Progreso.Value + 1, "Verificando " + TableLabel);
+                                progreso.ChangeStatus(progreso.Value + 1, "Verificando " + TableLabel);
                                 dataBase.SetTableStructure(Tab);
                         }
 
                         //Ahora creo claves nuevas (deleteOnly = false)
-                        Progreso.ChangeStatus("Creando claves foráneas");
+                        progreso.ChangeStatus("Creando claves foráneas");
                         try {
                                 dataBase.ExecuteSql("FLUSH TABLES");
                         } catch {
@@ -484,14 +487,12 @@ namespace Lfx
                         dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, false);
 
                         if (omitPreAndPostSql == false) {
-                                Progreso.ChangeStatus("Ejecutando guión posterior...");
+                                progreso.ChangeStatus("Ejecutando guión posterior...");
                                 InyectarSqlDesdeRecurso(dataBase, @"Data.Struct.db_upd_post.sql");
                         }
 
                         if (MustEnableConstraints)
                                 dataBase.EnableConstraints(true);
-
-                        Progreso.End();
                 }
         }
 }
