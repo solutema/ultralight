@@ -143,6 +143,18 @@ namespace Lcc.Entrada
                 }
 
 
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                new public Padding Padding
+                {
+                        get
+                        {
+                                return base.Padding;
+                        }
+                }
+
+
                 public override bool ReadOnly
                 {
                         get

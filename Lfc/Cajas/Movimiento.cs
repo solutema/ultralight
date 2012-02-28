@@ -74,7 +74,9 @@ namespace Lfc.Cajas
 
                         if (aceptarReturn.Success == true) {
                                 decimal Importe = EntradaImporte.ValueDecimal;
-                                IDbTransaction Trans = Connection.BeginTransaction(IsolationLevel.Serializable);
+                                CajaOrigen.Connection = this.Connection;
+                                CajaDestino.Connection = this.Connection;
+                                IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 CajaOrigen.Movimiento(false, EntradaConcepto.Elemento as Lbl.Cajas.Concepto,
                                         EntradaConcepto.TextDetail,
                                         Lbl.Sys.Config.Actual.UsuarioConectado.Persona,

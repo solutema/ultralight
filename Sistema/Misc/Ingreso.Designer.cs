@@ -123,6 +123,7 @@ namespace Lazaro.WinMain.Misc
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.CancelCommandButton.Location = new System.Drawing.Point(419, 12);
                         this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.CancelCommandButton.MaximumSize = new System.Drawing.Size(108, 40);
                         this.CancelCommandButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
@@ -143,6 +144,7 @@ namespace Lazaro.WinMain.Misc
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.OkButton.Location = new System.Drawing.Point(309, 12);
                         this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.OkButton.MaximumSize = new System.Drawing.Size(108, 40);
                         this.OkButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
@@ -165,9 +167,9 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\' AND estado=1";
                         this.EntradaUsuario.FreeTextCode = "";
                         this.EntradaUsuario.Location = new System.Drawing.Point(232, 160);
+                        this.EntradaUsuario.Margin = new System.Windows.Forms.Padding(0);
                         this.EntradaUsuario.MaxLength = 200;
                         this.EntradaUsuario.Name = "EntradaUsuario";
-                        this.EntradaUsuario.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.EntradaUsuario.PlaceholderText = null;
                         this.EntradaUsuario.Required = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(281, 24);

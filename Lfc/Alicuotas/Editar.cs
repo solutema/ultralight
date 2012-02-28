@@ -67,6 +67,18 @@ namespace Lfc.Alicuotas
 
                         base.ActualizarElemento();
                 }
+
+                public override Lfx.Types.OperationResult ValidarControl()
+                {
+                        if (EntradaNombre.Text.Length == 0)
+                                return new Lfx.Types.FailureOperationResult("Debe escribir el nombre del elemento");
+                        if (EntradaPorcentaje.ValueDecimal < 100 || EntradaPorcentaje.ValueDecimal > 100)
+                                return new Lfx.Types.FailureOperationResult("Debe escribir un porcentaje de retención válido");
+                        if (EntradaImporteMinimo.ValueDecimal < 0)
+                                return new Lfx.Types.FailureOperationResult("El importe mínimo debe ser mayor o igual a cero");
+
+                        return base.ValidarControl();
+                }
 	}
 }
 

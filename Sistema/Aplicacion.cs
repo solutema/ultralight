@@ -635,15 +635,23 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 Lfx.Workspace.Master.RunTime.Toast("Existe una diferencia de " + DiferenciaExplicada + " entre el reloj del servidor SQL y el reloj de este equipo. Es necesario que revise y ajuste el reloj de ambos equipos a la brevedad.", "Error de fecha y hora");
                         }
 
-                        if (Lfx.Environment.SystemInformation.DesignMode) {
+
+                        // Si el administrador tiene la contraseña predeterminada y aquí entro siempre como administrador
+                        // o todavía no entré nunca, ingreso directamente sin pedir contraseña.
+                        int UltimoUsuario = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Ingreso.UltimoUsuario", 1);
+                        if(UltimoUsuario == 1) {
                                 Lbl.Personas.Usuario Usu = new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, 1);
-                                Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Usu);
-                        } else {
+                                if (Usu.ContrasenaValida("admin"))
+                                        Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Usu);
+                        }
+
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.Id == 0) {
                                 using (Lazaro.WinMain.Misc.Ingreso FormIngreso = new Lazaro.WinMain.Misc.Ingreso()) {
                                         FormIngreso.Connection = Lfx.Workspace.Master.MasterConnection;
                                         FormIngreso.ShowDialog();
                                 }
                         }
+
 
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.Id > 0) {
                                 if (Lfx.Workspace.Master.MasterConnection.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Tipo", "0") == "2") {
