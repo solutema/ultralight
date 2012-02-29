@@ -508,7 +508,11 @@ namespace Lfc
                                         using (IDbTransaction Trans = this.Elemento.Connection.BeginTransaction()) {
                                                 Lazaro.Impresion.ImpresorElemento Impresor = Lazaro.Impresion.Instanciador.InstanciarImpresor(this.Elemento, Trans);
                                                 Impresor.Impresora = Impresora;
-                                                Res = Impresor.Imprimir();
+                                                try {
+                                                        Res = Impresor.Imprimir();
+                                                } catch (Exception ex) {
+                                                        Res = new Lfx.Types.FailureOperationResult(ex.Message);
+                                                }
                                                 Progreso.End();
                                                 if (Res.Success == false) {
                                                         if (Impresor.Transaction != null)
