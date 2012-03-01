@@ -48,7 +48,7 @@ namespace Lbl.Atributos
                         this.CampoImagen = "imagen";
                 }
 
-                public Datos(string nombreSingular, string tablaDatos, string campoId, string campoNombre = "nombre", string campoImagen = null, string tablaImagenes = null)
+                public Datos(string nombreSingular, string tablaDatos, string campoId, string campoNombre, string campoImagen, string tablaImagenes)
                 {
                         this.TablaDatos = tablaDatos;
                         this.CampoId = campoId;

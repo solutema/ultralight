@@ -51,7 +51,7 @@ namespace Lbl.Atributos
                         this.PanelExtendido = Atributos.PanelExtendido.Automatico;
                 }
 
-                public Presentacion(bool mensajeAlCrear = false, PanelExtendido panelExtendido = Atributos.PanelExtendido.Automatico)
+                public Presentacion(bool mensajeAlCrear, PanelExtendido panelExtendido)
                 {
                         this.MensajeAlCrear = mensajeAlCrear;
                         this.PanelExtendido = panelExtendido;

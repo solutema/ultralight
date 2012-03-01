@@ -664,7 +664,8 @@ namespace Lfc
                                         Listado.Columns[0].Text = this.Definicion.KeyColumn.Label;
                                 }
 
-                                if (this.Definicion.OrderBy.Contains(","))
+
+                                if (this.Definicion.OrderBy == null ||this.Definicion.OrderBy.Contains(","))
                                         this.SetupSorter(null, SortOrder.None);
                                 else if (this.Definicion.OrderBy.EndsWith(" DESC"))
                                         this.SetupSorter(this.Definicion.OrderBy.Substring(0, this.Definicion.OrderBy.Length - 5).Trim(), SortOrder.Descending);
