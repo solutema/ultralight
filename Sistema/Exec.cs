@@ -294,8 +294,6 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "QUIT":
-                                        if (Lfx.Workspace.Master != null && Lfx.Workspace.Master.MasterConnection != null && Lbl.Sys.Config.Actual != null && Lbl.Sys.Config.Actual.UsuarioConectado != null)
-                                                Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOff, Lbl.Sys.Config.Actual.UsuarioConectado.Usuario, null);
                                         if (Aplicacion.FormularioPrincipal != null)
                                                 Aplicacion.FormularioPrincipal.Close();
                                         System.Threading.Thread.Sleep(200);

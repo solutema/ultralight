@@ -39,7 +39,6 @@ namespace Lbl.Sys.Log
         {
                 LogOn,
                 LogOnFail,
-                LogOff,
                 Save,
                 Delete,
                 DeleteAndRevert,
