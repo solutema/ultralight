@@ -211,14 +211,15 @@ namespace Lfc
                                 } else {
                                         try {
                                                 Resultado = this.Elemento.Guardar();
-                                        } catch (Lfx.Types.DomainException ex) {
+                                        } catch (Lfx.Types.DomainException dex) {
                                                 if (Trans != null)
                                                         Trans.Rollback();
-                                                Resultado = new Lfx.Types.FailureOperationResult(ex.Message);
-                                        } catch {
+                                                Resultado = new Lfx.Types.FailureOperationResult(dex.Message);
+                                        } catch (Exception ex) {
                                                 if (Trans != null)
                                                         Trans.Rollback();
-                                                throw;
+                                                ex.HelpLink = this.Name + ".Save: " + this.ElementoTipo.ToString();
+                                                throw ex;
                                         }
                                 }
                                 if (Resultado.Success) {

@@ -56,6 +56,7 @@ namespace Lfx
                 public bool TraceMode { get; set; }
                 public bool WebAppMode { get; set; }
                 public List<Data.Connection> ActiveConnections = new List<Data.Connection>();
+                public string ServerVersion { get; set; }
 
                 public Workspace()
                         : this("default")

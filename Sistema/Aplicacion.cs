@@ -732,7 +732,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                                                 "canal=" + System.Uri.EscapeUriString(Lfx.Updates.Updater.Master != null ? Lfx.Updates.Updater.Master.Channel : ""),
                                                                 "version=" + System.Uri.EscapeUriString(Aplicacion.Version()),
                                                                 "cpu=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.ProcessorName),
-                                                                "server=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.MasterConnection.ServerVersion),
+                                                                "server=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.ServerVersion),
                                                                 "loc=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Localidad", "0"))
                                                         };
                                 System.Net.WebRequest WebRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
@@ -835,7 +835,8 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         }
                         Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
                         Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.PlatformName);
-                        Texto.AppendLine("RunTime : " + Lfx.Environment.SystemInformation.RuntimeName);
+                        Texto.AppendLine("Runtime : " + Lfx.Environment.SystemInformation.RuntimeName);
+                        Texto.AppendLine("Servidor: " + Lfx.Workspace.Master.ServerVersion);
                         if (ex.HelpLink != null)
                                 Texto.AppendLine("Ayuda   : " + ex.HelpLink);
                         if (ex.Source != null)

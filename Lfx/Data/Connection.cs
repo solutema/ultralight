@@ -160,6 +160,9 @@ namespace Lfx.Data
                                 }
                                 OdbcConnection.StateChange += new System.Data.StateChangeEventHandler(this.Connection_StateChange);
                         }
+
+                        if (Lfx.Workspace.Master.ServerVersion == null)
+                                Lfx.Workspace.Master.ServerVersion = this.ServerVersion;
                 }
 
                 private void KeepAliveTimer_Elapsed(object source, System.Timers.ElapsedEventArgs e)
@@ -266,7 +269,7 @@ namespace Lfx.Data
                 }
 
 
-                public string ServerVersion
+                private string ServerVersion
                 {
                         get
                         {
@@ -1140,7 +1143,7 @@ LEFT JOIN pg_attribute
                 public string FieldString(qGen.Select selectCommand)
                 {
                         selectCommand.SqlMode = this.SqlMode;
-                        object Res = this.ConnExecuteScalar(selectCommand.ToString());
+                        object Res = this.ExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return null;
                         else
@@ -1150,7 +1153,7 @@ LEFT JOIN pg_attribute
 
                 public string FieldString(string selectCommand)
                 {
-                        object Res = this.ConnExecuteScalar(selectCommand);
+                        object Res = this.ExecuteScalar(selectCommand);
                         if (Res == null || Res is DBNull)
                                 return null;
                         else
@@ -1175,7 +1178,7 @@ LEFT JOIN pg_attribute
                 }
 
 
-                private object ConnExecuteScalar(string selectCommand)
+                private object ExecuteScalar(string selectCommand)
                 {
                         if (this.ReadOnly)
                                 throw new InvalidOperationException("No se pueden realizar cambios en la conexión de lectura");
@@ -1206,7 +1209,7 @@ LEFT JOIN pg_attribute
 
                 public int FieldInt(string selectCommand)
                 {
-                        object Res = this.ConnExecuteScalar(selectCommand);
+                        object Res = this.ExecuteScalar(selectCommand);
                         if (Res == null || Res is DBNull)
                                 return 0;
                         else
@@ -1216,7 +1219,7 @@ LEFT JOIN pg_attribute
                 public int FieldInt(qGen.Select selectCommand)
                 {
                         selectCommand.SqlMode = this.SqlMode;
-                        object Res = this.ConnExecuteScalar(selectCommand.ToString());
+                        object Res = this.ExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return 0;
                         else
@@ -1225,7 +1228,7 @@ LEFT JOIN pg_attribute
 
                 public DateTime FieldDateTime(string selectCommand, DateTime defaultValue)
                 {
-                        object Res = this.ConnExecuteScalar(selectCommand);
+                        object Res = this.ExecuteScalar(selectCommand);
                         if (Res == null || Res is DBNull)
                                 return defaultValue;
                         else
@@ -1234,7 +1237,7 @@ LEFT JOIN pg_attribute
 
                 public decimal FieldDecimal(string selectCommand)
                 {
-                        object Res = this.ConnExecuteScalar(selectCommand);
+                        object Res = this.ExecuteScalar(selectCommand);
                         if (Res == null || Res is DBNull)
                                 return 0;
                         else
@@ -1244,7 +1247,7 @@ LEFT JOIN pg_attribute
                 public decimal FieldDecimal(qGen.Select selectCommand)
                 {
                         selectCommand.SqlMode = this.SqlMode;
-                        object Res = this.ConnExecuteScalar(selectCommand.ToString());
+                        object Res = this.ExecuteScalar(selectCommand.ToString());
                         if (Res == null || Res is DBNull)
                                 return 0;
                         else
