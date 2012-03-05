@@ -331,7 +331,7 @@ namespace Lfc
 
                 private void BotonImprimir_Click(object sender, EventArgs e)
                 {
-                        if ((System.Windows.Forms.Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+                        if ((System.Windows.Forms.Control.ModifierKeys & Keys.Shift) != Keys.Shift)
                                 this.ShowExportDialog();
                         else
                                 this.OnPrint(false);
@@ -1349,6 +1349,8 @@ namespace Lfc
                                 if (FormExportar.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                         FormatoExportar Formato = FormExportar.SaveFormat;
                                         if (Formato == FormatoExportar.Imprimir) {
+                                                this.OnPrint(false);
+                                        } else if (Formato == FormatoExportar.ImprimirAvanzado) {
                                                 this.OnPrint(true);
                                         } else {
                                                 SaveFileDialog DialogoGuardar = new SaveFileDialog();

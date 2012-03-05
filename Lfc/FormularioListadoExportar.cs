@@ -40,7 +40,8 @@ namespace Lfc
                 Html,
                 Excel,
                 ExcelXml,
-                Imprimir
+                Imprimir,
+                ImprimirAvanzado
         }
 
 	public partial class FormularioListadoExportar : Lui.Forms.Form
@@ -77,6 +78,13 @@ namespace Lfc
                 private void BotonCancelar_Click(object sender, EventArgs e)
                 {
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                        this.Hide();
+                }
+
+                private void BotonImprimirAvanzado_Click(object sender, EventArgs e)
+                {
+                        this.SaveFormat = FormatoExportar.ImprimirAvanzado;
+                        this.DialogResult = DialogResult.OK;
                         this.Hide();
                 }
 	}

@@ -200,10 +200,10 @@
     <Compile Include="Edicion\FormularioImagen.Designer.cs">
       <DependentUpon>FormularioImagen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Edicion\Imagen.cs">
+    <Compile Include="Entrada\Imagen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Edicion\Imagen.Designer.cs">
+    <Compile Include="Entrada\Imagen.Designer.cs">
       <DependentUpon>Imagen.cs</DependentUpon>
     </Compile>
     <Compile Include="Entrada\AuxForms\ImagenRecorte.cs">
@@ -298,7 +298,7 @@
     <EmbeddedResource Include="Edicion\FormularioImagen.resx">
       <DependentUpon>FormularioImagen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Edicion\Imagen.resx">
+    <EmbeddedResource Include="Entrada\Imagen.resx">
       <DependentUpon>Imagen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Entrada\AuxForms\ImagenRecorte.resx">

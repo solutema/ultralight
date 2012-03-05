@@ -232,6 +232,14 @@ namespace Lui.Forms
                         base.OnEnter(e);
                 }
 
+
+                protected override void OnCreateControl()
+                {
+                        this.ApplyStyles();
+                        this.Invalidate();
+                        base.OnCreateControl();
+                }
+
                 protected override void OnLeave(EventArgs e)
                 {
                         m_Highlighted = false;

@@ -1155,6 +1155,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lazaro.ico" />
+    <None Include="Resources\printer-4.png" />
+    <None Include="Resources\printer-2.png" />
     <None Include="Resources\container.png" />
     <None Include="Resources\copy-item.png" />
     <None Include="Resources\dollar.png" />

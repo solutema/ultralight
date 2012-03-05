@@ -36,7 +36,7 @@ using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public partial class Form : System.Windows.Forms.Form, IDataForm
+        public partial class Form : System.Windows.Forms.Form, IDataForm, IDisplayStyleControl
 	{
                 private Lfx.Data.Connection m_Connection = null;
                 private string m_StockImage = null;

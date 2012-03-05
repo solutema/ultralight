@@ -48,6 +48,8 @@ namespace Lazaro.Pres.DisplayStyles
                 public IDisplayStyle Personas = new Personas();
                 public IDisplayStyle Cajas = new DarkColors();
 
+                public IDisplayStyle White = new White();
+
                 // Microsoft Sans Serif, Segoe UI, Bitstream Vera Sans
                 public string DefaultFontName { get; set; }
                 public string DefaultCaptionFontName { get; set; }

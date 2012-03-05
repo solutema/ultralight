@@ -236,10 +236,12 @@ namespace Lazaro.WinMain.Config
                                         if (Pais != null) {
                                                 // Configuro las alícuotas de IVA, normal y reducida
                                                 Lbl.Impuestos.Alicuota Alic1 = new Lbl.Impuestos.Alicuota(this.Connection, 1);
+                                                Alic1.Nombre = "IVA tasa normal";
                                                 Alic1.Porcentaje = Pais.Iva1;
                                                 Alic1.Guardar();
 
                                                 Lbl.Impuestos.Alicuota Alic2 = new Lbl.Impuestos.Alicuota(this.Connection, 2);
+                                                Alic1.Nombre = "IVA tasa reducida";
                                                 Alic2.Porcentaje = Pais.Iva2;
                                                 Alic2.Guardar();
                                         }
