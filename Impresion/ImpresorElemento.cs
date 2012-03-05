@@ -177,6 +177,9 @@ namespace Lazaro.Impresion
                         if (this.Plantilla != null) {
                                 e.PageSettings.Landscape = Plantilla.Landscape;
 
+                                if (Plantilla.Tipo == Lbl.Impresion.TipoPlantilla.SubimprimirImagen && Plantilla.Imagen != null)
+                                        e.Graphics.DrawImage(Plantilla.Imagen, e.PageBounds);
+
                                 this.ImprimirCampos(e);
                         }
                         base.OnPrintPage(e);

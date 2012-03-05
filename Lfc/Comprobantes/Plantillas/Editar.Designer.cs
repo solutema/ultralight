@@ -73,6 +73,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label2 = new Lui.Forms.Label();
                         this.ZoomBar = new System.Windows.Forms.TrackBar();
                         this.PanelGeneral = new Lui.Forms.Panel();
+                        this.EntradaTipo = new Lui.Forms.ComboBox();
+                        this.label10 = new Lui.Forms.Label();
                         this.EntradaCodigoPersonalizado = new Lui.Forms.TextBox();
                         this.label9 = new Lui.Forms.Label();
                         this.EntradaCodigo = new Lui.Forms.ComboBox();
@@ -119,66 +121,66 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaMargenes.AlwaysExpanded = true;
                         this.EntradaMargenes.AutoSize = true;
-                        this.EntradaMargenes.Location = new System.Drawing.Point(152, 288);
+                        this.EntradaMargenes.Location = new System.Drawing.Point(152, 352);
                         this.EntradaMargenes.Name = "EntradaMargenes";
                         this.EntradaMargenes.SetData = new string[] {
         "Predeterminados|0",
         "Personalizados|1"};
-                        this.EntradaMargenes.Size = new System.Drawing.Size(116, 40);
-                        this.EntradaMargenes.TabIndex = 10;
+                        this.EntradaMargenes.Size = new System.Drawing.Size(116, 39);
+                        this.EntradaMargenes.TabIndex = 12;
                         this.EntradaMargenes.TextKey = "1";
                         this.EntradaMargenes.TextChanged += new System.EventHandler(this.EntradaMargenes_TextChanged);
                         // 
                         // EntradaMargenAbajo
                         // 
                         this.EntradaMargenAbajo.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenAbajo.Location = new System.Drawing.Point(372, 304);
+                        this.EntradaMargenAbajo.Location = new System.Drawing.Point(372, 368);
                         this.EntradaMargenAbajo.Name = "EntradaMargenAbajo";
                         this.EntradaMargenAbajo.PlaceholderText = "auto";
                         this.EntradaMargenAbajo.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenAbajo.Sufijo = "aba.";
-                        this.EntradaMargenAbajo.TabIndex = 13;
+                        this.EntradaMargenAbajo.TabIndex = 15;
                         this.EntradaMargenAbajo.Text = "0";
                         // 
                         // EntradaMargenArriba
                         // 
                         this.EntradaMargenArriba.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenArriba.Location = new System.Drawing.Point(372, 272);
+                        this.EntradaMargenArriba.Location = new System.Drawing.Point(372, 336);
                         this.EntradaMargenArriba.Name = "EntradaMargenArriba";
                         this.EntradaMargenArriba.PlaceholderText = "auto";
                         this.EntradaMargenArriba.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenArriba.Sufijo = "arr.";
-                        this.EntradaMargenArriba.TabIndex = 12;
+                        this.EntradaMargenArriba.TabIndex = 14;
                         this.EntradaMargenArriba.Text = "0";
                         // 
                         // EntradaMargenDerecha
                         // 
                         this.EntradaMargenDerecha.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenDerecha.Location = new System.Drawing.Point(472, 288);
+                        this.EntradaMargenDerecha.Location = new System.Drawing.Point(472, 352);
                         this.EntradaMargenDerecha.Name = "EntradaMargenDerecha";
                         this.EntradaMargenDerecha.PlaceholderText = "auto";
                         this.EntradaMargenDerecha.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenDerecha.Sufijo = "der.";
-                        this.EntradaMargenDerecha.TabIndex = 14;
+                        this.EntradaMargenDerecha.TabIndex = 16;
                         this.EntradaMargenDerecha.Text = "0";
                         // 
                         // EntradaMargenIzquierda
                         // 
                         this.EntradaMargenIzquierda.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaMargenIzquierda.Location = new System.Drawing.Point(276, 288);
+                        this.EntradaMargenIzquierda.Location = new System.Drawing.Point(276, 352);
                         this.EntradaMargenIzquierda.Name = "EntradaMargenIzquierda";
                         this.EntradaMargenIzquierda.PlaceholderText = "auto";
                         this.EntradaMargenIzquierda.Size = new System.Drawing.Size(84, 24);
                         this.EntradaMargenIzquierda.Sufijo = "izq.";
-                        this.EntradaMargenIzquierda.TabIndex = 11;
+                        this.EntradaMargenIzquierda.TabIndex = 13;
                         this.EntradaMargenIzquierda.Text = "0";
                         // 
                         // label3
                         // 
-                        this.label3.Location = new System.Drawing.Point(0, 288);
+                        this.label3.Location = new System.Drawing.Point(0, 352);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(152, 24);
-                        this.label3.TabIndex = 9;
+                        this.label3.TabIndex = 11;
                         this.label3.Text = "Márgenes";
                         this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -186,13 +188,13 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaLandscape.AlwaysExpanded = true;
                         this.EntradaLandscape.AutoSize = true;
-                        this.EntradaLandscape.Location = new System.Drawing.Point(248, 168);
+                        this.EntradaLandscape.Location = new System.Drawing.Point(248, 232);
                         this.EntradaLandscape.Name = "EntradaLandscape";
                         this.EntradaLandscape.SetData = new string[] {
         "alto|0",
         "apaisado|1"};
-                        this.EntradaLandscape.Size = new System.Drawing.Size(96, 40);
-                        this.EntradaLandscape.TabIndex = 8;
+                        this.EntradaLandscape.Size = new System.Drawing.Size(96, 39);
+                        this.EntradaLandscape.TabIndex = 10;
                         this.EntradaLandscape.TextKey = "0";
                         this.EntradaLandscape.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
                         // 
@@ -200,11 +202,11 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaFuenteTamano.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaFuenteTamano.DecimalPlaces = 2;
-                        this.EntradaFuenteTamano.Location = new System.Drawing.Point(412, 352);
+                        this.EntradaFuenteTamano.Location = new System.Drawing.Point(412, 416);
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(96, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
-                        this.EntradaFuenteTamano.TabIndex = 17;
+                        this.EntradaFuenteTamano.TabIndex = 19;
                         this.EntradaFuenteTamano.Text = "10.00";
                         this.EntradaFuenteTamano.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
@@ -212,7 +214,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaFuente.AlwaysExpanded = true;
                         this.EntradaFuente.AutoSize = true;
-                        this.EntradaFuente.Location = new System.Drawing.Point(152, 352);
+                        this.EntradaFuente.Location = new System.Drawing.Point(152, 416);
                         this.EntradaFuente.Name = "EntradaFuente";
                         this.EntradaFuente.SetData = new string[] {
         "Predeterminada|*",
@@ -221,17 +223,17 @@ namespace Lfc.Comprobantes.Plantillas
         "Vera Monoespaciada|Bitstream Vera Sans Mono",
         "Segoe UI|Segoe UI",
         "Courier|Courier New"};
-                        this.EntradaFuente.Size = new System.Drawing.Size(256, 91);
-                        this.EntradaFuente.TabIndex = 16;
+                        this.EntradaFuente.Size = new System.Drawing.Size(256, 90);
+                        this.EntradaFuente.TabIndex = 18;
                         this.EntradaFuente.TextKey = "*";
                         this.EntradaFuente.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
                         // label4
                         // 
-                        this.label4.Location = new System.Drawing.Point(0, 352);
+                        this.label4.Location = new System.Drawing.Point(0, 416);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(152, 24);
-                        this.label4.TabIndex = 15;
+                        this.label4.TabIndex = 17;
                         this.label4.Text = "Fuente";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -239,7 +241,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaPapelTamano.AlwaysExpanded = true;
                         this.EntradaPapelTamano.AutoSize = true;
-                        this.EntradaPapelTamano.Location = new System.Drawing.Point(152, 168);
+                        this.EntradaPapelTamano.Location = new System.Drawing.Point(152, 232);
                         this.EntradaPapelTamano.Name = "EntradaPapelTamano";
                         this.EntradaPapelTamano.SetData = new string[] {
         "Oficio|legal",
@@ -247,17 +249,17 @@ namespace Lfc.Comprobantes.Plantillas
         "A4|a4",
         "A5|a5",
         "Continuo|cont"};
-                        this.EntradaPapelTamano.Size = new System.Drawing.Size(88, 91);
-                        this.EntradaPapelTamano.TabIndex = 7;
+                        this.EntradaPapelTamano.Size = new System.Drawing.Size(88, 90);
+                        this.EntradaPapelTamano.TabIndex = 9;
                         this.EntradaPapelTamano.TextKey = "a4";
                         this.EntradaPapelTamano.TextChanged += new System.EventHandler(this.EntradaPapelTamano_TextChanged);
                         // 
                         // label8
                         // 
-                        this.label8.Location = new System.Drawing.Point(0, 168);
+                        this.label8.Location = new System.Drawing.Point(0, 232);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(152, 24);
-                        this.label8.TabIndex = 6;
+                        this.label8.TabIndex = 8;
                         this.label8.Text = "Papel";
                         this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -292,18 +294,18 @@ namespace Lfc.Comprobantes.Plantillas
                         // EntradaCopias
                         // 
                         this.EntradaCopias.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCopias.Location = new System.Drawing.Point(152, 456);
+                        this.EntradaCopias.Location = new System.Drawing.Point(152, 520);
                         this.EntradaCopias.Name = "EntradaCopias";
                         this.EntradaCopias.Size = new System.Drawing.Size(56, 24);
-                        this.EntradaCopias.TabIndex = 19;
+                        this.EntradaCopias.TabIndex = 21;
                         this.EntradaCopias.Text = "1";
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(0, 456);
+                        this.label1.Location = new System.Drawing.Point(0, 520);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(152, 24);
-                        this.label1.TabIndex = 18;
+                        this.label1.TabIndex = 20;
                         this.label1.Text = "Copias consecutivas";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -382,6 +384,8 @@ namespace Lfc.Comprobantes.Plantillas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.PanelGeneral.AutoScroll = true;
                         this.PanelGeneral.AutoScrollMargin = new System.Drawing.Size(0, 24);
+                        this.PanelGeneral.Controls.Add(this.EntradaTipo);
+                        this.PanelGeneral.Controls.Add(this.label10);
                         this.PanelGeneral.Controls.Add(this.EntradaCodigoPersonalizado);
                         this.PanelGeneral.Controls.Add(this.label9);
                         this.PanelGeneral.Controls.Add(this.EntradaCodigo);
@@ -406,6 +410,30 @@ namespace Lfc.Comprobantes.Plantillas
                         this.PanelGeneral.Name = "PanelGeneral";
                         this.PanelGeneral.Size = new System.Drawing.Size(712, 464);
                         this.PanelGeneral.TabIndex = 0;
+                        // 
+                        // EntradaTipo
+                        // 
+                        this.EntradaTipo.AlwaysExpanded = true;
+                        this.EntradaTipo.AutoSize = true;
+                        this.EntradaTipo.Location = new System.Drawing.Point(152, 168);
+                        this.EntradaTipo.Name = "EntradaTipo";
+                        this.EntradaTipo.SetData = new string[] {
+        "Preimpresa|0",
+        "Subimprimir imagen|1",
+        "PDF|2"};
+                        this.EntradaTipo.Size = new System.Drawing.Size(144, 56);
+                        this.EntradaTipo.TabIndex = 7;
+                        this.EntradaTipo.TextKey = "0";
+                        this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
+                        // 
+                        // label10
+                        // 
+                        this.label10.Location = new System.Drawing.Point(0, 168);
+                        this.label10.Name = "label10";
+                        this.label10.Size = new System.Drawing.Size(152, 24);
+                        this.label10.TabIndex = 6;
+                        this.label10.Text = "Tipo";
+                        this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaCodigoPersonalizado
                         // 
@@ -457,7 +485,7 @@ namespace Lfc.Comprobantes.Plantillas
         "Notas de débito E|NDE",
         "Notas de débito M|NDM",
         "Tipo personalizado|*"};
-                        this.EntradaCodigo.Size = new System.Drawing.Size(296, 91);
+                        this.EntradaCodigo.Size = new System.Drawing.Size(296, 90);
                         this.EntradaCodigo.TabIndex = 1;
                         this.EntradaCodigo.TextKey = "";
                         this.EntradaCodigo.TextChanged += new System.EventHandler(this.EntradaCodigo_TextChanged);
@@ -617,5 +645,7 @@ namespace Lfc.Comprobantes.Plantillas
                 protected Lui.Forms.ComboBox EntradaCodigo;
                 protected Lui.Forms.TextBox EntradaCodigoPersonalizado;
                 protected Lui.Forms.Label label9;
+                protected Lui.Forms.ComboBox EntradaTipo;
+                protected Lui.Forms.Label label10;
         }
 }

@@ -1010,6 +1010,7 @@
   <Table name="sys_plantillas" lsdet="1" label="Plantillas de Comprobantes">
     <Column name="id_plantilla" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
+    <Column name="tipo" datatype="TinyInt" nullable="0" default="0" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
@@ -1022,7 +1023,7 @@
     <Column name="margen_derecha" datatype="Integer" nullable="0" default="-1" />
     <Column name="margen_arriba" datatype="Integer" nullable="0" default="-1" />
     <Column name="margen_abajo" datatype="Integer" nullable="0" default="-1" />
-    <Column name="membrete" datatype="TinyInt" nullable="0" default="0" />
+    <Column name="def" datatype="Blob" nullable="1" />
     <Column name="defxml" datatype="Text" nullable="1" />
     <Index table="sys_plantillas" name="PRIMARY" columns="id_plantilla" unique="1" primary="1" />
     <Index table="sys_plantillas" name="sys_plantillas_codigo" columns="codigo" unique="1" primary="0" />

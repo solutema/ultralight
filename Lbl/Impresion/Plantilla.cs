@@ -110,15 +110,15 @@ namespace Lbl.Impresion
                 }
 
 
-                public int Membrete
+                public TipoPlantilla Tipo
                 {
                         get
                         {
-                                return System.Convert.ToInt32(this.Registro["membrete"]);
+                                return ((TipoPlantilla)(this.GetFieldValue<int>("tipo")));
                         }
                         set
                         {
-                                this.Registro["membrete"] = value;
+                                this.Registro["tipo"] = (int)(value);
                         }
                 }
 
@@ -191,6 +191,19 @@ namespace Lbl.Impresion
                 }
 
 
+                public virtual byte[] Archivo
+                {
+                        get
+                        {
+                                return this.GetFieldValue<byte[]>("def");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("def", value);
+                        }
+                }
+
+
                 public override Lfx.Types.OperationResult Guardar()
                 {
                         XmlDocument XmlDef = new XmlDocument();
@@ -199,10 +212,6 @@ namespace Lbl.Impresion
 
                         XmlAttribute Attr = XmlDef.CreateAttribute("Copias");
                         Attr.Value = this.Copias.ToString();
-                        Plant.Attributes.Append(Attr);
-
-                        Attr = XmlDef.CreateAttribute("Membrete");
-                        Attr.Value = this.Membrete.ToString();
                         Plant.Attributes.Append(Attr);
 
                         if (this.Font != null) {
@@ -293,6 +302,7 @@ namespace Lbl.Impresion
 
                         if (this.Existe == false) {
                                 Comando = new qGen.Insert(this.Connection, this.TablaDatos);
+                                Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         } else {
                                 Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
@@ -300,11 +310,12 @@ namespace Lbl.Impresion
 
                         Comando.Fields.AddWithValue("codigo", this.Codigo);
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("def", this.Registro["def"]);
                         Comando.Fields.AddWithValue("defxml", this.Registro["defxml"]);
                         Comando.Fields.AddWithValue("tamanopapel", this.TamanoPapel);
 			Comando.Fields.AddWithValue("landscape", this.Landscape ? 1 : 0);
                         Comando.Fields.AddWithValue("copias", this.Copias);
-                        Comando.Fields.AddWithValue("membrete", this.Membrete);
+                        Comando.Fields.AddWithValue("tipo", ((int)(this.Tipo)));
                         Comando.Fields.AddWithValue("bandeja", this.Bandeja);
                         
                         System.Drawing.Printing.Margins Margen = this.Margenes;
@@ -319,6 +330,10 @@ namespace Lbl.Impresion
                                 Comando.Fields.AddWithValue("margen_arriba", Margen.Top);
                                 Comando.Fields.AddWithValue("margen_abajo", Margen.Bottom);
                         }
+
+
+                        Comando.Fields.AddWithValue("obs", this.Obs);
+                        Comando.Fields.AddWithValue("estado", this.Estado);
 
                         this.Connection.Execute(Comando);
 
