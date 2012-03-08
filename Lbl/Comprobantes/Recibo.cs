@@ -452,10 +452,6 @@ namespace Lbl.Comprobantes
                 {
                         decimal TotalACancelar = Math.Abs(importe);
 
-                        // La dirección de los movimientos en cta. cte.
-                        // 1 = Realizar débitos en cta. cte., -1 realizar créditos en cta. cte.
-                        decimal DireccionCtaCte = importe < 0 ? 1 : -1;
-
                         if (listaComprob != null && listaComprob.Count > 0) {
                                 // Si hay una lista de facturas, las cancelo
                                 foreach (ComprobanteImporte CompImp in listaComprob) {
@@ -541,10 +537,6 @@ namespace Lbl.Comprobantes
                 {
                         // Doy los comprob por cancelados
                         decimal TotalACancelar = Math.Abs(importe);
-
-                        // La dirección de los movimientos en cta. cte.
-                        // 1 = Realizar débitos en cta. cte., -1 realizar créditos en cta. cte.
-                        decimal DireccionCtaCte = importe < 0 ? -1 : 1;
 
                         //"Descancelo" comprob
                         if (listaComprob != null && listaComprob.Count > 0) {

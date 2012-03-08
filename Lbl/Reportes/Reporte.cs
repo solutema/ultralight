@@ -127,7 +127,6 @@ namespace Lbl.Reportes
                                 if (Aggregates != null) {
                                         // Calculo las funciones de agregación
                                         foreach (Lfx.Data.Aggregate Agru in this.Aggregates) {
-                                                string ColName = Lfx.Data.Field.GetNameOnly(Agru.FieldName);
                                                 switch (Agru.Function) {
                                                         case Lfx.Data.AggregationFunctions.Count:
                                                                 Agru.Count++;

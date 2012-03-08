@@ -43,12 +43,24 @@ namespace Lazaro.Impresion
                 public Lbl.Impresion.Plantilla Plantilla = null;
                 private Lbl.Comprobantes.Tipo Tipo = null;
 
+                //private MuPDFLib.MuPDF PdfDoc;
+
                 public ImpresorElemento(Lbl.ElementoDeDatos elemento, IDbTransaction transaction)
                         : base(transaction)
 		{
                         this.Elemento = elemento;
                         m_DataBase = elemento.Connection;
 		}
+
+
+                protected override void Dispose(bool disposing)
+                {
+                        /* if (PdfDoc != null) {
+                                PdfDoc.Dispose();
+                                PdfDoc = null;
+                        } */
+                        base.Dispose(disposing);
+                }
 
 
                 protected virtual Lbl.Impresion.Plantilla ObtenerPlantilla()
@@ -128,6 +140,7 @@ namespace Lazaro.Impresion
                         if (this.Plantilla == null)
                                 this.Plantilla = this.ObtenerPlantilla();
 
+                        // Es una plantilla común... se imprime con Lázaro
                         Lfx.Types.OperationResult Res = base.Imprimir();
 
                         System.Data.IDbTransaction Trans = null;
@@ -144,13 +157,14 @@ namespace Lazaro.Impresion
                                 Trans.Dispose();
                                 Trans = null;
                         }
-                        
-                        return Res;
 
+                        return Res;
                 }
 
                 protected override void OnBeginPrint(PrintEventArgs e)
                 {
+                        PaginaNumero = 0;
+
                         if (this.DocumentName == null || this.DocumentName.Length == 0 || this.DocumentName == "document")
                                 this.DocumentName = this.Elemento.ToString();
 
@@ -173,37 +187,93 @@ namespace Lazaro.Impresion
 
                 protected override void OnPrintPage(PrintPageEventArgs e)
                 {
+                        this.PaginaNumero++;
                         e.Graphics.PageUnit = GraphicsUnit.Document;
+
                         if (this.Plantilla != null) {
                                 e.PageSettings.Landscape = Plantilla.Landscape;
 
-                                if (Plantilla.Tipo == Lbl.Impresion.TipoPlantilla.SubimprimirImagen && Plantilla.Imagen != null)
-                                        e.Graphics.DrawImage(Plantilla.Imagen, e.PageBounds);
+                                switch(this.Plantilla.Tipo) {
+                                        case Lbl.Impresion.TipoPlantilla.InternaPreimpresa:
+                                                this.ImprimirInterna(e);
+                                                break;
+                                        case Lbl.Impresion.TipoPlantilla.InternaConImagen:
+                                                if (Plantilla.Imagen != null)
+                                                        e.Graphics.DrawImage(Plantilla.Imagen, e.PageBounds);
+                                                this.ImprimirInterna(e);
+                                                break;
+                                        case Lbl.Impresion.TipoPlantilla.Pdf:
+                                                /* if (this.PdfDoc == null) {
+                                                        iTextSharp.text.pdf.PdfReader Rdr = new iTextSharp.text.pdf.PdfReader(this.Plantilla.Archivo, null);
+                                                        using (System.IO.MemoryStream OutStream = new System.IO.MemoryStream()) {
+                                                                using (iTextSharp.text.pdf.PdfStamper Stmpr = new iTextSharp.text.pdf.PdfStamper(Rdr, OutStream)) {
+                                                                        System.Collections.Generic.IDictionary<String, iTextSharp.text.pdf.TextField> Mp = Stmpr.AcroFields.FieldCache;
+                                                                        foreach (string FldName in Stmpr.AcroFields.Fields.Keys) {
+                                                                                string NombreCampo = FldName.Trim(new char[] { '{', '}' });
+                                                                                Stmpr.AcroFields.SetField(NombreCampo, ObtenerValorCampo(NombreCampo, null));
+                                                                        }
+                                                                        Stmpr.FormFlattening = true;
+                                                                        Stmpr.Writer.CloseStream = false;
+                                                                        Stmpr.Close();
+                                                                }
+                                                                this.PdfDoc = new MuPDFLib.MuPDF(OutStream.GetBuffer(), null);
+                                                        }
 
-                                this.ImprimirCampos(e);
+                                                        this.PdfDoc.AntiAlias = false;
+                                                } */
+
+                                                this.ImprimirPdf(e);
+                                                break;
+                                }
+                                
                         }
                         base.OnPrintPage(e);
                 }
 
-                protected virtual void ImprimirCampos(PrintPageEventArgs e)
+
+                protected virtual void ImprimirPdf(PrintPageEventArgs e)
                 {
-                        ImprimirCampos(e, e.PageBounds, true);
+                        /* this.PdfDoc.Page = this.PaginaNumero;
+
+                        float Dpi = 72;
+                        int w = System.Convert.ToInt32(e.PageBounds.Width * 5);
+                        int h = System.Convert.ToInt32(e.PageBounds.Height * 5);
+                        Bitmap FirstImage = PdfDoc.GetBitmap(w, h, Dpi, Dpi, 0, MuPDFLib.RenderType.Grayscale, false, false, 0);
+                        e.Graphics.DrawImage(FirstImage, 0, 0, e.Graphics.VisibleClipBounds.Width, e.Graphics.VisibleClipBounds.Height);
+                        e.Graphics.DrawString("Hola", new Font("Arial", 18), System.Drawing.Brushes.Black, new PointF(5, 5)); */
                 }
 
-                protected virtual void ImprimirCampos(PrintPageEventArgs e, Rectangle recorte, bool imprimirEspejos)
+
+                protected override void OnEndPrint(PrintEventArgs e)
+                {
+                        /* if (this.PdfDoc != null) {
+                                this.PdfDoc.Dispose();
+                                this.PdfDoc = null;
+                        } */
+                        base.OnEndPrint(e);
+                }
+
+
+                protected virtual void ImprimirInterna(PrintPageEventArgs e)
+                {
+                        ImprimirInterna(e, e.PageBounds, true);
+                }
+
+
+                protected virtual void ImprimirInterna(PrintPageEventArgs e, Rectangle recorte, bool imprimirEspejos)
                 {
                         e.Graphics.TranslateTransform(recorte.X, recorte.Y);
                         foreach (Lbl.Impresion.Campo Cam in this.Plantilla.Campos) {
                                 if (Cam.Valor.ToUpperInvariant() != "{ESPEJO}")
-                                        this.ImprimirCampo(e, Cam);
+                                        this.ImprimirInternaCampo(e, Cam);
                         }
                         foreach (Lbl.Impresion.Campo Cam in this.Plantilla.Campos) {
                                 if (Cam.Valor.ToUpperInvariant() == "{ESPEJO}" && imprimirEspejos)
-                                        this.ImprimirCampos(e, Cam.Rectangle, false);
+                                        this.ImprimirInterna(e, Cam.Rectangle, false);
                         }
                 }
 
-                protected virtual void ImprimirCampo(PrintPageEventArgs e, Lbl.Impresion.Campo Cam)
+                protected virtual void ImprimirInternaCampo(PrintPageEventArgs e, Lbl.Impresion.Campo Cam)
                 {
                         if (Cam.ColorFondo != Color.Transparent)
                                 e.Graphics.FillRectangle(new SolidBrush(Cam.ColorFondo), Cam.Rectangle);
@@ -238,6 +308,9 @@ namespace Lazaro.Impresion
                 public virtual string ObtenerValorCampo(string nombreCampo, string formato)
                 {
                         switch (nombreCampo.ToUpperInvariant()) {
+                                case "PAGINANUMERO":
+                                case "PÁGINANÚMERO":
+                                        return this.PaginaNumero.ToString();
                                 case "HOY":
                                         if (formato != null) {
                                                 try {

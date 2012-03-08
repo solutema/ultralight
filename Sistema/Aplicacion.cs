@@ -675,7 +675,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString() + ".Whatsnew.Ultimo", System.DateTime.Now.ToString("yyyy-MM-dd"));
                                 } else {
                                         // Veo si hay novedades para mostrar
-                                        string FechaWhatsnewOriginal = FechaWhatsnew;
+                                        //string FechaWhatsnewOriginal = FechaWhatsnew;
                                         System.IO.StreamReader Whatsnew = new System.IO.StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Lazaro.whatsnew.txt"));
                                         System.Text.StringBuilder Mostrar = null;
                                         bool Mostrando = false;

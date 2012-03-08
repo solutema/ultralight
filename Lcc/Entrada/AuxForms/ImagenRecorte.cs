@@ -235,7 +235,6 @@ namespace Lcc.Entrada.AuxForms
 
                 private void BotonRotarDer_Click(object sender, EventArgs e)
                 {
-                        Bitmap RotatedImage = ((Bitmap)(EntradaImagen.Image));
                         this.Imagen.RotateFlip(RotateFlipType.Rotate90FlipNone);
                         this.EntradaImagen.Invalidate();
                 }

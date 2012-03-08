@@ -255,7 +255,6 @@ namespace Lfc.Sucursales
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTelefono.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.EntradaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaTelefono.Location = new System.Drawing.Point(96, 96);
                         this.EntradaTelefono.Name = "EntradaTelefono";
                         this.EntradaTelefono.ReadOnly = false;

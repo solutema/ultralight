@@ -91,11 +91,15 @@ namespace Lbl.Tareas
                         }
                 }
 
-                public decimal ImportePresupuesto
+                public decimal Importe
                 {
                         get
                         {
-                                return this.GetFieldValue<decimal>("presupuesto");
+                                decimal Res = this.GetFieldValue<decimal>("presupuesto");
+                                if (Res == 0 && this.Presupuesto != null)
+                                        Res = this.Presupuesto.Total;
+
+                                return Res;
                         }
                         set
                         {
@@ -223,7 +227,7 @@ namespace Lbl.Tareas
                         Comando.Fields.AddWithValue("articulos_descuento", this.DescuentoArticulos);
                         Comando.Fields.AddWithValue("entrega_estimada", this.FechaEstimada);
                         Comando.Fields.AddWithValue("entrega_limite", this.FechaLimite);
-                        Comando.Fields.AddWithValue("presupuesto", this.ImportePresupuesto);
+                        Comando.Fields.AddWithValue("presupuesto", this.Importe);
                         if (this.Presupuesto == null)
                                 Comando.Fields.AddWithValue("id_presupuesto", null);
                         else

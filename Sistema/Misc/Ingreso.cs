@@ -96,7 +96,7 @@ namespace Lazaro.WinMain.Misc
 			} else {
 				OkButton.Text = "Ingresando...";
 				OkButton.Refresh();
-                                Lbl.Personas.Persona Usuario = new Lbl.Personas.Persona(Lfx.Workspace.Master.MasterConnection, Usu.Id);
+                                //Lbl.Personas.Persona Usuario = new Lbl.Personas.Persona(Lfx.Workspace.Master.MasterConnection, Usu.Id);
                                 Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Usu);
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), System.Environment.MachineName.ToUpperInvariant());
 				Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());

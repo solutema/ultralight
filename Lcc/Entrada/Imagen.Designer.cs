@@ -112,7 +112,6 @@ namespace Lcc.Entrada
                         // 
                         this.BotonQuitarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonQuitarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitarImagen.Image = null;
                         this.BotonQuitarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitarImagen.Location = new System.Drawing.Point(144, 128);
@@ -128,7 +127,6 @@ namespace Lcc.Entrada
                         // 
                         this.BotonSeleccionarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonSeleccionarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonSeleccionarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSeleccionarImagen.Image = null;
                         this.BotonSeleccionarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSeleccionarImagen.Location = new System.Drawing.Point(144, 80);
@@ -144,7 +142,6 @@ namespace Lcc.Entrada
                         // 
                         this.BotonCapturarImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCapturarImagen.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonCapturarImagen.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCapturarImagen.Image = null;
                         this.BotonCapturarImagen.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCapturarImagen.Location = new System.Drawing.Point(144, 32);

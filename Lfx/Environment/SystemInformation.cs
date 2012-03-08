@@ -32,7 +32,6 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Management;
 using System.Security.Permissions;
 
 namespace Lfx.Environment

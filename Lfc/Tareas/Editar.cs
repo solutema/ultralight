@@ -65,7 +65,7 @@ namespace Lfc.Tareas
                         Tarea.Estado = EntradaEstado.TextInt;
                         Tarea.FechaEstimada = Lfx.Types.Parsing.ParseDate(EntradaEntregaEstimada.Text);
                         Tarea.FechaLimite = Lfx.Types.Parsing.ParseDate(EntradaEntregaLimite.Text);
-                        Tarea.ImportePresupuesto = EntradaImportePresupuesto.ValueDecimal;
+                        Tarea.Importe = EntradaImportePresupuesto.ValueDecimal;
                         Tarea.Obs = EntradaObs.Text;
 
                         base.ActualizarElemento();
@@ -85,7 +85,7 @@ namespace Lfc.Tareas
                         EntradaFechaIngreso.Text = Lfx.Types.Formatting.FormatDateAndTime(Tarea.Fecha);
                         EntradaEntregaEstimada.Text = Lfx.Types.Formatting.FormatDate(Tarea.FechaEstimada);
                         EntradaEntregaLimite.Text = Lfx.Types.Formatting.FormatDate(Tarea.FechaLimite);
-                        EntradaImportePresupuesto.ValueDecimal = Tarea.ImportePresupuesto;
+                        EntradaImportePresupuesto.ValueDecimal = Tarea.Importe;
                         EntradaObs.Text = Tarea.Obs;
 
                         if (Tarea.Presupuesto == null)

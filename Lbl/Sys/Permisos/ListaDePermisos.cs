@@ -98,6 +98,9 @@ namespace Lbl.Sys.Permisos
                         if (this.TieneAccesoGlobal())
                                 return true;
 
+                        if (tipo == null)
+                                return false;
+
                         string TipoElemento = tipo.ToString();
                         foreach (Permiso Perm in this) {
                                 if (Perm.Objeto.Tipo == TipoElemento &&

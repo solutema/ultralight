@@ -216,7 +216,6 @@ namespace Lfc.Comprobantes.Recibos
                     // 
                     this.BotonAgregarFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                     this.BotonAgregarFactura.DialogResult = System.Windows.Forms.DialogResult.None;
-                    this.BotonAgregarFactura.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.BotonAgregarFactura.Image = null;
                     this.BotonAgregarFactura.ImagePos = Lui.Forms.ImagePositions.Top;
                     this.BotonAgregarFactura.Location = new System.Drawing.Point(0, 372);
@@ -232,7 +231,6 @@ namespace Lfc.Comprobantes.Recibos
                     // 
                     this.BotonQuitarFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                     this.BotonQuitarFactura.DialogResult = System.Windows.Forms.DialogResult.None;
-                    this.BotonQuitarFactura.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.BotonQuitarFactura.Image = null;
                     this.BotonQuitarFactura.ImagePos = Lui.Forms.ImagePositions.Top;
                     this.BotonQuitarFactura.Location = new System.Drawing.Point(108, 372);
@@ -325,7 +323,6 @@ namespace Lfc.Comprobantes.Recibos
                     // 
                     this.BotonAgregarValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                     this.BotonAgregarValor.DialogResult = System.Windows.Forms.DialogResult.None;
-                    this.BotonAgregarValor.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.BotonAgregarValor.Image = null;
                     this.BotonAgregarValor.ImagePos = Lui.Forms.ImagePositions.Top;
                     this.BotonAgregarValor.Location = new System.Drawing.Point(0, 372);
@@ -341,7 +338,6 @@ namespace Lfc.Comprobantes.Recibos
                     // 
                     this.BotonQuitarValor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                     this.BotonQuitarValor.DialogResult = System.Windows.Forms.DialogResult.None;
-                    this.BotonQuitarValor.ForeColor = System.Drawing.SystemColors.ControlText;
                     this.BotonQuitarValor.Image = null;
                     this.BotonQuitarValor.ImagePos = Lui.Forms.ImagePositions.Top;
                     this.BotonQuitarValor.Location = new System.Drawing.Point(108, 372);

@@ -670,7 +670,6 @@ namespace Lfc.Personas
                         this.EntradaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTelefono.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.EntradaTelefono.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
                         this.EntradaTelefono.Location = new System.Drawing.Point(128, 104);
                         this.EntradaTelefono.Name = "EntradaTelefono";
                         this.EntradaTelefono.Size = new System.Drawing.Size(214, 88);
@@ -845,7 +844,6 @@ namespace Lfc.Personas
                         // matrizTelefonos1
                         // 
                         this.matrizTelefonos1.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.matrizTelefonos1.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
                         this.matrizTelefonos1.Location = new System.Drawing.Point(0, 0);
                         this.matrizTelefonos1.Name = "matrizTelefonos1";
                         this.matrizTelefonos1.Size = new System.Drawing.Size(536, 180);

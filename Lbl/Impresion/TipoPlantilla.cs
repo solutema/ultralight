@@ -38,8 +38,8 @@ namespace Lbl.Impresion
 {
         public enum TipoPlantilla
         {
-                Preimpresa = 0,
-                SubimprimirImagen = 1,
+                InternaPreimpresa = 0,
+                InternaConImagen = 1,
                 Pdf = 2
         }
 }

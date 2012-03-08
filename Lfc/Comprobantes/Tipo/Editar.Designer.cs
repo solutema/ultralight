@@ -356,7 +356,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(608, 376);
@@ -372,7 +371,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(728, 376);

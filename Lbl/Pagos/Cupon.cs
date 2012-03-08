@@ -307,8 +307,6 @@ namespace Lbl.Pagos
 
 		public override Lfx.Types.OperationResult Guardar()
 		{
-                        bool Existia = this.Existe;
-
                         if (this.Existe == false) {
                                 if (this.FormaDePago != null && this.FormaDePago.AutoPresentacion) {
                                         this.Estado = 10;

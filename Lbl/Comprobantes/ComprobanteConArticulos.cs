@@ -43,7 +43,7 @@ namespace Lbl.Comprobantes
                 private ColeccionComprobanteImporte m_ComprobRelacionados = null;
                 private ColeccionDetalleArticulos m_Articulos = null, m_ArticulosOriginales = null;
                 private Articulos.Situacion m_SituacionOrigen, m_SituacionDestino;
-                private Lbl.Articulos.Situacion m_SituacionDestinoOriginal = null;
+                //private Lbl.Articulos.Situacion m_SituacionDestinoOriginal = null;
                 private ColeccionRecibos m_Recibos = null;
                 private Lbl.Pagos.FormaDePago m_FormaDePago = null;
                 
@@ -600,7 +600,7 @@ namespace Lbl.Comprobantes
 
                 public override void OnLoad()
                 {
-                        this.m_SituacionDestinoOriginal = this.SituacionDestino;
+                        //this.m_SituacionDestinoOriginal = this.SituacionDestino;
                         this.m_ComprobRelacionados = null;
                        
                         base.OnLoad();
@@ -656,7 +656,6 @@ namespace Lbl.Comprobantes
 			this.Connection.Execute(Actualizar);
 
                         if (comprob is Lbl.Comprobantes.Recibo) {
-                                Lbl.Comprobantes.Recibo recibo = comprob as Lbl.Comprobantes.Recibo;
                                 qGen.Insert AsentarComprobantesDeEsteRecibo = new qGen.Insert("recibos_comprob");
                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_comprob", this.Id);
                                 AsentarComprobantesDeEsteRecibo.Fields.AddWithValue("id_recibo", comprob.Id);

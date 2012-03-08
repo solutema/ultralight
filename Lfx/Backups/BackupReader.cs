@@ -41,7 +41,7 @@ namespace Lfx.Backups
                 public BackupReader(string path)
                 {
                         System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read);
-                        int FirstPos = fs.ReadByte();
+                        fs.ReadByte();
                         inputStream = fs;
                         inputStream.Seek(0, System.IO.SeekOrigin.Begin);
                 }

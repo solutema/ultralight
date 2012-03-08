@@ -20,7 +20,8 @@
     <ApplicationIcon>Lazaro.ico</ApplicationIcon>
     <CodePage>65001</CodePage>
     <ReleaseVersion>1.0</ReleaseVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>

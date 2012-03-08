@@ -278,7 +278,14 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         }
 
                         if (Comprob.PV < 1)
-                                return new Lfx.Types.FailureOperationResult("Debe especificar el Punto de Venta.");
+                                return new Lfx.Types.FailureOperationResult("Debe especificar el punto de venta.");
+
+                        if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(Comprob.PV) == false) {
+                                // No existe el PV... vacío la caché antes intentar de nuevo y dar un error
+                                Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.Clear();
+                                if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(Comprob.PV) == false)
+                                        return new Lfx.Types.FailureOperationResult("El punto de venta no existe. Si desea definir un nuevo punto de venta, utilice el menú Comprobantes -> Tablas -> Puntos de venta.");
+                        }
 
                         Lbl.Comprobantes.PuntoDeVenta Pv = Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[Comprob.PV];
                         Lbl.Impresion.Impresora Impresora = Comprob.ObtenerImpresora();

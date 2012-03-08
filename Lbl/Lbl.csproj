@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -19,8 +19,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>Lazaro.ico</ApplicationIcon>
     <CodePage>65001</CodePage>
-    <ReleaseVersion>2.0</ReleaseVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <ReleaseVersion>1.0</ReleaseVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -44,8 +43,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>
-    </NoWarn>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentation>true</GenerateDocumentation>
@@ -71,10 +68,16 @@
     <OutputPath>bin\dev\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>none</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release\</OutputPath>
+    <DebugType>none</DebugType>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

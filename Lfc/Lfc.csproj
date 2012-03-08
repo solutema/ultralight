@@ -19,7 +19,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>Lazaro.ico</ApplicationIcon>
     <ReleaseVersion>1.0</ReleaseVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>

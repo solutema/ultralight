@@ -70,7 +70,6 @@ namespace Lfc.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.EntradaProductos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
                         this.EntradaProductos.Location = new System.Drawing.Point(0, 32);
                         this.EntradaProductos.LockPrice = false;

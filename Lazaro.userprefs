@@ -1,6 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Dev" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sistema/Misc/Ingreso.cs">
+    <Files>
+      <File FileName="Componentes/LaRed.Bl/Cierres/Cierre.cs" Line="156" Column="1" />
+      <File FileName="Lfc/Reportes/Facturacion.cs" Line="495" Column="51" />
+      <File FileName="Sistema/Misc/Ingreso.cs" Line="99" Column="54" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="LaRed" selected="True" />
+          <Node name="WinMain" expanded="True">
+            <Node name="Misc" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

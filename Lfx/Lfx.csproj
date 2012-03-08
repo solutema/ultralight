@@ -26,7 +26,8 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <CodePage>65001</CodePage>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>

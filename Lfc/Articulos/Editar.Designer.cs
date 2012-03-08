@@ -167,7 +167,6 @@ namespace Lfc.Articulos
                         // BotonInfoCosto
                         // 
                         this.BotonInfoCosto.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonInfoCosto.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonInfoCosto.Image = null;
                         this.BotonInfoCosto.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonInfoCosto.Location = new System.Drawing.Point(248, 40);
@@ -290,7 +289,6 @@ namespace Lfc.Articulos
                         // BotonReceta
                         // 
                         this.BotonReceta.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonReceta.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonReceta.Image = null;
                         this.BotonReceta.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonReceta.Location = new System.Drawing.Point(336, 40);
@@ -306,7 +304,6 @@ namespace Lfc.Articulos
                         // BotonUnidad
                         // 
                         this.BotonUnidad.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonUnidad.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonUnidad.Image = null;
                         this.BotonUnidad.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonUnidad.Location = new System.Drawing.Point(328, 0);

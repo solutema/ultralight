@@ -360,17 +360,14 @@ namespace Lfc.Comprobantes.Plantillas
                 {
                         if (newZoom != this.Zoom) {
                                 // Si no si especifica un punto, se asume el centro de la imagen
-                                if (from == null || from == Point.Empty)
+                                if (from == Point.Empty)
                                         from = new Point(ImagePreview.ClientRectangle.Width / 2, ImagePreview.ClientRectangle.Height / 2);
 
-                                // Calculo el nuevo desplazamiento para que la página haga zoom desde el punto especificado
-                                float DifZoom = newZoom - this.Zoom;
 
                                 // Posición relativa del mouse, dentro de la página
-                                Point PosPagina = this.PosicionPagina;
-                                Point PosRelMouse = new Point(from.X - PosPagina.X, from.Y - PosPagina.Y);
-                                Point NuevaPosRelMouse = new Point(Convert.ToInt32(PosRelMouse.X / this.Zoom * newZoom), Convert.ToInt32(PosRelMouse.Y / this.Zoom * newZoom));
-                                Point NuevaPosicionPagina = new Point(Convert.ToInt32(from.X - NuevaPosRelMouse.X), Convert.ToInt32(from.Y - NuevaPosRelMouse.Y));
+                                //Point PosPagina = this.PosicionPagina;
+                                //Point PosRelMouse = new Point(from.X - PosPagina.X, from.Y - PosPagina.Y);
+                                //Point NuevaPosRelMouse = new Point(Convert.ToInt32(PosRelMouse.X / this.Zoom * newZoom), Convert.ToInt32(PosRelMouse.Y / this.Zoom * newZoom));
 
                                 this.Zoom = newZoom;
                                 //this.PosicionPagina = NuevaPosicionPagina;
@@ -392,7 +389,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 ButtonDown = PuntoDesdePantalla(new Point(e.X, e.Y));
                                 Point MyButtonDown = PuntoDesdePantalla(new Point(e.X, e.Y), false);
 
-                                Lbl.Impresion.Campo CampoSeleccionadoOriginal = CampoSeleccionado;
+                                //Lbl.Impresion.Campo CampoSeleccionadoOriginal = CampoSeleccionado;
                                 if (CampoSeleccionado != null) {
                                         Rectangle RectKnob = new Rectangle(CampoSeleccionado.Rectangle.Right - KnobSize / 2, CampoSeleccionado.Rectangle.Bottom - KnobSize / 2, KnobSize, KnobSize);
                                         if (CampoSeleccionado != null && RectKnob.Contains(MyButtonDown)) {
