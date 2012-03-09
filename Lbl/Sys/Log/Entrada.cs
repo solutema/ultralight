@@ -56,6 +56,16 @@ namespace Lbl.Sys.Log
                         }
                 }
 
+
+                public string Carga
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("extra1");
+                        }
+                }
+
+
                 public int IdUsuario
                 {
                         get
@@ -86,7 +96,7 @@ namespace Lbl.Sys.Log
                 }
 
 
-                public string Explain(bool multiLine)
+                public string ExplainSave(bool multiLine)
                 {
                         string Cambios = this.GetFieldValue<string>("extra1");
 

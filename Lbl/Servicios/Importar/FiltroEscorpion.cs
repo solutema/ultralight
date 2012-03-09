@@ -125,7 +125,7 @@ namespace Lbl.Servicios.Importar
 
                         if (this.Opciones.ImportarCtasCtes) {
                                 // Cuentas corrientes
-                                this.MapaDeTablas.AddWithValue("Cuentas Corrientes", "ctasctes.dbf", "ctacte", "TIPO,NROCOM");
+                                this.MapaDeTablas.AddWithValue("Cuentas corrientes", "ctasctes.dbf", "ctacte", "TIPO,NROCOM");
                                 this.MapaDeTablas["ctasctes.dbf"].Where = "CONDICION='C' OR TIPO='RCB'"; 
                                 this.Reemplazos.Add(new Reemplazo(1, 999, "ctascte.dbf:CLIENTE"));         // En el sistema de Escorpión, Consumidor Final es el cliente 1 (y puede tener cuenta corriente!), en Lázaro es 999
                                 this.MapaDeTablas["ctasctes.dbf"].TipoElemento = typeof(Lbl.CuentasCorrientes.Movimiento);

@@ -218,14 +218,11 @@ namespace Lbl.Personas
                                 if (Registro["id_tipo_cuit"] == null)
                                         return null;
                                 else
-                                        return new Entidades.ClaveUnica(this.Connection, this.GetFieldValue<int>("id_tipo_cuit"));
+                                        return this.GetFieldValue<Entidades.ClaveUnica>("id_tipo_cuit");
                         }
                         set
                         {
-                                if (value == null)
-                                        Registro["id_tipo_cuit"] = null;
-                                else
-                                        Registro["id_tipo_cuit"] = value.Id;
+                                this.SetFieldValue("id_tipo_cuit", value);
                         }
                 }
 
@@ -288,11 +285,11 @@ namespace Lbl.Personas
 		{
 			get
 			{
-				return (EstadoCredito)System.Convert.ToInt32(Registro["estadocredito"]);
+				return (EstadoCredito)(this.GetFieldValue<int>("estadocredito"));
 			}
                         set
                         {
-                                Registro["estadocredito"] = (int)value;
+                                this.SetFieldValue("estadocredito", (int)value);
                         }
 		}
 
@@ -336,14 +333,11 @@ namespace Lbl.Personas
 				if(Registro["id_tipo_doc"] == null)
 					return null;
 				else
-					return new Entidades.ClaveUnica(this.Connection, this.GetFieldValue<int>("id_tipo_doc"));
+					return this.GetFieldValue<Entidades.ClaveUnica>("id_tipo_doc");
 			}
                         set
                         {
-                                if (value == null)
-                                        Registro["id_tipo_doc"] = null;
-                                else
-                                        Registro["id_tipo_doc"] = value.Id;
+                                this.SetFieldValue("id_tipo_doc", value);
                         }
 		}
 
@@ -535,13 +529,14 @@ namespace Lbl.Personas
                         get
                         {
                                 if (m_Grupo == null && this.GetFieldValue<int>("id_grupo") > 0)
-                                        m_Grupo = new Grupo(this.Connection, this.GetFieldValue<int>("id_grupo"));
+                                        m_Grupo = this.GetFieldValue<Grupo>("id_grupo");
 
                                 return m_Grupo;
                         }
                         set
                         {
                                 m_Grupo = value;
+                                this.SetFieldValue("id_grupo", value);
                         }
                 }
 
@@ -550,13 +545,14 @@ namespace Lbl.Personas
                         get
                         {
                                 if (m_SubGrupo == null && this.GetFieldValue<int>("id_subgrupo") > 0)
-                                        m_SubGrupo = new Grupo(this.Connection, this.GetFieldValue<int>("id_subgrupo"));
+                                        m_SubGrupo = this.GetFieldValue<Grupo>("id_subgrupo");
 
                                 return m_SubGrupo;
                         }
                         set
                         {
                                 m_SubGrupo = value;
+                                this.SetFieldValue("id_subgrupo", value);
                         }
                 }
 
@@ -569,7 +565,7 @@ namespace Lbl.Personas
                                                 // El cliente especial "Consumidor Final" está siempre en la ciudad actual
                                                 m_Localidad = Lbl.Sys.Config.Empresa.SucursalActual.Localidad;
                                         else if (this.GetFieldValue<int>("id_ciudad") > 0)
-                                                m_Localidad = new Lbl.Entidades.Localidad(this.Connection, this.GetFieldValue<int>("id_ciudad"));
+                                                m_Localidad = this.GetFieldValue<Lbl.Entidades.Localidad>("id_ciudad");
                                 }
                                 return m_Localidad;
                         }
@@ -585,13 +581,14 @@ namespace Lbl.Personas
                         get
                         {
                                 if (m_SituacionTributaria == null && this.GetFieldValue<int>("id_situacion") > 0)
-                                        m_SituacionTributaria = new Lbl.Impuestos.SituacionTributaria(this.Connection, this.GetFieldValue<int>("id_situacion"));
+                                        m_SituacionTributaria = this.GetFieldValue<Lbl.Impuestos.SituacionTributaria>("id_situacion");
 
                                 return m_SituacionTributaria;
                         }
                         set
                         {
                                 m_SituacionTributaria = value;
+                                this.SetFieldValue("id_situacion", value);
                         }
                 }
 
@@ -627,16 +624,13 @@ namespace Lbl.Personas
                         get
                         {
                                 if (m_Vendedor == null && this.GetFieldValue<int>("id_vendedor") != 0)
-                                        m_Vendedor = new Lbl.Personas.Persona(this.Connection, this.GetFieldValue<int>("id_vendedor"));
+                                        m_Vendedor = this.GetFieldValue<Lbl.Personas.Persona>("id_vendedor");
                                 return m_Vendedor;
                         }
                         set
                         {
                                 m_Vendedor = value;
-                                if (m_Vendedor == null)
-                                        this.Registro["id_vendedor"] = 0;
-                                else
-                                        this.Registro["id_vendedor"] = value.Id;
+                                this.SetFieldValue("id_vendedor", value);
                         }
                 }
 	}

@@ -286,10 +286,10 @@ namespace Lfc.Pvs
                         this.EntradaTipoFac.ReadOnly = false;
                         this.EntradaTipoFac.SetData = new string[] {
         "Facturas|F",
-        "Facturas, Notas de Débito|F,ND",
-        "Facturas, Notas de Crédito y Débito|F,NC,ND",
+        "Facturas y notas de débito|F,ND",
+        "Facturas, notas de crédito y débito|F,NC,ND",
         "Remitos|R",
-        "Recibos de Cobro|RC"};
+        "Recibos de cobro|RC"};
                         this.EntradaTipoFac.Size = new System.Drawing.Size(336, 81);
                         this.EntradaTipoFac.TabIndex = 7;
                         this.EntradaTipoFac.TextKey = "F,NC,ND";

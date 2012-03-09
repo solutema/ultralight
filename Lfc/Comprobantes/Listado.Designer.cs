@@ -59,17 +59,17 @@ namespace Lfc.Comprobantes
                     this.EntradaAgrupar.Location = new System.Drawing.Point(400, 4);
                     this.EntradaAgrupar.Name = "EntradaAgrupar";
                     this.EntradaAgrupar.SetData = new string[] {
-        "Sin Agrupar|*",
-        "Por Tipo de Comprobante|comprob.tipo_fac",
-        "Por Vendedor|comprob.id_vendedor",
-        "Por Cliente|comprob.id_cliente",
-        "Por Forma de Pago|comprob.id_formapago",
-        "Por Día de la Semana|DAYOFWEEK(comprob.fecha)",
-        "Por Día del Mes|DAYOFMONTH(comprob.fecha)",
-        "Por Marca|articulos.id_marca",
-        "Por Proveedor|articulos.id_proveedor",
-        "Por Artículo|articulos.id_articulo",
-        "Por Categoría|articulos.id_categoria"};
+        "Sin agrupar|*",
+        "Por tipo de comprobante|comprob.tipo_fac",
+        "Por vendedor|comprob.id_vendedor",
+        "Por cliente|comprob.id_cliente",
+        "Por forma de pago|comprob.id_formapago",
+        "Por día de la semana|DAYOFWEEK(comprob.fecha)",
+        "Por día del mes|DAYOFMONTH(comprob.fecha)",
+        "Por marca|articulos.id_marca",
+        "Por proveedor|articulos.id_proveedor",
+        "Por artículo|articulos.id_articulo",
+        "Por categoría|articulos.id_categoria"};
                     this.EntradaAgrupar.Size = new System.Drawing.Size(196, 24);
                     this.EntradaAgrupar.TabIndex = 1;
                     this.EntradaAgrupar.TextKey = "*";

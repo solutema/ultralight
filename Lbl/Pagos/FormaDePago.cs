@@ -38,7 +38,7 @@ namespace Lbl.Pagos
         /// <summary>
         /// Representa una forma de pago. Tanto para emitir pagos como para recibir pagos.
         /// </summary>
-        [Lbl.Atributos.Nomenclatura(NombreSingular = "Forma de Pago", Grupo = "Cobros y Pagos")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Forma de pago", Grupo = "Cobros y pagos")]
         [Lbl.Atributos.Datos(TablaDatos = "formaspago", CampoId = "id_formapago")]
         [Lbl.Atributos.Presentacion()]
         public class FormaDePago : ElementoDeDatos

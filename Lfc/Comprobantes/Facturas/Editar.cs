@@ -95,7 +95,7 @@ namespace Lfc.Comprobantes.Facturas
                                         int RemitoId = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE compra=0 AND tipo_fac='R' AND pv=" + RemitoPv.ToString() + " AND numero=" + RemitoNumero.ToString() + " AND impresa>0 AND anulada=0");
                                         if (RemitoId == 0) {
                                                 validarReturn.Success = false;
-                                                validarReturn.Message += "El número de Remito no es válido." + Environment.NewLine;
+                                                validarReturn.Message += "El número de remito no es válido." + Environment.NewLine;
                                         }
                                 }
 
@@ -103,11 +103,11 @@ namespace Lfc.Comprobantes.Facturas
                                 Lbl.Comprobantes.Tipo Tipo = new Lbl.Comprobantes.Tipo(this.Connection, EntradaTipo.TextKey);
                                 if (FormaPago == null && Tipo.EsFactura) {
                                         validarReturn.Success = false;
-                                        validarReturn.Message += "Debe especificar la Forma de Pago." + Environment.NewLine;
+                                        validarReturn.Message += "Debe especificar la forma de pago." + Environment.NewLine;
                                 }
                                 if (EntradaCliente.TextInt == 999 && FormaPago != null && FormaPago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
                                         validarReturn.Success = false;
-                                        validarReturn.Message += @"""Consumidor Final"" no puede realizar pagos en Cuenta Corriente." + Environment.NewLine;
+                                        validarReturn.Message += @"""Consumidor final"" no puede realizar pagos en cuenta corriente." + Environment.NewLine;
                                 }
 
                                 Lbl.Personas.Persona Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
@@ -129,30 +129,31 @@ namespace Lfc.Comprobantes.Facturas
                         Lbl.Comprobantes.ComprobanteConArticulos Res = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         if (this.Tipo.EsFactura || this.Tipo.EsTicket) {
-                                EntradaTipo.SetData = new string[] {
-                                        "Factura A|FA",
-                                        "Factura B|FB",
-                                        "Factura C|FC",
-                                        "Factura M|FM",
-                                        "Factura E|FE",
-                                        "Ticket|T"
-                                };
+                                List<Lbl.Comprobantes.Tipo> TiposFac = new List<Lbl.Comprobantes.Tipo>();
+                                foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.TodosPorLetra.Values) {
+                                        if (Tp.EsFacturaOTicket)
+                                                TiposFac.Add(Tp);
+                                }
+                                string[] NombresYTipos = new string[TiposFac.Count];
+                                int i = 0;
+                                foreach (Lbl.Comprobantes.Tipo Tp in TiposFac) {
+                                        NombresYTipos[i++] = Tp.Nombre + "|" + Tp.Nomenclatura;
+                                }
+                                EntradaTipo.SetData = NombresYTipos;
                                 EntradaFormaPago.Elemento = Res.FormaDePago;
                                 EntradaFormaPago.Visible = true;
                         } else if (this.Tipo.EsNotaCredito || this.Tipo.EsNotaDebito) {
-                                EntradaTipo.SetData = new string[] {
-                                        "Nota Créd. A|NCA",
-                                        "Nota Créd. B|NCB",
-                                        "Nota Créd. C|NCC",
-                                        "Nota Créd. E|NCE",
-                                        "Nota Créd. M|NCM",
-                                        "Nota Déb. A|NDA",
-                                        "Nota Déb. B|NDB",
-                                        "Nota Déb. C|NDC",
-                                        "Nota Déb. E|NDE",
-                                        "Nota Déb. M|NDM"
-
-                                };
+                                List<Lbl.Comprobantes.Tipo> TiposFac = new List<Lbl.Comprobantes.Tipo>();
+                                foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.TodosPorLetra.Values) {
+                                        if (Tp.EsNotaCredito || Tp.EsNotaDebito)
+                                                TiposFac.Add(Tp);
+                                }
+                                string[] NombresYTipos = new string[TiposFac.Count];
+                                int i = 0;
+                                foreach (Lbl.Comprobantes.Tipo Tp in TiposFac) {
+                                        NombresYTipos[i++] = Tp.Nombre + "|" + Tp.Nomenclatura;
+                                }
+                                EntradaTipo.SetData = NombresYTipos;
                                 EntradaFormaPago.TextInt = 3;
                                 EntradaFormaPago.Visible = false;
                         }
@@ -208,13 +209,13 @@ namespace Lfc.Comprobantes.Facturas
                         Comprob.Cliente.Cargar();
 
                         if (Comprob.FormaDePago == null)
-                                return new Lfx.Types.FailureOperationResult("Debe especificar la Forma de Pago.");
+                                return new Lfx.Types.FailureOperationResult("Debe especificar la forma de pago.");
 
                         if (Comprob.Cliente == null)
-                                return new Lfx.Types.FailureOperationResult("Debe proporcionar un Cliente válido.");
+                                return new Lfx.Types.FailureOperationResult("Debe proporcionar un cliente válido.");
 
                         else if (Comprob.Cliente.SituacionTributaria == null)
-                                return new Lfx.Types.FailureOperationResult("El Cliente no tiene una Situación tributaria definida.");
+                                return new Lfx.Types.FailureOperationResult("El Cliente no tiene una situación tributaria definida.");
 
                         if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
                                 Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.

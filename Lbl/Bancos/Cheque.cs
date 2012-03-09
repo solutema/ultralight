@@ -113,7 +113,7 @@ namespace Lbl.Bancos
                         get
                         {
                                 if (m_Recibo == null && this.GetFieldValue<int>("id_recibo") > 0)
-                                        this.m_Recibo = new Comprobantes.ReciboDeCobro(this.Connection, this.GetFieldValue<int>("id_recibo"));
+                                        this.m_Recibo = this.GetFieldValue<Comprobantes.ReciboDeCobro>("id_recibo");
                                 return m_Recibo;
                         }
                         set
@@ -128,7 +128,7 @@ namespace Lbl.Bancos
                         get
                         {
                                 if (m_ReciboPago == null && this.GetFieldValue<int>("id_recibo_pago") > 0)
-                                        this.m_ReciboPago = new Comprobantes.ReciboDeCobro(this.Connection, this.GetFieldValue<int>("id_recibo_pago"));
+                                        this.m_ReciboPago = this.GetFieldValue<Comprobantes.ReciboDeCobro>("id_recibo_pago");
                                 return m_ReciboPago;
                         }
                         set

@@ -44,11 +44,11 @@ namespace Lbl.Comprobantes
                 public ColeccionGenerica<Lbl.Impresion.TipoImpresora> m_Impresoras = null;
 
                 //Heredar constructor
-		public Tipo(Lfx.Data.Connection dataBase)
+                public Tipo(Lfx.Data.Connection dataBase)
                         : base(dataBase) { }
 
                 public Tipo(Lfx.Data.Connection dataBase, int itemId)
-			: base(dataBase, itemId) { }
+                        : base(dataBase, itemId) { }
 
                 public Tipo(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
@@ -165,7 +165,7 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                switch(this.Nomenclatura) {
+                                switch (this.Nomenclatura) {
                                         case "FA":
                                         case "NCA":
                                         case "NDA":
@@ -241,7 +241,7 @@ namespace Lbl.Comprobantes
                         return Lbl.Instanciador.InferirTipo(this.NombreTipoLbl);
                 }
 
-                
+
                 /// <summary>
                 /// La nomenclatura del tipo de comprobante (A, B, NCA, NDE, etc.). Está formada por el TipoBase y la Letra.
                 /// </summary>
@@ -466,13 +466,29 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 if (m_TodosPorLetra == null) {
-                                        m_TodosPorLetra = new Dictionary<string,Tipo>();
-                                        System.Data.DataTable TablaTipos = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM documentos_tipos");
+                                        m_TodosPorLetra = new Dictionary<string, Tipo>();
+                                        System.Data.DataTable TablaTipos = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM documentos_tipos WHERE estado=1");
                                         foreach (System.Data.DataRow RegTipo in TablaTipos.Rows) {
                                                 m_TodosPorLetra.Add(RegTipo["letra"].ToString(), new Lbl.Comprobantes.Tipo(Lfx.Workspace.Master.MasterConnection, (Lfx.Data.Row)RegTipo));
                                         }
                                 }
                                 return m_TodosPorLetra;
+                        }
+                }
+
+                private static Dictionary<string, Tipo> m_FacturasPorLetra = null;
+                public static Dictionary<string, Tipo> FacturasPorLetra
+                {
+                        get
+                        {
+                                if (m_FacturasPorLetra == null) {
+                                        m_FacturasPorLetra = new Dictionary<string, Tipo>();
+                                        foreach (Tipo Tp in TodosPorLetra.Values) {
+                                                if (Tp.EsFacturaOTicket)
+                                                        m_FacturasPorLetra.Add(Tp.Nomenclatura, Tp);
+                                        }
+                                }
+                                return m_FacturasPorLetra;
                         }
                 }
         }

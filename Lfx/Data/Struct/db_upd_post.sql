@@ -57,4 +57,9 @@ REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "fecha", "iso", "cl
 	(20, 'Nicaragua', NULL, 1, NULL, 'NI', 4, NULL, 80, 18, 15.0000, 0.0000),
 	(99, 'Estados Unidos', NULL, 1, NULL, 'US', 22, 23, 80, 1, 0.0000, 0.0000);
 
+START TRANSACTION WITH CONSISTENT SNAPSHOT;
+INSERT INTO sys_log (fecha, estacion, usuario, comando, tabla, item_id, extra1) SELECT fecha, '', id_persona, 'Comment', tablas, item_id, obs FROM sys_comments;
+DELETE FROM sys_comments;
+COMMIT;
+
 SET FOREIGN_KEY_CHECKS=1;

@@ -45,6 +45,27 @@ namespace Lfc.Personas
 
                         if (Lbl.Sys.Config.Pais.ClaveBancaria != null)
                                 EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Pais.ClaveBancaria.Nombre;
+
+                        string[] TiposFac = new string[Lbl.Comprobantes.Tipo.FacturasPorLetra.Count + 1];
+                        TiposFac[0] = "Predeterminada|*";
+                        int i = 1;
+                        foreach(Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.FacturasPorLetra.Values) {
+                                string NombreFac;
+                                switch(Tp.Nomenclatura) {
+                                        case "FA":
+                                                NombreFac = "Factura A (IVA discriminado)";
+                                                break;
+                                        case "FB":
+                                                NombreFac = "Factura B (IVA no discriminado)";
+                                                break;
+                                        default:
+                                                NombreFac = Tp.Nombre;
+                                                break;
+                                }
+                                TiposFac[i++] = NombreFac + "|" + Tp.Nomenclatura;
+                        }
+
+                        EntradaTipoFac.SetData = TiposFac; 
                 }
 
 

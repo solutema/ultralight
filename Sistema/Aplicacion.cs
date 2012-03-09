@@ -594,8 +594,6 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                                 }
                                                 if (Res.Success == false)
                                                         return Res;
-                                                else
-                                                        Lui.Forms.MessageBox.Show("El almacén de datos fue preparado con éxito. Puede comenzar a utilizar el sistema. La primera vez que ingrese al sistema, utilice el usuario Nº 1 (Administrador) y la contraseña 'admin' (sin las comillas).", "Preparar el almacén de datos");
                                         } else {
                                                 return new Lfx.Types.FailureOperationResult("Debe preparar el almacén de datos.");
                                         }

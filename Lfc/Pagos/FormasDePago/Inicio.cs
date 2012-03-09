@@ -48,7 +48,7 @@ namespace Lfc.Pagos.FormasDePago
 				new Lazaro.Pres.Field("formaspago.tipo", "Tipo", 240, new Dictionary<int, string>() {
                                         { 1, "Efectivo" },
                                         { 2, "Cheque (propio)" },
-                                        { 3, "Cuenta Corriente" },
+                                        { 3, "Cuenta corriente" },
                                         { 4, "Tarjeta" },
                                         { 6, "Caja" },
                                         { 7, "Otro" },

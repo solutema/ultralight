@@ -94,7 +94,7 @@ namespace Lfc.CuentasCorrientes
                         this.PanelAcciones.Controls.Add(this.BotonNotaCred);
                         this.PanelAcciones.Controls.Add(this.BotonAjuste);
                         this.Name = "Inicio";
-                        this.Text = "Cuenta Corriente";
+                        this.Text = "Cuenta corriente";
                         this.ResumeLayout(false);
 
                 }

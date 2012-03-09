@@ -195,7 +195,7 @@ namespace Lbl.Comprobantes
                                 case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                         return "Efectivo";
                                 case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
-                                        return "Cuenta Corriente";
+                                        return "Cuenta corriente";
                                 case Lbl.Pagos.TiposFormasDePago.ChequePropio:
                                         if (Cheque == null)
                                                 return "Cheque";
@@ -208,7 +208,7 @@ namespace Lbl.Comprobantes
                                                 return "Acreditación en " + CajaDestino.ToString();
                                 case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                         if (Cupon == null)
-                                                return "Tarjeta de Crédito/Débito";
+                                                return "Tarjeta de crédito/débito";
                                         else
                                                 return Cupon.ToString();
                                 case Lbl.Pagos.TiposFormasDePago.OtroValor:

@@ -148,8 +148,7 @@ namespace Lbl.Articulos
                         get
                         {
                                 if (m_Alicuota == null && this.GetFieldValue<int>("id_alicuota") != 0)
-                                        m_Alicuota = new Impuestos.Alicuota(this.Connection, this.GetFieldValue<int>("id_alicuota"));
-
+                                        m_Alicuota = this.GetFieldValue<Impuestos.Alicuota>("id_alicuota");
                                 return m_Alicuota;
                         }
                         set

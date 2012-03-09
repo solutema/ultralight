@@ -34,7 +34,7 @@ using System.Collections.Generic;
 
 namespace Lbl.CuentasCorrientes
 {
-        [Lbl.Atributos.Nomenclatura(NombreSingular = "Movimiento de Cuenta Corriente")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Movimiento de cuenta corriente")]
         [Lbl.Atributos.Datos(TablaDatos = "ctacte", CampoId = "id_movim", CampoNombre = "concepto")]
         [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Nunca)]
         public class Movimiento : ElementoDeDatos

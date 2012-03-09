@@ -40,27 +40,16 @@ namespace Lbl.Articulos
         [Lbl.Atributos.Presentacion()]
 	public class Rubro : ElementoDeDatos
 	{
-                public Lbl.Impuestos.Alicuota Alicuota = null;
+                private Lbl.Impuestos.Alicuota m_Alicuota = null;
 
-		public Rubro(Lfx.Data.Connection dataBase) : base(dataBase) { }
+		public Rubro(Lfx.Data.Connection dataBase) 
+                        : base(dataBase) { }
 
 		public Rubro(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
 
                 public Rubro(Lfx.Data.Connection dataBase, Lfx.Data.Row row)
                         : base(dataBase, row) { }
-
-
-                public override void OnLoad()
-                {
-                        base.OnLoad();
-
-                        if (this.GetFieldValue<int>("id_alicuota") != 0)
-                                this.Alicuota = new Impuestos.Alicuota(this.Connection, this.GetFieldValue<int>("id_alicuota"));
-                        else
-                                this.Alicuota = null;
-                }
-
 
 		public override Lfx.Types.OperationResult Guardar()
                 {
@@ -86,5 +75,19 @@ namespace Lbl.Articulos
 			return base.Guardar();
 		}
 
+                public Lbl.Impuestos.Alicuota Alicuota
+                {
+                        get
+                        {
+                                if (m_Alicuota == null && this.GetFieldValue<int>("id_alicuota") != 0)
+                                        m_Alicuota = this.GetFieldValue<Impuestos.Alicuota>("id_alicuota");
+                                return m_Alicuota;
+                        }
+                        set
+                        {
+                                m_Alicuota = value;
+                                this.SetFieldValue("id_alicuota", value);
+                        }
+                }
 	}
 }

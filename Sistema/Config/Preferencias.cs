@@ -244,6 +244,14 @@ namespace Lazaro.WinMain.Config
                                                 Alic1.Nombre = "IVA tasa reducida";
                                                 Alic2.Porcentaje = Pais.Iva2;
                                                 Alic2.Guardar();
+
+                                                if (Pais.Id != 1) {
+                                                        // Desactivo los comprobantes C, E y M
+                                                        qGen.Update DesactComprob = new qGen.Update("documentos_tipos");
+                                                        DesactComprob.Fields.AddWithValue("estado", 0);
+                                                        DesactComprob.WhereClause = new qGen.Where("letra", qGen.ComparisonOperators.In, new string[] { "FC", "FE", "FM", "NDC", "NDE", "NDM", "NCC", "NCE", "NCM" });
+                                                        this.Connection.Execute(DesactComprob);
+                                                }
                                         }
 
                                         // Cambio la sucursal 1 y el cliente consumidor final a la localidad proporcionada

@@ -90,44 +90,36 @@ namespace Lazaro.WinMain.Config
 
                         switch (Lfx.Environment.SystemInformation.Platform) {
                                 case Lfx.Environment.SystemInformation.Platforms.Windows:
-                                        /* if (System.IO.File.Exists(@"C:\mysql\bin\mysqld.exe")) {
-                                                EtiquetaBuscando.Text = "Lázaro detectó un servidor SQL en este equipo. Haga clic en el botón 'Siguiente' para revisar la configuración detectada.";
-                                                EtiquetaBuscarEspere.Visible = false;
-                                                ProgresoBuscar.Visible = false;
-                                                EntradaServidor.Text = "localhost";
-                                                CheckEsteEquipo.Checked = true;
-                                        } else { */
-                                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Buscando un servidor", "Por favor aguarde mientras Lázaro busca un servidor en la red para utilizar como almacén de datos.");
-                                                ProgresoBuscar.Visible = true;
-                                                Progreso.Modal = false;
-                                                Progreso.Advertise = false;
-                                                Progreso.Begin();
+                                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Buscando un servidor", "Por favor aguarde mientras Lázaro busca un servidor en la red para utilizar como almacén de datos.");
+                                        ProgresoBuscar.Visible = true;
+                                        Progreso.Modal = false;
+                                        Progreso.Advertise = false;
+                                        Progreso.Begin();
 
-                                                System.Threading.ThreadStart Buscar = delegate { this.BuscarServidor(Progreso); };
-                                                this.ThreadBuscar = new System.Threading.Thread(Buscar);
-                                                this.ThreadBuscar.IsBackground = true;
-                                                this.ThreadBuscar.Start();
+                                        System.Threading.ThreadStart Buscar = delegate { this.BuscarServidor(Progreso); };
+                                        this.ThreadBuscar = new System.Threading.Thread(Buscar);
+                                        this.ThreadBuscar.IsBackground = true;
+                                        this.ThreadBuscar.Start();
 
-                                                EtiquetaBuscarEspere.Visible = true;
-                                                while (Progreso != null && Progreso.IsRunning) {
-                                                        System.Threading.Thread.Sleep(100);
-                                                        EtiquetaBuscando.Text = Progreso.Status;
-                                                        System.Windows.Forms.Application.DoEvents();
-                                                        if (this.ThreadBuscar == null)
-                                                                return;
-                                                }
-                                                EtiquetaBuscarEspere.Visible = false;
-                                                ProgresoBuscar.Visible = false;
+                                        EtiquetaBuscarEspere.Visible = true;
+                                        while (Progreso != null && Progreso.IsRunning) {
+                                                System.Threading.Thread.Sleep(100);
+                                                EtiquetaBuscando.Text = Progreso.Status;
+                                                System.Windows.Forms.Application.DoEvents();
+                                                if (this.ThreadBuscar == null)
+                                                        return;
+                                        }
+                                        EtiquetaBuscarEspere.Visible = false;
+                                        ProgresoBuscar.Visible = false;
 
-                                                if (ServidorDetectado == null) {
-                                                        CheckInstalarAhora.Checked = true;
-                                                        EtiquetaBuscando.Text = "Lázaro no pudo encontrar un servidor SQL en la red. Si desea, puede instalar un servidor SQL en este equipo. Haga clic en 'Siguiente' para continuar.";
-                                                } else {
-                                                        EtiquetaBuscando.Text = "Lázaro detectó un servidor SQL en la red. Haga clic en el botón 'Siguiente' para revisar la configuración detectada.";
-                                                        CheckOtroEquipo.Checked = true;
-                                                        EntradaServidor.Text = ServidorDetectado;
-                                                }
-                                        /* } */
+                                        if (ServidorDetectado == null) {
+                                                CheckInstalarAhora.Checked = true;
+                                                EtiquetaBuscando.Text = "Lázaro no pudo encontrar un servidor SQL en la red. Si desea, puede instalar un servidor SQL en este equipo. Haga clic en 'Siguiente' para continuar.";
+                                        } else {
+                                                EtiquetaBuscando.Text = "Lázaro detectó un servidor SQL en la red. Haga clic en el botón 'Siguiente' para revisar la configuración detectada.";
+                                                CheckOtroEquipo.Checked = true;
+                                                EntradaServidor.Text = ServidorDetectado;
+                                        }
                                         break;
                                 default:
                                         // No es Windows
@@ -219,7 +211,7 @@ namespace Lazaro.WinMain.Config
                                         Lfx.Data.DataBaseCache.DefaultCache.UserName = "lazaro";
                                         Lfx.Data.DataBaseCache.DefaultCache.Password = "";
                                 }
-                                
+
                                 Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
                                 Lfx.Data.DataBaseCache.DefaultCache.SlowLink = false;
                                 Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "";
@@ -492,7 +484,7 @@ namespace Lazaro.WinMain.Config
                         Lfx.Data.DataBaseCache.DefaultCache.AccessMode = Lfx.Data.AccessModes.MySql;
                         Lfx.Data.DataBaseCache.DefaultCache.SlowLink = false;
                         Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "";
-                        
+
                         Lfx.Types.OperationResult Res = this.ProbarServidor();
                         if (Res.Success) {
                                 if (Lfx.Workspace.Master.IsPrepared() == false)

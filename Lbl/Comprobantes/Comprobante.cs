@@ -206,7 +206,7 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 if (m_Cliente == null && this.GetFieldValue<int>("id_cliente") > 0)
-                                        m_Cliente = new Personas.Persona(this.Connection, this.GetFieldValue<int>("id_cliente"));
+                                        m_Cliente = this.GetFieldValue<Personas.Persona>("id_cliente");
                                 return m_Cliente;
                         }
                         set
@@ -221,7 +221,7 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 if (m_Vendedor == null && this.GetFieldValue<int>("id_vendedor") > 0)
-                                        m_Vendedor = new Personas.Persona(this.Connection, this.GetFieldValue<int>("id_vendedor"));
+                                        m_Vendedor = this.GetFieldValue<Personas.Persona>("id_vendedor");
                                 return m_Vendedor;
                         }
                         set
@@ -236,7 +236,7 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 if (m_Sucursal == null && this.GetFieldValue<int>("id_sucursal") > 0)
-                                        m_Sucursal = new Lbl.Entidades.Sucursal(this.Connection, this.GetFieldValue<int>("id_sucursal"));
+                                        m_Sucursal = this.GetFieldValue<Lbl.Entidades.Sucursal>("id_sucursal");
                                 return m_Sucursal;
                         }
                         set
@@ -324,10 +324,10 @@ namespace Lbl.Comprobantes
 					return "Ticket";
 
 				case "FA":
-					return "Factura A";
+					return Lbl.Comprobantes.Tipo.TodosPorLetra["FA"].Nombre;
 
 				case "FB":
-					return "Factura B";
+                                        return Lbl.Comprobantes.Tipo.TodosPorLetra["FB"].Nombre;
 
 				case "FC":
 					return "Factura C";
@@ -345,31 +345,31 @@ namespace Lbl.Comprobantes
 					return "Recibo";
 				
 				case "RCP":
-					return "Recibo de Pago";
+					return "Recibo de pago";
 
 				case "NC":
-					return "Nota de Crédito";
+					return "Nota de crédito";
 
 				case "ND":
-					return "Nota de Débito";
+					return "Nota de débito";
 
 				case "NCA":
-					return "Nota de Crédito A";
+					return "Nota de crédito A";
 
 				case "NDA":
-					return "Nota de Débito A";
+					return "Nota de débito A";
 
 				case "NCB":
-					return "Nota de Crédito B";
+					return "Nota de crédito B";
 
 				case "NDB":
-					return "Nota de Débito B";
+					return "Nota de débito B";
 
 				case "NCD":
-					return "Nota de Crédito C";
+					return "Nota de crédito C";
 
 				case "NDD":
-					return "Nota de Débito C";
+					return "Nota de débito C";
 
 				case "PS":
 					return "Presupuesto";
@@ -391,28 +391,6 @@ namespace Lbl.Comprobantes
 					return tipoComprob;
 			}
 		}
-
-                /* public virtual Lfx.Types.OperationResult Imprimir() {
-                        return this.Imprimir(null);
-                }
-		
-                public virtual Lfx.Types.OperationResult Imprimir(Lbl.Impresion.Impresora impresora)
-                {
-                        // Determino la impresora que le corresponde
-                        if (impresora == null)
-                                impresora = this.ObtenerImpresora();
-
-                        // Si es de carga manual, presento el formulario correspondiente
-                        if (impresora.CargaPapel == Lbl.Impresion.CargasPapel.Manual)
-                        {
-                                if (Lbl.Impresion.Services.ShowManualFeedDialog(impresora, this).Success == false)
-                                        return new Lfx.Types.FailureOperationResult("Operación cancelada");
-                        }
-			
-                        Impresion.ImpresorComprobante Impresor = new Impresion.ImpresorComprobante(this);
-                        Impresor.Impresora = impresora;
-                        return Impresor.Imprimir();
-                } */
 
 
                 /// <summary>
@@ -459,17 +437,14 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                if (m_ComprobanteOriginal == null) {
-                                        if (Registro["id_comprob_orig"] == null)
-                                                m_ComprobanteOriginal = null;
-                                        else
-                                                m_ComprobanteOriginal = new ComprobanteConArticulos(this.Connection, System.Convert.ToInt32(Registro["id_comprob_orig"]));
-                                }
+                                if (m_ComprobanteOriginal == null)
+                                        m_ComprobanteOriginal = this.GetFieldValue<ComprobanteConArticulos>("id_comprob_orig");
                                 return m_ComprobanteOriginal;
                         }
                         set
                         {
                                 m_ComprobanteOriginal = value;
+                                this.SetFieldValue("id_comprob_orig", value);
                         }
                 }
 

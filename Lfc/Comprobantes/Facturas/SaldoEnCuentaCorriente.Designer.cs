@@ -83,7 +83,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(592, 28);
                         this.label1.TabIndex = 0;
-                        this.label1.Text = "Posible Error en la Forma de Pago";
+                        this.label1.Text = "Posible error en la forma de pago";
                         // 
                         // BotonCancelar
                         // 
@@ -131,7 +131,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCorregir.Subtext = "Seleccione esta opción si los pagos ingresados con anterioridad corresponden a es" +
                             "ta factura. No será necesario informar más pagos para esta factura.";
                         this.BotonCorregir.TabIndex = 2;
-                        this.BotonCorregir.Text = "Imprimir la Factura en Cuenta Corriente";
+                        this.BotonCorregir.Text = "Imprimir la factura en cuenta corriente";
                         this.BotonCorregir.Click += new System.EventHandler(this.BotonCorregir_Click);
                         // 
                         // SaldoEnCuentaCorriente
@@ -147,7 +147,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                         this.Name = "SaldoEnCuentaCorriente";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-                        this.Text = "Cliente con Saldo a Favor en Cuenta Corriente";
+                        this.Text = "Cliente con saldo a favor en cuenta corriente";
                         this.ResumeLayout(false);
 
                 }

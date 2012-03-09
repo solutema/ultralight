@@ -82,6 +82,14 @@ namespace Lfc.Comprobantes.Compra
                 {
                         Lbl.Comprobantes.ComprobanteDeCompra Fac = this.Elemento as Lbl.Comprobantes.ComprobanteDeCompra;
                         this.SuspendLayout();
+
+                        string[] NombresYTipos = new string[Lbl.Comprobantes.Tipo.FacturasPorLetra.Count];
+                        int i = 0;
+                        foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.FacturasPorLetra.Values) {
+                                NombresYTipos[i++] = Tp.Nombre + "|" + Tp.Nomenclatura;
+                        }
+                        EntradaTipo.SetData = NombresYTipos;
+                        
                         this.TipoComprob = Fac.Tipo;
 
                         EntradaProveedor.Elemento = Fac.Cliente;

@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Nomenclatura(NombreSingular = "Recibo de Pago", Grupo = "Comprobantes")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Recibo de pago", Grupo = "Comprobantes")]
         [Lbl.Atributos.Datos(TablaDatos = "recibos", CampoId = "id_recibo", TablaImagenes = "recibos_imagenes")]
         [Lbl.Atributos.Presentacion()]
         public class ReciboDePago : Recibo

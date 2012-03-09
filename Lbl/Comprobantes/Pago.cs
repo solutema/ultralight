@@ -202,7 +202,7 @@ namespace Lbl.Comprobantes
                                 case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                         return "Efectivo";
                                 case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
-                                        return "Cuenta Corriente";
+                                        return "Cuenta corriente";
                                 case Lbl.Pagos.TiposFormasDePago.ChequePropio:
                                 case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                         if (Cheque == null)

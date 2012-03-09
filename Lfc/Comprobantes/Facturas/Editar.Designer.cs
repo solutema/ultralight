@@ -53,7 +53,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(108, 24);
                         this.Label2.TabIndex = 0;
-                        this.Label2.Text = "Forma de Pago";
+                        this.Label2.Text = "Forma de pago";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaFormaPago

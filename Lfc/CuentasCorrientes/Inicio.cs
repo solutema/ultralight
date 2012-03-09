@@ -127,7 +127,7 @@ namespace Lfc.CuentasCorrientes
                                 // Es para todas los clientes
                                 this.Definicion.GroupBy = new Lazaro.Pres.Field("ctacte.id_cliente", "Cliente");
                                 this.Definicion.OrderBy = "personas.nombre_visible";
-                                this.Text = "Listado de Cuentas Corrientes";
+                                this.Text = "Listado de cuentas corrientes";
 
                                 this.Definicion.Columns["nombre_visible"].Visible = true;
                                 this.Definicion.Columns["fecha"].Visible = false;
@@ -158,7 +158,7 @@ namespace Lfc.CuentasCorrientes
                                 this.CustomFilters.AddWithValue("ctacte.id_cliente", this.Cliente.Id);
                                 this.Definicion.GroupBy = null;
                                 this.Definicion.OrderBy = "ctacte.id_movim DESC";
-                                this.Text = "Cuenta Corriente de " + this.Cliente.ToString();
+                                this.Text = "Cuenta corriente de " + this.Cliente.ToString();
 
                                 this.Definicion.Columns["nombre_visible"].Visible = false;
                                 this.Definicion.Columns["fecha"].Visible = true;
@@ -270,7 +270,7 @@ namespace Lfc.CuentasCorrientes
                                         case Keys.F7:
                                                 if (this.Cliente != null) {
                                                         // Recalculo la cuenta del cliente
-                                                        Lui.Forms.MessageBox.Show("Se va a recalcular la Cuenta Corriente", "Aviso");
+                                                        Lui.Forms.MessageBox.Show("Se va a recalcular la cuenta corriente", "Aviso");
                                                         using (IDbTransaction Trans = this.Cliente.Connection.BeginTransaction()) {
                                                                 this.Cliente.CuentaCorriente.Recalcular();
                                                                 Trans.Commit();

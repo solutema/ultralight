@@ -62,9 +62,9 @@ namespace Lfc
                         this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(8, 8);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
-                        this.EtiquetaTitulo.Size = new System.Drawing.Size(208, 72);
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(208, 64);
                         this.EtiquetaTitulo.TabIndex = 68;
-                        this.EtiquetaTitulo.Text = "Cuentas Corrientes";
+                        this.EtiquetaTitulo.Text = "Cuentas corrientes";
                         this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         this.EtiquetaTitulo.UseMnemonic = false;
                         // 

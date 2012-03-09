@@ -39,7 +39,7 @@ namespace Lbl.CuentasCorrientes
         /// Representa la cuenta corriente de una persona (cliente o proveedor).
         /// No es realmente un ElementoDeDatos.
         /// </summary>
-        [Lbl.Atributos.Nomenclatura(NombreSingular = "Cuenta Corriente", Grupo = "Cuentas")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Cuenta corriente", Grupo = "Cuentas")]
         [Lbl.Atributos.Datos(TablaDatos = "ctacte", CampoId = "id_movim")]
         [Lbl.Atributos.Presentacion()]
         public class CuentaCorriente : ICuenta

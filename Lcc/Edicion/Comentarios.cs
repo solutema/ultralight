@@ -50,18 +50,20 @@ namespace Lcc.Edicion
                 {
                         ListaComentarios.BeginUpdate();
                         ListaComentarios.Items.Clear();
-                        qGen.Select SelectComentarios = new qGen.Select("sys_comments");
+                        qGen.Select SelectComentarios = new qGen.Select("sys_log");
                         SelectComentarios.WhereClause = new qGen.Where();
-                        SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("tablas", this.Elemento.TablaDatos));
+                        SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("comando", "Comment"));
+                        SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("tabla", this.Elemento.TablaDatos));
                         SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("item_id", this.Elemento.Id));
                         SelectComentarios.Order = "fecha DESC";
 
                         System.Data.DataTable Comentarios = Elemento.Connection.Select(SelectComentarios);
                         foreach (System.Data.DataRow Com in Comentarios.Rows) {
-                                ListViewItem Itm = ListaComentarios.Items.Add(Com["id_comment"].ToString());
-                                Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortSmartDateAndTime(System.Convert.ToDateTime(Com["fecha"])));
-                                Itm.SubItems.Add(this.Elemento.Connection.Tables["personas"].FastRows[System.Convert.ToInt32(Com["id_persona"])].Fields["nombre_visible"].Value.ToString());
-                                Itm.SubItems.Add(Com["obs"].ToString());
+                                Lbl.Sys.Log.Entrada Log = new Lbl.Sys.Log.Entrada(this.Connection, (Lfx.Data.Row)Com);
+                                ListViewItem Itm = ListaComentarios.Items.Add(Log.Id.ToString());
+                                Itm.SubItems.Add(Lfx.Types.Formatting.FormatShortSmartDateAndTime(Log.Fecha));
+                                Itm.SubItems.Add(this.Elemento.Connection.Tables["personas"].FastRows[Log.IdUsuario].Fields["nombre_visible"].Value.ToString());
+                                Itm.SubItems.Add(Log.Carga);
                         }
 
                         ListaComentarios.EndUpdate();

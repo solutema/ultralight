@@ -380,12 +380,14 @@ namespace Lbl
                         if (this.Existe == false)
                                 throw new Lfx.Types.DomainException("No se pueden agregar comentarios a un elemento que aun no ha sido guardado.");
 
-                        qGen.Insert NuevoCom = new qGen.Insert("sys_comments");
-                        NuevoCom.Fields.AddWithValue("tablas", this.TablaDatos);
+                        qGen.Insert NuevoCom = new qGen.Insert("sys_log");
+                        NuevoCom.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
+                        NuevoCom.Fields.AddWithValue("tabla", this.TablaDatos);
+                        NuevoCom.Fields.AddWithValue("comando", "Comment");
                         NuevoCom.Fields.AddWithValue("item_id", this.Id);
-                        NuevoCom.Fields.AddWithValue("id_persona", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
+                        NuevoCom.Fields.AddWithValue("usuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                         NuevoCom.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                        NuevoCom.Fields.AddWithValue("obs", texto);
+                        NuevoCom.Fields.AddWithValue("extra1", texto);
 
                         this.Connection.Execute(NuevoCom);
                 }

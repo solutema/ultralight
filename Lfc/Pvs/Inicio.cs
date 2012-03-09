@@ -85,19 +85,19 @@ namespace Lfc.Pvs
                                         item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas";
                                         break;
                                 case "F,ND":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, Notas de Débito";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas y notas de débito";
                                         break;
                                 case "F,NC,ND":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, Notas de Crédito y Débito";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Facturas, notas de crédito y débito";
                                         break;
                                 case "R":
                                         item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Remitos";
                                         break;
                                 case "RC":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de Cobro";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de cobro";
                                         break;
                                 case "RP":
-                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de Pago";
+                                        item.SubItems[Listado.Columns["pvs.tipo_fac"].Index].Text = "Recibos de pago";
                                         break;
                         }
 

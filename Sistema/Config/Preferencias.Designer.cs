@@ -385,7 +385,7 @@ namespace Lazaro.WinMain.Config
                         this.label32.Name = "label32";
                         this.label32.Size = new System.Drawing.Size(184, 24);
                         this.label32.TabIndex = 14;
-                        this.label32.Text = "Localidad o Población";
+                        this.label32.Text = "Localidad o población";
                         this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label31
@@ -394,7 +394,7 @@ namespace Lazaro.WinMain.Config
                         this.label31.Name = "label31";
                         this.label31.Size = new System.Drawing.Size(184, 24);
                         this.label31.TabIndex = 12;
-                        this.label31.Text = "Provincia o Estado";
+                        this.label31.Text = "Provincia o estado";
                         this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaEmpresaEmail

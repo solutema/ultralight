@@ -45,8 +45,8 @@ namespace Lfc.Cajas
                         Lbl.ColeccionCodigoDetalle SetTipos = new Lbl.ColeccionCodigoDetalle()
                         {
                                 {0, "Efectivo"},
-                                {1, "Caja de Ahorro"},
-                                {2, "Cuenta Corriente"}
+                                {1, "Caja de ahorro"},
+                                {2, "Cuenta corriente"}
                         };
 
                         Lbl.ColeccionCodigoDetalle SetEstados = new Lbl.ColeccionCodigoDetalle()

@@ -101,7 +101,10 @@ namespace Lfc.Log
                                                 break;
                                 }
 
-                                Itm.SubItems.Add(Log.Explain(false));
+                                if (Log.Comando == Lbl.Sys.Log.Acciones.Save)
+                                        Itm.SubItems.Add(Log.ExplainSave(false));
+                                else
+                                        Itm.SubItems.Add(Log.Carga);
                                 Itm.Tag = Log;
 
                                 if (ListaHistoral.Items.Count == 200) {
@@ -145,7 +148,10 @@ namespace Lfc.Log
                         if (Log == null)
                                 return;
 
-                        Lui.Forms.MessageBox.Show(Log.Explain(true), "Acción");
+                        if (Log.Comando == Lbl.Sys.Log.Acciones.Save)
+                                Lui.Forms.MessageBox.Show(Log.ExplainSave(true), "Acción guardar");
+                        else
+                                Lui.Forms.MessageBox.Show(Log.Carga, "Acción");
                 }
         }
 }

@@ -146,8 +146,8 @@ namespace Lfc.Cajas
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Efectivo|0",
-        "Caja de Ahorro|1",
-        "Cuenta Corriente|2"};
+        "Caja de ahorro|1",
+        "Cuenta corriente|2"};
                         this.EntradaTipo.Size = new System.Drawing.Size(168, 51);
                         this.EntradaTipo.TabIndex = 5;
                         this.EntradaTipo.TextKey = "1";

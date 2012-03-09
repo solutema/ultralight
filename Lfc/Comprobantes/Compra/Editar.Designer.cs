@@ -125,7 +125,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaFormaPago.SetData = new string[] {
         "No controla pago|0",
         "Efectivo|1",
-        "Cuenta Corriente|3"};
+        "Cuenta corriente|3"};
                         this.EntradaFormaPago.Size = new System.Drawing.Size(176, 25);
                         this.EntradaFormaPago.TabIndex = 23;
                         this.EntradaFormaPago.TextKey = "0";

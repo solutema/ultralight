@@ -714,7 +714,7 @@ namespace Lbl.Articulos
                         get
                         {
                                 if (m_Caja == null && this.GetFieldValue<int>("id_caja") != 0)
-                                        m_Caja = new Lbl.Cajas.Caja(this.Connection, this.GetFieldValue<int>("id_caja"));
+                                        m_Caja = this.GetFieldValue<Lbl.Cajas.Caja>("id_caja");
                                 return m_Caja;
                         }
                         set
@@ -744,7 +744,7 @@ namespace Lbl.Articulos
                         get
                         {
                                 if (m_Proveedor == null && this.GetFieldValue<int>("id_proveedor") != 0)
-                                        m_Proveedor = new Lbl.Personas.Persona(this.Connection, this.GetFieldValue<int>("id_proveedor"));
+                                        m_Proveedor = this.GetFieldValue<Lbl.Personas.Persona>("id_proveedor");
                                 return m_Proveedor;
                         }
                         set
