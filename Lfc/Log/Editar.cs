@@ -70,7 +70,7 @@ namespace Lfc.Log
                         ListaHistoral.SuspendLayout();
                         ListaHistoral.BeginUpdate();
 
-                        System.Data.DataTable LogsTable = this.Connection.Select("SELECT * FROM sys_log WHERE tabla='" + this.Tabla + "' AND item_id=" + this.ItemId.ToString() + " ORDER BY fecha DESC");
+                        System.Data.DataTable LogsTable = this.Connection.Select("SELECT * FROM sys_log WHERE tabla='" + this.Tabla + "' AND item_id=" + this.ItemId.ToString() + " ORDER BY id_log DESC");
                         Lbl.ColeccionGenerica<Lbl.Sys.Log.Entrada> Logs = new Lbl.ColeccionGenerica<Lbl.Sys.Log.Entrada>(this.Connection, LogsTable);
                         for (int i = 0; i < Logs.Count; i++) {
                                 Lbl.Sys.Log.Entrada Log = Logs[i];
@@ -83,6 +83,9 @@ namespace Lfc.Log
                                 switch (Log.Comando) {
                                         case Lbl.Sys.Log.Acciones.Save:
                                                 Itm.SubItems.Add("Guardar");
+                                                break;
+                                        case Lbl.Sys.Log.Acciones.Comment:
+                                                Itm.SubItems.Add("Comentario");
                                                 break;
                                         case Lbl.Sys.Log.Acciones.Print:
                                                 Itm.SubItems.Add("Imprimir");

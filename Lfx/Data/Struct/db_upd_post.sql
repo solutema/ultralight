@@ -61,5 +61,6 @@ START TRANSACTION WITH CONSISTENT SNAPSHOT;
 INSERT INTO sys_log (fecha, estacion, usuario, comando, tabla, item_id, extra1) SELECT fecha, '', id_persona, 'Comment', tablas, item_id, obs FROM sys_comments;
 DELETE FROM sys_comments;
 COMMIT;
+UPDATE sys_log SET tabla=NULL WHERE comando='LogOn' OR comando='LogOnFail';
 
 SET FOREIGN_KEY_CHECKS=1;

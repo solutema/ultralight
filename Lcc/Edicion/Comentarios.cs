@@ -55,7 +55,7 @@ namespace Lcc.Edicion
                         SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("comando", "Comment"));
                         SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("tabla", this.Elemento.TablaDatos));
                         SelectComentarios.WhereClause.Add(new qGen.ComparisonCondition("item_id", this.Elemento.Id));
-                        SelectComentarios.Order = "fecha DESC";
+                        SelectComentarios.Order = "id_log DESC";
 
                         System.Data.DataTable Comentarios = Elemento.Connection.Select(SelectComentarios);
                         foreach (System.Data.DataRow Com in Comentarios.Rows) {

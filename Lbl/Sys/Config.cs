@@ -86,7 +86,10 @@ namespace Lbl.Sys
                                         Comando.Fields.AddWithValue("tabla", null);
                                         Comando.Fields.AddWithValue("item_id", null);
                                 } else {
-                                        Comando.Fields.AddWithValue("tabla", elemento.TablaDatos);
+                                        if (action == Log.Acciones.LogOn || action == Log.Acciones.LogOnFail)
+                                                Comando.Fields.AddWithValue("tabla", null);
+                                        else
+                                                Comando.Fields.AddWithValue("tabla", elemento.TablaDatos);
                                         Comando.Fields.AddWithValue("item_id", elemento.Id);
                                 }
                                 Comando.Fields.AddWithValue("extra1", extra1);
