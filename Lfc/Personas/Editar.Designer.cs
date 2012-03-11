@@ -354,7 +354,7 @@ namespace Lfc.Personas
                         this.PanelI1.Name = "PanelI1";
                         this.PanelI1.Size = new System.Drawing.Size(344, 216);
                         this.PanelI1.TabIndex = 0;
-                        this.PanelI1.Text = "Personas Físicas";
+                        this.PanelI1.Text = "Personas físicas";
                         // 
                         // EntradaFechaNac
                         // 
@@ -390,7 +390,7 @@ namespace Lfc.Personas
                         this.PanelD1.Name = "PanelD1";
                         this.PanelD1.Size = new System.Drawing.Size(344, 224);
                         this.PanelD1.TabIndex = 1;
-                        this.PanelD1.Text = "Personas Jurídicas";
+                        this.PanelD1.Text = "Personas jurídicas";
                         // 
                         // EntradaSituacion
                         // 
@@ -640,7 +640,7 @@ namespace Lfc.Personas
                         this.PanelI2.Name = "PanelI2";
                         this.PanelI2.Size = new System.Drawing.Size(344, 304);
                         this.PanelI2.TabIndex = 2;
-                        this.PanelI2.Text = "Datos de Contacto";
+                        this.PanelI2.Text = "Datos de contacto";
                         // 
                         // EntradaVendedor
                         // 

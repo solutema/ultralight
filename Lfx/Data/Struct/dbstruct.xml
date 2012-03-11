@@ -642,9 +642,9 @@
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="iso" datatype="VarChar" nullable="0" lenght="50" />
-    <Column name="clavefis" inputtype="Relation" label="Clave de Identificación de Personas Físicas" nullable="1" />
-    <Column name="clavejur" inputtype="Relation" label="Clave de Identificación de Personas Jurídicas" nullable="1" />
-    <Column name="claveban" inputtype="Relation" label="Clave de Identificación de Cuentas Bancarias" nullable="1" />
+    <Column name="clavefis" inputtype="Relation" label="Clave de identificación de personas físicas" nullable="1" />
+    <Column name="clavejur" inputtype="Relation" label="Clave de identificación de personas jurídicas" nullable="1" />
+    <Column name="claveban" inputtype="Relation" label="Clave de identificación de cuentas bancarias" nullable="1" />
     <Column name="id_moneda" inputtype="Relation" label="Moneda" nullable="1" />
     <Column name="iva1" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Column name="iva2" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
@@ -703,11 +703,11 @@
     <Column name="contrasena_fecha" datatype="DateTime" nullable="1" />
     <Column name="id_tipo_doc" inputtype="Relation" section="Personas físicas" label="Tipo de documento" nullable="1"
             relation_table="tipo_doc" relation_key="id_tipo_doc" relation_detail="nombre" />
-    <Column name="num_doc" inputtype="Text" section="Personas Físicas" label="Documento" nullable="1" lenght="50" />
-    <Column name="id_tipo_cuit" inputtype="Relation" section="Personas Jurídicas" label="Tipo de clave tributaria" nullable="1"
+    <Column name="num_doc" inputtype="Text" section="Personas físicas" label="Documento" nullable="1" lenght="50" />
+    <Column name="id_tipo_cuit" inputtype="Relation" section="Personas jurídicas" label="Tipo de clave tributaria" nullable="1"
             relation_table="tipo_doc" relation_key="id_tipo_doc" relation_detail="nombre" />
-    <Column name="cuit" inputtype="Text" section="Personas Jurídicas" label="Clave tributaria" nullable="1" lenght="16" />
-    <Column name="id_situacion" inputtype="Relation" section="Personas Jurídicas" label="Situación tributaria" nullable="1"
+    <Column name="cuit" inputtype="Text" section="Personas jurídicas" label="Clave tributaria" nullable="1" lenght="16" />
+    <Column name="id_situacion" inputtype="Relation" section="Personas jurídicas" label="Situación tributaria" nullable="1"
             relation_table="situaciones" relation_key="id_situacion" relation_detail="nombre" />
     <Column name="domicilio" inputtype="Text" label="Domicilio Particular" section="Locación" nullable="1" lenght="200" />
     <Column name="domiciliotrabajo" inputtype="Text" label="Domicilio Laboral" section="Locación" nullable="1" lenght="200" />
@@ -717,7 +717,7 @@
     <Column name="email" inputtype="Text" label="Correo Electrónico" section="Locación" nullable="1" lenght="200" />
     <Column name="url" inputtype="Text" label="URL" section="Locación" nullable="1" lenght="200" />
     <Column name="tipo_fac" datatype="VarChar" nullable="1" lenght="1" />
-    <Column name="fechanac" inputtype="DateTime" section="Personas Físicas" nullable="1" />
+    <Column name="fechanac" inputtype="DateTime" section="Personas físicas" nullable="1" />
     <Column name="fechaalta" datatype="DateTime" nullable="1" />
     <Column name="fechabaja" datatype="DateTime" nullable="1" />
     <Column name="limitecredito" inputtype="Currency" section="Crédito" label="Límite de crédito" default="0" />
