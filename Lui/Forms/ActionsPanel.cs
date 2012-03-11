@@ -119,40 +119,37 @@ namespace Lui.Forms
                                         Panel = null;
 
                                 if (Panel != null) {
-                                        int BtnWidth = 0;
+                                        Lui.Forms.Button Btn;
                                         if (Panel.Controls.ContainsKey(act.Name)) {
                                                 // Existe, lo actualizo
-                                                Lui.Forms.Button Btn = Panel.Controls[act.Name] as Lui.Forms.Button;
-                                                Btn.Text = act.Text;
-                                                Btn.Subtext = act.SubText;
-                                                Btn.Enabled = act.Enabled;
-                                                Btn.TabIndex = act.TabIndex;
-                                                BtnWidth = Btn.Width + Btn.Padding.Left + Btn.Padding.Right;
+                                                Btn = Panel.Controls[act.Name] as Lui.Forms.Button;
                                         } else {
                                                 // No existe, lo agrego
-                                                Lui.Forms.Button Btn = new Lui.Forms.Button();
+                                                Btn = new Lui.Forms.Button();
                                                 Btn.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
                                                 Btn.Name = act.Name;
-                                                Btn.Text = act.Text;
-                                                Btn.Subtext = act.SubText;
-                                                if (act.SubText == null)
-                                                        Btn.SubLabelPos = SubLabelPositions.None;
-                                                else
-                                                        Btn.SubLabelPos = SubLabelPositions.Bottom;
-                                                Btn.Enabled = act.Enabled;
-                                                Btn.TabIndex = act.TabIndex;
                                                 Btn.Size = new System.Drawing.Size(116, Panel.ClientRectangle.Height);
                                                 Btn.Visible = true;
                                                 Btn.Click += new EventHandler(this.Btn_Click);
 
                                                 Panel.Controls.Add(Btn);
-                                                BtnWidth = Btn.Width + Btn.Padding.Left + Btn.Padding.Right;
                                         }
 
+                                        Btn.Text = act.Text;
+                                        Btn.Subtext = act.SubText;
+                                        if (act.SubText == null)
+                                                Btn.SubLabelPos = SubLabelPositions.None;
+                                        else
+                                                Btn.SubLabelPos = SubLabelPositions.Bottom;
+                                        Btn.Enabled = act.Enabled;
+                                        Btn.TabIndex = act.TabIndex;
+                                        Btn.Subtext = act.TabIndex.ToString();
+                                        Panel.Controls.SetChildIndex(Btn, 0);
+
                                         if (act.Visibility == Lazaro.Pres.Forms.FormActionVisibility.Main)
-                                                PrimaryWidth += BtnWidth;
+                                                PrimaryWidth += Btn.Width + Btn.Margin.Left + Btn.Margin.Right;
                                         else if (act.Visibility == Lazaro.Pres.Forms.FormActionVisibility.Secondary)
-                                                SecondaryWidth += BtnWidth;
+                                                SecondaryWidth += Btn.Width + Btn.Margin.Left + Btn.Margin.Right;
                                 }
                         }
 

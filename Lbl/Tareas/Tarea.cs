@@ -95,17 +95,26 @@ namespace Lbl.Tareas
                 {
                         get
                         {
-                                decimal Res = this.GetFieldValue<decimal>("presupuesto");
-                                if (Res == 0 && this.Presupuesto != null)
-                                        Res = this.Presupuesto.Total;
-
-                                return Res;
+                                return this.GetFieldValue<decimal>("presupuesto");
                         }
                         set
                         {
                                 this.Registro["presupuesto"] = value;
                         }
                 }
+
+
+                public decimal ImportePresupuesto
+                {
+                        get
+                        {
+                                if (this.Presupuesto != null)
+                                        return this.Presupuesto.Total;
+                                else
+                                        return 0;
+                        }
+                }
+
 
                 public decimal DescuentoArticulos
                 {

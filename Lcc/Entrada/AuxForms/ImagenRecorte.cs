@@ -51,6 +51,8 @@ namespace Lcc.Entrada.AuxForms
                 private System.Drawing.Rectangle CropRect = System.Drawing.Rectangle.Empty;
                 private System.Drawing.Point StartPoint = System.Drawing.Point.Empty;
                 private System.Drawing.Brush SelectionBrush = null;
+                private Rectangle RectImagen;
+                private double UsarZoom;
                 private System.Drawing.Image m_Imagen = null;
                 private decimal SelectionRatio = 0;
                 private MouseActions MouseAction = MouseActions.None;
@@ -154,7 +156,6 @@ namespace Lcc.Entrada.AuxForms
                                 if (SelectionBrush == null)
                                         SelectionBrush = new SolidBrush(Color.FromArgb(50, Color.White));
 
-                                double UsarZoom;
                                 double ZoomAncho = System.Convert.ToDouble(EntradaImagen.ClientRectangle.Width) / System.Convert.ToDouble(this.Imagen.Size.Width);
                                 double ZoomAlto = System.Convert.ToDouble(EntradaImagen.ClientRectangle.Height) / System.Convert.ToDouble(this.Imagen.Size.Height);
                                 if (this.Imagen.Height * ZoomAncho > EntradaImagen.ClientRectangle.Height) {
@@ -166,7 +167,8 @@ namespace Lcc.Entrada.AuxForms
 
                                 Size TamImagen = new Size(System.Convert.ToInt32(this.Imagen.Width * UsarZoom), System.Convert.ToInt32(this.Imagen.Height * UsarZoom));
                                 Point UbicImagen = new Point((EntradaImagen.ClientRectangle.Width - TamImagen.Width) / 2,(EntradaImagen.ClientRectangle.Height - TamImagen.Height) / 2);
-                                Rectangle RectImagen = new Rectangle(UbicImagen, TamImagen);
+                                RectImagen = new Rectangle(UbicImagen, TamImagen);
+                                this.Text = UsarZoom.ToString();
                                 
                                 e.Graphics.DrawImage(Imagen, RectImagen);
                                 if (CropRect != System.Drawing.Rectangle.Empty) {
@@ -179,18 +181,15 @@ namespace Lcc.Entrada.AuxForms
                 public override Lfx.Types.OperationResult  Ok()
 {
                         if(CropRect != System.Drawing.Rectangle.Empty) {
-                                double ZoomX = System.Convert.ToDouble(m_Imagen.Width) / System.Convert.ToDouble(EntradaImagen.ClientSize.Width);
-                                double ZoomY = System.Convert.ToDouble(m_Imagen.Height) / System.Convert.ToDouble(EntradaImagen.ClientSize.Height);
-                                Bitmap Target = new Bitmap(System.Convert.ToInt32(CropRect.Width * ZoomX), System.Convert.ToInt32(CropRect.Height * ZoomY));
+                                Bitmap Target = new Bitmap(System.Convert.ToInt32(CropRect.Width / UsarZoom), System.Convert.ToInt32(CropRect.Height / UsarZoom));
                                 System.Drawing.Rectangle CropRectZoomed = new System.Drawing.Rectangle(
-                                        System.Convert.ToInt32(CropRect.X * ZoomX), System.Convert.ToInt32(CropRect.Y * ZoomY),
-                                        System.Convert.ToInt32(CropRect.Width * ZoomX), System.Convert.ToInt32(CropRect.Height * ZoomY)
+                                        System.Convert.ToInt32((CropRect.X - RectImagen.Left) / UsarZoom), System.Convert.ToInt32((CropRect.Y - RectImagen.Top) / UsarZoom),
+                                        System.Convert.ToInt32(CropRect.Width / UsarZoom), System.Convert.ToInt32(CropRect.Height / UsarZoom)
                                         );
                                 using (Graphics g = Graphics.FromImage(Target)) {
                                         Bitmap Source = m_Imagen as Bitmap;
                                         g.DrawImage(Source, new Rectangle(0, 0, Target.Width, Target.Height), CropRectZoomed, GraphicsUnit.Pixel);
                                 }
-
                                 m_Imagen = Target;
                         }
                         return base.Ok();
