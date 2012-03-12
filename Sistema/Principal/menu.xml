@@ -46,7 +46,7 @@
       <Opcion Nombre="&amp;Listado de facturas" Funcion="LISTAR Lbl.Comprobantes.Factura" />
       <Opcion Nombre="Listado de facturas &amp;A" Funcion="LISTAR Lbl.Comprobantes.Factura A" />
       <Opcion Nombre="Listado de facturas &amp;B" Funcion="LISTAR Lbl.Comprobantes.Factura B" />
-      <Opcion Nombre="Listado de tickets" Funcion="LISTAR Lbl.Comprobantes." />
+      <Opcion Nombre="Listado de tickets" Funcion="LISTAR Lbl.Comprobantes.Ticket" />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Nueva factura" Funcion="CREAR Lbl.Comprobantes.Factura" />
       <Opcion Nombre="Nuevo &amp;ticket" Funcion="CREAR Lbl.Comprobantes.Ticket" />

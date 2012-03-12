@@ -75,8 +75,6 @@ namespace Lazaro.WinMain.Backup
                                 Itm.SubItems.Add(Backup.UserName);
                                 i++;
                         }
-                        //Listado.Sorting = SortOrder.Descending;
-                        //Listado.Sort();
                         Listado.EndUpdate();
                 }
 

@@ -107,6 +107,10 @@ namespace Lui.Forms
 
                         int PrimaryWidth = 0, SecondaryWidth = 0;
 
+                        // Ordeno por TabIndex
+                        this.FormActions.Sort(delegate(Lazaro.Pres.Forms.FormAction itm, Lazaro.Pres.Forms.FormAction itm2) { return itm.TabIndex.CompareTo(itm2.TabIndex); });
+
+                        int IdxPri = 0, IdxSec = 0;
                         // Ahora agrego o actualizo los botones existentes
                         foreach (Lazaro.Pres.Forms.FormAction act in this.FormActions) {
                                 // Me fijo en que panel va
@@ -143,8 +147,10 @@ namespace Lui.Forms
                                                 Btn.SubLabelPos = SubLabelPositions.Bottom;
                                         Btn.Enabled = act.Enabled;
                                         Btn.TabIndex = act.TabIndex;
-                                        Btn.Subtext = act.TabIndex.ToString();
-                                        Panel.Controls.SetChildIndex(Btn, 0);
+                                        if (Panel == this.PanelPrimario)
+                                                Panel.Controls.SetChildIndex(Btn, IdxPri++);
+                                        else
+                                                Panel.Controls.SetChildIndex(Btn, IdxSec++);
 
                                         if (act.Visibility == Lazaro.Pres.Forms.FormActionVisibility.Main)
                                                 PrimaryWidth += Btn.Width + Btn.Margin.Left + Btn.Margin.Right;

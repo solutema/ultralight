@@ -872,10 +872,13 @@ namespace Lfc
                         else
                                 CurItem = null;
 
+                        bool Actualizando;
                         if (ItemListado.Count > 0) {
+                                Actualizando = true;
                                 EtiquetaCantidad.Text = "Actualizando...";
                         } else {
-                                Listado.Items.Clear();
+                                Actualizando = false;
+                                //Listado.Items.Clear();
                                 EtiquetaCantidad.Text = "Cargando...";
                         }
                         PicEsperar.Visible = true;
@@ -942,12 +945,13 @@ namespace Lfc
                                                 // Cuando ya tengo algunos como para mostrar, actualizo el listview
                                                 // así parece que el listado ya cargó, cuando en realidad sigue cargando
                                                 double Pct = Math.Round(FillCount * 100D / Tabla.Rows.Count);
-                                                if (ItemListado.Count > 0) {
+                                                if (Actualizando) {
                                                         EtiquetaCantidad.Text = "Actualizando, " + Pct.ToString() + "%";
                                                         System.Windows.Forms.Application.DoEvents();
                                                 } else {
                                                         EtiquetaCantidad.Text = "Cargando, " + Pct.ToString() + "%";
                                                         Listado.EndUpdate();
+                                                        Listado.ResumeLayout(true);
                                                         System.Windows.Forms.Application.DoEvents();
                                                         Listado.BeginUpdate();
                                                         Listado.SuspendLayout();

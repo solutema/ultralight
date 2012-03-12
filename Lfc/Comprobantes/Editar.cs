@@ -324,12 +324,16 @@ namespace Lfc.Comprobantes
                                         case "C":
                                         case "M":
                                         case "E":
-                                                if (this.Tipo.EsNotaCredito)
-                                                        this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["NC" + LetraComprob];
-                                                else if (this.Tipo.EsNotaDebito)
-                                                        this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["ND" + LetraComprob];
-                                                else
-                                                        this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["F" + LetraComprob];
+                                                string NuevoTipoComprob = "NC" + LetraComprob;
+                                                if (this.Tipo.EsNotaCredito) {
+                                                        NuevoTipoComprob = "NC" + LetraComprob;
+                                                } else if (this.Tipo.EsNotaDebito) {
+                                                        NuevoTipoComprob = "NF" + LetraComprob;
+                                                } else {
+                                                        NuevoTipoComprob = "F" + LetraComprob;
+                                                }
+                                                if (Lbl.Comprobantes.Tipo.TodosPorLetra.ContainsKey(NuevoTipoComprob))
+                                                        this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[NuevoTipoComprob];
                                                 break;
                                 }
                         }

@@ -101,6 +101,7 @@ namespace Lcc.Entrada
                                 } else if (Filtro is Lazaro.Pres.Filters.RelationFilter) {
                                         Lazaro.Pres.Filters.RelationFilter FiltroRelacion = Filtro as Lazaro.Pres.Filters.RelationFilter;
                                         Lcc.Entrada.CodigoDetalle EntradaRelacion = new Lcc.Entrada.CodigoDetalle();
+                                        EntradaRelacion.Required = false;
                                         EntradaRelacion.Size = new System.Drawing.Size(160, 24);
                                         EntradaRelacion.Relation = FiltroRelacion.Relation;
                                         if (FiltroRelacion.Filter != null)
