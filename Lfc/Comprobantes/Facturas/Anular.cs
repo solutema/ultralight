@@ -48,8 +48,22 @@ namespace Lfc.Comprobantes.Facturas
                                 this.Close();
                                 return;
                         }
-
                         InitializeComponent();
+
+
+                        List<string> Tipos = new List<string>() {
+                                "A|A",
+                                "B|B" };
+                        if (Lbl.Comprobantes.Tipo.FacturasPorLetra.ContainsKey("C"))
+                                Tipos.Add("C|C");
+                        if (Lbl.Comprobantes.Tipo.FacturasPorLetra.ContainsKey("E"))
+                                Tipos.Add("E|E");
+                        if (Lbl.Comprobantes.Tipo.FacturasPorLetra.ContainsKey("M"))
+                                Tipos.Add("M|M");
+                        if (Lbl.Comprobantes.Tipo.FacturasPorLetra.ContainsKey("T"))
+                                Tipos.Add("Ticket|T");
+
+                        this.EntradaTipo.SetData = Tipos.ToArray();
 
                         OkButton.Text = "Anular";
                         OkButton.Visible = false;
@@ -90,6 +104,10 @@ namespace Lfc.Comprobantes.Facturas
 
                                 case "M":
                                         IncluyeTipos = new string[] { "FM", "NCM", "NDM" };
+                                        break;
+
+                                case "T":
+                                        IncluyeTipos = new string[] { "T" };
                                         break;
 
                                 default:
@@ -213,7 +231,6 @@ namespace Lfc.Comprobantes.Facturas
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                 bool AnularPagos = Lfx.Types.Parsing.ParseInt(EntradaAnularPagos.TextKey) != 0;
 
-                                IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 int m_Id = 0;
                                 string IncluyeTipos = "";
 
@@ -237,8 +254,13 @@ namespace Lfc.Comprobantes.Facturas
                                         case "M":
                                                 IncluyeTipos = "'FM', 'NCM', 'NDM'";
                                                 break;
+
+                                        case "T":
+                                                IncluyeTipos = "'T'";
+                                                break;
                                 }
 
+                                IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 for (int Numero = Desde; Numero <= Hasta; Numero++) {
                                         int IdFactura = Connection.FieldInt("SELECT id_comprob FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
 
@@ -266,10 +288,8 @@ namespace Lfc.Comprobantes.Facturas
                                                         Fac.Anular(AnularPagos);
                                         }
                                 }
-
-                                ProximosNumeros.Clear();
-
                                 Trans.Commit();
+                                ProximosNumeros.Clear();
 
                                 Lui.Forms.MessageBox.Show("Se anularon los comprobantes seleccionados. Recuerde archivar ambas copias.", "Aviso");
 
