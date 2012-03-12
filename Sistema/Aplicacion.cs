@@ -731,6 +731,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                                                 "version=" + System.Uri.EscapeUriString(Aplicacion.Version()),
                                                                 "cpu=" + System.Uri.EscapeUriString(Lfx.Environment.SystemInformation.ProcessorName),
                                                                 "server=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.ServerVersion),
+                                                                "pais=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Pais", "0")),
                                                                 "loc=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Localidad", "0"))
                                                         };
                                 System.Net.WebRequest WebRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));

@@ -104,12 +104,33 @@ namespace Lbl.Tareas
                 }
 
 
+                public decimal ImporteAsociado
+                {
+                        get
+                        {
+                                return this.ImporteArticulos + this.ImportePresupuesto;
+                        }
+                }
+
+
                 public decimal ImportePresupuesto
                 {
                         get
                         {
                                 if (this.Presupuesto != null)
                                         return this.Presupuesto.Total;
+                                else
+                                        return 0;
+                        }
+                }
+
+
+                public decimal ImporteArticulos
+                {
+                        get
+                        {
+                                if (this.Articulos != null)
+                                        return this.Articulos.ImporteTotal;
                                 else
                                         return 0;
                         }

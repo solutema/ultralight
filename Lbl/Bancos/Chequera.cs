@@ -38,7 +38,7 @@ namespace Lbl.Bancos
         [Lbl.Atributos.Nomenclatura(NombreSingular = "Chequera", Grupo = "Bancos")]
         [Lbl.Atributos.Datos(TablaDatos = "chequeras", CampoId = "id_chequera")]
         [Lbl.Atributos.Presentacion()]
-        public class Chequera : ElementoDeDatos
+        public class Chequera : ElementoDeDatos, ICamposBaseEstandar
         {
                 public Bancos.Banco Banco;
                 public Lbl.Cajas.Caja Caja;
@@ -46,10 +46,7 @@ namespace Lbl.Bancos
 
                 //Heredar constructor
                 public Chequera(Lfx.Data.Connection dataBase)
-                        : base(dataBase)
-                {
-                        this.Estado = 1;
-                }
+                        : base(dataBase) { }
 
                 public Chequera(Lfx.Data.Connection dataBase, int itemId)
 			: base(dataBase, itemId) { }
