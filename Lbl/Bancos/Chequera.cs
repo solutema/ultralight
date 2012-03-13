@@ -55,6 +55,13 @@ namespace Lbl.Bancos
                         : base(dataBase, row) { }
 
 
+                public override void Crear()
+                {
+                        this.Sucursal = Lbl.Sys.Config.Empresa.SucursalActual;
+                        base.Crear();
+                }
+
+
                 public string Titular
                 {
                         get

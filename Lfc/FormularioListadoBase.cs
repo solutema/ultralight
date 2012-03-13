@@ -66,6 +66,7 @@ namespace Lfc
 
                 public FormularioListadoBase()
                 {
+                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                         this.StockImage = "listado";
 
@@ -901,6 +902,14 @@ namespace Lfc
                                         string NombreCampoId = Lfx.Data.Field.GetNameOnly(this.Definicion.KeyColumn.Name);
                                         int ItemId = Registro.Fields[NombreCampoId].ValueInt;
 
+                                        if (CancelFill) {
+                                                if (Listado.Created) {
+                                                        Listado.EndUpdate();
+                                                        Listado.ResumeLayout();
+                                                }
+                                                return;
+                                        }
+
                                         ListViewItem Itm;
                                         string ItemKey = ItemId.ToString();
                                         if (ItemListado.ContainsKey(ItemId)) {
@@ -911,14 +920,6 @@ namespace Lfc
                                                 Itm = this.FormatListViewItem(new ListViewItem(ItemKey), ItemId, Registro);
                                                 ItemListado.Add(ItemId, Itm);
                                                 Listado.Items.Add(Itm);
-                                        }
-
-                                        if (CancelFill) {
-                                                if (Listado.Created) {
-                                                        Listado.EndUpdate();
-                                                        Listado.ResumeLayout();
-                                                }
-                                                return;
                                         }
 
                                         Itm.Tag = Registro;

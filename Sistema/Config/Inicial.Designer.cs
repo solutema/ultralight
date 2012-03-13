@@ -348,12 +348,13 @@ namespace Lazaro.WinMain.Config
                         this.BotonSalir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSalir.Image = null;
                         this.BotonSalir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSalir.Location = new System.Drawing.Point(494, 12);
+                        this.BotonSalir.Location = new System.Drawing.Point(502, 12);
                         this.BotonSalir.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.BotonSalir.MaximumSize = new System.Drawing.Size(108, 40);
                         this.BotonSalir.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonSalir.Name = "BotonSalir";
                         this.BotonSalir.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonSalir.Size = new System.Drawing.Size(116, 40);
+                        this.BotonSalir.Size = new System.Drawing.Size(108, 40);
                         this.BotonSalir.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSalir.Subtext = "F8";
                         this.BotonSalir.TabIndex = 2;
@@ -367,12 +368,13 @@ namespace Lazaro.WinMain.Config
                         this.BotonSiguiente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSiguiente.Image = null;
                         this.BotonSiguiente.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSiguiente.Location = new System.Drawing.Point(372, 12);
+                        this.BotonSiguiente.Location = new System.Drawing.Point(388, 12);
                         this.BotonSiguiente.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.BotonSiguiente.MaximumSize = new System.Drawing.Size(108, 40);
                         this.BotonSiguiente.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonSiguiente.Name = "BotonSiguiente";
                         this.BotonSiguiente.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonSiguiente.Size = new System.Drawing.Size(116, 40);
+                        this.BotonSiguiente.Size = new System.Drawing.Size(108, 40);
                         this.BotonSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSiguiente.Subtext = "F8";
                         this.BotonSiguiente.TabIndex = 0;
@@ -386,12 +388,13 @@ namespace Lazaro.WinMain.Config
                         this.BotonAnterior.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAnterior.Image = null;
                         this.BotonAnterior.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAnterior.Location = new System.Drawing.Point(250, 12);
+                        this.BotonAnterior.Location = new System.Drawing.Point(274, 12);
                         this.BotonAnterior.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.BotonAnterior.MaximumSize = new System.Drawing.Size(108, 40);
                         this.BotonAnterior.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonAnterior.Name = "BotonAnterior";
                         this.BotonAnterior.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.BotonAnterior.Size = new System.Drawing.Size(116, 40);
+                        this.BotonAnterior.Size = new System.Drawing.Size(108, 40);
                         this.BotonAnterior.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAnterior.Subtext = "F8";
                         this.BotonAnterior.TabIndex = 1;
@@ -514,8 +517,8 @@ namespace Lazaro.WinMain.Config
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(456, 42);
                         this.label4.TabIndex = 1;
-                        this.label4.Text = "Escriba en la casilla a continuación el nombre del equipo en el cual está instala" +
-    "do el servidor SQL.";
+                        this.label4.Text = "Escriba a continuación el nombre o la dirección IP del equipo en el cual está ins" +
+    "talado el servidor SQL.";
                         // 
                         // PanelFinal
                         // 
@@ -852,7 +855,7 @@ namespace Lazaro.WinMain.Config
                         this.BotonInicioMasOpciones.AutoSize = true;
                         this.BotonInicioMasOpciones.Cursor = System.Windows.Forms.Cursors.Hand;
                         this.BotonInicioMasOpciones.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-                        this.BotonInicioMasOpciones.Location = new System.Drawing.Point(88, 280);
+                        this.BotonInicioMasOpciones.Location = new System.Drawing.Point(104, 280);
                         this.BotonInicioMasOpciones.Name = "BotonInicioMasOpciones";
                         this.BotonInicioMasOpciones.Size = new System.Drawing.Size(90, 17);
                         this.BotonInicioMasOpciones.TabIndex = 76;
@@ -895,10 +898,10 @@ namespace Lazaro.WinMain.Config
                         // 
                         this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label15.Location = new System.Drawing.Point(88, 176);
+                        this.label15.Location = new System.Drawing.Point(104, 176);
                         this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label15.Name = "label15";
-                        this.label15.Size = new System.Drawing.Size(404, 56);
+                        this.label15.Size = new System.Drawing.Size(388, 56);
                         this.label15.TabIndex = 72;
                         this.label15.Text = "Marque esta casilla si ya instaló Lázaro en otro equipo y quiere acceder a los da" +
     "tos a través de la red.";
@@ -917,10 +920,10 @@ namespace Lazaro.WinMain.Config
                         // 
                         this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label16.Location = new System.Drawing.Point(88, 80);
+                        this.label16.Location = new System.Drawing.Point(104, 80);
                         this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label16.Name = "label16";
-                        this.label16.Size = new System.Drawing.Size(404, 56);
+                        this.label16.Size = new System.Drawing.Size(388, 56);
                         this.label16.TabIndex = 70;
                         this.label16.Text = "Marque esta casilla si está instalando Lázaro por primera vez o si utiliza Lázaro" +
     " sólamente en este equipo.";
@@ -959,13 +962,13 @@ namespace Lazaro.WinMain.Config
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.EtiquetaEncab);
+                        this.Controls.Add(this.PanelInicio);
                         this.Controls.Add(this.PanelSeleccionarAlmacen);
                         this.Controls.Add(this.PanelFinal);
                         this.Controls.Add(this.PanelDeteccion);
                         this.Controls.Add(this.PanelInstalacion);
                         this.Controls.Add(this.PanelNombreServidor);
                         this.Controls.Add(this.PanelPruebaServidor);
-                        this.Controls.Add(this.PanelInicio);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

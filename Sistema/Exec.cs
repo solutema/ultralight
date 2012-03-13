@@ -194,10 +194,14 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "REBOOT":
-                                        int EstacionFiscal = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
-                                        if (EstacionFiscal > 0) {
-                                                Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal);
-                                                System.Threading.Thread.Sleep(100);
+                                        try {
+                                                int EstacionFiscal = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
+                                                if (EstacionFiscal > 0) {
+                                                        Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal);
+                                                        System.Threading.Thread.Sleep(100);
+                                                }
+                                        } catch {
+                                                // Nada
                                         }
 
                                         Lfx.Environment.Shell.Reboot();
