@@ -233,8 +233,6 @@ namespace Lui.Forms
                 {
                         if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
-                        if (this.Focused == false)
-                                TextBox1.Select();
                 }
 
 
@@ -242,8 +240,6 @@ namespace Lui.Forms
                 {
                         if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
-                        if (this.Focused == false)
-                                TextBox1.Select();
                 }
 
                 public void SetNextValueInSet()

@@ -142,7 +142,6 @@ namespace Lfc.Cajas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(124, 64);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.PlaceholderText = "¿El producto usa control de stock?";
                         this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Efectivo|0",
@@ -252,7 +251,6 @@ namespace Lfc.Cajas
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(124, 248);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.PlaceholderText = "¿El producto usa control de stock?";
                         this.EntradaEstado.ReadOnly = false;
                         this.EntradaEstado.SetData = new string[] {
         "Activa|1",

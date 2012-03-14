@@ -99,13 +99,21 @@ namespace Lcc.Entrada
                         }
                 }
 
+
+                protected virtual T ObtenerControlNuevo()
+                {
+                        T Ctrl = Activator.CreateInstance<T>();
+                        return Ctrl;
+                }
+
+
                 /// <summary>
                 /// Agregar un control a la matriz.
                 /// </summary>
                 /// <returns>El nuevo control.</returns>
                 protected virtual T Agregar()
                 {
-                        T Ctrl = Activator.CreateInstance<T>();
+                        T Ctrl = this.ObtenerControlNuevo();
 
                         this.SuspendLayout();
                         Ctrl.Size = new Size(this.Width - 20, 24);

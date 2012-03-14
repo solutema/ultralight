@@ -71,6 +71,9 @@ namespace Lui.Forms
                         // 
                         // TextBox1
                         // 
+                        this.TextBox1.BackColor = System.Drawing.Color.White;
+                        this.TextBox1.ForeColor = System.Drawing.Color.Black;
+                        this.TextBox1.Margin = new System.Windows.Forms.Padding(1);
                         this.TextBox1.ReadOnly = true;
                         this.TextBox1.Click += new System.EventHandler(this.TextBox1_Click);
                         this.TextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemList_KeyDown);
@@ -95,6 +98,7 @@ namespace Lui.Forms
                         this.ItemList.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.ItemList.ForeColor = System.Drawing.SystemColors.InfoText;
                         this.ItemList.IntegralHeight = false;
+                        this.ItemList.ItemHeight = 17;
                         this.ItemList.Location = new System.Drawing.Point(4, 4);
                         this.ItemList.Margin = new System.Windows.Forms.Padding(1);
                         this.ItemList.Name = "ItemList";

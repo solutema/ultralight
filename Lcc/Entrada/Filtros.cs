@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lcc.Entrada
 {
-        public partial class Filtros : UserControl
+        public partial class Filtros : Lui.Forms.Control
         {
                 public event System.EventHandler Apply;
 

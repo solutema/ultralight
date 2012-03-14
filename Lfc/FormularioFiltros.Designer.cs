@@ -54,44 +54,63 @@ namespace Lfc
                 private void InitializeComponent()
                 {
                         this.ControlFiltros = new Lcc.Entrada.Filtros();
-                        this.formHeader1 = new Lui.Forms.FormHeader();
+                        this.label1 = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // ControlFiltros
                         // 
+                        this.ControlFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.ControlFiltros.AutoScroll = true;
                         this.ControlFiltros.AutoScrollMargin = new System.Drawing.Size(0, 24);
                         this.ControlFiltros.AutoSize = true;
-                        this.ControlFiltros.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.ControlFiltros.Location = new System.Drawing.Point(0, 64);
+                        this.ControlFiltros.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+                        this.ControlFiltros.Location = new System.Drawing.Point(8, 96);
                         this.ControlFiltros.Name = "ControlFiltros";
+                        this.ControlFiltros.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
                         this.ControlFiltros.ShowApplyButton = false;
-                        this.ControlFiltros.Size = new System.Drawing.Size(634, 244);
+                        this.ControlFiltros.Size = new System.Drawing.Size(616, 212);
                         this.ControlFiltros.TabIndex = 0;
                         // 
-                        // formHeader1
+                        // label1
                         // 
-                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
-                        this.formHeader1.Name = "formHeader1";
-                        this.formHeader1.Size = new System.Drawing.Size(634, 64);
-                        this.formHeader1.TabIndex = 51;
-                        this.formHeader1.Text = "Filtros";
+                        this.label1.AutoSize = true;
+                        this.label1.Location = new System.Drawing.Point(24, 16);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(316, 30);
+                        this.label1.TabIndex = 51;
+                        this.label1.Text = "Filtrar la información del listado";
+                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
+                        // 
+                        // label2
+                        // 
+                        this.label2.Location = new System.Drawing.Point(24, 48);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(592, 40);
+                        this.label2.TabIndex = 52;
+                        this.label2.Text = "Puede filtrar la información del listado para ver sólo los elementos que cumplan " +
+    "con los requisitos siguientes. Si imprime o exporta el listado también se aplica" +
+    "rán estos filtros.";
                         // 
                         // FormularioFiltros
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoSize = true;
                         this.ClientSize = new System.Drawing.Size(634, 372);
+                        this.Controls.Add(this.label2);
+                        this.Controls.Add(this.label1);
                         this.Controls.Add(this.ControlFiltros);
-                        this.Controls.Add(this.formHeader1);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                         this.MaximumSize = new System.Drawing.Size(1000, 720);
                         this.MinimumSize = new System.Drawing.Size(480, 320);
                         this.Name = "FormularioFiltros";
                         this.Text = "Filtros";
-                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.Controls.SetChildIndex(this.ControlFiltros, 0);
+                        this.Controls.SetChildIndex(this.label1, 0);
+                        this.Controls.SetChildIndex(this.label2, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -100,7 +119,8 @@ namespace Lfc
                 #endregion
 
                 private Lcc.Entrada.Filtros ControlFiltros;
-                private Lui.Forms.FormHeader formHeader1;
+                private Lui.Forms.Label label1;
+                private Lui.Forms.Label label2;
 
         }
 }

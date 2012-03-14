@@ -78,6 +78,9 @@ namespace Lfc.Comprobantes
                 internal Lui.Forms.Label lblDesdeSituacion;
                 internal Lui.Forms.Label label1;
                 internal Lui.Forms.ComboBox EntradaBloqueada;
+                private Lui.Forms.Label EtiquetaTitulo;
+                internal Lui.Forms.Label label2;
+                internal Lui.Forms.Label label3;
                 internal Lcc.Entrada.CodigoDetalle EntradaDesdeSituacion;
 
                 private void InitializeComponent()
@@ -88,15 +91,18 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.label1 = new Lui.Forms.Label();
                         this.EntradaBloqueada = new Lui.Forms.ComboBox();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
+                        this.label2 = new Lui.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // lblHaciaSituacion
                         // 
-                        this.lblHaciaSituacion.Location = new System.Drawing.Point(24, 52);
+                        this.lblHaciaSituacion.Location = new System.Drawing.Point(24, 144);
                         this.lblHaciaSituacion.Name = "lblHaciaSituacion";
-                        this.lblHaciaSituacion.Size = new System.Drawing.Size(124, 24);
+                        this.lblHaciaSituacion.Size = new System.Drawing.Size(168, 24);
                         this.lblHaciaSituacion.TabIndex = 2;
-                        this.lblHaciaSituacion.Text = "Situación Destino";
+                        this.lblHaciaSituacion.Text = "Destino";
                         this.lblHaciaSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaHaciaSituacion
@@ -110,12 +116,12 @@ namespace Lfc.Comprobantes
                         this.EntradaHaciaSituacion.ExtraDetailFields = "";
                         this.EntradaHaciaSituacion.Filter = "";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
-                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(148, 52);
+                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(192, 144);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
                         this.EntradaHaciaSituacion.PlaceholderText = null;
                         this.EntradaHaciaSituacion.Required = true;
-                        this.EntradaHaciaSituacion.Size = new System.Drawing.Size(460, 24);
+                        this.EntradaHaciaSituacion.Size = new System.Drawing.Size(416, 24);
                         this.EntradaHaciaSituacion.TabIndex = 3;
                         this.EntradaHaciaSituacion.Table = "articulos_situaciones";
                         this.EntradaHaciaSituacion.Text = "0";
@@ -123,11 +129,11 @@ namespace Lfc.Comprobantes
                         // 
                         // lblDesdeSituacion
                         // 
-                        this.lblDesdeSituacion.Location = new System.Drawing.Point(24, 24);
+                        this.lblDesdeSituacion.Location = new System.Drawing.Point(24, 72);
                         this.lblDesdeSituacion.Name = "lblDesdeSituacion";
-                        this.lblDesdeSituacion.Size = new System.Drawing.Size(124, 24);
+                        this.lblDesdeSituacion.Size = new System.Drawing.Size(168, 24);
                         this.lblDesdeSituacion.TabIndex = 0;
-                        this.lblDesdeSituacion.Text = "Situación Origen";
+                        this.lblDesdeSituacion.Text = "Origen";
                         this.lblDesdeSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaDesdeSituacion
@@ -141,12 +147,12 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion.ExtraDetailFields = "";
                         this.EntradaDesdeSituacion.Filter = "facturable=1";
                         this.EntradaDesdeSituacion.FreeTextCode = "";
-                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(148, 24);
+                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(192, 72);
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
                         this.EntradaDesdeSituacion.PlaceholderText = null;
                         this.EntradaDesdeSituacion.Required = true;
-                        this.EntradaDesdeSituacion.Size = new System.Drawing.Size(460, 24);
+                        this.EntradaDesdeSituacion.Size = new System.Drawing.Size(416, 24);
                         this.EntradaDesdeSituacion.TabIndex = 1;
                         this.EntradaDesdeSituacion.Table = "articulos_situaciones";
                         this.EntradaDesdeSituacion.Text = "0";
@@ -154,9 +160,9 @@ namespace Lfc.Comprobantes
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(24, 80);
+                        this.label1.Location = new System.Drawing.Point(24, 224);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(124, 24);
+                        this.label1.Size = new System.Drawing.Size(168, 24);
                         this.label1.TabIndex = 4;
                         this.label1.Text = "Accesibilidad";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -165,34 +171,70 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaBloqueada.AlwaysExpanded = true;
                         this.EntradaBloqueada.AutoSize = true;
-                        this.EntradaBloqueada.Location = new System.Drawing.Point(148, 80);
+                        this.EntradaBloqueada.Location = new System.Drawing.Point(192, 224);
                         this.EntradaBloqueada.Name = "EntradaBloqueada";
                         this.EntradaBloqueada.SetData = new string[] {
         "Editable|0",
         "Bloqueado|1"};
-                        this.EntradaBloqueada.Size = new System.Drawing.Size(152, 40);
+                        this.EntradaBloqueada.Size = new System.Drawing.Size(128, 39);
                         this.EntradaBloqueada.TabIndex = 5;
                         this.EntradaBloqueada.TextKey = "0";
                         this.EntradaBloqueada.TextChanged += new System.EventHandler(this.EntradaBloqueada_TextChanged);
+                        // 
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(285, 30);
+                        this.EtiquetaTitulo.TabIndex = 107;
+                        this.EtiquetaTitulo.Text = "Más datos del comprobante";
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
+                        // 
+                        // label2
+                        // 
+                        this.label2.Location = new System.Drawing.Point(192, 104);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(416, 32);
+                        this.label2.TabIndex = 108;
+                        this.label2.Text = "¿De dónde se deben restar las existencias cuando se hagan movimientos relacionado" +
+    "s a este comprobante?";
+                        this.label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
+                        // 
+                        // label3
+                        // 
+                        this.label3.Location = new System.Drawing.Point(192, 176);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(416, 24);
+                        this.label3.TabIndex = 109;
+                        this.label3.Text = "¿Hacia dónde van esas existencias?";
+                        this.label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         // 
                         // FormComprobanteMasDatos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(634, 374);
+                        this.Controls.Add(this.label3);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.lblHaciaSituacion);
                         this.Controls.Add(this.EntradaBloqueada);
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.EntradaHaciaSituacion);
                         this.Controls.Add(this.lblDesdeSituacion);
                         this.Controls.Add(this.EntradaDesdeSituacion);
+                        this.Controls.Add(this.label2);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "FormComprobanteMasDatos";
                         this.Text = "Más datos del comprobante";
+                        this.Controls.SetChildIndex(this.label2, 0);
                         this.Controls.SetChildIndex(this.EntradaDesdeSituacion, 0);
                         this.Controls.SetChildIndex(this.lblDesdeSituacion, 0);
                         this.Controls.SetChildIndex(this.EntradaHaciaSituacion, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.EntradaBloqueada, 0);
                         this.Controls.SetChildIndex(this.lblHaciaSituacion, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
+                        this.Controls.SetChildIndex(this.label3, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

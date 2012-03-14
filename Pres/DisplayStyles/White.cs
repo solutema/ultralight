@@ -95,7 +95,8 @@ namespace Lazaro.Pres.DisplayStyles
                 {
                         get
                         {
-                                return Color.LightSteelBlue;
+                                //return Color.LightSteelBlue;
+                                return Color.FromArgb(206, 210, 192);
                         }
                 }
 

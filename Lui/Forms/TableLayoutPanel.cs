@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright 2004-2012 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
@@ -32,36 +32,24 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Lui.Forms
 {
-        public partial class MessageBoxForm : Lui.Forms.Form
+        public class TableLayoutPanel : System.Windows.Forms.TableLayoutPanel, IControl, IDisplayStyleControl
         {
-                public MessageBoxForm()
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public virtual Lazaro.Pres.DisplayStyles.IDisplayStyle DisplayStyle
                 {
-                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
-                        InitializeComponent();
-                        this.MessageText.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
-                        this.MessageText.BackColor = this.DisplayStyle.BackgroundColor;
-                }
-
-                private void OkButton_Click(object sender, EventArgs e)
-                {
-                        this.Close();
-                }
-
-                private void MessageBoxForm_KeyDown(object sender, KeyEventArgs e)
-                {
-                        if (e.Alt == false && e.Control == true && e.KeyCode == Keys.C) {
-                                System.Windows.Forms.Clipboard.SetData(System.Windows.Forms.DataFormats.StringFormat, MessageText.Text);
-                                e.Handled = true;
-                        } else if (e.Alt == false && e.Control == false && e.KeyCode == Keys.Escape) {
-                                e.Handled = true;
-                                this.Close();
+                        get
+                        {
+                                if (this.Parent is IForm)
+                                        return ((IForm)(this.Parent)).DisplayStyle;
+                                else if (this.Parent is IDisplayStyleControl)
+                                        return ((IDisplayStyleControl)(this.Parent)).DisplayStyle;
+                                else
+                                        return Lazaro.Pres.DisplayStyles.Template.Current.Default;
                         }
                 }
         }

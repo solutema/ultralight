@@ -59,14 +59,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Cobro = new Lcc.Edicion.Comprobantes.Cobro();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(270, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(390, 8);
-                        // 
                         // Cobro
                         // 
                         this.Cobro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -81,7 +73,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Cobro.Name = "Cobro";
                         this.Cobro.ObsEditable = true;
                         this.Cobro.ObsVisible = true;
-                        this.Cobro.ReadOnly = false;
                         this.Cobro.Size = new System.Drawing.Size(464, 361);
                         this.Cobro.TabIndex = 0;
                         this.Cobro.Text = "Detalles";
@@ -92,8 +83,9 @@ namespace Lfc.Comprobantes.Recibos
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(510, 452);
                         this.Controls.Add(this.Cobro);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "EditarCobro";
-                        this.Text = "Editar Cobro";
+                        this.Text = "Editar cobro";
                         this.Controls.SetChildIndex(this.Cobro, 0);
                         this.ResumeLayout(false);
 

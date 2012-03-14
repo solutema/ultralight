@@ -47,6 +47,8 @@ namespace Lui.Forms
 		protected internal char m_PasswordChar = '\0';
 		protected internal DataTypes m_DataType = DataTypes.FreeText;
                 protected internal int m_DecimalPlaces = -1;
+                protected string m_PlaceholderText = null;                
+
 		private System.Windows.Forms.MenuItem MenuItemPegadoRapido;
 		private System.Windows.Forms.MenuItem MenuItemPegadoRapidoAgregar;
 
@@ -155,6 +157,62 @@ namespace Lui.Forms
 				IgnoreChanges--;
 			}
 		}
+
+
+                [DefaultValue(null)]
+                public string PlaceholderText
+                {
+                        get
+                        {
+                                return m_PlaceholderText;
+                        }
+                        set
+                        {
+                                if (TextBox1.Text == m_PlaceholderText && this.Grayed) {
+                                        IgnoreEvents++;
+                                        TextBox1.Text = value;
+                                        IgnoreEvents--;
+                                }
+
+                                m_PlaceholderText = value;
+                                this.SetTipIfBlank();
+                        }
+                }
+
+
+                private void SetTipIfBlank()
+                {
+                        if (ActiveControl != TextBox1 && TextBox1.Text == "" && this.PlaceholderText != null && this.PlaceholderText.Length > 0) {
+                                this.Grayed = true;
+                                this.ApplyStyle();
+                                IgnoreChanges++;
+                                TextBox1.Text = this.PlaceholderText;
+                                IgnoreChanges--;
+                                TextBox1.SelectionStart = 0;
+                                TextBox1.SelectionLength = 0;
+                        } else {
+                                this.Grayed = false;
+                                this.ApplyStyle();
+                        }
+                }
+
+
+                protected override void OnEnter(EventArgs e)
+                {
+                        if (this.Grayed && this.TextBox1.Text == m_PlaceholderText) {
+                                IgnoreEvents++;
+                                this.TextBox1.Text = "";
+                                this.Grayed = false;
+                                IgnoreEvents--;
+                        }
+                        base.OnEnter(e);
+                }
+
+                protected override void OnLeave(EventArgs e)
+                {
+                        this.SetTipIfBlank();
+                        base.OnLeave(e);
+                }
 
 
 		[EditorBrowsable(EditorBrowsableState.Never),
@@ -469,7 +527,10 @@ namespace Lui.Forms
                 {
                         get
                         {
-                                return FormatearDatos(base.Text);
+                                if (this.Grayed && TextBox1.Text == m_PlaceholderText)
+                                        return "";
+                                else
+                                        return FormatearDatos(base.Text);
                         }
                         set
                         {
@@ -479,6 +540,7 @@ namespace Lui.Forms
                                         base.Text = FormatearDatos(value);
 
                                 TextBox1.Select(TextBox1.Text.Length, 0);
+                                this.SetTipIfBlank();
                         }
                 }
 

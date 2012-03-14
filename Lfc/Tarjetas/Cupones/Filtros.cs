@@ -106,7 +106,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.label3 = new Lui.Forms.Label();
                         this.panel1 = new Lui.Forms.Panel();
-                        this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+                        this.tableLayoutPanel1 = new Lui.Forms.TableLayoutPanel();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.panel1.SuspendLayout();
                         this.tableLayoutPanel1.SuspendLayout();

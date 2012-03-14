@@ -65,8 +65,8 @@ namespace Lfc.Comprobantes.Recibos
                         this.Label5 = new Lui.Forms.Label();
                         this.EntradaImporte = new Lui.Forms.TextBox();
                         this.lblFecha1 = new Lui.Forms.Label();
-                        this.formHeader1 = new Lui.Forms.FormHeader();
                         this.label1 = new Lui.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaCaja
@@ -80,13 +80,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "";
-                        this.EntradaCaja.Location = new System.Drawing.Point(120, 208);
+                        this.EntradaCaja.Location = new System.Drawing.Point(136, 184);
                         this.EntradaCaja.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.PlaceholderText = null;
                         this.EntradaCaja.Required = true;
-                        this.EntradaCaja.Size = new System.Drawing.Size(384, 24);
+                        this.EntradaCaja.Size = new System.Drawing.Size(368, 24);
                         this.EntradaCaja.TabIndex = 5;
                         this.EntradaCaja.Table = "cajas";
                         this.EntradaCaja.Text = "0";
@@ -94,11 +94,11 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(24, 208);
+                        this.Label3.Location = new System.Drawing.Point(24, 184);
                         this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(96, 24);
+                        this.Label3.Size = new System.Drawing.Size(112, 24);
                         this.Label3.TabIndex = 4;
-                        this.Label3.Text = "Caja";
+                        this.Label3.Text = "Caja o cuenta";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaCliente
@@ -112,13 +112,13 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
-                        this.EntradaCliente.Location = new System.Drawing.Point(120, 144);
+                        this.EntradaCliente.Location = new System.Drawing.Point(136, 120);
                         this.EntradaCliente.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = true;
-                        this.EntradaCliente.Size = new System.Drawing.Size(384, 24);
+                        this.EntradaCliente.Size = new System.Drawing.Size(368, 24);
                         this.EntradaCliente.TabIndex = 1;
                         this.EntradaCliente.Table = "personas";
                         this.EntradaCliente.Text = "0";
@@ -127,9 +127,9 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(24, 144);
+                        this.Label5.Location = new System.Drawing.Point(24, 120);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(96, 24);
+                        this.Label5.Size = new System.Drawing.Size(112, 24);
                         this.Label5.TabIndex = 0;
                         this.Label5.Text = "Cliente";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -137,7 +137,7 @@ namespace Lfc.Comprobantes.Recibos
                         // EntradaImporte
                         // 
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.Location = new System.Drawing.Point(120, 176);
+                        this.EntradaImporte.Location = new System.Drawing.Point(136, 152);
                         this.EntradaImporte.MaxLength = 20;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Prefijo = "$";
@@ -147,59 +147,61 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // lblFecha1
                         // 
-                        this.lblFecha1.Location = new System.Drawing.Point(24, 176);
+                        this.lblFecha1.Location = new System.Drawing.Point(24, 152);
                         this.lblFecha1.Name = "lblFecha1";
-                        this.lblFecha1.Size = new System.Drawing.Size(96, 24);
+                        this.lblFecha1.Size = new System.Drawing.Size(112, 24);
                         this.lblFecha1.TabIndex = 2;
                         this.lblFecha1.Text = "Importe";
                         this.lblFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // formHeader1
-                        // 
-                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
-                        this.formHeader1.Name = "formHeader1";
-                        this.formHeader1.Size = new System.Drawing.Size(529, 64);
-                        this.formHeader1.TabIndex = 51;
-                        this.formHeader1.Text = "Recibo rápido";
                         // 
                         // label1
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.label1.AutoEllipsis = true;
-                        this.label1.Location = new System.Drawing.Point(24, 88);
+                        this.label1.Location = new System.Drawing.Point(24, 64);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(480, 48);
                         this.label1.TabIndex = 101;
-                        this.label1.Text = "Se va a confeccionar un recibo con un único pago en efectivo o depósito en cuenta" +
-    ".";
+                        this.label1.Text = "Se va a confeccionar un recibo con un único pago en efectivo o depósito en caja o" +
+    " cuenta seleccionada.";
                         this.label1.UseMnemonic = false;
+                        // 
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(236, 30);
+                        this.EtiquetaTitulo.TabIndex = 108;
+                        this.EtiquetaTitulo.Text = "Hacer un recibo rápido";
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // Rapido
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(529, 386);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.label1);
-                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.EntradaImporte);
-                        this.Controls.Add(this.lblFecha1);
                         this.Controls.Add(this.EntradaCaja);
-                        this.Controls.Add(this.Label3);
                         this.Controls.Add(this.EntradaCliente);
+                        this.Controls.Add(this.lblFecha1);
+                        this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label5);
                         this.Name = "Rapido";
                         this.Text = "Recibo rápido";
                         this.Controls.SetChildIndex(this.Label5, 0);
-                        this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.EntradaCaja, 0);
                         this.Controls.SetChildIndex(this.lblFecha1, 0);
+                        this.Controls.SetChildIndex(this.EntradaCliente, 0);
+                        this.Controls.SetChildIndex(this.EntradaCaja, 0);
                         this.Controls.SetChildIndex(this.EntradaImporte, 0);
-                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
         }
 
@@ -211,7 +213,7 @@ namespace Lfc.Comprobantes.Recibos
         internal Lui.Forms.Label Label5;
         internal Lui.Forms.TextBox EntradaImporte;
         internal Lui.Forms.Label lblFecha1;
-        private Lui.Forms.FormHeader formHeader1;
         private Lui.Forms.Label label1;
+        private Lui.Forms.Label EtiquetaTitulo;
     }
 }

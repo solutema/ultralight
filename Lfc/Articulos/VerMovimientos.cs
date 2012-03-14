@@ -52,7 +52,7 @@ namespace Lfc.Articulos
                         Listado.BeginUpdate();
                         Listado.Items.Clear();
 
-                        this.formHeader1.Text = "Movimientos de " + articulo.ToString();
+                        this.EtiquetaTitulo.Text = "Historial de entrada y salida de " + articulo.ToString();
 
                         System.Data.DataTable Detalles = this.Connection.Select("SELECT id_movim, id_articulo, desdesituacion, haciasituacion, cantidad, series, fecha, saldo, obs FROM articulos_movim WHERE id_articulo=" + articulo.Id.ToString() + " ORDER BY fecha");
 

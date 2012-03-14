@@ -38,7 +38,6 @@ namespace Lui.Forms
 {
         public partial class TextBoxBase : EditableControl
         {
-                protected string m_PlaceholderText = null;
                 protected bool Grayed { get; set; }
 
                 new public event KeyPressEventHandler KeyPress;
@@ -117,31 +116,7 @@ namespace Lui.Forms
                         }
                 }
 
-                [DefaultValue(null)]
-                public string PlaceholderText
-                {
-                        get
-                        {
-                                return m_PlaceholderText;
-                        }
-                        set
-                        {
-                                if (TextBox1.Text == m_PlaceholderText && this.Grayed) {
-                                        IgnoreEvents++;
-                                        TextBox1.Text = "";
-                                        this.SetTipIfBlank();
-                                        IgnoreEvents--;
-                                }
-
-                                m_PlaceholderText = value;
-
-                                if (ActiveControl != TextBox1) {
-                                        IgnoreEvents++;
-                                        this.SetTipIfBlank();
-                                        IgnoreEvents--;
-                                }
-                        }
-                }
+                
 
                 private void TextBox1_KeyPress(System.Object sender, System.Windows.Forms.KeyPressEventArgs e)
                 {
@@ -241,8 +216,6 @@ namespace Lui.Forms
                         set
                         {
                                 TextBox1.Text = value;
-                                if (ActiveControl != TextBox1)
-                                        this.SetTipIfBlank();
                         }
                 }
 
@@ -266,27 +239,10 @@ namespace Lui.Forms
                                 TextBox1.BackColor = this.DisplayStyle.DataAreaColor;
                                 if (this.LostFocus != null)
                                         this.LostFocus(this, e);
-
-                                this.SetTipIfBlank();
                                 IgnoreEvents--;
                         }
                 }
 
-                private void SetTipIfBlank()
-                {
-                        if (TextBox1.Text == "" && this.PlaceholderText != null && this.PlaceholderText.Length > 0) {
-                                this.Grayed = true;
-                                this.ApplyStyle();
-                                IgnoreChanges++;
-                                TextBox1.Text = this.PlaceholderText;
-                                IgnoreChanges--;
-                                TextBox1.SelectionStart = 0;
-                                TextBox1.SelectionLength = 0;
-                        } else {
-                                this.Grayed = false;
-                                this.ApplyStyle();
-                        }
-                }
 
                 private void TextBox1_GotFocus(object sender, System.EventArgs e)
                 {

@@ -92,7 +92,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaEstado.TabIndex = 1;
                         this.EntradaEstado.Text = "Todos";
                         this.EntradaEstado.TextKey = "-1";
-                        this.EntradaEstado.PlaceholderText = "Estado para esta chequera.";
                         // 
                         // Label7
                         // 

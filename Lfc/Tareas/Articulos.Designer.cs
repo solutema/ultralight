@@ -72,14 +72,6 @@ namespace Lfc.Tareas
                         this.Label5 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(435, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(555, 8);
-                        // 
                         // MatrizArticulos
                         // 
                         this.MatrizArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -89,15 +81,14 @@ namespace Lfc.Tareas
                         this.MatrizArticulos.AutoScrollMargin = new System.Drawing.Size(4, 4);
                         this.MatrizArticulos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.MatrizArticulos.FreeTextCode = "*";
-                        this.MatrizArticulos.Location = new System.Drawing.Point(24, 72);
+                        this.MatrizArticulos.Location = new System.Drawing.Point(24, 64);
                         this.MatrizArticulos.LockPrice = false;
                         this.MatrizArticulos.LockQuantity = false;
                         this.MatrizArticulos.LockText = false;
                         this.MatrizArticulos.Name = "MatrizArticulos";
                         this.MatrizArticulos.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
-                        this.MatrizArticulos.ReadOnly = false;
                         this.MatrizArticulos.ShowStock = true;
-                        this.MatrizArticulos.Size = new System.Drawing.Size(624, 248);
+                        this.MatrizArticulos.Size = new System.Drawing.Size(624, 256);
                         this.MatrizArticulos.TabIndex = 1;
                         this.MatrizArticulos.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
                         // 
@@ -105,24 +96,24 @@ namespace Lfc.Tareas
                         // 
                         this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
-                        this.EtiquetaTitulo.Size = new System.Drawing.Size(624, 40);
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(624, 32);
                         this.EtiquetaTitulo.TabIndex = 0;
                         this.EtiquetaTitulo.Text = "Artículos";
-                        this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // Label4
                         // 
                         this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
-                        this.Label4.Location = new System.Drawing.Point(428, 336);
+                        this.Label4.Location = new System.Drawing.Point(416, 336);
                         this.Label4.Name = "Label4";
-                        this.Label4.Size = new System.Drawing.Size(76, 32);
+                        this.Label4.Size = new System.Drawing.Size(88, 32);
                         this.Label4.TabIndex = 53;
                         this.Label4.Text = "Total";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                        this.Label4.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         // 
                         // EntradaTotal
                         // 
@@ -131,20 +122,19 @@ namespace Lfc.Tareas
                         this.EntradaTotal.Location = new System.Drawing.Point(504, 336);
                         this.EntradaTotal.Name = "EntradaTotal";
                         this.EntradaTotal.Prefijo = "$";
-                        this.EntradaTotal.ReadOnly = false;
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
                         this.EntradaTotal.TabIndex = 54;
                         this.EntradaTotal.TabStop = false;
                         this.EntradaTotal.Text = "0.00";
+                        this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         // 
                         // EntradaDescuento
                         // 
                         this.EntradaDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
-                        this.EntradaDescuento.Location = new System.Drawing.Point(252, 336);
+                        this.EntradaDescuento.Location = new System.Drawing.Point(288, 336);
                         this.EntradaDescuento.Name = "EntradaDescuento";
-                        this.EntradaDescuento.ReadOnly = false;
-                        this.EntradaDescuento.Size = new System.Drawing.Size(76, 24);
+                        this.EntradaDescuento.Size = new System.Drawing.Size(80, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 58;
                         this.EntradaDescuento.Text = "0.0000";
@@ -153,9 +143,9 @@ namespace Lfc.Tareas
                         // Label6
                         // 
                         this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.Label6.Location = new System.Drawing.Point(176, 336);
+                        this.Label6.Location = new System.Drawing.Point(200, 336);
                         this.Label6.Name = "Label6";
-                        this.Label6.Size = new System.Drawing.Size(76, 24);
+                        this.Label6.Size = new System.Drawing.Size(88, 24);
                         this.Label6.TabIndex = 57;
                         this.Label6.Text = "Descuento";
                         this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -164,11 +154,10 @@ namespace Lfc.Tareas
                         // 
                         this.EntradaSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaSubTotal.Location = new System.Drawing.Point(80, 336);
+                        this.EntradaSubTotal.Location = new System.Drawing.Point(96, 336);
                         this.EntradaSubTotal.Name = "EntradaSubTotal";
                         this.EntradaSubTotal.Prefijo = "$";
-                        this.EntradaSubTotal.ReadOnly = false;
-                        this.EntradaSubTotal.Size = new System.Drawing.Size(84, 24);
+                        this.EntradaSubTotal.Size = new System.Drawing.Size(88, 24);
                         this.EntradaSubTotal.TabIndex = 56;
                         this.EntradaSubTotal.TabStop = false;
                         this.EntradaSubTotal.Text = "0.00";
@@ -179,7 +168,7 @@ namespace Lfc.Tareas
                         this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.Label5.Location = new System.Drawing.Point(16, 336);
                         this.Label5.Name = "Label5";
-                        this.Label5.Size = new System.Drawing.Size(64, 24);
+                        this.Label5.Size = new System.Drawing.Size(80, 24);
                         this.Label5.TabIndex = 55;
                         this.Label5.Text = "Subtotal";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,8 +185,9 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.EntradaTotal);
                         this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.MatrizArticulos);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Articulos";
-                        this.Text = "Artículos asociados a la Tarea";
+                        this.Text = "Artículos asociados a la tarea";
                         this.Controls.SetChildIndex(this.MatrizArticulos, 0);
                         this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.Controls.SetChildIndex(this.EntradaTotal, 0);

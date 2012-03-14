@@ -53,6 +53,7 @@ namespace Lfc.Cajas
 
                 private void InitializeComponent()
                 {
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Movimiento));
                         this.EntradaDestino = new Lcc.Entrada.CodigoDetalle();
                         this.Label3 = new Lui.Forms.Label();
                         this.EntradaImporte = new Lui.Forms.TextBox();
@@ -66,9 +67,9 @@ namespace Lfc.Cajas
                         this.EntradaOrigen = new Lcc.Entrada.CodigoDetalle();
                         this.Label6 = new Lui.Forms.Label();
                         this.EntradaImporteDestino = new Lui.Forms.TextBox();
+                        this.label8 = new Lui.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.EtiquetaImporteDestino = new Lui.Forms.Label();
-                        this.label7 = new Lui.Forms.Label();
-                        this.formHeader1 = new Lui.Forms.FormHeader();
                         this.SuspendLayout();
                         // 
                         // EntradaDestino
@@ -83,10 +84,10 @@ namespace Lfc.Cajas
                         this.EntradaDestino.Location = new System.Drawing.Point(136, 168);
                         this.EntradaDestino.MaxLength = 200;
                         this.EntradaDestino.Name = "EntradaDestino";
-                        this.EntradaDestino.PlaceholderText = null;
+                        this.EntradaDestino.PlaceholderText = "Seleccione la caja a la cual ingresa el dinero";
                         this.EntradaDestino.Required = false;
-                        this.EntradaDestino.Size = new System.Drawing.Size(356, 24);
-                        this.EntradaDestino.TabIndex = 3;
+                        this.EntradaDestino.Size = new System.Drawing.Size(432, 24);
+                        this.EntradaDestino.TabIndex = 5;
                         this.EntradaDestino.Table = "cajas";
                         this.EntradaDestino.Text = "0";
                         this.EntradaDestino.TextDetail = "";
@@ -97,8 +98,8 @@ namespace Lfc.Cajas
                         this.Label3.Location = new System.Drawing.Point(24, 168);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(112, 24);
-                        this.Label3.TabIndex = 2;
-                        this.Label3.Text = "Destino";
+                        this.Label3.TabIndex = 4;
+                        this.Label3.Text = "Cada de destino";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaImporte
@@ -108,7 +109,7 @@ namespace Lfc.Cajas
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaImporte.TabIndex = 5;
+                        this.EntradaImporte.TabIndex = 7;
                         this.EntradaImporte.Text = "0.00";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
                         // 
@@ -117,7 +118,7 @@ namespace Lfc.Cajas
                         this.Label2.Location = new System.Drawing.Point(24, 200);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(112, 24);
-                        this.Label2.TabIndex = 4;
+                        this.Label2.TabIndex = 6;
                         this.Label2.Text = "Importe";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -133,10 +134,10 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.Location = new System.Drawing.Point(136, 232);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.PlaceholderText = null;
+                        this.EntradaConcepto.PlaceholderText = "Seleccione la razón del movimiento";
                         this.EntradaConcepto.Required = true;
-                        this.EntradaConcepto.Size = new System.Drawing.Size(356, 24);
-                        this.EntradaConcepto.TabIndex = 9;
+                        this.EntradaConcepto.Size = new System.Drawing.Size(432, 24);
+                        this.EntradaConcepto.TabIndex = 11;
                         this.EntradaConcepto.Table = "conceptos";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
@@ -146,7 +147,7 @@ namespace Lfc.Cajas
                         this.Label1.Location = new System.Drawing.Point(24, 232);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(112, 24);
-                        this.Label1.TabIndex = 8;
+                        this.Label1.TabIndex = 10;
                         this.Label1.Text = "Concepto";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -156,8 +157,8 @@ namespace Lfc.Cajas
                         this.EntradaObs.Location = new System.Drawing.Point(136, 296);
                         this.EntradaObs.MultiLine = true;
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Size = new System.Drawing.Size(432, 80);
-                        this.EntradaObs.TabIndex = 13;
+                        this.EntradaObs.Size = new System.Drawing.Size(432, 64);
+                        this.EntradaObs.TabIndex = 15;
                         this.EntradaObs.Enter += new System.EventHandler(this.EntradaObs_Enter);
                         // 
                         // Label4
@@ -165,7 +166,7 @@ namespace Lfc.Cajas
                         this.Label4.Location = new System.Drawing.Point(24, 296);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(112, 24);
-                        this.Label4.TabIndex = 12;
+                        this.Label4.TabIndex = 14;
                         this.Label4.Text = "Obs.";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -175,15 +176,16 @@ namespace Lfc.Cajas
                         this.EntradaComprob.Location = new System.Drawing.Point(136, 264);
                         this.EntradaComprob.MaxLength = 200;
                         this.EntradaComprob.Name = "EntradaComprob";
-                        this.EntradaComprob.Size = new System.Drawing.Size(240, 24);
-                        this.EntradaComprob.TabIndex = 11;
+                        this.EntradaComprob.PlaceholderText = "El tipo y número de comprobante asociado (opcional)";
+                        this.EntradaComprob.Size = new System.Drawing.Size(432, 24);
+                        this.EntradaComprob.TabIndex = 13;
                         // 
                         // Label5
                         // 
                         this.Label5.Location = new System.Drawing.Point(24, 264);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(112, 24);
-                        this.Label5.TabIndex = 10;
+                        this.Label5.TabIndex = 12;
                         this.Label5.Text = "Comprobante";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -199,10 +201,10 @@ namespace Lfc.Cajas
                         this.EntradaOrigen.Location = new System.Drawing.Point(136, 136);
                         this.EntradaOrigen.MaxLength = 200;
                         this.EntradaOrigen.Name = "EntradaOrigen";
-                        this.EntradaOrigen.PlaceholderText = null;
+                        this.EntradaOrigen.PlaceholderText = "Seleccione la caja de la cual sale el dinero";
                         this.EntradaOrigen.Required = false;
-                        this.EntradaOrigen.Size = new System.Drawing.Size(356, 24);
-                        this.EntradaOrigen.TabIndex = 1;
+                        this.EntradaOrigen.Size = new System.Drawing.Size(432, 24);
+                        this.EntradaOrigen.TabIndex = 3;
                         this.EntradaOrigen.Table = "cajas";
                         this.EntradaOrigen.TabStop = false;
                         this.EntradaOrigen.Text = "0";
@@ -214,55 +216,57 @@ namespace Lfc.Cajas
                         this.Label6.Location = new System.Drawing.Point(24, 136);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(112, 24);
-                        this.Label6.TabIndex = 0;
-                        this.Label6.Text = "Origen";
+                        this.Label6.TabIndex = 2;
+                        this.Label6.Text = "Caja de origen";
                         this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaImporteDestino
                         // 
                         this.EntradaImporteDestino.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporteDestino.Location = new System.Drawing.Point(280, 200);
+                        this.EntradaImporteDestino.Location = new System.Drawing.Point(288, 200);
                         this.EntradaImporteDestino.Name = "EntradaImporteDestino";
                         this.EntradaImporteDestino.Prefijo = "$";
                         this.EntradaImporteDestino.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaImporteDestino.TabIndex = 7;
+                        this.EntradaImporteDestino.TabIndex = 9;
                         this.EntradaImporteDestino.Text = "0.00";
                         this.EntradaImporteDestino.Visible = false;
                         // 
-                        // lblImporteDestino
+                        // label8
                         // 
-                        this.EtiquetaImporteDestino.Location = new System.Drawing.Point(248, 200);
-                        this.EtiquetaImporteDestino.Name = "lblImporteDestino";
+                        this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label8.Location = new System.Drawing.Point(24, 48);
+                        this.label8.Name = "label8";
+                        this.label8.Size = new System.Drawing.Size(544, 64);
+                        this.label8.TabIndex = 1;
+                        this.label8.Text = resources.GetString("label8.Text");
+                        // 
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 16);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(266, 30);
+                        this.EtiquetaTitulo.TabIndex = 0;
+                        this.EtiquetaTitulo.Text = "Movimiento entre cuentas";
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
+                        // 
+                        // EtiquetaImporteDestino
+                        // 
+                        this.EtiquetaImporteDestino.Location = new System.Drawing.Point(256, 200);
+                        this.EtiquetaImporteDestino.Name = "EtiquetaImporteDestino";
                         this.EtiquetaImporteDestino.Size = new System.Drawing.Size(24, 24);
-                        this.EtiquetaImporteDestino.TabIndex = 6;
+                        this.EtiquetaImporteDestino.TabIndex = 8;
                         this.EtiquetaImporteDestino.Text = "->";
                         this.EtiquetaImporteDestino.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         this.EtiquetaImporteDestino.Visible = false;
-                        // 
-                        // label7
-                        // 
-                        this.label7.Location = new System.Drawing.Point(24, 88);
-                        this.label7.Name = "label7";
-                        this.label7.Size = new System.Drawing.Size(544, 36);
-                        this.label7.TabIndex = 51;
-                        this.label7.Text = "Va a realizar un movimiento de dinero entre una cuenta y otra. Esto generará un e" +
-    "greso en la cuenta de origen y un ingreso en la cuenta de destino.";
-                        // 
-                        // formHeader1
-                        // 
-                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
-                        this.formHeader1.Name = "formHeader1";
-                        this.formHeader1.Size = new System.Drawing.Size(594, 64);
-                        this.formHeader1.TabIndex = 52;
-                        this.formHeader1.Text = "Movimiento entre cuentas";
                         // 
                         // Movimiento
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(594, 457);
-                        this.Controls.Add(this.formHeader1);
-                        this.Controls.Add(this.label7);
+                        this.Controls.Add(this.label8);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.EntradaImporte);
                         this.Controls.Add(this.EntradaImporteDestino);
                         this.Controls.Add(this.Label2);
@@ -277,6 +281,7 @@ namespace Lfc.Cajas
                         this.Controls.Add(this.Label5);
                         this.Controls.Add(this.EntradaConcepto);
                         this.Controls.Add(this.Label1);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Movimiento";
                         this.Text = "Movimiento entre cuentas";
                         this.Controls.SetChildIndex(this.Label1, 0);
@@ -293,9 +298,10 @@ namespace Lfc.Cajas
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.EntradaImporteDestino, 0);
                         this.Controls.SetChildIndex(this.EntradaImporte, 0);
-                        this.Controls.SetChildIndex(this.label7, 0);
-                        this.Controls.SetChildIndex(this.formHeader1, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
+                        this.Controls.SetChildIndex(this.label8, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
@@ -314,10 +320,10 @@ namespace Lfc.Cajas
                 protected internal Lcc.Entrada.CodigoDetalle EntradaDestino;
                 protected internal Lcc.Entrada.CodigoDetalle EntradaOrigen;
                 protected Lui.Forms.TextBox EntradaImporteDestino;
-                protected Lui.Forms.Label EtiquetaImporteDestino;
                 protected int iMonedaOrigen;
                 protected int iMonedaDestino;
-                protected Lui.Forms.Label label7;
-                protected Lui.Forms.FormHeader formHeader1;
+                private Lui.Forms.Label label8;
+                private Lui.Forms.Label EtiquetaTitulo;
+                protected Lui.Forms.Label EtiquetaImporteDestino;
         }
 }

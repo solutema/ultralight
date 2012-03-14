@@ -66,19 +66,10 @@ namespace Lfc.Comprobantes
                         this.textBox6 = new Lui.Forms.TextBox();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(234, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(354, 8);
-                        // 
                         // textBox1
                         // 
                         this.textBox1.Location = new System.Drawing.Point(24, 24);
                         this.textBox1.Name = "textBox1";
-                        this.textBox1.ReadOnly = false;
                         this.textBox1.Size = new System.Drawing.Size(316, 24);
                         this.textBox1.TabIndex = 51;
                         // 
@@ -86,7 +77,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.textBox2.Location = new System.Drawing.Point(348, 24);
                         this.textBox2.Name = "textBox2";
-                        this.textBox2.ReadOnly = false;
                         this.textBox2.Size = new System.Drawing.Size(108, 24);
                         this.textBox2.TabIndex = 52;
                         // 
@@ -94,7 +84,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.textBox3.Location = new System.Drawing.Point(348, 56);
                         this.textBox3.Name = "textBox3";
-                        this.textBox3.ReadOnly = false;
                         this.textBox3.Size = new System.Drawing.Size(108, 24);
                         this.textBox3.TabIndex = 54;
                         // 
@@ -102,7 +91,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.textBox4.Location = new System.Drawing.Point(24, 56);
                         this.textBox4.Name = "textBox4";
-                        this.textBox4.ReadOnly = false;
                         this.textBox4.Size = new System.Drawing.Size(316, 24);
                         this.textBox4.TabIndex = 53;
                         // 
@@ -110,7 +98,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.textBox5.Location = new System.Drawing.Point(348, 88);
                         this.textBox5.Name = "textBox5";
-                        this.textBox5.ReadOnly = false;
                         this.textBox5.Size = new System.Drawing.Size(108, 24);
                         this.textBox5.TabIndex = 56;
                         // 
@@ -118,7 +105,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.textBox6.Location = new System.Drawing.Point(24, 88);
                         this.textBox6.Name = "textBox6";
-                        this.textBox6.ReadOnly = false;
                         this.textBox6.Size = new System.Drawing.Size(316, 24);
                         this.textBox6.TabIndex = 55;
                         // 
@@ -133,8 +119,9 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.textBox4);
                         this.Controls.Add(this.textBox2);
                         this.Controls.Add(this.textBox1);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "EditarTallesYColores";
-                        this.Text = "Talles y Colores";
+                        this.Text = "Talles y colores";
                         this.Controls.SetChildIndex(this.textBox1, 0);
                         this.Controls.SetChildIndex(this.textBox2, 0);
                         this.Controls.SetChildIndex(this.textBox4, 0);

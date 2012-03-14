@@ -61,14 +61,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Pago = new Lcc.Edicion.Comprobantes.Pago();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(270, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(390, 8);
-                        // 
                         // Pago
                         // 
                         this.Pago.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
@@ -79,7 +71,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.Pago.Location = new System.Drawing.Point(24, 24);
                         this.Pago.Name = "Pago";
                         this.Pago.ObsVisible = true;
-                        this.Pago.ReadOnly = false;
                         this.Pago.Size = new System.Drawing.Size(464, 368);
                         this.Pago.TabIndex = 0;
                         this.Pago.Text = "Detalles";
@@ -91,8 +82,9 @@ namespace Lfc.Comprobantes.Recibos
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(510, 452);
                         this.Controls.Add(this.Pago);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "EditarPago";
-                        this.Text = "Editar Pago";
+                        this.Text = "Editar pago";
                         this.Controls.SetChildIndex(this.Pago, 0);
                         this.ResumeLayout(false);
 

@@ -78,17 +78,9 @@ namespace Lfc.Tareas
                         this.Label5 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
-                        // 
                         // Label1
                         // 
-                        this.Label1.Location = new System.Drawing.Point(20, 240);
+                        this.Label1.Location = new System.Drawing.Point(24, 240);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(88, 24);
                         this.Label1.TabIndex = 8;
@@ -97,18 +89,21 @@ namespace Lfc.Tareas
                         // 
                         // EntradaTecnico
                         // 
-                        this.EntradaTecnico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaTecnico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaTecnico.AutoTab = true;
                         this.EntradaTecnico.CanCreate = true;
                         this.EntradaTecnico.DataTextField = "nombre_visible";
+                        this.EntradaTecnico.DataValueField = "id_persona";
+                        this.EntradaTecnico.ExtraDetailFields = "";
                         this.EntradaTecnico.Filter = "(tipo&4)=4";
                         this.EntradaTecnico.FreeTextCode = "";
-                        this.EntradaTecnico.DataValueField = "id_persona";
-                        this.EntradaTecnico.Location = new System.Drawing.Point(96, 240);
+                        this.EntradaTecnico.Location = new System.Drawing.Point(112, 240);
                         this.EntradaTecnico.MaxLength = 200;
                         this.EntradaTecnico.Name = "EntradaTecnico";
+                        this.EntradaTecnico.PlaceholderText = null;
                         this.EntradaTecnico.Required = true;
-                        this.EntradaTecnico.Size = new System.Drawing.Size(516, 24);
+                        this.EntradaTecnico.Size = new System.Drawing.Size(496, 24);
                         this.EntradaTecnico.TabIndex = 9;
                         this.EntradaTecnico.Table = "personas";
                         this.EntradaTecnico.Text = "0";
@@ -116,17 +111,17 @@ namespace Lfc.Tareas
                         // 
                         // EntradaDescripcion
                         // 
-                        this.EntradaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDescripcion.Location = new System.Drawing.Point(96, 56);
+                        this.EntradaDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaDescripcion.Location = new System.Drawing.Point(112, 56);
                         this.EntradaDescripcion.MultiLine = true;
                         this.EntradaDescripcion.Name = "EntradaDescripcion";
-                        this.EntradaDescripcion.Size = new System.Drawing.Size(516, 124);
+                        this.EntradaDescripcion.Size = new System.Drawing.Size(496, 124);
                         this.EntradaDescripcion.TabIndex = 3;
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(276, 192);
+                        this.Label2.Location = new System.Drawing.Point(280, 192);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(68, 24);
                         this.Label2.TabIndex = 4;
@@ -135,7 +130,7 @@ namespace Lfc.Tareas
                         // 
                         // EntradaMinutos
                         // 
-                        this.EntradaMinutos.Location = new System.Drawing.Point(344, 192);
+                        this.EntradaMinutos.Location = new System.Drawing.Point(348, 192);
                         this.EntradaMinutos.Name = "EntradaMinutos";
                         this.EntradaMinutos.Size = new System.Drawing.Size(76, 24);
                         this.EntradaMinutos.TabIndex = 5;
@@ -143,30 +138,30 @@ namespace Lfc.Tareas
                         // EntradaCondicion
                         // 
                         this.EntradaCondicion.AlwaysExpanded = true;
-                        this.EntradaCondicion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaCondicion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCondicion.AutoSize = true;
-                        this.EntradaCondicion.Location = new System.Drawing.Point(96, 192);
+                        this.EntradaCondicion.Location = new System.Drawing.Point(112, 192);
                         this.EntradaCondicion.Name = "EntradaCondicion";
                         this.EntradaCondicion.SetData = new string[] {
         "Publica|0",
         "Interna|1"};
-                        this.EntradaCondicion.Size = new System.Drawing.Size(164, 36);
+                        this.EntradaCondicion.Size = new System.Drawing.Size(152, 39);
                         this.EntradaCondicion.TabIndex = 7;
                         this.EntradaCondicion.TextKey = "0";
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(20, 192);
+                        this.Label3.Location = new System.Drawing.Point(24, 192);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(88, 24);
                         this.Label3.TabIndex = 6;
-                        this.Label3.Text = "Novedad";
+                        this.Label3.Text = "Visibilidad";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label4
                         // 
-                        this.Label4.Location = new System.Drawing.Point(20, 56);
+                        this.Label4.Location = new System.Drawing.Point(24, 56);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(88, 24);
                         this.Label4.TabIndex = 2;
@@ -175,18 +170,21 @@ namespace Lfc.Tareas
                         // 
                         // EntradaTicket
                         // 
-                        this.EntradaTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaTicket.AutoTab = true;
                         this.EntradaTicket.CanCreate = true;
                         this.EntradaTicket.DataTextField = "nombre";
+                        this.EntradaTicket.DataValueField = "id_ticket";
+                        this.EntradaTicket.ExtraDetailFields = "";
                         this.EntradaTicket.Filter = "";
                         this.EntradaTicket.FreeTextCode = "";
-                        this.EntradaTicket.DataValueField = "id_ticket";
-                        this.EntradaTicket.Location = new System.Drawing.Point(96, 24);
+                        this.EntradaTicket.Location = new System.Drawing.Point(112, 24);
                         this.EntradaTicket.MaxLength = 200;
                         this.EntradaTicket.Name = "EntradaTicket";
+                        this.EntradaTicket.PlaceholderText = null;
                         this.EntradaTicket.Required = true;
-                        this.EntradaTicket.Size = new System.Drawing.Size(516, 24);
+                        this.EntradaTicket.Size = new System.Drawing.Size(496, 24);
                         this.EntradaTicket.TabIndex = 1;
                         this.EntradaTicket.Table = "tickets";
                         this.EntradaTicket.Text = "0";
@@ -194,7 +192,7 @@ namespace Lfc.Tareas
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(20, 24);
+                        this.Label5.Location = new System.Drawing.Point(24, 24);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(88, 24);
                         this.Label5.TabIndex = 0;
@@ -215,6 +213,7 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label1);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Novedad";
                         this.Text = "Novedad: Cargar";
                         this.Controls.SetChildIndex(this.Label1, 0);

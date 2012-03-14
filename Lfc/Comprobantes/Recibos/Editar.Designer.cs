@@ -83,7 +83,7 @@ namespace Lfc.Comprobantes.Recibos
                     this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
                     this.EntradaConceptoTexto = new Lui.Forms.TextBox();
                     this.label6 = new Lui.Forms.Label();
-                    this.TablaCentral = new System.Windows.Forms.TableLayoutPanel();
+                    this.TablaCentral = new Lui.Forms.TableLayoutPanel();
                     this.PanelComprob = new Lui.Forms.Panel();
                     this.LabelAgregarFacturas = new System.Windows.Forms.Label();
                     this.EntradaPV = new Lui.Forms.TextBox();

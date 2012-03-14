@@ -737,7 +737,7 @@ namespace Lfc.Personas
                         this.label13.Name = "label13";
                         this.label13.Size = new System.Drawing.Size(104, 24);
                         this.label13.TabIndex = 2;
-                        this.label13.Text = "Sub-grupo";
+                        this.label13.Text = "Sub grupo";
                         this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaEstado
@@ -829,7 +829,7 @@ namespace Lfc.Personas
                         this.label25.Name = "label25";
                         this.label25.Size = new System.Drawing.Size(128, 24);
                         this.label25.TabIndex = 2;
-                        this.label25.Text = "Fecha de Alta";
+                        this.label25.Text = "Fecha de alta";
                         this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label26
@@ -838,7 +838,7 @@ namespace Lfc.Personas
                         this.label26.Name = "label26";
                         this.label26.Size = new System.Drawing.Size(128, 24);
                         this.label26.TabIndex = 4;
-                        this.label26.Text = "Fecha de Baja";
+                        this.label26.Text = "Fecha de baja";
                         this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // matrizTelefonos1

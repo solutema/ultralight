@@ -83,6 +83,7 @@ namespace Lfc.Articulos
                 private void BotonMasInfo_Click(object sender, System.EventArgs e)
                 {
                         Articulos.MasInfo FormMasInfo = new Articulos.MasInfo();
+                        FormMasInfo.MdiParent = this.ParentForm.MdiParent;
                         FormMasInfo.Articulo = this.Elemento as Lbl.Articulos.Articulo;
 
                         if (FormMasInfo.ShowDialog() == DialogResult.OK) {

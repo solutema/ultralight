@@ -84,7 +84,8 @@ namespace Lfc.Comprobantes
                 internal Lui.Forms.Label lblOrigenTipo;
                 internal Lui.Forms.Label lblDestinoTipo;
                 internal Lui.Forms.Label lblDuplicado;
-                private Lui.Forms.FormHeader formHeader1;
+                internal Lui.Forms.Label label1;
+                private Lui.Forms.Label EtiquetaTitulo;
                 internal Lui.Forms.TextBox EntradaOrigen;
 
                 private void InitializeComponent()
@@ -101,7 +102,8 @@ namespace Lfc.Comprobantes
                         this.PictureBox2 = new System.Windows.Forms.PictureBox();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.PictureBox3 = new System.Windows.Forms.PictureBox();
-                        this.formHeader1 = new Lui.Forms.FormHeader();
+                        this.label1 = new Lui.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
@@ -111,7 +113,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaOrigen.Location = new System.Drawing.Point(328, 88);
+                        this.EntradaOrigen.Location = new System.Drawing.Point(328, 96);
                         this.EntradaOrigen.Name = "EntradaOrigen";
                         this.EntradaOrigen.Size = new System.Drawing.Size(280, 24);
                         this.EntradaOrigen.TabIndex = 1;
@@ -119,7 +121,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label6
                         // 
-                        this.Label6.Location = new System.Drawing.Point(24, 88);
+                        this.Label6.Location = new System.Drawing.Point(24, 96);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(304, 24);
                         this.Label6.TabIndex = 0;
@@ -128,7 +130,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(24, 120);
+                        this.Label7.Location = new System.Drawing.Point(24, 128);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(304, 24);
                         this.Label7.TabIndex = 2;
@@ -141,15 +143,15 @@ namespace Lfc.Comprobantes
                         this.EntradaDestinoTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDestinoTipo.AutoSize = true;
-                        this.EntradaDestinoTipo.Location = new System.Drawing.Point(328, 120);
+                        this.EntradaDestinoTipo.Location = new System.Drawing.Point(328, 128);
                         this.EntradaDestinoTipo.Name = "EntradaDestinoTipo";
                         this.EntradaDestinoTipo.SetData = new string[] {
         "Factura|F",
         "Presupuesto|PS",
         "Remito|R",
         "Nota de Crédito|NC",
-        "Nota de Débito B|ND"};
-                        this.EntradaDestinoTipo.Size = new System.Drawing.Size(280, 91);
+        "Nota de Débito|ND"};
+                        this.EntradaDestinoTipo.Size = new System.Drawing.Size(280, 90);
                         this.EntradaDestinoTipo.TabIndex = 3;
                         this.EntradaDestinoTipo.TextKey = "F";
                         this.EntradaDestinoTipo.TextChanged += new System.EventHandler(this.EntradaDestinoTipo_TextChanged);
@@ -157,16 +159,16 @@ namespace Lfc.Comprobantes
                         // lblInfo
                         // 
                         this.lblInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblInfo.Location = new System.Drawing.Point(304, 292);
+                        this.lblInfo.Location = new System.Drawing.Point(304, 310);
                         this.lblInfo.Name = "lblInfo";
-                        this.lblInfo.Size = new System.Drawing.Size(304, 36);
+                        this.lblInfo.Size = new System.Drawing.Size(304, 22);
                         this.lblInfo.TabIndex = 6;
                         this.lblInfo.Text = "El comprobante original queda sin cambios.";
                         // 
                         // lblOrigenTipo
                         // 
                         this.lblOrigenTipo.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblOrigenTipo.Location = new System.Drawing.Point(48, 224);
+                        this.lblOrigenTipo.Location = new System.Drawing.Point(48, 230);
                         this.lblOrigenTipo.Name = "lblOrigenTipo";
                         this.lblOrigenTipo.Size = new System.Drawing.Size(112, 36);
                         this.lblOrigenTipo.TabIndex = 4;
@@ -176,7 +178,7 @@ namespace Lfc.Comprobantes
                         // lblDestinoTipo
                         // 
                         this.lblDestinoTipo.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDestinoTipo.Location = new System.Drawing.Point(180, 224);
+                        this.lblDestinoTipo.Location = new System.Drawing.Point(180, 230);
                         this.lblDestinoTipo.Name = "lblDestinoTipo";
                         this.lblDestinoTipo.Size = new System.Drawing.Size(116, 36);
                         this.lblDestinoTipo.TabIndex = 5;
@@ -186,9 +188,9 @@ namespace Lfc.Comprobantes
                         // lblDuplicado
                         // 
                         this.lblDuplicado.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        this.lblDuplicado.Location = new System.Drawing.Point(304, 252);
+                        this.lblDuplicado.Location = new System.Drawing.Point(304, 280);
                         this.lblDuplicado.Name = "lblDuplicado";
-                        this.lblDuplicado.Size = new System.Drawing.Size(304, 36);
+                        this.lblDuplicado.Size = new System.Drawing.Size(304, 22);
                         this.lblDuplicado.TabIndex = 58;
                         this.lblDuplicado.Text = "Se creará un duplicado del comprobante original.";
                         this.lblDuplicado.Visible = false;
@@ -197,7 +199,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.PictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
                         this.PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox2.Image")));
-                        this.PictureBox2.Location = new System.Drawing.Point(156, 280);
+                        this.PictureBox2.Location = new System.Drawing.Point(156, 286);
                         this.PictureBox2.Name = "PictureBox2";
                         this.PictureBox2.Size = new System.Drawing.Size(32, 28);
                         this.PictureBox2.TabIndex = 57;
@@ -207,7 +209,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
                         this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-                        this.PictureBox1.Location = new System.Drawing.Point(64, 264);
+                        this.PictureBox1.Location = new System.Drawing.Point(64, 270);
                         this.PictureBox1.Name = "PictureBox1";
                         this.PictureBox1.Size = new System.Drawing.Size(84, 64);
                         this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -218,27 +220,37 @@ namespace Lfc.Comprobantes
                         // 
                         this.PictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
                         this.PictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox3.Image")));
-                        this.PictureBox3.Location = new System.Drawing.Point(196, 264);
+                        this.PictureBox3.Location = new System.Drawing.Point(196, 270);
                         this.PictureBox3.Name = "PictureBox3";
                         this.PictureBox3.Size = new System.Drawing.Size(84, 64);
                         this.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
                         this.PictureBox3.TabIndex = 57;
                         this.PictureBox3.TabStop = false;
                         // 
-                        // formHeader1
+                        // label1
                         // 
-                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
-                        this.formHeader1.Name = "formHeader1";
-                        this.formHeader1.Size = new System.Drawing.Size(634, 64);
-                        this.formHeader1.TabIndex = 59;
-                        this.formHeader1.Text = "Convertir comprobante";
+                        this.label1.Location = new System.Drawing.Point(24, 64);
+                        this.label1.Name = "label1";
+                        this.label1.Size = new System.Drawing.Size(584, 24);
+                        this.label1.TabIndex = 107;
+                        this.label1.Text = "Puede crear un nuevo comprobante a partir de los datos del comprobante actual.";
+                        // 
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(240, 30);
+                        this.EtiquetaTitulo.TabIndex = 106;
+                        this.EtiquetaTitulo.Text = "Convertir comprobante";
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // Convertir
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(634, 412);
-                        this.Controls.Add(this.formHeader1);
+                        this.ClientSize = new System.Drawing.Size(634, 424);
+                        this.Controls.Add(this.label1);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.lblDuplicado);
                         this.Controls.Add(this.lblDestinoTipo);
                         this.Controls.Add(this.lblOrigenTipo);
@@ -250,8 +262,9 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.EntradaOrigen);
                         this.Controls.Add(this.PictureBox3);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Convertir";
-                        this.Text = "Convertir Comprobante";
+                        this.Text = "Convertir comprobante";
                         this.Controls.SetChildIndex(this.PictureBox3, 0);
                         this.Controls.SetChildIndex(this.EntradaOrigen, 0);
                         this.Controls.SetChildIndex(this.Label6, 0);
@@ -263,7 +276,8 @@ namespace Lfc.Comprobantes
                         this.Controls.SetChildIndex(this.lblOrigenTipo, 0);
                         this.Controls.SetChildIndex(this.lblDestinoTipo, 0);
                         this.Controls.SetChildIndex(this.lblDuplicado, 0);
-                        this.Controls.SetChildIndex(this.formHeader1, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
+                        this.Controls.SetChildIndex(this.label1, 0);
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();

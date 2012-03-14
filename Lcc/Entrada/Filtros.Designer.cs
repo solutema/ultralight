@@ -58,7 +58,7 @@ namespace Lcc.Entrada
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        this.TablaFiltros = new System.Windows.Forms.TableLayoutPanel();
+                        this.TablaFiltros = new Lui.Forms.TableLayoutPanel();
                         this.PanelInferior = new System.Windows.Forms.FlowLayoutPanel();
                         this.BotonAplicar = new Lui.Forms.Button();
                         this.PanelInferior.SuspendLayout();
@@ -129,7 +129,7 @@ namespace Lcc.Entrada
 
                 #endregion
 
-                protected System.Windows.Forms.TableLayoutPanel TablaFiltros;
+                protected Lui.Forms.TableLayoutPanel TablaFiltros;
                 private System.Windows.Forms.FlowLayoutPanel PanelInferior;
                 private Lui.Forms.Button BotonAplicar;
         }

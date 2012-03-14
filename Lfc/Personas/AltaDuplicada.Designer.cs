@@ -87,21 +87,21 @@ namespace Lfc.Personas
                         // 
                         // label1
                         // 
-                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
-                        this.label1.Location = new System.Drawing.Point(20, 20);
+                        this.label1.Location = new System.Drawing.Point(24, 24);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(552, 24);
+                        this.label1.Size = new System.Drawing.Size(544, 36);
                         this.label1.TabIndex = 3;
                         this.label1.Text = "Posible duplicación de datos";
+                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // label2
                         // 
-                        this.label2.Location = new System.Drawing.Point(20, 48);
+                        this.label2.Location = new System.Drawing.Point(24, 60);
                         this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(552, 48);
+                        this.label2.Size = new System.Drawing.Size(544, 40);
                         this.label2.TabIndex = 4;
                         this.label2.Text = "Es posible que el cliente que intenta agregar ya haya sigo agregado con anteriori" +
-    "dad. Puede revisar las similitudes para decidir si se trata de la misma persona." +
+    "dad. Puede revisar las similitudes para decidir si se trata de la misma persona:" +
     "";
                         // 
                         // ListaComparacion
@@ -119,9 +119,9 @@ namespace Lfc.Personas
                         this.ListaComparacion.GridLines = true;
                         this.ListaComparacion.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaComparacion.LabelWrap = false;
-                        this.ListaComparacion.Location = new System.Drawing.Point(20, 96);
+                        this.ListaComparacion.Location = new System.Drawing.Point(24, 100);
                         this.ListaComparacion.Name = "ListaComparacion";
-                        this.ListaComparacion.Size = new System.Drawing.Size(550, 125);
+                        this.ListaComparacion.Size = new System.Drawing.Size(544, 112);
                         this.ListaComparacion.TabIndex = 5;
                         this.ListaComparacion.TabStop = false;
                         this.ListaComparacion.UseCompatibleStateImageBehavior = false;
@@ -134,7 +134,7 @@ namespace Lfc.Personas
                         // 
                         // ColumnaActual
                         // 
-                        this.ColumnaActual.Text = "Cliente actual";
+                        this.ColumnaActual.Text = "Cliente anterior";
                         this.ColumnaActual.Width = 220;
                         // 
                         // ColumnaNueva
@@ -145,23 +145,23 @@ namespace Lfc.Personas
                         // label3
                         // 
                         this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
-                        this.label3.Location = new System.Drawing.Point(20, 224);
+                        this.label3.Location = new System.Drawing.Point(24, 220);
                         this.label3.Name = "label3";
-                        this.label3.Size = new System.Drawing.Size(552, 25);
+                        this.label3.Size = new System.Drawing.Size(544, 32);
                         this.label3.TabIndex = 6;
                         this.label3.Text = "¿Qué desea hacer con los datos cargados?";
+                        this.label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         // 
                         // BotonCancelar
                         // 
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BotonCancelar.Image")));
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCancelar.Location = new System.Drawing.Point(20, 256);
+                        this.BotonCancelar.Location = new System.Drawing.Point(24, 260);
                         this.BotonCancelar.Name = "BotonCancelar";
-                        this.BotonCancelar.ReadOnly = false;
-                        this.BotonCancelar.Size = new System.Drawing.Size(552, 68);
+                        this.BotonCancelar.Size = new System.Drawing.Size(544, 68);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonCancelar.Subtext = "No agrega ni actualiza ningún dato. Sólo vuelve al formulario de alta para revisa" +
     "r los datos ingresados.";
@@ -174,12 +174,12 @@ namespace Lfc.Personas
                         this.BotonContinuar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonContinuar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonContinuar.Enabled = false;
+                        this.BotonContinuar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonContinuar.Image = ((System.Drawing.Image)(resources.GetObject("BotonContinuar.Image")));
                         this.BotonContinuar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonContinuar.Location = new System.Drawing.Point(20, 332);
+                        this.BotonContinuar.Location = new System.Drawing.Point(24, 336);
                         this.BotonContinuar.Name = "BotonContinuar";
-                        this.BotonContinuar.ReadOnly = false;
-                        this.BotonContinuar.Size = new System.Drawing.Size(552, 68);
+                        this.BotonContinuar.Size = new System.Drawing.Size(544, 68);
                         this.BotonContinuar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonContinuar.Subtext = "Seleccione esta opción si se trata de clientes diferentes o si intenta deliberada" +
     "mente cargar un dato duplicado.";
@@ -192,12 +192,12 @@ namespace Lfc.Personas
                         this.BotonCorregir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCorregir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.BotonCorregir.Enabled = false;
+                        this.BotonCorregir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCorregir.Image = ((System.Drawing.Image)(resources.GetObject("BotonCorregir.Image")));
                         this.BotonCorregir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCorregir.Location = new System.Drawing.Point(20, 408);
+                        this.BotonCorregir.Location = new System.Drawing.Point(24, 412);
                         this.BotonCorregir.Name = "BotonCorregir";
-                        this.BotonCorregir.ReadOnly = false;
-                        this.BotonCorregir.Size = new System.Drawing.Size(552, 68);
+                        this.BotonCorregir.Size = new System.Drawing.Size(544, 68);
                         this.BotonCorregir.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonCorregir.Subtext = "Seleccione esta opción si verificó que se trata del mismo cliente y no desea crea" +
     "r datos duplicados.";
@@ -221,8 +221,8 @@ namespace Lfc.Personas
                         this.Controls.Add(this.BotonContinuar);
                         this.Controls.Add(this.BotonCorregir);
                         this.Controls.Add(this.ListaComparacion);
-                        this.Controls.Add(this.label2);
                         this.Controls.Add(this.label1);
+                        this.Controls.Add(this.label2);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "AltaDuplicada";

@@ -384,6 +384,8 @@ namespace Lui.Forms
                                         return ((IForm)(this.Parent)).DisplayStyle;
                                 else if (this.Parent is IDisplayStyleControl)
                                         return ((IDisplayStyleControl)(this.Parent)).DisplayStyle;
+                                else if (this.ParentForm is IForm)
+                                        return ((IForm)(this.ParentForm)).DisplayStyle;
                                 else
                                         return Lazaro.Pres.DisplayStyles.Template.Current.Default;
                         }
@@ -527,6 +529,7 @@ namespace Lui.Forms
                                         } else {
                                                 // Borde fino
                                                 e.Graphics.DrawRectangle(m_Highlighted ? PenActiveBorderColor : PenBorderColor, new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
+                                                //e.Graphics.DrawRectangle(m_Highlighted ? PenActiveBorderColor : PenBorderColor, new System.Drawing.Rectangle(0, this.Height - 1, this.Width - 1, this.Height - 1));
                                         }
                                         if (m_Error != null && m_Error.Length > 0 && m_ShowChanged == false)
                                                 e.Graphics.DrawRectangle(System.Drawing.Pens.DarkViolet, new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));

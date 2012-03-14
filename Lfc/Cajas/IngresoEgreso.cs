@@ -63,6 +63,8 @@ namespace Lfc.Cajas
                         {
                                 m_Caja = value;
                                 EntradaCaja.Elemento = value;
+                                EntradaCaja.ReadOnly = m_Caja != null;
+                                this.PonerTitulo();
                         }
                 }
 
@@ -76,36 +78,53 @@ namespace Lfc.Cajas
                         {
                                 m_Ingreso = value;
                                 if (m_Ingreso) {
-                                        this.Text = "Caja: Ingreso";
                                         EntradaConcepto.Filter = "(es=1 OR es=0)";
                                 } else {
-                                        this.Text = "Caja: Egreso";
                                         EntradaConcepto.Filter = "(es=2 OR es=0)";
                                 }
+                                this.PonerTitulo();
                         }
+                }
+
+
+                private void PonerTitulo()
+                {
+                        if (m_Caja == null) {
+                                if (m_Ingreso)
+                                        this.Text = "Ingreso de dinero";
+                                else
+                                        this.Text = "Salida de dinero";
+                        } else {
+                                if (m_Ingreso)
+                                        this.Text = "Ingreso a " + m_Caja.ToString();
+                                else
+                                        this.Text = "Egreso de " + m_Caja.ToString();
+                        }
+                        EtiquetaTitulo.Text = this.Text;
+
                 }
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
-                        aceptarReturn.Success = true;
+                        Lfx.Types.OperationResult Res = new Lfx.Types.SuccessOperationResult();
+                        Res.Success = true;
 
                         if (Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) <= 0) {
-                                aceptarReturn.Success = false;
-                                aceptarReturn.Message += "Debe especificar el importe." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "Debe escribir el importe." + Environment.NewLine;
                         }
 
                         if (EntradaCaja.ValueInt == 0) {
-                                aceptarReturn.Success = false;
-                                aceptarReturn.Message += "Debe especificar la Caja." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "Debe seleccionar la caja." + Environment.NewLine;
                         }
 
                         if (EntradaConcepto.ValueInt == 0) {
-                                aceptarReturn.Success = false;
-                                aceptarReturn.Message += "Debe especificar el Concepto." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "Debe seleccionar el concepto." + Environment.NewLine;
                         }
 
-                        if (aceptarReturn.Success == true) {
+                        if (Res.Success == true) {
                                 using (IDbTransaction Trans = this.Caja.Connection.BeginTransaction()) {
                                         if (m_Ingreso)
                                                 this.Caja.Movimiento(false,
@@ -130,7 +149,7 @@ namespace Lfc.Cajas
                                         Trans.Commit();
                                 }
                         }
-                        return aceptarReturn;
+                        return Res;
                 }
 
                 protected override void OnLoad(EventArgs e)

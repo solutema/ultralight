@@ -87,24 +87,16 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonNotaDeCredito = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(234, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(354, 8);
-                        // 
                         // BotonRemito
                         // 
                         this.BotonRemito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonRemito.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonRemito.ForeColor = System.Drawing.Color.Black;
                         this.BotonRemito.Image = null;
                         this.BotonRemito.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRemito.Location = new System.Drawing.Point(32, 160);
                         this.BotonRemito.Name = "BotonRemito";
-                        this.BotonRemito.ReadOnly = false;
                         this.BotonRemito.Size = new System.Drawing.Size(412, 52);
                         this.BotonRemito.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonRemito.Subtext = "Para asentar un remito de proveedor.";
@@ -117,11 +109,11 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonPedido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonPedido.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonPedido.ForeColor = System.Drawing.Color.Black;
                         this.BotonPedido.Image = null;
                         this.BotonPedido.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonPedido.Location = new System.Drawing.Point(32, 96);
                         this.BotonPedido.Name = "BotonPedido";
-                        this.BotonPedido.ReadOnly = false;
                         this.BotonPedido.Size = new System.Drawing.Size(412, 52);
                         this.BotonPedido.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonPedido.Subtext = "Para asentar un pedido realizado.";
@@ -134,11 +126,11 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonRequerimiento.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonRequerimiento.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonRequerimiento.ForeColor = System.Drawing.Color.Black;
                         this.BotonRequerimiento.Image = null;
                         this.BotonRequerimiento.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRequerimiento.Location = new System.Drawing.Point(32, 32);
                         this.BotonRequerimiento.Name = "BotonRequerimiento";
-                        this.BotonRequerimiento.ReadOnly = false;
                         this.BotonRequerimiento.Size = new System.Drawing.Size(412, 52);
                         this.BotonRequerimiento.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonRequerimiento.Subtext = "Para solicitar internamente un pedido.";
@@ -151,11 +143,11 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonFactura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonFactura.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonFactura.ForeColor = System.Drawing.Color.Black;
                         this.BotonFactura.Image = null;
                         this.BotonFactura.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonFactura.Location = new System.Drawing.Point(32, 224);
                         this.BotonFactura.Name = "BotonFactura";
-                        this.BotonFactura.ReadOnly = false;
                         this.BotonFactura.Size = new System.Drawing.Size(412, 52);
                         this.BotonFactura.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonFactura.Subtext = "Para asentar una factura de compra.";
@@ -168,11 +160,11 @@ namespace Lfc.Comprobantes.Compra
                         this.BotonNotaDeCredito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonNotaDeCredito.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonNotaDeCredito.ForeColor = System.Drawing.Color.Black;
                         this.BotonNotaDeCredito.Image = null;
                         this.BotonNotaDeCredito.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNotaDeCredito.Location = new System.Drawing.Point(32, 288);
                         this.BotonNotaDeCredito.Name = "BotonNotaDeCredito";
-                        this.BotonNotaDeCredito.ReadOnly = false;
                         this.BotonNotaDeCredito.Size = new System.Drawing.Size(412, 52);
                         this.BotonNotaDeCredito.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
                         this.BotonNotaDeCredito.Subtext = "Para asentar una Nota de Crédito de proveedor.";
@@ -189,8 +181,9 @@ namespace Lfc.Comprobantes.Compra
                         this.Controls.Add(this.BotonPedido);
                         this.Controls.Add(this.BotonRemito);
                         this.Controls.Add(this.BotonFactura);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Crear";
-                        this.Text = "Crear Comprobante de Compra";
+                        this.Text = "Crear comprobante de compra";
                         this.Activated += new System.EventHandler(this.FormPedidosCrear_Activated);
                         this.Load += new System.EventHandler(this.Crear_Load);
                         this.Controls.SetChildIndex(this.BotonFactura, 0);

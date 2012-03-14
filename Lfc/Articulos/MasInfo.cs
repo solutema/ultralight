@@ -87,7 +87,7 @@ namespace Lfc.Articulos
                                         lvItems.Items.Clear();
 
                                         foreach (System.Data.DataRow Precio in Precios.Rows) {
-                                                ListViewItem Itm = lvItems.Items.Add(Lfx.Types.Formatting.FormatDate(Precio["fecha"]));
+                                                ListViewItem Itm = lvItems.Items.Add(Lfx.Types.Formatting.FormatShortSmartDateAndTime(System.Convert.ToDateTime(Precio["fecha"])));
                                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Precio["costo"]), Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto)));
                                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Precio["pvp"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                         }

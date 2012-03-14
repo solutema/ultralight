@@ -61,7 +61,8 @@ namespace Lfc.Articulos
                         this.ListaConformacion = new Lui.Forms.ListView();
                         this.ColSituacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColCantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.formHeader1 = new Lui.Forms.FormHeader();
+                        this.label10 = new Lui.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // ListaConformacion
@@ -76,10 +77,10 @@ namespace Lfc.Articulos
                         this.ListaConformacion.FullRowSelect = true;
                         this.ListaConformacion.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaConformacion.LabelWrap = false;
-                        this.ListaConformacion.Location = new System.Drawing.Point(24, 88);
+                        this.ListaConformacion.Location = new System.Drawing.Point(24, 104);
                         this.ListaConformacion.MultiSelect = false;
                         this.ListaConformacion.Name = "ListaConformacion";
-                        this.ListaConformacion.Size = new System.Drawing.Size(640, 296);
+                        this.ListaConformacion.Size = new System.Drawing.Size(640, 280);
                         this.ListaConformacion.TabIndex = 0;
                         this.ListaConformacion.UseCompatibleStateImageBehavior = false;
                         this.ListaConformacion.View = System.Windows.Forms.View.Details;
@@ -95,27 +96,42 @@ namespace Lfc.Articulos
                         this.ColCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                         this.ColCantidad.Width = 120;
                         // 
-                        // formHeader1
+                        // label10
                         // 
-                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
-                        this.formHeader1.Name = "formHeader1";
-                        this.formHeader1.Size = new System.Drawing.Size(689, 64);
-                        this.formHeader1.TabIndex = 101;
-                        this.formHeader1.Text = "Conformación de las existencias";
+                        this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label10.Location = new System.Drawing.Point(24, 64);
+                        this.label10.Name = "label10";
+                        this.label10.Size = new System.Drawing.Size(640, 24);
+                        this.label10.TabIndex = 106;
+                        this.label10.Text = "Las existencias actuales de este artículo están conformadas de la siguiente maner" +
+    "a:";
+                        // 
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(320, 30);
+                        this.EtiquetaTitulo.TabIndex = 105;
+                        this.EtiquetaTitulo.Text = "Conformación de las existencias";
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // VerConformacion
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(689, 473);
-                        this.Controls.Add(this.formHeader1);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.ListaConformacion);
+                        this.Controls.Add(this.label10);
                         this.Name = "VerConformacion";
-                        this.Text = "Conformación de las existencias";
+                        this.Text = "Artículos: Conformación de las existencias";
+                        this.Controls.SetChildIndex(this.label10, 0);
                         this.Controls.SetChildIndex(this.ListaConformacion, 0);
-                        this.Controls.SetChildIndex(this.formHeader1, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
@@ -124,6 +140,7 @@ namespace Lfc.Articulos
                 private Lui.Forms.ListView ListaConformacion;
                 private System.Windows.Forms.ColumnHeader ColSituacion;
                 private System.Windows.Forms.ColumnHeader ColCantidad;
-                private Lui.Forms.FormHeader formHeader1;
+                private Lui.Forms.Label label10;
+                private Lui.Forms.Label EtiquetaTitulo;
         }
 }

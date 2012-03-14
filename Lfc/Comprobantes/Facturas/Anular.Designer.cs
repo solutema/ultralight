@@ -76,14 +76,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.label4 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(554, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(674, 8);
-                        // 
                         // Label1
                         // 
                         this.Label1.Location = new System.Drawing.Point(20, 20);
@@ -99,7 +91,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(148, 20);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "A|A",
         "B|B",
@@ -117,7 +108,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaDesde.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaDesde.Location = new System.Drawing.Point(292, 20);
                         this.EntradaDesde.Name = "EntradaDesde";
-                        this.EntradaDesde.ReadOnly = false;
                         this.EntradaDesde.Size = new System.Drawing.Size(100, 24);
                         this.EntradaDesde.TabIndex = 5;
                         this.EntradaDesde.Text = "0";
@@ -127,19 +117,18 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         this.EtiquetaAviso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaAviso.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Warning;
                         this.EtiquetaAviso.Location = new System.Drawing.Point(20, 80);
                         this.EtiquetaAviso.Name = "EtiquetaAviso";
                         this.EtiquetaAviso.Size = new System.Drawing.Size(756, 28);
                         this.EtiquetaAviso.TabIndex = 10;
                         this.EtiquetaAviso.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaAviso.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Warning;
                         // 
                         // EntradaPV
                         // 
                         this.EntradaPV.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaPV.Location = new System.Drawing.Point(148, 48);
                         this.EntradaPV.Name = "EntradaPV";
-                        this.EntradaPV.ReadOnly = false;
                         this.EntradaPV.Size = new System.Drawing.Size(52, 24);
                         this.EntradaPV.TabIndex = 3;
                         this.EntradaPV.Text = "1";
@@ -160,11 +149,10 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaAnularPagos.AutoSize = true;
                         this.EntradaAnularPagos.Location = new System.Drawing.Point(508, 20);
                         this.EntradaAnularPagos.Name = "EntradaAnularPagos";
-                        this.EntradaAnularPagos.ReadOnly = false;
                         this.EntradaAnularPagos.SetData = new string[] {
         "Anular todos los pagos asociados|1",
         "No anular los pagos asociados|0"};
-                        this.EntradaAnularPagos.Size = new System.Drawing.Size(268, 36);
+                        this.EntradaAnularPagos.Size = new System.Drawing.Size(268, 39);
                         this.EntradaAnularPagos.TabIndex = 9;
                         this.EntradaAnularPagos.TextKey = "0";
                         // 
@@ -186,7 +174,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.ComprobanteVistaPrevia.Location = new System.Drawing.Point(20, 112);
                         this.ComprobanteVistaPrevia.MinimumSize = new System.Drawing.Size(600, 320);
                         this.ComprobanteVistaPrevia.Name = "ComprobanteVistaPrevia";
-                        this.ComprobanteVistaPrevia.ReadOnly = false;
                         this.ComprobanteVistaPrevia.Size = new System.Drawing.Size(756, 320);
                         this.ComprobanteVistaPrevia.TabIndex = 12;
                         this.ComprobanteVistaPrevia.TabStop = false;
@@ -197,7 +184,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaHasta.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaHasta.Location = new System.Drawing.Point(292, 48);
                         this.EntradaHasta.Name = "EntradaHasta";
-                        this.EntradaHasta.ReadOnly = false;
                         this.EntradaHasta.Size = new System.Drawing.Size(100, 24);
                         this.EntradaHasta.TabIndex = 7;
                         this.EntradaHasta.Text = "0";
@@ -267,7 +253,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(128, 24);
                         this.label4.TabIndex = 2;
-                        this.label4.Text = "Punto de Venta";
+                        this.label4.Text = "Punto de venta";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Anular
@@ -288,7 +274,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.EtiquetaAviso);
                         this.Controls.Add(this.ComprobanteVistaPrevia);
                         this.Name = "Anular";
-                        this.Text = "Anular Comprobantes";
+                        this.Text = "Anular comprobantes";
                         this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
                         this.Controls.SetChildIndex(this.ComprobanteVistaPrevia, 0);
                         this.Controls.SetChildIndex(this.EtiquetaAviso, 0);

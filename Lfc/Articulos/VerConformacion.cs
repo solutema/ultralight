@@ -49,7 +49,7 @@ namespace Lfc.Articulos
 
                 public void Mostrar(Lbl.Articulos.Articulo articulo)
                 {
-                        this.formHeader1.Text = "Conformación de existencias de " + articulo.ToString();
+                        this.EtiquetaTitulo.Text = "Conformación de existencias de " + articulo.ToString();
 
                         ListaConformacion.BeginUpdate();
                         ListaConformacion.Items.Clear();

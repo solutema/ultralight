@@ -174,7 +174,6 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaEstado.AutoSize = true;
                         this.EntradaEstado.Location = new System.Drawing.Point(120, 160);
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.PlaceholderText = "Estado para esta chequera.";
                         this.EntradaEstado.SetData = new string[] {
         "Fuera de uso|0",
         "Activa|1"};

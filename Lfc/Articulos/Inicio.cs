@@ -86,7 +86,7 @@ namespace Lfc.Articulos
                                         new Lazaro.Pres.Filters.RelationFilter("Marca", new Lfx.Data.Relation("id_marca", "marcas", "id_marca")),
                                         new Lazaro.Pres.Filters.RelationFilter("Proveedor", new Lfx.Data.Relation("id_proveedor", "personas", "id_persona", "nombre_visible")),
                                         new Lazaro.Pres.Filters.RelationFilter("Situación", new Lfx.Data.Relation("id_situacion", "articulos_situaciones", "id_situacion")),
-                                        new Lazaro.Pres.Filters.SetFilter("Existencias", "stock_actual", new string[] { "Cualquiera|*", "En Existencia|cs", "Sin Existencia|ss", "Con Faltante|faltante", "Con Faltante (Incluyendo Pedidos)|faltanteip", "Con Pedidos|pedido", "A Pedir|apedir" }, "*")
+                                        new Lazaro.Pres.Filters.SetFilter("Existencias", "stock_actual", new string[] { "Cualquiera|*", "En existencia|cs", "Sin existencia|ss", "Con faltante|faltante", "Con faltante (incluyendo pedidos)|faltanteip", "Con pedidos|pedido", "A pedir|apedir" }, "*")
                                 }
                         };
 

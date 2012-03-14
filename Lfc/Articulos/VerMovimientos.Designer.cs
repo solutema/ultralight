@@ -59,6 +59,7 @@ namespace Lfc.Articulos
                         this.ColId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColCantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.ColSeguimiento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColDesde = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColHacia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColSaldo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,8 +72,8 @@ namespace Lfc.Articulos
                         this.ColumnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColumnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.Label2 = new Lui.Forms.Label();
-                        this.formHeader1 = new Lui.Forms.FormHeader();
-                        this.ColSeguimiento = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.label10 = new Lui.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Listado
@@ -117,6 +118,11 @@ namespace Lfc.Articulos
                         this.ColCantidad.Text = "Cantidad";
                         this.ColCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                         this.ColCantidad.Width = 80;
+                        // 
+                        // ColSeguimiento
+                        // 
+                        this.ColSeguimiento.Text = "Seguimiento";
+                        this.ColSeguimiento.Width = 160;
                         // 
                         // ColDesde
                         // 
@@ -202,44 +208,53 @@ namespace Lfc.Articulos
                         // 
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         this.Label2.Location = new System.Drawing.Point(24, 163);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(576, 37);
                         this.Label2.TabIndex = 55;
                         this.Label2.Text = "Pedidos Activos";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.Label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         // 
-                        // formHeader1
+                        // label10
                         // 
-                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
-                        this.formHeader1.Name = "formHeader1";
-                        this.formHeader1.Size = new System.Drawing.Size(624, 64);
-                        this.formHeader1.TabIndex = 101;
-                        this.formHeader1.Text = "Movimientos de existencias";
+                        this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label10.Location = new System.Drawing.Point(24, 56);
+                        this.label10.Name = "label10";
+                        this.label10.Size = new System.Drawing.Size(576, 24);
+                        this.label10.TabIndex = 106;
+                        this.label10.Text = "Estos son los movimientos de ingreso y egreso del artículo:";
                         // 
-                        // ColSeguimiento
+                        // EtiquetaTitulo
                         // 
-                        this.ColSeguimiento.Text = "Seguimiento";
-                        this.ColSeguimiento.Width = 160;
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 16);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(280, 30);
+                        this.EtiquetaTitulo.TabIndex = 105;
+                        this.EtiquetaTitulo.Text = "Historial de entrada y salida";
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // VerMovimientos
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(624, 364);
-                        this.Controls.Add(this.formHeader1);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.ListadoPedidos);
                         this.Controls.Add(this.Listado);
+                        this.Controls.Add(this.label10);
                         this.Name = "VerMovimientos";
-                        this.Text = "Artículos: Detalle de Entrada y Salida";
+                        this.Text = "Artículos: historial de entrada y salida";
                         this.Activated += new System.EventHandler(this.FormArticulosMovimDetalles_Activated);
+                        this.Controls.SetChildIndex(this.label10, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.ListadoPedidos, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.formHeader1, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 
@@ -261,7 +276,8 @@ namespace Lfc.Articulos
                 internal System.Windows.Forms.ColumnHeader ColumnHeader6;
                 internal System.Windows.Forms.ColumnHeader ColDesde;
                 internal System.Windows.Forms.ColumnHeader ColHacia;
-                private Lui.Forms.FormHeader formHeader1;
                 private System.Windows.Forms.ColumnHeader ColSeguimiento;
+                private Lui.Forms.Label label10;
+                private Lui.Forms.Label EtiquetaTitulo;
         }
 }

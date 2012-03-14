@@ -97,13 +97,13 @@ namespace Lfc.Articulos
                         this.Label5 = new Lui.Forms.Label();
                         this.Label6 = new Lui.Forms.Label();
                         this.EntradaArticulo = new Lcc.Entrada.Articulos.DetalleComprobante();
-                        this.formHeader1 = new Lui.Forms.FormHeader();
-                        this.label9 = new Lui.Forms.Label();
+                        this.label10 = new Lui.Forms.Label();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // Label1
                         // 
-                        this.Label1.Location = new System.Drawing.Point(24, 208);
+                        this.Label1.Location = new System.Drawing.Point(24, 176);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(112, 24);
                         this.Label1.TabIndex = 2;
@@ -112,7 +112,7 @@ namespace Lfc.Articulos
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(24, 256);
+                        this.Label2.Location = new System.Drawing.Point(24, 224);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(112, 24);
                         this.Label2.TabIndex = 4;
@@ -121,7 +121,7 @@ namespace Lfc.Articulos
                         // 
                         // Label3
                         // 
-                        this.Label3.Location = new System.Drawing.Point(24, 448);
+                        this.Label3.Location = new System.Drawing.Point(24, 416);
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(112, 24);
                         this.Label3.TabIndex = 20;
@@ -130,7 +130,7 @@ namespace Lfc.Articulos
                         // 
                         // Label4
                         // 
-                        this.Label4.Location = new System.Drawing.Point(24, 144);
+                        this.Label4.Location = new System.Drawing.Point(24, 112);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(112, 24);
                         this.Label4.TabIndex = 0;
@@ -141,13 +141,13 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaMovimiento.AlwaysExpanded = true;
                         this.EntradaMovimiento.AutoSize = true;
-                        this.EntradaMovimiento.Location = new System.Drawing.Point(136, 144);
+                        this.EntradaMovimiento.Location = new System.Drawing.Point(136, 112);
                         this.EntradaMovimiento.Name = "EntradaMovimiento";
                         this.EntradaMovimiento.SetData = new string[] {
         "Entrada|e",
         "Salida|s",
         "Otro|o"};
-                        this.EntradaMovimiento.Size = new System.Drawing.Size(192, 57);
+                        this.EntradaMovimiento.Size = new System.Drawing.Size(192, 56);
                         this.EntradaMovimiento.TabIndex = 1;
                         this.EntradaMovimiento.TextKey = "e";
                         this.EntradaMovimiento.TextChanged += new System.EventHandler(this.EntradaMovimiento_TextChanged);
@@ -155,29 +155,28 @@ namespace Lfc.Articulos
                         // EntradaCantidad
                         // 
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
-                        this.EntradaCantidad.Location = new System.Drawing.Point(136, 256);
+                        this.EntradaCantidad.Location = new System.Drawing.Point(136, 224);
                         this.EntradaCantidad.MaxLength = 20;
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.Size = new System.Drawing.Size(96, 24);
                         this.EntradaCantidad.TabIndex = 5;
-                        this.EntradaCantidad.Text = "0.00";
+                        this.EntradaCantidad.Text = "0";
                         this.EntradaCantidad.TextChanged += new System.EventHandler(this.EntradaArticulo_TextChanged);
                         // 
                         // EntradaObs
                         // 
-                        this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EntradaObs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObs.ForceCase = Lui.Forms.TextCasing.Automatic;
-                        this.EntradaObs.Location = new System.Drawing.Point(136, 448);
+                        this.EntradaObs.Location = new System.Drawing.Point(136, 416);
                         this.EntradaObs.MaximumSize = new System.Drawing.Size(480, 64);
                         this.EntradaObs.Name = "EntradaObs";
-                        this.EntradaObs.Size = new System.Drawing.Size(440, 36);
+                        this.EntradaObs.Size = new System.Drawing.Size(440, 24);
                         this.EntradaObs.TabIndex = 21;
                         // 
                         // EtiquetaDesdeSituacion
                         // 
-                        this.EtiquetaDesdeSituacion.Location = new System.Drawing.Point(136, 376);
+                        this.EtiquetaDesdeSituacion.Location = new System.Drawing.Point(136, 344);
                         this.EtiquetaDesdeSituacion.Name = "EtiquetaDesdeSituacion";
                         this.EtiquetaDesdeSituacion.Size = new System.Drawing.Size(168, 24);
                         this.EtiquetaDesdeSituacion.TabIndex = 12;
@@ -186,7 +185,7 @@ namespace Lfc.Articulos
                         // 
                         // EtiquetaHaciaSituacion
                         // 
-                        this.EtiquetaHaciaSituacion.Location = new System.Drawing.Point(136, 408);
+                        this.EtiquetaHaciaSituacion.Location = new System.Drawing.Point(136, 376);
                         this.EtiquetaHaciaSituacion.Name = "EtiquetaHaciaSituacion";
                         this.EtiquetaHaciaSituacion.Size = new System.Drawing.Size(168, 24);
                         this.EtiquetaHaciaSituacion.TabIndex = 16;
@@ -195,7 +194,7 @@ namespace Lfc.Articulos
                         // 
                         // EntradaDesdeAntes
                         // 
-                        this.EntradaDesdeAntes.Location = new System.Drawing.Point(304, 376);
+                        this.EntradaDesdeAntes.Location = new System.Drawing.Point(304, 344);
                         this.EntradaDesdeAntes.Name = "EntradaDesdeAntes";
                         this.EntradaDesdeAntes.Size = new System.Drawing.Size(96, 24);
                         this.EntradaDesdeAntes.TabIndex = 13;
@@ -203,7 +202,7 @@ namespace Lfc.Articulos
                         // 
                         // EntradaDesdeDespues
                         // 
-                        this.EntradaDesdeDespues.Location = new System.Drawing.Point(440, 376);
+                        this.EntradaDesdeDespues.Location = new System.Drawing.Point(440, 344);
                         this.EntradaDesdeDespues.Name = "EntradaDesdeDespues";
                         this.EntradaDesdeDespues.Size = new System.Drawing.Size(96, 24);
                         this.EntradaDesdeDespues.TabIndex = 15;
@@ -220,7 +219,7 @@ namespace Lfc.Articulos
                         this.EntradaDesdeSituacion.ExtraDetailFields = "";
                         this.EntradaDesdeSituacion.Filter = "";
                         this.EntradaDesdeSituacion.FreeTextCode = "";
-                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(136, 288);
+                        this.EntradaDesdeSituacion.Location = new System.Drawing.Point(136, 256);
                         this.EntradaDesdeSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
@@ -235,7 +234,7 @@ namespace Lfc.Articulos
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(24, 288);
+                        this.Label7.Location = new System.Drawing.Point(24, 256);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(112, 24);
                         this.Label7.TabIndex = 6;
@@ -253,7 +252,7 @@ namespace Lfc.Articulos
                         this.EntradaHaciaSituacion.ExtraDetailFields = "";
                         this.EntradaHaciaSituacion.Filter = "";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
-                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(136, 320);
+                        this.EntradaHaciaSituacion.Location = new System.Drawing.Point(136, 288);
                         this.EntradaHaciaSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
@@ -268,7 +267,7 @@ namespace Lfc.Articulos
                         // 
                         // Label8
                         // 
-                        this.Label8.Location = new System.Drawing.Point(24, 320);
+                        this.Label8.Location = new System.Drawing.Point(24, 288);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(112, 24);
                         this.Label8.TabIndex = 8;
@@ -277,7 +276,7 @@ namespace Lfc.Articulos
                         // 
                         // EntradaHaciaDespues
                         // 
-                        this.EntradaHaciaDespues.Location = new System.Drawing.Point(440, 408);
+                        this.EntradaHaciaDespues.Location = new System.Drawing.Point(440, 376);
                         this.EntradaHaciaDespues.Name = "EntradaHaciaDespues";
                         this.EntradaHaciaDespues.Size = new System.Drawing.Size(96, 24);
                         this.EntradaHaciaDespues.TabIndex = 19;
@@ -285,7 +284,7 @@ namespace Lfc.Articulos
                         // 
                         // EntradaHaciaAntes
                         // 
-                        this.EntradaHaciaAntes.Location = new System.Drawing.Point(304, 408);
+                        this.EntradaHaciaAntes.Location = new System.Drawing.Point(304, 376);
                         this.EntradaHaciaAntes.Name = "EntradaHaciaAntes";
                         this.EntradaHaciaAntes.Size = new System.Drawing.Size(96, 24);
                         this.EntradaHaciaAntes.TabIndex = 17;
@@ -293,7 +292,7 @@ namespace Lfc.Articulos
                         // 
                         // EtiquetaDesdeFlecha
                         // 
-                        this.EtiquetaDesdeFlecha.Location = new System.Drawing.Point(408, 376);
+                        this.EtiquetaDesdeFlecha.Location = new System.Drawing.Point(408, 344);
                         this.EtiquetaDesdeFlecha.Name = "EtiquetaDesdeFlecha";
                         this.EtiquetaDesdeFlecha.Size = new System.Drawing.Size(24, 24);
                         this.EtiquetaDesdeFlecha.TabIndex = 14;
@@ -302,7 +301,7 @@ namespace Lfc.Articulos
                         // 
                         // EtiquetaHaciaFlecha
                         // 
-                        this.EtiquetaHaciaFlecha.Location = new System.Drawing.Point(408, 408);
+                        this.EtiquetaHaciaFlecha.Location = new System.Drawing.Point(408, 376);
                         this.EtiquetaHaciaFlecha.Name = "EtiquetaHaciaFlecha";
                         this.EtiquetaHaciaFlecha.Size = new System.Drawing.Size(24, 24);
                         this.EtiquetaHaciaFlecha.TabIndex = 18;
@@ -311,7 +310,7 @@ namespace Lfc.Articulos
                         // 
                         // Label5
                         // 
-                        this.Label5.Location = new System.Drawing.Point(304, 352);
+                        this.Label5.Location = new System.Drawing.Point(304, 320);
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(96, 24);
                         this.Label5.TabIndex = 10;
@@ -320,7 +319,7 @@ namespace Lfc.Articulos
                         // 
                         // Label6
                         // 
-                        this.Label6.Location = new System.Drawing.Point(440, 352);
+                        this.Label6.Location = new System.Drawing.Point(440, 320);
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(96, 24);
                         this.Label6.TabIndex = 11;
@@ -337,7 +336,7 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.DataValueField = null;
                         this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaArticulo.FreeTextCode = "";
-                        this.EntradaArticulo.Location = new System.Drawing.Point(136, 208);
+                        this.EntradaArticulo.Location = new System.Drawing.Point(136, 176);
                         this.EntradaArticulo.MaximumSize = new System.Drawing.Size(480, 64);
                         this.EntradaArticulo.MuestraPrecio = false;
                         this.EntradaArticulo.MuestraStock = false;
@@ -355,40 +354,40 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.PrecioCantidadChanged += new System.EventHandler(this.EntradaArticulo_PrecioCantidadChanged);
                         this.EntradaArticulo.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaArticulo_ObtenerDatosSeguimiento);
                         // 
-                        // formHeader1
+                        // label10
                         // 
-                        this.formHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-                        this.formHeader1.Location = new System.Drawing.Point(0, 0);
-                        this.formHeader1.Name = "formHeader1";
-                        this.formHeader1.Size = new System.Drawing.Size(599, 64);
-                        this.formHeader1.TabIndex = 101;
-                        this.formHeader1.Text = "Entrada y salida de mercadería";
-                        // 
-                        // label9
-                        // 
-                        this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label9.Location = new System.Drawing.Point(24, 88);
-                        this.label9.MaximumSize = new System.Drawing.Size(600, 96);
-                        this.label9.Name = "label9";
-                        this.label9.Size = new System.Drawing.Size(552, 48);
-                        this.label9.TabIndex = 102;
-                        this.label9.Text = "Va a realizar un movimiento de mercadería de una situación a otra. Es recomendabl" +
+                        this.label10.Location = new System.Drawing.Point(24, 56);
+                        this.label10.Name = "label10";
+                        this.label10.Size = new System.Drawing.Size(544, 48);
+                        this.label10.TabIndex = 104;
+                        this.label10.Text = "Va a realizar un movimiento de mercadería de una situación a otra. Es recomendabl" +
     "e que haga este movimiento por medio de un comprobante si fuera posible.";
+                        // 
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(387, 30);
+                        this.EtiquetaTitulo.TabIndex = 103;
+                        this.EtiquetaTitulo.Text = "Entrada o salida manual de mercadería";
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // Movimiento
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(599, 562);
+                        this.ClientSize = new System.Drawing.Size(599, 528);
+                        this.Controls.Add(this.label10);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.EntradaArticulo);
-                        this.Controls.Add(this.label9);
                         this.Controls.Add(this.EtiquetaHaciaFlecha);
                         this.Controls.Add(this.EtiquetaDesdeFlecha);
                         this.Controls.Add(this.EntradaHaciaDespues);
                         this.Controls.Add(this.EntradaHaciaAntes);
                         this.Controls.Add(this.EntradaDesdeDespues);
                         this.Controls.Add(this.EntradaDesdeAntes);
-                        this.Controls.Add(this.formHeader1);
                         this.Controls.Add(this.Label6);
                         this.Controls.Add(this.Label5);
                         this.Controls.Add(this.EntradaHaciaSituacion);
@@ -405,7 +404,7 @@ namespace Lfc.Articulos
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label1);
                         this.Name = "Movimiento";
-                        this.Text = "Artículos: Entrada y Salida";
+                        this.Text = "Artículos: entradas y salidas";
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
@@ -421,15 +420,15 @@ namespace Lfc.Articulos
                         this.Controls.SetChildIndex(this.EntradaHaciaSituacion, 0);
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.Label6, 0);
-                        this.Controls.SetChildIndex(this.formHeader1, 0);
                         this.Controls.SetChildIndex(this.EntradaDesdeAntes, 0);
                         this.Controls.SetChildIndex(this.EntradaDesdeDespues, 0);
                         this.Controls.SetChildIndex(this.EntradaHaciaAntes, 0);
                         this.Controls.SetChildIndex(this.EntradaHaciaDespues, 0);
                         this.Controls.SetChildIndex(this.EtiquetaDesdeFlecha, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHaciaFlecha, 0);
-                        this.Controls.SetChildIndex(this.label9, 0);
                         this.Controls.SetChildIndex(this.EntradaArticulo, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
+                        this.Controls.SetChildIndex(this.label10, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -437,7 +436,8 @@ namespace Lfc.Articulos
 
                 #endregion
 
-                private Lui.Forms.FormHeader formHeader1;
-                protected Lui.Forms.Label label9;
+                private Lui.Forms.Label label10;
+                private Lui.Forms.Label EtiquetaTitulo;
+
         }
 }

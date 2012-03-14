@@ -104,14 +104,14 @@ namespace Lfc.Comprobantes
                         this.Label9 = new Lui.Forms.Label();
                         this.EntradaPv = new Lui.Forms.TextBox();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
-                        this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+                        this.tableLayoutPanel1 = new Lui.Forms.TableLayoutPanel();
                         this.label10 = new Lui.Forms.Label();
-                        this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+                        this.tableLayoutPanel3 = new Lui.Forms.TableLayoutPanel();
                         this.EntradaMontoHasta = new Lui.Forms.TextBox();
                         this.EntradaMontoDesde = new Lui.Forms.TextBox();
                         this.label12 = new Lui.Forms.Label();
                         this.label11 = new Lui.Forms.Label();
-                        this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+                        this.tableLayoutPanel2 = new Lui.Forms.TableLayoutPanel();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.tableLayoutPanel3.SuspendLayout();
                         this.tableLayoutPanel2.SuspendLayout();

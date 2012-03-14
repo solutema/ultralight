@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Al anular un recibo, se revierten todos los cobros o pagos asentados. Si el recibo se utilizó para cancelar comprobantes, eso también será revertido como así también los movimientos en cuenta corriente.</value>
+  </data>
 </root>

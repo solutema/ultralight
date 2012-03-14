@@ -91,7 +91,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Label5 = new Lui.Forms.Label();
                         this.EntradaSucursal = new Lcc.Entrada.CodigoDetalle();
                         this.label7 = new Lui.Forms.Label();
-                        this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+                        this.tableLayoutPanel1 = new Lui.Forms.TableLayoutPanel();
                         this.EntradaFechas = new Lcc.Entrada.RangoFechas();
                         this.tableLayoutPanel1.SuspendLayout();
                         this.SuspendLayout();

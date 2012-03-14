@@ -52,6 +52,7 @@ namespace Lui.Forms
         {
                 public YesNoDialog(string messageText, string messageCaption)
                 {
+                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                         this.MessageCaption = messageCaption;
                         this.MessageText = messageText;

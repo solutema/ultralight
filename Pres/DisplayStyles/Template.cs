@@ -74,15 +74,34 @@ namespace Lazaro.Pres.DisplayStyles
 
                 public Template()
                 {
-                        bool TengoSegoe = false;
-                        if (System.Drawing.SystemFonts.MessageBoxFont.Name == "Segoe UI") {
-                                TengoSegoe = true;
+                        bool TengoSegoe = false, TengoTrebuchet = false;
+                        try {
+                                if (System.Drawing.SystemFonts.MessageBoxFont.Name == "Segoe UI" || System.IO.File.Exists(Environment.ExpandEnvironmentVariables(@"%windir%\Fonts\segoeui.ttf")))
+                                        TengoSegoe = true;
+                                else
+                                        TengoSegoe = false;
+                        } catch {
+                                TengoSegoe = false;
+                        }
+
+                        if (TengoSegoe == false) {
+                                try {
+                                        if (System.IO.File.Exists(Environment.ExpandEnvironmentVariables(@"%windir%\Fonts\trebuc.ttf")))
+                                                TengoTrebuchet = true;
+                                        else
+                                                TengoTrebuchet = false;
+                                } catch {
+                                        TengoTrebuchet = false;
+                                }
                         }
 
                         // Microsoft Sans Serif, Segoe UI, Bitstream Vera Sans
                         if (TengoSegoe) {
                                 DefaultFontName = "Segoe UI";
                                 DefaultCaptionFontName = "Segoe UI";
+                        } else if (TengoTrebuchet) {
+                                DefaultFontName = "Trebuchet MS";
+                                DefaultCaptionFontName = "Trebuchet MS";
                         } else {
                                 DefaultFontName = "Bitstream Vera Sans";
                                 DefaultCaptionFontName = DefaultFontName;

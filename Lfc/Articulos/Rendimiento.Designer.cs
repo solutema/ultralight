@@ -65,48 +65,41 @@ namespace Lfc.Articulos
                         this.label2 = new Lui.Forms.Label();
                         this.EntradaUnidad = new Lui.Forms.ComboBox();
                         this.EntradaUnidadRend = new Lui.Forms.ComboBox();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(135, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(255, 8);
                         // 
                         // label19
                         // 
-                        this.label19.Location = new System.Drawing.Point(25, 25);
+                        this.label19.Location = new System.Drawing.Point(24, 136);
                         this.label19.Name = "label19";
-                        this.label19.Size = new System.Drawing.Size(170, 24);
+                        this.label19.Size = new System.Drawing.Size(176, 24);
                         this.label19.TabIndex = 0;
                         this.label19.Text = "El artículo se compra en";
                         this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(68, 120);
+                        this.label1.Location = new System.Drawing.Point(24, 240);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(30, 24);
+                        this.label1.Size = new System.Drawing.Size(176, 24);
                         this.label1.TabIndex = 2;
-                        this.label1.Text = "de";
+                        this.label1.Text = "Y cada uno/a rinde";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaRendimiento
                         // 
                         this.EntradaRendimiento.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaRendimiento.Location = new System.Drawing.Point(100, 120);
+                        this.EntradaRendimiento.Location = new System.Drawing.Point(200, 240);
                         this.EntradaRendimiento.Name = "EntradaRendimiento";
-                        this.EntradaRendimiento.ReadOnly = false;
+                        this.EntradaRendimiento.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
                         this.EntradaRendimiento.TabIndex = 3;
                         this.EntradaRendimiento.Text = "0.00";
-                        this.EntradaRendimiento.PlaceholderText = "Precio de costo o de compra.";
                         // 
                         // label2
                         // 
-                        this.label2.Location = new System.Drawing.Point(316, 120);
+                        this.label2.Location = new System.Drawing.Point(449, 241);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(40, 24);
                         this.label2.TabIndex = 5;
@@ -117,9 +110,8 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaUnidad.AlwaysExpanded = true;
                         this.EntradaUnidad.AutoSize = true;
-                        this.EntradaUnidad.Location = new System.Drawing.Point(200, 24);
+                        this.EntradaUnidad.Location = new System.Drawing.Point(200, 136);
                         this.EntradaUnidad.Name = "EntradaUnidad";
-                        this.EntradaUnidad.ReadOnly = false;
                         this.EntradaUnidad.SetData = new string[] {
         "N/A|",
         "Unidades|u",
@@ -135,18 +127,16 @@ namespace Lfc.Articulos
         "Centímetros³|cm³",
         "Litros|l",
         "Kg|kg"};
-                        this.EntradaUnidad.Size = new System.Drawing.Size(112, 81);
+                        this.EntradaUnidad.Size = new System.Drawing.Size(137, 90);
                         this.EntradaUnidad.TabIndex = 1;
                         this.EntradaUnidad.TextKey = "u";
-                        this.EntradaUnidad.PlaceholderText = "¿El artículo usa control de stock?";
                         // 
                         // EntradaUnidadRend
                         // 
                         this.EntradaUnidadRend.AlwaysExpanded = true;
                         this.EntradaUnidadRend.AutoSize = true;
-                        this.EntradaUnidadRend.Location = new System.Drawing.Point(200, 120);
+                        this.EntradaUnidadRend.Location = new System.Drawing.Point(304, 240);
                         this.EntradaUnidadRend.Name = "EntradaUnidadRend";
-                        this.EntradaUnidadRend.ReadOnly = false;
                         this.EntradaUnidadRend.SetData = new string[] {
         "N/A|",
         "Unidades|u",
@@ -162,30 +152,53 @@ namespace Lfc.Articulos
         "Centímetros³|cm³",
         "Litros|l",
         "Kg|kg"};
-                        this.EntradaUnidadRend.Size = new System.Drawing.Size(112, 81);
+                        this.EntradaUnidadRend.Size = new System.Drawing.Size(137, 90);
                         this.EntradaUnidadRend.TabIndex = 4;
                         this.EntradaUnidadRend.TextKey = "";
-                        this.EntradaUnidadRend.PlaceholderText = "¿El artículo usa control de stock?";
+                        // 
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.AutoSize = true;
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(136, 30);
+                        this.EtiquetaTitulo.TabIndex = 102;
+                        this.EtiquetaTitulo.Text = "Rendimiento";
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
+                        // 
+                        // label3
+                        // 
+                        this.label3.Location = new System.Drawing.Point(24, 64);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(464, 56);
+                        this.label3.TabIndex = 103;
+                        this.label3.Text = "Si el artículo se compra y se vende en diferentes unidades, por ejemplo los artíc" +
+    "ulos que se venden fraccionados, puede proporcionar esa información aquí:";
                         // 
                         // Rendimiento
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(375, 319);
+                        this.ClientSize = new System.Drawing.Size(513, 417);
+                        this.Controls.Add(this.label3);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.EntradaUnidad);
                         this.Controls.Add(this.EntradaUnidadRend);
-                        this.Controls.Add(this.label19);
                         this.Controls.Add(this.label2);
-                        this.Controls.Add(this.label1);
                         this.Controls.Add(this.EntradaRendimiento);
+                        this.Controls.Add(this.label19);
+                        this.Controls.Add(this.label1);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Rendimiento";
                         this.Text = "Rendimiento";
-                        this.Controls.SetChildIndex(this.EntradaRendimiento, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
-                        this.Controls.SetChildIndex(this.label2, 0);
                         this.Controls.SetChildIndex(this.label19, 0);
+                        this.Controls.SetChildIndex(this.EntradaRendimiento, 0);
+                        this.Controls.SetChildIndex(this.label2, 0);
                         this.Controls.SetChildIndex(this.EntradaUnidadRend, 0);
                         this.Controls.SetChildIndex(this.EntradaUnidad, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
+                        this.Controls.SetChildIndex(this.label3, 0);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -199,5 +212,7 @@ namespace Lfc.Articulos
 		internal Lui.Forms.Label label2;
                 internal Lui.Forms.ComboBox EntradaUnidad;
                 internal Lui.Forms.ComboBox EntradaUnidadRend;
+                private Lui.Forms.Label EtiquetaTitulo;
+                internal Lui.Forms.Label label3;
 	}
 }

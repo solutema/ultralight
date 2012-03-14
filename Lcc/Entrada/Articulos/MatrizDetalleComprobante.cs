@@ -68,6 +68,14 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
+                protected override DetalleComprobante ObtenerControlNuevo()
+                {
+                        DetalleComprobante Ctrl = base.ObtenerControlNuevo();
+                        Ctrl.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+                        return Ctrl;
+                }
+
+
                 public void CargarArticulos(IList<Lbl.Comprobantes.DetalleArticulo> articulos)
                 {
                         if (articulos == null || articulos.Count == 0) {

@@ -142,7 +142,6 @@ namespace Lfc.Articulos
                         this.EntradaMargen.AlwaysExpanded = true;
                         this.EntradaMargen.Location = new System.Drawing.Point(136, 72);
                         this.EntradaMargen.Name = "EntradaMargen";
-                        this.EntradaMargen.PlaceholderText = "Márgenes predefinidos";
                         this.EntradaMargen.SetData = new string[] {
         "Otro|-1"};
                         this.EntradaMargen.Size = new System.Drawing.Size(224, 96);
@@ -249,7 +248,6 @@ namespace Lfc.Articulos
                         this.EntradaUnidad.AutoSize = true;
                         this.EntradaUnidad.Location = new System.Drawing.Point(160, 0);
                         this.EntradaUnidad.Name = "EntradaUnidad";
-                        this.EntradaUnidad.PlaceholderText = "¿En qué unidad de medida se compra este producto?";
                         this.EntradaUnidad.SetData = new string[] {
         "N/A|",
         "Unidades|u",
@@ -276,7 +274,6 @@ namespace Lfc.Articulos
                         this.EntradaTipoDeArticulo.AutoSize = true;
                         this.EntradaTipoDeArticulo.Location = new System.Drawing.Point(168, 40);
                         this.EntradaTipoDeArticulo.Name = "EntradaUsaStock";
-                        this.EntradaTipoDeArticulo.PlaceholderText = "¿El artículo es un producto o un servicio?";
                         this.EntradaTipoDeArticulo.SetData = new string[] {
         "Servicio|0",
         "Producto simple|1",
@@ -807,7 +804,6 @@ namespace Lfc.Articulos
                         this.EntradaPeriodicidad.AutoSize = true;
                         this.EntradaPeriodicidad.Location = new System.Drawing.Point(160, 0);
                         this.EntradaPeriodicidad.Name = "EntradaPeriodicidad";
-                        this.EntradaPeriodicidad.PlaceholderText = "¿Cada cuánto tiempo se factura este servicio?";
                         this.EntradaPeriodicidad.SetData = new string[] {
         "Ninguna|0,",
         "Por ocasión|9",
