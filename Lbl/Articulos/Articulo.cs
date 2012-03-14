@@ -420,7 +420,7 @@ namespace Lbl.Articulos
                                         // Calculo el stock según el elemento de la receta que se acabe primero
                                         return this.Connection.FieldDecimal(@"SELECT MIN(articulos.stock_actual / articulos_recetas.cantidad) FROM articulos_recetas, articulos WHERE articulos_recetas.id_item=articulos.id_articulo AND articulos_recetas.id_articulo=" + this.Id.ToString());
                                 default:
-                                        throw new Lfx.Types.DomainException("ObtenerExistencias(): No se puede calcular el stock para " + this.TipoDeArticulo.ToString());
+                                        throw new Lfx.Types.DomainException("ObtenerExistencias(): No se pueden calcular las existencias para " + this.TipoDeArticulo.ToString());
                         }
                 }
 
@@ -444,7 +444,7 @@ namespace Lbl.Articulos
                                         else
                                                 return CantMin;
                                 default:
-                                        throw new Lfx.Types.DomainException("ObtenerExistencias(Situacion): No se puede calcular el stock para " + this.TipoDeArticulo.ToString());
+                                        throw new Lfx.Types.DomainException("ObtenerExistencias(Situacion): No se pueden calcular las existencias para " + this.TipoDeArticulo.ToString());
                         }
 		}
 

@@ -66,7 +66,7 @@ namespace Lfc
 
                 public FormularioListadoBase()
                 {
-                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
+                        //this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                         this.StockImage = "listado";
 
@@ -199,6 +199,9 @@ namespace Lfc
 
                 public virtual Lfx.Types.OperationResult OnPrint(bool selectPrinter)
                 {
+                        if (Listado.Items.Count == 0)
+                                return new Lfx.Types.FailureOperationResult("El listado está vacío");
+
                         Lazaro.Pres.Spreadsheet.Workbook Workbook = this.ToWorkbook();
                         Lazaro.Impresion.ImpresorListado Impresor = new Lazaro.Impresion.ImpresorListado(Workbook.Sheets[0], null);
 
@@ -1350,6 +1353,11 @@ namespace Lfc
 
                 protected virtual void ShowExportDialog()
                 {
+                        if (Listado.Items.Count == 0) {
+                                Lfx.Workspace.Master.RunTime.Toast("No se puede imprimir o exportar el listado porque no contiene datos.", "Listado");
+                                return;
+                        }
+
                         using (Lfc.FormularioListadoExportar FormExportar = new Lfc.FormularioListadoExportar()) {
                                 if (FormExportar.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                         FormatoExportar Formato = FormExportar.SaveFormat;

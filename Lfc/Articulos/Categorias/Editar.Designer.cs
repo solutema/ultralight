@@ -311,7 +311,7 @@ namespace Lfc.Articulos.Categorias
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(180, 24);
                         this.Label6.TabIndex = 2;
-                        this.Label6.Text = "Artículos con stock";
+                        this.Label6.Text = "Artículos con existencias";
                         this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3
@@ -320,7 +320,7 @@ namespace Lfc.Articulos.Categorias
                         this.Label3.Name = "Label3";
                         this.Label3.Size = new System.Drawing.Size(180, 24);
                         this.Label3.TabIndex = 4;
-                        this.Label3.Text = "Stock actual";
+                        this.Label3.Text = "Existencias";
                         this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label4
@@ -329,7 +329,7 @@ namespace Lfc.Articulos.Categorias
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(180, 24);
                         this.Label4.TabIndex = 6;
-                        this.Label4.Text = "Costo del stock";
+                        this.Label4.Text = "Valorización";
                         this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label10
