@@ -46,6 +46,7 @@ namespace Lazaro.WinMain.Config
                         InstalarServidor,
                         NombreServidor,
                         PruebaServidor,
+                        DatosEmpresa,
                         Final
                 }
 
@@ -194,6 +195,7 @@ namespace Lazaro.WinMain.Config
                         PanelSeleccionarAlmacen.Visible = Paso == Inicial.Pasos.SeleccionarAlmacen;
                         PanelNombreServidor.Visible = Paso == Inicial.Pasos.NombreServidor;
                         PanelPruebaServidor.Visible = Paso == Inicial.Pasos.PruebaServidor;
+                        PanelDatosEmpresa.Visible = Paso == Inicial.Pasos.DatosEmpresa;
                         PanelInstalacion.Visible = Paso == Inicial.Pasos.InstalarServidor;
                         PanelFinal.Visible = Paso == Inicial.Pasos.Final;
                 }
@@ -246,7 +248,8 @@ namespace Lazaro.WinMain.Config
                                         }
                                 }
 
-                                Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "lazaro";
+                                if (string.IsNullOrEmpty(Lfx.Data.DataBaseCache.DefaultCache.DataBaseName))
+                                        Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = "lazaro";
                                 Lfx.Workspace.Master.MasterConnection.Close();
                                 Lfx.Workspace.Master.MasterConnection.Open();
                                 if (TengoDb) {
@@ -318,7 +321,22 @@ namespace Lazaro.WinMain.Config
                                         }
                                         break;
                                 case Inicial.Pasos.PruebaServidor:
-                                        Paso = Inicial.Pasos.Final;
+                                        if (Lfx.Workspace.Master.MasterConnection.IsOpen() && Lfx.Workspace.Master.IsPrepared()) {
+                                                int PaisActual = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
+                                                if (PaisActual == 0)
+                                                        Paso = Pasos.DatosEmpresa;
+                                                else
+                                                        Paso = Pasos.Final;
+                                        } else {
+                                                Paso = Inicial.Pasos.Final;
+                                        }
+                                        break;
+                                case Pasos.DatosEmpresa:
+                                        if (EntradaPais.Elemento == null || EntradaEmpresaNombre.Text.Length < 3 || EntradaEmpresaEmail.Text.Length < 3 || EntradaEmpresaEmail.Text.IndexOf('@') < 0) {
+                                                Lui.Forms.MessageBox.Show("Debe proporcionar los datos de la empresa antes de continuar", "Error");
+                                        } else {
+                                                Paso = Pasos.Final;
+                                        }
                                         break;
                                 case Inicial.Pasos.Final:
                                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -338,9 +356,6 @@ namespace Lazaro.WinMain.Config
                 {
                         BotonSiguiente.Visible = true;
                         switch (Paso) {
-                                case Inicial.Pasos.Deteccion:
-                                        Paso = Inicial.Pasos.Inicio;
-                                        break;
                                 case Inicial.Pasos.NombreServidor:
                                         Paso = Inicial.Pasos.SeleccionarAlmacen;
                                         break;
@@ -352,13 +367,10 @@ namespace Lazaro.WinMain.Config
                                         else if (CheckOtroEquipo.Checked)
                                                 Paso = Inicial.Pasos.NombreServidor;
                                         break;
-                                case Inicial.Pasos.Final:
-                                        Paso = Inicial.Pasos.Inicio;
-                                        break;
+                                case Inicial.Pasos.Deteccion:
                                 case Inicial.Pasos.InstalarServidor:
-                                        // Instalar un servidor SQL ahora.
-                                        Paso = Inicial.Pasos.Inicio;
-                                        break;
+                                case Inicial.Pasos.Final:
+                                case Inicial.Pasos.DatosEmpresa:
                                 default:
                                         Paso = Inicial.Pasos.Inicio;
                                         break;
@@ -449,9 +461,8 @@ namespace Lazaro.WinMain.Config
                                         return;
                         }
 
-                        EtiquetaDescargando.Text = "Reiniciando el asistente...";
-                        //EntradaServidor.Text = "localhost";
-                        Paso = Inicial.Pasos.Final;
+                        EtiquetaDescargando.Text = "Continuando...";
+                        Paso = Inicial.Pasos.DatosEmpresa;
                         this.MostrarPaneles();
                 }
 
@@ -504,6 +515,44 @@ namespace Lazaro.WinMain.Config
                 {
                         Paso = Pasos.SeleccionarAlmacen;
                         MostrarPaneles();
+                }
+
+                private void EntradaPais_TextChanged(object sender, EventArgs e)
+                {
+                        Lbl.Entidades.Pais Pais = EntradaPais.Elemento as Lbl.Entidades.Pais;
+                        if (Pais != null) {
+                                if (Pais.ClavePersonasJuridicas != null)
+                                        EtiquetaClaveTributaria.Text = Pais.ClavePersonasJuridicas.ToString();
+                                else
+                                        EtiquetaClaveTributaria.Text = "Clave tributaria";
+                        } else {
+                                EtiquetaClaveTributaria.Text = "Clave tributaria";
+                        }
+                }
+
+                private void PanelDatosEmpresa_VisibleChanged(object sender, EventArgs e)
+                {
+                        if (PanelDatosEmpresa.Visible) {
+                                // Al aparecer
+                                Lfx.Workspace.Master.CurrentConfig.ClearCache();
+                                int IdPais = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
+                                EntradaPais.ValueInt = IdPais;
+                                EntradaEmpresaNombre.Text = Lbl.Sys.Config.Empresa.Nombre;
+                                if (Lbl.Sys.Config.Empresa.ClaveTributaria != null)
+                                        EntradaEmpresaClaveTributaria.Text = Lbl.Sys.Config.Empresa.ClaveTributaria.Valor;
+                                EntradaEmpresaEmail.Text = Lbl.Sys.Config.Empresa.Email;
+                        } else {
+                                // Al desaparecer
+                                Lbl.Entidades.Pais Pais = EntradaPais.Elemento as Lbl.Entidades.Pais;
+                                if (Pais != null)
+                                        Lbl.Sys.Config.CambiarPais(Pais);
+                                Lbl.Sys.Config.Empresa.Nombre = EntradaEmpresaNombre.Text;
+                                if (EntradaEmpresaClaveTributaria.Text.Length > 0)
+                                        Lbl.Sys.Config.Empresa.ClaveTributaria = new Lbl.Personas.Claves.Cuit(EntradaEmpresaClaveTributaria.Text);
+                                else
+                                        Lbl.Sys.Config.Empresa.ClaveTributaria = null;
+                                Lbl.Sys.Config.Empresa.Email = EntradaEmpresaEmail.Text;
+                        }
                 }
         }
 }

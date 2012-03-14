@@ -218,7 +218,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
-                        this.EntradaBanco.TextInt = 0;
+                        this.EntradaBanco.ValueInt = 0;
                         // 
                         // label2
                         // 
@@ -314,7 +314,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
-                        this.EntradaCaja.TextInt = 0;
+                        this.EntradaCaja.ValueInt = 0;
                         // 
                         // label9
                         // 
@@ -427,7 +427,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
-                        this.EntradaPlan.TextInt = 0;
+                        this.EntradaPlan.ValueInt = 0;
                         this.EntradaPlan.TextChanged += new System.EventHandler(this.EntradaPlan_TextChanged);
                         // 
                         // Label11
@@ -529,7 +529,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaFormaDePago.Text = "0";
                         this.EntradaFormaDePago.TextDetail = "";
-                        this.EntradaFormaDePago.TextInt = 0;
+                        this.EntradaFormaDePago.ValueInt = 0;
                         this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.EntradaFormaDePago_TextChanged);
                         // 
                         // AyudaFormaDePago

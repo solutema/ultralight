@@ -140,7 +140,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaDePago.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaFormaDePago.Text = "0";
                         this.EntradaFormaDePago.TextDetail = "";
-                        this.EntradaFormaDePago.TextInt = 0;
+                        this.EntradaFormaDePago.ValueInt = 0;
                         this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.txtTarjeta_TextChanged);
                         // 
                         // Label16
@@ -223,7 +223,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
-                        this.EntradaPlan.TextInt = 0;
+                        this.EntradaPlan.ValueInt = 0;
                         this.EntradaPlan.TextChanged += new System.EventHandler(this.txtPlan_TextChanged);
                         // 
                         // Label15
@@ -255,7 +255,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
-                        this.EntradaCliente.TextInt = 0;
+                        this.EntradaCliente.ValueInt = 0;
                         // 
                         // Label1
                         // 
@@ -363,13 +363,13 @@ namespace Lfc.Tarjetas.Cupones
 
                 private void txtTarjeta_TextChanged(System.Object sender, System.EventArgs e)
                 {
-                        EntradaPlan.Filter = "id_tarjeta=" + EntradaFormaDePago.TextInt.ToString() + " OR id_tarjeta IS NULL";
+                        EntradaPlan.Filter = "id_tarjeta=" + EntradaFormaDePago.ValueInt.ToString() + " OR id_tarjeta IS NULL";
                 }
 
 
                 private void txtPlan_TextChanged(object sender, System.EventArgs e)
                 {
-                        Lfx.Data.Row row = this.Connection.Row("tarjetas_planes", "id_plan", EntradaPlan.TextInt);
+                        Lfx.Data.Row row = this.Connection.Row("tarjetas_planes", "id_plan", EntradaPlan.ValueInt);
                         if (row != null) {
                                 txtPlanCuotas.Text = System.Convert.ToString(row["cuotas"]);
                                 txtPlanInteres.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row["interes"]));

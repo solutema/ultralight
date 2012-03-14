@@ -78,14 +78,14 @@ namespace Lfc.Bancos.Chequeras
                                 using (Bancos.Chequeras.Filtros FormFiltros = new Bancos.Chequeras.Filtros()) {
                                         FormFiltros.Connection = this.Connection;
                                         FormFiltros.EntradaEstado.TextKey = ((int)m_Estado).ToString();
-                                        FormFiltros.EntradaBanco.TextInt = m_Banco;
-                                        FormFiltros.EntradaCaja.TextInt = m_Caja;
+                                        FormFiltros.EntradaBanco.ValueInt = m_Banco;
+                                        FormFiltros.EntradaCaja.ValueInt = m_Caja;
 
                                         FormFiltros.ShowDialog();
                                         if (FormFiltros.DialogResult == DialogResult.OK) {
                                                 m_Estado = (Estados)Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
-                                                m_Banco = FormFiltros.EntradaBanco.TextInt;
-                                                m_Caja = FormFiltros.EntradaCaja.TextInt;
+                                                m_Banco = FormFiltros.EntradaBanco.ValueInt;
+                                                m_Caja = FormFiltros.EntradaCaja.ValueInt;
                                                 RefreshList();
                                                 filtrarReturn.Success = true;
                                         } else {

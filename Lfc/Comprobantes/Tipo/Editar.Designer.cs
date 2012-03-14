@@ -85,6 +85,8 @@ namespace Lfc.Comprobantes.Tipo
                         this.ColImpresora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.BotonQuitar = new Lui.Forms.Button();
                         this.BotonAgregar = new Lui.Forms.Button();
+                        this.EntradaCargaPapel = new Lui.Forms.ComboBox();
+                        this.label10 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaNombre
@@ -139,7 +141,7 @@ namespace Lfc.Comprobantes.Tipo
         "Saliente|-1",
         "Entrante|1",
         "No|0"};
-                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 57);
+                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 56);
                         this.EntradaMueveStock.TabIndex = 5;
                         this.EntradaMueveStock.TextKey = "1";
                         this.EntradaMueveStock.TextChanged += new System.EventHandler(this.EntradaMueveStock_TextChanged);
@@ -212,7 +214,7 @@ namespace Lfc.Comprobantes.Tipo
         "Manualmente|0",
         "Cuando se crea el comprobante|1",
         "Cuando se imprime el comprobante|2"};
-                        this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 57);
+                        this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 56);
                         this.EntradaNumerarAl.TabIndex = 11;
                         this.EntradaNumerarAl.TextKey = "1";
                         // 
@@ -234,7 +236,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirRepetir.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 40);
+                        this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 39);
                         this.EntradaImprimirRepetir.TabIndex = 13;
                         this.EntradaImprimirRepetir.TextKey = "1";
                         // 
@@ -256,7 +258,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirModificar.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 40);
+                        this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 39);
                         this.EntradaImprimirModificar.TabIndex = 15;
                         this.EntradaImprimirModificar.TextKey = "1";
                         // 
@@ -278,7 +280,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirGuardar.SetData = new string[] {
         "Si|1",
         "No|0"};
-                        this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 40);
+                        this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 39);
                         this.EntradaImprimirGuardar.TabIndex = 17;
                         this.EntradaImprimirGuardar.TextKey = "1";
                         // 
@@ -298,7 +300,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.GroupLabel.Location = new System.Drawing.Point(468, 0);
                         this.GroupLabel.Name = "GroupLabel";
                         this.GroupLabel.Size = new System.Drawing.Size(368, 32);
-                        this.GroupLabel.TabIndex = 18;
+                        this.GroupLabel.TabIndex = 30;
                         this.GroupLabel.Text = "Dónde se imprime:";
                         this.GroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.GroupLabel.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
@@ -322,8 +324,8 @@ namespace Lfc.Comprobantes.Tipo
                         this.Listado.Location = new System.Drawing.Point(468, 32);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(368, 336);
-                        this.Listado.TabIndex = 19;
+                        this.Listado.Size = new System.Drawing.Size(368, 410);
+                        this.Listado.TabIndex = 31;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
                         // 
@@ -356,14 +358,15 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitar.Location = new System.Drawing.Point(608, 376);
+                        this.BotonQuitar.Location = new System.Drawing.Point(608, 450);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Size = new System.Drawing.Size(108, 34);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "";
-                        this.BotonQuitar.TabIndex = 20;
+                        this.BotonQuitar.TabIndex = 32;
                         this.BotonQuitar.Text = "Quitar";
                         this.BotonQuitar.Click += new System.EventHandler(this.BotonQuitar_Click);
                         // 
@@ -371,20 +374,45 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAgregar.Location = new System.Drawing.Point(728, 376);
+                        this.BotonAgregar.Location = new System.Drawing.Point(728, 450);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Size = new System.Drawing.Size(108, 34);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregar.Subtext = "F6";
-                        this.BotonAgregar.TabIndex = 21;
+                        this.BotonAgregar.TabIndex = 33;
                         this.BotonAgregar.Text = "Agregar";
                         this.BotonAgregar.Click += new System.EventHandler(this.BotonAgregar_Click);
+                        // 
+                        // EntradaCargaPapel
+                        // 
+                        this.EntradaCargaPapel.AlwaysExpanded = true;
+                        this.EntradaCargaPapel.AutoSize = true;
+                        this.EntradaCargaPapel.Location = new System.Drawing.Point(152, 416);
+                        this.EntradaCargaPapel.Name = "EntradaCargaPapel";
+                        this.EntradaCargaPapel.SetData = new string[] {
+        "Automática|0",
+        "Manual|1"};
+                        this.EntradaCargaPapel.Size = new System.Drawing.Size(104, 39);
+                        this.EntradaCargaPapel.TabIndex = 19;
+                        this.EntradaCargaPapel.TextKey = "0";
+                        // 
+                        // label10
+                        // 
+                        this.label10.Location = new System.Drawing.Point(0, 416);
+                        this.label10.Name = "label10";
+                        this.label10.Size = new System.Drawing.Size(152, 24);
+                        this.label10.TabIndex = 18;
+                        this.label10.Text = "Carga de papel";
+                        this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Editar
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+                        this.Controls.Add(this.EntradaCargaPapel);
+                        this.Controls.Add(this.label10);
                         this.Controls.Add(this.BotonQuitar);
                         this.Controls.Add(this.BotonAgregar);
                         this.Controls.Add(this.Listado);
@@ -408,7 +436,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.Add(this.label6);
                         this.Controls.Add(this.GroupLabel);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(838, 411);
+                        this.Size = new System.Drawing.Size(838, 485);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -437,5 +465,7 @@ namespace Lfc.Comprobantes.Tipo
                 internal Lui.Forms.Button BotonQuitar;
                 internal Lui.Forms.Button BotonAgregar;
                 private System.Windows.Forms.ColumnHeader ColImpresora;
+                private Lui.Forms.ComboBox EntradaCargaPapel;
+                internal Lui.Forms.Label label10;
         }
 }

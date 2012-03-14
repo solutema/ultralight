@@ -54,7 +54,7 @@ namespace Lfc.Comprobantes.Recibos
 
 		public override Lfx.Types.OperationResult Ok()
 		{
-			if(EntradaCaja.TextInt <= 0)
+			if(EntradaCaja.ValueInt <= 0)
 				return new Lfx.Types.FailureOperationResult("Debe especificar la Caja de destino");
 
 			if(Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) <= 0)
@@ -62,12 +62,12 @@ namespace Lfc.Comprobantes.Recibos
 
                         IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
 
-			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(Connection, EntradaCliente.TextInt);
+			Lbl.Personas.Persona Cliente = new Lbl.Personas.Persona(Connection, EntradaCliente.ValueInt);
 			Lbl.Comprobantes.ReciboDeCobro Rec = new Lbl.Comprobantes.ReciboDeCobro(this.Connection);
 			Rec.Crear();
                         Rec.Cliente = Cliente;
 			Rec.Cobros.Add(new Lbl.Comprobantes.Cobro(Connection, Lbl.Pagos.TiposFormasDePago.Caja, Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text)));
-			Rec.Cobros[0].CajaDestino = new Lbl.Cajas.Caja(Connection, EntradaCaja.TextInt);
+			Rec.Cobros[0].CajaDestino = new Lbl.Cajas.Caja(Connection, EntradaCaja.ValueInt);
                         Rec.Vendedor = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
 			Lfx.Types.OperationResult Res = Rec.Guardar();
 
@@ -91,7 +91,7 @@ namespace Lfc.Comprobantes.Recibos
                                 }
 
                                 string Nombrecliente = EntradaCliente.TextDetail;
-                                EntradaCliente.TextInt = 0;
+                                EntradaCliente.ValueInt = 0;
                                 EntradaCliente.Focus();
                                 return new Lfx.Types.FailureOperationResult("Se creo el recibo para el cliente " + Nombrecliente);
                         } else {
@@ -102,7 +102,7 @@ namespace Lfc.Comprobantes.Recibos
 
 		private void EntradaCliente_TextChanged(object sender, EventArgs e)
 		{
-                        if (EntradaCliente.TextInt > 0) {
+                        if (EntradaCliente.ValueInt > 0) {
                                 Lbl.Personas.Persona Pers = EntradaCliente.Elemento as Lbl.Personas.Persona;
                                 decimal Saldo = Pers.CuentaCorriente.ObtenerSaldo(false);
                                 if (Saldo > 0)

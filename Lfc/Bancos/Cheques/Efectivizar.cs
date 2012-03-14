@@ -73,7 +73,7 @@ namespace Lfc.Bancos.Cheques
                 public override Lfx.Types.OperationResult Ok()
                 {
                         Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
-                        if (EntradaCajaDestino.TextInt <= 0) {
+                        if (EntradaCajaDestino.ValueInt <= 0) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar la cuenta de destino." + Environment.NewLine;
                         }

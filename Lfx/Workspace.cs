@@ -461,7 +461,7 @@ namespace Lfx
                         }
 
                         //Primero borro claves foráneas (deleteOnly = true)
-                        progreso.ChangeStatus("Eliminando claves obsoletas...");
+                        progreso.ChangeStatus("Eliminando reglas obsoletas...");
                         dataBase.SetConstraints(Lfx.Workspace.Master.Structure.Constraints, true);
 
                         try {
@@ -479,7 +479,7 @@ namespace Lfx
                         }
 
                         //Ahora creo claves nuevas (deleteOnly = false)
-                        progreso.ChangeStatus("Creando claves foráneas");
+                        progreso.ChangeStatus("Creando reglas de integridad");
                         try {
                                 dataBase.ExecuteSql("FLUSH TABLES");
                         } catch {

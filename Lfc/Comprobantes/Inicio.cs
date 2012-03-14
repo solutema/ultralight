@@ -114,10 +114,10 @@ namespace Lfc.Comprobantes
                                         FormFiltros.EntradaTipo.TextKey = this.Definicion.ElementoTipo.ToString();
                                         FormFiltros.EntradaPv.Text = m_PV.ToString();
                                         FormFiltros.EntradaLetra.TextKey = Letra;
-                                        FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
-                                        FormFiltros.EntradaFormaPago.TextInt = m_FormaPago;
-                                        FormFiltros.EntradaCliente.TextInt = m_Cliente;
-                                        FormFiltros.EntradaVendedor.TextInt = m_Vendedor;
+                                        FormFiltros.EntradaSucursal.ValueInt = m_Sucursal;
+                                        FormFiltros.EntradaFormaPago.ValueInt = m_FormaPago;
+                                        FormFiltros.EntradaCliente.ValueInt = m_Cliente;
+                                        FormFiltros.EntradaVendedor.ValueInt = m_Vendedor;
                                         FormFiltros.EntradaFechas.Rango = m_Fechas;
                                         FormFiltros.EntradaEstado.TextKey = m_Estado;
                                         FormFiltros.EntradaAnuladas.TextKey = m_Anuladas.ToString();
@@ -127,10 +127,10 @@ namespace Lfc.Comprobantes
                                         FormFiltros.ShowDialog();
 
                                         if (FormFiltros.DialogResult == DialogResult.OK) {
-                                                m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
-                                                m_FormaPago = FormFiltros.EntradaFormaPago.TextInt;
-                                                m_Cliente = FormFiltros.EntradaCliente.TextInt;
-                                                m_Vendedor = FormFiltros.EntradaVendedor.TextInt;
+                                                m_Sucursal = FormFiltros.EntradaSucursal.ValueInt;
+                                                m_FormaPago = FormFiltros.EntradaFormaPago.ValueInt;
+                                                m_Cliente = FormFiltros.EntradaCliente.ValueInt;
+                                                m_Vendedor = FormFiltros.EntradaVendedor.ValueInt;
                                                 m_Fechas = FormFiltros.EntradaFechas.Rango;
                                                 m_Estado = FormFiltros.EntradaEstado.TextKey;
                                                 m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaAnuladas.TextKey);

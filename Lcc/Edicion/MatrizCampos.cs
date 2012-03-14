@@ -144,7 +144,7 @@ namespace Lcc.Edicion
                                         case Lfx.Data.InputFieldTypes.Relation:
                                                 Entrada.CodigoDetalle RelationField = new Entrada.CodigoDetalle();
                                                 RelationField.Relation = Fld.Relation;
-                                                RelationField.TextInt = m_Elemento.GetFieldValue<int>(Fld.Name);
+                                                RelationField.ValueInt = m_Elemento.GetFieldValue<int>(Fld.Name);
                                                 RelationField.PlaceholderText = Fld.Label;
                                                 RelationField.Required = false;
                                                 Ctrl = RelationField;

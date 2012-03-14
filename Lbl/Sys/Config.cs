@@ -68,6 +68,31 @@ namespace Lbl.Sys
                 }
 
 
+                public static void CambiarPais(Lbl.Entidades.Pais nuevoPais)
+                {
+                        Pais = nuevoPais;
+
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Pais", nuevoPais.Id);
+
+                        // Configuro las alícuotas de IVA, normal y reducida
+                        Lbl.Impuestos.Alicuota Alic1 = new Lbl.Impuestos.Alicuota(Lfx.Workspace.Master.MasterConnection, 1);
+                        Alic1.Nombre = "IVA tasa normal";
+                        Alic1.Porcentaje = nuevoPais.Iva1;
+                        Alic1.Guardar();
+
+                        Lbl.Impuestos.Alicuota Alic2 = new Lbl.Impuestos.Alicuota(Lfx.Workspace.Master.MasterConnection, 2);
+                        Alic1.Nombre = "IVA tasa reducida";
+                        Alic2.Porcentaje = nuevoPais.Iva2;
+                        Alic2.Guardar();
+
+                        // Activo o desactivo los comprobantes C, E y M
+                        qGen.Update DesactComprob = new qGen.Update("documentos_tipos");
+                        DesactComprob.Fields.AddWithValue("estado", nuevoPais.Id == 1 ? 1 : 0);
+                        DesactComprob.WhereClause = new qGen.Where("letra", qGen.ComparisonOperators.In, new string[] { "FC", "FE", "FM", "NDC", "NDE", "NDM", "NCC", "NCE", "NCM" });
+                        Lfx.Workspace.Master.MasterConnection.Execute(DesactComprob);
+                }
+
+
                 /// <summary>
                 /// Escribe un evento en la tabla sys_log. Se utiliza para registrar operaciones de datos (altas, bajas, ingresos, egresos, etc.)
                 /// </summary>

@@ -64,12 +64,12 @@ namespace Lfc.Comprobantes.Compra
                 {
                         Lfx.Types.OperationResult Res = base.ValidarControl();
 
-                        if (EntradaHaciaSituacion.Visible && EntradaHaciaSituacion.TextInt == 0) {
+                        if (EntradaHaciaSituacion.Visible && EntradaHaciaSituacion.ValueInt == 0) {
                                 Res.Success = false;
                                 Res.Message += "Seleccione un Depósito." + Environment.NewLine;
                         }
 
-                        if (EntradaProveedor.TextInt == 0) {
+                        if (EntradaProveedor.ValueInt == 0) {
                                 Res.Success = false;
                                 Res.Message += "Seleccione un Proveedor." + Environment.NewLine;
                         }

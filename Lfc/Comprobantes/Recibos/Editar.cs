@@ -120,12 +120,12 @@ namespace Lfc.Comprobantes.Recibos
                         Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
                         Lbl.Comprobantes.Recibo Rec = this.Elemento as Lbl.Comprobantes.Recibo;
 
-                        if (EntradaCliente.TextInt <= 0 || EntradaCliente.TextInt == 999) {
+                        if (EntradaCliente.ValueInt <= 0 || EntradaCliente.ValueInt == 999) {
                                 validarReturn.Success = false;
                                 validarReturn.Message = "Por favor seleccione un cliente válido." + Environment.NewLine;
                         }
 
-                        if (EntradaConcepto.TextInt <= 0) {
+                        if (EntradaConcepto.ValueInt <= 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message = "Por favor seleccione un concepto para el movimiento." + Environment.NewLine;
                         }
@@ -175,11 +175,11 @@ namespace Lfc.Comprobantes.Recibos
 
                         Rec.PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
                         Rec.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
-                        Rec.Cliente = new Lbl.Personas.Persona(Rec.Connection, EntradaCliente.TextInt);
-                        Rec.Vendedor = new Lbl.Personas.Persona(Rec.Connection, EntradaVendedor.TextInt);
+                        Rec.Cliente = new Lbl.Personas.Persona(Rec.Connection, EntradaCliente.ValueInt);
+                        Rec.Vendedor = new Lbl.Personas.Persona(Rec.Connection, EntradaVendedor.ValueInt);
                         Rec.ConceptoTexto = EntradaConceptoTexto.Text;
-                        if (EntradaConcepto.TextInt > 0)
-                                Rec.Concepto = new Lbl.Cajas.Concepto(Rec.Connection, EntradaConcepto.TextInt);
+                        if (EntradaConcepto.ValueInt > 0)
+                                Rec.Concepto = new Lbl.Cajas.Concepto(Rec.Connection, EntradaConcepto.ValueInt);
                         else
                                 Rec.Concepto = null;
                         Rec.Obs = null;
@@ -196,7 +196,7 @@ namespace Lfc.Comprobantes.Recibos
                         FormularioSeleccionarFactura.AceptarNoImpresas = false;
                         FormularioSeleccionarFactura.DeCompra = this.DePago;
 
-                        if (EntradaCliente.TextInt > 0) {
+                        if (EntradaCliente.ValueInt > 0) {
                                 FormularioSeleccionarFactura.EntradaCliente.Elemento = EntradaCliente.Elemento;
                                 FormularioSeleccionarFactura.EntradaCliente.Enabled = false;
                         }
@@ -223,7 +223,7 @@ namespace Lfc.Comprobantes.Recibos
                         Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Rec.Connection, idFactura);
                         Rec.Facturas.AddWithValue(Fac, Fac.ImporteImpago);
 
-                        if (EntradaCliente.TextInt <= 0)
+                        if (EntradaCliente.ValueInt <= 0)
                                 EntradaCliente.Elemento = Fac.Cliente;
 
                         this.MostrarFacturas();

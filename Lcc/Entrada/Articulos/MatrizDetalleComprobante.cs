@@ -72,7 +72,7 @@ namespace Lcc.Entrada.Articulos
                 {
                         if (articulos == null || articulos.Count == 0) {
                                 this.Count = 1;
-                                this.ChildControls[0].TextInt = 0;
+                                this.ChildControls[0].ValueInt = 0;
                                 this.ChildControls[0].Cantidad = 1;
                         } else {
                                 this.Count = articulos.Count;

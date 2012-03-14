@@ -180,17 +180,17 @@ namespace Lfc.Bancos.Cheques
                                         "Anulado|90"};
                                         }
                                         FormFiltros.EntradaEstado.TextKey = Estado.ToString();
-                                        FormFiltros.EntradaSucursal.TextInt = Sucursal;
-                                        FormFiltros.EntradaBanco.TextInt = Banco;
-                                        FormFiltros.EntradaPersona.TextInt = Cliente;
+                                        FormFiltros.EntradaSucursal.ValueInt = Sucursal;
+                                        FormFiltros.EntradaBanco.ValueInt = Banco;
+                                        FormFiltros.EntradaPersona.ValueInt = Cliente;
                                         FormFiltros.EntradaFechas.Rango = Fechas;
 
                                         FormFiltros.ShowDialog();
                                         if (FormFiltros.DialogResult == DialogResult.OK) {
                                                 Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
-                                                Sucursal = FormFiltros.EntradaSucursal.TextInt;
-                                                Banco = FormFiltros.EntradaBanco.TextInt;
-                                                Cliente = FormFiltros.EntradaPersona.TextInt;
+                                                Sucursal = FormFiltros.EntradaSucursal.ValueInt;
+                                                Banco = FormFiltros.EntradaBanco.ValueInt;
+                                                Cliente = FormFiltros.EntradaPersona.ValueInt;
                                                 Fechas = FormFiltros.EntradaFechas.Rango;
                                                 RefreshList();
                                                 filtrarReturn.Success = true;
@@ -293,7 +293,7 @@ namespace Lfc.Bancos.Cheques
 
                         if (Cheques.Count > 0) {
                                 Bancos.Cheques.Pagar FormPagar = new Bancos.Cheques.Pagar();
-                                FormPagar.EntradaCajaOrigen.TextInt = IdCajaOrigen;
+                                FormPagar.EntradaCajaOrigen.ValueInt = IdCajaOrigen;
                                 if (FormPagar.Mostrar(Cheques) == DialogResult.OK) {
                                         this.RefreshList();
                                         return new Lfx.Types.SuccessOperationResult();

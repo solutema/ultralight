@@ -62,7 +62,7 @@ namespace Lfc.Tareas
                                 Tarea.Descripcion = null;
                         else
                                 Tarea.Descripcion = EntradaDescripcion.Text.Trim();
-                        Tarea.Estado = EntradaEstado.TextInt;
+                        Tarea.Estado = EntradaEstado.ValueInt;
                         Tarea.FechaEstimada = Lfx.Types.Parsing.ParseDate(EntradaEntregaEstimada.Text);
                         Tarea.FechaLimite = Lfx.Types.Parsing.ParseDate(EntradaEntregaLimite.Text);
                         Tarea.Importe = EntradaImportePresupuesto.ValueDecimal;
@@ -81,7 +81,7 @@ namespace Lfc.Tareas
                         EntradaTarea.Elemento = Tarea.Tipo;
                         EntradaPrioridad.ValueInt = ((int)(Tarea.Prioridad));
                         EntradaDescripcion.Text = Tarea.Descripcion;
-                        EntradaEstado.TextInt = Tarea.Estado;
+                        EntradaEstado.ValueInt = Tarea.Estado;
                         EntradaFechaIngreso.Text = Lfx.Types.Formatting.FormatDateAndTime(Tarea.Fecha);
                         EntradaEntregaEstimada.Text = Lfx.Types.Formatting.FormatDate(Tarea.FechaEstimada);
                         EntradaEntregaLimite.Text = Lfx.Types.Formatting.FormatDate(Tarea.FechaLimite);
@@ -130,7 +130,7 @@ namespace Lfc.Tareas
                         ListaHistorial.BeginUpdate();
                         ListaHistorial.Items.Clear();
 
-                        string TextoSql = "SELECT tickets_eventos.id_ticket, tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.id_tecnico=personas.id_persona AND tickets_eventos.id_ticket IN (SELECT id_ticket FROM tickets WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ") ORDER BY tickets_eventos.id_evento DESC";
+                        string TextoSql = "SELECT tickets_eventos.id_ticket, tickets_eventos.fecha, tickets_eventos.descripcion, personas.nombre FROM tickets_eventos, personas WHERE tickets_eventos.id_tecnico=personas.id_persona AND tickets_eventos.id_ticket IN (SELECT id_ticket FROM tickets WHERE id_persona=" + EntradaCliente.ValueInt.ToString() + ") ORDER BY tickets_eventos.id_evento DESC";
                         System.Data.DataTable Eventos = this.Connection.Select(TextoSql);
                         if (Eventos.Rows.Count > 0) {
                                 foreach (System.Data.DataRow Evento in Eventos.Rows) {
@@ -213,8 +213,8 @@ namespace Lfc.Tareas
                         if (Pregunta.ShowDialog() != DialogResult.OK)
                                 return new Lfx.Types.CancelOperationResult();
 
-                        if (EntradaEstado.TextInt < 50)
-                                EntradaEstado.TextInt = 50;
+                        if (EntradaEstado.ValueInt < 50)
+                                EntradaEstado.ValueInt = 50;
 
                         Lfx.Types.OperationResult Res = this.Save();
                         if (Res.Success == false)

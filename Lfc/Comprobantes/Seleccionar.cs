@@ -114,11 +114,11 @@ namespace Lfc.Comprobantes
                         qGen.Select SelFac = new qGen.Select("comprob");
                         SelFac.WhereClause = new qGen.Where();
 
-                        if (EntradaVendedor.TextInt > 0)
-                                SelFac.WhereClause.AddWithValue("id_vendedor", EntradaVendedor.TextInt);
+                        if (EntradaVendedor.ValueInt > 0)
+                                SelFac.WhereClause.AddWithValue("id_vendedor", EntradaVendedor.ValueInt);
 
-                        if (EntradaCliente.TextInt > 0)
-                                SelFac.WhereClause.AddWithValue("id_cliente", EntradaCliente.TextInt);
+                        if (EntradaCliente.ValueInt > 0)
+                                SelFac.WhereClause.AddWithValue("id_cliente", EntradaCliente.ValueInt);
 
                         if (this.AceptarCanceladas == false)
                                 SelFac.WhereClause.AddWithValue("cancelado", qGen.ComparisonOperators.LessThan, new qGen.SqlExpression("total"));

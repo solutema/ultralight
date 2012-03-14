@@ -55,7 +55,7 @@ namespace Lfc.Cajas
                 {
                         Lfx.Types.OperationResult validarReturn = new Lfx.Types.SuccessOperationResult();
 
-                        if (EntradaMoneda.TextInt == 0) {
+                        if (EntradaMoneda.ValueInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Seleccione la Currency." + Environment.NewLine;
                         }

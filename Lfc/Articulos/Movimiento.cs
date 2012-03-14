@@ -56,12 +56,12 @@ namespace Lfc.Articulos
                 {
                         Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
 
-                        if (EntradaArticulo.TextInt <= 0) {
+                        if (EntradaArticulo.ValueInt <= 0) {
                                 aceptarReturn.Message += "Debe especificar el artículo." + Environment.NewLine;
                                 aceptarReturn.Success = false;
                         }
 
-                        if (EntradaDesdeSituacion.TextInt != EntradaDesdeSituacion.TextInt) {
+                        if (EntradaDesdeSituacion.ValueInt != EntradaDesdeSituacion.ValueInt) {
                                 aceptarReturn.Message += @"Debe indicar ""Desde"" y ""Hacia""." + Environment.NewLine;
                                 aceptarReturn.Success = false;
                         }
@@ -112,15 +112,15 @@ namespace Lfc.Articulos
                         switch (EntradaMovimiento.TextKey) {
                                 case "e":
                                         IgnorarEntradaMovimiento_TextChanged++;
-                                        EntradaDesdeSituacion.TextInt = 998;
-                                        EntradaHaciaSituacion.TextInt = 1;
+                                        EntradaDesdeSituacion.ValueInt = 998;
+                                        EntradaHaciaSituacion.ValueInt = 1;
                                         IgnorarEntradaMovimiento_TextChanged--;
                                         break;
 
                                 case "s":
                                         IgnorarEntradaMovimiento_TextChanged++;
-                                        EntradaDesdeSituacion.TextInt = 1;
-                                        EntradaHaciaSituacion.TextInt = 999;
+                                        EntradaDesdeSituacion.ValueInt = 1;
+                                        EntradaHaciaSituacion.ValueInt = 999;
                                         IgnorarEntradaMovimiento_TextChanged--;
                                         break;
 
@@ -171,12 +171,12 @@ namespace Lfc.Articulos
                 {
                         Lbl.Articulos.Articulo Articulo = EntradaArticulo.Elemento as Lbl.Articulos.Articulo;
 
-                        if (Articulo != null && (EntradaDesdeSituacion.TextInt != EntradaHaciaSituacion.TextInt)) {
+                        if (Articulo != null && (EntradaDesdeSituacion.ValueInt != EntradaHaciaSituacion.ValueInt)) {
                                 decimal Cantidad = EntradaCantidad.ValueDecimal;
-                                decimal DesdeCantidad = this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaDesdeSituacion.TextInt.ToString());
-                                decimal HaciaCantidad = this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaHaciaSituacion.TextInt.ToString());
+                                decimal DesdeCantidad = this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaDesdeSituacion.ValueInt.ToString());
+                                decimal HaciaCantidad = this.Connection.FieldDecimal("SELECT cantidad FROM articulos_stock WHERE id_articulo=" + Articulo.Id.ToString() + " AND id_situacion=" + EntradaHaciaSituacion.ValueInt.ToString());
 
-                                if (EntradaDesdeSituacion.TextInt < 998 || EntradaDesdeSituacion.TextInt > 999) {
+                                if (EntradaDesdeSituacion.ValueInt < 998 || EntradaDesdeSituacion.ValueInt > 999) {
                                         EntradaDesdeAntes.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad, Lbl.Sys.Config.Articulos.Decimales);
                                         EntradaDesdeDespues.Text = Lfx.Types.Formatting.FormatNumber(DesdeCantidad - Cantidad, Lbl.Sys.Config.Articulos.Decimales);
                                 } else {
@@ -184,7 +184,7 @@ namespace Lfc.Articulos
                                         EntradaDesdeDespues.Text = "N/A";
                                 }
 
-                                if (EntradaHaciaSituacion.TextInt < 998 || EntradaHaciaSituacion.TextInt > 999) {
+                                if (EntradaHaciaSituacion.ValueInt < 998 || EntradaHaciaSituacion.ValueInt > 999) {
                                         EntradaHaciaAntes.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad, Lbl.Sys.Config.Articulos.Decimales);
                                         EntradaHaciaDespues.Text = Lfx.Types.Formatting.FormatNumber(HaciaCantidad + Cantidad, Lbl.Sys.Config.Articulos.Decimales);
                                 } else {

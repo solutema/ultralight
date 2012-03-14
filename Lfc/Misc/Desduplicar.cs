@@ -59,16 +59,16 @@ namespace Lfc.Misc
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal() == false)
                                 return new Lfx.Types.FailureOperationResult("Necesita permiso de administrador para desduplicar elementos.");
 
-                        if (EntradaElementoDuplicado.TextInt == 0)
+                        if (EntradaElementoDuplicado.ValueInt == 0)
                                 return new Lfx.Types.FailureOperationResult("Debe seleccionar un elemento para eliminar.");
 
-                        if (EntradaElementoOriginal.TextInt == 0)
+                        if (EntradaElementoOriginal.ValueInt == 0)
                                 return new Lfx.Types.FailureOperationResult("Debe seleccionar un elemento para reemplazar al elemento eliminado.");
 
                         if (EntradaElementoOriginal.TextDetail != EntradaElementoDuplicado.TextDetail)
                                 return new Lfx.Types.FailureOperationResult("Los elementos deben tener el mismo nombre.");
 
-                        Lbl.Servicios.Desduplicador Desdup = new Lbl.Servicios.Desduplicador(this.Connection, EntradaElementoOriginal.Table, EntradaElementoOriginal.DataValueField, EntradaElementoOriginal.TextInt, EntradaElementoDuplicado.TextInt);
+                        Lbl.Servicios.Desduplicador Desdup = new Lbl.Servicios.Desduplicador(this.Connection, EntradaElementoOriginal.Table, EntradaElementoOriginal.DataValueField, EntradaElementoOriginal.ValueInt, EntradaElementoDuplicado.ValueInt);
                         Desdup.Desduplicar();
 
 
@@ -77,7 +77,7 @@ namespace Lfc.Misc
 
                 private void EntradaElementoOriginal_TextChanged(object sender, EventArgs e)
                 {
-                        if (EntradaElementoOriginal.TextInt == 0) {
+                        if (EntradaElementoOriginal.ValueInt == 0) {
                                 PersonaOriginal = null;
                                 EntradaCtaCte1.Text = "0";
                         } else {
@@ -88,7 +88,7 @@ namespace Lfc.Misc
 
                 private void EntradaElementoDuplicado_TextChanged(object sender, EventArgs e)
                 {
-                        if (EntradaElementoDuplicado.TextInt == 0) {
+                        if (EntradaElementoDuplicado.ValueInt == 0) {
                                 PersonaDuplicada = null;
                                 EntradaCtaCte2.Text = "0";
                         } else {

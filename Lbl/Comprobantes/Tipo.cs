@@ -96,6 +96,18 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+                public Impresion.CargasPapel CargaPapel
+                {
+                        get
+                        {
+                                return (Impresion.CargasPapel)this.GetFieldValue<int>("cargapapel");
+                        }
+                        set
+                        {
+                                this.Registro["cargapapel"] = (int)value;
+                        }
+                }
+
                 public bool NumerarAlImprimir
                 {
                         get
@@ -416,6 +428,7 @@ namespace Lbl.Comprobantes
                         Comando.Fields.AddWithValue("imprimir_guardar", this.ImprimirAlGuardar ? 1 : 0);
                         Comando.Fields.AddWithValue("imprimir_repetir", this.PermiteImprimirVariasVeces ? 1 : 0);
                         Comando.Fields.AddWithValue("imprimir_modificar", this.PermiteModificarImpresos ? 1 : 0);
+                        Comando.Fields.AddWithValue("cargapapel", (int)(this.CargaPapel));
 
                         if (this.SituacionOrigen == null)
                                 Comando.Fields.AddWithValue("situacionorigen", null);

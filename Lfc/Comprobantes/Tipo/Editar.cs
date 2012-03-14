@@ -56,9 +56,10 @@ namespace Lfc.Comprobantes.Tipo
                         EntradaSituacionOrigen.Elemento = Tipo.SituacionOrigen;
                         EntradaSituacionDestino.Elemento = Tipo.SituacionDestino;
                         EntradaNumerarAl.TextKey = Tipo.NumerarAlGuardar ? "1" : (Tipo.NumerarAlImprimir ? "2" : "0");
-                        EntradaImprimirRepetir.TextKey = Tipo.PermiteImprimirVariasVeces ? "1" : "0";
-                        EntradaImprimirModificar.TextKey = Tipo.PermiteModificarImpresos ? "1" : "0";
-                        EntradaImprimirGuardar.TextKey = Tipo.ImprimirAlGuardar ? "1" : "0";
+                        EntradaImprimirRepetir.ValueInt = Tipo.PermiteImprimirVariasVeces ? 1 : 0;
+                        EntradaImprimirModificar.ValueInt = Tipo.PermiteModificarImpresos ? 1 : 0;
+                        EntradaImprimirGuardar.ValueInt = Tipo.ImprimirAlGuardar ? 1 : 0;
+                        EntradaCargaPapel.ValueInt = (int)(Tipo.CargaPapel);
 
                         this.MostrarImpresoras(Tipo.Impresoras);
 
@@ -79,6 +80,7 @@ namespace Lfc.Comprobantes.Tipo
                         Tipo.PermiteImprimirVariasVeces = EntradaImprimirRepetir.TextKey == "1";
                         Tipo.PermiteModificarImpresos = EntradaImprimirModificar.TextKey == "1";
                         Tipo.ImprimirAlGuardar = EntradaImprimirGuardar.TextKey == "1";
+                        Tipo.CargaPapel = (Lbl.Impresion.CargasPapel)(EntradaCargaPapel.ValueInt);
 
                         base.ActualizarElemento();
                 }

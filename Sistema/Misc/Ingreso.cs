@@ -54,18 +54,18 @@ namespace Lazaro.WinMain.Misc
                                 // Si estoy en localhost, el usuario predeterminado es Administrador
                                 UltimoUsuario = 1;
 
-                        EntradaUsuario.TextInt = UltimoUsuario;
+                        EntradaUsuario.ValueInt = UltimoUsuario;
 		}
 
 
 		private void BotonAceptar_Click(object sender, System.EventArgs e)
 		{
-                        if (EntradaUsuario.TextInt == 0) {
+                        if (EntradaUsuario.ValueInt == 0) {
                                 MessageBox.Show("Por favor ingrese su número de usuario y su contraseña.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                                 return;
                         }
 
-                        if (EntradaUsuario.TextInt == 1 && Lfx.Workspace.Master.DebugMode == false) {
+                        if (EntradaUsuario.ValueInt == 1 && Lfx.Workspace.Master.DebugMode == false) {
                                 string[] EstacionesAdministrador = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Ingreso.Administrador.Estaciones", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 bool Puede = false;
                                 if (EstacionesAdministrador.Length == 0) {
@@ -87,7 +87,7 @@ namespace Lazaro.WinMain.Misc
                                 }
                         }
 
-                        Lbl.Personas.Usuario Usu = new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, EntradaUsuario.TextInt);
+                        Lbl.Personas.Usuario Usu = new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, EntradaUsuario.ValueInt);
                         if(Usu.ContrasenaValida(EntradaContrasena.Text) == false) {
 				System.Threading.Thread.Sleep(800);
                                 Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOnFail, EntradaUsuario.Elemento, "Usuario o contraseña incorrecto.");
@@ -121,7 +121,7 @@ namespace Lazaro.WinMain.Misc
 
                 private void BotonWebAyuda_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        if (EntradaUsuario.TextInt == 1)
+                        if (EntradaUsuario.ValueInt == 1)
                                 Lui.Forms.MessageBox.Show("Si es la primera vez que utiliza el sistema, escriba la contraseña 'admin' (sin las comillas)", "Información");
                         else
                                 Lui.Forms.MessageBox.Show("Si no dispone de una contraseña, por favor póngase en contacto con el administrador.", "Información");

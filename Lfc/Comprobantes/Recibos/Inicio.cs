@@ -90,17 +90,17 @@ namespace Lfc.Comprobantes.Recibos
                         if (filtrarReturn.Success == true) {
                                 using (Comprobantes.Recibos.Filtros FormFiltros = new Comprobantes.Recibos.Filtros()) {
                                         FormFiltros.Connection = this.Connection;
-                                        FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
-                                        FormFiltros.EntradaCliente.TextInt = m_Cliente;
-                                        FormFiltros.EntradaVendedor.TextInt = m_Vendedor;
+                                        FormFiltros.EntradaSucursal.ValueInt = m_Sucursal;
+                                        FormFiltros.EntradaCliente.ValueInt = m_Cliente;
+                                        FormFiltros.EntradaVendedor.ValueInt = m_Vendedor;
                                         FormFiltros.EntradaFechas.Rango = m_Fecha;
                                         FormFiltros.Owner = this;
                                         FormFiltros.ShowDialog();
 
                                         if (FormFiltros.DialogResult == DialogResult.OK) {
-                                                m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
-                                                m_Cliente = FormFiltros.EntradaCliente.TextInt;
-                                                m_Vendedor = FormFiltros.EntradaVendedor.TextInt;
+                                                m_Sucursal = FormFiltros.EntradaSucursal.ValueInt;
+                                                m_Cliente = FormFiltros.EntradaCliente.ValueInt;
+                                                m_Vendedor = FormFiltros.EntradaVendedor.ValueInt;
                                                 m_Fecha = FormFiltros.EntradaFechas.Rango;
 
                                                 this.RefreshList();

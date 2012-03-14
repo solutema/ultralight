@@ -98,10 +98,10 @@ namespace Lfc.Tarjetas.Cupones
                                 FormFiltros.EntradaCliente.Text = m_Cliente.ToString();
                                 FormFiltros.EntradaFechas.Rango = m_Fecha;
                                 if (FormFiltros.ShowDialog() == DialogResult.OK) {
-                                        m_FormaDePago = FormFiltros.EntradaFormaDePago.TextInt;
-                                        m_Plan = FormFiltros.EntradaPlan.TextInt;
+                                        m_FormaDePago = FormFiltros.EntradaFormaDePago.ValueInt;
+                                        m_Plan = FormFiltros.EntradaPlan.ValueInt;
                                         m_Estado = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaEstado.TextKey);
-                                        m_Cliente = FormFiltros.EntradaCliente.TextInt;
+                                        m_Cliente = FormFiltros.EntradaCliente.ValueInt;
                                         m_Fecha = FormFiltros.EntradaFechas.Rango;
                                         this.RefreshList();
                                         return new Lfx.Types.SuccessOperationResult();
@@ -234,7 +234,7 @@ namespace Lfc.Tarjetas.Cupones
                                                 FormularioPago.Cobro.Importe = TotalAcreditar;
                                                 FormularioPago.Cobro.ImporteEditable = false;
                                                 if (Tarjeta != null && Tarjeta.Caja != null)
-                                                        FormularioPago.Cobro.EntradaCaja.TextInt = Tarjeta.Caja.Id;
+                                                        FormularioPago.Cobro.EntradaCaja.ValueInt = Tarjeta.Caja.Id;
                                                 FormularioPago.Cobro.Obs = "Cupones Nº " + Cupones.ToString();
                                                 FormularioPago.Cobro.ObsEditable = false;
                                                 if (FormularioPago.ShowDialog() == DialogResult.OK) {

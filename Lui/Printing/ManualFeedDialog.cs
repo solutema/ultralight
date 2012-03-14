@@ -38,52 +38,35 @@ using System.Windows.Forms;
 
 namespace Lui.Printing
 {
-	public partial class ManualFeedDialog : Lui.Forms.Form
-	{
-		public ManualFeedDialog()
-		{
-			InitializeComponent();
-		}
+        public partial class ManualFeedDialog : Lui.Forms.DialogForm
+        {
+                public ManualFeedDialog()
+                {
+                        InitializeComponent();
+                }
 
-		private void ManualFeedForm_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-		{
-			switch (e.KeyChar)
-			{
-				case ' ':
-					e.Handled = true;
-					this.DialogResult = DialogResult.OK;
-					this.Close();
-					break;
-				case (char)Keys.Escape:
-					e.Handled = true;
-					this.DialogResult = DialogResult.Cancel;
-					this.Close();
-					break;
-			}		
-		}
+                public string DocumentName
+                {
+                        get
+                        {
+                                return txtDocumento.Text;
+                        }
+                        set
+                        {
+                                txtDocumento.Text = value;
+                        }
+                }
 
-		public string DocumentName
-		{
-			get
-			{
-				return txtDocumento.Text;
-			}
-			set
-			{
-				txtDocumento.Text = value;
-			}
-		}
-
-		public string PrinterName
-		{
-			get
-			{
-				return txtImpresora.Text;
-			}
-			set
-			{
-				txtImpresora.Text = value;
-			}
-		}
-	}
+                public string PrinterName
+                {
+                        get
+                        {
+                                return txtImpresora.Text;
+                        }
+                        set
+                        {
+                                txtImpresora.Text = value;
+                        }
+                }
+        }
 }

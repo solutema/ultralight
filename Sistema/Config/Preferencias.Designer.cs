@@ -143,10 +143,12 @@ namespace Lazaro.WinMain.Config
                         this.BotonAceptar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAceptar.Image = null;
                         this.BotonAceptar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAceptar.Location = new System.Drawing.Point(372, 12);
+                        this.BotonAceptar.Location = new System.Drawing.Point(388, 12);
                         this.BotonAceptar.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.BotonAceptar.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.BotonAceptar.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonAceptar.Name = "BotonAceptar";
-                        this.BotonAceptar.Size = new System.Drawing.Size(116, 40);
+                        this.BotonAceptar.Size = new System.Drawing.Size(108, 40);
                         this.BotonAceptar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonAceptar.Subtext = "F9";
                         this.BotonAceptar.TabIndex = 1;
@@ -160,10 +162,12 @@ namespace Lazaro.WinMain.Config
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(494, 12);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(502, 12);
                         this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.CancelCommandButton.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.CancelCommandButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.Size = new System.Drawing.Size(116, 40);
+                        this.CancelCommandButton.Size = new System.Drawing.Size(108, 40);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.CancelCommandButton.Subtext = "Esc";
                         this.CancelCommandButton.TabIndex = 2;
@@ -425,7 +429,7 @@ namespace Lazaro.WinMain.Config
         "Estables|stable",
         "Preliminares|gama",
         "En prueba|beta"};
-                        this.EntradaActualizaciones.Size = new System.Drawing.Size(132, 57);
+                        this.EntradaActualizaciones.Size = new System.Drawing.Size(132, 56);
                         this.EntradaActualizaciones.TabIndex = 21;
                         this.EntradaActualizaciones.TextKey = "stable";
                         // 
@@ -447,7 +451,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaAislacion.SetData = new string[] {
         "Mejor consitencia|Serializable",
         "Mejor concurrencia|RepeatableRead"};
-                        this.EntradaAislacion.Size = new System.Drawing.Size(196, 40);
+                        this.EntradaAislacion.Size = new System.Drawing.Size(196, 39);
                         this.EntradaAislacion.TabIndex = 19;
                         this.EntradaAislacion.TextKey = "Serializable";
                         // 
@@ -463,7 +467,7 @@ namespace Lazaro.WinMain.Config
         "Ventana maximizada|maximizado",
         "Pantalla completa|completo",
         "Ventanas flotantes|flotante"};
-                        this.EntradaModoPantalla.Size = new System.Drawing.Size(196, 91);
+                        this.EntradaModoPantalla.Size = new System.Drawing.Size(196, 90);
                         this.EntradaModoPantalla.TabIndex = 17;
                         this.EntradaModoPantalla.TextKey = "*";
                         // 
@@ -477,7 +481,7 @@ namespace Lazaro.WinMain.Config
         "Nunca|0",
         "Cuando se solicita|1",
         "Automáticamente|2"};
-                        this.EntradaBackup.Size = new System.Drawing.Size(196, 57);
+                        this.EntradaBackup.Size = new System.Drawing.Size(196, 56);
                         this.EntradaBackup.TabIndex = 0;
                         this.EntradaBackup.TextKey = "0";
                         // 
@@ -779,10 +783,12 @@ namespace Lazaro.WinMain.Config
                         this.BotonSiguiente.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSiguiente.Image = null;
                         this.BotonSiguiente.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonSiguiente.Location = new System.Drawing.Point(250, 12);
+                        this.BotonSiguiente.Location = new System.Drawing.Point(274, 12);
                         this.BotonSiguiente.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.BotonSiguiente.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.BotonSiguiente.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonSiguiente.Name = "BotonSiguiente";
-                        this.BotonSiguiente.Size = new System.Drawing.Size(116, 40);
+                        this.BotonSiguiente.Size = new System.Drawing.Size(108, 40);
                         this.BotonSiguiente.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSiguiente.Subtext = "F9";
                         this.BotonSiguiente.TabIndex = 0;

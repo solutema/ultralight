@@ -105,7 +105,7 @@ namespace Lfc.Comprobantes.Facturas
                                         validarReturn.Success = false;
                                         validarReturn.Message += "Debe especificar la forma de pago." + Environment.NewLine;
                                 }
-                                if (EntradaCliente.TextInt == 999 && FormaPago != null && FormaPago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
+                                if (EntradaCliente.ValueInt == 999 && FormaPago != null && FormaPago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += @"""Consumidor final"" no puede realizar pagos en cuenta corriente." + Environment.NewLine;
                                 }
@@ -154,7 +154,7 @@ namespace Lfc.Comprobantes.Facturas
                                         NombresYTipos[i++] = Tp.Nombre + "|" + Tp.Nomenclatura;
                                 }
                                 EntradaTipo.SetData = NombresYTipos;
-                                EntradaFormaPago.TextInt = 3;
+                                EntradaFormaPago.ValueInt = 3;
                                 EntradaFormaPago.Visible = false;
                         }
 
@@ -173,8 +173,8 @@ namespace Lfc.Comprobantes.Facturas
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Res = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         //Agrego campos propios de esta instancia
-                        if (EntradaFormaPago.TextInt > 0)
-                                Res.FormaDePago = new Lbl.Pagos.FormaDePago(Res.Connection, EntradaFormaPago.TextInt);
+                        if (EntradaFormaPago.ValueInt > 0)
+                                Res.FormaDePago = new Lbl.Pagos.FormaDePago(Res.Connection, EntradaFormaPago.ValueInt);
                         else
                                 Res.FormaDePago = null;
 
@@ -264,7 +264,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                 switch (FormularioError.ShowDialog()) {
                                                         case DialogResult.Yes:
                                                                 //Corregir el problema
-                                                                this.EntradaFormaPago.TextInt = 3;
+                                                                this.EntradaFormaPago.ValueInt = 3;
                                                                 Comprob.FormaDePago.Tipo = Lbl.Pagos.TiposFormasDePago.CuentaCorriente;
                                                                 break;
                                                         case DialogResult.No:
@@ -431,8 +431,8 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                                         CuponCredito.Concepto = Lbl.Cajas.Concepto.IngresosPorFacturacion;
                                                                         CuponCredito.ConceptoTexto = "Cobro s/" + Factura.ToString();
 
-                                                                        if (EntradaVendedor.TextInt > 0)
-                                                                                CuponCredito.Vendedor = new Lbl.Personas.Persona(Factura.Connection, EntradaVendedor.TextInt);
+                                                                        if (EntradaVendedor.ValueInt > 0)
+                                                                                CuponCredito.Vendedor = new Lbl.Personas.Persona(Factura.Connection, EntradaVendedor.ValueInt);
 
                                                                         CuponCredito.Factura = Factura;
                                                                         CuponCredito.Guardar();
@@ -510,10 +510,10 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
 
                 private void EntradaFormaPago_Leave(object sender, System.EventArgs e)
                 {
-                        if (EntradaFormaPago.TextInt == 99)
-                                EntradaFormaPago.TextInt = 3;
-                        if (EntradaFormaPago.TextInt == 5)
-                                EntradaFormaPago.TextInt = 4;
+                        if (EntradaFormaPago.ValueInt == 99)
+                                EntradaFormaPago.ValueInt = 3;
+                        if (EntradaFormaPago.ValueInt == 5)
+                                EntradaFormaPago.ValueInt = 4;
                 }
 
 

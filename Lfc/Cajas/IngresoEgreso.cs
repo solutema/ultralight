@@ -95,12 +95,12 @@ namespace Lfc.Cajas
                                 aceptarReturn.Message += "Debe especificar el importe." + Environment.NewLine;
                         }
 
-                        if (EntradaCaja.TextInt == 0) {
+                        if (EntradaCaja.ValueInt == 0) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar la Caja." + Environment.NewLine;
                         }
 
-                        if (EntradaConcepto.TextInt == 0) {
+                        if (EntradaConcepto.ValueInt == 0) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar el Concepto." + Environment.NewLine;
                         }

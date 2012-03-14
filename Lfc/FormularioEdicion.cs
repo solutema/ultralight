@@ -478,18 +478,35 @@ namespace Lfc
                                         }
                                 }
 
+                                string NombreDocumento = Elemento.ToString();
+                                Lbl.Impresion.CargasPapel Carga = Lbl.Impresion.CargasPapel.Automatica;
                                 if (Impresora != null && Impresora.CargaPapel == Lbl.Impresion.CargasPapel.Manual) {
-                                        Lui.Printing.ManualFeedDialog FormularioCargaManual = new Lui.Printing.ManualFeedDialog();
-                                        FormularioCargaManual.DocumentName = Elemento.ToString();
-                                        // Muestro el nombre de la impresora
-                                        if (Impresora != null) {
-                                                FormularioCargaManual.PrinterName = Impresora.Nombre;
-                                        } else {
-                                                System.Drawing.Printing.PrinterSettings objPrint = new System.Drawing.Printing.PrinterSettings();
-                                                FormularioCargaManual.PrinterName = objPrint.PrinterName;
+                                        Carga = Lbl.Impresion.CargasPapel.Manual;
+                                } else if (this.Elemento is Lbl.Comprobantes.ComprobanteConArticulos) {
+                                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
+                                        // El tipo de comprobante puede forzar a una carga manual
+                                        Carga = Comprob.Tipo.CargaPapel;
+
+                                        // Intento averiguar el número de comprobante, en caso de que aun no esté numerado
+                                        if (Comprob.Numero == 0) {
+                                                int ProximoNumero = Lbl.Comprobantes.Numerador.ProximoNumero(Comprob);
+                                                NombreDocumento = NombreDocumento.Replace("00000000", ProximoNumero.ToString("00000000"));
                                         }
-                                        if (FormularioCargaManual.ShowDialog() == DialogResult.Cancel)
-                                                return;
+                                }
+
+                                if (Carga == Lbl.Impresion.CargasPapel.Manual) {
+                                        using (Lui.Printing.ManualFeedDialog FormularioCargaManual = new Lui.Printing.ManualFeedDialog()) {
+                                                FormularioCargaManual.DocumentName = NombreDocumento;
+                                                // Muestro el nombre de la impresora
+                                                if (Impresora != null) {
+                                                        FormularioCargaManual.PrinterName = Impresora.Nombre;
+                                                } else {
+                                                        System.Drawing.Printing.PrinterSettings ObjPrint = new System.Drawing.Printing.PrinterSettings();
+                                                        FormularioCargaManual.PrinterName = ObjPrint.PrinterName;
+                                                }
+                                                if (FormularioCargaManual.ShowDialog() == DialogResult.Cancel)
+                                                        return;
+                                        }
                                 }
 
                                 if (Impresora != null && Impresora.EsVistaPrevia) {

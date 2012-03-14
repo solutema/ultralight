@@ -299,7 +299,7 @@ namespace Lfc.Cajas
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Caja, Lbl.Sys.Permisos.Operaciones.Mover)) {
                                 Cajas.Movimiento FormularioMovimiento = new Cajas.Movimiento();
                                 FormularioMovimiento.EntradaOrigen.Elemento = this.Caja;
-                                FormularioMovimiento.EntradaConcepto.TextInt = 30000;
+                                FormularioMovimiento.EntradaConcepto.ValueInt = 30000;
                                 if (FormularioMovimiento.ShowDialog() == DialogResult.OK)
                                         this.RefreshList();
                         }

@@ -281,7 +281,7 @@ namespace Lfc.Bancos.Cheques
                 public override Lfx.Types.OperationResult Ok()
                 {
                         Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
-                        if (EntradaCajaOrigen.TextInt <= 0) {
+                        if (EntradaCajaOrigen.ValueInt <= 0) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar la cuenta de origen." + Environment.NewLine;
                         }
@@ -296,7 +296,7 @@ namespace Lfc.Bancos.Cheques
 
                                 string ChequesNum = null;
                                 System.Data.DataTable TablaCheques = Connection.Select("SELECT * FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
-                                Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(Connection, EntradaCajaOrigen.TextInt);
+                                Lbl.Cajas.Caja CajaOrigen = new Lbl.Cajas.Caja(Connection, EntradaCajaOrigen.ValueInt);
                                 foreach (System.Data.DataRow RowCheque in TablaCheques.Rows) {
                                         Lbl.Bancos.Cheque Cheque = new Lbl.Bancos.Cheque(this.Connection, (Lfx.Data.Row)RowCheque);
                                         Cheque.Pagar(CajaOrigen);

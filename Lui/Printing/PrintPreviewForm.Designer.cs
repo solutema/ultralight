@@ -71,26 +71,32 @@ namespace Lui.Printing
                         // 
                         // PrintPreview
                         // 
-                        this.PrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                | System.Windows.Forms.AnchorStyles.Left)
-                                | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PrintPreview.AutoZoom = false;
                         this.PrintPreview.Location = new System.Drawing.Point(0, 0);
                         this.PrintPreview.Name = "PrintPreview";
                         this.PrintPreview.Size = new System.Drawing.Size(616, 344);
                         this.PrintPreview.TabIndex = 500;
                         this.PrintPreview.UseAntiAlias = true;
-                        this.PrintPreview.Zoom = 1;
+                        this.PrintPreview.Zoom = 1D;
                         this.PrintPreview.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrintPreview_KeyDown);
                         // 
                         // CancelCommandButton
                         // 
                         this.CancelCommandButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.CancelCommandButton.DockPadding.All = 2;
+                        this.CancelCommandButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(524, 6);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(328, 0);
+                        this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(0);
+                        this.CancelCommandButton.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.CancelCommandButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.CancelCommandButton.Name = "CancelCommandButton";
-                        this.CancelCommandButton.Size = new System.Drawing.Size(84, 40);
+                        this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(2);
+                        this.CancelCommandButton.Size = new System.Drawing.Size(96, 40);
                         this.CancelCommandButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.CancelCommandButton.Subtext = "Esc";
                         this.CancelCommandButton.TabIndex = 111;
@@ -100,12 +106,17 @@ namespace Lui.Printing
                         // SaveButton
                         // 
                         this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.SaveButton.DockPadding.All = 2;
+                        this.SaveButton.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.SaveButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.SaveButton.Image = null;
                         this.SaveButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.SaveButton.Location = new System.Drawing.Point(432, 6);
+                        this.SaveButton.Location = new System.Drawing.Point(424, 0);
+                        this.SaveButton.Margin = new System.Windows.Forms.Padding(0);
+                        this.SaveButton.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.SaveButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.SaveButton.Name = "SaveButton";
-                        this.SaveButton.Size = new System.Drawing.Size(84, 40);
+                        this.SaveButton.Padding = new System.Windows.Forms.Padding(2);
+                        this.SaveButton.Size = new System.Drawing.Size(96, 40);
                         this.SaveButton.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.SaveButton.Subtext = "F8";
                         this.SaveButton.TabIndex = 110;
@@ -117,6 +128,7 @@ namespace Lui.Printing
                         this.LowerPanel.Controls.Add(this.SaveButton);
                         this.LowerPanel.Controls.Add(this.CancelCommandButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+                        this.LowerPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
                         this.LowerPanel.Location = new System.Drawing.Point(0, 353);
                         this.LowerPanel.Name = "LowerPanel";
                         this.LowerPanel.Size = new System.Drawing.Size(616, 52);
@@ -124,12 +136,17 @@ namespace Lui.Printing
                         // 
                         // BotonZoom
                         // 
-                        this.BotonZoom.DockPadding.All = 2;
+                        this.BotonZoom.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonZoom.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonZoom.Image = null;
                         this.BotonZoom.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonZoom.Location = new System.Drawing.Point(8, 6);
+                        this.BotonZoom.Location = new System.Drawing.Point(520, 0);
+                        this.BotonZoom.Margin = new System.Windows.Forms.Padding(0);
+                        this.BotonZoom.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.BotonZoom.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonZoom.Name = "BotonZoom";
-                        this.BotonZoom.Size = new System.Drawing.Size(84, 40);
+                        this.BotonZoom.Padding = new System.Windows.Forms.Padding(2);
+                        this.BotonZoom.Size = new System.Drawing.Size(96, 40);
                         this.BotonZoom.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonZoom.Subtext = "F2";
                         this.BotonZoom.TabIndex = 101;
@@ -138,11 +155,11 @@ namespace Lui.Printing
                         // 
                         // PrintPreviewForm
                         // 
-                        this.AutoScaleBaseSize = new System.Drawing.Size(7, 16);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(616, 405);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.PrintPreview);
-                        this.KeyPreview = true;
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Name = "PrintPreviewForm";
                         this.Text = "Vista Previa";
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormVistaPrevia_KeyDown);

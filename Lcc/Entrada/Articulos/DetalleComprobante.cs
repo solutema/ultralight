@@ -139,16 +139,16 @@ namespace Lcc.Entrada.Articulos
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                new public int TextInt
+                new public int ValueInt
                 {
                         get
                         {
-                                return EntradaArticulo.TextInt;
+                                return EntradaArticulo.ValueInt;
                         }
                         set
                         {
-                                if (EntradaArticulo.TextInt != value)
-                                        EntradaArticulo.TextInt = value;
+                                if (EntradaArticulo.ValueInt != value)
+                                        EntradaArticulo.ValueInt = value;
                         }
                 }
 
@@ -335,7 +335,7 @@ namespace Lcc.Entrada.Articulos
                                 if (EntradaArticulo.Text == EntradaArticulo.FreeTextCode && EntradaArticulo.FreeTextCode.Length > 0)
                                         return EntradaArticulo.Text;
                                 else
-                                        return EntradaArticulo.TextInt.ToString();
+                                        return EntradaArticulo.ValueInt.ToString();
                         }
                         set
                         {
@@ -463,7 +463,7 @@ namespace Lcc.Entrada.Articulos
                                         EntradaImporte.Enabled = true;
                                         if (this.Cantidad == 0)
                                                 this.Cantidad = 1;
-                                } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.TextInt == 0)) {
+                                } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.ValueInt == 0)) {
                                         EntradaUnitario.Enabled = false;
                                         EntradaCantidad.Enabled = false;
                                         EntradaCantidad.TemporaryReadOnly = false;

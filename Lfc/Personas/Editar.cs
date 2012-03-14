@@ -71,7 +71,7 @@ namespace Lfc.Personas
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {
-                        if (EntradaTipo.TextInt <= 0)
+                        if (EntradaTipo.ValueInt <= 0)
                                 return new Lfx.Types.FailureOperationResult("Seleccione el tipo de cliente");
 
                         Lbl.Personas.Persona Cliente = this.Elemento as Lbl.Personas.Persona;
@@ -158,7 +158,7 @@ namespace Lfc.Personas
                         switch (Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre) {
                                 case "CUIT":
                                         if (EntradaClaveTributaria.Text.Length > 0) {
-                                                if (EntradaSituacion.TextInt == 1) {
+                                                if (EntradaSituacion.ValueInt == 1) {
                                                         return new Lfx.Types.FailureOperationResult(@"Un Cliente con CUIT no debe estar en Situación de ""Consumidor Final"".");
                                                 }
                                                 if (System.Text.RegularExpressions.Regex.IsMatch(EntradaClaveTributaria.Text, @"^\d{11}$")) {
@@ -228,7 +228,7 @@ namespace Lfc.Personas
                                 EntradaTipoFac.TextKey = Cliente.FacturaPreferida;
                         EntradaTipoFac.Enabled = PermitirEdicionAvanzada;
 
-                        EntradaTipo.TextInt = Cliente.Tipo;
+                        EntradaTipo.ValueInt = Cliente.Tipo;
                         EntradaTipo.Enabled = PermitirEdicionAvanzada;
                         EntradaGrupo.Elemento = Cliente.Grupo;
                         EntradaSubGrupo.Elemento = Cliente.SubGrupo;
@@ -323,7 +323,7 @@ namespace Lfc.Personas
                 private void EntradaSituacion_Leave(object sender, System.EventArgs e)
                 {
                         if (EntradaClaveTributaria.Text.Length > 0) {
-                                if (EntradaSituacion.TextInt == 1)
+                                if (EntradaSituacion.ValueInt == 1)
                                         EntradaSituacion.ErrorText = "La Situación tributaria del cliente no se corresponde con la CUIT.";
                                 else
                                         EntradaSituacion.ErrorText = "";
@@ -360,7 +360,7 @@ namespace Lfc.Personas
                 {
                         Lbl.Personas.Persona Res = this.Elemento as Lbl.Personas.Persona;
 
-                        Res.Tipo = EntradaTipo.TextInt;
+                        Res.Tipo = EntradaTipo.ValueInt;
                         Res.Grupo = EntradaGrupo.Elemento as Lbl.Personas.Grupo;
                         Res.SubGrupo = EntradaSubGrupo.Elemento as Lbl.Personas.Grupo;
                         Res.Nombres = EntradaNombre.Text.Trim();
@@ -400,12 +400,12 @@ namespace Lfc.Personas
 
                 private void EntradaGrupo_TextChanged(object sender, EventArgs e)
                 {
-                        if (EntradaGrupo.TextInt == 0) {
-                                EntradaSubGrupo.TextInt = 0;
+                        if (EntradaGrupo.ValueInt == 0) {
+                                EntradaSubGrupo.ValueInt = 0;
                                 EntradaSubGrupo.Enabled = false;
                         } else {
                                 EntradaSubGrupo.Enabled = true;
-                                EntradaSubGrupo.Filter = "parent=" + EntradaGrupo.TextInt.ToString();
+                                EntradaSubGrupo.Filter = "parent=" + EntradaGrupo.ValueInt.ToString();
                         }
                 }
 
@@ -423,7 +423,7 @@ namespace Lfc.Personas
                 public override Lazaro.Pres.Forms.FormActionCollection GetFormActions()
                 {
                         Lazaro.Pres.Forms.FormActionCollection Res = base.GetFormActions();
-                        if (this.Elemento != null && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar) && (EntradaTipo.TextInt & 4) == 4)
+                        if (this.Elemento != null && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar) && (EntradaTipo.ValueInt & 4) == 4)
                                 Res.Add(new Lazaro.Pres.Forms.FormAction("Permisos", "F2", "permisos", 10, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
                         return Res;
                 }

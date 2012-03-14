@@ -93,13 +93,13 @@ namespace Lfc.Comprobantes.Facturas
                                         FormFiltros.EntradaTipo.TextKey = this.Definicion.ElementoTipo.ToString();
                                         FormFiltros.EntradaPv.Text = m_PV.ToString();
                                         FormFiltros.EntradaLetra.TextKey = m_Letra;
-                                        FormFiltros.EntradaSucursal.TextInt = m_Sucursal;
+                                        FormFiltros.EntradaSucursal.ValueInt = m_Sucursal;
                                         FormFiltros.EntradaFormaPago.TemporaryReadOnly = true;
-                                        FormFiltros.EntradaFormaPago.TextInt = 0;
+                                        FormFiltros.EntradaFormaPago.ValueInt = 0;
                                         FormFiltros.EntradaCliente.TemporaryReadOnly = true;
-                                        FormFiltros.EntradaCliente.TextInt = 0;
+                                        FormFiltros.EntradaCliente.ValueInt = 0;
                                         FormFiltros.EntradaVendedor.TemporaryReadOnly = true;
-                                        FormFiltros.EntradaVendedor.TextInt = 0;
+                                        FormFiltros.EntradaVendedor.ValueInt = 0;
                                         FormFiltros.EntradaFechas.Rango = m_Fecha;
                                         FormFiltros.EntradaEstado.TemporaryReadOnly = true;
                                         FormFiltros.EntradaEstado.TextKey = "3";
@@ -110,7 +110,7 @@ namespace Lfc.Comprobantes.Facturas
                                         FormFiltros.ShowDialog();
 
                                         if (FormFiltros.DialogResult == DialogResult.OK) {
-                                                m_Sucursal = FormFiltros.EntradaSucursal.TextInt;
+                                                m_Sucursal = FormFiltros.EntradaSucursal.ValueInt;
                                                 m_Fecha = FormFiltros.EntradaFechas.Rango;
                                                 m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaAnuladas.TextKey);
                                                 m_PV = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaPv.Text);

@@ -87,7 +87,7 @@ namespace Lcc.Edicion
                                                         FieldValue = ((Lui.Forms.ComboBox)(Cmp.ControlEntrada)).TextKey;
                                                         break;
                                                 case Lfx.Data.InputFieldTypes.Relation:
-                                                        FieldValue = ((Entrada.CodigoDetalle)(Cmp.ControlEntrada)).TextInt;
+                                                        FieldValue = ((Entrada.CodigoDetalle)(Cmp.ControlEntrada)).ValueInt;
                                                         if (object.Equals(FieldValue, 0))
                                                                 FieldValue = null;
                                                         break;

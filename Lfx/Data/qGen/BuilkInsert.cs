@@ -123,7 +123,7 @@ namespace qGen
                                                 if (baseCommand.Connection is System.Data.Odbc.OdbcConnection)
                                                         FieldParam = "?";
                                                 else
-                                                        FieldParam = "@" + ThisField.ColumnName + CmdNum.ToString();
+                                                        FieldParam = "@" + ThisField.ColumnName + "_" + CmdNum.ToString();
                                         }
 
                                         if (ParamList.Length == 0)
@@ -133,7 +133,7 @@ namespace qGen
 
                                         if (FieldParam == "?" || FieldParam.Substring(0, 1) == "@") {
                                                 System.Data.IDbDataParameter Param = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetParameter();
-                                                Param.ParameterName = "@" + ThisField.ColumnName + CmdNum.ToString();
+                                                Param.ParameterName = "@" + ThisField.ColumnName + "_" + CmdNum.ToString();
                                                 if (ThisField.Value is NullableDateTime && ThisField.Value != null)
                                                         Param.Value = ((NullableDateTime)(ThisField.Value)).Value;
                                                 else

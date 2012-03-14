@@ -112,7 +112,7 @@ namespace Lazaro.WinMain.Config
                                 EntradaEmpresaClaveTributaria.Text = "";
                         else
                                 EntradaEmpresaClaveTributaria.Text = Lbl.Sys.Config.Empresa.ClaveTributaria.ToString();
-                        EntradaEmpresaSituacion.TextInt = Lbl.Sys.Config.Empresa.SituacionTributaria;
+                        EntradaEmpresaSituacion.ValueInt = Lbl.Sys.Config.Empresa.SituacionTributaria;
                         EntradaEmpresaEmail.Text = Lbl.Sys.Config.Empresa.Email;
                         EntradaEmpresaId.ValueInt = Lbl.Sys.Config.Empresa.Id;
 
@@ -141,9 +141,9 @@ namespace Lazaro.WinMain.Config
                         else
                                 this.PrimeraVez = false;
 
-                        EntradaPais.TextInt = PaisActual == 0 ? 1 : PaisActual;
-                        EntradaProvincia.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Provincia", 0);
-                        EntradaLocalidad.TextInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Localidad", 0);
+                        EntradaPais.ValueInt = PaisActual == 0 ? 1 : PaisActual;
+                        EntradaProvincia.ValueInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Provincia", 0);
+                        EntradaLocalidad.ValueInt = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Localidad", 0);
 
                         EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
                         EntradaMonedaDecimalesCosto.TextKey = Lbl.Sys.Config.Moneda.DecimalesCosto.ToString();
@@ -161,13 +161,13 @@ namespace Lazaro.WinMain.Config
                         }
 
 
-                        if (EntradaEmpresaNombre.Text.Length <= 5 || EntradaEmpresaNombre.Text == "Nombre de la Empresa") {
+                        if (EntradaEmpresaNombre.Text.Length <= 5 || EntradaEmpresaNombre.Text == "Nombre de la empresa") {
                                 Lui.Forms.MessageBox.Show("Por favor escriba el nombre de la empresa.", "Validación");
                                 return true;
                         }
 
 
-                        if (EntradaPais.TextInt == 0) {
+                        if (EntradaPais.ValueInt == 0) {
                                 Lui.Forms.MessageBox.Show("Por favor seleccione el país.", "Validación");
                                 return true;
                         }
@@ -178,7 +178,7 @@ namespace Lazaro.WinMain.Config
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.Multideposito", EntradaStockMultideposito.TextKey, 0);
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.Decimales", EntradaStockDecimales.TextKey, 0);
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.DepositoPredet", EntradaStockDepositoPredet.Text, 0); ;
-                        if (EntradaStockDepositoPredetSuc.TextInt > 0)
+                        if (EntradaStockDepositoPredetSuc.ValueInt > 0)
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.DepositoPredet", EntradaStockDepositoPredetSuc.Text, Sucursal);
                         else
                                 Lfx.Workspace.Master.CurrentConfig.DeleteGlobalSetting("Sistema.Stock.DepositoPredet", Sucursal);
@@ -189,7 +189,7 @@ namespace Lazaro.WinMain.Config
                                 Lbl.Sys.Config.Empresa.ClaveTributaria = new Lbl.Personas.Claves.Cuit(EntradaEmpresaClaveTributaria.Text);
                         else
                                 Lbl.Sys.Config.Empresa.ClaveTributaria = null;
-                        Lbl.Sys.Config.Empresa.SituacionTributaria = EntradaEmpresaSituacion.TextInt;
+                        Lbl.Sys.Config.Empresa.SituacionTributaria = EntradaEmpresaSituacion.ValueInt;
                         Lbl.Sys.Config.Empresa.Email = EntradaEmpresaEmail.Text;
                         Lbl.Sys.Config.Empresa.Id = EntradaEmpresaId.ValueInt;
 
@@ -216,9 +216,9 @@ namespace Lazaro.WinMain.Config
 
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.ValueDecimal);
 
-                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Pais", EntradaPais.TextInt);
-                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Provincia", EntradaProvincia.TextInt);
-                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Localidad", EntradaLocalidad.TextInt);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Pais", EntradaPais.ValueInt);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Provincia", EntradaProvincia.ValueInt);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Localidad", EntradaLocalidad.ValueInt);
 
                         EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
                         Lbl.Sys.Config.Moneda.DecimalesCosto = EntradaMonedaDecimalesCosto.ValueInt;
@@ -231,29 +231,11 @@ namespace Lazaro.WinMain.Config
                         if (this.PrimeraVez) {
                                 // Hago cambios referentes al país donde está configurado el sistema
 
+                                Lbl.Entidades.Pais Pais = EntradaPais.Elemento as Lbl.Entidades.Pais;
+                                if (Pais != null)
+                                        Lbl.Sys.Config.CambiarPais(Pais);
+
                                 using (System.Data.IDbTransaction Trans = this.Connection.BeginTransaction()) {
-                                        Lbl.Entidades.Pais Pais = EntradaPais.Elemento as Lbl.Entidades.Pais;
-                                        if (Pais != null) {
-                                                // Configuro las alícuotas de IVA, normal y reducida
-                                                Lbl.Impuestos.Alicuota Alic1 = new Lbl.Impuestos.Alicuota(this.Connection, 1);
-                                                Alic1.Nombre = "IVA tasa normal";
-                                                Alic1.Porcentaje = Pais.Iva1;
-                                                Alic1.Guardar();
-
-                                                Lbl.Impuestos.Alicuota Alic2 = new Lbl.Impuestos.Alicuota(this.Connection, 2);
-                                                Alic1.Nombre = "IVA tasa reducida";
-                                                Alic2.Porcentaje = Pais.Iva2;
-                                                Alic2.Guardar();
-
-                                                if (Pais.Id != 1) {
-                                                        // Desactivo los comprobantes C, E y M
-                                                        qGen.Update DesactComprob = new qGen.Update("documentos_tipos");
-                                                        DesactComprob.Fields.AddWithValue("estado", 0);
-                                                        DesactComprob.WhereClause = new qGen.Where("letra", qGen.ComparisonOperators.In, new string[] { "FC", "FE", "FM", "NDC", "NDE", "NDM", "NCC", "NCE", "NCM" });
-                                                        this.Connection.Execute(DesactComprob);
-                                                }
-                                        }
-
                                         // Cambio la sucursal 1 y el cliente consumidor final a la localidad proporcionada
                                         Lbl.Entidades.Localidad Loc = EntradaLocalidad.Elemento as Lbl.Entidades.Localidad;
                                         if (Loc != null) {
@@ -265,7 +247,6 @@ namespace Lazaro.WinMain.Config
                                                 ConsFinal.Localidad = Loc;
                                                 ConsFinal.Guardar();
                                         }
-
                                         Trans.Commit();
                                 }
 
@@ -292,8 +273,8 @@ namespace Lazaro.WinMain.Config
 
                 private void EntradaProvincia_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (EntradaProvincia.TextInt != 0)
-                                EntradaLocalidad.Filter = "id_provincia=" + EntradaProvincia.TextInt.ToString();
+                        if (EntradaProvincia.ValueInt != 0)
+                                EntradaLocalidad.Filter = "id_provincia=" + EntradaProvincia.ValueInt.ToString();
                         else
                                 EntradaLocalidad.Filter = "";
                 }

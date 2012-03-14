@@ -459,6 +459,12 @@ namespace Lfx.Backups
                                                         switch (Comando) {
                                                                 case ":TBL":
                                                                         TablaActual = Lector.ReadPrefixedString4();
+                                                                        string NombreTabla;
+                                                                        if (Lfx.Workspace.Master.Structure.Tables.ContainsKey(TablaActual) && Lfx.Workspace.Master.Structure.Tables[TablaActual].Label != null) {
+                                                                                NombreTabla = Lfx.Workspace.Master.Structure.Tables[TablaActual].Label;
+                                                                        } else {
+                                                                                NombreTabla = TablaActual.ToTitleCase();
+                                                                        }
                                                                         EndTable = false;
                                                                         Progreso.ChangeStatus("Cargando " + TablaActual);
 

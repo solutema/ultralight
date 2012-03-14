@@ -145,7 +145,7 @@ namespace Lfc.Personas.Usuarios
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        if (EntradaObjeto.TextInt == 0)
+                        if (EntradaObjeto.ValueInt == 0)
                                 return new Lfx.Types.FailureOperationResult("Seleccione un objeto");
 
                         if (this.Operaciones == Lbl.Sys.Permisos.Operaciones.Ninguno)

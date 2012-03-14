@@ -43,13 +43,13 @@ namespace Lfc.Tareas
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        if (EntradaTicket.TextInt == 0)
+                        if (EntradaTicket.ValueInt == 0)
                                 return new Lfx.Types.FailureOperationResult("Escriba el código de Ticket");
 
                         using (System.Data.IDbTransaction Trans = this.Connection.BeginTransaction()) {
                                 qGen.Insert InsertarNovedad = new qGen.Insert(Connection, "tickets_eventos");
-                                InsertarNovedad.Fields.AddWithValue("id_ticket", EntradaTicket.TextInt);
-                                InsertarNovedad.Fields.AddWithValue("id_tecnico", EntradaTecnico.TextInt);
+                                InsertarNovedad.Fields.AddWithValue("id_ticket", EntradaTicket.ValueInt);
+                                InsertarNovedad.Fields.AddWithValue("id_tecnico", EntradaTecnico.ValueInt);
                                 InsertarNovedad.Fields.AddWithValue("minutos_tecnico", Lfx.Types.Parsing.ParseInt(EntradaMinutos.Text));
                                 InsertarNovedad.Fields.AddWithValue("privado", EntradaCondicion.TextKey);
                                 InsertarNovedad.Fields.AddWithValue("descripcion", EntradaDescripcion.Text);

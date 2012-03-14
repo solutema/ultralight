@@ -64,8 +64,8 @@ namespace Lcc.Edicion.Comprobantes
                                         this.ElementoPago = new Lbl.Comprobantes.Pago(this.Connection, value);
                                 else
                                         this.ElementoPago.FormaDePago = value;
-                                if (EntradaFormaDePago.TextInt != value.Id)
-                                        EntradaFormaDePago.TextInt = value.Id;
+                                if (EntradaFormaDePago.ValueInt != value.Id)
+                                        EntradaFormaDePago.ValueInt = value.Id;
                                 this.MostrarPaneles();
                         }
                 }
@@ -129,11 +129,11 @@ namespace Lcc.Edicion.Comprobantes
                                         //Nada que verificar
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.ChequePropio:
-                                        if (EntradaBanco.TextInt <= 0) {
+                                        if (EntradaBanco.ValueInt <= 0) {
                                                 return new Lfx.Types.FailureOperationResult("Debe seleccionar un banco.");
                                         }  else {
                                                 int Numero = Lfx.Types.Parsing.ParseInt(EntradaNumeroCheque.Text);
-                                                int IdChequera = this.Connection.FieldInt("SELECT id_chequera FROM chequeras WHERE estado=1 AND id_banco=" + EntradaBanco.TextInt.ToString() + " AND " + Numero.ToString() + " BETWEEN desde AND hasta AND (id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " OR id_sucursal IS NULL)");
+                                                int IdChequera = this.Connection.FieldInt("SELECT id_chequera FROM chequeras WHERE estado=1 AND id_banco=" + EntradaBanco.ValueInt.ToString() + " AND " + Numero.ToString() + " BETWEEN desde AND hasta AND (id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " OR id_sucursal IS NULL)");
                                                 if (IdChequera == 0)
                                                         return new Lfx.Types.FailureOperationResult("El Número de cheque no corresponde a ninguna Chequera del banco seleccionado.");
 
@@ -153,15 +153,15 @@ namespace Lcc.Edicion.Comprobantes
                                                 return new Lfx.Types.FailureOperationResult("Debe especificar el número de cupón.");
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.Caja:
-                                        if (EntradaCaja.TextInt <= 0)
+                                        if (EntradaCaja.ValueInt <= 0)
                                                 return new Lfx.Types.FailureOperationResult("Debe seleccionar la cuenta bancaria.");
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
-                                        if (EntradaChequeTerceros.TextInt <= 0)
+                                        if (EntradaChequeTerceros.ValueInt <= 0)
                                                 return new Lfx.Types.FailureOperationResult("Debe seleccionar el cheque.");
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.OtroValor:
-                                        if (EntradaValor.TextInt <= 0)
+                                        if (EntradaValor.ValueInt <= 0)
                                                 return new Lfx.Types.FailureOperationResult("Debe seleccionar el " + this.FormaDePago.ToString());
                                         break;
                                 default:
@@ -184,28 +184,28 @@ namespace Lcc.Edicion.Comprobantes
                                         this.ElementoPago.Cheque.FechaEmision = Lfx.Types.Parsing.ParseDate(EntradaFechaEmision.Text);
                                         this.ElementoPago.Cheque.Importe = Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text);
                                         this.ElementoPago.Cheque.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumeroCheque.Text);
-                                        int IdChequera = this.Connection.FieldInt("SELECT id_chequera FROM chequeras WHERE estado=1 AND id_banco=" + EntradaBanco.TextInt.ToString() + " AND " + this.ElementoPago.Cheque.Numero.ToString() + " BETWEEN desde AND hasta AND (id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " OR id_sucursal IS NULL)");
+                                        int IdChequera = this.Connection.FieldInt("SELECT id_chequera FROM chequeras WHERE estado=1 AND id_banco=" + EntradaBanco.ValueInt.ToString() + " AND " + this.ElementoPago.Cheque.Numero.ToString() + " BETWEEN desde AND hasta AND (id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " OR id_sucursal IS NULL)");
                                         if (IdChequera == 0)
                                                 this.ElementoPago.Cheque.Chequera = null;
                                         else
                                                 this.ElementoPago.Cheque.Chequera = new Lbl.Bancos.Chequera(dataBase, IdChequera);
-                                        if (EntradaBanco.TextInt > 0)
-                                                this.ElementoPago.Cheque.Banco = new Lbl.Bancos.Banco(dataBase, EntradaBanco.TextInt);
+                                        if (EntradaBanco.ValueInt > 0)
+                                                this.ElementoPago.Cheque.Banco = new Lbl.Bancos.Banco(dataBase, EntradaBanco.ValueInt);
                                         else
                                                 this.ElementoPago.Cheque.Banco = null;
                                         this.ElementoPago.Cheque.Obs = EntradaObs.Text;
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.Caja:
-                                        if (EntradaCaja.TextInt > 0)
-                                                this.ElementoPago.CajaOrigen = new Lbl.Cajas.Caja(dataBase, EntradaCaja.TextInt);
+                                        if (EntradaCaja.ValueInt > 0)
+                                                this.ElementoPago.CajaOrigen = new Lbl.Cajas.Caja(dataBase, EntradaCaja.ValueInt);
                                         else
                                                 this.ElementoPago.CajaOrigen = null;
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
-                                        this.ElementoPago.Cheque = new Lbl.Bancos.Cheque(dataBase, EntradaChequeTerceros.TextInt);
+                                        this.ElementoPago.Cheque = new Lbl.Bancos.Cheque(dataBase, EntradaChequeTerceros.ValueInt);
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.OtroValor:
-                                        this.ElementoPago.Valor = new Lbl.Pagos.Valor(dataBase, EntradaValor.TextInt);
+                                        this.ElementoPago.Valor = new Lbl.Pagos.Valor(dataBase, EntradaValor.ValueInt);
                                         break;
                         }
                         this.ElementoPago.Importe = Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text);
@@ -216,7 +216,7 @@ namespace Lcc.Edicion.Comprobantes
                 public void FromPago(Lbl.Comprobantes.Pago pago)
                 {
                         this.ElementoPago = pago;
-                        this.EntradaFormaDePago.TextInt = pago.FormaDePago.Id;
+                        this.EntradaFormaDePago.ValueInt = pago.FormaDePago.Id;
                         this.MostrarPaneles();
 
                         switch (this.ElementoPago.FormaDePago.Tipo) {
@@ -229,14 +229,14 @@ namespace Lcc.Edicion.Comprobantes
 
                                         if (this.ElementoPago.Cheque != null) {
                                                 if (this.ElementoPago.Cheque.Banco != null)
-                                                        EntradaBanco.TextInt = this.ElementoPago.Cheque.Banco.Id;
+                                                        EntradaBanco.ValueInt = this.ElementoPago.Cheque.Banco.Id;
                                                 else
-                                                        EntradaBanco.TextInt = 0;
+                                                        EntradaBanco.ValueInt = 0;
                                                 EntradaFechaCobro.Text = Lfx.Types.Formatting.FormatDate(this.ElementoPago.Cheque.FechaCobro);
                                                 EntradaFechaEmision.Text = Lfx.Types.Formatting.FormatDate(this.ElementoPago.Cheque.FechaEmision);
                                                 EntradaNumeroCheque.Text = this.ElementoPago.Cheque.Numero.ToString();
                                         } else {
-                                                EntradaBanco.TextInt = 0;
+                                                EntradaBanco.ValueInt = 0;
                                                 EntradaFechaCobro.Text = "";
                                                 EntradaFechaEmision.Text = "";
                                                 EntradaNumeroCheque.Text = "";
@@ -244,17 +244,17 @@ namespace Lcc.Edicion.Comprobantes
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.Caja:
                                         if (this.ElementoPago.CajaOrigen != null)
-                                                EntradaCaja.TextInt = this.ElementoPago.CajaOrigen.Id;
+                                                EntradaCaja.ValueInt = this.ElementoPago.CajaOrigen.Id;
                                         else
-                                                EntradaCaja.TextInt = 0;
+                                                EntradaCaja.ValueInt = 0;
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                         if (this.ElementoPago.Cheque != null)
-                                                EntradaChequeTerceros.TextInt = this.ElementoPago.Cheque.Id;
+                                                EntradaChequeTerceros.ValueInt = this.ElementoPago.Cheque.Id;
                                         break;
                                 case Lbl.Pagos.TiposFormasDePago.OtroValor:
                                         if (this.ElementoPago.Valor != null)
-                                                EntradaValor.TextInt = this.ElementoPago.Valor.Id;
+                                                EntradaValor.ValueInt = this.ElementoPago.Valor.Id;
                                         break;
                         }
                         EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(this.ElementoPago.Importe, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
@@ -369,7 +369,7 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void EntradaPlan_TextChanged(object sender, EventArgs e)
                 {
-                        Lfx.Data.Row Plan = this.Connection.Tables["tarjetas_planes"].FastRows[EntradaPlan.TextInt];
+                        Lfx.Data.Row Plan = this.Connection.Tables["tarjetas_planes"].FastRows[EntradaPlan.ValueInt];
 
                         if (Plan != null) {
                                 EntradaCuotas.Text = Plan["cuotas"].ToString();
@@ -391,8 +391,8 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void EntradaFormaDePago_TextChanged(object sender, EventArgs e)
                 {
-                        if (this.FormaDePago == null || this.FormaDePago.Id != EntradaFormaDePago.TextInt)
-                                this.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, EntradaFormaDePago.TextInt);
+                        if (this.FormaDePago == null || this.FormaDePago.Id != EntradaFormaDePago.ValueInt)
+                                this.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, EntradaFormaDePago.ValueInt);
                 }
 
                 private void EntradaFechaEmision_Enter(object sender, EventArgs e)
@@ -406,20 +406,20 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void EntradaChequeTerceros_TextChanged(object sender, EventArgs e)
                 {
-                        if (EntradaChequeTerceros.TextInt == 0) {
+                        if (EntradaChequeTerceros.ValueInt == 0) {
                                 this.ElementoPago.Cheque = null;
                         } else {
-                                this.ElementoPago.Cheque = new Lbl.Bancos.Cheque(Connection, EntradaChequeTerceros.TextInt);
+                                this.ElementoPago.Cheque = new Lbl.Bancos.Cheque(Connection, EntradaChequeTerceros.ValueInt);
                                 this.Importe = this.ElementoPago.Cheque.Importe;
                         }
                 }
 
                 private void EntradaValor_TextChanged(object sender, EventArgs e)
                 {
-                        if (EntradaValor.TextInt == 0) {
+                        if (EntradaValor.ValueInt == 0) {
                                 this.ElementoPago.Valor = null;
                         } else {
-                                this.ElementoPago.Valor = new Lbl.Pagos.Valor(Connection, EntradaValor.TextInt);
+                                this.ElementoPago.Valor = new Lbl.Pagos.Valor(Connection, EntradaValor.ValueInt);
                                 this.Importe = this.ElementoPago.Valor.Importe;
                         }
                 }

@@ -53,9 +53,9 @@ namespace Lcc.Entrada
                 {
                         get
                         {
-                                if (this.TextInt == 0) {
+                                if (this.ValueInt == 0) {
                                         return null;
-                                } else if (base.Elemento == null || base.Elemento.Id != this.TextInt) {
+                                } else if (base.Elemento == null || base.Elemento.Id != this.ValueInt) {
                                         if (this.CurrentRow != null) {
                                                 if (this.ElementoTipo == null || this.ElementoTipo == typeof(Lbl.ElementoDeDatos))
                                                         this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.Table);
@@ -74,19 +74,19 @@ namespace Lcc.Entrada
                                 if (value == null) {
                                         this.CurrentRow = null;
                                         m_ItemId = 0;
-                                        if (this.TextInt != 0)
-                                                this.TextInt = 0;
+                                        if (this.ValueInt != 0)
+                                                this.ValueInt = 0;
                                 } else {
                                         this.CurrentRow = m_Elemento.Registro;
                                         m_ItemId = m_Elemento.Id;
-                                        this.TextInt = base.Elemento.Id;
+                                        this.ValueInt = base.Elemento.Id;
                                 }
                         }
                 }
 
 
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public int TextInt
+                public int ValueInt
                 {
                         get
                         {

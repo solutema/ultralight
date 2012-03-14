@@ -68,8 +68,8 @@ namespace Lfc.CuentasCorrientes
 
                 private void EntradaConcepto_Leave(object sender, EventArgs e)
                 {
-                        if (EntradaConcepto.TextInt == 0)
-                                EntradaConcepto.TextInt = 30000;
+                        if (EntradaConcepto.ValueInt == 0)
+                                EntradaConcepto.ValueInt = 30000;
                 }
         }
 }

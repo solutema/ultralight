@@ -44,7 +44,7 @@ namespace Lfc.Ciudades
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {
-                        if (EntradaNivel.TextKey != "0" && EntradaParent.TextInt == 0)
+                        if (EntradaNivel.TextKey != "0" && EntradaParent.ValueInt == 0)
                                 return new Lfx.Types.FailureOperationResult("Debe ingresar la Provincia o el Departamento");
 
                         return base.ValidarControl();

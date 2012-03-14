@@ -407,6 +407,7 @@
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tabla" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="tipo" datatype="VarChar" nullable="1" lenght="200" />
+    <Column name="cargapapel" datatype="TinyInt" nullable="0" default="0" />
     <Column name="direc_ctacte" inputtype="Currency" nullable="0" />
     <Column name="mueve_stock" inputtype="Currency" nullable="0" />
     <Column name="situacionorigen" inputtype="Relation" nullable="1" />

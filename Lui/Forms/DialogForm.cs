@@ -42,6 +42,7 @@ namespace Lui.Forms
 	{
                 public DialogForm()
                 {
+                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                 }
 

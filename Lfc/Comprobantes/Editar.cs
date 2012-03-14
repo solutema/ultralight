@@ -70,12 +70,12 @@ namespace Lfc.Comprobantes
                 {
                         Lfx.Types.OperationResult validarReturn = base.ValidarControl();
 
-                        if (EntradaVendedor.TextInt == 0) {
+                        if (EntradaVendedor.ValueInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Seleccione un Vendedor." + Environment.NewLine;
                         }
 
-                        if (EntradaCliente.TextInt == 0) {
+                        if (EntradaCliente.ValueInt == 0) {
                                 validarReturn.Success = false;
                                 validarReturn.Message += "Seleccione un Cliente." + Environment.NewLine;
                         }
@@ -183,8 +183,8 @@ namespace Lfc.Comprobantes
                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
 
                         Comprob.PV = EntradaPV.ValueInt;
-                        Comprob.Vendedor = new Lbl.Personas.Persona(Comprob.Connection, EntradaVendedor.TextInt);
-                        Comprob.Cliente = new Lbl.Personas.Persona(Comprob.Connection, EntradaCliente.TextInt);
+                        Comprob.Vendedor = new Lbl.Personas.Persona(Comprob.Connection, EntradaVendedor.ValueInt);
+                        Comprob.Cliente = new Lbl.Personas.Persona(Comprob.Connection, EntradaCliente.ValueInt);
 
                         Comprob.Descuento = EntradaDescuento.ValueDecimal;
                         Comprob.Recargo = EntradaInteres.ValueDecimal;
@@ -306,14 +306,14 @@ namespace Lfc.Comprobantes
                         if (Ignorar_EntradaCliente_TextChanged)
                                 return;
 
-                        decimal Descuento = this.Connection.FieldDecimal("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.TextInt.ToString() + ")");
+                        decimal Descuento = this.Connection.FieldDecimal("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.ValueInt.ToString() + ")");
 
                         if (Descuento > 0 && EntradaDescuento.ValueDecimal == 0) {
                                 EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Descuento, 2);
                                 // TODO: EntradaDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
                         }
 
-                        if (this.Tipo != null && this.Tipo.EsFacturaNCoND && this.Elemento.Existe == false && EntradaCliente.TextInt > 0) {
+                        if (this.Tipo != null && this.Tipo.EsFacturaNCoND && this.Elemento.Existe == false && EntradaCliente.ValueInt > 0) {
                                 Lbl.Personas.Persona Persona = EntradaCliente.Elemento as Lbl.Personas.Persona;
 
                                 string LetraComprob = Persona.LetraPredeterminada();
@@ -462,7 +462,7 @@ namespace Lfc.Comprobantes
                         if (Prod == null)
                                 return;
 
-                        int IdArticulo = Prod.TextInt;
+                        int IdArticulo = Prod.ValueInt;
 
                         if (IdArticulo == 0)
                                 return;

@@ -78,7 +78,7 @@ namespace Lazaro.WinMain.Config
                         this.BotonSalir = new Lui.Forms.Button();
                         this.BotonSiguiente = new Lui.Forms.Button();
                         this.BotonAnterior = new Lui.Forms.Button();
-                        this.panel1 = new Lui.Forms.Panel();
+                        this.PanelLogo = new Lui.Forms.Panel();
                         this.pictureBox2 = new System.Windows.Forms.PictureBox();
                         this.PanelNombreServidor = new Lui.Forms.Panel();
                         this.BotonDetectar = new Lui.Forms.Button();
@@ -124,6 +124,19 @@ namespace Lazaro.WinMain.Config
                         this.label16 = new Lui.Forms.Label();
                         this.RadioInicioInstalacionLocal = new System.Windows.Forms.RadioButton();
                         this.label17 = new Lui.Forms.Label();
+                        this.PanelDatosEmpresa = new Lui.Forms.Panel();
+                        this.label22 = new Lui.Forms.Label();
+                        this.EntradaEmpresaClaveTributaria = new Lui.Forms.TextBox();
+                        this.EtiquetaClaveTributaria = new Lui.Forms.Label();
+                        this.label33 = new Lui.Forms.Label();
+                        this.EntradaPais = new Lcc.Entrada.CodigoDetalle();
+                        this.label21 = new Lui.Forms.Label();
+                        this.EntradaEmpresaNombre = new Lui.Forms.TextBox();
+                        this.EntradaEmpresaEmail = new Lui.Forms.TextBox();
+                        this.label28 = new Lui.Forms.Label();
+                        this.label19 = new Lui.Forms.Label();
+                        this.pictureBox15 = new System.Windows.Forms.PictureBox();
+                        this.label20 = new Lui.Forms.Label();
                         this.PanelSeleccionarAlmacen.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -131,7 +144,7 @@ namespace Lazaro.WinMain.Config
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         this.LowerPanel.SuspendLayout();
-                        this.panel1.SuspendLayout();
+                        this.PanelLogo.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
                         this.PanelNombreServidor.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -148,6 +161,8 @@ namespace Lazaro.WinMain.Config
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+                        this.PanelDatosEmpresa.SuspendLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // PanelSeleccionarAlmacen
@@ -401,15 +416,15 @@ namespace Lazaro.WinMain.Config
                         this.BotonAnterior.Text = "Anterior";
                         this.BotonAnterior.Click += new System.EventHandler(this.BotonAnterior_Click);
                         // 
-                        // panel1
+                        // PanelLogo
                         // 
-                        this.panel1.BackColor = System.Drawing.Color.White;
-                        this.panel1.Controls.Add(this.pictureBox2);
-                        this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-                        this.panel1.Location = new System.Drawing.Point(0, 0);
-                        this.panel1.Name = "panel1";
-                        this.panel1.Size = new System.Drawing.Size(100, 358);
-                        this.panel1.TabIndex = 58;
+                        this.PanelLogo.BackColor = System.Drawing.Color.White;
+                        this.PanelLogo.Controls.Add(this.pictureBox2);
+                        this.PanelLogo.Dock = System.Windows.Forms.DockStyle.Left;
+                        this.PanelLogo.Location = new System.Drawing.Point(0, 0);
+                        this.PanelLogo.Name = "PanelLogo";
+                        this.PanelLogo.Size = new System.Drawing.Size(100, 358);
+                        this.PanelLogo.TabIndex = 58;
                         // 
                         // pictureBox2
                         // 
@@ -952,6 +967,164 @@ namespace Lazaro.WinMain.Config
                         this.label17.Text = "Vamos a configurar el almacén de datos de Lázaro. Este proceso se realiza por úni" +
     "ca vez en este equipo.";
                         // 
+                        // PanelDatosEmpresa
+                        // 
+                        this.PanelDatosEmpresa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelDatosEmpresa.Controls.Add(this.label22);
+                        this.PanelDatosEmpresa.Controls.Add(this.EntradaEmpresaClaveTributaria);
+                        this.PanelDatosEmpresa.Controls.Add(this.EtiquetaClaveTributaria);
+                        this.PanelDatosEmpresa.Controls.Add(this.label33);
+                        this.PanelDatosEmpresa.Controls.Add(this.EntradaPais);
+                        this.PanelDatosEmpresa.Controls.Add(this.label21);
+                        this.PanelDatosEmpresa.Controls.Add(this.EntradaEmpresaNombre);
+                        this.PanelDatosEmpresa.Controls.Add(this.EntradaEmpresaEmail);
+                        this.PanelDatosEmpresa.Controls.Add(this.label28);
+                        this.PanelDatosEmpresa.Controls.Add(this.label19);
+                        this.PanelDatosEmpresa.Controls.Add(this.pictureBox15);
+                        this.PanelDatosEmpresa.Controls.Add(this.label20);
+                        this.PanelDatosEmpresa.Location = new System.Drawing.Point(120, 48);
+                        this.PanelDatosEmpresa.Name = "PanelDatosEmpresa";
+                        this.PanelDatosEmpresa.Size = new System.Drawing.Size(496, 304);
+                        this.PanelDatosEmpresa.TabIndex = 0;
+                        this.PanelDatosEmpresa.Visible = false;
+                        this.PanelDatosEmpresa.VisibleChanged += new System.EventHandler(this.PanelDatosEmpresa_VisibleChanged);
+                        // 
+                        // label22
+                        // 
+                        this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label22.Location = new System.Drawing.Point(88, 152);
+                        this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.label22.Name = "label22";
+                        this.label22.Size = new System.Drawing.Size(408, 40);
+                        this.label22.TabIndex = 6;
+                        this.label22.Text = "Lázaro ajustará automáticamente algunas opciones de acuerdo al país que seleccion" +
+    "e.";
+                        // 
+                        // EntradaEmpresaClaveTributaria
+                        // 
+                        this.EntradaEmpresaClaveTributaria.Location = new System.Drawing.Point(208, 232);
+                        this.EntradaEmpresaClaveTributaria.MaxLength = 50;
+                        this.EntradaEmpresaClaveTributaria.Name = "EntradaEmpresaClaveTributaria";
+                        this.EntradaEmpresaClaveTributaria.PlaceholderText = "Identificación tributaria";
+                        this.EntradaEmpresaClaveTributaria.Size = new System.Drawing.Size(188, 24);
+                        this.EntradaEmpresaClaveTributaria.TabIndex = 10;
+                        // 
+                        // EtiquetaClaveTributaria
+                        // 
+                        this.EtiquetaClaveTributaria.Location = new System.Drawing.Point(40, 232);
+                        this.EtiquetaClaveTributaria.Name = "EtiquetaClaveTributaria";
+                        this.EtiquetaClaveTributaria.Size = new System.Drawing.Size(168, 24);
+                        this.EtiquetaClaveTributaria.TabIndex = 9;
+                        this.EtiquetaClaveTributaria.Text = "Clave tributaria";
+                        this.EtiquetaClaveTributaria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label33
+                        // 
+                        this.label33.Location = new System.Drawing.Point(40, 120);
+                        this.label33.Name = "label33";
+                        this.label33.Size = new System.Drawing.Size(168, 24);
+                        this.label33.TabIndex = 4;
+                        this.label33.Text = "País";
+                        this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaPais
+                        // 
+                        this.EntradaPais.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaPais.AutoTab = true;
+                        this.EntradaPais.CanCreate = false;
+                        this.EntradaPais.DataTextField = "nombre";
+                        this.EntradaPais.DataValueField = "id_pais";
+                        this.EntradaPais.ExtraDetailFields = "";
+                        this.EntradaPais.Filter = "";
+                        this.EntradaPais.FreeTextCode = "";
+                        this.EntradaPais.Location = new System.Drawing.Point(208, 120);
+                        this.EntradaPais.MaxLength = 200;
+                        this.EntradaPais.Name = "EntradaPais";
+                        this.EntradaPais.PlaceholderText = "Seleccione un país de la lista";
+                        this.EntradaPais.Required = true;
+                        this.EntradaPais.Size = new System.Drawing.Size(256, 24);
+                        this.EntradaPais.TabIndex = 5;
+                        this.EntradaPais.Table = "paises";
+                        this.EntradaPais.Text = "0";
+                        this.EntradaPais.TextDetail = "";
+                        this.EntradaPais.TextChanged += new System.EventHandler(this.EntradaPais_TextChanged);
+                        // 
+                        // label21
+                        // 
+                        this.label21.Location = new System.Drawing.Point(40, 88);
+                        this.label21.Name = "label21";
+                        this.label21.Size = new System.Drawing.Size(168, 24);
+                        this.label21.TabIndex = 2;
+                        this.label21.Text = "Nombre";
+                        this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaEmpresaNombre
+                        // 
+                        this.EntradaEmpresaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
+                        this.EntradaEmpresaNombre.Location = new System.Drawing.Point(208, 88);
+                        this.EntradaEmpresaNombre.MaxLength = 200;
+                        this.EntradaEmpresaNombre.Name = "EntradaEmpresaNombre";
+                        this.EntradaEmpresaNombre.PlaceholderText = "Escriba el nombre de su empresa";
+                        this.EntradaEmpresaNombre.Size = new System.Drawing.Size(288, 24);
+                        this.EntradaEmpresaNombre.TabIndex = 3;
+                        // 
+                        // EntradaEmpresaEmail
+                        // 
+                        this.EntradaEmpresaEmail.ForceCase = Lui.Forms.TextCasing.LowerCase;
+                        this.EntradaEmpresaEmail.Location = new System.Drawing.Point(208, 200);
+                        this.EntradaEmpresaEmail.MaxLength = 200;
+                        this.EntradaEmpresaEmail.Name = "EntradaEmpresaEmail";
+                        this.EntradaEmpresaEmail.PlaceholderText = "Dirección de correo principal";
+                        this.EntradaEmpresaEmail.Size = new System.Drawing.Size(288, 24);
+                        this.EntradaEmpresaEmail.TabIndex = 8;
+                        // 
+                        // label28
+                        // 
+                        this.label28.Location = new System.Drawing.Point(40, 200);
+                        this.label28.Name = "label28";
+                        this.label28.Size = new System.Drawing.Size(168, 24);
+                        this.label28.TabIndex = 7;
+                        this.label28.Text = "Correo electrónico";
+                        this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // label19
+                        // 
+                        this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label19.Location = new System.Drawing.Point(40, 0);
+                        this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.label19.Name = "label19";
+                        this.label19.Size = new System.Drawing.Size(456, 32);
+                        this.label19.TabIndex = 0;
+                        this.label19.Text = "Información de su empresa";
+                        this.label19.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
+                        // 
+                        // pictureBox15
+                        // 
+                        this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+                        this.pictureBox15.Location = new System.Drawing.Point(0, 0);
+                        this.pictureBox15.Name = "pictureBox15";
+                        this.pictureBox15.Size = new System.Drawing.Size(32, 32);
+                        this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+                        this.pictureBox15.TabIndex = 68;
+                        this.pictureBox15.TabStop = false;
+                        // 
+                        // label20
+                        // 
+                        this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label20.Location = new System.Drawing.Point(40, 40);
+                        this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.label20.Name = "label20";
+                        this.label20.Size = new System.Drawing.Size(456, 40);
+                        this.label20.TabIndex = 1;
+                        this.label20.Text = "Por favor escriba los datos de su empresa. Estos datos pueden aparecer en las fac" +
+    "turas o listados que imprima.";
+                        // 
                         // Inicial
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -959,16 +1132,17 @@ namespace Lazaro.WinMain.Config
                         this.CancelButton = this.BotonSalir;
                         this.ClientSize = new System.Drawing.Size(634, 422);
                         this.ControlBox = false;
-                        this.Controls.Add(this.panel1);
+                        this.Controls.Add(this.PanelDatosEmpresa);
+                        this.Controls.Add(this.PanelLogo);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.EtiquetaEncab);
-                        this.Controls.Add(this.PanelInicio);
-                        this.Controls.Add(this.PanelSeleccionarAlmacen);
-                        this.Controls.Add(this.PanelFinal);
                         this.Controls.Add(this.PanelDeteccion);
                         this.Controls.Add(this.PanelInstalacion);
                         this.Controls.Add(this.PanelNombreServidor);
                         this.Controls.Add(this.PanelPruebaServidor);
+                        this.Controls.Add(this.PanelInicio);
+                        this.Controls.Add(this.PanelSeleccionarAlmacen);
+                        this.Controls.Add(this.PanelFinal);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -984,8 +1158,8 @@ namespace Lazaro.WinMain.Config
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
                         this.LowerPanel.ResumeLayout(false);
-                        this.panel1.ResumeLayout(false);
-                        this.panel1.PerformLayout();
+                        this.PanelLogo.ResumeLayout(false);
+                        this.PanelLogo.PerformLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
                         this.PanelNombreServidor.ResumeLayout(false);
                         this.PanelNombreServidor.PerformLayout();
@@ -1008,6 +1182,9 @@ namespace Lazaro.WinMain.Config
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+                        this.PanelDatosEmpresa.ResumeLayout(false);
+                        this.PanelDatosEmpresa.PerformLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
                         this.ResumeLayout(false);
 
                 }
@@ -1025,7 +1202,7 @@ namespace Lazaro.WinMain.Config
                 private System.Windows.Forms.RadioButton CheckOtroEquipo;
                 private Lui.Forms.Label label1;
                 private System.Windows.Forms.RadioButton CheckEsteEquipo;
-                private Lui.Forms.Panel panel1;
+                private Lui.Forms.Panel PanelLogo;
                 private System.Windows.Forms.PictureBox pictureBox2;
                 private Lui.Forms.Panel PanelNombreServidor;
                 private Lui.Forms.Label label7;
@@ -1079,5 +1256,18 @@ namespace Lazaro.WinMain.Config
                 private Lui.Forms.Button BotonDetectar;
                 private Lui.Forms.Label label12;
                 private Lui.Forms.LinkLabel BotonInicioMasOpciones;
+                private Lui.Forms.Panel PanelDatosEmpresa;
+                private Lui.Forms.Label label19;
+                private System.Windows.Forms.PictureBox pictureBox15;
+                private Lui.Forms.Label label20;
+                private Lui.Forms.Label label33;
+                private Lcc.Entrada.CodigoDetalle EntradaPais;
+                private Lui.Forms.Label label21;
+                private Lui.Forms.TextBox EntradaEmpresaNombre;
+                private Lui.Forms.TextBox EntradaEmpresaEmail;
+                private Lui.Forms.Label label28;
+                private Lui.Forms.TextBox EntradaEmpresaClaveTributaria;
+                private Lui.Forms.Label EtiquetaClaveTributaria;
+                private Lui.Forms.Label label22;
         }
 }

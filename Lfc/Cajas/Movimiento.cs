@@ -67,7 +67,7 @@ namespace Lfc.Cajas
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar el importe." + Environment.NewLine;
                         }
-                        if (EntradaConcepto.TextInt == 0) {
+                        if (EntradaConcepto.ValueInt == 0) {
                                 aceptarReturn.Success = false;
                                 aceptarReturn.Message += "Debe especificar el Concepto." + Environment.NewLine;
                         }

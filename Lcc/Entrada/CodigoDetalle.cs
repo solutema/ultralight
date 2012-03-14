@@ -539,7 +539,7 @@ namespace Lcc.Entrada
                                 Label1.Text = "";
                         }
 
-                        if (this.TextInt > 0 && this.Visible)
+                        if (this.ValueInt > 0 && this.Visible)
                                 Lfx.Workspace.Master.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Relation.ReferenceTable, this.Text });
                 }
 
@@ -555,7 +555,7 @@ namespace Lcc.Entrada
                 {
                         switch (e.KeyCode) {
                                 case Keys.E:
-                                        if (this.TextInt > 0 && e.Control && e.Alt == false && e.Shift == false) {
+                                        if (this.ValueInt > 0 && e.Control && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
                                                 this.Edit();
                                         }
@@ -578,7 +578,7 @@ namespace Lcc.Entrada
                                         }
                                         break;
                                 case Keys.Return:
-                                        if (m_Required && this.TextInt == 0 && !EntradaCodigo.ReadOnly) {
+                                        if (m_Required && this.ValueInt == 0 && !EntradaCodigo.ReadOnly) {
                                                 e.Handled = true;
                                                 MostrarBuscador(EntradaCodigo.Text);
                                         } else {
@@ -684,8 +684,8 @@ namespace Lcc.Entrada
 
                 public object Edit()
                 {
-                        if (this.TextInt > 0)
-                                return Lfx.Workspace.Master.RunTime.Execute("EDIT", new string[] { this.Relation.ReferenceTable, this.TextInt.ToString() });
+                        if (this.ValueInt > 0)
+                                return Lfx.Workspace.Master.RunTime.Execute("EDIT", new string[] { this.Relation.ReferenceTable, this.ValueInt.ToString() });
                         else
                                 return null;
                 }
@@ -732,7 +732,7 @@ namespace Lcc.Entrada
                 private void ContextMenu_Popup(System.Object sender, System.EventArgs e)
                 {
                         this.Focus();
-                        MenuItemEditar.Enabled = (EntradaCodigo.ReadOnly == false && m_CanCreate && this.TextInt > 0);
+                        MenuItemEditar.Enabled = (EntradaCodigo.ReadOnly == false && m_CanCreate && this.ValueInt > 0);
                         if (MenuItemEditar.Enabled)
                                 MenuItemEditar.Text = @"Editar """ + this.TextDetail + @"""";
                         else
