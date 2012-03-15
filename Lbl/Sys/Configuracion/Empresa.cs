@@ -82,7 +82,7 @@ namespace Lbl.Sys
                         {
                                 get
                                 {
-                                        return Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.Nombre", "Empresa sin nombre");
+                                        return Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Empresa.Nombre", "");
                                 }
                                 set
                                 {
