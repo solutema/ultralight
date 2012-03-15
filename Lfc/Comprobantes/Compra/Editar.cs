@@ -45,6 +45,13 @@ namespace Lfc.Comprobantes.Compra
 
                         InitializeComponent();
 
+                        List<Lbl.Comprobantes.Tipo> ListaTiposDeCompra = new List<Lbl.Comprobantes.Tipo>();
+                        foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.TodosPorLetra.Values) {
+                                if (Tp.PermiteCompra)
+                                        ListaTiposDeCompra.Add(Tp);
+                        }
+                        EntradaTipo.SetData = Lbl.Comprobantes.Tipo.ToSetData(ListaTiposDeCompra);
+
                         EntradaTotal.CustomFont = new System.Drawing.Font(this.Font.Name, 14);
                         EntradaCancelado.CustomFont = new System.Drawing.Font(this.Font.Name, 12);
                 }
@@ -83,13 +90,6 @@ namespace Lfc.Comprobantes.Compra
                         Lbl.Comprobantes.ComprobanteDeCompra Fac = this.Elemento as Lbl.Comprobantes.ComprobanteDeCompra;
                         this.SuspendLayout();
 
-                        string[] NombresYTipos = new string[Lbl.Comprobantes.Tipo.FacturasPorLetra.Count];
-                        int i = 0;
-                        foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.FacturasPorLetra.Values) {
-                                NombresYTipos[i++] = Tp.Nombre + "|" + Tp.Nomenclatura;
-                        }
-                        EntradaTipo.SetData = NombresYTipos;
-                        
                         this.TipoComprob = Fac.Tipo;
 
                         EntradaProveedor.Elemento = Fac.Cliente;
@@ -295,21 +295,23 @@ namespace Lfc.Comprobantes.Compra
 
                 private void EntradaTipoPvNumero_TextChanged(object sender, EventArgs e)
                 {
-                        Lbl.Comprobantes.Tipo Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[EntradaTipo.TextKey];
-                        if (Tipo.Existe)
-                                EntradaFormaPago.Enabled = Tipo.EsFacturaNCoND;
-                        else
-                                EntradaFormaPago.Enabled = false;
+                        if (Lbl.Comprobantes.Tipo.TodosPorLetra.ContainsKey(EntradaTipo.TextKey)) {
+                                Lbl.Comprobantes.Tipo Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra[EntradaTipo.TextKey];
+                                if (Tipo.Existe)
+                                        EntradaFormaPago.Enabled = Tipo.EsFacturaNCoND;
+                                else
+                                        EntradaFormaPago.Enabled = false;
 
-                        if(EntradaNumero.ValueInt > 0)
-                                this.Text = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000") + "-" + EntradaNumero.ValueInt.ToString("00000000");
-                        else
-                                this.Text = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000");
+                                if (EntradaNumero.ValueInt > 0)
+                                        this.Text = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000") + "-" + EntradaNumero.ValueInt.ToString("00000000");
+                                else
+                                        this.Text = Tipo.ToString() + " " + this.EntradaPV.ValueInt.ToString("0000");
 
-                        if (Tipo.EsNotaCredito)
-                                EtiquetaHaciaSituacion.Text = "Origen";
-                        else
-                                EtiquetaHaciaSituacion.Text = "Destino";
+                                if (Tipo.EsNotaCredito)
+                                        EtiquetaHaciaSituacion.Text = "Origen";
+                                else
+                                        EtiquetaHaciaSituacion.Text = "Destino";
+                        }
                 }
 
 

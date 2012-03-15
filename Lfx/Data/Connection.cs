@@ -1068,7 +1068,7 @@ LEFT JOIN pg_attribute
                                 this.LogError("----------------------------------------------------------------------------");
                                 this.LogError(ex.Message);
                                 this.LogError(TempCommand.CommandText);
-                                return 0;
+                                throw ex;
                         }
                 }
 

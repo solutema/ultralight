@@ -83,6 +83,7 @@ namespace Lazaro.WinMain.Config
                                 m_PrimeraVez = value;
                                 BotonSiguiente.Visible = !value;
                                 EntradaPais.ReadOnly = !value;
+                                BotonCambiarPais.Visible = EntradaPais.ReadOnly;
                         }
                 }
 
@@ -167,10 +168,12 @@ namespace Lazaro.WinMain.Config
                         }
 
 
-                        if (EntradaPais.ValueInt == 0) {
+                        Lbl.Entidades.Pais NuevoPais = EntradaPais.Elemento as Lbl.Entidades.Pais;
+                        if (NuevoPais == null || NuevoPais.Existe == false) {
                                 Lui.Forms.MessageBox.Show("Por favor seleccione el país.", "Validación");
                                 return true;
                         }
+                        Lbl.Sys.Config.CambiarPais(NuevoPais);
 
                         int Sucursal = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("Estacion", "Sucursal", 1);
 
@@ -216,7 +219,6 @@ namespace Lazaro.WinMain.Config
 
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Cuentas.LimiteCreditoPredet", EntradaLimiteCredito.ValueDecimal);
 
-                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Pais", EntradaPais.ValueInt);
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Provincia", EntradaProvincia.ValueInt);
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Localidad", EntradaLocalidad.ValueInt);
 
@@ -291,6 +293,18 @@ namespace Lazaro.WinMain.Config
                         } else {
                                 EtiquetaClaveTributaria.Text = "Clave tributaria";
                                 EntradaProvincia.Filter = "id_provincia IS NULL";
+                        }
+                }
+
+                private void BotonCambiarPais_Click(object sender, System.EventArgs e)
+                {
+                        using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Al cambiar el país, Lázaro cambiará varios ajustes del sistema como las tasas de IVA y los tipos de comprobantes. ¿Está seguro de que quiere cambiar el país?", "Cambiar país")) {
+                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                                        EntradaPais.ReadOnly = false;
+                                        BotonCambiarPais.Visible = false;
+                                        EntradaPais.Focus();
+                                }
                         }
                 }
         }

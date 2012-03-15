@@ -479,7 +479,7 @@ namespace Lfx
                         }
 
                         //Ahora creo claves nuevas (deleteOnly = false)
-                        progreso.ChangeStatus("Creando reglas de integridad");
+                        progreso.ChangeStatus("Estableciendo reglas de integridad");
                         try {
                                 dataBase.ExecuteSql("FLUSH TABLES");
                         } catch {

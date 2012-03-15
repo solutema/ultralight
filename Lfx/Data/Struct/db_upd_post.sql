@@ -57,6 +57,32 @@ REPLACE INTO "paises" ("id_pais", "nombre", "obs", "estado", "fecha", "iso", "cl
 	(20, 'Nicaragua', NULL, 1, NULL, 'NI', 4, NULL, 80, 18, 15.0000, 0.0000),
 	(99, 'Estados Unidos', NULL, 1, NULL, 'US', 22, 23, 80, 1, 0.0000, 0.0000);
 
+REPLACE INTO "documentos_tipos" ("id_tipo", "letra", "letrasola", "nombre", "nombrelargo", "obs", "estado", "fecha", "tabla", "tipo", "venta", "compra", "permitedisciva", "siempredisciva", "cargapapel", "direc_ctacte", "mueve_stock", "situacionorigen", "situaciondestino", "numerar_guardar", "imprimir_guardar", "numerar_imprimir", "imprimir_repetir", "imprimir_modificar") VALUES
+	(1, 'FA', 'A', 'Factura A', 'Factura A', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(2, 'FB', 'B', 'Factura B', 'Factura B', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(3, 'FC', 'C', 'Factura C', 'Factura C', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1000, 999, 0, 0, 1, 1, 0),
+	(4, 'FE', 'E', 'Factura E', 'Factura E', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(5, 'FM', 'M', 'Factura M', 'Factura M', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(11, 'NCA', 'A', 'Nota créd. A', 'Nota de crédito A', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(12, 'NCB', 'B', 'Nota créd. B', 'Nota de crédito B', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(13, 'NCC', 'C', 'Nota créd. C', 'Nota de crédito C', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(14, 'NCE', 'E', 'Nota créd. E', 'Nota de crédito E', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(15, 'NCM', 'M', 'Nota créd. M', 'Nota de crédito M', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(21, 'NDA', 'A', 'Nota déb. A', 'Nota de débito A', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(22, 'NDB', 'B', 'Nota déb. B', 'Nota de débito B', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(23, 'NDC', 'C', 'Nota déb. C', 'Nota de débito C', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(24, 'NDE', 'E', 'Nota déb. E', 'Nota de débito E', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(25, 'NDM', 'M', 'Nota déb. M', 'Nota de débito M', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(31, 'T', '', 'Ticket', 'Ticket', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Ticket', 1, 1, 0, 0, 0, 1.0000, 1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(41, 'R', '', 'Remito', 'Remito', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Remito', 1, 1, 0, 0, 1, 0.0000, 1.0000, 1, 999, 0, 0, 1, 1, 0),
+	(42, 'NV', '', 'Nota de venta', 'Nota de venta', NULL, 1, '0000-00-00 00:00:00', 'comprob', NULL, 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 1, 1, 0),
+	(51, 'PS', '', 'Presupuesto', 'Presupuesto', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Presupuesto', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 1, 0, 1, 0, 1),
+	(53, 'RC', '', 'Recibo de cobro', 'Recibo de cobro', NULL, 1, '0000-00-00 00:00:00', 'recibos', 'Lbl.Comprobantes.ReciboDeCobro', 1, 0, 0, 0, 0, -1.0000, 0.0000, NULL, NULL, 1, 1, 0, 1, 0),
+	(54, 'RCP', '', 'Recibo de pago', 'Recibo de pago', NULL, 1, '0000-00-00 00:00:00', 'recibos', 'Lbl.Comprobantes.ReciboDePago', 1, 0, 0, 0, 0, 1.0000, 0.0000, NULL, NULL, 1, 0, 0, 1, 0),
+	(55, 'NP', '', 'Nota de pedido', 'Nota de pedido', NULL, 1, '0000-00-00 00:00:00', 'comprob', NULL, 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 0, 0),
+	(56, 'PD', '', 'Pedido', 'Pedido', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Pedido', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 0, 0),
+	(58, 'Listado', '', 'Listados', 'Listados', NULL, 1, NULL, 'comprob', NULL, 1, 0, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 1, 0);
+
 START TRANSACTION WITH CONSISTENT SNAPSHOT;
 INSERT INTO sys_log (fecha, estacion, usuario, comando, tabla, item_id, extra1) SELECT fecha, '', id_persona, 'Comment', tablas, item_id, obs FROM sys_comments;
 DELETE FROM sys_comments;

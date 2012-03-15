@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Puede anular uno o más comprobantes que hayan sido impresos o que estén próximos a imprimir. En caso de los comprobantes impresos se revierten todos los movimientos de existencias y (opcionalmente) se pueden revertir también los cobros recibidos.</value>
+  </data>
 </root>

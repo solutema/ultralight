@@ -158,6 +158,38 @@ namespace Lbl.Comprobantes
                 }
 
 
+                /// <summary>
+                /// Indica si permite hacer comprobantes de venta de este tipo.
+                /// </summary>
+                public bool PermiteVenta
+                {
+                        get
+                        {
+                                return System.Convert.ToBoolean(Registro["venta"]);
+                        }
+                        set
+                        {
+                                Registro["venta"] = value ? 1 : 0;
+                        }
+                }
+
+
+                /// <summary>
+                /// Indica si permite hacer comprobantes de compra de este tipo.
+                /// </summary>
+                public bool PermiteCompra
+                {
+                        get
+                        {
+                                return System.Convert.ToBoolean(Registro["compra"]);
+                        }
+                        set
+                        {
+                                Registro["compra"] = value ? 1 : 0;
+                        }
+                }
+
+
                 public decimal DireccionCtaCte
                 {
                         get
@@ -170,40 +202,6 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                /// <summary>
-                /// Devuelve sólamente la letra (A, B, C, E o M, independientemente de que sea NCA, NDE, etc.)
-                /// </summary>
-                public string Letra
-                {
-                        get
-                        {
-                                switch (this.Nomenclatura) {
-                                        case "FA":
-                                        case "NCA":
-                                        case "NDA":
-                                                return "A";
-                                        case "FB":
-                                        case "NCB":
-                                        case "NDB":
-                                                return "B";
-                                        case "FC":
-                                        case "NCC":
-                                        case "NDC":
-                                                return "C";
-                                        case "FE":
-                                        case "NCE":
-                                        case "NDE":
-                                                return "E";
-                                        case "FM":
-                                        case "NCM":
-                                        case "NDM":
-                                                return "M";
-                                        default:
-                                                return "";
-
-                                }
-                        }
-                }
 
                 public ColeccionGenerica<Lbl.Impresion.TipoImpresora> Impresoras
                 {
@@ -237,6 +235,23 @@ namespace Lbl.Comprobantes
 
 
                 /// <summary>
+                /// Devuelve el tipo nombre largo del tipo de comprobante.
+                /// </summary>
+                public string NombreLargo
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("nombrelargo");
+                        }
+                        set
+                        {
+                                this.SetFieldValue("nombrelargo", value);
+                        }
+                }
+
+
+
+                /// <summary>
                 /// Devuelve el tipo Lbl.
                 /// </summary>
                 public string NombreTipoLbl
@@ -266,6 +281,38 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 this.Registro["letra"] = value;
+                        }
+                }
+
+
+                /// <summary>
+                /// Devuelve sólamente la letra (A, B, C, E o M, independientemente de que sea NCA, NDE, etc.)
+                /// </summary>
+                public string Letra
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("letrasola");
+                        }
+                        set
+                        {
+                                this.Registro["letrasola"] = value;
+                        }
+                }
+
+
+                /// <summary>
+                /// Devuelve la letra del comprobante, o si no tiene subdivisión por letras devuelve la nomenclatura.
+                /// </summary>
+                public string LetraONomenclatura
+                {
+                        get
+                        {
+                                if (string.IsNullOrEmpty(this.Letra))
+                                        return this.Nomenclatura;
+                                else
+                                        return this.Letra;
+
                         }
                 }
 
@@ -420,9 +467,13 @@ namespace Lbl.Comprobantes
                         }
 
                         Comando.Fields.AddWithValue("letra", this.Nomenclatura);
+                        Comando.Fields.AddWithValue("letrasola", this.Letra);
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
+                        Comando.Fields.AddWithValue("nombrelargo", this.NombreLargo);
                         Comando.Fields.AddWithValue("mueve_stock", this.MueveExistencias);
                         Comando.Fields.AddWithValue("direc_ctacte", this.DireccionCtaCte);
+                        Comando.Fields.AddWithValue("compra", this.PermiteCompra ? 1 : 0);
+                        Comando.Fields.AddWithValue("venta", this.PermiteVenta ? 1 : 0);
                         Comando.Fields.AddWithValue("numerar_guardar", this.NumerarAlGuardar ? 1 : 0);
                         Comando.Fields.AddWithValue("numerar_imprimir", this.NumerarAlImprimir ? 1 : 0);
                         Comando.Fields.AddWithValue("imprimir_guardar", this.ImprimirAlGuardar ? 1 : 0);
@@ -478,7 +529,7 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                if (m_TodosPorLetra == null) {
+                                if (m_TodosPorLetra == null || m_TodosPorLetra.Count == 0) {
                                         m_TodosPorLetra = new Dictionary<string, Tipo>();
                                         System.Data.DataTable TablaTipos = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM documentos_tipos WHERE estado=1");
                                         foreach (System.Data.DataRow RegTipo in TablaTipos.Rows) {
@@ -489,20 +540,18 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                private static Dictionary<string, Tipo> m_FacturasPorLetra = null;
-                public static Dictionary<string, Tipo> FacturasPorLetra
+
+                public static string[] ToSetData(IList<Tipo> lista)
                 {
-                        get
-                        {
-                                if (m_FacturasPorLetra == null) {
-                                        m_FacturasPorLetra = new Dictionary<string, Tipo>();
-                                        foreach (Tipo Tp in TodosPorLetra.Values) {
-                                                if (Tp.EsFacturaOTicket)
-                                                        m_FacturasPorLetra.Add(Tp.Nomenclatura, Tp);
-                                        }
-                                }
-                                return m_FacturasPorLetra;
-                        }
+                        if(lista == null || lista.Count == 0)
+                                return new string[0];
+
+                        string[] Res = new string[lista.Count];
+                        int i = 0;
+                        foreach (Tipo Tp in lista)
+                                Res[i++] = Tp.Nombre + "|" + Tp.Nomenclatura;
+
+                        return Res;
                 }
         }
 }

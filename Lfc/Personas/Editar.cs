@@ -46,26 +46,22 @@ namespace Lfc.Personas
                         if (Lbl.Sys.Config.Pais.ClaveBancaria != null)
                                 EtiquetaClaveBancaria.Text = Lbl.Sys.Config.Pais.ClaveBancaria.Nombre;
 
-                        string[] TiposFac = new string[Lbl.Comprobantes.Tipo.FacturasPorLetra.Count + 1];
-                        TiposFac[0] = "Predeterminada|*";
-                        int i = 1;
-                        foreach(Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.FacturasPorLetra.Values) {
-                                string NombreFac;
-                                switch(Tp.Nomenclatura) {
-                                        case "FA":
-                                                NombreFac = "Factura A (IVA discriminado)";
-                                                break;
-                                        case "FB":
-                                                NombreFac = "Factura B (IVA no discriminado)";
-                                                break;
-                                        default:
-                                                NombreFac = Tp.Nombre;
-                                                break;
+
+                        // Lleno el listado de tipos de factura
+                        List<Lbl.Comprobantes.Tipo> TiposFacturaVenta = new List<Lbl.Comprobantes.Tipo>();
+                        foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.TodosPorLetra.Values) {
+                                if (Tp.EsFacturaOTicket && Tp.PermiteVenta) {
+                                        TiposFacturaVenta.Add(Tp);
                                 }
-                                TiposFac[i++] = NombreFac + "|" + Tp.Nomenclatura;
+                        }
+                        string[] ListaFactVenta = new string[TiposFacturaVenta.Count + 1];
+                        ListaFactVenta[0] = "Predeterminada|*";
+                        int i = 1;
+                        foreach (Lbl.Comprobantes.Tipo Tp in TiposFacturaVenta) {
+                                ListaFactVenta[i++] = Tp.NombreLargo + "|" + Tp.LetraONomenclatura;
                         }
 
-                        EntradaTipoFac.SetData = TiposFac; 
+                        EntradaTipoFac.SetData = ListaFactVenta; 
                 }
 
 

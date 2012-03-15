@@ -51,19 +51,20 @@ namespace Lfc.Comprobantes.Facturas
                         InitializeComponent();
 
 
-                        List<string> Tipos = new List<string>() {
-                                "A|A",
-                                "B|B" };
-                        if (Lbl.Comprobantes.Tipo.FacturasPorLetra.ContainsKey("C"))
-                                Tipos.Add("C|C");
-                        if (Lbl.Comprobantes.Tipo.FacturasPorLetra.ContainsKey("E"))
-                                Tipos.Add("E|E");
-                        if (Lbl.Comprobantes.Tipo.FacturasPorLetra.ContainsKey("M"))
-                                Tipos.Add("M|M");
-                        if (Lbl.Comprobantes.Tipo.FacturasPorLetra.ContainsKey("T"))
-                                Tipos.Add("Ticket|T");
+                        // Lleno el listado de tipos de factura
+                        List<Lbl.Comprobantes.Tipo> TiposFacturaVenta = new List<Lbl.Comprobantes.Tipo>();
+                        foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.TodosPorLetra.Values) {
+                                if (Tp.EsFacturaOTicket && Tp.PermiteVenta) {
+                                        TiposFacturaVenta.Add(Tp);
+                                }
+                        }
+                        string[] ListaFactVenta = new string[TiposFacturaVenta.Count];
+                        int i = 0;
+                        foreach (Lbl.Comprobantes.Tipo Tp in TiposFacturaVenta) {
+                                ListaFactVenta[i++] = Tp.NombreLargo + "|" + Tp.LetraONomenclatura;
+                        }
 
-                        this.EntradaTipo.SetData = Tipos.ToArray();
+                        this.EntradaTipo.SetData = ListaFactVenta;
 
                         OkButton.Text = "Anular";
                         OkButton.Visible = false;
@@ -257,6 +258,10 @@ namespace Lfc.Comprobantes.Facturas
 
                                         case "T":
                                                 IncluyeTipos = "'T'";
+                                                break;
+
+                                        default:
+                                                IncluyeTipos = "'" + EntradaTipo.TextKey + "'";
                                                 break;
                                 }
 

@@ -81,15 +81,59 @@ namespace Lbl.Sys
                         Alic1.Guardar();
 
                         Lbl.Impuestos.Alicuota Alic2 = new Lbl.Impuestos.Alicuota(Lfx.Workspace.Master.MasterConnection, 2);
-                        Alic1.Nombre = "IVA tasa reducida";
+                        Alic2.Nombre = "IVA tasa reducida";
                         Alic2.Porcentaje = nuevoPais.Iva2;
                         Alic2.Guardar();
+
+                        Lbl.Comprobantes.Tipo TipoFA = new Comprobantes.Tipo(Lfx.Workspace.Master.MasterConnection, 1);
+                        Lbl.Comprobantes.Tipo TipoFB = new Comprobantes.Tipo(Lfx.Workspace.Master.MasterConnection, 2);
+                        Lbl.Comprobantes.Tipo TipoNCA = new Comprobantes.Tipo(Lfx.Workspace.Master.MasterConnection, 11);
+                        Lbl.Comprobantes.Tipo TipoNCB = new Comprobantes.Tipo(Lfx.Workspace.Master.MasterConnection, 12);
+                        Lbl.Comprobantes.Tipo TipoNDA = new Comprobantes.Tipo(Lfx.Workspace.Master.MasterConnection, 21);
+                        Lbl.Comprobantes.Tipo TipoNDB = new Comprobantes.Tipo(Lfx.Workspace.Master.MasterConnection, 22);
+                        if (Pais.Id == 1) {
+                                TipoFA.Nombre = "Factura A";
+                                TipoFA.NombreLargo = "Factura A";
+                                TipoFB.Nombre = "Factura B";
+                                TipoFB.NombreLargo = "Factura B";
+                                TipoNCA.Nombre = "Nota de créd. A";
+                                TipoNCA.NombreLargo = "Nota de crédito A";
+                                TipoNCB.Nombre = "Nota de créd. B";
+                                TipoNCB.NombreLargo = "Nota de crédito B";
+                                TipoNDA.Nombre = "Nota de déb. A";
+                                TipoNDA.NombreLargo = "Nota de débito A";
+                                TipoNDB.Nombre = "Nota de déb. B";
+                                TipoNDB.NombreLargo = "Nota de débito B";
+                        } else {
+                                TipoFA.Nombre = "Fact. IVA discr.";
+                                TipoFA.NombreLargo = "Factura IVA discriminado";
+                                TipoFB.Nombre = "Fact. IVA no discr.";
+                                TipoFB.NombreLargo = "Factura IVA no discriminado";
+                                TipoNCA.Nombre = "Nota de créd. ID";
+                                TipoNCA.NombreLargo = "Nota de crédito IVA discr.";
+                                TipoNCB.Nombre = "Nota de créd. IND";
+                                TipoNCB.NombreLargo = "Nota de crédito IVA no discr.";
+                                TipoNDA.Nombre = "Nota de déb. IND";
+                                TipoNDA.NombreLargo = "Nota de débito IVA discr.";
+                                TipoNDB.Nombre = "Nota de déb. IND";
+                                TipoNDB.NombreLargo = "Nota de débito IVA no discr.";
+                        }
+
+                        TipoFA.Guardar();
+                        TipoFB.Guardar();
+                        TipoNCA.Guardar();
+                        TipoNCB.Guardar();
+                        TipoNDA.Guardar();
+                        TipoNDB.Guardar();
 
                         // Activo o desactivo los comprobantes C, E y M
                         qGen.Update DesactComprob = new qGen.Update("documentos_tipos");
                         DesactComprob.Fields.AddWithValue("estado", nuevoPais.Id == 1 ? 1 : 0);
                         DesactComprob.WhereClause = new qGen.Where("letra", qGen.ComparisonOperators.In, new string[] { "FC", "FE", "FM", "NDC", "NDE", "NDM", "NCC", "NCE", "NCM" });
                         Lfx.Workspace.Master.MasterConnection.Execute(DesactComprob);
+
+                        Lbl.Comprobantes.Tipo.TodosPorLetra.Clear();
+                        Lfx.Workspace.Master.CurrentConfig.ClearCache();
                 }
 
 

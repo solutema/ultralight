@@ -254,16 +254,14 @@ namespace Lfx.Config
                         Busco = (terminalName == null ? System.Environment.MachineName.ToUpperInvariant() : terminalName) + "/0/" + settingName;
                         if (sucursal == 0 && SysConfigCache.ContainsKey(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
-                                if (Res.Length > 0)
-                                        return Res;
+                                return Res;
                         }
 
                         //Busco una variable para la sucursal
                         Busco = "*/" + m_Workspace.CurrentConfig.Empresa.SucursalActual.ToString() + "/" + DataBase.EscapeString(settingName);
                         if (terminalName == null && SysConfigCache.ContainsKey(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
-                                if (Res.Length > 0)
-                                        return Res;
+                                return Res;
                         }
 
                         if (sucursal == 0 && terminalName == null) {

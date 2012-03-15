@@ -505,13 +505,15 @@ namespace Lazaro.WinMain
                                                                                         TipoServidor = "Oracle";
                                                                                         break;
                                                                         }
-                                                                        FormError.Ayuda = @"No se puede conectar con el servidor local. Verifique que el servidor " + TipoServidor + @" se encuentra instalado y funcionando en este equipo.
+                                                                        FormError.Ayuda = @"No se puede conectar con el servidor local. Verifique que el servidor " + TipoServidor + @" se encuentra instalado y funcionando en el equipo.
 Si necesita información sobre cómo instalar o configurar un servidor SQL para Lázaro, consulte la ayuda en línea en www.sistemalazaro.com.ar";
                                                                 } else {
                                                                         FormError.Ayuda = "No se puede conectar con el servidor remoto. Verifique que el servidor en el equipo remoto '" + Lfx.Data.DataBaseCache.DefaultCache.ServerName + @"' se encuentre funcionando y que su conexión de red esté activa.";
                                                                 }
                                                         } else if (Res.Message.IndexOf("Access denied for user") >= 0) {
-                                                                FormError.Ayuda = "El servidor impidió el acceso debido a que el nombre de usuario o la contraseña son incorrectos. Haga clic en 'Configurarción' y luego en 'Vista Avanzada' y verifique la configuración proporcionada.";
+                                                                FormError.Ayuda = "El servidor impidió el acceso debido a que el nombre de usuario o la contraseña son incorrectos. Haga clic en 'Configurarción' y luego en 'Configuración avanzada' y verifique la configuración proporcionada.";
+                                                        } else if (Res.Message.IndexOf("Debe preparar el almacén") >= 0) {
+                                                                FormError.Ayuda = "Debe preparar el servidor SQL para que Lázaro pueda utilizarlo como almacén de datos.";
                                                         } else {
                                                                 FormError.Ayuda = "No se dispone de información extendida sobre el error. Por favor lea el mensaje de error original a continuación:";
                                                         }

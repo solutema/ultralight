@@ -52,6 +52,21 @@ namespace Lfc.Comprobantes.Facturas
 
                         InitializeComponent();
 
+                        // Lleno el listado de tipos de factura
+                        List<Lbl.Comprobantes.Tipo> TiposFacturaVenta = new List<Lbl.Comprobantes.Tipo>();
+                        foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.TodosPorLetra.Values) {
+                                if (Tp.EsFacturaOTicket && Tp.PermiteVenta) {
+                                        TiposFacturaVenta.Add(Tp);
+                                }
+                        }
+                        string[] ListaFactVenta = new string[TiposFacturaVenta.Count];
+                        int i = 0;
+                        foreach (Lbl.Comprobantes.Tipo Tp in TiposFacturaVenta) {
+                                ListaFactVenta[i++] = Tp.NombreLargo + "|" + Tp.LetraONomenclatura;
+                        }
+
+                        this.EntradaTipo.SetData = ListaFactVenta;
+
                         OkButton.Text = "Reimprimir";
                         OkButton.Visible = false;
                 }
@@ -133,6 +148,10 @@ namespace Lfc.Comprobantes.Facturas
                                         case "M":
                                                 IncluyeTipos = "'FM', 'NCM', 'NDM'";
                                                 break;
+
+                                        default:
+                                                IncluyeTipos = "'" + EntradaTipo.TextKey + "'";
+                                                break;
                                 }
 
                                 int Paso = desde < hasta ? 1 : -1;
@@ -210,6 +229,10 @@ namespace Lfc.Comprobantes.Facturas
 
                                 case "M":
                                         IncluyeTipos = "'FM', 'NCM', 'NDM'";
+                                        break;
+
+                                default:
+                                        IncluyeTipos = "'" + EntradaTipo.TextKey + "'";
                                         break;
                         }
 

@@ -67,10 +67,10 @@ namespace Lfc.Comprobantes.Facturas
                         // 
                         // label2
                         // 
-                        this.label2.Location = new System.Drawing.Point(32, 64);
+                        this.label2.Location = new System.Drawing.Point(24, 64);
                         this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(576, 40);
+                        this.label2.Size = new System.Drawing.Size(584, 40);
                         this.label2.TabIndex = 1;
                         this.label2.Text = "El cliente registra un saldo a favor en su cuenta corriente, suficiente para cubr" +
     "ir el total de la factura que va a imprimir. ¿Desea imprimir esta factura en cue" +

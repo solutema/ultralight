@@ -203,6 +203,7 @@ namespace Lui.Forms
                                 IgnoreEvents++;
                                 this.TextBox1.Text = "";
                                 this.Grayed = false;
+                                this.ApplyStyle();
                                 IgnoreEvents--;
                         }
                         base.OnEnter(e);
