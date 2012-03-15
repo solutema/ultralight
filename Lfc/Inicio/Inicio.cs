@@ -77,9 +77,9 @@ namespace Lfc.Inicio
                         base.OnFormClosing(e);
                 }
 
-                private void BotonWebAltaCliente_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                private void BotonWebPrimerosPasos_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/38");
+                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/44");
                 }
 
                 private void BotonWebAltaArticulo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

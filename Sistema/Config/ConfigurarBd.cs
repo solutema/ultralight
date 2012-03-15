@@ -90,8 +90,6 @@ namespace Lazaro.WinMain.Config
                                 EntradaSucursal.Text = "1";
                         else
                                 EntradaSucursal.Text = Branch;
-
-                        EtiquetaServidorCumple.Text = "Puede instalar un servidor SQL en este equipo, si aun no lo ha hecho.";
                 }
 
 
@@ -104,20 +102,6 @@ namespace Lazaro.WinMain.Config
                                 default:
                                         EtiquetaServidor.Text = "Servidor";
                                         break;
-                        }
-                }
-
-
-                private void BotonServidorVista_Click(System.Object sender, System.EventArgs e)
-                {
-                        if (PanelServidorAvanzado.Visible) {
-                                PanelServidorAvanzado.Visible = false;
-                                PanelServidorNoInstalado.Visible = true;
-                                BotonServidorVista.Text = "Vista Avanzada >";
-                        } else {
-                                PanelServidorAvanzado.Visible = true;
-                                PanelServidorNoInstalado.Visible = false;
-                                BotonServidorVista.Text = "Vista Normal <";
                         }
                 }
 
@@ -199,11 +183,5 @@ namespace Lazaro.WinMain.Config
                                 EntradaSlowLink.Value = true;
                         }
                 }
-
-                private void BotonWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-                {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/19");
-                }
-
         }
 }

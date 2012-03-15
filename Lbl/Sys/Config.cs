@@ -96,26 +96,26 @@ namespace Lbl.Sys
                                 TipoFA.NombreLargo = "Factura A";
                                 TipoFB.Nombre = "Factura B";
                                 TipoFB.NombreLargo = "Factura B";
-                                TipoNCA.Nombre = "Nota de créd. A";
+                                TipoNCA.Nombre = "Nota créd. A";
                                 TipoNCA.NombreLargo = "Nota de crédito A";
-                                TipoNCB.Nombre = "Nota de créd. B";
+                                TipoNCB.Nombre = "Nota créd. B";
                                 TipoNCB.NombreLargo = "Nota de crédito B";
-                                TipoNDA.Nombre = "Nota de déb. A";
+                                TipoNDA.Nombre = "Nota déb. A";
                                 TipoNDA.NombreLargo = "Nota de débito A";
-                                TipoNDB.Nombre = "Nota de déb. B";
+                                TipoNDB.Nombre = "Nota déb. B";
                                 TipoNDB.NombreLargo = "Nota de débito B";
                         } else {
                                 TipoFA.Nombre = "Fact. IVA discr.";
                                 TipoFA.NombreLargo = "Factura IVA discriminado";
                                 TipoFB.Nombre = "Fact. IVA no discr.";
                                 TipoFB.NombreLargo = "Factura IVA no discriminado";
-                                TipoNCA.Nombre = "Nota de créd. ID";
+                                TipoNCA.Nombre = "Nota créd. ID";
                                 TipoNCA.NombreLargo = "Nota de crédito IVA discr.";
-                                TipoNCB.Nombre = "Nota de créd. IND";
+                                TipoNCB.Nombre = "Nota créd. IND";
                                 TipoNCB.NombreLargo = "Nota de crédito IVA no discr.";
-                                TipoNDA.Nombre = "Nota de déb. IND";
+                                TipoNDA.Nombre = "Nota déb. ID";
                                 TipoNDA.NombreLargo = "Nota de débito IVA discr.";
-                                TipoNDB.Nombre = "Nota de déb. IND";
+                                TipoNDB.Nombre = "Nota déb. IND";
                                 TipoNDB.NombreLargo = "Nota de débito IVA no discr.";
                         }
 

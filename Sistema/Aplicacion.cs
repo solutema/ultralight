@@ -675,7 +675,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Usuario." + Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString() + ".Whatsnew.Ultimo", System.DateTime.Now.ToString("yyyy-MM-dd"));
                                 } else {
                                         // Veo si hay novedades para mostrar
-                                        //string FechaWhatsnewOriginal = FechaWhatsnew;
+                                        // string FechaWhatsnewOriginal = FechaWhatsnew;
                                         System.IO.StreamReader Whatsnew = new System.IO.StreamReader(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Lazaro.whatsnew.txt"));
                                         System.Text.StringBuilder Mostrar = null;
                                         bool Mostrando = false;
@@ -710,6 +710,13 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 // Mostrar el formulario
                                 Aplicacion.FormularioPrincipal = new Principal.Inicio();
                                 Aplicacion.FormularioPrincipal.Show();
+                                if (FechaWhatsnew == "firsttime") {
+                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¡Hola! ¿Le gustaría ver una página sencilla con un poco de información sobre cómo utilizar Lázaro?", "Primeros pasos");
+                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                        if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                                Help.ShowHelp(Aplicacion.FormularioPrincipal, "http://www.sistemalazaro.com.ar/?q=node/44");
+                                        }
+                                }
                                 Application.Run(Aplicacion.FormularioPrincipal);
                         }
 

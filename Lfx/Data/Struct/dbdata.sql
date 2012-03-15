@@ -12629,7 +12629,7 @@ INSERT INTO "documentos_tipos" ("id_tipo", "letra", "letrasola", "nombre", "nomb
 	(24, 'NDE', 'E', 'Nota déb. E', 'Nota de débito E', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
 	(25, 'NDM', 'M', 'Nota déb. M', 'Nota de débito M', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
 	(31, 'T', '', 'Ticket', 'Ticket', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Ticket', 1, 1, 0, 0, 0, 1.0000, 1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(41, 'R', '', 'Remito', 'Remito', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Remito', 1, 1, 0, 0, 1, 0.0000, 1.0000, 1, 999, 0, 0, 1, 1, 0),
+	(41, 'R', '', 'Remito', 'Remito', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Remito', 1, 1, 0, 0, 1, 0.0000, -1.0000, 1, 999, 0, 0, 1, 1, 0),
 	(42, 'NV', '', 'Nota de venta', 'Nota de venta', NULL, 1, '0000-00-00 00:00:00', 'comprob', NULL, 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 1, 1, 0),
 	(51, 'PS', '', 'Presupuesto', 'Presupuesto', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Presupuesto', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 1, 0, 1, 0, 1),
 	(53, 'RC', '', 'Recibo de cobro', 'Recibo de cobro', NULL, 1, '0000-00-00 00:00:00', 'recibos', 'Lbl.Comprobantes.ReciboDeCobro', 1, 0, 0, 0, 0, -1.0000, 0.0000, NULL, NULL, 1, 1, 0, 1, 0),
@@ -12774,6 +12774,7 @@ INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*'
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Decimales', 0, 0);
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.DepositoPredet', 1, 0);
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Multideposito', 1, 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.FechaInstalacion', NOW(), 0);
 
 
 INSERT INTO "sys_plantillas" ("id_plantilla", "nombre", "obs", "estado", "fecha", "codigo", "tamanopapel", "landscape", "copias", "bandeja", "margen_izquierda", "margen_derecha", "margen_arriba", "margen_abajo", "tipo", "defxml") VALUES

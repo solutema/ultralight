@@ -101,7 +101,7 @@ namespace Lfc.Comprobantes.Facturas
 
                                 Lbl.Pagos.FormaDePago FormaPago = EntradaFormaPago.Elemento as Lbl.Pagos.FormaDePago;
                                 Lbl.Comprobantes.Tipo Tipo = new Lbl.Comprobantes.Tipo(this.Connection, EntradaTipo.TextKey);
-                                if (FormaPago == null && Tipo.EsFactura) {
+                                if (FormaPago == null && Tipo.EsFacturaOTicket) {
                                         validarReturn.Success = false;
                                         validarReturn.Message += "Debe especificar la forma de pago." + Environment.NewLine;
                                 }

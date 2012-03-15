@@ -63,7 +63,7 @@ namespace Lfc.Inicio
                         this.BotonWebContacto = new Lui.Forms.LinkLabel();
                         this.BotonWebComo = new Lui.Forms.LinkLabel();
                         this.label1 = new Lui.Forms.Label();
-                        this.BotonWebAltaCliente = new Lui.Forms.LinkLabel();
+                        this.BotonWebPrimerosPasos = new Lui.Forms.LinkLabel();
                         this.BotonWebAltaArticulo = new Lui.Forms.LinkLabel();
                         this.BotonWebComoFactura = new Lui.Forms.LinkLabel();
                         this.PanelWeb = new Lui.Forms.Panel();
@@ -83,7 +83,7 @@ namespace Lfc.Inicio
                         this.BotonWebInicio.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.BotonWebInicio.Location = new System.Drawing.Point(792, 616);
                         this.BotonWebInicio.Name = "BotonWebInicio";
-                        this.BotonWebInicio.Size = new System.Drawing.Size(177, 15);
+                        this.BotonWebInicio.Size = new System.Drawing.Size(161, 17);
                         this.BotonWebInicio.TabIndex = 3;
                         this.BotonWebInicio.TabStop = true;
                         this.BotonWebInicio.Text = "www.sistemalazaro.com.ar";
@@ -99,7 +99,7 @@ namespace Lfc.Inicio
                         this.BotonWebContacto.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.BotonWebContacto.Location = new System.Drawing.Point(648, 616);
                         this.BotonWebContacto.Name = "BotonWebContacto";
-                        this.BotonWebContacto.Size = new System.Drawing.Size(136, 15);
+                        this.BotonWebContacto.Size = new System.Drawing.Size(124, 17);
                         this.BotonWebContacto.TabIndex = 4;
                         this.BotonWebContacto.TabStop = true;
                         this.BotonWebContacto.Text = "¿Tiene sugerencias?";
@@ -114,7 +114,7 @@ namespace Lfc.Inicio
                         this.BotonWebComo.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.BotonWebComo.Location = new System.Drawing.Point(240, 72);
                         this.BotonWebComo.Name = "BotonWebComo";
-                        this.BotonWebComo.Size = new System.Drawing.Size(159, 15);
+                        this.BotonWebComo.Size = new System.Drawing.Size(144, 17);
                         this.BotonWebComo.TabIndex = 5;
                         this.BotonWebComo.TabStop = true;
                         this.BotonWebComo.Text = "Otras tareas frecuentes";
@@ -124,27 +124,27 @@ namespace Lfc.Inicio
                         // label1
                         // 
                         this.label1.AutoSize = true;
-                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         this.label1.Location = new System.Drawing.Point(16, 12);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(194, 25);
+                        this.label1.Size = new System.Drawing.Size(173, 30);
                         this.label1.TabIndex = 0;
                         this.label1.Text = "Ayuda en la web";
+                        this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
-                        // BotonWebAltaCliente
+                        // BotonWebPrimerosPasos
                         // 
-                        this.BotonWebAltaCliente.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-                        this.BotonWebAltaCliente.AutoSize = true;
-                        this.BotonWebAltaCliente.Cursor = System.Windows.Forms.Cursors.Hand;
-                        this.BotonWebAltaCliente.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-                        this.BotonWebAltaCliente.Location = new System.Drawing.Point(48, 48);
-                        this.BotonWebAltaCliente.Name = "BotonWebAltaCliente";
-                        this.BotonWebAltaCliente.Size = new System.Drawing.Size(144, 15);
-                        this.BotonWebAltaCliente.TabIndex = 6;
-                        this.BotonWebAltaCliente.TabStop = true;
-                        this.BotonWebAltaCliente.Text = "Dar de alta un cliente";
-                        this.BotonWebAltaCliente.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.BotonWebAltaCliente.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonWebAltaCliente_LinkClicked);
+                        this.BotonWebPrimerosPasos.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+                        this.BotonWebPrimerosPasos.AutoSize = true;
+                        this.BotonWebPrimerosPasos.Cursor = System.Windows.Forms.Cursors.Hand;
+                        this.BotonWebPrimerosPasos.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+                        this.BotonWebPrimerosPasos.Location = new System.Drawing.Point(48, 48);
+                        this.BotonWebPrimerosPasos.Name = "BotonWebPrimerosPasos";
+                        this.BotonWebPrimerosPasos.Size = new System.Drawing.Size(99, 17);
+                        this.BotonWebPrimerosPasos.TabIndex = 6;
+                        this.BotonWebPrimerosPasos.TabStop = true;
+                        this.BotonWebPrimerosPasos.Text = "Primeros pasos";
+                        this.BotonWebPrimerosPasos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.BotonWebPrimerosPasos.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonWebPrimerosPasos_LinkClicked);
                         // 
                         // BotonWebAltaArticulo
                         // 
@@ -154,7 +154,7 @@ namespace Lfc.Inicio
                         this.BotonWebAltaArticulo.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.BotonWebAltaArticulo.Location = new System.Drawing.Point(48, 72);
                         this.BotonWebAltaArticulo.Name = "BotonWebAltaArticulo";
-                        this.BotonWebAltaArticulo.Size = new System.Drawing.Size(149, 15);
+                        this.BotonWebAltaArticulo.Size = new System.Drawing.Size(138, 17);
                         this.BotonWebAltaArticulo.TabIndex = 7;
                         this.BotonWebAltaArticulo.TabStop = true;
                         this.BotonWebAltaArticulo.Text = "Dar de alta un artículo";
@@ -169,7 +169,7 @@ namespace Lfc.Inicio
                         this.BotonWebComoFactura.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.BotonWebComoFactura.Location = new System.Drawing.Point(240, 48);
                         this.BotonWebComoFactura.Name = "BotonWebComoFactura";
-                        this.BotonWebComoFactura.Size = new System.Drawing.Size(137, 15);
+                        this.BotonWebComoFactura.Size = new System.Drawing.Size(126, 17);
                         this.BotonWebComoFactura.TabIndex = 8;
                         this.BotonWebComoFactura.TabStop = true;
                         this.BotonWebComoFactura.Text = "Imprimir una factura";
@@ -184,7 +184,7 @@ namespace Lfc.Inicio
                         this.PanelWeb.Controls.Add(this.BotonWebComoFactura);
                         this.PanelWeb.Controls.Add(this.BotonWebComo);
                         this.PanelWeb.Controls.Add(this.BotonWebAltaArticulo);
-                        this.PanelWeb.Controls.Add(this.BotonWebAltaCliente);
+                        this.PanelWeb.Controls.Add(this.BotonWebPrimerosPasos);
                         this.PanelWeb.Location = new System.Drawing.Point(48, 448);
                         this.PanelWeb.Name = "PanelWeb";
                         this.PanelWeb.Size = new System.Drawing.Size(480, 104);
@@ -260,11 +260,11 @@ namespace Lfc.Inicio
                         this.ClientSize = new System.Drawing.Size(984, 642);
                         this.Controls.Add(this.PanelConsejo);
                         this.Controls.Add(this.PanelWeb);
-                        this.Controls.Add(this.BotonWebContacto);
                         this.Controls.Add(this.PanelComprobantes);
-                        this.Controls.Add(this.BotonWebInicio);
                         this.Controls.Add(this.PanelPersonas);
                         this.Controls.Add(this.PanelArticulos);
+                        this.Controls.Add(this.BotonWebContacto);
+                        this.Controls.Add(this.BotonWebInicio);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Name = "Inicio";
                         this.Padding = new System.Windows.Forms.Padding(32);
@@ -285,7 +285,7 @@ namespace Lfc.Inicio
                 private Lui.Forms.LinkLabel BotonWebContacto;
                 private Lui.Forms.LinkLabel BotonWebComo;
                 private Lui.Forms.Label label1;
-                private Lui.Forms.LinkLabel BotonWebAltaCliente;
+                private Lui.Forms.LinkLabel BotonWebPrimerosPasos;
                 private Lui.Forms.LinkLabel BotonWebAltaArticulo;
                 private Lui.Forms.LinkLabel BotonWebComoFactura;
                 private Lui.Forms.Panel PanelWeb;

@@ -535,12 +535,13 @@ namespace Lazaro.WinMain.Config
                         if (PanelDatosEmpresa.Visible) {
                                 // Al aparecer
                                 Lfx.Workspace.Master.CurrentConfig.ClearCache();
+                                EntradaEmpresaNombre.Text = Lbl.Sys.Config.Empresa.Nombre;
                                 int IdPais = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
                                 EntradaPais.ValueInt = IdPais;
-                                EntradaEmpresaNombre.Text = Lbl.Sys.Config.Empresa.Nombre;
                                 if (Lbl.Sys.Config.Empresa.ClaveTributaria != null)
                                         EntradaEmpresaClaveTributaria.Text = Lbl.Sys.Config.Empresa.ClaveTributaria.Valor;
                                 EntradaEmpresaEmail.Text = Lbl.Sys.Config.Empresa.Email;
+                                EntradaEmpresaNombre.Focus();
                         } else {
                                 // Al desaparecer
                                 Lbl.Entidades.Pais Pais = EntradaPais.Elemento as Lbl.Entidades.Pais;

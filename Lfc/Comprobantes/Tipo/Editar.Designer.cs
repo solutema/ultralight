@@ -231,7 +231,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaImprimirRepetir.AlwaysExpanded = true;
                         this.EntradaImprimirRepetir.AutoSize = true;
-                        this.EntradaImprimirRepetir.Location = new System.Drawing.Point(380, 272);
+                        this.EntradaImprimirRepetir.Location = new System.Drawing.Point(216, 272);
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
                         this.EntradaImprimirRepetir.SetData = new string[] {
         "Si|1",
@@ -244,16 +244,16 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.label6.Location = new System.Drawing.Point(0, 272);
                         this.label6.Name = "label6";
-                        this.label6.Size = new System.Drawing.Size(376, 24);
+                        this.label6.Size = new System.Drawing.Size(208, 40);
                         this.label6.TabIndex = 12;
-                        this.label6.Text = "Permite imprimir varias veces el mismo comprobante";
+                        this.label6.Text = "¿Permite imprimir varias veces el mismo comprobante?";
                         this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaImprimirModificar
                         // 
                         this.EntradaImprimirModificar.AlwaysExpanded = true;
                         this.EntradaImprimirModificar.AutoSize = true;
-                        this.EntradaImprimirModificar.Location = new System.Drawing.Point(380, 320);
+                        this.EntradaImprimirModificar.Location = new System.Drawing.Point(216, 320);
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
                         this.EntradaImprimirModificar.SetData = new string[] {
         "Si|1",
@@ -266,16 +266,16 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.label8.Location = new System.Drawing.Point(0, 320);
                         this.label8.Name = "label8";
-                        this.label8.Size = new System.Drawing.Size(376, 24);
+                        this.label8.Size = new System.Drawing.Size(208, 40);
                         this.label8.TabIndex = 14;
-                        this.label8.Text = "Permite modificar comprobantes impresos";
+                        this.label8.Text = "¿Permite modificar comprobantes impresos?";
                         this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaImprimirGuardar
                         // 
                         this.EntradaImprimirGuardar.AlwaysExpanded = true;
                         this.EntradaImprimirGuardar.AutoSize = true;
-                        this.EntradaImprimirGuardar.Location = new System.Drawing.Point(380, 368);
+                        this.EntradaImprimirGuardar.Location = new System.Drawing.Point(216, 368);
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
                         this.EntradaImprimirGuardar.SetData = new string[] {
         "Si|1",
@@ -288,7 +288,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.label9.Location = new System.Drawing.Point(0, 368);
                         this.label9.Name = "label9";
-                        this.label9.Size = new System.Drawing.Size(376, 24);
+                        this.label9.Size = new System.Drawing.Size(208, 40);
                         this.label9.TabIndex = 16;
                         this.label9.Text = "Imprimir automáticamente al guardar el comprobante";
                         this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -299,7 +299,7 @@ namespace Lfc.Comprobantes.Tipo
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.GroupLabel.Location = new System.Drawing.Point(468, 0);
                         this.GroupLabel.Name = "GroupLabel";
-                        this.GroupLabel.Size = new System.Drawing.Size(368, 32);
+                        this.GroupLabel.Size = new System.Drawing.Size(378, 32);
                         this.GroupLabel.TabIndex = 30;
                         this.GroupLabel.Text = "Dónde se imprime:";
                         this.GroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -324,7 +324,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.Listado.Location = new System.Drawing.Point(468, 32);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(368, 410);
+                        this.Listado.Size = new System.Drawing.Size(378, 387);
                         this.Listado.TabIndex = 31;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
@@ -361,7 +361,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitar.Location = new System.Drawing.Point(608, 450);
+                        this.BotonQuitar.Location = new System.Drawing.Point(618, 427);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Size = new System.Drawing.Size(108, 34);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -377,7 +377,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAgregar.Location = new System.Drawing.Point(728, 450);
+                        this.BotonAgregar.Location = new System.Drawing.Point(738, 427);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Size = new System.Drawing.Size(108, 34);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
@@ -390,7 +390,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaCargaPapel.AlwaysExpanded = true;
                         this.EntradaCargaPapel.AutoSize = true;
-                        this.EntradaCargaPapel.Location = new System.Drawing.Point(152, 416);
+                        this.EntradaCargaPapel.Location = new System.Drawing.Point(216, 416);
                         this.EntradaCargaPapel.Name = "EntradaCargaPapel";
                         this.EntradaCargaPapel.SetData = new string[] {
         "Automática|0",
@@ -403,7 +403,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.label10.Location = new System.Drawing.Point(0, 416);
                         this.label10.Name = "label10";
-                        this.label10.Size = new System.Drawing.Size(152, 24);
+                        this.label10.Size = new System.Drawing.Size(208, 24);
                         this.label10.TabIndex = 18;
                         this.label10.Text = "Carga de papel";
                         this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -435,8 +435,9 @@ namespace Lfc.Comprobantes.Tipo
                         this.Controls.Add(this.label8);
                         this.Controls.Add(this.label6);
                         this.Controls.Add(this.GroupLabel);
+                        this.MinimumSize = new System.Drawing.Size(848, 462);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(838, 485);
+                        this.Size = new System.Drawing.Size(848, 462);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
