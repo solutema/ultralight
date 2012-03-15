@@ -40,6 +40,7 @@ namespace Lazaro.WinMain.Config
                 private bool m_PrimeraVez = false;
                 private int CurrentTab = 1;
                 private const int TabCount = 4;
+                private int IdPaisOriginal = 0;
 
                 public Preferencias()
                 {
@@ -137,6 +138,7 @@ namespace Lazaro.WinMain.Config
                         EntradaLimiteCredito.Text = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Cuentas.LimiteCreditoPredet", "0");
 
                         int PaisActual = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Pais", 0);
+                        IdPaisOriginal = PaisActual;
                         if (PaisActual == 0)
                                 this.PrimeraVez = true;
                         else
@@ -173,7 +175,9 @@ namespace Lazaro.WinMain.Config
                                 Lui.Forms.MessageBox.Show("Por favor seleccione el país.", "Validación");
                                 return true;
                         }
-                        Lbl.Sys.Config.CambiarPais(NuevoPais);
+
+                        if (NuevoPais.Id != IdPaisOriginal)
+                                Lbl.Sys.Config.CambiarPais(NuevoPais);
 
                         int Sucursal = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("Estacion", "Sucursal", 1);
 
@@ -298,7 +302,7 @@ namespace Lazaro.WinMain.Config
 
                 private void BotonCambiarPais_Click(object sender, System.EventArgs e)
                 {
-                        using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Al cambiar el país, Lázaro cambiará varios ajustes del sistema como las tasas de IVA y los tipos de comprobantes. ¿Está seguro de que quiere cambiar el país?", "Cambiar país")) {
+                        using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Al cambiar el país, Lázaro cambiará varios ajustes del sistema como la moneda, las tasas del IVA y los tipos de comprobante. ¿Está seguro de que quiere cambiar el país?", "Cambiar país")) {
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                         EntradaPais.ReadOnly = false;
