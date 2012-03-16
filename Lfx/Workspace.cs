@@ -77,7 +77,7 @@ namespace Lfx
                         this.WebAppMode = webAppMode;
                         m_Name = workspaceName;
 
-                        this.CurrentConfig = new Lfx.Config.ConfigManager(this);
+                        this.CurrentConfig = new Lfx.Config.ConfigManager();
 
                         if (this.WebAppMode == false) {
                                 this.DefaultScheduler = new Lfx.Services.Scheduler(this);

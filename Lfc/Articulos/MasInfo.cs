@@ -58,6 +58,8 @@ namespace Lfc.Articulos
                                 m_Articulo = value;
 
                                 if (m_Articulo != null) {
+                                        EtiquetaTitulo.Text = "Información de precios de " + m_Articulo.ToString();
+
                                         if (m_Articulo.FechaAlta != null)
                                                 EntradaFechaCreado.Text = m_Articulo.FechaAlta.ToString(Lfx.Types.Formatting.DateTime.FullDateTimePattern);
                                         else

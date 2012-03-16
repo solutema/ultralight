@@ -70,11 +70,9 @@ namespace Lfc.Comprobantes.Facturas
                         OkButton.Visible = false;
                 }
 
-                private void EntradaDesdeTipoPV_TextChanged(object sender, System.EventArgs e)
-                {
-                        if (sender == EntradaTipo)
-                                this.ProximosNumeros.Clear();
 
+                private void MostrarVistaPrevia()
+                {
                         int PV = EntradaPV.ValueInt;
                         int Desde = EntradaDesde.ValueInt;
 
@@ -219,6 +217,17 @@ namespace Lfc.Comprobantes.Facturas
                         }
                 }
 
+
+                private void EntradaDesdeTipoPV_TextChanged(object sender, System.EventArgs e)
+                {
+                        if (sender == EntradaTipo)
+                                this.ProximosNumeros.Clear();
+
+                        this.OkButton.Visible = false;
+                        TimerRefrescar.Stop();
+                        TimerRefrescar.Start();
+                }
+
                 public override Lfx.Types.OperationResult Ok()
                 {
                         int PV = EntradaPV.ValueInt;
@@ -230,7 +239,7 @@ namespace Lfc.Comprobantes.Facturas
                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
 
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
-                                bool AnularPagos = Lfx.Types.Parsing.ParseInt(EntradaAnularPagos.TextKey) != 0;
+                                bool AnularPagos = EntradaAnularPagos.ValueInt != 0;
 
                                 int m_Id = 0;
                                 string IncluyeTipos = "";
@@ -312,6 +321,18 @@ namespace Lfc.Comprobantes.Facturas
                 {
                         if (EntradaHasta.ValueInt == 0 && EntradaDesde.ValueInt > 0)
                                 EntradaHasta.ValueInt = EntradaDesde.ValueInt;
+                }
+
+                protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+                {
+                        TimerRefrescar.Stop();
+                        base.OnClosing(e);
+                }
+
+                private void TimerRefrescar_Tick(object sender, EventArgs e)
+                {
+                        TimerRefrescar.Stop();
+                        MostrarVistaPrevia();
                 }
 	}
 }

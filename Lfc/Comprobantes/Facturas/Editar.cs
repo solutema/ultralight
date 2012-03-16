@@ -229,7 +229,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         if (Comprob.Tipo.Letra.ToUpperInvariant() == "A") {
                                 if (Comprob.Cliente.ClaveTributaria == null || Comprob.Cliente.ClaveTributaria.EsValido() == false)
                                         return new Lfx.Types.FailureOperationResult("Debe proporcionar el número de CUIT del cliente.");
-                        } else if (Comprob.Tipo.Letra == "B") {
+                        } else if (Comprob.Tipo.Letra == "B" && Lbl.Sys.Config.Pais.Id == 1) {
                                 //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
                                 if (Comprob.Total >= 1000 && Comprob.Cliente.NumeroDocumento.Length < 5 &&
                                         (Comprob.Cliente.ClaveTributaria == null || Comprob.Cliente.ClaveTributaria.EsValido() == false))

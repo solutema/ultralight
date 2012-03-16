@@ -124,6 +124,6 @@
     <value>Este proceso envía el o los comprobantes seleccionados nuevamente a la impresora, pero no vuelve a realizar los movimientos de existencias o dinero que ya están asentados. Es util para volver a imprimir comprobantes que no se imprimieron correctamente por atascos en la impresora.</value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>73</value>
+    <value>25</value>
   </metadata>
 </root>

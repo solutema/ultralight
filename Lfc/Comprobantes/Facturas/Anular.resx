@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label5.Text" xml:space="preserve">
-    <value>Puede anular uno o más comprobantes que hayan sido impresos o que estén próximos a imprimir. En caso de los comprobantes impresos se revierten todos los movimientos de existencias y (opcionalmente) se pueden revertir también los cobros recibidos.</value>
+    <value>Puede anular uno o más comprobantes que hayan sido impresos o que estén próximos a imprimir. En caso de los comprobantes impresos se revierten todos los movimientos de existencias que se hayan hecho y opcionalmente se pueden revertir también los cobros recibidos.</value>
   </data>
+  <metadata name="TimerRefrescar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

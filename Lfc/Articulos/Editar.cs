@@ -85,10 +85,7 @@ namespace Lfc.Articulos
                         Articulos.MasInfo FormMasInfo = new Articulos.MasInfo();
                         FormMasInfo.MdiParent = this.ParentForm.MdiParent;
                         FormMasInfo.Articulo = this.Elemento as Lbl.Articulos.Articulo;
-
-                        if (FormMasInfo.ShowDialog() == DialogResult.OK) {
-                                // Guardar algo si fuera editable
-                        }
+                        FormMasInfo.Show();
                 }
 
                 private void EntradaCostoMargen_TextChanged(System.Object sender, System.EventArgs e)

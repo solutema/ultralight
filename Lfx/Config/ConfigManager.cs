@@ -42,7 +42,6 @@ namespace Lfx.Config
         {
                 private string m_ConfigFileName;
                 private System.Xml.XmlDocument ConfigDocument;
-                private Workspace m_Workspace;
                 private Lfx.Data.Connection m_DataBase;
 
                 public Lfx.Config.ProductsConfig Productos;
@@ -52,22 +51,13 @@ namespace Lfx.Config
                 private Dictionary<string, string> SysConfigCache = null;
                 private System.DateTime SysConfigCacheLastRefresh;
 
-                public ConfigManager(Workspace workspace)
+                public ConfigManager()
                 {
-                        m_Workspace = workspace;
-                        ConfigFileName = m_Workspace.Name + ".lwf";
+                        ConfigFileName = Lfx.Workspace.Master.Name + ".lwf";
 
                         Productos = new Lfx.Config.ProductsConfig(this);
                         Moneda = new Lfx.Config.CurrencyConfig(this);
                         Empresa = new Lfx.Config.CompanyConfig(this);
-                }
-
-                public Lfx.Workspace Workspace
-                {
-                        get
-                        {
-                                return m_Workspace;
-                        }
                 }
 
                 public void Dispose()
@@ -104,7 +94,7 @@ namespace Lfx.Config
                         get
                         {
                                 if (m_DataBase == null) {
-                                        m_DataBase = m_Workspace.GetNewConnection("Administrador de configuración");
+                                        m_DataBase = Lfx.Workspace.Master.GetNewConnection("Administrador de configuración");
                                         m_DataBase.RequiresTransaction = false;
                                 }
                                 return m_DataBase;
@@ -258,7 +248,7 @@ namespace Lfx.Config
                         }
 
                         //Busco una variable para la sucursal
-                        Busco = "*/" + m_Workspace.CurrentConfig.Empresa.SucursalActual.ToString() + "/" + DataBase.EscapeString(settingName);
+                        Busco = "*/" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + "/" + DataBase.EscapeString(settingName);
                         if (terminalName == null && SysConfigCache.ContainsKey(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 return Res;
@@ -279,7 +269,7 @@ namespace Lfx.Config
                 public bool DeleteGlobalSetting(string settingName, int branch)
                 {
                         if (branch == 0)
-                                branch = m_Workspace.CurrentConfig.Empresa.SucursalActual;
+                                branch = Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual;
 
                         qGen.Delete DeleteCommand = new qGen.Delete("sys_config");
                         DeleteCommand.WhereClause = new qGen.Where(qGen.AndOr.And);

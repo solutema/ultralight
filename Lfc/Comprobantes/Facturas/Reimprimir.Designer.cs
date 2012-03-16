@@ -296,7 +296,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.label5);
                         this.Controls.Add(this.label6);
                         this.Controls.Add(this.label4);
-                        this.Controls.Add(this.ListadoFacturas);
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.EntradaHasta);
                         this.Controls.Add(this.EntradaTipo);
@@ -306,11 +305,13 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.Add(this.EntradaDesde);
                         this.Controls.Add(this.label3);
                         this.Controls.Add(this.Label1);
+                        this.Controls.Add(this.ListadoFacturas);
                         this.Controls.Add(this.ComprobanteVistaPrevia);
                         this.Name = "Reimprimir";
                         this.Text = "Reimprimir comprobantes";
                         this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
                         this.Controls.SetChildIndex(this.ComprobanteVistaPrevia, 0);
+                        this.Controls.SetChildIndex(this.ListadoFacturas, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.label3, 0);
                         this.Controls.SetChildIndex(this.EntradaDesde, 0);
@@ -320,7 +321,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);
                         this.Controls.SetChildIndex(this.EntradaHasta, 0);
                         this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.ListadoFacturas, 0);
                         this.Controls.SetChildIndex(this.label4, 0);
                         this.Controls.SetChildIndex(this.label6, 0);
                         this.Controls.SetChildIndex(this.label5, 0);

@@ -874,7 +874,6 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         }
 
                         Texto.AppendLine("Traza:");
-                        Texto.AppendLine(ex.StackTrace);
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));

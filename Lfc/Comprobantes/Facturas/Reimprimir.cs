@@ -73,6 +73,10 @@ namespace Lfc.Comprobantes.Facturas
 
                 private void EntradaDesdeTipoPV_TextChanged(object sender, System.EventArgs e)
                 {
+                        if (sender == EntradaTipo)
+                                this.ProximosNumeros.Clear();
+
+                        this.OkButton.Visible = false;
                         TimerRefrescar.Stop();
                         TimerRefrescar.Start();
                 }
