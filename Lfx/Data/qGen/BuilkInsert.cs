@@ -109,6 +109,7 @@ namespace qGen
                                 foreach (Lfx.Data.Field ThisField in Cmd.Fields) {
                                         string FieldParam;
 
+                                        string ParamName = "@" + ThisField.ColumnName + "_" + CmdNum.ToString();
                                         if (ThisField.Value is qGen.SqlFunctions) {
                                                 switch (((qGen.SqlFunctions)(ThisField.Value))) {
                                                         case SqlFunctions.Now:
@@ -123,7 +124,7 @@ namespace qGen
                                                 if (baseCommand.Connection is System.Data.Odbc.OdbcConnection)
                                                         FieldParam = "?";
                                                 else
-                                                        FieldParam = "@" + ThisField.ColumnName + "_" + CmdNum.ToString();
+                                                        FieldParam = ParamName;
                                         }
 
                                         if (ParamList.Length == 0)
@@ -133,7 +134,7 @@ namespace qGen
 
                                         if (FieldParam == "?" || FieldParam.Substring(0, 1) == "@") {
                                                 System.Data.IDbDataParameter Param = Lfx.Data.DataBaseCache.DefaultCache.Provider.GetParameter();
-                                                Param.ParameterName = "@" + ThisField.ColumnName + "_" + CmdNum.ToString();
+                                                Param.ParameterName = ParamName;
                                                 if (ThisField.Value is NullableDateTime && ThisField.Value != null)
                                                         Param.Value = ((NullableDateTime)(ThisField.Value)).Value;
                                                 else

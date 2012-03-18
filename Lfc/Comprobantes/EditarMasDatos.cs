@@ -73,9 +73,9 @@ namespace Lfc.Comprobantes
                 // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
                 // Puede modificarse utilizando el Diseñador de Windows Forms. 
                 // No lo modifique con el editor de código.
-                internal Lui.Forms.Label lblHaciaSituacion;
+                internal Lui.Forms.Label EtiquetaHaciaSituacion;
                 internal Lcc.Entrada.CodigoDetalle EntradaHaciaSituacion;
-                internal Lui.Forms.Label lblDesdeSituacion;
+                internal Lui.Forms.Label EtiquetaDesdeSituacion;
                 internal Lui.Forms.Label label1;
                 internal Lui.Forms.ComboBox EntradaBloqueada;
                 private Lui.Forms.Label EtiquetaTitulo;
@@ -85,9 +85,9 @@ namespace Lfc.Comprobantes
 
                 private void InitializeComponent()
                 {
-                        this.lblHaciaSituacion = new Lui.Forms.Label();
+                        this.EtiquetaHaciaSituacion = new Lui.Forms.Label();
                         this.EntradaHaciaSituacion = new Lcc.Entrada.CodigoDetalle();
-                        this.lblDesdeSituacion = new Lui.Forms.Label();
+                        this.EtiquetaDesdeSituacion = new Lui.Forms.Label();
                         this.EntradaDesdeSituacion = new Lcc.Entrada.CodigoDetalle();
                         this.label1 = new Lui.Forms.Label();
                         this.EntradaBloqueada = new Lui.Forms.ComboBox();
@@ -98,12 +98,12 @@ namespace Lfc.Comprobantes
                         // 
                         // lblHaciaSituacion
                         // 
-                        this.lblHaciaSituacion.Location = new System.Drawing.Point(24, 144);
-                        this.lblHaciaSituacion.Name = "lblHaciaSituacion";
-                        this.lblHaciaSituacion.Size = new System.Drawing.Size(168, 24);
-                        this.lblHaciaSituacion.TabIndex = 2;
-                        this.lblHaciaSituacion.Text = "Destino";
-                        this.lblHaciaSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHaciaSituacion.Location = new System.Drawing.Point(24, 144);
+                        this.EtiquetaHaciaSituacion.Name = "lblHaciaSituacion";
+                        this.EtiquetaHaciaSituacion.Size = new System.Drawing.Size(168, 24);
+                        this.EtiquetaHaciaSituacion.TabIndex = 2;
+                        this.EtiquetaHaciaSituacion.Text = "Destino";
+                        this.EtiquetaHaciaSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaHaciaSituacion
                         // 
@@ -123,18 +123,18 @@ namespace Lfc.Comprobantes
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(416, 24);
                         this.EntradaHaciaSituacion.TabIndex = 3;
-                        this.EntradaHaciaSituacion.Table = "articulos_situaciones";
+                        this.EntradaHaciaSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaHaciaSituacion.Text = "0";
                         this.EntradaHaciaSituacion.TextDetail = "";
                         // 
                         // lblDesdeSituacion
                         // 
-                        this.lblDesdeSituacion.Location = new System.Drawing.Point(24, 72);
-                        this.lblDesdeSituacion.Name = "lblDesdeSituacion";
-                        this.lblDesdeSituacion.Size = new System.Drawing.Size(168, 24);
-                        this.lblDesdeSituacion.TabIndex = 0;
-                        this.lblDesdeSituacion.Text = "Origen";
-                        this.lblDesdeSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaDesdeSituacion.Location = new System.Drawing.Point(24, 72);
+                        this.EtiquetaDesdeSituacion.Name = "lblDesdeSituacion";
+                        this.EtiquetaDesdeSituacion.Size = new System.Drawing.Size(168, 24);
+                        this.EtiquetaDesdeSituacion.TabIndex = 0;
+                        this.EtiquetaDesdeSituacion.Text = "Origen";
+                        this.EtiquetaDesdeSituacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaDesdeSituacion
                         // 
@@ -154,7 +154,7 @@ namespace Lfc.Comprobantes
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(416, 24);
                         this.EntradaDesdeSituacion.TabIndex = 1;
-                        this.EntradaDesdeSituacion.Table = "articulos_situaciones";
+                        this.EntradaDesdeSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaDesdeSituacion.Text = "0";
                         this.EntradaDesdeSituacion.TextDetail = "";
                         // 
@@ -216,11 +216,11 @@ namespace Lfc.Comprobantes
                         this.ClientSize = new System.Drawing.Size(634, 374);
                         this.Controls.Add(this.label3);
                         this.Controls.Add(this.EtiquetaTitulo);
-                        this.Controls.Add(this.lblHaciaSituacion);
+                        this.Controls.Add(this.EtiquetaHaciaSituacion);
                         this.Controls.Add(this.EntradaBloqueada);
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.EntradaHaciaSituacion);
-                        this.Controls.Add(this.lblDesdeSituacion);
+                        this.Controls.Add(this.EtiquetaDesdeSituacion);
                         this.Controls.Add(this.EntradaDesdeSituacion);
                         this.Controls.Add(this.label2);
                         this.ForeColor = System.Drawing.Color.Black;
@@ -228,11 +228,11 @@ namespace Lfc.Comprobantes
                         this.Text = "Más datos del comprobante";
                         this.Controls.SetChildIndex(this.label2, 0);
                         this.Controls.SetChildIndex(this.EntradaDesdeSituacion, 0);
-                        this.Controls.SetChildIndex(this.lblDesdeSituacion, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaDesdeSituacion, 0);
                         this.Controls.SetChildIndex(this.EntradaHaciaSituacion, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.EntradaBloqueada, 0);
-                        this.Controls.SetChildIndex(this.lblHaciaSituacion, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHaciaSituacion, 0);
                         this.Controls.SetChildIndex(this.EtiquetaTitulo, 0);
                         this.Controls.SetChildIndex(this.label3, 0);
                         this.ResumeLayout(false);

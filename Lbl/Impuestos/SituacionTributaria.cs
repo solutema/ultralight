@@ -91,18 +91,23 @@ namespace Lbl.Impuestos
 
                 public string ObtenerLetraPredeterminada()
                 {
-                        if (Lbl.Sys.Config.Empresa.SituacionTributaria == 2) {
-                                //Si soy responsable inscripto, facturo según la siguiente tabla
-                                switch (this.Id) {
-                                        case 2:
-                                        case 3:
-                                                return "A";
-                                        default:
-                                                return "B";
+                        if (Lbl.Sys.Config.Pais.Id == 1) {
+                                if (Lbl.Sys.Config.Empresa.SituacionTributaria == 2) {
+                                        //Si soy responsable inscripto, facturo según la siguiente tabla
+                                        switch (this.Id) {
+                                                case 2:
+                                                case 3:
+                                                        return "A";
+                                                default:
+                                                        return "B";
+                                        }
+                                } else {
+                                        //De lo contrario, C para todo el mundo
+                                        return "C";
                                 }
                         } else {
-                                //De lo contrario, C para todo el mundo
-                                return "C";
+                                // TODO: poder seleccionar el tipo de factura predeterminado para cada país
+                                return "A";
                         }
                 }
 

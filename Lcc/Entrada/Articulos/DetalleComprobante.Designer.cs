@@ -177,7 +177,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaArticulo.Required = true;
                         this.EntradaArticulo.Size = new System.Drawing.Size(215, 24);
                         this.EntradaArticulo.TabIndex = 0;
-                        this.EntradaArticulo.Table = "articulos";
+                        this.EntradaArticulo.NombreTipo = "Lbl.Articulos.Articulo";
                         this.EntradaArticulo.Text = "0";
                         this.EntradaArticulo.TextDetail = "";
                         this.EntradaArticulo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaArticulo_KeyDown);

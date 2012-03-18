@@ -79,7 +79,7 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaContrasena.Location = new System.Drawing.Point(312, 136);
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.Size = new System.Drawing.Size(176, 24);
+                        this.EntradaContrasena.Size = new System.Drawing.Size(168, 24);
                         this.EntradaContrasena.TabIndex = 3;
                         // 
                         // Label2
@@ -87,7 +87,7 @@ namespace Lazaro.WinMain.Misc
                         this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.Label2.Location = new System.Drawing.Point(152, 136);
                         this.Label2.Name = "Label2";
-                        this.Label2.Size = new System.Drawing.Size(164, 24);
+                        this.Label2.Size = new System.Drawing.Size(160, 24);
                         this.Label2.TabIndex = 2;
                         this.Label2.Text = "Contraseña actual";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -101,6 +101,8 @@ namespace Lazaro.WinMain.Misc
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.CancelCommandButton.Location = new System.Drawing.Point(414, 12);
                         this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.CancelCommandButton.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.CancelCommandButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.CancelCommandButton.Size = new System.Drawing.Size(108, 40);
@@ -119,6 +121,8 @@ namespace Lazaro.WinMain.Misc
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.OkButton.Location = new System.Drawing.Point(300, 12);
                         this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.OkButton.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.OkButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.OkButton.Size = new System.Drawing.Size(108, 40);
@@ -165,29 +169,29 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label3.Location = new System.Drawing.Point(136, 68);
+                        this.label3.Location = new System.Drawing.Point(128, 64);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(380, 56);
                         this.label3.TabIndex = 1;
-                        this.label3.Text = "Por favor escriba su Contraseña actual y a continuación escriba la Contraseña nue" +
+                        this.label3.Text = "Por favor escriba su contraseña actual y a continuación escriba la contraseña nue" +
     "va. Por su seguridad, debe escribir la contraseña nueva dos veces.";
                         // 
                         // EntradaContrasenaNueva1
                         // 
                         this.EntradaContrasenaNueva1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContrasenaNueva1.Location = new System.Drawing.Point(312, 167);
+                        this.EntradaContrasenaNueva1.Location = new System.Drawing.Point(312, 168);
                         this.EntradaContrasenaNueva1.Name = "EntradaContrasenaNueva1";
                         this.EntradaContrasenaNueva1.PasswordChar = '*';
-                        this.EntradaContrasenaNueva1.Size = new System.Drawing.Size(176, 24);
+                        this.EntradaContrasenaNueva1.Size = new System.Drawing.Size(168, 24);
                         this.EntradaContrasenaNueva1.TabIndex = 5;
                         // 
                         // label1
                         // 
                         this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label1.Location = new System.Drawing.Point(152, 167);
+                        this.label1.Location = new System.Drawing.Point(152, 168);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(164, 24);
+                        this.label1.Size = new System.Drawing.Size(160, 24);
                         this.label1.TabIndex = 4;
                         this.label1.Text = "Contraseña nueva";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,18 +200,18 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.EntradaContrasenaNueva2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaContrasenaNueva2.Location = new System.Drawing.Point(312, 196);
+                        this.EntradaContrasenaNueva2.Location = new System.Drawing.Point(312, 200);
                         this.EntradaContrasenaNueva2.Name = "EntradaContrasenaNueva2";
                         this.EntradaContrasenaNueva2.PasswordChar = '*';
-                        this.EntradaContrasenaNueva2.Size = new System.Drawing.Size(176, 24);
+                        this.EntradaContrasenaNueva2.Size = new System.Drawing.Size(168, 24);
                         this.EntradaContrasenaNueva2.TabIndex = 7;
                         // 
                         // label4
                         // 
                         this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.label4.Location = new System.Drawing.Point(152, 196);
+                        this.label4.Location = new System.Drawing.Point(152, 200);
                         this.label4.Name = "label4";
-                        this.label4.Size = new System.Drawing.Size(164, 24);
+                        this.label4.Size = new System.Drawing.Size(160, 24);
                         this.label4.TabIndex = 6;
                         this.label4.Text = "Repita contraseña ";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -216,13 +220,13 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Titulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
-                        this.Titulo.Location = new System.Drawing.Point(136, 32);
+                        this.Titulo.Location = new System.Drawing.Point(128, 32);
                         this.Titulo.Name = "Titulo";
                         this.Titulo.Size = new System.Drawing.Size(380, 24);
                         this.Titulo.TabIndex = 0;
-                        this.Titulo.Text = "Cambio de Contraseña";
+                        this.Titulo.Text = "Cambio de contraseña";
                         this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.Titulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         // 
                         // CambioContrasena
                         // 
@@ -244,7 +248,7 @@ namespace Lazaro.WinMain.Misc
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "CambioContrasena";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-                        this.Text = "Cambio de Contraseña";
+                        this.Text = "Cambio de contraseña";
                         this.TopMost = true;
                         this.LowerPanel.ResumeLayout(false);
                         this.panel1.ResumeLayout(false);

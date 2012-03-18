@@ -76,7 +76,7 @@ namespace Lfc.Tarjetas.Cupones
                 internal Lui.Forms.Label Label16;
                 internal Lui.Forms.Label Label11;
                 internal Lui.Forms.Label Label14;
-                internal Lui.Forms.Label lblFecha1;
+                internal Lui.Forms.Label EtiquetaFecha1;
                 internal Lui.Forms.Label Label15;
                 internal Lui.Forms.Label Label1;
                 internal Lcc.Entrada.CodigoDetalle EntradaFormaDePago;
@@ -98,7 +98,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtPlanInteres = new Lui.Forms.TextBox();
                         this.Label14 = new Lui.Forms.Label();
                         this.txtPlanCuotas = new Lui.Forms.TextBox();
-                        this.lblFecha1 = new Lui.Forms.Label();
+                        this.EtiquetaFecha1 = new Lui.Forms.Label();
                         this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
                         this.Label15 = new Lui.Forms.Label();
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
@@ -136,12 +136,12 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(456, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
-                        this.EntradaFormaDePago.Table = "formaspago";
+                        this.EntradaFormaDePago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaDePago.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaFormaDePago.Text = "0";
                         this.EntradaFormaDePago.TextDetail = "";
                         this.EntradaFormaDePago.ValueInt = 0;
-                        this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.txtTarjeta_TextChanged);
+                        this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.EntradaTarjeta_TextChanged);
                         // 
                         // Label16
                         // 
@@ -196,12 +196,12 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // lblFecha1
                         // 
-                        this.lblFecha1.Location = new System.Drawing.Point(20, 0);
-                        this.lblFecha1.Name = "lblFecha1";
-                        this.lblFecha1.Size = new System.Drawing.Size(56, 24);
-                        this.lblFecha1.TabIndex = 0;
-                        this.lblFecha1.Text = "Cuotas";
-                        this.lblFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaFecha1.Location = new System.Drawing.Point(20, 0);
+                        this.EtiquetaFecha1.Name = "lblFecha1";
+                        this.EtiquetaFecha1.Size = new System.Drawing.Size(56, 24);
+                        this.EtiquetaFecha1.TabIndex = 0;
+                        this.EtiquetaFecha1.Text = "Cuotas";
+                        this.EtiquetaFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // txtPlan
                         // 
@@ -219,7 +219,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(456, 24);
                         this.EntradaPlan.TabIndex = 3;
-                        this.EntradaPlan.Table = "tarjetas_planes";
+                        this.EntradaPlan.NombreTipo = "Lbl.Pagos.Plan";
                         this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
@@ -251,7 +251,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(456, 24);
                         this.EntradaCliente.TabIndex = 8;
-                        this.EntradaCliente.Table = "personas";
+                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
@@ -295,7 +295,7 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // panel1
                         // 
-                        this.panel1.Controls.Add(this.lblFecha1);
+                        this.panel1.Controls.Add(this.EtiquetaFecha1);
                         this.panel1.Controls.Add(this.txtPlanCuotas);
                         this.panel1.Controls.Add(this.Label14);
                         this.panel1.Controls.Add(this.txtPlanInteres);
@@ -361,7 +361,7 @@ namespace Lfc.Tarjetas.Cupones
 
                 #endregion
 
-                private void txtTarjeta_TextChanged(System.Object sender, System.EventArgs e)
+                private void EntradaTarjeta_TextChanged(System.Object sender, System.EventArgs e)
                 {
                         EntradaPlan.Filter = "id_tarjeta=" + EntradaFormaDePago.ValueInt.ToString() + " OR id_tarjeta IS NULL";
                 }

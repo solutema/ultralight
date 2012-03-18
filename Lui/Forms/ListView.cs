@@ -31,6 +31,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Lui.Forms
@@ -45,11 +46,33 @@ namespace Lui.Forms
                 public ListView()
                 {
                         this.DoubleBuffered = true;
-                        // Enable the OnNotifyMessage event so we get a chance to filter out 
-                        // Windows messages before they get to the form's WndProc
-                        //this.SetStyle(ControlStyles.EnableNotifyMessage, true);
+                        //this.OwnerDraw = true;
                         base.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
                 }
+
+
+                /* private static Pen m_PenBorderColor;
+                protected Pen PenBorderColor
+                {
+                        get
+                        {
+                                if (m_PenBorderColor == null)
+                                        m_PenBorderColor = new Pen(Lazaro.Pres.DisplayStyles.Template.Current.Default.ActiveBorderColor);
+                                return m_PenBorderColor;
+                        }
+                }
+
+                protected override void OnDrawItem(DrawListViewItemEventArgs e)
+                {
+                        e.DrawDefault = true;
+                        base.OnDrawItem(e);
+                        if (this.HideSelection == false && this.Focused == false && e.Item.Selected) {
+                                Rectangle Rect = new Rectangle(e.Bounds.Left, e.Bounds.Top, e.Bounds.Width - 1, e.Bounds.Height - 1);
+                                e.Graphics.DrawRectangle(PenBorderColor, Rect);
+                                Rect = new Rectangle(e.Bounds.Left + 1, e.Bounds.Top + 1, e.Bounds.Width - 2, e.Bounds.Height - 2);
+                                e.Graphics.DrawRectangle(PenBorderColor, Rect);
+                        }
+                } */
 
                 protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
                 {

@@ -201,10 +201,12 @@ namespace Lui.Forms
                 {
                         if (this.Grayed && this.TextBox1.Text == m_PlaceholderText) {
                                 IgnoreEvents++;
+                                IgnoreChanges++;
                                 this.TextBox1.Text = "";
                                 this.Grayed = false;
                                 this.ApplyStyle();
                                 IgnoreEvents--;
+                                IgnoreChanges--;
                         }
                         base.OnEnter(e);
                 }

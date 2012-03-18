@@ -69,7 +69,7 @@ namespace Lfx.Environment
                         {
                                 string CompletePath = ApplicationDataFolder + "Cache" + System.IO.Path.DirectorySeparatorChar;
                                 if (!System.IO.Directory.Exists(CompletePath))
-                                        System.IO.Directory.CreateDirectory(CompletePath);
+                                        Environment.Folders.EnsurePathExists(CompletePath);
                                 return CompletePath;
                         }
                 }
@@ -113,7 +113,7 @@ namespace Lfx.Environment
                                         m_ApplicationDataFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)
                                                 + System.IO.Path.DirectorySeparatorChar + "Lazaro" + System.IO.Path.DirectorySeparatorChar;
                                         if (!System.IO.Directory.Exists(m_ApplicationDataFolder))
-                                                System.IO.Directory.CreateDirectory(m_ApplicationDataFolder);
+                                                Environment.Folders.EnsurePathExists(m_ApplicationDataFolder);
                                         return m_ApplicationDataFolder;
                                 }
                                 return m_ApplicationDataFolder;
@@ -123,6 +123,32 @@ namespace Lfx.Environment
                                 m_ApplicationDataFolder = value;
                         }
                 }
+
+
+                public static string m_UserFolder = null;
+                public static string UserFolder
+                {
+                        get
+                        {
+                                if (PortableMode) {
+                                        return ApplicationFolder;
+                                } else if (m_UserFolder == null) {
+                                        m_UserFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)
+                                                + System.IO.Path.DirectorySeparatorChar + "Lázaro" + System.IO.Path.DirectorySeparatorChar;
+                                        if (!System.IO.Directory.Exists(m_UserFolder)) {
+                                                Environment.Folders.EnsurePathExists(m_UserFolder);
+                                                Environment.Folders.EnsurePathExists(System.IO.Path.Combine(m_UserFolder, "Plantillas"));
+                                        }
+                                        return m_UserFolder;
+                                }
+                                return m_UserFolder;
+                        }
+                        set
+                        {
+                                m_UserFolder = value;
+                        }
+                }
+
 
                 public static string UpdatesFolder
                 {

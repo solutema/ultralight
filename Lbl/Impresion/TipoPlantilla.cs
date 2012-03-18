@@ -31,15 +31,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Lbl.Impresion
 {
         public enum TipoPlantilla
         {
-                InternaPreimpresa = 0,
-                InternaConImagen = 1,
+                Preimpresa = 0,
+                EnBlanco = 1,
                 Pdf = 2
         }
 }

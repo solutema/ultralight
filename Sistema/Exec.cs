@@ -226,12 +226,13 @@ namespace Lazaro.WinMain
 
                                                         case "NOW":
                                                                 Lfx.Backups.BackupInfo Bkp = new Lfx.Backups.BackupInfo();
-                                                                Bkp.Name = "Copia de seguridad de Lázaro del " + System.DateTime.Now.ToString("dd-MM-yyyy (HH.mm).lbk");
+                                                                Bkp.Name = System.DateTime.Now.ToString(Lfx.Types.Formatting.DateTime.LongDatePattern + @" ""a las"" HH.mm.ss");
                                                                 Bkp.CompanyName = Lbl.Sys.Config.Empresa.Nombre;
                                                                 Bkp.UserName = Lbl.Sys.Config.Actual.UsuarioConectado.Persona.Nombre;
                                                                 Bkp.ProgramVersion = Aplicacion.Version() + " del " + Aplicacion.BuildDate();
 
                                                                 Lfx.Backups.Manager BackupManager = new Lfx.Backups.Manager();
+                                                                BackupManager.BackupPath = System.IO.Path.Combine(Lbl.Sys.Config.CarpetaEmpresa, "Copias de seguridad" + System.IO.Path.DirectorySeparatorChar);
                                                                 BackupManager.StartBackup(Bkp);
                                                                 break;
                                                 }
@@ -306,7 +307,7 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "ERROR":
-                                        throw new InsufficientMemoryException("Error de prueba.");
+                                        throw new Exception("Error de prueba.");
 
                                 default:
                                         if (Lfx.Workspace.Master.DebugMode)

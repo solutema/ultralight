@@ -88,7 +88,7 @@ namespace Lfc.Cajas
                         this.EntradaDestino.Required = false;
                         this.EntradaDestino.Size = new System.Drawing.Size(432, 24);
                         this.EntradaDestino.TabIndex = 5;
-                        this.EntradaDestino.Table = "cajas";
+                        this.EntradaDestino.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaDestino.Text = "0";
                         this.EntradaDestino.TextDetail = "";
                         this.EntradaDestino.TextChanged += new System.EventHandler(this.EntradaOrigenDestino_TextChanged);
@@ -138,7 +138,7 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(432, 24);
                         this.EntradaConcepto.TabIndex = 11;
-                        this.EntradaConcepto.Table = "conceptos";
+                        this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
                         // 
@@ -205,7 +205,7 @@ namespace Lfc.Cajas
                         this.EntradaOrigen.Required = false;
                         this.EntradaOrigen.Size = new System.Drawing.Size(432, 24);
                         this.EntradaOrigen.TabIndex = 3;
-                        this.EntradaOrigen.Table = "cajas";
+                        this.EntradaOrigen.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaOrigen.TabStop = false;
                         this.EntradaOrigen.Text = "0";
                         this.EntradaOrigen.TextDetail = "";

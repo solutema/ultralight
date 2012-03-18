@@ -246,12 +246,8 @@ namespace Lazaro.WinMain.Principal
                 {
                         TimerProgramador.Stop();
 
-                        if (Lfx.Workspace.Master != null) {
-                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoEgreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), "");
+                        if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.Dispose();
-                        }
-
-                        //System.Environment.Exit(0);
                 }
 
 

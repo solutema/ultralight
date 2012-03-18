@@ -107,7 +107,7 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.Required = true;
                         this.EntradaElementoDuplicado.Size = new System.Drawing.Size(456, 24);
                         this.EntradaElementoDuplicado.TabIndex = 5;
-                        this.EntradaElementoDuplicado.Table = "personas";
+                        this.EntradaElementoDuplicado.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaElementoDuplicado.Text = "0";
                         this.EntradaElementoDuplicado.TextDetail = "";
                         this.EntradaElementoDuplicado.TextChanged += new System.EventHandler(this.EntradaElementoDuplicado_TextChanged);
@@ -136,7 +136,7 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.Required = true;
                         this.EntradaElementoOriginal.Size = new System.Drawing.Size(456, 24);
                         this.EntradaElementoOriginal.TabIndex = 3;
-                        this.EntradaElementoOriginal.Table = "personas";
+                        this.EntradaElementoOriginal.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaElementoOriginal.Text = "0";
                         this.EntradaElementoOriginal.TextDetail = "";
                         this.EntradaElementoOriginal.TextChanged += new System.EventHandler(this.EntradaElementoOriginal_TextChanged);

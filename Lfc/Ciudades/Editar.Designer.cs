@@ -118,7 +118,7 @@ namespace Lfc.Ciudades
                         this.EntradaParent.Required = false;
                         this.EntradaParent.Size = new System.Drawing.Size(262, 24);
                         this.EntradaParent.TabIndex = 7;
-                        this.EntradaParent.Table = "ciudades";
+                        this.EntradaParent.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaParent.Text = "0";
                         this.EntradaParent.TextDetail = "";
                         // 

@@ -80,9 +80,9 @@ namespace Lazaro.WinMain.Backup
                         this.BotonBackup.Name = "BotonBackup";
                         this.BotonBackup.Size = new System.Drawing.Size(432, 72);
                         this.BotonBackup.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-                        this.BotonBackup.Subtext = "Haga clic aquí para crear una copia de respaldo en este equipo.";
+                        this.BotonBackup.Subtext = "Haga clic aquí para crear una copia de seguridad en este equipo.";
                         this.BotonBackup.TabIndex = 0;
-                        this.BotonBackup.Text = "Crear una copia de respaldo ahora";
+                        this.BotonBackup.Text = "Crear una copia de seguridad ahora";
                         this.BotonBackup.Click += new System.EventHandler(this.BotonBackup_Click);
                         // 
                         // Listado
@@ -135,7 +135,7 @@ namespace Lazaro.WinMain.Backup
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(620, 40);
                         this.Label2.TabIndex = 2;
-                        this.Label2.Text = "Copias de respaldo presentes en este equipo";
+                        this.Label2.Text = "Copias de seguridad presentes en este equipo";
                         this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonEliminar
@@ -193,7 +193,7 @@ namespace Lazaro.WinMain.Backup
                         this.formHeader1.Name = "formHeader1";
                         this.formHeader1.Size = new System.Drawing.Size(794, 64);
                         this.formHeader1.TabIndex = 101;
-                        this.formHeader1.Text = "Copias de respaldo";
+                        this.formHeader1.Text = "Copias de seguridad";
                         // 
                         // Manager
                         // 
@@ -207,7 +207,7 @@ namespace Lazaro.WinMain.Backup
                         this.Controls.Add(this.Listado);
                         this.Controls.Add(this.BotonBackup);
                         this.Name = "Manager";
-                        this.Text = "Administrador de copias de respaldo";
+                        this.Text = "Administrador de copias de seguridad";
                         this.Controls.SetChildIndex(this.BotonBackup, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.BotonEliminar, 0);

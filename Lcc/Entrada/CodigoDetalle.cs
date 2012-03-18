@@ -173,7 +173,7 @@ namespace Lcc.Entrada
                 {
                         get
                         {
-                                return base.ReadOnly;
+                                return base.TemporaryReadOnly;
                         }
                         set
                         {
@@ -185,7 +185,7 @@ namespace Lcc.Entrada
                 }
 
                 [System.ComponentModel.Category("Datos")]
-                override public string Table
+                override protected string Table
                 {
                         get
                         {
@@ -355,19 +355,20 @@ namespace Lcc.Entrada
                         if (this.ReadOnly || this.TemporaryReadOnly)
                                 return;
 
-                        using (Statics.DetailBoxQuickSelect = new AuxForms.DetailBoxQuickSelect()) {
-                                Statics.DetailBoxQuickSelect.Owner = this.ParentForm;
-                                Statics.DetailBoxQuickSelect.ElementoTipo = this.ElementoTipo;
-                                Statics.DetailBoxQuickSelect.Table = this.Relation.ReferenceTable;
-                                Statics.DetailBoxQuickSelect.CanCreate = this.CanCreate;
-                                Statics.DetailBoxQuickSelect.DetailField = this.Relation.DetailColumn;
-                                Statics.DetailBoxQuickSelect.KeyField = this.Relation.ReferenceColumn;
-                                Statics.DetailBoxQuickSelect.Filter = m_Filter;
-                                Statics.DetailBoxQuickSelect.ExtraDetailFields = m_ExtraDetailFields;
-                                Statics.DetailBoxQuickSelect.ControlDestino = this;
-                                Statics.DetailBoxQuickSelect.Top = System.Convert.ToInt32((this.DisplayRectangle.Top + this.DisplayRectangle.Height / 2) - (Statics.DetailBoxQuickSelect.Height / 2));
-                                Statics.DetailBoxQuickSelect.Left = System.Convert.ToInt32((this.DisplayRectangle.Left + this.DisplayRectangle.Width / 2) - (Statics.DetailBoxQuickSelect.Width / 2));
-                                if (Statics.DetailBoxQuickSelect.Buscar(valorIncial) != DialogResult.Retry) {
+                        using (Statics.BusquedaRapida = new AuxForms.BusquedaRapida()) {
+                                Statics.BusquedaRapida.Owner = this.ParentForm;
+                                Statics.BusquedaRapida.ElementoTipo = this.ElementoTipo;
+                                Statics.BusquedaRapida.CanCreate = this.CanCreate;
+                                //Statics.BusquedaRapida.Table = this.Relation.ReferenceTable;
+                                //Statics.BusquedaRapida.DetailField = this.Relation.DetailColumn;
+                                //Statics.BusquedaRapida.KeyField = this.Relation.ReferenceColumn;
+                                Statics.BusquedaRapida.Filter = m_Filter;
+                                Statics.BusquedaRapida.ExtraDetailFields = m_ExtraDetailFields;
+                                Statics.BusquedaRapida.ControlDestino = this;
+                                Statics.BusquedaRapida.Top = System.Convert.ToInt32((this.DisplayRectangle.Top + this.DisplayRectangle.Height / 2) - (Statics.BusquedaRapida.Height / 2));
+                                Statics.BusquedaRapida.Left = System.Convert.ToInt32((this.DisplayRectangle.Left + this.DisplayRectangle.Width / 2) - (Statics.BusquedaRapida.Width / 2));
+                                DialogResult Res = Statics.BusquedaRapida.Buscar(valorIncial);
+                                if (Res != DialogResult.Cancel) {
                                         if (EntradaCodigo.Text.Length > 0) {
                                                 System.Windows.Forms.SendKeys.Send(m_TeclaDespuesDeEnter);
                                         }
@@ -481,7 +482,7 @@ namespace Lcc.Entrada
 
                 private void ActualizarDetalle()
                 {
-                        if (this.Connection != null) {
+                        if (this.Connection != null && this.ElementoTipo != null) {
                                 if (m_FreeTextCode.Length > 0 && EntradaCodigo.Text == m_FreeTextCode) {
                                         // *** Esta escribiendo texto libre
                                         m_ItemId = 0;
@@ -604,11 +605,46 @@ namespace Lcc.Entrada
                 }
 
 
-                private void DetailBox_Enter(object sender, System.EventArgs e)
+                protected override void OnCreateControl()
+                {
+                        if (string.IsNullOrEmpty(this.PlaceholderText)) {
+                                // Si no hay texto de ayuda, muy de vez en cuando doy una ayuda genérica
+                                switch(DateTime.Now.Minute) {
+                                        case 0:
+                                        case 2:
+                                                this.PlaceholderText = "Consejo: pulse espacio para ver una lista";
+                                                break;
+                                        case 3:
+                                        case 5:
+                                                this.PlaceholderText = "Consejo: si recuerda el código, escbrialo";
+                                                break;
+                                        case 6:
+                                        case 7:
+                                        case 8:
+                                        case 16:
+                                                this.PlaceholderText = "Consejo: comience a escribir para buscar";
+                                                break;
+                                }
+                        }
+                        base.OnCreateControl();
+                }
+
+
+                protected override void OnEnter(EventArgs e)
                 {
                         EntradaCodigo.ScrollToCaret();
+                        if (this.ReadOnly == false && this.TemporaryReadOnly == false)
+                                BotonBuscar.Visible = true;
                         ProgramarActualizacionDetalle(false);
                         this.Refresh();
+                        base.OnEnter(e);
+                }
+
+
+                protected override void OnLeave(EventArgs e)
+                {
+                        BotonBuscar.Visible = false;
+                        base.OnLeave(e);
                 }
 
 
@@ -818,6 +854,11 @@ namespace Lcc.Entrada
                         EntradaCodigo.ForeColor = this.DisplayStyle.DataAreaGrayTextColor;
                         EntradaFreeText.BackColor = Label1.BackColor;
                         EntradaFreeText.ForeColor = Label1.ForeColor;
+                }
+
+                private void BotonBuscar_Click(object sender, EventArgs e)
+                {
+                        MostrarBuscador("");
                 }
         }
 }

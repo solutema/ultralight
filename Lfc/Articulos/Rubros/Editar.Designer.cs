@@ -89,7 +89,7 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaAlicuota.Required = true;
                         this.EntradaAlicuota.Size = new System.Drawing.Size(388, 24);
                         this.EntradaAlicuota.TabIndex = 3;
-                        this.EntradaAlicuota.Table = "alicuotas";
+                        this.EntradaAlicuota.NombreTipo = "Lbl.Impuestos.Alicuota";
                         this.EntradaAlicuota.Text = "0";
                         this.EntradaAlicuota.TextDetail = "";
                         // 

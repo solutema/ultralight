@@ -324,6 +324,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.BotonSubir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonSubir.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonSubir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonSubir.Image = null;
                         this.BotonSubir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSubir.Location = new System.Drawing.Point(104, 254);
@@ -338,6 +339,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.BotonBajar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonBajar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonBajar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonBajar.Image = null;
                         this.BotonBajar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonBajar.Location = new System.Drawing.Point(104, 294);
@@ -416,9 +418,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaTipo.Location = new System.Drawing.Point(152, 168);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.SetData = new string[] {
-        "Preimpresa|0",
-        "Subimprimir imagen|1",
-        "PDF|2"};
+        "En blanco|1",
+        "Preimpresa|0"};
                         this.EntradaTipo.Size = new System.Drawing.Size(144, 56);
                         this.EntradaTipo.TabIndex = 7;
                         this.EntradaTipo.TextKey = "0";
@@ -512,6 +513,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(0, 254);
@@ -527,6 +529,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(0, 294);
@@ -560,6 +563,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // BotonGeneral
                         // 
                         this.BotonGeneral.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonGeneral.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonGeneral.Image = null;
                         this.BotonGeneral.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonGeneral.Location = new System.Drawing.Point(0, 0);
@@ -574,6 +578,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // BotonDiseno
                         // 
                         this.BotonDiseno.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonDiseno.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonDiseno.Image = null;
                         this.BotonDiseno.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonDiseno.Location = new System.Drawing.Point(0, 48);

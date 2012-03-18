@@ -93,25 +93,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTipo.Location = new System.Drawing.Point(312, 0);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.SetData = new string[] {
-        "Remito|R",
-        "Nota Pedido|NP",
-        "Pedido|PD",
-        "Factura A|FA",
-        "Factura B|FB",
-        "Factura C|FC",
-        "Factura E|FE",
-        "Factura M|FM",
-        "Nota de Crédito A|NCA",
-        "Nota de Crédito B|NCB",
-        "Nota de Crédito C|NCC",
-        "Nota de Crédito E|NCE",
-        "Nota de Crédito M|NCM",
-        "Nota de Débito A|NDA",
-        "Nota de Débito B|NDB",
-        "Nota de Débito C|NDC",
-        "Nota de Débito E|NDE",
-        "Nota de Débito M|NDM"};
+                        this.EntradaTipo.SetData = new string[] { "Factura A|FA" };
                         this.EntradaTipo.Size = new System.Drawing.Size(132, 25);
                         this.EntradaTipo.TabIndex = 17;
                         this.EntradaTipo.TextKey = "FA";
@@ -167,7 +149,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(197, 24);
                         this.EntradaHaciaSituacion.TabIndex = 25;
-                        this.EntradaHaciaSituacion.Table = "articulos_situaciones";
+                        this.EntradaHaciaSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaHaciaSituacion.Text = "0";
                         this.EntradaHaciaSituacion.TextDetail = "";
                         // 
@@ -220,7 +202,7 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProveedor.Required = true;
                         this.EntradaProveedor.Size = new System.Drawing.Size(228, 24);
                         this.EntradaProveedor.TabIndex = 15;
-                        this.EntradaProveedor.Table = "personas";
+                        this.EntradaProveedor.NombreTipo = "Lbl.Personas.Proveedor";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
                         // 

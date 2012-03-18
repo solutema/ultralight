@@ -68,7 +68,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.label6 = new Lui.Forms.Label();
                         this.EntradaFechaEmision = new Lui.Forms.TextBox();
                         this.EntradaNumeroCheque = new Lui.Forms.TextBox();
-                        this.lblFecha1 = new Lui.Forms.Label();
+                        this.EtiquetaFecha1 = new Lui.Forms.Label();
                         this.EntradaBanco = new Lcc.Entrada.CodigoDetalle();
                         this.PanelTitulo = new Lui.Forms.Panel();
                         this.FrameTitulo = new Lui.Forms.Frame();
@@ -154,7 +154,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.PanelChequePropio.Controls.Add(this.label6);
                         this.PanelChequePropio.Controls.Add(this.EntradaFechaEmision);
                         this.PanelChequePropio.Controls.Add(this.EntradaNumeroCheque);
-                        this.PanelChequePropio.Controls.Add(this.lblFecha1);
+                        this.PanelChequePropio.Controls.Add(this.EtiquetaFecha1);
                         this.PanelChequePropio.Controls.Add(this.EntradaBanco);
                         this.PanelChequePropio.Dock = System.Windows.Forms.DockStyle.Top;
                         this.PanelChequePropio.Location = new System.Drawing.Point(0, 128);
@@ -221,12 +221,12 @@ namespace Lcc.Edicion.Comprobantes
                         // 
                         // lblFecha1
                         // 
-                        this.lblFecha1.Location = new System.Drawing.Point(0, 64);
-                        this.lblFecha1.Name = "lblFecha1";
-                        this.lblFecha1.Size = new System.Drawing.Size(140, 24);
-                        this.lblFecha1.TabIndex = 4;
-                        this.lblFecha1.Text = "Fecha de emisión";
-                        this.lblFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaFecha1.Location = new System.Drawing.Point(0, 64);
+                        this.EtiquetaFecha1.Name = "lblFecha1";
+                        this.EtiquetaFecha1.Size = new System.Drawing.Size(140, 24);
+                        this.EtiquetaFecha1.TabIndex = 4;
+                        this.EtiquetaFecha1.Text = "Fecha de emisión";
+                        this.EtiquetaFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaBanco
                         // 
@@ -243,7 +243,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(320, 24);
                         this.EntradaBanco.TabIndex = 1;
-                        this.EntradaBanco.Table = "bancos";
+                        this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
@@ -302,7 +302,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(320, 24);
                         this.EntradaCaja.TabIndex = 1;
-                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
@@ -416,7 +416,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(320, 24);
                         this.EntradaPlan.TabIndex = 3;
-                        this.EntradaPlan.Table = "tarjetas_planes";
+                        this.EntradaPlan.NombreTipo = "Lbl.Pagos.Plan";
                         this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
@@ -526,7 +526,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(324, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
-                        this.EntradaFormaDePago.Table = "formaspago";
+                        this.EntradaFormaDePago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaDePago.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaFormaDePago.Text = "0";
                         this.EntradaFormaDePago.TextDetail = "";
@@ -594,7 +594,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaChequeTerceros.Required = true;
                         this.EntradaChequeTerceros.Size = new System.Drawing.Size(320, 24);
                         this.EntradaChequeTerceros.TabIndex = 1;
-                        this.EntradaChequeTerceros.Table = "bancos_cheques";
+                        this.EntradaChequeTerceros.NombreTipo = "Lbl.Bancos.ChequeRecibido";
                         this.EntradaChequeTerceros.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaChequeTerceros.Text = "0";
                         this.EntradaChequeTerceros.TextDetail = "";
@@ -635,7 +635,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaValor.Required = true;
                         this.EntradaValor.Size = new System.Drawing.Size(320, 24);
                         this.EntradaValor.TabIndex = 1;
-                        this.EntradaValor.Table = "pagos_valores";
+                        this.EntradaValor.NombreTipo = "Lbl.Pagos.Valor";
                         this.EntradaValor.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaValor.Text = "0";
                         this.EntradaValor.TextDetail = "";
@@ -685,7 +685,7 @@ namespace Lcc.Edicion.Comprobantes
                 internal Lui.Forms.Label label6;
                 public Lui.Forms.TextBox EntradaFechaEmision;
                 internal Lui.Forms.TextBox EntradaNumeroCheque;
-                internal Lui.Forms.Label lblFecha1;
+                internal Lui.Forms.Label EtiquetaFecha1;
                 private Lui.Forms.Panel PanelTitulo;
                 private Lui.Forms.Frame FrameTitulo;
                 private Lui.Forms.Panel PanelCaja;

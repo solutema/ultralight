@@ -202,7 +202,7 @@ namespace Lfc.Articulos
                         this.EntradaCaja.Required = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(224, 24);
                         this.EntradaCaja.TabIndex = 13;
-                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
                         // 
@@ -513,7 +513,7 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.Required = true;
                         this.EntradaCategoria.Size = new System.Drawing.Size(352, 24);
                         this.EntradaCategoria.TabIndex = 9;
-                        this.EntradaCategoria.Table = "articulos_categorias";
+                        this.EntradaCategoria.NombreTipo = "Lbl.Articulos.Categoria";
                         this.EntradaCategoria.Text = "0";
                         this.EntradaCategoria.TextDetail = "";
                         this.EntradaCategoria.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
@@ -537,7 +537,7 @@ namespace Lfc.Articulos
                         this.EntradaMarca.Required = false;
                         this.EntradaMarca.Size = new System.Drawing.Size(216, 24);
                         this.EntradaMarca.TabIndex = 11;
-                        this.EntradaMarca.Table = "marcas";
+                        this.EntradaMarca.NombreTipo = "Lbl.Articulos.Marca";
                         this.EntradaMarca.Text = "0";
                         this.EntradaMarca.TextDetail = "";
                         this.EntradaMarca.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
@@ -759,7 +759,7 @@ namespace Lfc.Articulos
                         this.EntradaProveedor.Required = false;
                         this.EntradaProveedor.Size = new System.Drawing.Size(164, 24);
                         this.EntradaProveedor.TabIndex = 31;
-                        this.EntradaProveedor.Table = "personas";
+                        this.EntradaProveedor.NombreTipo = "Lbl.Personas.Proveedor";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
                         // 

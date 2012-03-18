@@ -90,7 +90,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImpresora.Required = false;
                         this.EntradaImpresora.Size = new System.Drawing.Size(456, 24);
                         this.EntradaImpresora.TabIndex = 1;
-                        this.EntradaImpresora.Table = "impresoras";
+                        this.EntradaImpresora.NombreTipo = "Lbl.Impresion.Impresora";
                         this.EntradaImpresora.Text = "0";
                         this.EntradaImpresora.TextDetail = "";
                         this.EntradaImpresora.TextChanged += new System.EventHandler(this.EntradaImpresora_TextChanged);
@@ -122,7 +122,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(456, 24);
                         this.EntradaSucursal.TabIndex = 3;
-                        this.EntradaSucursal.Table = "sucursales";
+                        this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
                         // 

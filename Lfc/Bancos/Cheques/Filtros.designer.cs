@@ -125,7 +125,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.Required = false;
                         this.EntradaPersona.Size = new System.Drawing.Size(366, 24);
                         this.EntradaPersona.TabIndex = 7;
-                        this.EntradaPersona.Table = "personas";
+                        this.EntradaPersona.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaPersona.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPersona.Text = "0";
                         this.EntradaPersona.TextDetail = "";
@@ -153,7 +153,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Required = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(366, 24);
                         this.EntradaBanco.TabIndex = 5;
-                        this.EntradaBanco.Table = "bancos";
+                        this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
@@ -200,7 +200,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(366, 24);
                         this.EntradaSucursal.TabIndex = 3;
-                        this.EntradaSucursal.Table = "sucursales";
+                        this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";

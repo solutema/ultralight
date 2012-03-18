@@ -165,7 +165,7 @@ namespace Lfc.Comprobantes.Facturas
                                         if (IdFactura == 0) {
                                                 // No existe, supongo que está anulado, lo salteo
                                         } else {
-                                                Lbl.Comprobantes.ComprobanteConArticulos Fac = new Lbl.Comprobantes.ComprobanteConArticulos(Conn, IdFactura);
+                                                Lbl.Comprobantes.ComprobanteFacturable Fac = new Lbl.Comprobantes.ComprobanteFacturable(Conn, IdFactura);
                                                 Progreso.ChangeStatus("Imprimiendo " + Fac.ToString());
                                                 Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos Impr = new Lazaro.Impresion.Comprobantes.ImpresorComprobanteConArticulos(Fac, null);
                                                 Impr.Imprimir();

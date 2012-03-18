@@ -54,15 +54,15 @@ namespace Lui.Forms
                 private void InitializeComponent()
                 {
                         this.Listado = new Lui.Forms.ListView();
-                        this.NombreEstacion = new System.Windows.Forms.ColumnHeader();
-                        this.Nombre = new System.Windows.Forms.ColumnHeader();
+                        this.NombreEstacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+                        this.Nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.SuspendLayout();
                         // 
-                        // lvItems
+                        // Listado
                         // 
-                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.NombreEstacion,
@@ -73,7 +73,7 @@ namespace Lui.Forms
                         this.Listado.LabelWrap = false;
                         this.Listado.Location = new System.Drawing.Point(8, 8);
                         this.Listado.MultiSelect = false;
-                        this.Listado.Name = "lvItems";
+                        this.Listado.Name = "Listado";
                         this.Listado.Size = new System.Drawing.Size(460, 196);
                         this.Listado.TabIndex = 0;
                         this.Listado.UseCompatibleStateImageBehavior = false;
@@ -89,12 +89,15 @@ namespace Lui.Forms
                         this.Nombre.Text = "Estación";
                         this.Nombre.Width = 320;
                         // 
-                        // SeleccionarEstacion
+                        // WorkstationSelectorForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(474, 274);
                         this.Controls.Add(this.Listado);
-                        this.Name = "SeleccionarEstacion";
+                        this.ForeColor = System.Drawing.Color.Black;
+                        this.Name = "WorkstationSelectorForm";
+                        this.Text = "Seleccionar equipo";
+                        this.Controls.SetChildIndex(this.Listado, 0);
                         this.ResumeLayout(false);
 
                 }

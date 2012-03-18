@@ -141,7 +141,7 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.BotonRotarDer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonRotarDer.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonRotarDer.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonRotarDer.ForeColor = System.Drawing.Color.Black;
                         this.BotonRotarDer.Image = null;
                         this.BotonRotarDer.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRotarDer.Location = new System.Drawing.Point(16, 288);
@@ -157,7 +157,7 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.BotonRotarIzq.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonRotarIzq.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonRotarIzq.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonRotarIzq.ForeColor = System.Drawing.Color.Black;
                         this.BotonRotarIzq.Image = null;
                         this.BotonRotarIzq.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonRotarIzq.Location = new System.Drawing.Point(16, 328);
@@ -181,13 +181,14 @@ namespace Lcc.Entrada.AuxForms
                         this.Controls.Add(this.EntradaRatio);
                         this.Controls.Add(this.EntradaImagen);
                         this.Controls.Add(this.label1);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                         this.MinimumSize = new System.Drawing.Size(480, 400);
                         this.Name = "ImagenRecorte";
                         this.ShowIcon = false;
                         this.ShowInTaskbar = false;
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-                        this.Text = "Recortar Imagen";
+                        this.Text = "Recortar imagen";
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.EntradaImagen, 0);
                         this.Controls.SetChildIndex(this.EntradaRatio, 0);

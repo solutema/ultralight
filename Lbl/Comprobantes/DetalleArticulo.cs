@@ -367,7 +367,7 @@ namespace Lbl.Comprobantes
 
                 public override string ToString()
                 {
-                        return this.Cantidad.ToString() + " " + this.Nombre + " a $ " + Lfx.Types.Formatting.FormatCurrency(this.Unitario, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " c/u";
+                        return this.Cantidad.ToString() + " " + this.Nombre + " a " + Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.Unitario, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales) + " c/u";
                 }
 	}
 }

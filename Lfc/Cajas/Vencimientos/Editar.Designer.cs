@@ -241,7 +241,7 @@ namespace Lfc.Cajas.Vencimientos
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(432, 24);
                         this.EntradaConcepto.TabIndex = 1;
-                        this.EntradaConcepto.Table = "conceptos";
+                        this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
                         // 

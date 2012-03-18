@@ -73,7 +73,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.Required = true;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(88, 24);
                         this.EntradaFormaPago.TabIndex = 1;
-                        this.EntradaFormaPago.Table = "formaspago";
+                        this.EntradaFormaPago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
                         this.EntradaFormaPago.Leave += new System.EventHandler(this.EntradaFormaPago_Leave);
@@ -94,13 +94,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaTipo.Location = new System.Drawing.Point(72, 32);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.ReadOnly = false;
-                        this.EntradaTipo.SetData = new string[] {
-        "Factura A|FA",
-        "Factura B|FB",
-        "Factura C|FC",
-        "Factura E|FE",
-        "Factura M|FM",
-        "Ticket|T"};
+                        this.EntradaTipo.SetData = new string[] { "Factura A|FA" };
                         this.EntradaTipo.Size = new System.Drawing.Size(116, 25);
                         this.EntradaTipo.TabIndex = 11;
                         this.EntradaTipo.TextKey = "FA";

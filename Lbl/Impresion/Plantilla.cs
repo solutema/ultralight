@@ -285,6 +285,10 @@ namespace Lbl.Impresion
                                 Attr.Value = Cam.Wrap ? "1" : "0";
                                 CampoXml.Attributes.Append(Attr);
 
+                                Attr = XmlDef.CreateAttribute("Preimpreso");
+                                Attr.Value = Cam.Preimpreso ? "1" : "0";
+                                CampoXml.Attributes.Append(Attr);
+
                                 if (Cam.Font != null) {
                                         Attr = XmlDef.CreateAttribute("Fuente");
                                         Attr.Value = Cam.Font.Name;
@@ -416,7 +420,10 @@ namespace Lbl.Impresion
                                                 NuevoCampo.Font = new System.Drawing.Font(Cam.Attributes["Fuente"].Value, TamanoFuenteCampo);
                                         }
                                         if (Cam.Attributes["Wrap"] != null)
-                                                NuevoCampo.Wrap = Lfx.Types.Parsing.ParseInt(Cam.Attributes["Ancho"].Value) != 0;
+                                                NuevoCampo.Wrap = Lfx.Types.Parsing.ParseInt(Cam.Attributes["Wrap"].Value) != 0;
+
+                                        if (Cam.Attributes["Preimpreso"] != null)
+                                                NuevoCampo.Preimpreso = Lfx.Types.Parsing.ParseInt(Cam.Attributes["Preimpreso"].Value) != 0;
                                         this.Campos.Add(NuevoCampo);
                                 }
                         }

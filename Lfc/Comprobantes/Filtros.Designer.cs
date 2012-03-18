@@ -140,7 +140,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(446, 24);
                         this.EntradaCliente.TabIndex = 11;
-                        this.EntradaCliente.Table = "personas";
+                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
                         // 
@@ -228,7 +228,7 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(446, 24);
                         this.EntradaVendedor.TabIndex = 13;
-                        this.EntradaVendedor.Table = "personas";
+                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
                         // 
@@ -278,7 +278,7 @@ namespace Lfc.Comprobantes
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(446, 24);
                         this.EntradaSucursal.TabIndex = 1;
-                        this.EntradaSucursal.Table = "sucursales";
+                        this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
                         // 
@@ -306,7 +306,7 @@ namespace Lfc.Comprobantes
                         this.EntradaFormaPago.Required = false;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(446, 24);
                         this.EntradaFormaPago.TabIndex = 3;
-                        this.EntradaFormaPago.Table = "formaspago";
+                        this.EntradaFormaPago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
                         // 

@@ -194,7 +194,7 @@ namespace Lfc.Pvs
                         this.EntradaSucursal.Required = true;
                         this.EntradaSucursal.Size = new System.Drawing.Size(500, 24);
                         this.EntradaSucursal.TabIndex = 3;
-                        this.EntradaSucursal.Table = "sucursales";
+                        this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
                         // 
@@ -373,7 +373,7 @@ namespace Lfc.Pvs
                         this.EntradaImpresora.Required = true;
                         this.EntradaImpresora.Size = new System.Drawing.Size(500, 24);
                         this.EntradaImpresora.TabIndex = 5;
-                        this.EntradaImpresora.Table = "impresoras";
+                        this.EntradaImpresora.NombreTipo = "Lbl.Impresion.Impresora";
                         this.EntradaImpresora.Text = "0";
                         this.EntradaImpresora.TextDetail = "";
                         // 

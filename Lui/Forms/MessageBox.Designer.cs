@@ -31,7 +31,7 @@
 
 namespace Lui.Forms
 {
-        partial class MessageBoxForm
+        partial class MessageBox
         {
                 /// <summary>
                 /// Variable del diseñador requerida.
@@ -58,11 +58,12 @@ namespace Lui.Forms
                 /// </summary>
                 private void InitializeComponent()
                 {
-                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageBoxForm));
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageBox));
                         this.OkButton = new Lui.Forms.Button();
                         this.LowerPanel = new Lui.Forms.ButtonPanel();
                         this.pictureBox1 = new System.Windows.Forms.PictureBox();
-                        this.MessageText = new System.Windows.Forms.TextBox();
+                        this.EtiquetaTitulo = new Lui.Forms.Label();
+                        this.MessageText = new Lui.Forms.Label();
                         this.LowerPanel.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         this.SuspendLayout();
@@ -74,10 +75,11 @@ namespace Lui.Forms
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(350, 12);
-                        this.OkButton.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+                        this.OkButton.Location = new System.Drawing.Point(401, 12);
+                        this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.OkButton.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.OkButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.OkButton.Name = "OkButton";
-                        this.OkButton.ReadOnly = false;
                         this.OkButton.Size = new System.Drawing.Size(104, 40);
                         this.OkButton.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.OkButton.Subtext = "F9";
@@ -90,46 +92,56 @@ namespace Lui.Forms
                         this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
                         this.LowerPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 200);
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 217);
                         this.LowerPanel.Name = "LowerPanel";
                         this.LowerPanel.Padding = new System.Windows.Forms.Padding(12);
-                        this.LowerPanel.Size = new System.Drawing.Size(484, 64);
+                        this.LowerPanel.Size = new System.Drawing.Size(529, 64);
                         this.LowerPanel.TabIndex = 4;
                         // 
                         // pictureBox1
                         // 
                         this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-                        this.pictureBox1.Location = new System.Drawing.Point(16, 19);
+                        this.pictureBox1.Location = new System.Drawing.Point(24, 24);
                         this.pictureBox1.Name = "pictureBox1";
                         this.pictureBox1.Size = new System.Drawing.Size(52, 49);
                         this.pictureBox1.TabIndex = 5;
                         this.pictureBox1.TabStop = false;
                         // 
-                        // MessageText
+                        // EtiquetaTitulo
+                        // 
+                        this.EtiquetaTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 24);
+                        this.EtiquetaTitulo.Name = "EtiquetaTitulo";
+                        this.EtiquetaTitulo.Size = new System.Drawing.Size(408, 32);
+                        this.EtiquetaTitulo.TabIndex = 1000;
+                        this.EtiquetaTitulo.Text = "Pregunta";
+                        this.EtiquetaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaTitulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        // 
+                        // DialogText
                         // 
                         this.MessageText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.MessageText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.MessageText.Location = new System.Drawing.Point(84, 15);
-                        this.MessageText.Multiline = true;
-                        this.MessageText.Name = "MessageText";
-                        this.MessageText.ReadOnly = true;
-                        this.MessageText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-                        this.MessageText.Size = new System.Drawing.Size(386, 176);
-                        this.MessageText.TabIndex = 999;
-                        this.MessageText.TabStop = false;
+                        this.MessageText.AutoSize = true;
+                        this.MessageText.Location = new System.Drawing.Point(96, 72);
+                        this.MessageText.MaximumSize = new System.Drawing.Size(480, 0);
+                        this.MessageText.Name = "DialogText";
+                        this.MessageText.Size = new System.Drawing.Size(0, 20);
+                        this.MessageText.TabIndex = 1001;
                         // 
-                        // MessageBoxForm
+                        // MessageBox
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(484, 264);
+                        this.ClientSize = new System.Drawing.Size(529, 281);
                         this.Controls.Add(this.MessageText);
-                        this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.LowerPanel);
+                        this.Controls.Add(this.pictureBox1);
+                        this.Controls.Add(this.EtiquetaTitulo);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.Name = "MessageBoxForm";
+                        this.Name = "MessageBox";
                         this.ShowIcon = false;
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Mensaje";
@@ -146,6 +158,7 @@ namespace Lui.Forms
                 public Lui.Forms.Button OkButton;
                 private Lui.Forms.ButtonPanel LowerPanel;
                 private System.Windows.Forms.PictureBox pictureBox1;
-                protected internal System.Windows.Forms.TextBox MessageText;
+                private Label EtiquetaTitulo;
+                private Label MessageText;
         }
 }

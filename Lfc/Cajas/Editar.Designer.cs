@@ -131,7 +131,7 @@ namespace Lfc.Cajas
                         this.EntradaBanco.Required = false;
                         this.EntradaBanco.Size = new System.Drawing.Size(488, 24);
                         this.EntradaBanco.TabIndex = 7;
-                        this.EntradaBanco.Table = "bancos";
+                        this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
                         this.EntradaBanco.TextChanged += new System.EventHandler(this.NumeroBanco_TextChanged);
@@ -206,7 +206,7 @@ namespace Lfc.Cajas
                         this.EntradaMoneda.Required = false;
                         this.EntradaMoneda.Size = new System.Drawing.Size(228, 24);
                         this.EntradaMoneda.TabIndex = 11;
-                        this.EntradaMoneda.Table = "monedas";
+                        this.EntradaMoneda.NombreTipo = "Lbl.Entidades.Moneda";
                         this.EntradaMoneda.Text = "0";
                         this.EntradaMoneda.TextDetail = "";
                         // 

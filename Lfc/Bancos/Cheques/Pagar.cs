@@ -36,224 +36,29 @@ using System.Windows.Forms;
 
 namespace Lfc.Bancos.Cheques
 {
-        public class Pagar : Lui.Forms.DialogForm
+        public partial class Pagar : Lui.Forms.DialogForm
         {
                 IList<string> Cheques = null;
                 private string ChequesIds = null;
-
-                internal Lui.Forms.Label label7;
-                internal Lui.Forms.TextBox EntradaImpuestos;
-                internal Lui.Forms.Label label4;
-                internal Lui.Forms.TextBox EntradaSubTotal;
-                internal Lui.Forms.Label Label1;
-                internal Lui.Forms.TextBox EntradaCantidad;
-                internal Lui.Forms.Label lblLabel1;
-                internal Lui.Forms.Label Label3;
-                internal Lui.Forms.TextBox EntradaTotal;
-                internal Lui.Forms.Label Label8;
-                public Lcc.Entrada.CodigoDetalle EntradaCajaOrigen;
-                private System.ComponentModel.IContainer components = null;
 
                 public Pagar()
                 {
                         InitializeComponent();
                 }
 
-                /// <summary>
-                /// Limpiar los recursos que se estén utilizando.
-                /// </summary>
-                protected override void Dispose(bool disposing)
-                {
-                        if (disposing) {
-                                if (components != null) {
-                                        components.Dispose();
-                                }
-                        }
-                        base.Dispose(disposing);
-                }
 
-                #region Código generado por el diseñador
-                /// <summary>
-                /// Método necesario para admitir el Diseñador. No se puede modificar
-                /// el contenido del método con el editor de código.
-                /// </summary>
-                private void InitializeComponent()
-                {
-                        this.label7 = new Lui.Forms.Label();
-                        this.EntradaImpuestos = new Lui.Forms.TextBox();
-                        this.label4 = new Lui.Forms.Label();
-                        this.EntradaSubTotal = new Lui.Forms.TextBox();
-                        this.Label1 = new Lui.Forms.Label();
-                        this.EntradaCantidad = new Lui.Forms.TextBox();
-                        this.lblLabel1 = new Lui.Forms.Label();
-                        this.EntradaCajaOrigen = new Lcc.Entrada.CodigoDetalle();
-                        this.Label3 = new Lui.Forms.Label();
-                        this.EntradaTotal = new Lui.Forms.TextBox();
-                        this.Label8 = new Lui.Forms.Label();
-                        this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(354, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(474, 8);
-                        // 
-                        // label7
-                        // 
-                        this.label7.Location = new System.Drawing.Point(20, 16);
-                        this.label7.Name = "label7";
-                        this.label7.Size = new System.Drawing.Size(556, 36);
-                        this.label7.TabIndex = 0;
-                        this.label7.Text = "Asentará el pago de un cheque emitido.";
-                        // 
-                        // EntradaImpuestos
-                        // 
-                        this.EntradaImpuestos.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImpuestos.Location = new System.Drawing.Point(412, 100);
-                        this.EntradaImpuestos.Name = "EntradaImpuestos";
-                        this.EntradaImpuestos.Prefijo = "$";
-                        this.EntradaImpuestos.ReadOnly = false;
-                        this.EntradaImpuestos.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaImpuestos.TabIndex = 8;
-                        this.EntradaImpuestos.Text = "0.00";
-                        this.EntradaImpuestos.TextChanged += new System.EventHandler(this.Importes_TextChanged);
-                        // 
-                        // label4
-                        // 
-                        this.label4.Location = new System.Drawing.Point(276, 100);
-                        this.label4.Name = "label4";
-                        this.label4.Size = new System.Drawing.Size(132, 24);
-                        this.label4.TabIndex = 7;
-                        this.label4.Text = "+ Otros gastos";
-                        this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // EntradaSubTotal
-                        // 
-                        this.EntradaSubTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaSubTotal.Location = new System.Drawing.Point(412, 68);
-                        this.EntradaSubTotal.Name = "EntradaSubTotal";
-                        this.EntradaSubTotal.Prefijo = "$";
-                        this.EntradaSubTotal.ReadOnly = false;
-                        this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
-                        this.EntradaSubTotal.TabIndex = 4;
-                        this.EntradaSubTotal.TabStop = false;
-                        this.EntradaSubTotal.Text = "0.00";
-                        this.EntradaSubTotal.TextChanged += new System.EventHandler(this.Importes_TextChanged);
-                        // 
-                        // Label1
-                        // 
-                        this.Label1.Location = new System.Drawing.Point(236, 68);
-                        this.Label1.Name = "Label1";
-                        this.Label1.Size = new System.Drawing.Size(176, 24);
-                        this.Label1.TabIndex = 3;
-                        this.Label1.Text = "cheque(s) por un total de";
-                        this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // EntradaCantidad
-                        // 
-                        this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaCantidad.Location = new System.Drawing.Point(172, 68);
-                        this.EntradaCantidad.Name = "EntradaCantidad";
-                        this.EntradaCantidad.ReadOnly = false;
-                        this.EntradaCantidad.Size = new System.Drawing.Size(56, 24);
-                        this.EntradaCantidad.TabIndex = 2;
-                        this.EntradaCantidad.TabStop = false;
-                        this.EntradaCantidad.Text = "0";
-                        // 
-                        // lblLabel1
-                        // 
-                        this.lblLabel1.Location = new System.Drawing.Point(60, 68);
-                        this.lblLabel1.Name = "lblLabel1";
-                        this.lblLabel1.Size = new System.Drawing.Size(112, 24);
-                        this.lblLabel1.TabIndex = 1;
-                        this.lblLabel1.Text = "Pago de";
-                        this.lblLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // EntradaCajaOrigen
-                        // 
-                        this.EntradaCajaOrigen.CanCreate = false;
-                        this.EntradaCajaOrigen.DataTextField = "nombre";
-                        this.EntradaCajaOrigen.DataValueField = "id_caja";
-                        this.EntradaCajaOrigen.ExtraDetailFields = "";
-                        this.EntradaCajaOrigen.Filter = "";
-                        this.EntradaCajaOrigen.FreeTextCode = "";
-                        this.EntradaCajaOrigen.Location = new System.Drawing.Point(212, 232);
-                        this.EntradaCajaOrigen.MaxLength = 200;
-                        this.EntradaCajaOrigen.Name = "EntradaCajaOrigen";
-                        this.EntradaCajaOrigen.ReadOnly = false;
-                        this.EntradaCajaOrigen.Required = true;
-                        this.EntradaCajaOrigen.Size = new System.Drawing.Size(308, 24);
-                        this.EntradaCajaOrigen.TabIndex = 12;
-                        this.EntradaCajaOrigen.Table = "cajas";
-                        this.EntradaCajaOrigen.Text = "0";
-                        this.EntradaCajaOrigen.TextDetail = "";
-                        // 
-                        // Label3
-                        // 
-                        this.Label3.Location = new System.Drawing.Point(60, 232);
-                        this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(160, 24);
-                        this.Label3.TabIndex = 11;
-                        this.Label3.Text = "De la siguiente cuenta";
-                        this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // EntradaTotal
-                        // 
-                        this.EntradaTotal.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaTotal.Location = new System.Drawing.Point(212, 196);
-                        this.EntradaTotal.Name = "EntradaTotal";
-                        this.EntradaTotal.Prefijo = "$";
-                        this.EntradaTotal.ReadOnly = false;
-                        this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
-                        this.EntradaTotal.TabIndex = 10;
-                        this.EntradaTotal.Text = "0.00";
-                        // 
-                        // Label8
-                        // 
-                        this.Label8.Location = new System.Drawing.Point(60, 196);
-                        this.Label8.Name = "Label8";
-                        this.Label8.Size = new System.Drawing.Size(160, 28);
-                        this.Label8.TabIndex = 9;
-                        this.Label8.Text = "Se van a descontar";
-                        this.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // Pagar
-                        // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(594, 375);
-                        this.Controls.Add(this.EntradaCajaOrigen);
-                        this.Controls.Add(this.Label3);
-                        this.Controls.Add(this.EntradaTotal);
-                        this.Controls.Add(this.Label8);
-                        this.Controls.Add(this.EntradaImpuestos);
-                        this.Controls.Add(this.label4);
-                        this.Controls.Add(this.EntradaSubTotal);
-                        this.Controls.Add(this.Label1);
-                        this.Controls.Add(this.EntradaCantidad);
-                        this.Controls.Add(this.lblLabel1);
-                        this.Controls.Add(this.label7);
-                        this.Name = "Pagar";
-                        this.Controls.SetChildIndex(this.label7, 0);
-                        this.Controls.SetChildIndex(this.lblLabel1, 0);
-                        this.Controls.SetChildIndex(this.EntradaCantidad, 0);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaSubTotal, 0);
-                        this.Controls.SetChildIndex(this.label4, 0);
-                        this.Controls.SetChildIndex(this.EntradaImpuestos, 0);
-                        this.Controls.SetChildIndex(this.Label8, 0);
-                        this.Controls.SetChildIndex(this.EntradaTotal, 0);
-                        this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.EntradaCajaOrigen, 0);
-                        this.ResumeLayout(false);
-
-                }
-                #endregion
-
+                private int Ignorar_Importes_TextChanged = 0;
                 private void Importes_TextChanged(object sender, System.EventArgs e)
                 {
-                        EntradaTotal.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaSubTotal.Text) + Lfx.Types.Parsing.ParseCurrency(EntradaImpuestos.Text), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        if (Ignorar_Importes_TextChanged > 0)
+                                return;
+
+                        Ignorar_Importes_TextChanged++;
+                        if (sender == EntradaTotal)
+                                EntradaImpuestos.ValueDecimal = EntradaSubTotal.ValueDecimal - EntradaTotal.ValueDecimal;
+                        else
+                                EntradaTotal.ValueDecimal = EntradaSubTotal.ValueDecimal + EntradaImpuestos.ValueDecimal;
+                        Ignorar_Importes_TextChanged--;
                 }
 
                 public System.Windows.Forms.DialogResult Mostrar(IList<string> chequesAPagar)
@@ -280,16 +85,16 @@ namespace Lfc.Bancos.Cheques
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
+                        Lfx.Types.OperationResult Res = new Lfx.Types.SuccessOperationResult();
                         if (EntradaCajaOrigen.ValueInt <= 0) {
-                                aceptarReturn.Success = false;
-                                aceptarReturn.Message += "Debe especificar la cuenta de origen." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "Por favor seleccione la cuenta de origen." + Environment.NewLine;
                         }
-                        if (Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text) <= 0) {
-                                aceptarReturn.Success = false;
-                                aceptarReturn.Message += "El importe total debe ser mayor o igual a cero." + Environment.NewLine;
+                        if (EntradaTotal.ValueDecimal <= 0) {
+                                Res.Success = false;
+                                Res.Message += "El importe total debe ser mayor o igual a cero." + Environment.NewLine;
                         }
-                        if (aceptarReturn.Success == true) {
+                        if (Res.Success == true) {
                                 decimal Impuestos = EntradaImpuestos.ValueDecimal;
 
                                 IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
@@ -304,14 +109,14 @@ namespace Lfc.Bancos.Cheques
 
                                 if (Impuestos != 0)
                                         CajaOrigen.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 23030),
-                                                "Impuestos Cheques",
+                                                "Impuestos de cheque(s)",
                                                 null,
                                                 -Impuestos,
                                                 "Cheques Nº " + ChequesNum, null, null, null);
 
                                 Trans.Commit();
                         }
-                        return aceptarReturn;
+                        return Res;
                 }
         }
 }

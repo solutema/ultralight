@@ -51,7 +51,10 @@ namespace Lfc.Comprobantes.Tipo
                         Lbl.Comprobantes.Tipo Tipo = this.Elemento as Lbl.Comprobantes.Tipo;
 
                         EntradaNombre.Text = Tipo.Nombre;
+                        EntradaNombre.ReadOnly = true;
                         EntradaLetra.Text = Tipo.Nomenclatura;
+                        EntradaLetra.ReadOnly = true;
+
                         EntradaMueveStock.ValueInt = System.Convert.ToInt32(Tipo.MueveExistencias);
                         EntradaSituacionOrigen.Elemento = Tipo.SituacionOrigen;
                         EntradaSituacionDestino.Elemento = Tipo.SituacionDestino;

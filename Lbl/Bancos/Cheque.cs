@@ -324,9 +324,9 @@ namespace Lbl.Bancos
                                 Comando.Fields.AddWithValue("id_comprob", this.Factura.Id);
 
                         if (this.Emitido)
-                                Comando.Fields.AddWithValue("nombre", "Nº " + this.Numero + " por $ " + Lfx.Types.Formatting.FormatCurrency(this.Importe, 2));
+                                Comando.Fields.AddWithValue("nombre", "Nº " + this.Numero + " por " + Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.Importe, 2));
                         else
-                                Comando.Fields.AddWithValue("nombre", "Nº " + this.Numero + " por $ " + Lfx.Types.Formatting.FormatCurrency(this.Importe, 2) + " emitido por " + this.Emisor);
+                                Comando.Fields.AddWithValue("nombre", "Nº " + this.Numero + " por " + Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.Importe, 2) + " emitido por " + this.Emisor);
 			Comando.Fields.AddWithValue("importe", this.Importe);
 			Comando.Fields.AddWithValue("fechaemision", this.FechaEmision);
 			Comando.Fields.AddWithValue("emitidopor", this.Emisor);
@@ -390,17 +390,17 @@ namespace Lbl.Bancos
                 {
                         Lbl.Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaCheques);
 
-                        CajaCheques.Movimiento(true, Lbl.Cajas.Concepto.AjustesYMovimientos, "Efectivización de Cheques",
+                        CajaCheques.Movimiento(true, Lbl.Cajas.Concepto.AjustesYMovimientos, "Efectivización de cheque(s)",
                                                 null, -this.Importe, this.ToString(), null, null, null);
 
                         destino.Movimiento(true, Lbl.Cajas.Concepto.AjustesYMovimientos,
-                                "Efectivización de Cheques", null, this.Importe - GestionDeCobro - Impuestos,
+                                "Efectivización de cheque(s)", null, this.Importe - GestionDeCobro - Impuestos,
                                 this.ToString(), null, null, null);
 
                         if (GestionDeCobro != 0)
-                                destino.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 24010), "Gestion de Cobro Cheques", null, -GestionDeCobro, this.ToString(), null, null, null);
+                                destino.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 24010), "Gestion de cobro de cheque(s)", null, -GestionDeCobro, this.ToString(), null, null, null);
                         if (Impuestos != 0)
-                                destino.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 23030), "Impuestos Cheques", null, -Impuestos, this.ToString(), null, null, null);
+                                destino.Movimiento(true, new Lbl.Cajas.Concepto(this.Connection, 23030), "Impuestos de cheque(s)", null, -Impuestos, this.ToString(), null, null, null);
 
                         this.Estado = 10;
                         qGen.Update ActualizarEstado = new qGen.Update(this.TablaDatos);

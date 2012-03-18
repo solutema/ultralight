@@ -155,6 +155,39 @@ namespace Lbl.Comprobantes
                 }
 
 
+                /// <summary>
+                /// El total de descuentos, pero en moneda.
+                /// </summary>
+                public decimal ImporteDescuentos
+                {
+                        get
+                        {
+                                if (Lbl.Sys.Config.Moneda.UnidadMonetariaMinima > 0)
+                                        return Math.Floor((SubTotal * this.Descuento / 100m) / Lbl.Sys.Config.Moneda.UnidadMonetariaMinima) * Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
+                                else
+                                        return Math.Round(SubTotal * this.Descuento / 100m, Lbl.Sys.Config.Moneda.DecimalesFinal);
+                        }
+                }
+
+
+                /// <summary>
+                /// El total de recargos, pero en moneda.
+                /// </summary>
+                public decimal ImporteRecargos
+                {
+                        get
+                        {
+                                if (Lbl.Sys.Config.Moneda.UnidadMonetariaMinima > 0)
+                                        return Math.Floor((SubTotal * this.Recargo / 100m) / Lbl.Sys.Config.Moneda.UnidadMonetariaMinima) * Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
+                                else
+                                        return Math.Round(SubTotal * this.Recargo / 100m, Lbl.Sys.Config.Moneda.DecimalesFinal);
+                        }
+                }
+
+
+                /// <summary>
+                /// El porcentaje de descuento.
+                /// </summary>
                 public decimal Descuento
 		{
 			get
@@ -167,6 +200,10 @@ namespace Lbl.Comprobantes
                         }
 		}
 
+
+                /// <summary>
+                /// El porcentaje de recargo.
+                /// </summary>
                 public decimal Recargo
 		{
 			get

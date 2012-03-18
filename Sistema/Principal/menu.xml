@@ -3,7 +3,7 @@
     <Opcion Nombre="&amp;Acerca de Lázaro" Funcion="VER" />
     <Opcion Nombre="&amp;Calculadora" Funcion="CALC" />
     <Opcion Nombre="&amp;Fiscal" Funcion="FISCAL PANEL" />
-    <Opcion Nombre="Copia de &amp;respaldo" Funcion="BACKUP MANAGER" />
+    <Opcion Nombre="Copias de &amp;seguridad" Funcion="BACKUP MANAGER" />
     <Opcion Nombre="&amp;Preferencias" Funcion="CONFIG" />
     <Opcion Nombre="&amp;Usuarios" Funcion="LISTAR Lbl.Personas.Usuario" />
     <Opcion Nombre="&amp;Cambiar contraseña" Funcion="CHANGEPWD" />
@@ -79,6 +79,11 @@
       <Opcion Nombre="&amp;Listado" Funcion="LISTAR Lbl.Comprobantes.Remito" />
       <Opcion Nombre="-" Funcion="" />
       <Opcion Nombre="&amp;Nuevo" Funcion="CREAR Lbl.Comprobantes.Remito" />
+    </Opcion>
+    <Opcion Nombre="-" Funcion="" />
+    <Opcion Nombre="Compras" Funcion="">
+      <Opcion Nombre="&amp;Listado de facturas de compra" Funcion="LISTAR Lbl.Comprobantes.ComprobanteDeCompra FP" />
+      <Opcion Nombre="&amp;Nueva factura de compra" Funcion="CREAR Lbl.Comprobantes.ComprobanteDeCompra" />
     </Opcion>
     <Opcion Nombre="-" Funcion="" />
     <Opcion Nombre="Útiles" Funcion="">

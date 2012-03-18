@@ -195,9 +195,9 @@ namespace Lui.Forms
                         if (IgnoreChanges == 0) {
                                 IgnoreChanges++;
                                 this.Changed = true;
+                                this.OnTextChanged(EventArgs.Empty);
                                 IgnoreChanges--;
                         }
-                        this.OnTextChanged(EventArgs.Empty);
                 }
 
 

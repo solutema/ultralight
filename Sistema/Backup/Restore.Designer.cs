@@ -82,7 +82,7 @@ namespace Lazaro.WinMain.Backup
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(504, 32);
                         this.Label1.TabIndex = 57;
-                        this.Label1.Text = "Restaurar copia de respaldo";
+                        this.Label1.Text = "Restaurar copia de seguridad";
                         this.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3
@@ -157,7 +157,7 @@ namespace Lazaro.WinMain.Backup
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(512, 48);
                         this.label2.TabIndex = 64;
-                        this.label2.Text = "La restauración de una copia de respaldo es un procedimiento de emergencia y sólo" +
+                        this.label2.Text = "La restauración de una copia de seguridad es un procedimiento de emergencia y sólo" +
     " debe realizarse si sufrió la pérdida de datos.";
                         // 
                         // Restore
@@ -173,7 +173,7 @@ namespace Lazaro.WinMain.Backup
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label1);
                         this.Name = "Restore";
-                        this.Text = "Restaurar copia de respaldo";
+                        this.Text = "Restaurar copia de seguridad";
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
                         this.Controls.SetChildIndex(this.lblFecha, 0);

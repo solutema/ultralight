@@ -121,7 +121,7 @@ namespace Lfc.Tareas
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(328, 24);
                         this.EntradaCliente.TabIndex = 1;
-                        this.EntradaCliente.Table = "personas";
+                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
                         // 
@@ -143,7 +143,7 @@ namespace Lfc.Tareas
                         this.EntradaTarea.Required = true;
                         this.EntradaTarea.Size = new System.Drawing.Size(328, 24);
                         this.EntradaTarea.TabIndex = 3;
-                        this.EntradaTarea.Table = "tickets_tipos";
+                        this.EntradaTarea.NombreTipo = "Lbl.Tareas.Tipo";
                         this.EntradaTarea.Text = "0";
                         this.EntradaTarea.TextDetail = "";
                         // 
@@ -174,7 +174,7 @@ namespace Lfc.Tareas
                         this.EntradaEncargado.Required = true;
                         this.EntradaEncargado.Size = new System.Drawing.Size(328, 24);
                         this.EntradaEncargado.TabIndex = 5;
-                        this.EntradaEncargado.Table = "personas";
+                        this.EntradaEncargado.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaEncargado.Text = "0";
                         this.EntradaEncargado.TextDetail = "";
                         // 
@@ -387,7 +387,7 @@ namespace Lfc.Tareas
                         this.EntradaEstado.Required = true;
                         this.EntradaEstado.Size = new System.Drawing.Size(256, 24);
                         this.EntradaEstado.TabIndex = 14;
-                        this.EntradaEstado.Table = "tickets_estados";
+                        this.EntradaEstado.NombreTipo = "Lbl.Tareas.Estado";
                         this.EntradaEstado.Text = "0";
                         this.EntradaEstado.TextDetail = "";
                         // 

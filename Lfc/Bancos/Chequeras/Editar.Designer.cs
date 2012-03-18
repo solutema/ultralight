@@ -98,7 +98,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(440, 24);
                         this.EntradaBanco.TabIndex = 3;
-                        this.EntradaBanco.Table = "bancos";
+                        this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
                         // 
@@ -164,7 +164,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaCaja.Required = false;
                         this.EntradaCaja.Size = new System.Drawing.Size(440, 24);
                         this.EntradaCaja.TabIndex = 14;
-                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
                         // 
@@ -248,7 +248,7 @@ namespace Lfc.Bancos.Chequeras
                         this.EntradaSucursal.Required = false;
                         this.EntradaSucursal.Size = new System.Drawing.Size(440, 24);
                         this.EntradaSucursal.TabIndex = 12;
-                        this.EntradaSucursal.Table = "sucursales";
+                        this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
                         this.EntradaSucursal.TextDetail = "";
                         // 

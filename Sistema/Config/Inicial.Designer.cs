@@ -1048,7 +1048,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPais.Required = true;
                         this.EntradaPais.Size = new System.Drawing.Size(256, 24);
                         this.EntradaPais.TabIndex = 5;
-                        this.EntradaPais.Table = "paises";
+                        this.EntradaPais.NombreTipo = "Lbl.Entidades.Pais";
                         this.EntradaPais.Text = "0";
                         this.EntradaPais.TextDetail = "";
                         this.EntradaPais.TextChanged += new System.EventHandler(this.EntradaPais_TextChanged);

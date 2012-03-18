@@ -53,6 +53,7 @@ namespace Lbl.Comprobantes
                 public override void Crear()
                 {
                         base.Crear();
+                        this.Tipo = Lbl.Comprobantes.Tipo.TodosPorLetra["FA"];
                         this.Compra = true;
                         this.Fecha = DateTime.Now;
                         this.FormaDePago = new Pagos.FormaDePago(this.Connection, Pagos.TiposFormasDePago.CuentaCorriente);

@@ -174,6 +174,8 @@ namespace System
                         Res = Res.Replace(" La ", " la ");
                         Res = Res.Replace(" Pc ", " PC ");
                         Res = Res.Replace(" En ", " en ");
+                        Res = Res.Replace(" A ", " a ");
+                        Res = Res.Replace(" Las ", " las ");
                         Res = Res.Replace(" Y ", " y ");
                         Res = Res.Replace(" Srl ", " SRL ");
                         Res = Res.Replace(" Sa ", " SA ");

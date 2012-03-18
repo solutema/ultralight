@@ -83,7 +83,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaProveedor.Required = false;
                         this.EntradaProveedor.Size = new System.Drawing.Size(364, 24);
                         this.EntradaProveedor.TabIndex = 5;
-                        this.EntradaProveedor.Table = "personas";
+                        this.EntradaProveedor.NombreTipo = "Lbl.Personas.Proveedor";
                         this.EntradaProveedor.Text = "0";
                         this.EntradaProveedor.TextDetail = "";
                         // 

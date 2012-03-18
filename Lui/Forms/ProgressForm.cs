@@ -44,6 +44,7 @@ namespace Lui.Forms
 
                 public ProgressForm()
                 {
+                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                 }
 

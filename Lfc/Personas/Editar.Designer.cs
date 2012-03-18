@@ -37,9 +37,6 @@ namespace Lfc.Personas
 {
         public partial class Editar
         {
-                #region 'Código generado por el Diseñador de Windows Forms'
-
-                // Limpiar los recursos que se están utilizando.
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
@@ -51,7 +48,6 @@ namespace Lfc.Personas
                 }
 
 
-                // Requerido por el Diseñador de Windows Forms
                 private System.ComponentModel.IContainer components = null;
 
                 private void InitializeComponent()
@@ -153,7 +149,7 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.Required = true;
                         this.EntradaLocalidad.Size = new System.Drawing.Size(212, 24);
                         this.EntradaLocalidad.TabIndex = 9;
-                        this.EntradaLocalidad.Table = "ciudades";
+                        this.EntradaLocalidad.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
                         // 
@@ -194,7 +190,7 @@ namespace Lfc.Personas
                         this.EntradaTipoDoc.Required = true;
                         this.EntradaTipoDoc.Size = new System.Drawing.Size(136, 24);
                         this.EntradaTipoDoc.TabIndex = 5;
-                        this.EntradaTipoDoc.Table = "tipo_doc";
+                        this.EntradaTipoDoc.NombreTipo = "Lbl.Entidades.ClaveUnica";
                         this.EntradaTipoDoc.Text = "0";
                         this.EntradaTipoDoc.TextDetail = "";
                         // 
@@ -411,7 +407,7 @@ namespace Lfc.Personas
                         this.EntradaSituacion.Required = true;
                         this.EntradaSituacion.Size = new System.Drawing.Size(212, 24);
                         this.EntradaSituacion.TabIndex = 5;
-                        this.EntradaSituacion.Table = "situaciones";
+                        this.EntradaSituacion.NombreTipo = "Lbl.Impuestos.SituacionTributaria";
                         this.EntradaSituacion.Text = "0";
                         this.EntradaSituacion.TextDetail = "";
                         this.EntradaSituacion.Leave += new System.EventHandler(this.EntradaSituacion_Leave);
@@ -469,7 +465,7 @@ namespace Lfc.Personas
                         this.EntradaTipo.Required = true;
                         this.EntradaTipo.Size = new System.Drawing.Size(232, 24);
                         this.EntradaTipo.TabIndex = 5;
-                        this.EntradaTipo.Table = "personas_tipos";
+                        this.EntradaTipo.NombreTipo = "Lbl.Personas.Tipo";
                         this.EntradaTipo.Text = "0";
                         this.EntradaTipo.TextDetail = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
@@ -502,7 +498,7 @@ namespace Lfc.Personas
                         this.EntradaGrupo.Required = false;
                         this.EntradaGrupo.Size = new System.Drawing.Size(232, 24);
                         this.EntradaGrupo.TabIndex = 1;
-                        this.EntradaGrupo.Table = "personas_grupos";
+                        this.EntradaGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
                         this.EntradaGrupo.TextChanged += new System.EventHandler(this.EntradaGrupo_TextChanged);
@@ -661,7 +657,7 @@ namespace Lfc.Personas
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(212, 24);
                         this.EntradaVendedor.TabIndex = 11;
-                        this.EntradaVendedor.Table = "personas";
+                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
                         // 
@@ -727,7 +723,7 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.Required = false;
                         this.EntradaSubGrupo.Size = new System.Drawing.Size(232, 24);
                         this.EntradaSubGrupo.TabIndex = 3;
-                        this.EntradaSubGrupo.Table = "personas_grupos";
+                        this.EntradaSubGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaSubGrupo.Text = "0";
                         this.EntradaSubGrupo.TextDetail = "";
                         // 
@@ -873,7 +869,6 @@ namespace Lfc.Personas
 
                 }
 
-                #endregion
 
                 internal Lui.Forms.TextBox EntradaEmail;
                 internal Lcc.Entrada.CodigoDetalle EntradaLocalidad;

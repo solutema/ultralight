@@ -72,7 +72,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // BarraProgreso
                         // 
-                        this.BarraProgreso.Location = new System.Drawing.Point(136, 168);
+                        this.BarraProgreso.Location = new System.Drawing.Point(128, 132);
                         this.BarraProgreso.Name = "BarraProgreso";
                         this.BarraProgreso.Size = new System.Drawing.Size(464, 24);
                         this.BarraProgreso.TabIndex = 0;
@@ -84,14 +84,14 @@ namespace Lazaro.WinMain.Misc
                         this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
                         this.panel1.Location = new System.Drawing.Point(0, 0);
                         this.panel1.Name = "panel1";
-                        this.panel1.Size = new System.Drawing.Size(100, 394);
+                        this.panel1.Size = new System.Drawing.Size(100, 306);
                         this.panel1.TabIndex = 55;
                         // 
                         // pictureBox2
                         // 
                         this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-                        this.pictureBox2.Location = new System.Drawing.Point(20, 254);
+                        this.pictureBox2.Location = new System.Drawing.Point(20, 166);
                         this.pictureBox2.Name = "pictureBox2";
                         this.pictureBox2.Size = new System.Drawing.Size(37, 120);
                         this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -100,17 +100,17 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // labelH11
                         // 
-                        this.labelH11.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
-                        this.labelH11.Location = new System.Drawing.Point(136, 32);
+                        this.labelH11.Location = new System.Drawing.Point(128, 24);
                         this.labelH11.Name = "labelH11";
                         this.labelH11.Size = new System.Drawing.Size(464, 24);
                         this.labelH11.TabIndex = 56;
-                        this.labelH11.Text = "Actualizar sistema ahora";
+                        this.labelH11.Text = "Actualizando Lázaro";
                         this.labelH11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.labelH11.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(136, 68);
+                        this.label1.Location = new System.Drawing.Point(128, 56);
                         this.label1.Name = "label1";
                         this.label1.Size = new System.Drawing.Size(464, 40);
                         this.label1.TabIndex = 57;
@@ -119,7 +119,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaEstado
                         // 
-                        this.EtiquetaEstado.Location = new System.Drawing.Point(136, 148);
+                        this.EtiquetaEstado.Location = new System.Drawing.Point(128, 112);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
                         this.EtiquetaEstado.Size = new System.Drawing.Size(380, 20);
                         this.EtiquetaEstado.TabIndex = 58;
@@ -128,7 +128,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaProgreso
                         // 
-                        this.EtiquetaProgreso.Location = new System.Drawing.Point(520, 148);
+                        this.EtiquetaProgreso.Location = new System.Drawing.Point(512, 112);
                         this.EtiquetaProgreso.Name = "EtiquetaProgreso";
                         this.EtiquetaProgreso.Size = new System.Drawing.Size(80, 20);
                         this.EtiquetaProgreso.TabIndex = 59;
@@ -138,11 +138,11 @@ namespace Lazaro.WinMain.Misc
                         // BotonInstalar
                         // 
                         this.BotonInstalar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonInstalar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonInstalar.Image = null;
                         this.BotonInstalar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonInstalar.Location = new System.Drawing.Point(488, 324);
+                        this.BotonInstalar.Location = new System.Drawing.Point(480, 248);
                         this.BotonInstalar.Name = "BotonInstalar";
-                        this.BotonInstalar.ReadOnly = false;
                         this.BotonInstalar.Size = new System.Drawing.Size(112, 36);
                         this.BotonInstalar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonInstalar.Subtext = "Tecla";
@@ -152,7 +152,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaAyuda
                         // 
-                        this.EtiquetaAyuda.Location = new System.Drawing.Point(136, 228);
+                        this.EtiquetaAyuda.Location = new System.Drawing.Point(128, 168);
                         this.EtiquetaAyuda.Name = "EtiquetaAyuda";
                         this.EtiquetaAyuda.Size = new System.Drawing.Size(464, 68);
                         this.EtiquetaAyuda.TabIndex = 63;
@@ -169,7 +169,7 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(634, 394);
+                        this.ClientSize = new System.Drawing.Size(609, 306);
                         this.Controls.Add(this.EtiquetaAyuda);
                         this.Controls.Add(this.BotonInstalar);
                         this.Controls.Add(this.EtiquetaProgreso);
@@ -178,6 +178,7 @@ namespace Lazaro.WinMain.Misc
                         this.Controls.Add(this.labelH11);
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.BarraProgreso);
+                        this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "ActualizarAhora";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -192,7 +193,6 @@ namespace Lazaro.WinMain.Misc
                 #endregion
 
                 private Lui.Forms.ProgressBar BarraProgreso;
-                private Panel panel1;
                 internal PictureBox pictureBox2;
                 private Lui.Forms.Label labelH11;
                 private Lui.Forms.Label label1;
@@ -201,5 +201,6 @@ namespace Lazaro.WinMain.Misc
                 private Lui.Forms.Button BotonInstalar;
                 private Lui.Forms.Label EtiquetaAyuda;
                 private Timer TimerProgreso;
+                private Lui.Forms.Panel panel1;
         }
 }

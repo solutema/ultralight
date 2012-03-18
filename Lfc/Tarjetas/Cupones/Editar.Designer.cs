@@ -107,7 +107,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaPago.Required = true;
                         this.EntradaFormaPago.Size = new System.Drawing.Size(480, 24);
                         this.EntradaFormaPago.TabIndex = 3;
-                        this.EntradaFormaPago.Table = "formaspago";
+                        this.EntradaFormaPago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.TextDetail = "";
                         // 
@@ -136,7 +136,7 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.Required = true;
                         this.EntradaPlan.Size = new System.Drawing.Size(480, 24);
                         this.EntradaPlan.TabIndex = 5;
-                        this.EntradaPlan.Table = "tarjetas_planes";
+                        this.EntradaPlan.NombreTipo = "Lbl.Pagos.Plan";
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
                         // 

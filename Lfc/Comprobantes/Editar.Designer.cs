@@ -110,7 +110,7 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(272, 24);
                         this.EntradaCliente.TabIndex = 4;
-                        this.EntradaCliente.Table = "personas";
+                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
@@ -140,7 +140,7 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Required = true;
                         this.EntradaVendedor.Size = new System.Drawing.Size(168, 24);
                         this.EntradaVendedor.TabIndex = 2;
-                        this.EntradaVendedor.Table = "personas";
+                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextDetail = "";
                         // 

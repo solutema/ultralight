@@ -431,6 +431,14 @@ namespace Lcc.Entrada.AuxForms
                         this.Hide();
                         object Resultado = null;
 
+                        if (this.ElementoTipo == null && m_Table == "personas") {
+                                // Esta es una excepción para reconocer cuando se está creando un proveedor
+                                if (m_Filter != null && m_Filter.IndexOf("tipo&2") >= 0)
+                                        this.ElementoTipo = typeof(Lbl.Personas.Proveedor);
+                                else
+                                        this.ElementoTipo = typeof(Lbl.Personas.Persona);
+                        }
+
                         try {
                                 if (this.ElementoTipo != null)
                                         Resultado = Lfx.Workspace.Master.RunTime.Execute("CREATE", new string[] { ElementoTipo.ToString() });

@@ -64,7 +64,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
                         this.Label5 = new Lui.Forms.Label();
                         this.EntradaImporte = new Lui.Forms.TextBox();
-                        this.lblFecha1 = new Lui.Forms.Label();
+                        this.EtiquetaFecha1 = new Lui.Forms.Label();
                         this.label1 = new Lui.Forms.Label();
                         this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.SuspendLayout();
@@ -88,7 +88,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(368, 24);
                         this.EntradaCaja.TabIndex = 5;
-                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
                         // 
@@ -120,7 +120,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(368, 24);
                         this.EntradaCliente.TabIndex = 1;
-                        this.EntradaCliente.Table = "personas";
+                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextDetail = "";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
@@ -147,12 +147,12 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         // lblFecha1
                         // 
-                        this.lblFecha1.Location = new System.Drawing.Point(24, 152);
-                        this.lblFecha1.Name = "lblFecha1";
-                        this.lblFecha1.Size = new System.Drawing.Size(112, 24);
-                        this.lblFecha1.TabIndex = 2;
-                        this.lblFecha1.Text = "Importe";
-                        this.lblFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaFecha1.Location = new System.Drawing.Point(24, 152);
+                        this.EtiquetaFecha1.Name = "lblFecha1";
+                        this.EtiquetaFecha1.Size = new System.Drawing.Size(112, 24);
+                        this.EtiquetaFecha1.TabIndex = 2;
+                        this.EtiquetaFecha1.Text = "Importe";
+                        this.EtiquetaFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label1
                         // 
@@ -187,14 +187,14 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.Add(this.EntradaImporte);
                         this.Controls.Add(this.EntradaCaja);
                         this.Controls.Add(this.EntradaCliente);
-                        this.Controls.Add(this.lblFecha1);
+                        this.Controls.Add(this.EtiquetaFecha1);
                         this.Controls.Add(this.Label3);
                         this.Controls.Add(this.Label5);
                         this.Name = "Rapido";
                         this.Text = "Recibo rápido";
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.Label3, 0);
-                        this.Controls.SetChildIndex(this.lblFecha1, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaFecha1, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.Controls.SetChildIndex(this.EntradaCaja, 0);
                         this.Controls.SetChildIndex(this.EntradaImporte, 0);
@@ -212,7 +212,7 @@ namespace Lfc.Comprobantes.Recibos
         internal Lcc.Entrada.CodigoDetalle EntradaCliente;
         internal Lui.Forms.Label Label5;
         internal Lui.Forms.TextBox EntradaImporte;
-        internal Lui.Forms.Label lblFecha1;
+        internal Lui.Forms.Label EtiquetaFecha1;
         private Lui.Forms.Label label1;
         private Lui.Forms.Label EtiquetaTitulo;
     }

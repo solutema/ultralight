@@ -104,7 +104,7 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaObjeto.Required = false;
                         this.EntradaObjeto.Size = new System.Drawing.Size(488, 24);
                         this.EntradaObjeto.TabIndex = 1;
-                        this.EntradaObjeto.Table = "sys_permisos_objetos";
+                        this.EntradaObjeto.NombreTipo = "Lbl.Sys.Permisos.Objeto";
                         this.EntradaObjeto.Text = "0";
                         this.EntradaObjeto.TextDetail = "";
                         this.EntradaObjeto.PlaceholderText = "Ninguno";

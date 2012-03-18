@@ -148,7 +148,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaGrupo.Required = false;
                         this.EntradaGrupo.Size = new System.Drawing.Size(440, 24);
                         this.EntradaGrupo.TabIndex = 1;
-                        this.EntradaGrupo.Table = "personas_grupos";
+                        this.EntradaGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextDetail = "";
                         // 

@@ -75,9 +75,9 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ProgressBar.Location = new System.Drawing.Point(76, 112);
+                        this.ProgressBar.Location = new System.Drawing.Point(88, 248);
                         this.ProgressBar.Name = "ProgressBar";
-                        this.ProgressBar.Size = new System.Drawing.Size(378, 20);
+                        this.ProgressBar.Size = new System.Drawing.Size(432, 20);
                         this.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
                         this.ProgressBar.TabIndex = 4;
                         // 
@@ -85,9 +85,9 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label7.Location = new System.Drawing.Point(80, 52);
+                        this.label7.Location = new System.Drawing.Point(88, 56);
                         this.label7.Name = "label7";
-                        this.label7.Size = new System.Drawing.Size(372, 52);
+                        this.label7.Size = new System.Drawing.Size(432, 52);
                         this.label7.TabIndex = 105;
                         this.label7.Text = "Este proceso realiza una verificación en búsqueda de inconsistencias en los datos" +
     ", saldos de las cuentas, existencias de stock, etc.";
@@ -95,7 +95,7 @@ namespace Lazaro.WinMain.Misc
                         // PictureBox1
                         // 
                         this.PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox1.Image")));
-                        this.PictureBox1.Location = new System.Drawing.Point(20, 23);
+                        this.PictureBox1.Location = new System.Drawing.Point(24, 24);
                         this.PictureBox1.Name = "PictureBox1";
                         this.PictureBox1.Size = new System.Drawing.Size(47, 64);
                         this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -106,12 +106,13 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.Label27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label27.Location = new System.Drawing.Point(80, 20);
+                        this.Label27.Location = new System.Drawing.Point(88, 24);
                         this.Label27.Name = "Label27";
-                        this.Label27.Size = new System.Drawing.Size(372, 32);
+                        this.Label27.Size = new System.Drawing.Size(432, 32);
                         this.Label27.TabIndex = 103;
-                        this.Label27.Text = "Verificador de Integridad de los Datos";
+                        this.Label27.Text = "Verificando de integridad de los datos";
                         this.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.Label27.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         // 
                         // LowerPanel
                         // 
@@ -119,10 +120,10 @@ namespace Lazaro.WinMain.Misc
                         this.LowerPanel.Controls.Add(this.OkButton);
                         this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
                         this.LowerPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-                        this.LowerPanel.Location = new System.Drawing.Point(0, 232);
+                        this.LowerPanel.Location = new System.Drawing.Point(0, 299);
                         this.LowerPanel.Name = "LowerPanel";
                         this.LowerPanel.Padding = new System.Windows.Forms.Padding(12);
-                        this.LowerPanel.Size = new System.Drawing.Size(474, 58);
+                        this.LowerPanel.Size = new System.Drawing.Size(546, 58);
                         this.LowerPanel.TabIndex = 106;
                         // 
                         // CancelCommandButton
@@ -132,8 +133,10 @@ namespace Lazaro.WinMain.Misc
                         this.CancelCommandButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.CancelCommandButton.Image = null;
                         this.CancelCommandButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.CancelCommandButton.Location = new System.Drawing.Point(346, 12);
+                        this.CancelCommandButton.Location = new System.Drawing.Point(418, 12);
                         this.CancelCommandButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.CancelCommandButton.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.CancelCommandButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.CancelCommandButton.Name = "CancelCommandButton";
                         this.CancelCommandButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.CancelCommandButton.Size = new System.Drawing.Size(104, 34);
@@ -149,8 +152,10 @@ namespace Lazaro.WinMain.Misc
                         this.OkButton.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.OkButton.Image = null;
                         this.OkButton.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.OkButton.Location = new System.Drawing.Point(236, 12);
+                        this.OkButton.Location = new System.Drawing.Point(308, 12);
                         this.OkButton.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
+                        this.OkButton.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.OkButton.MinimumSize = new System.Drawing.Size(96, 32);
                         this.OkButton.Name = "OkButton";
                         this.OkButton.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
                         this.OkButton.Size = new System.Drawing.Size(104, 34);
@@ -162,9 +167,9 @@ namespace Lazaro.WinMain.Misc
                         // 
                         // EtiquetaEstado
                         // 
-                        this.EtiquetaEstado.Location = new System.Drawing.Point(76, 140);
+                        this.EtiquetaEstado.Location = new System.Drawing.Point(88, 224);
                         this.EtiquetaEstado.Name = "EtiquetaEstado";
-                        this.EtiquetaEstado.Size = new System.Drawing.Size(376, 20);
+                        this.EtiquetaEstado.Size = new System.Drawing.Size(432, 20);
                         this.EtiquetaEstado.TabIndex = 107;
                         this.EtiquetaEstado.Text = "Haga clic en \"Iniciar\" para comenzar el proceso.";
                         this.EtiquetaEstado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -174,7 +179,7 @@ namespace Lazaro.WinMain.Misc
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.CancelButton = this.CancelCommandButton;
-                        this.ClientSize = new System.Drawing.Size(474, 290);
+                        this.ClientSize = new System.Drawing.Size(546, 357);
                         this.Controls.Add(this.EtiquetaEstado);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.label7);

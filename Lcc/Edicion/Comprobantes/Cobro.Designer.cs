@@ -214,7 +214,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(320, 24);
                         this.EntradaBanco.TabIndex = 3;
-                        this.EntradaBanco.Table = "bancos";
+                        this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
@@ -262,7 +262,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(140, 24);
                         this.label5.TabIndex = 0;
-                        this.label5.Text = "Emisor";
+                        this.label5.Text = "Librador";
                         this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // PanelTitulo
@@ -310,7 +310,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(320, 24);
                         this.EntradaCaja.TabIndex = 1;
-                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
@@ -423,7 +423,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(320, 24);
                         this.EntradaPlan.TabIndex = 3;
-                        this.EntradaPlan.Table = "tarjetas_planes";
+                        this.EntradaPlan.NombreTipo = "Lbl.Pagos.Plan";
                         this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPlan.Text = "0";
                         this.EntradaPlan.TextDetail = "";
@@ -525,7 +525,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(324, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
-                        this.EntradaFormaDePago.Table = "formaspago";
+                        this.EntradaFormaDePago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaDePago.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaFormaDePago.Text = "0";
                         this.EntradaFormaDePago.TextDetail = "";

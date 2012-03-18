@@ -38,6 +38,7 @@ namespace Lazaro.WinMain.Errores
         {
                 public ExcepcionControlada()
                 {
+                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                 }
 

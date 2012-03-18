@@ -44,7 +44,7 @@ namespace Lcc
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Type ElementoTipo
+                public virtual Type ElementoTipo
                 {
                         get
                         {
@@ -55,6 +55,7 @@ namespace Lcc
                                 m_ElementoTipo = value;
                         }
                 }
+
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),

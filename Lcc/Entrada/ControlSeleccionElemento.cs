@@ -41,6 +41,7 @@ namespace Lcc.Entrada
         /// </summary>
         public class ControlSeleccionElemento : ControlEntrada
         {
+                private string m_NobmreElementoTipo = null;
                 public Lfx.Data.Relation Relation = new Lfx.Data.Relation();
                 
                 protected int m_ItemId;
@@ -57,8 +58,6 @@ namespace Lcc.Entrada
                                         return null;
                                 } else if (base.Elemento == null || base.Elemento.Id != this.ValueInt) {
                                         if (this.CurrentRow != null) {
-                                                if (this.ElementoTipo == null || this.ElementoTipo == typeof(Lbl.ElementoDeDatos))
-                                                        this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.Table);
                                                 Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.ElementoTipo, this.Connection, CurrentRow);
                                                 if (Elem != null && Elem.Existe)
                                                         base.Elemento = Elem;
@@ -85,6 +84,49 @@ namespace Lcc.Entrada
                 }
 
 
+                public override Type ElementoTipo
+                {
+                        get
+                        {
+                                // Si no tengo un tipo de elemento, intento averiguarlo
+                                if (base.ElementoTipo == null || base.ElementoTipo == typeof(Lbl.ElementoDeDatos)) {
+                                        if (string.IsNullOrEmpty(this.NombreTipo) == false)
+                                                this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.NombreTipo);
+                                        else if (string.IsNullOrEmpty(this.Table) == false)
+                                                this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.Table);
+                                }
+                                return base.ElementoTipo;
+                        }
+                        set
+                        {
+                                base.ElementoTipo = value;
+                                if (value != null) {
+                                        Lbl.Atributos.Datos AttrDatos = m_ElementoTipo.GetAttribute<Lbl.Atributos.Datos>();
+                                        if (AttrDatos != null) {
+                                                this.Table = AttrDatos.TablaDatos;
+                                                this.DataTextField = AttrDatos.CampoNombre;
+                                                this.DataValueField = AttrDatos.CampoId;
+                                        }
+                                }
+                        }
+                }
+
+
+                [System.ComponentModel.Category("Datos")]
+                virtual public string NombreTipo
+                {
+                        get
+                        {
+                                return m_NobmreElementoTipo;
+                        }
+                        set
+                        {
+                                m_NobmreElementoTipo = value;
+                        }
+                }
+
+
+
                 [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public int ValueInt
                 {
@@ -101,7 +143,7 @@ namespace Lcc.Entrada
 
 
                 [System.ComponentModel.Category("Datos")]
-                virtual public string Table
+                protected virtual string Table
                 {
                         get
                         {

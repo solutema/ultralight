@@ -174,7 +174,7 @@ namespace Lazaro.WinMain.Misc
                         this.EntradaUsuario.Required = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(281, 24);
                         this.EntradaUsuario.TabIndex = 3;
-                        this.EntradaUsuario.Table = "personas";
+                        this.EntradaUsuario.NombreTipo = "Lbl.Personas.Usuario";
                         this.EntradaUsuario.Text = "0";
                         this.EntradaUsuario.TextDetail = "";
                         this.EntradaUsuario.TextChanged += new System.EventHandler(this.CambioDatos);

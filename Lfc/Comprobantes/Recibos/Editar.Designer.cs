@@ -129,7 +129,7 @@ namespace Lfc.Comprobantes.Recibos
                     this.EntradaVendedor.Required = true;
                     this.EntradaVendedor.Size = new System.Drawing.Size(200, 24);
                     this.EntradaVendedor.TabIndex = 5;
-                    this.EntradaVendedor.Table = "personas";
+                    this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                     this.EntradaVendedor.Text = "0";
                     this.EntradaVendedor.TextDetail = "";
                     // 
@@ -397,7 +397,7 @@ namespace Lfc.Comprobantes.Recibos
                     this.EntradaCliente.Required = true;
                     this.EntradaCliente.Size = new System.Drawing.Size(192, 24);
                     this.EntradaCliente.TabIndex = 7;
-                    this.EntradaCliente.Table = "personas";
+                    this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                     this.EntradaCliente.Text = "0";
                     this.EntradaCliente.TextDetail = "";
                     // 
@@ -502,7 +502,7 @@ namespace Lfc.Comprobantes.Recibos
                     this.EntradaConcepto.Required = true;
                     this.EntradaConcepto.Size = new System.Drawing.Size(240, 24);
                     this.EntradaConcepto.TabIndex = 11;
-                    this.EntradaConcepto.Table = "conceptos";
+                    this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                     this.EntradaConcepto.Text = "0";
                     this.EntradaConcepto.TextDetail = "";
                     // 

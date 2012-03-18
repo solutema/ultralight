@@ -649,6 +649,12 @@ namespace Lfc.Comprobantes.Plantillas
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         SaveFileDialog FileDialog = new SaveFileDialog();
+                        FileDialog.AutoUpgradeEnabled = true;
+                        FileDialog.CheckFileExists = false;
+                        FileDialog.CheckPathExists = true;
+                        FileDialog.InitialDirectory = System.IO.Path.Combine(Lfx.Environment.Folders.UserFolder, "Plantillas");
+                        FileDialog.Title = "Guardar plantilla";
+                        FileDialog.ValidateNames = true;
                         switch ((Lbl.Impresion.TipoPlantilla)(EntradaTipo.ValueInt)) {
                                 case Lbl.Impresion.TipoPlantilla.Pdf:
                                         FileDialog.Filter = "Archivos PDF|*.pdf";
@@ -688,6 +694,14 @@ namespace Lfc.Comprobantes.Plantillas
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         OpenFileDialog FileDialog = new OpenFileDialog();
+                        FileDialog.AutoUpgradeEnabled = true;
+                        FileDialog.CheckFileExists = true;
+                        FileDialog.CheckPathExists = true;
+                        FileDialog.InitialDirectory = System.IO.Path.Combine(Lfx.Environment.Folders.UserFolder, "Plantillas");
+                        FileDialog.Multiselect = false;
+                        FileDialog.Title = "Cargar plantilla";
+                        FileDialog.ValidateNames = true;
+
                         switch ((Lbl.Impresion.TipoPlantilla)(EntradaTipo.ValueInt)) {
                                 case Lbl.Impresion.TipoPlantilla.Pdf:
                                         FileDialog.Filter = "Archivos PDF|*.pdf";
@@ -717,6 +731,7 @@ namespace Lfc.Comprobantes.Plantillas
                                                 break;
                                 }
                                 this.MostrarListaCampos();
+                                BotonDiseno.PerformClick();
                                 ImagePreview.Invalidate();
                                 return new Lfx.Types.SuccessOperationResult();
                         } else {

@@ -87,6 +87,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.PanelMuestraBorde = new System.Windows.Forms.Panel();
                         this.label10 = new Lui.Forms.Label();
                         this.BotonColorFondoPredet = new Lui.Forms.Button();
+                        this.EntradaPreimpreso = new Lui.Forms.ComboBox();
                         this.PanelMuestra.SuspendLayout();
                         this.PanelMuestraBorde.SuspendLayout();
                         this.SuspendLayout();
@@ -96,7 +97,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Label15.Location = new System.Drawing.Point(24, 56);
                         this.Label15.Name = "Label15";
                         this.Label15.Size = new System.Drawing.Size(88, 24);
-                        this.Label15.TabIndex = 2;
+                        this.Label15.TabIndex = 3;
                         this.Label15.Text = "Formato";
                         this.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -122,7 +123,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label2.Location = new System.Drawing.Point(24, 88);
                         this.label2.Name = "label2";
                         this.label2.Size = new System.Drawing.Size(88, 24);
-                        this.label2.TabIndex = 4;
+                        this.label2.TabIndex = 5;
                         this.label2.Text = "Posición";
                         this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -133,7 +134,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaX.Name = "EntradaX";
                         this.EntradaX.Size = new System.Drawing.Size(56, 24);
                         this.EntradaX.Sufijo = "x";
-                        this.EntradaX.TabIndex = 5;
+                        this.EntradaX.TabIndex = 6;
                         this.EntradaX.Text = "0";
                         // 
                         // EntradaY
@@ -143,7 +144,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaY.Name = "EntradaY";
                         this.EntradaY.Size = new System.Drawing.Size(56, 24);
                         this.EntradaY.Sufijo = "y";
-                        this.EntradaY.TabIndex = 7;
+                        this.EntradaY.TabIndex = 8;
                         this.EntradaY.Text = "0";
                         // 
                         // label3
@@ -151,7 +152,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label3.Location = new System.Drawing.Point(168, 88);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(20, 24);
-                        this.label3.TabIndex = 6;
+                        this.label3.TabIndex = 7;
                         this.label3.Text = ",";
                         this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -168,7 +169,7 @@ namespace Lfc.Comprobantes.Plantillas
         "Segoe UI|Segoe UI",
         "Courier|Courier New"};
                         this.EntradaFuenteNombre.Size = new System.Drawing.Size(256, 24);
-                        this.EntradaFuenteNombre.TabIndex = 13;
+                        this.EntradaFuenteNombre.TabIndex = 14;
                         this.EntradaFuenteNombre.TextKey = "*";
                         this.EntradaFuenteNombre.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
@@ -177,7 +178,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label4.Location = new System.Drawing.Point(24, 120);
                         this.label4.Name = "label4";
                         this.label4.Size = new System.Drawing.Size(88, 24);
-                        this.label4.TabIndex = 12;
+                        this.label4.TabIndex = 13;
                         this.label4.Text = "Fuente";
                         this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -188,7 +189,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAlto.Name = "EntradaAlto";
                         this.EntradaAlto.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAlto.Sufijo = "v";
-                        this.EntradaAlto.TabIndex = 11;
+                        this.EntradaAlto.TabIndex = 12;
                         this.EntradaAlto.Text = "0";
                         // 
                         // EntradaAncho
@@ -198,7 +199,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAncho.Name = "EntradaAncho";
                         this.EntradaAncho.Size = new System.Drawing.Size(56, 24);
                         this.EntradaAncho.Sufijo = "h";
-                        this.EntradaAncho.TabIndex = 9;
+                        this.EntradaAncho.TabIndex = 10;
                         this.EntradaAncho.Text = "0";
                         // 
                         // label5
@@ -206,7 +207,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label5.Location = new System.Drawing.Point(384, 88);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(16, 24);
-                        this.label5.TabIndex = 10;
+                        this.label5.TabIndex = 11;
                         this.label5.Text = "x";
                         this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
@@ -215,7 +216,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label6.Location = new System.Drawing.Point(264, 88);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(64, 24);
-                        this.label6.TabIndex = 8;
+                        this.label6.TabIndex = 9;
                         this.label6.Text = "Tamaño";
                         this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -227,7 +228,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFuenteTamano.Name = "EntradaFuenteTamano";
                         this.EntradaFuenteTamano.Size = new System.Drawing.Size(92, 24);
                         this.EntradaFuenteTamano.Sufijo = "ptos.";
-                        this.EntradaFuenteTamano.TabIndex = 14;
+                        this.EntradaFuenteTamano.TabIndex = 15;
                         this.EntradaFuenteTamano.Text = "10.00";
                         this.EntradaFuenteTamano.TextChanged += new System.EventHandler(this.EntradaFuenteFuenteTamano_TextChanged);
                         // 
@@ -241,8 +242,8 @@ namespace Lfc.Comprobantes.Plantillas
         "Izquierda|Near",
         "Centro|Center",
         "Derecha|Far"};
-                        this.EntradaAlienacionHorizontal.Size = new System.Drawing.Size(140, 57);
-                        this.EntradaAlienacionHorizontal.TabIndex = 16;
+                        this.EntradaAlienacionHorizontal.Size = new System.Drawing.Size(140, 56);
+                        this.EntradaAlienacionHorizontal.TabIndex = 17;
                         this.EntradaAlienacionHorizontal.TextKey = "Near";
                         this.EntradaAlienacionHorizontal.TextChanged += new System.EventHandler(this.EntradaAlienacionHorizontal_TextChanged);
                         // 
@@ -251,7 +252,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label7.Location = new System.Drawing.Point(24, 152);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(88, 24);
-                        this.label7.TabIndex = 15;
+                        this.label7.TabIndex = 16;
                         this.label7.Text = "Alineación";
                         this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -265,8 +266,8 @@ namespace Lfc.Comprobantes.Plantillas
         "Arriba|Near",
         "Centro|Center",
         "Abajo|Far"};
-                        this.EntradaAlienacionVertical.Size = new System.Drawing.Size(140, 57);
-                        this.EntradaAlienacionVertical.TabIndex = 17;
+                        this.EntradaAlienacionVertical.Size = new System.Drawing.Size(140, 56);
+                        this.EntradaAlienacionVertical.TabIndex = 18;
                         this.EntradaAlienacionVertical.TextKey = "Near";
                         this.EntradaAlienacionVertical.TextChanged += new System.EventHandler(this.EntradaAlienacionVertical_TextChanged);
                         // 
@@ -277,7 +278,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAnchoBorde.Name = "EntradaAnchoBorde";
                         this.EntradaAnchoBorde.Size = new System.Drawing.Size(88, 24);
                         this.EntradaAnchoBorde.Sufijo = "ptos.";
-                        this.EntradaAnchoBorde.TabIndex = 21;
+                        this.EntradaAnchoBorde.TabIndex = 22;
                         this.EntradaAnchoBorde.Text = "0";
                         this.EntradaAnchoBorde.TextChanged += new System.EventHandler(this.EntradaAnchoBorde_TextChanged);
                         // 
@@ -286,14 +287,14 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label8.Location = new System.Drawing.Point(24, 264);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(88, 24);
-                        this.label8.TabIndex = 20;
+                        this.label8.TabIndex = 21;
                         this.label8.Text = "Borde";
                         this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // ColorFondo
                         // 
                         this.ColorFondo.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.ColorFondo.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.ColorFondo.ForeColor = System.Drawing.Color.Black;
                         this.ColorFondo.Image = null;
                         this.ColorFondo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.ColorFondo.Location = new System.Drawing.Point(112, 304);
@@ -301,14 +302,14 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ColorFondo.Size = new System.Drawing.Size(84, 28);
                         this.ColorFondo.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.ColorFondo.Subtext = "Tecla";
-                        this.ColorFondo.TabIndex = 22;
+                        this.ColorFondo.TabIndex = 24;
                         this.ColorFondo.Text = "Fondo";
                         this.ColorFondo.Click += new System.EventHandler(this.BotonColorFondo_Click);
                         // 
                         // ColorTexto
                         // 
                         this.ColorTexto.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.ColorTexto.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.ColorTexto.ForeColor = System.Drawing.Color.Black;
                         this.ColorTexto.Image = null;
                         this.ColorTexto.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.ColorTexto.Location = new System.Drawing.Point(216, 304);
@@ -316,14 +317,14 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ColorTexto.Size = new System.Drawing.Size(80, 28);
                         this.ColorTexto.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.ColorTexto.Subtext = "Tecla";
-                        this.ColorTexto.TabIndex = 23;
+                        this.ColorTexto.TabIndex = 25;
                         this.ColorTexto.Text = "Texto";
                         this.ColorTexto.Click += new System.EventHandler(this.BotonColorTexto_Click);
                         // 
                         // ColorBorde
                         // 
                         this.ColorBorde.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.ColorBorde.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.ColorBorde.ForeColor = System.Drawing.Color.Black;
                         this.ColorBorde.Image = null;
                         this.ColorBorde.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.ColorBorde.Location = new System.Drawing.Point(312, 304);
@@ -331,7 +332,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.ColorBorde.Size = new System.Drawing.Size(84, 28);
                         this.ColorBorde.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.ColorBorde.Subtext = "Tecla";
-                        this.ColorBorde.TabIndex = 24;
+                        this.ColorBorde.TabIndex = 26;
                         this.ColorBorde.Text = "Borde";
                         this.ColorBorde.Click += new System.EventHandler(this.BotonColorBorde_Click);
                         // 
@@ -344,8 +345,8 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaAjusteTexto.SetData = new string[] {
         "Sólo un renglon|0",
         "Fluir texto hacia abajo|1"};
-                        this.EntradaAjusteTexto.Size = new System.Drawing.Size(288, 40);
-                        this.EntradaAjusteTexto.TabIndex = 19;
+                        this.EntradaAjusteTexto.Size = new System.Drawing.Size(288, 39);
+                        this.EntradaAjusteTexto.TabIndex = 20;
                         this.EntradaAjusteTexto.TextKey = "0";
                         this.EntradaAjusteTexto.TextChanged += new System.EventHandler(this.EntradaAjusteTexto_TextChanged);
                         // 
@@ -354,7 +355,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label9.Location = new System.Drawing.Point(24, 216);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(88, 24);
-                        this.label9.TabIndex = 18;
+                        this.label9.TabIndex = 19;
                         this.label9.Text = "Ajuste";
                         this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -372,16 +373,16 @@ namespace Lfc.Comprobantes.Plantillas
         "Numérico con 2 decimales|#.00",
         "Numérico con 4 decimales|#.0000"};
                         this.EntradaFormato.Size = new System.Drawing.Size(400, 24);
-                        this.EntradaFormato.TabIndex = 3;
+                        this.EntradaFormato.TabIndex = 4;
                         this.EntradaFormato.TextKey = "*";
                         // 
                         // EtiquetaMuestra
                         // 
                         this.EtiquetaMuestra.BackColor = System.Drawing.Color.White;
                         this.EtiquetaMuestra.Dock = System.Windows.Forms.DockStyle.Fill;
-                        this.EtiquetaMuestra.Location = new System.Drawing.Point(2, 2);
+                        this.EtiquetaMuestra.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaMuestra.Name = "EtiquetaMuestra";
-                        this.EtiquetaMuestra.Size = new System.Drawing.Size(172, 68);
+                        this.EtiquetaMuestra.Size = new System.Drawing.Size(176, 72);
                         this.EtiquetaMuestra.TabIndex = 51;
                         this.EtiquetaMuestra.Text = "Texto de muestra";
                         this.EtiquetaMuestra.UseMnemonic = false;
@@ -409,14 +410,14 @@ namespace Lfc.Comprobantes.Plantillas
                         this.label10.Location = new System.Drawing.Point(24, 304);
                         this.label10.Name = "label10";
                         this.label10.Size = new System.Drawing.Size(88, 24);
-                        this.label10.TabIndex = 53;
+                        this.label10.TabIndex = 23;
                         this.label10.Text = "Color";
                         this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonColorFondoPredet
                         // 
                         this.BotonColorFondoPredet.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonColorFondoPredet.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonColorFondoPredet.ForeColor = System.Drawing.Color.Black;
                         this.BotonColorFondoPredet.Image = null;
                         this.BotonColorFondoPredet.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonColorFondoPredet.Location = new System.Drawing.Point(112, 336);
@@ -424,14 +425,29 @@ namespace Lfc.Comprobantes.Plantillas
                         this.BotonColorFondoPredet.Size = new System.Drawing.Size(84, 28);
                         this.BotonColorFondoPredet.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonColorFondoPredet.Subtext = "Tecla";
-                        this.BotonColorFondoPredet.TabIndex = 54;
+                        this.BotonColorFondoPredet.TabIndex = 27;
                         this.BotonColorFondoPredet.Text = "Transp.";
                         this.BotonColorFondoPredet.Click += new System.EventHandler(this.BotonColorFondoPredet_Click);
+                        // 
+                        // EntradaPreimpreso
+                        // 
+                        this.EntradaPreimpreso.AlwaysExpanded = true;
+                        this.EntradaPreimpreso.AutoSize = true;
+                        this.EntradaPreimpreso.Location = new System.Drawing.Point(520, 24);
+                        this.EntradaPreimpreso.Name = "EntradaPreimpreso";
+                        this.EntradaPreimpreso.SetData = new string[] {
+        "Normal|0",
+        "Preimpreso|1"};
+                        this.EntradaPreimpreso.Size = new System.Drawing.Size(140, 39);
+                        this.EntradaPreimpreso.TabIndex = 2;
+                        this.EntradaPreimpreso.TextKey = "";
+                        this.EntradaPreimpreso.TextChanged += new System.EventHandler(this.EntradaPreimpreso_TextChanged);
                         // 
                         // EditarCampo
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(688, 451);
+                        this.ClientSize = new System.Drawing.Size(688, 487);
+                        this.Controls.Add(this.EntradaPreimpreso);
                         this.Controls.Add(this.BotonColorFondoPredet);
                         this.Controls.Add(this.PanelMuestra);
                         this.Controls.Add(this.EntradaAjusteTexto);
@@ -460,6 +476,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.label1);
                         this.Controls.Add(this.Label15);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "EditarCampo";
                         this.Text = "Editar campo";
                         this.Controls.SetChildIndex(this.Label15, 0);
@@ -490,6 +507,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Controls.SetChildIndex(this.EntradaAjusteTexto, 0);
                         this.Controls.SetChildIndex(this.PanelMuestra, 0);
                         this.Controls.SetChildIndex(this.BotonColorFondoPredet, 0);
+                        this.Controls.SetChildIndex(this.EntradaPreimpreso, 0);
                         this.PanelMuestra.ResumeLayout(false);
                         this.PanelMuestraBorde.ResumeLayout(false);
                         this.ResumeLayout(false);
@@ -529,5 +547,6 @@ namespace Lfc.Comprobantes.Plantillas
                 protected Panel PanelMuestraBorde;
                 protected Lui.Forms.Label label10;
                 protected Lui.Forms.Button BotonColorFondoPredet;
+                protected Lui.Forms.ComboBox EntradaPreimpreso;
         }
 }

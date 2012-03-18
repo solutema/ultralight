@@ -60,7 +60,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaFechaCobro = new Lui.Forms.TextBox();
                         this.label2 = new Lui.Forms.Label();
                         this.EntradaFechaEmision = new Lui.Forms.TextBox();
-                        this.lblFecha1 = new Lui.Forms.Label();
+                        this.EtiquetaFecha1 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaEmisor
@@ -96,7 +96,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(460, 24);
                         this.EntradaBanco.TabIndex = 3;
-                        this.EntradaBanco.Table = "bancos";
+                        this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.Text = "0";
                         this.EntradaBanco.TextDetail = "";
                         // 
@@ -106,7 +106,7 @@ namespace Lfc.Bancos.Cheques
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(140, 24);
                         this.label5.TabIndex = 0;
-                        this.label5.Text = "Emisor";
+                        this.label5.Text = "Librador";
                         this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label3
@@ -156,12 +156,12 @@ namespace Lfc.Bancos.Cheques
                         // 
                         // lblFecha1
                         // 
-                        this.lblFecha1.Location = new System.Drawing.Point(0, 96);
-                        this.lblFecha1.Name = "lblFecha1";
-                        this.lblFecha1.Size = new System.Drawing.Size(140, 24);
-                        this.lblFecha1.TabIndex = 6;
-                        this.lblFecha1.Text = "Fecha de emisión";
-                        this.lblFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaFecha1.Location = new System.Drawing.Point(0, 96);
+                        this.EtiquetaFecha1.Name = "lblFecha1";
+                        this.EtiquetaFecha1.Size = new System.Drawing.Size(140, 24);
+                        this.EtiquetaFecha1.TabIndex = 6;
+                        this.EtiquetaFecha1.Text = "Fecha de emisión";
+                        this.EtiquetaFecha1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Editar
                         // 
@@ -174,7 +174,7 @@ namespace Lfc.Bancos.Cheques
                         this.Controls.Add(this.EntradaNumero);
                         this.Controls.Add(this.EntradaBanco);
                         this.Controls.Add(this.label2);
-                        this.Controls.Add(this.lblFecha1);
+                        this.Controls.Add(this.EtiquetaFecha1);
                         this.Controls.Add(this.Label1);
                         this.Controls.Add(this.Label3);
                         this.Name = "Editar";
@@ -194,6 +194,6 @@ namespace Lfc.Bancos.Cheques
                 internal Lui.Forms.TextBox EntradaFechaCobro;
                 internal Lui.Forms.Label label2;
                 internal Lui.Forms.TextBox EntradaFechaEmision;
-                internal Lui.Forms.Label lblFecha1;
+                internal Lui.Forms.Label EtiquetaFecha1;
         }
 }

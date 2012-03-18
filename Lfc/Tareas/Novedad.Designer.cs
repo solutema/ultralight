@@ -54,7 +54,7 @@ namespace Lfc.Tareas
                 private System.ComponentModel.IContainer components = null;
 
                 internal Lui.Forms.Label Label1;
-                internal Lcc.Entrada.CodigoDetalle EntradaTecnico;
+                internal Lcc.Entrada.CodigoDetalle EntradaEncargado;
                 internal Lui.Forms.TextBox EntradaDescripcion;
                 internal Lui.Forms.Label Label2;
                 internal Lui.Forms.TextBox EntradaMinutos;
@@ -67,7 +67,7 @@ namespace Lfc.Tareas
                 private void InitializeComponent()
                 {
                         this.Label1 = new Lui.Forms.Label();
-                        this.EntradaTecnico = new Lcc.Entrada.CodigoDetalle();
+                        this.EntradaEncargado = new Lcc.Entrada.CodigoDetalle();
                         this.EntradaDescripcion = new Lui.Forms.TextBox();
                         this.Label2 = new Lui.Forms.Label();
                         this.EntradaMinutos = new Lui.Forms.TextBox();
@@ -89,25 +89,25 @@ namespace Lfc.Tareas
                         // 
                         // EntradaTecnico
                         // 
-                        this.EntradaTecnico.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EntradaEncargado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaTecnico.AutoTab = true;
-                        this.EntradaTecnico.CanCreate = true;
-                        this.EntradaTecnico.DataTextField = "nombre_visible";
-                        this.EntradaTecnico.DataValueField = "id_persona";
-                        this.EntradaTecnico.ExtraDetailFields = "";
-                        this.EntradaTecnico.Filter = "(tipo&4)=4";
-                        this.EntradaTecnico.FreeTextCode = "";
-                        this.EntradaTecnico.Location = new System.Drawing.Point(112, 240);
-                        this.EntradaTecnico.MaxLength = 200;
-                        this.EntradaTecnico.Name = "EntradaTecnico";
-                        this.EntradaTecnico.PlaceholderText = null;
-                        this.EntradaTecnico.Required = true;
-                        this.EntradaTecnico.Size = new System.Drawing.Size(496, 24);
-                        this.EntradaTecnico.TabIndex = 9;
-                        this.EntradaTecnico.Table = "personas";
-                        this.EntradaTecnico.Text = "0";
-                        this.EntradaTecnico.TextDetail = "";
+                        this.EntradaEncargado.AutoTab = true;
+                        this.EntradaEncargado.CanCreate = true;
+                        this.EntradaEncargado.DataTextField = "nombre_visible";
+                        this.EntradaEncargado.DataValueField = "id_persona";
+                        this.EntradaEncargado.ExtraDetailFields = "";
+                        this.EntradaEncargado.Filter = "(tipo&4)=4";
+                        this.EntradaEncargado.FreeTextCode = "";
+                        this.EntradaEncargado.Location = new System.Drawing.Point(112, 240);
+                        this.EntradaEncargado.MaxLength = 200;
+                        this.EntradaEncargado.Name = "EntradaTecnico";
+                        this.EntradaEncargado.PlaceholderText = null;
+                        this.EntradaEncargado.Required = true;
+                        this.EntradaEncargado.Size = new System.Drawing.Size(496, 24);
+                        this.EntradaEncargado.TabIndex = 9;
+                        this.EntradaEncargado.NombreTipo = "Lbl.Personas.Persona";
+                        this.EntradaEncargado.Text = "0";
+                        this.EntradaEncargado.TextDetail = "";
                         // 
                         // EntradaDescripcion
                         // 
@@ -186,7 +186,7 @@ namespace Lfc.Tareas
                         this.EntradaTicket.Required = true;
                         this.EntradaTicket.Size = new System.Drawing.Size(496, 24);
                         this.EntradaTicket.TabIndex = 1;
-                        this.EntradaTicket.Table = "tickets";
+                        this.EntradaTicket.NombreTipo = "Lbl.Tareas.Tarea";
                         this.EntradaTicket.Text = "0";
                         this.EntradaTicket.TextDetail = "";
                         // 
@@ -207,7 +207,7 @@ namespace Lfc.Tareas
                         this.Controls.Add(this.EntradaTicket);
                         this.Controls.Add(this.EntradaCondicion);
                         this.Controls.Add(this.EntradaDescripcion);
-                        this.Controls.Add(this.EntradaTecnico);
+                        this.Controls.Add(this.EntradaEncargado);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label5);
                         this.Controls.Add(this.Label4);
@@ -221,7 +221,7 @@ namespace Lfc.Tareas
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.Label5, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
-                        this.Controls.SetChildIndex(this.EntradaTecnico, 0);
+                        this.Controls.SetChildIndex(this.EntradaEncargado, 0);
                         this.Controls.SetChildIndex(this.EntradaDescripcion, 0);
                         this.Controls.SetChildIndex(this.EntradaCondicion, 0);
                         this.Controls.SetChildIndex(this.EntradaTicket, 0);

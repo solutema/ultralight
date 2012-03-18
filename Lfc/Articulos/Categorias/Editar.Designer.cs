@@ -221,7 +221,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaRubro.Required = true;
                         this.EntradaRubro.Size = new System.Drawing.Size(304, 24);
                         this.EntradaRubro.TabIndex = 11;
-                        this.EntradaRubro.Table = "articulos_rubros";
+                        this.EntradaRubro.NombreTipo = "Lbl.Articulos.Rubro";
                         this.EntradaRubro.Text = "0";
                         this.EntradaRubro.TextDetail = "";
                         // 
@@ -357,7 +357,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaAlicuota.Required = true;
                         this.EntradaAlicuota.Size = new System.Drawing.Size(304, 24);
                         this.EntradaAlicuota.TabIndex = 13;
-                        this.EntradaAlicuota.Table = "alicuotas";
+                        this.EntradaAlicuota.NombreTipo = "Lbl.Impuestos.Alicuota";
                         this.EntradaAlicuota.Text = "0";
                         this.EntradaAlicuota.TextDetail = "";
                         // 

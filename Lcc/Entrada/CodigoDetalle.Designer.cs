@@ -57,6 +57,7 @@ namespace Lcc.Entrada
                 private void InitializeComponent()
                 {
                         this.components = new System.ComponentModel.Container();
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodigoDetalle));
                         this.EntradaCodigo = new System.Windows.Forms.TextBox();
                         this.MiContextMenu = new System.Windows.Forms.ContextMenu();
                         this.MenuItemBuscadorRapido = new System.Windows.Forms.MenuItem();
@@ -70,19 +71,21 @@ namespace Lcc.Entrada
                         this.Label1 = new System.Windows.Forms.Label();
                         this.EntradaFreeText = new System.Windows.Forms.TextBox();
                         this.TimerActualizar = new System.Windows.Forms.Timer(this.components);
+                        this.BotonBuscar = new System.Windows.Forms.PictureBox();
+                        ((System.ComponentModel.ISupportInitialize)(this.BotonBuscar)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // EntradaCodigo
                         // 
-                        this.EntradaCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)));
+                        this.EntradaCodigo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
                         this.EntradaCodigo.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.EntradaCodigo.ContextMenu = this.MiContextMenu;
                         this.EntradaCodigo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
                         this.EntradaCodigo.Location = new System.Drawing.Point(4, 4);
                         this.EntradaCodigo.MaxLength = 32;
                         this.EntradaCodigo.Name = "EntradaCodigo";
-                        this.EntradaCodigo.Size = new System.Drawing.Size(52, 16);
+                        this.EntradaCodigo.Size = new System.Drawing.Size(52, 18);
                         this.EntradaCodigo.TabIndex = 0;
                         this.EntradaCodigo.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
                         this.EntradaCodigo.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
@@ -152,9 +155,9 @@ namespace Lcc.Entrada
                         // 
                         // Label1
                         // 
-                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.Label1.AutoEllipsis = true;
                         this.Label1.ContextMenu = this.MiContextMenu;
                         this.Label1.Location = new System.Drawing.Point(60, 4);
@@ -168,41 +171,53 @@ namespace Lcc.Entrada
                         // 
                         // EntradaFreeText
                         // 
-                        this.EntradaFreeText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaFreeText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFreeText.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.EntradaFreeText.ContextMenu = this.MiContextMenu;
                         this.EntradaFreeText.Location = new System.Drawing.Point(60, 4);
                         this.EntradaFreeText.MaxLength = 200;
                         this.EntradaFreeText.Name = "EntradaFreeText";
-                        this.EntradaFreeText.Size = new System.Drawing.Size(466, 16);
+                        this.EntradaFreeText.Size = new System.Drawing.Size(466, 18);
                         this.EntradaFreeText.TabIndex = 1;
                         this.EntradaFreeText.Visible = false;
                         this.EntradaFreeText.WordWrap = false;
+                        this.EntradaFreeText.TextChanged += new System.EventHandler(this.EntradaFreeText_TextChanged);
                         this.EntradaFreeText.GotFocus += new System.EventHandler(this.EntradaFreeText_GotFocus);
                         this.EntradaFreeText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaFreeText_KeyDown);
                         this.EntradaFreeText.LostFocus += new System.EventHandler(this.EntradaFreeText_LostFocus);
-                        this.EntradaFreeText.TextChanged += new System.EventHandler(this.EntradaFreeText_TextChanged);
                         // 
                         // TimerActualizar
                         // 
                         this.TimerActualizar.Interval = 200;
                         this.TimerActualizar.Tick += new System.EventHandler(this.TimerActualizar_Tick);
                         // 
+                        // BotonBuscar
+                        // 
+                        this.BotonBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonBuscar.BackColor = System.Drawing.Color.White;
+                        this.BotonBuscar.Image = ((System.Drawing.Image)(resources.GetObject("BotonBuscar.Image")));
+                        this.BotonBuscar.Location = new System.Drawing.Point(509, 4);
+                        this.BotonBuscar.Name = "BotonBuscar";
+                        this.BotonBuscar.Size = new System.Drawing.Size(18, 18);
+                        this.BotonBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                        this.BotonBuscar.TabIndex = 51;
+                        this.BotonBuscar.TabStop = false;
+                        this.BotonBuscar.Visible = false;
+                        this.BotonBuscar.Click += new System.EventHandler(this.BotonBuscar_Click);
+                        // 
                         // CodigoDetalle
                         // 
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+                        this.Controls.Add(this.BotonBuscar);
                         this.Controls.Add(this.EntradaCodigo);
                         this.Controls.Add(this.EntradaFreeText);
                         this.Controls.Add(this.Label1);
                         this.Name = "CodigoDetalle";
                         this.Size = new System.Drawing.Size(530, 24);
-                        this.Enter += new System.EventHandler(this.DetailBox_Enter);
                         this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DetailBox_KeyPress);
-                        this.Controls.SetChildIndex(this.Label1, 0);
-                        this.Controls.SetChildIndex(this.EntradaFreeText, 0);
-                        this.Controls.SetChildIndex(this.EntradaCodigo, 0);
+                        ((System.ComponentModel.ISupportInitialize)(this.BotonBuscar)).EndInit();
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -223,5 +238,6 @@ namespace Lcc.Entrada
                 protected System.Windows.Forms.MenuItem MenuItem2;
                 protected System.Windows.Forms.ContextMenu MiContextMenu;
                 protected System.Windows.Forms.Timer TimerActualizar;
+                private System.Windows.Forms.PictureBox BotonBuscar;
         }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,29 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhMAAxAIYAAAAAAP///+Xn6tLW2+nt8snV48jS3dHW29jc4PDx8urt79bb3iidKCqfKiugKyyh
-        LC6iLi+jLzWpNTapNjeqNzirOD2pPUuvS1O+U1K9UlW/VV3DXVm1WWa8ZnnReX3TfXTCdIbXhofYh4jY
-        iILIgo/bj5HckZXdlZfel5vgm5DOkKjkqJ7UnrPos6zarMTuxMXuxcbuxrrgusjvyMzwzMjmyNXt1ePz
-        4/H58cLBveHg3drX0dTRy8vJxePi4NXRytHNxtXQyOLd1dTQyubi3Li2s9nTy9DLxOjj3N/a09LNx+fi
-        3NzX0dHNyNfTztjSy9nTzdfRy+fi3eDb1uvm4ejk4M/Myc3Kx8zKyMTCwLi2tK2rqb25trezsLayr8/L
-        yM7Kx+fj4Kypp7i1s+Lf3efi37a0s6empgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEBAAAh+QQA
-        AAAAACwAAAAAMAAxAAAI/wCNBGGyRMqSgwgTKlzIsOESIkimDIkiUEgCGi9iaNzIsaPHjyBjwJhBgEyP
-        J0kUfKgggYLLlzBjypxJk8IECRsKfGlCZQUDBw+CCh1KtKjRo0IdMCjhJEeVEw0iSJ1KtarVq1ipQnAQ
-        woqWMigcQMhKtmzWrSLAFAEr1qzbt2jVsh37lqoFFjVccKi7dcSVMXPrTrWAI4DhAB3gOvALOCxdwSwO
-        G7ahmHFgwRFqSDZc+e9lwS423+jcuC1mDptVkP4suIONADdUr3aMubbWxZ5p27bdN7fp3Zh7l34MnC/u
-        4bUtdFDhogYI45Z1mwWhokZhyReg+yae9UKNG5sDUP/WjryujNSChbM2q2LzXvLry2o+PDr98fhZLWxm
-        Efy+dLMkbJaYfdH9ZtZ5h+FQm3r/kaWfZC4s6J+BZAUo2XP9FchdVggextuEG2J1nWEyfKihWyBsRoKJ
-        27kVmmQWsFheWSOKNxiBLZaVomSykSDbbBRe9eJh2XFgQ4zwNXhVjQFEwAEOAyYZpFXh2YDDj1KGWBWT
-        AfAn4YllWWgYDhh+mWNZF6igQpky4lccWQxO+eZZDqQ1RhhQzZleAyF8oUUVLTTQgAOEFmrooYgmqmih
-        DTCQQhNa7CCACRpkgMGlmGaq6aacdoqpBwaIkcUPWOiAwAEDpKrqqqy26uqrAxwzsIAPYpzhxBNK5MBF
-        F1706uuvwAYr7LC+bmEGD1AY8UQUQBzh7LPQRivttNRCq0SyRgQEADs=
-</value>
+  <metadata name="TimerRefrescar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Elija con las teclas de cursor arriba y abajo sin abandonar el cuadro de búsqueda. Pulse Intro para seleccionar el elemento elegido y volver al formulario anterior. También puede elegir haciendo doble clic con el ratón.</value>
   </data>
-  <metadata name="$this.DrawGrid" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
   </metadata>
 </root>

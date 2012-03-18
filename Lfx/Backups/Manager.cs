@@ -40,7 +40,6 @@ namespace Lfx.Backups
         {
                 public string BackupPath { get; set; }
 
-
                 public Manager()
                 {
                         this.BackupPath = this.GetDefaultBackupPath();
@@ -106,7 +105,7 @@ namespace Lfx.Backups
 
                         List<BackupInfo> Res = new List<BackupInfo>();
                         System.IO.DirectoryInfo Dir = new System.IO.DirectoryInfo(this.BackupPath);
-                        foreach (System.IO.DirectoryInfo DirItem in Dir.GetDirectories("*.lbk")) {
+                        foreach (System.IO.DirectoryInfo DirItem in Dir.GetDirectories("*.*")) {
                                 BackupInfo Backup = new BackupInfo();
 
                                 if (System.IO.File.Exists(this.BackupPath + DirItem.Name + System.IO.Path.DirectorySeparatorChar + "info.xml")) {
@@ -329,7 +328,7 @@ namespace Lfx.Backups
                         if (!System.IO.Directory.Exists(Lfx.Environment.Folders.TemporaryFolder + WorkFolder))
                                 System.IO.Directory.CreateDirectory(Lfx.Environment.Folders.TemporaryFolder + WorkFolder);
 
-                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Creando copia de respaldo", "Se está creando un volcado completo del almacén de datos en una carpeta, para resguardar.");
+                        Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Creando copia de seguridad", "Se está creando un volcado completo del almacén de datos en una carpeta, para resguardar.");
                         Progreso.Modal = true;
                         Progreso.Advertise = true;
                         Progreso.Begin();
@@ -373,7 +372,7 @@ namespace Lfx.Backups
                                 Archivo.Close();
                         }
 
-                        if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.ComprimirCopiasDeRespaldo", 0) != 0) {
+                        if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.ComprimirCopiasDeSeguridad", 0) != 0) {
                                 Progreso.ChangeStatus("Comprimiendo los datos");
                                 Lfx.FileFormats.Compression.Archive ArchivoComprimido = new Lfx.FileFormats.Compression.Archive(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "backup.7z");
                                 ArchivoComprimido.Add(Lfx.Environment.Folders.TemporaryFolder + WorkFolder + "*");
@@ -397,7 +396,7 @@ namespace Lfx.Backups
                         if (GuardarBackups > 0) {
                                 List<BackupInfo> ListaDeBackups = this.GetBackups();
                                 if (ListaDeBackups.Count > GuardarBackups) {
-                                        Progreso.ChangeStatus("Eliminando copias de respaldo antiguas");
+                                        Progreso.ChangeStatus("Eliminando copias de seguridad antiguas");
                                         int BorrarBackups = ListaDeBackups.Count - GuardarBackups;
                                         if (BorrarBackups < ListaDeBackups.Count) {
                                                 for (int i = 1; i <= BorrarBackups; i++) {
@@ -422,7 +421,7 @@ namespace Lfx.Backups
                         if (Carpeta != null && Carpeta.Length > 0 && System.IO.Directory.Exists(this.BackupPath + Carpeta)) {
                                 bool UsandoArchivoComprimido = false;
 
-                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Restaurando copia de respaldo", "Este proceso va a demorar varios minutos. Por favor no lo interrumpa");
+                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Restaurando copia de seguridad", "Este proceso va a demorar varios minutos. Por favor no lo interrumpa");
                                 Progreso.Modal = true;
 
                                 /* Progreso.ChangeStatus("Descomprimiendo");

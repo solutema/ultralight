@@ -82,7 +82,13 @@
     <Compile Include="Edicion\Campo.cs" />
     <Compile Include="Edicion\IControlEdicion.cs" />
     <Compile Include="Entrada\Articulos\Enums.cs" />
-    <Compile Include="Entrada\AuxForms\ISearchForm.cs" />
+    <Compile Include="Entrada\AuxForms\BusquedaRapida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Entrada\AuxForms\BusquedaRapida.Designer.cs">
+      <DependentUpon>BusquedaRapida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entrada\AuxForms\IFormularioBusqueda.cs" />
     <Compile Include="Entrada\CampoTexto.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -211,12 +217,6 @@
     <Compile Include="Entrada\AuxForms\ImagenRecorte.Designer.cs">
       <DependentUpon>ImagenRecorte.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entrada\AuxForms\DetailBoxQuickSelect.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Entrada\AuxForms\DetailBoxQuickSelect.Designer.cs">
-      <DependentUpon>DetailBoxQuickSelect.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entrada\ControlEntrada.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +230,11 @@
     <Compile Include="ILccControl.cs" />
     <Compile Include="LccEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lbl\Lbl.csproj">
@@ -264,6 +269,9 @@
     <EmbeddedResource Include="Edicion\Etiquetas.resx">
       <DependentUpon>Etiquetas.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entrada\AuxForms\BusquedaRapida.resx">
+      <DependentUpon>BusquedaRapida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Entrada\Filtros.resx">
       <DependentUpon>Filtros.cs</DependentUpon>
@@ -303,10 +311,6 @@
     <EmbeddedResource Include="Entrada\AuxForms\ImagenRecorte.resx">
       <DependentUpon>ImagenRecorte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Entrada\AuxForms\DetailBoxQuickSelect.resx">
-      <DependentUpon>DetailBoxQuickSelect.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Entrada\CodigoDetalle.resx">
       <DependentUpon>CodigoDetalle.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -316,6 +320,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Entrada\Telefono.resx">
       <DependentUpon>Telefono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

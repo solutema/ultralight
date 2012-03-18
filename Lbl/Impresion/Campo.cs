@@ -50,6 +50,7 @@ namespace Lbl.Impresion
                 public StringAlignment Alignment = StringAlignment.Near;
                 public StringAlignment LineAlignment = StringAlignment.Near;
                 public bool Wrap { get; set; }
+                public bool Preimpreso { get; set; }
 
                 public override string ToString()
                 {

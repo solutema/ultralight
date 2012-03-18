@@ -171,7 +171,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionOrigen.Required = true;
                         this.EntradaSituacionOrigen.Size = new System.Drawing.Size(240, 24);
                         this.EntradaSituacionOrigen.TabIndex = 7;
-                        this.EntradaSituacionOrigen.Table = "articulos_situaciones";
+                        this.EntradaSituacionOrigen.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionOrigen.Text = "0";
                         this.EntradaSituacionOrigen.TextDetail = "";
                         // 
@@ -200,7 +200,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionDestino.Required = true;
                         this.EntradaSituacionDestino.Size = new System.Drawing.Size(240, 24);
                         this.EntradaSituacionDestino.TabIndex = 9;
-                        this.EntradaSituacionDestino.Table = "articulos_situaciones";
+                        this.EntradaSituacionDestino.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionDestino.Text = "0";
                         this.EntradaSituacionDestino.TextDetail = "";
                         // 

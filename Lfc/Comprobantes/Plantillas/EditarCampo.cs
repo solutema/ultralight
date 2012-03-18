@@ -52,6 +52,7 @@ namespace Lfc.Comprobantes.Plantillas
                         this.Campo = campo;
 
                         this.EntradaTexto.Text = this.Campo.Valor;
+                        this.EntradaPreimpreso.ValueInt = this.Campo.Preimpreso ? 1 : 0;
                         if (this.Campo.Formato == null || this.Campo.Formato.Length == 0)
                                 this.EntradaFormato.TextKey = "*";
                         else
@@ -293,6 +294,11 @@ eum liber hendrerit an";
                 {
                         this.Campo.ColorFondo = Color.Transparent;
                         this.ActualizarMuestra();
+                }
+
+                private void EntradaPreimpreso_TextChanged(object sender, EventArgs e)
+                {
+                        Campo.Preimpreso = EntradaPreimpreso.ValueInt != 0;
                 }
 	}
 }

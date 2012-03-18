@@ -194,10 +194,10 @@ namespace Lazaro.Impresion
                                 e.PageSettings.Landscape = Plantilla.Landscape;
 
                                 switch(this.Plantilla.Tipo) {
-                                        case Lbl.Impresion.TipoPlantilla.InternaPreimpresa:
+                                        case Lbl.Impresion.TipoPlantilla.Preimpresa:
                                                 this.ImprimirInterna(e);
                                                 break;
-                                        case Lbl.Impresion.TipoPlantilla.InternaConImagen:
+                                        case Lbl.Impresion.TipoPlantilla.EnBlanco:
                                                 if (Plantilla.Imagen != null)
                                                         e.Graphics.DrawImage(Plantilla.Imagen, e.PageBounds);
                                                 this.ImprimirInterna(e);
@@ -275,6 +275,9 @@ namespace Lazaro.Impresion
 
                 protected virtual void ImprimirInternaCampo(PrintPageEventArgs e, Lbl.Impresion.Campo Cam)
                 {
+                        if (Plantilla.Tipo == Lbl.Impresion.TipoPlantilla.Preimpresa && Cam.Preimpreso)
+                                return;
+
                         if (Cam.ColorFondo != Color.Transparent)
                                 e.Graphics.FillRectangle(new SolidBrush(Cam.ColorFondo), Cam.Rectangle);
 
@@ -361,7 +364,10 @@ namespace Lazaro.Impresion
                                                                 return "Formato no válido";
                                                         }
                                                 } else {
-                                                        return ((decimal)Val).ToString("#.00");
+                                                        if (((decimal)Val) == 0)
+                                                                return "0";
+                                                        else
+                                                                return ((decimal)Val).ToString("#.00");
                                                 }
                                         } else if (Val is bool) {
                                                 return (bool)Val ? "Sí" : "No";

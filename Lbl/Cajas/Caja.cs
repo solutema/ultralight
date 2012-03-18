@@ -186,7 +186,7 @@ namespace Lbl.Cajas
 
                 public void Arqueo()
                 {
-                        this.Movimiento(false, null, "Arqueo - Saldo: " + Lfx.Types.Formatting.FormatCurrency(this.ObtenerSaldo(false)), Lbl.Sys.Config.Actual.UsuarioConectado.Persona, 0, null, null, null, null);
+                        this.Movimiento(false, null, "Arqueo de caja - Saldo: " + Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.ObtenerSaldo(false)), Lbl.Sys.Config.Actual.UsuarioConectado.Persona, 0, null, null, null, null);
                 }
 
                 public void Movimiento(bool auto, Lbl.Cajas.Concepto concepto, string textoConcepto,

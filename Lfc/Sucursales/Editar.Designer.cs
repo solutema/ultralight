@@ -146,7 +146,7 @@ namespace Lfc.Sucursales
                         this.EntradaLocalidad.Required = true;
                         this.EntradaLocalidad.Size = new System.Drawing.Size(280, 24);
                         this.EntradaLocalidad.TabIndex = 5;
-                        this.EntradaLocalidad.Table = "ciudades";
+                        this.EntradaLocalidad.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
                         // 
@@ -175,7 +175,7 @@ namespace Lfc.Sucursales
                         this.EntradaSituacionOrigen.Required = true;
                         this.EntradaSituacionOrigen.Size = new System.Drawing.Size(280, 24);
                         this.EntradaSituacionOrigen.TabIndex = 9;
-                        this.EntradaSituacionOrigen.Table = "articulos_situaciones";
+                        this.EntradaSituacionOrigen.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionOrigen.Text = "0";
                         this.EntradaSituacionOrigen.TextDetail = "";
                         // 
@@ -205,7 +205,7 @@ namespace Lfc.Sucursales
                         this.EntradaCajaDiaria.Required = true;
                         this.EntradaCajaDiaria.Size = new System.Drawing.Size(280, 24);
                         this.EntradaCajaDiaria.TabIndex = 11;
-                        this.EntradaCajaDiaria.Table = "cajas";
+                        this.EntradaCajaDiaria.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCajaDiaria.Text = "0";
                         this.EntradaCajaDiaria.TextDetail = "";
                         // 
@@ -235,7 +235,7 @@ namespace Lfc.Sucursales
                         this.EntradaCajaCheques.Required = true;
                         this.EntradaCajaCheques.Size = new System.Drawing.Size(280, 24);
                         this.EntradaCajaCheques.TabIndex = 13;
-                        this.EntradaCajaCheques.Table = "cajas";
+                        this.EntradaCajaCheques.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCajaCheques.Text = "0";
                         this.EntradaCajaCheques.TextDetail = "";
                         // 

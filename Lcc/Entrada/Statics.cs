@@ -37,6 +37,6 @@ namespace Lcc.Entrada
 {
         public static class Statics
         {
-                public static AuxForms.DetailBoxQuickSelect DetailBoxQuickSelect = null;
+                public static AuxForms.BusquedaRapida BusquedaRapida = null;
         }
 }

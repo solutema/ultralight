@@ -309,17 +309,17 @@ namespace Lfc.Cajas
                 private void BotonArqueo_Click(object sender, System.EventArgs e)
                 {
                         if (this.Fechas.To < System.DateTime.Now) {
-                                Lfx.Workspace.Master.RunTime.Toast("La vista actual muestra el estado de la caja en una fecha pasada. No puede asentar un arqueo con una fecha pasada. Para asentar un arqueo cambie el filtro de fechas para ver el estado actual de la caja.", "Arqueo");
+                                Lfx.Workspace.Master.RunTime.Toast("La vista actual muestra el estado de la caja en una fecha pasada. No puede asentar un arqueo con una fecha pasada. Para asentar un arqueo cambie el filtro de fechas para ver el estado actual de la caja.", "Arqueo de caja");
                                 return;
                         } else if (this.Caja == null) {
-                                Lfx.Workspace.Master.RunTime.Toast("La vista actual muestra los movimientos de varias cajas combinados. No se puede asentar un arqueo en este estado.", "Arqueo");
+                                Lfx.Workspace.Master.RunTime.Toast("La vista actual muestra los movimientos de varias cajas combinados. No se puede asentar un arqueo en este estado.", "Arqueo de caja");
                                 return;
                         } else if (this.Cliente != null || this.Concepto != null || this.Direccion != 0) {
-                                Lfx.Workspace.Master.RunTime.Toast("La vista actual no muestra todos los movimientos de la caja ya que existe un filtro activo (filtro por Cliente, Concepto, etc.). Quite todos los filtros para poder asentar un arqueo.", "Arqueo");
+                                Lfx.Workspace.Master.RunTime.Toast("La vista actual no muestra todos los movimientos de la caja ya que existe un filtro activo (filtro por Cliente, Concepto, etc.). Quite todos los filtros para poder asentar un arqueo.", "Arqueo de caja");
                                 return;
                         }
 
-                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Si confirma que el saldo de la cuenta es el indicado se asentará una marca de 'Arqueo', para su propio control.", "¿Confirma que el saldo de la cuenta es de $ " + Lfx.Types.Formatting.FormatCurrency(this.Contadores[3].Total) + "?");
+                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¿Confirma que el saldo de la caja de " + Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatCurrency(this.Contadores[3].Total) + " corresponde con lo que se encuentra físicamente en la caja? Si confirma que el saldo de la cuenta es el indicado se asentará una marca de 'Arqueo', para su propio control.", "El saldo de la caja es de " + Lbl.Sys.Config.Moneda.Simbolo + "  " + Lfx.Types.Formatting.FormatCurrency(this.Contadores[3].Total));
                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                         if (Pregunta.ShowDialog() == DialogResult.OK) {
                                 using (IDbTransaction Trans = this.Caja.Connection.BeginTransaction()) {
@@ -328,7 +328,7 @@ namespace Lfc.Cajas
                                 }
                                 this.RefreshList();
                         } else {
-                                Lui.Forms.MessageBox.Show("Verifique el saldo de la cuenta y si es necesario realice un ajuste.", "Arqueo");
+                                Lui.Forms.MessageBox.Show("No se asentó un arqueo. Verifique el saldo de la cuenta y si es necesario realice un ajuste.", "Arqueo de caja");
                         }
                 }
                 

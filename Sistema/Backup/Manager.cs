@@ -58,6 +58,7 @@ namespace Lazaro.WinMain.Backup
 
                 public void MostrarListaBackups()
                 {
+                        BackupManager.BackupPath = System.IO.Path.Combine(Lbl.Sys.Config.CarpetaEmpresa, "Copias de seguridad" + System.IO.Path.DirectorySeparatorChar);
                         List<Lfx.Backups.BackupInfo> Backups = this.BackupManager.GetBackups();
                         string BackupMasNuevo = this.BackupManager.GetNewestBackupName();
 
@@ -90,7 +91,7 @@ namespace Lazaro.WinMain.Backup
                 {
                         if (Listado.SelectedItems.Count > 0 && Listado.SelectedItems[0] != null) {
                                 string NombreCarpeta = Listado.SelectedItems[0].Text;
-                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Puede eliminar una copia de respaldo antigua o que ya no sea de utilidad. Al eliminar una copia de respaldo no se modifican los datos actualmente almacenados en el sistema, ni tampoco se impide que el sistema haga nuevas copias de respaldo.", "¿Desea eliminar la copia de respaldo seleccionada?");
+                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Puede eliminar una copia de seguridad antigua o que ya no sea de utilidad. Al eliminar una copia de seguridad no se modificarán los datos actualmente almacenados en el sistema, ni tampoco se impide que el sistema haga nuevas copias de seguridad.", "¿Desea eliminar la copia de seguridad seleccionada?");
                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                 if (Pregunta.ShowDialog() == DialogResult.OK) {
                                         this.BackupManager.Delete(NombreCarpeta);

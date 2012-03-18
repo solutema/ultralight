@@ -86,7 +86,7 @@ namespace Lfc.Cajas
                         // EntradaImporte
                         // 
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
-                        this.EntradaImporte.Location = new System.Drawing.Point(144, 120);
+                        this.EntradaImporte.Location = new System.Drawing.Point(144, 128);
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
@@ -96,7 +96,7 @@ namespace Lfc.Cajas
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(24, 120);
+                        this.Label2.Location = new System.Drawing.Point(24, 128);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(120, 24);
                         this.Label2.TabIndex = 4;
@@ -121,7 +121,7 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(464, 24);
                         this.EntradaConcepto.TabIndex = 9;
-                        this.EntradaConcepto.Table = "conceptos";
+                        this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                         this.EntradaConcepto.Text = "0";
                         this.EntradaConcepto.TextDetail = "";
                         // 
@@ -183,7 +183,7 @@ namespace Lfc.Cajas
                         this.EntradaPersona.Required = true;
                         this.EntradaPersona.Size = new System.Drawing.Size(464, 24);
                         this.EntradaPersona.TabIndex = 11;
-                        this.EntradaPersona.Table = "personas";
+                        this.EntradaPersona.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaPersona.Text = "0";
                         this.EntradaPersona.TextDetail = "";
                         // 
@@ -207,7 +207,7 @@ namespace Lfc.Cajas
                         this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "*";
-                        this.EntradaCaja.Location = new System.Drawing.Point(144, 88);
+                        this.EntradaCaja.Location = new System.Drawing.Point(144, 96);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.PlaceholderText = null;
@@ -215,13 +215,13 @@ namespace Lfc.Cajas
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(464, 24);
                         this.EntradaCaja.TabIndex = 3;
-                        this.EntradaCaja.Table = "cajas";
+                        this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.Text = "0";
                         this.EntradaCaja.TextDetail = "";
                         // 
                         // label6
                         // 
-                        this.label6.Location = new System.Drawing.Point(24, 88);
+                        this.label6.Location = new System.Drawing.Point(24, 96);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(120, 24);
                         this.label6.TabIndex = 2;
@@ -252,7 +252,7 @@ namespace Lfc.Cajas
                         // 
                         this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label8.Location = new System.Drawing.Point(24, 48);
+                        this.label8.Location = new System.Drawing.Point(24, 56);
                         this.label8.Name = "label8";
                         this.label8.Size = new System.Drawing.Size(584, 24);
                         this.label8.TabIndex = 1;
@@ -261,7 +261,7 @@ namespace Lfc.Cajas
                         // EtiquetaTitulo
                         // 
                         this.EtiquetaTitulo.AutoSize = true;
-                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 16);
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
                         this.EtiquetaTitulo.Size = new System.Drawing.Size(236, 30);
                         this.EtiquetaTitulo.TabIndex = 0;

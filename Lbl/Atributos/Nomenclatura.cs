@@ -68,7 +68,7 @@ namespace Lbl.Atributos
                                 string Res = "";
                                 string[] Palabras = this.NombreSingular.Split(new char[] { ' ', '-' });
                                 foreach (string Palabra in Palabras) {
-                                        if (Palabra == "de" || Palabra == "con")
+                                        if (Palabra == "de" || Palabra == "con" || Palabra == "y" || Palabra == "o")
                                                 Res += Palabra + " ";
                                         else if (Palabra == "del")
                                                 Res += "de los ";

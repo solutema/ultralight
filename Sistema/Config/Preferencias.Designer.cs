@@ -193,7 +193,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaEmpresaSituacion.Required = true;
                         this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(240, 24);
                         this.EntradaEmpresaSituacion.TabIndex = 10;
-                        this.EntradaEmpresaSituacion.Table = "situaciones";
+                        this.EntradaEmpresaSituacion.NombreTipo = "Lbl.Impuestos.SituacionTributaria";
                         this.EntradaEmpresaSituacion.Text = "0";
                         this.EntradaEmpresaSituacion.TextDetail = "";
                         // 
@@ -308,7 +308,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPais.Required = true;
                         this.EntradaPais.Size = new System.Drawing.Size(280, 24);
                         this.EntradaPais.TabIndex = 1;
-                        this.EntradaPais.Table = "paises";
+                        this.EntradaPais.NombreTipo = "Lbl.Entidades.Pais";
                         this.EntradaPais.Text = "0";
                         this.EntradaPais.TextDetail = "";
                         this.EntradaPais.TextChanged += new System.EventHandler(this.EntradaPais_TextChanged);
@@ -358,7 +358,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaProvincia.Required = true;
                         this.EntradaProvincia.Size = new System.Drawing.Size(316, 24);
                         this.EntradaProvincia.TabIndex = 14;
-                        this.EntradaProvincia.Table = "ciudades";
+                        this.EntradaProvincia.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaProvincia.Text = "0";
                         this.EntradaProvincia.TextDetail = "";
                         this.EntradaProvincia.TextChanged += new System.EventHandler(this.EntradaProvincia_TextChanged);
@@ -381,7 +381,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaLocalidad.Required = true;
                         this.EntradaLocalidad.Size = new System.Drawing.Size(316, 24);
                         this.EntradaLocalidad.TabIndex = 16;
-                        this.EntradaLocalidad.Table = "ciudades";
+                        this.EntradaLocalidad.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaLocalidad.Text = "0";
                         this.EntradaLocalidad.TextDetail = "";
                         // 
@@ -511,7 +511,7 @@ namespace Lazaro.WinMain.Config
                         this.label14.Name = "label14";
                         this.label14.Size = new System.Drawing.Size(232, 24);
                         this.label14.TabIndex = 14;
-                        this.label14.Text = "Realizar copias de respaldo";
+                        this.label14.Text = "Realizar copias de seguridad";
                         this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaStockDecimales
@@ -565,7 +565,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaStockDepositoPredet.Required = false;
                         this.EntradaStockDepositoPredet.Size = new System.Drawing.Size(380, 24);
                         this.EntradaStockDepositoPredet.TabIndex = 7;
-                        this.EntradaStockDepositoPredet.Table = "articulos_situaciones";
+                        this.EntradaStockDepositoPredet.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaStockDepositoPredet.Text = "0";
                         this.EntradaStockDepositoPredet.TextDetail = "";
                         // 
@@ -743,7 +743,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaClientePredet.Required = false;
                         this.EntradaClientePredet.Size = new System.Drawing.Size(368, 24);
                         this.EntradaClientePredet.TabIndex = 1;
-                        this.EntradaClientePredet.Table = "personas";
+                        this.EntradaClientePredet.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaClientePredet.Text = "0";
                         this.EntradaClientePredet.TextDetail = "";
                         // 
@@ -774,7 +774,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaFormaPagoPredet.Required = false;
                         this.EntradaFormaPagoPredet.Size = new System.Drawing.Size(208, 24);
                         this.EntradaFormaPagoPredet.TabIndex = 3;
-                        this.EntradaFormaPagoPredet.Table = "formaspago";
+                        this.EntradaFormaPagoPredet.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPagoPredet.Text = "0";
                         this.EntradaFormaPagoPredet.TextDetail = "";
                         // 
@@ -935,7 +935,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaStockDepositoPredetSuc.Required = false;
                         this.EntradaStockDepositoPredetSuc.Size = new System.Drawing.Size(380, 24);
                         this.EntradaStockDepositoPredetSuc.TabIndex = 9;
-                        this.EntradaStockDepositoPredetSuc.Table = "articulos_situaciones";
+                        this.EntradaStockDepositoPredetSuc.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaStockDepositoPredetSuc.Text = "0";
                         this.EntradaStockDepositoPredetSuc.TextDetail = "";
                         // 

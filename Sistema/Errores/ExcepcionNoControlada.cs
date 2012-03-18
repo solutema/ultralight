@@ -43,12 +43,18 @@ namespace Lazaro.WinMain.Errores
         {
                 public ExcepcionNoControlada()
                 {
+                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                 }
 
                 private void BotonCerrar_Click(object sender, EventArgs e)
                 {
                         this.Close();
+                }
+
+                private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        Help.ShowHelp(this, "http://www.sistemalzaro.com.ar/contacto");
                 }
         }
 }

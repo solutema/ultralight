@@ -37,41 +37,21 @@ namespace Lui.Forms
         public enum DialogButtons
         {
                 YesNo = 0,
-                AcceptCancel = 1,
-                OkOnly = 2,
+                AcceptCancel = 1
         }
 
-        public enum DialogIcons
-        {
-                Question = 0,
-                Information = 1,
-                Exclamation = 2,
-        }
 
         public partial class YesNoDialog : DialogForm
         {
+                protected internal DialogButtons m_DialogButtons = DialogButtons.YesNo;
+
+
                 public YesNoDialog(string messageText, string messageCaption)
                 {
                         this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                         this.MessageCaption = messageCaption;
                         this.MessageText = messageText;
-                }
-
-
-                public DialogIcons DialogIcon
-                {
-                        get
-                        {
-                                return m_Icono;
-                        }
-                        set
-                        {
-                                m_Icono = value;
-                                pctInformation.Visible = m_Icono == DialogIcons.Information;
-                                pctExclamation.Visible = m_Icono == DialogIcons.Exclamation;
-                                pctQuestion.Visible = m_Icono == DialogIcons.Question;
-                        }
                 }
 
 
@@ -90,22 +70,12 @@ namespace Lui.Forms
                                                 OkButton.Text = "Sí";
                                                 CancelCommandButton.Text = "No";
                                                 CancelCommandButton.Visible = true;
-                                                this.DialogIcon = DialogIcons.Question;
                                                 break;
 
                                         case DialogButtons.AcceptCancel:
                                                 OkButton.Text = "Aceptar";
                                                 CancelCommandButton.Text = "Cancelar";
                                                 CancelCommandButton.Visible = true;
-                                                this.DialogIcon = DialogIcons.Question;
-                                                break;
-
-                                        case DialogButtons.OkOnly:
-                                                OkButton.Text = "Aceptar";
-                                                OkButton.Left = CancelCommandButton.Left;
-                                                CancelCommandButton.Visible = false;
-                                                OkButton.Left = CancelCommandButton.Left;
-                                                this.DialogIcon = DialogIcons.Information;
                                                 break;
                                 }
                         }
@@ -121,6 +91,10 @@ namespace Lui.Forms
                         set
                         {
                                 DialogCaption.Text = value;
+                                if (value.Length > 30)
+                                        this.Text = "Pregunta";
+                                else
+                                        this.Text = value;
                         }
                 }
 

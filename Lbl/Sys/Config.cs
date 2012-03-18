@@ -167,5 +167,22 @@ namespace Lbl.Sys
                                 System.Console.WriteLine(ex.ToString());
                         }
                 }
+
+
+                private static string m_CarpetaEmpresa = null;
+                public static string CarpetaEmpresa
+                {
+                        get
+                        {
+                                if (m_CarpetaEmpresa == null) {
+                                        m_CarpetaEmpresa = System.IO.Path.Combine(Lfx.Environment.Folders.UserFolder, Lbl.Sys.Config.Empresa.Nombre);
+                                        if (!System.IO.Directory.Exists(m_CarpetaEmpresa)) {
+                                                Lfx.Environment.Folders.EnsurePathExists(m_CarpetaEmpresa);
+                                                Lfx.Environment.Folders.EnsurePathExists(System.IO.Path.Combine(m_CarpetaEmpresa, "Copias de seguridad"));
+                                        }
+                                }
+                                return m_CarpetaEmpresa;
+                        }
+                }
         }
 }

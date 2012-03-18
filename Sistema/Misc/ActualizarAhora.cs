@@ -87,11 +87,13 @@ namespace Lazaro.WinMain.Misc
                                         EtiquetaProgreso.Text = "100%";
                                         BarraProgreso.Value = BarraProgreso.Maximum;
                                         EtiquetaAyuda.Text = @"Se descargaron las actualizaciones y están listas para ser instaladas. Haga clic en el botón 'Instalar'.";
+                                        BotonInstalar.PerformClick();
                                         return;
                                 } else {
                                         BotonInstalar.Text = "Continuar";
                                         EtiquetaEstado.Text = "Finalizado";
-                                        EtiquetaAyuda.Text = @"No se encontraron actualizaciones o hubo un problema al descargarlas. La actualización se intentará nuevamente en otro momento. Puede continuar.";
+                                        EtiquetaAyuda.Text = @"No se encontraron actualizaciones. La actualización se intentará nuevamente en otro momento. Puede continuar.";
+                                        BotonInstalar.PerformClick();
                                         return;
                                 }
                         }

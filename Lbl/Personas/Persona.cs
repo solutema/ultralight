@@ -379,7 +379,11 @@ namespace Lbl.Personas
                         }
                 }
 
-                public string Nombres
+
+                /// <summary>
+                /// El nombre de pila.
+                /// </summary>
+                public virtual string Nombres
                 {
                         get
                         {
@@ -390,6 +394,7 @@ namespace Lbl.Personas
                                 this.Registro["nombre"] = value;
                         }
                 }
+
 
                 public string RazonSocial
                 {
@@ -599,8 +604,11 @@ namespace Lbl.Personas
                                         if (Lbl.Sys.Config.Empresa.SituacionTributaria == 4)
                                                 // Soy monotributista
                                                 return "C";
-                                        else
+                                        else if (Lbl.Sys.Config.Pais.Id == 1)
                                                 return "B";
+                                        else
+                                                // TODO: poder seleccionar el tipo de factura predeterminado para cada país
+                                                return "A";
                                 } else {
                                         return this.SituacionTributaria.ObtenerLetraPredeterminada();
                                 }

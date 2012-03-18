@@ -103,21 +103,21 @@ namespace Lfc.Comprobantes.Facturas
                                 Lbl.Comprobantes.Tipo Tipo = new Lbl.Comprobantes.Tipo(this.Connection, EntradaTipo.TextKey);
                                 if (FormaPago == null && Tipo.EsFacturaOTicket) {
                                         validarReturn.Success = false;
-                                        validarReturn.Message += "Debe especificar la forma de pago." + Environment.NewLine;
+                                        validarReturn.Message += "Por favor seleccione la forma de pago." + Environment.NewLine;
                                 }
                                 if (EntradaCliente.ValueInt == 999 && FormaPago != null && FormaPago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
                                         validarReturn.Success = false;
-                                        validarReturn.Message += @"""Consumidor final"" no puede realizar pagos en cuenta corriente." + Environment.NewLine;
+                                        validarReturn.Message += @"El cliente ""Consumidor final"" no puede tener una cuenta corriente. Deber facturar a nombre de un cliente identificado para poder usar la cuenta corriente." + Environment.NewLine;
                                 }
 
                                 Lbl.Personas.Persona Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
                                 if (Cliente == null) {
                                         validarReturn.Success = false;
-                                        validarReturn.Message += "Debe especificar un Cliente." + Environment.NewLine;
+                                        validarReturn.Message += "Por favor seleccione un cliente." + Environment.NewLine;
                                 } else if (Cliente.SituacionTributaria != null && (Cliente.SituacionTributaria.Id == 2 || Cliente.SituacionTributaria.Id == 3)) {
                                         if (Cliente.ClaveTributaria == null || Cliente.ClaveTributaria.EsValido() == false) {
                                                 validarReturn.Success = false;
-                                                validarReturn.Message += "El cliente debe tener una CUIT válida." + Environment.NewLine;
+                                                validarReturn.Message += "El cliente debe tener una clave tributaria válida." + Environment.NewLine;
                                         }
                                 }
                         }
@@ -209,34 +209,34 @@ namespace Lfc.Comprobantes.Facturas
                         Comprob.Cliente.Cargar();
 
                         if (Comprob.FormaDePago == null)
-                                return new Lfx.Types.FailureOperationResult("Debe especificar la forma de pago.");
+                                return new Lfx.Types.FailureOperationResult("Por favor seleccione la forma de pago.");
 
                         if (Comprob.Cliente == null)
-                                return new Lfx.Types.FailureOperationResult("Debe proporcionar un cliente válido.");
+                                return new Lfx.Types.FailureOperationResult("Por favor seleccione un cliente.");
 
-                        else if (Comprob.Cliente.SituacionTributaria == null)
-                                return new Lfx.Types.FailureOperationResult("El Cliente no tiene una situación tributaria definida.");
-
-                        if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
-                                Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
+                        if (Lbl.Sys.Config.Pais.Id == 1) {
+                                // Verificaciones especiales para Argentina
+                                if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
+                                        Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
 Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llevar un comprobante tipo " + Comprob.Cliente.LetraPredeterminada() + @". No debería continuar con la impresión. 
 ¿Desea continuar de todos modos?", "Tipo de comprobante incorrecto");
-                                OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                                if (OPregunta.ShowDialog() == DialogResult.Cancel)
-                                        return new Lfx.Types.FailureOperationResult("Corrija la Situación tributaria del Cliente o el Tipo de Comprobante.");
-                        }
+                                        OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                        if (OPregunta.ShowDialog() == DialogResult.Cancel)
+                                                return new Lfx.Types.FailureOperationResult("Corrija la situación tributaria del cliente o el tipo de comprobante.");
+                                }
 
-                        if (Comprob.Tipo.Letra.ToUpperInvariant() == "A") {
-                                if (Comprob.Cliente.ClaveTributaria == null || Comprob.Cliente.ClaveTributaria.EsValido() == false)
-                                        return new Lfx.Types.FailureOperationResult("Debe proporcionar el número de CUIT del cliente.");
-                        } else if (Comprob.Tipo.Letra == "B" && Lbl.Sys.Config.Pais.Id == 1) {
-                                //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
-                                if (Comprob.Total >= 1000 && Comprob.Cliente.NumeroDocumento.Length < 5 &&
-                                        (Comprob.Cliente.ClaveTributaria == null || Comprob.Cliente.ClaveTributaria.EsValido() == false))
-                                        return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más, debe proporcionar el número de DNI/CUIT del cliente.");
-                                //Si es factura B de más de $ 1000, debe llevar domicilio
-                                if (Comprob.Total >= 1000 && Comprob.Cliente.Domicilio.Length < 1)
-                                        return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más, debe proporcionar el domicilio del cliente.");
+                                if (Comprob.Tipo.Letra.ToUpperInvariant() == "A") {
+                                        if (Comprob.Cliente.ClaveTributaria == null || Comprob.Cliente.ClaveTributaria.EsValido() == false)
+                                                return new Lfx.Types.FailureOperationResult("El cliente no tiene una CUIT válida. Por favor edite el cliente y escriba una CUIT válida.");
+                                } else if (Comprob.Tipo.Letra == "B") {
+                                        //Si es factura B de más de $ 1000, debe llevar el Nº de DNI
+                                        if (Comprob.Total >= 1000 && Comprob.Cliente.NumeroDocumento.Length < 5 &&
+                                                (Comprob.Cliente.ClaveTributaria == null || Comprob.Cliente.ClaveTributaria.EsValido() == false))
+                                                return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más debe proporcionar el número de DNI/CUIT del cliente.");
+                                        //Si es factura B de más de $ 1000, debe llevar domicilio
+                                        if (Comprob.Total >= 1000 && Comprob.Cliente.Domicilio.Length < 1)
+                                                return new Lfx.Types.FailureOperationResult("Para Facturas B de $ 1.000 o más debe proporcionar el domicilio del cliente.");
+                                }
                         }
 
                         if (EntradaProductos.ShowStock && this.Tipo.MueveExistencias < 0 && Comprob.HayExistencias() == false) {
@@ -256,7 +256,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                 LimiteCredito = Lfx.Types.Parsing.ParseCurrency(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Cuentas.LimiteCreditoPredet", "0"));
 
                                         if (LimiteCredito != 0 && (Comprob.Total + SaldoCtaCte) > LimiteCredito)
-                                                return new Lfx.Types.FailureOperationResult("El valor de la factura y/o el saldo en cuenta corriente supera el Límite de Crédito de este cliente.");
+                                                return new Lfx.Types.FailureOperationResult("El valor de la factura y/o el saldo en cuenta corriente supera el límite de crédito de este cliente.");
                                 } else {
                                         if (SaldoCtaCte < 0) {
                                                 SaldoEnCuentaCorriente FormularioError = new SaldoEnCuentaCorriente();
@@ -279,7 +279,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         }
 
                         if (Comprob.PV < 1)
-                                return new Lfx.Types.FailureOperationResult("Debe especificar el punto de venta.");
+                                return new Lfx.Types.FailureOperationResult("Por favor escriba un punto de venta válido.");
 
                         if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(Comprob.PV) == false) {
                                 // No existe el PV... vacío la caché antes intentar de nuevo y dar un error

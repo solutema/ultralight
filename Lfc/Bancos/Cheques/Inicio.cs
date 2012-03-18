@@ -62,7 +62,7 @@ namespace Lfc.Bancos.Cheques
 			        {
 				        new Lazaro.Pres.Field("bancos_cheques.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lazaro.Pres.Field("bancos_cheques.fechaemision", "Fecha Emision", Lfx.Data.InputFieldTypes.Date, 96),
-				        new Lazaro.Pres.Field("bancos_cheques.emitidopor", "Emitido por", Lfx.Data.InputFieldTypes.Text, 120),
+				        new Lazaro.Pres.Field("bancos_cheques.emitidopor", "Librador", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lazaro.Pres.Field("bancos_cheques.importe", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
 				        new Lazaro.Pres.Field("bancos_cheques.fechacobro", "Fecha de Cobro", Lfx.Data.InputFieldTypes.Date, 96),
 				        new Lazaro.Pres.Field("bancos_cheques.concepto", "Concepto", Lfx.Data.InputFieldTypes.Text, 160),

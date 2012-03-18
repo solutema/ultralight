@@ -64,24 +64,33 @@ namespace Lfc.Bancos.Cheques
                         }
                 }
 
+                private int Ignorar_EntradaImportes_TextChanged = 0;
                 private void EntradaImportes_TextChanged(object sender, System.EventArgs e)
                 {
-                        EntradaTotal.ValueDecimal = (EntradaSubTotal.ValueDecimal - EntradaGestionDeCobro.ValueDecimal - EntradaImpuestos.ValueDecimal);
+                        if (Ignorar_EntradaImportes_TextChanged > 0)
+                                return;
+
+                        Ignorar_EntradaImportes_TextChanged++;
+                        if (sender == EntradaTotal)
+                                EntradaImpuestos.ValueDecimal = EntradaSubTotal.ValueDecimal - EntradaTotal.ValueDecimal - EntradaGestionDeCobro.ValueDecimal;
+                        else
+                                EntradaTotal.ValueDecimal = (EntradaSubTotal.ValueDecimal - EntradaGestionDeCobro.ValueDecimal - EntradaImpuestos.ValueDecimal);
+                        Ignorar_EntradaImportes_TextChanged--;
                 }
 
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
+                        Lfx.Types.OperationResult Res = new Lfx.Types.SuccessOperationResult();
                         if (EntradaCajaDestino.ValueInt <= 0) {
-                                aceptarReturn.Success = false;
-                                aceptarReturn.Message += "Debe especificar la cuenta de destino." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "Por favor seleccione la cuenta de destino." + Environment.NewLine;
                         }
                         if (EntradaTotal.ValueDecimal <= 0) {
-                                aceptarReturn.Success = false;
-                                aceptarReturn.Message += "El importe total debe ser mayor o igual a cero." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "El importe total debe ser mayor o igual a cero." + Environment.NewLine;
                         }
-                        if (aceptarReturn.Success == true) {
+                        if (Res.Success == true) {
                                 decimal GestionDeCobro = Lfx.Types.Parsing.ParseCurrency(EntradaGestionDeCobro.Text);
                                 decimal Impuestos = Lfx.Types.Parsing.ParseCurrency(EntradaImpuestos.Text);
 
@@ -92,8 +101,7 @@ namespace Lfc.Bancos.Cheques
 
                                 Trans.Commit();
                         }
-                        return aceptarReturn;
+                        return Res;
                 }
-
         }
 }

@@ -227,7 +227,7 @@ namespace Lfc.Articulos
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(440, 24);
                         this.EntradaDesdeSituacion.TabIndex = 7;
-                        this.EntradaDesdeSituacion.Table = "articulos_situaciones";
+                        this.EntradaDesdeSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaDesdeSituacion.Text = "0";
                         this.EntradaDesdeSituacion.TextDetail = "";
                         this.EntradaDesdeSituacion.TextChanged += new System.EventHandler(this.EntradaDesdeHaciaSituacion_TextChanged);
@@ -260,7 +260,7 @@ namespace Lfc.Articulos
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(440, 24);
                         this.EntradaHaciaSituacion.TabIndex = 9;
-                        this.EntradaHaciaSituacion.Table = "articulos_situaciones";
+                        this.EntradaHaciaSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaHaciaSituacion.Text = "0";
                         this.EntradaHaciaSituacion.TextDetail = "";
                         this.EntradaHaciaSituacion.TextChanged += new System.EventHandler(this.EntradaDesdeHaciaSituacion_TextChanged);
@@ -348,7 +348,7 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.Required = true;
                         this.EntradaArticulo.Size = new System.Drawing.Size(440, 24);
                         this.EntradaArticulo.TabIndex = 3;
-                        this.EntradaArticulo.Table = null;
+                        this.EntradaArticulo.NombreTipo = "Lbl.Articulos.Articulo";
                         this.EntradaArticulo.Text = "0";
                         this.EntradaArticulo.TextDetail = "";
                         this.EntradaArticulo.PrecioCantidadChanged += new System.EventHandler(this.EntradaArticulo_PrecioCantidadChanged);
