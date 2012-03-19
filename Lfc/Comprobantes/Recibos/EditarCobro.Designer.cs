@@ -75,7 +75,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Cobro.ObsVisible = true;
                         this.Cobro.Size = new System.Drawing.Size(464, 361);
                         this.Cobro.TabIndex = 0;
-                        this.Cobro.Text = "Detalles";
+                        this.Cobro.Text = "Detalles del cobro";
                         this.Cobro.TituloVisible = true;
                         // 
                         // EditarCobro

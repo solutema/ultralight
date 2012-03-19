@@ -101,6 +101,8 @@ namespace Lcc.Entrada
                         {
                                 base.ElementoTipo = value;
                                 if (value != null) {
+                                        if (string.IsNullOrEmpty(this.NombreTipo))
+                                                this.NombreTipo = m_ElementoTipo.ToString();
                                         Lbl.Atributos.Datos AttrDatos = m_ElementoTipo.GetAttribute<Lbl.Atributos.Datos>();
                                         if (AttrDatos != null) {
                                                 this.Table = AttrDatos.TablaDatos;

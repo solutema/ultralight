@@ -147,6 +147,7 @@ namespace Lcc.Edicion
                                                 RelationField.ValueInt = m_Elemento.GetFieldValue<int>(Fld.Name);
                                                 RelationField.PlaceholderText = Fld.Label;
                                                 RelationField.Required = false;
+                                                RelationField.ElementoTipo = Fld.LblType;
                                                 Ctrl = RelationField;
                                                 break;
                                         default:

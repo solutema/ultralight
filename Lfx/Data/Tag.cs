@@ -36,7 +36,7 @@ namespace Lfx.Data
         public class Tag
         {
                 public int Id { get; set; }
-                public string TableName, FieldName, Label, Extra;
+                public string TableName, FieldName, Label, Extra, LblType;
                 public bool Nullable { get; set; }
                 public bool Internal { get; set; }
                 public Lfx.Data.DbTypes FieldType = Lfx.Data.DbTypes.VarChar;
@@ -73,6 +73,11 @@ namespace Lfx.Data
                                                 DetailColumn = "nombre";
 
                                         this.Relation = new Relation(this.FieldName, ReferenceTable, ReferenceColumn, DetailColumn);
+
+                                        if (RelationFields.Length >= 4)
+                                                LblType = RelationFields[3];
+                                        else
+                                                LblType = null;
                                         break;
                                 default:
                                         this.FieldType = Lfx.Data.Types.FromSqlType(FldType);

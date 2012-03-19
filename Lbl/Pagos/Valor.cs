@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Lbl.Pagos
 {
-        [Lbl.Atributos.Nomenclatura(NombreSingular = "Valor de Pago", Grupo = "Cobros y Pagos")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Valor de pago", Grupo = "Cobros y pagos")]
         [Lbl.Atributos.Datos(TablaDatos = "pagos_valores", CampoId = "id_valor")]
         [Lbl.Atributos.Presentacion()]
         public class Valor : ElementoDeDatos

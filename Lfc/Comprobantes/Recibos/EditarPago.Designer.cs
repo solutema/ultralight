@@ -73,7 +73,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Pago.ObsVisible = true;
                         this.Pago.Size = new System.Drawing.Size(464, 368);
                         this.Pago.TabIndex = 0;
-                        this.Pago.Text = "Detalles";
+                        this.Pago.Text = "Detalles del pago";
                         this.Pago.TituloVisible = true;
                         // 
                         // EditarPago

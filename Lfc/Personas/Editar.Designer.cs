@@ -275,7 +275,7 @@ namespace Lfc.Personas
                         this.Label6.Name = "Label6";
                         this.Label6.Size = new System.Drawing.Size(200, 24);
                         this.Label6.TabIndex = 6;
-                        this.Label6.Text = "Número de Documento";
+                        this.Label6.Text = "Número de documento";
                         this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label5
@@ -284,7 +284,7 @@ namespace Lfc.Personas
                         this.Label5.Name = "Label5";
                         this.Label5.Size = new System.Drawing.Size(200, 24);
                         this.Label5.TabIndex = 4;
-                        this.Label5.Text = "Tipo de Documento";
+                        this.Label5.Text = "Tipo de documento";
                         this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Label2

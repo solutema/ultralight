@@ -132,7 +132,6 @@ namespace Lfc.Personas
                                                                 return new Lfx.Types.SuccessOperationResult();
                                                         case DialogResult.No:
                                                                 //Actualizar
-                                                                //this.m_Id = System.Convert.ToInt32(rowVeriNombre["id_persona"]);
                                                                 this.Elemento = new Lbl.Personas.Persona(this.Elemento.Connection, System.Convert.ToInt32(ClienteDup["id_persona"]));
                                                                 return new Lfx.Types.SuccessOperationResult();
                                                         case DialogResult.Cancel:
@@ -151,25 +150,27 @@ namespace Lfc.Personas
                                         break;
                         }
 
-                        switch (Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre) {
-                                case "CUIT":
-                                        if (EntradaClaveTributaria.Text.Length > 0) {
-                                                if (EntradaSituacion.ValueInt == 1) {
-                                                        return new Lfx.Types.FailureOperationResult(@"Un Cliente con CUIT no debe estar en Situación de ""Consumidor Final"".");
-                                                }
-                                                if (System.Text.RegularExpressions.Regex.IsMatch(EntradaClaveTributaria.Text, @"^\d{11}$")) {
-                                                        EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
-                                                }
+                        if (Lbl.Sys.Config.Pais.ClavePersonasJuridicas != null) {
+                                switch (Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre) {
+                                        case "CUIT":
+                                                if (EntradaClaveTributaria.Text.Length > 0) {
+                                                        if (EntradaSituacion.ValueInt == 1) {
+                                                                return new Lfx.Types.FailureOperationResult(@"Un Cliente con CUIT no debe estar en Situación de ""Consumidor Final"".");
+                                                        }
+                                                        if (System.Text.RegularExpressions.Regex.IsMatch(EntradaClaveTributaria.Text, @"^\d{11}$")) {
+                                                                EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
+                                                        }
 
-                                                //Agrego los guiones si no los tiene
-                                                if (EntradaClaveTributaria.Text.Length == 11)
-                                                        EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
+                                                        //Agrego los guiones si no los tiene
+                                                        if (EntradaClaveTributaria.Text.Length == 11)
+                                                                EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
 
-                                                if (Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text) == false) {
-                                                        return new Lfx.Types.FailureOperationResult("La CUIT no es correcta." + Environment.NewLine + "El sistema le permite dejar la CUIT en blanco, pero no aceptará una incorrecta.");
+                                                        if (Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text) == false) {
+                                                                return new Lfx.Types.FailureOperationResult("La CUIT no es correcta." + Environment.NewLine + "El sistema le permite dejar la CUIT en blanco, pero no aceptará una incorrecta.");
+                                                        }
                                                 }
-                                        }
-                                        break;
+                                                break;
+                                }
                         }
 
                         if (EntradaClaveTributaria.Text.Length > 0) {

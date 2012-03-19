@@ -42,6 +42,7 @@ namespace Lazaro.Pres
                 /// Nombre de la propiedad o campo asociado con este control de entrada de datos.
                 /// </summary>
                 public string Name { get; set; }
+                public Type LblType { get; set; }
 
                 public Lfx.Data.InputFieldTypes DataType { get; set; }
                 public string Format { get; set; }

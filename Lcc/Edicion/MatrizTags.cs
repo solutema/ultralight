@@ -60,6 +60,9 @@ namespace Lcc.Edicion
                                 foreach (Lfx.Data.Tag Tg in Tabla.Tags) {
                                         if (Tg.Internal == false) {
                                                 Lazaro.Pres.Field Fld = new Lazaro.Pres.Field(Tg.FieldName, Tg.Label, Tg.InputFieldType);
+                                                if (string.IsNullOrEmpty(Tg.LblType) == false) {
+                                                        Fld.LblType = Lbl.Instanciador.InferirTipo(Tg.LblType);
+                                                }
                                                 Fld.Relation = Tg.Relation;
                                                 Sect.Fields.Add(Fld);
                                         }

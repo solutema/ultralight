@@ -64,7 +64,7 @@ namespace Lcc.Edicion.Comprobantes
                                         this.ElementoPago = new Lbl.Comprobantes.Pago(this.Connection, value);
                                 else
                                         this.ElementoPago.FormaDePago = value;
-                                if (EntradaFormaDePago.ValueInt != value.Id)
+                                if (value != null && EntradaFormaDePago.ValueInt != value.Id)
                                         EntradaFormaDePago.ValueInt = value.Id;
                                 this.MostrarPaneles();
                         }
@@ -263,21 +263,30 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void MostrarPaneles()
                 {
-                        PanelEfectivo.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Efectivo;
-                        PanelChequePropio.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequePropio;
-                        PanelCaja.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Caja;
-                        PanelTarjeta.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Tarjeta;
-                        PanelCuentaCorriente.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente;
-                        PanelChequeTerceros.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros;PanelChequeTerceros.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros;
-                        PanelValor.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor;
-                        if (this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor) {
-                                EtiquetaPagoConValor.Text = "Pago con " + this.FormaDePago.ToString();
-                                EntradaValor.Filter = "id_formapago=" + this.ElementoPago.FormaDePago.Id.ToString() + " AND estado=0";
-                                
-                        }
-                        EntradaImporte.TemporaryReadOnly = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros || this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor;
-                        EntradaImporte.TabStop = !EntradaImporte.TemporaryReadOnly;
+                        if (this.ElementoPago.FormaDePago == null) {
+                                PanelEfectivo.Visible = false;
+                                PanelChequePropio.Visible = false;
+                                PanelCaja.Visible = false;
+                                PanelTarjeta.Visible = false;
+                                PanelCuentaCorriente.Visible = false;
+                                PanelChequeTerceros.Visible = false;
+                                PanelValor.Visible = false;
+                        } else {
+                                PanelEfectivo.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Efectivo;
+                                PanelChequePropio.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequePropio;
+                                PanelCaja.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Caja;
+                                PanelTarjeta.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.Tarjeta;
+                                PanelCuentaCorriente.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente;
+                                PanelChequeTerceros.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros; PanelChequeTerceros.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros;
+                                PanelValor.Visible = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor;
+                                if (this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor) {
+                                        EtiquetaPagoConValor.Text = "Pago con " + this.FormaDePago.ToString();
+                                        EntradaValor.Filter = "id_formapago=" + this.ElementoPago.FormaDePago.Id.ToString() + " AND estado=0";
 
+                                }
+                                EntradaImporte.TemporaryReadOnly = this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.ChequeTerceros || this.ElementoPago.FormaDePago.Tipo == Lbl.Pagos.TiposFormasDePago.OtroValor;
+                                EntradaImporte.TabStop = !EntradaImporte.TemporaryReadOnly;
+                        }
                         this.Height = PanelSeparadorInferior.Bottom + 1;
                 }
 
@@ -391,8 +400,9 @@ namespace Lcc.Edicion.Comprobantes
 
                 private void EntradaFormaDePago_TextChanged(object sender, EventArgs e)
                 {
-                        if (this.FormaDePago == null || this.FormaDePago.Id != EntradaFormaDePago.ValueInt)
-                                this.FormaDePago = new Lbl.Pagos.FormaDePago(this.Connection, EntradaFormaDePago.ValueInt);
+                        if (this.FormaDePago == null || this.FormaDePago.Id != EntradaFormaDePago.ValueInt) {
+                                this.FormaDePago = EntradaFormaDePago.Elemento as Lbl.Pagos.FormaDePago;
+                        }
                 }
 
                 private void EntradaFechaEmision_Enter(object sender, EventArgs e)
