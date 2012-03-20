@@ -475,7 +475,7 @@ namespace Lazaro.WinMain.Config
                         if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\" + InstaladorMySQL)) {
                                 CarpetaDescarga = Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\";
                         } else {
-                                progreso.ChangeStatus("Descargando...");
+                                progreso.ChangeStatus("Descargando, por favor aguarde...");
                                 CarpetaDescarga = Lfx.Environment.Folders.TemporaryFolder;
                                 Lfx.Environment.Folders.EnsurePathExists(CarpetaDescarga);
                                 using (WebClient Cliente = new WebClient()) {

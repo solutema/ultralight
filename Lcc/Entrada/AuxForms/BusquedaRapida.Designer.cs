@@ -50,7 +50,7 @@ namespace Lcc.Entrada.AuxForms
 		// NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
-		internal Lui.Forms.ListView ListaItem;
+		internal Lui.Forms.ListView Listado;
 		internal System.Windows.Forms.ColumnHeader id;
 		internal System.Windows.Forms.ColumnHeader nombre;
 		internal Lui.Forms.TextBox EntradaBuscar;
@@ -65,7 +65,7 @@ namespace Lcc.Entrada.AuxForms
 		{
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BusquedaRapida));
-                        this.ListaItem = new Lui.Forms.ListView();
+                        this.Listado = new Lui.Forms.ListView();
                         this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.nombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.extra1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -78,36 +78,36 @@ namespace Lcc.Entrada.AuxForms
                         this.EtiquetaTitulo = new Lui.Forms.Label();
                         this.EtiquetaResultados = new Lui.Forms.Label();
                         this.label2 = new Lui.Forms.Label();
-                        this.EtiquetaListadoVacio = new Lui.Forms.Label();
+                        this.EtiquetaSeleccionar = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
-                        // ListaItem
+                        // Listado
                         // 
-                        this.ListaItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+                        this.Listado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ListaItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                        this.ListaItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+                        this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                        this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.nombre,
             this.extra1,
             this.extra2,
             this.extra3,
             this.extra4});
-                        this.ListaItem.FullRowSelect = true;
-                        this.ListaItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-                        this.ListaItem.HideSelection = false;
-                        this.ListaItem.LabelWrap = false;
-                        this.ListaItem.Location = new System.Drawing.Point(32, 128);
-                        this.ListaItem.MultiSelect = false;
-                        this.ListaItem.Name = "ListaItem";
-                        this.ListaItem.Size = new System.Drawing.Size(656, 264);
-                        this.ListaItem.TabIndex = 3;
-                        this.ListaItem.UseCompatibleStateImageBehavior = false;
-                        this.ListaItem.View = System.Windows.Forms.View.Details;
-                        this.ListaItem.SelectedIndexChanged += new System.EventHandler(this.Listado_SelectedIndexChanged);
-                        this.ListaItem.DoubleClick += new System.EventHandler(this.Listado_DoubleClick);
-                        this.ListaItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ListaItem_KeyPress);
+                        this.Listado.FullRowSelect = true;
+                        this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+                        this.Listado.HideSelection = false;
+                        this.Listado.LabelWrap = false;
+                        this.Listado.Location = new System.Drawing.Point(32, 128);
+                        this.Listado.MultiSelect = false;
+                        this.Listado.Name = "Listado";
+                        this.Listado.Size = new System.Drawing.Size(656, 264);
+                        this.Listado.TabIndex = 3;
+                        this.Listado.UseCompatibleStateImageBehavior = false;
+                        this.Listado.View = System.Windows.Forms.View.Details;
+                        this.Listado.SelectedIndexChanged += new System.EventHandler(this.Listado_SelectedIndexChanged);
+                        this.Listado.DoubleClick += new System.EventHandler(this.Listado_DoubleClick);
+                        this.Listado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Listado_KeyDown);
                         // 
                         // id
                         // 
@@ -153,8 +153,6 @@ namespace Lcc.Entrada.AuxForms
                         this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
                         this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
-                        this.EntradaBuscar.Enter += new System.EventHandler(this.EntradaBuscar_Enter);
-                        this.EntradaBuscar.Leave += new System.EventHandler(this.EntradaBuscar_Leave);
                         // 
                         // BotonNuevo
                         // 
@@ -207,31 +205,33 @@ namespace Lcc.Entrada.AuxForms
                         this.label2.Text = resources.GetString("label2.Text");
                         this.label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
                         // 
-                        // EtiquetaListadoVacio
+                        // EtiquetaSeleccionar
                         // 
-                        this.EtiquetaListadoVacio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+                        this.EtiquetaSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaListadoVacio.Location = new System.Drawing.Point(32, 104);
-                        this.EtiquetaListadoVacio.Name = "EtiquetaListadoVacio";
-                        this.EtiquetaListadoVacio.Size = new System.Drawing.Size(656, 72);
-                        this.EtiquetaListadoVacio.TabIndex = 7;
-                        this.EtiquetaListadoVacio.Text = "No hay elementos para mostrar.";
-                        this.EtiquetaListadoVacio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.EtiquetaListadoVacio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Info;
-                        this.EtiquetaListadoVacio.Visible = false;
+                        this.EtiquetaSeleccionar.Location = new System.Drawing.Point(72, 304);
+                        this.EtiquetaSeleccionar.Name = "EtiquetaSeleccionar";
+                        this.EtiquetaSeleccionar.Size = new System.Drawing.Size(592, 64);
+                        this.EtiquetaSeleccionar.TabIndex = 8;
+                        this.EtiquetaSeleccionar.Tag = "Pulse la tecla Entrar para seleccionar {0}.";
+                        this.EtiquetaSeleccionar.Text = "Pulse la tecla Entrar para seleccionar {0}.";
+                        this.EtiquetaSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        this.EtiquetaSeleccionar.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
+                        this.EtiquetaSeleccionar.UseMnemonic = false;
+                        this.EtiquetaSeleccionar.Visible = false;
                         // 
                         // BusquedaRapida
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(714, 451);
-                        this.Controls.Add(this.EtiquetaListadoVacio);
+                        this.Controls.Add(this.EtiquetaSeleccionar);
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.EtiquetaResultados);
                         this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.BotonNuevo);
                         this.Controls.Add(this.EntradaBuscar);
-                        this.Controls.Add(this.ListaItem);
+                        this.Controls.Add(this.Listado);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "BusquedaRapida";
@@ -247,6 +247,6 @@ namespace Lcc.Entrada.AuxForms
                 private Lui.Forms.Label EtiquetaTitulo;
                 private Lui.Forms.Label EtiquetaResultados;
                 private Lui.Forms.Label label2;
-                private Lui.Forms.Label EtiquetaListadoVacio;
+                private Lui.Forms.Label EtiquetaSeleccionar;
 	}
 }

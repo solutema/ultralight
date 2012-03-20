@@ -162,7 +162,8 @@ namespace Lui.Forms
                                 case Lazaro.Pres.DisplayStyles.TextStyles.Big:
                                         base.Font = Lazaro.Pres.DisplayStyles.Template.Current.BigFont;
                                         base.Padding = new Padding(3);
-                                        base.BackColor = Color.Transparent;
+                                        if (this.Parent != null)
+                                                base.BackColor = this.Parent.BackColor;
                                         base.ForeColor = this.DisplayStyle.TextColor;
                                         break;
                                 case Lazaro.Pres.DisplayStyles.TextStyles.Bigger:
@@ -189,6 +190,12 @@ namespace Lui.Forms
                                         base.Padding = new Padding(0, 4, 0, 4);
                                         base.BackColor = System.Drawing.SystemColors.Info;
                                         base.ForeColor = System.Drawing.SystemColors.InfoText;
+                                        break;
+                                case Lazaro.Pres.DisplayStyles.TextStyles.DataEntry:
+                                        base.Font = Lazaro.Pres.DisplayStyles.Template.Current.DataEntryFont;
+                                        base.Padding = new Padding(0, 4, 0, 4);
+                                        base.BackColor = this.DisplayStyle.DataAreaColor;
+                                        base.ForeColor = this.DisplayStyle.DataAreaTextColor;
                                         break;
                         }
                 }

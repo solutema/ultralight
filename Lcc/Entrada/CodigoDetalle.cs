@@ -612,7 +612,7 @@ namespace Lcc.Entrada
                                 switch(DateTime.Now.Minute) {
                                         case 0:
                                         case 2:
-                                                this.PlaceholderText = "Consejo: pulse espacio para ver una lista";
+                                                this.PlaceholderText = "Consejo: pulse 'espacio' para ver una lista";
                                                 break;
                                         case 3:
                                         case 5:

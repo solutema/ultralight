@@ -186,8 +186,8 @@ namespace Lcc.Entrada.AuxForms
                                 CamposExtra = 4;
 
                         this.Width = 480 + (80 * CamposExtra);
-                        if (ListaItem.Columns.Count > 0)
-                                ListaItem.Columns[1].Width = ListaItem.Width - ListaItem.Columns[0].Width - (80 * CamposExtra) - 20;
+                        if (Listado.Columns.Count > 0)
+                                Listado.Columns[1].Width = Listado.Width - Listado.Columns[0].Width - (80 * CamposExtra) - 20;
 
                         if (CamposExtra >= 1)
                                 extra1.Width = 80;
@@ -228,7 +228,7 @@ namespace Lcc.Entrada.AuxForms
 
                 internal void Refrescar()
                 {
-                        ListaItem.Items.Clear();
+                        Listado.Items.Clear();
                         if (this.Connection != null) {
                                 if (m_Table.Length > 0 && m_KeyField.Length > 0 && m_DetailField != null && m_DetailField.Length > 0) {
                                         string TextoSql = null;
@@ -293,11 +293,11 @@ namespace Lcc.Entrada.AuxForms
                                         }
 
                                         System.Data.DataTable TableRes = this.Connection.Select(TextoSql);
-                                        ListaItem.SuspendLayout();
-                                        ListaItem.BeginUpdate();
+                                        Listado.SuspendLayout();
+                                        Listado.BeginUpdate();
                                         foreach (System.Data.DataRow OrgRow in TableRes.Rows) {
                                                 Lfx.Data.Row RowRes = (Lfx.Data.Row)OrgRow;
-                                                ListViewItem itm = ListaItem.Items.Add(RowRes.Fields[m_KeyField].ValueInt.ToString("00000"));
+                                                ListViewItem itm = Listado.Items.Add(RowRes.Fields[m_KeyField].ValueInt.ToString("00000"));
                                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, RowRes.Fields[m_DetailField].ValueString));
                                                 if (m_ExtraDetailFields != null && m_ExtraDetailFields.Length > 0) {
                                                         string TempExtraDetailFields = m_ExtraDetailFields;
@@ -340,24 +340,37 @@ namespace Lcc.Entrada.AuxForms
                                                         }
                                                 }
                                         }
-                                        ListaItem.EndUpdate();
-                                        ListaItem.ResumeLayout();
-
-                                        if (ListaItem.Items.Count > 0) {
-                                                ListaItem.Items[0].Selected = true;
-                                                EtiquetaListadoVacio.Visible = false;
-                                        } else {
-                                                EtiquetaListadoVacio.Visible = true;
-                                                if (string.IsNullOrEmpty(TextoBuscar) == true && this.CanCreate == true && AttrNom != null) {
-                                                        EtiquetaListadoVacio.Text = "Aún no se han ingresado " + AttrNom.NombrePlural.ToLowerInvariant() + ". Haga clic en el botón Crear (F6) para agregar uno/a ahora.";
-                                                } else {
-                                                        if (AttrNom != null)
-                                                                EtiquetaListadoVacio.Text = "No hay " + AttrNom.NombrePlural.ToLowerInvariant() + " que coincidan con su búsqueda.";
-                                                        else
-                                                                EtiquetaListadoVacio.Text = "No hay elementos para mostrar.";
-                                                }
-                                        }
+                                        Listado.EndUpdate();
+                                        Listado.ResumeLayout();
+                                        if (Listado.Items.Count > 0 && Listado.SelectedItems.Count == 0)
+                                                Listado.Items[0].Selected = true;
+                                        MostrarEtiquetas();
                                 }
+                        }
+                }
+
+
+                private void MostrarEtiquetas()
+                {
+                        if (Listado.Items.Count > 0) {
+                                if (EntradaBuscar.Text.Length == 0)
+                                        EtiquetaResultados.Text = "Comience a escribir para buscar, o seleccione de la lista:";
+                                else
+                                        EtiquetaResultados.Text = "Los siguientes elementos coinciden con su búsqueda:";
+                                if (Listado.Items.Count < 10 && Listado.SelectedItems.Count == 1) {
+                                        EtiquetaSeleccionar.Text = string.Format(EtiquetaSeleccionar.Tag.ToString(), Listado.SelectedItems[0].SubItems[1].Text);
+                                        EtiquetaSeleccionar.Visible = true;
+                                } else {
+                                        EtiquetaSeleccionar.Visible = false;
+                                }
+                        } else {
+                                EtiquetaSeleccionar.Visible = false;
+                                if (EntradaBuscar.Text.Length == 0)
+                                        EtiquetaResultados.Text = "Aun no hay " + AttrNom.NombrePlural.ToLowerInvariant() + ". Use el botón Crear (F6) para agregar uno/a ahora.";
+                                else if (EntradaBuscar.Text.Length == 1)
+                                        EtiquetaResultados.Text = "No hay " + AttrNom.NombrePlural.ToLowerInvariant() + " que comiencen con la letra '" + EntradaBuscar.Text.ToUpperInvariant() + "'.";
+                                else
+                                        EtiquetaResultados.Text = "No hay " + AttrNom.NombrePlural.ToLowerInvariant() +" que coincidan con su búsqueda.";
                         }
                 }
 
@@ -367,23 +380,7 @@ namespace Lcc.Entrada.AuxForms
                         if (m_IgnoreEvents == false && this.Connection != null)
                                 TimerRefrescar.Start();
 
-                        EntradaBuscar_Enter(sender, e);
-                }
-
-                private void EntradaBuscar_Enter(object sender, EventArgs e)
-                {
-                        if (EntradaBuscar.Text.Length == 0)
-                                EtiquetaResultados.Text = "Seleccione de la lista o comience a escribir para buscar por nombre.";
-                        else
-                                EtiquetaResultados.Text = "Los siguientes elementos coinciden con su búsqueda:";
-                }
-
-                private void EntradaBuscar_Leave(object sender, EventArgs e)
-                {
-                        if (EntradaBuscar.Text.Length == 0)
-                                EtiquetaResultados.Text = "Seleccione de la lista o utilice el cuadro de búsqueda.";
-                        else
-                                EtiquetaResultados.Text = "Los siguientes elementos coinciden con su búsqueda:";
+                        MostrarEtiquetas();
                 }
 
 
@@ -402,20 +399,20 @@ namespace Lcc.Entrada.AuxForms
 
                 private void EntradaBuscar_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
-                        if (ListaItem.Items.Count > 0) {
+                        if (Listado.Items.Count > 0) {
                                 switch (e.KeyCode) {
                                         case Keys.Up:
-                                                if (ListaItem.SelectedItems.Count == 0)
-                                                        ListaItem.SelectedItems[0].Selected = true;
-                                                else if (ListaItem.SelectedItems[0].Index > 0)
-                                                        ListaItem.Items[ListaItem.SelectedItems[0].Index - 1].Selected = true;
+                                                if (Listado.SelectedItems.Count == 0)
+                                                        Listado.SelectedItems[0].Selected = true;
+                                                else if (Listado.SelectedItems[0].Index > 0)
+                                                        Listado.Items[Listado.SelectedItems[0].Index - 1].Selected = true;
                                                 e.Handled = true;
                                                 break;
                                         case Keys.Down:
-                                                if (ListaItem.SelectedItems.Count == 0)
-                                                        ListaItem.SelectedItems[0].Selected = true;
-                                                else if (ListaItem.SelectedItems[0].Index < ListaItem.Items.Count - 1)
-                                                        ListaItem.Items[ListaItem.SelectedItems[0].Index + 1].Selected = true;
+                                                if (Listado.SelectedItems.Count == 0)
+                                                        Listado.SelectedItems[0].Selected = true;
+                                                else if (Listado.SelectedItems[0].Index < Listado.Items.Count - 1)
+                                                        Listado.Items[Listado.SelectedItems[0].Index + 1].Selected = true;
                                                 e.Handled = true;
                                                 break;
                                         case Keys.PageUp:
@@ -447,40 +444,61 @@ namespace Lcc.Entrada.AuxForms
                 }
 
 
-                private void ListaItem_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+                private void Listado_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
-                        byte Tecla = System.Text.Encoding.ASCII.GetBytes(System.Convert.ToString(e.KeyChar))[0];
-                        if (Tecla == System.Convert.ToByte(Keys.Return)) {
-                                e.Handled = true;
-                                this.DarleEnter();
-                        } else if (Tecla == System.Convert.ToByte(Keys.Escape)) {
-                                e.Handled = true;
-                                this.Close();
-                        } else if (Tecla == System.Convert.ToByte(Keys.Back)) {
-                                if (EntradaBuscar.Text.Length > 0) {
+                        switch (e.KeyCode) {
+                                case Keys.Left:
+                                        if (EntradaBuscar.Focused == false) {
+                                                EntradaBuscar.Select();
+                                                SendKeys.Send("{left}");
+                                                e.Handled = true;
+                                        }
+                                        break;
+                                case Keys.Right:
+                                        if (EntradaBuscar.Focused == false) {
+                                                EntradaBuscar.Select();
+                                                SendKeys.Send("{right}");
+                                                e.Handled = true;
+                                        }
+                                        break;
+                                case Keys.Return:
                                         e.Handled = true;
-                                        EntradaBuscar.Text = EntradaBuscar.Text.Substring(0, EntradaBuscar.Text.Length - 1);
-                                }
-                                e.Handled = true;
-                        } else if ((@"ABCDEFGHIJKLMNOPQRSTUVWXYZ* """).IndexOf(char.ToUpper(e.KeyChar)) != -1) {
-                                e.Handled = true;
-                                EntradaBuscar.Text += System.Convert.ToString(e.KeyChar);
+                                        this.DarleEnter();
+                                        break;
+                                case Keys.Escape:
+                                        e.Handled = true;
+                                        this.Close();
+                                        break;
+                                case Keys.Back:
+                                        if (EntradaBuscar.Focused == false) {
+                                                EntradaBuscar.Select();
+                                                SendKeys.Send("{backspace}");
+                                                e.Handled = true;
+                                        }
+                                        break;
+                                default:
+                                        char KeyChar = (char)(e.KeyCode);
+                                        if (char.IsLetterOrDigit(KeyChar)) {
+                                                e.Handled = true;
+                                                EntradaBuscar.Text += System.Convert.ToString(KeyChar).ToLowerInvariant();
+                                        }
+                                        break;
                         }
                 }
 
 
                 internal void DarleEnter()
                 {
-                        if (ListaItem.SelectedItems.Count > 0) {
+                        if (Listado.SelectedItems.Count > 0) {
                                 if (m_Table == "articulos") {
-                                        string Codigo = this.Connection.FieldString("SELECT " + Lfx.Workspace.Master.CurrentConfig.Productos.CodigoPredeterminado() + " FROM articulos WHERE id_articulo=" + int.Parse(ListaItem.SelectedItems[0].Text).ToString());
+                                        string Codigo = this.Connection.FieldString("SELECT " + Lfx.Workspace.Master.CurrentConfig.Productos.CodigoPredeterminado() + " FROM articulos WHERE id_articulo=" + int.Parse(Listado.SelectedItems[0].Text).ToString());
                                         if (Codigo.Length == 0)
-                                                Codigo = int.Parse(ListaItem.SelectedItems[0].Text).ToString();
+                                                Codigo = int.Parse(Listado.SelectedItems[0].Text).ToString();
                                         ControlDestino.Text = Codigo;
                                         if (ControlDestino is Lui.Forms.IEditableControl)
                                                 ((Lui.Forms.IEditableControl)(ControlDestino)).Changed = true;
                                 } else {
-                                        ControlDestino.Text = int.Parse(ListaItem.SelectedItems[0].Text).ToString();
+                                        ControlDestino.Text = int.Parse(Listado.SelectedItems[0].Text).ToString();
                                         if (ControlDestino is Lui.Forms.IEditableControl)
                                                 ((Lui.Forms.IEditableControl)(ControlDestino)).Changed = true;
                                 }
@@ -539,8 +557,8 @@ namespace Lcc.Entrada.AuxForms
 
                 public void VerDetalles()
                 {
-                        if (ListaItem.SelectedItems.Count > 0) {
-                                int ItemId = int.Parse(ListaItem.SelectedItems[0].Text);
+                        if (Listado.SelectedItems.Count > 0) {
+                                int ItemId = int.Parse(Listado.SelectedItems[0].Text);
                                 if (ItemId > 0)
                                         Lfx.Workspace.Master.RunTime.Info("ITEMFOCUS", new string[] { "TABLE", this.Table, ItemId.ToString() });
                         }
@@ -549,11 +567,12 @@ namespace Lcc.Entrada.AuxForms
 
                 private void Listado_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
-                        if (ListaItem.SelectedItems.Count > 0) {
-                                ListaItem.Items[ListaItem.SelectedItems[0].Index].Focused = true;
-                                ListaItem.Items[ListaItem.SelectedItems[0].Index].EnsureVisible();
+                        if (Listado.SelectedItems.Count > 0) {
+                                Listado.Items[Listado.SelectedItems[0].Index].Focused = true;
+                                Listado.Items[Listado.SelectedItems[0].Index].EnsureVisible();
                         }
                         VerDetalles();
+                        MostrarEtiquetas();
                 }
 
 
