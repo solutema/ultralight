@@ -208,11 +208,11 @@ namespace Lcc.Edicion.Comprobantes
 
                 public void FromCobro(Lbl.Comprobantes.Cobro cobro)
                 {
-                        this.ElementoCobro = cobro;
                         if (cobro == null)
                                 this.EntradaFormaDePago.Elemento = null;
                         else
                                 this.EntradaFormaDePago.Elemento = cobro.FormaDePago;
+                        this.ElementoCobro = cobro;
 
                         this.MostrarPaneles();
 
@@ -256,7 +256,7 @@ namespace Lcc.Edicion.Comprobantes
                                         }
                                         break;
                         }
-                        EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(this.ElementoCobro.Importe, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        EntradaImporte.ValueDecimal = this.ElementoCobro.Importe;
                         EntradaObs.Text = this.ElementoCobro.Obs;
                 }
 
