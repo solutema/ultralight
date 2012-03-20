@@ -110,6 +110,11 @@ namespace Lfx.Types
 
 	public class NoAccessOperationResult : FailureOperationResult
 	{
+                public NoAccessOperationResult(string mensaje)
+                        : base(mensaje)
+                {
+                }
+
 		public NoAccessOperationResult()
 			:base ("No tiene permiso para realizar la operación solicitada")
 		{

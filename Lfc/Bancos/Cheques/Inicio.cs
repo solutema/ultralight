@@ -242,8 +242,10 @@ namespace Lfc.Bancos.Cheques
                                         Lbl.Bancos.Cheque Ch  =new Lbl.Bancos.Cheque(this.Connection, IdCheque);
                                         Efectivizar.EntradaSubTotal.ValueDecimal = Ch.Importe;
                                         Efectivizar.Cheque = Ch;
-                                        if (Efectivizar.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                                        if (Efectivizar.ShowDialog() != System.Windows.Forms.DialogResult.OK) {
+                                                itm.Checked = false;
                                                 return new Lfx.Types.CancelOperationResult();
+                                        }
                                 }
                         }
                         return new Lfx.Types.SuccessOperationResult();
@@ -268,6 +270,10 @@ namespace Lfc.Bancos.Cheques
                                                         Depo.WhereClause.AddWithValue("id_cheque", qGen.ComparisonOperators.In, Codigos);
                                                         this.Connection.Execute(Depo);
                                                         Trans.Commit();
+                                                }
+                                                foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
+                                                        if (itm.Checked)
+                                                                itm.Checked = false;
                                                 }
                                                 this.RefreshList();
                                         }
@@ -295,6 +301,10 @@ namespace Lfc.Bancos.Cheques
                                 Bancos.Cheques.Pagar FormPagar = new Bancos.Cheques.Pagar();
                                 FormPagar.EntradaCajaOrigen.ValueInt = IdCajaOrigen;
                                 if (FormPagar.Mostrar(Cheques) == DialogResult.OK) {
+                                        foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
+                                                if (itm.Checked)
+                                                        itm.Checked = false;
+                                        }
                                         this.RefreshList();
                                         return new Lfx.Types.SuccessOperationResult();
                                 } else {

@@ -468,7 +468,7 @@ namespace Lfc.Personas
                         this.Label14.Name = "Label14";
                         this.Label14.Size = new System.Drawing.Size(104, 24);
                         this.Label14.TabIndex = 4;
-                        this.Label14.Text = "Tipo";
+                        this.Label14.Text = "Funciones";
                         this.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaGrupo

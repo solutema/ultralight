@@ -209,8 +209,10 @@ namespace Lcc.Edicion.Comprobantes
                 public void FromCobro(Lbl.Comprobantes.Cobro cobro)
                 {
                         this.ElementoCobro = cobro;
-                        if (cobro.FormaDePago != null)
-                                this.EntradaFormaDePago.ValueInt = cobro.FormaDePago.Id;
+                        if (cobro == null)
+                                this.EntradaFormaDePago.Elemento = null;
+                        else
+                                this.EntradaFormaDePago.Elemento = cobro.FormaDePago;
 
                         this.MostrarPaneles();
 

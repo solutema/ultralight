@@ -216,7 +216,10 @@ namespace Lcc.Edicion.Comprobantes
                 public void FromPago(Lbl.Comprobantes.Pago pago)
                 {
                         this.ElementoPago = pago;
-                        this.EntradaFormaDePago.ValueInt = pago.FormaDePago.Id;
+                        if (pago == null)
+                                this.EntradaFormaDePago.Elemento = null;
+                        else
+                                this.EntradaFormaDePago.Elemento = pago.FormaDePago;
                         this.MostrarPaneles();
 
                         switch (this.ElementoPago.FormaDePago.Tipo) {
