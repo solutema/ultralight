@@ -137,8 +137,6 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaCajaOrigen.AutoTab = true;
                         this.EntradaCajaOrigen.CanCreate = false;
-                        this.EntradaCajaOrigen.DataTextField = "nombre";
-                        this.EntradaCajaOrigen.DataValueField = "id_caja";
                         this.EntradaCajaOrigen.ExtraDetailFields = "";
                         this.EntradaCajaOrigen.Filter = "";
                         this.EntradaCajaOrigen.FreeTextCode = "";

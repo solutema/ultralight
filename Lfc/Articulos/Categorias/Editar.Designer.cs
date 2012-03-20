@@ -209,8 +209,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         this.EntradaRubro.AutoTab = true;
                         this.EntradaRubro.CanCreate = true;
-                        this.EntradaRubro.DataTextField = "nombre";
-                        this.EntradaRubro.DataValueField = "id_rubro";
                         this.EntradaRubro.ExtraDetailFields = "";
                         this.EntradaRubro.Filter = "";
                         this.EntradaRubro.FreeTextCode = "";
@@ -345,8 +343,6 @@ namespace Lfc.Articulos.Categorias
                         // 
                         this.EntradaAlicuota.AutoTab = true;
                         this.EntradaAlicuota.CanCreate = true;
-                        this.EntradaAlicuota.DataTextField = "nombre";
-                        this.EntradaAlicuota.DataValueField = "id_alicuota";
                         this.EntradaAlicuota.ExtraDetailFields = "";
                         this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.FreeTextCode = "";

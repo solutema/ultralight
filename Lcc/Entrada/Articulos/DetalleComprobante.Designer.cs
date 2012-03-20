@@ -165,8 +165,6 @@ namespace Lcc.Entrada.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaArticulo.AutoTab = true;
                         this.EntradaArticulo.CanCreate = true;
-                        this.EntradaArticulo.DataTextField = "nombre";
-                        this.EntradaArticulo.DataValueField = "id_articulo";
                         this.EntradaArticulo.ExtraDetailFields = "pvp,codigo1,codigo2,codigo3,codigo4";
                         this.EntradaArticulo.Filter = "";
                         this.EntradaArticulo.FreeTextCode = "";

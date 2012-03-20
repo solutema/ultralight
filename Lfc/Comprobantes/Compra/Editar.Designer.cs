@@ -137,8 +137,6 @@ namespace Lfc.Comprobantes.Compra
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
-                        this.EntradaHaciaSituacion.DataTextField = "nombre";
-                        this.EntradaHaciaSituacion.DataValueField = "id_situacion";
                         this.EntradaHaciaSituacion.ExtraDetailFields = "";
                         this.EntradaHaciaSituacion.Filter = "deposito>0";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
@@ -190,8 +188,6 @@ namespace Lfc.Comprobantes.Compra
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
-                        this.EntradaProveedor.DataTextField = "nombre_visible";
-                        this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.ExtraDetailFields = "";
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";

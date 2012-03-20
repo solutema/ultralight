@@ -94,8 +94,6 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaFormaPago
                         // 
                         this.EntradaFormaPago.CanCreate = false;
-                        this.EntradaFormaPago.DataTextField = "nombre";
-                        this.EntradaFormaPago.DataValueField = "id_formapago";
                         this.EntradaFormaPago.ExtraDetailFields = "";
                         this.EntradaFormaPago.Filter = "";
                         this.EntradaFormaPago.FreeTextCode = "";
@@ -123,8 +121,6 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaPlan
                         // 
                         this.EntradaPlan.CanCreate = true;
-                        this.EntradaPlan.DataTextField = "nombre";
-                        this.EntradaPlan.DataValueField = "id_plan";
                         this.EntradaPlan.ExtraDetailFields = "";
                         this.EntradaPlan.Filter = "";
                         this.EntradaPlan.FreeTextCode = "";

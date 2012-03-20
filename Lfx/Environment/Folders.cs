@@ -30,6 +30,7 @@
 #endregion
 
 using System;
+using System.IO;
 
 namespace Lfx.Environment
 {
@@ -172,6 +173,37 @@ namespace Lfx.Environment
                         {
                                 string Res = System.Environment.GetFolderPath(((System.Environment.SpecialFolder)20)) + System.IO.Path.DirectorySeparatorChar;
                                 return Res;
+                        }
+                }
+
+
+                public static void MoveDirectory(string sourceDir, string destDir)
+                {
+                        if (Directory.Exists(sourceDir)) {
+                                if (Directory.GetDirectoryRoot(sourceDir) == Directory.GetDirectoryRoot(destDir)) {
+                                        Directory.Move(sourceDir, destDir);
+                                } else {
+                                        try {
+                                                CopyDirectory(new DirectoryInfo(sourceDir), new DirectoryInfo(destDir));
+                                                Directory.Delete(sourceDir, true);
+                                        } catch (Exception subEx) {
+                                                throw subEx;
+                                        }
+                                }
+                        }
+                }
+
+                private static void CopyDirectory(DirectoryInfo sourceDir, DirectoryInfo destDir)
+                {
+                        if (!destDir.Exists)
+                                destDir.Create();
+                        FileInfo[] SrcFiles = sourceDir.GetFiles();
+                        foreach (FileInfo SrcFile in SrcFiles) {
+                                SrcFile.CopyTo(Path.Combine(destDir.FullName, SrcFile.Name));
+                        }
+                        DirectoryInfo[] SrcDirectories = sourceDir.GetDirectories();
+                        foreach (DirectoryInfo SrcDirectory in SrcDirectories) {
+                                CopyDirectory(SrcDirectory, new DirectoryInfo(Path.Combine(destDir.FullName, SrcDirectory.Name)));
                         }
                 }
         }

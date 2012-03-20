@@ -68,7 +68,7 @@ namespace Lfc.Misc
                         if (EntradaElementoOriginal.TextDetail != EntradaElementoDuplicado.TextDetail)
                                 return new Lfx.Types.FailureOperationResult("Los elementos deben tener el mismo nombre.");
 
-                        Lbl.Servicios.Desduplicador Desdup = new Lbl.Servicios.Desduplicador(this.Connection, EntradaElementoOriginal.Relation.ReferenceTable, EntradaElementoOriginal.DataValueField, EntradaElementoOriginal.ValueInt, EntradaElementoDuplicado.ValueInt);
+                        Lbl.Servicios.Desduplicador Desdup = new Lbl.Servicios.Desduplicador(this.Connection, EntradaElementoOriginal.Relation.ReferenceTable, EntradaElementoOriginal.Relation.Column, EntradaElementoOriginal.ValueInt, EntradaElementoDuplicado.ValueInt);
                         Desdup.Desduplicar();
 
 

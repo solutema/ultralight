@@ -76,8 +76,6 @@ namespace Lfc.Articulos.Rubros
                         // EntradaAlicuota
                         // 
                         this.EntradaAlicuota.CanCreate = true;
-                        this.EntradaAlicuota.DataTextField = "nombre";
-                        this.EntradaAlicuota.DataValueField = "id_alicuota";
                         this.EntradaAlicuota.ExtraDetailFields = "";
                         this.EntradaAlicuota.Filter = "";
                         this.EntradaAlicuota.FreeTextCode = "";

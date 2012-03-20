@@ -190,8 +190,6 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.DataTextField = "nombre";
-                        this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "id_caja>999";
                         this.EntradaCaja.FreeTextCode = "";
@@ -501,8 +499,6 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaCategoria.AutoTab = true;
                         this.EntradaCategoria.CanCreate = true;
-                        this.EntradaCategoria.DataTextField = "nombre";
-                        this.EntradaCategoria.DataValueField = "id_categoria";
                         this.EntradaCategoria.ExtraDetailFields = "";
                         this.EntradaCategoria.Filter = "";
                         this.EntradaCategoria.FreeTextCode = "";
@@ -524,8 +520,6 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaMarca.AutoTab = true;
                         this.EntradaMarca.CanCreate = true;
-                        this.EntradaMarca.DataTextField = "nombre";
-                        this.EntradaMarca.DataValueField = "id_marca";
                         this.EntradaMarca.ExtraDetailFields = "";
                         this.EntradaMarca.Filter = "";
                         this.EntradaMarca.FreeTextCode = "";
@@ -746,8 +740,6 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
-                        this.EntradaProveedor.DataTextField = "nombre_visible";
-                        this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.ExtraDetailFields = "";
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";

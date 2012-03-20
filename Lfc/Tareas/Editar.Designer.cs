@@ -109,8 +109,6 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
-                        this.EntradaCliente.DataTextField = "nombre_visible";
-                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
@@ -131,8 +129,6 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTarea.AutoTab = true;
                         this.EntradaTarea.CanCreate = true;
-                        this.EntradaTarea.DataTextField = "nombre";
-                        this.EntradaTarea.DataValueField = "id_tipo_ticket";
                         this.EntradaTarea.ExtraDetailFields = "";
                         this.EntradaTarea.Filter = "";
                         this.EntradaTarea.FreeTextCode = "";
@@ -162,8 +158,6 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEncargado.AutoTab = true;
                         this.EntradaEncargado.CanCreate = false;
-                        this.EntradaEncargado.DataTextField = "nombre_visible";
-                        this.EntradaEncargado.DataValueField = "id_persona";
                         this.EntradaEncargado.ExtraDetailFields = "";
                         this.EntradaEncargado.Filter = "(tipo&4)=4";
                         this.EntradaEncargado.FreeTextCode = "";
@@ -375,8 +369,6 @@ namespace Lfc.Tareas
                         this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEstado.AutoTab = true;
                         this.EntradaEstado.CanCreate = true;
-                        this.EntradaEstado.DataTextField = "nombre";
-                        this.EntradaEstado.DataValueField = "id_ticket_estado";
                         this.EntradaEstado.ExtraDetailFields = "";
                         this.EntradaEstado.Filter = "";
                         this.EntradaEstado.FreeTextCode = "";

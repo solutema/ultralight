@@ -390,7 +390,7 @@ namespace Lfx.Backups
 
                         Progreso.ChangeStatus("Almacenando");
                         Progreso.ChangeStatus(Progreso.Value + 1);
-                        System.IO.Directory.Move(Lfx.Environment.Folders.TemporaryFolder + WorkFolder, this.BackupPath + WorkFolder);
+                        Lfx.Environment.Folders.MoveDirectory(Lfx.Environment.Folders.TemporaryFolder + WorkFolder, this.BackupPath + WorkFolder);
 
                         int GuardarBackups = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sisteam.Backup.CantMax", 14);
                         if (GuardarBackups > 0) {

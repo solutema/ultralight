@@ -109,8 +109,6 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = false;
-                        this.EntradaConcepto.DataTextField = "nombre";
-                        this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.ExtraDetailFields = "";
                         this.EntradaConcepto.Filter = "es=1";
                         this.EntradaConcepto.FreeTextCode = "*";
@@ -171,8 +169,6 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPersona.AutoTab = true;
                         this.EntradaPersona.CanCreate = false;
-                        this.EntradaPersona.DataTextField = "nombre_visible";
-                        this.EntradaPersona.DataValueField = "id_persona";
                         this.EntradaPersona.ExtraDetailFields = "";
                         this.EntradaPersona.Filter = "";
                         this.EntradaPersona.FreeTextCode = "";
@@ -202,8 +198,6 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.DataTextField = "nombre";
-                        this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "*";

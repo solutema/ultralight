@@ -61,8 +61,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaPago.CanCreate = true;
-                        this.EntradaFormaPago.DataTextField = "nombre";
-                        this.EntradaFormaPago.DataValueField = "id_formapago";
                         this.EntradaFormaPago.ExtraDetailFields = "";
                         this.EntradaFormaPago.Filter = "cobros=1 AND estado=1";
                         this.EntradaFormaPago.FreeTextCode = "";

@@ -182,12 +182,12 @@ namespace Lazaro.WinMain.Config
 
                 private void MostrarPaneles()
                 {
-
                         if (Paso == Pasos.Final)
                                 BotonSiguiente.Text = "Finalizar";
                         else
                                 BotonSiguiente.Text = "Siguiente";
 
+                        BotonSiguiente.Enabled = true;
                         BotonAnterior.Enabled = Paso != Pasos.Inicio;
 
                         PanelInicio.Visible = Paso == Inicial.Pasos.Inicio;
@@ -433,7 +433,8 @@ namespace Lazaro.WinMain.Config
                 private void BotonInstalar_Click(object sender, EventArgs e)
                 {
                         BotonInstalar.Enabled = false;
-                        EtiquetaDescargando.Text = "Descargando...";
+                        BotonSiguiente.Enabled = false;
+                        EtiquetaDescargando.Text = "Descargando, por favor aguarde...";
                         EtiquetaDescargando.Visible = true;
                         ProgresoDescargando.Visible = true;
 

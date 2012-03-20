@@ -78,8 +78,8 @@ namespace Lfx.Updates
 
                 public void Start()
                 {
-                        // Simulo la ultima actualización hace un rato, para que verifique en 5 minutos
-                        this.LastUpdate = DateTime.Now.AddMinutes(-this.Interval + 5);
+                        // Simulo la ultima actualización hace un rato, para que verifique en 2 minutos
+                        this.LastUpdate = DateTime.Now.AddMinutes(-this.Interval + 2);
 
                         if (this.UpdaterThread == null) {
                                 this.UpdaterThread = new System.Threading.Thread(new System.Threading.ThreadStart(UpdateProc));

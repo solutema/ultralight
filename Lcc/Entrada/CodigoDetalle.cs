@@ -204,7 +204,7 @@ namespace Lcc.Entrada
                 }
 
                 [System.ComponentModel.Category("Datos")]
-                override public string DataValueField
+                override protected string DataValueField
                 {
                         get
                         {
@@ -217,7 +217,7 @@ namespace Lcc.Entrada
                 }
 
                 [System.ComponentModel.Category("Datos")]
-                override public string DataTextField
+                override protected string DataTextField
                 {
                         get
                         {
@@ -440,7 +440,7 @@ namespace Lcc.Entrada
                 {
                         TimerActualizar.Stop();
 
-                        if (m_FreeTextCode != null && m_FreeTextCode.Length > 0 && EntradaCodigo.Text == m_FreeTextCode) {
+                        if (string.IsNullOrEmpty(m_FreeTextCode) == false && EntradaCodigo.Text == m_FreeTextCode) {
                                 m_ItemId = 0;
                                 this.CurrentRow = null;
                                 m_LastText1 = "";

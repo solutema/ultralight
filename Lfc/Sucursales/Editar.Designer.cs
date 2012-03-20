@@ -134,8 +134,6 @@ namespace Lfc.Sucursales
                         // EntradaLocalidad
                         // 
                         this.EntradaLocalidad.CanCreate = true;
-                        this.EntradaLocalidad.DataTextField = "nombre";
-                        this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.Filter = "id_provincia IS NOT NULL";
                         this.EntradaLocalidad.FreeTextCode = "";
@@ -163,8 +161,6 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaSituacionOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSituacionOrigen.CanCreate = true;
-                        this.EntradaSituacionOrigen.DataTextField = "nombre";
-                        this.EntradaSituacionOrigen.DataValueField = "id_situacion";
                         this.EntradaSituacionOrigen.ExtraDetailFields = "";
                         this.EntradaSituacionOrigen.Filter = "";
                         this.EntradaSituacionOrigen.FreeTextCode = "";
@@ -193,8 +189,6 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaCajaDiaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaDiaria.CanCreate = true;
-                        this.EntradaCajaDiaria.DataTextField = "nombre";
-                        this.EntradaCajaDiaria.DataValueField = "id_caja";
                         this.EntradaCajaDiaria.ExtraDetailFields = "";
                         this.EntradaCajaDiaria.Filter = "";
                         this.EntradaCajaDiaria.FreeTextCode = "";
@@ -223,8 +217,6 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaCajaCheques.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaCheques.CanCreate = true;
-                        this.EntradaCajaCheques.DataTextField = "nombre";
-                        this.EntradaCajaCheques.DataValueField = "id_caja";
                         this.EntradaCajaCheques.ExtraDetailFields = "";
                         this.EntradaCajaCheques.Filter = "";
                         this.EntradaCajaCheques.FreeTextCode = "";

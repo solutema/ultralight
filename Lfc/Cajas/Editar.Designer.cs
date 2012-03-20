@@ -119,8 +119,6 @@ namespace Lfc.Cajas
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.DataTextField = "nombre";
-                        this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.ExtraDetailFields = "";
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
@@ -194,8 +192,6 @@ namespace Lfc.Cajas
                         // EntradaMoneda
                         // 
                         this.EntradaMoneda.CanCreate = true;
-                        this.EntradaMoneda.DataTextField = "nombre";
-                        this.EntradaMoneda.DataValueField = "id_moneda";
                         this.EntradaMoneda.ExtraDetailFields = "";
                         this.EntradaMoneda.Filter = "";
                         this.EntradaMoneda.FreeTextCode = "";

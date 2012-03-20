@@ -76,8 +76,6 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaDestino.AutoTab = true;
                         this.EntradaDestino.CanCreate = false;
-                        this.EntradaDestino.DataTextField = "nombre";
-                        this.EntradaDestino.DataValueField = "id_caja";
                         this.EntradaDestino.ExtraDetailFields = "";
                         this.EntradaDestino.Filter = "";
                         this.EntradaDestino.FreeTextCode = "";
@@ -126,8 +124,6 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = false;
-                        this.EntradaConcepto.DataTextField = "nombre";
-                        this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.ExtraDetailFields = "";
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.FreeTextCode = "*";
@@ -193,8 +189,6 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaOrigen.AutoTab = true;
                         this.EntradaOrigen.CanCreate = false;
-                        this.EntradaOrigen.DataTextField = "nombre";
-                        this.EntradaOrigen.DataValueField = "id_caja";
                         this.EntradaOrigen.ExtraDetailFields = "";
                         this.EntradaOrigen.Filter = "";
                         this.EntradaOrigen.FreeTextCode = "";

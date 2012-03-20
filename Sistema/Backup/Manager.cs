@@ -119,7 +119,7 @@ namespace Lazaro.WinMain.Backup
 
                 private void BotonCopiar_Click(object sender, EventArgs e)
                 {
-                        Lfx.Environment.Shell.Execute(Lfx.Environment.Folders.ApplicationDataFolder + @"Backup\", "", ProcessWindowStyle.Normal, false);
+                        Lfx.Environment.Shell.Execute(this.BackupManager.BackupPath, "", ProcessWindowStyle.Normal, false);
                 }
         }
 }

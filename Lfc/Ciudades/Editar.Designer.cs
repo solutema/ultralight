@@ -105,8 +105,6 @@ namespace Lfc.Ciudades
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaParent.AutoTab = true;
                         this.EntradaParent.CanCreate = true;
-                        this.EntradaParent.DataTextField = "nombre";
-                        this.EntradaParent.DataValueField = "id_ciudad";
                         this.EntradaParent.ExtraDetailFields = "";
                         this.EntradaParent.Filter = "id_provincia IS NULL";
                         this.EntradaParent.FreeTextCode = "";

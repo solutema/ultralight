@@ -85,8 +85,6 @@ namespace Lfc.Bancos.Cheques
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
-                        this.EntradaConcepto.DataTextField = "nombre";
-                        this.EntradaConcepto.DataValueField = "id_concepto";
                         this.EntradaConcepto.ExtraDetailFields = "";
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.FreeTextCode = "";
@@ -172,8 +170,6 @@ namespace Lfc.Bancos.Cheques
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPersona.AutoTab = true;
                         this.EntradaPersona.CanCreate = true;
-                        this.EntradaPersona.DataTextField = "nombre_visible";
-                        this.EntradaPersona.DataValueField = "id_persona";
                         this.EntradaPersona.ExtraDetailFields = "";
                         this.EntradaPersona.Filter = "";
                         this.EntradaPersona.FreeTextCode = "";

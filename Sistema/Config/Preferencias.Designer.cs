@@ -181,8 +181,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEmpresaSituacion.AutoTab = true;
                         this.EntradaEmpresaSituacion.CanCreate = true;
-                        this.EntradaEmpresaSituacion.DataTextField = "nombre";
-                        this.EntradaEmpresaSituacion.DataValueField = "id_situacion";
                         this.EntradaEmpresaSituacion.ExtraDetailFields = "";
                         this.EntradaEmpresaSituacion.Filter = "";
                         this.EntradaEmpresaSituacion.FreeTextCode = "";
@@ -296,8 +294,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPais.AutoTab = true;
                         this.EntradaPais.CanCreate = false;
-                        this.EntradaPais.DataTextField = "nombre";
-                        this.EntradaPais.DataValueField = "id_pais";
                         this.EntradaPais.ExtraDetailFields = "";
                         this.EntradaPais.Filter = "";
                         this.EntradaPais.FreeTextCode = "";
@@ -346,8 +342,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProvincia.AutoTab = true;
                         this.EntradaProvincia.CanCreate = true;
-                        this.EntradaProvincia.DataTextField = "nombre";
-                        this.EntradaProvincia.DataValueField = "id_ciudad";
                         this.EntradaProvincia.ExtraDetailFields = "";
                         this.EntradaProvincia.Filter = "id_provincia IS NULL";
                         this.EntradaProvincia.FreeTextCode = "";
@@ -369,8 +363,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaLocalidad.AutoTab = true;
                         this.EntradaLocalidad.CanCreate = true;
-                        this.EntradaLocalidad.DataTextField = "nombre";
-                        this.EntradaLocalidad.DataValueField = "id_ciudad";
                         this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.Filter = "id_provincia IS NOT NULL";
                         this.EntradaLocalidad.FreeTextCode = "";
@@ -553,8 +545,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaStockDepositoPredet.AutoTab = true;
                         this.EntradaStockDepositoPredet.CanCreate = true;
-                        this.EntradaStockDepositoPredet.DataTextField = "nombre";
-                        this.EntradaStockDepositoPredet.DataValueField = "id_situacion";
                         this.EntradaStockDepositoPredet.ExtraDetailFields = "";
                         this.EntradaStockDepositoPredet.Filter = "";
                         this.EntradaStockDepositoPredet.FreeTextCode = "";
@@ -731,8 +721,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaClientePredet.AutoTab = true;
                         this.EntradaClientePredet.CanCreate = true;
-                        this.EntradaClientePredet.DataTextField = "nombre_visible";
-                        this.EntradaClientePredet.DataValueField = "id_persona";
                         this.EntradaClientePredet.ExtraDetailFields = "";
                         this.EntradaClientePredet.Filter = "";
                         this.EntradaClientePredet.FreeTextCode = "";
@@ -762,8 +750,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaPagoPredet.AutoTab = true;
                         this.EntradaFormaPagoPredet.CanCreate = true;
-                        this.EntradaFormaPagoPredet.DataTextField = "nombre";
-                        this.EntradaFormaPagoPredet.DataValueField = "id_formapago";
                         this.EntradaFormaPagoPredet.ExtraDetailFields = "";
                         this.EntradaFormaPagoPredet.Filter = "estado=1";
                         this.EntradaFormaPagoPredet.FreeTextCode = "";
@@ -923,8 +909,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaStockDepositoPredetSuc.AutoTab = true;
                         this.EntradaStockDepositoPredetSuc.CanCreate = true;
-                        this.EntradaStockDepositoPredetSuc.DataTextField = "nombre";
-                        this.EntradaStockDepositoPredetSuc.DataValueField = "id_situacion";
                         this.EntradaStockDepositoPredetSuc.ExtraDetailFields = "";
                         this.EntradaStockDepositoPredetSuc.Filter = "";
                         this.EntradaStockDepositoPredetSuc.FreeTextCode = "";

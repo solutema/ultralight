@@ -214,8 +214,6 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDesdeSituacion.AutoTab = true;
                         this.EntradaDesdeSituacion.CanCreate = false;
-                        this.EntradaDesdeSituacion.DataTextField = "nombre";
-                        this.EntradaDesdeSituacion.DataValueField = "id_situacion";
                         this.EntradaDesdeSituacion.ExtraDetailFields = "";
                         this.EntradaDesdeSituacion.Filter = "";
                         this.EntradaDesdeSituacion.FreeTextCode = "";
@@ -247,8 +245,6 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
-                        this.EntradaHaciaSituacion.DataTextField = "nombre";
-                        this.EntradaHaciaSituacion.DataValueField = "id_situacion";
                         this.EntradaHaciaSituacion.ExtraDetailFields = "";
                         this.EntradaHaciaSituacion.Filter = "";
                         this.EntradaHaciaSituacion.FreeTextCode = "";
@@ -332,8 +328,6 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaArticulo.CantidadSoloLectura = false;
                         this.EntradaArticulo.ControlStock = Lcc.Entrada.Articulos.ControlesSock.Ambos;
-                        this.EntradaArticulo.DataTextField = null;
-                        this.EntradaArticulo.DataValueField = null;
                         this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaArticulo.FreeTextCode = "";
                         this.EntradaArticulo.Location = new System.Drawing.Point(136, 176);

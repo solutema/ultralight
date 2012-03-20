@@ -110,8 +110,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoSize = true;
                         this.EntradaCliente.CanCreate = false;
-                        this.EntradaCliente.DataTextField = "nombre_visible";
-                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(133, 31);
@@ -149,8 +147,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaVendedor.AutoSize = true;
                         this.EntradaVendedor.CanCreate = false;
-                        this.EntradaVendedor.DataTextField = "nombre_visible";
-                        this.EntradaVendedor.DataValueField = "id_persona";
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.Location = new System.Drawing.Point(133, 59);
@@ -179,8 +175,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.AutoSize = true;
                         this.EntradaSucursal.CanCreate = false;
-                        this.EntradaSucursal.DataTextField = "nombre";
-                        this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(133, 3);

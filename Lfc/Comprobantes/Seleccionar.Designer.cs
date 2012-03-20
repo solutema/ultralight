@@ -169,8 +169,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
-                        this.EntradaVendedor.DataTextField = "nombre_visible";
-                        this.EntradaVendedor.DataValueField = "id_persona";
                         this.EntradaVendedor.ExtraDetailFields = "";
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
                         this.EntradaVendedor.FreeTextCode = "";
@@ -257,8 +255,6 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
-                        this.EntradaCliente.DataTextField = "nombre_visible";
-                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";

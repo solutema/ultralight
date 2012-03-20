@@ -204,10 +204,8 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
-                        this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 32);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
@@ -300,10 +298,8 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.DataTextField = "nombre";
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "";
-                        this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.Location = new System.Drawing.Point(140, 20);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
@@ -413,10 +409,8 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPlan.CanCreate = false;
-                        this.EntradaPlan.DataTextField = "nombre";
                         this.EntradaPlan.Filter = "";
                         this.EntradaPlan.FreeTextCode = "";
-                        this.EntradaPlan.DataValueField = "id_plan";
                         this.EntradaPlan.Location = new System.Drawing.Point(140, 0);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
@@ -515,10 +509,8 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaDePago.CanCreate = true;
-                        this.EntradaFormaDePago.DataTextField = "nombre";
                         this.EntradaFormaDePago.Filter = "cobros=1";
                         this.EntradaFormaDePago.FreeTextCode = "";
-                        this.EntradaFormaDePago.DataValueField = "id_formapago";
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(136, 0);
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "EntradaFormaDePago";

@@ -181,8 +181,6 @@ namespace Lfc.Pvs
                         // EntradaSucursal
                         // 
                         this.EntradaSucursal.CanCreate = true;
-                        this.EntradaSucursal.DataTextField = "nombre";
-                        this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.ExtraDetailFields = "";
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";
@@ -360,8 +358,6 @@ namespace Lfc.Pvs
                         // EntradaImpresora
                         // 
                         this.EntradaImpresora.CanCreate = true;
-                        this.EntradaImpresora.DataTextField = "nombre";
-                        this.EntradaImpresora.DataValueField = "id_impresora";
                         this.EntradaImpresora.ExtraDetailFields = "";
                         this.EntradaImpresora.Filter = "";
                         this.EntradaImpresora.FreeTextCode = "";

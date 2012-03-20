@@ -41,7 +41,7 @@ namespace Lcc.Entrada
         /// </summary>
         public class ControlSeleccionElemento : ControlEntrada
         {
-                private string m_NobmreElementoTipo = null;
+                private string m_NombreElementoTipo = null;
                 public Lfx.Data.Relation Relation = new Lfx.Data.Relation();
                 
                 protected int m_ItemId;
@@ -119,11 +119,13 @@ namespace Lcc.Entrada
                 {
                         get
                         {
-                                return m_NobmreElementoTipo;
+                                return m_NombreElementoTipo;
                         }
                         set
                         {
-                                m_NobmreElementoTipo = value;
+                                m_NombreElementoTipo = value;
+                                if (value != null && this.ElementoTipo == null)
+                                        this.ElementoTipo = Lbl.Instanciador.InferirTipo(m_NombreElementoTipo);
                         }
                 }
 
@@ -159,7 +161,7 @@ namespace Lcc.Entrada
 
 
                 [System.ComponentModel.Category("Datos")]
-                virtual public string DataValueField
+                virtual protected string DataValueField
                 {
                         get
                         {
@@ -173,7 +175,7 @@ namespace Lcc.Entrada
 
 
                 [System.ComponentModel.Category("Datos")]
-                virtual public string DataTextField
+                virtual protected string DataTextField
                 {
                         get
                         {

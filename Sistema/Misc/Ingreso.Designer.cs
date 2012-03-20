@@ -161,8 +161,6 @@ namespace Lazaro.WinMain.Misc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaUsuario.AutoTab = true;
                         this.EntradaUsuario.CanCreate = false;
-                        this.EntradaUsuario.DataTextField = "nombre_visible";
-                        this.EntradaUsuario.DataValueField = "id_persona";
                         this.EntradaUsuario.ExtraDetailFields = "";
                         this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\' AND estado=1";
                         this.EntradaUsuario.FreeTextCode = "";

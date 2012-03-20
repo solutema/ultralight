@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Lbl.Comprobantes
 {
-        [Lbl.Atributos.Nomenclatura(NombreSingular = "Comprobante con Artículos")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Comprobante con artículos")]
         [Lbl.Atributos.Datos(TablaDatos = "comprob", CampoId = "id_comprob", TablaImagenes = "comprob_imagenes")]
         [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Nunca)]
 	public class ComprobanteConArticulos : Comprobante

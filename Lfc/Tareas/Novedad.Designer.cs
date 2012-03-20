@@ -93,8 +93,6 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEncargado.AutoTab = true;
                         this.EntradaEncargado.CanCreate = true;
-                        this.EntradaEncargado.DataTextField = "nombre_visible";
-                        this.EntradaEncargado.DataValueField = "id_persona";
                         this.EntradaEncargado.ExtraDetailFields = "";
                         this.EntradaEncargado.Filter = "(tipo&4)=4";
                         this.EntradaEncargado.FreeTextCode = "";
@@ -174,8 +172,6 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTicket.AutoTab = true;
                         this.EntradaTicket.CanCreate = true;
-                        this.EntradaTicket.DataTextField = "nombre";
-                        this.EntradaTicket.DataValueField = "id_ticket";
                         this.EntradaTicket.ExtraDetailFields = "";
                         this.EntradaTicket.Filter = "";
                         this.EntradaTicket.FreeTextCode = "";

@@ -94,10 +94,8 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaObjeto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObjeto.CanCreate = true;
-                        this.EntradaObjeto.DataTextField = "nombre";
                         this.EntradaObjeto.Filter = "";
                         this.EntradaObjeto.FreeTextCode = "";
-                        this.EntradaObjeto.DataValueField = "id_objeto";
                         this.EntradaObjeto.Location = new System.Drawing.Point(120, 20);
                         this.EntradaObjeto.MaxLength = 200;
                         this.EntradaObjeto.Name = "EntradaObjeto";

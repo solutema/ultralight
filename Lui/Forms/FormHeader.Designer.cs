@@ -95,6 +95,7 @@ namespace Lui.Forms
                         this.LabelColor2.Size = new System.Drawing.Size(8, 63);
                         this.LabelColor2.TabIndex = 3;
                         this.LabelColor2.UseMnemonic = false;
+                        this.LabelColor2.Visible = false;
                         // 
                         // label1
                         // 
@@ -105,16 +106,17 @@ namespace Lui.Forms
                         this.label1.Size = new System.Drawing.Size(600, 1);
                         this.label1.TabIndex = 4;
                         this.label1.UseMnemonic = false;
+                        this.label1.Visible = false;
                         // 
                         // LabelCaption
                         // 
                         this.LabelCaption.AutoSize = true;
-                        this.LabelCaption.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         this.LabelCaption.Location = new System.Drawing.Point(72, 16);
                         this.LabelCaption.Name = "LabelCaption";
-                        this.LabelCaption.Size = new System.Drawing.Size(233, 25);
+                        this.LabelCaption.Size = new System.Drawing.Size(210, 30);
                         this.LabelCaption.TabIndex = 0;
                         this.LabelCaption.Text = "Título del formulario";
+                        this.LabelCaption.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
                         this.LabelCaption.UseMnemonic = false;
                         // 
                         // FormHeader

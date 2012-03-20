@@ -379,7 +379,7 @@ namespace Lfc
                                         this.Text = row.ToString();
                         } else {
                                 if (Attr != null)
-                                        this.Text = "Creando " + Attr.NombreSingular;
+                                        this.Text = "Creando " + Attr.NombreSingular.ToLowerInvariant();
                                 else
                                         this.Text = "Creando " + row.GetType().ToString();
                         }

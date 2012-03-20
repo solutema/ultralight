@@ -783,7 +783,7 @@ namespace Lazaro.WinMain.Config
                         this.BotonInstalar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonInstalar.Image = null;
                         this.BotonInstalar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonInstalar.Location = new System.Drawing.Point(40, 112);
+                        this.BotonInstalar.Location = new System.Drawing.Point(40, 136);
                         this.BotonInstalar.Name = "BotonInstalar";
                         this.BotonInstalar.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
                         this.BotonInstalar.Size = new System.Drawing.Size(116, 40);
@@ -806,10 +806,10 @@ namespace Lazaro.WinMain.Config
                         // 
                         this.EtiquetaDescargando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EtiquetaDescargando.Location = new System.Drawing.Point(40, 168);
+                        this.EtiquetaDescargando.Location = new System.Drawing.Point(40, 192);
                         this.EtiquetaDescargando.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.EtiquetaDescargando.Name = "EtiquetaDescargando";
-                        this.EtiquetaDescargando.Size = new System.Drawing.Size(456, 56);
+                        this.EtiquetaDescargando.Size = new System.Drawing.Size(456, 40);
                         this.EtiquetaDescargando.TabIndex = 74;
                         this.EtiquetaDescargando.Text = "Descargando...";
                         this.EtiquetaDescargando.Visible = false;
@@ -821,7 +821,7 @@ namespace Lazaro.WinMain.Config
                         this.label13.Location = new System.Drawing.Point(40, 32);
                         this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label13.Name = "label13";
-                        this.label13.Size = new System.Drawing.Size(456, 72);
+                        this.label13.Size = new System.Drawing.Size(456, 88);
                         this.label13.TabIndex = 72;
                         this.label13.Text = resources.GetString("label13.Text");
                         // 
@@ -1036,19 +1036,17 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPais.AutoTab = true;
                         this.EntradaPais.CanCreate = false;
-                        this.EntradaPais.DataTextField = "nombre";
-                        this.EntradaPais.DataValueField = "id_pais";
                         this.EntradaPais.ExtraDetailFields = "";
                         this.EntradaPais.Filter = "";
                         this.EntradaPais.FreeTextCode = "";
                         this.EntradaPais.Location = new System.Drawing.Point(208, 120);
                         this.EntradaPais.MaxLength = 200;
                         this.EntradaPais.Name = "EntradaPais";
+                        this.EntradaPais.NombreTipo = "Lbl.Entidades.Pais";
                         this.EntradaPais.PlaceholderText = "Seleccione un país de la lista";
                         this.EntradaPais.Required = true;
                         this.EntradaPais.Size = new System.Drawing.Size(256, 24);
                         this.EntradaPais.TabIndex = 5;
-                        this.EntradaPais.NombreTipo = "Lbl.Entidades.Pais";
                         this.EntradaPais.Text = "0";
                         this.EntradaPais.TextDetail = "";
                         this.EntradaPais.TextChanged += new System.EventHandler(this.EntradaPais_TextChanged);
@@ -1132,17 +1130,17 @@ namespace Lazaro.WinMain.Config
                         this.CancelButton = this.BotonSalir;
                         this.ClientSize = new System.Drawing.Size(634, 422);
                         this.ControlBox = false;
-                        this.Controls.Add(this.PanelDatosEmpresa);
                         this.Controls.Add(this.PanelLogo);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.EtiquetaEncab);
+                        this.Controls.Add(this.PanelInicio);
+                        this.Controls.Add(this.PanelSeleccionarAlmacen);
+                        this.Controls.Add(this.PanelFinal);
+                        this.Controls.Add(this.PanelDatosEmpresa);
                         this.Controls.Add(this.PanelDeteccion);
                         this.Controls.Add(this.PanelInstalacion);
                         this.Controls.Add(this.PanelNombreServidor);
                         this.Controls.Add(this.PanelPruebaServidor);
-                        this.Controls.Add(this.PanelInicio);
-                        this.Controls.Add(this.PanelSeleccionarAlmacen);
-                        this.Controls.Add(this.PanelFinal);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

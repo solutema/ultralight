@@ -159,8 +159,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSituacionOrigen.AutoTab = true;
                         this.EntradaSituacionOrigen.CanCreate = true;
-                        this.EntradaSituacionOrigen.DataTextField = "nombre";
-                        this.EntradaSituacionOrigen.DataValueField = "id_situacion";
                         this.EntradaSituacionOrigen.ExtraDetailFields = "";
                         this.EntradaSituacionOrigen.Filter = "";
                         this.EntradaSituacionOrigen.FreeTextCode = "";
@@ -188,8 +186,6 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSituacionDestino.AutoTab = true;
                         this.EntradaSituacionDestino.CanCreate = true;
-                        this.EntradaSituacionDestino.DataTextField = "nombre";
-                        this.EntradaSituacionDestino.DataValueField = "id_situacion";
                         this.EntradaSituacionDestino.ExtraDetailFields = "";
                         this.EntradaSituacionDestino.Filter = "";
                         this.EntradaSituacionDestino.FreeTextCode = "";

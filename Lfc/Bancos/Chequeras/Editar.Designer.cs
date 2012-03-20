@@ -85,8 +85,6 @@ namespace Lfc.Bancos.Chequeras
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.DataTextField = "nombre";
-                        this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.ExtraDetailFields = "";
                         this.EntradaBanco.Filter = "";
                         this.EntradaBanco.FreeTextCode = "";
@@ -151,8 +149,6 @@ namespace Lfc.Bancos.Chequeras
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.DataTextField = "nombre";
-                        this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "";
@@ -235,8 +231,6 @@ namespace Lfc.Bancos.Chequeras
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
-                        this.EntradaSucursal.DataTextField = "nombre";
-                        this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.ExtraDetailFields = "";
                         this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.FreeTextCode = "";

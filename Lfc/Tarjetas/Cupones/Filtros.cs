@@ -126,10 +126,8 @@ namespace Lfc.Tarjetas.Cupones
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaDePago.AutoSize = true;
                         this.EntradaFormaDePago.CanCreate = false;
-                        this.EntradaFormaDePago.DataTextField = "nombre";
                         this.EntradaFormaDePago.Filter = "tipo=4";
                         this.EntradaFormaDePago.FreeTextCode = "";
-                        this.EntradaFormaDePago.DataValueField = "id_formapago";
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(85, 3);
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "txtTarjeta";
@@ -209,10 +207,8 @@ namespace Lfc.Tarjetas.Cupones
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPlan.AutoSize = true;
                         this.EntradaPlan.CanCreate = false;
-                        this.EntradaPlan.DataTextField = "nombre";
                         this.EntradaPlan.Filter = "";
                         this.EntradaPlan.FreeTextCode = "";
-                        this.EntradaPlan.DataValueField = "id_plan";
                         this.EntradaPlan.Location = new System.Drawing.Point(85, 33);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "txtPlan";
@@ -241,10 +237,8 @@ namespace Lfc.Tarjetas.Cupones
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoSize = true;
                         this.EntradaCliente.CanCreate = false;
-                        this.EntradaCliente.DataTextField = "nombre_visible";
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";
-                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.Location = new System.Drawing.Point(85, 123);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "txtCliente";

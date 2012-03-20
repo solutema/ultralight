@@ -70,8 +70,6 @@ namespace Lfc.Articulos.Marcas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
-                        this.EntradaProveedor.DataTextField = "nombre_visible";
-                        this.EntradaProveedor.DataValueField = "id_persona";
                         this.EntradaProveedor.ExtraDetailFields = "";
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
                         this.EntradaProveedor.FreeTextCode = "";
@@ -101,7 +99,7 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaUrl.Location = new System.Drawing.Point(88, 32);
                         this.EntradaUrl.MaxLength = 200;
                         this.EntradaUrl.Name = "EntradaUrl";
-                        this.EntradaUrl.PlaceholderText = "Dirección de la página web del producto.";
+                        this.EntradaUrl.PlaceholderText = "Dirección de la página web de la marca";
                         this.EntradaUrl.ReadOnly = false;
                         this.EntradaUrl.Size = new System.Drawing.Size(444, 24);
                         this.EntradaUrl.TabIndex = 3;
@@ -150,7 +148,7 @@ namespace Lfc.Articulos.Marcas
                         this.Label13.Name = "Label13";
                         this.Label13.Size = new System.Drawing.Size(88, 24);
                         this.Label13.TabIndex = 6;
-                        this.Label13.Text = "Obs.";
+                        this.Label13.Text = "Observaciones";
                         this.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // Editar

@@ -75,8 +75,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = false;
-                        this.EntradaCaja.DataTextField = "nombre";
-                        this.EntradaCaja.DataValueField = "id_caja";
                         this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "";
@@ -107,8 +105,6 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = false;
-                        this.EntradaCliente.DataTextField = "nombre_visible";
-                        this.EntradaCliente.DataValueField = "id_persona";
                         this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.Filter = "";
                         this.EntradaCliente.FreeTextCode = "";

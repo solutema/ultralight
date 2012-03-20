@@ -306,7 +306,7 @@
     <value>Si acaba de instalar Lázaro por primera vez, haga clic en 'Siguiente' para continuar (no es necesario que espere a que termine la búsqueda). Si ya instaló Lázaro antes en este o en otro equipo, aguarde a que finalice la búsqueda.</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
-    <value>Se va a descargar e instalar un servidor MySQL para utilizar como almacén de datos en este equipo. Es necesario que su PC esté conectada a internet y es posible que necesite privilegios administrativos.</value>
+    <value>Se va a descargar e instalar un servidor MySQL para utilizar como almacén de datos en este equipo. Es necesario que su PC esté conectada a internet y es posible que el sistema solicite su autorización. La descarga normalmente demora menos de 2 minutos.</value>
   </data>
   <data name="pictureBox11.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

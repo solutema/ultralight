@@ -116,9 +116,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPersona.CanCreate = true;
-                        this.EntradaPersona.DataTextField = "nombre_visible";
                         this.EntradaPersona.FreeTextCode = "";
-                        this.EntradaPersona.DataValueField = "id_persona";
                         this.EntradaPersona.Location = new System.Drawing.Point(108, 116);
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
@@ -144,9 +142,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.DataTextField = "nombre";
                         this.EntradaBanco.FreeTextCode = "";
-                        this.EntradaBanco.DataValueField = "id_banco";
                         this.EntradaBanco.Location = new System.Drawing.Point(108, 84);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
@@ -191,9 +187,7 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.CanCreate = true;
-                        this.EntradaSucursal.DataTextField = "nombre";
                         this.EntradaSucursal.FreeTextCode = "";
-                        this.EntradaSucursal.DataValueField = "id_sucursal";
                         this.EntradaSucursal.Location = new System.Drawing.Point(108, 52);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
