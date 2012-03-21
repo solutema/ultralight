@@ -585,7 +585,7 @@ namespace Lcc.Entrada.Articulos
                                         case Keys.Right:
                                         case Keys.Return:
                                                 e.Handled = true;
-                                                if (EntradaUnitario.Visible) {
+                                                if (EntradaUnitario.Visible && this.ReadOnly == false && this.TemporaryReadOnly == false) {
                                                         if (this.PrecioSoloLectura)
                                                                 EntradaCantidad.Focus();
                                                         else

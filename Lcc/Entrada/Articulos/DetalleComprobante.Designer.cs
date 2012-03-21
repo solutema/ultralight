@@ -106,6 +106,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaDescuento.Size = new System.Drawing.Size(75, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 3;
+                        this.EntradaDescuento.TabStop = false;
                         this.EntradaDescuento.Text = "0.00";
                         this.EntradaDescuento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaDescuento_KeyDown);
                         this.EntradaDescuento.TextChanged += new System.EventHandler(this.EntradaUnitarioDescuentoCantidad_TextChanged);

@@ -37,7 +37,7 @@ using Lui.Forms;
 
 namespace Lcc.Entrada.Articulos
 {
-        public partial class MatrizDetalleComprobante : MatrizControlesEntrada<DetalleComprobante>
+        public partial class MatrizDetalleComprobante : AuxiliarMatrizDetalleComprobante
         {
                 private Lbl.Comprobantes.ColeccionDetalleArticulos m_Articulos = null;
 
@@ -402,6 +402,8 @@ namespace Lcc.Entrada.Articulos
                 protected override void ReubicarControles()
                 {
                         if (this.ChildControls != null && this.ChildControls.Count > 0) {
+                                PanelGrilla.Top = EtiquetaHeaderDetalle.Height + 2;
+                                PanelGrilla.Height = this.ClientSize.Height - PanelGrilla.Top;
                                 base.ReubicarControles();
                                 ReubicarEncabs();
                         }

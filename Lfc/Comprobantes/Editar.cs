@@ -308,17 +308,15 @@ namespace Lfc.Comprobantes
                         if (Ignorar_EntradaCliente_TextChanged)
                                 return;
 
-                        decimal Descuento = this.Connection.FieldDecimal("SELECT descuento FROM personas_grupos WHERE id_grupo=(SELECT id_grupo FROM personas WHERE id_persona=" + EntradaCliente.ValueInt.ToString() + ")");
+                        Lbl.Personas.Persona Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
 
-                        if (Descuento > 0 && EntradaDescuento.ValueDecimal == 0) {
-                                EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Descuento, 2);
+                        if (Cliente != null && Cliente.Grupo != null && Cliente.Grupo.Descuento > 0 && EntradaDescuento.ValueDecimal == 0) {
+                                EntradaDescuento.ValueDecimal = Cliente.Grupo.Descuento;
                                 // TODO: EntradaDescuento.ShowBalloon("Se aplicó el descuento que corresponde al tipo de cliente.");
                         }
 
-                        if (this.Tipo != null && this.Tipo.EsFacturaNCoND && this.Elemento.Existe == false && EntradaCliente.ValueInt > 0) {
-                                Lbl.Personas.Persona Persona = EntradaCliente.Elemento as Lbl.Personas.Persona;
-
-                                string LetraComprob = Persona.LetraPredeterminada();
+                        if (this.Tipo != null && this.Tipo.EsFacturaNCoND && this.Elemento.Existe == false && Cliente != null) {
+                                string LetraComprob = Cliente.LetraPredeterminada();
 
                                 switch (LetraComprob) {
                                         case "A":
@@ -411,7 +409,7 @@ namespace Lfc.Comprobantes
 
                         IgnorarEventos = true;
                         if (EntradaSubTotal.ValueDecimal > 0) {
-                                decimal Descuento = EntradaTotal.ValueDecimal / (EntradaSubTotal.ValueDecimal + EntradaIva.ValueDecimal);
+                                decimal Descuento = (EntradaTotal.ValueDecimal - EntradaIva.ValueDecimal) / EntradaSubTotal.ValueDecimal;
                                 if (Descuento < 1) {
                                         EntradaDescuento.ValueDecimal = (1 - Descuento) * 100m;
                                         EntradaInteres.ValueDecimal = 0m;

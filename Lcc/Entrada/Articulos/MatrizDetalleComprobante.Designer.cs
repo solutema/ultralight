@@ -61,88 +61,85 @@ namespace Lcc.Entrada.Articulos
                         this.EtiquetaHeaderDescuento = new Lui.Forms.Label();
                         this.EtiquetaHeaderCantidad = new Lui.Forms.Label();
                         this.EtiquetaHeaderImporte = new Lui.Forms.Label();
-
                         this.SuspendLayout();
                         // 
                         // EtiquetaHeaderDetalle
                         // 
-                        this.EtiquetaHeaderDetalle.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderDetalle.AutoEllipsis = true;
                         this.EtiquetaHeaderDetalle.Location = new System.Drawing.Point(0, 0);
                         this.EtiquetaHeaderDetalle.Name = "EtiquetaHeaderDetalle";
                         this.EtiquetaHeaderDetalle.Size = new System.Drawing.Size(176, 18);
                         this.EtiquetaHeaderDetalle.TabIndex = 999;
                         this.EtiquetaHeaderDetalle.Text = " Detalle";
                         this.EtiquetaHeaderDetalle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHeaderDetalle.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderDetalle.UseMnemonic = false;
                         // 
                         // EtiquetaHeaderUnitario
                         // 
-                        this.EtiquetaHeaderUnitario.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderUnitario.AutoEllipsis = true;
                         this.EtiquetaHeaderUnitario.Location = new System.Drawing.Point(180, 0);
                         this.EtiquetaHeaderUnitario.Name = "EtiquetaHeaderUnitario";
                         this.EtiquetaHeaderUnitario.Size = new System.Drawing.Size(64, 18);
                         this.EtiquetaHeaderUnitario.TabIndex = 999;
                         this.EtiquetaHeaderUnitario.Text = " Precio";
                         this.EtiquetaHeaderUnitario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHeaderUnitario.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderUnitario.UseMnemonic = false;
                         // 
                         // EtiquetaHeaderDescuento
                         // 
-                        this.EtiquetaHeaderDescuento.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderDescuento.AutoEllipsis = true;
                         this.EtiquetaHeaderDescuento.Location = new System.Drawing.Point(200, 0);
                         this.EtiquetaHeaderDescuento.Name = "EtiquetaHeaderDescuento";
                         this.EtiquetaHeaderDescuento.Size = new System.Drawing.Size(64, 18);
                         this.EtiquetaHeaderDescuento.TabIndex = 999;
                         this.EtiquetaHeaderDescuento.Text = " Descuento";
                         this.EtiquetaHeaderDescuento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHeaderDescuento.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderDescuento.UseMnemonic = false;
                         // 
                         // EtiquetaHeaderCantidad
                         // 
-                        this.EtiquetaHeaderCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderCantidad.AutoEllipsis = true;
                         this.EtiquetaHeaderCantidad.Location = new System.Drawing.Point(248, 0);
                         this.EtiquetaHeaderCantidad.Name = "EtiquetaHeaderCantidad";
                         this.EtiquetaHeaderCantidad.Size = new System.Drawing.Size(72, 18);
                         this.EtiquetaHeaderCantidad.TabIndex = 999;
                         this.EtiquetaHeaderCantidad.Text = " Cant";
                         this.EtiquetaHeaderCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaHeaderCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderCantidad.UseMnemonic = false;
                         // 
                         // EtiquetaHeaderImporte
                         // 
-                        this.EtiquetaHeaderImporte.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderImporte.AutoEllipsis = true;
                         this.EtiquetaHeaderImporte.Location = new System.Drawing.Point(324, 0);
                         this.EtiquetaHeaderImporte.Name = "EtiquetaHeaderImporte";
                         this.EtiquetaHeaderImporte.Size = new System.Drawing.Size(80, 18);
                         this.EtiquetaHeaderImporte.TabIndex = 999;
                         this.EtiquetaHeaderImporte.Text = " Importe";
                         this.EtiquetaHeaderImporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // PanelGrilla
-                        // 
-                        this.PanelGrilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                    | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.PanelGrilla.AutoScroll = true;
-                        this.PanelGrilla.AutoScrollMargin = new System.Drawing.Size(20, 0);
-                        this.PanelGrilla.Location = new System.Drawing.Point(0, 20);
-                        this.PanelGrilla.Name = "PanelGrilla";
-                        this.PanelGrilla.Size = new System.Drawing.Size(536, 160);
-                        this.PanelGrilla.TabIndex = 999;
+                        this.EtiquetaHeaderImporte.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderImporte.UseMnemonic = false;
                         // 
                         // MatrizDetalleComprobante
                         // 
-                        this.Controls.Add(this.EtiquetaHeaderDetalle);
-                        this.Controls.Add(this.EtiquetaHeaderUnitario);
+                        this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
                         this.Controls.Add(this.EtiquetaHeaderDescuento);
-                        this.Controls.Add(this.EtiquetaHeaderCantidad);
                         this.Controls.Add(this.EtiquetaHeaderImporte);
-                        this.Size = new System.Drawing.Size(536, 180);
+                        this.Controls.Add(this.EtiquetaHeaderCantidad);
+                        this.Controls.Add(this.EtiquetaHeaderUnitario);
+                        this.Controls.Add(this.EtiquetaHeaderDetalle);
+                        this.Name = "MatrizDetalleComprobante";
                         this.Enter += new System.EventHandler(this.ProductArray_Enter);
                         this.Resize += new System.EventHandler(this.ProductArray_Resize);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderDetalle, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderUnitario, 0);
-                        this.Controls.SetChildIndex(this.EtiquetaHeaderDescuento, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderCantidad, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderImporte, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHeaderDescuento, 0);
                         this.ResumeLayout(false);
-                        this.PerformLayout();
 
                 }
 

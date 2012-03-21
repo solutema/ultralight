@@ -81,6 +81,9 @@
   <ItemGroup>
     <Compile Include="Edicion\Campo.cs" />
     <Compile Include="Edicion\IControlEdicion.cs" />
+    <Compile Include="Entrada\Articulos\AuxiliarMatrizDetalleComprobante.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Entrada\Articulos\Enums.cs" />
     <Compile Include="Entrada\AuxForms\BusquedaRapida.cs">
       <SubType>Form</SubType>
