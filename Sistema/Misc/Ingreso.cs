@@ -92,6 +92,8 @@ namespace Lazaro.WinMain.Misc
 				System.Threading.Thread.Sleep(800);
                                 Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOnFail, EntradaUsuario.Elemento, "Usuario o contraseña incorrecto.");
 				MessageBox.Show("El nombre de usuario o la contraseña son incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                EntradaContrasena.SelectionStart = 0;
+                                EntradaContrasena.SelectionLength = EntradaContrasena.Text.Length;
 				EntradaContrasena.Focus();
 			} else {
 				OkButton.Text = "Ingresando...";
