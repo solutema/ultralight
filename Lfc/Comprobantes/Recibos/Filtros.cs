@@ -111,7 +111,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.AutoSize = true;
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.Filter = "";
-                        this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(133, 31);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
@@ -121,7 +120,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaCliente.TabIndex = 5;
                         this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
-                        this.EntradaCliente.TextDetail = "";
                         // 
                         // Label2
                         // 
@@ -148,7 +146,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.AutoSize = true;
                         this.EntradaVendedor.CanCreate = false;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
-                        this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.Location = new System.Drawing.Point(133, 59);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
@@ -158,7 +155,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaVendedor.TabIndex = 7;
                         this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
-                        this.EntradaVendedor.TextDetail = "";
                         // 
                         // Label5
                         // 
@@ -176,7 +172,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaSucursal.AutoSize = true;
                         this.EntradaSucursal.CanCreate = false;
                         this.EntradaSucursal.Filter = "";
-                        this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(133, 3);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
@@ -186,7 +181,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaSucursal.TabIndex = 3;
                         this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
-                        this.EntradaSucursal.TextDetail = "";
                         // 
                         // label7
                         // 

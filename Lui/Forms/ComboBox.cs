@@ -229,14 +229,14 @@ namespace Lui.Forms
                 }
 
 
-                private void ImagenMasMenos_Click(object sender, System.EventArgs e)
+                private void ImagenSiguiente_Click(object sender, System.EventArgs e)
                 {
                         if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
                 }
 
 
-                private void ImagenMasMenos_DoubleClick(object sender, System.EventArgs e)
+                private void ImagenSiguiente_DoubleClick(object sender, System.EventArgs e)
                 {
                         if (this.TemporaryReadOnly == false && this.ReadOnly == false)
                                 SetNextValueInSet();
@@ -254,7 +254,7 @@ namespace Lui.Forms
                                 if (ItemList.Visible)
                                         ItemList.SelectedItem = this.TextRaw;
 
-                                if (PopUps.FormDataSetHelp != null && PopUps.FormDataSetHelp.Visible) {
+                                if (this.Focused && PopUps.FormDataSetHelp != null && PopUps.FormDataSetHelp.Visible) {
                                         if (this.TextKey.Length == 0)
                                                 PopUps.FormDataSetHelp.TextKey = this.Text;
                                         else
@@ -385,16 +385,16 @@ namespace Lui.Forms
                 private void ComboBox_SizeChanged(object sender, EventArgs e)
                 {
                         TextBox1.Location = new System.Drawing.Point(4, 4);
-                        TextBox1.Width = this.Width - TextBox1.Left * 2 - ImagenMasMenos.Width;
+                        TextBox1.Width = this.Width - TextBox1.Left * 2 - ImagenSiguiente.Width;
                         TextBox1.Height = this.Height - TextBox1.Top * 2;
-                        ImagenMasMenos.Height = TextBox1.Height;
+                        ImagenSiguiente.Height = TextBox1.Height;
                         ItemList.Width = this.Width - ItemList.Left * 2;
                 }
 
                 private void ItemList_VisibleChanged(object sender, EventArgs e)
                 {
                         TextBox1.Visible = !ItemList.Visible;
-                        ImagenMasMenos.Visible = TextBox1.Visible;
+                        ImagenSiguiente.Visible = TextBox1.Visible;
                         if (ItemList.Visible) {
                                 if (m_SetDataText != null && ItemList.Items.Count != m_SetDataText.Length) {
                                         ItemList.Items.Clear();

@@ -132,6 +132,12 @@ namespace Lbl
                                 case "Lbl.Bancos.Cheque":
                                         Res = typeof(Lbl.Bancos.Cheque);
                                         break;
+                                case "Lbl.Bancos.ChequeRecibido":
+                                        Res = typeof(Lbl.Bancos.ChequeRecibido);
+                                        break;
+                                case "Lbl.Bancos.ChequeEmitido":
+                                        Res = typeof(Lbl.Bancos.ChequeEmitido);
+                                        break;
                                 case "cajas":
                                 case "Lbl.Cajas.Caja":
                                         Res = typeof(Lbl.Cajas.Caja);
@@ -217,6 +223,10 @@ namespace Lbl
                                 case "formaspago":
                                 case "Lbl.Pagos.FormaDePago":
                                         Res = typeof(Lbl.Pagos.FormaDePago);
+                                        break;
+                                case "pagos_valores":
+                                case "Lbl.Pagos.Valor":
+                                        Res = typeof(Lbl.Pagos.Valor);
                                         break;
                                 case "marcas":
                                 case "Lbl.Articulos.Marca":

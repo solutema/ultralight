@@ -134,9 +134,7 @@ namespace Lfc.Sucursales
                         // EntradaLocalidad
                         // 
                         this.EntradaLocalidad.CanCreate = true;
-                        this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.Filter = "id_provincia IS NOT NULL";
-                        this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(96, 64);
                         this.EntradaLocalidad.MaxLength = 200;
                         this.EntradaLocalidad.Name = "EntradaLocalidad";
@@ -146,7 +144,6 @@ namespace Lfc.Sucursales
                         this.EntradaLocalidad.TabIndex = 5;
                         this.EntradaLocalidad.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaLocalidad.Text = "0";
-                        this.EntradaLocalidad.TextDetail = "";
                         // 
                         // Label9
                         // 
@@ -161,9 +158,7 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaSituacionOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSituacionOrigen.CanCreate = true;
-                        this.EntradaSituacionOrigen.ExtraDetailFields = "";
                         this.EntradaSituacionOrigen.Filter = "";
-                        this.EntradaSituacionOrigen.FreeTextCode = "";
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(148, 240);
                         this.EntradaSituacionOrigen.MaxLength = 200;
                         this.EntradaSituacionOrigen.Name = "EntradaSituacionOrigen";
@@ -173,7 +168,6 @@ namespace Lfc.Sucursales
                         this.EntradaSituacionOrigen.TabIndex = 9;
                         this.EntradaSituacionOrigen.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionOrigen.Text = "0";
-                        this.EntradaSituacionOrigen.TextDetail = "";
                         // 
                         // label4
                         // 
@@ -189,9 +183,7 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaCajaDiaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaDiaria.CanCreate = true;
-                        this.EntradaCajaDiaria.ExtraDetailFields = "";
                         this.EntradaCajaDiaria.Filter = "";
-                        this.EntradaCajaDiaria.FreeTextCode = "";
                         this.EntradaCajaDiaria.Location = new System.Drawing.Point(148, 268);
                         this.EntradaCajaDiaria.MaxLength = 200;
                         this.EntradaCajaDiaria.Name = "EntradaCajaDiaria";
@@ -201,7 +193,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaDiaria.TabIndex = 11;
                         this.EntradaCajaDiaria.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCajaDiaria.Text = "0";
-                        this.EntradaCajaDiaria.TextDetail = "";
                         // 
                         // label5
                         // 
@@ -217,9 +208,7 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaCajaCheques.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaCheques.CanCreate = true;
-                        this.EntradaCajaCheques.ExtraDetailFields = "";
                         this.EntradaCajaCheques.Filter = "";
-                        this.EntradaCajaCheques.FreeTextCode = "";
                         this.EntradaCajaCheques.Location = new System.Drawing.Point(148, 296);
                         this.EntradaCajaCheques.MaxLength = 200;
                         this.EntradaCajaCheques.Name = "EntradaCajaCheques";
@@ -229,7 +218,6 @@ namespace Lfc.Sucursales
                         this.EntradaCajaCheques.TabIndex = 13;
                         this.EntradaCajaCheques.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCajaCheques.Text = "0";
-                        this.EntradaCajaCheques.TextDetail = "";
                         // 
                         // label6
                         // 

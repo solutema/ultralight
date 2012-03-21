@@ -76,9 +76,7 @@ namespace Lfc.Articulos.Rubros
                         // EntradaAlicuota
                         // 
                         this.EntradaAlicuota.CanCreate = true;
-                        this.EntradaAlicuota.ExtraDetailFields = "";
                         this.EntradaAlicuota.Filter = "";
-                        this.EntradaAlicuota.FreeTextCode = "";
                         this.EntradaAlicuota.Location = new System.Drawing.Point(116, 32);
                         this.EntradaAlicuota.MaxLength = 200;
                         this.EntradaAlicuota.Name = "EntradaAlicuota";
@@ -89,7 +87,6 @@ namespace Lfc.Articulos.Rubros
                         this.EntradaAlicuota.TabIndex = 3;
                         this.EntradaAlicuota.NombreTipo = "Lbl.Impuestos.Alicuota";
                         this.EntradaAlicuota.Text = "0";
-                        this.EntradaAlicuota.TextDetail = "";
                         // 
                         // EntradaNombre
                         // 

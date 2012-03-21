@@ -41,6 +41,7 @@ namespace Lbl.Atributos
                 Siempre
         }
 
+        [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
         public class Presentacion : System.Attribute
         {
                 public bool MensajeAlCrear { get; set; }

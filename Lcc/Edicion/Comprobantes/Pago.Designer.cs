@@ -233,19 +233,15 @@ namespace Lcc.Edicion.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.ExtraDetailFields = "";
                         this.EntradaBanco.Filter = "";
-                        this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 0);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
                         this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
-                        this.EntradaBanco.PlaceholderText = null;
                         this.EntradaBanco.Required = true;
                         this.EntradaBanco.Size = new System.Drawing.Size(320, 24);
                         this.EntradaBanco.TabIndex = 1;
                         this.EntradaBanco.Text = "0";
-                        this.EntradaBanco.TextDetail = "";
                         // 
                         // PanelTitulo
                         // 
@@ -290,19 +286,15 @@ namespace Lcc.Edicion.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "";
-                        this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(140, 20);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
                         this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
-                        this.EntradaCaja.PlaceholderText = null;
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(320, 24);
                         this.EntradaCaja.TabIndex = 1;
                         this.EntradaCaja.Text = "0";
-                        this.EntradaCaja.TextDetail = "";
                         // 
                         // PanelEfectivo
                         // 
@@ -401,19 +393,15 @@ namespace Lcc.Edicion.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPlan.AutoTab = true;
                         this.EntradaPlan.CanCreate = false;
-                        this.EntradaPlan.ExtraDetailFields = "";
                         this.EntradaPlan.Filter = "";
-                        this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.Location = new System.Drawing.Point(140, 0);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
                         this.EntradaPlan.NombreTipo = "Lbl.Pagos.Plan";
-                        this.EntradaPlan.PlaceholderText = null;
                         this.EntradaPlan.Required = false;
                         this.EntradaPlan.Size = new System.Drawing.Size(320, 24);
                         this.EntradaPlan.TabIndex = 3;
                         this.EntradaPlan.Text = "0";
-                        this.EntradaPlan.TextDetail = "";
                         this.EntradaPlan.TextChanged += new System.EventHandler(this.EntradaPlan_TextChanged);
                         // 
                         // Label10
@@ -510,19 +498,15 @@ namespace Lcc.Edicion.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaDePago.AutoTab = true;
                         this.EntradaFormaDePago.CanCreate = true;
-                        this.EntradaFormaDePago.ExtraDetailFields = "";
                         this.EntradaFormaDePago.Filter = "pagos=1";
-                        this.EntradaFormaDePago.FreeTextCode = "";
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(136, 0);
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "EntradaFormaDePago";
                         this.EntradaFormaDePago.NombreTipo = "Lbl.Pagos.FormaDePago";
-                        this.EntradaFormaDePago.PlaceholderText = null;
                         this.EntradaFormaDePago.Required = true;
                         this.EntradaFormaDePago.Size = new System.Drawing.Size(324, 24);
                         this.EntradaFormaDePago.TabIndex = 1;
                         this.EntradaFormaDePago.Text = "0";
-                        this.EntradaFormaDePago.TextDetail = "";
                         this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.EntradaFormaDePago_TextChanged);
                         // 
                         // label13
@@ -577,19 +561,15 @@ namespace Lcc.Edicion.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaChequeTerceros.AutoTab = true;
                         this.EntradaChequeTerceros.CanCreate = true;
-                        this.EntradaChequeTerceros.ExtraDetailFields = "";
                         this.EntradaChequeTerceros.Filter = "emitido=0 AND estado=0";
-                        this.EntradaChequeTerceros.FreeTextCode = "";
                         this.EntradaChequeTerceros.Location = new System.Drawing.Point(140, 20);
                         this.EntradaChequeTerceros.MaxLength = 200;
                         this.EntradaChequeTerceros.Name = "EntradaChequeTerceros";
                         this.EntradaChequeTerceros.NombreTipo = "Lbl.Bancos.ChequeRecibido";
-                        this.EntradaChequeTerceros.PlaceholderText = null;
                         this.EntradaChequeTerceros.Required = true;
                         this.EntradaChequeTerceros.Size = new System.Drawing.Size(320, 24);
                         this.EntradaChequeTerceros.TabIndex = 1;
                         this.EntradaChequeTerceros.Text = "0";
-                        this.EntradaChequeTerceros.TextDetail = "";
                         this.EntradaChequeTerceros.TextChanged += new System.EventHandler(this.EntradaChequeTerceros_TextChanged);
                         // 
                         // PanelValor
@@ -617,19 +597,15 @@ namespace Lcc.Edicion.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaValor.AutoTab = true;
                         this.EntradaValor.CanCreate = true;
-                        this.EntradaValor.ExtraDetailFields = "";
                         this.EntradaValor.Filter = "estado=0";
-                        this.EntradaValor.FreeTextCode = "";
                         this.EntradaValor.Location = new System.Drawing.Point(140, 20);
                         this.EntradaValor.MaxLength = 200;
                         this.EntradaValor.Name = "EntradaValor";
                         this.EntradaValor.NombreTipo = "Lbl.Pagos.Valor";
-                        this.EntradaValor.PlaceholderText = null;
                         this.EntradaValor.Required = true;
                         this.EntradaValor.Size = new System.Drawing.Size(320, 24);
                         this.EntradaValor.TabIndex = 1;
                         this.EntradaValor.Text = "0";
-                        this.EntradaValor.TextDetail = "";
                         this.EntradaValor.TextChanged += new System.EventHandler(this.EntradaValor_TextChanged);
                         // 
                         // Pago

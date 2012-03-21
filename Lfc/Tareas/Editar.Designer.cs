@@ -109,19 +109,15 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
-                        this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.Filter = "";
-                        this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(104, 0);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(328, 24);
                         this.EntradaCliente.TabIndex = 1;
                         this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
-                        this.EntradaCliente.TextDetail = "";
                         // 
                         // EntradaTarea
                         // 
@@ -129,19 +125,15 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTarea.AutoTab = true;
                         this.EntradaTarea.CanCreate = true;
-                        this.EntradaTarea.ExtraDetailFields = "";
                         this.EntradaTarea.Filter = "";
-                        this.EntradaTarea.FreeTextCode = "";
                         this.EntradaTarea.Location = new System.Drawing.Point(104, 32);
                         this.EntradaTarea.MaxLength = 200;
                         this.EntradaTarea.Name = "EntradaTarea";
-                        this.EntradaTarea.PlaceholderText = null;
                         this.EntradaTarea.Required = true;
                         this.EntradaTarea.Size = new System.Drawing.Size(328, 24);
                         this.EntradaTarea.TabIndex = 3;
                         this.EntradaTarea.NombreTipo = "Lbl.Tareas.Tipo";
                         this.EntradaTarea.Text = "0";
-                        this.EntradaTarea.TextDetail = "";
                         // 
                         // Label3
                         // 
@@ -158,19 +150,15 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEncargado.AutoTab = true;
                         this.EntradaEncargado.CanCreate = false;
-                        this.EntradaEncargado.ExtraDetailFields = "";
                         this.EntradaEncargado.Filter = "(tipo&4)=4";
-                        this.EntradaEncargado.FreeTextCode = "";
                         this.EntradaEncargado.Location = new System.Drawing.Point(104, 64);
                         this.EntradaEncargado.MaxLength = 200;
                         this.EntradaEncargado.Name = "EntradaEncargado";
-                        this.EntradaEncargado.PlaceholderText = null;
                         this.EntradaEncargado.Required = true;
                         this.EntradaEncargado.Size = new System.Drawing.Size(328, 24);
                         this.EntradaEncargado.TabIndex = 5;
                         this.EntradaEncargado.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaEncargado.Text = "0";
-                        this.EntradaEncargado.TextDetail = "";
                         // 
                         // Label4
                         // 
@@ -369,19 +357,15 @@ namespace Lfc.Tareas
                         this.EntradaEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEstado.AutoTab = true;
                         this.EntradaEstado.CanCreate = true;
-                        this.EntradaEstado.ExtraDetailFields = "";
                         this.EntradaEstado.Filter = "";
-                        this.EntradaEstado.FreeTextCode = "";
                         this.EntradaEstado.Location = new System.Drawing.Point(512, 0);
                         this.EntradaEstado.MaxLength = 200;
                         this.EntradaEstado.Name = "EntradaEstado";
-                        this.EntradaEstado.PlaceholderText = null;
                         this.EntradaEstado.Required = true;
                         this.EntradaEstado.Size = new System.Drawing.Size(256, 24);
                         this.EntradaEstado.TabIndex = 14;
                         this.EntradaEstado.NombreTipo = "Lbl.Tareas.Estado";
                         this.EntradaEstado.Text = "0";
-                        this.EntradaEstado.TextDetail = "";
                         // 
                         // EntradaFechaIngreso
                         // 

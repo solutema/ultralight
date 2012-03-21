@@ -34,6 +34,7 @@ using System.Collections.Generic;
 
 namespace Lbl.Atributos
 {
+        [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
         public class Datos : System.Attribute
         {
                 public string TablaDatos { get; set; }

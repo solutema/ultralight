@@ -1036,9 +1036,7 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPais.AutoTab = true;
                         this.EntradaPais.CanCreate = false;
-                        this.EntradaPais.ExtraDetailFields = "";
                         this.EntradaPais.Filter = "";
-                        this.EntradaPais.FreeTextCode = "";
                         this.EntradaPais.Location = new System.Drawing.Point(208, 120);
                         this.EntradaPais.MaxLength = 200;
                         this.EntradaPais.Name = "EntradaPais";
@@ -1048,7 +1046,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaPais.Size = new System.Drawing.Size(256, 24);
                         this.EntradaPais.TabIndex = 5;
                         this.EntradaPais.Text = "0";
-                        this.EntradaPais.TextDetail = "";
                         this.EntradaPais.TextChanged += new System.EventHandler(this.EntradaPais_TextChanged);
                         // 
                         // label21

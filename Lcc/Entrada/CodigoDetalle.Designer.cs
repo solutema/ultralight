@@ -197,6 +197,7 @@ namespace Lcc.Entrada
                         // 
                         this.BotonBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonBuscar.BackColor = System.Drawing.Color.White;
+                        this.BotonBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
                         this.BotonBuscar.Image = ((System.Drawing.Image)(resources.GetObject("BotonBuscar.Image")));
                         this.BotonBuscar.Location = new System.Drawing.Point(509, 4);
                         this.BotonBuscar.Name = "BotonBuscar";

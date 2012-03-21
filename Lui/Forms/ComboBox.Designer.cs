@@ -64,9 +64,10 @@ namespace Lui.Forms
                 {
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComboBox));
-                        this.ImagenMasMenos = new System.Windows.Forms.Label();
                         this.ItemList = new System.Windows.Forms.ListBox();
                         this.TimerOcultarPopup = new System.Windows.Forms.Timer(this.components);
+                        this.ImagenSiguiente = new System.Windows.Forms.PictureBox();
+                        ((System.ComponentModel.ISupportInitialize)(this.ImagenSiguiente)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // TextBox1
@@ -77,21 +78,6 @@ namespace Lui.Forms
                         this.TextBox1.ReadOnly = true;
                         this.TextBox1.Click += new System.EventHandler(this.TextBox1_Click);
                         this.TextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ItemList_KeyDown);
-                        // 
-                        // ImagenMasMenos
-                        // 
-                        this.ImagenMasMenos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.ImagenMasMenos.BackColor = System.Drawing.Color.Gray;
-                        this.ImagenMasMenos.ForeColor = System.Drawing.Color.White;
-                        this.ImagenMasMenos.Image = ((System.Drawing.Image)(resources.GetObject("ImagenMasMenos.Image")));
-                        this.ImagenMasMenos.Location = new System.Drawing.Point(446, 3);
-                        this.ImagenMasMenos.Margin = new System.Windows.Forms.Padding(1);
-                        this.ImagenMasMenos.Name = "ImagenMasMenos";
-                        this.ImagenMasMenos.Size = new System.Drawing.Size(10, 30);
-                        this.ImagenMasMenos.TabIndex = 4;
-                        this.ImagenMasMenos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.ImagenMasMenos.Click += new System.EventHandler(this.ImagenMasMenos_Click);
-                        this.ImagenMasMenos.DoubleClick += new System.EventHandler(this.ImagenMasMenos_DoubleClick);
                         // 
                         // ItemList
                         // 
@@ -114,17 +100,33 @@ namespace Lui.Forms
                         // 
                         this.TimerOcultarPopup.Tick += new System.EventHandler(this.TimerOcultarPopup_Tick);
                         // 
+                        // ImagenSiguiente
+                        // 
+                        this.ImagenSiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.ImagenSiguiente.Cursor = System.Windows.Forms.Cursors.Hand;
+                        this.ImagenSiguiente.Image = ((System.Drawing.Image)(resources.GetObject("ImagenSiguiente.Image")));
+                        this.ImagenSiguiente.Location = new System.Drawing.Point(444, 4);
+                        this.ImagenSiguiente.Name = "ImagenSiguiente";
+                        this.ImagenSiguiente.Size = new System.Drawing.Size(12, 20);
+                        this.ImagenSiguiente.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+                        this.ImagenSiguiente.TabIndex = 6;
+                        this.ImagenSiguiente.TabStop = false;
+                        this.ImagenSiguiente.Click += new System.EventHandler(this.ImagenSiguiente_Click);
+                        this.ImagenSiguiente.DoubleClick += new System.EventHandler(this.ImagenSiguiente_DoubleClick);
+                        // 
                         // ComboBox
                         // 
-                        this.Controls.Add(this.ImagenMasMenos);
+                        this.Controls.Add(this.ImagenSiguiente);
                         this.Controls.Add(this.ItemList);
                         this.Name = "ComboBox";
                         this.SizeChanged += new System.EventHandler(this.ComboBox_SizeChanged);
                         this.Enter += new System.EventHandler(this.ComboBox_Enter);
                         this.Leave += new System.EventHandler(this.ComboBox_Leave);
                         this.Controls.SetChildIndex(this.ItemList, 0);
-                        this.Controls.SetChildIndex(this.ImagenMasMenos, 0);
                         this.Controls.SetChildIndex(this.TextBox1, 0);
+                        this.Controls.SetChildIndex(this.ImagenSiguiente, 0);
+                        ((System.ComponentModel.ISupportInitialize)(this.ImagenSiguiente)).EndInit();
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -132,9 +134,9 @@ namespace Lui.Forms
 
                 #endregion
 
-                protected System.Windows.Forms.Label ImagenMasMenos;
                 protected System.Windows.Forms.ListBox ItemList;
                 protected System.Windows.Forms.Timer TimerOcultarPopup;
+                private System.Windows.Forms.PictureBox ImagenSiguiente;
 
         }
 }

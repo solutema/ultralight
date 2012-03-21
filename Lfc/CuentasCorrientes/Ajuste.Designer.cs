@@ -76,19 +76,16 @@ namespace Lfc.CuentasCorrientes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
-                        this.EntradaConcepto.ExtraDetailFields = "";
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.FreeTextCode = "*";
                         this.EntradaConcepto.Location = new System.Drawing.Point(144, 112);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.PlaceholderText = null;
                         this.EntradaConcepto.Required = true;
                         this.EntradaConcepto.Size = new System.Drawing.Size(464, 24);
                         this.EntradaConcepto.TabIndex = 1;
                         this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                         this.EntradaConcepto.Text = "0";
-                        this.EntradaConcepto.TextDetail = "";
                         this.EntradaConcepto.Leave += new System.EventHandler(this.EntradaConcepto_Leave);
                         // 
                         // EntradaImporte

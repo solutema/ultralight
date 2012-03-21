@@ -137,19 +137,15 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaCajaOrigen.AutoTab = true;
                         this.EntradaCajaOrigen.CanCreate = false;
-                        this.EntradaCajaOrigen.ExtraDetailFields = "";
                         this.EntradaCajaOrigen.Filter = "";
-                        this.EntradaCajaOrigen.FreeTextCode = "";
                         this.EntradaCajaOrigen.Location = new System.Drawing.Point(224, 224);
                         this.EntradaCajaOrigen.MaxLength = 200;
                         this.EntradaCajaOrigen.Name = "EntradaCajaOrigen";
-                        this.EntradaCajaOrigen.PlaceholderText = null;
                         this.EntradaCajaOrigen.Required = true;
                         this.EntradaCajaOrigen.Size = new System.Drawing.Size(352, 24);
                         this.EntradaCajaOrigen.TabIndex = 12;
                         this.EntradaCajaOrigen.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCajaOrigen.Text = "0";
-                        this.EntradaCajaOrigen.TextDetail = "";
                         // 
                         // Label3
                         // 

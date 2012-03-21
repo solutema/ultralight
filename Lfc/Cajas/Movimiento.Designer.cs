@@ -76,9 +76,7 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaDestino.AutoTab = true;
                         this.EntradaDestino.CanCreate = false;
-                        this.EntradaDestino.ExtraDetailFields = "";
                         this.EntradaDestino.Filter = "";
-                        this.EntradaDestino.FreeTextCode = "";
                         this.EntradaDestino.Location = new System.Drawing.Point(136, 168);
                         this.EntradaDestino.MaxLength = 200;
                         this.EntradaDestino.Name = "EntradaDestino";
@@ -88,7 +86,6 @@ namespace Lfc.Cajas
                         this.EntradaDestino.TabIndex = 5;
                         this.EntradaDestino.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaDestino.Text = "0";
-                        this.EntradaDestino.TextDetail = "";
                         this.EntradaDestino.TextChanged += new System.EventHandler(this.EntradaOrigenDestino_TextChanged);
                         // 
                         // Label3
@@ -124,7 +121,6 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = false;
-                        this.EntradaConcepto.ExtraDetailFields = "";
                         this.EntradaConcepto.Filter = "";
                         this.EntradaConcepto.FreeTextCode = "*";
                         this.EntradaConcepto.Location = new System.Drawing.Point(136, 232);
@@ -136,7 +132,6 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.TabIndex = 11;
                         this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                         this.EntradaConcepto.Text = "0";
-                        this.EntradaConcepto.TextDetail = "";
                         // 
                         // Label1
                         // 
@@ -189,9 +184,7 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaOrigen.AutoTab = true;
                         this.EntradaOrigen.CanCreate = false;
-                        this.EntradaOrigen.ExtraDetailFields = "";
                         this.EntradaOrigen.Filter = "";
-                        this.EntradaOrigen.FreeTextCode = "";
                         this.EntradaOrigen.Location = new System.Drawing.Point(136, 136);
                         this.EntradaOrigen.MaxLength = 200;
                         this.EntradaOrigen.Name = "EntradaOrigen";
@@ -202,7 +195,6 @@ namespace Lfc.Cajas
                         this.EntradaOrigen.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaOrigen.TabStop = false;
                         this.EntradaOrigen.Text = "0";
-                        this.EntradaOrigen.TextDetail = "";
                         this.EntradaOrigen.TextChanged += new System.EventHandler(this.EntradaOrigenDestino_TextChanged);
                         // 
                         // Label6

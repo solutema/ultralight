@@ -35,6 +35,7 @@ using System.Text;
 
 namespace Lbl.Bancos
 {
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Cheque recibido", Grupo = "Cobros y pagos")]
 	public class ChequeRecibido : Cheque
 	{
                 //Heredar constructor

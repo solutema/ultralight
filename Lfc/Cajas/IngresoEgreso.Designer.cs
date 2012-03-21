@@ -109,7 +109,6 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = false;
-                        this.EntradaConcepto.ExtraDetailFields = "";
                         this.EntradaConcepto.Filter = "es=1";
                         this.EntradaConcepto.FreeTextCode = "*";
                         this.EntradaConcepto.Location = new System.Drawing.Point(144, 200);
@@ -121,7 +120,6 @@ namespace Lfc.Cajas
                         this.EntradaConcepto.TabIndex = 9;
                         this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                         this.EntradaConcepto.Text = "0";
-                        this.EntradaConcepto.TextDetail = "";
                         // 
                         // EntradaComprobante
                         // 
@@ -169,9 +167,7 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPersona.AutoTab = true;
                         this.EntradaPersona.CanCreate = false;
-                        this.EntradaPersona.ExtraDetailFields = "";
                         this.EntradaPersona.Filter = "";
-                        this.EntradaPersona.FreeTextCode = "";
                         this.EntradaPersona.Location = new System.Drawing.Point(144, 232);
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
@@ -181,7 +177,6 @@ namespace Lfc.Cajas
                         this.EntradaPersona.TabIndex = 11;
                         this.EntradaPersona.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaPersona.Text = "0";
-                        this.EntradaPersona.TextDetail = "";
                         // 
                         // Label5
                         // 
@@ -198,20 +193,17 @@ namespace Lfc.Cajas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "";
                         this.EntradaCaja.FreeTextCode = "*";
                         this.EntradaCaja.Location = new System.Drawing.Point(144, 96);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
-                        this.EntradaCaja.PlaceholderText = null;
                         this.EntradaCaja.ReadOnly = true;
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(464, 24);
                         this.EntradaCaja.TabIndex = 3;
                         this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.Text = "0";
-                        this.EntradaCaja.TextDetail = "";
                         // 
                         // label6
                         // 

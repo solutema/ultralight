@@ -214,20 +214,16 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDesdeSituacion.AutoTab = true;
                         this.EntradaDesdeSituacion.CanCreate = false;
-                        this.EntradaDesdeSituacion.ExtraDetailFields = "";
                         this.EntradaDesdeSituacion.Filter = "";
-                        this.EntradaDesdeSituacion.FreeTextCode = "";
                         this.EntradaDesdeSituacion.Location = new System.Drawing.Point(136, 256);
                         this.EntradaDesdeSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
-                        this.EntradaDesdeSituacion.PlaceholderText = null;
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(440, 24);
                         this.EntradaDesdeSituacion.TabIndex = 7;
                         this.EntradaDesdeSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaDesdeSituacion.Text = "0";
-                        this.EntradaDesdeSituacion.TextDetail = "";
                         this.EntradaDesdeSituacion.TextChanged += new System.EventHandler(this.EntradaDesdeHaciaSituacion_TextChanged);
                         // 
                         // Label7
@@ -245,20 +241,16 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
-                        this.EntradaHaciaSituacion.ExtraDetailFields = "";
                         this.EntradaHaciaSituacion.Filter = "";
-                        this.EntradaHaciaSituacion.FreeTextCode = "";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(136, 288);
                         this.EntradaHaciaSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
-                        this.EntradaHaciaSituacion.PlaceholderText = null;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(440, 24);
                         this.EntradaHaciaSituacion.TabIndex = 9;
                         this.EntradaHaciaSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaHaciaSituacion.Text = "0";
-                        this.EntradaHaciaSituacion.TextDetail = "";
                         this.EntradaHaciaSituacion.TextChanged += new System.EventHandler(this.EntradaDesdeHaciaSituacion_TextChanged);
                         // 
                         // Label8
@@ -329,7 +321,6 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.CantidadSoloLectura = false;
                         this.EntradaArticulo.ControlStock = Lcc.Entrada.Articulos.ControlesSock.Ambos;
                         this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaArticulo.FreeTextCode = "";
                         this.EntradaArticulo.Location = new System.Drawing.Point(136, 176);
                         this.EntradaArticulo.MaximumSize = new System.Drawing.Size(480, 64);
                         this.EntradaArticulo.MuestraPrecio = false;
@@ -344,7 +335,6 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.TabIndex = 3;
                         this.EntradaArticulo.NombreTipo = "Lbl.Articulos.Articulo";
                         this.EntradaArticulo.Text = "0";
-                        this.EntradaArticulo.TextDetail = "";
                         this.EntradaArticulo.PrecioCantidadChanged += new System.EventHandler(this.EntradaArticulo_PrecioCantidadChanged);
                         this.EntradaArticulo.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaArticulo_ObtenerDatosSeguimiento);
                         // 

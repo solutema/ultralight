@@ -70,9 +70,7 @@ namespace Lfc.Articulos.Marcas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
-                        this.EntradaProveedor.ExtraDetailFields = "";
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
-                        this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.Location = new System.Drawing.Point(88, 64);
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
@@ -83,7 +81,6 @@ namespace Lfc.Articulos.Marcas
                         this.EntradaProveedor.TabIndex = 5;
                         this.EntradaProveedor.NombreTipo = "Lbl.Personas.Proveedor";
                         this.EntradaProveedor.Text = "0";
-                        this.EntradaProveedor.TextDetail = "";
                         // 
                         // Label14
                         // 

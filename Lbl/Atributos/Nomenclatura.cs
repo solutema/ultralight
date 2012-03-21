@@ -31,9 +31,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Lbl.Atributos
 {
+        [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
         public class Nomenclatura : System.Attribute
         {
                 public string NombreSingular { get; set; }

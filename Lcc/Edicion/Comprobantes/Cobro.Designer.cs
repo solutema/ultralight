@@ -205,7 +205,6 @@ namespace Lcc.Edicion.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.CanCreate = true;
                         this.EntradaBanco.Filter = "";
-                        this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 32);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
@@ -215,7 +214,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
-                        this.EntradaBanco.TextDetail = "";
                         this.EntradaBanco.ValueInt = 0;
                         // 
                         // label2
@@ -299,7 +297,6 @@ namespace Lcc.Edicion.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.CanCreate = true;
                         this.EntradaCaja.Filter = "";
-                        this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(140, 20);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
@@ -309,7 +306,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCaja.Text = "0";
-                        this.EntradaCaja.TextDetail = "";
                         this.EntradaCaja.ValueInt = 0;
                         // 
                         // label9
@@ -410,7 +406,6 @@ namespace Lcc.Edicion.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPlan.CanCreate = false;
                         this.EntradaPlan.Filter = "";
-                        this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.Location = new System.Drawing.Point(140, 0);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
@@ -420,7 +415,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaPlan.NombreTipo = "Lbl.Pagos.Plan";
                         this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPlan.Text = "0";
-                        this.EntradaPlan.TextDetail = "";
                         this.EntradaPlan.ValueInt = 0;
                         this.EntradaPlan.TextChanged += new System.EventHandler(this.EntradaPlan_TextChanged);
                         // 
@@ -510,7 +504,6 @@ namespace Lcc.Edicion.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaDePago.CanCreate = true;
                         this.EntradaFormaDePago.Filter = "cobros=1";
-                        this.EntradaFormaDePago.FreeTextCode = "";
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(136, 0);
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "EntradaFormaDePago";
@@ -520,7 +513,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaFormaDePago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaDePago.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaFormaDePago.Text = "0";
-                        this.EntradaFormaDePago.TextDetail = "";
                         this.EntradaFormaDePago.ValueInt = 0;
                         this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.EntradaFormaDePago_TextChanged);
                         // 

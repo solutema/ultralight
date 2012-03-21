@@ -78,9 +78,7 @@ namespace Lfc.Comprobantes.Tipo
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImpresora.AutoTab = true;
                         this.EntradaImpresora.CanCreate = true;
-                        this.EntradaImpresora.ExtraDetailFields = "";
                         this.EntradaImpresora.Filter = "";
-                        this.EntradaImpresora.FreeTextCode = "";
                         this.EntradaImpresora.Location = new System.Drawing.Point(152, 64);
                         this.EntradaImpresora.MaxLength = 200;
                         this.EntradaImpresora.Name = "EntradaImpresora";
@@ -90,7 +88,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImpresora.TabIndex = 1;
                         this.EntradaImpresora.NombreTipo = "Lbl.Impresion.Impresora";
                         this.EntradaImpresora.Text = "0";
-                        this.EntradaImpresora.TextDetail = "";
                         this.EntradaImpresora.TextChanged += new System.EventHandler(this.EntradaImpresora_TextChanged);
                         // 
                         // Label16
@@ -108,9 +105,7 @@ namespace Lfc.Comprobantes.Tipo
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
-                        this.EntradaSucursal.ExtraDetailFields = "";
                         this.EntradaSucursal.Filter = "";
-                        this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(152, 136);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
@@ -120,7 +115,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSucursal.TabIndex = 3;
                         this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
-                        this.EntradaSucursal.TextDetail = "";
                         // 
                         // label1
                         // 

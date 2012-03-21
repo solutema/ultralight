@@ -137,19 +137,15 @@ namespace Lfc.Comprobantes.Compra
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
-                        this.EntradaHaciaSituacion.ExtraDetailFields = "";
                         this.EntradaHaciaSituacion.Filter = "deposito>0";
-                        this.EntradaHaciaSituacion.FreeTextCode = "";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(444, 28);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
-                        this.EntradaHaciaSituacion.PlaceholderText = null;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(197, 24);
                         this.EntradaHaciaSituacion.TabIndex = 25;
                         this.EntradaHaciaSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaHaciaSituacion.Text = "0";
-                        this.EntradaHaciaSituacion.TextDetail = "";
                         // 
                         // EntradaNumero
                         // 
@@ -188,19 +184,15 @@ namespace Lfc.Comprobantes.Compra
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
-                        this.EntradaProveedor.ExtraDetailFields = "";
-                        this.EntradaProveedor.Filter = "(tipo&2)=2";
-                        this.EntradaProveedor.FreeTextCode = "";
+                        this.EntradaProveedor.Filter = "(tipo&2)=2 AND estado=1";
                         this.EntradaProveedor.Location = new System.Drawing.Point(80, 0);
                         this.EntradaProveedor.MaxLength = 200;
                         this.EntradaProveedor.Name = "EntradaProveedor";
-                        this.EntradaProveedor.PlaceholderText = null;
                         this.EntradaProveedor.Required = true;
                         this.EntradaProveedor.Size = new System.Drawing.Size(228, 24);
                         this.EntradaProveedor.TabIndex = 15;
                         this.EntradaProveedor.NombreTipo = "Lbl.Personas.Proveedor";
                         this.EntradaProveedor.Text = "0";
-                        this.EntradaProveedor.TextDetail = "";
                         // 
                         // label7
                         // 

@@ -75,20 +75,16 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = false;
-                        this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "";
-                        this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(136, 184);
                         this.EntradaCaja.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
-                        this.EntradaCaja.PlaceholderText = null;
                         this.EntradaCaja.Required = true;
                         this.EntradaCaja.Size = new System.Drawing.Size(368, 24);
                         this.EntradaCaja.TabIndex = 5;
                         this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.Text = "0";
-                        this.EntradaCaja.TextDetail = "";
                         // 
                         // Label3
                         // 
@@ -105,20 +101,16 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = false;
-                        this.EntradaCliente.ExtraDetailFields = "";
                         this.EntradaCliente.Filter = "";
-                        this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(136, 120);
                         this.EntradaCliente.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
-                        this.EntradaCliente.PlaceholderText = null;
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(368, 24);
                         this.EntradaCliente.TabIndex = 1;
                         this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
-                        this.EntradaCliente.TextDetail = "";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
                         // 
                         // Label5

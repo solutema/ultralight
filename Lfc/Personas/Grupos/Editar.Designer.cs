@@ -135,9 +135,7 @@ namespace Lfc.Personas.Grupos
                         // 
                         this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
-                        this.EntradaGrupo.ExtraDetailFields = "";
                         this.EntradaGrupo.Filter = "";
-                        this.EntradaGrupo.FreeTextCode = "";
                         this.EntradaGrupo.Location = new System.Drawing.Point(120, 0);
                         this.EntradaGrupo.MaxLength = 200;
                         this.EntradaGrupo.Name = "EntradaGrupo";
@@ -148,7 +146,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaGrupo.TabIndex = 1;
                         this.EntradaGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaGrupo.Text = "0";
-                        this.EntradaGrupo.TextDetail = "";
                         // 
                         // Label16
                         // 

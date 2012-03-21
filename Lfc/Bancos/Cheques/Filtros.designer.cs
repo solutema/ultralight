@@ -116,7 +116,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPersona.CanCreate = true;
-                        this.EntradaPersona.FreeTextCode = "";
                         this.EntradaPersona.Location = new System.Drawing.Point(108, 116);
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "EntradaPersona";
@@ -126,7 +125,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaPersona.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaPersona.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPersona.Text = "0";
-                        this.EntradaPersona.TextDetail = "";
                         // 
                         // Label1
                         // 
@@ -142,7 +140,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(108, 84);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
@@ -152,7 +149,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaBanco.Text = "0";
-                        this.EntradaBanco.TextDetail = "";
                         // 
                         // label2
                         // 
@@ -187,7 +183,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.CanCreate = true;
-                        this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(108, 52);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
@@ -197,7 +192,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaSucursal.Text = "0";
-                        this.EntradaSucursal.TextDetail = "";
                         // 
                         // Filtros
                         // 

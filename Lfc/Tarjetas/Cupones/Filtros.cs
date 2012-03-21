@@ -127,7 +127,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaDePago.AutoSize = true;
                         this.EntradaFormaDePago.CanCreate = false;
                         this.EntradaFormaDePago.Filter = "tipo=4";
-                        this.EntradaFormaDePago.FreeTextCode = "";
                         this.EntradaFormaDePago.Location = new System.Drawing.Point(85, 3);
                         this.EntradaFormaDePago.MaxLength = 200;
                         this.EntradaFormaDePago.Name = "txtTarjeta";
@@ -137,7 +136,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaDePago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaDePago.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaFormaDePago.Text = "0";
-                        this.EntradaFormaDePago.TextDetail = "";
                         this.EntradaFormaDePago.ValueInt = 0;
                         this.EntradaFormaDePago.TextChanged += new System.EventHandler(this.EntradaTarjeta_TextChanged);
                         // 
@@ -208,7 +206,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.AutoSize = true;
                         this.EntradaPlan.CanCreate = false;
                         this.EntradaPlan.Filter = "";
-                        this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.Location = new System.Drawing.Point(85, 33);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "txtPlan";
@@ -218,7 +215,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.NombreTipo = "Lbl.Pagos.Plan";
                         this.EntradaPlan.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaPlan.Text = "0";
-                        this.EntradaPlan.TextDetail = "";
                         this.EntradaPlan.ValueInt = 0;
                         this.EntradaPlan.TextChanged += new System.EventHandler(this.txtPlan_TextChanged);
                         // 
@@ -238,7 +234,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCliente.AutoSize = true;
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.Filter = "";
-                        this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(85, 123);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "txtCliente";
@@ -248,7 +243,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.TeclaDespuesDeEnter = "{tab}";
                         this.EntradaCliente.Text = "0";
-                        this.EntradaCliente.TextDetail = "";
                         this.EntradaCliente.ValueInt = 0;
                         // 
                         // Label1

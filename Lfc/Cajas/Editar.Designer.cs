@@ -119,9 +119,7 @@ namespace Lfc.Cajas
                         this.EntradaBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.ExtraDetailFields = "";
                         this.EntradaBanco.Filter = "";
-                        this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(124, 120);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
@@ -131,7 +129,6 @@ namespace Lfc.Cajas
                         this.EntradaBanco.TabIndex = 7;
                         this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.Text = "0";
-                        this.EntradaBanco.TextDetail = "";
                         this.EntradaBanco.TextChanged += new System.EventHandler(this.NumeroBanco_TextChanged);
                         // 
                         // EntradaTipo
@@ -192,9 +189,7 @@ namespace Lfc.Cajas
                         // EntradaMoneda
                         // 
                         this.EntradaMoneda.CanCreate = true;
-                        this.EntradaMoneda.ExtraDetailFields = "";
                         this.EntradaMoneda.Filter = "";
-                        this.EntradaMoneda.FreeTextCode = "";
                         this.EntradaMoneda.Location = new System.Drawing.Point(124, 184);
                         this.EntradaMoneda.MaxLength = 200;
                         this.EntradaMoneda.Name = "EntradaMoneda";
@@ -204,7 +199,6 @@ namespace Lfc.Cajas
                         this.EntradaMoneda.TabIndex = 11;
                         this.EntradaMoneda.NombreTipo = "Lbl.Entidades.Moneda";
                         this.EntradaMoneda.Text = "0";
-                        this.EntradaMoneda.TextDetail = "";
                         // 
                         // EntradaClaveBancaria
                         // 

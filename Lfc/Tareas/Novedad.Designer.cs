@@ -93,19 +93,15 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEncargado.AutoTab = true;
                         this.EntradaEncargado.CanCreate = true;
-                        this.EntradaEncargado.ExtraDetailFields = "";
                         this.EntradaEncargado.Filter = "(tipo&4)=4";
-                        this.EntradaEncargado.FreeTextCode = "";
                         this.EntradaEncargado.Location = new System.Drawing.Point(112, 240);
                         this.EntradaEncargado.MaxLength = 200;
                         this.EntradaEncargado.Name = "EntradaTecnico";
-                        this.EntradaEncargado.PlaceholderText = null;
                         this.EntradaEncargado.Required = true;
                         this.EntradaEncargado.Size = new System.Drawing.Size(496, 24);
                         this.EntradaEncargado.TabIndex = 9;
                         this.EntradaEncargado.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaEncargado.Text = "0";
-                        this.EntradaEncargado.TextDetail = "";
                         // 
                         // EntradaDescripcion
                         // 
@@ -172,19 +168,15 @@ namespace Lfc.Tareas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTicket.AutoTab = true;
                         this.EntradaTicket.CanCreate = true;
-                        this.EntradaTicket.ExtraDetailFields = "";
                         this.EntradaTicket.Filter = "";
-                        this.EntradaTicket.FreeTextCode = "";
                         this.EntradaTicket.Location = new System.Drawing.Point(112, 24);
                         this.EntradaTicket.MaxLength = 200;
                         this.EntradaTicket.Name = "EntradaTicket";
-                        this.EntradaTicket.PlaceholderText = null;
                         this.EntradaTicket.Required = true;
                         this.EntradaTicket.Size = new System.Drawing.Size(496, 24);
                         this.EntradaTicket.TabIndex = 1;
                         this.EntradaTicket.NombreTipo = "Lbl.Tareas.Tarea";
                         this.EntradaTicket.Text = "0";
-                        this.EntradaTicket.TextDetail = "";
                         // 
                         // Label5
                         // 

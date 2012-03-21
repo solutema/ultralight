@@ -85,19 +85,15 @@ namespace Lfc.Bancos.Cheques
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaConcepto.AutoTab = true;
                         this.EntradaConcepto.CanCreate = true;
-                        this.EntradaConcepto.ExtraDetailFields = "";
                         this.EntradaConcepto.Filter = "";
-                        this.EntradaConcepto.FreeTextCode = "";
                         this.EntradaConcepto.Location = new System.Drawing.Point(136, 176);
                         this.EntradaConcepto.MaxLength = 200;
                         this.EntradaConcepto.Name = "EntradaConcepto";
-                        this.EntradaConcepto.PlaceholderText = null;
                         this.EntradaConcepto.Required = false;
                         this.EntradaConcepto.Size = new System.Drawing.Size(472, 24);
                         this.EntradaConcepto.TabIndex = 8;
                         this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                         this.EntradaConcepto.Text = "0";
-                        this.EntradaConcepto.TextDetail = "";
                         // 
                         // EntradaObs
                         // 
@@ -170,19 +166,15 @@ namespace Lfc.Bancos.Cheques
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPersona.AutoTab = true;
                         this.EntradaPersona.CanCreate = true;
-                        this.EntradaPersona.ExtraDetailFields = "";
                         this.EntradaPersona.Filter = "";
-                        this.EntradaPersona.FreeTextCode = "";
                         this.EntradaPersona.Location = new System.Drawing.Point(136, 144);
                         this.EntradaPersona.MaxLength = 200;
                         this.EntradaPersona.Name = "gDetailBox1";
-                        this.EntradaPersona.PlaceholderText = null;
                         this.EntradaPersona.Required = false;
                         this.EntradaPersona.Size = new System.Drawing.Size(472, 24);
                         this.EntradaPersona.TabIndex = 6;
                         this.EntradaPersona.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaPersona.Text = "0";
-                        this.EntradaPersona.TextDetail = "";
                         // 
                         // label6
                         // 

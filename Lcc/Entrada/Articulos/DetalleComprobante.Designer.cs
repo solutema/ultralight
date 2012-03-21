@@ -166,18 +166,15 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaArticulo.AutoTab = true;
                         this.EntradaArticulo.CanCreate = true;
                         this.EntradaArticulo.ExtraDetailFields = "pvp,codigo1,codigo2,codigo3,codigo4";
-                        this.EntradaArticulo.Filter = "";
-                        this.EntradaArticulo.FreeTextCode = "";
+                        this.EntradaArticulo.Filter = "estado=1";
                         this.EntradaArticulo.Location = new System.Drawing.Point(0, 0);
                         this.EntradaArticulo.MaxLength = 200;
                         this.EntradaArticulo.Name = "EntradaArticulo";
-                        this.EntradaArticulo.PlaceholderText = null;
                         this.EntradaArticulo.Required = true;
                         this.EntradaArticulo.Size = new System.Drawing.Size(215, 24);
                         this.EntradaArticulo.TabIndex = 0;
                         this.EntradaArticulo.NombreTipo = "Lbl.Articulos.Articulo";
                         this.EntradaArticulo.Text = "0";
-                        this.EntradaArticulo.TextDetail = "";
                         this.EntradaArticulo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaArticulo_KeyDown);
                         this.EntradaArticulo.TextChanged += new System.EventHandler(this.EntradaArticulo_TextChanged);
                         // 

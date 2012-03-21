@@ -148,9 +148,9 @@ namespace Lfc.Comprobantes
                         // Cargo el detalle del comprobante
                         EntradaProductos.CargarArticulos(Comprob.Articulos);
 
-                        this.PonerTitulo();
                         this.ResumeLayout();
 
+                        this.PonerTitulo();
                         base.ActualizarControl();
 
                         IgnorarEventos = false;
@@ -211,7 +211,7 @@ namespace Lfc.Comprobantes
                 private void PonerTitulo()
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
-                        string NuevoTitulo = Lbl.Comprobantes.Comprobante.NombreTipo(Registro.Tipo.ToString());
+                        string NuevoTitulo = Registro.Tipo.NombreLargo;
 
                         if (Registro.Numero > 0) {
                                 NuevoTitulo += " ";

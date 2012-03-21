@@ -136,9 +136,7 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaLocalidad.AutoTab = true;
                         this.EntradaLocalidad.CanCreate = true;
-                        this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.Filter = "id_provincia IS NOT NULL";
-                        this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(128, 232);
                         this.EntradaLocalidad.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaLocalidad.MaxLength = 200;
@@ -149,7 +147,6 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.TabIndex = 9;
                         this.EntradaLocalidad.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaLocalidad.Text = "0";
-                        this.EntradaLocalidad.TextDetail = "";
                         // 
                         // EntradaDomicilio
                         // 
@@ -175,20 +172,16 @@ namespace Lfc.Personas
                         // 
                         this.EntradaTipoDoc.AutoTab = true;
                         this.EntradaTipoDoc.CanCreate = false;
-                        this.EntradaTipoDoc.ExtraDetailFields = "";
                         this.EntradaTipoDoc.Filter = "";
-                        this.EntradaTipoDoc.FreeTextCode = "";
                         this.EntradaTipoDoc.Location = new System.Drawing.Point(208, 104);
                         this.EntradaTipoDoc.MaximumSize = new System.Drawing.Size(200, 32);
                         this.EntradaTipoDoc.MaxLength = 200;
                         this.EntradaTipoDoc.Name = "EntradaTipoDoc";
-                        this.EntradaTipoDoc.PlaceholderText = null;
                         this.EntradaTipoDoc.Required = true;
                         this.EntradaTipoDoc.Size = new System.Drawing.Size(136, 24);
                         this.EntradaTipoDoc.TabIndex = 5;
                         this.EntradaTipoDoc.NombreTipo = "Lbl.Entidades.ClaveUnica";
                         this.EntradaTipoDoc.Text = "0";
-                        this.EntradaTipoDoc.TextDetail = "";
                         // 
                         // EntradaApellido
                         // 
@@ -390,20 +383,16 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSituacion.AutoTab = true;
                         this.EntradaSituacion.CanCreate = false;
-                        this.EntradaSituacion.ExtraDetailFields = "";
                         this.EntradaSituacion.Filter = "";
-                        this.EntradaSituacion.FreeTextCode = "";
                         this.EntradaSituacion.Location = new System.Drawing.Point(128, 104);
                         this.EntradaSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaSituacion.MaxLength = 200;
                         this.EntradaSituacion.Name = "EntradaSituacion";
-                        this.EntradaSituacion.PlaceholderText = null;
                         this.EntradaSituacion.Required = true;
                         this.EntradaSituacion.Size = new System.Drawing.Size(212, 24);
                         this.EntradaSituacion.TabIndex = 5;
                         this.EntradaSituacion.NombreTipo = "Lbl.Impuestos.SituacionTributaria";
                         this.EntradaSituacion.Text = "0";
-                        this.EntradaSituacion.TextDetail = "";
                         this.EntradaSituacion.Leave += new System.EventHandler(this.EntradaSituacion_Leave);
                         // 
                         // EntradaTipoFac
@@ -446,9 +435,7 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.CanCreate = false;
-                        this.EntradaTipo.ExtraDetailFields = "";
                         this.EntradaTipo.Filter = "";
-                        this.EntradaTipo.FreeTextCode = "";
                         this.EntradaTipo.Location = new System.Drawing.Point(112, 104);
                         this.EntradaTipo.MaximumSize = new System.Drawing.Size(320, 32);
                         this.EntradaTipo.MaxLength = 200;
@@ -459,7 +446,6 @@ namespace Lfc.Personas
                         this.EntradaTipo.TabIndex = 5;
                         this.EntradaTipo.NombreTipo = "Lbl.Personas.Tipo";
                         this.EntradaTipo.Text = "0";
-                        this.EntradaTipo.TextDetail = "";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
                         // Label14
@@ -477,9 +463,7 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaGrupo.AutoTab = true;
                         this.EntradaGrupo.CanCreate = true;
-                        this.EntradaGrupo.ExtraDetailFields = "";
                         this.EntradaGrupo.Filter = "parent IS NULL";
-                        this.EntradaGrupo.FreeTextCode = "";
                         this.EntradaGrupo.Location = new System.Drawing.Point(112, 40);
                         this.EntradaGrupo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaGrupo.MaxLength = 200;
@@ -490,7 +474,6 @@ namespace Lfc.Personas
                         this.EntradaGrupo.TabIndex = 1;
                         this.EntradaGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaGrupo.Text = "0";
-                        this.EntradaGrupo.TextDetail = "";
                         this.EntradaGrupo.TextChanged += new System.EventHandler(this.EntradaGrupo_TextChanged);
                         // 
                         // Label16
@@ -634,9 +617,7 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
-                        this.EntradaVendedor.ExtraDetailFields = "";
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
-                        this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.Location = new System.Drawing.Point(128, 264);
                         this.EntradaVendedor.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaVendedor.MaxLength = 200;
@@ -647,7 +628,6 @@ namespace Lfc.Personas
                         this.EntradaVendedor.TabIndex = 11;
                         this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
-                        this.EntradaVendedor.TextDetail = "";
                         // 
                         // EntradaTelefono
                         // 
@@ -698,9 +678,7 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSubGrupo.AutoTab = true;
                         this.EntradaSubGrupo.CanCreate = true;
-                        this.EntradaSubGrupo.ExtraDetailFields = "";
                         this.EntradaSubGrupo.Filter = "parent IS NULL";
-                        this.EntradaSubGrupo.FreeTextCode = "";
                         this.EntradaSubGrupo.Location = new System.Drawing.Point(112, 72);
                         this.EntradaSubGrupo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaSubGrupo.MaxLength = 200;
@@ -711,7 +689,6 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.TabIndex = 3;
                         this.EntradaSubGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaSubGrupo.Text = "0";
-                        this.EntradaSubGrupo.TextDetail = "";
                         // 
                         // label13
                         // 

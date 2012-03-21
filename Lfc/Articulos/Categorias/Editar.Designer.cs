@@ -209,9 +209,7 @@ namespace Lfc.Articulos.Categorias
                         // 
                         this.EntradaRubro.AutoTab = true;
                         this.EntradaRubro.CanCreate = true;
-                        this.EntradaRubro.ExtraDetailFields = "";
                         this.EntradaRubro.Filter = "";
-                        this.EntradaRubro.FreeTextCode = "";
                         this.EntradaRubro.Location = new System.Drawing.Point(144, 240);
                         this.EntradaRubro.MaxLength = 200;
                         this.EntradaRubro.Name = "EntradaRubro";
@@ -221,7 +219,6 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaRubro.TabIndex = 11;
                         this.EntradaRubro.NombreTipo = "Lbl.Articulos.Rubro";
                         this.EntradaRubro.Text = "0";
-                        this.EntradaRubro.TextDetail = "";
                         // 
                         // EntradaWeb
                         // 
@@ -343,9 +340,7 @@ namespace Lfc.Articulos.Categorias
                         // 
                         this.EntradaAlicuota.AutoTab = true;
                         this.EntradaAlicuota.CanCreate = true;
-                        this.EntradaAlicuota.ExtraDetailFields = "";
                         this.EntradaAlicuota.Filter = "";
-                        this.EntradaAlicuota.FreeTextCode = "";
                         this.EntradaAlicuota.Location = new System.Drawing.Point(144, 272);
                         this.EntradaAlicuota.MaxLength = 200;
                         this.EntradaAlicuota.Name = "EntradaAlicuota";
@@ -355,7 +350,6 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaAlicuota.TabIndex = 13;
                         this.EntradaAlicuota.NombreTipo = "Lbl.Impuestos.Alicuota";
                         this.EntradaAlicuota.Text = "0";
-                        this.EntradaAlicuota.TextDetail = "";
                         // 
                         // label12
                         // 

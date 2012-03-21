@@ -61,9 +61,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaPago.CanCreate = true;
-                        this.EntradaFormaPago.ExtraDetailFields = "";
                         this.EntradaFormaPago.Filter = "cobros=1 AND estado=1";
-                        this.EntradaFormaPago.FreeTextCode = "";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(112, 0);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
@@ -73,7 +71,6 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.TabIndex = 1;
                         this.EntradaFormaPago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPago.Text = "0";
-                        this.EntradaFormaPago.TextDetail = "";
                         this.EntradaFormaPago.Leave += new System.EventHandler(this.EntradaFormaPago_Leave);
                         // 
                         // Label10

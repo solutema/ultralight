@@ -131,7 +131,6 @@ namespace Lfc.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.CanCreate = false;
                         this.EntradaCliente.Filter = "";
-                        this.EntradaCliente.FreeTextCode = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(137, 152);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
@@ -140,7 +139,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.TabIndex = 11;
                         this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
-                        this.EntradaCliente.TextDetail = "";
                         // 
                         // Label2
                         // 
@@ -217,7 +215,6 @@ namespace Lfc.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaVendedor.CanCreate = false;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
-                        this.EntradaVendedor.FreeTextCode = "";
                         this.EntradaVendedor.Location = new System.Drawing.Point(137, 182);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
@@ -226,7 +223,6 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.TabIndex = 13;
                         this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
-                        this.EntradaVendedor.TextDetail = "";
                         // 
                         // Label5
                         // 
@@ -265,7 +261,6 @@ namespace Lfc.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSucursal.CanCreate = false;
                         this.EntradaSucursal.Filter = "";
-                        this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(137, 3);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
@@ -274,7 +269,6 @@ namespace Lfc.Comprobantes
                         this.EntradaSucursal.TabIndex = 1;
                         this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
-                        this.EntradaSucursal.TextDetail = "";
                         // 
                         // label7
                         // 
@@ -291,7 +285,6 @@ namespace Lfc.Comprobantes
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaPago.CanCreate = false;
                         this.EntradaFormaPago.Filter = "";
-                        this.EntradaFormaPago.FreeTextCode = "";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(137, 33);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
@@ -300,7 +293,6 @@ namespace Lfc.Comprobantes
                         this.EntradaFormaPago.TabIndex = 3;
                         this.EntradaFormaPago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPago.Text = "0";
-                        this.EntradaFormaPago.TextDetail = "";
                         // 
                         // label8
                         // 

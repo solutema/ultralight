@@ -111,19 +111,15 @@ namespace Lfc.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaHaciaSituacion.AutoTab = true;
                         this.EntradaHaciaSituacion.CanCreate = false;
-                        this.EntradaHaciaSituacion.ExtraDetailFields = "";
                         this.EntradaHaciaSituacion.Filter = "";
-                        this.EntradaHaciaSituacion.FreeTextCode = "";
                         this.EntradaHaciaSituacion.Location = new System.Drawing.Point(192, 144);
                         this.EntradaHaciaSituacion.MaxLength = 200;
                         this.EntradaHaciaSituacion.Name = "EntradaHaciaSituacion";
-                        this.EntradaHaciaSituacion.PlaceholderText = null;
                         this.EntradaHaciaSituacion.Required = true;
                         this.EntradaHaciaSituacion.Size = new System.Drawing.Size(416, 24);
                         this.EntradaHaciaSituacion.TabIndex = 3;
                         this.EntradaHaciaSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaHaciaSituacion.Text = "0";
-                        this.EntradaHaciaSituacion.TextDetail = "";
                         // 
                         // lblDesdeSituacion
                         // 
@@ -140,19 +136,15 @@ namespace Lfc.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaDesdeSituacion.AutoTab = true;
                         this.EntradaDesdeSituacion.CanCreate = false;
-                        this.EntradaDesdeSituacion.ExtraDetailFields = "";
                         this.EntradaDesdeSituacion.Filter = "facturable=1";
-                        this.EntradaDesdeSituacion.FreeTextCode = "";
                         this.EntradaDesdeSituacion.Location = new System.Drawing.Point(192, 72);
                         this.EntradaDesdeSituacion.MaxLength = 200;
                         this.EntradaDesdeSituacion.Name = "EntradaDesdeSituacion";
-                        this.EntradaDesdeSituacion.PlaceholderText = null;
                         this.EntradaDesdeSituacion.Required = true;
                         this.EntradaDesdeSituacion.Size = new System.Drawing.Size(416, 24);
                         this.EntradaDesdeSituacion.TabIndex = 1;
                         this.EntradaDesdeSituacion.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaDesdeSituacion.Text = "0";
-                        this.EntradaDesdeSituacion.TextDetail = "";
                         // 
                         // label1
                         // 

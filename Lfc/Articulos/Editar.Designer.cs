@@ -190,9 +190,7 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.ExtraDetailFields = "";
                         this.EntradaCaja.Filter = "id_caja>999";
-                        this.EntradaCaja.FreeTextCode = "";
                         this.EntradaCaja.Location = new System.Drawing.Point(136, 248);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";
@@ -202,7 +200,6 @@ namespace Lfc.Articulos
                         this.EntradaCaja.TabIndex = 13;
                         this.EntradaCaja.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCaja.Text = "0";
-                        this.EntradaCaja.TextDetail = "";
                         // 
                         // Label8
                         // 
@@ -499,9 +496,7 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaCategoria.AutoTab = true;
                         this.EntradaCategoria.CanCreate = true;
-                        this.EntradaCategoria.ExtraDetailFields = "";
                         this.EntradaCategoria.Filter = "";
-                        this.EntradaCategoria.FreeTextCode = "";
                         this.EntradaCategoria.Location = new System.Drawing.Point(104, 32);
                         this.EntradaCategoria.MaxLength = 0;
                         this.EntradaCategoria.Name = "EntradaCategoria";
@@ -511,7 +506,6 @@ namespace Lfc.Articulos
                         this.EntradaCategoria.TabIndex = 9;
                         this.EntradaCategoria.NombreTipo = "Lbl.Articulos.Categoria";
                         this.EntradaCategoria.Text = "0";
-                        this.EntradaCategoria.TextDetail = "";
                         this.EntradaCategoria.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
                         // EntradaMarca
@@ -520,9 +514,7 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaMarca.AutoTab = true;
                         this.EntradaMarca.CanCreate = true;
-                        this.EntradaMarca.ExtraDetailFields = "";
                         this.EntradaMarca.Filter = "";
-                        this.EntradaMarca.FreeTextCode = "";
                         this.EntradaMarca.Location = new System.Drawing.Point(552, 32);
                         this.EntradaMarca.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaMarca.MaxLength = 0;
@@ -533,7 +525,6 @@ namespace Lfc.Articulos
                         this.EntradaMarca.TabIndex = 11;
                         this.EntradaMarca.NombreTipo = "Lbl.Articulos.Marca";
                         this.EntradaMarca.Text = "0";
-                        this.EntradaMarca.TextDetail = "";
                         this.EntradaMarca.TextChanged += new System.EventHandler(this.EntradaCategoriaMarcaModeloSerie_TextChanged);
                         // 
                         // EntradaDescripcion2
@@ -740,9 +731,7 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProveedor.AutoTab = true;
                         this.EntradaProveedor.CanCreate = true;
-                        this.EntradaProveedor.ExtraDetailFields = "";
                         this.EntradaProveedor.Filter = "(tipo&2)=2";
-                        this.EntradaProveedor.FreeTextCode = "";
                         this.EntradaProveedor.Location = new System.Drawing.Point(604, 304);
                         this.EntradaProveedor.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaProveedor.MaxLength = 200;
@@ -753,7 +742,6 @@ namespace Lfc.Articulos
                         this.EntradaProveedor.TabIndex = 31;
                         this.EntradaProveedor.NombreTipo = "Lbl.Personas.Proveedor";
                         this.EntradaProveedor.Text = "0";
-                        this.EntradaProveedor.TextDetail = "";
                         // 
                         // PanelProducto
                         // 

@@ -181,9 +181,7 @@ namespace Lfc.Pvs
                         // EntradaSucursal
                         // 
                         this.EntradaSucursal.CanCreate = true;
-                        this.EntradaSucursal.ExtraDetailFields = "";
                         this.EntradaSucursal.Filter = "";
-                        this.EntradaSucursal.FreeTextCode = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(140, 32);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
@@ -194,7 +192,6 @@ namespace Lfc.Pvs
                         this.EntradaSucursal.TabIndex = 3;
                         this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
-                        this.EntradaSucursal.TextDetail = "";
                         // 
                         // label4
                         // 
@@ -358,9 +355,7 @@ namespace Lfc.Pvs
                         // EntradaImpresora
                         // 
                         this.EntradaImpresora.CanCreate = true;
-                        this.EntradaImpresora.ExtraDetailFields = "";
                         this.EntradaImpresora.Filter = "";
-                        this.EntradaImpresora.FreeTextCode = "";
                         this.EntradaImpresora.Location = new System.Drawing.Point(140, 64);
                         this.EntradaImpresora.MaxLength = 200;
                         this.EntradaImpresora.Name = "EntradaImpresora";
@@ -371,7 +366,6 @@ namespace Lfc.Pvs
                         this.EntradaImpresora.TabIndex = 5;
                         this.EntradaImpresora.NombreTipo = "Lbl.Impresion.Impresora";
                         this.EntradaImpresora.Text = "0";
-                        this.EntradaImpresora.TextDetail = "";
                         // 
                         // label10
                         // 

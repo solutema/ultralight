@@ -181,19 +181,15 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaEmpresaSituacion.AutoTab = true;
                         this.EntradaEmpresaSituacion.CanCreate = true;
-                        this.EntradaEmpresaSituacion.ExtraDetailFields = "";
                         this.EntradaEmpresaSituacion.Filter = "";
-                        this.EntradaEmpresaSituacion.FreeTextCode = "";
                         this.EntradaEmpresaSituacion.Location = new System.Drawing.Point(200, 184);
                         this.EntradaEmpresaSituacion.MaxLength = 200;
                         this.EntradaEmpresaSituacion.Name = "EntradaEmpresaSituacion";
-                        this.EntradaEmpresaSituacion.PlaceholderText = null;
                         this.EntradaEmpresaSituacion.Required = true;
                         this.EntradaEmpresaSituacion.Size = new System.Drawing.Size(240, 24);
                         this.EntradaEmpresaSituacion.TabIndex = 10;
                         this.EntradaEmpresaSituacion.NombreTipo = "Lbl.Impuestos.SituacionTributaria";
                         this.EntradaEmpresaSituacion.Text = "0";
-                        this.EntradaEmpresaSituacion.TextDetail = "";
                         // 
                         // Label19
                         // 
@@ -294,19 +290,15 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPais.AutoTab = true;
                         this.EntradaPais.CanCreate = false;
-                        this.EntradaPais.ExtraDetailFields = "";
                         this.EntradaPais.Filter = "";
-                        this.EntradaPais.FreeTextCode = "";
                         this.EntradaPais.Location = new System.Drawing.Point(200, 48);
                         this.EntradaPais.MaxLength = 200;
                         this.EntradaPais.Name = "EntradaPais";
-                        this.EntradaPais.PlaceholderText = null;
                         this.EntradaPais.Required = true;
                         this.EntradaPais.Size = new System.Drawing.Size(280, 24);
                         this.EntradaPais.TabIndex = 1;
                         this.EntradaPais.NombreTipo = "Lbl.Entidades.Pais";
                         this.EntradaPais.Text = "0";
-                        this.EntradaPais.TextDetail = "";
                         this.EntradaPais.TextChanged += new System.EventHandler(this.EntradaPais_TextChanged);
                         // 
                         // label2
@@ -342,19 +334,15 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProvincia.AutoTab = true;
                         this.EntradaProvincia.CanCreate = true;
-                        this.EntradaProvincia.ExtraDetailFields = "";
                         this.EntradaProvincia.Filter = "id_provincia IS NULL";
-                        this.EntradaProvincia.FreeTextCode = "";
                         this.EntradaProvincia.Location = new System.Drawing.Point(200, 248);
                         this.EntradaProvincia.MaxLength = 200;
                         this.EntradaProvincia.Name = "EntradaProvincia";
-                        this.EntradaProvincia.PlaceholderText = null;
                         this.EntradaProvincia.Required = true;
                         this.EntradaProvincia.Size = new System.Drawing.Size(316, 24);
                         this.EntradaProvincia.TabIndex = 14;
                         this.EntradaProvincia.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaProvincia.Text = "0";
-                        this.EntradaProvincia.TextDetail = "";
                         this.EntradaProvincia.TextChanged += new System.EventHandler(this.EntradaProvincia_TextChanged);
                         // 
                         // EntradaLocalidad
@@ -363,19 +351,15 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaLocalidad.AutoTab = true;
                         this.EntradaLocalidad.CanCreate = true;
-                        this.EntradaLocalidad.ExtraDetailFields = "";
                         this.EntradaLocalidad.Filter = "id_provincia IS NOT NULL";
-                        this.EntradaLocalidad.FreeTextCode = "";
                         this.EntradaLocalidad.Location = new System.Drawing.Point(200, 280);
                         this.EntradaLocalidad.MaxLength = 200;
                         this.EntradaLocalidad.Name = "EntradaLocalidad";
-                        this.EntradaLocalidad.PlaceholderText = null;
                         this.EntradaLocalidad.Required = true;
                         this.EntradaLocalidad.Size = new System.Drawing.Size(316, 24);
                         this.EntradaLocalidad.TabIndex = 16;
                         this.EntradaLocalidad.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaLocalidad.Text = "0";
-                        this.EntradaLocalidad.TextDetail = "";
                         // 
                         // label32
                         // 
@@ -545,19 +529,15 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaStockDepositoPredet.AutoTab = true;
                         this.EntradaStockDepositoPredet.CanCreate = true;
-                        this.EntradaStockDepositoPredet.ExtraDetailFields = "";
                         this.EntradaStockDepositoPredet.Filter = "";
-                        this.EntradaStockDepositoPredet.FreeTextCode = "";
                         this.EntradaStockDepositoPredet.Location = new System.Drawing.Point(184, 136);
                         this.EntradaStockDepositoPredet.MaxLength = 200;
                         this.EntradaStockDepositoPredet.Name = "EntradaStockDepositoPredet";
-                        this.EntradaStockDepositoPredet.PlaceholderText = null;
                         this.EntradaStockDepositoPredet.Required = false;
                         this.EntradaStockDepositoPredet.Size = new System.Drawing.Size(380, 24);
                         this.EntradaStockDepositoPredet.TabIndex = 7;
                         this.EntradaStockDepositoPredet.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaStockDepositoPredet.Text = "0";
-                        this.EntradaStockDepositoPredet.TextDetail = "";
                         // 
                         // EntradaStockMultideposito
                         // 
@@ -721,9 +701,7 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaClientePredet.AutoTab = true;
                         this.EntradaClientePredet.CanCreate = true;
-                        this.EntradaClientePredet.ExtraDetailFields = "";
                         this.EntradaClientePredet.Filter = "";
-                        this.EntradaClientePredet.FreeTextCode = "";
                         this.EntradaClientePredet.Location = new System.Drawing.Point(216, 40);
                         this.EntradaClientePredet.MaxLength = 200;
                         this.EntradaClientePredet.Name = "EntradaClientePredet";
@@ -733,7 +711,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaClientePredet.TabIndex = 1;
                         this.EntradaClientePredet.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaClientePredet.Text = "0";
-                        this.EntradaClientePredet.TextDetail = "";
                         // 
                         // Label15
                         // 
@@ -750,9 +727,7 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaFormaPagoPredet.AutoTab = true;
                         this.EntradaFormaPagoPredet.CanCreate = true;
-                        this.EntradaFormaPagoPredet.ExtraDetailFields = "";
                         this.EntradaFormaPagoPredet.Filter = "estado=1";
-                        this.EntradaFormaPagoPredet.FreeTextCode = "";
                         this.EntradaFormaPagoPredet.Location = new System.Drawing.Point(216, 68);
                         this.EntradaFormaPagoPredet.MaxLength = 200;
                         this.EntradaFormaPagoPredet.Name = "EntradaFormaPagoPredet";
@@ -762,7 +737,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaFormaPagoPredet.TabIndex = 3;
                         this.EntradaFormaPagoPredet.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPagoPredet.Text = "0";
-                        this.EntradaFormaPagoPredet.TextDetail = "";
                         // 
                         // BotonSiguiente
                         // 
@@ -909,19 +883,15 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaStockDepositoPredetSuc.AutoTab = true;
                         this.EntradaStockDepositoPredetSuc.CanCreate = true;
-                        this.EntradaStockDepositoPredetSuc.ExtraDetailFields = "";
                         this.EntradaStockDepositoPredetSuc.Filter = "";
-                        this.EntradaStockDepositoPredetSuc.FreeTextCode = "";
                         this.EntradaStockDepositoPredetSuc.Location = new System.Drawing.Point(184, 168);
                         this.EntradaStockDepositoPredetSuc.MaxLength = 200;
                         this.EntradaStockDepositoPredetSuc.Name = "EntradaStockDepositoPredetSuc";
-                        this.EntradaStockDepositoPredetSuc.PlaceholderText = null;
                         this.EntradaStockDepositoPredetSuc.Required = false;
                         this.EntradaStockDepositoPredetSuc.Size = new System.Drawing.Size(380, 24);
                         this.EntradaStockDepositoPredetSuc.TabIndex = 9;
                         this.EntradaStockDepositoPredetSuc.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaStockDepositoPredetSuc.Text = "0";
-                        this.EntradaStockDepositoPredetSuc.TextDetail = "";
                         // 
                         // label22
                         // 

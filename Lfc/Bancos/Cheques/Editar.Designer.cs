@@ -84,9 +84,7 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaBanco.AutoTab = true;
                         this.EntradaBanco.CanCreate = true;
-                        this.EntradaBanco.ExtraDetailFields = "";
                         this.EntradaBanco.Filter = "";
-                        this.EntradaBanco.FreeTextCode = "";
                         this.EntradaBanco.Location = new System.Drawing.Point(140, 32);
                         this.EntradaBanco.MaxLength = 200;
                         this.EntradaBanco.Name = "EntradaBanco";
@@ -96,7 +94,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaBanco.TabIndex = 3;
                         this.EntradaBanco.NombreTipo = "Lbl.Bancos.Banco";
                         this.EntradaBanco.Text = "0";
-                        this.EntradaBanco.TextDetail = "";
                         // 
                         // label5
                         // 

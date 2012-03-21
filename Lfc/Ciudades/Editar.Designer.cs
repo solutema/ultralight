@@ -105,9 +105,7 @@ namespace Lfc.Ciudades
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaParent.AutoTab = true;
                         this.EntradaParent.CanCreate = true;
-                        this.EntradaParent.ExtraDetailFields = "";
                         this.EntradaParent.Filter = "id_provincia IS NULL";
-                        this.EntradaParent.FreeTextCode = "";
                         this.EntradaParent.Location = new System.Drawing.Point(116, 108);
                         this.EntradaParent.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaParent.MaxLength = 200;
@@ -118,7 +116,6 @@ namespace Lfc.Ciudades
                         this.EntradaParent.TabIndex = 7;
                         this.EntradaParent.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaParent.Text = "0";
-                        this.EntradaParent.TextDetail = "";
                         // 
                         // EtiquetaParent
                         // 

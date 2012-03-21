@@ -160,19 +160,15 @@ namespace Lfc.Bancos.Cheques
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaDestino.AutoTab = true;
                         this.EntradaCajaDestino.CanCreate = false;
-                        this.EntradaCajaDestino.ExtraDetailFields = "";
                         this.EntradaCajaDestino.Filter = "";
-                        this.EntradaCajaDestino.FreeTextCode = "";
                         this.EntradaCajaDestino.Location = new System.Drawing.Point(224, 256);
                         this.EntradaCajaDestino.MaxLength = 200;
                         this.EntradaCajaDestino.Name = "EntradaCajaDestino";
-                        this.EntradaCajaDestino.PlaceholderText = null;
                         this.EntradaCajaDestino.Required = true;
                         this.EntradaCajaDestino.Size = new System.Drawing.Size(352, 24);
                         this.EntradaCajaDestino.TabIndex = 12;
                         this.EntradaCajaDestino.NombreTipo = "Lbl.Cajas.Caja";
                         this.EntradaCajaDestino.Text = "0";
-                        this.EntradaCajaDestino.TextDetail = "";
                         // 
                         // EntradaImpuestos
                         // 

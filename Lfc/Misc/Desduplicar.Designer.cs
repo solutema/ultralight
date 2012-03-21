@@ -95,9 +95,7 @@ namespace Lfc.Misc
                         // EntradaElementoDuplicado
                         // 
                         this.EntradaElementoDuplicado.CanCreate = true;
-                        this.EntradaElementoDuplicado.ExtraDetailFields = "";
                         this.EntradaElementoDuplicado.Filter = "";
-                        this.EntradaElementoDuplicado.FreeTextCode = "";
                         this.EntradaElementoDuplicado.Location = new System.Drawing.Point(152, 88);
                         this.EntradaElementoDuplicado.MaxLength = 200;
                         this.EntradaElementoDuplicado.Name = "EntradaElementoDuplicado";
@@ -107,7 +105,6 @@ namespace Lfc.Misc
                         this.EntradaElementoDuplicado.TabIndex = 5;
                         this.EntradaElementoDuplicado.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaElementoDuplicado.Text = "0";
-                        this.EntradaElementoDuplicado.TextDetail = "";
                         this.EntradaElementoDuplicado.TextChanged += new System.EventHandler(this.EntradaElementoDuplicado_TextChanged);
                         // 
                         // EtiquetaElemento2
@@ -122,9 +119,7 @@ namespace Lfc.Misc
                         // EntradaElementoOriginal
                         // 
                         this.EntradaElementoOriginal.CanCreate = true;
-                        this.EntradaElementoOriginal.ExtraDetailFields = "";
                         this.EntradaElementoOriginal.Filter = "";
-                        this.EntradaElementoOriginal.FreeTextCode = "";
                         this.EntradaElementoOriginal.Location = new System.Drawing.Point(152, 56);
                         this.EntradaElementoOriginal.MaxLength = 200;
                         this.EntradaElementoOriginal.Name = "EntradaElementoOriginal";
@@ -134,7 +129,6 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal.TabIndex = 3;
                         this.EntradaElementoOriginal.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaElementoOriginal.Text = "0";
-                        this.EntradaElementoOriginal.TextDetail = "";
                         this.EntradaElementoOriginal.TextChanged += new System.EventHandler(this.EntradaElementoOriginal_TextChanged);
                         // 
                         // txtTipo

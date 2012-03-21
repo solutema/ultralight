@@ -95,7 +95,6 @@ namespace Lfc.Personas.Usuarios
                                     | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaObjeto.CanCreate = true;
                         this.EntradaObjeto.Filter = "";
-                        this.EntradaObjeto.FreeTextCode = "";
                         this.EntradaObjeto.Location = new System.Drawing.Point(120, 20);
                         this.EntradaObjeto.MaxLength = 200;
                         this.EntradaObjeto.Name = "EntradaObjeto";
@@ -104,7 +103,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaObjeto.TabIndex = 1;
                         this.EntradaObjeto.NombreTipo = "Lbl.Sys.Permisos.Objeto";
                         this.EntradaObjeto.Text = "0";
-                        this.EntradaObjeto.TextDetail = "";
                         this.EntradaObjeto.PlaceholderText = "Ninguno";
                         this.EntradaObjeto.TextChanged += new System.EventHandler(this.EntradaObjeto_TextChanged);
                         // 

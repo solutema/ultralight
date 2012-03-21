@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Lbl.Bancos
 {
-        [Lbl.Atributos.Nomenclatura(NombreSingular = "Cheque", Grupo = "Cobros y Pagos")]
+        [Lbl.Atributos.Nomenclatura(NombreSingular = "Cheque", Grupo = "Cobros y pagos")]
         [Lbl.Atributos.Datos(TablaDatos = "bancos_cheques", CampoId = "id_cheque")]
         [Lbl.Atributos.Presentacion()]
 	public class Cheque : ElementoDeDatos

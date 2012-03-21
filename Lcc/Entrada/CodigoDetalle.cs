@@ -59,6 +59,7 @@ namespace Lcc.Entrada
                 }
 
 
+                [DefaultValue(null)]
                 public string PlaceholderText { get; set; }
 
 
@@ -105,7 +106,8 @@ namespace Lcc.Entrada
                         }
                 }
 
-                [System.ComponentModel.Category("Datos")]
+                [System.ComponentModel.Category("Datos"),
+                        DefaultValue("")]
                 public string FreeTextCode
                 {
                         get
@@ -230,7 +232,8 @@ namespace Lcc.Entrada
                         }
                 }
 
-                [System.ComponentModel.Category("Datos")]
+                [System.ComponentModel.Category("Datos"),
+                        DefaultValue("")]
                 public string ExtraDetailFields
                 {
                         get
@@ -244,7 +247,7 @@ namespace Lcc.Entrada
                         }
                 }
 
-                [System.ComponentModel.Category("Datos")]
+                [System.ComponentModel.Category("Datos"), DefaultValue("")]
                 public string Filter
                 {
                         get
@@ -313,7 +316,10 @@ namespace Lcc.Entrada
                         }
                 }
 
-                [System.ComponentModel.Category("Apariencia")]
+                [System.ComponentModel.Category("Apariencia"),
+                        EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public System.String TextDetail
                 {
                         get

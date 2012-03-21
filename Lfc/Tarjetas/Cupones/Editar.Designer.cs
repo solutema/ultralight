@@ -94,9 +94,7 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaFormaPago
                         // 
                         this.EntradaFormaPago.CanCreate = false;
-                        this.EntradaFormaPago.ExtraDetailFields = "";
                         this.EntradaFormaPago.Filter = "";
-                        this.EntradaFormaPago.FreeTextCode = "";
                         this.EntradaFormaPago.Location = new System.Drawing.Point(160, 28);
                         this.EntradaFormaPago.MaxLength = 200;
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
@@ -107,7 +105,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaPago.TabIndex = 3;
                         this.EntradaFormaPago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPago.Text = "0";
-                        this.EntradaFormaPago.TextDetail = "";
                         // 
                         // label10
                         // 
@@ -121,9 +118,7 @@ namespace Lfc.Tarjetas.Cupones
                         // EntradaPlan
                         // 
                         this.EntradaPlan.CanCreate = true;
-                        this.EntradaPlan.ExtraDetailFields = "";
                         this.EntradaPlan.Filter = "";
-                        this.EntradaPlan.FreeTextCode = "";
                         this.EntradaPlan.Location = new System.Drawing.Point(160, 56);
                         this.EntradaPlan.MaxLength = 200;
                         this.EntradaPlan.Name = "EntradaPlan";
@@ -134,7 +129,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaPlan.TabIndex = 5;
                         this.EntradaPlan.NombreTipo = "Lbl.Pagos.Plan";
                         this.EntradaPlan.Text = "0";
-                        this.EntradaPlan.TextDetail = "";
                         // 
                         // label1
                         // 

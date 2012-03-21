@@ -159,9 +159,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSituacionOrigen.AutoTab = true;
                         this.EntradaSituacionOrigen.CanCreate = true;
-                        this.EntradaSituacionOrigen.ExtraDetailFields = "";
                         this.EntradaSituacionOrigen.Filter = "";
-                        this.EntradaSituacionOrigen.FreeTextCode = "";
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(144, 128);
                         this.EntradaSituacionOrigen.MaxLength = 200;
                         this.EntradaSituacionOrigen.Name = "EntradaSituacionOrigen";
@@ -171,7 +169,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionOrigen.TabIndex = 7;
                         this.EntradaSituacionOrigen.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionOrigen.Text = "0";
-                        this.EntradaSituacionOrigen.TextDetail = "";
                         // 
                         // label3
                         // 
@@ -186,9 +183,7 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSituacionDestino.AutoTab = true;
                         this.EntradaSituacionDestino.CanCreate = true;
-                        this.EntradaSituacionDestino.ExtraDetailFields = "";
                         this.EntradaSituacionDestino.Filter = "";
-                        this.EntradaSituacionDestino.FreeTextCode = "";
                         this.EntradaSituacionDestino.Location = new System.Drawing.Point(144, 156);
                         this.EntradaSituacionDestino.MaxLength = 200;
                         this.EntradaSituacionDestino.Name = "EntradaSituacionDestino";
@@ -198,7 +193,6 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaSituacionDestino.TabIndex = 9;
                         this.EntradaSituacionDestino.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionDestino.Text = "0";
-                        this.EntradaSituacionDestino.TextDetail = "";
                         // 
                         // EntradaNumerarAl
                         // 

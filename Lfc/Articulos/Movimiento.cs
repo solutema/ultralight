@@ -54,26 +54,25 @@ namespace Lfc.Articulos
 
                 public override Lfx.Types.OperationResult Ok()
                 {
-                        Lfx.Types.OperationResult aceptarReturn = new Lfx.Types.SuccessOperationResult();
+                        Lbl.Articulos.Articulo Art = EntradaArticulo.Elemento as Lbl.Articulos.Articulo;
+                        Lfx.Types.OperationResult Res = new Lfx.Types.SuccessOperationResult();
 
-                        if (EntradaArticulo.ValueInt <= 0) {
-                                aceptarReturn.Message += "Debe especificar el artículo." + Environment.NewLine;
-                                aceptarReturn.Success = false;
+                        if (Art == null) {
+                                Res.Message += "Por favor seleccione un artículo." + Environment.NewLine;
+                                Res.Success = false;
                         }
 
                         if (EntradaDesdeSituacion.ValueInt != EntradaDesdeSituacion.ValueInt) {
-                                aceptarReturn.Message += @"Debe indicar ""Desde"" y ""Hacia""." + Environment.NewLine;
-                                aceptarReturn.Success = false;
+                                Res.Message += @"Por favor indique ""Desde"" y ""Hacia""." + Environment.NewLine;
+                                Res.Success = false;
                         }
 
-                        if (Lfx.Types.Parsing.ParseStock(EntradaCantidad.Text) <= 0) {
-                                aceptarReturn.Message += "Debe especificar la cantidad." + Environment.NewLine;
-                                aceptarReturn.Success = false;
+                        if (EntradaCantidad.ValueDecimal <= 0) {
+                                Res.Message += "Por favor escriba la cantidad." + Environment.NewLine;
+                                Res.Success = false;
                         }
 
-                        Lbl.Articulos.Articulo Art = null;
-                        if (aceptarReturn.Success) {
-                                Art = EntradaArticulo.Elemento as Lbl.Articulos.Articulo;
+                        if (Res.Success) {
                                 if (Art != null && Art.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno) {
                                         if (EntradaArticulo.DatosSeguimiento == null || EntradaArticulo.DatosSeguimiento.Count == 0) {
                                                 return new Lfx.Types.FailureOperationResult("Debe ingresar los datos de seguimiento (Ctrl-S) del artículo '" + Art.Nombre + "' para poder realizar movimientos de stock.");
@@ -84,7 +83,8 @@ namespace Lfc.Articulos
                                 }
                         }
 
-                        if (aceptarReturn.Success) {
+
+                        if (Res.Success) {
                                 IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 decimal Cantidad = EntradaCantidad.ValueDecimal;
                                 Lbl.Articulos.Situacion Origen, Destino;
@@ -94,7 +94,7 @@ namespace Lfc.Articulos
                                 Trans.Commit();
                         }
 
-                        return aceptarReturn;
+                        return Res;
                 }
 
                 private void EntradaArticulo_TextChanged(System.Object sender, System.EventArgs e)

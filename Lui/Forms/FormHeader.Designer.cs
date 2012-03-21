@@ -79,23 +79,21 @@ namespace Lui.Forms
                         // 
                         this.LabelColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelColor.BackColor = System.Drawing.Color.Sienna;
-                        this.LabelColor.Location = new System.Drawing.Point(423, 0);
+                        this.LabelColor.Location = new System.Drawing.Point(320, 8);
                         this.LabelColor.Name = "LabelColor";
-                        this.LabelColor.Size = new System.Drawing.Size(120, 16);
+                        this.LabelColor.Size = new System.Drawing.Size(128, 16);
                         this.LabelColor.TabIndex = 2;
                         this.LabelColor.UseMnemonic = false;
                         // 
                         // LabelColor2
                         // 
-                        this.LabelColor2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+                        this.LabelColor2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.LabelColor2.BackColor = System.Drawing.Color.SaddleBrown;
-                        this.LabelColor2.Location = new System.Drawing.Point(0, 0);
+                        this.LabelColor2.Location = new System.Drawing.Point(320, 0);
                         this.LabelColor2.Name = "LabelColor2";
-                        this.LabelColor2.Size = new System.Drawing.Size(8, 63);
+                        this.LabelColor2.Size = new System.Drawing.Size(128, 8);
                         this.LabelColor2.TabIndex = 3;
                         this.LabelColor2.UseMnemonic = false;
-                        this.LabelColor2.Visible = false;
                         // 
                         // label1
                         // 

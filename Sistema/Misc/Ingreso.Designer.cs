@@ -161,20 +161,16 @@ namespace Lazaro.WinMain.Misc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaUsuario.AutoTab = true;
                         this.EntradaUsuario.CanCreate = false;
-                        this.EntradaUsuario.ExtraDetailFields = "";
                         this.EntradaUsuario.Filter = "(tipo&4)=4 AND contrasena<>\'\' AND estado=1";
-                        this.EntradaUsuario.FreeTextCode = "";
                         this.EntradaUsuario.Location = new System.Drawing.Point(232, 160);
                         this.EntradaUsuario.Margin = new System.Windows.Forms.Padding(0);
                         this.EntradaUsuario.MaxLength = 200;
                         this.EntradaUsuario.Name = "EntradaUsuario";
-                        this.EntradaUsuario.PlaceholderText = null;
                         this.EntradaUsuario.Required = true;
                         this.EntradaUsuario.Size = new System.Drawing.Size(281, 24);
                         this.EntradaUsuario.TabIndex = 3;
                         this.EntradaUsuario.NombreTipo = "Lbl.Personas.Usuario";
                         this.EntradaUsuario.Text = "0";
-                        this.EntradaUsuario.TextDetail = "";
                         this.EntradaUsuario.TextChanged += new System.EventHandler(this.CambioDatos);
                         // 
                         // LowerPanel

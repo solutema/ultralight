@@ -77,6 +77,7 @@ namespace Lfc.Bancos.Cheques
 
                         Listado.CheckBoxes = true;
                         this.HabilitarFiltrar = true;
+                        this.HabilitarCrear = false;
                 }
 
 

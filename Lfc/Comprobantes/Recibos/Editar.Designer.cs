@@ -117,19 +117,15 @@ namespace Lfc.Comprobantes.Recibos
                     // 
                     this.EntradaVendedor.AutoTab = true;
                     this.EntradaVendedor.CanCreate = true;
-                    this.EntradaVendedor.ExtraDetailFields = "";
-                    this.EntradaVendedor.Filter = "(tipo&4)=4";
-                    this.EntradaVendedor.FreeTextCode = "";
+                    this.EntradaVendedor.Filter = "(tipo&4)=4 AND estado=1";
                     this.EntradaVendedor.Location = new System.Drawing.Point(304, 0);
                     this.EntradaVendedor.MaxLength = 200;
                     this.EntradaVendedor.Name = "EntradaVendedor";
-                    this.EntradaVendedor.PlaceholderText = null;
                     this.EntradaVendedor.Required = true;
                     this.EntradaVendedor.Size = new System.Drawing.Size(200, 24);
                     this.EntradaVendedor.TabIndex = 5;
                     this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                     this.EntradaVendedor.Text = "0";
-                    this.EntradaVendedor.TextDetail = "";
                     // 
                     // Label2
                     // 
@@ -383,19 +379,15 @@ namespace Lfc.Comprobantes.Recibos
                                 | System.Windows.Forms.AnchorStyles.Right)));
                     this.EntradaCliente.AutoTab = true;
                     this.EntradaCliente.CanCreate = true;
-                    this.EntradaCliente.ExtraDetailFields = "";
-                    this.EntradaCliente.Filter = "";
-                    this.EntradaCliente.FreeTextCode = "";
+                    this.EntradaCliente.Filter = "estado=1";
                     this.EntradaCliente.Location = new System.Drawing.Point(564, 0);
                     this.EntradaCliente.MaxLength = 200;
                     this.EntradaCliente.Name = "EntradaCliente";
-                    this.EntradaCliente.PlaceholderText = null;
                     this.EntradaCliente.Required = true;
                     this.EntradaCliente.Size = new System.Drawing.Size(192, 24);
                     this.EntradaCliente.TabIndex = 7;
                     this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                     this.EntradaCliente.Text = "0";
-                    this.EntradaCliente.TextDetail = "";
                     // 
                     // EntradaConceptoTexto
                     // 
@@ -486,9 +478,7 @@ namespace Lfc.Comprobantes.Recibos
                     this.EntradaConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                     this.EntradaConcepto.AutoTab = true;
                     this.EntradaConcepto.CanCreate = true;
-                    this.EntradaConcepto.ExtraDetailFields = "";
                     this.EntradaConcepto.Filter = "";
-                    this.EntradaConcepto.FreeTextCode = "";
                     this.EntradaConcepto.Location = new System.Drawing.Point(516, 28);
                     this.EntradaConcepto.MaxLength = 200;
                     this.EntradaConcepto.Name = "EntradaConcepto";
@@ -498,7 +488,6 @@ namespace Lfc.Comprobantes.Recibos
                     this.EntradaConcepto.TabIndex = 11;
                     this.EntradaConcepto.NombreTipo = "Lbl.Cajas.Concepto";
                     this.EntradaConcepto.Text = "0";
-                    this.EntradaConcepto.TextDetail = "";
                     // 
                     // Editar
                     // 
@@ -526,7 +515,6 @@ namespace Lfc.Comprobantes.Recibos
 
                 #endregion
 
-                // Requerido por el Diseñador de Windows Forms
                 private System.ComponentModel.IContainer components = null;
                 private Lui.Forms.Label Label3;
                 private Lui.Forms.Label Label1;
