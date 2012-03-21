@@ -388,25 +388,26 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                private void ProductArray_Resize(object sender, System.EventArgs e)
-                {
-                        this.SuspendLayout();
-                        foreach (DetalleComprobante Control in this.ChildControls) {
-                                Control.Width = this.Width - 20;
-                        }
-                        this.ReubicarEncabs();
-                        this.ResumeLayout();
-                }
-
-
                 protected override void ReubicarControles()
                 {
                         if (this.ChildControls != null && this.ChildControls.Count > 0) {
                                 PanelGrilla.Top = EtiquetaHeaderDetalle.Height + 2;
                                 PanelGrilla.Height = this.ClientSize.Height - PanelGrilla.Top;
                                 base.ReubicarControles();
-                                ReubicarEncabs();
                         }
+                }
+
+                protected override void OnResize(EventArgs e)
+                {
+                        if (this.Created) {
+                                this.SuspendLayout();
+                                foreach (DetalleComprobante Control in this.ChildControls) {
+                                        Control.Width = this.Width - 20;
+                                }
+                                this.ReubicarEncabs();
+                                this.ResumeLayout();
+                        }
+                        base.OnResize(e);
                 }
 
 
@@ -414,19 +415,19 @@ namespace Lcc.Entrada.Articulos
                 {
                         if (this.ChildControls != null && this.ChildControls.Count > 0) {
                                 DetalleComprobante Ctrl = this.ChildControls[0];
-                                EtiquetaHeaderDetalle.Width = Ctrl.UnitarioLeft - 2;
+                                EtiquetaHeaderDetalle.Width = Ctrl.UnitarioLeft - 1;
 
                                 EtiquetaHeaderUnitario.Left = Ctrl.UnitarioLeft;
-                                EtiquetaHeaderUnitario.Width = Ctrl.DescuentoLeft - EtiquetaHeaderUnitario.Left - 2;
-                                
-                                EtiquetaHeaderDescuento.Left = Ctrl.DescuentoLeft;
-                                EtiquetaHeaderDescuento.Width = Ctrl.CantidadLeft - EtiquetaHeaderDescuento.Left - 2;
-                                
+                                EtiquetaHeaderUnitario.Width = Ctrl.CantidadLeft - EtiquetaHeaderUnitario.Left - 1;
+                                                                
                                 EtiquetaHeaderCantidad.Left = Ctrl.CantidadLeft;
-                                EtiquetaHeaderCantidad.Width = Ctrl.ImporteLeft - EtiquetaHeaderCantidad.Left - 2;
+                                EtiquetaHeaderCantidad.Width = Ctrl.DescuentoLeft - EtiquetaHeaderCantidad.Left - 1;
+
+                                EtiquetaHeaderDescuento.Left = Ctrl.DescuentoLeft;
+                                EtiquetaHeaderDescuento.Width = Ctrl.ImporteLeft - EtiquetaHeaderDescuento.Left - 1;
 
                                 EtiquetaHeaderImporte.Left = Ctrl.ImporteLeft;
-                                EtiquetaHeaderImporte.Width = Ctrl.Width - Ctrl.ImporteLeft - 2;
+                                EtiquetaHeaderImporte.Width = Ctrl.Width - Ctrl.ImporteLeft - 1;
                         }
                 }
 

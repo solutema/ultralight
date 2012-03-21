@@ -144,7 +144,6 @@ namespace Lcc.Entrada.Articulos
                         // EntradaCantidad
                         // 
                         this.EntradaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaCantidad.AutoNav = false;
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaCantidad.Location = new System.Drawing.Point(376, 0);
                         this.EntradaCantidad.MaxLength = 20;
@@ -152,7 +151,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.PlaceholderText = "Escriba la cantidad.";
                         this.EntradaCantidad.Size = new System.Drawing.Size(87, 24);
                         this.EntradaCantidad.TabIndex = 2;
-                        this.EntradaCantidad.TabStop = false;
                         this.EntradaCantidad.Text = "0";
                         this.EntradaCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaCantidad_KeyPress);
                         this.EntradaCantidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaCantidad_KeyDown);
@@ -171,7 +169,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaArticulo.MaxLength = 200;
                         this.EntradaArticulo.Name = "EntradaArticulo";
                         this.EntradaArticulo.NombreTipo = "Lbl.Articulos.Articulo";
-                        this.EntradaArticulo.PlaceholderText = "Consejo: comience a escribir para buscar";
+                        this.EntradaArticulo.PlaceholderText = "";
                         this.EntradaArticulo.Required = true;
                         this.EntradaArticulo.Size = new System.Drawing.Size(279, 24);
                         this.EntradaArticulo.TabIndex = 0;
@@ -190,7 +188,6 @@ namespace Lcc.Entrada.Articulos
                         this.Controls.Add(this.LabelSerials);
                         this.Name = "DetalleComprobante";
                         this.Size = new System.Drawing.Size(640, 44);
-                        this.Enter += new System.EventHandler(this.Product_Enter);
                         this.ResumeLayout(false);
 
                 }

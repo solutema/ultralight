@@ -736,8 +736,9 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                private void Product_Enter(object sender, System.EventArgs e)
+                protected override void OnEnter(EventArgs e)
                 {
+                        base.OnEnter(e);
                         if (EntradaArticulo.Focused == false)
                                 EntradaArticulo.Focus();
                 }

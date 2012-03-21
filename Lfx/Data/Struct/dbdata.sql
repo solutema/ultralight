@@ -12667,6 +12667,8 @@ INSERT INTO personas (id_persona, tipo, id_grupo, nombre, apellido, razon_social
 	VALUES (1, 4, NULL, 'Administrador', '', '', 'Administrador', 'admin', NULL, '', '', NULL, '', NULL, '', '', '', '', 1);
 INSERT INTO personas (id_persona, tipo, id_grupo, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado)
 	VALUES (999, 1, NULL, '', '', 'Consumidor Final', 'Consumidor Final', '', NULL, '', '', 1, '', NULL, '', '', '', '', 1);
+INSERT INTO personas (id_persona, tipo, id_grupo, nombre, apellido, razon_social, nombre_visible, contrasena, id_tipo_doc, num_doc, cuit, id_situacion, domicilio, id_ciudad, telefono, email, tipo_fac, obs, estado)
+	VALUES (1000, 2, NULL, '', '', 'Proveedor de ejemplo', 'Proveedor de ejemplo', '', NULL, '', '', 1, '', NULL, '', '', '', '', 1);
 
 
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (1, 'Código 1', NULL);
@@ -12741,8 +12743,6 @@ INSERT INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha",
 INSERT INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (41,'Tareas: Categorías',NULL,0,NOW(),'Lbl.Tareas.Tipo',NULL,NULL,NULL,NULL,NULL,NULL);
 
 
-
-
 INSERT INTO "sys_permisos" ("id_permiso", "id_objeto", "id_persona", "items", "ops") VALUES (1, 1, 1, null, 65536);
 
 
@@ -12787,3 +12787,5 @@ INSERT INTO "sys_plantillas" ("id_plantilla", "nombre", "obs", "estado", "fecha"
 
 INSERT INTO "sys_tags" ("fieldtype", "label", "fieldname", "tablename", "id_tag", "fieldnullable", "fielddefault", "internal") VALUES ('text','Extra1','extra1','personas',1,1,NULL,0);
 
+INSERT INTO "articulos" ("id_articulo", "codigo1", "codigo2", "codigo3", "codigo4", "id_marca", "id_caja", "modelo", "serie", "nombre", "url", "descripcion", "descripcion2", "id_categoria", "id_proveedor", "control_stock", "periodicidad", "seguimiento", "stock_actual", "stock_minimo", "unidad_stock", "rendimiento", "unidad_rend", "costo", "id_margen", "pvp", "obs", "estado", "destacado", "fecha_creado", "fecha_precio", "apedir", "pedido", "web", "garantia") VALUES
+	(1, '', '', '', '', NULL, NULL, '', '', 'Artículo de pruebas sin control de stock', '', '', '', NULL, NULL, 0, 0, 0, 0.0000, 0.0000, 'u', 0.0000, NULL, 8.0000, NULL, 10.0000, NULL, 1, 0, '2012-03-21 13:01:01', '2012-03-21 13:01:01', 0.0000, 0.0000, 0, 0);

@@ -54,7 +54,7 @@ namespace Lui.Forms
 		// Puede modificarse utilizando el Diseñador de Windows Forms. 
 		// No lo modifique con el editor de código.
 		internal System.Windows.Forms.ListBox Listado;
-		internal System.Windows.Forms.Timer Timer1;
+		internal System.Windows.Forms.Timer TimerOcultar;
 		internal Lui.Forms.Panel Panel1;
 
 		private void InitializeComponent()
@@ -62,7 +62,7 @@ namespace Lui.Forms
                         this.components = new System.ComponentModel.Container();
                         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataSetHelp));
                         this.Listado = new System.Windows.Forms.ListBox();
-                        this.Timer1 = new System.Windows.Forms.Timer(this.components);
+                        this.TimerOcultar = new System.Windows.Forms.Timer(this.components);
                         this.Panel1 = new Lui.Forms.Panel();
                         this.SuspendLayout();
                         // 
@@ -86,8 +86,8 @@ namespace Lui.Forms
                         // 
                         // Timer1
                         // 
-                        this.Timer1.Interval = 5000;
-                        this.Timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+                        this.TimerOcultar.Interval = 5000;
+                        this.TimerOcultar.Tick += new System.EventHandler(this.TimerOcultar_Tick);
                         // 
                         // Panel1
                         // 

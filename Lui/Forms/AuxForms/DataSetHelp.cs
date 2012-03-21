@@ -131,8 +131,8 @@ namespace Lui.Forms
 			{
 				m_TextKey = value;
 				DetectarSetIndex();
-				Timer1.Enabled = false;
-				Timer1.Enabled = true;
+                                TimerOcultar.Stop();
+                                TimerOcultar.Start();
                                 this.Mostrar();
 			}
 		}
@@ -169,9 +169,9 @@ namespace Lui.Forms
 		}
 
 
-		private void Timer1_Tick(System.Object sender, System.EventArgs e)
+		private void TimerOcultar_Tick(System.Object sender, System.EventArgs e)
 		{
-			Timer1.Enabled = false;
+			TimerOcultar.Enabled = false;
 			for (int n = 99; n >= 1; n -= 5)
 			{
 				this.Opacity = (double)(n / 100F);
@@ -185,7 +185,7 @@ namespace Lui.Forms
 		private void FormAyudaDataSet_VisibleChanged(object sender, System.EventArgs e)
 		{
                         if (this.Visible)
-                                Timer1.Enabled = true;
+                                TimerOcultar.Start();
 		}
 
 
@@ -195,12 +195,11 @@ namespace Lui.Forms
                         System.Windows.Forms.Application.DoEvents();
                         System.Threading.Thread.Sleep(1);
 
-			Timer1.Enabled = false;
-			//this.Visible = false;
+                        TimerOcultar.Stop();
+			this.Visible = false;
 			this.Size = new Size(0, 0);
 			this.Location = new Point(30000, 30000);
-			//Para que no se muestre en Alt-Tab
-			this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                        this.ShowInTaskbar = false;
 		}
 
 
@@ -243,14 +242,14 @@ namespace Lui.Forms
 
                 private void Listado_MouseEnter(object sender, EventArgs e)
                 {
-                        this.Timer1.Stop();
+                        this.TimerOcultar.Stop();
                 }
 
 
                 private void Listado_MouseLeave(object sender, EventArgs e)
                 {
                         if (this.Visible)
-                                this.Timer1.Start();
+                                this.TimerOcultar.Start();
                 }
 	}
 }

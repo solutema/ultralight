@@ -94,7 +94,7 @@ namespace Lcc.Entrada.Articulos
                         this.EtiquetaHeaderDescuento.Name = "EtiquetaHeaderDescuento";
                         this.EtiquetaHeaderDescuento.Size = new System.Drawing.Size(64, 18);
                         this.EtiquetaHeaderDescuento.TabIndex = 999;
-                        this.EtiquetaHeaderDescuento.Text = " Descuento";
+                        this.EtiquetaHeaderDescuento.Text = " Desc.";
                         this.EtiquetaHeaderDescuento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.EtiquetaHeaderDescuento.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderDescuento.UseMnemonic = false;
@@ -106,7 +106,7 @@ namespace Lcc.Entrada.Articulos
                         this.EtiquetaHeaderCantidad.Name = "EtiquetaHeaderCantidad";
                         this.EtiquetaHeaderCantidad.Size = new System.Drawing.Size(72, 18);
                         this.EtiquetaHeaderCantidad.TabIndex = 999;
-                        this.EtiquetaHeaderCantidad.Text = " Cant";
+                        this.EtiquetaHeaderCantidad.Text = " Cant.";
                         this.EtiquetaHeaderCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.EtiquetaHeaderCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderCantidad.UseMnemonic = false;
@@ -125,7 +125,6 @@ namespace Lcc.Entrada.Articulos
                         // 
                         // MatrizDetalleComprobante
                         // 
-                        this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
                         this.Controls.Add(this.EtiquetaHeaderDescuento);
                         this.Controls.Add(this.EtiquetaHeaderImporte);
                         this.Controls.Add(this.EtiquetaHeaderCantidad);
@@ -133,7 +132,6 @@ namespace Lcc.Entrada.Articulos
                         this.Controls.Add(this.EtiquetaHeaderDetalle);
                         this.Name = "MatrizDetalleComprobante";
                         this.Enter += new System.EventHandler(this.ProductArray_Enter);
-                        this.Resize += new System.EventHandler(this.ProductArray_Resize);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderDetalle, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderUnitario, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderCantidad, 0);
