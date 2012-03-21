@@ -187,13 +187,31 @@ namespace Lazaro.Impresion.Comprobantes
                                         }
                                         return Res;
 
+                                case "ARTICULOS.DESCUENTOS":
+                                case "ARTÍCULOS.DESCUENTOS":
+                                case "DESCUENTOS":
+                                        Res = null;
+                                        for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
+                                                Lbl.Comprobantes.DetalleArticulo Det = this.Comprobante.Articulos[i];
+                                                string Linea;
+                                                if (Det.Descuento == 0)
+                                                        Linea = "--";
+                                                else
+                                                        Linea = Lfx.Types.Formatting.FormatNumberForPrint(Det.Descuento, 2) + "%";
+                                                if (Res == null)
+                                                        Res = Linea;
+                                                else
+                                                        Res += System.Environment.NewLine + Linea;
+                                        }
+                                        return Res;
+
                                 case "ARTICULOS.IMPORTES":
                                 case "ARTÍCULOS.IMPORTES":
                                 case "IMPORTES":
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 Lbl.Comprobantes.DetalleArticulo Det = this.Comprobante.Articulos[i];
-                                                string Linea =Lfx.Types.Formatting.FormatCurrencyForPrint(Det.UnitarioAFacturar * Det.Cantidad, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal); 
+                                                string Linea =Lfx.Types.Formatting.FormatCurrencyForPrint(Det.Importe, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal); 
                                                 if (Res == null)
                                                         Res = Linea;
                                                 else

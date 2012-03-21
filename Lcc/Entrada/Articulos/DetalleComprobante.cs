@@ -93,6 +93,7 @@ namespace Lcc.Entrada.Articulos
                         {
                                 base.ShowChanged = value;
                                 EntradaArticulo.ShowChanged = value;
+                                EntradaDescuento.ShowChanged = value;
                                 EntradaCantidad.ShowChanged = value;
                                 EntradaUnitario.ShowChanged = value;
                         }
@@ -128,6 +129,9 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
+                [EditorBrowsable(EditorBrowsableState.Never),
+                        System.ComponentModel.Browsable(false),
+                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public override bool IsEmpty
                 {
                         get
@@ -135,6 +139,7 @@ namespace Lcc.Entrada.Articulos
                                 return EntradaArticulo.IsEmpty;
                         }
                 }
+
 
                 [EditorBrowsable(EditorBrowsableState.Never),
                         Browsable(false),
@@ -187,6 +192,7 @@ namespace Lcc.Entrada.Articulos
                         {
                                 EntradaUnitario.Visible = value;
                                 EntradaCantidad.Visible = value;
+                                EntradaDescuento.Visible = value;
                                 EntradaImporte.Visible = value;
                                 if (value)
                                         EntradaArticulo.Width = EntradaUnitario.Left - 1;
@@ -209,6 +215,7 @@ namespace Lcc.Entrada.Articulos
                         set
                         {
                                 EntradaArticulo.Changed = value;
+                                EntradaDescuento.Changed = value;
                                 EntradaCantidad.Changed = value;
                                 EntradaUnitario.Changed = value;
                         }
@@ -262,7 +269,8 @@ namespace Lcc.Entrada.Articulos
                         }
                         set
                         {
-                                EntradaUnitario.TemporaryReadOnly = value;
+                                EntradaUnitario.ReadOnly = value;
+                                EntradaDescuento.ReadOnly = value;
                         }
                 }
 
@@ -309,6 +317,14 @@ namespace Lcc.Entrada.Articulos
                         get
                         {
                                 return EntradaUnitario.Left;
+                        }
+                }
+
+                public int DescuentoLeft
+                {
+                        get
+                        {
+                                return EntradaDescuento.Left;
                         }
                 }
 
@@ -385,6 +401,22 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
+
+                [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public decimal Descuento
+                {
+                        get
+                        {
+                                return EntradaDescuento.ValueDecimal;
+                        }
+                        set
+                        {
+                                EntradaDescuento.ValueDecimal = value;
+                                this.Changed = false;
+                        }
+                }
+
+
                 [EditorBrowsable(EditorBrowsableState.Never), Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
                 public Lbl.Articulos.Articulo Articulo
                 {
@@ -396,6 +428,7 @@ namespace Lcc.Entrada.Articulos
                         {
                                 EntradaArticulo.Elemento = value;
                                 this.Elemento = value;
+                                EntradaArticulo_TextChanged(this, null);
                         }
                 }
 
@@ -435,12 +468,15 @@ namespace Lcc.Entrada.Articulos
 
                         this.DatosSeguimiento = null;
 
-                        if (this.AutoUpdate) {
-                                if (this.Articulo != null) {
-                                        EntradaUnitario.Enabled = true;
-                                        EntradaCantidad.Enabled = true;
-                                        EntradaCantidad.TemporaryReadOnly = this.Articulo.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno;
-                                        EntradaImporte.Enabled = true;
+                        if (this.Articulo != null) {
+                                EntradaUnitario.Enabled = true;
+                                EntradaDescuento.Enabled = true;
+                                EntradaCantidad.Enabled = true;
+                                EntradaImporte.Enabled = true;
+                                EntradaCantidad.TemporaryReadOnly = this.Articulo.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno || this.TemporaryReadOnly;
+                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                if (this.AutoUpdate) {
                                         if (this.Articulo.Unidad != "u")
                                                 EntradaCantidad.Sufijo = Articulo.Unidad;
                                         else
@@ -456,21 +492,32 @@ namespace Lcc.Entrada.Articulos
 
                                         if (this.Cantidad == 0)
                                                 this.Cantidad = 1;
-                                } else if (EntradaArticulo.Text == EntradaArticulo.FreeTextCode && EntradaArticulo.FreeTextCode.Length > 0) {
-                                        EntradaUnitario.Enabled = true;
-                                        EntradaCantidad.Enabled = true;
-                                        EntradaCantidad.TemporaryReadOnly = false;
-                                        EntradaImporte.Enabled = true;
+                                }
+                        } else if (EntradaArticulo.Text == EntradaArticulo.FreeTextCode && EntradaArticulo.FreeTextCode.Length > 0) {
+                                EntradaUnitario.Enabled = true;
+                                EntradaDescuento.Enabled = true;
+                                EntradaCantidad.Enabled = true;
+                                EntradaCantidad.TemporaryReadOnly = this.TemporaryReadOnly;
+                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                EntradaImporte.Enabled = true;
+                                if (this.AutoUpdate) {
                                         if (this.Cantidad == 0)
                                                 this.Cantidad = 1;
-                                } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.ValueInt == 0)) {
-                                        EntradaUnitario.Enabled = false;
-                                        EntradaCantidad.Enabled = false;
-                                        EntradaCantidad.TemporaryReadOnly = false;
-                                        EntradaImporte.Enabled = false;
+                                }
+                        } else if (EntradaArticulo.Text.Length == 0 || (EntradaArticulo.Text.IsNumericInt() && EntradaArticulo.ValueInt == 0)) {
+                                EntradaUnitario.Enabled = false;
+                                EntradaDescuento.Enabled = false;
+                                EntradaCantidad.Enabled = false;
+                                EntradaCantidad.TemporaryReadOnly = this.TemporaryReadOnly;
+                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                EntradaImporte.Enabled = false;
+                                if (this.AutoUpdate) {
                                         EntradaCantidad.ValueDecimal = 0;
                                         EntradaImporte.ValueDecimal = 0;
                                         EntradaUnitario.ValueDecimal = 0;
+                                        EntradaDescuento.ValueDecimal = 0;
                                 }
                         }
 
@@ -479,10 +526,10 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                private void EntradaPrecioCantidad_TextChanged(object sender, System.EventArgs e)
+                private void EntradaUnitarioDescuentoCantidad_TextChanged(object sender, System.EventArgs e)
                 {
                         if (this.Connection != null) {
-                                EntradaImporte.Text = Lfx.Types.Formatting.FormatCurrency(Lfx.Types.Parsing.ParseCurrency(EntradaUnitario.Text) * this.Cantidad, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
+                                EntradaImporte.ValueDecimal = EntradaUnitario.ValueDecimal * this.Cantidad * (1 - this.Descuento / 100);
                                 VerificarStock();
                                 this.Changed = true;
                                 if (null != PrecioCantidadChanged)
@@ -521,6 +568,12 @@ namespace Lcc.Entrada.Articulos
                         set
                         {
                                 base.TemporaryReadOnly = value;
+                                if (value) {
+                                        EntradaArticulo.TemporaryReadOnly = true;
+                                        EntradaUnitario.TemporaryReadOnly = true;
+                                        EntradaDescuento.TemporaryReadOnly = true;
+                                        EntradaCantidad.TemporaryReadOnly = true;
+                                }
                                 this.VerificarStock();
                         }
                 }
@@ -613,6 +666,28 @@ namespace Lcc.Entrada.Articulos
 
                 }
 
+                private void EntradaDescuento_KeyDown(object sender, KeyEventArgs e)
+                {
+                        switch (e.KeyCode) {
+                                case Keys.Left:
+                                        if (EntradaDescuento.SelectionStart == 0) {
+                                                e.Handled = true;
+                                                EntradaCantidad.Focus();
+                                        }
+                                        break;
+                                case Keys.Up:
+                                        System.Windows.Forms.SendKeys.Send("+{tab}");
+                                        break;
+                                case Keys.Down:
+                                        System.Windows.Forms.SendKeys.Send("{tab}");
+                                        break;
+                                default:
+                                        if (null != KeyDown)
+                                                KeyDown(sender, e);
+                                        break;
+                        }
+                }
+
 
                 private void EntradaCantidad_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
                 {
@@ -623,6 +698,15 @@ namespace Lcc.Entrada.Articulos
                                                 EntradaArticulo.Focus();
                                         else
                                                 EntradaUnitario.Focus();
+                                        break;
+                                case Keys.Right:
+                                case Keys.Return:
+                                        if (EntradaCantidad.SelectionStart >= EntradaCantidad.TextRaw.Length || EntradaCantidad.SelectionLength > 0) {
+                                                if (this.PrecioSoloLectura == false) {
+                                                        e.Handled = true;
+                                                        EntradaDescuento.Focus();
+                                                }
+                                        }
                                         break;
                                 case Keys.Up:
                                         System.Windows.Forms.SendKeys.Send("+{tab}");

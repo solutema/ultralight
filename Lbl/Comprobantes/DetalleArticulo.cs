@@ -80,6 +80,19 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
+                public decimal Descuento
+                {
+                        get
+                        {
+                                return -this.Recargo;
+                        }
+                        set
+                        {
+                                this.Recargo = -value;
+                        }
+                }
+
                 public decimal Cantidad
                 {
                         get
@@ -124,9 +137,22 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return this.Cantidad * this.Unitario * (1 + Recargo / 100);
+                                return this.Cantidad * this.UnitarioConDescuentoORecargo;
                         }
                 }
+
+
+                /// <summary>
+                /// Devuelve el precio unitario aplicando descuentos o recargos.
+                /// </summary>
+                public decimal UnitarioConDescuentoORecargo
+                {
+                        get
+                        {
+                                return this.UnitarioAFacturar * (1 + Recargo / 100);
+                        }
+                }
+
 
                 /// <summary>
                 /// Devuelve el precio unitario a facturar, según la discriminación de IVA del comprobante.
@@ -136,7 +162,7 @@ namespace Lbl.Comprobantes
                         get
                         {
                                 if (this.ElementoPadre == null) {
-                                        return this.Unitario;
+                                        return this.UnitarioConDescuentoORecargo;
                                 } else if (ElementoPadre is Lbl.Comprobantes.ComprobanteConArticulos) {
                                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
                                         if (Comprob.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
@@ -340,6 +366,7 @@ namespace Lbl.Comprobantes
 
                         Comando.Fields.AddWithValue("cantidad", this.Cantidad);
                         Comando.Fields.AddWithValue("precio", this.Unitario);
+                        Comando.Fields.AddWithValue("recargo", this.Recargo);
                         if (this.Costo == 0 && this.Articulo != null)
                                 Comando.Fields.AddWithValue("costo", this.Articulo.Costo);
                         else

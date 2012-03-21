@@ -132,6 +132,30 @@ namespace Lbl.Sys
                         DesactComprob.WhereClause = new qGen.Where("letra", qGen.ComparisonOperators.In, new string[] { "FC", "FE", "FM", "NDC", "NDE", "NDM", "NCC", "NCE", "NCM" });
                         Lfx.Workspace.Master.MasterConnection.Execute(DesactComprob);
 
+                        string CarpetaPlantillas = System.IO.Path.Combine(Lfx.Environment.Folders.UserFolder, "Plantillas" + System.IO.Path.DirectorySeparatorChar);
+                        string NombrePlantilla;
+                        if (nuevoPais.Id == 1)
+                                NombrePlantilla = System.IO.Path.Combine(CarpetaPlantillas, "Factura, dos copias en una hoja A4.ltx");
+                        else
+                                NombrePlantilla = System.IO.Path.Combine(CarpetaPlantillas, "Facturas, página completa A4.ltx");
+
+                        if (System.IO.File.Exists(NombrePlantilla)) {
+                                string Contenido;
+                                using (System.IO.StreamReader Str = new System.IO.StreamReader(NombrePlantilla, true)) {
+                                        Contenido = Str.ReadToEnd();
+                                        Str.Close();
+                                }
+
+                                Lbl.Impresion.Plantilla PlantillaFact = new Impresion.Plantilla(Lfx.Workspace.Master.MasterConnection, 1);
+                                PlantillaFact.CargarXml(Contenido);
+                                PlantillaFact.Guardar();
+
+                                Lbl.Impresion.Plantilla PlantillaOtros = new Impresion.Plantilla(Lfx.Workspace.Master.MasterConnection, 5);
+                                PlantillaOtros.CargarXml(Contenido);
+                                PlantillaOtros.Guardar();
+
+                        }
+
                         Lbl.Comprobantes.Tipo.TodosPorLetra.Clear();
                         Lfx.Workspace.Master.CurrentConfig.ClearCache();
                 }

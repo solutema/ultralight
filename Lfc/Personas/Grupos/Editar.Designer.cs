@@ -75,7 +75,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaDescuento.DataType = Lui.Forms.DataTypes.Float;
                         this.EntradaDescuento.Location = new System.Drawing.Point(120, 64);
                         this.EntradaDescuento.Name = "EntradaDescuento";
-                        this.EntradaDescuento.ReadOnly = false;
                         this.EntradaDescuento.Size = new System.Drawing.Size(88, 24);
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 5;
@@ -95,7 +94,6 @@ namespace Lfc.Personas.Grupos
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 32);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(437, 24);
                         this.EntradaNombre.TabIndex = 3;
                         // 

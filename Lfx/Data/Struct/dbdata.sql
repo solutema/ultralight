@@ -12770,11 +12770,12 @@ INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*'
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.Decimales', '2', 0);
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.DecimalesCosto', '2', 0);
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.DecimalesFinal', '2', 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.Redondeo', 0, 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.CodigoPredet', 1, 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Decimales', 0, 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.DepositoPredet', 1, 0);
-INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Multideposito', 1, 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Moneda.Redondeo', '0', 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.CodigoPredet', '1', 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Decimales', '0', 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.DepositoPredet', '1', 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Stock.Multideposito', '1', 0);
+INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Documentos.CambiaPrecioItemFactura', '1', 0);
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.FechaInstalacion', NOW(), 0);
 
 

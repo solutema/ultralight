@@ -94,6 +94,7 @@ namespace Lcc.Entrada.Articulos
                                         this.ChildControls[i].TextDetail = articulos[i].Nombre;
                                         this.ChildControls[i].Cantidad = articulos[i].Cantidad;
                                         this.ChildControls[i].Unitario = articulos[i].Unitario;
+                                        this.ChildControls[i].Descuento = articulos[i].Descuento;
                                         this.ChildControls[i].DatosSeguimiento = articulos[i].DatosSeguimiento;
                                 }
                         }
@@ -112,6 +113,7 @@ namespace Lcc.Entrada.Articulos
                                         DetArt.Orden = i++;
                                         DetArt.Cantidad = Pro.Cantidad;
                                         DetArt.Unitario = Pro.Unitario;
+                                        DetArt.Descuento = Pro.Descuento;
                                         DetArt.DatosSeguimiento = Pro.DatosSeguimiento;
                                         m_Articulos.Add(DetArt);
                                 }
@@ -137,6 +139,7 @@ namespace Lcc.Entrada.Articulos
                                         DetArt.Orden = i++;
                                         DetArt.Cantidad = Pro.Cantidad;
                                         DetArt.Unitario = Pro.Unitario;
+                                        DetArt.Descuento = Pro.Descuento;
                                         DetArt.DatosSeguimiento = Pro.DatosSeguimiento;
                                         m_Articulos.Add(DetArt);
                                 }
@@ -408,14 +411,20 @@ namespace Lcc.Entrada.Articulos
                 private void ReubicarEncabs()
                 {
                         if (this.ChildControls != null && this.ChildControls.Count > 0) {
-                                DetalleComprobante ctrl = this.ChildControls[0];
-                                EtiquetaHeaderDetalle.Width = ctrl.UnitarioLeft - 2;
-                                EtiquetaHeaderUnitario.Left = ctrl.UnitarioLeft;
-                                EtiquetaHeaderUnitario.Width = ctrl.CantidadLeft - EtiquetaHeaderUnitario.Left - 2;
-                                EtiquetaHeaderCantidad.Left = ctrl.CantidadLeft;
-                                EtiquetaHeaderCantidad.Width = ctrl.ImporteLeft - EtiquetaHeaderCantidad.Left - 2;
-                                EtiquetaHeaderImporte.Left = ctrl.ImporteLeft;
-                                EtiquetaHeaderImporte.Width = ctrl.Width - ctrl.ImporteLeft - 2;
+                                DetalleComprobante Ctrl = this.ChildControls[0];
+                                EtiquetaHeaderDetalle.Width = Ctrl.UnitarioLeft - 2;
+
+                                EtiquetaHeaderUnitario.Left = Ctrl.UnitarioLeft;
+                                EtiquetaHeaderUnitario.Width = Ctrl.DescuentoLeft - EtiquetaHeaderUnitario.Left - 2;
+                                
+                                EtiquetaHeaderDescuento.Left = Ctrl.DescuentoLeft;
+                                EtiquetaHeaderDescuento.Width = Ctrl.CantidadLeft - EtiquetaHeaderDescuento.Left - 2;
+                                
+                                EtiquetaHeaderCantidad.Left = Ctrl.CantidadLeft;
+                                EtiquetaHeaderCantidad.Width = Ctrl.ImporteLeft - EtiquetaHeaderCantidad.Left - 2;
+
+                                EtiquetaHeaderImporte.Left = Ctrl.ImporteLeft;
+                                EtiquetaHeaderImporte.Width = Ctrl.Width - Ctrl.ImporteLeft - 2;
                         }
                 }
 

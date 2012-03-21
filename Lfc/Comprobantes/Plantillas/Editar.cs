@@ -270,6 +270,7 @@ namespace Lfc.Comprobantes.Plantillas
                                         Texto = Texto.Replace("{Articulos.Codigos}", "00123456\r\n00123456\r\nABR012PM\r\nCODIGO99");
                                         Texto = Texto.Replace("{Codigos}", "00123456\r\n00123456\r\nABR012PM\r\nCODIGO99");
                                         Texto = Texto.Replace("{Articulos.Cantidades}", "1\r\n2\r\n1\r\n1");
+                                        Texto = Texto.Replace("{Articulos.Descuentos}", "--\r\n--\r\n10%\r\n--");
                                         Texto = Texto.Replace("{Cantidades}", "1\r\n2\r\n1\r\n1");
                                         Texto = Texto.Replace("{Articulos.Precios}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");
                                         Texto = Texto.Replace("{Precios}", "$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00\r\n$ 123.456,00");

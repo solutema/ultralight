@@ -908,6 +908,7 @@ namespace Lbl.Comprobantes
 
                                                 Comando.Fields.AddWithValue("cantidad", Art.Cantidad);
                                                 Comando.Fields.AddWithValue("precio", Art.Unitario);
+                                                Comando.Fields.AddWithValue("recargo", Art.Recargo);
                                                 if (Art.Costo == 0 && Art.Articulo != null)
                                                         Comando.Fields.AddWithValue("costo", Art.Articulo.Costo);
                                                 else

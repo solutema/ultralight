@@ -58,46 +58,57 @@ namespace Lcc.Entrada.Articulos
                 {
                         this.EtiquetaHeaderDetalle = new Lui.Forms.Label();
                         this.EtiquetaHeaderUnitario = new Lui.Forms.Label();
+                        this.EtiquetaHeaderDescuento = new Lui.Forms.Label();
                         this.EtiquetaHeaderCantidad = new Lui.Forms.Label();
                         this.EtiquetaHeaderImporte = new Lui.Forms.Label();
 
                         this.SuspendLayout();
                         // 
-                        // lblHeaderDetalle
+                        // EtiquetaHeaderDetalle
                         // 
                         this.EtiquetaHeaderDetalle.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderDetalle.Location = new System.Drawing.Point(0, 0);
-                        this.EtiquetaHeaderDetalle.Name = "lblHeaderDetalle";
+                        this.EtiquetaHeaderDetalle.Name = "EtiquetaHeaderDetalle";
                         this.EtiquetaHeaderDetalle.Size = new System.Drawing.Size(176, 18);
                         this.EtiquetaHeaderDetalle.TabIndex = 999;
                         this.EtiquetaHeaderDetalle.Text = " Detalle";
                         this.EtiquetaHeaderDetalle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblHeaderUnitario
+                        // EtiquetaHeaderUnitario
                         // 
                         this.EtiquetaHeaderUnitario.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderUnitario.Location = new System.Drawing.Point(180, 0);
-                        this.EtiquetaHeaderUnitario.Name = "lblHeaderUnitario";
+                        this.EtiquetaHeaderUnitario.Name = "EtiquetaHeaderUnitario";
                         this.EtiquetaHeaderUnitario.Size = new System.Drawing.Size(64, 18);
                         this.EtiquetaHeaderUnitario.TabIndex = 999;
                         this.EtiquetaHeaderUnitario.Text = " Precio";
                         this.EtiquetaHeaderUnitario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblHeaderCantidad
+                        // EtiquetaHeaderDescuento
+                        // 
+                        this.EtiquetaHeaderDescuento.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
+                        this.EtiquetaHeaderDescuento.Location = new System.Drawing.Point(200, 0);
+                        this.EtiquetaHeaderDescuento.Name = "EtiquetaHeaderDescuento";
+                        this.EtiquetaHeaderDescuento.Size = new System.Drawing.Size(64, 18);
+                        this.EtiquetaHeaderDescuento.TabIndex = 999;
+                        this.EtiquetaHeaderDescuento.Text = " Descuento";
+                        this.EtiquetaHeaderDescuento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EtiquetaHeaderCantidad
                         // 
                         this.EtiquetaHeaderCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderCantidad.Location = new System.Drawing.Point(248, 0);
-                        this.EtiquetaHeaderCantidad.Name = "lblHeaderCantidad";
+                        this.EtiquetaHeaderCantidad.Name = "EtiquetaHeaderCantidad";
                         this.EtiquetaHeaderCantidad.Size = new System.Drawing.Size(72, 18);
                         this.EtiquetaHeaderCantidad.TabIndex = 999;
                         this.EtiquetaHeaderCantidad.Text = " Cant";
                         this.EtiquetaHeaderCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblHeaderImporte
+                        // EtiquetaHeaderImporte
                         // 
                         this.EtiquetaHeaderImporte.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader2;
                         this.EtiquetaHeaderImporte.Location = new System.Drawing.Point(324, 0);
-                        this.EtiquetaHeaderImporte.Name = "lblHeaderImporte";
+                        this.EtiquetaHeaderImporte.Name = "EtiquetaHeaderImporte";
                         this.EtiquetaHeaderImporte.Size = new System.Drawing.Size(80, 18);
                         this.EtiquetaHeaderImporte.TabIndex = 999;
                         this.EtiquetaHeaderImporte.Text = " Importe";
@@ -119,6 +130,7 @@ namespace Lcc.Entrada.Articulos
                         // 
                         this.Controls.Add(this.EtiquetaHeaderDetalle);
                         this.Controls.Add(this.EtiquetaHeaderUnitario);
+                        this.Controls.Add(this.EtiquetaHeaderDescuento);
                         this.Controls.Add(this.EtiquetaHeaderCantidad);
                         this.Controls.Add(this.EtiquetaHeaderImporte);
                         this.Size = new System.Drawing.Size(536, 180);
@@ -126,6 +138,7 @@ namespace Lcc.Entrada.Articulos
                         this.Resize += new System.EventHandler(this.ProductArray_Resize);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderDetalle, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderUnitario, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaHeaderDescuento, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderCantidad, 0);
                         this.Controls.SetChildIndex(this.EtiquetaHeaderImporte, 0);
                         this.ResumeLayout(false);
@@ -135,6 +148,7 @@ namespace Lcc.Entrada.Articulos
 
                 private Lui.Forms.Label EtiquetaHeaderDetalle;
                 private Lui.Forms.Label EtiquetaHeaderUnitario;
+                private Lui.Forms.Label EtiquetaHeaderDescuento;
                 private Lui.Forms.Label EtiquetaHeaderCantidad;
                 private Lui.Forms.Label EtiquetaHeaderImporte;
         }

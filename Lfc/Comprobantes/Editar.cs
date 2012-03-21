@@ -62,27 +62,27 @@ namespace Lfc.Comprobantes
                         base.OnLoad(e);
                         if (Lfx.Workspace.Master != null && Lfx.Workspace.Master.CurrentConfig != null) {
                                 EntradaTotal.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal;
-                                EntradaProductos.LockPrice = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.CambiaPrecioItemFactura", 0) == 0;
+                                EntradaProductos.LockPrice = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.CambiaPrecioItemFactura", 0) == 0 && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.EditarAvanzado) == false;
                         }
                 }
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {
-                        Lfx.Types.OperationResult validarReturn = base.ValidarControl();
+                        Lfx.Types.OperationResult Res = base.ValidarControl();
 
                         if (EntradaVendedor.ValueInt == 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Seleccione un Vendedor." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "Seleccione un vendedor." + Environment.NewLine;
                         }
 
                         if (EntradaCliente.ValueInt == 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "Seleccione un Cliente." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "Seleccione un cliente." + Environment.NewLine;
                         }
 
                         if (Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text) <= 0) {
-                                validarReturn.Success = false;
-                                validarReturn.Message += "El comprobante debe tener un Importe superior a $ 0.00." + Environment.NewLine;
+                                Res.Success = false;
+                                Res.Message += "El comprobante debe tener un importe superior a $ 0.00." + Environment.NewLine;
                         }
 
                         int PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
@@ -101,20 +101,20 @@ namespace Lfc.Comprobantes
                                 }
 
                                 if (Admitido == false) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "Seleccione un Punto de Venta (PV) válido para este tipo de comprobante." + Environment.NewLine;
+                                        Res.Success = false;
+                                        Res.Message += "Seleccione un punto de venta (PV) válido para este tipo de comprobante." + Environment.NewLine;
                                 }
                         }
 
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
                         if (Registro.Tipo.MueveExistencias != 0) {
                                 if (Registro.SituacionOrigen == null || Registro.SituacionDestino == null || Registro.SituacionOrigen.Id == Registro.SituacionDestino.Id) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "Seleccione la Situación de Origen y de Destino." + Environment.NewLine;
+                                        Res.Success = false;
+                                        Res.Message += "Seleccione la situación de origen y de destino (usando el botón Más datos)." + Environment.NewLine;
                                 }
                         }
 
-                        return validarReturn;
+                        return Res;
                 }
 
 
@@ -132,10 +132,10 @@ namespace Lfc.Comprobantes
                         EntradaCliente.Elemento = Comprob.Cliente;
                         Ignorar_EntradaCliente_TextChanged = false;
 
-                        EntradaSubTotal.Text = Lfx.Types.Formatting.FormatCurrency(Comprob.SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
-                        EntradaDescuento.Text = Lfx.Types.Formatting.FormatNumber(Comprob.Descuento, 2);
-                        EntradaInteres.Text = Lfx.Types.Formatting.FormatNumber(Comprob.Recargo, 2);
-                        EntradaCuotas.Text = Comprob.Cuotas.ToString();
+                        EntradaSubTotal.ValueDecimal = Comprob.SubTotal;
+                        EntradaDescuento.ValueDecimal= Comprob.Descuento;
+                        EntradaInteres.ValueDecimal = Comprob.Recargo;
+                        EntradaCuotas.ValueInt = Comprob.Cuotas;
 
                         EntradaIva.ValueDecimal = Comprob.ImporteIva;
                         EntradaTotal.ValueDecimal = Comprob.Total;
@@ -143,6 +143,8 @@ namespace Lfc.Comprobantes
                         if (this.Elemento.Existe == true || this.PuedeEditar() == false) {
                                 // No actualizar automáticamente detalles
                                 EntradaProductos.AutoUpdate = false;
+                        } else {
+                                EntradaProductos.AutoUpdate = true;
                         }
 
                         // Cargo el detalle del comprobante
