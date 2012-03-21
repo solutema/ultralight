@@ -315,7 +315,7 @@ namespace Lazaro.WinMain.Config
                                         break;
                                 case Inicial.Pasos.NombreServidor:
                                         if (EntradaServidor.Text.Length == 0) {
-                                                Lui.Forms.MessageBox.Show("Debe ingresar el nombre del equipo", "Error");
+                                                Lui.Forms.MessageBox.Show("Por favor escriba el nombre del equipo.", "Error");
                                         } else {
                                                 Paso = Inicial.Pasos.PruebaServidor;
                                         }
@@ -333,7 +333,7 @@ namespace Lazaro.WinMain.Config
                                         break;
                                 case Pasos.DatosEmpresa:
                                         if (EntradaPais.Elemento == null || EntradaEmpresaNombre.Text.Length < 3 || EntradaEmpresaEmail.Text.Length < 3 || EntradaEmpresaEmail.Text.IndexOf('@') < 0) {
-                                                Lui.Forms.MessageBox.Show("Debe proporcionar los datos de la empresa antes de continuar", "Error");
+                                                Lui.Forms.MessageBox.Show("Por favor proporcione los datos de la empresa antes de continuar.", "Error");
                                         } else {
                                                 Paso = Pasos.Final;
                                         }

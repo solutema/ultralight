@@ -54,6 +54,14 @@ namespace Lfc
                 }
 
 
+                protected override void OnCreateControl()
+                {
+                        if (this.HabilitarBusqueda == true)
+                                Lfx.Workspace.Master.RunTime.Hint("Utilice el cuadro que se encuentra arriba a la izquierda para encontrar rápidamente un elemento.", this.Text);
+                        base.OnCreateControl();
+                }
+
+
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

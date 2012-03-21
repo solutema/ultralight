@@ -611,36 +611,21 @@ namespace Lcc.Entrada
                 }
 
 
-                protected override void OnCreateControl()
-                {
-                        if (string.IsNullOrEmpty(this.PlaceholderText)) {
-                                // Si no hay texto de ayuda, muy de vez en cuando doy una ayuda genérica
-                                switch(DateTime.Now.Minute) {
-                                        case 0:
-                                        case 2:
-                                                this.PlaceholderText = "Consejo: pulse 'espacio' para ver una lista";
-                                                break;
-                                        case 3:
-                                        case 5:
-                                                this.PlaceholderText = "Consejo: si recuerda el código, escbrialo";
-                                                break;
-                                        case 6:
-                                        case 7:
-                                        case 8:
-                                        case 16:
-                                                this.PlaceholderText = "Consejo: comience a escribir para buscar";
-                                                break;
-                                }
-                        }
-                        base.OnCreateControl();
-                }
-
 
                 protected override void OnEnter(EventArgs e)
                 {
                         EntradaCodigo.ScrollToCaret();
-                        if (this.ReadOnly == false && this.TemporaryReadOnly == false)
+                        if (this.ReadOnly == false && this.TemporaryReadOnly == false) {
                                 BotonBuscar.Visible = true;
+                                switch (new Random().Next(1, 4)) {
+                                        case 1:
+                                                Lfx.Workspace.Master.RunTime.Hint("Comience a escribir para mostrar una ventana de búsqueda.", "Consejo");
+                                                break;
+                                        case 2:
+                                                Lfx.Workspace.Master.RunTime.Hint("Si recuerda el código, escríbalo. Si no oprima la tecla de espacio (barra espaciadora) para ver una lista.", "Consejo");
+                                                break;
+                                }
+                        }
                         ProgramarActualizacionDetalle(false);
                         this.Refresh();
                         base.OnEnter(e);

@@ -438,6 +438,13 @@ namespace Lui.Forms
                 }
 
 
+                protected override void OnEnter(EventArgs e)
+                {
+                        Lfx.Workspace.Master.RunTime.Hint("Utilice las teclas de más y menos (+ y -) o la barra espaciadora para cambiar la selección.", "Consejo");
+                        base.OnEnter(e);
+                }
+
+
                 protected override void OnKeyDown(KeyEventArgs e)
                 {
                         switch (e.KeyCode) {
@@ -464,12 +471,14 @@ namespace Lui.Forms
                 {
                         switch (e.KeyCode) {
                                 case Keys.Subtract:
+                                case Keys.OemMinus:
                                         e.Handled = true;
                                         if (this.TemporaryReadOnly == false && this.ReadOnly == false) {
                                                 this.SetPrevValueInSet();
                                         }
                                         break;
                                 case Keys.Add:
+                                case Keys.Oemplus:
                                 case Keys.Space:
                                         e.Handled = true;
                                         if (this.TemporaryReadOnly == false && this.ReadOnly == false) {

@@ -86,7 +86,7 @@ namespace Lbl.Sys
                                 }
                                 set
                                 {
-                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Nombre", value);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.Nombre", value.Trim());
                                 }
                         }
 
@@ -118,7 +118,7 @@ namespace Lbl.Sys
                                 }
                                 set
                                 {
-                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.RazonSocial", value);
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Empresa.RazonSocial", value.Trim());
                                 }
                         }
 

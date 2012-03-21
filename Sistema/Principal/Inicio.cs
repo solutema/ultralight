@@ -97,12 +97,14 @@ namespace Lazaro.WinMain.Principal
                                                 this.Top = 20;
                                         break;
                         }
-                        MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para activar el menú.");
 
                         if (Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Apariencia.NoMostrarInicio", 0) == 0) {
                                 FormInicio = new Lfc.Inicio.Inicio();
                                 FormInicio.MdiParent = this;
                                 FormInicio.Show();
+                                MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para mostrar la pantalla de inicio.");
+                        } else {
+                                MostrarAyuda("Bienvenido a Lázaro", "Pulse la tecla <F12> para activar el menú principal.");
                         }
                 }
 
@@ -161,8 +163,13 @@ namespace Lazaro.WinMain.Principal
                                 case Keys.F12:
                                         if (e.Shift == false && e.Alt == false && e.Shift == false) {
                                                 e.Handled = true;
-                                                MostrarAyuda("Menú principal", "Utilice las teclas de cursor (flechas) para navegar el menú. Pulse <Intro> (o <Enter>) para ejecutar una opción.");
-                                                System.Windows.Forms.SendKeys.Send("%S");
+                                                if (FormInicio == null) {
+                                                        MostrarAyuda("Menú principal", "Utilice las teclas de cursor (flechas) para navegar el menú. Pulse <Intro> (o <Enter>) para ejecutar una opción.");
+                                                        System.Windows.Forms.SendKeys.Send("%S");
+                                                } else {
+                                                        MostrarAyuda("Pantalla de inicio", "Si no encuentra lo que busca en la pantalla de inicio utilice el menú en la parte superior.");
+                                                        FormInicio.Focus();
+                                                }
                                         }
                                         break;
                                 case Keys.I:

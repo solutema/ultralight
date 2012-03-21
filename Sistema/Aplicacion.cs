@@ -455,6 +455,13 @@ namespace Lazaro.WinMain
                                                 break;
                                         case Lfx.RunTimeServices.IpcEventArgs.EventTypes.Information:
                                                 switch (e.Verb) {
+                                                        case "HINT":
+                                                                if (Aplicacion.FormularioPrincipal != null)
+                                                                        Aplicacion.FormularioPrincipal.MostrarAyuda(e.Arguments[1].ToString(), e.Arguments[0].ToString());
+                                                                break;
+                                                        case "TOAST":
+                                                                Lui.Forms.MessageBox.Show(e.Arguments[0].ToString(), e.Arguments[1].ToString());
+                                                                break;
                                                         case "ITEMFOCUS":
                                                                 if (Aplicacion.FormularioPrincipal != null) {
                                                                         if (e.Arguments.Length >= 3 && e.Arguments[0].ToString() == "TABLE") {
@@ -465,9 +472,6 @@ namespace Lazaro.WinMain
                                                                 }
                                                                 break;
                                                 }
-                                                break;
-                                        case Lfx.RunTimeServices.IpcEventArgs.EventTypes.Toast:
-                                                Lui.Forms.MessageBox.Show(e.Arguments[0].ToString(), e.Arguments[1].ToString());
                                                 break;
                                 }
                         }
@@ -614,7 +618,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                 private static Lfx.Types.OperationResult IniciarGui()
                 {
                         int Configurado = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Configurado", 0);
-                        if (Configurado == 0 && Lbl.Sys.Config.Empresa.ClaveTributaria == null) {
+                        if ((Configurado == 0 && Lbl.Sys.Config.Empresa.ClaveTributaria == null) || string.IsNullOrEmpty(Lbl.Sys.Config.Empresa.Nombre)) {
                                 Config.Preferencias FormConfig = new Config.Preferencias();
                                 FormConfig.PrimeraVez = true;
                                 if (FormConfig.ShowDialog() != DialogResult.OK)
@@ -713,8 +717,16 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 if (FechaWhatsnew == "firsttime") {
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¡Hola! ¿Le gustaría ver una página sencilla con un poco de información sobre cómo utilizar Lázaro?", "Primeros pasos");
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                                        if (Pregunta.ShowDialog() == DialogResult.OK) {
+                                        if (Pregunta.ShowDialog() == DialogResult.OK)
                                                 Help.ShowHelp(Aplicacion.FormularioPrincipal, "http://www.sistemalazaro.com.ar/?q=node/44");
+                                } else {
+                                        string RunTime = Lfx.Environment.SystemInformation.RuntimeName;
+                                        // Verifico la presencia de .NET Framework 3.5
+                                        if (Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet && RunTime.IndexOf("3.5") < 0) {
+                                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Es necesario instalar un componente para el correcto funcionamiento de Lázaro. El componente es Microsoft .NET Framework versión 3.5. ¿Desea ir a la página de descarga para instalarlo ahora?", "Advertencia");
+                                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                                if (Pregunta.ShowDialog() == DialogResult.OK)
+                                                        Help.ShowHelp(Aplicacion.FormularioPrincipal, "http://download.microsoft.com/download/5/3/4/5347CEDC-6A83-49F5-9347-BCD58A9AAE25/DotNetFx35ClientSetup.exe");
                                         }
                                 }
                                 Application.Run(Aplicacion.FormularioPrincipal);

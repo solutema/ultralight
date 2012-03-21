@@ -42,7 +42,6 @@ namespace Lfx
                         {
                                 Undefined,
                                 Information,
-                                Toast,
                                 Progress,
                                 ActionRequest
                         }
@@ -128,13 +127,27 @@ namespace Lfx
                         }
                 }
 
+
                 public void Toast(string messageText, string caption)
                 {
                         if (IpcEvent != null) {
                                 IpcEventArgs e = new IpcEventArgs();
-                                e.EventType = IpcEventArgs.EventTypes.Toast;
+                                e.EventType = IpcEventArgs.EventTypes.Information;
                                 e.Destination = "lazaro";
                                 e.Verb = "TOAST";
+                                e.Arguments = new object[] { messageText, caption };
+                                this.IpcEvent(this, ref e);
+                        }
+                }
+
+
+                public void Hint(string messageText, string caption)
+                {
+                        if (IpcEvent != null) {
+                                IpcEventArgs e = new IpcEventArgs();
+                                e.EventType = IpcEventArgs.EventTypes.Information;
+                                e.Destination = "lazaro";
+                                e.Verb = "HINT";
                                 e.Arguments = new object[] { messageText, caption };
                                 this.IpcEvent(this, ref e);
                         }

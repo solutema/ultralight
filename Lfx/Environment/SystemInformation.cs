@@ -141,7 +141,7 @@ namespace Lfx.Environment
                                                 if (TieneDotNet35)
                                                         VersionesDotNet += ", 3.5";
                                                 if (TieneDotNet4)
-                                                        VersionesDotNet += ", 4";
+                                                        VersionesDotNet += ", 4.0";
 
                                                 return VersionesDotNet;
                                         case Lfx.Environment.SystemInformation.RunTimes.Mono:
