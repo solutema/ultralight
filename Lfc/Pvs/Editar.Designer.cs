@@ -37,25 +37,6 @@ namespace Lfc.Pvs
 {
         public partial class Editar
         {
-		internal Lui.Forms.Label Label16;
-		internal Lui.Forms.Label label1;
-                internal Lui.Forms.Label label2;
-                internal Lui.Forms.ComboBox EntradaTipo;
-		internal Lui.Forms.TextBox EntradaEstacion;
-		internal Lui.Forms.ComboBox EntradaCarga;
-		internal Lui.Forms.Button BotonEstacionSeleccionar;
-		internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
-		internal Lui.Forms.Label label4;
-		internal Lui.Forms.Label label5;
-		internal Lui.Forms.Label label6;
-		internal Lui.Forms.Label label7;
-                internal Lui.Forms.ComboBox EntradaModelo;
-                internal Lui.Forms.ComboBox EntradaPuerto;
-                internal Lui.Forms.ComboBox EntradaBps;
-                internal Lui.Forms.ComboBox EntradaTipoFac;
-                internal Lui.Forms.Label label8;
-                internal Lui.Forms.ComboBox EntradaDeTalonario;
-                internal Lui.Forms.Label label9;
 		private System.ComponentModel.IContainer components = null;
 
                 protected override void Dispose(bool disposing)
@@ -91,9 +72,9 @@ namespace Lfc.Pvs
                         this.label8 = new Lui.Forms.Label();
                         this.EntradaDeTalonario = new Lui.Forms.ComboBox();
                         this.label9 = new Lui.Forms.Label();
-                        this.note2 = new Lui.Forms.Note();
+                        this.label3 = new Lui.Forms.Label();
                         this.EntradaNumero = new Lui.Forms.TextBox();
-                        this.Label3 = new Lui.Forms.Label();
+                        this.label11 = new Lui.Forms.Label();
                         this.EntradaImpresora = new Lcc.Entrada.CodigoDetalle();
                         this.label10 = new Lui.Forms.Label();
                         this.SuspendLayout();
@@ -104,12 +85,11 @@ namespace Lfc.Pvs
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(140, 184);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Inactivo|0",
         "Impresora Normal|1",
         "Impresora Fiscal|2"};
-                        this.EntradaTipo.Size = new System.Drawing.Size(208, 51);
+                        this.EntradaTipo.Size = new System.Drawing.Size(208, 56);
                         this.EntradaTipo.TabIndex = 9;
                         this.EntradaTipo.TextKey = "1";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
@@ -137,7 +117,6 @@ namespace Lfc.Pvs
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(140, 244);
                         this.EntradaEstacion.Name = "EntradaEstacion";
-                        this.EntradaEstacion.ReadOnly = false;
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
                         this.EntradaEstacion.TabIndex = 11;
                         // 
@@ -146,7 +125,6 @@ namespace Lfc.Pvs
                         this.EntradaCarga.AlwaysExpanded = false;
                         this.EntradaCarga.Location = new System.Drawing.Point(212, 312);
                         this.EntradaCarga.Name = "EntradaCarga";
-                        this.EntradaCarga.ReadOnly = false;
                         this.EntradaCarga.SetData = new string[] {
         "Automática|0",
         "Manual|1"};
@@ -166,11 +144,11 @@ namespace Lfc.Pvs
                         // BotonEstacionSeleccionar
                         // 
                         this.BotonEstacionSeleccionar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonEstacionSeleccionar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonEstacionSeleccionar.Image = null;
                         this.BotonEstacionSeleccionar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonEstacionSeleccionar.Location = new System.Drawing.Point(480, 232);
                         this.BotonEstacionSeleccionar.Name = "BotonEstacionSeleccionar";
-                        this.BotonEstacionSeleccionar.ReadOnly = false;
                         this.BotonEstacionSeleccionar.Size = new System.Drawing.Size(28, 24);
                         this.BotonEstacionSeleccionar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonEstacionSeleccionar.Subtext = "";
@@ -180,17 +158,16 @@ namespace Lfc.Pvs
                         // 
                         // EntradaSucursal
                         // 
+                        this.EntradaSucursal.AutoTab = true;
                         this.EntradaSucursal.CanCreate = true;
-                        this.EntradaSucursal.Filter = "";
                         this.EntradaSucursal.Location = new System.Drawing.Point(140, 32);
                         this.EntradaSucursal.MaxLength = 200;
                         this.EntradaSucursal.Name = "EntradaSucursal";
+                        this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.PlaceholderText = "Sucursal";
-                        this.EntradaSucursal.ReadOnly = false;
                         this.EntradaSucursal.Required = true;
                         this.EntradaSucursal.Size = new System.Drawing.Size(500, 24);
                         this.EntradaSucursal.TabIndex = 3;
-                        this.EntradaSucursal.NombreTipo = "Lbl.Entidades.Sucursal";
                         this.EntradaSucursal.Text = "0";
                         // 
                         // label4
@@ -235,7 +212,6 @@ namespace Lfc.Pvs
                         this.EntradaModelo.Enabled = false;
                         this.EntradaModelo.Location = new System.Drawing.Point(212, 344);
                         this.EntradaModelo.Name = "EntradaModelo";
-                        this.EntradaModelo.ReadOnly = false;
                         this.EntradaModelo.SetData = new string[] {
         "Hasar|100",
         "Epson|300",
@@ -250,7 +226,6 @@ namespace Lfc.Pvs
                         this.EntradaPuerto.Enabled = false;
                         this.EntradaPuerto.Location = new System.Drawing.Point(212, 376);
                         this.EntradaPuerto.Name = "EntradaPuerto";
-                        this.EntradaPuerto.ReadOnly = false;
                         this.EntradaPuerto.SetData = new string[] {
         "COM1|1",
         "COM2|2"};
@@ -264,7 +239,6 @@ namespace Lfc.Pvs
                         this.EntradaBps.Enabled = false;
                         this.EntradaBps.Location = new System.Drawing.Point(212, 408);
                         this.EntradaBps.Name = "EntradaBps";
-                        this.EntradaBps.ReadOnly = false;
                         this.EntradaBps.SetData = new string[] {
         "9600 bps|9600",
         "19200 bps|19200"};
@@ -278,14 +252,13 @@ namespace Lfc.Pvs
                         this.EntradaTipoFac.AutoSize = true;
                         this.EntradaTipoFac.Location = new System.Drawing.Point(140, 96);
                         this.EntradaTipoFac.Name = "EntradaTipoFac";
-                        this.EntradaTipoFac.ReadOnly = false;
                         this.EntradaTipoFac.SetData = new string[] {
         "Facturas|F",
         "Facturas y notas de débito|F,ND",
         "Facturas, notas de crédito y débito|F,NC,ND",
         "Remitos|R",
         "Recibos de cobro|RC"};
-                        this.EntradaTipoFac.Size = new System.Drawing.Size(336, 81);
+                        this.EntradaTipoFac.Size = new System.Drawing.Size(336, 90);
                         this.EntradaTipoFac.TabIndex = 7;
                         this.EntradaTipoFac.TextKey = "F,NC,ND";
                         // 
@@ -303,7 +276,6 @@ namespace Lfc.Pvs
                         this.EntradaDeTalonario.AlwaysExpanded = false;
                         this.EntradaDeTalonario.Location = new System.Drawing.Point(212, 280);
                         this.EntradaDeTalonario.Name = "EntradaDeTalonario";
-                        this.EntradaDeTalonario.ReadOnly = false;
                         this.EntradaDeTalonario.SetData = new string[] {
         "Si|1",
         "No|0"};
@@ -313,58 +285,54 @@ namespace Lfc.Pvs
                         // 
                         // label9
                         // 
-                        this.label9.Location = new System.Drawing.Point(72, 280);
+                        this.label9.Location = new System.Drawing.Point(0, 0);
                         this.label9.Name = "label9";
                         this.label9.Size = new System.Drawing.Size(140, 24);
-                        this.label9.TabIndex = 13;
-                        this.label9.Text = "Usa Talonarios";
+                        this.label9.TabIndex = 0;
+                        this.label9.Text = "Punto de Venta";
                         this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // note2
+                        // label3
                         // 
-                        this.note2.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.note2.Location = new System.Drawing.Point(2, 443);
-                        this.note2.Name = "note2";
-                        this.note2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.note2.ReadOnly = false;
-                        this.note2.Size = new System.Drawing.Size(636, 72);
-                        this.note2.TabIndex = 50;
-                        this.note2.Text = "Si desea cambiar el punto de venta predeterminado para las facturas u otros docum" +
+                        this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label3.Location = new System.Drawing.Point(8, 464);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(616, 43);
+                        this.label3.TabIndex = 50;
+                        this.label3.Text = "Si desea cambiar el punto de venta predeterminado para las facturas u otros docum" +
     "entos, utilice la opción Preferencias del menú Sistema.";
-                        this.note2.Title = "Información";
                         // 
                         // EntradaNumero
                         // 
                         this.EntradaNumero.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaNumero.Location = new System.Drawing.Point(140, 0);
                         this.EntradaNumero.Name = "EntradaNumero";
-                        this.EntradaNumero.ReadOnly = false;
                         this.EntradaNumero.Size = new System.Drawing.Size(72, 24);
                         this.EntradaNumero.TabIndex = 1;
                         this.EntradaNumero.Text = "0";
                         // 
-                        // Label3
+                        // label11
                         // 
-                        this.Label3.Location = new System.Drawing.Point(0, 0);
-                        this.Label3.Name = "Label3";
-                        this.Label3.Size = new System.Drawing.Size(140, 24);
-                        this.Label3.TabIndex = 0;
-                        this.Label3.Text = "Punto de Venta";
-                        this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.label11.Location = new System.Drawing.Point(72, 280);
+                        this.label11.Name = "label11";
+                        this.label11.Size = new System.Drawing.Size(140, 24);
+                        this.label11.TabIndex = 13;
+                        this.label11.Text = "Usa Talonarios";
+                        this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaImpresora
                         // 
+                        this.EntradaImpresora.AutoTab = true;
                         this.EntradaImpresora.CanCreate = true;
-                        this.EntradaImpresora.Filter = "";
                         this.EntradaImpresora.Location = new System.Drawing.Point(140, 64);
                         this.EntradaImpresora.MaxLength = 200;
                         this.EntradaImpresora.Name = "EntradaImpresora";
+                        this.EntradaImpresora.NombreTipo = "Lbl.Impresion.Impresora";
                         this.EntradaImpresora.PlaceholderText = "Impresora";
-                        this.EntradaImpresora.ReadOnly = false;
                         this.EntradaImpresora.Required = true;
                         this.EntradaImpresora.Size = new System.Drawing.Size(500, 24);
                         this.EntradaImpresora.TabIndex = 5;
-                        this.EntradaImpresora.NombreTipo = "Lbl.Impresion.Impresora";
                         this.EntradaImpresora.Text = "0";
                         // 
                         // label10
@@ -381,12 +349,12 @@ namespace Lfc.Pvs
                         this.Controls.Add(this.EntradaImpresora);
                         this.Controls.Add(this.label10);
                         this.Controls.Add(this.EntradaTipoFac);
-                        this.Controls.Add(this.note2);
-                        this.Controls.Add(this.Label3);
+                        this.Controls.Add(this.label3);
+                        this.Controls.Add(this.label9);
                         this.Controls.Add(this.label8);
                         this.Controls.Add(this.EntradaDeTalonario);
                         this.Controls.Add(this.EntradaSucursal);
-                        this.Controls.Add(this.label9);
+                        this.Controls.Add(this.label11);
                         this.Controls.Add(this.label4);
                         this.Controls.Add(this.EntradaBps);
                         this.Controls.Add(this.label2);
@@ -410,10 +378,29 @@ namespace Lfc.Pvs
                 }
                 #endregion
 
-                private Lui.Forms.Note note2;
+                private Lui.Forms.Label label3;
                 internal Lui.Forms.TextBox EntradaNumero;
-                internal Lui.Forms.Label Label3;
+                internal Lui.Forms.Label label11;
                 internal Lcc.Entrada.CodigoDetalle EntradaImpresora;
                 internal Lui.Forms.Label label10;
+                internal Lui.Forms.Label Label16;
+                internal Lui.Forms.Label label1;
+                internal Lui.Forms.Label label2;
+                internal Lui.Forms.ComboBox EntradaTipo;
+                internal Lui.Forms.TextBox EntradaEstacion;
+                internal Lui.Forms.ComboBox EntradaCarga;
+                internal Lui.Forms.Button BotonEstacionSeleccionar;
+                internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
+                internal Lui.Forms.Label label4;
+                internal Lui.Forms.Label label5;
+                internal Lui.Forms.Label label6;
+                internal Lui.Forms.Label label7;
+                internal Lui.Forms.ComboBox EntradaModelo;
+                internal Lui.Forms.ComboBox EntradaPuerto;
+                internal Lui.Forms.ComboBox EntradaBps;
+                internal Lui.Forms.ComboBox EntradaTipoFac;
+                internal Lui.Forms.Label label8;
+                internal Lui.Forms.ComboBox EntradaDeTalonario;
+                internal Lui.Forms.Label label9;
         }
 }

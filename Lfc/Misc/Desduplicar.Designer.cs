@@ -64,7 +64,6 @@ namespace Lfc.Misc
                         this.EntradaElementoOriginal = new Lcc.Entrada.CodigoDetalle();
                         this.txtTipo = new Lui.Forms.ComboBox();
                         this.label3 = new Lui.Forms.Label();
-                        this.note1 = new Lui.Forms.Note();
                         this.PanelPersona = new Lui.Forms.Panel();
                         this.EntradaCtaCteFinal = new Lui.Forms.TextBox();
                         this.label4 = new Lui.Forms.Label();
@@ -72,16 +71,9 @@ namespace Lfc.Misc
                         this.label2 = new Lui.Forms.Label();
                         this.EntradaCtaCte1 = new Lui.Forms.TextBox();
                         this.label1 = new Lui.Forms.Label();
+                        this.label5 = new Lui.Forms.Label();
                         this.PanelPersona.SuspendLayout();
                         this.SuspendLayout();
-                        // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
                         // 
                         // EtiquetaElemento1
                         // 
@@ -94,16 +86,15 @@ namespace Lfc.Misc
                         // 
                         // EntradaElementoDuplicado
                         // 
+                        this.EntradaElementoDuplicado.AutoTab = true;
                         this.EntradaElementoDuplicado.CanCreate = true;
-                        this.EntradaElementoDuplicado.Filter = "";
                         this.EntradaElementoDuplicado.Location = new System.Drawing.Point(152, 88);
                         this.EntradaElementoDuplicado.MaxLength = 200;
                         this.EntradaElementoDuplicado.Name = "EntradaElementoDuplicado";
-                        this.EntradaElementoDuplicado.ReadOnly = false;
+                        this.EntradaElementoDuplicado.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaElementoDuplicado.Required = true;
                         this.EntradaElementoDuplicado.Size = new System.Drawing.Size(456, 24);
                         this.EntradaElementoDuplicado.TabIndex = 5;
-                        this.EntradaElementoDuplicado.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaElementoDuplicado.Text = "0";
                         this.EntradaElementoDuplicado.TextChanged += new System.EventHandler(this.EntradaElementoDuplicado_TextChanged);
                         // 
@@ -118,16 +109,15 @@ namespace Lfc.Misc
                         // 
                         // EntradaElementoOriginal
                         // 
+                        this.EntradaElementoOriginal.AutoTab = true;
                         this.EntradaElementoOriginal.CanCreate = true;
-                        this.EntradaElementoOriginal.Filter = "";
                         this.EntradaElementoOriginal.Location = new System.Drawing.Point(152, 56);
                         this.EntradaElementoOriginal.MaxLength = 200;
                         this.EntradaElementoOriginal.Name = "EntradaElementoOriginal";
-                        this.EntradaElementoOriginal.ReadOnly = false;
+                        this.EntradaElementoOriginal.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaElementoOriginal.Required = true;
                         this.EntradaElementoOriginal.Size = new System.Drawing.Size(456, 24);
                         this.EntradaElementoOriginal.TabIndex = 3;
-                        this.EntradaElementoOriginal.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaElementoOriginal.Text = "0";
                         this.EntradaElementoOriginal.TextChanged += new System.EventHandler(this.EntradaElementoOriginal_TextChanged);
                         // 
@@ -137,10 +127,9 @@ namespace Lfc.Misc
                         this.txtTipo.AutoSize = true;
                         this.txtTipo.Location = new System.Drawing.Point(152, 24);
                         this.txtTipo.Name = "txtTipo";
-                        this.txtTipo.ReadOnly = false;
                         this.txtTipo.SetData = new string[] {
         "Persona|personas"};
-                        this.txtTipo.Size = new System.Drawing.Size(140, 21);
+                        this.txtTipo.Size = new System.Drawing.Size(140, 22);
                         this.txtTipo.TabIndex = 1;
                         this.txtTipo.TextKey = "personas";
                         // 
@@ -152,21 +141,6 @@ namespace Lfc.Misc
                         this.label3.TabIndex = 0;
                         this.label3.Text = "Tipo de registro";
                         this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // note1
-                        // 
-                        this.note1.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.note1.Location = new System.Drawing.Point(16, 232);
-                        this.note1.Name = "note1";
-                        this.note1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-                        this.note1.ReadOnly = false;
-                        this.note1.Size = new System.Drawing.Size(604, 68);
-                        this.note1.TabIndex = 7;
-                        this.note1.TabStop = false;
-                        this.note1.Text = "Todos los datos relacionados al registro 2, como su cuenta corriente, comprobante" +
-    "s y movimientos de caja o stock, pasarán al registro 1. El registro 2 será enton" +
-    "ces eliminado.";
-                        this.note1.Title = "Nota";
                         // 
                         // PanelPersona
                         // 
@@ -187,7 +161,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCteFinal.Location = new System.Drawing.Point(276, 72);
                         this.EntradaCtaCteFinal.Name = "EntradaCtaCteFinal";
                         this.EntradaCtaCteFinal.Prefijo = "$";
-                        this.EntradaCtaCteFinal.ReadOnly = false;
                         this.EntradaCtaCteFinal.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCteFinal.TabIndex = 5;
                         this.EntradaCtaCteFinal.TabStop = false;
@@ -208,7 +181,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte2.Location = new System.Drawing.Point(276, 36);
                         this.EntradaCtaCte2.Name = "EntradaCtaCte2";
                         this.EntradaCtaCte2.Prefijo = "$";
-                        this.EntradaCtaCte2.ReadOnly = false;
                         this.EntradaCtaCte2.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCte2.TabIndex = 3;
                         this.EntradaCtaCte2.TabStop = false;
@@ -230,7 +202,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte1.Location = new System.Drawing.Point(276, 8);
                         this.EntradaCtaCte1.Name = "EntradaCtaCte1";
                         this.EntradaCtaCte1.Prefijo = "$";
-                        this.EntradaCtaCte1.ReadOnly = false;
                         this.EntradaCtaCte1.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCte1.TabIndex = 1;
                         this.EntradaCtaCte1.TabStop = false;
@@ -246,19 +217,30 @@ namespace Lfc.Misc
                         this.label1.Text = "Saldo registro 1";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // label5
+                        // 
+                        this.label5.Location = new System.Drawing.Point(28, 248);
+                        this.label5.Name = "label5";
+                        this.label5.Size = new System.Drawing.Size(580, 48);
+                        this.label5.TabIndex = 51;
+                        this.label5.Text = "Todos los datos relacionados al registro 2, como su cuenta corriente, comprobante" +
+    "s y movimientos de caja o stock, pasarán al registro 1. El registro 2 será enton" +
+    "ces eliminado.";
+                        // 
                         // Desduplicar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(634, 372);
+                        this.Controls.Add(this.label5);
                         this.Controls.Add(this.PanelPersona);
-                        this.Controls.Add(this.note1);
                         this.Controls.Add(this.txtTipo);
                         this.Controls.Add(this.label3);
                         this.Controls.Add(this.EntradaElementoOriginal);
                         this.Controls.Add(this.EntradaElementoDuplicado);
                         this.Controls.Add(this.EtiquetaElemento2);
                         this.Controls.Add(this.EtiquetaElemento1);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Desduplicar";
                         this.Text = "Desduplicar";
                         this.Controls.SetChildIndex(this.EtiquetaElemento1, 0);
@@ -267,8 +249,8 @@ namespace Lfc.Misc
                         this.Controls.SetChildIndex(this.EntradaElementoOriginal, 0);
                         this.Controls.SetChildIndex(this.label3, 0);
                         this.Controls.SetChildIndex(this.txtTipo, 0);
-                        this.Controls.SetChildIndex(this.note1, 0);
                         this.Controls.SetChildIndex(this.PanelPersona, 0);
+                        this.Controls.SetChildIndex(this.label5, 0);
                         this.PanelPersona.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();
@@ -283,7 +265,6 @@ namespace Lfc.Misc
                 internal Lcc.Entrada.CodigoDetalle EntradaElementoOriginal;
                 internal Lui.Forms.ComboBox txtTipo;
                 internal Lui.Forms.Label label3;
-                private Lui.Forms.Note note1;
                 private Lui.Forms.Panel PanelPersona;
                 internal Lui.Forms.Label label1;
                 private Lui.Forms.TextBox EntradaCtaCte2;
@@ -291,5 +272,6 @@ namespace Lfc.Misc
                 private Lui.Forms.TextBox EntradaCtaCte1;
                 private Lui.Forms.TextBox EntradaCtaCteFinal;
                 internal Lui.Forms.Label label4;
+                private Lui.Forms.Label label5;
         }
 }

@@ -43,6 +43,7 @@ namespace Lfc.Comprobantes.Facturas
         {
                 public SaldoEnCuentaCorriente()
                 {
+                        this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
                 }
 

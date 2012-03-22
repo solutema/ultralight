@@ -259,20 +259,21 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                                 return new Lfx.Types.FailureOperationResult("El valor de la factura y/o el saldo en cuenta corriente supera el límite de crédito de este cliente.");
                                 } else {
                                         if (SaldoCtaCte < 0) {
-                                                SaldoEnCuentaCorriente FormularioError = new SaldoEnCuentaCorriente();
-
-                                                switch (FormularioError.ShowDialog()) {
-                                                        case DialogResult.Yes:
-                                                                //Corregir el problema
-                                                                this.EntradaFormaPago.ValueInt = 3;
-                                                                Comprob.FormaDePago.Tipo = Lbl.Pagos.TiposFormasDePago.CuentaCorriente;
-                                                                break;
-                                                        case DialogResult.No:
-                                                                //Continuar. No corregir el problema.
-                                                                break;
-                                                        default:
-                                                                //Cancelar y volver a la edición.
-                                                                return new Lfx.Types.OperationResult(false);
+                                                using (SaldoEnCuentaCorriente FormularioError = new SaldoEnCuentaCorriente()) {
+                                                        switch (FormularioError.ShowDialog()) {
+                                                                case DialogResult.Yes:
+                                                                        //Corregir el problema
+                                                                        this.EntradaFormaPago.ValueInt = 3;
+                                                                        this.Save();
+                                                                        Comprob.FormaDePago.Tipo = Lbl.Pagos.TiposFormasDePago.CuentaCorriente;
+                                                                        break;
+                                                                case DialogResult.No:
+                                                                        //Continuar. No corregir el problema.
+                                                                        break;
+                                                                default:
+                                                                        //Cancelar y volver a la edición.
+                                                                        return new Lfx.Types.OperationResult(false);
+                                                        }
                                                 }
                                         }
                                 }

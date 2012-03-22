@@ -7,7 +7,8 @@ UPDATE articulos SET unidad_stock='u' WHERE unidad_stock='' OR unidad_stock IS N
 DELETE FROM sys_log WHERE comando='LogOff';
 UPDATE sys_log SET comando='LogOn' WHERE comando='Logon';
 UPDATE ciudades SET iva=1 WHERE id_ciudad=24;
-
+UPDATE documentos_tipos SET compra=1 WHERE id_tipo NOT IN (53, 54, 58);
+UPDATE documentos_tipos SET venta=1 WHERE id_tipo NOT IN (58);
 
 REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "fecha", "signo", "iso", "cotizacion", "decimales") VALUES
 	(1, 'Dólares', NULL, 1, NULL, 'USD', 'USD', 1.0000, 2),

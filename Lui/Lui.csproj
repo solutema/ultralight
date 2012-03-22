@@ -185,12 +185,6 @@
     <Compile Include="Forms\Frame.Designer.cs">
       <DependentUpon>Frame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Note.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Note.Designer.cs">
-      <DependentUpon>Note.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\OrientedLabel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -360,10 +354,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frame.resx">
       <DependentUpon>Frame.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Note.resx">
-      <DependentUpon>Note.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TextBoxBase.resx">

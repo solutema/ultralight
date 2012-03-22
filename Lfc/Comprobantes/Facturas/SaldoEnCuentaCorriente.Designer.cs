@@ -58,30 +58,33 @@ namespace Lfc.Comprobantes.Facturas
                 /// </summary>
                 private void InitializeComponent()
                 {
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaldoEnCuentaCorriente));
                         this.label2 = new Lui.Forms.Label();
                         this.label1 = new Lui.Forms.Label();
                         this.BotonCancelar = new Lui.Forms.Button();
                         this.BotonContinuar = new Lui.Forms.Button();
                         this.BotonCorregir = new Lui.Forms.Button();
+                        this.pictureBox2 = new System.Windows.Forms.PictureBox();
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // label2
                         // 
-                        this.label2.Location = new System.Drawing.Point(24, 64);
+                        this.label2.Location = new System.Drawing.Point(88, 56);
                         this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(584, 40);
+                        this.label2.Size = new System.Drawing.Size(520, 48);
                         this.label2.TabIndex = 1;
-                        this.label2.Text = "El cliente registra un saldo a favor en su cuenta corriente, suficiente para cubr" +
-    "ir el total de la factura que va a imprimir. ¿Desea imprimir esta factura en cue" +
-    "nta corriente?";
+                        this.label2.Text = "El cliente tiene saldo a favor en su cuenta corriente, suficiente para cubrir el " +
+    "total de la factura que va a imprimir. ¿Desea imprimir esta factura en cuenta co" +
+    "rriente?";
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(24, 24);
+                        this.label1.Location = new System.Drawing.Point(88, 24);
                         this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(584, 28);
+                        this.label1.Size = new System.Drawing.Size(520, 28);
                         this.label1.TabIndex = 0;
                         this.label1.Text = "Posible error en la forma de pago";
                         this.label1.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.MainHeader;
@@ -91,16 +94,15 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonCancelar.Image = null;
+                        this.BotonCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BotonCancelar.Image")));
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCancelar.Location = new System.Drawing.Point(24, 280);
+                        this.BotonCancelar.Location = new System.Drawing.Point(88, 304);
                         this.BotonCancelar.Name = "BotonCancelar";
-                        this.BotonCancelar.Size = new System.Drawing.Size(584, 68);
+                        this.BotonCancelar.Size = new System.Drawing.Size(520, 72);
                         this.BotonCancelar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-                        this.BotonCancelar.Subtext = "No imprime la factura. Sólo vuelve al formulario anterior para revisar lo que est" +
-    "aba haciendo.";
+                        this.BotonCancelar.Subtext = "No imprime la factura. Sólo vuelve al formulario anterior.";
                         this.BotonCancelar.TabIndex = 4;
-                        this.BotonCancelar.Text = "Volver al formulario anterior";
+                        this.BotonCancelar.Text = "Volver atrás";
                         this.BotonCancelar.Click += new System.EventHandler(this.BotonCancelar_Click);
                         // 
                         // BotonContinuar
@@ -108,17 +110,16 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonContinuar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonContinuar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonContinuar.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonContinuar.Image = null;
+                        this.BotonContinuar.Image = ((System.Drawing.Image)(resources.GetObject("BotonContinuar.Image")));
                         this.BotonContinuar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonContinuar.Location = new System.Drawing.Point(24, 200);
+                        this.BotonContinuar.Location = new System.Drawing.Point(88, 208);
                         this.BotonContinuar.Name = "BotonContinuar";
-                        this.BotonContinuar.Size = new System.Drawing.Size(584, 68);
+                        this.BotonContinuar.Size = new System.Drawing.Size(520, 80);
                         this.BotonContinuar.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-                        this.BotonContinuar.Subtext = "Los pagos ingresados con anterioridad no corresponden a esta factura. El saldo en" +
-    " la cuenta corriente del cliente no se modifica, y deberá informar un pago para " +
-    "esta factura.";
+                        this.BotonContinuar.Subtext = "Los pagos ingresados con anterioridad no corresponden a esta factura. Esta factur" +
+    "a llevará un pago aparte.";
                         this.BotonContinuar.TabIndex = 3;
-                        this.BotonContinuar.Text = "Imprimir la factura con un pago separado";
+                        this.BotonContinuar.Text = "No, usar la forma de pago que yo seleccioné";
                         this.BotonContinuar.Click += new System.EventHandler(this.BotonContinuar_Click);
                         // 
                         // BotonCorregir
@@ -126,23 +127,33 @@ namespace Lfc.Comprobantes.Facturas
                         this.BotonCorregir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonCorregir.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCorregir.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.BotonCorregir.Image = null;
+                        this.BotonCorregir.Image = ((System.Drawing.Image)(resources.GetObject("BotonCorregir.Image")));
                         this.BotonCorregir.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCorregir.Location = new System.Drawing.Point(24, 120);
+                        this.BotonCorregir.Location = new System.Drawing.Point(88, 112);
                         this.BotonCorregir.Name = "BotonCorregir";
-                        this.BotonCorregir.Size = new System.Drawing.Size(584, 68);
+                        this.BotonCorregir.Size = new System.Drawing.Size(520, 80);
                         this.BotonCorregir.SubLabelPos = Lui.Forms.SubLabelPositions.LongBottom;
-                        this.BotonCorregir.Subtext = "Seleccione esta opción si los pagos ingresados con anterioridad corresponden a es" +
-    "ta factura. No será necesario informar más pagos para esta factura.";
+                        this.BotonCorregir.Subtext = "La factura quedará pagada utilizando el saldo que se encuentra en la cuenta del c" +
+    "liente.";
                         this.BotonCorregir.TabIndex = 2;
-                        this.BotonCorregir.Text = "Imprimir la factura en cuenta corriente";
+                        this.BotonCorregir.Text = "Si, usar la cuenta corriente del cliente";
                         this.BotonCorregir.Click += new System.EventHandler(this.BotonCorregir_Click);
+                        // 
+                        // pictureBox2
+                        // 
+                        this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+                        this.pictureBox2.Location = new System.Drawing.Point(24, 24);
+                        this.pictureBox2.Name = "pictureBox2";
+                        this.pictureBox2.Size = new System.Drawing.Size(52, 49);
+                        this.pictureBox2.TabIndex = 6;
+                        this.pictureBox2.TabStop = false;
                         // 
                         // SaldoEnCuentaCorriente
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(634, 376);
+                        this.ClientSize = new System.Drawing.Size(634, 400);
+                        this.Controls.Add(this.pictureBox2);
                         this.Controls.Add(this.BotonCancelar);
                         this.Controls.Add(this.BotonContinuar);
                         this.Controls.Add(this.BotonCorregir);
@@ -152,7 +163,8 @@ namespace Lfc.Comprobantes.Facturas
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
                         this.Name = "SaldoEnCuentaCorriente";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-                        this.Text = "Cliente con saldo a favor en cuenta corriente";
+                        this.Text = "Cliente con saldo a favor";
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
                         this.ResumeLayout(false);
 
                 }
@@ -164,5 +176,6 @@ namespace Lfc.Comprobantes.Facturas
                 private Lui.Forms.Button BotonCancelar;
                 private Lui.Forms.Button BotonContinuar;
                 private Lui.Forms.Button BotonCorregir;
+                private System.Windows.Forms.PictureBox pictureBox2;
         }
 }

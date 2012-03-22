@@ -73,12 +73,6 @@ namespace Lfc.Comprobantes.Compra
                                 Res.Message += "Por favor seleccione un depósito de destino." + Environment.NewLine;
                         }
 
-                        if (Lbl.Comprobantes.Tipo.TodosPorLetra.ContainsKey(EntradaTipo.TextKey) == false) {
-                                Res.Success = false;
-                                Res.Message += "No existe el tipo de comprobante de compra " + EntradaTipo.TextKey + Environment.NewLine;
-                                throw new Exception(Res.Message);
-                        }
-
                         if (EntradaProveedor.ValueInt == 0) {
                                 Res.Success = false;
                                 Res.Message += "Por favor seleccione el proveedor." + Environment.NewLine;
