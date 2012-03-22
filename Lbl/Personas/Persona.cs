@@ -41,7 +41,7 @@ namespace Lbl.Personas
         [Lbl.Atributos.Nomenclatura(NombreSingular = "Persona")]
         [Lbl.Atributos.Datos(TablaDatos = "personas", CampoId = "id_persona", CampoNombre = "nombre_visible", TablaImagenes = "personas_imagenes")]
         [Lbl.Atributos.Presentacion(PanelExtendido = Lbl.Atributos.PanelExtendido.Siempre)]
-        public class Persona : ElementoDeDatos, IElementoConImagen, ICamposBaseEstandar
+        public class Persona : ElementoDeDatos, IElementoConImagen, ICamposBaseEstandar, IEstadosEstandar
 	{
                 private Entidades.Localidad m_Localidad = null;
                 private Grupo m_Grupo = null, m_SubGrupo = null;
@@ -292,6 +292,7 @@ namespace Lbl.Personas
                                 this.SetFieldValue("estadocredito", (int)value);
                         }
 		}
+
 
 		public string FacturaPreferida
 		{
@@ -640,6 +641,18 @@ namespace Lbl.Personas
                                 m_Vendedor = value;
                                 this.SetFieldValue("id_vendedor", value);
                         }
+                }
+
+
+                public void Activar(bool activar)
+                {
+                        this.Estado = 0;
+                        qGen.Update ActCmd = new qGen.Update(this.TablaDatos);
+                        ActCmd.Fields.AddWithValue("estado", activar ? 1 : 0);
+                        ActCmd.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
+                        ActCmd.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                        this.Connection.Execute(ActCmd);
+                        Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.Delete, this, activar ? "Activar" : "Desactivar");
                 }
 	}
 }

@@ -289,6 +289,22 @@ namespace Lbl
 
 
                 /// <summary>
+                /// Devuelve o establece el estado del elemento. El valor de esta propiedad tiene diferentes significados para cada clase derivada.
+                /// </summary>
+                public virtual Lbl.Estados EstadoEstandar
+                {
+                        get
+                        {
+                                return this.GetFieldValue<Lbl.Estados>("estado");
+                        }
+                        set
+                        {
+                                this.Registro["estado"] = (int)(value);
+                        }
+                }
+
+
+                /// <summary>
                 /// Devuelve o establece las marcas del elemento (destacado, protegido, etc.)
                 /// </summary>
                 public virtual Marcas Marcas

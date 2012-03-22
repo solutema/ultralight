@@ -59,9 +59,9 @@ namespace Lui.Forms
 
                 private void OkButton_Click(object sender, System.EventArgs e)
 		{
-                        this.Enabled = false;
+                        this.LowerPanel.Enabled = false;
 			Lfx.Types.OperationResult res = Ok();
-                        this.Enabled = true;
+                        this.LowerPanel.Enabled = true;
 
 			if (res.Success == true) {
 				this.DialogResult = DialogResult.OK;

@@ -650,7 +650,6 @@ namespace Lfc.Comprobantes.Plantillas
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         SaveFileDialog FileDialog = new SaveFileDialog();
-                        FileDialog.AutoUpgradeEnabled = true;
                         FileDialog.CheckFileExists = false;
                         FileDialog.CheckPathExists = true;
                         FileDialog.InitialDirectory = System.IO.Path.Combine(Lfx.Environment.Folders.UserFolder, "Plantillas");
@@ -695,7 +694,6 @@ namespace Lfc.Comprobantes.Plantillas
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;
 
                         OpenFileDialog FileDialog = new OpenFileDialog();
-                        FileDialog.AutoUpgradeEnabled = true;
                         FileDialog.CheckFileExists = true;
                         FileDialog.CheckPathExists = true;
                         FileDialog.InitialDirectory = System.IO.Path.Combine(Lfx.Environment.Folders.UserFolder, "Plantillas");

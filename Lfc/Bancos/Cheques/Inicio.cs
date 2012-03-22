@@ -142,20 +142,6 @@ namespace Lfc.Bancos.Cheques
                         }
                 }
 
-                public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
-                {
-                        using (IDbTransaction Trans = this.Connection.BeginTransaction()) {
-                                qGen.Update Actua = new qGen.Update("bancos_cheques");
-                                Actua.Fields.AddWithValue("estado", 90);
-                                Actua.WhereClause = new qGen.Where("id_cheque", qGen.ComparisonOperators.In, itemIds);
-                                this.Connection.Execute(Actua);
-                                Trans.Commit();
-                        }
-
-                        this.RefreshList();
-
-                        return base.OnDelete(itemIds);
-                }
 
                 public override Lfx.Types.OperationResult OnFilter()
                 {

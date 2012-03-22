@@ -94,19 +94,6 @@ namespace Lfc
                 }
 
 
-                public virtual Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
-                {
-                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
-                                foreach (int itemId in itemIds) {
-                                        this.Connection.Tables[this.Definicion.TableName].FastRows.RemoveFromCache(itemId);
-                                }
-
-                                return new Lfx.Types.SuccessOperationResult();
-                        } else {
-                                return new Lfx.Types.NoAccessOperationResult();
-                        }
-                }
-
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -169,25 +156,6 @@ namespace Lfc
                                         case Keys.F3:
                                                 e.Handled = true;
                                                 EntradaBuscar.Focus();
-                                                break;
-                                        case Keys.Delete:
-                                                e.Handled = true;
-                                                Lbl.ListaIds Codigos = this.CodigosSeleccionados;
-
-                                                if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
-                                                        if (Codigos != null && Codigos.Count > 0) {
-                                                                string EstaSeguro = "¿Está seguro de que desea eliminar ";
-                                                                if (Codigos.Count == 1)
-                                                                        EstaSeguro += "el elemento seleccionado?";
-                                                                else
-                                                                        EstaSeguro += "los " + Codigos.Count.ToString() + " elementos seleccionado?";
-                                                                Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(EstaSeguro, "Eliminar");
-                                                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                                                                if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                                                                        this.OnDelete(Codigos);
-                                                                }
-                                                        }
-                                                }
                                                 break;
                                 }
                         }

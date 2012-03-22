@@ -39,11 +39,14 @@ namespace Lfc
 {
         public partial class FormularioListadoBase : Lui.Forms.ChildForm
         {
+                // La definición del listado
+                public Lazaro.Pres.Listings.Listing Definicion { get; set; }
+                public List<Contador> Contadores = new List<Contador>();
+
+                public bool HabilitarBorrar { get; set; }
+
                 // Miembros privados
                 protected string m_SearchText = string.Empty;
-
-                // La definición del listado
-                public Lazaro.Pres.Listings.Listing Definicion = null;
 
                 protected Dictionary<string, int> FormFieldToSubItem = new Dictionary<string, int>();
                 protected Dictionary<string, int> SubItemToFormField = new Dictionary<string, int>();
@@ -59,10 +62,11 @@ namespace Lfc
                 protected List<int> m_Labels = null;
                 protected string m_LabelField = null;
 
-                public List<Contador> Contadores = new List<Contador>();
-
                 private Dictionary<int, ListViewItem> ItemListado = new Dictionary<int, ListViewItem>();
                 private Lui.Forms.ListViewColumnSorter Sorter = new Lui.Forms.ListViewColumnSorter();
+
+                private Lbl.Atributos.Nomenclatura m_AtributoNomenclatura = null;
+                private Lbl.Atributos.Datos m_AtributoDatos = null;
 
                 public FormularioListadoBase()
                 {
@@ -71,6 +75,37 @@ namespace Lfc
                         this.StockImage = "listado";
 
                         RefreshTimer.Start();
+                }
+
+
+                public Type ElementoTipo
+                {
+                        get
+                        {
+                                return this.Definicion.ElementoTipo;
+                        }
+                }
+
+
+                public Lbl.Atributos.Nomenclatura AtributoNomenclatura
+                {
+                        get
+                        {
+                                if (m_AtributoNomenclatura == null && this.ElementoTipo != null)
+                                        m_AtributoNomenclatura = this.ElementoTipo.GetAttribute<Lbl.Atributos.Nomenclatura>();
+                                return m_AtributoNomenclatura;
+                        }
+                }
+
+
+                public Lbl.Atributos.Datos AtributoDatos
+                {
+                        get
+                        {
+                                if (m_AtributoDatos == null && this.ElementoTipo != null)
+                                        m_AtributoDatos = this.ElementoTipo.GetAttribute<Lbl.Atributos.Datos>();
+                                return m_AtributoDatos;
+                        }
                 }
 
 
@@ -104,6 +139,7 @@ namespace Lfc
                                 BotonImprimir.Visible = value;
                         }
                 }
+
 
 
                 [EditorBrowsable(EditorBrowsableState.Never),
@@ -195,6 +231,20 @@ namespace Lfc
                                 this.RefreshList();
                         }
                 }
+
+
+                /* public virtual Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
+                {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
+                                foreach (int itemId in itemIds) {
+                                        this.Connection.Tables[this.Definicion.TableName].FastRows.RemoveFromCache(itemId);
+                                }
+
+                                return new Lfx.Types.SuccessOperationResult();
+                        } else {
+                                return new Lfx.Types.NoAccessOperationResult();
+                        }
+                } */
 
 
                 public virtual Lfx.Types.OperationResult OnPrint(bool selectPrinter)
@@ -499,8 +549,54 @@ namespace Lfc
                                                                 Lui.Forms.MessageBox.Show(Res.Message, "Error");
                                                 }
                                                 break;
+                                        case Keys.Delete:
+                                                if (this.HabilitarBorrar || this.ElementoTipo.GetInterface("Lbl.IEstadosEstandar") != null) {
+                                                        e.Handled = true;
+                                                        Lbl.ListaIds Codigos = this.CodigosSeleccionados;
+
+                                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
+                                                                if (Codigos != null && Codigos.Count > 0) {
+                                                                        string EstaSeguro = "¿Está seguro de que desea desactivar ";
+                                                                        if (Codigos.Count == 1)
+                                                                                EstaSeguro += "el elemento seleccionado?";
+                                                                        else
+                                                                                EstaSeguro += "los " + Codigos.Count.ToString() + " elementos seleccionado?";
+                                                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(EstaSeguro, "Desactivar");
+                                                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                                                        if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                                                                                Lfx.Types.OperationResult Res = this.SolicitudEliminacion(Codigos);
+                                                                                if (Res.Success == false && string.IsNullOrEmpty(Res.Message) == false)
+                                                                                        Lfx.Workspace.Master.RunTime.Toast(Res.Message, "Error");
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+                                                break;
                                 }
                         }
+                }
+
+                public virtual Lfx.Types.OperationResult SolicitudEliminacion(Lbl.ListaIds codigos)
+                {
+                        return this.DesactivarRegistros(codigos);
+                }
+
+                public virtual Lfx.Types.OperationResult DesactivarRegistros(Lbl.ListaIds codigos)
+                {
+                        System.Data.IDbTransaction Trans = this.Connection.BeginTransaction();
+
+                        qGen.Select SelElementos = new qGen.Select(this.AtributoDatos.TablaDatos);
+                        SelElementos.WhereClause = new qGen.Where(this.AtributoDatos.CampoId, qGen.ComparisonOperators.In, codigos.ToArray());
+
+                        System.Data.DataTable TablaElementos = this.Connection.Select(SelElementos);
+                        foreach(System.Data.DataRow RegElem in TablaElementos.Rows) {
+                                Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.ElementoTipo, this.Connection, (Lfx.Data.Row)RegElem);
+                                if (Elem is Lbl.IEstadosEstandar)
+                                        ((Lbl.IEstadosEstandar)(Elem)).Activar(false);
+                        }
+                        Trans.Commit();
+
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
                 protected virtual Lfx.Types.OperationResult OnEdit(int itemId)

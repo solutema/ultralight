@@ -46,8 +46,8 @@ namespace Lcc.Entrada.AuxForms
                 private bool m_CanCreate = false;
                 private bool m_IgnoreEvents;
                 private Type m_ElementoTipo;
-                private Lbl.Atributos.Nomenclatura AttrNom;
-
+                
+                private Lbl.Atributos.Nomenclatura AttrNom = null;
                 public System.Windows.Forms.Control ControlDestino { get; set; }
 
                 public BusquedaRapida()

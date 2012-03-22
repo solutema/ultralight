@@ -109,6 +109,7 @@
     <Compile Include="Entidades\ClaveUnica.cs" />
     <Compile Include="Entidades\Pais.cs" />
     <Compile Include="Estados.cs" />
+    <Compile Include="IEstadosEstandar.cs" />
     <Compile Include="IMarcas.cs" />
     <Compile Include="ICuenta.cs" />
     <Compile Include="IElementoDeDatos.cs" />

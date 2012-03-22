@@ -54,11 +54,11 @@ namespace Lfc.Comprobantes.Recibos
 
 		public override Lfx.Types.OperationResult Ok()
 		{
-			if(EntradaCaja.ValueInt <= 0)
-				return new Lfx.Types.FailureOperationResult("Debe especificar la Caja de destino");
+                        if (Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) <= 0)
+                                return new Lfx.Types.FailureOperationResult("Por favor escriba el importe.");
 
-			if(Lfx.Types.Parsing.ParseCurrency(EntradaImporte.Text) <= 0)
-				return new Lfx.Types.FailureOperationResult("Debe especificar el importe");
+			if(EntradaCaja.ValueInt <= 0)
+				return new Lfx.Types.FailureOperationResult("Por favor seleccione la caja de destino.");
 
                         IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
 
@@ -90,10 +90,12 @@ namespace Lfc.Comprobantes.Recibos
                                         }
                                 }
 
-                                string Nombrecliente = EntradaCliente.TextDetail;
+                                string NombreCliente = EntradaCliente.TextDetail;
+                                Lfx.Workspace.Master.RunTime.Toast("Se creo un recibo para el cliente " + NombreCliente, "Recibo rápido");
+
                                 EntradaCliente.ValueInt = 0;
                                 EntradaCliente.Focus();
-                                return new Lfx.Types.FailureOperationResult("Se creo el recibo para el cliente " + Nombrecliente);
+                                return new Lfx.Types.CancelOperationResult();
                         } else {
                                 Trans.Rollback();
                                 return Res;

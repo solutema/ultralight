@@ -70,6 +70,7 @@ namespace Lfc.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.EntradaProductos.Font = new System.Drawing.Font("Segoe UI", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
                         this.EntradaProductos.Location = new System.Drawing.Point(0, 32);
                         this.EntradaProductos.LockPrice = false;
@@ -100,12 +101,13 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.CanCreate = true;
                         this.EntradaCliente.Filter = "estado=1";
                         this.EntradaCliente.Location = new System.Drawing.Point(304, 0);
+                        this.EntradaCliente.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
+                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Required = true;
                         this.EntradaCliente.Size = new System.Drawing.Size(272, 24);
                         this.EntradaCliente.TabIndex = 4;
-                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
                         // 
@@ -124,12 +126,13 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.Filter = "(tipo&4)=4 AND estado=1";
                         this.EntradaVendedor.Location = new System.Drawing.Point(72, 0);
+                        this.EntradaVendedor.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
+                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Required = true;
                         this.EntradaVendedor.Size = new System.Drawing.Size(168, 24);
                         this.EntradaVendedor.TabIndex = 2;
-                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
                         // 
                         // EntradaTotal

@@ -67,6 +67,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency, "$", null));
 
                         this.HabilitarFiltrar = true;
+                        this.HabilitarBorrar = true;
                 }
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
@@ -114,10 +115,11 @@ namespace Lfc.Comprobantes.Recibos
                         return filtrarReturn;
                 }
 
-                public override Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
+
+                public override Lfx.Types.OperationResult SolicitudEliminacion(Lbl.ListaIds codigos)
                 {
-                        Lfx.Workspace.Master.RunTime.Execute("INSTANCIAR Lfc.Comprobantes.Recibos.Anular " + itemIds[0].ToString());
-                        return base.OnDelete(itemIds);
+                        Lfx.Workspace.Master.RunTime.Execute("INSTANCIAR Lfc.Comprobantes.Recibos.Anular " + codigos[0].ToString());
+                        return new Lfx.Types.SuccessOperationResult();
                 }
 
                 public override string SearchText
