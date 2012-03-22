@@ -244,5 +244,14 @@ namespace Lcc.Entrada
                                 }
                         }
                 }
+
+                protected override void OnResize(EventArgs e)
+                {
+                        if (this.Created) {
+                                PanelGrilla.Width = this.ClientRectangle.Width - PanelGrilla.Left;
+                                PanelGrilla.Height = this.ClientRectangle.Height - PanelGrilla.Top;
+                        }
+                        base.OnResize(e);
+                }
         }
 }

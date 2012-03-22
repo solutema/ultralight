@@ -37,8 +37,6 @@ namespace Lfx.Types
 {
 	public static class Currency
 	{
-		// La moneda utilizada de manera predeterminada en el sistema
-		// Es un id_moneda de la tabla "monedas" (3 = pesos)
                 public static decimal Truncate(decimal number, int decimals)
 		{
 			long Expo = System.Convert.ToInt64(Math.Pow(10, decimals));
@@ -46,14 +44,19 @@ namespace Lfx.Types
 		}
 
 
+                /// <summary>
+                /// Quita el IVA de un importe IVA incluído.
+                /// Por ejemplo, para un importe de $ 121 con una alícuota del 21%, devuelve $ 100.
+                /// </summary>
+                /// <param name="importe">El importe IVA incluído.</param>
+                /// <param name="alicuota">La tasa de IVA aplicada.</param>
+                /// <returns>El importe original, sin el IVA</returns>
                 public static decimal QuitarIva(decimal importe, decimal alicuota)
                 {
                         decimal ImporteOriginal = importe / (1 + alicuota / 100);
                         decimal Iva = Math.Round(importe - ImporteOriginal, 4);
 
-                        ImporteOriginal = Math.Round(importe - Iva, 4);
-
-                        return ImporteOriginal;
+                        return Math.Round(importe - Iva, 4);
                 }
 	}
 }

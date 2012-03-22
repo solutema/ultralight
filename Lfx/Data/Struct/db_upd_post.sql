@@ -3,8 +3,6 @@ SET FOREIGN_KEY_CHECKS=0;
 UPDATE comprob SET nombre=CONCAT(LPAD(comprob.pv, 4, '0'), '-', LPAD(comprob.numero, 8, '0')) WHERE nombre='';
 UPDATE recibos SET nombre=CONCAT(LPAD(recibos.pv, 4, '0'), '-', LPAD(recibos.numero, 8, '0')) WHERE nombre='';
 UPDATE comprob SET cancelado=total WHERE tipo_fac IN ('R', 'NV', 'PS', 'NP', 'PD');
-UPDATE sys_plantillas SET estado=1;
-UPDATE documentos_tipos SET estado=1;
 UPDATE articulos SET unidad_stock='u' WHERE unidad_stock='' OR unidad_stock IS NULL;
 DELETE FROM sys_log WHERE comando='LogOff';
 UPDATE sys_log SET comando='LogOn' WHERE comando='Logon';
