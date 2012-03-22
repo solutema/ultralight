@@ -136,7 +136,7 @@ namespace Lbl.Comprobantes
                         {
                                 decimal Res = 0;
                                 foreach (DetalleArticulo Det in this) {
-                                        Res += Det.Importe;
+                                        Res += Det.ImporteAImprimir;
                                 }
                                 return Res;
                         }

@@ -62,7 +62,7 @@ namespace Lbl.Sys
                                 get
                                 {
                                         if (m_AlicuotaPredeterminada == null) {
-                                                if (SucursalActual.Localidad.Iva == Impuestos.SituacionIva.Exento)
+                                                if (SucursalActual.Localidad.ObtenerIva() == Impuestos.SituacionIva.Exento)
                                                         // Esta localidad no tienen IVA
                                                         m_AlicuotaPredeterminada = new Impuestos.Alicuota(Lfx.Workspace.Master.MasterConnection, 4);
                                                 else if (SituacionTributaria == 4 || SituacionTributaria == 5)

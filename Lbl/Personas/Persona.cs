@@ -273,10 +273,12 @@ namespace Lbl.Personas
                 {
                         get
                         {
-                                if (this.Localidad == null)
+                                if (this.SituacionTributaria != null && this.SituacionTributaria.Id == 5)
+                                        return Impuestos.SituacionIva.Exento;
+                                else if (this.Localidad == null)
                                         return Impuestos.SituacionIva.Predeterminado;
                                 else
-                                        return this.Localidad.Iva;
+                                        return this.Localidad.ObtenerIva();
                         }
                 }
                        

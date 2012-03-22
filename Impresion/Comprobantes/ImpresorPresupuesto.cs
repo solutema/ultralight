@@ -196,7 +196,7 @@ namespace Lazaro.Impresion.Comprobantes
                                 Rect = new RectangleF(MarginLeft + PrintAreaWidth - 200, iTop, 100, 20);
                                 e.Graphics.DrawString(Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatNumber(Detalle.Unitario, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
                                 Rect = new RectangleF(MarginLeft + PrintAreaWidth - 100, iTop, 100, 20);
-                                e.Graphics.DrawString(Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatNumber(Detalle.Importe, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
+                                e.Graphics.DrawString(Lbl.Sys.Config.Moneda.Simbolo + " " + Lfx.Types.Formatting.FormatNumber(Detalle.ImporteAImprimir, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto), Fuente, Brushes.Black, Rect, FormatoRC);
                                 iTop += 20;
 
                                 if (Detalle.Articulo != null) {

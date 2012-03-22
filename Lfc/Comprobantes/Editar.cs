@@ -44,8 +44,6 @@ namespace Lfc.Comprobantes
                         ElementoTipo = typeof(Lbl.Comprobantes.ComprobanteConArticulos);
 
                         InitializeComponent();
-
-                        EntradaTotal.CustomFont = new System.Drawing.Font(this.Font.Name, 15);
                 }
 
 
@@ -293,11 +291,32 @@ namespace Lfc.Comprobantes
                 }
 
 
-                private void ProductArray_TotalChanged(System.Object sender, System.EventArgs e)
+                private void EntradaProductos_TotalChanged(System.Object sender, System.EventArgs e)
                 {
                         if (this.TemporaryReadOnly == false) {
                                 EntradaSubTotal.ValueDecimal = EntradaProductos.Total;
-                                EntradaIva.ValueDecimal = EntradaProductos.ImporteIva;
+                                Lbl.Personas.Persona Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
+
+                                decimal ImporteIva = 0;
+
+                                if (Cliente != null) {
+                                        if (Cliente.PagaIva == Lbl.Impuestos.SituacionIva.Exento)
+                                                // cliente exento
+                                                ImporteIva = 0;
+                                        else if (Cliente.Localidad != null && Cliente.Localidad.ObtenerIva() == Lbl.Impuestos.SituacionIva.Exento)
+                                                // cliente que vive en lugar exento
+                                                ImporteIva = 0;
+                                        else
+                                                // En un cliente normal
+                                                ImporteIva = EntradaProductos.ImporteIva;
+                                } else if(Lbl.Sys.Config.Empresa.AlicuotaPredeterminada.Id == 4) {
+                                        // La alícuota 4 es del 0%
+                                        ImporteIva = 0;
+                                } else {
+                                        ImporteIva = EntradaProductos.ImporteIva;
+                                }
+
+                                EntradaIva.ValueDecimal = ImporteIva;
                         }
                 }
 
@@ -337,37 +356,41 @@ namespace Lfc.Comprobantes
                                                 break;
                                 }
                         }
+
+                        // Recalculo el IVA
+                        EntradaProductos_TotalChanged(sender, e);
                 }
 
 
                 private void EditarMasDatos()
                 {
                         Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
-                        Comprobantes.FormComprobanteMasDatos OFormMasDatos = new Comprobantes.FormComprobanteMasDatos();
-                        OFormMasDatos.Owner = this.ParentForm;
-                        OFormMasDatos.EntradaDesdeSituacion.Elemento = Registro.SituacionOrigen;
-                        OFormMasDatos.EntradaHaciaSituacion.Elemento = Registro.SituacionDestino;
-                        OFormMasDatos.EntradaDesdeSituacion.TemporaryReadOnly = EntradaCliente.TemporaryReadOnly;
-                        OFormMasDatos.EntradaHaciaSituacion.TemporaryReadOnly = EntradaCliente.TemporaryReadOnly;
-                        OFormMasDatos.EntradaBloqueada.TextKey = ((Lbl.ICamposBaseEstandar)(this.Elemento)).Estado.ToString();
+                        using (Comprobantes.FormComprobanteMasDatos FormMasDatos = new Comprobantes.FormComprobanteMasDatos()) {
+                                FormMasDatos.Owner = this.ParentForm;
+                                FormMasDatos.EntradaDesdeSituacion.Elemento = Registro.SituacionOrigen;
+                                FormMasDatos.EntradaHaciaSituacion.Elemento = Registro.SituacionDestino;
+                                FormMasDatos.EntradaDesdeSituacion.TemporaryReadOnly = EntradaCliente.TemporaryReadOnly;
+                                FormMasDatos.EntradaHaciaSituacion.TemporaryReadOnly = EntradaCliente.TemporaryReadOnly;
+                                FormMasDatos.EntradaBloqueada.TextKey = ((Lbl.ICamposBaseEstandar)(this.Elemento)).Estado.ToString();
 
-                        if (Registro.Tipo.EsFactura)
-                                OFormMasDatos.EntradaDesdeSituacion.Filter = "facturable=1";
-                        else
-                                OFormMasDatos.EntradaDesdeSituacion.Filter = "";
+                                if (Registro.Tipo.EsFactura)
+                                        FormMasDatos.EntradaDesdeSituacion.Filter = "facturable=1";
+                                else
+                                        FormMasDatos.EntradaDesdeSituacion.Filter = "";
 
-                        if (OFormMasDatos.ShowDialog() == DialogResult.OK) {
-                                Lbl.Articulos.Situacion NuevoOrigen = OFormMasDatos.EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
-                                if ((NuevoOrigen == null && Registro.SituacionOrigen != null)
-                                        || (NuevoOrigen != null && Registro.SituacionOrigen == null)
-                                        || (NuevoOrigen != null && NuevoOrigen.Id != Registro.SituacionOrigen.Id)) {
-                                        // Cambió la situación de origen... borro los datos de seguimiento
+                                if (FormMasDatos.ShowDialog() == DialogResult.OK) {
+                                        Lbl.Articulos.Situacion NuevoOrigen = FormMasDatos.EntradaDesdeSituacion.Elemento as Lbl.Articulos.Situacion;
+                                        if ((NuevoOrigen == null && Registro.SituacionOrigen != null)
+                                                || (NuevoOrigen != null && Registro.SituacionOrigen == null)
+                                                || (NuevoOrigen != null && NuevoOrigen.Id != Registro.SituacionOrigen.Id)) {
+                                                // Cambió la situación de origen... borro los datos de seguimiento
                                                 EntradaProductos.BorrarDatosDeSeguimiento();
+                                        }
+                                        Registro.SituacionOrigen = NuevoOrigen;
+                                        Registro.SituacionDestino = FormMasDatos.EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
+                                        ((Lbl.ICamposBaseEstandar)(this.Elemento)).Estado = Lfx.Types.Parsing.ParseInt(FormMasDatos.EntradaBloqueada.TextKey);
+                                        this.TemporaryReadOnly = Lfx.Types.Parsing.ParseInt(FormMasDatos.EntradaBloqueada.TextKey) != 0;
                                 }
-                                Registro.SituacionOrigen = NuevoOrigen;
-                                Registro.SituacionDestino = OFormMasDatos.EntradaHaciaSituacion.Elemento as Lbl.Articulos.Situacion;
-                                ((Lbl.ICamposBaseEstandar)(this.Elemento)).Estado = Lfx.Types.Parsing.ParseInt(OFormMasDatos.EntradaBloqueada.TextKey);
-                                this.TemporaryReadOnly = Lfx.Types.Parsing.ParseInt(OFormMasDatos.EntradaBloqueada.TextKey) != 0;
                         }
                 }
 
@@ -455,7 +478,7 @@ namespace Lfc.Comprobantes
                 }
 
 
-                private void ProductArray_ObtenerDatosSeguimiento(object sender, EventArgs e)
+                private void EntradaProductos_ObtenerDatosSeguimiento(object sender, EventArgs e)
                 {
                         Lcc.Entrada.Articulos.DetalleComprobante Prod = sender as Lcc.Entrada.Articulos.DetalleComprobante;
 

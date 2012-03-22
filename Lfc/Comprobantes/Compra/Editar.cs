@@ -51,9 +51,6 @@ namespace Lfc.Comprobantes.Compra
                                         ListaTiposDeCompra.Add(Tp);
                         }
                         EntradaTipo.SetData = Lbl.Comprobantes.Tipo.ToSetData(ListaTiposDeCompra);
-
-                        EntradaTotal.CustomFont = new System.Drawing.Font(this.Font.Name, 14);
-                        EntradaCancelado.CustomFont = new System.Drawing.Font(this.Font.Name, 12);
                 }
 
 

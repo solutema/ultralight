@@ -318,10 +318,11 @@ namespace Lcc.Entrada.Articulos
                                 decimal Res = 0;
                                 foreach (DetalleComprobante Control in this.ChildControls) {
                                         Lbl.Impuestos.Alicuota Alic;
-                                        if(Control.Articulo == null)
+                                        if (Control.Articulo == null) {
                                                 Alic = Lbl.Sys.Config.Empresa.AlicuotaPredeterminada;
-                                        else
+                                        } else {
                                                 Alic = Control.Articulo.ObtenerAlicuota();
+                                        }
 
                                         if (Alic.Porcentaje > 0)
                                                 Res += Control.Importe * Alic.Porcentaje / 100m;

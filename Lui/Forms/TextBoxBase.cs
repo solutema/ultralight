@@ -294,22 +294,6 @@ namespace Lui.Forms
                 }
 
 
-                [EditorBrowsable(EditorBrowsableState.Never),
-                        System.ComponentModel.Browsable(false),
-                        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                public Font CustomFont
-                {
-                        get
-                        {
-                                return this.Font;
-                        }
-                        set
-                        {
-                                base.Font = value;
-                        }
-                }
-
-
                 public override void ApplyStyle()
                 {
                         base.ApplyStyle();

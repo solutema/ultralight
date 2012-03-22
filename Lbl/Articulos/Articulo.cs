@@ -342,9 +342,6 @@ namespace Lbl.Articulos
 
                 public Lbl.Impuestos.Alicuota ObtenerAlicuota()
                 {
-                        if (Lbl.Sys.Config.Empresa.SucursalActual.Localidad.Iva == Impuestos.SituacionIva.Exento)
-                                return Lbl.Sys.Config.Empresa.AlicuotaPredeterminada;
-
                         if (this.Categoria != null) {
                                 if (this.Categoria.Alicuota != null)
                                         return this.Categoria.Alicuota;

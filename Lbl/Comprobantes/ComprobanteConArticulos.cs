@@ -325,7 +325,23 @@ namespace Lbl.Comprobantes
                         {
                                 decimal Res = 0;
                                 foreach (DetalleArticulo Art in this.Articulos) {
-                                        Res += Art.Importe;
+                                        Res += Art.ImporteAImprimir;
+                                }
+                                return Math.Round(Res, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                        }
+                }
+
+
+                /// <summary>
+                /// Devuelve el subtotal sin IVA, pero con descuentos, recargos y redondeos.
+                /// </summary>
+                public decimal SubTotalSinIva
+                {
+                        get
+                        {
+                                decimal Res = 0;
+                                foreach (DetalleArticulo Art in this.Articulos) {
+                                        Res += Art.ImporteSinIva;
                                 }
                                 return Math.Round(Res, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                         }
@@ -354,11 +370,12 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                decimal Res = 0;
+                                return this.SubTotalSinIva + this.ImporteIva;
+                                /* decimal Res = 0;
                                 foreach (Lbl.Comprobantes.DetalleArticulo Art in Articulos) {
-                                        Res += Art.Importe;
+                                        Res += Art.ImporteConIva;
                                 }
-                                return Math.Round(Res * (1 + (Recargo - Descuento) / 100) + this.GastosDeEnvio + this.OtrosGastos + this.ImporteIva, 4);
+                                return Math.Round(Res * (1 + (Recargo - Descuento) / 100) + this.GastosDeEnvio + this.OtrosGastos, 4); */
                         }
                 }
 
@@ -373,18 +390,6 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-                /// <summary>
-                /// Devuelve el subtotal sin IVA, pero con descuentos, recargos y redondeos.
-                /// </summary>
-                public decimal SubTotalSinIva
-                {
-                        get
-                        {
-                                decimal Res = this.Total - this.ImporteIva;
-                                return Math.Round(Res, 4);
-                        }
-                }
-
 
                 /// <summary>
                 /// Devuelve el importe de IVA para esta factura.
@@ -393,8 +398,17 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                if (this.Cliente != null && this.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
-                                        return 0;
+                                if (this.Cliente != null) {
+                                        if (this.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
+                                                // El cliente está exento de IVA
+                                                return 0;
+                                        else if (this.Cliente.Localidad != null && this.Cliente.Localidad.ObtenerIva() == Impuestos.SituacionIva.Exento)
+                                                // La localidad o provincia está exenta de IVA
+                                                return 0;
+                                        else if (Lbl.Sys.Config.Empresa.AlicuotaPredeterminada.Id == 4)
+                                                // Nuestra empresa está exenta de IVA (o soy monotributista y manejo sólo precios finales)
+                                                return 0;
+                                }
 
                                 decimal Res = 0;
                                 foreach (DetalleArticulo Det in this.Articulos) {
@@ -780,7 +794,7 @@ namespace Lbl.Comprobantes
                         else
                                 Comando.Fields.AddWithValue("situaciondestino", this.SituacionDestino.Id);
                         Comando.Fields.AddWithValue("tipo_fac", this.Tipo.Nomenclatura);
-                        Comando.Fields.AddWithValue("subtotal", this.SubTotal);
+                        Comando.Fields.AddWithValue("subtotal", this.SubTotalSinIva);
                         Comando.Fields.AddWithValue("descuento", this.Descuento);
                         Comando.Fields.AddWithValue("interes", this.Recargo);
                         Comando.Fields.AddWithValue("cuotas", this.Cuotas);
@@ -908,12 +922,13 @@ namespace Lbl.Comprobantes
 
                                                 Comando.Fields.AddWithValue("cantidad", Art.Cantidad);
                                                 Comando.Fields.AddWithValue("precio", Art.Unitario);
+                                                Comando.Fields.AddWithValue("iva", Art.ImporteIva);
                                                 Comando.Fields.AddWithValue("recargo", Art.Recargo);
                                                 if (Art.Costo == 0 && Art.Articulo != null)
                                                         Comando.Fields.AddWithValue("costo", Art.Articulo.Costo);
                                                 else
                                                         Comando.Fields.AddWithValue("costo", Art.Costo);
-                                                Comando.Fields.AddWithValue("importe", Art.Importe);
+                                                Comando.Fields.AddWithValue("importe", Art.ImporteAImprimir);
                                                 Comando.Fields.AddWithValue("series", Art.DatosSeguimiento);
                                                 Comando.Fields.AddWithValue("obs", Art.Obs);
 

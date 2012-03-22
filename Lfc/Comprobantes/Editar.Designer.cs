@@ -81,8 +81,8 @@ namespace Lfc.Comprobantes
                         this.EntradaProductos.ShowStock = true;
                         this.EntradaProductos.Size = new System.Drawing.Size(640, 264);
                         this.EntradaProductos.TabIndex = 20;
-                        this.EntradaProductos.TotalChanged += new System.EventHandler(this.ProductArray_TotalChanged);
-                        this.EntradaProductos.ObtenerDatosSeguimiento += new System.EventHandler(this.ProductArray_ObtenerDatosSeguimiento);
+                        this.EntradaProductos.TotalChanged += new System.EventHandler(this.EntradaProductos_TotalChanged);
+                        this.EntradaProductos.ObtenerDatosSeguimiento += new System.EventHandler(this.EntradaProductos_ObtenerDatosSeguimiento);
                         // 
                         // Label3
                         // 

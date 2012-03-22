@@ -179,7 +179,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 Lbl.Comprobantes.DetalleArticulo Det = this.Comprobante.Articulos[i];
-                                                string Linea = Lfx.Types.Formatting.FormatCurrencyForPrint(Det.UnitarioAFacturar, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                                string Linea = Lfx.Types.Formatting.FormatCurrencyForPrint(Det.UnitarioAImprimir, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
                                                 if (Res == null)
                                                         Res = Linea;
                                                 else
@@ -211,7 +211,7 @@ namespace Lazaro.Impresion.Comprobantes
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 Lbl.Comprobantes.DetalleArticulo Det = this.Comprobante.Articulos[i];
-                                                string Linea =Lfx.Types.Formatting.FormatCurrencyForPrint(Det.Importe, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal); 
+                                                string Linea =Lfx.Types.Formatting.FormatCurrencyForPrint(Det.ImporteAImprimir, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal); 
                                                 if (Res == null)
                                                         Res = Linea;
                                                 else
@@ -221,7 +221,10 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 case "SUBTOTAL":
                                 case "COMPROBANTE.SUBTOTAL":
-                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.SubTotalSinIva, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                        if (Comprobante.DiscriminaIva)
+                                                return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.SubTotalSinIva, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                        else
+                                                return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.SubTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
 
                                 case "TOTAL":
                                 case "COMPROBANTE.TOTAL":
@@ -229,7 +232,10 @@ namespace Lazaro.Impresion.Comprobantes
 
                                 case "IVADISCRIMINADO":
                                 case "COMPROBANTE.IVADISCRIMINADO":
-                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.ImporteIvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                        if (Comprobante.DiscriminaIva)
+                                                return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.ImporteIvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                        else
+                                                return "N/A";
 
                                 case "RECARGO":
                                 case "COMPROBANTE.RECARGO":

@@ -87,20 +87,25 @@ namespace Lbl.Entidades
                 }
 
 
+                public Impuestos.SituacionIva ObtenerIva()
+                {
+                        if (this.GetFieldValue<int>("iva") == 1)
+                                return Impuestos.SituacionIva.Exento;
+                        else if (this.Provincia != null)
+                                return this.Provincia.Iva;
+                        else
+                                return Impuestos.SituacionIva.Predeterminado;
+                }
+
                 public Impuestos.SituacionIva Iva
                 {
                         get
                         {
-                                if (this.GetFieldValue<int>("iva") == 1)
-                                        return Impuestos.SituacionIva.Exento;
-                                else if (this.Provincia != null)
-                                        return this.Provincia.Iva;
-                                else
-                                        return Impuestos.SituacionIva.Predeterminado;
+                                return (Impuestos.SituacionIva)(this.GetFieldValue<int>("iva"));
                         }
                         set
                         {
-                                this.Registro["iva"] = (int)value;
+                                this.SetFieldValue("iva", (int)value);
                         }
                 }
 
@@ -124,7 +129,7 @@ namespace Lbl.Entidades
                         } else {
                                 Comando.Fields.AddWithValue("id_provincia", this.Provincia.Id);
                         }
-                        Comando.Fields.AddWithValue("iva", (int)this.Iva);
+                        Comando.Fields.AddWithValue("iva", (int)(this.Iva));
 
                         this.AgregarTags(Comando);
 
