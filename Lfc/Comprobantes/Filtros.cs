@@ -30,18 +30,17 @@
 #endregion
 
 using System;
+using System.Windows.Forms;
 
 namespace Lfc.Comprobantes
 {
         public partial class Filtros : Lui.Forms.DialogForm
         {
-
                 public Filtros()
                 {
                         InitializeComponent();
                 }
 
-         
 
                 private void EntradaTipo_TextChanged(object sender, EventArgs e)
                 {

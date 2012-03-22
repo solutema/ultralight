@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright 2004-2012 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
@@ -29,15 +29,13 @@
 // con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
 #endregion
 
+using System;
 using System.Windows.Forms;
 
 namespace Lfc.Comprobantes
 {
         public partial class Filtros
         {
-                #region Código generado por el Diseñador de Windows Forms
-
-                // Limpiar los recursos que se estén utilizando.
                 protected override void Dispose(bool disposing)
                 {
                         if (disposing) {
@@ -49,39 +47,9 @@ namespace Lfc.Comprobantes
                         base.Dispose(disposing);
                 }
 
-                // Requerido por el Diseñador de Windows Forms
                 private System.ComponentModel.IContainer components = null;
 
-                // NOTA: el Diseñador de Windows Forms requiere el siguiente procedimiento
-                // Puede modificarse utilizando el Diseñador de Windows Forms. 
-                // No lo modifique con el editor de código.
-                internal Lcc.Entrada.CodigoDetalle EntradaCliente;
-                internal Lui.Forms.Label Label2;
-                internal Lui.Forms.Label Label1;
-                internal Lui.Forms.Label Label3;
-                internal Lui.Forms.Label Label4;
-                internal Lui.Forms.ComboBox EntradaEstado;
-                internal Lui.Forms.ComboBox EntradaTipo;
-                internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
-                internal Lui.Forms.Label Label5;
-                internal Lui.Forms.ComboBox EntradaAnuladas;
-                internal Lui.Forms.Label label7;
-                internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
-                internal Lui.Forms.Label label8;
-                internal Lcc.Entrada.CodigoDetalle EntradaFormaPago;
-                internal Lui.Forms.ComboBox EntradaLetra;
-                internal Label Label9;
-                internal Lui.Forms.TextBox EntradaPv;
-                internal Lcc.Entrada.RangoFechas EntradaFechas;
-                private TableLayoutPanel tableLayoutPanel1;
-                private TableLayoutPanel tableLayoutPanel2;
-                internal Label label10;
-                private TableLayoutPanel tableLayoutPanel3;
-                internal Lui.Forms.TextBox EntradaMontoHasta;
-                internal Lui.Forms.TextBox EntradaMontoDesde;
-                internal Label label12;
-                internal Label label11;
-                internal Lui.Forms.Label Label6;
+                #region Código generado por el Diseñador de Windows Forms
 
                 private void InitializeComponent()
                 {
@@ -497,5 +465,33 @@ namespace Lfc.Comprobantes
                 }
 
                 #endregion
+
+                internal Lcc.Entrada.CodigoDetalle EntradaCliente;
+                internal Lui.Forms.Label Label2;
+                internal Lui.Forms.Label Label1;
+                internal Lui.Forms.Label Label3;
+                internal Lui.Forms.Label Label4;
+                internal Lui.Forms.ComboBox EntradaEstado;
+                internal Lui.Forms.ComboBox EntradaTipo;
+                internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
+                internal Lui.Forms.Label Label5;
+                internal Lui.Forms.ComboBox EntradaAnuladas;
+                internal Lui.Forms.Label label7;
+                internal Lcc.Entrada.CodigoDetalle EntradaSucursal;
+                internal Lui.Forms.Label label8;
+                internal Lcc.Entrada.CodigoDetalle EntradaFormaPago;
+                internal Lui.Forms.ComboBox EntradaLetra;
+                internal Label Label9;
+                internal Lui.Forms.TextBox EntradaPv;
+                internal Lcc.Entrada.RangoFechas EntradaFechas;
+                private TableLayoutPanel tableLayoutPanel1;
+                private TableLayoutPanel tableLayoutPanel2;
+                internal Label label10;
+                private TableLayoutPanel tableLayoutPanel3;
+                internal Lui.Forms.TextBox EntradaMontoHasta;
+                internal Lui.Forms.TextBox EntradaMontoDesde;
+                internal Label label12;
+                internal Label label11;
+                internal Lui.Forms.Label Label6;
         }
 }

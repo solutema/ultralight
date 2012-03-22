@@ -131,11 +131,11 @@
     <Compile Include="Comprobantes\Facturas\Reimprimir.designer.cs">
       <DependentUpon>Reimprimir.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprobantes\Filtros.Designer.cs">
+      <DependentUpon>Filtros.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comprobantes\Seleccionar.Designer.cs">
       <DependentUpon>Seleccionar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Comprobantes\Filtros.Designer.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\Impresoras\Editar.cs">
       <SubType>UserControl</SubType>

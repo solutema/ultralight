@@ -120,8 +120,8 @@ namespace Lfc.Comprobantes
                                         FormFiltros.EntradaVendedor.ValueInt = m_Vendedor;
                                         FormFiltros.EntradaFechas.Rango = m_Fechas;
                                         FormFiltros.EntradaEstado.TextKey = m_Estado;
-                                        FormFiltros.EntradaAnuladas.TextKey = m_Anuladas.ToString();
-                                        FormFiltros.EntradaMontoDesde.ValueDecimal= m_MontoDesde;
+                                        FormFiltros.EntradaAnuladas.ValueInt = m_Anuladas;
+                                        FormFiltros.EntradaMontoDesde.ValueDecimal = m_MontoDesde;
                                         FormFiltros.EntradaMontoHasta.ValueDecimal = m_MontoHasta;
                                         FormFiltros.Owner = this;
                                         FormFiltros.ShowDialog();
@@ -133,10 +133,10 @@ namespace Lfc.Comprobantes
                                                 m_Vendedor = FormFiltros.EntradaVendedor.ValueInt;
                                                 m_Fechas = FormFiltros.EntradaFechas.Rango;
                                                 m_Estado = FormFiltros.EntradaEstado.TextKey;
-                                                m_Anuladas = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaAnuladas.TextKey);
-                                                m_PV = Lfx.Types.Parsing.ParseInt(FormFiltros.EntradaPv.Text);
-                                                m_MontoDesde = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoDesde.Text);
-                                                m_MontoHasta = Lfx.Types.Parsing.ParseCurrency(FormFiltros.EntradaMontoHasta.Text);
+                                                m_Anuladas = FormFiltros.EntradaAnuladas.ValueInt;
+                                                m_PV = FormFiltros.EntradaPv.ValueInt;
+                                                m_MontoDesde = FormFiltros.EntradaMontoDesde.ValueDecimal;
+                                                m_MontoHasta = FormFiltros.EntradaMontoHasta.ValueDecimal;
                                                 this.Definicion.ElementoTipo = Lbl.Instanciador.InferirTipo(FormFiltros.EntradaTipo.TextKey);
                                                 Letra = FormFiltros.EntradaLetra.TextKey;
 
@@ -270,9 +270,9 @@ namespace Lfc.Comprobantes
                         if (m_Anuladas == 0)
                                 this.CustomFilters.AddWithValue("comprob.anulada", 0);
 
-                        if(m_MontoDesde != 0 && m_MontoHasta != 0)
+                        if (m_MontoDesde != 0 && m_MontoHasta != 0)
                                 this.CustomFilters.AddWithValue("comprob.total BETWEEN " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde) + " AND " + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));
-                        else if(m_MontoDesde != 0)
+                        else if (m_MontoDesde != 0)
                                 this.CustomFilters.AddWithValue("comprob.total>=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoDesde));
                         else if (m_MontoHasta != 0)
                                 this.CustomFilters.AddWithValue("comprob.total<=" + Lfx.Types.Formatting.FormatCurrencySql(m_MontoHasta));
