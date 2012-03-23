@@ -480,7 +480,7 @@ namespace Lazaro.WinMain.Config
                                 Lfx.Environment.Folders.EnsurePathExists(CarpetaDescarga);
                                 using (WebClient Cliente = new WebClient()) {
                                         try {
-                                                Cliente.DownloadFile("http://www.sistemalazaro.com.ar/aslnlwc/" + InstaladorMySQL, CarpetaDescarga + InstaladorMySQL);
+                                                Cliente.DownloadFile("http://www.lazarogestion.com/aslnlwc/" + InstaladorMySQL, CarpetaDescarga + InstaladorMySQL);
                                         } catch (Exception ex) {
                                                 progreso.ChangeStatus("Error al descargar " + ex.Message);
                                         }

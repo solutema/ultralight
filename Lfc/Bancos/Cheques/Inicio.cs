@@ -132,16 +132,6 @@ namespace Lfc.Bancos.Cheques
                         }
                 }
 
-                public override Lfx.Types.OperationResult OnCreate()
-                {
-                        if (this.Emitidos == false) {
-                                return Efectivizar();
-                        } else {
-                                Lfx.Workspace.Master.RunTime.Execute("CREAR RCP");
-                                return new Lfx.Types.SuccessOperationResult();
-                        }
-                }
-
 
                 public override Lfx.Types.OperationResult OnFilter()
                 {
@@ -238,6 +228,23 @@ namespace Lfc.Bancos.Cheques
                         return new Lfx.Types.SuccessOperationResult();
                 }
 
+                private void BotonEfectivizar_Click(object sender, System.EventArgs e)
+                {
+                        if (this.Emitidos == false) {
+                                //Depositar
+                                Lbl.ListaIds Codigos = this.CodigosSeleccionados;
+                                if (Codigos == null || Codigos.Count == 0) {
+                                        Lui.Forms.MessageBox.Show("Por favor seleccione uno o más cheques.", "Error");
+                                } else {
+                                        Lfx.Types.OperationResult Res = this.Efectivizar();
+                                        if (Res.Success == false && Res.Message != null)
+                                                Lfx.Workspace.Master.RunTime.Toast(Res.Message, "Error");
+                                }
+                        } else {
+                                Lfx.Workspace.Master.RunTime.Toast("Esta opción sólo sirve para cheques recibidos.", "Aviso");
+                        }
+                }
+
 
                 private void DepositarPagar_Click(object sender, System.EventArgs e)
                 {
@@ -245,7 +252,7 @@ namespace Lfc.Bancos.Cheques
                                 //Depositar
                                 Lbl.ListaIds Codigos = this.CodigosSeleccionados;
                                 if (Codigos == null || Codigos.Count == 0) {
-                                        Lui.Forms.MessageBox.Show("Debe seleccionar uno o más cheques.", "Error");
+                                        Lui.Forms.MessageBox.Show("Por favor seleccione uno o más cheques.", "Error");
                                 } else {
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Al depositar un cheque en una cuenta bancaria propia, puede marcarlo como depositado para control interno.\nSirve sólamente para depositos en cajas propias. Para depósitos en cajas de terceros utilice la opción 'Efectivizar'.", "¿Desea marcar los cheques seleccionados como depositados?");
                                         if (Pregunta.ShowDialog() == DialogResult.OK) {
@@ -268,7 +275,7 @@ namespace Lfc.Bancos.Cheques
                         } else {
                                 Lfx.Types.OperationResult Res = this.Pagar();
                                 if (Res.Success == false && Res.Message != null)
-                                        Lui.Forms.MessageBox.Show(Res.Message, "Error");
+                                        Lfx.Workspace.Master.RunTime.Toast(Res.Message, "Error");
                         }
                 }
 

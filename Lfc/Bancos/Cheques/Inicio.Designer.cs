@@ -57,6 +57,7 @@ namespace Lfc.Bancos.Cheques
                 private void InitializeComponent()
                 {
                         this.DepositarPagar = new Lui.Forms.Button();
+                        this.BotonEfectivizar = new Lui.Forms.Button();
                         this.SuspendLayout();
                         // 
                         // DepositarPagar
@@ -74,10 +75,26 @@ namespace Lfc.Bancos.Cheques
                         this.DepositarPagar.Text = "Depositar";
                         this.DepositarPagar.Click += new System.EventHandler(this.DepositarPagar_Click);
                         // 
+                        // BotonEfectivizar
+                        // 
+                        this.BotonEfectivizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+                        this.BotonEfectivizar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonEfectivizar.Image = null;
+                        this.BotonEfectivizar.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonEfectivizar.Location = new System.Drawing.Point(12, 283);
+                        this.BotonEfectivizar.Name = "BotonEfectivizar";
+                        this.BotonEfectivizar.Size = new System.Drawing.Size(104, 64);
+                        this.BotonEfectivizar.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
+                        this.BotonEfectivizar.Subtext = "F5";
+                        this.BotonEfectivizar.TabIndex = 56;
+                        this.BotonEfectivizar.Text = "Efetivizar";
+                        this.BotonEfectivizar.Click += new System.EventHandler(this.BotonEfectivizar_Click);
+                        // 
                         // Inicio
                         // 
                         this.PanelAcciones.Controls.Add(this.DepositarPagar);
-                        this.Name = "Listado de Cheques";
+                        this.PanelAcciones.Controls.Add(this.BotonEfectivizar);
+                        this.Name = "Listado de cheques";
                         this.ResumeLayout(false);
 
                 }
@@ -85,5 +102,6 @@ namespace Lfc.Bancos.Cheques
                 #endregion
 
                 internal Lui.Forms.Button DepositarPagar;
+                internal Lui.Forms.Button BotonEfectivizar;
         }
 }

@@ -252,7 +252,7 @@ namespace Lazaro.WinMain
                                                         Lfx.Environment.Shell.Reboot();
                                                         break;
                                                 default:
-                                                        Lfx.Workspace.Master.RunTime.Toast("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.sistemalazaro.com.ar", "Toast");
+                                                        Lfx.Workspace.Master.RunTime.Toast("La versión de Lázaro que está utilizando es demasiado antigua. Descargue e instale la última versión para continuar. Si desea más información ingrese a la página web www.lazarogestion.com", "Toast");
                                                         break;
                                         }
                                         System.Environment.Exit(1);
@@ -377,7 +377,7 @@ namespace Lazaro.WinMain
                                                         ArchDestino = Lfx.Environment.Folders.UpdatesFolder + Arch + ".new";
 
                                                 try {
-                                                        Cliente.DownloadFile(@"http://www.sistemalazaro.com.ar/aslnlwc/" + Arch, ArchDestino);
+                                                        Cliente.DownloadFile(@"http://www.lazarogestion.com/aslnlwc/" + Arch, ArchDestino);
                                                 } catch {
 
                                                 }
@@ -508,7 +508,7 @@ namespace Lazaro.WinMain
                                                                                         break;
                                                                         }
                                                                         FormError.Ayuda = @"No se puede conectar con el servidor local. Verifique que el servidor " + TipoServidor + @" se encuentra instalado y funcionando en el equipo.
-Si necesita información sobre cómo instalar o configurar un servidor SQL para Lázaro, consulte la ayuda en línea en www.sistemalazaro.com.ar";
+Si necesita información sobre cómo instalar o configurar un servidor SQL para Lázaro, consulte la ayuda en línea en www.lazarogestion.com";
                                                                 } else {
                                                                         FormError.Ayuda = "No se puede conectar con el servidor remoto. Verifique que el servidor en el equipo remoto '" + Lfx.Data.DataBaseCache.DefaultCache.ServerName + @"' se encuentre funcionando y que su conexión de red esté activa.";
                                                                 }
@@ -716,7 +716,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¡Hola! ¿Le gustaría ver una página sencilla con un poco de información sobre cómo utilizar Lázaro?", "Primeros pasos");
                                         Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                         if (Pregunta.ShowDialog() == DialogResult.OK)
-                                                Help.ShowHelp(Aplicacion.FormularioPrincipal, "http://www.sistemalazaro.com.ar/?q=node/44");
+                                                Help.ShowHelp(Aplicacion.FormularioPrincipal, "http://www.lazarogestion.com/?q=node/44");
                                 } else {
                                         string RunTime = Lfx.Environment.SystemInformation.RuntimeName;
                                         // Verifico la presencia de .NET Framework 3.5
@@ -753,7 +753,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                                                 "pais=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Pais", "0")),
                                                                 "loc=" + System.Uri.EscapeUriString(Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Localidad", "0"))
                                                         };
-                                System.Net.WebRequest WebRequest = System.Net.WebRequest.Create(new System.Uri("http://www.sistemalazaro.com.ar/stats/index.php"));
+                                System.Net.WebRequest WebRequest = System.Net.WebRequest.Create(new System.Uri("http://www.lazarogestion.com/stats/index.php"));
                                 WebRequest.ContentType = "application/x-www-form-urlencoded";
                                 WebRequest.Method = "POST";
                                 byte[] PostData = System.Text.Encoding.Default.GetBytes(string.Join("&", Vars));

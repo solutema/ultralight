@@ -56,17 +56,17 @@ namespace Lfc.Inicio
 
                 private void BotonWebComo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/33");
+                        Help.ShowHelp(this, "http://www.lazarogestion.com/?q=node/33");
                 }
 
                 private void BotonWebContacto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=contact");
+                        Help.ShowHelp(this, "http://www.lazarogestion.com/?q=contact");
                 }
 
                 private void BotonWebInicio_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar");
+                        Help.ShowHelp(this, "http://www.lazarogestion.com");
                 }
 
 
@@ -79,17 +79,17 @@ namespace Lfc.Inicio
 
                 private void BotonWebPrimerosPasos_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/44");
+                        Help.ShowHelp(this, "http://www.lazarogestion.com/?q=node/44");
                 }
 
                 private void BotonWebAltaArticulo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/35");
+                        Help.ShowHelp(this, "http://www.lazarogestion.com/?q=node/35");
                 }
 
                 private void BotonWebComoFactura_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar/?q=node/34");
+                        Help.ShowHelp(this, "http://www.lazarogestion.com/?q=node/34");
                 }
 
                 private void PanelConsejo_DoubleClick(object sender, EventArgs e)

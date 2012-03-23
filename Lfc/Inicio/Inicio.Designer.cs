@@ -86,7 +86,7 @@ namespace Lfc.Inicio
                         this.BotonWebInicio.Size = new System.Drawing.Size(161, 17);
                         this.BotonWebInicio.TabIndex = 3;
                         this.BotonWebInicio.TabStop = true;
-                        this.BotonWebInicio.Text = "www.sistemalazaro.com.ar";
+                        this.BotonWebInicio.Text = "www.lazarogestion.com";
                         this.BotonWebInicio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         this.BotonWebInicio.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonWebInicio_LinkClicked);
                         // 

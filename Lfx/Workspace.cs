@@ -157,7 +157,7 @@ namespace Lfx
                                 Lfx.Updates.Package LazaroPkg = new Updates.Package();
                                 LazaroPkg.Name = "Lazaro";
                                 LazaroPkg.RelativePath = "";
-                                LazaroPkg.Url = @"http://www.sistemalazaro.com.ar/aslnlwc/{0}/";
+                                LazaroPkg.Url = @"http://www.lazarogestion.com/aslnlwc/{0}/";
                                 Lfx.Updates.Updater.Master.Packages.Add(LazaroPkg);
                                 Lfx.Updates.Updater.Master.Start();
                         }

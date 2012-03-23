@@ -94,7 +94,7 @@ namespace Lazaro.WinMain.Misc
 
                 private void BotonWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalazaro.com.ar");
+                        Help.ShowHelp(this, "http://www.lazarogestion.com");
                 }
 
                 private void TimerBuscarActualizaciones_Tick(object sender, EventArgs e)

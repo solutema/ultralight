@@ -219,7 +219,7 @@ namespace Lazaro.WinMain.Misc
                         this.BotonWeb.Size = new System.Drawing.Size(177, 15);
                         this.BotonWeb.TabIndex = 55;
                         this.BotonWeb.TabStop = true;
-                        this.BotonWeb.Text = "www.sistemalazaro.com.ar";
+                        this.BotonWeb.Text = "www.lazarogestion.com";
                         this.BotonWeb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         this.BotonWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BotonWeb_LinkClicked);
                         // 
