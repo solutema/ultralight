@@ -243,12 +243,19 @@ namespace System
                         return str.Replace(Lfx.Types.ControlChars.CrLf, Lfx.Types.ControlChars.Lf.ToString()).Replace(Lfx.Types.ControlChars.Lf.ToString(), Lfx.Types.ControlChars.CrLf);
                 }
 
+
+                public static string QuitarAcentos(this string texto)
+                {
+                        return texto.QuitarAcentos(true);
+                }
+
+
                 /// <summary>
                 /// Quita acentos y otros caracteres no estándar. Convierte espacios a subguiones.
                 /// </summary>
-                public static string QuitarAcentos(this string sTexto)
+                public static string QuitarAcentos(this string texto, bool quitarEnie)
                 {
-                        string res = sTexto;
+                        string res = texto;
                         res = res.Replace("&", "");
                         res = res.Replace("á", "a");
                         res = res.Replace("é", "e");
@@ -256,14 +263,16 @@ namespace System
                         res = res.Replace("ó", "o");
                         res = res.Replace("ú", "u");
                         res = res.Replace("ü", "u");
-                        res = res.Replace("ñ", "n");
                         res = res.Replace("Á", "A");
                         res = res.Replace("É", "E");
                         res = res.Replace("Í", "I");
                         res = res.Replace("Ó", "O");
                         res = res.Replace("Ú", "U");
                         res = res.Replace("Ü", "U");
-                        res = res.Replace("Ñ", "n");
+                        if (quitarEnie) {
+                                res = res.Replace("ñ", "n");
+                                res = res.Replace("Ñ", "n");
+                        }
                         res = res.Replace(" ", "_");
                         return res;
                 }
