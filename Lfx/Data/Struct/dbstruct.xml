@@ -401,7 +401,7 @@
   <Table name="documentos_tipos" lsdet="1" label="Tipos de Comprobante">
     <Column name="id_tipo" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="letra" datatype="VarChar" nullable="0" lenght="50" />
-    <Column name="letrasola" datatype="VarChar" nullable="0" lenght="50" />
+    <Column name="letrasola" datatype="VarChar" nullable="0" default="" lenght="50" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="nombrelargo" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
