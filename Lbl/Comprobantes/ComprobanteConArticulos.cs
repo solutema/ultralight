@@ -370,7 +370,7 @@ namespace Lbl.Comprobantes
                 {
                         get
                         {
-                                return this.SubTotalSinIva + this.ImporteIva;
+                                return Math.Round((this.SubTotalSinIva * (1 + (Recargo - Descuento) / 100)) + this.ImporteIva, 4);
                                 /* decimal Res = 0;
                                 foreach (Lbl.Comprobantes.DetalleArticulo Art in Articulos) {
                                         Res += Art.ImporteConIva;
@@ -523,17 +523,17 @@ namespace Lbl.Comprobantes
                         if (this.FormaDePago == null)
                                 return;
                         
-                        decimal ImporteMovimCtaCte = this.ImporteImpago;
+                        decimal ImporteMovim = this.ImporteCancelado;
                         if (this.FormaDePago.Tipo == Pagos.TiposFormasDePago.CuentaCorriente)
-                                ImporteMovimCtaCte = this.Total;
+                                ImporteMovim = this.Total;
 
                         if (this.Tipo.DireccionCtaCte < 0)
                                 // Este tipo de comprobantes hace créditos en cuenta corriente
-                                ImporteMovimCtaCte = -ImporteMovimCtaCte;
+                                ImporteMovim = -ImporteMovim;
 
                         if (this.Compra) {
                                 // Es comprobante de compra, invierto la dirección del movimiento
-                                ImporteMovimCtaCte = -ImporteMovimCtaCte;
+                                ImporteMovim = -ImporteMovim;
                         }
 
                         if (anulacion == false) {
@@ -547,7 +547,7 @@ namespace Lbl.Comprobantes
                                                                 Lbl.Cajas.Concepto.IngresosPorFacturacion,
                                                                 this.ToString(),
                                                                 this.Cliente,
-                                                                this.ImporteImpago,
+                                                                ImporteMovim,
                                                                 null,
                                                                 this,
                                                                 null,
@@ -559,7 +559,7 @@ namespace Lbl.Comprobantes
                                                 this.Cliente.CuentaCorriente.Movimiento(true,
                                                         Lbl.Cajas.Concepto.IngresosPorFacturacion,
                                                         this.ToString(),
-                                                        ImporteMovimCtaCte,
+                                                        ImporteMovim,
                                                         null,
                                                         this,
                                                         null,
@@ -578,10 +578,10 @@ namespace Lbl.Comprobantes
 
                                                 decimal FacturaSaldo = this.ImporteImpago;
                                                 if (FacturaSaldo > 0) {
-                                                        decimal SaldoCtaCteAntes = -(ImporteMovimCtaCte - this.Cliente.CuentaCorriente.ObtenerSaldo(true));
+                                                        decimal SaldoCtaCteAntes = -(ImporteMovim - this.Cliente.CuentaCorriente.ObtenerSaldo(true));
                                                         // Busca un saldo en cta cte para cancelar este comprobante
-                                                        if ((ImporteMovimCtaCte > 0 && SaldoCtaCteAntes < 0) || (ImporteMovimCtaCte < 0 && SaldoCtaCteAntes > 0)) {
-                                                                decimal SaldoACancelar = ImporteMovimCtaCte < 0 ? SaldoCtaCteAntes : -SaldoCtaCteAntes;
+                                                        if ((ImporteMovim > 0 && SaldoCtaCteAntes < 0) || (ImporteMovim < 0 && SaldoCtaCteAntes > 0)) {
+                                                                decimal SaldoACancelar = ImporteMovim < 0 ? SaldoCtaCteAntes : -SaldoCtaCteAntes;
 
                                                                 if (SaldoACancelar > FacturaSaldo)
                                                                         SaldoACancelar = FacturaSaldo;
@@ -597,13 +597,13 @@ namespace Lbl.Comprobantes
                                 }
                         } else {
                                 // Es una anulación, invierto la dirección del movimiento
-                                ImporteMovimCtaCte = -ImporteMovimCtaCte;
+                                ImporteMovim = -ImporteMovim;
 
                                 switch (this.FormaDePago.Tipo) {
                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                                 // Hago un movimiento en caja diaria
                                                 Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
-                                                Caja.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación " + this.ToString(), this.Cliente, -ImporteMovimCtaCte, null, this, null, null);
+                                                Caja.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación " + this.ToString(), this.Cliente, -ImporteMovim, null, this, null, null);
                                                 break;
 
                                         case Lbl.Pagos.TiposFormasDePago.ChequePropio:
@@ -618,7 +618,7 @@ namespace Lbl.Comprobantes
 
                                         case Lbl.Pagos.TiposFormasDePago.CuentaCorriente:
                                                 // Quito el saldo pagado de la cuenta corriente
-                                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación " + this.ToString(), ImporteMovimCtaCte, null, this, null, null);
+                                                this.Cliente.CuentaCorriente.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación " + this.ToString(), ImporteMovim, null, this, null, null);
                                                 if (this.Tipo.EsNotaCredito)
                                                         Lbl.Comprobantes.Recibo.DescancelarImpagos(this.Cliente, this.ComprobRelacionados, this, this.Compra ? -this.Total : this.Total);
                                                         //this.Cliente.CuentaCorriente.CancelarComprobantesConSaldo(ImporteMovimCtaCte, false);
