@@ -81,11 +81,6 @@ namespace Lazaro.WinMain.Config
                         else
                                 EntradaContrasena.Text = Contrasena;
 
-                        if (SlowLink == null)
-                                EntradaSlowLink.Value = true;
-                        else
-                                EntradaSlowLink.Value = SlowLink != "0";
-
                         if (Branch == null)
                                 EntradaSucursal.Text = "1";
                         else
@@ -139,7 +134,6 @@ namespace Lazaro.WinMain.Config
                                         break;
                         }
 
-                        Lfx.Data.DataBaseCache.DefaultCache.SlowLink = EntradaSlowLink.Value;
                         Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = EntradaBD.Text;
                         Lfx.Data.DataBaseCache.DefaultCache.UserName = EntradaUsuario.Text;
                         Lfx.Data.DataBaseCache.DefaultCache.Password = EntradaContrasena.Text;
@@ -173,14 +167,6 @@ namespace Lazaro.WinMain.Config
                                 if (EntradaUsuario.Text == "root" && EntradaContrasena.Text == "") {
                                         EntradaUsuario.Text = "lazaro";
                                 }
-                        }
-
-                        Regex IpLocal1 = new Regex(@"^192\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
-                        Regex IpLocal2 = new Regex(@"^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
-                        if (EntradaServidor.Text.Contains(".") == false || IpLocal1.IsMatch(EntradaServidor.Text) || IpLocal2.IsMatch(EntradaServidor.Text)) {
-                                EntradaSlowLink.Value = false;
-                        } else {
-                                EntradaSlowLink.Value = true;
                         }
                 }
         }

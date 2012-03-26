@@ -656,7 +656,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
 
 
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.Id > 0) {
-                                if (Lfx.Workspace.Master.MasterConnection.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Tipo", "0") == "2") {
+                                if (Lfx.Workspace.Master.SlowLink == false && Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Tipo", "0") == "2") {
                                         string FechaActual = System.DateTime.Now.ToString("yyyy-MM-dd");
                                         string FechaBackup = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.Backup.Ultimo", "");
                                         if (FechaActual != FechaBackup) {

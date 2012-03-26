@@ -119,10 +119,17 @@ namespace Lfx
 
                         if (Lfx.Data.DataBaseCache.DefaultCache.ServerName == null) {
                                 Lfx.Data.DataBaseCache.DefaultCache.ServerName = this.CurrentConfig.ReadLocalSettingString("Data", "DataSource", "localhost");
-                                Lfx.Data.DataBaseCache.DefaultCache.SlowLink = (this.CurrentConfig.ReadLocalSettingInt("Data", "SlowLink", 0) == 1);
                                 Lfx.Data.DataBaseCache.DefaultCache.DataBaseName = this.CurrentConfig.ReadLocalSettingString("Data", "DatabaseName", "lazaro");
                                 Lfx.Data.DataBaseCache.DefaultCache.UserName = this.CurrentConfig.ReadLocalSettingString("Data", "User", "lazaro");
                                 Lfx.Data.DataBaseCache.DefaultCache.Password = this.CurrentConfig.ReadLocalSettingString("Data", "Password", string.Empty);
+                        }
+
+                        System.Text.RegularExpressions.Regex IpLocal1 = new System.Text.RegularExpressions.Regex(@"^192\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
+                        System.Text.RegularExpressions.Regex IpLocal2 = new System.Text.RegularExpressions.Regex(@"^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
+                        if (Lfx.Data.DataBaseCache.DefaultCache.ServerName.Contains(".") == false || IpLocal1.IsMatch(Lfx.Data.DataBaseCache.DefaultCache.ServerName) || IpLocal2.IsMatch(Lfx.Data.DataBaseCache.DefaultCache.ServerName)) {
+                                Lfx.Data.DataBaseCache.DefaultCache.SlowLink = false;
+                        } else {
+                                Lfx.Data.DataBaseCache.DefaultCache.SlowLink = true;
                         }
 
                         if (openConnection)
@@ -231,7 +238,7 @@ namespace Lfx
                 {
                         get
                         {
-                                return this.MasterConnection.SlowLink;
+                                return Lfx.Data.DataBaseCache.DefaultCache.SlowLink;
                         }
                 }
 

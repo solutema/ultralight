@@ -1440,7 +1440,7 @@ namespace Lfc
                                         this.Text = "Listado de " + Attr.NombrePlural;
                         }
 
-                        if (this.Visible && (this.Connection.SlowLink == false || this.Listado.Items.Count < 500))
+                        if (this.Visible && (Lfx.Workspace.Master.SlowLink == false || this.Listado.Items.Count < 500))
                                 RefreshTimer.Start();
 
                         base.OnActivated(e);

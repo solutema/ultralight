@@ -378,7 +378,7 @@ namespace Lbl.Articulos
 		{
                         get
                         {
-                                if (this.Connection.SlowLink)
+                                if (Lfx.Workspace.Master.SlowLink)
                                         return this.GetFieldValue<decimal>("stock_actual");
                                 else
                                         return this.ObtenerExistencias();

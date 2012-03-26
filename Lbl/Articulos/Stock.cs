@@ -59,7 +59,7 @@ namespace Lbl.Articulos
 
 			if(downloadImage == DownloadImage.Always
 				|| (downloadImage == DownloadImage.OnlyIfNotInCache && ImageInCache == false)
-				|| ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || dataBase.SlowLink == false))
+				|| ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || Lfx.Workspace.Master.SlowLink == false))
 			{
 				//Download image and save to cache
 				Lfx.Data.Row ImagenDB = dataBase.Row("articulos_imagenes", "imagen", "id_articulo", productId);
@@ -104,7 +104,7 @@ namespace Lbl.Articulos
 
                         if (downloadImage == DownloadImage.Always
                                 || (downloadImage == DownloadImage.OnlyIfNotInCache && ImageInCache == false)
-                                || ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || dataBase.SlowLink == false))
+                                || ((downloadImage == DownloadImage.PreferCacheOnSlowLinks && ImageInCache == false) || Lfx.Workspace.Master.SlowLink == false))
 			{
 				//Download image and save to cache
 				Lfx.Data.Row ImagenDB = dataBase.Row("articulos_categorias", "imagen", "id_categoria", categoryId);

@@ -53,8 +53,6 @@ namespace Lazaro.WinMain.Config
                         this.EtiquetaServidor = new Lui.Forms.Label();
                         this.EntradaSucursal = new Lui.Forms.TextBox();
                         this.label5 = new Lui.Forms.Label();
-                        this.EntradaSlowLink = new Lui.Forms.YesNo();
-                        this.label4 = new Lui.Forms.Label();
                         this.EntradaBD = new Lui.Forms.TextBox();
                         this.Label2 = new Lui.Forms.Label();
                         this.EntradaConexion = new Lui.Forms.ComboBox();
@@ -68,7 +66,6 @@ namespace Lazaro.WinMain.Config
                         this.OkButton = new Lui.Forms.Button();
                         this.PictureBox1 = new System.Windows.Forms.PictureBox();
                         this.label7 = new Lui.Forms.Label();
-                        this.label3 = new Lui.Forms.Label();
                         this.LowerPanel.SuspendLayout();
                         ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
                         this.SuspendLayout();
@@ -106,7 +103,7 @@ namespace Lazaro.WinMain.Config
                         // EntradaSucursal
                         // 
                         this.EntradaSucursal.DataType = Lui.Forms.DataTypes.Integer;
-                        this.EntradaSucursal.Location = new System.Drawing.Point(280, 344);
+                        this.EntradaSucursal.Location = new System.Drawing.Point(280, 312);
                         this.EntradaSucursal.Name = "EntradaSucursal";
                         this.EntradaSucursal.Size = new System.Drawing.Size(60, 24);
                         this.EntradaSucursal.TabIndex = 16;
@@ -114,30 +111,12 @@ namespace Lazaro.WinMain.Config
                         // 
                         // label5
                         // 
-                        this.label5.Location = new System.Drawing.Point(64, 344);
+                        this.label5.Location = new System.Drawing.Point(64, 312);
                         this.label5.Name = "label5";
                         this.label5.Size = new System.Drawing.Size(216, 24);
                         this.label5.TabIndex = 15;
                         this.label5.Text = "Sucursal predeterminada";
                         this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        // 
-                        // EntradaSlowLink
-                        // 
-                        this.EntradaSlowLink.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
-                        this.EntradaSlowLink.Location = new System.Drawing.Point(280, 312);
-                        this.EntradaSlowLink.Name = "EntradaSlowLink";
-                        this.EntradaSlowLink.Size = new System.Drawing.Size(60, 24);
-                        this.EntradaSlowLink.TabIndex = 13;
-                        this.EntradaSlowLink.Value = true;
-                        // 
-                        // label4
-                        // 
-                        this.label4.Location = new System.Drawing.Point(64, 312);
-                        this.label4.Name = "label4";
-                        this.label4.Size = new System.Drawing.Size(216, 24);
-                        this.label4.TabIndex = 12;
-                        this.label4.Text = "Optimizar para conexión lenta*";
-                        this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaBD
                         // 
@@ -283,22 +262,10 @@ namespace Lazaro.WinMain.Config
                         this.label7.Text = "Es necesario un servidor SQL donde guardar los datos. El servidor SQL puede estar" +
     " en este equipo o en otro equipo si dispone de una conexión de red.";
                         // 
-                        // label3
-                        // 
-                        this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label3.Location = new System.Drawing.Point(352, 320);
-                        this.label3.Name = "label3";
-                        this.label3.Size = new System.Drawing.Size(240, 16);
-                        this.label3.TabIndex = 14;
-                        this.label3.Text = "* Por ejemplo Internet o conexiones WAN.";
-                        this.label3.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
-                        // 
                         // ConfigurarBd
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(594, 446);
-                        this.Controls.Add(this.label3);
                         this.Controls.Add(this.EntradaBD);
                         this.Controls.Add(this.EntradaServidor);
                         this.Controls.Add(this.EntradaConexion);
@@ -306,12 +273,10 @@ namespace Lazaro.WinMain.Config
                         this.Controls.Add(this.EntradaUsuario);
                         this.Controls.Add(this.EntradaSucursal);
                         this.Controls.Add(this.label7);
-                        this.Controls.Add(this.EntradaSlowLink);
                         this.Controls.Add(this.PictureBox1);
                         this.Controls.Add(this.LowerPanel);
                         this.Controls.Add(this.EtiquetaEncab);
                         this.Controls.Add(this.label5);
-                        this.Controls.Add(this.label4);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.EtiquetaServidor);
                         this.Controls.Add(this.Label1);
@@ -346,12 +311,9 @@ namespace Lazaro.WinMain.Config
                 private Lui.Forms.ButtonPanel LowerPanel;
                 private Lui.Forms.Button CancelCommandButton;
                 private Lui.Forms.Button OkButton;
-                private Lui.Forms.Label label4;
-                private Lui.Forms.YesNo EntradaSlowLink;
                 private Lui.Forms.TextBox EntradaSucursal;
                 private Lui.Forms.Label label5;
                 private System.Windows.Forms.PictureBox PictureBox1;
                 private Lui.Forms.Label label7;
-                private Lui.Forms.Label label3;
         }
 }

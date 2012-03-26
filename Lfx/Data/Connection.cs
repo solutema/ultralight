@@ -1575,13 +1575,6 @@ LEFT JOIN pg_attribute
                         }
                 }
 
-                public bool SlowLink
-                {
-                        get
-                        {
-                                return Lfx.Data.DataBaseCache.DefaultCache.SlowLink;
-                        }
-                }
 
                 public string DataBaseName
                 {
