@@ -66,7 +66,7 @@ namespace Lfc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.label1.Location = new System.Drawing.Point(24, 24);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(456, 32);
+                        this.label1.Size = new System.Drawing.Size(455, 32);
                         this.label1.TabIndex = 0;
                         this.label1.Text = "Imprimir o exportar documento";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -162,7 +162,7 @@ namespace Lfc
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.CancelButton = this.BotonCancelar;
-                        this.ClientSize = new System.Drawing.Size(545, 441);
+                        this.ClientSize = new System.Drawing.Size(544, 441);
                         this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.BotonImprimirAvanzado);
                         this.Controls.Add(this.BotonCancelar);
