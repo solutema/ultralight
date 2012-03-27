@@ -523,7 +523,14 @@ namespace Lbl.Comprobantes
                         if (this.FormaDePago == null)
                                 return;
                         
-                        decimal ImporteMovim = this.ImporteCancelado;
+                        decimal ImporteMovim;
+                        if(anulacion)
+                                // Al cancelar, desasiento el importe pagado
+                                ImporteMovim = this.ImporteCancelado;
+                        else
+                                // Al ingresar la factura, sasiento el importe impago (que normalmente es el total)
+                                ImporteMovim = this.ImporteImpago;
+
                         if (this.FormaDePago.Tipo == Pagos.TiposFormasDePago.CuentaCorriente)
                                 ImporteMovim = this.Total;
 
