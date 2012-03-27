@@ -96,8 +96,8 @@ namespace Lazaro.Pres.Spreadsheet
                         Result.AppendLine(@"<meta http-equiv=""Content-Type"" content=""text/html; charset=UTF-8"" />");
                         Result.AppendLine(@"<style>");
                         Result.AppendLine(@"@media print { body { margin: 0; padding: 0 } }");
-                        Result.AppendLine(@"body, table, td { font-family: Trebuchet MS, Helvetica, Sans Serif; font-size: 10pt; }");
-                        Result.AppendLine(@".StyleTable, table { border-collapse: collapse; empty-cells: show; border: 1px solid gray; }");
+                        Result.AppendLine(@"body, table, td { font-family: Segoe UI, Trebuchet MS, Helvetica, Sans Serif; font-size: 10pt; }");
+                        Result.AppendLine(@".StyleTable, table { border-collapse: collapse; empty-cells: show; border: none; }");
                         Result.AppendLine(@".StyleTableCaption, caption { font-size: large; background-color: #C5D900; padding: 4px; }");
                         Result.AppendLine(@".StyleTableHead, thead { display: table-header-group; }");
                         Result.AppendLine(@".StyleColumnHeader, th { padding: 2px; background-color: #C5D9F1; font-weight: bold; }");
@@ -126,25 +126,21 @@ namespace Lazaro.Pres.Spreadsheet
                 {
                         System.Text.StringBuilder Result = new StringBuilder();
 
-                        Result.AppendLine(@"<?xml version=""1.0""?>");
+                        Result.AppendLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>");
                         Result.AppendLine(@"<?mso-application progid=""Excel.Sheet""?>");
-                        Result.AppendLine(@"<Workbook xmlns:x=""urn:schemas-microsoft-com:office:excel"" xmlns=""urn:schemas-microsoft-com:office:spreadsheet"" xmlns:ss=""urn:schemas-microsoft-com:office:spreadsheet"">");
-                        Result.AppendLine(@" <Styles>");
-                        Result.AppendLine(@"  <Style ss:ID=""Default"" ss:Name=""Normal"">");
-                        Result.AppendLine(@"   <Alignment ss:Vertical=""Bottom""/>");
-                        Result.AppendLine(@"   <Borders/>");
-                        Result.AppendLine(@"   <Font/>");
-                        Result.AppendLine(@"   <Interior/>");
-                        Result.AppendLine(@"   <NumberFormat/>");
-                        Result.AppendLine(@"   <Protection/>");
-                        Result.AppendLine(@"  </Style>");
-                        Result.AppendLine(@"  <Style ss:ID=""StyleData"">");
-                        Result.AppendLine(@"  </Style>");
-                        Result.AppendLine(@"  <Style ss:ID=""StyleHeader"">");
-                        Result.AppendLine(@"   <Font x:Family=""Swiss"" ss:Bold=""1""/>");
-                        Result.AppendLine(@"   <Interior ss:Color=""#C5D9F1"" ss:Pattern=""Solid""/>");
-                        Result.AppendLine(@"  </Style>");
-                        Result.AppendLine(@" </Styles>");
+                        Result.AppendLine(@"<Workbook xmlns=""urn:schemas-microsoft-com:office:spreadsheet"" xmlns:c=""urn:schemas-microsoft-com:office:component:spreadsheet"" xmlns:html=""http://www.w3.org/TR/REC-html40"" xmlns:o=""urn:schemas-microsoft-com:office:office"" xmlns:ss=""urn:schemas-microsoft-com:office:spreadsheet"" xmlns:x2=""http://schemas.microsoft.com/office/excel/2003/xml"" xmlns:x=""urn:schemas-microsoft-com:office:excel"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">");
+                        Result.AppendLine(@"  <Styles>
+    <Style ss:ID=""Default"" ss:Name=""Normal"">
+      <Alignment ss:Vertical=""Bottom"" />
+    </Style>
+    <Style ss:ID=""StyleData"">
+      <Font x:FontName=""Segoe IU"" />
+    </Style>
+    <Style ss:ID=""StyleHeader"">
+      <Font x:FontName=""Segoe IU"" ss:Bold=""1"" />
+      <Interior ss:Color=""#C5D9F1"" ss:Pattern=""Solid"" />
+    </Style>
+   </Styles>");
 
                         if (sheet == null) {
                                 //All sheets

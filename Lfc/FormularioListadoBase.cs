@@ -72,6 +72,7 @@ namespace Lfc
                 {
                         //this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
+
                         this.StockImage = "listado";
 
                         RefreshTimer.Start();
@@ -302,7 +303,7 @@ namespace Lfc
 
                 public virtual void OnFiltersChanged(Lazaro.Pres.Filters.FilterCollection filters)
                 {
-                        
+
                 }
 
 
@@ -311,10 +312,10 @@ namespace Lfc
                         System.Text.StringBuilder Res = new System.Text.StringBuilder();
                         foreach (Lazaro.Pres.Filters.IFilter filter in filters) {
                                 if (filter is Lazaro.Pres.Filters.RelationFilter) {
-                                        if(filter.Value != null)
+                                        if (filter.Value != null)
                                                 Res.Append(", " + filter.Label + " es " + filter.Value.ToString());
                                 } else if (filter is Lazaro.Pres.Filters.NumericRangeFilter) {
-                                        if(Lfx.Types.Parsing.ParseDecimal(filter.Value as string) != 0)
+                                        if (Lfx.Types.Parsing.ParseDecimal(filter.Value as string) != 0)
                                                 Res.Append(", " + filter.Label + " es " + filter.Value.ToString());
                                 } else if (filter is Lazaro.Pres.Filters.DateRangeFilter) {
                                         Lfx.Types.DateRange Rng = filter.Value as Lfx.Types.DateRange;
@@ -589,7 +590,7 @@ namespace Lfc
                         SelElementos.WhereClause = new qGen.Where(this.AtributoDatos.CampoId, qGen.ComparisonOperators.In, codigos.ToArray());
 
                         System.Data.DataTable TablaElementos = this.Connection.Select(SelElementos);
-                        foreach(System.Data.DataRow RegElem in TablaElementos.Rows) {
+                        foreach (System.Data.DataRow RegElem in TablaElementos.Rows) {
                                 Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.ElementoTipo, this.Connection, (Lfx.Data.Row)RegElem);
                                 if (Elem is Lbl.IEstadosEstandar)
                                         ((Lbl.IEstadosEstandar)(Elem)).Activar(false);
@@ -661,7 +662,27 @@ namespace Lfc
                         Listado.Sort();
                 }
 
-                private void SetupSorter(string nuevoOrden, SortOrder sortOrder)
+
+                protected void SetupSorter(string nuevoOrden)
+                {
+                        string Orden = nuevoOrden;
+
+                        if (string.IsNullOrEmpty(Orden))
+                                return;
+
+                        if (Orden.IndexOf(',') >= 0) {
+                                string Resto = Orden;
+                                Orden = Lfx.Types.Strings.GetNextToken(ref Resto, ",");
+                        }
+
+                        if (Orden.EndsWith(" DESC"))
+                                this.SetupSorter(Orden.Substring(0, Orden.Length - 5).Trim(), SortOrder.Descending);
+                        else
+                                this.SetupSorter(Orden, SortOrder.Descending);
+                }
+
+
+                protected void SetupSorter(string nuevoOrden, SortOrder sortOrder)
                 {
                         if (this.Definicion == null)
                                 return;
@@ -765,12 +786,7 @@ namespace Lfc
                                 }
 
 
-                                if (this.Definicion.OrderBy == null ||this.Definicion.OrderBy.Contains(","))
-                                        this.SetupSorter(null, SortOrder.None);
-                                else if (this.Definicion.OrderBy.EndsWith(" DESC"))
-                                        this.SetupSorter(this.Definicion.OrderBy.Substring(0, this.Definicion.OrderBy.Length - 5).Trim(), SortOrder.Descending);
-                                else
-                                        this.SetupSorter(this.Definicion.OrderBy, SortOrder.Ascending);
+                                this.SetupSorter(this.Definicion.OrderBy);
 
                                 Listado.ResumeLayout();
                                 Listado.EndUpdate();
@@ -838,7 +854,7 @@ namespace Lfc
                                         if (this.Definicion.Columns != null) {
                                                 foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns) {
                                                         if (CurField.Name.IndexOf(" AS ") == -1 && CurField.Name.IndexOf("(") == -1) {
-                                                                switch(CurField.DataType) {
+                                                                switch (CurField.DataType) {
                                                                         case Lfx.Data.InputFieldTypes.Binary:
                                                                         case Lfx.Data.InputFieldTypes.Image:
                                                                         case Lfx.Data.InputFieldTypes.Bool:
@@ -862,7 +878,7 @@ namespace Lfc
                                                                         case Lfx.Data.InputFieldTypes.NumericSet:
                                                                         case Lfx.Data.InputFieldTypes.Serial:
                                                                                 // En estos tipos de campos busco sólo números
-                                                                                if(EsNumero)
+                                                                                if (EsNumero)
                                                                                         WhereBuscarTexto.AddWithValue(CurField.Name, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                                 break;
                                                                         case Lfx.Data.InputFieldTypes.Relation:
@@ -870,7 +886,7 @@ namespace Lfc
                                                                                 WhereBuscarTexto.AddWithValue(CurField.Name, qGen.ComparisonOperators.InsensitiveLike, "%" + this.SearchText + "%");
                                                                                 break;
                                                                 }
-                                                                
+
                                                         }
                                                 }
                                         }
@@ -1035,9 +1051,9 @@ namespace Lfc
                                                 }
                                         }
                                         Itm.Group = LastGroup;
-                                        
+
                                         OnItemAdded(Itm, Registro);
-                                        
+
                                         if (CurItem != null && Itm.Text == CurItem.Text)
                                                 CurItem = Itm;
 
@@ -1093,7 +1109,7 @@ namespace Lfc
                                 EtiquetaCantidad.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Default;
                         }
 
-                        
+
                         // Muestro los totales de grupo
                         if (m_GroupingColumnName != null) {
                                 foreach (ListViewGroup Grp in Listado.Groups) {
@@ -1485,16 +1501,20 @@ namespace Lfc
                                                 if (DialogoGuardar.ShowDialog() == DialogResult.OK) {
                                                         Lazaro.Pres.Spreadsheet.Workbook Workbook = this.ToWorkbook();
                                                         string FileName = DialogoGuardar.FileName;
-                                                        switch (Formato) {
-                                                                case FormatoExportar.Html:
-                                                                        Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.Html);
-                                                                        break;
-                                                                case FormatoExportar.Excel:
-                                                                        Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.Excel);
-                                                                        break;
-                                                                case FormatoExportar.ExcelXml:
-                                                                        Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.ExcelXml);
-                                                                        break;
+                                                        try {
+                                                                switch (Formato) {
+                                                                        case FormatoExportar.Html:
+                                                                                Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.Html);
+                                                                                break;
+                                                                        case FormatoExportar.Excel:
+                                                                                Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.Excel);
+                                                                                break;
+                                                                        case FormatoExportar.ExcelXml:
+                                                                                Workbook.SaveTo(FileName, Lazaro.Pres.Spreadsheet.SaveFormats.ExcelXml);
+                                                                                break;
+                                                                }
+                                                        } catch (Exception ex) {
+                                                                Lfx.Workspace.Master.RunTime.Toast("No se puede guardar el archivo. " + ex.Message, "Error");
                                                         }
                                                 }
                                         }

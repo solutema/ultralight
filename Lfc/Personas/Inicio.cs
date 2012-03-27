@@ -101,7 +101,7 @@ namespace Lfc.Personas
 
                         this.HabilitarFiltrar = true;
 
-                        this.Estado = -1;
+                        this.Estado = 1;
                         this.EstadoCredito = -1;
                         this.FechaAlta = new Lfx.Types.DateRange("*");
                         this.FechaBaja = new Lfx.Types.DateRange("*");
@@ -184,13 +184,13 @@ namespace Lfc.Personas
                         else if (Grupo != null)
                                 this.CustomFilters.AddWithValue("personas.id_grupo", Grupo.Id);
 
-                        if (EstadoCredito >= 0)
+                        if(EstadoCredito >= 0)
                                 this.CustomFilters.AddWithValue("personas.estadocredito", EstadoCredito);
 
                         if (Localidad != null)
                                 this.CustomFilters.AddWithValue("personas.id_ciudad", Localidad.Id);
 
-                        if (Estado >= 0)
+                        if (string.IsNullOrEmpty(this.SearchText) && Estado >= 0)
                                 this.CustomFilters.AddWithValue("personas.estado", Estado);
 
                         if (FechaAlta.HasRange)

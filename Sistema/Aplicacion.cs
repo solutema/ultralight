@@ -177,7 +177,7 @@ namespace Lazaro.WinMain
                         }
 
 
-                        if (IgnoreUpdates == false) {
+                        if (IgnoreUpdates == false && System.IO.Directory.Exists(Lfx.Environment.Folders.UpdatesFolder)) {
                                 // Si hay actualizaciones pendientes, reinicio para que ActualizadorLazaro se encargue de ellas.
                                 string[] ArchivosNuevos = System.IO.Directory.GetFiles(Lfx.Environment.Folders.UpdatesFolder, "*.new", System.IO.SearchOption.AllDirectories);
                                 if (ArchivosNuevos.Length > 0) {
@@ -718,9 +718,9 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                         if (Pregunta.ShowDialog() == DialogResult.OK)
                                                 Help.ShowHelp(Aplicacion.FormularioPrincipal, "http://www.lazarogestion.com/?q=node/44");
                                 } else {
-                                        string RunTime = Lfx.Environment.SystemInformation.RuntimeName;
+                                        string RunTimeName = Lfx.Environment.SystemInformation.RuntimeName;
                                         // Verifico la presencia de .NET Framework 3.5
-                                        if (Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet && RunTime.IndexOf("3.5") < 0) {
+                                        if (Lfx.Environment.SystemInformation.RunTime == Lfx.Environment.SystemInformation.RunTimes.DotNet && RunTimeName.IndexOf("3.5") < 0) {
                                                 Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Es necesario instalar un componente para el correcto funcionamiento de Lázaro. El componente es Microsoft .NET Framework versión 3.5. ¿Desea ir a la página de descarga para instalarlo ahora?", "Advertencia");
                                                 Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                 if (Pregunta.ShowDialog() == DialogResult.OK)
@@ -838,6 +838,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                 private static void UnknownExceptionHandler(Exception ex)
                 {
                         Errores.ExcepcionNoControlada FormularioError = new Errores.ExcepcionNoControlada();
+                        FormularioError.Text = ex.Message;
                         FormularioError.Show();
                         FormularioError.Refresh();
                         System.Windows.Forms.Application.DoEvents();

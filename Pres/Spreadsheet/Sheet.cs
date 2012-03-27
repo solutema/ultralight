@@ -163,13 +163,13 @@ namespace Lazaro.Pres.Spreadsheet
                         System.Text.StringBuilder Result = new StringBuilder();
 
                         Result.AppendLine(@"<table width=""100%"" class=""StyleTable"">");
-                        Result.AppendLine(@"<caption class=""StyleTableCaption"">" + this.Name + "</caption>");
+                        Result.AppendLine(@"<caption class=""StyleTableCaption"">" +  Lfx.Types.Strings.EscapeHtml(this.Name) + "</caption>");
 
                         //Column headers
                         Result.AppendLine(@"<thead class=""StyleTableHead"">");
                         Result.AppendLine("<tr>");
                         foreach (ColumnHeader ch in this.ColumnHeaders) {
-                                Result.AppendLine(@"<th class=""StyleColumnHeader"">" + ch.Text + "</th>");
+                                Result.AppendLine(@"<th class=""StyleColumnHeader"">" + Lfx.Types.Strings.EscapeHtml(ch.Text) + "</th>");
                         }
                         Result.AppendLine("</tr>");
                         Result.AppendLine("</thead>");
@@ -180,7 +180,7 @@ namespace Lazaro.Pres.Spreadsheet
                                 Result.AppendLine(@"<tr class=""StyleDataRow"">");
                                 foreach (Cell cl in rw.Cells) {
                                         string CellString = @"<td class=""StyleDataCell"">";
-                                        CellString += cl.ToString();
+                                        CellString += Lfx.Types.Strings.EscapeHtml(cl.ToString());
                                         CellString += "</td>";
                                         Result.AppendLine(CellString);
                                 }
@@ -197,7 +197,7 @@ namespace Lazaro.Pres.Spreadsheet
                         System.Text.StringBuilder Result = new StringBuilder();
 
                         if (this.Name != null && this.Name.Length > 0)
-                                Result.AppendLine(@"<Worksheet ss:Name=""" + this.Name.Substring(0, this.Name.Length > 31 ? 31 : this.Name.Length).Replace(":", "") + @""">");
+                                Result.AppendLine(@"<Worksheet ss:Name=""" + Lfx.Types.Strings.EscapeXml(this.Name.Substring(0, this.Name.Length > 31 ? 31 : this.Name.Length).Replace(":", "")) + @""">");
                         else
                                 Result.AppendLine(@"<Worksheet ss:Name=""sin título"">");
                         Result.AppendLine(@"<ss:Table>");
@@ -208,13 +208,13 @@ namespace Lazaro.Pres.Spreadsheet
                                 string ColDef = @"<ss:Column ss:Index=""" + (++i).ToString() + @"""";
                                 if (ch.Width > 0)
                                         ColDef += @" ss:Width=""" + ch.Width.ToString() + @"""";
-                                ColDef += @" ss:AutoFitWidth=""1""/>";
+                                ColDef += @" ss:AutoFitWidth=""1"" />";
                                 Result.AppendLine(ColDef);
                         }
 
                         Result.AppendLine(@"<ss:Row>");
                         foreach (ColumnHeader ch in this.ColumnHeaders) {
-                                Result.AppendLine(@"<ss:Cell ss:StyleID=""StyleHeader""><Data ss:Type=""String"">" + ch.Text + @"</Data></ss:Cell>");
+                                Result.AppendLine(@"<ss:Cell ss:StyleID=""StyleHeader""><Data ss:Type=""String"">" + Lfx.Types.Strings.EscapeXml(ch.Text) + @"</Data></ss:Cell>");
                         }
                         Result.AppendLine(@"</ss:Row>");
 
@@ -224,7 +224,7 @@ namespace Lazaro.Pres.Spreadsheet
                                 foreach (Cell cl in rw.Cells) {
                                         string CellString = @"<ss:Cell ss:StyleID=""StyleData""";
                                         if (cl.Formula != null)
-                                                CellString += @" ss:Formula=""" + cl.Formula.ToString() + @"""";
+                                                CellString += @" ss:Formula=""" + Lfx.Types.Strings.EscapeXml(cl.Formula.ToString()) + @"""";
 
                                         CellString += ">";
                                         if (cl.Content != null) {
@@ -252,7 +252,7 @@ namespace Lazaro.Pres.Spreadsheet
                                                                 CellString += @"</Data>";
                                                                 break;
                                                         case "System.String":
-                                                                CellString += @"<Data ss:Type=""String"">" + System.Security.SecurityElement.Escape(cl.Content.ToString()) + @"</Data>";
+                                                                CellString += @"<Data ss:Type=""String"">" + Lfx.Types.Strings.EscapeXml(cl.Content.ToString()) + @"</Data>";
                                                                 break;
                                                 }
                                         }

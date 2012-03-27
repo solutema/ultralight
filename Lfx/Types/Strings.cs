@@ -138,5 +138,18 @@ namespace Lfx.Types
                         }
                         return false;
                 }
+
+
+                public static string EscapeHtml(string text)
+                {
+                        return System.Security.SecurityElement.Escape(text);
+                        //es lo mismo que return text.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;");
+                }
+
+                public static string EscapeXml(string text)
+                {
+                        return System.Security.SecurityElement.Escape(text);
+                        //es lo mismo que return text.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;");
+                }
 	}
 }
