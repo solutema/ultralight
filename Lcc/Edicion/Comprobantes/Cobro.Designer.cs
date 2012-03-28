@@ -522,7 +522,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.AyudaFormaDePago.Name = "AyudaFormaDePago";
                         this.AyudaFormaDePago.Size = new System.Drawing.Size(456, 20);
                         this.AyudaFormaDePago.TabIndex = 2;
-                        this.AyudaFormaDePago.Text = "Cambie la forma de pago usando la tecla \"Barra Espaciadora\".";
+                        this.AyudaFormaDePago.Text = "Cambie la forma de pago usando la tecla \"barra espaciadora\".";
                         this.AyudaFormaDePago.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         this.AyudaFormaDePago.VisibleChanged += new System.EventHandler(this.FormaDePago_SizeChanged);
                         // 

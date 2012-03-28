@@ -99,6 +99,7 @@
     <Compile Include="Bancos\Claves\Ccc.cs" />
     <Compile Include="Bancos\Claves\Clabe.cs" />
     <Compile Include="Bancos\Claves\Iban.cs" />
+    <Compile Include="Cajas\Movimiento.cs" />
     <Compile Include="ColeccionCodigoDetalle.cs" />
     <Compile Include="Componentes\Componente.cs" />
     <Compile Include="Comprobantes\ColeccionComprobanteImporte.cs" />

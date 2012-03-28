@@ -57,6 +57,7 @@ namespace Lfc.CuentasCorrientes
 
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
+                                ElementoTipo = typeof(Lbl.CuentasCorrientes.Movimiento),
                                 TableName = "ctacte",
                                 KeyColumn = new Lazaro.Pres.Field("ctacte.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Columns = new Lazaro.Pres.FieldCollection() {

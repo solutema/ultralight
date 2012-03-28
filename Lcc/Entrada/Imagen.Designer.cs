@@ -135,7 +135,7 @@ namespace Lcc.Entrada
                         this.BotonSeleccionarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSeleccionarImagen.Subtext = "";
                         this.BotonSeleccionarImagen.TabIndex = 1;
-                        this.BotonSeleccionarImagen.Text = "Desde Archivo";
+                        this.BotonSeleccionarImagen.Text = "Desde archivo";
                         this.BotonSeleccionarImagen.Click += new System.EventHandler(this.BotonSeleccionarImagen_Click);
                         // 
                         // BotonCapturarImagen
@@ -150,7 +150,7 @@ namespace Lcc.Entrada
                         this.BotonCapturarImagen.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonCapturarImagen.Subtext = "";
                         this.BotonCapturarImagen.TabIndex = 0;
-                        this.BotonCapturarImagen.Text = "Desde Dispositivo";
+                        this.BotonCapturarImagen.Text = "Desde dispositivo";
                         this.BotonCapturarImagen.Click += new System.EventHandler(this.BotonCapturarImagen_Click);
                         // 
                         // GroupLabel

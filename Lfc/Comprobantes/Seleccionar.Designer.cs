@@ -107,6 +107,7 @@ namespace Lfc.Comprobantes
                         // EntradaTipo
                         // 
                         this.EntradaTipo.AlwaysExpanded = false;
+                        this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(112, 88);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.SetData = new string[] {
@@ -173,10 +174,10 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.Location = new System.Drawing.Point(112, 56);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
+                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(432, 24);
                         this.EntradaVendedor.TabIndex = 3;
-                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
                         this.EntradaVendedor.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
@@ -251,14 +252,13 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
-                        this.EntradaCliente.Filter = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(112, 24);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
+                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Required = false;
                         this.EntradaCliente.Size = new System.Drawing.Size(432, 24);
                         this.EntradaCliente.TabIndex = 1;
-                        this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
@@ -266,11 +266,11 @@ namespace Lfc.Comprobantes
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(698, 475);
+                        this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.EntradaCliente);
                         this.Controls.Add(this.EntradaVendedor);
                         this.Controls.Add(this.EntradaPv);
                         this.Controls.Add(this.EntradaNumero);
-                        this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.Listado);
                         this.Controls.Add(this.Label7);
                         this.Controls.Add(this.EtiquetaAviso);
@@ -278,6 +278,7 @@ namespace Lfc.Comprobantes
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.Label8);
                         this.Controls.Add(this.Label1);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Seleccionar";
                         this.Text = "Seleccionar comprobante";
                         this.Controls.SetChildIndex(this.Label1, 0);
@@ -287,12 +288,13 @@ namespace Lfc.Comprobantes
                         this.Controls.SetChildIndex(this.EtiquetaAviso, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
                         this.Controls.SetChildIndex(this.Listado, 0);
-                        this.Controls.SetChildIndex(this.EntradaTipo, 0);
                         this.Controls.SetChildIndex(this.EntradaNumero, 0);
                         this.Controls.SetChildIndex(this.EntradaPv, 0);
                         this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
+                        this.Controls.SetChildIndex(this.EntradaTipo, 0);
                         this.ResumeLayout(false);
+                        this.PerformLayout();
 
                 }
 

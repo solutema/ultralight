@@ -58,6 +58,7 @@ namespace Lfc.Cajas
 
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
+                                ElementoTipo = typeof(Lbl.Cajas.Movimiento),
                                 TableName = "cajas_movim",
                                 KeyColumn = new Lazaro.Pres.Field("cajas_movim.id_movim", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
                                 Joins = new qGen.JoinCollection() { 

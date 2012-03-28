@@ -225,7 +225,20 @@ namespace Lfx.Config
 
                                 qGen.Select SelectConfig = new qGen.Select("sys_config");
                                 SelectConfig.Fields = "nombre, valor, estacion, id_sucursal";
-                                System.Data.DataTable TablaSysConfig = this.DataBase.Select(SelectConfig);
+                                System.Data.DataTable TablaSysConfig = null;
+                                int Intentos = 3;
+                                while (true) {
+                                        try {
+                                                TablaSysConfig = this.DataBase.Select(SelectConfig);
+                                                break;
+                                        } catch (Exception ex) {
+                                                Intentos--;
+                                                System.Threading.Thread.Sleep(1000);
+                                                if (Intentos <= 0)
+                                                        throw ex;
+                                        }
+                                }
+
                                 foreach (System.Data.DataRow CfgRow in TablaSysConfig.Rows) {
                                         string Sucu;
                                         if (CfgRow["id_sucursal"] == null)

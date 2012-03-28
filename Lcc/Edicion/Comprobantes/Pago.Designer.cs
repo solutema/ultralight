@@ -515,7 +515,7 @@ namespace Lcc.Edicion.Comprobantes
                         this.label13.Name = "label13";
                         this.label13.Size = new System.Drawing.Size(456, 20);
                         this.label13.TabIndex = 2;
-                        this.label13.Text = "Cambie la forma de pago usando la tecla \"Barra Espaciadora\".";
+                        this.label13.Text = "Cambie la forma de pago usando la tecla \"barra espaciadora\".";
                         this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         // 
                         // label12
