@@ -350,7 +350,6 @@
   
   <Table name="cajas_movim" label="Movimientos de Cajas">
     <Column name="id_movim" datatype="Serial" nullable="0" primary_key="1" />
-    <Column name="id_banco" inputtype="Relation" nullable="1" />
     <Column name="id_caja" inputtype="Relation" nullable="0" default="0" />
     <Column name="id_persona" inputtype="Relation" nullable="0" />
     <Column name="id_cliente" inputtype="Relation" nullable="1" />
@@ -365,7 +364,6 @@
     <Column name="concepto" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="comprob" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Index table="cajas_movim" name="cajas_movim_id_banco" columns="id_banco" unique="0" primary="0" />
     <Index table="cajas_movim" name="cajas_movim_id_cliente" columns="id_cliente" unique="0" primary="0" />
     <Index table="cajas_movim" name="cajas_movim_id_concepto" columns="id_concepto" unique="0" primary="0" />
     <Index table="cajas_movim" name="cajas_movim_id_caja" columns="id_caja" unique="0" primary="0" />
@@ -375,7 +373,6 @@
     <Index table="cajas_movim" name="cajas_movim_id_persona" columns="id_persona" unique="0" primary="0" />
     <Index table="cajas_movim" name="PRIMARY" columns="id_movim" unique="1" primary="1" />
   </Table>
-  <Constraint name="cajas_movim_id_banco" table="cajas_movim" column="id_banco" reference_table="bancos" reference_column="id_banco" />
   <Constraint name="cajas_movim_id_cliente" table="cajas_movim" column="id_cliente" reference_table="personas" reference_column="id_persona" />
   <Constraint name="cajas_movim_id_concepto" table="cajas_movim" column="id_concepto" reference_table="conceptos" reference_column="id_concepto" />
   <Constraint name="cajas_movim_id_caja" table="cajas_movim" column="id_caja" reference_table="cajas" reference_column="id_caja" />
