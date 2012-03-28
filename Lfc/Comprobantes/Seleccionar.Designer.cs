@@ -56,6 +56,7 @@ namespace Lfc.Comprobantes
 
                 private void InitializeComponent()
                 {
+                        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Seleccionar));
                         this.EtiquetaAviso = new Lui.Forms.Label();
                         this.EntradaNumero = new Lui.Forms.TextBox();
                         this.Label2 = new Lui.Forms.Label();
@@ -75,6 +76,8 @@ namespace Lfc.Comprobantes
                         this.ColImporte = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColCancelada = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.EntradaCliente = new Lcc.Entrada.CodigoDetalle();
+                        this.pictureBox1 = new System.Windows.Forms.PictureBox();
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // EtiquetaAviso
@@ -89,7 +92,7 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaNumero
                         // 
-                        this.EntradaNumero.Location = new System.Drawing.Point(400, 88);
+                        this.EntradaNumero.Location = new System.Drawing.Point(480, 88);
                         this.EntradaNumero.Name = "EntradaNumero";
                         this.EntradaNumero.Size = new System.Drawing.Size(96, 24);
                         this.EntradaNumero.TabIndex = 9;
@@ -97,7 +100,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label2
                         // 
-                        this.Label2.Location = new System.Drawing.Point(256, 88);
+                        this.Label2.Location = new System.Drawing.Point(336, 88);
                         this.Label2.Name = "Label2";
                         this.Label2.Size = new System.Drawing.Size(72, 24);
                         this.Label2.TabIndex = 6;
@@ -108,7 +111,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaTipo.AlwaysExpanded = false;
                         this.EntradaTipo.AutoSize = true;
-                        this.EntradaTipo.Location = new System.Drawing.Point(112, 88);
+                        this.EntradaTipo.Location = new System.Drawing.Point(192, 88);
                         this.EntradaTipo.Name = "EntradaTipo";
                         this.EntradaTipo.SetData = new string[] {
         "Factura A|A",
@@ -124,7 +127,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label1
                         // 
-                        this.Label1.Location = new System.Drawing.Point(24, 88);
+                        this.Label1.Location = new System.Drawing.Point(104, 88);
                         this.Label1.Name = "Label1";
                         this.Label1.Size = new System.Drawing.Size(88, 24);
                         this.Label1.TabIndex = 4;
@@ -133,7 +136,7 @@ namespace Lfc.Comprobantes
                         // 
                         // EntradaPv
                         // 
-                        this.EntradaPv.Location = new System.Drawing.Point(328, 88);
+                        this.EntradaPv.Location = new System.Drawing.Point(408, 88);
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.Size = new System.Drawing.Size(48, 24);
                         this.EntradaPv.TabIndex = 7;
@@ -141,7 +144,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label7
                         // 
-                        this.Label7.Location = new System.Drawing.Point(376, 88);
+                        this.Label7.Location = new System.Drawing.Point(456, 88);
                         this.Label7.Name = "Label7";
                         this.Label7.Size = new System.Drawing.Size(24, 24);
                         this.Label7.TabIndex = 8;
@@ -150,7 +153,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label4
                         // 
-                        this.Label4.Location = new System.Drawing.Point(24, 24);
+                        this.Label4.Location = new System.Drawing.Point(104, 24);
                         this.Label4.Name = "Label4";
                         this.Label4.Size = new System.Drawing.Size(88, 24);
                         this.Label4.TabIndex = 0;
@@ -159,7 +162,7 @@ namespace Lfc.Comprobantes
                         // 
                         // Label8
                         // 
-                        this.Label8.Location = new System.Drawing.Point(24, 56);
+                        this.Label8.Location = new System.Drawing.Point(104, 56);
                         this.Label8.Name = "Label8";
                         this.Label8.Size = new System.Drawing.Size(88, 24);
                         this.Label8.TabIndex = 2;
@@ -171,7 +174,7 @@ namespace Lfc.Comprobantes
                         this.EntradaVendedor.AutoTab = true;
                         this.EntradaVendedor.CanCreate = true;
                         this.EntradaVendedor.Filter = "(tipo&4)=4";
-                        this.EntradaVendedor.Location = new System.Drawing.Point(112, 56);
+                        this.EntradaVendedor.Location = new System.Drawing.Point(192, 56);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
                         this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
@@ -202,7 +205,7 @@ namespace Lfc.Comprobantes
                         this.Listado.Location = new System.Drawing.Point(24, 120);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(648, 272);
+                        this.Listado.Size = new System.Drawing.Size(648, 264);
                         this.Listado.TabIndex = 10;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
@@ -252,7 +255,7 @@ namespace Lfc.Comprobantes
                         // 
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
-                        this.EntradaCliente.Location = new System.Drawing.Point(112, 24);
+                        this.EntradaCliente.Location = new System.Drawing.Point(192, 24);
                         this.EntradaCliente.MaxLength = 200;
                         this.EntradaCliente.Name = "EntradaCliente";
                         this.EntradaCliente.NombreTipo = "Lbl.Personas.Persona";
@@ -262,37 +265,49 @@ namespace Lfc.Comprobantes
                         this.EntradaCliente.Text = "0";
                         this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaVendedorClienteTipoPVNumero_TextChanged);
                         // 
+                        // pictureBox1
+                        // 
+                        this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+                        this.pictureBox1.Location = new System.Drawing.Point(24, 24);
+                        this.pictureBox1.Name = "pictureBox1";
+                        this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+                        this.pictureBox1.TabIndex = 51;
+                        this.pictureBox1.TabStop = false;
+                        // 
                         // Seleccionar
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(698, 475);
+                        this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.EntradaTipo);
                         this.Controls.Add(this.EntradaCliente);
                         this.Controls.Add(this.EntradaVendedor);
                         this.Controls.Add(this.EntradaPv);
                         this.Controls.Add(this.EntradaNumero);
-                        this.Controls.Add(this.Listado);
                         this.Controls.Add(this.Label7);
                         this.Controls.Add(this.EtiquetaAviso);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.Label4);
                         this.Controls.Add(this.Label8);
                         this.Controls.Add(this.Label1);
+                        this.Controls.Add(this.Listado);
                         this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Seleccionar";
                         this.Text = "Seleccionar comprobante";
+                        this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.Label1, 0);
                         this.Controls.SetChildIndex(this.Label8, 0);
                         this.Controls.SetChildIndex(this.Label4, 0);
                         this.Controls.SetChildIndex(this.Label2, 0);
                         this.Controls.SetChildIndex(this.EtiquetaAviso, 0);
                         this.Controls.SetChildIndex(this.Label7, 0);
-                        this.Controls.SetChildIndex(this.Listado, 0);
                         this.Controls.SetChildIndex(this.EntradaNumero, 0);
                         this.Controls.SetChildIndex(this.EntradaPv, 0);
                         this.Controls.SetChildIndex(this.EntradaVendedor, 0);
                         this.Controls.SetChildIndex(this.EntradaCliente, 0);
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);
+                        this.Controls.SetChildIndex(this.pictureBox1, 0);
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -319,5 +334,6 @@ namespace Lfc.Comprobantes
                 internal Lcc.Entrada.CodigoDetalle EntradaCliente;
                 internal System.Windows.Forms.ColumnHeader ColCancelada;
                 internal System.Windows.Forms.ColumnHeader ColId;
+                private PictureBox pictureBox1;
         }
 }

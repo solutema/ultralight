@@ -84,7 +84,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.Controls.Add(this.Pago);
                         this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "EditarPago";
-                        this.Text = "Editar pago";
+                        this.Text = "Pago";
                         this.Controls.SetChildIndex(this.Pago, 0);
                         this.ResumeLayout(false);
 

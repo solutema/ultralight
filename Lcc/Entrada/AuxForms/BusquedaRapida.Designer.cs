@@ -79,6 +79,8 @@ namespace Lcc.Entrada.AuxForms
                         this.EtiquetaResultados = new Lui.Forms.Label();
                         this.label2 = new Lui.Forms.Label();
                         this.EtiquetaSeleccionar = new Lui.Forms.Label();
+                        this.pictureBox1 = new System.Windows.Forms.PictureBox();
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // Listado
@@ -98,10 +100,10 @@ namespace Lcc.Entrada.AuxForms
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
                         this.Listado.HideSelection = false;
                         this.Listado.LabelWrap = false;
-                        this.Listado.Location = new System.Drawing.Point(32, 128);
+                        this.Listado.Location = new System.Drawing.Point(24, 128);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(656, 264);
+                        this.Listado.Size = new System.Drawing.Size(664, 264);
                         this.Listado.TabIndex = 3;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
@@ -145,11 +147,12 @@ namespace Lcc.Entrada.AuxForms
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBuscar.AutoNav = false;
                         this.EntradaBuscar.Cursor = System.Windows.Forms.Cursors.Default;
-                        this.EntradaBuscar.Location = new System.Drawing.Point(32, 64);
+                        this.EntradaBuscar.Location = new System.Drawing.Point(104, 64);
                         this.EntradaBuscar.Name = "EntradaBuscar";
-                        this.EntradaBuscar.PlaceholderText = "¿Qué está busando?";
+                        this.EntradaBuscar.PlaceholderText = "¿Qué está buscando?";
                         this.EntradaBuscar.Size = new System.Drawing.Size(312, 24);
                         this.EntradaBuscar.TabIndex = 1;
+                        this.EntradaBuscar.Text = "¿Qué está buscando?";
                         this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);
                         this.EntradaBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaBuscar_KeyDown);
                         this.EntradaBuscar.TextChanged += new System.EventHandler(this.EntradaBuscar_TextChanged);
@@ -178,7 +181,7 @@ namespace Lcc.Entrada.AuxForms
                         // EtiquetaTitulo
                         // 
                         this.EtiquetaTitulo.AutoSize = true;
-                        this.EtiquetaTitulo.Location = new System.Drawing.Point(24, 24);
+                        this.EtiquetaTitulo.Location = new System.Drawing.Point(96, 24);
                         this.EtiquetaTitulo.Name = "EtiquetaTitulo";
                         this.EtiquetaTitulo.Size = new System.Drawing.Size(175, 30);
                         this.EtiquetaTitulo.TabIndex = 0;
@@ -188,9 +191,9 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         // EtiquetaResultados
                         // 
-                        this.EtiquetaResultados.Location = new System.Drawing.Point(32, 104);
+                        this.EtiquetaResultados.Location = new System.Drawing.Point(24, 104);
                         this.EtiquetaResultados.Name = "EtiquetaResultados";
-                        this.EtiquetaResultados.Size = new System.Drawing.Size(656, 24);
+                        this.EtiquetaResultados.Size = new System.Drawing.Size(664, 24);
                         this.EtiquetaResultados.TabIndex = 2;
                         this.EtiquetaResultados.Text = "Seleccione de la lista o utilice el cuadro de búsqueda.";
                         // 
@@ -198,9 +201,9 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label2.Location = new System.Drawing.Point(32, 400);
+                        this.label2.Location = new System.Drawing.Point(24, 400);
                         this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(656, 32);
+                        this.label2.Size = new System.Drawing.Size(664, 32);
                         this.label2.TabIndex = 6;
                         this.label2.Text = resources.GetString("label2.Text");
                         this.label2.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Small;
@@ -221,17 +224,27 @@ namespace Lcc.Entrada.AuxForms
                         this.EtiquetaSeleccionar.UseMnemonic = false;
                         this.EtiquetaSeleccionar.Visible = false;
                         // 
+                        // pictureBox1
+                        // 
+                        this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+                        this.pictureBox1.Location = new System.Drawing.Point(24, 24);
+                        this.pictureBox1.Name = "pictureBox1";
+                        this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+                        this.pictureBox1.TabIndex = 9;
+                        this.pictureBox1.TabStop = false;
+                        // 
                         // BusquedaRapida
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.ClientSize = new System.Drawing.Size(714, 451);
+                        this.Controls.Add(this.pictureBox1);
                         this.Controls.Add(this.EtiquetaSeleccionar);
                         this.Controls.Add(this.label2);
-                        this.Controls.Add(this.EtiquetaResultados);
                         this.Controls.Add(this.EtiquetaTitulo);
                         this.Controls.Add(this.BotonNuevo);
                         this.Controls.Add(this.EntradaBuscar);
                         this.Controls.Add(this.Listado);
+                        this.Controls.Add(this.EtiquetaResultados);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "BusquedaRapida";
@@ -239,6 +252,7 @@ namespace Lcc.Entrada.AuxForms
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
                         this.Text = "Búsqueda rápida";
                         this.TopMost = true;
+                        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -248,5 +262,6 @@ namespace Lcc.Entrada.AuxForms
                 private Lui.Forms.Label EtiquetaResultados;
                 private Lui.Forms.Label label2;
                 private Lui.Forms.Label EtiquetaSeleccionar;
+                private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }
