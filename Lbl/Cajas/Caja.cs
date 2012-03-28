@@ -38,7 +38,7 @@ namespace Lbl.Cajas
         [Lbl.Atributos.Nomenclatura(NombreSingular = "Caja", Grupo = "Cajas")]
         [Lbl.Atributos.Datos(TablaDatos = "cajas", CampoId = "id_caja")]
         [Lbl.Atributos.Presentacion()]
-	public class Caja : ElementoDeDatos, Lbl.ICamposBaseEstandar, Lbl.ICuenta
+	public class Caja : ElementoDeDatos, Lbl.ICamposBaseEstandar, Lbl.ICuenta, Lbl.IEstadosEstandar
 	{
                 private Lbl.Bancos.Banco m_Banco = null;
                 private Lbl.Entidades.Moneda m_Moneda = null;
@@ -247,6 +247,17 @@ namespace Lbl.Cajas
                                 Progreso.Advance(1);
                         }
                         Progreso.End();
+                }
+
+
+                public void Activar(bool activar)
+                {
+                        this.Estado = 0;
+                        qGen.Update ActCmd = new qGen.Update(this.TablaDatos);
+                        ActCmd.Fields.AddWithValue("estado", activar ? 1 : 0);
+                        ActCmd.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                        this.Connection.Execute(ActCmd);
+                        Lbl.Sys.Config.ActionLog(this.Connection, Lbl.Sys.Log.Acciones.Delete, this, activar ? "Activar" : "Desactivar");
                 }
 	}
 }

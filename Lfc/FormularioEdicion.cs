@@ -339,7 +339,8 @@ namespace Lfc
                                         this.StockImage = "crear";
                         }
 
-                        this.PanelAccionesTerciarias.FormActions["historial"].Visibility = (this.Elemento.Existe && Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal()) ? Lazaro.Pres.Forms.FormActionVisibility.Tertiary : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
+                        bool PuedeVerHistorial = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Elemento, Lbl.Sys.Permisos.Operaciones.Administrar) || Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Sys.Log.Entrada), Lbl.Sys.Permisos.Operaciones.Ver);
+                        this.PanelAccionesTerciarias.FormActions["historial"].Visibility = (this.Elemento.Existe && PuedeVerHistorial) ? Lazaro.Pres.Forms.FormActionVisibility.Tertiary : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
                         this.PanelAccionesTerciarias.FormActions["comentarios"].Visibility = this.Elemento.Existe ? Lazaro.Pres.Forms.FormActionVisibility.Tertiary : Lazaro.Pres.Forms.FormActionVisibility.Hidden;
 
                         Lbl.Atributos.Presentacion AttrMuestraPanel = this.ElementoTipo.GetAttribute<Lbl.Atributos.Presentacion>();

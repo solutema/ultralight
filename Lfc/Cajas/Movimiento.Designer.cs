@@ -76,7 +76,7 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaDestino.AutoTab = true;
                         this.EntradaDestino.CanCreate = false;
-                        this.EntradaDestino.Filter = "";
+                        this.EntradaDestino.Filter = "estado=1";
                         this.EntradaDestino.Location = new System.Drawing.Point(136, 168);
                         this.EntradaDestino.MaxLength = 200;
                         this.EntradaDestino.Name = "EntradaDestino";
@@ -184,7 +184,7 @@ namespace Lfc.Cajas
                         // 
                         this.EntradaOrigen.AutoTab = true;
                         this.EntradaOrigen.CanCreate = false;
-                        this.EntradaOrigen.Filter = "";
+                        this.EntradaOrigen.Filter = "estado=1";
                         this.EntradaOrigen.Location = new System.Drawing.Point(136, 136);
                         this.EntradaOrigen.MaxLength = 200;
                         this.EntradaOrigen.Name = "EntradaOrigen";

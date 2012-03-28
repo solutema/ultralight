@@ -137,7 +137,7 @@ namespace Lfc.Bancos.Cheques
                         // 
                         this.EntradaCajaOrigen.AutoTab = true;
                         this.EntradaCajaOrigen.CanCreate = false;
-                        this.EntradaCajaOrigen.Filter = "";
+                        this.EntradaCajaOrigen.Filter = "estado=1";
                         this.EntradaCajaOrigen.Location = new System.Drawing.Point(224, 224);
                         this.EntradaCajaOrigen.MaxLength = 200;
                         this.EntradaCajaOrigen.Name = "EntradaCajaOrigen";

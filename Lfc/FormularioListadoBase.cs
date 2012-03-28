@@ -234,20 +234,6 @@ namespace Lfc
                 }
 
 
-                /* public virtual Lfx.Types.OperationResult OnDelete(Lbl.ListaIds itemIds)
-                {
-                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Eliminar)) {
-                                foreach (int itemId in itemIds) {
-                                        this.Connection.Tables[this.Definicion.TableName].FastRows.RemoveFromCache(itemId);
-                                }
-
-                                return new Lfx.Types.SuccessOperationResult();
-                        } else {
-                                return new Lfx.Types.NoAccessOperationResult();
-                        }
-                } */
-
-
                 public virtual Lfx.Types.OperationResult OnPrint(bool selectPrinter)
                 {
                         if (Listado.Items.Count == 0)
@@ -551,7 +537,7 @@ namespace Lfc
                                                 }
                                                 break;
                                         case Keys.Delete:
-                                                if (this.HabilitarBorrar || this.ElementoTipo.GetInterface("Lbl.IEstadosEstandar") != null) {
+                                                if (this.HabilitarBorrar || this.EstadosEstandar) {
                                                         e.Handled = true;
                                                         Lbl.ListaIds Codigos = this.CodigosSeleccionados;
 
@@ -678,7 +664,7 @@ namespace Lfc
                         if (Orden.EndsWith(" DESC"))
                                 this.SetupSorter(Orden.Substring(0, Orden.Length - 5).Trim(), SortOrder.Descending);
                         else
-                                this.SetupSorter(Orden, SortOrder.Descending);
+                                this.SetupSorter(Orden, SortOrder.Ascending);
                 }
 
 
@@ -1290,7 +1276,46 @@ namespace Lfc
                                         }
                                 }
                         }
+
+                        if (this.EstadosEstandar && this.ColumnaEstado != null) {
+                                if (row.Fields[this.ColumnaEstado].ValueInt == 0)
+                                        itm.ForeColor = Color.Gray;
+                        }
+
                         return itm;
+                }
+
+
+                private string m_ColumnaEstado = string.Empty;
+                protected string ColumnaEstado
+                {
+                        get
+                        {
+                                if (m_ColumnaEstado == string.Empty) {
+                                        if (this.Definicion.Columns.ContainsKey("estado"))
+                                                m_ColumnaEstado = this.Definicion.Columns["estado"].Name;
+                                        else
+                                                m_ColumnaEstado = null;
+                                }
+                                return m_ColumnaEstado;
+                        }
+                }
+
+
+                private int m_EstadosEstandar = -1;
+                protected bool EstadosEstandar
+                {
+                        get
+                        {
+                                if (m_EstadosEstandar == -1) {
+                                        if (this.Definicion.ElementoTipo.GetInterface("Lbl.IEstadosEstandar") != null)
+                                                m_EstadosEstandar = 1;
+                                        else
+                                                m_EstadosEstandar = 0;
+                                }
+
+                                return m_EstadosEstandar > 0;
+                        }
                 }
 
 

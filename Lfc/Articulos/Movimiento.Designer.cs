@@ -320,7 +320,6 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaArticulo.CantidadSoloLectura = false;
                         this.EntradaArticulo.ControlStock = Lcc.Entrada.Articulos.ControlesSock.Ambos;
-                        this.EntradaArticulo.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.EntradaArticulo.Location = new System.Drawing.Point(136, 176);
                         this.EntradaArticulo.MaximumSize = new System.Drawing.Size(480, 64);
                         this.EntradaArticulo.MuestraPrecio = false;

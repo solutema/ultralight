@@ -145,7 +145,7 @@ namespace Lfc.Bancos.Chequeras
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.Filter = "";
+                        this.EntradaCaja.Filter = "estado=1";
                         this.EntradaCaja.Location = new System.Drawing.Point(120, 128);
                         this.EntradaCaja.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCaja.MaxLength = 200;

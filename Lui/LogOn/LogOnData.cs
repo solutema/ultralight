@@ -41,7 +41,7 @@ namespace Lui.LogOn
 		{
                         bool Tiene = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(accessName, operacion);
 			if(Tiene == false)
-				System.Windows.Forms.MessageBox.Show("No tiene permiso para realizar la operación solicitada.", "Error");
+				Lfx.Workspace.Master.RunTime.Toast("No tiene permiso para realizar la operación solicitada.", "Error");
 			return Tiene;
 		}
 
@@ -49,7 +49,7 @@ namespace Lui.LogOn
                 {
                         bool Tiene = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(elemento, operacion);
                         if (Tiene == false)
-                                System.Windows.Forms.MessageBox.Show("No tiene permiso para realizar la operación solicitada.", "Error");
+                                Lfx.Workspace.Master.RunTime.Toast("No tiene permiso para realizar la operación solicitada.", "Error");
                         return Tiene;
                 }
 
@@ -57,7 +57,7 @@ namespace Lui.LogOn
                 {
                         bool Tiene = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(tipo, operacion);
                         if (Tiene == false)
-                                System.Windows.Forms.MessageBox.Show("No tiene permiso para realizar la operación solicitada.", "Error");
+                                Lfx.Workspace.Master.RunTime.Toast("No tiene permiso para realizar la operación solicitada.", "Error");
                         return Tiene;
                 }
 

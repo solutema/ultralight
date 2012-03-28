@@ -191,7 +191,7 @@ namespace Lazaro.WinMain.Principal
                                                                         try {
                                                                                 ConexionActualizar.ExecuteSql(Comando);
                                                                         } catch (Exception ex) {
-                                                                                System.Windows.Forms.MessageBox.Show(Comando + System.Environment.NewLine + System.Environment.NewLine + ex.Message, "Lazaro.Datos.Iniciar");
+                                                                                Lfx.Workspace.Master.RunTime.Toast(Comando + System.Environment.NewLine + System.Environment.NewLine + ex.Message, "Error al inyectar datos");
                                                                         }
                                                                 }
                                                                 while (SqlActualizacion.Length > 0);

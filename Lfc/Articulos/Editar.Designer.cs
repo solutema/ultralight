@@ -190,7 +190,7 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaCaja.AutoTab = true;
                         this.EntradaCaja.CanCreate = true;
-                        this.EntradaCaja.Filter = "id_caja>999";
+                        this.EntradaCaja.Filter = "estado=1 AND id_caja>999";
                         this.EntradaCaja.Location = new System.Drawing.Point(136, 248);
                         this.EntradaCaja.MaxLength = 200;
                         this.EntradaCaja.Name = "EntradaCaja";

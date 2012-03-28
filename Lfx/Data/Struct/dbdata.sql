@@ -12741,6 +12741,7 @@ INSERT INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha",
 INSERT INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (39,'Personas: Proveedores',NULL,0,NOW(),'Lbl.Personas.Proveedor',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (40,'Tareas: Estados',NULL,0,NOW(),'Lbl.Tareas.Estado',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (41,'Tareas: Categorías',NULL,0,NOW(),'Lbl.Tareas.Tipo',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (42,'Evento del historial',NULL,0,NOW(),'Lbl.Sys.Log.Entrada',NULL,NULL,NULL,NULL,NULL,NULL);
 
 
 INSERT INTO "sys_permisos" ("id_permiso", "id_objeto", "id_persona", "items", "ops") VALUES (1, 1, 1, null, 65536);

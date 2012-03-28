@@ -146,9 +146,6 @@ namespace Lfc.Personas
                 {
                         base.OnItemAdded(item, row);
 
-                        if (row.Fields["personas.estado"].ValueInt == 0)
-                                item.ForeColor = System.Drawing.Color.Gray;
-
                         int IdSubGrupo = row.Fields["personas.id_subgrupo"].ValueInt;
                         if (IdSubGrupo != 0) {
                                 Lfx.Data.Row SubGrupo = this.Connection.Tables["personas_grupos"].FastRows[IdSubGrupo];

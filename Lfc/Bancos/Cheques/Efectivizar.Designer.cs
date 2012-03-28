@@ -160,7 +160,7 @@ namespace Lfc.Bancos.Cheques
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaDestino.AutoTab = true;
                         this.EntradaCajaDestino.CanCreate = false;
-                        this.EntradaCajaDestino.Filter = "";
+                        this.EntradaCajaDestino.Filter = "estado=1";
                         this.EntradaCajaDestino.Location = new System.Drawing.Point(224, 256);
                         this.EntradaCajaDestino.MaxLength = 200;
                         this.EntradaCajaDestino.Name = "EntradaCajaDestino";

@@ -217,11 +217,11 @@ namespace Lazaro.WinMain
                                                 string SubComandoBackup = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpper();
                                                 switch (SubComandoBackup) {
                                                         case "MANAGER":
-                                                                WinMain.Backup.Manager OFormBackup = (WinMain.Backup.Manager)BuscarVentana("WinMain.Misc.Backup.Manager");
-                                                                if (OFormBackup == null)
-                                                                        OFormBackup = new WinMain.Backup.Manager();
-                                                                OFormBackup.MdiParent = Aplicacion.FormularioPrincipal;
-                                                                OFormBackup.Show();
+                                                                WinMain.Backup.Manager FormBackup = (WinMain.Backup.Manager)BuscarVentana("WinMain.Misc.Backup.Manager");
+                                                                if (FormBackup == null)
+                                                                        FormBackup = new WinMain.Backup.Manager();
+                                                                FormBackup.MdiParent = Aplicacion.FormularioPrincipal;
+                                                                FormBackup.Show();
                                                                 break;
 
                                                         case "NOW":
@@ -240,8 +240,12 @@ namespace Lazaro.WinMain
                                         break;
 
                                 case "CONFIG":
-                                        Config.Preferencias FormConfig = new Config.Preferencias();
-                                        FormConfig.ShowDialog(Aplicacion.FormularioPrincipal);
+                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TieneAccesoGlobal()) {
+                                                Config.Preferencias FormConfig = new Config.Preferencias();
+                                                FormConfig.ShowDialog(Aplicacion.FormularioPrincipal);
+                                        } else {
+                                                Lfx.Workspace.Master.RunTime.Toast("No tiene permiso para cambiar las preferencias del programa.", "Error");
+                                        }
                                         break;
 
                                 case "CHANGEPWD":
@@ -267,7 +271,7 @@ namespace Lazaro.WinMain
 
                                 case "MENSAJE":
                                 case "MESSAGE":
-                                        Lui.Forms.MessageBox.Show(comando, "Mensaje remoto de " + estacion);
+                                        Lfx.Workspace.Master.RunTime.Toast(comando, "Mensaje remoto de " + estacion);
                                         return null;
 
                                 case "RUN":

@@ -10,6 +10,8 @@ UPDATE ciudades SET iva=1 WHERE id_ciudad=24;
 UPDATE documentos_tipos SET compra=1 WHERE id_tipo NOT IN (53, 54, 58);
 UPDATE documentos_tipos SET venta=1 WHERE id_tipo NOT IN (58);
 
+REPLACE INTO "sys_permisos_objetos" ("id_objeto","nombre","obs","estado","fecha","tipo","extra1_nombre","extra2_nombre","extra3_nombre","extraa_nombre","extrab_nombre","extrac_nombre") VALUES (42,'Evento del historial',NULL,0,NOW(),'Lbl.Sys.Log.Entrada',NULL,NULL,NULL,NULL,NULL,NULL);
+
 REPLACE INTO "monedas" ("id_moneda", "nombre", "obs", "estado", "fecha", "signo", "iso", "cotizacion", "decimales") VALUES
 	(1, 'Dólares', NULL, 1, NULL, 'USD', 'USD', 1.0000, 2),
 	(2, 'Euros', NULL, 1, NULL, '€', 'EUR', 1.0000, 2),

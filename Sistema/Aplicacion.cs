@@ -176,6 +176,13 @@ namespace Lazaro.WinMain
 
                         }
 
+                        // Verifico estar utilizando un Encoding compatible (ISO-8859-1 o UTF-8)
+                        if (System.Text.Encoding.Default.BodyName != "iso-8859-1"
+                                && System.Text.Encoding.Default.BodyName != "utf-8") {
+                                System.Windows.Forms.MessageBox.Show("La códificación " + System.Text.Encoding.Default.BodyName.ToUpperInvariant() + " no es válida. Sólo se permiten las codificaciones ISO-8859-1 (Latin-1) y UTF-8.", "Error");
+                                System.Windows.Forms.Application.Exit();
+                        }
+
 
                         if (IgnoreUpdates == false && System.IO.Directory.Exists(Lfx.Environment.Folders.UpdatesFolder)) {
                                 // Si hay actualizaciones pendientes, reinicio para que ActualizadorLazaro se encargue de ellas.
@@ -186,14 +193,6 @@ namespace Lazaro.WinMain
                                                 Lui.Forms.MessageBox.Show("Lázaro se va a actualizar ahora. Es probable que el sistema le solicite autorización durante la actualización.", "Lázaro");
                                         Lfx.Environment.Shell.Reboot();
                                 }
-                        }
-
-
-                        // Verifico estar utilizando un Encoding compatible (ISO-8859-1 o UTF-8)
-                        if (System.Text.Encoding.Default.BodyName != "iso-8859-1"
-                                && System.Text.Encoding.Default.BodyName != "utf-8") {
-                                System.Windows.Forms.MessageBox.Show("La códificación " + System.Text.Encoding.Default.BodyName.ToUpperInvariant() + " no es válida. Sólo se permiten las codificaciones ISO-8859-1 (Latin-1) y UTF-8.", "Error");
-                                System.Windows.Forms.Application.Exit();
                         }
 
 

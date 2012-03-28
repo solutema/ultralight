@@ -183,7 +183,7 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaCajaDiaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaDiaria.CanCreate = true;
-                        this.EntradaCajaDiaria.Filter = "";
+                        this.EntradaCajaDiaria.Filter = "estado=1";
                         this.EntradaCajaDiaria.Location = new System.Drawing.Point(148, 268);
                         this.EntradaCajaDiaria.MaxLength = 200;
                         this.EntradaCajaDiaria.Name = "EntradaCajaDiaria";
@@ -208,7 +208,7 @@ namespace Lfc.Sucursales
                         // 
                         this.EntradaCajaCheques.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCajaCheques.CanCreate = true;
-                        this.EntradaCajaCheques.Filter = "";
+                        this.EntradaCajaCheques.Filter = "estado=1";
                         this.EntradaCajaCheques.Location = new System.Drawing.Point(148, 296);
                         this.EntradaCajaCheques.MaxLength = 200;
                         this.EntradaCajaCheques.Name = "EntradaCajaCheques";
