@@ -1292,7 +1292,9 @@ namespace Lfc
                         get
                         {
                                 if (m_ColumnaEstado == string.Empty) {
-                                        if (this.Definicion.Columns.ContainsKey("estado"))
+                                        if (this.Definicion == null || this.Definicion.ElementoTipo == null)
+                                                return null;
+                                        else if (this.Definicion.Columns.ContainsKey("estado"))
                                                 m_ColumnaEstado = this.Definicion.Columns["estado"].Name;
                                         else
                                                 m_ColumnaEstado = null;
@@ -1308,7 +1310,9 @@ namespace Lfc
                         get
                         {
                                 if (m_EstadosEstandar == -1) {
-                                        if (this.Definicion.ElementoTipo.GetInterface("Lbl.IEstadosEstandar") != null)
+                                        if (this.Definicion == null || this.Definicion.ElementoTipo == null)
+                                                return false;
+                                        else if (this.Definicion.ElementoTipo.GetInterface("Lbl.IEstadosEstandar") != null)
                                                 m_EstadosEstandar = 1;
                                         else
                                                 m_EstadosEstandar = 0;

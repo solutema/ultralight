@@ -803,7 +803,8 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 }
                                 if (Found == false)
                                         UnknownExceptionHandler(ex);
-                        } else if (string.Compare(ex.Message, "El servidor RPC no está disponible", true) == 0) {
+                        } else if (ex.Message.IndexOf("El servidor RPC no está disponible", StringComparison.CurrentCultureIgnoreCase) >= 0
+                                || ex.Message.IndexOf("RPC server unavailable", StringComparison.CurrentCultureIgnoreCase) >= 0) {
                                 KnownExceptionHandler(ex, "La impresora no está disponible");
                         } else {
                                 UnknownExceptionHandler(ex);

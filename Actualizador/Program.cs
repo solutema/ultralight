@@ -96,7 +96,16 @@ namespace Cargador
                                         } catch {
                                         }
 
-                                        System.IO.File.Move(ArchivoNuevo, NombreFinal);
+                                        int Intentos = 3;
+                                        while (Intentos-- > 0) {
+                                                try {
+                                                        System.IO.File.Move(ArchivoNuevo, NombreFinal);
+                                                        break;
+                                                } catch {
+                                                        System.Console.WriteLine("No se puede mover " + NombreFinal);
+                                                        System.Threading.Thread.Sleep(1000);
+                                                }
+                                        }
                                 } else {
                                         System.Console.WriteLine("Ignorando " + ArchivoNuevo);
                                 }
