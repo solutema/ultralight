@@ -395,11 +395,11 @@ namespace Lcc.Edicion.Comprobantes
                         Lfx.Data.Row Plan = this.Connection.Tables["tarjetas_planes"].FastRows[EntradaPlan.ValueInt];
 
                         if (Plan != null) {
-                                EntradaCuotas.Text = Plan["cuotas"].ToString();
-                                EntradaInteres.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Plan["interes"]));
+                                EntradaCuotas.ValueInt = System.Convert.ToInt32(Plan["cuotas"]);
+                                EntradaInteres.ValueDecimal = System.Convert.ToDecimal(Plan["interes"]);
                         } else {
-                                EntradaCuotas.Text = "";
-                                EntradaInteres.Text = "";
+                                EntradaCuotas.ValueInt = 0;
+                                EntradaInteres.ValueDecimal = 0m;
                         }
                 }
 

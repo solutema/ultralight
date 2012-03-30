@@ -1374,7 +1374,7 @@ namespace Lfc
                                         if (cellValue == null || cellValue is DBNull)
                                                 FieldValueAsText = "";
                                         else
-                                                FieldValueAsText = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cellValue));
+                                                FieldValueAsText = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(cellValue), 2);
                                         break;
 
                                 case Lfx.Data.InputFieldTypes.Date:
@@ -1432,7 +1432,7 @@ namespace Lfc
                                                         if (System.Convert.ToDouble(cellValue) == 0)
                                                                 FieldValueAsText = "-";
                                                         else
-                                                                FieldValueAsText = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cellValue));
+                                                                FieldValueAsText = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(cellValue), 2);
                                                         break;
 
                                                 case "System.Decimal":
@@ -1449,7 +1449,7 @@ namespace Lfc
                                                         if (System.Convert.ToInt32(cellValue) == 0)
                                                                 FieldValueAsText = "-";
                                                         else
-                                                                FieldValueAsText = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cellValue), 0);
+                                                                FieldValueAsText = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(cellValue), 0);
                                                         break;
 
                                                 case "System.DateTime":

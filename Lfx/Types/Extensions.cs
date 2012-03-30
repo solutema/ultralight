@@ -44,20 +44,20 @@ namespace System
                 {
                         if (s == null || s.Length == 0)
                                 return 0;
-                        double Resultado = 0;
-                        double.TryParse(s, System.Globalization.NumberStyles.Integer, Lfx.Workspace.Master.CultureInfo, out Resultado);
+                        decimal Resultado = 0;
+                        decimal.TryParse(s, System.Globalization.NumberStyles.Integer, Lfx.Workspace.Master.CultureInfo, out Resultado);
                         if (Resultado > int.MaxValue)
                                 return 0;
                         else
                                 return System.Convert.ToInt32(Resultado);
                 }
 
-                public static double ParseDouble(this string s)
+                /* public static double ParseDouble(this string s)
                 {
                         double Resultado = 0;
                         double.TryParse(s, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
                         return Resultado;
-                }
+                } */
 
 
                 public static decimal ParseDecimal(this string s)
@@ -192,8 +192,8 @@ namespace System
 
                 public static bool IsNumericInt(this string cadena)
                 {
-                        double transTemp1 = 0;
-                        if (double.TryParse(cadena,
+                        decimal transTemp1 = 0;
+                        if (decimal.TryParse(cadena,
                                 System.Globalization.NumberStyles.Integer,
                                 System.Globalization.CultureInfo.InvariantCulture,
                                 out transTemp1)) {
@@ -208,8 +208,8 @@ namespace System
 
                 public static bool IsNumericFloat(this string cadena)
                 {
-                        double transTemp0 = 0;
-                        return double.TryParse(cadena,
+                        decimal transTemp0 = 0;
+                        return decimal.TryParse(cadena,
                                 System.Globalization.NumberStyles.Float,
                                 System.Globalization.CultureInfo.InvariantCulture,
                                 out transTemp0);

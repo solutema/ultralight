@@ -446,7 +446,7 @@ namespace Lfc.Articulos
                                 string[] ListaMargenes = new string[TablaMargenes.FastRows.Count + 1];
 
                                 foreach (Lfx.Data.Row Margen in TablaMargenes.FastRows.Values) {
-                                        ListaMargenes[i] = System.Convert.ToString(Margen["nombre"]) + " (" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Margen["porcentaje"]) + System.Convert.ToDouble(Margen["porcentaje2"]) + System.Convert.ToDouble(Margen["porcentaje3"]), 2) + "%)|" + System.Convert.ToInt32(Margen["id_margen"]);
+                                        ListaMargenes[i] = System.Convert.ToString(Margen["nombre"]) + " (" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(Margen["porcentaje"]) + System.Convert.ToDecimal(Margen["porcentaje2"]) + System.Convert.ToDecimal(Margen["porcentaje3"]), 2) + "%)|" + System.Convert.ToInt32(Margen["id_margen"]);
                                         i++;
                                 }
 

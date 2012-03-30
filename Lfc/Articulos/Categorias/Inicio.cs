@@ -103,7 +103,7 @@ namespace Lfc.Articulos.Categorias
                                 ValPct = System.Convert.ToDecimal(row["cache_costo"]) / m_ValorizacionCostoTotal * 100;
                         item.SubItems["0"].Text = Lfx.Types.Formatting.FormatNumber(ValPct, 2) + "%";
 
-                        if (row.Fields["cache_stock_actual"].ValueDouble < row.Fields["stock_minimo"].ValueDouble)
+                        if (row.Fields["cache_stock_actual"].ValueDecimal < row.Fields["stock_minimo"].ValueDecimal)
                                 item.ForeColor = System.Drawing.Color.Red;
                 }
         }

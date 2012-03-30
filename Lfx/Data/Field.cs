@@ -96,14 +96,6 @@ namespace Lfx.Data
                         return this.Value.ToString();
                 }
 
-                public double ValueDouble
-                {
-                        get
-                        {
-                                return System.Convert.ToDouble(this.Value);
-                        }
-                }
-
                 public decimal ValueDecimal
                 {
                         get

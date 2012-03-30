@@ -245,7 +245,7 @@ namespace Lfc.Comprobantes
                                         Detalle = "(Sin especificar)";
 
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Detalle));
-                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Comrob["cantart"]), Lbl.Sys.Config.Articulos.Decimales)));
+                                Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(Comrob["cantart"]), Lbl.Sys.Config.Articulos.Decimales)));
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(System.Convert.ToInt32(Comrob["cantfact"])));
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotalCosto, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                 Reng.Cells.Add(new Lazaro.Pres.Spreadsheet.Cell(Lfx.Types.Formatting.FormatCurrency(ComprobTotal, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));

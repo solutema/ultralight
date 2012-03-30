@@ -216,8 +216,6 @@ namespace Lui.Forms
                                                         switch (cl.Content.GetType().ToString()) {
                                                                 case "System.Single":
                                                                 case "System.Double":
-                                                                        CellString += Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cl.Content), 2);
-                                                                        break;
                                                                 case "System.Decimal":
                                                                         CellString += Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(cl.Content), 4);
                                                                         break;

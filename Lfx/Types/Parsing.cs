@@ -197,8 +197,8 @@ namespace Lfx.Types
                         if (valor == null || valor.Length == 0)
                                 return 0;
 
-                        double Resultado = 0;
-                        double.TryParse(valor, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
+                        decimal Resultado = 0;
+                        decimal.TryParse(valor, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out Resultado);
                         if (Resultado > int.MaxValue)
                                 return 0;
                         else

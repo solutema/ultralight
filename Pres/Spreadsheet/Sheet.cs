@@ -92,7 +92,7 @@ namespace Lazaro.Pres.Spreadsheet
                         if (Res == null) {
                                 return "";
                         } else if (Res is double) {
-                                return Lfx.Types.Formatting.FormatNumber((double)Res);
+                                return Lfx.Types.Formatting.FormatNumber((decimal)Res, 2);
                         } else if (Res is decimal) {
                                 return Lfx.Types.Formatting.FormatNumber((decimal)Res, 2);
                         } else {
@@ -231,7 +231,7 @@ namespace Lazaro.Pres.Spreadsheet
                                                 switch (cl.Content.GetType().ToString()) {
                                                         case "System.Single":
                                                         case "System.Double":
-                                                                CellString += @"<Data ss:Type=""Number"">" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cl.Content), 8) + @"</Data>";
+                                                                CellString += @"<Data ss:Type=""Number"">" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(cl.Content), 8) + @"</Data>";
                                                                 break;
                                                         case "System.Decimal":
                                                                 CellString += @"<Data ss:Type=""Number"">" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(cl.Content), 8) + @"</Data>";

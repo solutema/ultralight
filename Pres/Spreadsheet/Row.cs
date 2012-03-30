@@ -79,7 +79,7 @@ namespace Lazaro.Pres.Spreadsheet
                                                 if (ColFormat != null)
                                                         return System.Convert.ToDouble(cellValue).ToString(ColFormat);
                                                 else
-                                                        return Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(cellValue), 2);
+                                                        return Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(cellValue), 2);
                                         case "System.Decimal":
                                                 if (ColFormat != null)
                                                         return System.Convert.ToDecimal(cellValue).ToString(ColFormat);

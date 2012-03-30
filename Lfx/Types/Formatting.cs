@@ -296,20 +296,6 @@ namespace Lfx.Types
 		}
 
 
-		public static string FormatNumber(double number)
-		{
-			return FormatNumber(number, 2);
-		}
-
-
-		public static string FormatNumber(double number, int decimals)
-		{
-			if(decimals < 0)
-				decimals = 8;
-			return number.ToString("0.".PadRight(decimals + 2, '0'), System.Globalization.CultureInfo.InvariantCulture);
-		}
-
-
                 public static string FormatNumber(decimal number, int decimals)
                 {
                         if (decimals < 0)
@@ -352,16 +338,6 @@ namespace Lfx.Types
 			}
 
 			return numero.ToString("0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture);
-		}
-
-		public static string FormatNumberForPrint(double numero)
-		{
-			return FormatNumberForPrint(numero, 2);
-		}
-
-		public static string FormatNumberForPrint(double numero, int decimales)
-		{
-			return numero.ToString("#,##0." + "0000000000".Substring(0, decimales), System.Globalization.CultureInfo.InvariantCulture); //.Replace(",", "'").Replace(".", ",");
 		}
 
                 public static string FormatNumberForPrint(decimal numero, int decimales)

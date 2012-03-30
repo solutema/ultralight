@@ -142,7 +142,7 @@ namespace Lfc.Articulos
                                 item.Font = new Font(item.Font, FontStyle.Bold);
 
                         if (item.SubItems.ContainsKey("stock_actual")) {
-                                if (row.Fields["stock_actual"].ValueDouble < row.Fields["stock_minimo"].ValueDouble) {
+                                if (row.Fields["stock_actual"].ValueDecimal < row.Fields["stock_minimo"].ValueDecimal) {
                                         //Faltante
                                         item.UseItemStyleForSubItems = false;
                                         item.SubItems["stock_actual"].BackColor = System.Drawing.Color.Pink;
@@ -151,7 +151,7 @@ namespace Lfc.Articulos
                         }
 
                         if (item.SubItems.ContainsKey("apedir")) {
-                                if (row.Fields["apedir"].ValueDouble > 0)
+                                if (row.Fields["apedir"].ValueDecimal > 0)
                                         item.SubItems["apedir"].Text = "-";
                                 else
                                         item.SubItems["apedir"].BackColor = System.Drawing.Color.LightPink;

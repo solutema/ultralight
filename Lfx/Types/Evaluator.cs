@@ -122,7 +122,7 @@ namespace Lfx.Types
 					if (PosOperador < 0)
 					{
 						// Es un número
-						return double.Parse(Expresion, NumberStyles.Float, CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture);
+						return decimal.Parse(Expresion, NumberStyles.Float, CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture);
 					}
 					else
 					{
@@ -133,13 +133,13 @@ namespace Lfx.Types
 						switch (Expresion[PosOperador])
 						{
 							case '+':
-								return (double.Parse(Evaluate(Parte1), NumberStyles.Float, CultureInfo.InvariantCulture) + double.Parse(Evaluate(Parte2), NumberStyles.Float, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
+                                                                return (decimal.Parse(Evaluate(Parte1), NumberStyles.Float, CultureInfo.InvariantCulture) + decimal.Parse(Evaluate(Parte2), NumberStyles.Float, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
 							case '-':
-								return (double.Parse(Evaluate(Parte1), NumberStyles.Float, CultureInfo.InvariantCulture) - double.Parse(Evaluate(Parte2), NumberStyles.Float, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
+                                                                return (decimal.Parse(Evaluate(Parte1), NumberStyles.Float, CultureInfo.InvariantCulture) - decimal.Parse(Evaluate(Parte2), NumberStyles.Float, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
 							case '*':
-								return (double.Parse(Evaluate(Parte1), NumberStyles.Float, CultureInfo.InvariantCulture) * double.Parse(Evaluate(Parte2), NumberStyles.Float, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
+                                                                return (decimal.Parse(Evaluate(Parte1), NumberStyles.Float, CultureInfo.InvariantCulture) * decimal.Parse(Evaluate(Parte2), NumberStyles.Float, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
 							case '/':
-								return (double.Parse(Evaluate(Parte1), NumberStyles.Float, CultureInfo.InvariantCulture) / double.Parse(Evaluate(Parte2), NumberStyles.Float, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
+                                                                return (decimal.Parse(Evaluate(Parte1), NumberStyles.Float, CultureInfo.InvariantCulture) / decimal.Parse(Evaluate(Parte2), NumberStyles.Float, CultureInfo.InvariantCulture)).ToString(CultureInfo.InvariantCulture);
 						}
 					}
 				}

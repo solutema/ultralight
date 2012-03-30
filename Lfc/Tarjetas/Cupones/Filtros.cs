@@ -80,8 +80,8 @@ namespace Lfc.Tarjetas.Cupones
                 internal Lui.Forms.Label Label15;
                 internal Lui.Forms.Label Label1;
                 internal Lcc.Entrada.CodigoDetalle EntradaFormaDePago;
-                internal Lui.Forms.TextBox txtPlanInteres;
-                internal Lui.Forms.TextBox txtPlanCuotas;
+                internal Lui.Forms.TextBox EntradaPlanInteres;
+                internal Lui.Forms.TextBox EntradaPlanCuotas;
                 internal Lcc.Entrada.CodigoDetalle EntradaPlan;
                 internal Lcc.Entrada.CodigoDetalle EntradaCliente;
                 internal Label label3;
@@ -95,9 +95,9 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaFormaDePago = new Lcc.Entrada.CodigoDetalle();
                         this.Label16 = new Lui.Forms.Label();
                         this.Label11 = new Lui.Forms.Label();
-                        this.txtPlanInteres = new Lui.Forms.TextBox();
+                        this.EntradaPlanInteres = new Lui.Forms.TextBox();
                         this.Label14 = new Lui.Forms.Label();
-                        this.txtPlanCuotas = new Lui.Forms.TextBox();
+                        this.EntradaPlanCuotas = new Lui.Forms.TextBox();
                         this.EtiquetaFecha1 = new Lui.Forms.Label();
                         this.EntradaPlan = new Lcc.Entrada.CodigoDetalle();
                         this.Label15 = new Lui.Forms.Label();
@@ -159,14 +159,14 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // txtPlanInteres
                         // 
-                        this.txtPlanInteres.AutoSize = false;
-                        this.txtPlanInteres.DataType = Lui.Forms.DataTypes.Float;
-                        this.txtPlanInteres.Location = new System.Drawing.Point(200, 0);
-                        this.txtPlanInteres.Name = "txtPlanInteres";
-                        this.txtPlanInteres.TemporaryReadOnly = true;
-                        this.txtPlanInteres.Size = new System.Drawing.Size(56, 24);
-                        this.txtPlanInteres.TabIndex = 3;
-                        this.txtPlanInteres.TabStop = false;
+                        this.EntradaPlanInteres.AutoSize = false;
+                        this.EntradaPlanInteres.DataType = Lui.Forms.DataTypes.Float;
+                        this.EntradaPlanInteres.Location = new System.Drawing.Point(200, 0);
+                        this.EntradaPlanInteres.Name = "txtPlanInteres";
+                        this.EntradaPlanInteres.TemporaryReadOnly = true;
+                        this.EntradaPlanInteres.Size = new System.Drawing.Size(56, 24);
+                        this.EntradaPlanInteres.TabIndex = 3;
+                        this.EntradaPlanInteres.TabStop = false;
                         // 
                         // Label14
                         // 
@@ -179,15 +179,15 @@ namespace Lfc.Tarjetas.Cupones
                         // 
                         // txtPlanCuotas
                         // 
-                        this.txtPlanCuotas.AutoSize = false;
-                        this.txtPlanCuotas.DataType = Lui.Forms.DataTypes.Integer;
-                        this.txtPlanCuotas.Location = new System.Drawing.Point(76, 0);
-                        this.txtPlanCuotas.Name = "txtPlanCuotas";
-                        this.txtPlanCuotas.TemporaryReadOnly = true;
-                        this.txtPlanCuotas.Size = new System.Drawing.Size(56, 24);
-                        this.txtPlanCuotas.TabIndex = 1;
-                        this.txtPlanCuotas.TabStop = false;
-                        this.txtPlanCuotas.Text = "1";
+                        this.EntradaPlanCuotas.AutoSize = false;
+                        this.EntradaPlanCuotas.DataType = Lui.Forms.DataTypes.Integer;
+                        this.EntradaPlanCuotas.Location = new System.Drawing.Point(76, 0);
+                        this.EntradaPlanCuotas.Name = "txtPlanCuotas";
+                        this.EntradaPlanCuotas.TemporaryReadOnly = true;
+                        this.EntradaPlanCuotas.Size = new System.Drawing.Size(56, 24);
+                        this.EntradaPlanCuotas.TabIndex = 1;
+                        this.EntradaPlanCuotas.TabStop = false;
+                        this.EntradaPlanCuotas.Text = "1";
                         // 
                         // lblFecha1
                         // 
@@ -283,9 +283,9 @@ namespace Lfc.Tarjetas.Cupones
                         // panel1
                         // 
                         this.panel1.Controls.Add(this.EtiquetaFecha1);
-                        this.panel1.Controls.Add(this.txtPlanCuotas);
+                        this.panel1.Controls.Add(this.EntradaPlanCuotas);
                         this.panel1.Controls.Add(this.Label14);
-                        this.panel1.Controls.Add(this.txtPlanInteres);
+                        this.panel1.Controls.Add(this.EntradaPlanInteres);
                         this.panel1.Location = new System.Drawing.Point(85, 63);
                         this.panel1.Name = "panel1";
                         this.panel1.Size = new System.Drawing.Size(260, 24);
@@ -358,12 +358,12 @@ namespace Lfc.Tarjetas.Cupones
                 {
                         Lfx.Data.Row row = this.Connection.Row("tarjetas_planes", "id_plan", EntradaPlan.ValueInt);
                         if (row != null) {
-                                txtPlanCuotas.Text = System.Convert.ToString(row["cuotas"]);
-                                txtPlanInteres.Text = Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(row["interes"]));
+                                EntradaPlanCuotas.ValueInt = System.Convert.ToInt32(row["cuotas"]);
+                                EntradaPlanInteres.ValueDecimal = System.Convert.ToDecimal(row["interes"]);
                         }
                         else {
-                                txtPlanCuotas.Text = "";
-                                txtPlanInteres.Text = "";
+                                EntradaPlanCuotas.ValueInt = 0;
+                                EntradaPlanInteres.ValueDecimal = 0m;
                         }
                 }
         }

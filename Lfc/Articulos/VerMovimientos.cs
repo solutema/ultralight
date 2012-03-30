@@ -78,11 +78,11 @@ namespace Lfc.Articulos
 
                                 itm = Listado.Items.Add(System.Convert.ToString(Detalle["id_movim"]));
                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(Detalle["fecha"]))));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["cantidad"]), Lbl.Sys.Config.Articulos.Decimales)));
+                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(Detalle["cantidad"]), Lbl.Sys.Config.Articulos.Decimales)));
                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Detalle["series"].ToString()));
                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, DesdeSituacion));
                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, HaciaSituacion));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Detalle["saldo"]), Lbl.Sys.Config.Articulos.Decimales)));
+                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(Detalle["saldo"]), Lbl.Sys.Config.Articulos.Decimales)));
                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Detalle["obs"])));
                         }
                         Listado.EndUpdate();
@@ -109,8 +109,8 @@ namespace Lfc.Articulos
                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Lfx.Data.Connection.ConvertDBNullToZero(Pedido["id_cliente"]).ToString())));
                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, System.Convert.ToString(Pedido["numero"])));
                                 itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatDateAndTime(System.Convert.ToDateTime(Pedido["fecha"]))));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Pedido["cantidad"]), Lbl.Sys.Config.Articulos.Decimales)));
-                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDouble(Pedido["precio"]), Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto)));
+                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(Pedido["cantidad"]), Lbl.Sys.Config.Articulos.Decimales)));
+                                itm.SubItems.Add(new ListViewItem.ListViewSubItem(itm, Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(Pedido["precio"]), Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto)));
                                 switch (System.Convert.ToInt32(Pedido["estado"])) {
                                         case 50:
                                                 itm.ForeColor = System.Drawing.Color.DarkOrange;
