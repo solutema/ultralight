@@ -96,7 +96,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(128, 24);
                         this.EntradaImporte.TabIndex = 3;
-                        this.EntradaImporte.Text = "0.00";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
                         // 
                         // Label2
@@ -168,7 +167,6 @@ namespace Lfc.CuentasCorrientes
                         this.EntradaNuevoSaldo.Size = new System.Drawing.Size(128, 24);
                         this.EntradaNuevoSaldo.TabIndex = 52;
                         this.EntradaNuevoSaldo.TabStop = false;
-                        this.EntradaNuevoSaldo.Text = "0.00";
                         // 
                         // label3
                         // 

@@ -494,7 +494,6 @@ namespace Lfc.Personas
                         this.EntradaLimiteCredito.Prefijo = "$";
                         this.EntradaLimiteCredito.Size = new System.Drawing.Size(120, 24);
                         this.EntradaLimiteCredito.TabIndex = 11;
-                        this.EntradaLimiteCredito.Text = "0.00";
                         // 
                         // label17
                         // 

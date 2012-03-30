@@ -42,6 +42,7 @@ namespace Lfx
         {
                 public static void Limpiar()
                 {
+                        int Cambios = 0;
                         string[] Archivos = System.IO.Directory.GetFiles(@"C:\Projects\Lazaro\", "*.cs", System.IO.SearchOption.AllDirectories);
                         foreach (string Archivo in Archivos) {
                                 StringBuilder Salida = new StringBuilder();
@@ -49,10 +50,12 @@ namespace Lfx
                                 using (System.IO.StreamReader Lector = System.IO.File.OpenText(Archivo)) {
                                         while (Lector.EndOfStream == false) {
                                                 string Contenido = Lector.ReadLine();
-                                                if (Contenido.IndexOf("." + @"FreeTextCode = """";") >= 0)
+                                                if (Contenido.IndexOf("." + @"Text = ""0.00"";") >= 0) {
+                                                        Cambios++;
                                                         Encontre = true;
-                                                else
+                                                } else {
                                                         Salida.AppendLine(Contenido);
+                                                }
                                         }
                                         Lector.Close();
                                 }
@@ -63,6 +66,7 @@ namespace Lfx
                                                 Escritor.Close();
                                         }
                                 }
+                                System.Console.WriteLine("Se realizaron {0} cambios", Cambios);
                         }
                 }
 

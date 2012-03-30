@@ -116,7 +116,6 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimaCompra.ReadOnly = true;
                         this.EntradaCostoUltimaCompra.Size = new System.Drawing.Size(100, 24);
                         this.EntradaCostoUltimaCompra.TabIndex = 55;
-                        this.EntradaCostoUltimaCompra.Text = "0.00";
                         // 
                         // Label3
                         // 
@@ -138,7 +137,6 @@ namespace Lfc.Articulos
                         this.EntradaCostoUltimas5Compras.ReadOnly = true;
                         this.EntradaCostoUltimas5Compras.Size = new System.Drawing.Size(100, 24);
                         this.EntradaCostoUltimas5Compras.TabIndex = 57;
-                        this.EntradaCostoUltimas5Compras.Text = "0.00";
                         // 
                         // Label4
                         // 

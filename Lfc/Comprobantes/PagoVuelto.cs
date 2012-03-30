@@ -118,7 +118,6 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.Size = new System.Drawing.Size(152, 32);
                         this.EntradaTotal.TabIndex = 1;
                         this.EntradaTotal.TabStop = false;
-                        this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         // 
                         // EntradaPago
@@ -130,7 +129,6 @@ namespace Lfc.Comprobantes
                         this.EntradaPago.Prefijo = "$";
                         this.EntradaPago.Size = new System.Drawing.Size(152, 32);
                         this.EntradaPago.TabIndex = 3;
-                        this.EntradaPago.Text = "0.00";
                         this.EntradaPago.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaPago.TextChanged += new System.EventHandler(this.EntradaPago_TextChanged);
                         // 
@@ -155,7 +153,6 @@ namespace Lfc.Comprobantes
                         this.EntradaCambio.Size = new System.Drawing.Size(152, 32);
                         this.EntradaCambio.TabIndex = 6;
                         this.EntradaCambio.TabStop = false;
-                        this.EntradaCambio.Text = "0.00";
                         this.EntradaCambio.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         // 
                         // Label3

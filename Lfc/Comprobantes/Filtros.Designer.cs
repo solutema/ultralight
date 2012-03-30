@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright 2004-2012 Ernesto N. Carrea
 //
 // This program is free software: you can redistribute it and/or modify
@@ -399,7 +399,6 @@ namespace Lfc.Comprobantes
                         this.EntradaMontoHasta.Prefijo = "$";
                         this.EntradaMontoHasta.Size = new System.Drawing.Size(109, 24);
                         this.EntradaMontoHasta.TabIndex = 3;
-                        this.EntradaMontoHasta.Text = "0.00";
                         // 
                         // EntradaMontoDesde
                         // 
@@ -409,7 +408,6 @@ namespace Lfc.Comprobantes
                         this.EntradaMontoDesde.Prefijo = "$";
                         this.EntradaMontoDesde.Size = new System.Drawing.Size(114, 24);
                         this.EntradaMontoDesde.TabIndex = 1;
-                        this.EntradaMontoDesde.Text = "0.00";
                         // 
                         // label12
                         // 

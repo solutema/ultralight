@@ -275,7 +275,6 @@ namespace Lfc.Tareas
                         this.EntradaImportePresupuesto.Prefijo = "$";
                         this.EntradaImportePresupuesto.Size = new System.Drawing.Size(80, 24);
                         this.EntradaImportePresupuesto.TabIndex = 24;
-                        this.EntradaImportePresupuesto.Text = "0.00";
                         // 
                         // EntradaObs
                         // 
@@ -425,7 +424,6 @@ namespace Lfc.Tareas
                         this.EntradaPresupuesto2.Size = new System.Drawing.Size(88, 24);
                         this.EntradaPresupuesto2.TabIndex = 26;
                         this.EntradaPresupuesto2.TabStop = false;
-                        this.EntradaPresupuesto2.Text = "0.00";
                         // 
                         // EntradaPrioridad
                         // 

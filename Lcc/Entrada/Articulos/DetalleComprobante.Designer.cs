@@ -107,7 +107,6 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaDescuento.Sufijo = "%";
                         this.EntradaDescuento.TabIndex = 3;
                         this.EntradaDescuento.TabStop = false;
-                        this.EntradaDescuento.Text = "0.00";
                         this.EntradaDescuento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaDescuento_KeyDown);
                         this.EntradaDescuento.TextChanged += new System.EventHandler(this.EntradaUnitarioDescuentoCantidad_TextChanged);
                         // 
@@ -116,28 +115,26 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaImporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.Location = new System.Drawing.Point(540, 0);
-                        this.EntradaImporte.MaxLength = 20;
+                        this.EntradaImporte.MaxLength = 14;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.ReadOnly = true;
                         this.EntradaImporte.Size = new System.Drawing.Size(100, 24);
                         this.EntradaImporte.TabIndex = 4;
                         this.EntradaImporte.TabStop = false;
-                        this.EntradaImporte.Text = "0.00";
                         // 
                         // EntradaUnitario
                         // 
                         this.EntradaUnitario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaUnitario.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaUnitario.Location = new System.Drawing.Point(280, 0);
-                        this.EntradaUnitario.MaxLength = 20;
+                        this.EntradaUnitario.MaxLength = 14;
                         this.EntradaUnitario.Name = "EntradaUnitario";
                         this.EntradaUnitario.PlaceholderText = "Escriba el precio unitario.";
                         this.EntradaUnitario.Prefijo = "$";
                         this.EntradaUnitario.Size = new System.Drawing.Size(95, 24);
                         this.EntradaUnitario.TabIndex = 1;
                         this.EntradaUnitario.TabStop = false;
-                        this.EntradaUnitario.Text = "0.00";
                         this.EntradaUnitario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntradaUnitario_KeyDown);
                         this.EntradaUnitario.TextChanged += new System.EventHandler(this.EntradaUnitarioDescuentoCantidad_TextChanged);
                         // 
@@ -146,7 +143,7 @@ namespace Lcc.Entrada.Articulos
                         this.EntradaCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaCantidad.Location = new System.Drawing.Point(376, 0);
-                        this.EntradaCantidad.MaxLength = 20;
+                        this.EntradaCantidad.MaxLength = 10;
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.PlaceholderText = "Escriba la cantidad.";
                         this.EntradaCantidad.Size = new System.Drawing.Size(87, 24);

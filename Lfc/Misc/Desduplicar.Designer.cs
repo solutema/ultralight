@@ -164,7 +164,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCteFinal.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCteFinal.TabIndex = 5;
                         this.EntradaCtaCteFinal.TabStop = false;
-                        this.EntradaCtaCteFinal.Text = "0.00";
                         // 
                         // label4
                         // 
@@ -184,7 +183,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte2.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCte2.TabIndex = 3;
                         this.EntradaCtaCte2.TabStop = false;
-                        this.EntradaCtaCte2.Text = "0.00";
                         this.EntradaCtaCte2.TextChanged += new System.EventHandler(this.EntradaCtaCte1CtaCte2_TextChanged);
                         // 
                         // label2
@@ -205,7 +203,6 @@ namespace Lfc.Misc
                         this.EntradaCtaCte1.Size = new System.Drawing.Size(120, 24);
                         this.EntradaCtaCte1.TabIndex = 1;
                         this.EntradaCtaCte1.TabStop = false;
-                        this.EntradaCtaCte1.Text = "0.00";
                         this.EntradaCtaCte1.TextChanged += new System.EventHandler(this.EntradaCtaCte1CtaCte2_TextChanged);
                         // 
                         // label1

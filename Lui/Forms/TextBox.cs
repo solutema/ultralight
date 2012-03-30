@@ -576,11 +576,16 @@ namespace Lui.Forms
                                 case DataTypes.Integer:
                                         long DatoInt;
                                         if (datos is Int16 || datos is Int32 || datos is Int64) {
-                                                DatoInt = System.Convert.ToInt32(datos);
+                                                DatoInt = System.Convert.ToInt64(datos);
                                         } else {
-                                                DatoInt = System.Convert.ToInt64(Lfx.Types.Evaluator.EvaluateDouble(datos.ToString()));
-                                                
+                                                try {
+                                                        DatoInt = System.Convert.ToInt64(Lfx.Types.Evaluator.EvaluateDecimal(datos.ToString()));
+                                                } catch {
+                                                        // Nada... supongo que un desbordamiento
+                                                        DatoInt = 0;
+                                                }
                                         }
+
                                         if (DatoInt > int.MaxValue || DatoInt < int.MinValue)
                                                 Res = "0";
                                         else
@@ -588,11 +593,11 @@ namespace Lui.Forms
                                         break;
 
                                 case DataTypes.Float:
-                                        double DatoDouble;
-                                        if (datos is double || datos is Single || datos is float)
-                                                DatoDouble = System.Convert.ToDouble(datos);
+                                        decimal DatoDouble;
+                                        if (datos is decimal || datos is double || datos is Single || datos is float)
+                                                DatoDouble = System.Convert.ToDecimal(datos);
                                         else
-                                                DatoDouble = Lfx.Types.Evaluator.EvaluateDouble(datos.ToString());
+                                                DatoDouble = Lfx.Types.Evaluator.EvaluateDecimal(datos.ToString());
 
                                         if (m_DecimalPlaces == -1)
                                                 Res = Lfx.Types.Formatting.FormatNumber(DatoDouble, 4);

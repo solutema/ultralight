@@ -167,7 +167,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.txtPlanInteres.Size = new System.Drawing.Size(56, 24);
                         this.txtPlanInteres.TabIndex = 3;
                         this.txtPlanInteres.TabStop = false;
-                        this.txtPlanInteres.Text = "0.00";
                         // 
                         // Label14
                         // 

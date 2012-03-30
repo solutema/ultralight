@@ -127,13 +127,12 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaCosto.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaCosto.Location = new System.Drawing.Point(136, 40);
-                        this.EntradaCosto.MaxLength = 20;
+                        this.EntradaCosto.MaxLength = 14;
                         this.EntradaCosto.Name = "EntradaCosto";
                         this.EntradaCosto.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaCosto.Prefijo = "$";
                         this.EntradaCosto.Size = new System.Drawing.Size(104, 24);
                         this.EntradaCosto.TabIndex = 1;
-                        this.EntradaCosto.Text = "0.00";
                         this.EntradaCosto.GotFocus += new System.EventHandler(this.EntradaCosto_GotFocus);
                         this.EntradaCosto.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
@@ -153,14 +152,13 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaPvp.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaPvp.Location = new System.Drawing.Point(136, 184);
-                        this.EntradaPvp.MaxLength = 20;
+                        this.EntradaPvp.MaxLength = 14;
                         this.EntradaPvp.Name = "EntradaPvp";
                         this.EntradaPvp.PlaceholderText = "Precio de venta al público. Puede dejar el PVP en blanco y utilizar un márgen pre" +
     "definido a continuación";
                         this.EntradaPvp.Prefijo = "$";
                         this.EntradaPvp.Size = new System.Drawing.Size(104, 24);
                         this.EntradaPvp.TabIndex = 6;
-                        this.EntradaPvp.Text = "0.00";
                         this.EntradaPvp.TextChanged += new System.EventHandler(this.EntradaPvp_TextChanged);
                         // 
                         // BotonInfoCosto
@@ -329,7 +327,7 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaStockMinimo.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaStockMinimo.Location = new System.Drawing.Point(160, 176);
-                        this.EntradaStockMinimo.MaxLength = 20;
+                        this.EntradaStockMinimo.MaxLength = 14;
                         this.EntradaStockMinimo.Name = "EntradaStockMinimo";
                         this.EntradaStockMinimo.PlaceholderText = "Nivel mínimo de existencias";
                         this.EntradaStockMinimo.Size = new System.Drawing.Size(96, 24);
@@ -484,9 +482,9 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaGarantia.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaGarantia.Location = new System.Drawing.Point(604, 272);
-                        this.EntradaGarantia.MaxLength = 20;
+                        this.EntradaGarantia.MaxLength = 3;
                         this.EntradaGarantia.Name = "EntradaGarantia";
-                        this.EntradaGarantia.PlaceholderText = "Precio de costo o de compra.";
+                        this.EntradaGarantia.PlaceholderText = "Período de garantía en meses.";
                         this.EntradaGarantia.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGarantia.Sufijo = "meses";
                         this.EntradaGarantia.TabIndex = 29;

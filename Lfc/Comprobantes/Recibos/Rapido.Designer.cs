@@ -126,12 +126,10 @@ namespace Lfc.Comprobantes.Recibos
                         // 
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.Location = new System.Drawing.Point(136, 152);
-                        this.EntradaImporte.MaxLength = 20;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(104, 24);
                         this.EntradaImporte.TabIndex = 3;
-                        this.EntradaImporte.Text = "0.00";
                         // 
                         // lblFecha1
                         // 

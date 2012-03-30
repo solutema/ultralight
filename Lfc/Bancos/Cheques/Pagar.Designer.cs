@@ -79,7 +79,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaImpuestos.Prefijo = "$";
                         this.EntradaImpuestos.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImpuestos.TabIndex = 8;
-                        this.EntradaImpuestos.Text = "0.00";
                         this.EntradaImpuestos.TextChanged += new System.EventHandler(this.Importes_TextChanged);
                         // 
                         // label4
@@ -101,7 +100,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
                         this.EntradaSubTotal.TabIndex = 4;
                         this.EntradaSubTotal.TabStop = false;
-                        this.EntradaSubTotal.Text = "0.00";
                         this.EntradaSubTotal.TextChanged += new System.EventHandler(this.Importes_TextChanged);
                         // 
                         // Label1
@@ -164,7 +162,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
                         this.EntradaTotal.TabIndex = 10;
-                        this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.Importes_TextChanged);
                         // 

@@ -261,7 +261,6 @@ namespace Lfc.Reportes
                         this.EntradaFacturacion.Size = new System.Drawing.Size(104, 24);
                         this.EntradaFacturacion.TabIndex = 29;
                         this.EntradaFacturacion.TabStop = false;
-                        this.EntradaFacturacion.Text = "0.00";
                         this.EntradaFacturacion.GotFocus += new System.EventHandler(this.EntradaFacturacion_GotFocus);
                         // 
                         // txtCosto
@@ -274,7 +273,6 @@ namespace Lfc.Reportes
                         this.txtCosto.Size = new System.Drawing.Size(104, 24);
                         this.txtCosto.TabIndex = 31;
                         this.txtCosto.TabStop = false;
-                        this.txtCosto.Text = "0.00";
                         // 
                         // txtGastosFijos
                         // 
@@ -286,7 +284,6 @@ namespace Lfc.Reportes
                         this.txtGastosFijos.Size = new System.Drawing.Size(104, 24);
                         this.txtGastosFijos.TabIndex = 17;
                         this.txtGastosFijos.TabStop = false;
-                        this.txtGastosFijos.Text = "0.00";
                         // 
                         // txtGastosVariables
                         // 
@@ -298,7 +295,6 @@ namespace Lfc.Reportes
                         this.txtGastosVariables.Size = new System.Drawing.Size(104, 24);
                         this.txtGastosVariables.TabIndex = 20;
                         this.txtGastosVariables.TabStop = false;
-                        this.txtGastosVariables.Text = "0.00";
                         // 
                         // txtOtrosEgresos
                         // 
@@ -310,7 +306,6 @@ namespace Lfc.Reportes
                         this.txtOtrosEgresos.Size = new System.Drawing.Size(104, 24);
                         this.txtOtrosEgresos.TabIndex = 23;
                         this.txtOtrosEgresos.TabStop = false;
-                        this.txtOtrosEgresos.Text = "0.00";
                         // 
                         // BotonGastosFijos
                         // 
@@ -431,7 +426,6 @@ namespace Lfc.Reportes
                         this.txtCobros.Size = new System.Drawing.Size(104, 24);
                         this.txtCobros.TabIndex = 5;
                         this.txtCobros.TabStop = false;
-                        this.txtCobros.Text = "0.00";
                         // 
                         // Label10
                         // 
@@ -467,7 +461,6 @@ namespace Lfc.Reportes
                         this.txtDiferenciaNeta.Size = new System.Drawing.Size(104, 24);
                         this.txtDiferenciaNeta.TabIndex = 26;
                         this.txtDiferenciaNeta.TabStop = false;
-                        this.txtDiferenciaNeta.Text = "0.00";
                         // 
                         // Label9
                         // 
@@ -488,7 +481,6 @@ namespace Lfc.Reportes
                         this.txtDiferenciaBruta.Size = new System.Drawing.Size(104, 24);
                         this.txtDiferenciaBruta.TabIndex = 33;
                         this.txtDiferenciaBruta.TabStop = false;
-                        this.txtDiferenciaBruta.Text = "0.00";
                         // 
                         // Label11
                         // 
@@ -641,7 +633,6 @@ namespace Lfc.Reportes
                         this.txtCompraMateriales.Size = new System.Drawing.Size(104, 24);
                         this.txtCompraMateriales.TabIndex = 11;
                         this.txtCompraMateriales.TabStop = false;
-                        this.txtCompraMateriales.Text = "0.00";
                         // 
                         // label25
                         // 
@@ -677,7 +668,6 @@ namespace Lfc.Reportes
                         this.txtCostoCapital.Size = new System.Drawing.Size(104, 24);
                         this.txtCostoCapital.TabIndex = 14;
                         this.txtCostoCapital.TabStop = false;
-                        this.txtCostoCapital.Text = "0.00";
                         // 
                         // label26
                         // 
@@ -737,7 +727,6 @@ namespace Lfc.Reportes
                         this.EntradaIngresosOtros.Size = new System.Drawing.Size(104, 24);
                         this.EntradaIngresosOtros.TabIndex = 8;
                         this.EntradaIngresosOtros.TabStop = false;
-                        this.EntradaIngresosOtros.Text = "0.00";
                         // 
                         // label24
                         // 
@@ -793,7 +782,6 @@ namespace Lfc.Reportes
                         this.EntradaGestionCobro.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGestionCobro.TabIndex = 72;
                         this.EntradaGestionCobro.TabStop = false;
-                        this.EntradaGestionCobro.Text = "0.00";
                         // 
                         // BotonGestionCobro
                         // 

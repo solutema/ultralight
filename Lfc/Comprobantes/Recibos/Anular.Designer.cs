@@ -174,7 +174,6 @@ namespace Lfc.Comprobantes.Recibos
                         this.EntradaImporte.Size = new System.Drawing.Size(116, 24);
                         this.EntradaImporte.TabIndex = 9;
                         this.EntradaImporte.TabStop = false;
-                        this.EntradaImporte.Text = "0.00";
                         // 
                         // Label5
                         // 

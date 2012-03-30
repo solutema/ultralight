@@ -866,7 +866,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaMonedaUnidadMonetariaMinima.Name = "EntradaMonedaUnidadMonetariaMinima";
                         this.EntradaMonedaUnidadMonetariaMinima.Size = new System.Drawing.Size(92, 24);
                         this.EntradaMonedaUnidadMonetariaMinima.TabIndex = 17;
-                        this.EntradaMonedaUnidadMonetariaMinima.Text = "0.00";
                         // 
                         // label26
                         // 
@@ -973,7 +972,6 @@ namespace Lazaro.WinMain.Config
                         this.EntradaLimiteCredito.Name = "EntradaLimiteCredito";
                         this.EntradaLimiteCredito.Size = new System.Drawing.Size(124, 24);
                         this.EntradaLimiteCredito.TabIndex = 23;
-                        this.EntradaLimiteCredito.Text = "0.00";
                         // 
                         // label21
                         // 

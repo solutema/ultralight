@@ -121,7 +121,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(116, 24);
                         this.EntradaImporte.TabIndex = 1;
-                        this.EntradaImporte.Text = "0.00";
                         // 
                         // label1
                         // 
@@ -369,7 +368,6 @@ namespace Lcc.Edicion.Comprobantes
                         this.EntradaInteres.Sufijo = "%";
                         this.EntradaInteres.TabIndex = 7;
                         this.EntradaInteres.TabStop = false;
-                        this.EntradaInteres.Text = "0.00";
                         // 
                         // Label14
                         // 

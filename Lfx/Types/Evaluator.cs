@@ -45,17 +45,6 @@ namespace Lfx.Types
                         }
                 }
 
-		public static double EvaluateDouble(string evalString)
-		{
-			try
-			{
-				return double.Parse(Evaluate(evalString), System.Globalization.CultureInfo.InvariantCulture);
-			}
-			catch
-			{
-				return 0;
-			}
-		}
 
 		public static string Evaluate(string evalString)
 		{

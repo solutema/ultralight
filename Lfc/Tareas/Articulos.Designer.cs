@@ -125,7 +125,6 @@ namespace Lfc.Tareas
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
                         this.EntradaTotal.TabIndex = 54;
                         this.EntradaTotal.TabStop = false;
-                        this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         // 
                         // EntradaDescuento
@@ -160,7 +159,6 @@ namespace Lfc.Tareas
                         this.EntradaSubTotal.Size = new System.Drawing.Size(88, 24);
                         this.EntradaSubTotal.TabIndex = 56;
                         this.EntradaSubTotal.TabStop = false;
-                        this.EntradaSubTotal.Text = "0.00";
                         this.EntradaSubTotal.TextChanged += new System.EventHandler(this.EntradaSubTotal_TextChanged);
                         // 
                         // Label5

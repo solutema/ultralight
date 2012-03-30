@@ -105,7 +105,6 @@ namespace Lfc.Cajas
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporte.TabIndex = 7;
-                        this.EntradaImporte.Text = "0.00";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
                         // 
                         // Label2
@@ -214,7 +213,6 @@ namespace Lfc.Cajas
                         this.EntradaImporteDestino.Prefijo = "$";
                         this.EntradaImporteDestino.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporteDestino.TabIndex = 9;
-                        this.EntradaImporteDestino.Text = "0.00";
                         this.EntradaImporteDestino.Visible = false;
                         // 
                         // label8

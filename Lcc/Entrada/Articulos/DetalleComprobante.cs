@@ -529,7 +529,11 @@ namespace Lcc.Entrada.Articulos
                 private void EntradaUnitarioDescuentoCantidad_TextChanged(object sender, System.EventArgs e)
                 {
                         if (this.Connection != null) {
-                                EntradaImporte.ValueDecimal = EntradaUnitario.ValueDecimal * this.Cantidad * (1 - this.Descuento / 100);
+                                try {
+                                        EntradaImporte.ValueDecimal = EntradaUnitario.ValueDecimal * this.Cantidad * (1 - this.Descuento / 100);
+                                } catch {
+                                        EntradaImporte.ValueDecimal = 0;
+                                }
                                 VerificarStock();
                                 this.Changed = true;
                                 if (null != PrecioCantidadChanged)

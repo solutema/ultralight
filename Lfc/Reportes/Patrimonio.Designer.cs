@@ -119,7 +119,6 @@ namespace Lfc.Reportes
                         this.EntradaActivosCajas.Prefijo = "$";
                         this.EntradaActivosCajas.Size = new System.Drawing.Size(100, 24);
                         this.EntradaActivosCajas.TabIndex = 2;
-                        this.EntradaActivosCajas.Text = "0.00";
                         // 
                         // EntradaFuturosTarjetas
                         // 
@@ -129,7 +128,6 @@ namespace Lfc.Reportes
                         this.EntradaFuturosTarjetas.Prefijo = "$";
                         this.EntradaFuturosTarjetas.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFuturosTarjetas.TabIndex = 4;
-                        this.EntradaFuturosTarjetas.Text = "0.00";
                         // 
                         // label2
                         // 
@@ -149,7 +147,6 @@ namespace Lfc.Reportes
                         this.EntradaActivosStock.Prefijo = "$";
                         this.EntradaActivosStock.Size = new System.Drawing.Size(100, 24);
                         this.EntradaActivosStock.TabIndex = 6;
-                        this.EntradaActivosStock.Text = "0.00";
                         // 
                         // label3
                         // 
@@ -169,7 +166,6 @@ namespace Lfc.Reportes
                         this.EntradaFuturosPedidos.Prefijo = "$";
                         this.EntradaFuturosPedidos.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFuturosPedidos.TabIndex = 8;
-                        this.EntradaFuturosPedidos.Text = "0.00";
                         // 
                         // label4
                         // 
@@ -189,7 +185,6 @@ namespace Lfc.Reportes
                         this.EntradaPasivosCheques.Prefijo = "$";
                         this.EntradaPasivosCheques.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPasivosCheques.TabIndex = 13;
-                        this.EntradaPasivosCheques.Text = "0.00";
                         // 
                         // label7
                         // 
@@ -209,7 +204,6 @@ namespace Lfc.Reportes
                         this.EntradaPasivosCajas.Prefijo = "$";
                         this.EntradaPasivosCajas.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPasivosCajas.TabIndex = 11;
-                        this.EntradaPasivosCajas.Text = "0.00";
                         // 
                         // note2
                         // 
@@ -247,7 +241,6 @@ namespace Lfc.Reportes
                         this.EntradaActivosSubtotal.Prefijo = "$";
                         this.EntradaActivosSubtotal.Size = new System.Drawing.Size(100, 24);
                         this.EntradaActivosSubtotal.TabIndex = 20;
-                        this.EntradaActivosSubtotal.Text = "0.00";
                         // 
                         // label5
                         // 
@@ -267,7 +260,6 @@ namespace Lfc.Reportes
                         this.EntradaPasivosSubtotal.Prefijo = "$";
                         this.EntradaPasivosSubtotal.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPasivosSubtotal.TabIndex = 22;
-                        this.EntradaPasivosSubtotal.Text = "0.00";
                         // 
                         // label6
                         // 
@@ -287,7 +279,6 @@ namespace Lfc.Reportes
                         this.EntradaFuturosSubtotal.Prefijo = "$";
                         this.EntradaFuturosSubtotal.Size = new System.Drawing.Size(100, 24);
                         this.EntradaFuturosSubtotal.TabIndex = 24;
-                        this.EntradaFuturosSubtotal.Text = "0.00";
                         // 
                         // label9
                         // 
@@ -307,7 +298,6 @@ namespace Lfc.Reportes
                         this.EntradaPatrimonioActual.Prefijo = "$";
                         this.EntradaPatrimonioActual.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPatrimonioActual.TabIndex = 26;
-                        this.EntradaPatrimonioActual.Text = "0.00";
                         // 
                         // label10
                         // 
@@ -336,7 +326,6 @@ namespace Lfc.Reportes
                         this.EntradaPatrimonioFuturo.Prefijo = "$";
                         this.EntradaPatrimonioFuturo.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPatrimonioFuturo.TabIndex = 29;
-                        this.EntradaPatrimonioFuturo.Text = "0.00";
                         // 
                         // label11
                         // 
@@ -356,7 +345,6 @@ namespace Lfc.Reportes
                         this.EntradaActivosActualesFuturos.Prefijo = "$";
                         this.EntradaActivosActualesFuturos.Size = new System.Drawing.Size(100, 24);
                         this.EntradaActivosActualesFuturos.TabIndex = 33;
-                        this.EntradaActivosActualesFuturos.Text = "0.00";
                         // 
                         // label12
                         // 
@@ -376,7 +364,6 @@ namespace Lfc.Reportes
                         this.EntradaPasivosStock.Prefijo = "$";
                         this.EntradaPasivosStock.Size = new System.Drawing.Size(100, 24);
                         this.EntradaPasivosStock.TabIndex = 35;
-                        this.EntradaPasivosStock.Text = "0.00";
                         // 
                         // label13
                         // 
@@ -396,7 +383,6 @@ namespace Lfc.Reportes
                         this.EntradaCC.Prefijo = "$";
                         this.EntradaCC.Size = new System.Drawing.Size(100, 24);
                         this.EntradaCC.TabIndex = 37;
-                        this.EntradaCC.Text = "0.00";
                         // 
                         // label14
                         // 

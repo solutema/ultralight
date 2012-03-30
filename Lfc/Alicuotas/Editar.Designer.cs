@@ -123,7 +123,6 @@ namespace Lfc.Alicuotas
                         this.EntradaImporteMinimo.ReadOnly = false;
                         this.EntradaImporteMinimo.Size = new System.Drawing.Size(104, 24);
                         this.EntradaImporteMinimo.TabIndex = 5;
-                        this.EntradaImporteMinimo.Text = "0.00";
                         // 
                         // Editar
                         // 

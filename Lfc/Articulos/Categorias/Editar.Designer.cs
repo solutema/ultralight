@@ -126,7 +126,7 @@ namespace Lfc.Articulos.Categorias
                         // 
                         this.EntradaStockMinimo.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaStockMinimo.Location = new System.Drawing.Point(144, 64);
-                        this.EntradaStockMinimo.MaxLength = 20;
+                        this.EntradaStockMinimo.MaxLength = 14;
                         this.EntradaStockMinimo.Name = "EntradaStockMinimo";
                         this.EntradaStockMinimo.Size = new System.Drawing.Size(72, 24);
                         this.EntradaStockMinimo.TabIndex = 5;
@@ -164,7 +164,7 @@ namespace Lfc.Articulos.Categorias
                         // 
                         this.EntradaGarantia.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaGarantia.Location = new System.Drawing.Point(144, 304);
-                        this.EntradaGarantia.MaxLength = 20;
+                        this.EntradaGarantia.MaxLength = 3;
                         this.EntradaGarantia.Name = "EntradaGarantia";
                         this.EntradaGarantia.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaGarantia.Size = new System.Drawing.Size(104, 24);
@@ -298,7 +298,6 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaCosto.Size = new System.Drawing.Size(104, 24);
                         this.EntradaCosto.TabIndex = 7;
                         this.EntradaCosto.TabStop = false;
-                        this.EntradaCosto.Text = "0.00";
                         // 
                         // Label6
                         // 

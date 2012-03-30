@@ -267,11 +267,9 @@ namespace Lfc.Cajas.Vencimientos
                         // 
                         this.EntradaImporte.DataType = Lui.Forms.DataTypes.Currency;
                         this.EntradaImporte.Location = new System.Drawing.Point(120, 72);
-                        this.EntradaImporte.MaxLength = 20;
                         this.EntradaImporte.Name = "EntradaImporte";
                         this.EntradaImporte.Size = new System.Drawing.Size(76, 24);
                         this.EntradaImporte.TabIndex = 3;
-                        this.EntradaImporte.Text = "0.00";
                         // 
                         // label7
                         // 

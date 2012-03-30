@@ -291,7 +291,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaOtrosGastos.Prefijo = "$";
                         this.EntradaOtrosGastos.Size = new System.Drawing.Size(104, 24);
                         this.EntradaOtrosGastos.TabIndex = 53;
-                        this.EntradaOtrosGastos.Text = "0.00";
                         this.EntradaOtrosGastos.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 
                         // EntradaCancelado
@@ -304,7 +303,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaCancelado.Size = new System.Drawing.Size(124, 28);
                         this.EntradaCancelado.TabIndex = 59;
                         this.EntradaCancelado.TabStop = false;
-                        this.EntradaCancelado.Text = "0.00";
                         this.EntradaCancelado.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         // 
                         // EntradaGastosEnvio
@@ -316,7 +314,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaGastosEnvio.Prefijo = "$";
                         this.EntradaGastosEnvio.Size = new System.Drawing.Size(104, 24);
                         this.EntradaGastosEnvio.TabIndex = 51;
-                        this.EntradaGastosEnvio.Text = "0.00";
                         this.EntradaGastosEnvio.TextChanged += new System.EventHandler(this.RecalcularTotal);
                         // 
                         // EntradaTotal
@@ -329,7 +326,6 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaTotal.Size = new System.Drawing.Size(124, 28);
                         this.EntradaTotal.TabIndex = 57;
                         this.EntradaTotal.TabStop = false;
-                        this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         // 
                         // EntradaObs

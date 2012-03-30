@@ -91,7 +91,6 @@ namespace Lfc.Cajas
                         this.EntradaImporte.Prefijo = "$";
                         this.EntradaImporte.Size = new System.Drawing.Size(108, 24);
                         this.EntradaImporte.TabIndex = 5;
-                        this.EntradaImporte.Text = "0.00";
                         this.EntradaImporte.TextChanged += new System.EventHandler(this.EntradaImporte_TextChanged);
                         // 
                         // Label2
@@ -223,7 +222,6 @@ namespace Lfc.Cajas
                         this.EntradaNuevoSaldo.Size = new System.Drawing.Size(120, 24);
                         this.EntradaNuevoSaldo.TabIndex = 7;
                         this.EntradaNuevoSaldo.TabStop = false;
-                        this.EntradaNuevoSaldo.Text = "0.00";
                         // 
                         // label7
                         // 

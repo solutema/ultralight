@@ -95,7 +95,6 @@ namespace Lfc.Articulos
                         this.EntradaRendimiento.PlaceholderText = "Precio de costo o de compra.";
                         this.EntradaRendimiento.Size = new System.Drawing.Size(96, 24);
                         this.EntradaRendimiento.TabIndex = 3;
-                        this.EntradaRendimiento.Text = "0.00";
                         // 
                         // label2
                         // 

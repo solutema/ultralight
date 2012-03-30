@@ -121,7 +121,6 @@ namespace Lfc.Bancos.Cheques
                         this.EntradaSubTotal.Size = new System.Drawing.Size(108, 24);
                         this.EntradaSubTotal.TabIndex = 4;
                         this.EntradaSubTotal.TabStop = false;
-                        this.EntradaSubTotal.Text = "0.00";
                         // 
                         // Label1
                         // 

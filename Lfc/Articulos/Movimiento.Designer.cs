@@ -156,7 +156,7 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaCantidad.DataType = Lui.Forms.DataTypes.Stock;
                         this.EntradaCantidad.Location = new System.Drawing.Point(136, 224);
-                        this.EntradaCantidad.MaxLength = 20;
+                        this.EntradaCantidad.MaxLength = 10;
                         this.EntradaCantidad.Name = "EntradaCantidad";
                         this.EntradaCantidad.Size = new System.Drawing.Size(96, 24);
                         this.EntradaCantidad.TabIndex = 5;

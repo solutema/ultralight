@@ -73,7 +73,6 @@ namespace Lcc.Entrada
                         this.EntradaValor1.ReadOnly = false;
                         this.EntradaValor1.Size = new System.Drawing.Size(108, 24);
                         this.EntradaValor1.TabIndex = 5;
-                        this.EntradaValor1.Text = "0.00";
                         // 
                         // EntradaValor2
                         // 
@@ -84,7 +83,6 @@ namespace Lcc.Entrada
                         this.EntradaValor2.ReadOnly = false;
                         this.EntradaValor2.Size = new System.Drawing.Size(108, 24);
                         this.EntradaValor2.TabIndex = 7;
-                        this.EntradaValor2.Text = "0.00";
                         // 
                         // label8
                         // 

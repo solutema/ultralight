@@ -157,7 +157,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaCuponesSubTotal.Size = new System.Drawing.Size(100, 24);
                         this.EntradaCuponesSubTotal.TabIndex = 3;
                         this.EntradaCuponesSubTotal.TabStop = false;
-                        this.EntradaCuponesSubTotal.Text = "0.00";
                         // 
                         // EntradaComisionTarjeta
                         // 
@@ -168,7 +167,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionTarjeta.Size = new System.Drawing.Size(104, 24);
                         this.EntradaComisionTarjeta.TabIndex = 6;
                         this.EntradaComisionTarjeta.TabStop = false;
-                        this.EntradaComisionTarjeta.Text = "0.00";
                         this.EntradaComisionTarjeta.TextChanged += new System.EventHandler(this.EntradaComisionTarjeta_TextChanged);
                         // 
                         // Label2
@@ -221,7 +219,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionPlan.Size = new System.Drawing.Size(104, 24);
                         this.EntradaComisionPlan.TabIndex = 9;
                         this.EntradaComisionPlan.TabStop = false;
-                        this.EntradaComisionPlan.Text = "0.00";
                         this.EntradaComisionPlan.TextChanged += new System.EventHandler(this.EntradaComisionPlan_TextChanged);
                         // 
                         // Label3
@@ -241,7 +238,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaComisionUsuario.Prefijo = "$";
                         this.EntradaComisionUsuario.Size = new System.Drawing.Size(104, 24);
                         this.EntradaComisionUsuario.TabIndex = 12;
-                        this.EntradaComisionUsuario.Text = "0.00";
                         this.EntradaComisionUsuario.TextChanged += new System.EventHandler(this.EntradaComisionUsuario_TextChanged);
                         // 
                         // lblComisionPlanPct
@@ -309,7 +305,6 @@ namespace Lfc.Tarjetas.Cupones
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.Size = new System.Drawing.Size(136, 28);
                         this.EntradaTotal.TabIndex = 15;
-                        this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Big;
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
                         // 
