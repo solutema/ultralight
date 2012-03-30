@@ -152,7 +152,7 @@ namespace Lfc.Personas
                         // 
                         this.EntradaDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDomicilio.ForceCase = Lui.Forms.TextCasing.Caption;
+                        this.EntradaDomicilio.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaDomicilio.Location = new System.Drawing.Point(128, 40);
                         this.EntradaDomicilio.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaDomicilio.MaxLength = 200;
@@ -222,7 +222,7 @@ namespace Lfc.Personas
                         // 
                         this.EntradaRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaRazonSocial.ForceCase = Lui.Forms.TextCasing.Caption;
+                        this.EntradaRazonSocial.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaRazonSocial.Location = new System.Drawing.Point(128, 40);
                         this.EntradaRazonSocial.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaRazonSocial.MaxLength = 200;
@@ -508,7 +508,7 @@ namespace Lfc.Personas
                         // 
                         this.EntradaDomicilioTrabajo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaDomicilioTrabajo.ForceCase = Lui.Forms.TextCasing.Caption;
+                        this.EntradaDomicilioTrabajo.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaDomicilioTrabajo.Location = new System.Drawing.Point(128, 72);
                         this.EntradaDomicilioTrabajo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaDomicilioTrabajo.MaxLength = 200;

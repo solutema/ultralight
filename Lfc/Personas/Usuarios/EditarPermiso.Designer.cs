@@ -281,7 +281,7 @@ namespace Lfc.Personas.Usuarios
                         // 
                         this.EntradaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaItems.ForceCase = Lui.Forms.TextCasing.Caption;
+                        this.EntradaItems.ForceCase = Lui.Forms.TextCasing.None;
                         this.EntradaItems.Location = new System.Drawing.Point(120, 272);
                         this.EntradaItems.Name = "EntradaItems";
                         this.EntradaItems.Size = new System.Drawing.Size(488, 24);

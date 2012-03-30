@@ -80,7 +80,7 @@ namespace Lcc.Entrada.Articulos
                                         EntradaCantidad.Text = "1";
                                         EntradaVariacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                                 } else {
-                                        EntradaVariacion.ForceCase = Lui.Forms.TextCasing.Caption;
+                                        EntradaVariacion.ForceCase = Lui.Forms.TextCasing.Automatic;
                                 }
                         }
                 }
