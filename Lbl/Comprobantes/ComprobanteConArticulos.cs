@@ -528,10 +528,11 @@ namespace Lbl.Comprobantes
                                 // Al cancelar, desasiento el importe pagado
                                 ImporteMovim = this.ImporteCancelado;
                         else
-                                // Al ingresar la factura, sasiento el importe impago (que normalmente es el total)
-                                ImporteMovim = this.ImporteImpago;
+                                // Al ingresar la factura, asiento el importe impago (que normalmente es el total)
+                                ImporteMovim = this.Total;
 
                         if (this.FormaDePago.Tipo == Pagos.TiposFormasDePago.CuentaCorriente)
+                                // Si es cuenta corriente muevo siempre el total (incluso al anular)
                                 ImporteMovim = this.Total;
 
                         if (this.Tipo.DireccionCtaCte < 0)

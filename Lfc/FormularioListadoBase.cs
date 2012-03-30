@@ -556,7 +556,14 @@ namespace Lfc
                                                                                         Lfx.Workspace.Master.RunTime.Toast(Res.Message, "Error");
                                                                         }
                                                                 }
+                                                        } else {
+                                                                Lfx.Workspace.Master.RunTime.Toast("No tiene permiso para desactivar registros.", "Aviso");
                                                         }
+                                                } else {
+                                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Los elementos de este listado no se pueden eliminar ni desactivar. ¿Le gustaría ver una página web con más información sobre el tema?", "Eliminación");
+                                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                                        if (Pregunta.ShowDialog() == DialogResult.OK)
+                                                                Help.ShowHelp(this, "http://www.lazarogestion.com/?q=node/49");
                                                 }
                                                 break;
                                 }

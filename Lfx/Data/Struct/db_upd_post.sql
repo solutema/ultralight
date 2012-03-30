@@ -65,6 +65,15 @@ UPDATE "documentos_tipos" SET letrasola='C' WHERE id_tipo IN (3, 13, 23);
 UPDATE "documentos_tipos" SET letrasola='E' WHERE id_tipo IN (4, 14, 24);
 UPDATE "documentos_tipos" SET letrasola='M' WHERE id_tipo IN (5, 15, 25);
 
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.Factura' WHERE id_tipo IN (1,2,3,4,5);
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.NotaDeCredito' WHERE id_tipo IN (11,12,13,14,15);
+UPDATE documentos_tipos SET tipo='Lbl.Comprobantes.NotaDeDebito' WHERE id_tipo IN (21,22,23,24,25);
+
+UPDATE documentos_tipos SET direc_ctacte=1 WHERE tipo='Lbl.Comprobantes.Factura';
+UPDATE documentos_tipos SET direc_ctacte=-1 WHERE tipo='Lbl.Comprobantes.NotaDeCredito';
+UPDATE documentos_tipos SET direc_ctacte=1 WHERE tipo='Lbl.Comprobantes.NotaDeDebito';
+
+
 START TRANSACTION WITH CONSISTENT SNAPSHOT;
 INSERT INTO sys_log (fecha, estacion, usuario, comando, tabla, item_id, extra1) SELECT fecha, '', id_persona, 'Comment', tablas, item_id, obs FROM sys_comments;
 DELETE FROM sys_comments;
