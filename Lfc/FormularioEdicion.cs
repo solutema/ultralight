@@ -610,7 +610,7 @@ namespace Lfc
                                 // doy la oportunidad de que lo procese el ControlUnico.
                                 Lfx.Types.OperationResult Res = this.ControlUnico.PerformFormAction(ActionName);
                                 if (Res != null) {
-                                        if (Res.Success == false && Res.Cancel == false)
+                                        if (Res.Success == false && Res.Cancel == false && Res.Message != null)
                                                 Lfx.Workspace.Master.RunTime.Toast(Res.Message, "Error");
                                 } else {
                                         // No lo procesó, así que puedo hacerlo yo
