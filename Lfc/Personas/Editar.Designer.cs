@@ -535,9 +535,9 @@ namespace Lfc.Personas
                         this.EntradaEstadoCredito.Name = "EntradaEstadoCredito";
                         this.EntradaEstadoCredito.SetData = new string[] {
         "Normal|0",
-        "En Plan de Pagos|5",
-        "Suspendido con React. Automática|10",
-        "Susp. con Reactivación Manual|100"};
+        "En plan de pago|5",
+        "Suspendido con react. automática|10",
+        "Susp. con reactivación manual|100"};
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(168, 74);
                         this.EntradaEstadoCredito.TabIndex = 13;
                         this.EntradaEstadoCredito.TextKey = "100";
