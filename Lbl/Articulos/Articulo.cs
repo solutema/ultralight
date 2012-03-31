@@ -710,7 +710,7 @@ namespace Lbl.Articulos
                 {
                         get
                         {
-                                if (m_Caja == null && this.GetFieldValue<int>("id_caja") != 0)
+                                if (m_Caja == null)
                                         m_Caja = this.GetFieldValue<Lbl.Cajas.Caja>("id_caja");
                                 return m_Caja;
                         }
@@ -725,8 +725,8 @@ namespace Lbl.Articulos
                 {
                         get
                         {
-                                if (m_Margen == null && this.GetFieldValue<int>("id_margen") != 0)
-                                        m_Margen = new Margen(this.Connection, this.GetFieldValue<int>("id_margen"));
+                                if (m_Margen == null)
+                                        m_Margen = this.GetFieldValue<Margen>("id_margen");
                                 return m_Margen;
                         }
                         set

@@ -41,13 +41,60 @@ namespace Lfc.Articulos
                 private bool CustomName = false;
                 private decimal Rendimiento;
                 private string UnidadRendimiento = "";
-                private int IgnorarCostoTextChanged;
+                private Lbl.Articulos.Margen Margen = null;
+                private Lbl.ColeccionGenerica<Lbl.Articulos.Margen> Margenes = null;
 
                 public Editar()
                 {
                         ElementoTipo = typeof(Lbl.Articulos.Articulo);
 
                         InitializeComponent();
+                }
+
+
+
+                protected override void OnCreateControl()
+                {
+                        base.OnCreateControl();
+                        if (this.Connection != null) {
+                                EntradaStockActual.DecimalPlaces = Lbl.Sys.Config.Articulos.Decimales;
+                                EntradaStockMinimo.DecimalPlaces = Lbl.Sys.Config.Articulos.Decimales;
+                                EntradaCosto.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto;
+                                EntradaPvp.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
+
+                                Lfx.Data.Row Nombre = null;
+
+                                Nombre = this.Connection.Tables["articulos_codigos"].FastRows[1];
+                                if (Nombre != null)
+                                        EtiquetaCodigo1.Text = Nombre["nombre"].ToString();
+
+                                Nombre = this.Connection.Tables["articulos_codigos"].FastRows[2];
+                                if (Nombre != null)
+                                        EtiquetaCodigo2.Text = Nombre["nombre"].ToString();
+
+                                Nombre = this.Connection.Tables["articulos_codigos"].FastRows[3];
+                                if (Nombre != null)
+                                        EtiquetaCodigo3.Text = Nombre["nombre"].ToString();
+
+                                Nombre = this.Connection.Tables["articulos_codigos"].FastRows[4];
+                                if (Nombre != null)
+                                        EtiquetaCodigo4.Text = Nombre["nombre"].ToString();
+
+                                this.Margenes = new Lbl.ColeccionGenerica<Lbl.Articulos.Margen>(this.Connection, this.Connection.Tables["margenes"]);
+
+                                int i = 0;
+                                string[] ListaMargenes = new string[this.Margenes.Count + 1];
+
+                                foreach (Lbl.Articulos.Margen Mg in this.Margenes) {
+                                        ListaMargenes[i] = Mg.Nombre + " (" + Lfx.Types.Formatting.FormatNumber(Mg.Porcentaje, 2) + "%)|" + Mg.Id.ToString();
+                                        i++;
+                                }
+
+                                ListaMargenes[i] = "Otro|0";
+                                IgnorarCostoMargenTextChanged++;
+                                EntradaMargen.SetData = ListaMargenes;
+                                IgnorarCostoMargenTextChanged--;
+                        }
                 }
 
 
@@ -88,6 +135,7 @@ namespace Lfc.Articulos
                         FormMasInfo.Show();
                 }
 
+                private int IgnorarCostoMargenTextChanged;
                 private void EntradaCostoMargen_TextChanged(System.Object sender, System.EventArgs e)
                 {
                         if (this.Connection == null)
@@ -98,81 +146,54 @@ namespace Lfc.Articulos
                         else
                                 EntradaCosto.ErrorText = "";
 
-                        if (IgnorarCostoTextChanged <= 0) {
-                                if (EntradaMargen.TextKey.IsNumericInt()) {
-                                        Lfx.Data.Row Margen = this.Connection.Tables["margenes"].FastRows[Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey)];
+                        if (IgnorarCostoMargenTextChanged <= 0) {
+                                IgnorarCostoMargenTextChanged++;
+                                if (EntradaMargen.ValueInt > 0) {
+                                        this.Margen = this.Margenes.GetById(EntradaMargen.ValueInt);
 
                                         if (Margen != null) {
                                                 decimal Pvp = EntradaCosto.ValueDecimal;
-                                                Pvp += System.Convert.ToDecimal(Margen["sumar"]);
-                                                decimal MargenCompleto = System.Convert.ToDecimal(Margen["porcentaje"]) + System.Convert.ToDecimal(Margen["porcentaje2"]) + System.Convert.ToDecimal(Margen["porcentaje3"]);
+                                                //Pvp += Margen.Sumar;
+                                                decimal MargenCompleto = Margen.Porcentaje;
                                                 Pvp *= (1 + MargenCompleto / 100);
-                                                Pvp += System.Convert.ToDecimal(Margen["sumar2"]);
-                                                IgnorarCostoTextChanged++;
+                                                //Pvp += Margen.Sumar2;
                                                 EntradaPvp.ValueDecimal = Pvp;
-                                                IgnorarCostoTextChanged--;
                                         }
                                 } else {
-                                        IgnorarCostoTextChanged++;
+                                        this.Margen = null;
                                         EntradaPvp_TextChanged(sender, e);
-                                        IgnorarCostoTextChanged--;
                                 }
+                                IgnorarCostoMargenTextChanged--;
                         }
                 }
 
                 private void EntradaPvp_TextChanged(object sender, System.EventArgs e)
                 {
-                        if (IgnorarCostoTextChanged <= 0) {
-                                IgnorarCostoTextChanged++;
-                                EntradaMargen.TextKey = "";
+                        if (IgnorarCostoMargenTextChanged <= 0) {
+                                IgnorarCostoMargenTextChanged++;
 
-                                if (EntradaCosto.ValueDecimal == 0)
-                                        EntradaMargen.Text = "N/A";
-                                else
-                                        EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(EntradaPvp.ValueDecimal / EntradaCosto.ValueDecimal * 100 - 100, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + "%)";
+                                decimal PorcentajeActual = EntradaPvp.ValueDecimal / EntradaCosto.ValueDecimal * 100m - 100m;
+                                int IdMargen = 0;
+                                foreach (Lbl.Articulos.Margen Mg in this.Margenes) {
+                                        if (decimal.Compare(Mg.Porcentaje, PorcentajeActual) == 0)
+                                                IdMargen = Mg.Id;
+                                }
 
-                                IgnorarCostoTextChanged--;
+                                EntradaMargen.ValueInt = IdMargen;
+
+                                if (IdMargen == 0) {
+                                        if (EntradaCosto.ValueDecimal == 0)
+                                                EntradaMargen.Text = "N/A";
+                                        else
+                                                EntradaMargen.Text = "Otro (" + Lfx.Types.Formatting.FormatNumber(PorcentajeActual, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + "%)";
+                                }
+
+                                IgnorarCostoMargenTextChanged--;
                         }
                 }
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {
-                        /* if (this.Elemento.Existe) {
-                                Lbl.Articulos.Seguimientos Seg = (Lbl.Articulos.Seguimientos)(EntradaSeguimiento.ValueInt);
-                                if (Seg == Lbl.Articulos.Seguimientos.Predeterminado) {
-                                        Lbl.Articulos.Categoria Cat = EntradaCategoria.Elemento as Lbl.Articulos.Categoria;
-                                        if (Cat != null)
-                                                Seg = Cat.ObtenerSeguimiento();
-                                }
-
-                                decimal CantidadSeguimiento = this.Connection.FieldDecimal("SELECT SUM(cantidad) FROM articulos_series WHERE id_articulo=" + this.Elemento.Id);
-
-                                if (Seg == Lbl.Articulos.Seguimientos.Ninguno && CantidadSeguimiento != 0) {
-                                        // Se van a perder los datos de seguimiento
-                                        Lui.Forms.YesNoDialog PregNuevo = new Lui.Forms.YesNoDialog("Al desactivar el seguimiento, se perderán los datos actuales de seguimiento (números de serie o talles y colores). ¿Está seguro de que desea continuar?", "Desactivar seguimiento");
-                                        if (PregNuevo.ShowDialog() != DialogResult.OK)
-                                                return new Lfx.Types.FailureOperationResult("Active nuevamente el seguimiento del artículo para no perder los datos actuales de seguimiento. Puede consultar los datos actuales en 'Conformación'.");
-                                } else if (Seg != Lbl.Articulos.Seguimientos.Ninguno && CantidadSeguimiento != EntradaStockActual.ValueDecimal) {
-                                        // Hay que ingresar nuevos datos de seguimiento
-                                        Lui.Forms.YesNoDialog PregNuevo = new Lui.Forms.YesNoDialog("Al activar el seguimiento, deberá ingresar los datos de seguimiento (números de serie o talles y colores) para las existencias actuales. ¿Está seguro de que desea continuar?", "Activar seguimiento");
-                                        if (PregNuevo.ShowDialog() != DialogResult.OK) {
-                                                return new Lfx.Types.FailureOperationResult("Desactive nuevamente el seguimiento del artículo si no tiene los datos de seguimiento de las existencias actuales.");
-                                        } else {
-                                                Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
-
-                                                Lfc.Articulos.EditarSeguimiento EditarSeg = new EditarSeguimiento();
-                                                EditarSeg.Articulo = Art;
-                                                EditarSeg.Cantidad = Math.Abs(System.Convert.ToInt32(EntradaStockActual.ValueDecimal));
-                                                EditarSeg.SituacionOrigen = new Lbl.Articulos.Situacion(this.Connection, 998);
-                                                EditarSeg.DatosSeguimiento = EntradaArticulo.DatosSeguimiento;
-                                                if (EditarSeg.ShowDialog() == DialogResult.OK) {
-                                                        EntradaArticulo.DatosSeguimiento = EditarSeg.DatosSeguimiento;
-                                                }
-                                        }
-                                }
-                        } */
-
-
                         Lfx.Types.OperationResult Res = new Lfx.Types.SuccessOperationResult();
 
                         if (EntradaNombre.Text.Length < 2) {
@@ -298,17 +319,21 @@ namespace Lfc.Articulos
                         EntradaDestacado.ValueInt = Art.Destacado ? 1 : 0;
                         EntradaWeb.ValueInt = ((int)(Art.Publicacion));
 
-                        IgnorarCostoTextChanged++;
-                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Art.Costo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
-                        if (Art.Margen == null) {
-                                EntradaMargen.TextKey = "";
-                                EntradaMargen.Text = "Otro";
-                        } else {
-                                EntradaMargen.TextKey = Art.Margen.Id.ToString();
-                        }
-                        EntradaPvp.Text = Lfx.Types.Formatting.FormatCurrency(Art.Pvp, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
+                        IgnorarCostoMargenTextChanged++;
+                        EntradaCosto.ValueDecimal = Art.Costo;
+                        if (Art.Margen == null)
+                                EntradaMargen.ValueInt = 0;
+                        else
+                                EntradaMargen.ValueInt = Art.Margen.Id;
 
-                        IgnorarCostoTextChanged--;
+                        EntradaPvp.ValueDecimal = Art.Pvp;
+
+                        if (Art.Margen == null)
+                                EntradaMargen.ValueInt = 0;
+                        else
+                                EntradaMargen.ValueInt = Art.Margen.Id;
+
+                        IgnorarCostoMargenTextChanged--;
 
                         EntradaTipoDeArticulo.ValueInt = (int)(Art.TipoDeArticulo);
                         EntradaSeguimiento.ValueInt = (int)(Art.Seguimiento);
@@ -320,7 +345,7 @@ namespace Lfc.Articulos
                         Rendimiento = Art.Rendimiento;
                         UnidadRendimiento = Art.UnidadRendimiento;
                         EntradaStockMinimo.ValueDecimal = Art.PuntoDeReposicion;
-                        EntradaGarantia.Text = Art.Garantia.ToString();
+                        EntradaGarantia.ValueInt = Art.Garantia;
                         CustomName = Art.Existe;
 
                         base.ActualizarControl();
@@ -344,15 +369,15 @@ namespace Lfc.Articulos
                         Art.Proveedor = EntradaProveedor.Elemento as Lbl.Personas.Persona;
                         Art.Descripcion = EntradaDescripcion.Text;
                         Art.Descripcion2 = EntradaDescripcion2.Text;
-                        Art.Destacado = Lfx.Types.Parsing.ParseInt(EntradaDestacado.TextKey) != 0;
-                        Art.Costo = Lfx.Types.Parsing.ParseCurrency(EntradaCosto.Text);
+                        Art.Destacado = EntradaDestacado.ValueInt != 0;
+                        Art.Costo = EntradaCosto.ValueDecimal;
 
-                        if (Lfx.Types.Parsing.ParseInt(EntradaMargen.TextKey) > 0)
-                                Art.Margen = new Lbl.Articulos.Margen(Art.Connection, EntradaMargen.ValueInt);
+                        if (EntradaMargen.ValueInt > 0)
+                                Art.Margen = this.Margenes.GetById(EntradaMargen.ValueInt);
                         else
                                 Art.Margen = null;
 
-                        Art.Pvp = Lfx.Types.Parsing.ParseCurrency(EntradaPvp.Text);
+                        Art.Pvp = EntradaPvp.ValueDecimal;
                         Art.TipoDeArticulo = (Lbl.Articulos.TiposDeArticulo)(EntradaTipoDeArticulo.ValueInt);
                         Art.Seguimiento = (Lbl.Articulos.Seguimientos)(EntradaSeguimiento.ValueInt);
                         Art.Periodicidad = (Lbl.Articulos.Periodicidad)(EntradaPeriodicidad.ValueInt);
@@ -361,7 +386,7 @@ namespace Lfc.Articulos
                         Art.Rendimiento = Rendimiento;
                         Art.UnidadRendimiento = UnidadRendimiento;
                         Art.Estado = 1;
-                        Art.Garantia = Lfx.Types.Parsing.ParseInt(EntradaGarantia.Text);
+                        Art.Garantia = EntradaGarantia.ValueInt;
                         Art.Publicacion = ((Lbl.Articulos.Publicacion)(EntradaWeb.ValueInt));
                         if (Art.Existe == false)
                                 Art.ExistenciasInicial = EntradaStockActual.ValueDecimal;
@@ -413,47 +438,6 @@ namespace Lfc.Articulos
                         }
                 }
 
-                protected override void OnLoad(EventArgs e)
-                {
-                        base.OnLoad(e);
-                        if (this.Connection != null) {
-                                EntradaStockActual.DecimalPlaces = Lbl.Sys.Config.Articulos.Decimales;
-                                EntradaStockMinimo.DecimalPlaces = Lbl.Sys.Config.Articulos.Decimales;
-                                EntradaCosto.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto;
-                                EntradaPvp.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales;
-
-                                Lfx.Data.Row Nombre = null;
-
-                                Nombre = this.Connection.Tables["articulos_codigos"].FastRows[1];
-                                if (Nombre != null)
-                                        EtiquetaCodigo1.Text = Nombre["nombre"].ToString();
-
-                                Nombre = this.Connection.Tables["articulos_codigos"].FastRows[2];
-                                if (Nombre != null)
-                                        EtiquetaCodigo2.Text = Nombre["nombre"].ToString();
-
-                                Nombre = this.Connection.Tables["articulos_codigos"].FastRows[3];
-                                if (Nombre != null)
-                                        EtiquetaCodigo3.Text = Nombre["nombre"].ToString();
-
-                                Nombre = this.Connection.Tables["articulos_codigos"].FastRows[4];
-                                if (Nombre != null)
-                                        EtiquetaCodigo4.Text = Nombre["nombre"].ToString();
-
-                                Lfx.Data.Table TablaMargenes = this.Connection.Tables["margenes"];
-                                TablaMargenes.PreLoad();
-                                int i = 0;
-                                string[] ListaMargenes = new string[TablaMargenes.FastRows.Count + 1];
-
-                                foreach (Lfx.Data.Row Margen in TablaMargenes.FastRows.Values) {
-                                        ListaMargenes[i] = System.Convert.ToString(Margen["nombre"]) + " (" + Lfx.Types.Formatting.FormatNumber(System.Convert.ToDecimal(Margen["porcentaje"]) + System.Convert.ToDecimal(Margen["porcentaje2"]) + System.Convert.ToDecimal(Margen["porcentaje3"]), 2) + "%)|" + System.Convert.ToInt32(Margen["id_margen"]);
-                                        i++;
-                                }
-
-                                ListaMargenes[i] = "Otro|0";
-                                EntradaMargen.SetData = ListaMargenes;
-                        }
-                }
 
                 private void VerHistorial()
                 {

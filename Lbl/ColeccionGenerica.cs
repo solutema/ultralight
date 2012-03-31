@@ -62,11 +62,33 @@ namespace Lbl
                         this.AddRange(tabla);
                 }
 
+
+                public ColeccionGenerica(Lfx.Data.Connection dataBase, Lfx.Data.Table tabla)
+                        : this(dataBase)
+                {
+                        this.Clear();
+                        this.AddRange(tabla);
+                }
+
+
                 public void AddRange(System.Data.DataTable tabla)
                 {
                         if (tabla != null) {
                                 foreach (System.Data.DataRow Rw in tabla.Rows) {
                                         Lfx.Data.Row Lrw = (Lfx.Data.Row)Rw;
+                                        this.AddFromRow(Lrw);
+                                }
+                        }
+                        this.HayCambios = false;
+                }
+
+
+                public void AddRange(Lfx.Data.Table tabla)
+                {
+                        if (tabla != null) {
+                                tabla.PreLoad();
+                                foreach (Lfx.Data.Row Rw in tabla.FastRows.Values) {
+                                        Lfx.Data.Row Lrw = Rw;
                                         this.AddFromRow(Lrw);
                                 }
                         }

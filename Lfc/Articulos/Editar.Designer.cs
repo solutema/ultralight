@@ -145,7 +145,6 @@ namespace Lfc.Articulos
         "Otro|-1"};
                         this.EntradaMargen.Size = new System.Drawing.Size(224, 96);
                         this.EntradaMargen.TabIndex = 4;
-                        this.EntradaMargen.TextKey = "-1";
                         this.EntradaMargen.TextChanged += new System.EventHandler(this.EntradaCostoMargen_TextChanged);
                         // 
                         // EntradaPvp
