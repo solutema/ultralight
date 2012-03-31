@@ -497,7 +497,7 @@ namespace Lfc.Articulos
                 {
                         Lazaro.Pres.Forms.FormActionCollection Res = base.GetFormActions();
                         if (this.Elemento != null && this.Elemento.Existe) {
-                                Res.Add(new Lazaro.Pres.Forms.FormAction("Historial", "F7", "historial", 20, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
+                                Res.Add(new Lazaro.Pres.Forms.FormAction("Movimientos", "F7", "movimientos", 20, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
                                 Res.Add(new Lazaro.Pres.Forms.FormAction("Conformación", "F5", "conformacion", 10, Lazaro.Pres.Forms.FormActionVisibility.Secondary));
                         }
                         return Res;
@@ -507,7 +507,7 @@ namespace Lfc.Articulos
                 public override Lfx.Types.OperationResult PerformFormAction(string name)
                 {
                         switch (name) {
-                                case "historial":
+                                case "movimientos":
                                         VerHistorial();
                                         return new Lfx.Types.SuccessOperationResult();
                                 case "conformacion":
