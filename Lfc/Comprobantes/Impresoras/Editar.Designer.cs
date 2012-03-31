@@ -268,7 +268,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(120, 24);
                         this.label3.TabIndex = 3;
-                        this.label3.Text = "Estación";
+                        this.label3.Text = "Equipo";
                         this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // EntradaEstacion

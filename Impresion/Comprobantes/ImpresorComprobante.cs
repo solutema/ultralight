@@ -110,8 +110,13 @@ namespace Lazaro.Impresion.Comprobantes
                         if (this.Impresora == null)
                                 this.Impresora = this.ObtenerImpresora();
 
-                        Lbl.Impresion.ClasesImpresora ClaseImpr = Lbl.Impresion.ClasesImpresora.Comun;
-                        if (this.Impresora != null) {
+                        Lbl.Impresion.ClasesImpresora ClaseImpr;
+                        if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[this.Comprobante.PV].Tipo == Lbl.Comprobantes.TipoPv.Fiscal)
+                                ClaseImpr = Lbl.Impresion.ClasesImpresora.Fiscal;
+                        else
+                                ClaseImpr = Lbl.Impresion.ClasesImpresora.Comun;
+
+                        if (ClaseImpr != Lbl.Impresion.ClasesImpresora.Fiscal && this.Impresora != null) {
                                 ClaseImpr = this.Impresora.Clase;
 
                                 if (this.Comprobante.Tipo.EsFacturaNCoND && this.Impresora.EsVistaPrevia)
@@ -132,7 +137,17 @@ namespace Lazaro.Impresion.Comprobantes
                                         ImprimiLocal = false;
 
                                         // Lo mando a imprimir al servidor fiscal
-                                        Lfx.Workspace.Master.DefaultScheduler.AddTask("IMPRIMIR " + this.Elemento.Id.ToString(), "fiscal" + this.Comprobante.PV.ToString(), Impresora.Estacion);
+                                        string Estacion = null;
+                                        if (ClaseImpr == Lbl.Impresion.ClasesImpresora.Fiscal)
+                                                Estacion = Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[this.Comprobante.PV].Estacion;
+
+                                        if (Estacion == null && Impresora != null)
+                                                Estacion = Impresora.Estacion;
+
+                                        if (Estacion != null)
+                                                Lfx.Workspace.Master.DefaultScheduler.AddTask("IMPRIMIR " + this.Elemento.Id.ToString(), "fiscal" + this.Comprobante.PV.ToString(), Estacion);
+                                        else
+                                                throw new Exception("No se ha definido el equipo al cual está conectada la impresora remota");
 
                                         //Espero hasta que la factura está impresa o hasta que pasen X segundos
                                         System.DateTime FinEsperaFiscal = System.DateTime.Now.AddSeconds(90);

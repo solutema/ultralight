@@ -801,7 +801,7 @@
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
-    <Column name="id_sucursal" inputtype="Relation" nullable="0" default="0" />
+    <Column name="id_sucursal" inputtype="Relation" nullable="1" />
     <Column name="tipo" datatype="TinyInt" nullable="0" default="0" />
     <Column name="cuenta_iva" inputtype="Bool" nullable="0" default="1" />
     <Column name="cuenta_iibb" inputtype="Bool" nullable="0" default="1" />
@@ -809,7 +809,7 @@
     <Column name="estacion" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="tipo_fac" datatype="VarChar" nullable="0" lenght="50" />
     <Column name="carga" datatype="TinyInt" nullable="0" default="0" />
-    <Column name="modelo" datatype="TinyInt" nullable="0" default="0" />
+    <Column name="modelo" datatype="SmallInt" nullable="0" default="0" />
     <Column name="puerto" datatype="TinyInt" nullable="0" default="0" />
     <Column name="bps" datatype="SmallInt" nullable="0" default="0" />
     <Column name="ultimoz" datatype="VarChar" nullable="1" lenght="50" />

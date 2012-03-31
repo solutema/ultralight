@@ -81,7 +81,7 @@ namespace Lazaro.WinMain.Misc
 
                                 if (Puede == false) {
                                         System.Threading.Thread.Sleep(800);
-                                        Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOnFail, EntradaUsuario.Elemento, "Estación no permitida.");
+                                        Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOnFail, EntradaUsuario.Elemento, "Equipo no permitido.");
                                         MessageBox.Show("No se permite el acceso como Administrador desde este equipo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                         return;
                                 }

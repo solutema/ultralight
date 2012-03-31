@@ -78,15 +78,15 @@ namespace Lui.Forms
                                         m_SetDataKey = new string[TamanoSet];
 
                                         for (int i = 0; i < TamanoSet; i++) {
-                                                string sItem = m_SetData[i];
-                                                m_SetDataText[i] = Lfx.Types.Strings.GetNextToken(ref sItem, "|");
-                                                m_SetDataKey[i] = sItem;
+                                                string Item = m_SetData[i];
+                                                m_SetDataText[i] = Lfx.Types.Strings.GetNextToken(ref Item, "|");
+                                                m_SetDataKey[i] = Item;
                                         }
 
                                         if (this.TextRaw.Length == 0 && m_SetData.Length >= 1)
                                                 this.TextRaw = m_SetData[0];
 
-                                        DetectarSetIndex();
+                                        this.TextKey = m_SetDataKey[0];
                                 }
                         }
                 }
@@ -186,8 +186,21 @@ namespace Lui.Forms
                         set
                         {
                                 bool EraIgual = m_TextKey == value;
-                                m_TextKey = value;
-                                DetectarSetIndex();
+
+                                if (m_SetData != null && m_SetDataKey.GetLength(0) > 0) {
+                                        for (int i = 0; i <= m_SetDataKey.GetUpperBound(0); i++) {
+                                                if (m_SetDataKey[i] == value) {
+                                                        m_TextKey = value;
+                                                        m_SetIndex = i;
+                                                        IgnoreChanges++;
+                                                        this.TextRaw = m_SetDataText[m_SetIndex];
+                                                        if (ItemList.Items.Count >= (i + 1))
+                                                                ItemList.SelectedIndex = i;
+                                                        IgnoreChanges--;
+                                                        break;
+                                                }
+                                        }
+                                }
                                 if (EraIgual == false)
                                         this.OnTextChanged(EventArgs.Empty);
                         }
@@ -209,7 +222,18 @@ namespace Lui.Forms
                 }
 
 
-                private void DetectarSetIndex()
+                private void DetectarTextKey()
+                {
+                        string Buscar = ItemList.SelectedItem.ToString();
+                        for (int i = 0; i < m_SetDataText.Length; i++) {
+                                if (m_SetDataText[i] == Buscar) {
+                                        this.TextKey = m_SetDataKey[i];
+                                }
+                        }
+                }
+
+
+                /* private void DetectarSetIndex()
                 {
                         // Detecta el SetIndex que le corresponde al TextKey actual
                         if (m_SetData != null && m_SetDataKey.GetLength(0) > 0) {
@@ -226,7 +250,7 @@ namespace Lui.Forms
                                         }
                                 }
                         }
-                }
+                } */
 
 
                 private void ImagenSiguiente_Click(object sender, System.EventArgs e)
@@ -501,12 +525,7 @@ namespace Lui.Forms
                 private void ItemList_SelectedValueChanged(object sender, EventArgs e)
                 {
                         if (ItemList.SelectedItem != null) {
-                                string Buscar = ItemList.SelectedItem.ToString();
-                                for(int i = 0; i < m_SetDataText.Length; i++) {
-                                        if(m_SetDataText[i] == Buscar) {
-                                                this.TextKey = m_SetDataKey[i];
-                                        }
-                                }
+                                this.DetectarTextKey();
 
                                 if (ItemList.SelectedIndex < ItemList.TopIndex)
                                         ItemList.TopIndex = ItemList.SelectedIndex;

@@ -576,11 +576,11 @@ namespace Lazaro.WinMain.Principal
                         } else if (obj is System.Windows.Forms.Form) {
                                 System.Windows.Forms.Form ResForm = obj as System.Windows.Forms.Form;
 
-                                if (Aplicacion.Flotante) {
+                                if(obj is Lui.Forms.ChildForm) {
+                                        ResForm.MdiParent = Aplicacion.FormularioPrincipal;
+                                } else if (Aplicacion.Flotante) {
                                         ResForm.WindowState = Aplicacion.FormularioPrincipal.WindowState;
                                         ResForm.Owner = Aplicacion.FormularioPrincipal;
-                                } else {
-                                        ResForm.MdiParent = Aplicacion.FormularioPrincipal;
                                 }
 
                                 if (ResForm.DialogResult == System.Windows.Forms.DialogResult.Abort) {

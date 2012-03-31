@@ -53,11 +53,11 @@ namespace ServidorFiscal
         public class ServidorFiscal : Lfx.Components.Function
         {
                 public Lazaro.Impresion.Comprobantes.Fiscal.Impresora Impresora;
-                private int m_PV;
+                private Lbl.Comprobantes.PuntoDeVenta m_PuntoDeVenta = null;
                 private System.Timers.Timer Programador;
                 private System.Timers.Timer Watchdog;
                 private System.DateTime Watchdog_LastOp = System.DateTime.Now;
-                private FiscalStatus FormEstado = null;
+                private FormEstado FormEstado = null;
                 public Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs UltimoEvento;
 
                 public ServidorFiscal()
@@ -78,9 +78,9 @@ namespace ServidorFiscal
                         }
 
                         Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, 1));
-                        FormEstado = new FiscalStatus();
+                        FormEstado = new FormEstado();
                         FormEstado.ServidorAsociado = this;
-                        this.FormEstado.lblVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
+                        this.FormEstado.EtiquetaVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
 
                         try {
                                 using (System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess()) {
@@ -121,24 +121,54 @@ namespace ServidorFiscal
                         return null;
                 }
 
+
+                public Lbl.Comprobantes.PuntoDeVenta PuntoDeVenta
+                {
+                        get
+                        {
+                                if (m_PuntoDeVenta == null) {
+                                        int NumeroPv = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lbl.Sys.Config.Empresa.SucursalActual.Id.ToString());
+                                        if (NumeroPv > 0) {
+                                                m_PuntoDeVenta = new Lbl.Comprobantes.PuntoDeVenta(this.Impresora.DataBase, NumeroPv);
+                                                if (m_PuntoDeVenta.Existe) {
+                                                        this.Impresora.PuntoDeVenta = m_PuntoDeVenta;
+                                                        this.FormEstado.EtiquetaPV.Text = m_PuntoDeVenta.Numero.ToString();
+                                                        this.FormEstado.EtiquetaModeloImpresora.Text = m_PuntoDeVenta.ModeloImpresoraFiscal.ToString() + " en puerto COM" + m_PuntoDeVenta.Puerto.ToString() + " a " + m_PuntoDeVenta.Bps.ToString() + " bps";
+                                                        if (NumeroPv == 0)
+                                                                FormEstado.IconoBandeja.Text = "No hay definido un punto de venta para esta estación.";
+                                                        else
+                                                                FormEstado.IconoBandeja.Text = "Utilizando el punto de venta " + m_PuntoDeVenta.Numero.ToString();
+                                                } else {
+                                                        m_PuntoDeVenta = null;
+                                                }
+                                        }
+                                }
+
+                                return m_PuntoDeVenta;
+                        }
+                        set
+                        {
+                                m_PuntoDeVenta = value;
+                        }
+                }
+
+
                 public void ConFiscal_EventoConexion(object sender, Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs e)
                 {
                         UltimoEvento = e;
                         switch (e.EventType) {
                                 case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.Inicializada:
-                                        FormEstado.lblPV.Text = this.PV.ToString();
-                                        FormEstado.lblImpresora.Text = Impresora.NombreModelo;
-                                        FormEstado.lblConexion.Text = Impresora.PortName + " a " + Impresora.BaudRate.ToString() + " bps";
-                                        FormEstado.lblImpresora.Text = Impresora.NombreModelo;
+                                        FormEstado.EtiquetaPV.Text = this.PV.ToString();
+                                        FormEstado.EtiquetaModeloImpresora.Text = Impresora.NombreModelo + " en puerto " + Impresora.PortName + " a " + Impresora.BaudRate.ToString() + " bps";
                                         break;
                                 case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.Estado:
-                                        FormEstado.lblEstado.Text = e.MensajeEstado;
+                                        FormEstado.EtiquetaEstado.Text = e.MensajeEstado;
                                         break;
                                 case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.InicioImpresion:
-                                        FormEstado.NotifyIcon1.ShowBalloonTip(1000, "Servidor Fiscal", "Se inició el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
+                                        FormEstado.IconoBandeja.ShowBalloonTip(1000, "Servidor Fiscal", "Se inició el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
                                         break;
                                 case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.FinImpresion:
-                                        FormEstado.NotifyIcon1.ShowBalloonTip(1000, "Servidor Fiscal", "Finalizó el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
+                                        FormEstado.IconoBandeja.ShowBalloonTip(1000, "Servidor Fiscal", "Finalizó el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
                                         break;
                         }
                 }
@@ -175,17 +205,10 @@ namespace ServidorFiscal
                 {
                         get
                         {
-                                if (m_PV == 0) {
-                                        m_PV = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lbl.Sys.Config.Empresa.SucursalActual.Id.ToString());
-                                        this.Impresora.PV = m_PV;
-                                        this.FormEstado.lblPV.Text = m_PV.ToString();
-
-                                        if (m_PV == 0)
-                                                FormEstado.NotifyIcon1.Text = "No hay definido un Punto de Venta para esta estación.";
-                                        else
-                                                FormEstado.NotifyIcon1.Text = "Utilizando el Punto de Venta " + m_PV.ToString();
-                                }
-                                return m_PV;
+                                if (this.PuntoDeVenta == null)
+                                        return 0;
+                                else
+                                        return this.PuntoDeVenta.Numero;
                         }
                 }
 
@@ -303,9 +326,9 @@ namespace ServidorFiscal
 
                 private void MostrarErrorFiscal(Lazaro.Impresion.Comprobantes.Fiscal.Respuesta Res)
                 {
-                        FormFiscalError OFormFiscalError = new FormFiscalError();
-                        OFormFiscalError.Mostrar(Res);
-                        OFormFiscalError.ShowDialog();
+                        FormError FormFiscalError = new FormError();
+                        FormFiscalError.Mostrar(Res);
+                        FormFiscalError.ShowDialog();
                 }
 
                 public void End(bool reboot)

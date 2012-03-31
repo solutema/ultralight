@@ -63,6 +63,7 @@ namespace Lbl.Comprobantes
                 public override void Crear()
                 {
                         base.Crear();
+                        this.Sucursal = Lbl.Sys.Config.Empresa.SucursalActual;
                         this.Numero = this.Connection.FieldInt("SELECT MAX(id_pv)+1 FROM pvs");
                 }
 

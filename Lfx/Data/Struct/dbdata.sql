@@ -12790,3 +12790,6 @@ INSERT INTO "sys_tags" ("fieldtype", "label", "fieldname", "tablename", "id_tag"
 
 INSERT INTO "articulos" ("id_articulo", "codigo1", "codigo2", "codigo3", "codigo4", "id_marca", "id_caja", "modelo", "serie", "nombre", "url", "descripcion", "descripcion2", "id_categoria", "id_proveedor", "control_stock", "periodicidad", "seguimiento", "stock_actual", "stock_minimo", "unidad_stock", "rendimiento", "unidad_rend", "costo", "id_margen", "pvp", "obs", "estado", "destacado", "fecha_creado", "fecha_precio", "apedir", "pedido", "web", "garantia") VALUES
 	(1, '', '', '', '', NULL, NULL, '', '', 'Artículo de pruebas sin control de stock', '', '', '', NULL, NULL, 0, 0, 0, 0.0000, 0.0000, 'u', 0.0000, NULL, 8.0000, NULL, 10.0000, NULL, 1, 0, '2012-03-21 13:01:01', '2012-03-21 13:01:01', 0.0000, 0.0000, 0, 0);
+
+INSERT INTO "sys_components" ("id_component", "nombre", "obs", "estado", "fecha", "espacio", "version", "estructura", "cif", "url", "url_act") VALUES
+	(1, 'ServidorFiscal', NULL, 1, NULL, 'ServidorFiscal', NOW(), NULL, NULL, 'http://www.lazarogestion.com', 'http://www.lazarogestion.com/aslnlwc/{0}/Components/');

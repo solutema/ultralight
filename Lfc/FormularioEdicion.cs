@@ -485,13 +485,17 @@ namespace Lfc
                                         Carga = Lbl.Impresion.CargasPapel.Manual;
                                 } else if (this.Elemento is Lbl.Comprobantes.ComprobanteConArticulos) {
                                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
-                                        // El tipo de comprobante puede forzar a una carga manual
-                                        Carga = Comprob.Tipo.CargaPapel;
+                                        if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[Comprob.PV].Tipo == Lbl.Comprobantes.TipoPv.Fiscal) {
+                                                Carga = Lbl.Impresion.CargasPapel.Automatica;
+                                        } else {
+                                                // El tipo de comprobante puede forzar a una carga manual
+                                                Carga = Comprob.Tipo.CargaPapel;
 
-                                        // Intento averiguar el número de comprobante, en caso de que aun no esté numerado
-                                        if (Comprob.Numero == 0) {
-                                                int ProximoNumero = Lbl.Comprobantes.Numerador.ProximoNumero(Comprob);
-                                                NombreDocumento = NombreDocumento.Replace("00000000", ProximoNumero.ToString("00000000"));
+                                                // Intento averiguar el número de comprobante, en caso de que aun no esté numerado
+                                                if (Comprob.Numero == 0) {
+                                                        int ProximoNumero = Lbl.Comprobantes.Numerador.ProximoNumero(Comprob);
+                                                        NombreDocumento = NombreDocumento.Replace("00000000", ProximoNumero.ToString("00000000"));
+                                                }
                                         }
                                 }
 

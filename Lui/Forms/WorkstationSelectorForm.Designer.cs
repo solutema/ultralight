@@ -71,28 +71,28 @@ namespace Lui.Forms
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
                         this.Listado.HideSelection = false;
                         this.Listado.LabelWrap = false;
-                        this.Listado.Location = new System.Drawing.Point(8, 8);
+                        this.Listado.Location = new System.Drawing.Point(24, 24);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(460, 196);
+                        this.Listado.Size = new System.Drawing.Size(584, 272);
                         this.Listado.TabIndex = 0;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
                         // 
                         // NombreEstacion
                         // 
-                        this.NombreEstacion.Text = "Estación";
+                        this.NombreEstacion.Text = "Equipo";
                         this.NombreEstacion.Width = 0;
                         // 
                         // Nombre
                         // 
-                        this.Nombre.Text = "Estación";
+                        this.Nombre.Text = "Equipo";
                         this.Nombre.Width = 320;
                         // 
                         // WorkstationSelectorForm
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(474, 274);
+                        this.ClientSize = new System.Drawing.Size(634, 371);
                         this.Controls.Add(this.Listado);
                         this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "WorkstationSelectorForm";

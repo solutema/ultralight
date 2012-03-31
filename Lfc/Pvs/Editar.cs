@@ -78,13 +78,13 @@ namespace Lfc.Pvs
 
                         EntradaTipo.TextKey = ((int)(Pv.Tipo)).ToString();
 
-                        EntradaDeTalonario.TextKey = Pv.UsaTalonario ? "1" : "0";
+                        EntradaDeTalonario.ValueInt = Pv.UsaTalonario ? 1 : 0;
                         EntradaEstacion.Text = Pv.Estacion;
-                        EntradaCarga.TextKey = Pv.CargaManual ? "1" : "0";
+                        EntradaCarga.ValueInt = Pv.CargaManual ? 1 : 0;
 
-                        EntradaModelo.TextKey = ((int)(Pv.ModeloImpresoraFiscal)).ToString();
-                        EntradaPuerto.TextKey = Pv.Puerto.ToString();
-                        EntradaBps.TextKey = Pv.Bps.ToString();
+                        EntradaModelo.ValueInt = ((int)(Pv.ModeloImpresoraFiscal));
+                        EntradaPuerto.ValueInt = Pv.Puerto;
+                        EntradaBps.ValueInt = Pv.Bps;
 
                         base.ActualizarControl();
                 }
@@ -93,23 +93,24 @@ namespace Lfc.Pvs
                 {
                         Lbl.Comprobantes.PuntoDeVenta Pv = this.Elemento as Lbl.Comprobantes.PuntoDeVenta;
 
-                        Pv.Numero = Lfx.Types.Parsing.ParseInt(EntradaNumero.Text);
+                        Pv.Numero = EntradaNumero.ValueInt;
                         Pv.TipoFac = EntradaTipoFac.TextKey;
                         Pv.Sucursal = EntradaSucursal.Elemento as Lbl.Entidades.Sucursal;
                         Pv.Impresora = EntradaImpresora.Elemento as Lbl.Impresion.Impresora;
 
-                        Pv.Tipo = (Lbl.Comprobantes.TipoPv)Lfx.Types.Parsing.ParseInt(EntradaTipo.TextKey);
+                        Pv.Tipo = (Lbl.Comprobantes.TipoPv)(EntradaTipo.ValueInt);
 
-                        Pv.UsaTalonario = EntradaDeTalonario.TextKey == "1";
+                        Pv.UsaTalonario = EntradaDeTalonario.ValueInt == 1;
                         Pv.Estacion = EntradaEstacion.Text;
-                        Pv.CargaManual = EntradaCarga.TextKey == "1";
+                        Pv.CargaManual = EntradaCarga.ValueInt == 1;
 
-                        Pv.ModeloImpresoraFiscal = (Lbl.Impresion.ModelosFiscales)(Lfx.Types.Parsing.ParseInt(EntradaModelo.TextKey));
-                        Pv.Puerto = Lfx.Types.Parsing.ParseInt(EntradaPuerto.TextKey);
-                        Pv.Bps = Lfx.Types.Parsing.ParseInt(EntradaBps.TextKey);
+                        Pv.ModeloImpresoraFiscal = (Lbl.Impresion.ModelosFiscales)(EntradaModelo.ValueInt);
+                        Pv.Puerto = EntradaPuerto.ValueInt;
+                        Pv.Bps = EntradaBps.ValueInt;
 
                         base.ActualizarElemento();
                 }
+
 
                 private void BotonEstacionSeleccionar_Click(object sender, System.EventArgs e)
                 {
@@ -119,6 +120,7 @@ namespace Lfc.Pvs
                                 EntradaEstacion.Text = SelEst.Estacion;
                 }
 
+
                 private void EntradaTipo_TextChanged(object sender, System.EventArgs e)
                 {
                         if (EntradaTipo.TextKey == "2") {
@@ -126,12 +128,32 @@ namespace Lfc.Pvs
                                 EntradaPuerto.Enabled = true;
                                 EntradaBps.Enabled = true;
                                 EntradaCarga.Enabled = false;
+
+                                if (EntradaEstacion.Text.Length == 0)
+                                        EntradaEstacion.Text = System.Environment.MachineName.ToUpperInvariant();
                         } else {
                                 EntradaModelo.Enabled = false;
                                 EntradaPuerto.Enabled = false;
                                 EntradaBps.Enabled = false;
                                 EntradaCarga.Enabled = true;
                         }
+                }
+
+
+                public override Lfx.Types.OperationResult ValidarControl()
+                {
+                        if (EntradaSucursal.Elemento == null)
+                                return new Lfx.Types.FailureOperationResult("Por favor seleccione una sucursal.");
+
+                        if (EntradaNumero.ValueInt <= 0)
+                                return new Lfx.Types.FailureOperationResult("Por favor escriba el número para este punto de venta.");
+
+                        if (EntradaTipo.ValueInt == 2) {
+                                if (EntradaEstacion.Text.Length == 0)
+                                        return new Lfx.Types.FailureOperationResult("Por favor seleccione el equipo a la cual está conectada la impresora fiscal.");
+                        }
+
+                        return base.ValidarControl();
                 }
         }
 }

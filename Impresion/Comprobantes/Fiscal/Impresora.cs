@@ -39,7 +39,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
         public class Impresora
         {
                 public Lbl.Impresion.ModelosFiscales Modelo = Lbl.Impresion.ModelosFiscales.Desconocido;
-                private int m_PV = 0;
+                private Lbl.Comprobantes.PuntoDeVenta m_PuntoDeVenta = null;
                 private System.Text.Encoding DefaultEncoding = System.Text.Encoding.GetEncoding(1252);
 
                 private const int FIRST_SEQ = 0x20;
@@ -64,26 +64,41 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         this.Terminar();
                 }
 
-                public int PV
+
+                public Lbl.Comprobantes.PuntoDeVenta PuntoDeVenta
                 {
                         get
                         {
-                                return this.m_PV;
+                                return m_PuntoDeVenta;
                         }
                         set
                         {
-                                this.m_PV = value;
-                                if (this.m_PV > 0) {
-                                        Lfx.Data.Row PVrow = this.DataBase.Row("pvs", "id_pv", this.m_PV);
+                                m_PuntoDeVenta = value;
+                                if (value != null) {
                                         if (this.PuertoSerie.IsOpen) {
                                                 this.PuertoSerie.Close();
                                                 System.Threading.Thread.Sleep(100);
                                         }
 
-                                        this.Modelo = (Lbl.Impresion.ModelosFiscales)System.Convert.ToInt32(PVrow["modelo"]);
-                                        this.PuertoSerie.PortName = "COM" + System.Convert.ToString(PVrow["puerto"]);
-                                        this.PuertoSerie.BaudRate = System.Convert.ToInt32(PVrow["bps"]);
+                                        this.Modelo = m_PuntoDeVenta.ModeloImpresoraFiscal;
+                                        this.PuertoSerie.PortName = "COM" + m_PuntoDeVenta.Puerto;
+                                        if (m_PuntoDeVenta.Bps == 0)
+                                                this.PuertoSerie.BaudRate = 9600;
+                                        else
+                                                this.PuertoSerie.BaudRate = m_PuntoDeVenta.Bps;
                                 }
+                        }
+                }
+
+
+                public int NumeroPV
+                {
+                        get
+                        {
+                                if (this.PuntoDeVenta == null)
+                                        return 0;
+                                else
+                                        return this.PuntoDeVenta.Numero;
                         }
                 }
 
@@ -849,9 +864,9 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                         switch (comando.CodigoComando) {
                                 case CodigosComandosFiscales.EpsonDocumentoFiscalCerrar:
-                                        int LastComprob = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("ServidorFiscal.UltimoComprobEmulacionPV" + this.PV.ToString(), 0) + 1;
+                                        int LastComprob = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("ServidorFiscal.UltimoComprobEmulacionPV" + this.PuntoDeVenta.Numero.ToString(), 0) + 1;
                                         Res.Campos.Add(LastComprob.ToString("00000000"));
-                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PV.ToString(), LastComprob.ToString());
+                                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("ServidorFiscal", "UltimoComprobEmulacionPV" + this.PuntoDeVenta.Numero.ToString(), LastComprob.ToString());
                                         System.Console.WriteLine(m_TextEmulacion.ToString());
                                         m_TextEmulacion = new System.Text.StringBuilder();
                                         break;

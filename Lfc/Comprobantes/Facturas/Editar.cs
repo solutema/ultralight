@@ -290,20 +290,22 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         }
 
                         Lbl.Comprobantes.PuntoDeVenta Pv = Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[Comprob.PV];
-                        Lbl.Impresion.Impresora Impresora = Comprob.ObtenerImpresora();
+                        if (Pv.Tipo == Lbl.Comprobantes.TipoPv.Normal) {
+                                Lbl.Impresion.Impresora Impresora = Comprob.ObtenerImpresora();
 
-                        if (Pv.CargaManual && (Impresora == null || Impresora.CargaPapel == Lbl.Impresion.CargasPapel.Automatica)) {
-                                Lui.Printing.ManualFeedDialog FormularioCargaManual = new Lui.Printing.ManualFeedDialog();
-                                FormularioCargaManual.DocumentName = Comprob.Tipo.ToString() + " " + Comprob.PV.ToString("0000") + "-" + Lbl.Comprobantes.Numerador.ProximoNumero(Comprob).ToString("00000000");
-                                // Muestro el nombre de la impresora
-                                if (Impresora != null) {
-                                        FormularioCargaManual.PrinterName = Impresora.Nombre;
-                                } else {
-                                        System.Drawing.Printing.PrinterSettings objPrint = new System.Drawing.Printing.PrinterSettings();
-                                        FormularioCargaManual.PrinterName = objPrint.PrinterName;
+                                if (Pv.CargaManual && (Impresora == null || Impresora.CargaPapel == Lbl.Impresion.CargasPapel.Automatica)) {
+                                        Lui.Printing.ManualFeedDialog FormularioCargaManual = new Lui.Printing.ManualFeedDialog();
+                                        FormularioCargaManual.DocumentName = Comprob.Tipo.ToString() + " " + Comprob.PV.ToString("0000") + "-" + Lbl.Comprobantes.Numerador.ProximoNumero(Comprob).ToString("00000000");
+                                        // Muestro el nombre de la impresora
+                                        if (Impresora != null) {
+                                                FormularioCargaManual.PrinterName = Impresora.Nombre;
+                                        } else {
+                                                System.Drawing.Printing.PrinterSettings objPrint = new System.Drawing.Printing.PrinterSettings();
+                                                FormularioCargaManual.PrinterName = objPrint.PrinterName;
+                                        }
+                                        if (FormularioCargaManual.ShowDialog() == DialogResult.Cancel)
+                                                return new Lfx.Types.CancelOperationResult();
                                 }
-                                if (FormularioCargaManual.ShowDialog() == DialogResult.Cancel)
-                                        return new Lfx.Types.CancelOperationResult();
                         }
 
                         if (Comprob.Tipo.MueveExistencias != 0) {

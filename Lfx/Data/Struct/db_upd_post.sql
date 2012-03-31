@@ -73,6 +73,9 @@ UPDATE documentos_tipos SET direc_ctacte=1 WHERE tipo='Lbl.Comprobantes.Factura'
 UPDATE documentos_tipos SET direc_ctacte=-1 WHERE tipo='Lbl.Comprobantes.NotaDeCredito';
 UPDATE documentos_tipos SET direc_ctacte=1 WHERE tipo='Lbl.Comprobantes.NotaDeDebito';
 
+REPLACE INTO "sys_components" ("id_component", "nombre", "obs", "estado", "fecha", "espacio", "version", "estructura", "cif", "url", "url_act") VALUES
+	(1, 'ServidorFiscal', NULL, 1, NULL, 'ServidorFiscal', NOW(), NULL, NULL, 'http://www.lazarogestion.com', 'http://www.lazarogestion.com/aslnlwc/{0}/Components/');
+
 
 START TRANSACTION WITH CONSISTENT SNAPSHOT;
 INSERT INTO sys_log (fecha, estacion, usuario, comando, tabla, item_id, extra1) SELECT fecha, '', id_persona, 'Comment', tablas, item_id, obs FROM sys_comments;
