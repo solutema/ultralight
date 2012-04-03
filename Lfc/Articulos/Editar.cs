@@ -172,7 +172,11 @@ namespace Lfc.Articulos
                         if (IgnorarCostoMargenTextChanged <= 0) {
                                 IgnorarCostoMargenTextChanged++;
 
-                                decimal PorcentajeActual = EntradaPvp.ValueDecimal / EntradaCosto.ValueDecimal * 100m - 100m;
+                                decimal PorcentajeActual;
+                                if (EntradaCosto.ValueDecimal != 0)
+                                        PorcentajeActual = EntradaPvp.ValueDecimal / EntradaCosto.ValueDecimal * 100m - 100m;
+                                else
+                                        PorcentajeActual = 0;
                                 int IdMargen = 0;
                                 foreach (Lbl.Articulos.Margen Mg in this.Margenes) {
                                         if (decimal.Compare(Mg.Porcentaje, PorcentajeActual) == 0)

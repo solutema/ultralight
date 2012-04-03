@@ -199,7 +199,14 @@ namespace Lbl.Sys
                         get
                         {
                                 if (m_CarpetaEmpresa == null) {
-                                        m_CarpetaEmpresa = System.IO.Path.Combine(Lfx.Environment.Folders.UserFolder, Lbl.Sys.Config.Empresa.Nombre);
+                                        string NombreEmpresa = Lbl.Sys.Config.Empresa.Nombre;
+                                        foreach (char c in System.IO.Path.GetInvalidPathChars())
+                                                NombreEmpresa = NombreEmpresa.Replace(c.ToString(), "");
+
+                                        foreach (char c in System.IO.Path.GetInvalidFileNameChars())
+                                                NombreEmpresa = NombreEmpresa.Replace(c.ToString(), "");
+
+                                        m_CarpetaEmpresa = System.IO.Path.Combine(Lfx.Environment.Folders.UserFolder, NombreEmpresa);
                                         if (!System.IO.Directory.Exists(m_CarpetaEmpresa)) {
                                                 Lfx.Environment.Folders.EnsurePathExists(m_CarpetaEmpresa);
                                                 Lfx.Environment.Folders.EnsurePathExists(System.IO.Path.Combine(m_CarpetaEmpresa, "Copias de seguridad"));

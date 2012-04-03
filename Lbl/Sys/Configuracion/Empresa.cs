@@ -62,14 +62,11 @@ namespace Lbl.Sys
                                 get
                                 {
                                         if (m_AlicuotaPredeterminada == null) {
-                                                if (SucursalActual.Localidad.ObtenerIva() == Impuestos.SituacionIva.Exento)
-                                                        // Esta localidad no tienen IVA
-                                                        m_AlicuotaPredeterminada = new Impuestos.Alicuota(Lfx.Workspace.Master.MasterConnection, 4);
-                                                else if (SituacionTributaria == 4 || SituacionTributaria == 5)
+                                                if (SituacionTributaria == 4 || SituacionTributaria == 5)
                                                         // Monotributistas y exentos usan alícuota del 0%
                                                         m_AlicuotaPredeterminada = new Impuestos.Alicuota(Lfx.Workspace.Master.MasterConnection, 4);
                                                 else
-                                                        // El resto usan 21%
+                                                        // El resto usan IVA tasa nomral
                                                         m_AlicuotaPredeterminada = new Impuestos.Alicuota(Lfx.Workspace.Master.MasterConnection, 1);
                                         }
 

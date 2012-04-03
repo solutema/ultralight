@@ -76,9 +76,9 @@ namespace Lfc.Comprobantes.Facturas
 
                 public override Lfx.Types.OperationResult ValidarControl()
                 {
-                        Lfx.Types.OperationResult validarReturn = base.ValidarControl();
+                        Lfx.Types.OperationResult Res = base.ValidarControl();
 
-                        if (validarReturn.Success == true) {
+                        if (Res.Success == true) {
                                 if (EntradaRemito.Text.Length > 0) {
                                         int RemitoNumero, RemitoPv;
                                         if (EntradaRemito.Text.IndexOfAny(new char[] { '-' }) >= 0) {
@@ -94,34 +94,35 @@ namespace Lfc.Comprobantes.Facturas
 
                                         int RemitoId = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE compra=0 AND tipo_fac='R' AND pv=" + RemitoPv.ToString() + " AND numero=" + RemitoNumero.ToString() + " AND impresa>0 AND anulada=0");
                                         if (RemitoId == 0) {
-                                                validarReturn.Success = false;
-                                                validarReturn.Message += "El número de remito no es válido." + Environment.NewLine;
+                                                Res.Success = false;
+                                                Res.Message += "El número de remito no es válido." + Environment.NewLine;
                                         }
                                 }
 
                                 Lbl.Pagos.FormaDePago FormaPago = EntradaFormaPago.Elemento as Lbl.Pagos.FormaDePago;
                                 Lbl.Comprobantes.Tipo Tipo = new Lbl.Comprobantes.Tipo(this.Connection, EntradaTipo.TextKey);
                                 if (FormaPago == null && Tipo.EsFacturaOTicket) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "Por favor seleccione la forma de pago." + Environment.NewLine;
+                                        Res.Success = false;
+                                        Res.Message += "Por favor seleccione la forma de pago." + Environment.NewLine;
                                 }
                                 if (EntradaCliente.ValueInt == 999 && FormaPago != null && FormaPago.Tipo == Lbl.Pagos.TiposFormasDePago.CuentaCorriente) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += @"El cliente ""Consumidor final"" no puede tener una cuenta corriente. Deber facturar a nombre de un cliente identificado para poder usar la cuenta corriente." + Environment.NewLine;
+                                        Res.Success = false;
+                                        Res.Message += @"El cliente ""Consumidor final"" no puede tener una cuenta corriente. Deber facturar a nombre de un cliente identificado para poder usar la cuenta corriente." + Environment.NewLine;
                                 }
 
+                                // En Argentina, obligo a ingresar la CUIT
                                 Lbl.Personas.Persona Cliente = EntradaCliente.Elemento as Lbl.Personas.Persona;
                                 if (Cliente == null) {
-                                        validarReturn.Success = false;
-                                        validarReturn.Message += "Por favor seleccione un cliente." + Environment.NewLine;
-                                } else if (Cliente.SituacionTributaria != null && (Cliente.SituacionTributaria.Id == 2 || Cliente.SituacionTributaria.Id == 3)) {
+                                        Res.Success = false;
+                                        Res.Message += "Por favor seleccione un cliente." + Environment.NewLine;
+                                } else if (Lbl.Sys.Config.Pais.Id == 1 && Cliente.SituacionTributaria != null && (Cliente.SituacionTributaria.Id == 2 || Cliente.SituacionTributaria.Id == 3)) {
                                         if (Cliente.ClaveTributaria == null || Cliente.ClaveTributaria.EsValido() == false) {
-                                                validarReturn.Success = false;
-                                                validarReturn.Message += "El cliente debe tener una clave tributaria válida." + Environment.NewLine;
+                                                Res.Success = false;
+                                                Res.Message += "El cliente debe tener una clave tributaria válida." + Environment.NewLine;
                                         }
                                 }
                         }
-                        return validarReturn;
+                        return Res;
                 }
 
                 public override void ActualizarControl()
@@ -217,11 +218,11 @@ namespace Lfc.Comprobantes.Facturas
                         if (Lbl.Sys.Config.Pais.Id == 1) {
                                 // Verificaciones especiales para Argentina
                                 if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
-                                        Lui.Forms.YesNoDialog OPregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
+                                        Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
 Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llevar un comprobante tipo " + Comprob.Cliente.LetraPredeterminada() + @". No debería continuar con la impresión. 
 ¿Desea continuar de todos modos?", "Tipo de comprobante incorrecto");
-                                        OPregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
-                                        if (OPregunta.ShowDialog() == DialogResult.Cancel)
+                                        Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
+                                        if (Pregunta.ShowDialog() == DialogResult.Cancel)
                                                 return new Lfx.Types.FailureOperationResult("Corrija la situación tributaria del cliente o el tipo de comprobante.");
                                 }
 

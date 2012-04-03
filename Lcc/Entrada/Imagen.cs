@@ -80,6 +80,7 @@ namespace Lcc.Entrada
                         if (this.Elemento != null) {
                                 EntradaImagen.Image = null;
                                 this.Changed = true;
+                                ActualizarElemento();
                         }
                 }
 
@@ -103,9 +104,8 @@ namespace Lcc.Entrada
                                                         if (Recorte.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                                                 EntradaImagen.Image = Recorte.Imagen;
                                                                 this.Changed = true;
+                                                                this.ActualizarElemento();
                                                         }
-
-                                                        this.ActualizarElemento();
                                                 }
                                         }
                                 }
@@ -131,9 +131,9 @@ namespace Lcc.Entrada
                                                 if (Recorte.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                                         EntradaImagen.Image = Recorte.Imagen;
                                                         this.Changed = true;
+                                                        this.ActualizarElemento();
                                                 }
                                         }
-                                        this.ActualizarElemento();
                                 }
                         } catch (Exception ex) {
                                 Lui.Forms.MessageBox.Show("No se puede conectar con el dispositivo de captura. " + ex.Message, "Error");

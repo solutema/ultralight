@@ -305,25 +305,29 @@ namespace Lfc.Personas
 
                 private void EntradaClaveTributaria_Leave(object sender, System.EventArgs e)
                 {
-                        if (EntradaClaveTributaria.Text.Length == 11)
-                                EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
+                        if (Lbl.Sys.Config.Pais.ClavePersonasJuridicas != null && Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Id == 6) {
+                                if (EntradaClaveTributaria.Text.Length == 11)
+                                        EntradaClaveTributaria.Text = EntradaClaveTributaria.Text.Substring(0, 2) + "-" + EntradaClaveTributaria.Text.Substring(2, 8) + "-" + EntradaClaveTributaria.Text.Substring(10, 1);
 
-                        if (EntradaClaveTributaria.Text.Length == 13 && Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text) == false)
-                                EntradaClaveTributaria.ErrorText = "La CUIT ingresada no es válida.";
-                        else if (EntradaClaveTributaria.Text.Length > 0 && EntradaClaveTributaria.Text.Length != 13)
-                                EntradaClaveTributaria.ErrorText = "La CUIT ingresada no es válida.";
-                        else
-                                EntradaClaveTributaria.ErrorText = null;
+                                if (EntradaClaveTributaria.Text.Length == 13 && Lbl.Personas.Claves.Cuit.EsValido(EntradaClaveTributaria.Text) == false)
+                                        EntradaClaveTributaria.ErrorText = "La CUIT ingresada no es válida.";
+                                else if (EntradaClaveTributaria.Text.Length > 0 && EntradaClaveTributaria.Text.Length != 13)
+                                        EntradaClaveTributaria.ErrorText = "La CUIT ingresada no es válida.";
+                                else
+                                        EntradaClaveTributaria.ErrorText = null;
+                        }
                 }
 
 
                 private void EntradaSituacion_Leave(object sender, System.EventArgs e)
                 {
-                        if (EntradaClaveTributaria.Text.Length > 0) {
-                                if (EntradaSituacion.ValueInt == 1)
-                                        EntradaSituacion.ErrorText = "La Situación tributaria del cliente no se corresponde con la CUIT.";
-                                else
-                                        EntradaSituacion.ErrorText = "";
+                        if (Lbl.Sys.Config.Pais.ClavePersonasJuridicas != null && Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Id == 6) {
+                                if (EntradaClaveTributaria.Text.Length > 0) {
+                                        if (EntradaSituacion.ValueInt == 1)
+                                                EntradaSituacion.ErrorText = "La situación tributaria del cliente no se corresponde con la CUIT.";
+                                        else
+                                                EntradaSituacion.ErrorText = "";
+                                }
                         }
                 }
 

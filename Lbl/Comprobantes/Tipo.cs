@@ -467,7 +467,7 @@ namespace Lbl.Comprobantes
                         }
 
                         Comando.Fields.AddWithValue("letra", this.Nomenclatura);
-                        Comando.Fields.AddWithValue("letrasola", this.Letra);
+                        Comando.Fields.AddWithValue("letrasola", this.Letra == null ? "" : this.Letra);
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
                         Comando.Fields.AddWithValue("nombrelargo", this.NombreLargo);
                         Comando.Fields.AddWithValue("mueve_stock", this.MueveExistencias);

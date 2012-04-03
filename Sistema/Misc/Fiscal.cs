@@ -69,7 +69,7 @@ namespace Lazaro.WinMain.Misc
                                                 this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
 
                                         if (this.Pv != 0)
-                                                EntradaPv.TextKey = this.Pv.ToString();
+                                                EntradaPv.ValueInt = this.Pv;
                                 }
 
                                 MostrarDatos();

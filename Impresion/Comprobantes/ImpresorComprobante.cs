@@ -111,7 +111,7 @@ namespace Lazaro.Impresion.Comprobantes
                                 this.Impresora = this.ObtenerImpresora();
 
                         Lbl.Impresion.ClasesImpresora ClaseImpr;
-                        if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[this.Comprobante.PV].Tipo == Lbl.Comprobantes.TipoPv.Fiscal)
+                        if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(this.Comprobante.PV) && Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[this.Comprobante.PV].Tipo == Lbl.Comprobantes.TipoPv.Fiscal)
                                 ClaseImpr = Lbl.Impresion.ClasesImpresora.Fiscal;
                         else
                                 ClaseImpr = Lbl.Impresion.ClasesImpresora.Comun;
