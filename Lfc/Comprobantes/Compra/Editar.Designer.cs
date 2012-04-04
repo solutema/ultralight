@@ -171,9 +171,9 @@ namespace Lfc.Comprobantes.Compra
                         this.EntradaProductos.Font = new System.Drawing.Font("Segoe UI", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
                         this.EntradaProductos.Location = new System.Drawing.Point(0, 64);
-                        this.EntradaProductos.LockPrice = false;
-                        this.EntradaProductos.LockQuantity = false;
-                        this.EntradaProductos.LockText = false;
+                        this.EntradaProductos.BloquearPrecio = false;
+                        this.EntradaProductos.BloquearCantidad = false;
+                        this.EntradaProductos.BloquearAtriculo = false;
                         this.EntradaProductos.Name = "EntradaProductos";
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
                         this.EntradaProductos.ShowStock = false;

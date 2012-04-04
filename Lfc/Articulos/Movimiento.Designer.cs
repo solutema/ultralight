@@ -318,7 +318,7 @@ namespace Lfc.Articulos
                         // 
                         this.EntradaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaArticulo.CantidadSoloLectura = false;
+                        this.EntradaArticulo.BloquearCantidad = false;
                         this.EntradaArticulo.ControlStock = Lcc.Entrada.Articulos.ControlesSock.Ambos;
                         this.EntradaArticulo.Location = new System.Drawing.Point(136, 176);
                         this.EntradaArticulo.MaximumSize = new System.Drawing.Size(480, 64);
@@ -327,8 +327,8 @@ namespace Lfc.Articulos
                         this.EntradaArticulo.Name = "EntradaArticulo";
                         this.EntradaArticulo.PermiteCrear = false;
                         this.EntradaArticulo.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
-                        this.EntradaArticulo.PrecioSoloLectura = false;
-                        this.EntradaArticulo.ProductoSoloLectura = false;
+                        this.EntradaArticulo.BloquearPrecio = false;
+                        this.EntradaArticulo.BloquearAtriculo = false;
                         this.EntradaArticulo.Required = true;
                         this.EntradaArticulo.Size = new System.Drawing.Size(440, 24);
                         this.EntradaArticulo.TabIndex = 3;

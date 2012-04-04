@@ -432,13 +432,13 @@ namespace Lfc.Articulos
                 {
                         Lbl.Articulos.Articulo Art = this.Elemento as Lbl.Articulos.Articulo;
 
-                        if (EntradaTipoDeArticulo.TextKey == "2") {
+                        if (EntradaTipoDeArticulo.ValueInt == 2) {
                                 if (Art.Receta == null)
-                                        EntradaCosto.Text = "0";
+                                        EntradaCosto.ValueDecimal = 0;
                                 else
-                                        EntradaCosto.Text = Lfx.Types.Formatting.FormatCurrency(Art.Receta.Costo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto);
+                                        EntradaCosto.ValueDecimal = Art.Receta.Costo;
 
-                                EntradaStockActual.Text = Lfx.Types.Formatting.FormatStock(Art.ObtenerExistencias());
+                                EntradaStockActual.ValueDecimal = Art.ObtenerExistencias();
                         }
                 }
 

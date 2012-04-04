@@ -82,9 +82,9 @@ namespace Lfc.Tareas
                         this.MatrizArticulos.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F);
                         this.MatrizArticulos.FreeTextCode = "*";
                         this.MatrizArticulos.Location = new System.Drawing.Point(24, 64);
-                        this.MatrizArticulos.LockPrice = false;
-                        this.MatrizArticulos.LockQuantity = false;
-                        this.MatrizArticulos.LockText = false;
+                        this.MatrizArticulos.BloquearPrecio = false;
+                        this.MatrizArticulos.BloquearCantidad = false;
+                        this.MatrizArticulos.BloquearAtriculo = false;
                         this.MatrizArticulos.Name = "MatrizArticulos";
                         this.MatrizArticulos.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.MatrizArticulos.ShowStock = true;

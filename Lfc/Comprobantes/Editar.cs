@@ -60,7 +60,7 @@ namespace Lfc.Comprobantes
                         base.OnLoad(e);
                         if (Lfx.Workspace.Master != null && Lfx.Workspace.Master.CurrentConfig != null) {
                                 EntradaTotal.DecimalPlaces = Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal;
-                                EntradaProductos.LockPrice = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.CambiaPrecioItemFactura", 0) == 0 && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.EditarAvanzado) == false;
+                                EntradaProductos.BloquearPrecio = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Documentos.CambiaPrecioItemFactura", 0) == 0 && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.ElementoTipo, Lbl.Sys.Permisos.Operaciones.EditarAvanzado) == false;
                         }
                 }
 

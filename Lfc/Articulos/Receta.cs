@@ -39,7 +39,7 @@ using System.Windows.Forms;
 
 namespace Lfc.Articulos
 {
-        public partial class Receta : Lui.Forms.ChildDialogForm
+        public partial class Receta : Lui.Forms.DialogForm
         {
                 private Lbl.Articulos.Articulo m_Articulo;
                 private bool m_ReadOnly = true;

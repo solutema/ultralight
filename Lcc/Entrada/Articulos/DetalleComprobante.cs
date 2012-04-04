@@ -236,7 +236,7 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                public bool ProductoSoloLectura
+                public bool BloquearAtriculo
                 {
                         get
                         {
@@ -249,7 +249,7 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                public bool CantidadSoloLectura
+                public bool BloquearCantidad
                 {
                         get
                         {
@@ -261,7 +261,8 @@ namespace Lcc.Entrada.Articulos
                         }
                 }
 
-                public bool PrecioSoloLectura
+
+                public bool BloquearPrecio
                 {
                         get
                         {
@@ -270,9 +271,23 @@ namespace Lcc.Entrada.Articulos
                         set
                         {
                                 EntradaUnitario.ReadOnly = value;
-                                EntradaDescuento.ReadOnly = value;
+                                EntradaDescuento.ReadOnly = value || this.BloquearDescuento;
                         }
                 }
+
+
+                public bool BloquearDescuento
+                {
+                        get
+                        {
+                                return EntradaDescuento.TemporaryReadOnly;
+                        }
+                        set
+                        {
+                                EntradaDescuento.ReadOnly = value || this.BloquearPrecio;
+                        }
+                }
+
 
                 public bool MuestraStock
                 {
@@ -474,8 +489,8 @@ namespace Lcc.Entrada.Articulos
                                 EntradaCantidad.Enabled = true;
                                 EntradaImporte.Enabled = true;
                                 EntradaCantidad.TemporaryReadOnly = this.Articulo.ObtenerSeguimiento() != Lbl.Articulos.Seguimientos.Ninguno || this.TemporaryReadOnly;
-                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
-                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.BloquearPrecio;
+                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.BloquearPrecio;
                                 if (this.AutoUpdate) {
                                         if (this.Articulo.Unidad != "u")
                                                 EntradaCantidad.Sufijo = Articulo.Unidad;
@@ -498,8 +513,8 @@ namespace Lcc.Entrada.Articulos
                                 EntradaDescuento.Enabled = true;
                                 EntradaCantidad.Enabled = true;
                                 EntradaCantidad.TemporaryReadOnly = this.TemporaryReadOnly;
-                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
-                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.BloquearPrecio;
+                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.BloquearPrecio;
                                 EntradaImporte.Enabled = true;
                                 if (this.AutoUpdate) {
                                         if (this.Cantidad == 0)
@@ -510,8 +525,8 @@ namespace Lcc.Entrada.Articulos
                                 EntradaDescuento.Enabled = false;
                                 EntradaCantidad.Enabled = false;
                                 EntradaCantidad.TemporaryReadOnly = this.TemporaryReadOnly;
-                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
-                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.PrecioSoloLectura;
+                                EntradaUnitario.TemporaryReadOnly = this.TemporaryReadOnly || this.BloquearPrecio;
+                                EntradaDescuento.TemporaryReadOnly = this.TemporaryReadOnly || this.BloquearPrecio;
                                 EntradaImporte.Enabled = false;
                                 if (this.AutoUpdate) {
                                         EntradaCantidad.ValueDecimal = 0;
@@ -590,7 +605,7 @@ namespace Lcc.Entrada.Articulos
                                         case Keys.Return:
                                                 e.Handled = true;
                                                 if (EntradaUnitario.Visible && this.ReadOnly == false && this.TemporaryReadOnly == false) {
-                                                        if (this.PrecioSoloLectura)
+                                                        if (this.BloquearPrecio)
                                                                 EntradaCantidad.Focus();
                                                         else
                                                                 EntradaUnitario.Focus();
@@ -698,7 +713,7 @@ namespace Lcc.Entrada.Articulos
                         switch (e.KeyCode) {
                                 case Keys.Left:
                                         e.Handled = true;
-                                        if (this.PrecioSoloLectura)
+                                        if (this.BloquearPrecio)
                                                 EntradaArticulo.Focus();
                                         else
                                                 EntradaUnitario.Focus();
@@ -706,7 +721,7 @@ namespace Lcc.Entrada.Articulos
                                 case Keys.Right:
                                 case Keys.Return:
                                         if (EntradaCantidad.SelectionStart >= EntradaCantidad.TextRaw.Length || EntradaCantidad.SelectionLength > 0) {
-                                                if (this.PrecioSoloLectura == false) {
+                                                if (this.BloquearPrecio == false) {
                                                         e.Handled = true;
                                                         EntradaDescuento.Focus();
                                                 }

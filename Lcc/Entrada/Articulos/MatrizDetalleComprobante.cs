@@ -43,10 +43,11 @@ namespace Lcc.Entrada.Articulos
 
                 private bool m_ShowStock;
                 private string m_FreeTextCode = "";
-                private bool m_LockText;
-                private bool m_LockPrice;
+                private bool m_BloquearAtriculo;
+                private bool m_BloquearPrecio;
                 private bool m_AutoUpdate = true;
-                private bool m_LockQuantity;
+                private bool m_BloquearCantidad;
+                private bool m_BloquearDescuento = false;
                 private Precios m_Precio = Precios.Pvp;
 
                 public event System.EventHandler TotalChanged;
@@ -72,6 +73,10 @@ namespace Lcc.Entrada.Articulos
                 {
                         DetalleComprobante Ctrl = base.ObtenerControlNuevo();
                         Ctrl.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+                        Ctrl.BloquearPrecio = this.BloquearPrecio;
+                        Ctrl.BloquearDescuento = this.BloquearDescuento;
+                        Ctrl.BloquearCantidad = this.BloquearCantidad;
+                        Ctrl.BloquearAtriculo = this.BloquearAtriculo;
                         return Ctrl;
                 }
 
@@ -217,49 +222,66 @@ namespace Lcc.Entrada.Articulos
                 }
 
 
-                public bool LockText
+                public bool BloquearAtriculo
                 {
                         get
                         {
-                                return m_LockText;
+                                return m_BloquearAtriculo;
                         }
                         set
                         {
-                                m_LockText = value;
+                                m_BloquearAtriculo = value;
                                 foreach (DetalleComprobante Control in this.ChildControls) {
-                                        Control.ProductoSoloLectura = m_LockText;
+                                        Control.BloquearAtriculo = m_BloquearAtriculo;
                                 }
                         }
                 }
 
 
-                public bool LockQuantity
+                public bool BloquearCantidad
                 {
                         get
                         {
-                                return m_LockQuantity;
+                                return m_BloquearCantidad;
                         }
                         set
                         {
-                                m_LockQuantity = value;
+                                m_BloquearCantidad = value;
                                 foreach (DetalleComprobante Control in this.ChildControls) {
-                                        Control.CantidadSoloLectura = m_LockQuantity;
+                                        Control.BloquearCantidad = m_BloquearCantidad;
                                 }
                         }
                 }
 
 
-                public bool LockPrice
+                public bool BloquearPrecio
                 {
                         get
                         {
-                                return m_LockPrice;
+                                return m_BloquearPrecio;
                         }
                         set
                         {
-                                m_LockPrice = value;
+                                m_BloquearPrecio = value;
                                 foreach (DetalleComprobante Control in this.ChildControls) {
-                                        Control.PrecioSoloLectura = m_LockPrice;
+                                        Control.BloquearPrecio = m_BloquearPrecio;
+                                }
+                        }
+                }
+
+
+
+                public bool BloquearDescuento
+                {
+                        get
+                        {
+                                return m_BloquearDescuento;
+                        }
+                        set
+                        {
+                                m_BloquearDescuento = value;
+                                foreach (DetalleComprobante Control in this.ChildControls) {
+                                        Control.BloquearDescuento = m_BloquearDescuento;
                                 }
                         }
                 }
@@ -397,6 +419,15 @@ namespace Lcc.Entrada.Articulos
                                 base.ReubicarControles();
                         }
                 }
+
+                protected override void OnCreateControl()
+                {
+                        if (this.Created) 
+                                this.ReubicarEncabs();
+
+                        base.OnCreateControl();
+                }
+
 
                 protected override void OnResize(EventArgs e)
                 {

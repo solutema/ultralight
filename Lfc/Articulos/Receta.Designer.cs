@@ -68,12 +68,13 @@ namespace Lfc.Articulos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.MatrizArticulos.AutoScroll = true;
                         this.MatrizArticulos.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.MatrizArticulos.BloquearAtriculo = false;
+                        this.MatrizArticulos.BloquearCantidad = false;
+                        this.MatrizArticulos.BloquearDescuento = true;
+                        this.MatrizArticulos.BloquearPrecio = true;
                         this.MatrizArticulos.Font = new System.Drawing.Font("Segoe UI", 9.75F);
                         this.MatrizArticulos.FreeTextCode = "*";
                         this.MatrizArticulos.Location = new System.Drawing.Point(24, 24);
-                        this.MatrizArticulos.LockPrice = true;
-                        this.MatrizArticulos.LockQuantity = false;
-                        this.MatrizArticulos.LockText = false;
                         this.MatrizArticulos.Name = "MatrizArticulos";
                         this.MatrizArticulos.Precio = Lcc.Entrada.Articulos.Precios.Costo;
                         this.MatrizArticulos.ShowStock = false;
@@ -86,6 +87,7 @@ namespace Lfc.Articulos
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                         this.ClientSize = new System.Drawing.Size(634, 372);
                         this.Controls.Add(this.MatrizArticulos);
+                        this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Receta";
                         this.Text = "Conformación de producto compuesto";
                         this.Controls.SetChildIndex(this.MatrizArticulos, 0);
