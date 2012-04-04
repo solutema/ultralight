@@ -86,7 +86,8 @@ namespace Lui.Forms
                                         if (this.TextRaw.Length == 0 && m_SetData.Length >= 1)
                                                 this.TextRaw = m_SetData[0];
 
-                                        this.TextKey = m_SetDataKey[0];
+                                        if (m_SetDataKey.Length > 0)
+                                                this.TextKey = m_SetDataKey[0];
                                 }
                         }
                 }

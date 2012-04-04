@@ -135,6 +135,7 @@ namespace Lazaro.WinMain
                         }
 
 
+                        Lfx.Environment.Folders.EnsurePathExists(Lfx.Environment.Folders.ApplicationFolder);
                         if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "portable.lwf")) {
                                 NombreConfig = "portable";
                                 Lfx.Environment.Folders.PortableMode = true;

@@ -227,8 +227,12 @@ namespace Lazaro.WinMain.Config
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Localidad", EntradaLocalidad.ValueInt);
 
                         EntradaMonedaUnidadMonetariaMinima.ValueDecimal = Lbl.Sys.Config.Moneda.UnidadMonetariaMinima;
-                        Lbl.Sys.Config.Moneda.DecimalesCosto = EntradaMonedaDecimalesCosto.ValueInt;
+
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.Decimales", EntradaMonedaDecimalesUnitarios.ValueInt);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.DecimalesCosto", EntradaMonedaDecimalesCosto.ValueInt);
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Moneda.DecimalesFinal", EntradaMonedaDecimalesFinal.ValueInt);
                         Lbl.Sys.Config.Moneda.Decimales = EntradaMonedaDecimalesUnitarios.ValueInt;
+                        Lbl.Sys.Config.Moneda.DecimalesCosto = EntradaMonedaDecimalesCosto.ValueInt;
                         Lbl.Sys.Config.Moneda.DecimalesFinal = EntradaMonedaDecimalesFinal.ValueInt;
 
 
