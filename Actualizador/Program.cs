@@ -83,7 +83,11 @@ namespace Cargador
                                                 if (System.IO.File.Exists(NombreFinal + ".bak"))
                                                         System.IO.File.Delete(NombreFinal + ".bak");
                                                 // Y renombro el viejo
-                                                System.IO.File.Move(NombreFinal, NombreFinal + ".bak");
+                                                try {
+                                                        System.IO.File.Move(NombreFinal, NombreFinal + ".bak");
+                                                } catch {
+                                                        // No pude renombrar a .bak
+                                                }
                                         }
 
                                         // Y ahora renombro el nuevo a .bak
