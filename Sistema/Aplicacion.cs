@@ -135,7 +135,17 @@ namespace Lazaro.WinMain
                         }
 
 
-                        Lfx.Environment.Folders.EnsurePathExists(Lfx.Environment.Folders.ApplicationFolder);
+                        try {
+                                Lfx.Environment.Folders.EnsurePathExists(Lfx.Environment.Folders.ApplicationFolder);
+                        } catch (Exception ex) {
+                                Lui.Forms.MessageBox.Show("No se puede crear la carpeta " + Lfx.Environment.Folders.ApplicationFolder + ". " + ex.Message, "Error");
+                        }
+                        try {
+                                Lfx.Environment.Folders.EnsurePathExists(Lfx.Environment.Folders.ApplicationDataFolder);
+                        } catch (Exception ex) {
+                                Lui.Forms.MessageBox.Show("No se puede crear la carpeta " + Lfx.Environment.Folders.ApplicationDataFolder + ". " + ex.Message, "Error");
+                        }
+
                         if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + "portable.lwf")) {
                                 NombreConfig = "portable";
                                 Lfx.Environment.Folders.PortableMode = true;

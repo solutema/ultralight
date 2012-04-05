@@ -111,8 +111,7 @@ namespace Lfx.Environment
                                 if (PortableMode) {
                                         return ApplicationFolder;
                                 } else if (m_ApplicationDataFolder == null) {
-                                        m_ApplicationDataFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData)
-                                                + System.IO.Path.DirectorySeparatorChar + "Lazaro" + System.IO.Path.DirectorySeparatorChar;
+                                        m_ApplicationDataFolder = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "Lazaro") + System.IO.Path.DirectorySeparatorChar;
                                         if (!System.IO.Directory.Exists(m_ApplicationDataFolder))
                                                 Environment.Folders.EnsurePathExists(m_ApplicationDataFolder);
                                         return m_ApplicationDataFolder;
@@ -134,8 +133,7 @@ namespace Lfx.Environment
                                 if (PortableMode) {
                                         return ApplicationFolder;
                                 } else if (m_UserFolder == null) {
-                                        m_UserFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)
-                                                + System.IO.Path.DirectorySeparatorChar + "Lázaro" + System.IO.Path.DirectorySeparatorChar;
+                                        m_UserFolder = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "Lázaro") + System.IO.Path.DirectorySeparatorChar;
                                         if (!System.IO.Directory.Exists(m_UserFolder)) {
                                                 Environment.Folders.EnsurePathExists(m_UserFolder);
                                                 Environment.Folders.EnsurePathExists(System.IO.Path.Combine(m_UserFolder, "Plantillas"));
@@ -155,7 +153,7 @@ namespace Lfx.Environment
                 {
                         get
                         {
-                                return ApplicationDataFolder + "Updates" + System.IO.Path.DirectorySeparatorChar;
+                                return System.IO.Path.Combine(ApplicationDataFolder, "Updates") + System.IO.Path.DirectorySeparatorChar;
                         }
                 }
 
