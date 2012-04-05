@@ -54,5 +54,12 @@ namespace Lfc
                         
                         return base.Ok();
                 }
+
+                private void ControlFiltros_StyleChanged(object sender, System.EventArgs e)
+                {
+                        int NewHeight = ControlFiltros.Height + ControlFiltros.Top + PanelFiltros.Top + LowerPanel.Height + (this.Height - this.ClientSize.Height);
+                        if (this.Height < NewHeight)
+                                this.Height = NewHeight;
+                }
         }
 }
