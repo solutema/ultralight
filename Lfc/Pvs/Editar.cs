@@ -52,11 +52,12 @@ namespace Lfc.Pvs
                         base.OnLoad(e);
                         if (this.Connection != null) {
                                 System.Collections.Generic.List<string> ListaTipos = new System.Collections.Generic.List<string>();
+                                ListaTipos.Add("Cualquiera|*");
                                 ListaTipos.Add("Facutras|F");
-                                ListaTipos.Add("Notas de Débito|ND");
-                                ListaTipos.Add("Notas de Crédito|NC");
-                                ListaTipos.Add("Facutras, Notas de Débito|F,ND");
-                                ListaTipos.Add("Facutras, Notas de Crédito y Débito|F,NC,ND");
+                                ListaTipos.Add("Notas de débito|ND");
+                                ListaTipos.Add("Notas de crédito|NC");
+                                ListaTipos.Add("Facutras, notas de débito|F,ND");
+                                ListaTipos.Add("Facutras, notas de crédito y débito|F,NC,ND");
 
                                 System.Data.DataTable DocumentosTipos = this.Connection.Select("SELECT letra,nombre FROM documentos_tipos ORDER BY letra");
                                 foreach (System.Data.DataRow DocumentoTipo in DocumentosTipos.Rows) {
@@ -71,12 +72,16 @@ namespace Lfc.Pvs
                 {
                         Lbl.Comprobantes.PuntoDeVenta Pv = this.Elemento as Lbl.Comprobantes.PuntoDeVenta;
 
-                        EntradaNumero.Text = Pv.Numero.ToString();
-                        EntradaTipoFac.TextKey = Pv.TipoFac;
+                        EntradaPrefijo.ValueInt = Pv.Prefijo;
+                        EntradaNumero.ValueInt = Pv.Numero;
+                        if (string.IsNullOrEmpty(Pv.TipoFac))
+                                EntradaTipoFac.TextKey = "*";
+                        else
+                                EntradaTipoFac.TextKey = Pv.TipoFac;
                         EntradaSucursal.Elemento = Pv.Sucursal;
                         EntradaImpresora.Elemento = Pv.Impresora;
 
-                        EntradaTipo.TextKey = ((int)(Pv.Tipo)).ToString();
+                        EntradaTipo.ValueInt = (int)(Pv.Tipo);
 
                         EntradaDeTalonario.ValueInt = Pv.UsaTalonario ? 1 : 0;
                         EntradaEstacion.Text = Pv.Estacion;
@@ -93,8 +98,12 @@ namespace Lfc.Pvs
                 {
                         Lbl.Comprobantes.PuntoDeVenta Pv = this.Elemento as Lbl.Comprobantes.PuntoDeVenta;
 
+                        Pv.Prefijo = EntradaPrefijo.ValueInt;
                         Pv.Numero = EntradaNumero.ValueInt;
-                        Pv.TipoFac = EntradaTipoFac.TextKey;
+                        if (EntradaTipoFac.TextKey == "*")
+                                Pv.TipoFac = "";
+                        else
+                                Pv.TipoFac = EntradaTipoFac.TextKey;
                         Pv.Sucursal = EntradaSucursal.Elemento as Lbl.Entidades.Sucursal;
                         Pv.Impresora = EntradaImpresora.Elemento as Lbl.Impresion.Impresora;
 
@@ -154,6 +163,13 @@ namespace Lfc.Pvs
                         }
 
                         return base.ValidarControl();
+                }
+
+                public override void AfterSave(System.Data.IDbTransaction transaction)
+                {
+                        Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.Clear();
+
+                        base.AfterSave(transaction);
                 }
         }
 }

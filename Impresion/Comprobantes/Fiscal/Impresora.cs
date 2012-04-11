@@ -351,53 +351,57 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         string ClienteTipoDoc = "DNI";
                         string ClienteNumDoc = Comprob.Cliente.NumeroDocumento.Replace("-", "").Replace(".", "");
 
-                        switch (Comprob.Cliente.TipoDocumento.Id) {
-                                case 1:
-                                        ClienteTipoDoc = "DNI";
-                                        break;
-                                case 2:
-                                        ClienteTipoDoc = "LE";
-                                        break;
-                                case 3:
-                                        ClienteTipoDoc = "LC";
-                                        break;
-                                case 4:
-                                        ClienteTipoDoc = "CI";
-                                        break;
-                                case 5:
-                                        if (ClienteNumDoc.Length > 0)
-                                                ClienteTipoDoc = "CUIL";
-                                        break;
-                                case 6:
-                                        if (ClienteNumDoc.Length > 0)
-                                                ClienteTipoDoc = "CUIT";
-                                        break;
-                                default:
-                                        ClienteTipoDoc = "DNI";
-                                        break;
+                        if (Comprob.Cliente.TipoDocumento != null) {
+                                switch (Comprob.Cliente.TipoDocumento.Id) {
+                                        case 1:
+                                                ClienteTipoDoc = "DNI";
+                                                break;
+                                        case 2:
+                                                ClienteTipoDoc = "LE";
+                                                break;
+                                        case 3:
+                                                ClienteTipoDoc = "LC";
+                                                break;
+                                        case 4:
+                                                ClienteTipoDoc = "CI";
+                                                break;
+                                        case 5:
+                                                if (ClienteNumDoc.Length > 0)
+                                                        ClienteTipoDoc = "CUIL";
+                                                break;
+                                        case 6:
+                                                if (ClienteNumDoc.Length > 0)
+                                                        ClienteTipoDoc = "CUIT";
+                                                break;
+                                        default:
+                                                ClienteTipoDoc = "DNI";
+                                                break;
+                                }
                         }
 
-                        switch (Comprob.Cliente.SituacionTributaria.Id) {
-                                case 1:
-                                        ClienteNumDoc = Comprob.Cliente.NumeroDocumento.Replace("-", "").Replace(" ", "").Replace(".", "");
-                                        ClienteTipoDoc = "DNI";
-                                        break;
-                                case 2:
-                                        ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Comprob.Cliente.ClaveTributaria.ToString().Replace("-", "");
-                                        break;
-                                case 3:
-                                        ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Comprob.Cliente.ClaveTributaria.ToString().Replace("-", "");
-                                        break;
-                                case 4:
-                                        ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Comprob.Cliente.ClaveTributaria.ToString().Replace("-", "");
-                                        break;
-                                case 5:
-                                        ClienteTipoDoc = "CUIT";
-                                        ClienteNumDoc = Comprob.Cliente.ClaveTributaria.ToString().Replace("-", "");
-                                        break;
+                        if (Comprob.Cliente.SituacionTributaria != null) {
+                                switch (Comprob.Cliente.SituacionTributaria.Id) {
+                                        case 1:
+                                                ClienteNumDoc = Comprob.Cliente.NumeroDocumento.Replace("-", "").Replace(" ", "").Replace(".", "");
+                                                ClienteTipoDoc = "DNI";
+                                                break;
+                                        case 2:
+                                                ClienteTipoDoc = "CUIT";
+                                                ClienteNumDoc = Comprob.Cliente.ClaveTributaria.ToString().Replace("-", "");
+                                                break;
+                                        case 3:
+                                                ClienteTipoDoc = "CUIT";
+                                                ClienteNumDoc = Comprob.Cliente.ClaveTributaria.ToString().Replace("-", "");
+                                                break;
+                                        case 4:
+                                                ClienteTipoDoc = "CUIT";
+                                                ClienteNumDoc = Comprob.Cliente.ClaveTributaria.ToString().Replace("-", "");
+                                                break;
+                                        case 5:
+                                                ClienteTipoDoc = "CUIT";
+                                                ClienteNumDoc = Comprob.Cliente.ClaveTributaria.ToString().Replace("-", "");
+                                                break;
+                                }
                         }
 
                         Comando ComandoAEnviar;
@@ -861,6 +865,8 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         Res.Campos.Add("0600");		//Estado Fiscal
 
                         m_TextEmulacion.AppendLine("CMD " + comando.CodigoComando.ToString() + System.Environment.NewLine);
+
+                        System.Threading.Thread.Sleep(200);
 
                         switch (comando.CodigoComando) {
                                 case CodigosComandosFiscales.EpsonDocumentoFiscalCerrar:

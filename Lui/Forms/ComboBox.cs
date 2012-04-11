@@ -68,6 +68,7 @@ namespace Lui.Forms
                         }
                         set
                         {
+                                string OldTextKey = this.TextKey;
                                 m_SetData = value;
 
                                 if (m_SetData == null) {
@@ -86,8 +87,10 @@ namespace Lui.Forms
                                         if (this.TextRaw.Length == 0 && m_SetData.Length >= 1)
                                                 this.TextRaw = m_SetData[0];
 
-                                        if (m_SetDataKey.Length > 0)
-                                                this.TextKey = m_SetDataKey[0];
+                                        ItemList.Items.Clear();
+
+                                        if (string.IsNullOrEmpty(OldTextKey) == false)
+                                                this.TextKey = OldTextKey;
                                 }
                         }
                 }
@@ -438,7 +441,7 @@ namespace Lui.Forms
                                                 ItemList.Height = ItemList.ItemHeight * 5;
                                         else
                                                 ItemList.Height = ItemList.ItemHeight * m_SetDataText.Length;
-                                        this.Height = ItemList.Top + ItemList.Height + ItemList.Margin.Top + ItemList.Margin.Bottom;
+                                        this.Height = ItemList.Top + ItemList.Height + ItemList.Margin.Top + ItemList.Margin.Bottom + 1;
                                 } else {
                                         // Manejo el tamaño de la lista de acuerdo al control
                                         ItemList.Height = this.ClientRectangle.Height - ItemList.Top - ItemList.Margin.Top + ItemList.Margin.Bottom;

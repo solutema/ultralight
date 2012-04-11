@@ -222,7 +222,7 @@ namespace Lazaro.WinMain.Misc
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.Titulo.Location = new System.Drawing.Point(128, 32);
                         this.Titulo.Name = "Titulo";
-                        this.Titulo.Size = new System.Drawing.Size(380, 24);
+                        this.Titulo.Size = new System.Drawing.Size(380, 32);
                         this.Titulo.TabIndex = 0;
                         this.Titulo.Text = "Cambio de contraseña";
                         this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -234,7 +234,6 @@ namespace Lazaro.WinMain.Misc
                         this.CancelButton = this.CancelCommandButton;
                         this.ClientSize = new System.Drawing.Size(546, 312);
                         this.ControlBox = false;
-                        this.Controls.Add(this.Titulo);
                         this.Controls.Add(this.EntradaContrasenaNueva2);
                         this.Controls.Add(this.EntradaContrasenaNueva1);
                         this.Controls.Add(this.EntradaContrasena);
@@ -244,6 +243,7 @@ namespace Lazaro.WinMain.Misc
                         this.Controls.Add(this.panel1);
                         this.Controls.Add(this.Label2);
                         this.Controls.Add(this.LowerPanel);
+                        this.Controls.Add(this.Titulo);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
                         this.Name = "CambioContrasena";

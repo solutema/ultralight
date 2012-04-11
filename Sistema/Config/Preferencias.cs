@@ -66,6 +66,7 @@ namespace Lazaro.WinMain.Config
                         if (GuardarConfig() == false) {
                                 this.DialogResult = DialogResult.OK;
                                 this.Close();
+                                Lfx.Workspace.Master.RunTime.Toast("Algunos cambios tendrán efecto la próxima vez que ingrese Lázaro. Si lo desea puede salir de Lázaro y volver a ingresar. También puede ser necesario que lo haga en otros equipos en la red.", "Aviso");
                         }
                 }
 

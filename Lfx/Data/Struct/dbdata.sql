@@ -12677,7 +12677,7 @@ INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (3, 'Cód
 INSERT INTO articulos_codigos (id_codigo, nombre, id_proveedor) VALUES (4, 'Código 4', NULL);
 
 
-INSERT INTO sucursales (id_sucursal, nombre, id_ciudad, id_caja_diaria, id_caja_cheques) VALUES (1, 'Sucursal 1', 999, 999, 1000);
+INSERT INTO sucursales (id_sucursal, nombre, id_ciudad, id_caja_diaria, id_caja_cheques) VALUES (1, 'Casa central', 999, 999, 1000);
 
 
 INSERT INTO "formaspago" ("id_formapago", "nombre", "tipo", "id_caja", "id_concepto", "descuento", "retencion", "autopres", "autoacred", "adelantacuotas", "dias_acred", "pagos", "cobros", "estado") VALUES ('1','Efectivo','1','999',NULL,'0.0000','0.0000','0','1','0','0','1','1','1');
@@ -12762,7 +12762,7 @@ INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "int
 INSERT INTO "tarjetas_planes" ("id_plan", "id_tarjeta", "nombre", "cuotas", "interes", "comision") VALUES (100,NULL,'Plan Zeta',0,'0.00000000','0.00000000');
 
 
-INSERT INTO pvs (id_pv, numero, id_sucursal, tipo) VALUES (1, 1, 1, 1);
+INSERT INTO pvs (id_pv, numero, nombre, id_sucursal, tipo) VALUES (1, 1, '0001', 1, 1);
 
 
 INSERT INTO sys_config (estacion, grupo, nombre, valor, id_sucursal) VALUES ('*', '', 'Sistema.Empresa.Nombre', '', 0);

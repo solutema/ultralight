@@ -39,6 +39,7 @@ namespace Lazaro.WinMain.Misc
 {
         public partial class Fiscal : Lui.Forms.DialogForm
         {
+                private Lbl.ColeccionGenerica<Lbl.Comprobantes.PuntoDeVenta> PuntosDeVenta = null;
                 private int Pv = 0;
 
                 public Fiscal()
@@ -52,13 +53,14 @@ namespace Lazaro.WinMain.Misc
                         base.OnLoad(e);
                         if (this.Connection != null) {
                                 //Lleno la tabla de PVs
-                                System.Data.DataTable PVs = this.Connection.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
-                                string[] PVDataSet = new string[PVs.Rows.Count];
+                                System.Data.DataTable TablaPvs = this.Connection.Select("SELECT * FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
+                                this.PuntosDeVenta = new Lbl.ColeccionGenerica<Lbl.Comprobantes.PuntoDeVenta>(this.Connection, TablaPvs);
+                                string[] PvsDataSet = new string[TablaPvs.Rows.Count];
                                 int i = 0;
-                                foreach (System.Data.DataRow PV in PVs.Rows) {
-                                        PVDataSet[i++] = PV["id_pv"].ToString() + " en " + PV["estacion"].ToString() + "|" + PV["id_pv"].ToString();
+                                foreach (Lbl.Comprobantes.PuntoDeVenta Punto in this.PuntosDeVenta) {
+                                        PvsDataSet[i++] = "Punto de venta Nº " + Punto.ToString() + "|" + Punto.Id.ToString();
                                 }
-                                EntradaPv.SetData = PVDataSet;
+                                EntradaPv.SetData = PvsDataSet;
 
                                 if (EntradaPv.SetData.Length > 0) {
                                         //Busco el PV para esta estación, en esta sucursal
@@ -80,21 +82,20 @@ namespace Lazaro.WinMain.Misc
                 private void MostrarDatos()
                 {
                         if (this.Pv != 0) {
-                                string LSAString = Connection.FieldString("SELECT lsa FROM pvs WHERE id_pv=" + this.Pv.ToString());
+                                string LsaString = Connection.FieldString("SELECT lsa FROM pvs WHERE id_pv=" + this.Pv.ToString());
 
-                                if (LSAString != null && LSAString.Length > 0) {
-                                        System.DateTime LSA = DateTime.ParseExact(LSAString,
+                                if (LsaString != null && LsaString.Length > 0) {
+                                        System.DateTime LSA = DateTime.ParseExact(LsaString,
                                                 @"yyyy\-MM\-dd HH\:mm\:ss",
                                                 System.Globalization.DateTimeFormatInfo.InvariantInfo,
                                                 System.Globalization.DateTimeStyles.AllowWhiteSpaces);
 
                                         if (LSA < System.DateTime.Now.AddMinutes(-10))
-                                                lblEstadoServidor.Text = "Inactivo";
+                                                EtiquetaEstadoServidor.Text = "Inactivo";
                                         else
-                                                lblEstadoServidor.Text = "Activo";
-
+                                                EtiquetaEstadoServidor.Text = "Activo";
                                 } else {
-                                        lblEstadoServidor.Text = "Desconocido";
+                                        EtiquetaEstadoServidor.Text = "Inactivo";
                                 }
 
                                 string UltimoZ = Connection.FieldString("SELECT ultimoz FROM pvs WHERE id_pv=" + this.Pv.ToString());
@@ -104,11 +105,12 @@ namespace Lazaro.WinMain.Misc
                                                 System.Globalization.DateTimeFormatInfo.InvariantInfo,
                                                 System.Globalization.DateTimeStyles.AllowWhiteSpaces);
 
-                                        lblUltimoCierreZ.Text = Lfx.Types.Formatting.FormatSmartDateAndTime(FechaUltimoCierreZ);
+                                        EtiquetaUltimoCierreZ.Text = Lfx.Types.Formatting.FormatSmartDateAndTime(FechaUltimoCierreZ);
                                 } else {
-                                        lblUltimoCierreZ.Text = "Desconocido";
+                                        EtiquetaUltimoCierreZ.Text = "desconocido";
                                 }
                         }
+                        HabilitarBotones();
                 }
 
                 private void Timer1_Tick(object sender, System.EventArgs e)
@@ -116,19 +118,19 @@ namespace Lazaro.WinMain.Misc
                         MostrarDatos();
                 }
 
-                private void txtPV_TextChanged(object sender, System.EventArgs e)
+                private void EntradaPV_TextChanged(object sender, System.EventArgs e)
                 {
                         this.Pv = Lfx.Types.Parsing.ParseInt(EntradaPv.TextKey);
                         MostrarDatos();
                 }
 
-                private void lblEstadoServidor_TextChanged(object sender, System.EventArgs e)
+                private void HabilitarBotones()
                 {
-                        if (lblEstadoServidor.Text == "Activo") {
+                        if (EtiquetaEstadoServidor.Text == "Activo") {
                                 BotonCierreZ.Enabled = true;
                                 BotonReiniciar.Enabled = true;
                                 BotonIniciarDetener.Text = "Detener";
-                        } else if (lblEstadoServidor.Text == "Inactivo") {
+                        } else if (EtiquetaEstadoServidor.Text == "Inactivo") {
                                 BotonCierreZ.Enabled = false;
                                 BotonReiniciar.Enabled = false;
                                 BotonIniciarDetener.Text = "Iniciar";
@@ -153,11 +155,16 @@ namespace Lazaro.WinMain.Misc
                 {
                         if (BotonIniciarDetener.Text == "Iniciar") {
                                 string EstacionFiscal = Connection.FieldString("SELECT estacion FROM pvs WHERE id_pv=" + this.Pv.ToString());
-                                Lfx.Workspace.Master.DefaultScheduler.AddTask("FISCAL INICIAR", "lazaro", EstacionFiscal);
-                                Lui.Forms.MessageBox.Show("Se envió una orden de Iniciar el servidor fiscal. Puede demorar varios segundos.", "Iniciar");
+                                if (string.Compare(EstacionFiscal, System.Environment.MachineName, true) == 0) {
+                                        // Servidor local
+                                        Lfx.Workspace.Master.RunTime.Execute("FISCAL INICIAR");
+                                } else {
+                                        // Servidor remoto
+                                        Lui.Forms.MessageBox.Show("Se envió una orden de iniciar el servidor fiscal a través de la red. Para que esto funcione es necesario que Lázaro esté abierto en el equipo remoto.", "Iniciar remoto");
+                                }
                         } else {
                                 Lfx.Workspace.Master.DefaultScheduler.AddTask("END", "fiscal" + this.Pv.ToString(), "*");
-                                Lui.Forms.MessageBox.Show("Se envió una orden de Detener el servidor fiscal. Puede demorar hasta 40 segundos y mientras tanto seguir apareciendo como Activo.", "Detener");
+                                Lui.Forms.MessageBox.Show("Se envió una orden de detener el servidor fiscal. Puede demorar hasta 1 minuto y mientras tanto seguir apareciendo como activo.", "Detener");
                         }
                 }
 

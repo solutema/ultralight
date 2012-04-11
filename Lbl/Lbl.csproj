@@ -277,6 +277,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Comprobantes\XMLFile1.xml" />
     <Content Include="Lazaro.ico" />
   </ItemGroup>
   <ItemGroup />

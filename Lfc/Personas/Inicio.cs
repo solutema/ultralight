@@ -128,7 +128,8 @@ namespace Lfc.Personas
                 }
 
 
-                public int Tipo {
+                public int Tipo
+                {
                         get
                         {
                                 return m_Tipo;
@@ -181,13 +182,13 @@ namespace Lfc.Personas
                         else if (Grupo != null)
                                 this.CustomFilters.AddWithValue("personas.id_grupo", Grupo.Id);
 
-                        if(EstadoCredito >= 0)
+                        if (EstadoCredito >= 0)
                                 this.CustomFilters.AddWithValue("personas.estadocredito", EstadoCredito);
 
                         if (Localidad != null)
                                 this.CustomFilters.AddWithValue("personas.id_ciudad", Localidad.Id);
 
-                        if (string.IsNullOrEmpty(this.SearchText) && Estado >= 0)
+                        if (Estado >= 0)
                                 this.CustomFilters.AddWithValue("personas.estado", Estado);
 
                         if (FechaAlta.HasRange)

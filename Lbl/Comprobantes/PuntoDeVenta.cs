@@ -82,6 +82,7 @@ namespace Lbl.Comprobantes
                                 this.Impresora = null;
                 }
 
+
                 public TipoPv Tipo
                 {
                         get
@@ -93,6 +94,7 @@ namespace Lbl.Comprobantes
                                 this.Registro["tipo"] = (int)value;
                         }
                 }
+
 
                 public Lbl.Impresion.ModelosFiscales ModeloImpresoraFiscal
                 {
@@ -106,6 +108,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
                 public int Puerto
                 {
                         get
@@ -117,6 +120,7 @@ namespace Lbl.Comprobantes
                                 this.Registro["puerto"] = value;
                         }
                 }
+
 
                 public int Bps
                 {
@@ -130,6 +134,19 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
+                public override string Nombre
+                {
+                        get
+                        {
+                                if (this.Prefijo == 0)
+                                        return this.Numero.ToString("0000");
+                                else
+                                        return this.Prefijo.ToString("000") + "-" + this.Numero.ToString("000");
+                        }
+                }
+
+
                 public int Numero
                 {
                         get
@@ -141,6 +158,20 @@ namespace Lbl.Comprobantes
                                 this.Registro["numero"] = value;
                         }
                 }
+
+
+                public int Prefijo
+                {
+                        get
+                        {
+                                return this.GetFieldValue<int>("prefijo");
+                        }
+                        set
+                        {
+                                this.Registro["prefijo"] = value;
+                        }
+                }
+
 
                 public string TipoFac
                 {
@@ -178,6 +209,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
                 public bool CuentaIngresosBrutos
                 {
                         get
@@ -189,6 +221,7 @@ namespace Lbl.Comprobantes
                                 this.Registro["cuenta_iibb"] = value;
                         }
                 }
+
 
                 public bool UsaTalonario
                 {
@@ -202,6 +235,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
                 public bool CargaManual
                 {
                         get
@@ -214,6 +248,7 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+
                 public override Lfx.Types.OperationResult Guardar()
                 {
                         qGen.TableCommand Comando;
@@ -225,7 +260,9 @@ namespace Lbl.Comprobantes
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
+                        Comando.Fields.AddWithValue("prefijo", this.Prefijo);
                         Comando.Fields.AddWithValue("numero", this.Numero);
+                        Comando.Fields.AddWithValue("nombre", this.Nombre);
                         
                         if (this.Sucursal == null)
                                 Comando.Fields.AddWithValue("id_sucursal", null);
@@ -252,17 +289,12 @@ namespace Lbl.Comprobantes
                         return base.Guardar();
                 }
 
-                public override string ToString()
-                {
-                        return "Punto de Venta Nº " + base.ToString();
-                }
-
                 private static Dictionary<int, PuntoDeVenta> m_TodosPorNumero = null;
                 public static Dictionary<int, PuntoDeVenta> TodosPorNumero
                 {
                         get
                         {
-                                if (m_TodosPorNumero == null) {
+                                if (m_TodosPorNumero == null ||m_TodosPorNumero.Count == 0) {
                                         m_TodosPorNumero = new Dictionary<int, PuntoDeVenta>();
                                         System.Data.DataTable TablaPvs = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM pvs WHERE numero>0");
                                         foreach (System.Data.DataRow RegPv in TablaPvs.Rows) {

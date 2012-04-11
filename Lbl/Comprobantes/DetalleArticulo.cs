@@ -280,7 +280,7 @@ namespace Lbl.Comprobantes
                 /// <summary>
                 /// Devuelve la cantidad de IVA que fue discriminado para este artículo, o 0 si no se discriminó IVA.
                 /// </summary>
-                public decimal IvaDiscriminado
+                public decimal ImporteIvaDiscriminado
                 {
                         get
                         {
@@ -296,6 +296,59 @@ namespace Lbl.Comprobantes
                                 } else {
                                         return 0;
                                 }
+                        }
+                }
+
+
+                /// <summary>
+                /// Ídem ImporteIvaAlicuota, pero con el precio del artículo incluído.
+                /// </summary>
+                public decimal ImporteConIvaAlicuota(int idAlicuota)
+                {
+                        if (this.ElementoPadre == null) {
+                                return 0;
+                        } else if (ElementoPadre is Lbl.Comprobantes.ComprobanteConArticulos) {
+                                Lbl.Comprobantes.ComprobanteConArticulos Comprob = ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
+                                Lbl.Impuestos.Alicuota AlicArticulo;
+                                if (this.Articulo == null)
+                                        AlicArticulo = Lbl.Sys.Config.Empresa.AlicuotaPredeterminada;
+                                else
+                                        AlicArticulo = this.Articulo.ObtenerAlicuota();
+
+                                if (AlicArticulo != null && AlicArticulo.Id == idAlicuota)
+                                        return this.ImporteConIva;
+                                else
+                                        return 0;
+                        } else {
+                                return 0;
+                        }
+                }
+
+
+
+                /// <summary>
+                /// Devuelve la cantidad de IVA que este artículo lleva de una alícuota en particular, o 0 si este artículo no se le aplica esa alícuota.
+                /// Útil para Paraguay, donde por cada renglón de la factura van dos columnas, una con el importe IVA tasa regular y
+                /// otra con la tasa reducida (o cero). Una de las dos columnas puede estar en blanco.
+                /// </summary>
+                public decimal ImporteIvaAlicuota(int idAlicuota)
+                {
+                        if (this.ElementoPadre == null) {
+                                return 0;
+                        } else if (ElementoPadre is Lbl.Comprobantes.ComprobanteConArticulos) {
+                                Lbl.Comprobantes.ComprobanteConArticulos Comprob = ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
+                                Lbl.Impuestos.Alicuota AlicArticulo;
+                                if (this.Articulo == null)
+                                        AlicArticulo = Lbl.Sys.Config.Empresa.AlicuotaPredeterminada;
+                                else
+                                        AlicArticulo = this.Articulo.ObtenerAlicuota();
+
+                                if (AlicArticulo != null && AlicArticulo.Id == idAlicuota)
+                                        return this.ImporteIva;
+                                else
+                                        return 0;
+                        } else {
+                                return 0;
                         }
                 }
 

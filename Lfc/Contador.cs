@@ -73,6 +73,18 @@ namespace Lfc
                                 this.Max = val;
                 }
 
+
+                public void SetValue(decimal val)
+                {
+                        this.CantidadValores = 1;
+                        this.Total = val;
+                        if (val < this.Min)
+                                this.Min = val;
+                        if (val > this.Max)
+                                this.Max = val;
+                }
+
+
                 public override string ToString()
                 {
                         return this.Etiqueta + "(" + this.CantidadValores.ToString() + "): " + this.Total.ToString(); 

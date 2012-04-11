@@ -158,6 +158,22 @@ namespace Lfc.Comprobantes.Plantillas
                         if (EntradaNombre.Text == string.Empty)
                                 return new Lfx.Types.FailureOperationResult("Debe escribir el nombre de la plantilla.");
 
+                        string Codigo;
+                        if (EntradaCodigo.TextKey == "*")
+                                Codigo = EntradaCodigoPersonalizado.Text;
+                        else
+                                Codigo = EntradaCodigo.TextKey;
+
+                        qGen.Select SelCodDupl = new qGen.Select("sys_plantillas");
+                        SelCodDupl.Fields = "id_plantilla";
+                        SelCodDupl.WhereClause = new qGen.Where();
+                        SelCodDupl.WhereClause.AddWithValue("codigo", Codigo);
+                        if (this.Elemento.Existe)
+                                SelCodDupl.WhereClause.AddWithValue("id_plantilla", qGen.ComparisonOperators.NotEqual, this.Elemento.Id);
+                        int OtroId = this.Connection.FieldInt(SelCodDupl);
+                        if (OtroId > 0)
+                                return new Lfx.Types.FailureOperationResult("Ya existe otra plantilla para este tipo de comprobante. No se permite tener más de una plantilla para el mismo tipo de comprobante. Si lo desea puede editar la plantilla existente.");
+
                         return base.ValidarControl();
                 }
 
@@ -178,7 +194,7 @@ namespace Lfc.Comprobantes.Plantillas
                         Plantilla.Nombre = EntradaNombre.Text;
                         Plantilla.Tipo = (Lbl.Impresion.TipoPlantilla)(EntradaTipo.ValueInt);
                         Plantilla.TamanoPapel = EntradaPapelTamano.TextKey;
-                        Plantilla.Landscape = EntradaLandscape.TextKey == "1";
+                        Plantilla.Landscape = EntradaLandscape.ValueInt == 1;
                         Plantilla.Copias = EntradaCopias.ValueInt;
 
                         if (EntradaMargenes.TextKey == "1") {

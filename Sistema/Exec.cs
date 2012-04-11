@@ -258,7 +258,7 @@ namespace Lazaro.WinMain
 
                                         switch (SubComandoFiscal) {
                                                 case "INICIAR":
-                                                        Lfx.Environment.Shell.Execute("ServidorFiscal.exe", null, System.Diagnostics.ProcessWindowStyle.Normal, false);
+                                                        Lfx.Environment.Shell.Execute(Lfx.Environment.Folders.ApplicationFolder + "ServidorFiscal.exe", null, System.Diagnostics.ProcessWindowStyle.Normal, false);
                                                         break;
                                                 case "PANEL":
                                                         Lazaro.WinMain.Misc.Fiscal OFormFiscal = (Lazaro.WinMain.Misc.Fiscal)BuscarVentana("Lazaro.Misc.Fiscal");

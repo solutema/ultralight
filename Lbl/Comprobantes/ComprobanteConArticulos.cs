@@ -467,10 +467,44 @@ namespace Lbl.Comprobantes
 
                                 decimal Res = 0;
                                 foreach (DetalleArticulo Det in this.Articulos) {
-                                        Res += Det.IvaDiscriminado;
+                                        Res += Det.ImporteIvaDiscriminado;
                                 }
                                 return Math.Round(Res, 4);
                         }
+                }
+
+
+                /// <summary>
+                /// Ídem IvaAlicuota pero con los precios de los artículos incluídos.
+                /// </summary>
+                public decimal TotalConIvaAlicuota(int idAlicuota)
+                {
+                        if (this.Cliente != null && this.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
+                                return 0;
+
+                        decimal Res = 0;
+                        foreach (DetalleArticulo Det in this.Articulos) {
+                                Res += Det.ImporteConIvaAlicuota(idAlicuota);
+                        }
+                        return Math.Round(Res, 4);
+                }
+
+
+                /// <summary>
+                /// Devuelve la cantidad de IVA que este comprobante lleva de una alícuota en particular, o 0 si este artículo no se le aplica esa alícuota.
+                /// Útil para Paraguay, donde por cada renglón de la factura van dos columnas, una con el importe IVA tasa regular y
+                /// otra con la tasa reducida (o cero). Una de las dos columnas puede estar en blanco.
+                /// </summary>
+                public decimal IvaAlicuota(int idAlicuota)
+                {
+                        if (this.Cliente != null && this.Cliente.PagaIva == Impuestos.SituacionIva.Exento)
+                                return 0;
+
+                        decimal Res = 0;
+                        foreach (DetalleArticulo Det in this.Articulos) {
+                                Res += Det.ImporteIvaAlicuota(idAlicuota);
+                        }
+                        return Math.Round(Res, 4);
                 }
 
 

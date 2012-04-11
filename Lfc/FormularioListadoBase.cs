@@ -799,13 +799,24 @@ namespace Lfc
                         this.LoadColumns();
                         this.OnBeginRefreshList();
 
-                        this.Fill(this.SelectCommand(false));
+                        this.Fill(this.SelectCommand());
 
                         this.OnEndRefreshList();
                 }
 
+                protected qGen.Select SelectCommand()
+                {
+                        return this.SelectCommand(null, null);
+                }
+
 
                 protected qGen.Select SelectCommand(bool forCount)
+                {
+                        return this.SelectCommand("COUNT", null);
+                }
+
+
+                protected qGen.Select SelectCommand(string agrFunction, string onField)
                 {
                         if (this.Connection != null && this.Definicion != null && this.Definicion.TableName != null) {
                                 qGen.Select ComandoSelect = new qGen.Select(this.Connection.SqlMode);
@@ -826,8 +837,11 @@ namespace Lfc
                                 }
 
                                 string ListaCampos;
-                                if (forCount) {
-                                        ListaCampos = "COUNT(" + this.Definicion.KeyColumn.Name + ") AS row_count";
+                                if (agrFunction != null) {
+                                        if (onField == null)
+                                                onField = this.Definicion.KeyColumn.Name;
+                                        string Alias = agrFunction + "_" + onField.Replace(".", "_");
+                                        ListaCampos = agrFunction + "(" + onField + ") AS " + Alias;
                                 } else {
                                         // Genero la lista de campos
                                         ListaCampos = this.Definicion.KeyColumn.Name;
@@ -942,7 +956,7 @@ namespace Lfc
                                 if (this.Definicion.Having != null)
                                         ComandoSelect.HavingClause = this.Definicion.Having;
 
-                                if (forCount == false)
+                                if (agrFunction == null)
                                         ComandoSelect.Order = this.Definicion.OrderBy;
 
                                 return ComandoSelect;
@@ -1596,7 +1610,7 @@ namespace Lfc
                         }
 
                         // Exporto los renglones
-                        System.Data.DataTable Tabla = this.Connection.Select(this.SelectCommand(false));
+                        System.Data.DataTable Tabla = this.Connection.Select(this.SelectCommand());
                         foreach (System.Data.DataRow DtRow in Tabla.Rows) {
                                 Lfx.Data.Row Registro = (Lfx.Data.Row)DtRow;
 

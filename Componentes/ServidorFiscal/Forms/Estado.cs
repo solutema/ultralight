@@ -30,19 +30,15 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace ServidorFiscal
+namespace ServidorFiscal.Forms
 {
-        public partial class FormEstado : Lui.Forms.Form
+        public partial class Estado : Lui.Forms.Form
         {
-                public ServidorFiscal ServidorAsociado;
+                public ServidorFiscal ServidorAsociado { get; set; }
 
-                public FormEstado()
+                public Estado()
                 {
                         this.DisplayStyle = Lazaro.Pres.DisplayStyles.Template.Current.White;
                         InitializeComponent();
@@ -51,16 +47,41 @@ namespace ServidorFiscal
 
                 private void FormEstado_Load(object sender, System.EventArgs e)
                 {
-                        this.Estado(null);
+                        this.MostrarEstado(null);
                 }
 
 
-                internal void Estado(string Texto)
+                public void MostrarEstado(string texto)
                 {
-                        if (string.IsNullOrEmpty(Texto))
+                        if (this.InvokeRequired) {
+                                MethodInvoker Mi = delegate { this.MostrarEstado(texto); };
+                                return;
+                        }
+
+                        if (string.IsNullOrEmpty(texto))
                                 EtiquetaEstado.Text = "Preparado, esperando órdenes.";
                         else
-                                EtiquetaEstado.Text = Texto;
+                                EtiquetaEstado.Text = texto;
+
+                        if (string.IsNullOrEmpty(this.EtiquetaVersion.Text))
+                                this.EtiquetaVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
+
+                        if (this.ServidorAsociado == null) {
+                                this.IconoBandeja.Text = "No se cargó el servidor.";
+                                this.EtiquetaPV.Text = "";
+                                this.EtiquetaModeloImpresora.Text = "";
+                        } else {
+                                if (this.ServidorAsociado.PuntoDeVenta == null || this.ServidorAsociado.PuntoDeVenta.Numero == 0) {
+                                        this.IconoBandeja.Text = "No hay definido un punto de venta para esta estación.";
+                                        this.EtiquetaPV.Text = "";
+                                        this.EtiquetaModeloImpresora.Text = "";
+                                } else {
+                                        this.IconoBandeja.Text = "Utilizando el punto de venta " + this.ServidorAsociado.PuntoDeVenta.Numero.ToString();
+                                        this.EtiquetaPV.Text = this.ServidorAsociado.PuntoDeVenta.ToString();
+                                        this.EtiquetaModeloImpresora.Text = this.ServidorAsociado.PuntoDeVenta.ModeloImpresoraFiscal.ToString() + " en puerto COM" + this.ServidorAsociado.PuntoDeVenta.Puerto.ToString() + " a " + this.ServidorAsociado.PuntoDeVenta.Bps.ToString() + " bps";
+                                }
+                        }
+
                         this.Refresh();
                 }
 
@@ -86,13 +107,13 @@ namespace ServidorFiscal
 
                 private void MenuReiniciar_Click(System.Object sender, System.EventArgs e)
                 {
-                        BotonReiniciar.PerformClick();
+                        ServidorAsociado.Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Reiniciando;
                 }
 
 
                 private void MenuCerrar_Click(System.Object sender, System.EventArgs e)
                 {
-                        BotonCerrar.PerformClick();
+                        ServidorAsociado.Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Apagando;
                 }
 
 
@@ -107,7 +128,7 @@ namespace ServidorFiscal
                 }
 
 
-                private void FormEstado_FormClosing(object sender, FormClosingEventArgs e)
+                protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
                 {
                         if (this.Visible) {
                                 this.Hide();
@@ -115,16 +136,24 @@ namespace ServidorFiscal
                         } else {
                                 this.QuitarIcono();
                         }
+                        base.OnClosing(e);
                 }
+
 
                 private void BotonCerrar_Click(object sender, EventArgs e)
                 {
                         ServidorAsociado.Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Apagando;
                 }
 
+
                 private void BotonReiniciar_Click(object sender, EventArgs e)
                 {
                         ServidorAsociado.Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Reiniciando;
+                }
+
+                private void BotonOcultar_Click(object sender, EventArgs e)
+                {
+                        this.Hide();
                 }
         }
 }

@@ -83,4 +83,7 @@ DELETE FROM sys_comments;
 COMMIT;
 UPDATE sys_log SET tabla=NULL WHERE comando='LogOn' OR comando='LogOnFail';
 
+UPDATE pvs SET nombre=LPAD(numero, 4, '0') WHERE nombre='' OR nombre IS NULL;
+UPDATE sucursales SET nombre='Casa central' WHERE nombre='Sucursal 1';
+
 SET FOREIGN_KEY_CHECKS=1;

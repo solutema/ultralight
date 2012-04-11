@@ -59,14 +59,16 @@ namespace Lazaro.WinMain.Misc
                         this.components = new System.ComponentModel.Container();
                         this.BotonCierreZ = new Lui.Forms.Button();
                         this.Timer1 = new System.Windows.Forms.Timer(this.components);
-                        this.lblCierreZ = new Lui.Forms.Label();
+                        this.EtiquetaCierreZ = new Lui.Forms.Label();
                         this.label1 = new Lui.Forms.Label();
                         this.EntradaPv = new Lui.Forms.ComboBox();
                         this.BotonReiniciar = new Lui.Forms.Button();
                         this.label2 = new Lui.Forms.Label();
-                        this.lblEstadoServidor = new Lui.Forms.Label();
-                        this.lblUltimoCierreZ = new Lui.Forms.Label();
+                        this.EtiquetaEstadoServidor = new Lui.Forms.Label();
+                        this.EtiquetaUltimoCierreZ = new Lui.Forms.Label();
                         this.BotonIniciarDetener = new Lui.Forms.Button();
+                        this.Titulo = new Lui.Forms.Label();
+                        this.label3 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // BotonCierreZ
@@ -75,7 +77,7 @@ namespace Lazaro.WinMain.Misc
                         this.BotonCierreZ.ForeColor = System.Drawing.Color.Black;
                         this.BotonCierreZ.Image = null;
                         this.BotonCierreZ.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonCierreZ.Location = new System.Drawing.Point(188, 168);
+                        this.BotonCierreZ.Location = new System.Drawing.Point(512, 112);
                         this.BotonCierreZ.Name = "BotonCierreZ";
                         this.BotonCierreZ.Size = new System.Drawing.Size(100, 40);
                         this.BotonCierreZ.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -90,22 +92,22 @@ namespace Lazaro.WinMain.Misc
                         this.Timer1.Interval = 2000;
                         this.Timer1.Tick += new System.EventHandler(this.Timer1_Tick);
                         // 
-                        // lblCierreZ
+                        // EtiquetaCierreZ
                         // 
-                        this.lblCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EtiquetaCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblCierreZ.Location = new System.Drawing.Point(24, 136);
-                        this.lblCierreZ.Name = "lblCierreZ";
-                        this.lblCierreZ.Size = new System.Drawing.Size(164, 24);
-                        this.lblCierreZ.TabIndex = 3;
-                        this.lblCierreZ.Text = "Último cierre Z";
-                        this.lblCierreZ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaCierreZ.Location = new System.Drawing.Point(24, 224);
+                        this.EtiquetaCierreZ.Name = "EtiquetaCierreZ";
+                        this.EtiquetaCierreZ.Size = new System.Drawing.Size(144, 24);
+                        this.EtiquetaCierreZ.TabIndex = 3;
+                        this.EtiquetaCierreZ.Text = "Último cierre Z";
+                        this.EtiquetaCierreZ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(24, 56);
+                        this.label1.Location = new System.Drawing.Point(24, 112);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(164, 24);
+                        this.label1.Size = new System.Drawing.Size(144, 24);
                         this.label1.TabIndex = 51;
                         this.label1.Text = "Punto de venta";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -114,13 +116,13 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.EntradaPv.AlwaysExpanded = true;
                         this.EntradaPv.AutoSize = true;
-                        this.EntradaPv.Location = new System.Drawing.Point(188, 56);
+                        this.EntradaPv.Location = new System.Drawing.Point(168, 112);
                         this.EntradaPv.Name = "EntradaPv";
                         this.EntradaPv.SetData = null;
-                        this.EntradaPv.Size = new System.Drawing.Size(192, 22);
+                        this.EntradaPv.Size = new System.Drawing.Size(248, 22);
                         this.EntradaPv.TabIndex = 52;
                         this.EntradaPv.TextKey = "";
-                        this.EntradaPv.TextChanged += new System.EventHandler(this.txtPV_TextChanged);
+                        this.EntradaPv.TextChanged += new System.EventHandler(this.EntradaPV_TextChanged);
                         // 
                         // BotonReiniciar
                         // 
@@ -129,7 +131,7 @@ namespace Lazaro.WinMain.Misc
                         this.BotonReiniciar.ForeColor = System.Drawing.Color.Black;
                         this.BotonReiniciar.Image = null;
                         this.BotonReiniciar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonReiniciar.Location = new System.Drawing.Point(296, 252);
+                        this.BotonReiniciar.Location = new System.Drawing.Point(512, 208);
                         this.BotonReiniciar.Name = "BotonReiniciar";
                         this.BotonReiniciar.Size = new System.Drawing.Size(100, 40);
                         this.BotonReiniciar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -142,35 +144,34 @@ namespace Lazaro.WinMain.Misc
                         // 
                         this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.label2.Location = new System.Drawing.Point(24, 220);
+                        this.label2.Location = new System.Drawing.Point(24, 256);
                         this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(164, 24);
+                        this.label2.Size = new System.Drawing.Size(144, 24);
                         this.label2.TabIndex = 54;
                         this.label2.Text = "Estado del servidor";
                         this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblEstadoServidor
+                        // EtiquetaEstadoServidor
                         // 
-                        this.lblEstadoServidor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EtiquetaEstadoServidor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblEstadoServidor.Location = new System.Drawing.Point(184, 220);
-                        this.lblEstadoServidor.Name = "lblEstadoServidor";
-                        this.lblEstadoServidor.Size = new System.Drawing.Size(416, 24);
-                        this.lblEstadoServidor.TabIndex = 56;
-                        this.lblEstadoServidor.Text = "Desconocido";
-                        this.lblEstadoServidor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-                        this.lblEstadoServidor.TextChanged += new System.EventHandler(this.lblEstadoServidor_TextChanged);
+                        this.EtiquetaEstadoServidor.Location = new System.Drawing.Point(168, 256);
+                        this.EtiquetaEstadoServidor.Name = "EtiquetaEstadoServidor";
+                        this.EtiquetaEstadoServidor.Size = new System.Drawing.Size(328, 24);
+                        this.EtiquetaEstadoServidor.TabIndex = 56;
+                        this.EtiquetaEstadoServidor.Text = "Desconocido";
+                        this.EtiquetaEstadoServidor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // lblUltimoCierreZ
+                        // EtiquetaUltimoCierreZ
                         // 
-                        this.lblUltimoCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EtiquetaUltimoCierreZ.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.lblUltimoCierreZ.Location = new System.Drawing.Point(188, 136);
-                        this.lblUltimoCierreZ.Name = "lblUltimoCierreZ";
-                        this.lblUltimoCierreZ.Size = new System.Drawing.Size(412, 24);
-                        this.lblUltimoCierreZ.TabIndex = 55;
-                        this.lblUltimoCierreZ.Text = "Desconocido";
-                        this.lblUltimoCierreZ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.EtiquetaUltimoCierreZ.Location = new System.Drawing.Point(168, 224);
+                        this.EtiquetaUltimoCierreZ.Name = "EtiquetaUltimoCierreZ";
+                        this.EtiquetaUltimoCierreZ.Size = new System.Drawing.Size(328, 24);
+                        this.EtiquetaUltimoCierreZ.TabIndex = 55;
+                        this.EtiquetaUltimoCierreZ.Text = "Desconocido";
+                        this.EtiquetaUltimoCierreZ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // BotonIniciarDetener
                         // 
@@ -178,7 +179,7 @@ namespace Lazaro.WinMain.Misc
                         this.BotonIniciarDetener.ForeColor = System.Drawing.Color.Black;
                         this.BotonIniciarDetener.Image = null;
                         this.BotonIniciarDetener.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonIniciarDetener.Location = new System.Drawing.Point(188, 252);
+                        this.BotonIniciarDetener.Location = new System.Drawing.Point(512, 160);
                         this.BotonIniciarDetener.Name = "BotonIniciarDetener";
                         this.BotonIniciarDetener.Size = new System.Drawing.Size(100, 40);
                         this.BotonIniciarDetener.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -187,30 +188,57 @@ namespace Lazaro.WinMain.Misc
                         this.BotonIniciarDetener.Text = "Iniciar";
                         this.BotonIniciarDetener.Click += new System.EventHandler(this.BotonIniciarDetener_Click);
                         // 
+                        // Titulo
+                        // 
+                        this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.Titulo.Location = new System.Drawing.Point(24, 24);
+                        this.Titulo.Name = "Titulo";
+                        this.Titulo.Size = new System.Drawing.Size(584, 32);
+                        this.Titulo.TabIndex = 58;
+                        this.Titulo.Text = "Panel de control de impresora fiscal";
+                        this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        this.Titulo.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.GroupHeader;
+                        // 
+                        // label3
+                        // 
+                        this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.label3.Location = new System.Drawing.Point(24, 56);
+                        this.label3.Name = "label3";
+                        this.label3.Size = new System.Drawing.Size(584, 48);
+                        this.label3.TabIndex = 59;
+                        this.label3.Text = "Si aun no configuró su impresora fiscal, hágalo ahora desde el menú Comprobantes " +
+    "-> Tablas -> Puntos de venta.";
+                        // 
                         // Fiscal
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.ClientSize = new System.Drawing.Size(634, 372);
+                        this.ClientSize = new System.Drawing.Size(634, 371);
                         this.Controls.Add(this.EntradaPv);
                         this.Controls.Add(this.BotonIniciarDetener);
-                        this.Controls.Add(this.lblEstadoServidor);
-                        this.Controls.Add(this.lblUltimoCierreZ);
+                        this.Controls.Add(this.EtiquetaEstadoServidor);
+                        this.Controls.Add(this.EtiquetaUltimoCierreZ);
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.BotonReiniciar);
                         this.Controls.Add(this.label1);
-                        this.Controls.Add(this.lblCierreZ);
+                        this.Controls.Add(this.EtiquetaCierreZ);
                         this.Controls.Add(this.BotonCierreZ);
+                        this.Controls.Add(this.label3);
+                        this.Controls.Add(this.Titulo);
                         this.ForeColor = System.Drawing.Color.Black;
                         this.Name = "Fiscal";
                         this.Text = "Panel de impresora fiscal";
                         this.Load += new System.EventHandler(this.Fiscal_Load);
+                        this.Controls.SetChildIndex(this.Titulo, 0);
+                        this.Controls.SetChildIndex(this.label3, 0);
                         this.Controls.SetChildIndex(this.BotonCierreZ, 0);
-                        this.Controls.SetChildIndex(this.lblCierreZ, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaCierreZ, 0);
                         this.Controls.SetChildIndex(this.label1, 0);
                         this.Controls.SetChildIndex(this.BotonReiniciar, 0);
                         this.Controls.SetChildIndex(this.label2, 0);
-                        this.Controls.SetChildIndex(this.lblUltimoCierreZ, 0);
-                        this.Controls.SetChildIndex(this.lblEstadoServidor, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaUltimoCierreZ, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaEstadoServidor, 0);
                         this.Controls.SetChildIndex(this.BotonIniciarDetener, 0);
                         this.Controls.SetChildIndex(this.EntradaPv, 0);
                         this.ResumeLayout(false);
@@ -226,9 +254,11 @@ namespace Lazaro.WinMain.Misc
                 internal Lui.Forms.Label label2;
                 internal Lui.Forms.Button BotonReiniciar;
                 internal Lui.Forms.Button BotonIniciarDetener;
-                internal Lui.Forms.Label lblEstadoServidor;
-                internal Lui.Forms.Label lblUltimoCierreZ;
-                internal Lui.Forms.Label lblCierreZ;
+                internal Lui.Forms.Label EtiquetaEstadoServidor;
+                internal Lui.Forms.Label EtiquetaUltimoCierreZ;
+                internal Lui.Forms.Label EtiquetaCierreZ;
+                private Lui.Forms.Label Titulo;
+                private Lui.Forms.Label label3;
 
         }
 }

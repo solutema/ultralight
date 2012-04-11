@@ -223,26 +223,32 @@ namespace Lfc.Comprobantes.Facturas
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
                 {
-                        if (row.Fields["comprob.anulada"].ValueInt == 0) {
-                                switch (row.Fields["comprob.tipo_fac"].ValueString) {
-                                        case "NCA":
-                                        case "NCB":
-                                        case "NCC":
-                                        case "NCE":
-                                        case "NCM":
-                                                this.Contadores[0].AddValue(-row.Fields["comprob.total"].ValueDecimal);
-                                                break;
-                                        default:
-                                                this.Contadores[0].AddValue(row.Fields["comprob.total"].ValueDecimal);
-                                                break;
-                                }
-                        } else {
-                                // Si está anulada, la tacho
+                        if (row.Fields["comprob.anulada"].ValueInt != 0) {
+                                // Si está anulada, le cambio el nombre
                                 item.SubItems["personas.nombre_visible"].Text = "Anulada";
                         }
 
                         base.OnItemAdded(item, row);
                 }
+
+
+                protected override void OnEndRefreshList()
+                {
+                        qGen.Select SelTotalFac = this.SelectCommand("SUM", "comprob.total");
+                        SelTotalFac.WhereClause.AddWithValue("comprob.anulada", 0);
+                        SelTotalFac.WhereClause.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.NotIn, new string[] { "NCA", "NCB", "NCC", "NCE", "NCM" });
+                        decimal TotalFac = this.Connection.FieldDecimal(SelTotalFac);
+
+                        qGen.Select SelTotalCred = this.SelectCommand("SUM", "comprob.total");
+                        SelTotalCred.WhereClause.AddWithValue("comprob.anulada", 0);
+                        SelTotalCred.WhereClause.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "NCA", "NCB", "NCC", "NCE", "NCM" });
+                        decimal TotalCred = this.Connection.FieldDecimal(SelTotalCred);
+
+                        this.Contadores[0].SetValue(TotalFac - TotalCred);
+
+                        base.OnEndRefreshList();
+                }
+
 
                 protected override Lazaro.Pres.Spreadsheet.Row FormatRow(int itemId, Lfx.Data.Row row, Lazaro.Pres.Spreadsheet.Sheet sheet, Lazaro.Pres.FieldCollection useFields)
                 {

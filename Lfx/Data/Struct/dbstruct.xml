@@ -798,6 +798,7 @@
   
   <Table name="pvs" lsdet="1" label="Puntos de Venta">
     <Column name="id_pv" datatype="Serial" nullable="0" primary_key="1" />
+    <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
@@ -805,7 +806,8 @@
     <Column name="tipo" datatype="TinyInt" nullable="0" default="0" />
     <Column name="cuenta_iva" inputtype="Bool" nullable="0" default="1" />
     <Column name="cuenta_iibb" inputtype="Bool" nullable="0" default="1" />
-    <Column name="numero" datatype="TinyInt" nullable="0" default="0" />
+    <Column name="prefijo" datatype="SmallInt" nullable="0" default="0" />
+    <Column name="numero" datatype="SmallInt" nullable="0" default="0" />
     <Column name="estacion" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="tipo_fac" datatype="VarChar" nullable="0" lenght="50" />
     <Column name="carga" datatype="TinyInt" nullable="0" default="0" />

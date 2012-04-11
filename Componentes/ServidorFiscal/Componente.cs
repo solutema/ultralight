@@ -57,7 +57,7 @@ namespace ServidorFiscal
                 private System.Timers.Timer Programador;
                 private System.Timers.Timer Watchdog;
                 private System.DateTime Watchdog_LastOp = System.DateTime.Now;
-                private FormEstado FormEstado = null;
+                private Forms.Estado FormEstado = null;
                 public Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs UltimoEvento;
 
                 public ServidorFiscal()
@@ -78,9 +78,8 @@ namespace ServidorFiscal
                         }
 
                         Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(new Lbl.Personas.Usuario(Lfx.Workspace.Master.MasterConnection, 1));
-                        FormEstado = new FormEstado();
+                        FormEstado = new Forms.Estado();
                         FormEstado.ServidorAsociado = this;
-                        this.FormEstado.EtiquetaVersion.Text = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
 
                         try {
                                 using (System.Diagnostics.Process Yo = System.Diagnostics.Process.GetCurrentProcess()) {
@@ -130,17 +129,9 @@ namespace ServidorFiscal
                                         int NumeroPv = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lbl.Sys.Config.Empresa.SucursalActual.Id.ToString());
                                         if (NumeroPv > 0) {
                                                 m_PuntoDeVenta = new Lbl.Comprobantes.PuntoDeVenta(this.Impresora.DataBase, NumeroPv);
-                                                if (m_PuntoDeVenta.Existe) {
-                                                        this.Impresora.PuntoDeVenta = m_PuntoDeVenta;
-                                                        this.FormEstado.EtiquetaPV.Text = m_PuntoDeVenta.Numero.ToString();
-                                                        this.FormEstado.EtiquetaModeloImpresora.Text = m_PuntoDeVenta.ModeloImpresoraFiscal.ToString() + " en puerto COM" + m_PuntoDeVenta.Puerto.ToString() + " a " + m_PuntoDeVenta.Bps.ToString() + " bps";
-                                                        if (NumeroPv == 0)
-                                                                FormEstado.IconoBandeja.Text = "No hay definido un punto de venta para esta estación.";
-                                                        else
-                                                                FormEstado.IconoBandeja.Text = "Utilizando el punto de venta " + m_PuntoDeVenta.Numero.ToString();
-                                                } else {
+                                                if (m_PuntoDeVenta.Existe == false)
                                                         m_PuntoDeVenta = null;
-                                                }
+                                                this.Impresora.PuntoDeVenta = m_PuntoDeVenta;
                                         }
                                 }
 
@@ -158,17 +149,16 @@ namespace ServidorFiscal
                         UltimoEvento = e;
                         switch (e.EventType) {
                                 case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.Inicializada:
-                                        FormEstado.EtiquetaPV.Text = this.PV.ToString();
-                                        FormEstado.EtiquetaModeloImpresora.Text = Impresora.NombreModelo + " en puerto " + Impresora.PortName + " a " + Impresora.BaudRate.ToString() + " bps";
+                                        FormEstado.MostrarEstado("Inicializado");
                                         break;
                                 case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.Estado:
-                                        FormEstado.EtiquetaEstado.Text = e.MensajeEstado;
+                                        FormEstado.MostrarEstado(e.MensajeEstado);
                                         break;
                                 case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.InicioImpresion:
-                                        FormEstado.IconoBandeja.ShowBalloonTip(1000, "Servidor Fiscal", "Se inició el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
+                                        FormEstado.MostrarEstado("Se inició el proceso de impresión");
                                         break;
                                 case Lazaro.Impresion.Comprobantes.Fiscal.ImpresoraEventArgs.EventTypes.FinImpresion:
-                                        FormEstado.IconoBandeja.ShowBalloonTip(1000, "Servidor Fiscal", "Finalizó el proceso de impresión", System.Windows.Forms.ToolTipIcon.Info);
+                                        FormEstado.MostrarEstado("Finalizó el proceso de impresión");
                                         break;
                         }
                 }
@@ -224,12 +214,17 @@ namespace ServidorFiscal
                         }
 
                         Watchdog.Stop();
-                        using (IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction()) {
-                                qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
-                                Actualizar.Fields.AddWithValue("lsa", qGen.SqlFunctions.Now);
-                                this.Impresora.DataBase.Execute(Actualizar);
-                                Trans.Commit();
+                        try {
+                                using (IDbTransaction Trans = this.Impresora.DataBase.BeginTransaction()) {
+                                        qGen.Update Actualizar = new qGen.Update("pvs", new qGen.Where("id_pv", this.PV));
+                                        Actualizar.Fields.AddWithValue("lsa", qGen.SqlFunctions.Now);
+                                        this.Impresora.DataBase.Execute(Actualizar);
+                                        Trans.Commit();
+                                }
+                        } catch {
+                                // Nada
                         }
+
                         Lfx.Services.Task ProximaTarea = Lfx.Workspace.Master.DefaultScheduler.GetNextTask("fiscal" + this.PV.ToString());
                         if (ProximaTarea != null) {
                                 string Comando = ProximaTarea.Command;
@@ -238,16 +233,19 @@ namespace ServidorFiscal
                                 Lazaro.Impresion.Comprobantes.Fiscal.Respuesta Res;
                                 switch (SubComando) {
                                         case "REBOOT":
+                                                FormEstado.MostrarEstado("Reiniciando...");
                                                 Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Reiniciando;
                                                 //this.End(true);
                                                 break;
 
                                         case "END":
+                                                FormEstado.MostrarEstado("Cerrando...");
                                                 Impresora.EstadoServidor = Lazaro.Impresion.Comprobantes.Fiscal.EstadoServidorFiscal.Apagando;
                                                 //this.End(false);
                                                 break;
 
                                         case "CIERRE":
+                                                FormEstado.MostrarEstado("Imprimiendo cierre...");
                                                 Res = Impresora.ObtenerEstadoImpresora();
                                                 if (Res.EstadoFiscal.DocumentoFiscalAbierto) {
                                                         Res = Impresora.CancelarDocumentoFiscal();
@@ -272,6 +270,7 @@ namespace ServidorFiscal
                                                 break;
 
                                         case "CANCELAR":
+                                                FormEstado.MostrarEstado("Cancelando comprobante...");
                                                 string ItemCancelar = Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim().ToUpper();
                                                 switch (ItemCancelar) {
                                                         case "FISCAL":
@@ -282,6 +281,7 @@ namespace ServidorFiscal
                                                 break;
 
                                         case "IMPRIMIR":
+                                                FormEstado.MostrarEstado("Imprimiendo...");
                                                 int IdFactura = Lfx.Types.Parsing.ParseInt(Lfx.Types.Strings.GetNextToken(ref Comando, " ").Trim());
                                                 Res = Impresora.ObtenerEstadoImpresora();
 
@@ -311,6 +311,7 @@ namespace ServidorFiscal
 
                                                 if (Res.Error != Lazaro.Impresion.Comprobantes.Fiscal.ErroresFiscales.Ok) {
                                                         MostrarErrorFiscal(Res);
+                                                        FormEstado.MostrarEstado("Cancelando documento...");
                                                         if (Res.EstadoFiscal.DocumentoFiscalAbierto)
                                                                 Res = Impresora.CancelarDocumentoFiscal();
                                                         Programador.Start();

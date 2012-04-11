@@ -136,6 +136,9 @@ namespace Lbl.Sys
                         string NombrePlantilla;
                         if (nuevoPais.Id == 1)
                                 NombrePlantilla = System.IO.Path.Combine(CarpetaPlantillas, "Factura, dos copias en una hoja A4.ltx");
+                        else if (nuevoPais.Id == 6)
+                                // Plantilla especial para Paraguay
+                                NombrePlantilla = System.IO.Path.Combine(CarpetaPlantillas, "Facturas, página completa A4 IVA segregado.ltx");
                         else
                                 NombrePlantilla = System.IO.Path.Combine(CarpetaPlantillas, "Facturas, página completa A4.ltx");
 

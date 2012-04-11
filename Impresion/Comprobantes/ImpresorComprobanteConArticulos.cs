@@ -146,11 +146,62 @@ namespace Lazaro.Impresion.Comprobantes
                                         Res = null;
                                         for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
                                                 if (Res == null)
-                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].IvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].ImporteIvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
                                                 else
-                                                        Res += Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].IvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].ImporteIvaDiscriminado, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
                                         }
                                         return Res;
+
+                                case "ARTÍCULOS.IMPORTESCONIVA":
+                                case "ARTICULOS.IMPORTESCONIVA":
+                                        Res = null;
+                                        for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
+                                                if (Res == null)
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].ImporteConIva, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                                else
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].ImporteConIva, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                        }
+                                        return Res;
+
+                                case "ARTÍCULOS.UNITARIOSCONIVA":
+                                case "ARTICULOS.UNITARIOSCONIVA":
+                                        Res = null;
+                                        for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
+                                                if (Res == null)
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].UnitarioConIva, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                                else
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].UnitarioConIva, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                        }
+                                        return Res;
+
+                                case "ARTÍCULOS.IMPORTESCONIVA1":
+                                case "ARTÍCULOS.IMPORTESCONIVA2":
+                                case "ARTÍCULOS.IMPORTESCONIVA3":
+                                case "ARTÍCULOS.IMPORTESCONIVA4":
+                                case "ARTÍCULOS.IMPORTESCONIVA5":
+                                case "ARTÍCULOS.IMPORTESCONIVA6":
+                                case "ARTÍCULOS.IMPORTESCONIVA7":
+                                case "ARTÍCULOS.IMPORTESCONIVA8":
+                                case "ARTÍCULOS.IMPORTESCONIVA9":
+                                case "ARTICULOS.IMPORTESCONIVA1":
+                                case "ARTICULOS.IMPORTESCONIVA2":
+                                case "ARTICULOS.IMPORTESCONIVA3":
+                                case "ARTICULOS.IMPORTESCONIVA4":
+                                case "ARTICULOS.IMPORTESCONIVA5":
+                                case "ARTICULOS.IMPORTESCONIVA6":
+                                case "ARTICULOS.IMPORTESCONIVA7":
+                                case "ARTICULOS.IMPORTESCONIVA8":
+                                case "ARTICULOS.IMPORTESCONIVA9":
+                                        int NumeroIvaArt = Lfx.Types.Parsing.ParseInt(nombreCampo.Substring(nombreCampo.Length - 1));
+                                        Res = null;
+                                        for (int i = 0; i < this.Comprobante.Articulos.Count; i++) {
+                                                if (Res == null)
+                                                        Res = Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].ImporteConIvaAlicuota(NumeroIvaArt), Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                                else
+                                                        Res += System.Environment.NewLine + Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.Articulos[i].ImporteConIvaAlicuota(NumeroIvaArt), Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                        }
+                                        return Res;
+
 
                                 case "ARTICULOS.DETALLES":
                                 case "ARTÍCULOS.DETALLES":
@@ -237,6 +288,27 @@ namespace Lazaro.Impresion.Comprobantes
                                         else
                                                 return "N/A";
 
+                                case "COMPROBANTE.TOTALIVA1":
+                                case "COMPROBANTE.TOTALIVA2":
+                                case "COMPROBANTE.TOTALIVA3":
+                                case "COMPROBANTE.TOTALIVA4":
+                                case "COMPROBANTE.TOTALIVA5":
+                                case "COMPROBANTE.TOTALIVA6":
+                                case "COMPROBANTE.TOTALIVA7":
+                                case "COMPROBANTE.TOTALIVA8":
+                                case "COMPROBANTE.TOTALIVA9":
+                                case "TOTALIVA1":
+                                case "TOTALIVA2":
+                                case "TOTALIVA3":
+                                case "TOTALIVA4":
+                                case "TOTALIVA5":
+                                case "TOTALIVA6":
+                                case "TOTALIVA7":
+                                case "TOTALIVA8":
+                                case "TOTALVA9":
+                                        int NumeroIvaComprob = Lfx.Types.Parsing.ParseInt(nombreCampo.Substring(nombreCampo.Length - 1));
+                                        return Lfx.Types.Formatting.FormatCurrencyForPrint(this.Comprobante.IvaAlicuota(NumeroIvaComprob), Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal);
+                                
                                 case "RECARGO":
                                 case "COMPROBANTE.RECARGO":
                                         return Lfx.Types.Formatting.FormatNumberForPrint(this.Comprobante.Recargo, 2);

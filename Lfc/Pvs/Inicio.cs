@@ -49,7 +49,7 @@ namespace Lfc.Pvs
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("pvs.id_pv", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                        new Lazaro.Pres.Field("pvs.numero", "PV", Lfx.Data.InputFieldTypes.Integer, 96),
+                                        new Lazaro.Pres.Field("pvs.nombre", "PV", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lazaro.Pres.Field("pvs.tipo", "Tipo", Lfx.Data.InputFieldTypes.Text, 120),
                                         new Lazaro.Pres.Field("pvs.tipo_fac", "Comprobantes", Lfx.Data.InputFieldTypes.Text, 180),
 				        new Lazaro.Pres.Field("sucursales.nombre", "Sucursal", Lfx.Data.InputFieldTypes.Text, 160),

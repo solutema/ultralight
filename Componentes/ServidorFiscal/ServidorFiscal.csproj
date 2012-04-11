@@ -104,15 +104,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormEstado.Designer.cs">
-      <DependentUpon>FormEstado.cs</DependentUpon>
+    <Compile Include="Forms\Estado.Designer.cs">
+      <DependentUpon>Estado.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Componente.cs" />
-    <Compile Include="FormEstado.cs">
+    <Compile Include="Forms\Estado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormError.cs">
+    <Compile Include="Forms\Error.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\Resources1.Designer.cs">
@@ -120,12 +120,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormEstado.resx">
-      <DependentUpon>FormEstado.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Estado.resx">
+      <DependentUpon>Estado.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormError.resx">
-      <DependentUpon>FormError.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Error.resx">
+      <DependentUpon>Error.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

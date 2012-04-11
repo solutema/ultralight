@@ -78,35 +78,44 @@ namespace Lfc.Comprobantes
                                 Res.Message += "Seleccione un cliente." + Environment.NewLine;
                         }
 
-                        if (Lfx.Types.Parsing.ParseCurrency(EntradaTotal.Text) <= 0) {
+                        if (EntradaTotal.ValueDecimal <= 0) {
                                 Res.Success = false;
                                 Res.Message += "El comprobante debe tener un importe superior a $ 0.00." + Environment.NewLine;
                         }
 
-                        int PV = Lfx.Types.Parsing.ParseInt(EntradaPV.Text);
-                        System.Data.DataTable PVAdmitidos = this.Connection.Select(@"SELECT * FROM pvs WHERE (
+                        if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(EntradaPV.ValueInt) == false)
+                                // Borro la caché de PV, por las dudas
+                                Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.Clear();
+
+                        if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero.ContainsKey(EntradaPV.ValueInt) == false) {
+                                Res.Success = false;
+                                Res.Message += "Seleccione un punto de venta (PV) válido para este tipo de comprobante." + Environment.NewLine;
+                        } else {
+                                int PV = EntradaPV.ValueInt;
+                                System.Data.DataTable PVAdmitidos = this.Connection.Select(@"SELECT * FROM pvs WHERE (
                                 CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Letra + @",%'
                                 OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.TipoBase + @",%'
                                 OR CONCAT(',', tipo_fac, ',') LIKE '%," + this.Tipo.Nomenclatura + @",%'
-                                )AND tipo>0");
-                        if (PVAdmitidos.Rows.Count > 0) {
-                                bool Admitido = false;
-                                foreach (System.Data.DataRow PVAdmitido in PVAdmitidos.Rows) {
-                                        if (System.Convert.ToInt32(PVAdmitido["numero"]) == PV) {
-                                                Admitido = true;
-                                                break;
+                                ) AND tipo>0");
+                                if (PVAdmitidos.Rows.Count > 0) {
+                                        bool Admitido = false;
+                                        foreach (System.Data.DataRow PVAdmitido in PVAdmitidos.Rows) {
+                                                if (System.Convert.ToInt32(PVAdmitido["numero"]) == PV) {
+                                                        Admitido = true;
+                                                        break;
+                                                }
                                         }
-                                }
 
-                                if (Admitido == false) {
-                                        Res.Success = false;
-                                        Res.Message += "Seleccione un punto de venta (PV) válido para este tipo de comprobante." + Environment.NewLine;
+                                        if (Admitido == false) {
+                                                Res.Success = false;
+                                                Res.Message += "Seleccione un punto de venta (PV) válido para este tipo de comprobante." + Environment.NewLine;
+                                        }
                                 }
                         }
 
-                        Lbl.Comprobantes.ComprobanteConArticulos Registro = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
-                        if (Registro.Tipo.MueveExistencias != 0) {
-                                if (Registro.SituacionOrigen == null || Registro.SituacionDestino == null || Registro.SituacionOrigen.Id == Registro.SituacionDestino.Id) {
+                        Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
+                        if (Comprob.Tipo.MueveExistencias != 0) {
+                                if (Comprob.SituacionOrigen == null || Comprob.SituacionDestino == null || Comprob.SituacionOrigen.Id == Comprob.SituacionDestino.Id) {
                                         Res.Success = false;
                                         Res.Message += "Seleccione la situación de origen y de destino (usando el botón Más datos)." + Environment.NewLine;
                                 }

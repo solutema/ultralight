@@ -215,6 +215,9 @@ namespace Lfc.Comprobantes.Facturas
                         if (Comprob.Cliente == null)
                                 return new Lfx.Types.FailureOperationResult("Por favor seleccione un cliente.");
 
+                        if (Comprob.Tipo == null)
+                                return new Lfx.Types.FailureOperationResult("Por favor seleccione el tipo de comprobante.");
+
                         if (Lbl.Sys.Config.Pais.Id == 1) {
                                 // Verificaciones especiales para Argentina
                                 if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
