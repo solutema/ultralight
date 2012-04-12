@@ -169,6 +169,9 @@ namespace Lazaro.Impresion
                                 this.DocumentName = this.Elemento.ToString();
 
                         if (this.Plantilla != null) {
+                                if (this.Plantilla.Copias > 1)
+                                        this.PrinterSettings.Copies = (short)(this.Plantilla.Copias);
+
                                 if (this.Plantilla.Margenes != null)
                                         this.DefaultPageSettings.Margins = this.Plantilla.Margenes;
                                 else

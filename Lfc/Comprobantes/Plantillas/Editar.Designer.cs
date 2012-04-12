@@ -295,6 +295,7 @@ namespace Lfc.Comprobantes.Plantillas
                         // 
                         this.EntradaCopias.DataType = Lui.Forms.DataTypes.Integer;
                         this.EntradaCopias.Location = new System.Drawing.Point(152, 520);
+                        this.EntradaCopias.MaxLength = 2;
                         this.EntradaCopias.Name = "EntradaCopias";
                         this.EntradaCopias.Size = new System.Drawing.Size(56, 24);
                         this.EntradaCopias.TabIndex = 21;
