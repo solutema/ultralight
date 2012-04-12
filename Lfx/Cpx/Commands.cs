@@ -153,7 +153,8 @@ namespace Lfx.Cpx
         public class EmbossAndEncodeCommand2 : Command
         {
                 public string CardNumber, ExpDate, CardOwner, Track2;
-                public int Cvc;
+                public int Cvc {get;set;}
+                public string BackText { get; set; }
 
                 public EmbossAndEncodeCommand2(string cardNumber, string expDate, string cardOwner, int cvc, string track2)
                 {
@@ -169,11 +170,17 @@ namespace Lfx.Cpx
                         if (this.CardOwner.Length > 23)
                                 this.CardOwner = this.CardOwner.Substring(0, 23);
 
-                        string DataBlock = @"#DCC##CMP#;" + Track2 + @"?#GRD#0""
+                        if (string.IsNullOrEmpty(this.BackText))
+                                this.BackText = CardNumber.Substring(CardNumber.Length - 4, 4) + " " + Cvc.ToString();
+
+                        string DataBlock = @"#DCC#";
+                        if (Track2 != null)
+                                DataBlock += @"#CMP#;" + Track2 + @"?";
+                        DataBlock += @"#GRD#0""
 " + CardNumber + @"""
 " + ExpDate + @"""
 " + CardOwner + @"""
-" + CardNumber.Substring(CardNumber.Length - 4, 4) + " " + Cvc.ToString() + @"""
+" + BackText + @"""
 #END#@@@@@@";
                         //;" + Track2 + @"?""
                         return DataBlock;

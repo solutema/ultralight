@@ -821,6 +821,7 @@
     <Index table="pvs" name="PRIMARY" columns="id_pv" unique="1" primary="1" />
     <Index table="pvs" name="pvs_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
     <Index table="pvs" name="pvs_id_impresora" columns="id_impresora" unique="0" primary="0" />
+    <Index table="pvs" name="pvs_prefijo_numero" columns="prefijo,numero" unique="1" primary="0" />
   </Table>
   <Constraint name="pvs_id_sucursal" table="pvs" column="id_sucursal" reference_table="sucursales" reference_column="id_sucursal" />
   <Constraint name="pvs_id_impresora" table="pvs" column="id_impresora" reference_table="impresoras" reference_column="id_impresora" />

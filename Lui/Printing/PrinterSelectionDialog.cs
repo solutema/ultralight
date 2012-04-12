@@ -95,14 +95,14 @@ namespace Lui.Printing
 
 
                 public override Lfx.Types.OperationResult Ok()
-		{
-			if(Listado.SelectedItems != null) {
-				m_Resultado = Listado.SelectedItems[0].Tag as Lbl.Impresion.Impresora;
-			}
-			this.DialogResult = DialogResult.OK;
-			this.Hide();
+                {
+                        if (Listado.SelectedItems != null && Listado.SelectedItems.Count > 0)
+                                m_Resultado = Listado.SelectedItems[0].Tag as Lbl.Impresion.Impresora;
+
+                        this.DialogResult = DialogResult.OK;
+                        this.Hide();
                         return base.Ok();
-		}
+                }
 
 
 		private void Listado_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)

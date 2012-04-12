@@ -52,7 +52,7 @@ namespace Lfc.Bancos.Chequeras
                         int Desde = EntradaDesde.ValueInt;
                         int Hasta = EntradaHasta.ValueInt;
 
-                        if ((Desde <= Hasta) || (Hasta <= 0) || (Hasta - Desde > 10000))
+                        if ((Desde >= Hasta) || (Hasta <= 0) || (Hasta - Desde > 10000))
                                 return new Lfx.Types.FailureOperationResult("Debe escribir la numeración de la chequera (desde y hasta)");
 
                         if(EntradaBanco.Elemento == null)
