@@ -92,9 +92,9 @@ namespace Lfc.Comprobantes.Compra
                         EntradaProveedor.Elemento = Fac.Cliente;
 
                         if (Fac.FormaDePago != null)
-                                EntradaFormaPago.TextKey = Fac.FormaDePago.Id.ToString();
+                                EntradaFormaPago.ValueInt = Fac.FormaDePago.Id;
                         else
-                                EntradaFormaPago.TextKey = "0";
+                                EntradaFormaPago.ValueInt = 0;
 
                         EntradaFormaPago.Enabled = Fac.Tipo.EsFactura;
 

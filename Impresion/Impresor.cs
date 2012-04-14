@@ -43,6 +43,8 @@ namespace Lazaro.Impresion
                 protected Lfx.Data.Connection m_DataBase = null;
                 public IDbTransaction Transaction = null;
 
+                public int PaginaNumero { get; set; }
+
                 public Impresor(IDbTransaction transaction)
                 {
                         this.Transaction = transaction;

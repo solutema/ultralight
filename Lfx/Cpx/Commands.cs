@@ -174,15 +174,18 @@ namespace Lfx.Cpx
                                 this.BackText = CardNumber.Substring(CardNumber.Length - 4, 4) + " " + Cvc.ToString();
 
                         string DataBlock = @"#DCC#";
-                        if (Track2 != null)
+                        if (string.IsNullOrEmpty(Track2) == false)
                                 DataBlock += @"#CMP#;" + Track2 + @"?";
+
                         DataBlock += @"#GRD#0""
 " + CardNumber + @"""
 " + ExpDate + @"""
 " + CardOwner + @"""
 " + BackText + @"""
-#END#@@@@@@";
-                        //;" + Track2 + @"?""
+#END#@@@@@";
+
+                        if (string.IsNullOrEmpty(Track2) == false)
+                                DataBlock += "@";
                         return DataBlock;
                 }
         }

@@ -66,6 +66,8 @@ namespace Lazaro.WinMain.Misc
                         EtiquetaFramework.Text = Lfx.Environment.SystemInformation.RuntimeName;
                         if (System.Runtime.InteropServices.Marshal.SizeOf(typeof(System.IntPtr)) == 8)
                                 EtiquetaFramework.Text += " (64 bits)";
+
+                        EtiquetaAlmacen.Text = Lfx.Workspace.Master.ServerVersion;
                 }
 
 
@@ -142,6 +144,15 @@ namespace Lazaro.WinMain.Misc
                 private void EtiquetaActualizar_Click(object sender, EventArgs e)
                 {
                         this.AplicarActualizacion();
+                }
+
+                private void EtiquetaAlmacen_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        if (Lfx.Data.DataBaseCache.DefaultCache.ServerName == "localhost" || Lfx.Data.DataBaseCache.DefaultCache.ServerName == "127.0.0.1") {
+                                Help.ShowHelp(this, "http://www.lazarogestion.com/servidor/?curver=" + EtiquetaAlmacen.Text);
+                        } else {
+                                Lfx.Workspace.Master.RunTime.Toast("Está accediendo al almacén de datos a través de la red. Puede ver más información sobre el almacén de datos si utiliza esta misma opción en el equipo que tiene lo instalado (" + Lfx.Data.DataBaseCache.DefaultCache.ServerName  + ").", "Aviso");
+                        }
                 }
 	}
 }

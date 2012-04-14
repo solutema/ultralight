@@ -114,8 +114,72 @@ namespace Cargador
                                         System.Console.WriteLine("Ignorando " + ArchivoNuevo);
                                 }
                         }
+
+                        if (Portable == false && Platform == Platforms.Windows) {
+                                try {
+                                        ActualizarDatosDeDesinstalacion();
+                                } catch {
+                                        // Nada
+                                }
+                        }
+
                         
                         EjecutarLazaro(null);
+                }
+
+
+                private static void ActualizarDatosDeDesinstalacion()
+                {
+                        /* string[] DatosDesins = System.IO.Directory.GetFiles(ApplicationFolder, "unins0*.dat");
+                        foreach (string DatosDesin in DatosDesins) {
+                                using (System.IO.FileStream Fs = new System.IO.FileStream(DatosDesin, System.IO.FileMode.Open))
+                                using (System.IO.BinaryWriter Br = new System.IO.BinaryWriter(Fs)) {
+                                        Br.Seek(64, System.IO.SeekOrigin.Begin);
+                                        Br.Write(System.Text.Encoding.Default.GetBytes("{676653C6-5655-45DD-96F6-CFBB0EC6B5B0}"));
+                                }
+                        }
+
+                        // Lo mismo, pero con el desinstalador de MySQL
+                        DatosDesins = System.IO.Directory.GetFiles(@"C:\mysql", "unins0*.dat");
+                        foreach (string DatosDesin in DatosDesins) {
+                                using (System.IO.FileStream Fs = new System.IO.FileStream(DatosDesin, System.IO.FileMode.Open))
+                                using (System.IO.BinaryWriter Br = new System.IO.BinaryWriter(Fs)) {
+                                        Br.Seek(64, System.IO.SeekOrigin.Begin);
+                                        Br.Write(System.Text.Encoding.Default.GetBytes("{B664C9CC-F8CB-405D-830D-30EA1D3809BA}"));
+                                }
+                        } */
+
+                        // El instalador ha cambiado de nombre en varias ocasiones
+                        // Además, el nombre que se muestra puede ser viejo
+                        using (Microsoft.Win32.RegistryKey SeccionUninstall = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true)) {
+                                if (SeccionUninstall == null)
+                                        return;
+
+                                string[] ProgramasInstalados = SeccionUninstall.GetSubKeyNames();
+
+                                Dictionary<string, string> SearchAndReplace = new Dictionary<string, string>() 
+                                {
+                                        { @"Servidor MySQL_is1", @"B664C9CC-F8CB-405D-830D-30EA1D3809BA_is1" },
+                                        { @"Lázaro_is1", @"676653C6-5655-45DD-96F6-CFBB0EC6B5B0_is1" },
+                                        { @"Sistema Lázaro_is1", @"676653C6-5655-45DD-96F6-CFBB0EC6B5B0_is1" },
+                                        { @"Lázaro 1.0_is1", @"676653C6-5655-45DD-96F6-CFBB0EC6B5B0_is1" },
+                                        { @"Lázaro 2011_is1", @"676653C6-5655-45DD-96F6-CFBB0EC6B5B0_is1" },
+                                        { @"Lázaro 2012_is1", @"676653C6-5655-45DD-96F6-CFBB0EC6B5B0_is1" }
+                                };
+
+                                foreach (string Programa in ProgramasInstalados) {
+                                        if (SearchAndReplace.ContainsKey(Programa)) {
+                                                string NuevoNombre = SearchAndReplace[Programa];
+                                                RenameSubKey(SeccionUninstall, Programa, NuevoNombre);
+                                        }
+                                }
+                        }
+
+                        try {
+                                Microsoft.Win32.Registry.LocalMachine.SetValue(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\676653C6-5655-45DD-96F6-CFBB0EC6B5B0_is1\DisplayName", "Lázaro 2012");
+                        } catch {
+                                // Nada
+                        }
                 }
 
 
@@ -130,6 +194,32 @@ namespace Cargador
                                 return true;
                         } catch {
                                 return false;
+                        }
+                }
+
+
+                public static void RenameSubKey(Microsoft.Win32.RegistryKey parentKey, string subKeyName, string newSubKeyName)
+                {
+                        using (Microsoft.Win32.RegistryKey Src = parentKey.OpenSubKey(subKeyName, false))
+                        using (Microsoft.Win32.RegistryKey Dest = parentKey.CreateSubKey(newSubKeyName)) {
+                                CopyKeyRecursive(Src, Dest);
+                        }
+                        parentKey.DeleteSubKeyTree(subKeyName);
+                }
+
+
+                private static void CopyKeyRecursive(Microsoft.Win32.RegistryKey sourceKey, Microsoft.Win32.RegistryKey destKey)
+                {
+                        foreach (string ValueName in sourceKey.GetValueNames()) {
+                                object Val = sourceKey.GetValue(ValueName);
+                                destKey.SetValue(ValueName, Val, sourceKey.GetValueKind(ValueName));
+                        }
+
+                        foreach (string SubKeyName in sourceKey.GetSubKeyNames()) {
+                                using (Microsoft.Win32.RegistryKey sourceSubKey = sourceKey.OpenSubKey(SubKeyName, false))
+                                using (Microsoft.Win32.RegistryKey destSubKey = destKey.CreateSubKey(SubKeyName)) {
+                                        CopyKeyRecursive(sourceSubKey, destSubKey);
+                                }
                         }
                 }
 

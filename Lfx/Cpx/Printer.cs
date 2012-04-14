@@ -59,7 +59,7 @@ namespace Lfx.Cpx
                 public Printer(string portBame)
                 {
                         Impresora = new System.IO.Ports.SerialPort(portBame);
-                        Impresora.Encoding = System.Text.Encoding.ASCII;
+                        Impresora.Encoding = System.Text.Encoding.Default;
                 }
 
                 public void SendCommands(CommandList commands)

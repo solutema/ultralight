@@ -116,7 +116,7 @@ namespace Lfc.Inicio
                                         PanelConsejo.Descripcion = "Puede navegar todos los formularios usando sólo el teclado. Utilice las teclas 'Arriba' y 'Abajo' para moverse al campo anterior o siguiente, la tecla 'Esc' para cerrar un formulario o la tecla 'Entrar' para seleccionar un elemento de una lista.";
                                         break;
                                 case 7:
-                                        PanelConsejo.Descripcion = "Lázaro recibe actualizaciones y mejoras frecuentemente. Si cuenta con una conexión a Internet en este equipo las actualizaciones se descargan e instalan automáticamente.";
+                                        PanelConsejo.Descripcion = "Lázaro recibe actualizaciones y mejoras frecuentemente. Si no cuenta con una conexión a Internet en este equipo, le recomendamos que descargue e instale las actualizaciones de Lázaro frecuentemente desde la página web.";
                                         break;
                                 case 8:
                                 case 9:
