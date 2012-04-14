@@ -277,7 +277,7 @@ namespace Lazaro.WinMain.Config
                                 return new Lfx.Types.SuccessOperationResult("Se realizó una prueba de la configuración del almacén de datos. Todo parece estar en orden. Haga clic en 'Siguiente' para continuar.");
                         } catch (Exception ex) {
                                 EtiquetaPruebaError.Text = "El mensaje de error es: " + ex.Message;
-                                return new Lfx.Types.SuccessOperationResult("No se pudo conectar al almacén de datos proporcionado. Haga clic en el botón 'Anterior' para ir a la pantalla anterior y volver a intentarlo.");
+                                return new Lfx.Types.FailureOperationResult("No se pudo conectar al almacén de datos proporcionado. Haga clic en el botón 'Anterior' para ir a la pantalla anterior y volver a intentarlo.");
                         }
                 }
 
@@ -482,13 +482,19 @@ namespace Lazaro.WinMain.Config
                                         try {
                                                 Cliente.DownloadFile("http://www.lazarogestion.com/aslnlwc/" + InstaladorMySQL, CarpetaDescarga + InstaladorMySQL);
                                         } catch (Exception ex) {
-                                                progreso.ChangeStatus("Error al descargar " + ex.Message);
+                                                progreso.ChangeStatus("Error al descargar: " + ex.Message);
                                         }
                                 }
                         }
 
-                        progreso.ChangeStatus("Instalando...");
-                        Lfx.Environment.Shell.Execute(CarpetaDescarga + InstaladorMySQL, "/verysilent /sp- /norestart", System.Diagnostics.ProcessWindowStyle.Normal, true);
+                        if (System.IO.File.Exists(CarpetaDescarga + InstaladorMySQL)) {
+                                progreso.ChangeStatus("Instalando...");
+                                try {
+                                        Lfx.Environment.Shell.Execute(CarpetaDescarga + InstaladorMySQL, "/verysilent /sp- /norestart", System.Diagnostics.ProcessWindowStyle.Normal, true);
+                                } catch (Exception ex) {
+                                        progreso.ChangeStatus("Error al instalar: " + ex.Message);
+                                }
+                        }
 
                         Lfx.Data.DataBaseCache.DefaultCache.ServerName = "localhost";
                         Lfx.Data.DataBaseCache.DefaultCache.UserName = "root";
@@ -501,9 +507,10 @@ namespace Lazaro.WinMain.Config
                         if (Res.Success) {
                                 if (Lfx.Workspace.Master.IsPrepared() == false)
                                         Lfx.Workspace.Master.Prepare(progreso);
+                                progreso.End();
+                        } else {
+                                Lfx.Workspace.Master.RunTime.Toast("No se puede descargar o instalar el servidor SQL. Puede volver atrás para intentarlo nuevamente o salir para instalarlo de forma manual.", "Error");
                         }
-
-                        progreso.End();
                 }
 
                 private void BotonDetectar_Click(object sender, EventArgs e)
