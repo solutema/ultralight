@@ -108,6 +108,10 @@
     <Compile Include="Comprobantes\Lote.cs" />
     <Compile Include="CuentasCorrientes\Movimiento.cs" />
     <Compile Include="Entidades\ClaveUnica.cs" />
+    <Compile Include="Notificaciones\Administrador.cs" />
+    <Compile Include="Notificaciones\INotificacion.cs" />
+    <Compile Include="Notificaciones\NotificacionMemoria.cs" />
+    <Compile Include="Notificaciones\NotificacionRegistro.cs" />
     <Compile Include="Entidades\Pais.cs" />
     <Compile Include="Estados.cs" />
     <Compile Include="IEstadosEstandar.cs" />
@@ -126,6 +130,7 @@
     <Compile Include="Impuestos\CondicionesFrenteAlIva.cs" />
     <Compile Include="Impuestos\SituacionIva.cs" />
     <Compile Include="ListaIds.cs" />
+    <Compile Include="Notificaciones\UsuarioConectado.cs" />
     <Compile Include="Personas\Claves\Cpf.cs" />
     <Compile Include="Personas\Claves\Cuit.cs" />
     <Compile Include="IdentificadorUnico.cs" />

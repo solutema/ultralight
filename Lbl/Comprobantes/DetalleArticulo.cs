@@ -308,7 +308,7 @@ namespace Lbl.Comprobantes
                         if (this.ElementoPadre == null) {
                                 return 0;
                         } else if (ElementoPadre is Lbl.Comprobantes.ComprobanteConArticulos) {
-                                Lbl.Comprobantes.ComprobanteConArticulos Comprob = ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
+                                //Lbl.Comprobantes.ComprobanteConArticulos Comprob = ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
                                 Lbl.Impuestos.Alicuota AlicArticulo;
                                 if (this.Articulo == null)
                                         AlicArticulo = Lbl.Sys.Config.Empresa.AlicuotaPredeterminada;
@@ -336,7 +336,7 @@ namespace Lbl.Comprobantes
                         if (this.ElementoPadre == null) {
                                 return 0;
                         } else if (ElementoPadre is Lbl.Comprobantes.ComprobanteConArticulos) {
-                                Lbl.Comprobantes.ComprobanteConArticulos Comprob = ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
+                                //Lbl.Comprobantes.ComprobanteConArticulos Comprob = ElementoPadre as Lbl.Comprobantes.ComprobanteConArticulos;
                                 Lbl.Impuestos.Alicuota AlicArticulo;
                                 if (this.Articulo == null)
                                         AlicArticulo = Lbl.Sys.Config.Empresa.AlicuotaPredeterminada;

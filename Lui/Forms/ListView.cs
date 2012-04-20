@@ -39,9 +39,31 @@ namespace Lui.Forms
         /// <summary>
         /// Provee un ListView mejorado que permite que se pase al siguiente control cuando se llega hasta el último ítem con la tecla cursor-abajo.
         /// </summary>
-        public class ListView : System.Windows.Forms.ListView
+        public class ListView : System.Windows.Forms.ListView, Lui.Forms.IEditableControl
         {
                 private ListViewItem ItemUnderMouse = null;
+
+
+                public string FieldName { get; set; }
+                public bool ReadOnly { get; set; }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool TemporaryReadOnly { get; set; }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool Changed { get; set; }
+
+                /// <summary>
+                /// IDataControl
+                /// </summary>
+                [EditorBrowsable(EditorBrowsableState.Never), System.ComponentModel.Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+                public bool ShowChanged { get; set; }
 
                 public ListView()
                 {

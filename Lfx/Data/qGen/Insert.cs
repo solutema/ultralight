@@ -36,6 +36,8 @@ namespace qGen
         [Serializable]
         public class Insert : TableCommand
         {
+                public bool OnDuplicateKeyUpdate { get; set; }
+
                 public Insert()
                         : base() { }
 
@@ -100,6 +102,18 @@ namespace qGen
 
                         }
                         baseCommand.CommandText += @"INSERT INTO """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
+
+                        if (this.OnDuplicateKeyUpdate) {
+                                string UpdateClause = null;
+                                foreach (Lfx.Data.Field ThisField in this.Fields) {
+                                        if (UpdateClause == null)
+                                                UpdateClause = @" ON DUPLICATE KEY UPDATE """ + ThisField.ColumnName + @"""=VALUES(""" + ThisField.ColumnName + @""")";
+                                        else
+                                                UpdateClause += @", """ + ThisField.ColumnName + @"""=VALUES(""" + ThisField.ColumnName + @""")";
+                                }
+
+                                baseCommand.CommandText += UpdateClause;
+                        }
                 }
 
                 private string SqlText(SqlModes sqlMode)
@@ -164,10 +178,25 @@ namespace qGen
                                         ParamList.Append(", " + ParamValue);
                         }
 
-                        if (valuesOnly)
+                        if (valuesOnly) {
                                 return "(" + ParamList.ToString() + ")";
-                        else
-                                return @"INSERT INTO """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
+                        } else {
+                                string Res = @"INSERT INTO """ + this.Tables + @""" (" + FieldList.ToString() + ") VALUES (" + ParamList.ToString() + ")";
+
+                                if (this.OnDuplicateKeyUpdate) {
+                                        string UpdateClause = null;
+                                        foreach (Lfx.Data.Field ThisField in this.Fields) {
+                                                if (UpdateClause == null)
+                                                        UpdateClause = @" ON DUPLICATE KEY UPDATE """ + ThisField.ColumnName + @"""=VALUES(""" + ThisField.ColumnName + @""")";
+                                                else
+                                                        UpdateClause += @", """ + ThisField.ColumnName + @"""=VALUES(""" + ThisField.ColumnName + @""")";
+                                        }
+
+                                        Res += UpdateClause;
+                                }
+
+                                return Res;
+                        }
                 }
 
                 public override string ToString()

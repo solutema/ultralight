@@ -55,6 +55,7 @@ namespace ServidorFiscal.Forms
                 {
                         if (this.InvokeRequired) {
                                 MethodInvoker Mi = delegate { this.MostrarEstado(texto); };
+				Mi.Invoke();
                                 return;
                         }
 

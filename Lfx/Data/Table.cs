@@ -87,5 +87,10 @@ namespace Lfx.Data
                                 return Lfx.Workspace.Master.Structure.TagList[this.Name];
 			}
                 }
+
+                public override string ToString()
+                {
+                        return this.Name;
+                }
         }
 }

@@ -60,12 +60,11 @@ namespace Lfc.Cajas
                                 ElementoTipo = typeof(Lbl.Cajas.Caja),
 
                                 TableName = "cajas",
-                                KeyColumn = new Lazaro.Pres.Field("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
+                                KeyColumn = new Lazaro.Pres.Field("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Serial, 96),
                                 OrderBy = "cajas.nombre",
 
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
-				        new Lazaro.Pres.Field("cajas.id_caja", "Cód.", Lfx.Data.InputFieldTypes.Relation, 96),
 				        new Lazaro.Pres.Field("cajas.id_banco", "Banco", Lfx.Data.InputFieldTypes.Relation, 120),
 				        new Lazaro.Pres.Field("cajas.numero", "Número", Lfx.Data.InputFieldTypes.Text, 120),
 				        new Lazaro.Pres.Field("cajas.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 240),
@@ -79,11 +78,13 @@ namespace Lfc.Cajas
 
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency, "$", null));
                         this.Contadores.Add(new Contador("Activos", Lui.Forms.DataTypes.Currency, "$", null));
+
+                        this.Connection.Tables["bancos"].PreLoad();
                 }
 
                 protected override void OnItemAdded(ListViewItem item, Lfx.Data.Row row)
 		{
-                        int IdBanco = Lfx.Types.Parsing.ParseInt(item.SubItems[2].Text);
+                        int IdBanco = Lfx.Types.Parsing.ParseInt(item.SubItems["cajas.id_banco"].Text);
                         if (IdBanco != 0)
                                 item.SubItems["cajas.id_banco"].Text = this.Connection.Tables["bancos"].FastRows[IdBanco].Fields["nombre"].ValueString;
 

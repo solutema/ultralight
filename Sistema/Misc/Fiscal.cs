@@ -64,7 +64,7 @@ namespace Lazaro.WinMain.Misc
 
                                 if (EntradaPv.SetData.Length > 0) {
                                         //Busco el PV para esta estación, en esta sucursal
-                                        this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " AND estacion='" + System.Environment.MachineName.ToUpperInvariant() + "'");
+                                        this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " AND estacion='" + Lfx.Environment.SystemInformation.MachineName + "'");
 
                                         if (this.Pv == 0)
                                                 //Busco el PV para alguna estación, en esta sucursal

@@ -132,7 +132,7 @@ namespace Lfc.Comprobantes.Impresoras
 
                 private void EntradaEstacion_TextChanged(object sender, EventArgs e)
                 {
-                        BotonSeleccionarDispositivo.Visible = EntradaEstacion.Text.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant();
+                        BotonSeleccionarDispositivo.Visible = EntradaEstacion.Text.ToUpperInvariant() == Lfx.Environment.SystemInformation.MachineName;
                 }
 	}
 }

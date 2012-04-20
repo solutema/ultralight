@@ -1003,7 +1003,7 @@
   <Constraint name="sys_labels_values_id_label" table="sys_labels_values" column="id_label" reference_table="sys_labels" reference_column="id_label" />
 
   
-  <Table name="sys_log" label="Registro de Actividades">
+  <Table name="sys_log" label="Registro de actividades">
     <Column name="id_log" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="estacion" datatype="VarChar" nullable="0" lenght="200" />
@@ -1017,6 +1017,45 @@
     <Index table="sys_log" name="sys_log_item_id_tabla_comando" columns="item_id,tabla,comando" unique="0" primary="0" />
   </Table>
   <Constraint name="sys_log_usuario" table="sys_log" column="usuario" reference_table="personas" reference_column="id_persona" />
+
+  <Table name="sys_mensajeria" label="Notificaciones: estados">
+    <Column name="id_mensajeria" inputtype="Serial" />
+    <Column name="id_usuario" inputtype="Relation" nullable="0" />
+    <Column name="estacion" inputtype="Text" lenght="200" nullable="0" />
+    <Column name="nombre" inputtype="Text" lenght="200" nullable="0" />
+    <Column name="estado" inputtype="TinyInt" nullable="0" />
+    <Column name="fecha" inputtype="DateTime" nullable="0" />
+    <Column name="id_ultimomensaje" inputtype="Relation" nullable="1" />
+    <Index table="sys_mensajeria" name="PRIMARY" columns="id_mensajeria" unique="1" primary="1" />
+    <Index table="sys_mensajeria" name="sys_mensajeria_id_usuario" columns="id_usuario" unique="1"  />
+    <Index table="sys_mensajeria" name="sys_mensajeria_id_ultimomensaje" columns="id_ultimomensaje" />
+  </Table>
+  <Constraint name="sys_mensajeria_id_ultimomensaje" table="sys_mensajeria" column="id_ultimomensaje" reference_table="sys_mensajes" reference_column="id_mensaje" />
+
+
+  <Table name="sys_mensajes" label="Notificaciones: mensajes">
+    <Column name="id_mensaje" inputtype="Serial" />
+    <Column name="id_remitente" inputtype="Relation" nullable="0" />
+    <Column name="id_destinatario" inputtype="Relation" nullable="1" />
+    <Column name="id_grupo" inputtype="Relation" nullable="1" />
+    <Column name="fecha" inputtype="DateTime" nullable="0" />
+    <Column name="fecha_recibo" inputtype="DateTime" nullable="1" />
+    <Column name="destino" inputtype="Text" nullable="0" lenght="200" />
+    <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
+    <Column name="obs" inputtype="Memo" nullable="1" />
+    <Column name="estado" inputtype="TinyInt" nullable="0" />
+    <Column name="flags" inputtype="TinyInt" nullable="0" />
+    <Column name="estacion_envia" inputtype="Text" lenght="200" nullable="0" />
+    <Column name="estacion_recibe" inputtype="Text" lenght="200" nullable="0" />
+    <Index table="sys_mensajes" name="PRIMARY" columns="id_mensaje" unique="1" primary="1" />
+    <Index table="sys_mensajes" name="sys_mensajes_id_remitente" columns="id_remitente" />
+    <Index table="sys_mensajes" name="sys_mensajes_id_destinatario" columns="id_destinatario" />
+    <Index table="sys_mensajes" name="sys_mensajes_id_grupo" columns="id_grupo" />
+  </Table>
+  <Constraint name="sys_mensajes_id_remitente" table="sys_mensajes" column="id_remitente" reference_table="personas" reference_column="id_persona" />
+  <Constraint name="sys_mensajes_id_destinatario" table="sys_mensajes" column="id_destinatario" reference_table="personas" reference_column="id_persona" />
+  <Constraint name="sys_mensajes_id_grupo" table="sys_mensajes" column="id_grupo" reference_table="personas_grupos" reference_column="id_grupo" />
+
   
   <Table name="sys_plantillas" lsdet="1" label="Plantillas de Comprobantes">
     <Column name="id_plantilla" datatype="Serial" nullable="0" primary_key="1" />
@@ -1039,6 +1078,7 @@
     <Index table="sys_plantillas" name="PRIMARY" columns="id_plantilla" unique="1" primary="1" />
     <Index table="sys_plantillas" name="sys_plantillas_codigo" columns="codigo" unique="1" primary="0" />
   </Table>
+  
 
   <Table name="sys_plantillas_imagenes" label="Imágenes de Plantillas">
     <Column name="id_plantilla" inputtype="Relation" nullable="0" primary_key="1" default="0" />

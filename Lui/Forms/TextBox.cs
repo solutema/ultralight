@@ -513,7 +513,7 @@ namespace Lui.Forms
 		{
                         qGen.Insert Comando = new qGen.Insert("sys_quickpaste");
 			Comando.Fields.AddWithValue("texto", this.Text);
-			Comando.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
+			Comando.Fields.AddWithValue("estacion", Lfx.Environment.SystemInformation.MachineName);
 			Comando.Fields.AddWithValue("usuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
 			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
                         Lfx.Workspace.Master.MasterConnection.Execute(Comando);

@@ -78,7 +78,7 @@ namespace Lfx.Components
                 }
 
 
-                public static Lfx.Components.Function LoadComponent(string componentName)
+                /* public static Lfx.Components.Function LoadComponent(string componentName)
 		{
 			return LoadComponent(componentName, componentName);
 		}
@@ -89,9 +89,11 @@ namespace Lfx.Components
 			string[] WhereToLook;
 			if(Lfx.Workspace.Master.DebugMode) {
 				WhereToLook = new string[] {
-                                        Lfx.Environment.Folders.ApplicationFolder + @"../../Componentes/bin/" + componentName + ".dll",
-					Lfx.Environment.Folders.ApplicationFolder + @"../../Componentes/" + componentName + @"/bin/" + componentName + ".dll",
-					Lfx.Environment.Folders.ApplicationFolder + @"../../Componentes/" + componentName + @"/bin/Debug/" + componentName + ".dll",
+                                        Lfx.Environment.Folders.ApplicationFolder + @"../../../Componentes/bin/" + componentName + ".dll",
+					Lfx.Environment.Folders.ApplicationFolder + @"../../../" + componentName + @"/bin/" + componentName + ".dll",
+					Lfx.Environment.Folders.ApplicationFolder + @"../../../" + componentName + @"/bin/Debug/" + componentName + ".dll",
+                                        Lfx.Environment.Folders.ApplicationFolder + @"../../../Componentes/" + componentName + @"/bin/" + componentName + ".dll",
+					Lfx.Environment.Folders.ApplicationFolder + @"../../../Componentes/" + componentName + @"/bin/Debug/" + componentName + ".dll",
 					Lfx.Environment.Folders.ComponentsFolder + componentName + ".dll",
 					Lfx.Environment.Folders.ApplicationFolder + componentName + ".dll"
 				};
@@ -120,6 +122,6 @@ namespace Lfx.Components
 			
                         Lfx.Components.Function Res = (Lfx.Components.Function)ComponentAssembly.CreateInstance(componentName + "." + functionName);
                         return Res;
-		}
+		} */
 	}
 }

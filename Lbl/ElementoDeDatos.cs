@@ -397,7 +397,7 @@ namespace Lbl
                                 throw new Lfx.Types.DomainException("No se pueden agregar comentarios a un elemento que aun no ha sido guardado.");
 
                         qGen.Insert NuevoCom = new qGen.Insert("sys_log");
-                        NuevoCom.Fields.AddWithValue("estacion", System.Environment.MachineName.ToUpperInvariant());
+                        NuevoCom.Fields.AddWithValue("estacion", Lfx.Environment.SystemInformation.MachineName);
                         NuevoCom.Fields.AddWithValue("tabla", this.TablaDatos);
                         NuevoCom.Fields.AddWithValue("comando", "Comment");
                         NuevoCom.Fields.AddWithValue("item_id", this.Id);

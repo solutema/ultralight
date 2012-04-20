@@ -43,7 +43,8 @@ namespace Lfx
                                 Undefined,
                                 Information,
                                 Progress,
-                                ActionRequest
+                                ActionRequest,
+                                Notification
                         }
 
                         public EventTypes EventType = EventTypes.Undefined;
@@ -86,6 +87,17 @@ namespace Lfx
                         }
                         return null;
                 }
+
+
+                public void Notify(string destination, object notification)
+                {
+                        IpcEventArgs e = new IpcEventArgs();
+                        e.EventType = IpcEventArgs.EventTypes.Notification;
+                        e.Destination = destination;
+                        e.Arguments = new object[] { notification };
+                        this.IpcEvent(this, ref e);
+                }
+
 
                 public void Info(string verb, string infoText)
                 {

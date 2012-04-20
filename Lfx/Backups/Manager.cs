@@ -364,7 +364,7 @@ namespace Lfx.Backups
                                 Escribidor.WriteLine("EspacioTrabajo=" + Lfx.Workspace.Master.Name);
                                 Escribidor.WriteLine("FechaYHora=" + System.DateTime.Now.ToString("dd-MM-yyyy") + " a las " + System.DateTime.Now.ToString("HH:mm:ss"));
                                 Escribidor.WriteLine("Usuario=" + backupInfo.UserName);
-                                Escribidor.WriteLine("Estación=" + System.Environment.MachineName.ToUpperInvariant());
+                                Escribidor.WriteLine("Estación=" + Lfx.Environment.SystemInformation.MachineName);
                                 Escribidor.WriteLine("VersiónLazaro=" + backupInfo.ProgramVersion);
                                 Escribidor.WriteLine("");
                                 Escribidor.WriteLine("Por favor no modifique ni elimine este archivo.");
@@ -465,7 +465,7 @@ namespace Lfx.Backups
                                                                                 NombreTabla = TablaActual.ToTitleCase();
                                                                         }
                                                                         EndTable = false;
-                                                                        Progreso.ChangeStatus("Cargando " + TablaActual);
+                                                                        Progreso.ChangeStatus("Cargando " + NombreTabla);
 
                                                                         qGen.Delete DelCmd = new qGen.Delete(TablaActual);
                                                                         DelCmd.EnableDeleleteWithoutWhere = true;

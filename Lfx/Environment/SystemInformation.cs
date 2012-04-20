@@ -94,6 +94,21 @@ namespace Lfx.Environment
                 }
 
 
+                private static string m_MachineName = null;
+                /// <summary>
+                /// Devuelve el nombre del equipo, pero siempre en mayúsculas.
+                /// </summary>
+                public static string MachineName
+                {
+                        get
+                        {
+                                if (m_MachineName == null)
+                                        m_MachineName = System.Environment.MachineName;
+                                return m_MachineName;
+                        }
+                }
+
+
                 public static string RuntimeName
                 {
                         get

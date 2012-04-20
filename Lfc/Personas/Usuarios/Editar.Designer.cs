@@ -63,7 +63,6 @@ namespace Lfc.Personas.Usuarios
                         this.label1 = new Lui.Forms.Label();
                         this.Listado = new Lui.Forms.ListView();
                         this.ColCod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-                        this.ColNombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColNivel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.ColItems = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.BotonAgregar = new Lui.Forms.Button();
@@ -76,7 +75,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaAcceso.AutoSize = true;
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
                         this.EntradaAcceso.Name = "EntradaAcceso";
-                        this.EntradaAcceso.ReadOnly = false;
                         this.EntradaAcceso.SetData = new string[] {
         "Si|1",
         "No|0"};
@@ -98,7 +96,6 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaContrasena.Location = new System.Drawing.Point(348, 0);
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.PasswordChar = '*';
-                        this.EntradaContrasena.ReadOnly = false;
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
                         this.EntradaContrasena.TabIndex = 3;
                         // 
@@ -119,7 +116,6 @@ namespace Lfc.Personas.Usuarios
                         this.Listado.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         this.Listado.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColCod,
-            this.ColNombre,
             this.ColNivel,
             this.ColItems});
                         this.Listado.FullRowSelect = true;
@@ -137,18 +133,13 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // ColCod
                         // 
-                        this.ColCod.Text = "Cod";
-                        this.ColCod.Width = 0;
-                        // 
-                        // ColNombre
-                        // 
-                        this.ColNombre.Text = "Objeto";
-                        this.ColNombre.Width = 160;
+                        this.ColCod.Text = "Elemento";
+                        this.ColCod.Width = 313;
                         // 
                         // ColNivel
                         // 
                         this.ColNivel.Text = "Operaciones";
-                        this.ColNivel.Width = 263;
+                        this.ColNivel.Width = 352;
                         // 
                         // ColItems
                         // 
@@ -159,11 +150,11 @@ namespace Lfc.Personas.Usuarios
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(532, 368);
                         this.BotonAgregar.Name = "BotonAgregar";
-                        this.BotonAgregar.ReadOnly = false;
                         this.BotonAgregar.Size = new System.Drawing.Size(104, 28);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
                         this.BotonAgregar.Subtext = "F6";
@@ -175,11 +166,11 @@ namespace Lfc.Personas.Usuarios
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(420, 368);
                         this.BotonQuitar.Name = "BotonQuitar";
-                        this.BotonQuitar.ReadOnly = false;
                         this.BotonQuitar.Size = new System.Drawing.Size(104, 28);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonQuitar.Subtext = "";
@@ -215,7 +206,6 @@ namespace Lfc.Personas.Usuarios
                 private Lui.Forms.TextBox EntradaContrasena;
                 private Lui.Forms.ListView Listado;
                 private System.Windows.Forms.ColumnHeader ColCod;
-                private System.Windows.Forms.ColumnHeader ColNombre;
                 private System.ComponentModel.IContainer components = null;
         }
 }

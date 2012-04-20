@@ -51,6 +51,7 @@ namespace Lfc.Sucursales
                 {
                         Lbl.Entidades.Sucursal Suc = this.Elemento as Lbl.Entidades.Sucursal;
 
+                        EntradaNumero.ValueInt = Suc.Numero;
                         EntradaNombre.Text = Suc.Nombre;
                         EntradaDireccion.Text = Suc.Direccion;
                         EntradaTelefono.Text = Suc.Telefono;
@@ -67,6 +68,7 @@ namespace Lfc.Sucursales
                 {
                         Lbl.Entidades.Sucursal Suc = this.Elemento as Lbl.Entidades.Sucursal;
 
+                        Suc.Numero = EntradaNumero.ValueInt;
                         Suc.Nombre = EntradaNombre.Text;
                         Suc.Direccion = EntradaDireccion.Text;
                         Suc.Telefono = EntradaTelefono.Text;
@@ -76,6 +78,21 @@ namespace Lfc.Sucursales
                         Suc.CajaCheques = EntradaCajaCheques.Elemento as Lbl.Cajas.Caja;
 
                         base.ActualizarElemento();
+                }
+
+
+                public override Lfx.Types.OperationResult ValidarControl()
+                {
+                        qGen.Select SelMismoNumero = new qGen.Select("sucursales");
+                        SelMismoNumero.Fields = "id_sucursal";
+                        SelMismoNumero.WhereClause = new qGen.Where();
+                        SelMismoNumero.WhereClause.AddWithValue("id_sucursal", EntradaNumero.ValueInt);
+                        if (this.Elemento.Existe)
+                                SelMismoNumero.WhereClause.AddWithValue("id_sucursal", qGen.ComparisonOperators.NotEqual, this.Elemento.Id);
+                        if (this.Connection.FieldInt(SelMismoNumero) != 0)
+                                return new Lfx.Types.FailureOperationResult("Ya existe una sucursal con ese número.");
+                        
+                        return base.ValidarControl();
                 }
 	}
 }

@@ -139,7 +139,7 @@ namespace Lfc.Pvs
                                 EntradaCarga.Enabled = false;
 
                                 if (EntradaEstacion.Text.Length == 0)
-                                        EntradaEstacion.Text = System.Environment.MachineName.ToUpperInvariant();
+                                        EntradaEstacion.Text = Lfx.Environment.SystemInformation.MachineName;
                         } else {
                                 EntradaModelo.Enabled = false;
                                 EntradaPuerto.Enabled = false;

@@ -72,7 +72,7 @@ namespace Lazaro.WinMain.Misc
                                         Puede = true;
                                 } else {
                                         foreach (string Estacion in EstacionesAdministrador) {
-                                                if (Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant()) {
+                                                if (Estacion.ToUpperInvariant() == Lfx.Environment.SystemInformation.MachineName) {
                                                         Puede = true;
                                                         break;
                                                 }
@@ -100,8 +100,8 @@ namespace Lazaro.WinMain.Misc
 				OkButton.Refresh();
                                 //Lbl.Personas.Persona Usuario = new Lbl.Personas.Persona(Lfx.Workspace.Master.MasterConnection, Usu.Id);
                                 Lbl.Sys.Config.Actual.UsuarioConectado = new Lbl.Sys.Configuracion.UsuarioConectado(Usu);
-                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), System.Environment.MachineName.ToUpperInvariant());
-				Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), System.Environment.MachineName.ToUpperInvariant());
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoUsuario", Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString(), Lfx.Environment.SystemInformation.MachineName);
+				Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Ingreso.UltimoIngreso", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now), Lfx.Environment.SystemInformation.MachineName);
                                 Lbl.Sys.Config.ActionLog(Lfx.Workspace.Master.MasterConnection, Lbl.Sys.Log.Acciones.LogOn, Usu, null);
 				this.Close();
 			}

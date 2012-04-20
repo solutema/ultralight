@@ -56,12 +56,12 @@ namespace Lfx.Services
 
                 public bool AddTask(string commandString)
                 {
-                        return AddTask(commandString, "lazaro", System.Environment.MachineName.ToUpperInvariant());
+                        return AddTask(commandString, "lazaro", Lfx.Environment.SystemInformation.MachineName);
                 }
 
                 public bool AddTask(string commandString, string component)
                 {
-                        return AddTask(commandString, component, System.Environment.MachineName.ToUpperInvariant());
+                        return AddTask(commandString, component, Lfx.Environment.SystemInformation.MachineName);
                 }
 
                 public DateTime LastGetTask
@@ -87,10 +87,10 @@ namespace Lfx.Services
                 public bool AddTask(string commandString, string component, string terminalName)
                 {
                         if (terminalName == null || terminalName.Length == 0)
-                                terminalName = System.Environment.MachineName.ToUpperInvariant();
+                                terminalName = Lfx.Environment.SystemInformation.MachineName;
 
                         qGen.Insert Comando = new qGen.Insert(this.DataBase, "sys_programador");
-                        Comando.Fields.AddWithValue("crea_estacion", System.Environment.MachineName.ToUpperInvariant());
+                        Comando.Fields.AddWithValue("crea_estacion", Lfx.Environment.SystemInformation.MachineName);
                         Comando.Fields.AddWithValue("crea_usuario", "");        // TODO: que ponga el nombre de usuario
                         Comando.Fields.AddWithValue("estacion", terminalName);
                         Comando.Fields.AddWithValue("comando", commandString);
@@ -120,7 +120,7 @@ namespace Lfx.Services
                                 this.DataBase.Open();
 
                         qGen.Where WhereEstacion = new qGen.Where(qGen.AndOr.Or);
-                        WhereEstacion.AddWithValue("estacion", this.DataBase.EscapeString(System.Environment.MachineName.ToUpperInvariant()));
+                        WhereEstacion.AddWithValue("estacion", this.DataBase.EscapeString(Lfx.Environment.SystemInformation.MachineName));
                         WhereEstacion.AddWithValue("estacion", "*");
 
                         qGen.Where WhereFecha = new qGen.Where(qGen.AndOr.Or);

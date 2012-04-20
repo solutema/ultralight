@@ -41,7 +41,7 @@ namespace ServidorFiscal
         /// </summary>
         public class Try : Lfx.Components.TryFunction
         {
-                public override object Create()
+                public override object Run()
                 {
                         return new Lfx.Types.SuccessOperationResult();
                 }
@@ -65,7 +65,7 @@ namespace ServidorFiscal
                         this.FunctionType = Lfx.Components.FunctionTypes.Loadable;
                 }
 
-                public override object Create(bool wait)
+                public override object Run(bool wait)
                 {
                         try {
                                 Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ThreadExceptionHandler);
@@ -126,7 +126,7 @@ namespace ServidorFiscal
                         get
                         {
                                 if (m_PuntoDeVenta == null) {
-                                        int NumeroPv = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + System.Environment.MachineName.ToUpperInvariant().ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lbl.Sys.Config.Empresa.SucursalActual.Id.ToString());
+                                        int NumeroPv = this.Impresora.DataBase.FieldInt("SELECT id_pv FROM pvs WHERE UPPER(estacion)='" + Lfx.Environment.SystemInformation.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lbl.Sys.Config.Empresa.SucursalActual.Id.ToString());
                                         if (NumeroPv > 0) {
                                                 m_PuntoDeVenta = new Lbl.Comprobantes.PuntoDeVenta(this.Impresora.DataBase, NumeroPv);
                                                 if (m_PuntoDeVenta.Existe == false)
@@ -349,7 +349,7 @@ namespace ServidorFiscal
                         FormEstado.Close();
 
                         if (reboot) {
-                                string[] ParametrosAPasar = this.CommandLineArgs;
+                                string[] ParametrosAPasar = (string[])(this.Arguments);
                                 ParametrosAPasar[0] = "";
                                 string Params = string.Join(" ", ParametrosAPasar).Trim();
 
@@ -385,7 +385,7 @@ namespace ServidorFiscal
                                 } catch {
                                         //Nada
                                 }
-                                Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
+                                Texto.AppendLine("Equipo  : " + Lfx.Environment.SystemInformation.MachineName);
                                 Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.PlatformName);
                                 Texto.AppendLine("RunTime : " + Lfx.Environment.SystemInformation.RuntimeName);
                                 Texto.AppendLine("Excepción no controlada: " + ex.ToString());

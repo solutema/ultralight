@@ -73,7 +73,7 @@ namespace Lazaro.WinMain
                         Console.WriteLine("Exec:" + comando);
 
                         if (estacion == null || estacion.Length == 0)
-                                estacion = System.Environment.MachineName.ToUpperInvariant();
+                                estacion = Lfx.Environment.SystemInformation.MachineName;
 
                         string SubComando = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim().ToUpperInvariant();
 
@@ -195,7 +195,7 @@ namespace Lazaro.WinMain
 
                                 case "REBOOT":
                                         try {
-                                                int EstacionFiscal = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + System.Environment.MachineName.ToUpperInvariant() + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
+                                                int EstacionFiscal = Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT id_pv FROM pvs WHERE estacion='" + Lfx.Environment.SystemInformation.MachineName + "' AND tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
                                                 if (EstacionFiscal > 0) {
                                                         Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + EstacionFiscal);
                                                         System.Threading.Thread.Sleep(100);
@@ -329,6 +329,11 @@ namespace Lazaro.WinMain
                         string SubComando = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
 
                         string Prefijo = Lfx.Types.Strings.GetNextToken(ref SubComando, ".").Trim();
+                        
+                        if (Lfx.Components.Manager.ComponentesCargados.ContainsKey(Prefijo) == false)
+                                // Intento cargar una segunda parte del prefijo (P. Ej. Lazaro.Mensajeria)
+                                Prefijo += "." + Lfx.Types.Strings.GetNextToken(ref SubComando, ".").Trim();
+
                         if (Lfx.Components.Manager.ComponentesCargados.ContainsKey(Prefijo) == false)
                                 return new Lfx.Types.FailureOperationResult("No se reconoce el prefijo " + Prefijo);
 

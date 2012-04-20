@@ -87,14 +87,18 @@ namespace Lfc.Personas.Usuarios
                 {
                         Lbl.Sys.Permisos.Operaciones Nivel = permiso.Operaciones;
                         string Key = permiso.GetHashCode().ToString();
-                        ListViewItem Itm = Listado.Items.Add(Key, Key, 0);
+                        ListViewItem Itm = Listado.Items.Add(Key, permiso.Objeto.Nombre, 0);
                         Itm.Tag = permiso;
-                        Itm.SubItems.Add(permiso.Objeto.Nombre);
                         Itm.SubItems.Add(Nivel.ToString());
                         if (permiso.Item == null)
                                 Itm.SubItems.Add("Todos");
                         else
                                 Itm.SubItems.Add(permiso.Item.ToString());
+
+                        if ((Nivel | Lbl.Sys.Permisos.Operaciones.Total) == Lbl.Sys.Permisos.Operaciones.Total)
+                                Itm.ForeColor = System.Drawing.Color.Tomato;
+                        else
+                                Itm.ForeColor = Listado.ForeColor;
                 }
 
 	
@@ -140,6 +144,7 @@ namespace Lfc.Personas.Usuarios
 
                         Usu.Pemisos.Remove(permiso);
                         Listado.Items.RemoveByKey(permiso.GetHashCode().ToString());
+                        Listado.Changed = true;
                 }
 
 
@@ -162,6 +167,7 @@ namespace Lfc.Personas.Usuarios
                         if (FormularioAgregar.ShowDialog() == DialogResult.OK) {
                                 Lbl.Sys.Permisos.Permiso NuevoPerm = FormularioAgregar.Permiso;
                                 Usu.Pemisos.Add(NuevoPerm);
+                                Listado.Changed = true;
                                 this.MostrarPermiso(NuevoPerm);
                         }
                 }
@@ -185,6 +191,8 @@ namespace Lfc.Personas.Usuarios
                                                 // Agrego el nuevo
                                                 Lbl.Sys.Permisos.Permiso NuevoPerm = FormularioAgregar.Permiso;
                                                 Usu.Pemisos.Add(NuevoPerm);
+
+                                                Listado.Changed = true;
                                                 this.MostrarPermiso(NuevoPerm);
                                         }
                                 }

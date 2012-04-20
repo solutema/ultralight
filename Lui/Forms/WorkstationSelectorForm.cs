@@ -68,13 +68,13 @@ namespace Lui.Forms
 		private void MostrarDatos()
 		{
 			Listado.Items.Clear();
-			ListViewItem itm = Listado.Items.Add(new ListViewItem (new string[] {System.Environment.MachineName.ToUpperInvariant(), "Este equipo"}));
-			itm.Selected = (this.Estacion == System.Environment.MachineName.ToUpperInvariant());
+			ListViewItem itm = Listado.Items.Add(new ListViewItem (new string[] {Lfx.Environment.SystemInformation.MachineName, "Este equipo"}));
+			itm.Selected = (this.Estacion == Lfx.Environment.SystemInformation.MachineName);
 
 			System.Data.DataTable Estaciones = this.Connection.Select("SELECT DISTINCT estacion FROM sys_config ORDER BY estacion");
 			foreach(System.Data.DataRow RowEstacion in Estaciones.Rows)
 			{
-				if((string)RowEstacion["estacion"] != "*" && (string)RowEstacion["estacion"] != System.Environment.MachineName.ToUpperInvariant())
+				if((string)RowEstacion["estacion"] != "*" && (string)RowEstacion["estacion"] != Lfx.Environment.SystemInformation.MachineName)
 				{
 					itm = Listado.Items.Add(new ListViewItem (new string[] {(string)RowEstacion["estacion"], (string)RowEstacion["estacion"]}));
 					itm.Selected = (this.Estacion == (string)RowEstacion["estacion"]);

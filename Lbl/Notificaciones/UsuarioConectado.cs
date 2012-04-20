@@ -32,47 +32,36 @@
 using System;
 using System.Collections.Generic;
 
-namespace Lfx.Components
+namespace Lbl.Notificaciones
 {
-	/// <summary>
-	/// Esqueleto del componente.
-	/// </summary>
-	public class Function
-	{
-                protected Lfx.Workspace m_Workspace;
-		public string ExecutableName = null;
-		public object[] Arguments = null;
-                public Lfx.Components.FunctionTypes FunctionType = FunctionTypes.MdiChildren;
+        public class UsuarioConectado
+        {
+                public int Id { get; set; }
 
-		public Function()
-		{
-		}
+                public Lbl.Personas.Persona Persona { get; set; }
+                public string Estacion { get; set; }
+                public string Nombre { get; set; }
+                public DateTime Fecha { get; set; }
 
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return m_Workspace;
-			}
-			set
-			{
-				m_Workspace = value;
-			}
-		}
+                public int Estado { get; set; }
 
-		public virtual object Run(bool wait)
-		{
-			return null;
-		}
+                public UsuarioConectado(Lfx.Data.Row fromRow)
+                {
+                        this.FromRow(fromRow);
+                }
 
-		public virtual object Run()
-		{
-			return Run(false);
-		}
 
-		public virtual Lfx.Types.OperationResult Try()
-		{
-			return new Types.SuccessOperationResult();
-		}
-	}
+                protected void FromRow(Lfx.Data.Row fromRow)
+                {
+                        this.Id = System.Convert.ToInt32(fromRow["id_mensajeria"]);
+
+                        int IdUsuario = System.Convert.ToInt32(fromRow["id_usuario"]);
+                        if (IdUsuario != 0)
+                                this.Persona = new Personas.Persona(Lfx.Workspace.Master.MasterConnection, IdUsuario);
+
+                        this.Nombre = fromRow["nombre"].ToString();
+                        this.Estacion = fromRow["estacion"].ToString();
+                        this.Estado = System.Convert.ToInt32(fromRow["estado"]);
+                }
+        }
 }

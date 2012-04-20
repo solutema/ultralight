@@ -32,47 +32,38 @@
 using System;
 using System.Collections.Generic;
 
-namespace Lfx.Components
+namespace Lbl.Notificaciones
 {
-	/// <summary>
-	/// Esqueleto del componente.
-	/// </summary>
-	public class Function
-	{
-                protected Lfx.Workspace m_Workspace;
-		public string ExecutableName = null;
-		public object[] Arguments = null;
-                public Lfx.Components.FunctionTypes FunctionType = FunctionTypes.MdiChildren;
+        public class NotificacionMemoria : INotificacion
+        {
+                public int Id { get; set; }
+                public string Nombre { get; set; }
+                public string Destino { get; set; }
+                public string Obs { get; set; }
+                public DateTime Fecha { get; set; }
+                public int Estado { get; set; }
 
-		public Function()
-		{
-		}
+                public Lbl.Personas.Persona Remitente { get; set; }
+                public Lbl.Personas.Persona Destinatario { get; set; }
 
-		public Lfx.Workspace Workspace
-		{
-			get
-			{
-				return m_Workspace;
-			}
-			set
-			{
-				m_Workspace = value;
-			}
-		}
+                public string EstacionOrigen { get; set; }
+                public string EstacionDestino { get; set; }
 
-		public virtual object Run(bool wait)
-		{
-			return null;
-		}
+                public NullableDateTime FechaRecibido { get; set; }
 
-		public virtual object Run()
-		{
-			return Run(false);
-		}
+                public NotificacionMemoria()
+                {
+                        this.Remitente = Lbl.Sys.Config.Actual.UsuarioConectado.Persona;
+                        this.EstacionOrigen = Lfx.Environment.SystemInformation.MachineName;
+                        this.Fecha = System.DateTime.Now;
+                }
 
-		public virtual Lfx.Types.OperationResult Try()
-		{
-			return new Types.SuccessOperationResult();
-		}
-	}
+
+                public NotificacionMemoria(Lbl.Personas.Persona destinatario, string estacionDestino)
+                        : this()
+                {
+                        this.Destinatario = destinatario;
+                        this.EstacionDestino = estacionDestino;
+                }
+        }
 }

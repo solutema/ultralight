@@ -83,7 +83,7 @@ namespace Lbl.Impresion
                 {
                         get
                         {
-                                return this.Estacion == null || this.Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant();
+                                return this.Estacion == null || this.Estacion.ToUpperInvariant() == Lfx.Environment.SystemInformation.MachineName;
                         }
                 }
 
@@ -247,7 +247,7 @@ namespace Lbl.Impresion
                         Lbl.Impresion.Impresora Impr = new Lbl.Impresion.Impresora(dataBase);
                         Impr.Clase = Lbl.Impresion.ClasesImpresora.Comun;
                         Impr.Nombre = nombreImpresora;
-                        Impr.Estacion = System.Environment.MachineName.ToUpperInvariant();
+                        Impr.Estacion = Lfx.Environment.SystemInformation.MachineName;
                         Impr.CargaPapel = Lbl.Impresion.CargasPapel.Automatica;
                         Impr.Dispositivo = nombreImpresora;
                         Impr.Estado = 1;

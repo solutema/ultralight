@@ -294,7 +294,7 @@ namespace Lfx
                                 Progreso.Begin();
 
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()));
-                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Estacion", System.Environment.MachineName.ToUpperInvariant());
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Estacion", Lfx.Environment.SystemInformation.MachineName);
 
                                 try {
                                         Conn.ExecuteSql("FLUSH TABLES");

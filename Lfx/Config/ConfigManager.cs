@@ -254,7 +254,7 @@ namespace Lfx.Config
                         string Busco;
 
                         //Busco una variable para la estación
-                        Busco = (terminalName == null ? System.Environment.MachineName.ToUpperInvariant() : terminalName) + "/0/" + settingName;
+                        Busco = (terminalName == null ? Lfx.Environment.SystemInformation.MachineName : terminalName) + "/0/" + settingName;
                         if (sucursal == 0 && SysConfigCache.ContainsKey(Busco)) {
                                 string Res = (string)SysConfigCache[Busco];
                                 return Res;
@@ -300,7 +300,7 @@ namespace Lfx.Config
                 public bool DeleteGlobalSetting(string settingName, string terminalName)
                 {
                         if (terminalName == null || terminalName.Length == 0)
-                                terminalName = System.Environment.MachineName.ToUpperInvariant();
+                                terminalName = Lfx.Environment.SystemInformation.MachineName;
 
                         qGen.Delete DeleteCommand = new qGen.Delete("sys_config");
                         DeleteCommand.WhereClause = new qGen.Where();
@@ -369,7 +369,7 @@ namespace Lfx.Config
                 public bool WriteGlobalSetting(string settingName, string stringValue, string terminalName)
                 {
                         if (terminalName == null || terminalName.Length == 0)
-                                terminalName = System.Environment.MachineName.ToUpperInvariant();
+                                terminalName = Lfx.Environment.SystemInformation.MachineName;
 
                         string CurrentValue = ReadGlobalSetting<string>(settingName, null, terminalName, 0);
                         if (CurrentValue == null) {

@@ -291,7 +291,7 @@ namespace Lbl.Comprobantes
                 {
                         // Intento obtener una impresora para este PV, esta susursal, para esta estación
                         foreach (Lbl.Impresion.TipoImpresora Impr in Tipo.Impresoras) {
-                                if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant()
+                                if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == Lfx.Environment.SystemInformation.MachineName
                                         && Impr.PuntoDeVenta != null && Impr.PuntoDeVenta.Numero == this.PV
                                         && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Empresa.SucursalActual.Id)
                                         return Impr.Impresora;

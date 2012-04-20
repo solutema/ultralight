@@ -863,7 +863,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         } catch {
                                 //Nada
                         }
-                        Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
+                        Texto.AppendLine("Equipo  : " + Lfx.Environment.SystemInformation.MachineName);
                         Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.PlatformName);
                         Texto.AppendLine("Runtime : " + Lfx.Environment.SystemInformation.RuntimeName);
                         Texto.AppendLine("Servidor: " + Lfx.Workspace.Master.ServerVersion);

@@ -41,17 +41,23 @@ namespace RunComponent
 
                         if (ComponentName != null && FunctionName != null) {
                                 //Console.WriteLine("Ejecutando " + ComponentName + "." + FunctionName);
+                                Lbl.Componentes.Componente Comp = new Lbl.Componentes.Componente(Lfx.Workspace.Master.GetNewConnection(ComponentName));
+                                Comp.Crear();
+                                Comp.Nombre = ComponentName;
+                                Comp.EspacioNombres = ComponentName;
+                                Lfx.Components.Manager.RegisterComponent(Comp);
+
                                 Lfx.Components.Function Funcion = null;
                                 try {
-                                        Funcion = Lfx.Components.Manager.LoadComponent(ComponentName, FunctionName);
+                                        Funcion = Comp.Funciones[FunctionName].Instancia;
                                 } catch (Exception ex) {
                                         System.Windows.Forms.MessageBox.Show(ex.ToString(), "Error");
                                 }
                                 if (Funcion != null) {
                                         Funcion.Workspace = Lfx.Workspace.Master;
                                         Funcion.ExecutableName = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                                        Funcion.CommandLineArgs = Environment.GetCommandLineArgs();
-                                        Funcion.Create(true);
+                                        Funcion.Arguments = Environment.GetCommandLineArgs();
+                                        Funcion.Run(true);
                                 } else {
                                         System.Windows.Forms.MessageBox.Show("No se puede ejecutar " + ComponentName + "." + FunctionName, "Error");
                                 }
@@ -85,7 +91,7 @@ namespace RunComponent
                         catch {
                                 //Nada
                         }
-                        Texto.AppendLine("Equipo  : " + System.Environment.MachineName.ToUpperInvariant());
+                        Texto.AppendLine("Equipo  : " + Lfx.Environment.SystemInformation.MachineName);
                         Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.Platform);
                         Texto.AppendLine("RunTime : " + Lfx.Environment.SystemInformation.RunTime);
                         Texto.AppendLine("Excepción no controlada: " + ex.ToString());
@@ -107,7 +113,7 @@ namespace RunComponent
 
                         MailMessage Mensaje = new MailMessage();
                         Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
-                        Mensaje.From = new MailAddress(Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString() + "@" + System.Environment.MachineName.ToUpperInvariant(), Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Empresa.Nombre);
+                        Mensaje.From = new MailAddress(Lbl.Sys.Config.Actual.UsuarioConectado.Id.ToString() + "@" + Lfx.Environment.SystemInformation.MachineName, Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Empresa.Nombre);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
                                 Mensaje.Subject = ex.Message;

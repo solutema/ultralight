@@ -76,21 +76,23 @@ namespace Lazaro.WinMain.Principal
                         // BarraTareas
                         // 
                         this.BarraTareas.AllowItemReorder = true;
+                        this.BarraTareas.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                         this.BarraTareas.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
                         this.BarraTareas.Location = new System.Drawing.Point(0, 0);
                         this.BarraTareas.Name = "BarraTareas";
-                        this.BarraTareas.Padding = new System.Windows.Forms.Padding(3);
-                        this.BarraTareas.Size = new System.Drawing.Size(1008, 25);
+                        this.BarraTareas.Padding = new System.Windows.Forms.Padding(4);
+                        this.BarraTareas.Size = new System.Drawing.Size(1024, 27);
                         this.BarraTareas.TabIndex = 17;
                         this.BarraTareas.Text = "Tareas";
                         this.BarraTareas.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.BarraTareas_ItemClicked);
                         // 
                         // BarraInferior
                         // 
+                        this.BarraInferior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(229)))));
                         this.BarraInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
-                        this.BarraInferior.Location = new System.Drawing.Point(0, 639);
+                        this.BarraInferior.Location = new System.Drawing.Point(0, 633);
                         this.BarraInferior.Name = "BarraInferior";
-                        this.BarraInferior.Size = new System.Drawing.Size(1008, 57);
+                        this.BarraInferior.Size = new System.Drawing.Size(1024, 57);
                         this.BarraInferior.TabIndex = 15;
                         // 
                         // Inicio
@@ -108,7 +110,6 @@ namespace Lazaro.WinMain.Principal
                         this.Name = "Inicio";
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
                         this.Text = "Lázaro";
-                        this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
                         this.Load += new System.EventHandler(this.FormPrincipal_Load);
                         this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormPrincipal_KeyDown);
                         this.ResumeLayout(false);

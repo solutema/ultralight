@@ -33,7 +33,7 @@ namespace Lfc
 {
         public class GetTypes : Lfx.Components.GetTypesFunction
         {
-                public override object Create()
+                public override object Run()
                 {
                         Lfx.Components.RegisteredTypeCollection Res = new Lfx.Components.RegisteredTypeCollection();
 

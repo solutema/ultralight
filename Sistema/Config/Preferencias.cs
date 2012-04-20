@@ -201,11 +201,11 @@ namespace Lazaro.WinMain.Config
                         Lbl.Sys.Config.Empresa.Email = EntradaEmpresaEmail.Text;
                         Lbl.Sys.Config.Empresa.Id = EntradaEmpresaId.ValueInt;
 
-                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Backup.Tipo", EntradaBackup.TextKey, System.Environment.MachineName.ToUpperInvariant());
+                        Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Backup.Tipo", EntradaBackup.TextKey, Lfx.Environment.SystemInformation.MachineName);
                         if (EntradaModoPantalla.TextKey == "*")
-                                Lfx.Workspace.Master.CurrentConfig.DeleteGlobalSetting("Sistema.Apariencia.ModoPantalla", System.Environment.MachineName.ToUpperInvariant());
+                                Lfx.Workspace.Master.CurrentConfig.DeleteGlobalSetting("Sistema.Apariencia.ModoPantalla", Lfx.Environment.SystemInformation.MachineName);
                         else
-                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, System.Environment.MachineName.ToUpperInvariant());
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Apariencia.ModoPantalla", EntradaModoPantalla.TextKey, Lfx.Environment.SystemInformation.MachineName);
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Datos.Aislacion", EntradaAislacion.TextKey);
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Actualizaciones.Nivel", EntradaActualizaciones.TextKey);
 

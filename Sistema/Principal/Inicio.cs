@@ -40,6 +40,7 @@ namespace Lazaro.WinMain.Principal
 {
         public partial class Inicio : Form
         {
+                private System.Threading.Thread AdminNotif = null;
                 public Lfx.Types.ShowProgressDelegate ShowProgress = null;
                 private Lfc.Inicio.Inicio FormInicio = null;
 
@@ -50,6 +51,14 @@ namespace Lazaro.WinMain.Principal
                         InitializeComponent();
 
                         ShowProgress = new Lfx.Types.ShowProgressDelegate(ShowProgressRoutine);
+
+                        Lbl.Notificaciones.Administrador.Principal = new Lbl.Notificaciones.Administrador();
+                        //Lbl.Notificaciones.Administrador.Principal.Iniciar();
+                        // Inicio el administrador de notificaciones en un nuevo thread
+                        System.Threading.ThreadStart ParamInicio = delegate { Lbl.Notificaciones.Administrador.Principal.Iniciar(); };
+                        this.AdminNotif = new System.Threading.Thread(ParamInicio);
+                        this.AdminNotif.SetApartmentState(System.Threading.ApartmentState.STA);
+                        this.AdminNotif.Start();
                 }
 
 
@@ -249,12 +258,18 @@ namespace Lazaro.WinMain.Principal
                 }
 
 
-                private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+                protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
                 {
+                        if (AdminNotif != null) {
+                                AdminNotif.Abort();
+                                AdminNotif = null;
+                        }
                         TimerProgramador.Stop();
 
                         if (Lfx.Workspace.Master != null)
                                 Lfx.Workspace.Master.Dispose();
+
+                        base.OnClosing(e);
                 }
 
 
@@ -376,61 +391,14 @@ namespace Lazaro.WinMain.Principal
                                         if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja")
                                                 Itm.Select += new EventHandler(Menu_Select);
 
-                                        /* if (ItmInfo.Funcion == "MENU Lbl.Cajas.Caja" && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Listar)) {
-                                                if (Conn == null)
-                                                        Conn = Lfx.Workspace.Master.GetNewConnection("Menú cajas");
-                                                DataTable Cajas = Conn.Select("SELECT id_caja, nombre FROM cajas WHERE estado>0 ORDER BY nombre");
+                                        string NuevoParentText = null;
 
-                                                foreach (System.Data.DataRow Caja in Cajas.Rows) {
-                                                        MenuItem ItmH = new MenuItem(Caja["nombre"].ToString(), new System.EventHandler(Menu_Click));
-                                                        MenuItemInfo ItmInfoH = new MenuItemInfo();
-                                                        ItmInfoH.Item = ItmH;
-                                                        ItmInfoH.Funcion = "INSTANCIAR Lfc.Cajas.Movimientos " + Caja["id_caja"].ToString();
-                                                        ItmInfoH.ParentText = ItmInfo.Text;
-                                                        ItmInfoH.Text = System.Convert.ToString(Caja["nombre"]).QuitarAcentos();
-                                                        AgregarAlMenu(Itm, ItmH, ItmInfoH);
-                                                }
-                                        } else if (ItmInfo.Funcion == "LISTAR Lbl.Tareas.Tarea") {
-                                                MenuItem ItmH = null;
-                                                MenuItemInfo ItmInfoH = new MenuItemInfo();
-                                                if (Conn == null)
-                                                        Conn = Lfx.Workspace.Master.GetNewConnection("Menú tareas");
-                                                DataTable Tipos = Conn.Select("SELECT id_tipo_ticket, nombre FROM tickets_tipos ORDER BY nombre");
+                                        if (parentText.Length > 0)
+                                                NuevoParentText = parentText + "." + opcion.Attributes["Nombre"].Value;
+                                        else
+                                                NuevoParentText = opcion.Attributes["Funcion"].Value;
 
-                                                if (Tipos.Rows.Count > 10) {
-                                                        ItmH = new MenuItem("Todos", new System.EventHandler(Menu_Click));
-                                                        ItmInfoH = new MenuItemInfo();
-                                                        ItmInfoH.Item = ItmH;
-                                                        ItmInfoH.Funcion = "LISTAR Lbl.Tareas.Tarea";
-                                                        ItmInfoH.ParentText = ItmInfo.Text;
-                                                        ItmInfoH.Text = "Todos".QuitarAcentos();
-                                                        AgregarAlMenu(Itm, ItmH, ItmInfoH);
-                                                }
-
-
-                                                foreach (System.Data.DataRow Tipo in Tipos.Rows) {
-                                                        ItmH = new MenuItem(Tipo["nombre"].ToString(), new System.EventHandler(Menu_Click));
-                                                        ItmInfoH = new MenuItemInfo();
-                                                        ItmInfoH.Item = ItmH;
-                                                        ItmInfoH.Funcion = "LISTAR Lbl.Tareas.Tarea " + Tipo["id_tipo_ticket"].ToString();
-                                                        ItmInfoH.ParentText = ItmInfo.Text;
-                                                        ItmInfoH.Text = Tipo["nombre"].ToString().QuitarAcentos();
-
-                                                        if (Tipos.Rows.Count > 10)
-                                                                AgregarAlMenu(Itm, ItmH, ItmInfoH);
-                                                        else
-                                                                AgregarAlMenu(colgarDe, ItmH, ItmInfoH);
-                                                }
-                                        } else { */
-                                                string NuevoParentText = null;
-
-                                                if (parentText.Length > 0)
-                                                        NuevoParentText = parentText + "." + opcion.Attributes["Nombre"].Value;
-                                                else
-                                                        NuevoParentText = opcion.Attributes["Funcion"].Value;
-
-                                                CargarMenuXml(opcion, Itm, NuevoParentText);
-                                        //}
+                                        CargarMenuXml(opcion, Itm, NuevoParentText);
                                 }
                         }
 

@@ -41,7 +41,6 @@ namespace Lfx.Components
                 public string Nombre;
                 public bool AutoRun = false;
                 public Lfx.Components.Function Instancia = null;
-                //public IRegisteredType TipoRegistrado = null;
                 public bool Ready = false;
 
                 public FunctionInfo(IComponent compInfo)
@@ -76,7 +75,7 @@ namespace Lfx.Components
                         if (this.Instancia == null)
                                 return null;
                         else
-                                return this.Instancia.Create();
+                                return this.Instancia.Run();
                 }
 
                 public override string ToString()

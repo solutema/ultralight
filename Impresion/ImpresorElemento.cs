@@ -103,14 +103,14 @@ namespace Lazaro.Impresion
 
                         // Intento obtener una impresora para esta susursal, para esta estación
                         foreach (Lbl.Impresion.TipoImpresora Impr in this.Tipo.Impresoras) {
-                                if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant()
+                                if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == Lfx.Environment.SystemInformation.MachineName
                                         && Impr.Sucursal != null && Impr.Sucursal.Id == Lbl.Sys.Config.Empresa.SucursalActual.Id)
                                         return Impr.Impresora;
                         }
 
                         // Intento obtener una impresora para esta estación, cualquier sucursal
                         foreach (Lbl.Impresion.TipoImpresora Impr in this.Tipo.Impresoras) {
-                                if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == System.Environment.MachineName.ToUpperInvariant()
+                                if (Impr.Estacion != null && Impr.Estacion.ToUpperInvariant() == Lfx.Environment.SystemInformation.MachineName
                                         && Impr.Sucursal == null)
                                         return Impr.Impresora;
                         }

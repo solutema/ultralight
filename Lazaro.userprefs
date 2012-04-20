@@ -1,17 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Dev" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sistema/Misc/Ingreso.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Rel" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sistema/Aplicacion.cs">
     <Files>
-      <File FileName="Componentes/LaRed.Bl/Cierres/Cierre.cs" Line="156" Column="1" />
-      <File FileName="Lfc/Reportes/Facturacion.cs" Line="495" Column="51" />
-      <File FileName="Sistema/Misc/Ingreso.cs" Line="99" Column="54" />
+      <File FileName="Sistema/Aplicacion.cs" Line="649" Column="57" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="LaRed" selected="True" />
+          <Node name="LaRed" expanded="True">
+            <Node name="Demandas" expanded="True">
+              <Node name="Editar.cs" expanded="True" />
+            </Node>
+          </Node>
           <Node name="WinMain" expanded="True">
-            <Node name="Misc" expanded="True" />
+            <Node name="Aplicacion.cs" selected="True" />
           </Node>
         </State>
       </Pad>

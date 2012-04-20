@@ -43,6 +43,7 @@ namespace Lbl.Entidades
         [Lbl.Atributos.Presentacion()]
 	public class Sucursal : ElementoDeDatos
 	{
+                private int m_Numero;
                 private Lbl.Entidades.Localidad m_Localidad = null;
                 private Lbl.Cajas.Caja m_CajaDiaria = null, m_CajaCheques = null;
                 private Lbl.Articulos.Situacion m_SituacionOrigen = null;
@@ -69,6 +70,9 @@ namespace Lbl.Entidades
                                 Comando = new qGen.Update(this.Connection, this.TablaDatos);
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
+
+                        if (this.Numero > 0)
+                                Comando.Fields.AddWithValue("id_sucursal", this.Numero);
 
                         Comando.Fields.AddWithValue("nombre", this.Nombre);
                         Comando.Fields.AddWithValue("direccion", this.Direccion);
@@ -109,6 +113,22 @@ namespace Lbl.Entidades
                         this.SituacionOrigen = new Articulos.Situacion(this.Connection, 1);
                         this.Localidad = new Localidad(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.IdLocalidad);
                 }
+
+
+                public int Numero
+                {
+                        get
+                        {
+                                if (m_Numero == 0)
+                                        m_Numero = this.Id;
+                                return m_Numero;
+                        }
+                        set
+                        {
+                                m_Numero = value;
+                        }
+                }
+
 
                 public Cajas.Caja CajaDiaria
                 {
