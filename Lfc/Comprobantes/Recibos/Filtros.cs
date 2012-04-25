@@ -43,15 +43,8 @@ namespace Lfc.Comprobantes.Recibos
                 #region Código generado por el Diseñador de Windows Forms
 
                 public Filtros()
-                        :
-                        base()
                 {
-
-                        // Necesario para admitir el Diseñador de Windows Forms
                         InitializeComponent();
-
-                        // agregar código de constructor después de llamar a InitializeComponent
-
                 }
 
                 // Limpiar los recursos que se estén utilizando.

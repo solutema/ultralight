@@ -386,7 +386,7 @@ namespace Lfc.Comprobantes.Recibos
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaCliente.AutoTab = true;
                         this.EntradaCliente.CanCreate = true;
-                        this.EntradaCliente.Filter = "estado=1";
+                        this.EntradaCliente.Filter = "";
                         this.EntradaCliente.Location = new System.Drawing.Point(564, 0);
                         this.EntradaCliente.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaCliente.MaxLength = 200;

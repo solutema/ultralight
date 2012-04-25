@@ -53,7 +53,7 @@ namespace Lbl.Notificaciones
 
                 protected void FromRow(Lfx.Data.Row fromRow)
                 {
-                        this.Id = System.Convert.ToInt32(fromRow["id_mensajeria"]);
+                        this.Id = System.Convert.ToInt32(fromRow["id_usuario"]);
 
                         int IdUsuario = System.Convert.ToInt32(fromRow["id_usuario"]);
                         if (IdUsuario != 0)
@@ -62,6 +62,7 @@ namespace Lbl.Notificaciones
                         this.Nombre = fromRow["nombre"].ToString();
                         this.Estacion = fromRow["estacion"].ToString();
                         this.Estado = System.Convert.ToInt32(fromRow["estado"]);
+                        this.Fecha = System.Convert.ToDateTime(fromRow["fecha"]);
                 }
         }
 }

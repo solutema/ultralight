@@ -1019,15 +1019,13 @@
   <Constraint name="sys_log_usuario" table="sys_log" column="usuario" reference_table="personas" reference_column="id_persona" />
 
   <Table name="sys_mensajeria" label="Notificaciones: estados">
-    <Column name="id_mensajeria" inputtype="Serial" />
-    <Column name="id_usuario" inputtype="Relation" nullable="0" />
+    <Column name="id_usuario" inputtype="Serial" />
     <Column name="estacion" inputtype="Text" lenght="200" nullable="0" />
     <Column name="nombre" inputtype="Text" lenght="200" nullable="0" />
     <Column name="estado" inputtype="TinyInt" nullable="0" />
     <Column name="fecha" inputtype="DateTime" nullable="0" />
     <Column name="id_ultimomensaje" inputtype="Relation" nullable="1" />
-    <Index table="sys_mensajeria" name="PRIMARY" columns="id_mensajeria" unique="1" primary="1" />
-    <Index table="sys_mensajeria" name="sys_mensajeria_id_usuario" columns="id_usuario" unique="1"  />
+    <Index table="sys_mensajeria" name="PRIMARY" columns="id_usuario" unique="1" primary="1" />
     <Index table="sys_mensajeria" name="sys_mensajeria_id_ultimomensaje" columns="id_ultimomensaje" />
   </Table>
   <Constraint name="sys_mensajeria_id_ultimomensaje" table="sys_mensajeria" column="id_ultimomensaje" reference_table="sys_mensajes" reference_column="id_mensaje" />

@@ -274,7 +274,7 @@ namespace Lfx
                                 string FechaInicioVerif = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<string>("Sistema.VerificarVersionBd.Inicio", string.Empty);
                                 string FechaInicioVerifMax = Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.AddMinutes(10).ToUniversalTime());
 
-                                if (string.Compare(FechaInicioVerif, FechaInicioVerifMax) > 0)
+                                if (ignorarFecha == false && string.Compare(FechaInicioVerif, FechaInicioVerifMax) > 0)
                                         // Ya hay alguien verificando
                                         return;
 
@@ -293,7 +293,7 @@ namespace Lfx
                                 Progreso.Modal = true;
                                 Progreso.Begin();
 
-                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(System.DateTime.Now.ToUniversalTime()));
+                                Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Inicio", Lfx.Types.Formatting.FormatDateTimeSql(Lfx.Workspace.Master.MasterConnection.ServerDateTime.ToUniversalTime()));
                                 Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.VerificarVersionBd.Estacion", Lfx.Environment.SystemInformation.MachineName);
 
                                 try {

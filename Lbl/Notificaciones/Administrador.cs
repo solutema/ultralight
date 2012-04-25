@@ -39,6 +39,8 @@ namespace Lbl.Notificaciones
         /// </summary>
         public class Administrador : IDisposable
         {
+                public static Lbl.Notificaciones.ColeccionUsuarioConectado Usuarios = new ColeccionUsuarioConectado();
+
                 public static Administrador Principal = null;
 
                 private Lfx.Data.Connection m_DataBase = null;
@@ -96,32 +98,48 @@ namespace Lbl.Notificaciones
                 private void PollTimer_Elapsed(Object sender, System.Timers.ElapsedEventArgs e)
                 {
                         this.PollTimer.Stop();
-                        Poll();
+                        try {
+                                Poll();
+                        } catch {
+                                // Nada...
+                        }
                         this.PollTimer.Start();
                 }
 
 
-                public List<UsuarioConectado> ObtenerUsuariosConectados()
+                public void ActualizarUsuariosConectados()
                 {
-                        List<UsuarioConectado> Res = new List<UsuarioConectado>();
+                        Lbl.Notificaciones.ColeccionUsuarioConectado Res = new Lbl.Notificaciones.ColeccionUsuarioConectado();
 
                         qGen.Select SelUsuarios = new qGen.Select("sys_mensajeria");
-                        SelUsuarios.WhereClause = new qGen.Where();
-                        SelUsuarios.WhereClause.AddWithValue("fecha", qGen.ComparisonOperators.GreaterOrEqual, new qGen.SqlExpression("DATE_SUB(fecha, INTERVAL 20 SECOND)"));
+                        //SelUsuarios.WhereClause = new qGen.Where();
+                        //SelUsuarios.WhereClause.AddWithValue("fecha", qGen.ComparisonOperators.GreaterOrEqual, new qGen.SqlExpression("DATE_SUB(fecha, INTERVAL 20 SECOND)"));
+                        DateTime Ahora = Lfx.Workspace.Master.MasterConnection.ServerDateTime;
 
                         try {
                                 System.Data.DataTable TablaUsuarios = this.Connection.Select(SelUsuarios);
                                 foreach (System.Data.DataRow Usuario in TablaUsuarios.Rows) {
-                                        Res.Add(new UsuarioConectado((Lfx.Data.Row)(Usuario)));
+                                        UsuarioConectado Usu = new UsuarioConectado((Lfx.Data.Row)(Usuario));
+                                        Res.Add(Usu);
+
+                                        TimeSpan Dif = Ahora - Usu.Fecha;
+                                        Usu.Estado = Dif.TotalSeconds < 30 ? 1 : 0;
                                 }
                         } catch {
                         }
 
-                        return Res;
+
+                        // Agrego o actualizo la lista
+                        foreach (UsuarioConectado Usu in Res.Values) {
+                                if (Usuarios.ContainsKey(Usu.Id))
+                                        Usuarios[Usu.Id] = Usu;
+                                else
+                                        Usuarios.Add(Usu);
+                        }
                 }
 
 
-                public void Enviar(INotificacion notif)
+                public bool Enviar(INotificacion notif)
                 {
                         qGen.Insert InsertarMensaje = new qGen.Insert("sys_mensajes");
                         InsertarMensaje.Fields.AddWithValue("id_remitente", notif.Remitente.Id);
@@ -133,7 +151,12 @@ namespace Lbl.Notificaciones
                         InsertarMensaje.Fields.AddWithValue("estacion_envia", notif.EstacionOrigen);
                         InsertarMensaje.Fields.AddWithValue("estacion_recibe", notif.EstacionDestino);
 
-                        this.Connection.Execute(InsertarMensaje);
+                        try {
+                                this.Connection.Execute(InsertarMensaje);
+                                return false;
+                        } catch {
+                                return true;
+                        }
                 }
 
 

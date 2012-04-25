@@ -76,7 +76,7 @@ namespace Lbl.Servicios
                         foreach (Lfx.Data.Relation Rel in Rels) {
                                 // Cambio todas las referencias que apuntan al registro duplicado hacia el registro original
                                 qGen.Update Upd = new qGen.Update(Rel.ReferenceTable);
-                                Upd.Fields.AddWithValue(Rel.ReferenceColumn, +IdOriginal);
+                                Upd.Fields.AddWithValue(Rel.ReferenceColumn, IdOriginal);
                                 Upd.WhereClause = new qGen.Where(Rel.ReferenceColumn, IdDuplicado);
                                 this.DataBase.Execute(Upd);
                         }

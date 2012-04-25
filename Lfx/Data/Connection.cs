@@ -94,8 +94,8 @@ namespace Lfx.Data
                                         ConnectionString.Append("Allow User Variables=True;");
                                         ConnectionString.Append("Allow Batch=True;");
                                         // ConnectionString.Append("KeepAlive=20;");     // No sirve, uso KeepAlive propio
-                                        ConnectionString.Append("Pooling=false;");       // Si habilitamos el Pooling, en conector mantiene muchas conexiones abiertas
-                                        // El pool crece, pero nunca se achica
+                                        ConnectionString.Append("Pooling=true;");
+                                        ConnectionString.Append("Cache Server Properties=false;");
                                         switch (System.Text.Encoding.Default.BodyName) {
                                                 case "utf-8":
                                                         ConnectionString.Append("charset=utf8;");
@@ -871,7 +871,10 @@ LEFT JOIN pg_attribute
                                                 NewKey.Column = Constraint["COLUMN_NAME"].ToString();
                                                 NewKey.ReferenceTable = Constraint["REFERENCED_TABLE_NAME"].ToString();
                                                 NewKey.ReferenceColumn = Constraint["REFERENCED_COLUMN_NAME"].ToString();
-                                                Res.Add(NewKey.Name, NewKey);
+                                                if (Res.ContainsKey(NewKey.Name))
+                                                        Res[NewKey.Name] = NewKey;
+                                                else
+                                                        Res.Add(NewKey.Name, NewKey);
                                                 break;
                                         default:
                                                 throw new NotImplementedException("GetConstraints: " + Constraint["CONSTRAINT_TYPE"].ToString().ToUpper() + " " + Constraint["CONSTRAINT_NAME"].ToString() + " no reconocida");

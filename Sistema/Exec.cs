@@ -278,6 +278,9 @@ namespace Lazaro.WinMain
                                         string NombreComponente = Lfx.Types.Strings.GetNextToken(ref comando, ".").Trim();
                                         string NombreFuncion = Lfx.Types.Strings.GetNextToken(ref comando, " ").Trim();
 
+                                        if (Lfx.Components.Manager.ComponentesCargados.ContainsKey(NombreComponente) == false)
+                                                NombreComponente += "." + Lfx.Types.Strings.GetNextToken(ref NombreFuncion, ".").Trim();
+
                                         if (Lfx.Components.Manager.ComponentesCargados.ContainsKey(NombreComponente) == false) {
                                                 return new Lfx.Types.FailureOperationResult("No se encuentra el componente " + NombreComponente);
                                         } else {
