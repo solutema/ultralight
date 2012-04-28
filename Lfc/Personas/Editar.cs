@@ -280,6 +280,7 @@ namespace Lfc.Personas
                         //EntradaTags.Enabled = PermitirEdicionAvanzada;
 
                         EntradaEstado.Enabled = Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
+                        EntradaEstado.ReadOnly = !Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(Cliente, Lbl.Sys.Permisos.Operaciones.Eliminar);
 
                         base.ActualizarControl();
                 }

@@ -154,6 +154,7 @@ namespace Lazaro.WinMain.Config
                         EntradaMonedaDecimalesUnitarios.TextKey = Lbl.Sys.Config.Moneda.Decimales.ToString();
                         EntradaMonedaDecimalesFinal.TextKey = Lbl.Sys.Config.Moneda.DecimalesFinal.ToString();
 
+                        EntradaSucursal.ValueInt = Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual;
                 }
 
 
@@ -180,7 +181,7 @@ namespace Lazaro.WinMain.Config
                         if (NuevoPais.Id != IdPaisOriginal)
                                 Lbl.Sys.Config.CambiarPais(NuevoPais);
 
-                        int Sucursal = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("Estacion", "Sucursal", 1);
+                        int Sucursal = EntradaSucursal.ValueInt;
 
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.CodigoPredet", EntradaArticulosCodigoPredet.TextKey, 0);
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Stock.Multideposito", EntradaStockMultideposito.TextKey, 0);
@@ -235,6 +236,8 @@ namespace Lazaro.WinMain.Config
                         Lbl.Sys.Config.Moneda.Decimales = EntradaMonedaDecimalesUnitarios.ValueInt;
                         Lbl.Sys.Config.Moneda.DecimalesCosto = EntradaMonedaDecimalesCosto.ValueInt;
                         Lbl.Sys.Config.Moneda.DecimalesFinal = EntradaMonedaDecimalesFinal.ValueInt;
+
+                        Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual = EntradaSucursal.ValueInt;
 
 
                         Lfx.Workspace.Master.CurrentConfig.WriteGlobalSetting("Sistema.Configurado", "1", 0);
