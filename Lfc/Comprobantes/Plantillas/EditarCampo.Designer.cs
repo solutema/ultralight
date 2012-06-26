@@ -366,12 +366,14 @@ namespace Lfc.Comprobantes.Plantillas
                         this.EntradaFormato.Location = new System.Drawing.Point(112, 56);
                         this.EntradaFormato.Name = "EntradaFormato";
                         this.EntradaFormato.SetData = new string[] {
-        "Predeterminado|*",
-        "Fecha corta (01/01/2001)|dd/MM/yyyy",
-        "Fecha larga (lunes, 1 de enero de 2001)|dddd, d \"de\" MMMM \"de\" yyyy",
-        "Fecha y hora (01/01/2001 12:00)|dd/MM/yyyy HH:mm",
-        "Numérico con 2 decimales|#.00",
-        "Numérico con 4 decimales|#.0000"};
+                                "Predeterminado|*",
+                                "Fecha corta (01/01/2001)|dd/MM/yyyy",
+                                "Fecha larga (lunes, 1 de enero de 2001)|dddd, d \"de\" MMMM \"de\" yyyy",
+                                "Fecha y hora (01/01/2001 12:00)|dd/MM/yyyy HH:mm",
+                                "Numérico con 2 decimales|#.00",
+                                "Numérico con 4 decimales|#.0000",
+                                "Entero de 7 dígitos|0000000",
+                                "Entero de 8 dígitos|00000000"};
                         this.EntradaFormato.Size = new System.Drawing.Size(400, 24);
                         this.EntradaFormato.TabIndex = 4;
                         this.EntradaFormato.TextKey = "*";

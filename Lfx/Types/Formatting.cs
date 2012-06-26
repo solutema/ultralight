@@ -55,7 +55,7 @@ namespace Lfx.Types
 
                 public static string SpellNumber(decimal number)
 		{
-			return SpellNumber(number, true);
+                        return SpellNumber(number, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesFinal > 0);
 		}
 
                 public static string SpellNumber(decimal number, bool withDecimals)

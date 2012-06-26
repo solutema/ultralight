@@ -72,6 +72,7 @@ namespace Lfc.Comprobantes.Facturas
                         };
 
                         this.Definicion.Columns["gravado"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
+                        this.Definicion.Columns["iva"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
                         this.Definicion.Columns["total"].TotalFunction = Lazaro.Pres.Spreadsheet.QuickFunctions.Sum;
 
                         this.Contadores.Add(new Lfc.Contador("Total", Lui.Forms.DataTypes.Currency));

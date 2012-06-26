@@ -4,6 +4,12 @@
         <name>Lbl</name>
     </assembly>
     <members>
+        <member name="P:Lbl.Atributos.Nomenclatura.PrefijarNombreConTipo">
+            <summary>
+            Obtiene o establece un valor que indica si al mostrar el nombre del elemento debe prefijarse con el tipo.
+            Por ejemplo "Artículo Manzana" (prefijado) vs. "Manzana" (no prefijado), o "Proveedor Juan Perez" vs. "Juan Perez".
+            </summary>
+        </member>
         <member name="T:Lbl.ElementoDeDatos">
             <summary>
             Proporciona acceso a los datos con alto nivel de abstracción.
@@ -135,11 +141,6 @@
             Obtiene el nombre del campo detalle en la tabla de datos.
             </summary>
         </member>
-        <member name="P:Lbl.ElementoDeDatos.Workspace">
-            <summary>
-            Obtiene el espacio de trabajo actual.
-            </summary>
-        </member>
         <member name="P:Lbl.ElementoDeDatos.Nombre">
             <summary>
             Obtiene o establece el nombre del elemento. Normalmente es el valor guadado en el el campo CampoNombre.
@@ -152,8 +153,17 @@
         </member>
         <member name="P:Lbl.ElementoDeDatos.Estado">
             <summary>
-            Obtiene o establece el estado del elemento. El valor de esta propiedad tiene diferentes significados para cada
-            clase derivada.
+            Devuelve o establece el estado del elemento. El valor de esta propiedad tiene diferentes significados para cada clase derivada.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.EstadoEstandar">
+            <summary>
+            Devuelve o establece el estado del elemento. El valor de esta propiedad tiene diferentes significados para cada clase derivada.
+            </summary>
+        </member>
+        <member name="P:Lbl.ElementoDeDatos.Marcas">
+            <summary>
+            Devuelve o establece las marcas del elemento (destacado, protegido, etc.)
             </summary>
         </member>
         <member name="P:Lbl.ElementoDeDatos.ImagenCambio">
@@ -174,6 +184,31 @@
         <member name="P:Lbl.ElementoDeDatos.Etiquetas">
             <summary>
             Obtiene o establece las etiquetas del elemento.
+            </summary>
+        </member>
+        <member name="T:Lbl.Bancos.Claves.Cbu">
+            <summary>
+            Clave Bancaria Uniforme (Argentina)
+            http://www.clientebancario.gov.ar/default.asp
+            </summary>
+        </member>
+        <member name="T:Lbl.Bancos.Claves.Ccc">
+            <summary>
+            Código Cuenta Cliente (España)
+            Está siendo sustituído por el IBAN.
+            http://es.wikipedia.org/wiki/C%C3%B3digo_cuenta_cliente
+            </summary>
+        </member>
+        <member name="T:Lbl.Bancos.Claves.Clabe">
+            <summary>
+            Clave Bancaria Estandarizada (México)
+            http://es.wikipedia.org/wiki/CLABE
+            </summary>
+        </member>
+        <member name="T:Lbl.Bancos.Claves.Iban">
+            <summary>
+            International Bank Account Number (Europa, otros)
+            http://en.wikipedia.org/wiki/International_Bank_Account_Number
             </summary>
         </member>
         <member name="T:Lbl.Componentes.Componente">
@@ -211,6 +246,19 @@
             Archivo CIF, que contiene información sobre menús y funciones.
             </summary>
         </member>
+        <member name="T:Lbl.Comprobantes.ColeccionComprobanteImporte">
+            <summary>
+            Describe una lista de comprobantes, con un importe asociado a cada comprobante.
+            Por ejemplo, una lista de las facturas canceladas por un recibo, y el importe (total o parcial)
+            de cada factura que fue cancelado por el recibo.
+            </summary>
+        </member>
+        <member name="T:Lbl.Comprobantes.ComprobanteImporte">
+            <summary>
+            Describe un comprobante y un importe asociado, que puede ser total o parcial con respecto al importe del comprobante.
+            Ver ColeccionComprobanteImporte
+            </summary>
+        </member>
         <member name="M:Lbl.Comprobantes.Comprobante.Numerar(System.Int32,System.Boolean)">
             <summary>
             Numera el comprobante (usando el número especificado), guardando automáticamente los cambios.
@@ -241,9 +289,57 @@
             <param name="importe">El importe a redondear.</param>
             <returns>El importe redondeado y truncado.</returns>
         </member>
+        <member name="M:Lbl.Comprobantes.ComprobanteConArticulos.TotalConIvaAlicuota(System.Int32)">
+            <summary>
+            Ídem IvaAlicuota pero con los precios de los artículos incluídos.
+            </summary>
+        </member>
+        <member name="M:Lbl.Comprobantes.ComprobanteConArticulos.IvaAlicuota(System.Int32)">
+            <summary>
+            Devuelve la cantidad de IVA que este comprobante lleva de una alícuota en particular, o 0 si este artículo no se le aplica esa alícuota.
+            Útil para Paraguay, donde por cada renglón de la factura van dos columnas, una con el importe IVA tasa regular y
+            otra con la tasa reducida (o cero). Una de las dos columnas puede estar en blanco.
+            </summary>
+        </member>
+        <member name="M:Lbl.Comprobantes.ComprobanteConArticulos.MoverExistencias(System.Boolean)">
+            <summary>
+            Asienta los movimientos de stock correspondientes al comprobante.
+            </summary>
+            <param name="anulacion">Indica si el movimiento es por anulación de comprobante.</param>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.ComprobRelacionados">
+            <summary>
+            Una colección con los comprobantes relacionados a este, por ejemplo las facturas o ND canceladas por esta si fuera una NC.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.ImporteDescuentos">
+            <summary>
+            El total de descuentos, pero en moneda.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.ImporteRecargos">
+            <summary>
+            El total de recargos, pero en moneda.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.Descuento">
+            <summary>
+            El porcentaje de descuento.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.Recargo">
+            <summary>
+            El porcentaje de recargo.
+            </summary>
+        </member>
         <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.SubTotal">
             <summary>
             Devuelve el subtotal, que es el importe de los artículos del comprobante, antes de descuentos y recargos.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.SubTotalSinIva">
+            <summary>
+            Devuelve el subtotal sin IVA, pero con descuentos, recargos y redondeos.
             </summary>
         </member>
         <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.Total">
@@ -259,11 +355,6 @@
         <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.ImporteImpago">
             <summary>
             Devuelve el importe que aun está impago.
-            </summary>
-        </member>
-        <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.SubTotalSinIva">
-            <summary>
-            Devuelve el subtotal sin IVA, pero con descuentos, recargos y redondeos.
             </summary>
         </member>
         <member name="P:Lbl.Comprobantes.ComprobanteConArticulos.ImporteIva">
@@ -321,6 +412,61 @@
             <param name="original">La colección original.</param>
             <returns>La colección de los elementos no presentes en esta colección, pero si en la original.</returns>
         </member>
+        <member name="T:Lbl.Entidades.ClaveUnica">
+            <summary>
+            Representa una Clave Única (por ejemplo un DNI, SSN, CBU, IBAN, etc.).
+            </summary>
+        </member>
+        <member name="T:Lbl.Notificaciones.Administrador">
+            <summary>
+            Administrador de notificaciones.
+            </summary>
+        </member>
+        <member name="T:Lbl.Notificaciones.NotificacionRegistro">
+            <summary>
+            Representa una notificación que se puede recibir local o remotamente.
+            </summary>
+        </member>
+        <member name="T:Lbl.Entidades.Pais">
+            <summary>
+            Representa una País.
+            </summary>
+        </member>
+        <member name="P:Lbl.Entidades.Pais.ClavePersonasFisicas">
+            <summary>
+            El tipo de clave utilizada para identificar a las personas (DNI, CI, SSN, etc.)
+            </summary>
+        </member>
+        <member name="P:Lbl.Entidades.Pais.ClavePersonasJuridicas">
+            <summary>
+            El tipo de clave utilizada para identificar a las personas jurídicas (CUIT, RUT, NIF, etc.)
+            </summary>
+        </member>
+        <member name="P:Lbl.Entidades.Pais.ClaveBancaria">
+            <summary>
+            El tipo de clave utilizada para identificar las cuentas bancarias (CBU, IBAN, CLABE, etc.)
+            </summary>
+        </member>
+        <member name="P:Lbl.Entidades.Pais.Moneda">
+            <summary>
+            La divisa utilizada en el país.
+            </summary>
+        </member>
+        <member name="P:Lbl.Entidades.Pais.Iva1">
+            <summary>
+            La tasa de IVA normal.
+            </summary>
+        </member>
+        <member name="P:Lbl.Entidades.Pais.Iva2">
+            <summary>
+            La tasa de IVA reducida.
+            </summary>
+        </member>
+        <member name="T:Lbl.IEstadosEstandar">
+            <summary>
+            Describe un elemento que puede ser desactivado, poniendo su estado en cero.
+            </summary>
+        </member>
         <member name="T:Lbl.Impresion.Campo">
             <summary>
             Define un campo para una Plantilla.
@@ -343,6 +489,31 @@
             </summary>
             <returns>Una lista de valores separados por comas.</returns>
         </member>
+        <member name="T:Lbl.Personas.Claves.Cpf">
+            <summary>
+            Cadastro de Pessoas Físicas (Brasil)
+            </summary>
+        </member>
+        <member name="T:Lbl.Personas.Claves.Cuit">
+            <summary>
+            Clave Única de Identificación Tributaria (Argentina)
+            </summary>
+        </member>
+        <member name="T:Lbl.Personas.Claves.Nif">
+            <summary>
+            Número de Identificación Fiscal (España)
+            </summary>
+        </member>
+        <member name="T:Lbl.Personas.Claves.Ruc">
+            <summary>
+            Registro Único de Contribuyente (Uruguay)
+            </summary>
+        </member>
+        <member name="T:Lbl.Personas.Claves.Rut">
+            <summary>
+            Rol Único Tributario (Chile)
+            </summary>
+        </member>
         <member name="T:Lbl.Personas.Usuario">
             <summary>
             Describe un usuario del sistema. En realidad es una vista diferente de un registro de la tabla de personas.
@@ -351,6 +522,43 @@
         <member name="T:Lbl.Servicios.Importar.ColeccionMapaDeTablas">
             <summary>
             Contiene una lista de tablas a mapear al importar.
+            </summary>
+        </member>
+        <member name="M:Lbl.Sys.Config.ActionLog(Lfx.Data.Connection,Lbl.Sys.Log.Acciones,Lbl.IElementoDeDatos,System.String)">
+            <summary>
+            Escribe un evento en la tabla sys_log. Se utiliza para registrar operaciones de datos (altas, bajas, ingresos, egresos, etc.)
+            </summary>
+        </member>
+        <member name="F:Lbl.Sys.Config.Articulos.Decimales">
+            <summary>
+            La cantidad de decimales para las existencias.
+            </summary>
+        </member>
+        <member name="F:Lbl.Sys.Config.Moneda.Decimales">
+            <summary>
+            La cantidad de decimales para los precios de venta en general.
+            </summary>
+        </member>
+        <member name="F:Lbl.Sys.Config.Moneda.DecimalesCosto">
+            <summary>
+            La cantidad de decimales para los precios de compra y de costo.
+            </summary>
+        </member>
+        <member name="F:Lbl.Sys.Config.Moneda.DecimalesFinal">
+            <summary>
+            La cantidad de decimales para el importe final del comprobante.
+            </summary>
+        </member>
+        <member name="F:Lbl.Sys.Config.Moneda.UnidadMonetariaMinima">
+            <summary>
+            La unidad monetaria mínima para el importe final de los comprobantes de venta.
+            Esto puede conicidir con el valor de la divisa monetaria más pequeña en circulación, para evitar dar cambio en
+            monedas que no existen. Por ejemplo, si la moneda más pequeña es de 5 centavos, este valor podría ser 0.05 para evitar
+            dar cambio de 1, 2, 3 y 4 centavos, que es imposible.
+            Ejemplos: 
+                UnidadMonetariaMinima = 0        El importe final no se trunca.
+                UnidadMonetariaMinima = 0.05     El importe final se trunca a 5 centavos, o sea algo que cuesta $ 1.18 se factura a $ 1.15.
+                UnidadMonetariaMinima = 1        El importe final se trunca a 1 peso, o sea se eliminan los centavos.
             </summary>
         </member>
         <member name="T:Lbl.Sys.Permisos.Objeto">
@@ -363,7 +571,14 @@
             Describe una instancia de un permiso en particular.
             </summary>
         </member>
-        <member name="P:Lbl.Articulos.Situacion.CuentaStock">
+        <member name="M:Lbl.Articulos.Categoria.ObtenerSeguimiento">
+            <summary>
+            Devuelve el modo de seguimiento para esta categoría, o "Ninguno" si no se especificó un modo de seguimiento.
+            Este método nunca devuelve "Predeterminado".
+            </summary>
+            <returns>El modo de seguimiento para esta categoría.</returns>
+        </member>
+        <member name="P:Lbl.Articulos.Situacion.CuentaExistencias">
             <summary>
             Indica si los artículos en esta situación suman al stock.
             </summary>
@@ -428,6 +643,11 @@
             Representa una persona física o jurídica.
             </summary>
         </member>
+        <member name="P:Lbl.Personas.Persona.Nombres">
+            <summary>
+            El nombre de pila.
+            </summary>
+        </member>
         <member name="T:Lbl.Servicios.Desduplicador">
             <summary>
             Fusiona dos elementos de datos, útil para eliminar duplicados. Cambia todas las referencias de claves foráneas al nuevo elemento.
@@ -438,19 +658,9 @@
             Describe un filtro de importación.
             </summary>
         </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.CargarTodo">
+        <member name="M:Lbl.Servicios.Importar.Filtro.ImportarTodo">
             <summary>
-            Carga en memoria los datos a importar.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.FusionarTodo">
-            <summary>
-            Incorpora en la base de datos los datos cargados en memoria.
-            </summary>
-        </member>
-        <member name="M:Lbl.Servicios.Importar.Filtro.FusionarTabla(Lbl.Servicios.Importar.MapaDeTabla)">
-            <summary>
-            Incorpora en la base de datos los datos cargados en memoria para la tabla seleccionada.
+            Comienza la importación de todos los mapas.
             </summary>
         </member>
         <member name="M:Lbl.Servicios.Importar.Filtro.ConvertirRegistroEnElemento(Lbl.Servicios.Importar.MapaDeTabla,Lfx.Data.Row,Lfx.Data.Row)">
@@ -500,14 +710,9 @@
             <param name="mapa"></param>
             <param name="elemento"></param>
         </member>
-        <member name="T:Lbl.Servicios.Importar.FiltroArchivos">
+        <member name="T:Lbl.Servicios.Importar.FiltroOdbc">
             <summary>
-            Describe un filtro de importación desde uno o varios archivos.
-            </summary>
-        </member>
-        <member name="T:Lbl.Servicios.Importar.FiltroDbf">
-            <summary>
-            Describe un filtro de importación desde archivos DBF.
+            Filtro de importación desde on origen ODBC.
             </summary>
         </member>
         <member name="T:Lbl.Servicios.Importar.FiltroEscorpion">
@@ -542,12 +747,55 @@
             Hace una lista de movimientos necesarios para convertir "original" en "this".
             </summary>
         </member>
-        <member name="P:Lbl.Comprobantes.DetalleArticulo.Importe">
+        <member name="M:Lbl.Comprobantes.DetalleArticulo.ImporteConIvaAlicuota(System.Int32)">
+            <summary>
+            Ídem ImporteIvaAlicuota, pero con el precio del artículo incluído.
+            </summary>
+        </member>
+        <member name="M:Lbl.Comprobantes.DetalleArticulo.ImporteIvaAlicuota(System.Int32)">
+            <summary>
+            Devuelve la cantidad de IVA que este artículo lleva de una alícuota en particular, o 0 si este artículo no se le aplica esa alícuota.
+            Útil para Paraguay, donde por cada renglón de la factura van dos columnas, una con el importe IVA tasa regular y
+            otra con la tasa reducida (o cero). Una de las dos columnas puede estar en blanco.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.ImporteAImprimir">
+            <summary>
+            Devuelve el importe final a imprimir en la factura (precio unitario multiplicado por la cantidad,
+            más descuentos y recargos, incluyendo o no el IVA según el comprobante discrimine o no).
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.ImporteSinIva">
             <summary>
             Devuelve el importe final a facturar (precio unitario multiplicado por la cantidad, más descuentos y recargos).
             </summary>
         </member>
-        <member name="P:Lbl.Comprobantes.DetalleArticulo.UnitarioAFacturar">
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.ImporteConIva">
+            <summary>
+            Devuelve el importe final a facturar (precio unitario multiplicado por la cantidad, más descuentos y recargos).
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.UnitarioSinIvaConDescuentoORecargo">
+            <summary>
+            Devuelve el precio unitario aplicando descuentos o recargos.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.UnitarioConIvaConDescuentoORecargo">
+            <summary>
+            Devuelve el precio unitario aplicando descuentos o recargos.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.UnitarioAImprimirConDescuentoORecargo">
+            <summary>
+            Devuelve el precio unitario aplicando descuentos o recargos.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.UnitarioAImprimir">
+            <summary>
+            Devuelve el precio unitario a imprimir, según la discriminación de IVA del comprobante.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.UnitarioConIva">
             <summary>
             Devuelve el precio unitario a facturar, según la discriminación de IVA del comprobante.
             </summary>
@@ -557,7 +805,7 @@
             Devuelve el importe de IVA que corresponde a este artículo.
             </summary>
         </member>
-        <member name="P:Lbl.Comprobantes.DetalleArticulo.IvaDiscriminado">
+        <member name="P:Lbl.Comprobantes.DetalleArticulo.ImporteIvaDiscriminado">
             <summary>
             Devuelve la cantidad de IVA que fue discriminado para este artículo, o 0 si no se discriminó IVA.
             </summary>
@@ -567,19 +815,79 @@
             Representa una forma de pago. Tanto para emitir pagos como para recibir pagos.
             </summary>
         </member>
-        <member name="P:Lbl.Comprobantes.Tipo.LetraSola">
+        <member name="M:Lbl.Comprobantes.Recibo.CancelarImpagos(Lbl.Personas.Persona,Lbl.Comprobantes.ColeccionComprobanteImporte,Lbl.Comprobantes.Comprobante,System.Decimal)">
             <summary>
-            Devuelve sólamente la letra (A, B, C, E o M, independientemente de que sea NCA, NDE, etc.)
+            Cancela el importe impago de los comprobantes en listaComprob y si sobra continúa cancelando en los comprobantes
+            más viejos que tengan saldo pendiente. Si continúa sobrando, deja el saldo a favor en cta. cte.
+            </summary>
+            <param name="cliente">El cliente.</param>
+            <param name="listaComprob">La lista de comprobantes en los cuales cancelar saldo impago.</param>
+            <param name="comprob">El comprobante que está cancelando saldos. Puede ser un recibo o una NC.</param>
+            <param name="importe">El importe total a cancelar. Puede ser negativo para hacerlo en contra del cliente.</param>
+        </member>
+        <member name="P:Lbl.Comprobantes.Recibo.Facturas">
+            <summary>
+            Una colección conteniendo las facturas, NC o ND que cancela este recibo.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.PermiteVenta">
+            <summary>
+            Indica si permite hacer comprobantes de venta de este tipo.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.PermiteCompra">
+            <summary>
+            Indica si permite hacer comprobantes de compra de este tipo.
             </summary>
         </member>
         <member name="P:Lbl.Comprobantes.Tipo.TipoBase">
             <summary>
-            Devuelve sólamente el tipo (F, NC, ND, sin letra A, B, etc.)
+            Devuelve sólamente el tipo (F, NC, ND, sin letra A, B, etc.).
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.NombreLargo">
+            <summary>
+            Devuelve el tipo nombre largo del tipo de comprobante.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.NombreTipoLbl">
+            <summary>
+            Devuelve el tipo Lbl.
             </summary>
         </member>
         <member name="P:Lbl.Comprobantes.Tipo.Nomenclatura">
             <summary>
-            La nomenclatura del tipo de comprobante (A, B, NCA, NDE, etc.)
+            La nomenclatura del tipo de comprobante (A, B, NCA, NDE, etc.). Está formada por el TipoBase y la Letra.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.Letra">
+            <summary>
+            Devuelve sólamente la letra (A, B, C, E o M, independientemente de que sea NCA, NDE, etc.)
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.LetraONomenclatura">
+            <summary>
+            Devuelve la letra del comprobante, o si no tiene subdivisión por letras devuelve la nomenclatura.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.EsNotaCredito">
+            <summary>
+            Devuleve Verdadero si este tipo de comprobante es una Nota de Crédito.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.EsNotaDebito">
+            <summary>
+            Devuleve Verdadero si este tipo de comprobante es una Nota de Débito.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.EsTicket">
+            <summary>
+            Devuleve Verdadero si este tipo de comprobante es un ticket.
+            </summary>
+        </member>
+        <member name="P:Lbl.Comprobantes.Tipo.EsFactura">
+            <summary>
+            Devuleve Verdadero si este tipo de comprobante es una factura.
             </summary>
         </member>
         <member name="T:Lbl.CuentasCorrientes.CuentaCorriente">
@@ -588,7 +896,7 @@
             No es realmente un ElementoDeDatos.
             </summary>
         </member>
-        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Saldo(System.Boolean)">
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.ObtenerSaldo(System.Boolean)">
             <summary>
             Calcula el saldo actual de la cuenta corriente.
             </summary>
@@ -600,7 +908,7 @@
             durante verificaciones de consistencia o al desduplicar cuentas.
             </summary>
         </member>
-        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Movimiento(System.Boolean,Lbl.Cajas.Concepto,System.String,System.Decimal,System.String,Lbl.Comprobantes.ComprobanteConArticulos,Lbl.Comprobantes.Recibo,System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.Movimiento(System.Boolean,Lbl.Cajas.Concepto,System.String,System.Decimal,System.String,Lbl.Comprobantes.ComprobanteConArticulos,Lbl.Comprobantes.Recibo,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Asienta un movimiento en la cuenta corriente, y cancela comprobantes asociados.
             </summary>
@@ -611,15 +919,28 @@
             <param name="obs">Observaciones.</param>
             <param name="comprob">El comprobante asociado a este movimiento.</param>
             <param name="recibo">El recibo asociado a este movimiento.</param>
-            <param name="cancelaCosas">Indica si el monto del movimiento se usa para cancelar comprobantes impagos.</param>
             <param name="textoComprob">Un texto sobre los comprobantes asociados al sistema.</param>
             <param name="extras">Colección de campos adicionales para el registro.</param>
         </member>
-        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.IngresarComprobante(Lbl.Comprobantes.ComprobanteConArticulos)">
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.CancelarComprobantesConSaldo(System.Decimal,System.Boolean)">
             <summary>
-            Ingresa un comprobante (factura, nota de crédito o nota de débito) a la cuenta corriente, realizando el movimiento correspondiente.
+            Da por pagado (direccion = 1) o despagado (retrotrae el pago) de uno o más comprobantes con saldo.
             </summary>
-            <param name="comprob">El comprobante a ingresar.</param>
+            <param name="importeDebito">El importe a cancelar de los comprobantes. Un importe negativo expresa descancelar comprobantes.</param>
+            <param name="cancelarPrimero">Indica si debo cancelar primero y luego descancelar (operación normal) o hacerlo en el ordne inverso (anulación de operación normal).</param>
+        </member>
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.DesCancelarComprobantes(System.Decimal)">
+            <summary>
+            Descancela comprobantes hasta el importe solicitado.
+            </summary>
+            <param name="importe">El importe a descancelar.</param>
+        </member>
+        <member name="M:Lbl.CuentasCorrientes.CuentaCorriente.CancelarComprobantes(System.Decimal)">
+            <summary>
+            Cancela saldos en comprobantes hasta el importe solicitado.
+            </summary>
+            <param name="importe">El importe a cancelar.</param>
+            <returns>El importe cancelado. Puede ser igual o menor al importe solicitado.</returns>
         </member>
         <member name="M:Lbl.Cajas.Caja.Recalcular">
             <summary>
@@ -647,11 +968,6 @@
             Representa la situación de una persona frente al fisco.
             </summary>
         </member>
-        <member name="M:Lbl.Sys.Config.ActionLog(Lfx.Data.Connection,Lbl.Sys.Log.Acciones,Lbl.IElementoDeDatos,System.String)">
-            <summary>
-            Escribe un evento en la tabla sys_log. Se utiliza para registrar operaciones de datos (altas, bajas, ingresos, egresos, etc.)
-            </summary>
-        </member>
         <member name="T:Lbl.Tareas.Novedad">
             <summary>
             Representa una novedad de una tarea.
@@ -672,6 +988,13 @@
             Representa un plan de una tarjeta de crédito (p. ej.: "Plan 12 cuotas sin interés").
             </summary>
         </member>
+        <member name="M:Lbl.Articulos.Articulo.ObtenerSeguimiento">
+            <summary>
+            Devuelve el modo de seguimiento para este artículo, o para la categoría si no se especificó un modo de seguimiento.
+            Este método nunca devuelve "Predeterminado".
+            </summary>
+            <returns>El modo de seguimiento para este artículo.</returns>
+        </member>
         <member name="M:Lbl.Articulos.Articulo.SuperArticulos">
             <summary>
             Devuelve una colección de artículos de los cuales este es un ingrediente.
@@ -681,6 +1004,36 @@
             <summary>
             Propaga los cambios de costo hacia arriba.
             Es decir, si este artículo es ingrediente en la receta de otros artículos, actualizar los artículos padre para que reflejen el cambio de costo de este ingrediente.
+            </summary>
+        </member>
+        <member name="P:Lbl.Articulos.Articulo.Periodicidad">
+            <summary>
+            Para los servicios: cómo o cada cuanto se facturan (por horas, por minutos, una vez al mes, etc.)
+            </summary>
+        </member>
+        <member name="P:Lbl.Articulos.Articulo.Seguimiento">
+            <summary>
+            Para la trazabilidad por números de serie, o seguimiento por variaciones (como talles y colores).
+            </summary>
+        </member>
+        <member name="P:Lbl.Articulos.Articulo.Existencias">
+            <summary>
+            Las existencias actuales.
+            </summary>
+        </member>
+        <member name="P:Lbl.Articulos.Articulo.Pedido">
+            <summary>
+            La cantidad pedida, pendiente de arribo.
+            </summary>
+        </member>
+        <member name="P:Lbl.Articulos.Articulo.Costo">
+            <summary>
+            El precio de costo o de compra.
+            </summary>
+        </member>
+        <member name="P:Lbl.Articulos.Articulo.Receta">
+            <summary>
+            La composición, sólo válida para productos compuestos.
             </summary>
         </member>
         <member name="T:Lbl.Impresion.Plantilla">

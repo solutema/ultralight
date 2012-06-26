@@ -115,12 +115,14 @@ namespace Lfc.Personas
             this.NombreColumna,
             this.ColumnaActual,
             this.ColumnaNueva});
+                        this.ListaComparacion.FieldName = null;
                         this.ListaComparacion.FullRowSelect = true;
                         this.ListaComparacion.GridLines = true;
                         this.ListaComparacion.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.ListaComparacion.LabelWrap = false;
                         this.ListaComparacion.Location = new System.Drawing.Point(24, 100);
                         this.ListaComparacion.Name = "ListaComparacion";
+                        this.ListaComparacion.ReadOnly = false;
                         this.ListaComparacion.Size = new System.Drawing.Size(544, 112);
                         this.ListaComparacion.TabIndex = 5;
                         this.ListaComparacion.TabStop = false;
@@ -155,7 +157,7 @@ namespace Lfc.Personas
                         // BotonCancelar
                         // 
                         this.BotonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                         this.BotonCancelar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BotonCancelar.Image")));
                         this.BotonCancelar.ImagePos = Lui.Forms.ImagePositions.Top;
@@ -214,7 +216,7 @@ namespace Lfc.Personas
                         // AltaDuplicada
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-                        this.CancelButton = this.BotonCorregir;
+                        this.CancelButton = this.BotonCancelar;
                         this.ClientSize = new System.Drawing.Size(592, 493);
                         this.Controls.Add(this.BotonCancelar);
                         this.Controls.Add(this.label3);

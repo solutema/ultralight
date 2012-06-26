@@ -485,6 +485,7 @@ namespace Lfc
                                         Carga = Lbl.Impresion.CargasPapel.Manual;
                                 } else if (this.Elemento is Lbl.Comprobantes.ComprobanteConArticulos) {
                                         Lbl.Comprobantes.ComprobanteConArticulos Comprob = this.Elemento as Lbl.Comprobantes.ComprobanteConArticulos;
+
                                         if (Lbl.Comprobantes.PuntoDeVenta.TodosPorNumero[Comprob.PV].Tipo == Lbl.Comprobantes.TipoPv.Fiscal) {
                                                 Carga = Lbl.Impresion.CargasPapel.Automatica;
                                         } else {

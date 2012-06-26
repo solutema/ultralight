@@ -130,8 +130,8 @@ namespace Lazaro.Impresion
 
                         this.TitleFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 12, FontStyle.Bold);
                         this.HeaderFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 8, FontStyle.Bold);
-                        this.RowFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 8);
-                        this.TotalsFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 8, FontStyle.Bold);
+                        this.RowFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 7);
+                        this.TotalsFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 7, FontStyle.Bold);
                         this.FooterFont = new Font(Lazaro.Pres.DisplayStyles.Template.Current.DefaultPrintFontName, 7);
 
                         // Rectángulo que incluye toda el área imprimible

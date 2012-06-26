@@ -128,7 +128,21 @@ namespace Lfx.Data
 
                         if (Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver != null)
                                 ConnectionString.Append("DRIVER={" + Lfx.Data.DataBaseCache.DefaultCache.OdbcDriver + "};");
-                        ConnectionString.Append("SERVER=" + Lfx.Data.DataBaseCache.DefaultCache.ServerName + ";");
+
+                        string Server, Port;
+                        if (Lfx.Data.DataBaseCache.DefaultCache.ServerName.IndexOf(':') >= 0) {
+                                string[] Temp = Lfx.Data.DataBaseCache.DefaultCache.ServerName.Split(new char[] { ':' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                                Server = Temp[0];
+                                Port = Temp[1];
+                        } else {
+                                Server = Lfx.Data.DataBaseCache.DefaultCache.ServerName;
+                                Port = null;
+                        }
+
+                        ConnectionString.Append("SERVER=" + Server + ";");
+                        if(string.IsNullOrEmpty(Port) == false)
+                                ConnectionString.Append("PORT=" + Port + ";");
+
                         if (Lfx.Data.DataBaseCache.DefaultCache.DataBaseName.Length > 0)
                                 ConnectionString.Append("DATABASE=" + Lfx.Data.DataBaseCache.DefaultCache.DataBaseName + ";");
                         ConnectionString.Append("UID=" + Lfx.Data.DataBaseCache.DefaultCache.UserName + ";");
