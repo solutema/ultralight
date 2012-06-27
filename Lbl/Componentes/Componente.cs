@@ -258,7 +258,7 @@ namespace Lbl.Componentes
 
                                 if (Lfx.Workspace.Master.DebugMode) {
                                         WhereToLook = new string[] {
-                                                System.IO.Path.Combine(Lfx.Environment.Folders.ApplicationFolder, @"../../../Componentes/bin/" + this.EspacioNombres + ".dll"),
+                                                System.IO.Path.Combine(Lfx.Environment.Folders.ApplicationFolder, @"../../../Componentes/bin/dev/" + this.EspacioNombres + ".dll"),
                                                 System.IO.Path.Combine(Lfx.Environment.Folders.ComponentsFolder, this.EspacioNombres + System.IO.Path.DirectorySeparatorChar + this.EspacioNombres + ".dll"),
 					        Lfx.Environment.Folders.ComponentsFolder + this.EspacioNombres + ".dll",
 					        Lfx.Environment.Folders.ApplicationFolder + this.EspacioNombres + ".dll"
