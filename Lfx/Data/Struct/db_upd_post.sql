@@ -86,4 +86,11 @@ UPDATE sys_log SET tabla=NULL WHERE comando='LogOn' OR comando='LogOnFail';
 UPDATE pvs SET nombre=LPAD(numero, 4, '0') WHERE nombre='' OR nombre IS NULL;
 UPDATE sucursales SET nombre='Casa central' WHERE nombre='Sucursal 1';
 
+UPDATE documentos_tipos SET tipobase='Lbl.Comprobantes.ComprobanteFacturable'
+	WHERE (tipobase IS NULL OR tipobase='') AND tipo IN ('Lbl.Comprobantes.Factura', 'Lbl.Comprobantes.NotaDeCredito', 'Lbl.Comprobantes.NotaDeDebito', 'Lbl.Comprobantes.Ticket');
+UPDATE documentos_tipos SET tipobase='Lbl.Comprobantes.Recibo'
+	WHERE (tipobase IS NULL OR tipobase='') AND tipo IN ('Lbl.Comprobantes.ReciboDeCobro', 'Lbl.Comprobantes.ReciboDeCobro');
+
+UPDATE comprob_detalle SET total=precio*cantidad+iva WHERE total=0;
+
 SET FOREIGN_KEY_CHECKS=1;

@@ -53,7 +53,11 @@ namespace Lfc.Comprobantes.Facturas
 
                                 TableName = "comprob",
                                 KeyColumn = new Lazaro.Pres.Field("comprob.id_comprob", "Cód.", Lfx.Data.InputFieldTypes.Serial, 0),
-                                Joins = new qGen.JoinCollection() { new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"), new qGen.Join("situaciones", "personas.id_situacion=situaciones.id_situacion") },
+                                Joins = new qGen.JoinCollection() {
+                                                new qGen.Join("personas", "comprob.id_cliente=personas.id_persona"),
+                                                new qGen.Join("situaciones", "personas.id_situacion=situaciones.id_situacion"),
+                                                new qGen.Join("documentos_tipos", "documentos_tipos.letra=comprob.tipo_fac")
+                                },
                                 Columns = new Lazaro.Pres.FieldCollection()
 			        {
 				        new Lazaro.Pres.Field("comprob.fecha", "Fecha", Lfx.Data.InputFieldTypes.Date, 96),
@@ -62,7 +66,7 @@ namespace Lfc.Comprobantes.Facturas
 				        new Lazaro.Pres.Field("personas.nombre_visible", "Cliente", Lfx.Data.InputFieldTypes.Text, 300),
 				        new Lazaro.Pres.Field("personas.cuit", Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre, Lfx.Data.InputFieldTypes.Text, 140),
 				        new Lazaro.Pres.Field("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),
-				        new Lazaro.Pres.Field("(comprob.total-comprob.iva)*(1-anulada) AS gravado", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("(comprob.total-comprob.iva)*(1-comprob.anulada)*(documentos_tipos.direc_ctacte) AS gravado", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
                                         new Lazaro.Pres.Field("comprob.iva*(1-anulada) AS iva", "IVA", Lfx.Data.InputFieldTypes.Currency, 96),
 				        new Lazaro.Pres.Field("comprob.total*(1-anulada) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
 				        new Lazaro.Pres.Field("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),                                
@@ -151,19 +155,19 @@ namespace Lfc.Comprobantes.Facturas
                 protected override void OnBeginRefreshList()
                 {
                         this.CustomFilters.Clear();
-                        this.CustomFilters.AddWithValue("compra", 0);
+                        this.CustomFilters.AddWithValue("comprob.compra", 0);
 
                         switch (this.Definicion.ElementoTipo.ToString()) {
                                 case "Lbl.Comprobantes.NotaDeCredito":
                                         if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "NCA", "NCB", "NCC", "NCE", "NCM" });
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new qGen.SqlExpression("SELECT letra FROM documentos_tipos WHERE tipo='Lbl.Comprobantes.NotaDeCredito'"));
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "NC" + m_Letra);
                                         break;
 
                                 case "Lbl.Comprobantes.NotaDeDebito":
                                         if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "NDA", "NDB", "NDC", "NDE", "NDM" });
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new qGen.SqlExpression("SELECT letra FROM documentos_tipos WHERE tipo='Lbl.Comprobantes.NotaDeDebito'"));
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "ND" + m_Letra);
                                         break;
@@ -171,14 +175,14 @@ namespace Lfc.Comprobantes.Facturas
                                 case "Lbl.Comprobantes.Factura":
                                         this.Definicion.Columns["pendiente"].Visible = true;
                                         if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM" });
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new qGen.SqlExpression("SELECT letra FROM documentos_tipos WHERE tipo='Lbl.Comprobantes.Factura'"));
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", "F" + m_Letra);
                                         break;
 
                                 case "Lbl.Comprobantes.ComprobanteFacturable":
                                         if (m_Letra == "*")
-                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "FA", "FB", "FC", "FE", "FM", "NCA", "NCB", "NCC", "NCE", "NCM", "NDA", "NDB", "NDC", "NDE", "NDM" });
+                                                this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new qGen.SqlExpression("SELECT letra FROM documentos_tipos WHERE tipobase='Lbl.Comprobantes.ComprobanteFacturable'"));
                                         else
                                                 this.CustomFilters.AddWithValue("comprob.tipo_fac", qGen.ComparisonOperators.In, new string[] { "F" + m_Letra, "NC" + m_Letra, "ND" + m_Letra });
                                         break;

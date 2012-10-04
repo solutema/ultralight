@@ -150,6 +150,7 @@ namespace Lfc.Personas
                                         break;
                         }
 
+
                         if (Lbl.Sys.Config.Pais.ClavePersonasJuridicas != null) {
                                 switch (Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre) {
                                         case "CUIT":
@@ -247,6 +248,8 @@ namespace Lfc.Personas
                         EntradaEstadoCredito.TextKey = ((int)(Cliente.EstadoCredito)).ToString();
                         EntradaEstadoCredito.Enabled = PermitirEdicionCredito;
                         EntradaNumeroCuenta.Text = Cliente.NumeroCuenta;
+                        EntradaTipoCuenta.TextKey = ((int)(Cliente.TipoCuenta)).ToString();
+                        EntradaTipoCuenta.Enabled = PermitirEdicionAvanzada;
                         EntradaNumeroCuenta.Enabled = PermitirEdicionAvanzada;
 
                         string CBU = Cliente.GetFieldValue<string>("cbu");
@@ -393,6 +396,7 @@ namespace Lfc.Personas
                         Res.LimiteCredito = Lfx.Types.Parsing.ParseCurrency(EntradaLimiteCredito.Text);
                         Res.FechaNacimiento = Lfx.Types.Parsing.ParseDate(EntradaFechaNac.Text);
                         Res.NumeroCuenta = EntradaNumeroCuenta.Text;
+                        Res.TipoCuenta = (Lbl.Personas.TiposCuenta)(Lfx.Types.Parsing.ParseInt(EntradaTipoCuenta.TextKey));
                         Res.ClaveBancaria = EntradaClaveBancaria.Text.Replace("-", "").Replace(" ", "").Replace("/", "").Replace(".", "");
                         Res.EstadoCredito = ((Lbl.Personas.EstadoCredito)(Lfx.Types.Parsing.ParseInt(EntradaEstadoCredito.TextKey)));
                         Res.Estado = Lfx.Types.Parsing.ParseInt(EntradaEstado.TextKey);

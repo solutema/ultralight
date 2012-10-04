@@ -97,7 +97,6 @@ namespace Lcc.Entrada
                         // BotonAplicar
                         // 
                         this.BotonAplicar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAplicar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAplicar.Image = null;
                         this.BotonAplicar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAplicar.Location = new System.Drawing.Point(261, 3);

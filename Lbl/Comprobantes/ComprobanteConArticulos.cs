@@ -341,9 +341,9 @@ namespace Lbl.Comprobantes
                         {
                                 decimal Res = 0;
                                 foreach (DetalleArticulo Art in this.Articulos) {
-                                        Res += Art.ImporteSinIva;
+                                        Res += Math.Round(Art.ImporteSinIva, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
                                 }
-                                return Math.Round(Res, Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales);
+                                return Res;
                         }
                 }
 
@@ -971,6 +971,7 @@ namespace Lbl.Comprobantes
                                                 else
                                                         Comando.Fields.AddWithValue("costo", Art.Costo);
                                                 Comando.Fields.AddWithValue("importe", Art.ImporteAImprimir);
+                                                Comando.Fields.AddWithValue("total", Art.ImporteConIva);
                                                 Comando.Fields.AddWithValue("series", Art.DatosSeguimiento);
                                                 Comando.Fields.AddWithValue("obs", Art.Obs);
 

@@ -152,6 +152,7 @@ namespace Lbl.Personas
                                 Comando.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
                         Comando.Fields.AddWithValue("limitecredito", this.LimiteCredito);
                         Comando.Fields.AddWithValue("fechanac", this.FechaNacimiento);
+                        Comando.Fields.AddWithValue("tipocuenta", (int)(this.TipoCuenta));
                         Comando.Fields.AddWithValue("numerocuenta", this.NumeroCuenta);
                         Comando.Fields.AddWithValue("cbu", this.ClaveBancaria);
                         Comando.Fields.AddWithValue("estadocredito", this.EstadoCredito);
@@ -294,6 +295,19 @@ namespace Lbl.Personas
                                 this.SetFieldValue("estadocredito", (int)value);
                         }
 		}
+
+
+                public TiposCuenta TipoCuenta
+                {
+                        get
+                        {
+                                return (TiposCuenta)(this.GetFieldValue<int>("tipocuenta"));
+                        }
+                        set
+                        {
+                                this.SetFieldValue("tipocuenta", (int)value);
+                        }
+                }
 
 
 		public string FacturaPreferida

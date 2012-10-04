@@ -41,7 +41,7 @@ namespace Lfc.Reportes
 {
         public partial class Reporte : Lui.Forms.ChildForm
         {
-                public Lbl.Reportes.Reporte ReporteAMostrar;
+                public Lbl.Reportes.Reporte2 ReporteAMostrar;
 
                 public Reporte()
                 {

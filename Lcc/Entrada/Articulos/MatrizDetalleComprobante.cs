@@ -83,25 +83,36 @@ namespace Lcc.Entrada.Articulos
 
                 public void CargarArticulos(IList<Lbl.Comprobantes.DetalleArticulo> articulos)
                 {
-                        if (articulos == null || articulos.Count == 0) {
-                                this.Count = 1;
-                                this.ChildControls[0].ValueInt = 0;
-                                this.ChildControls[0].Cantidad = 1;
-                        } else {
-                                this.Count = articulos.Count;
-
-                                for (int i = 0; i < articulos.Count; i++) {
-                                        if (articulos[i].Articulo == null)
-                                                this.ChildControls[i].Text = this.FreeTextCode;
-                                        else
-                                                this.ChildControls[i].Articulo = articulos[i].Articulo;
-
-                                        this.ChildControls[i].TextDetail = articulos[i].Nombre;
-                                        this.ChildControls[i].Cantidad = articulos[i].Cantidad;
-                                        this.ChildControls[i].Unitario = articulos[i].Unitario;
-                                        this.ChildControls[i].Descuento = articulos[i].Descuento;
-                                        this.ChildControls[i].DatosSeguimiento = articulos[i].DatosSeguimiento;
+                        try
+                        {
+                                if (articulos == null || articulos.Count == 0)
+                                {
+                                        this.Count = 1;
+                                        this.ChildControls[0].ValueInt = 0;
+                                        this.ChildControls[0].Cantidad = 1;
                                 }
+                                else
+                                {
+                                        this.Count = articulos.Count;
+
+                                        for (int i = 0; i < articulos.Count; i++)
+                                        {
+                                                if (articulos[i].Articulo == null)
+                                                        this.ChildControls[i].Text = this.FreeTextCode;
+                                                else
+                                                        this.ChildControls[i].Articulo = articulos[i].Articulo;
+
+                                                this.ChildControls[i].TextDetail = articulos[i].Nombre;
+                                                this.ChildControls[i].Cantidad = articulos[i].Cantidad;
+                                                this.ChildControls[i].Unitario = articulos[i].Unitario;
+                                                this.ChildControls[i].Descuento = articulos[i].Descuento;
+                                                this.ChildControls[i].DatosSeguimiento = articulos[i].DatosSeguimiento;
+                                        }
+                                }
+                        }
+                        catch
+                        {
+                                // FIXME: quitar este try-catch
                         }
                 }
 

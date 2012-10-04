@@ -49,7 +49,6 @@ namespace Lazaro.WinMain.Config
                         string BD = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "DatabaseName", null);
                         string Usuario = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "User", null);
                         string Contrasena = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "Password", null);
-                        string SlowLink = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Data", "SlowLink", null);
                         string Branch = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingString("Company", "Branch", null);
 
                         if (Servidor == null)

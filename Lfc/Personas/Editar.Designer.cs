@@ -98,6 +98,7 @@ namespace Lfc.Personas
                         this.EntradaTelefono = new Lcc.Entrada.MatrizTelefonos();
                         this.label23 = new Lui.Forms.Label();
                         this.PanelD2 = new Lui.Forms.Frame();
+                        this.EntradaTipoCuenta = new Lui.Forms.ComboBox();
                         this.EntradaSubGrupo = new Lcc.Entrada.CodigoDetalle();
                         this.label13 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
@@ -141,11 +142,11 @@ namespace Lfc.Personas
                         this.EntradaLocalidad.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaLocalidad.MaxLength = 200;
                         this.EntradaLocalidad.Name = "EntradaLocalidad";
+                        this.EntradaLocalidad.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaLocalidad.PlaceholderText = "Sin especificar";
                         this.EntradaLocalidad.Required = true;
                         this.EntradaLocalidad.Size = new System.Drawing.Size(212, 24);
                         this.EntradaLocalidad.TabIndex = 9;
-                        this.EntradaLocalidad.NombreTipo = "Lbl.Entidades.Localidad";
                         this.EntradaLocalidad.Text = "0";
                         // 
                         // EntradaDomicilio
@@ -172,15 +173,14 @@ namespace Lfc.Personas
                         // 
                         this.EntradaTipoDoc.AutoTab = true;
                         this.EntradaTipoDoc.CanCreate = false;
-                        this.EntradaTipoDoc.Filter = "";
                         this.EntradaTipoDoc.Location = new System.Drawing.Point(208, 104);
                         this.EntradaTipoDoc.MaximumSize = new System.Drawing.Size(200, 32);
                         this.EntradaTipoDoc.MaxLength = 200;
                         this.EntradaTipoDoc.Name = "EntradaTipoDoc";
+                        this.EntradaTipoDoc.NombreTipo = "Lbl.Entidades.ClaveUnica";
                         this.EntradaTipoDoc.Required = true;
                         this.EntradaTipoDoc.Size = new System.Drawing.Size(136, 24);
                         this.EntradaTipoDoc.TabIndex = 5;
-                        this.EntradaTipoDoc.NombreTipo = "Lbl.Entidades.ClaveUnica";
                         this.EntradaTipoDoc.Text = "0";
                         // 
                         // EntradaApellido
@@ -383,15 +383,14 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaSituacion.AutoTab = true;
                         this.EntradaSituacion.CanCreate = false;
-                        this.EntradaSituacion.Filter = "";
                         this.EntradaSituacion.Location = new System.Drawing.Point(128, 104);
                         this.EntradaSituacion.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaSituacion.MaxLength = 200;
                         this.EntradaSituacion.Name = "EntradaSituacion";
+                        this.EntradaSituacion.NombreTipo = "Lbl.Impuestos.SituacionTributaria";
                         this.EntradaSituacion.Required = true;
                         this.EntradaSituacion.Size = new System.Drawing.Size(212, 24);
                         this.EntradaSituacion.TabIndex = 5;
-                        this.EntradaSituacion.NombreTipo = "Lbl.Impuestos.SituacionTributaria";
                         this.EntradaSituacion.Text = "0";
                         this.EntradaSituacion.Leave += new System.EventHandler(this.EntradaSituacion_Leave);
                         // 
@@ -435,16 +434,15 @@ namespace Lfc.Personas
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTipo.AutoTab = true;
                         this.EntradaTipo.CanCreate = false;
-                        this.EntradaTipo.Filter = "";
                         this.EntradaTipo.Location = new System.Drawing.Point(112, 104);
                         this.EntradaTipo.MaximumSize = new System.Drawing.Size(320, 32);
                         this.EntradaTipo.MaxLength = 200;
                         this.EntradaTipo.Name = "EntradaTipo";
+                        this.EntradaTipo.NombreTipo = "Lbl.Personas.Tipo";
                         this.EntradaTipo.PlaceholderText = "Sin especificar";
                         this.EntradaTipo.Required = true;
                         this.EntradaTipo.Size = new System.Drawing.Size(232, 24);
                         this.EntradaTipo.TabIndex = 5;
-                        this.EntradaTipo.NombreTipo = "Lbl.Personas.Tipo";
                         this.EntradaTipo.Text = "0";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
                         // 
@@ -468,11 +466,11 @@ namespace Lfc.Personas
                         this.EntradaGrupo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaGrupo.MaxLength = 200;
                         this.EntradaGrupo.Name = "EntradaGrupo";
+                        this.EntradaGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaGrupo.PlaceholderText = "Ninguno";
                         this.EntradaGrupo.Required = false;
                         this.EntradaGrupo.Size = new System.Drawing.Size(232, 24);
                         this.EntradaGrupo.TabIndex = 1;
-                        this.EntradaGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaGrupo.Text = "0";
                         this.EntradaGrupo.TextChanged += new System.EventHandler(this.EntradaGrupo_TextChanged);
                         // 
@@ -493,14 +491,15 @@ namespace Lfc.Personas
                         this.EntradaLimiteCredito.Name = "EntradaLimiteCredito";
                         this.EntradaLimiteCredito.Prefijo = "$";
                         this.EntradaLimiteCredito.Size = new System.Drawing.Size(120, 24);
-                        this.EntradaLimiteCredito.TabIndex = 11;
+                        this.EntradaLimiteCredito.TabIndex = 12;
+                        this.EntradaLimiteCredito.Text = "0.00";
                         // 
                         // label17
                         // 
                         this.label17.Location = new System.Drawing.Point(8, 200);
                         this.label17.Name = "label17";
                         this.label17.Size = new System.Drawing.Size(168, 24);
-                        this.label17.TabIndex = 10;
+                        this.label17.TabIndex = 11;
                         this.label17.Text = "Límite de crédito";
                         this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -539,7 +538,7 @@ namespace Lfc.Personas
         "Suspendido con react. automática|10",
         "Susp. con reactivación manual|100"};
                         this.EntradaEstadoCredito.Size = new System.Drawing.Size(168, 74);
-                        this.EntradaEstadoCredito.TabIndex = 13;
+                        this.EntradaEstadoCredito.TabIndex = 14;
                         this.EntradaEstadoCredito.TextKey = "100";
                         // 
                         // label21
@@ -547,7 +546,7 @@ namespace Lfc.Personas
                         this.label21.Location = new System.Drawing.Point(8, 232);
                         this.label21.Name = "label21";
                         this.label21.Size = new System.Drawing.Size(168, 24);
-                        this.label21.TabIndex = 12;
+                        this.label21.TabIndex = 13;
                         this.label21.Text = "Estado de crédito";
                         this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -558,14 +557,14 @@ namespace Lfc.Personas
                         this.EntradaClaveBancaria.Location = new System.Drawing.Point(112, 168);
                         this.EntradaClaveBancaria.Name = "EntradaClaveBancaria";
                         this.EntradaClaveBancaria.Size = new System.Drawing.Size(232, 24);
-                        this.EntradaClaveBancaria.TabIndex = 9;
+                        this.EntradaClaveBancaria.TabIndex = 10;
                         // 
                         // EtiquetaClaveBancaria
                         // 
                         this.EtiquetaClaveBancaria.Location = new System.Drawing.Point(8, 168);
                         this.EtiquetaClaveBancaria.Name = "EtiquetaClaveBancaria";
                         this.EtiquetaClaveBancaria.Size = new System.Drawing.Size(104, 24);
-                        this.EtiquetaClaveBancaria.TabIndex = 8;
+                        this.EtiquetaClaveBancaria.TabIndex = 9;
                         this.EtiquetaClaveBancaria.Text = "CBU";
                         this.EtiquetaClaveBancaria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -573,11 +572,11 @@ namespace Lfc.Personas
                         // 
                         this.EntradaNumeroCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaNumeroCuenta.Location = new System.Drawing.Point(112, 136);
+                        this.EntradaNumeroCuenta.Location = new System.Drawing.Point(200, 136);
                         this.EntradaNumeroCuenta.MaxLength = 200;
                         this.EntradaNumeroCuenta.Name = "EntradaNumeroCuenta";
-                        this.EntradaNumeroCuenta.Size = new System.Drawing.Size(232, 24);
-                        this.EntradaNumeroCuenta.TabIndex = 7;
+                        this.EntradaNumeroCuenta.Size = new System.Drawing.Size(144, 24);
+                        this.EntradaNumeroCuenta.TabIndex = 8;
                         // 
                         // label22
                         // 
@@ -621,11 +620,11 @@ namespace Lfc.Personas
                         this.EntradaVendedor.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaVendedor.MaxLength = 200;
                         this.EntradaVendedor.Name = "EntradaVendedor";
+                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.PlaceholderText = "Ninguno";
                         this.EntradaVendedor.Required = false;
                         this.EntradaVendedor.Size = new System.Drawing.Size(212, 24);
                         this.EntradaVendedor.TabIndex = 11;
-                        this.EntradaVendedor.NombreTipo = "Lbl.Personas.Persona";
                         this.EntradaVendedor.Text = "0";
                         // 
                         // EntradaTelefono
@@ -633,6 +632,7 @@ namespace Lfc.Personas
                         this.EntradaTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaTelefono.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.EntradaTelefono.Font = new System.Drawing.Font("Segoe UI", 9.75F);
                         this.EntradaTelefono.Location = new System.Drawing.Point(128, 104);
                         this.EntradaTelefono.Name = "EntradaTelefono";
                         this.EntradaTelefono.Size = new System.Drawing.Size(214, 88);
@@ -649,6 +649,7 @@ namespace Lfc.Personas
                         // 
                         // PanelD2
                         // 
+                        this.PanelD2.Controls.Add(this.EntradaTipoCuenta);
                         this.PanelD2.Controls.Add(this.EntradaSubGrupo);
                         this.PanelD2.Controls.Add(this.EntradaGrupo);
                         this.PanelD2.Controls.Add(this.EntradaClaveBancaria);
@@ -671,6 +672,21 @@ namespace Lfc.Personas
                         this.PanelD2.TabIndex = 3;
                         this.PanelD2.Text = "Otros datos";
                         // 
+                        // EntradaTipoCuenta
+                        // 
+                        this.EntradaTipoCuenta.AlwaysExpanded = false;
+                        this.EntradaTipoCuenta.Location = new System.Drawing.Point(112, 136);
+                        this.EntradaTipoCuenta.Name = "EntradaTipoCuenta";
+                        this.EntradaTipoCuenta.SetData = new string[] {
+        "Tipo Cta.|0",
+        "CC $|1",
+        "CA $|2",
+        "CC U$S|13",
+        "CA U$S|15"};
+                        this.EntradaTipoCuenta.Size = new System.Drawing.Size(80, 24);
+                        this.EntradaTipoCuenta.TabIndex = 7;
+                        this.EntradaTipoCuenta.TextKey = "0";
+                        // 
                         // EntradaSubGrupo
                         // 
                         this.EntradaSubGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -682,11 +698,11 @@ namespace Lfc.Personas
                         this.EntradaSubGrupo.MaximumSize = new System.Drawing.Size(480, 32);
                         this.EntradaSubGrupo.MaxLength = 200;
                         this.EntradaSubGrupo.Name = "EntradaSubGrupo";
+                        this.EntradaSubGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaSubGrupo.PlaceholderText = "Ninguno";
                         this.EntradaSubGrupo.Required = false;
                         this.EntradaSubGrupo.Size = new System.Drawing.Size(232, 24);
                         this.EntradaSubGrupo.TabIndex = 3;
-                        this.EntradaSubGrupo.NombreTipo = "Lbl.Personas.Grupo";
                         this.EntradaSubGrupo.Text = "0";
                         // 
                         // label13
@@ -802,6 +818,7 @@ namespace Lfc.Personas
                         // matrizTelefonos1
                         // 
                         this.matrizTelefonos1.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.matrizTelefonos1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
                         this.matrizTelefonos1.Location = new System.Drawing.Point(0, 0);
                         this.matrizTelefonos1.Name = "matrizTelefonos1";
                         this.matrizTelefonos1.Size = new System.Drawing.Size(536, 180);
@@ -890,5 +907,6 @@ namespace Lfc.Personas
                 internal Lui.Forms.Label label25;
                 internal Lui.Forms.Label label24;
                 internal Lui.Forms.Label label4;
+                internal Lui.Forms.ComboBox EntradaTipoCuenta;
         }
 }

@@ -147,7 +147,6 @@ namespace Lfc.Pvs
                         // BotonEstacionSeleccionar
                         // 
                         this.BotonEstacionSeleccionar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonEstacionSeleccionar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonEstacionSeleccionar.Image = null;
                         this.BotonEstacionSeleccionar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonEstacionSeleccionar.Location = new System.Drawing.Point(480, 264);

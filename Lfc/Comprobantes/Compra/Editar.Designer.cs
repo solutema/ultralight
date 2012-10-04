@@ -168,7 +168,6 @@ namespace Lfc.Comprobantes.Compra
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
-                        this.EntradaProductos.Font = new System.Drawing.Font("Segoe UI", 9.75F);
                         this.EntradaProductos.FreeTextCode = "*";
                         this.EntradaProductos.Location = new System.Drawing.Point(0, 64);
                         this.EntradaProductos.BloquearPrecio = false;
@@ -254,7 +253,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.BotonObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonObs.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonObs.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonObs.Image = null;
                         this.BotonObs.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonObs.Location = new System.Drawing.Point(116, 368);
@@ -270,7 +268,6 @@ namespace Lfc.Comprobantes.Compra
                         // 
                         this.BotonConvertir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonConvertir.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonConvertir.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonConvertir.Image = null;
                         this.BotonConvertir.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonConvertir.Location = new System.Drawing.Point(0, 368);
