@@ -60,6 +60,8 @@
     <OutputPath>bin\dev\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\dev\Lfc.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -381,6 +383,12 @@
     </Compile>
     <Compile Include="Funciones\GetTypes.cs" />
     <Compile Include="Funciones\Try.cs" />
+    <Compile Include="Importar\ImportarArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Importar\ImportarArticulos.Designer.cs">
+      <DependentUpon>ImportarArticulos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio\Boton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -896,6 +904,9 @@
     <EmbeddedResource Include="FormularioListadoExportar.resx">
       <DependentUpon>FormularioListadoExportar.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Importar\ImportarArticulos.resx">
+      <DependentUpon>ImportarArticulos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio\Boton.resx">
       <DependentUpon>Boton.cs</DependentUpon>

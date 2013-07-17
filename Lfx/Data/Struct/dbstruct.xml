@@ -742,12 +742,12 @@
     <Column name="cuit" inputtype="Text" section="Personas jurídicas" label="Clave tributaria" nullable="1" lenght="16" />
     <Column name="id_situacion" inputtype="Relation" section="Personas jurídicas" label="Situación tributaria" nullable="1"
             relation_table="situaciones" relation_key="id_situacion" relation_detail="nombre" />
-    <Column name="domicilio" inputtype="Text" label="Domicilio Particular" section="Locación" nullable="1" lenght="200" />
-    <Column name="domiciliotrabajo" inputtype="Text" label="Domicilio Laboral" section="Locación" nullable="1" lenght="200" />
+    <Column name="domicilio" inputtype="Text" label="Domicilio particular" section="Locación" nullable="1" lenght="200" />
+    <Column name="domiciliotrabajo" inputtype="Text" label="Domicilio laboral" section="Locación" nullable="1" lenght="200" />
     <Column name="id_ciudad" inputtype="Relation" section="Locación" label="Localidad" nullable="1"
             relation_table="ciudades" relation_key="id_ciudad" relation_detail="nombre" />
     <Column name="telefono" inputtype="Text" label="Teléfono" section="Locación" nullable="1" lenght="200" />
-    <Column name="email" inputtype="Text" label="Correo Electrónico" section="Locación" nullable="1" lenght="200" />
+    <Column name="email" inputtype="Text" label="Correo electrónico" section="Locación" nullable="1" lenght="200" />
     <Column name="url" inputtype="Text" label="URL" section="Locación" nullable="1" lenght="200" />
     <Column name="tipo_fac" datatype="VarChar" nullable="1" lenght="1" />
     <Column name="fechanac" inputtype="DateTime" section="Personas físicas" nullable="1" />

@@ -505,7 +505,7 @@ namespace Lazaro.WinMain
                                                                         string TipoServidor = "";
                                                                         switch (Lfx.Data.DataBaseCache.DefaultCache.AccessMode) {
                                                                                 case Lfx.Data.AccessModes.MySql:
-                                                                                        TipoServidor = "MySQL";
+                                                                                        TipoServidor = "MySQL/MariaDB";
                                                                                         break;
                                                                                 case Lfx.Data.AccessModes.MSSql:
                                                                                         TipoServidor = "SQL Server";
@@ -800,7 +800,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                         if (string.Compare(ex2.Message, "Reading from the stream has failed.", true) == 0
                                                 || string.Compare(ex2.Message, "Unable to connect to any of the specified MySQL hosts.", true) == 0
                                                 || string.Compare(ex2.Message, "Connection unexpectedly terminated.", true) == 0
-                                                || string.Compare(ex2.Message, "error connecting: Timeout expired.", true) == 0
+                                                || string.Compare(ex2.Message, "Timeout expired.", true) == 0
                                                 || string.Compare(ex2.Message, "No se pueden leer los datos de la conexión de transporte: Se ha forzado la interrupción de una conexión existente por el host remoto.", true) == 0) {
                                                 KnownExceptionHandler(ex, "Error de comunicación con el servidor");
                                                 Found = true;
@@ -898,7 +898,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         Texto.AppendLine("Traza:");
 
                         MailMessage Mensaje = new MailMessage();
-                        Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
+                        Mensaje.To.Add(new MailAddress("error@lazarogestion.com"));
                         Mensaje.From = new MailAddress(Lbl.Sys.Config.Empresa.Email, Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Empresa.Nombre);
                         try {
                                 //No sé por qué, pero una vez dió un error al poner el asunto
@@ -910,7 +910,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
 
                         Mensaje.Body = Texto.ToString();
 
-                        SmtpClient Cliente = new SmtpClient("mail.sistemalazaro.com.ar");
+                        SmtpClient Cliente = new SmtpClient("mail.laredintercomercial.com");
                         try {
                                 Cliente.Send(Mensaje);
                                 FormularioError.EtiquetaDescripcion.Text = "Se envió un reporte de error. Haga clic en Continuar.";

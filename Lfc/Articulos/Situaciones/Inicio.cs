@@ -50,8 +50,8 @@ namespace Lfc.Articulos.Situaciones
                                 Columns = new Lazaro.Pres.FieldCollection()
                                 {
 				        new Lazaro.Pres.Field("articulos_situaciones.nombre", "Nombre", Lfx.Data.InputFieldTypes.Text, 320),
-                                        new Lazaro.Pres.Field("articulos_situaciones.cuenta_stock", "Suma Stock", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
-				        new Lazaro.Pres.Field("articulos_situaciones.facturable", "Facturable", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Si" } } ),
+                                        new Lazaro.Pres.Field("articulos_situaciones.cuenta_stock", "Suma Stock", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Sí" } } ),
+				        new Lazaro.Pres.Field("articulos_situaciones.facturable", "Facturable", 96, new Dictionary<int, string> { {0, "No" }, { 1, "Sí" } } ),
 				        new Lazaro.Pres.Field("articulos_situaciones.deposito", "Depósito", Lfx.Data.InputFieldTypes.Integer, 96),
 			        },
                         };

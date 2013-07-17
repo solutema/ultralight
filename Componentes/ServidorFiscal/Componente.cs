@@ -93,7 +93,7 @@ namespace ServidorFiscal
 
                         Impresora = new Lazaro.Impresion.Comprobantes.Fiscal.Impresora(Lfx.Workspace.Master);
 
-                        Lfx.Workspace.Master.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Workspace_IpcEvent);
+                        Lfx.Workspace.Master.RunTime.IpcEvent += new Lfx.RunTimeServices.IpcEventHandler(Componente_IpcEvent);
                         Impresora.Notificacion += new Lazaro.Impresion.Comprobantes.Fiscal.NotificacionEventHandler(ConFiscal_EventoConexion);
 
                         Programador = new System.Timers.Timer(1000);
@@ -163,7 +163,7 @@ namespace ServidorFiscal
                         }
                 }
 
-                public void Workspace_IpcEvent(object sender, ref Lfx.RunTimeServices.IpcEventArgs e)
+                public void Componente_IpcEvent(object sender, ref Lfx.RunTimeServices.IpcEventArgs e)
                 {
                         if (e.Destination == "servidorfiscal") {
                                 switch (e.Verb) {
@@ -406,7 +406,7 @@ namespace ServidorFiscal
                                 Texto.AppendLine(ex.StackTrace);
 
                                 MailMessage Mensaje = new MailMessage();
-                                Mensaje.To.Add(new MailAddress("error@sistemalazaro.com.ar"));
+                                Mensaje.To.Add(new MailAddress("error@lazarogestion.com"));
                                 Mensaje.From = new MailAddress(Lbl.Sys.Config.Empresa.Email, Lbl.Sys.Config.Actual.UsuarioConectado.Nombre + " en " + Lbl.Sys.Config.Empresa.Nombre);
                                 try {
                                         //No sé por qué, pero una vez dió un error al poner el asunto

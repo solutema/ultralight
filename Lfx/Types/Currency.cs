@@ -54,9 +54,9 @@ namespace Lfx.Types
                 public static decimal QuitarIva(decimal importe, decimal alicuota)
                 {
                         decimal ImporteOriginal = importe / (1 + alicuota / 100);
-                        decimal Iva = Math.Round(importe - ImporteOriginal, 4);
+                        decimal Iva = Math.Floor((importe - ImporteOriginal) * 100) / 100;
 
-                        return Math.Round(importe - Iva, 4);
+                        return Math.Floor((importe - Iva) * 100) / 100;
                 }
 	}
 }

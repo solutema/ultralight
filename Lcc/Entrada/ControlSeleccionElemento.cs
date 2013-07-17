@@ -90,10 +90,14 @@ namespace Lcc.Entrada
                         {
                                 // Si no tengo un tipo de elemento, intento averiguarlo
                                 if (base.ElementoTipo == null || base.ElementoTipo == typeof(Lbl.ElementoDeDatos)) {
-                                        if (string.IsNullOrEmpty(this.NombreTipo) == false)
-                                                this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.NombreTipo);
-                                        else if (string.IsNullOrEmpty(this.Table) == false)
-                                                this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.Table);
+                                        try {
+                                                if (string.IsNullOrEmpty(this.NombreTipo) == false)
+                                                        this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.NombreTipo);
+                                                else if (string.IsNullOrEmpty(this.Table) == false)
+                                                        this.ElementoTipo = Lbl.Instanciador.InferirTipo(this.Table);
+                                        } catch {
+                                                // Esto puede fallar en tiempo de diseño
+                                        }
                                 }
                                 return base.ElementoTipo;
                         }
@@ -124,8 +128,13 @@ namespace Lcc.Entrada
                         set
                         {
                                 m_NombreElementoTipo = value;
-                                if (value != null && this.ElementoTipo == null)
-                                        this.ElementoTipo = Lbl.Instanciador.InferirTipo(m_NombreElementoTipo);
+                                if (value != null && this.ElementoTipo == null) {
+                                        try {
+                                                this.ElementoTipo = Lbl.Instanciador.InferirTipo(m_NombreElementoTipo);
+                                        } catch {
+                                                // Esto puede fallar en tiempo de diseño
+                                        }
+                                }
                         }
                 }
 

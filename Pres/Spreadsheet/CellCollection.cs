@@ -52,6 +52,24 @@ namespace Lazaro.Pres.Spreadsheet
                         this.Add(Res);
                 }
 
+
+                public void AddWithValue(decimal cellContent)
+                {
+                        Cell Res = new Cell(this.ParentRow);
+                        Res.ColumnNumber = ParentRow.Cells.Count;
+                        Res.Content = cellContent;
+                        this.Add(Res);
+                }
+
+                public void AddWithValue(DateTime cellContent)
+                {
+                        Cell Res = new Cell(this.ParentRow);
+                        Res.ColumnNumber = ParentRow.Cells.Count;
+                        Res.Content = cellContent;
+                        this.Add(Res);
+                }
+
+
                 new public void Add(Cell cell)
                 {
                         cell.ParentRow = this.ParentRow;

@@ -633,6 +633,7 @@ namespace Lbl
                         }
                 }
 
+
                 /// <summary>
                 /// Obtiene el valor de un campo del registro asociado.
                 /// </summary>

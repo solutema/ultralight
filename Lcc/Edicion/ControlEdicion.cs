@@ -200,13 +200,78 @@ namespace Lcc.Edicion
                 }
 
 
+                private Lazaro.Pres.Forms.FormActionCollection m_FormActions = null;
                 public virtual Lazaro.Pres.Forms.FormActionCollection GetFormActions()
                 {
-                        return new Lazaro.Pres.Forms.FormActionCollection();
+                        if (m_FormActions == null) {
+                                m_FormActions = new Lazaro.Pres.Forms.FormActionCollection();
+                                // Obtengo una lista de acciones basadas en la tabla sys_tags
+                                if (this.ElementoTipo != null && Lfx.Data.DataBaseCache.DefaultCache.Tables.ContainsKey("sys_tags")) {
+                                        Lbl.Atributos.Datos AttrDatos = this.ElementoTipo.GetAttribute<Lbl.Atributos.Datos>();
+                                        if (AttrDatos != null) {
+                                                string NombreTabla = AttrDatos.TablaDatos;
+
+                                                System.Data.DataTable TagsTable = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM sys_tags WHERE fieldtype IN ('action') AND tablename='" + NombreTabla + "'");
+                                                foreach (System.Data.DataRow TagRow in TagsTable.Rows) {
+                                                        Lfx.Data.Row ActionRow = (Lfx.Data.Row)TagRow;
+                                                        Lazaro.Pres.Forms.FormAction NewAction = new Lazaro.Pres.Forms.FormAction(ActionRow.Fields["label"].ValueString, null, ActionRow.Fields["fieldname"].ValueString, 0);
+                                                        switch(ActionRow.Fields["inputtype"].ValueString) {
+                                                                case "primary":
+                                                                case "pri":
+                                                                        NewAction.Visibility = Lazaro.Pres.Forms.FormActionVisibility.Main;
+                                                                        break;
+                                                                case "tertiary":
+                                                                case "ter":
+                                                                        NewAction.Visibility = Lazaro.Pres.Forms.FormActionVisibility.Tertiary;
+                                                                        break;
+                                                                case "secondary":
+                                                                case "sec":
+                                                                default:
+                                                                        NewAction.Visibility = Lazaro.Pres.Forms.FormActionVisibility.Secondary;
+                                                                        break;
+
+                                                        }
+                                                        NewAction.Extra = ActionRow.Fields["extra"].ValueString;
+                                                
+
+                                                        m_FormActions.Add(NewAction);
+                                                }
+                                        }
+                                }
+                        }
+
+                        return m_FormActions;
                 }
 
                 public virtual Lfx.Types.OperationResult PerformFormAction(string name)
                 {
+                        if (this.m_FormActions.ContainsKey(name)) {
+                                if (this.m_FormActions[name].Extra != null) {
+                                        string Extra = this.m_FormActions[name].Extra;
+
+                                        Extra = Extra.Replace("%ElementoTipo%", this.ElementoTipo.ToString());
+                                        Extra = Extra.Replace("%Elemento.Id%", this.Elemento.Id.ToString());
+                                        Extra = Extra.Replace("%Elemento%", this.Elemento.ToString());
+
+                                        string[] Partes = Extra.Split(new string[] { "::" }, 2, StringSplitOptions.RemoveEmptyEntries);
+                                        string Destino, Comando;
+
+                                        if (Partes.Length == 0) {
+                                                return null;
+                                        } else if (Partes.Length == 1) {
+                                                Destino = "lazaro";
+                                                Comando = Partes[0];
+                                        } else {
+                                                Destino = Partes[0];
+                                                Comando = Partes[1];
+                                        }
+
+                                        string Verbo = Lfx.Types.Strings.GetNextToken(ref Comando, " ");
+                                        string[] Params = Comando.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                        
+                                        Lfx.Workspace.Master.RunTime.Execute(Destino, Verbo, Params);
+                                }
+                        }
                         return null;
                 }
         }

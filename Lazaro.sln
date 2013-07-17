@@ -1,9 +1,12 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinMain", "Sistema\WinMain.csproj", "{06B1A167-AAC4-468A-A763-9C99E52B2CB3}"
 	ProjectSection(ProjectDependencies) = postProject
+		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B} = {FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}
+		{605FD6A7-13A6-45A3-9C5D-DAF1CEF01DBB} = {605FD6A7-13A6-45A3-9C5D-DAF1CEF01DBB}
 		{ADB0CDC0-F816-40AC-A3D9-7951254F6FB4} = {ADB0CDC0-F816-40AC-A3D9-7951254F6FB4}
+		{2C1839DB-8ECE-4D57-AD57-541E81CD36C1} = {2C1839DB-8ECE-4D57-AD57-541E81CD36C1}
 		{BC643FE8-57FF-4E26-AAF2-19B229BE9B16} = {BC643FE8-57FF-4E26-AAF2-19B229BE9B16}
 	EndProjectSection
 EndProject
@@ -27,6 +30,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impresion", "Impresion\Impresion.csproj", "{EBF39B24-DF1A-4C99-8FC8-F9A24E9CB8FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pres", "Pres\Pres.csproj", "{ADB0CDC0-F816-40AC-A3D9-7951254F6FB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mensajeria", "Mensajeria\Mensajeria.csproj", "{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +121,12 @@ Global
 		{ADB0CDC0-F816-40AC-A3D9-7951254F6FB4}.Release|Dev.Build.0 = Release|x86
 		{ADB0CDC0-F816-40AC-A3D9-7951254F6FB4}.Release|Rel.ActiveCfg = Release|Any CPU
 		{ADB0CDC0-F816-40AC-A3D9-7951254F6FB4}.Release|Rel.Build.0 = Release|Any CPU
+		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Debug|Dev.ActiveCfg = Debug|x86
+		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Debug|Dev.Build.0 = Debug|x86
+		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Debug|Rel.ActiveCfg = Debug|Any CPU
+		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Debug|Rel.Build.0 = Debug|Any CPU
+		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Release|Dev.ActiveCfg = Release|Any CPU
+		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Release|Rel.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,14 +137,13 @@ Global
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None
 		$1.ResourceNamePolicy = FileFormatDefault
-		$0.TextStylePolicy = $2
+		$0.TextStylePolicy = $4
 		$2.inheritsSet = null
 		$2.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $3
 		$3.inheritsSet = Mono
 		$3.inheritsScope = text/x-csharp
 		$3.scope = text/x-csharp
-		$0.TextStylePolicy = $4
 		$4.FileWidth = 120
 		$4.inheritsSet = Mono
 		$4.inheritsScope = text/plain

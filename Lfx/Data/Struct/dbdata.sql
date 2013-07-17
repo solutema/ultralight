@@ -12645,6 +12645,11 @@ INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcent
 INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (3, '40%', 0, 40, 0, 0, 0, 0, '', 1);
 INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (4, '50%', 0, 50, 0, 0, 0, 0, '', 1);
 INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (5, '100%', 0, 100, 0, 0, 0, 0, '', 1);
+INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (6, '5%', 0, 5, 0, 0, 0, 1, '', 1);
+INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (7, '10%', 0, 10, 0, 0, 0, 1, '', 1);
+INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (8, '15%', 0, 15, 0, 0, 0, 1, '', 1);
+INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (9, '20%', 0, 20, 0, 0, 0, 1, '', 1);
+INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (10, '3%', 0, 3, 0, 0, 0, 1, '', 1);
 
 INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (1, 'Nuevo', '', 1);
 INSERT INTO tickets_estados (id_ticket_estado, nombre, obs, estado) VALUES (5, 'Activo', '', 1);

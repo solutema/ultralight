@@ -305,6 +305,11 @@ namespace Lbl.Componentes
                                 TryFunc.Nombre = "Try";
                                 this.Funciones.Add(TryFunc);
 
+                                // Creo la función Register, que la tienen que definir todos los componentes
+                                Lfx.Components.FunctionInfo RegisterFunc = new Lfx.Components.FunctionInfo(this);
+                                RegisterFunc.Nombre = "Register";
+                                this.Funciones.Add(RegisterFunc);
+
                                 // Creo la función GetTypes, que la tienen que definir todos los componentes
                                 Lfx.Components.FunctionInfo GetTypesFunc = new Lfx.Components.FunctionInfo(this);
                                 GetTypesFunc.Nombre = "GetTypes";
@@ -313,6 +318,8 @@ namespace Lbl.Componentes
                                 this.LoadCif();
 
                                 // Agrego los tipos registrados
+                                this.Funciones["Register"].Run();
+
                                 Lfx.Components.RegisteredTypeCollection Col = this.Funciones["GetTypes"].Run() as Lfx.Components.RegisteredTypeCollection;
                                 if (Col != null)
                                         this.TiposRegistrados.AddRange(Col);

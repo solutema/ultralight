@@ -73,6 +73,8 @@
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <DebugSymbols>true</DebugSymbols>
+    <DocumentationFile>bin\dev\Lbl.XML</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -108,6 +110,8 @@
     <Compile Include="Comprobantes\ComprobanteImporte.cs" />
     <Compile Include="Comprobantes\Factura.cs" />
     <Compile Include="Comprobantes\Lote.cs" />
+    <Compile Include="Consultas\Consulta.cs" />
+    <Compile Include="Consultas\Parametro.cs" />
     <Compile Include="CuentasCorrientes\Movimiento.cs" />
     <Compile Include="Entidades\ClaveUnica.cs" />
     <Compile Include="Notificaciones\Administrador.cs" />
@@ -286,7 +290,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Comprobantes\XMLFile1.xml" />
     <Content Include="Lazaro.ico" />
   </ItemGroup>
   <ItemGroup />

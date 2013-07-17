@@ -218,7 +218,8 @@ namespace Lfc
                                         } catch (Exception ex) {
                                                 if (Trans != null)
                                                         Trans.Rollback();
-                                                ex.HelpLink = this.Name + ".Save: " + this.ElementoTipo.ToString();
+                                                if (this.Elemento != null && this.Name != null)
+                                                        ex.HelpLink = this.Name + ".Save: " + this.ElementoTipo.ToString();
                                                 throw ex;
                                         }
                                 }
@@ -294,7 +295,6 @@ namespace Lfc
 
                                 if (Res == DialogResult.Cancel) {
                                         e.Cancel = true;
-                                        this.GetControlsChanged(this.Controls);
                                 } else {
                                         e.Cancel = false;
                                 }

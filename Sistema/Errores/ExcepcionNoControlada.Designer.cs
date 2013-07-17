@@ -143,7 +143,7 @@ namespace Lazaro.WinMain.Errores
                         this.linkLabel1.Size = new System.Drawing.Size(209, 17);
                         this.linkLabel1.TabIndex = 4;
                         this.linkLabel1.TabStop = true;
-                        this.linkLabel1.Text = "www.sistemalzaro.com.ar/contacto";
+                        this.linkLabel1.Text = "www.lazarogestion.com/contacto";
                         this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
                         // 

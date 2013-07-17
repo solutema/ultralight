@@ -58,7 +58,6 @@ namespace Lfx.Components
                                 Lfx.Types.OperationResult Res = this.Instancia.Try();
                                 if (Res.Success) {
                                         this.Ready = true;
-                                        //this.TipoRegistrado = this.Instancia.RegisteredType;
                                 } else {
                                         this.Ready = false;
                                 }

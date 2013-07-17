@@ -151,6 +151,12 @@ namespace Lfc.Personas
                         }
 
 
+                        if (Cliente.Existe == false && Cliente.Grupo != null && Cliente.Grupo.Id == 2 && (EntradaClaveBancaria.Text.Length > 0 || EntradaNumeroCuenta.Text.Length > 0) && EntradaTipoCuenta.TextKey == "0")
+                        {
+                                return new Lfx.Types.FailureOperationResult("Por favor seleccione el tipo de cuenta bancaria.");
+                        }
+
+
                         if (Lbl.Sys.Config.Pais.ClavePersonasJuridicas != null) {
                                 switch (Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre) {
                                         case "CUIT":

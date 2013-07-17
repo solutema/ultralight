@@ -54,7 +54,7 @@ namespace Lazaro.WinMain.Errores
 
                 private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
                 {
-                        Help.ShowHelp(this, "http://www.sistemalzaro.com.ar/contacto");
+                        Help.ShowHelp(this, "http://www.lazarogestion.com/contacto");
                 }
         }
 }

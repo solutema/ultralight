@@ -596,9 +596,15 @@ namespace Lfc
                 protected virtual Lfx.Types.OperationResult OnEdit(int itemId)
                 {
                         if (itemId > 0 && this.Definicion.ElementoTipo != null && Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this.Definicion.ElementoTipo, Lbl.Sys.Permisos.Operaciones.Ver)) {
-                                Lfx.Data.Connection NuevaDb = Lfx.Workspace.Master.GetNewConnection("Editar " + this.Definicion.ElementoTipo.ToString() + " " + itemId);
-                                Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.Definicion.ElementoTipo, NuevaDb, itemId);
-                                Lfc.FormularioEdicion FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
+                                Lfc.FormularioEdicion FormNuevo = null;
+                                try {
+                                        Lfx.Data.Connection NuevaDb = Lfx.Workspace.Master.GetNewConnection("Editar " + this.Definicion.ElementoTipo.ToString() + " " + itemId);
+                                        Lbl.IElementoDeDatos Elem = Lbl.Instanciador.Instanciar(this.Definicion.ElementoTipo, NuevaDb, itemId);
+                                        FormNuevo = Lfc.Instanciador.InstanciarFormularioEdicion(Elem);
+                                } catch (Exception ex) {
+                                        return new Lfx.Types.FailureOperationResult(ex.Message);
+                                }
+
                                 if (FormNuevo != null) {
                                         FormNuevo.DisposeConnection = true;
                                         FormNuevo.MdiParent = this.MdiParent;
@@ -1238,7 +1244,7 @@ namespace Lfc
 
                                                 case Lfx.Data.InputFieldTypes.Bool:
                                                         if (System.Convert.ToBoolean(row[FieldName]))
-                                                                NewCell.Content = "Si";
+                                                                NewCell.Content = "Sí";
                                                         else
                                                                 NewCell.Content = "No";
                                                         break;
@@ -1426,7 +1432,7 @@ namespace Lfc
 
                                 case Lfx.Data.InputFieldTypes.Bool:
                                         if (System.Convert.ToBoolean(cellValue))
-                                                FieldValueAsText = "Si";
+                                                FieldValueAsText = "Sí";
                                         else
                                                 FieldValueAsText = "No";
                                         break;

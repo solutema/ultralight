@@ -115,41 +115,43 @@ namespace Lfx.Config
 
                 public void WriteLocalSetting(string sectionName, string settingName, string settingValue)
                 {
-                        if (ConfigDocument == null) {
-                                ConfigDocument = new System.Xml.XmlDocument();
-                                if (System.IO.File.Exists(ConfigFileName))
-                                        ConfigDocument.Load(ConfigFileName);
-                                else
-                                        ConfigDocument.AppendChild(ConfigDocument.CreateElement("LocalConfig"));
-                        }
+                        lock (ConfigDocument) {
+                                if (ConfigDocument == null) {
+                                        ConfigDocument = new System.Xml.XmlDocument();
+                                        if (System.IO.File.Exists(ConfigFileName))
+                                                ConfigDocument.Load(ConfigFileName);
+                                        else
+                                                ConfigDocument.AppendChild(ConfigDocument.CreateElement("LocalConfig"));
+                                }
 
-                        System.Xml.XmlAttribute Attribute;
-                        System.Xml.XmlNode SectionNode = ConfigDocument.SelectSingleNode("/LocalConfig/Section[@name='" + sectionName + "']");
-                        if (SectionNode == null) {
-                                //Crear la sección
-                                SectionNode = ConfigDocument.CreateElement("Section");
-                                Attribute = ConfigDocument.CreateAttribute("name");
-                                Attribute.Value = sectionName;
-                                SectionNode.Attributes.Append(Attribute);
-                                ConfigDocument.DocumentElement.AppendChild(SectionNode);
+                                System.Xml.XmlAttribute Attribute;
+                                System.Xml.XmlNode SectionNode = ConfigDocument.SelectSingleNode("/LocalConfig/Section[@name='" + sectionName + "']");
+                                if (SectionNode == null) {
+                                        //Crear la sección
+                                        SectionNode = ConfigDocument.CreateElement("Section");
+                                        Attribute = ConfigDocument.CreateAttribute("name");
+                                        Attribute.Value = sectionName;
+                                        SectionNode.Attributes.Append(Attribute);
+                                        ConfigDocument.DocumentElement.AppendChild(SectionNode);
+                                }
+                                System.Xml.XmlNode SettingNode = ConfigDocument.SelectSingleNode("/LocalConfig/Section[@name='" + sectionName + "']/Setting[@name='" + settingName + "']");
+                                if (SettingNode == null) {
+                                        //Agregar el nodo
+                                        SettingNode = ConfigDocument.CreateElement("Setting");
+                                        Attribute = ConfigDocument.CreateAttribute("name");
+                                        Attribute.Value = settingName;
+                                        SettingNode.Attributes.Append(Attribute);
+                                        Attribute = ConfigDocument.CreateAttribute("value");
+                                        Attribute.Value = settingValue;
+                                        SettingNode.Attributes.Append(Attribute);
+                                        SectionNode.AppendChild(SettingNode);
+                                }
+                                System.Xml.XmlAttribute SettingAttribute = SettingNode.Attributes["value"];
+                                if (SettingAttribute != null) {
+                                        SettingAttribute.Value = settingValue;
+                                }
+                                ConfigDocument.Save(ConfigFileName);
                         }
-                        System.Xml.XmlNode SettingNode = ConfigDocument.SelectSingleNode("/LocalConfig/Section[@name='" + sectionName + "']/Setting[@name='" + settingName + "']");
-                        if (SettingNode == null) {
-                                //Agregar el nodo
-                                SettingNode = ConfigDocument.CreateElement("Setting");
-                                Attribute = ConfigDocument.CreateAttribute("name");
-                                Attribute.Value = settingName;
-                                SettingNode.Attributes.Append(Attribute);
-                                Attribute = ConfigDocument.CreateAttribute("value");
-                                Attribute.Value = settingValue;
-                                SettingNode.Attributes.Append(Attribute);
-                                SectionNode.AppendChild(SettingNode);
-                        }
-                        System.Xml.XmlAttribute SettingAttribute = SettingNode.Attributes["value"];
-                        if (SettingAttribute != null) {
-                                SettingAttribute.Value = settingValue;
-                        }
-                        ConfigDocument.Save(ConfigFileName);
                 }
 
 

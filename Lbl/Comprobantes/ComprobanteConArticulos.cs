@@ -645,7 +645,15 @@ namespace Lbl.Comprobantes
                                         case Lbl.Pagos.TiposFormasDePago.Efectivo:
                                                 // Hago un movimiento en caja diaria
                                                 Lbl.Cajas.Caja Caja = new Lbl.Cajas.Caja(Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaDiaria);
-                                                Caja.Movimiento(true, Lbl.Cajas.Concepto.IngresosPorFacturacion, "Anulación " + this.ToString(), this.Cliente, -ImporteMovim, null, this, null, null);
+                                                Caja.Movimiento(true, 
+                                                        Lbl.Cajas.Concepto.IngresosPorFacturacion, 
+                                                        "Anulación " + this.ToString(), 
+                                                        this.Cliente, 
+                                                        ImporteMovim, 
+                                                        null, 
+                                                        this, 
+                                                        null, 
+                                                        null);
                                                 break;
 
                                         case Lbl.Pagos.TiposFormasDePago.ChequePropio:

@@ -1036,7 +1036,6 @@ namespace Lazaro.WinMain.Config
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaPais.AutoTab = true;
                         this.EntradaPais.CanCreate = false;
-                        this.EntradaPais.Filter = "";
                         this.EntradaPais.Location = new System.Drawing.Point(208, 120);
                         this.EntradaPais.MaxLength = 200;
                         this.EntradaPais.Name = "EntradaPais";

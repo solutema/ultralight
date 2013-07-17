@@ -77,16 +77,19 @@ namespace Lazaro.Pres.Spreadsheet
 
                 public void SaveTo(string fileName, SaveFormats format, Sheet sheet)
                 {
-                        System.IO.StreamWriter wr = new System.IO.StreamWriter(new System.IO.FileStream(fileName, System.IO.FileMode.Create));
-                        switch (format) {
-                                case SaveFormats.ExcelXml:
-                                        wr.Write(this.ToExcelXml(sheet));
-                                        break;
-                                case SaveFormats.Html:
-                                        wr.Write(this.ToHtml(sheet));
-                                        break;
+                        using (System.IO.StreamWriter wr = new System.IO.StreamWriter(new System.IO.FileStream(fileName, System.IO.FileMode.Create)))
+                        {
+                                switch (format)
+                                {
+                                        case SaveFormats.ExcelXml:
+                                                wr.Write(this.ToExcelXml(sheet));
+                                                break;
+                                        case SaveFormats.Html:
+                                                wr.Write(this.ToHtml(sheet));
+                                                break;
+                                }
+                                wr.Close();
                         }
-                        wr.Close();
                 }
 
                 protected internal string ToHtml(Sheet sheet)

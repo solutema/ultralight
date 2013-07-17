@@ -324,10 +324,16 @@ namespace Lbl
 
                                 default:
                                         // Intento cargarlo mediante reflexión
-                                        if (Ensamblado == null)
-                                                Ensamblado = System.Reflection.Assembly.LoadFrom("Lbl.dll");
-
-                                        Type Tipo = Ensamblado.GetType(tablaOTipo);
+                                        Type Tipo = null;
+                                        if (Ensamblado == null) {
+                                                try {
+                                                        Ensamblado = System.Reflection.Assembly.LoadFrom("Lbl.dll");
+                                                        Tipo = Ensamblado.GetType(tablaOTipo);
+                                                } catch {
+                                                        //Nada
+                                                }
+                                        }
+                                        
                                         if (Tipo != null)
                                                 Res = Tipo;
                                         else

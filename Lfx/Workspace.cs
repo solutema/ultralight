@@ -158,13 +158,14 @@ namespace Lfx
                 {
                         if (Lfx.Updates.Updater.Master == null && this.WebAppMode == false && this.DebugMode == false) {
                                 string Nivel = this.CurrentConfig.ReadGlobalSetting<string>("Sistema.Actualizaciones.Nivel", "stable");
+                                string Url = this.CurrentConfig.ReadGlobalSetting<string>("Sistema.Actualizaciones.Url", @"http://www.lazarogestion.com/aslnlwc/{0}/");
                                 Lfx.Updates.Updater.Master = new Updates.Updater(Nivel);
                                 Lfx.Updates.Updater.Master.Path = Lfx.Environment.Folders.ApplicationFolder;
                                 Lfx.Updates.Updater.Master.TempPath = Lfx.Environment.Folders.UpdatesFolder;
                                 Lfx.Updates.Package LazaroPkg = new Updates.Package();
                                 LazaroPkg.Name = "Lazaro";
                                 LazaroPkg.RelativePath = "";
-                                LazaroPkg.Url = @"http://www.lazarogestion.com/aslnlwc/{0}/";
+                                LazaroPkg.Url = Url;
                                 Lfx.Updates.Updater.Master.Packages.Add(LazaroPkg);
                                 Lfx.Updates.Updater.Master.Start();
                         }
@@ -339,8 +340,7 @@ namespace Lfx
                 public bool IsPrepared()
                 {
                         try {
-                                Lfx.Workspace.Master.MasterConnection.FieldString("SELECT nombre FROM sys_config");
-                                return true;
+                                return Lfx.Workspace.Master.MasterConnection.FieldInt("SELECT id_tipo_doc FROM tipo_doc WHERE id_tipo_doc=1") == 1;
                         } catch {
                                 return false;
                         }
@@ -391,7 +391,11 @@ namespace Lfx
                         
                         do {
                                 string Comando = Lfx.Data.Connection.GetNextCommand(ref Sql);
-                                this.MasterConnection.ExecuteSql(Comando);
+                                try {
+                                        this.MasterConnection.ExecuteSql(Comando);
+                                } catch {
+                                        // Hubo errores, pero continúo
+                                }
                                 progreso.ChangeStatus(progreso.Max - Sql.Length);
                         }
                         while (Sql.Length > 0);

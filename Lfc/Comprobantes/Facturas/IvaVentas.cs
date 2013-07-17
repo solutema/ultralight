@@ -67,8 +67,8 @@ namespace Lfc.Comprobantes.Facturas
 				        new Lazaro.Pres.Field("personas.cuit", Lbl.Sys.Config.Pais.ClavePersonasJuridicas.Nombre, Lfx.Data.InputFieldTypes.Text, 140),
 				        new Lazaro.Pres.Field("situaciones.nombrecorto AS situacion", "Cond. IVA", Lfx.Data.InputFieldTypes.Text, 100),
 				        new Lazaro.Pres.Field("(comprob.total-comprob.iva)*(1-comprob.anulada)*(documentos_tipos.direc_ctacte) AS gravado", "Importe", Lfx.Data.InputFieldTypes.Currency, 96),
-                                        new Lazaro.Pres.Field("comprob.iva*(1-anulada) AS iva", "IVA", Lfx.Data.InputFieldTypes.Currency, 96),
-				        new Lazaro.Pres.Field("comprob.total*(1-anulada) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
+                                        new Lazaro.Pres.Field("comprob.iva*(1-anulada)*(documentos_tipos.direc_ctacte) AS iva", "IVA", Lfx.Data.InputFieldTypes.Currency, 96),
+				        new Lazaro.Pres.Field("comprob.total*(1-anulada)*(documentos_tipos.direc_ctacte) AS total", "Total", Lfx.Data.InputFieldTypes.Currency, 96),
 				        new Lazaro.Pres.Field("comprob.anulada", "Anulada", Lfx.Data.InputFieldTypes.Bool, 0),                                
 			        },
 

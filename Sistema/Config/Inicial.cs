@@ -398,7 +398,7 @@ namespace Lazaro.WinMain.Config
                                 BotonInstalar.Visible = true;
                                 EtiquetaDescargando.Text = "Haga clic en el botón 'Instalar' para descargar e instalar un servidor SQL en este equipo.";
                                 ProgresoDescargando.Visible = false;
-                                if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\InstalarMySQL.exe"))
+                                if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\InstalarMariaDB.exe"))
                                         BotonInstalar.PerformClick();
                         } else {
                                 if (this.ThreadDescargar != null) {
@@ -469,10 +469,10 @@ namespace Lazaro.WinMain.Config
 
                 private void DescargarEInstalar(Lfx.Types.OperationProgress progreso)
                 {
-                        string InstaladorMySQL = "InstalarMySQL.exe";
+                        string InstaladorMariaDb = "InstalarMariaDB.exe";
                         string CarpetaDescarga;
 
-                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\" + InstaladorMySQL)) {
+                        if (System.IO.File.Exists(Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\" + InstaladorMariaDb)) {
                                 CarpetaDescarga = Lfx.Environment.Folders.ApplicationFolder + @"..\WebInstall\";
                         } else {
                                 progreso.ChangeStatus("Descargando, por favor aguarde...");
@@ -480,17 +480,17 @@ namespace Lazaro.WinMain.Config
                                 Lfx.Environment.Folders.EnsurePathExists(CarpetaDescarga);
                                 using (WebClient Cliente = new WebClient()) {
                                         try {
-                                                Cliente.DownloadFile("http://www.lazarogestion.com/aslnlwc/" + InstaladorMySQL, CarpetaDescarga + InstaladorMySQL);
+                                                Cliente.DownloadFile("http://www.lazarogestion.com/aslnlwc/" + InstaladorMariaDb, CarpetaDescarga + InstaladorMariaDb);
                                         } catch (Exception ex) {
                                                 progreso.ChangeStatus("Error al descargar: " + ex.Message);
                                         }
                                 }
                         }
 
-                        if (System.IO.File.Exists(CarpetaDescarga + InstaladorMySQL)) {
+                        if (System.IO.File.Exists(CarpetaDescarga + InstaladorMariaDb)) {
                                 progreso.ChangeStatus("Instalando...");
                                 try {
-                                        Lfx.Environment.Shell.Execute(CarpetaDescarga + InstaladorMySQL, "/verysilent /sp- /norestart", System.Diagnostics.ProcessWindowStyle.Normal, true);
+                                        Lfx.Environment.Shell.Execute(CarpetaDescarga + InstaladorMariaDb, "/verysilent /sp- /norestart", System.Diagnostics.ProcessWindowStyle.Normal, true);
                                 } catch (Exception ex) {
                                         progreso.ChangeStatus("Error al instalar: " + ex.Message);
                                 }

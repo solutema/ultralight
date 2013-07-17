@@ -62,6 +62,8 @@ namespace Lbl.Sys
                         Moneda.UnidadMonetariaMinima = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<decimal>("Sistema.Moneda.Redondeo", 0);
 
                         int IdSucPredet = Lfx.Workspace.Master.CurrentConfig.ReadLocalSettingInt("Company", "Branch", 1);
+                        if (IdSucPredet < 0)
+                                IdSucPredet = 1;
                         Empresa.SucursalActual = new Lbl.Entidades.Sucursal(Lfx.Workspace.Master.MasterConnection, IdSucPredet);
 
                         Articulos.Decimales = Lfx.Workspace.Master.CurrentConfig.ReadGlobalSetting<int>("Sistema.Stock.Decimales", 0);

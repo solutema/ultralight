@@ -46,6 +46,12 @@ namespace Lbl
                         this.FromCsv(csv);
                 }
 
+
+                public ListaIds(IEnumerable<int> lista)
+                        : base(lista)
+                {
+                }
+
                 public ListaIds(System.Data.DataTable dataTable)
                 {
                         this.FromDataTable(dataTable);

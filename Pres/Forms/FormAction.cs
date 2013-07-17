@@ -48,6 +48,7 @@ namespace Lazaro.Pres.Forms
                 public string SubText { get; set; }
                 public string Name { get; set; }
                 public bool Enabled { get; set; }
+                public string Extra { get; set; }
                 public int TabIndex { get; set; }
                 public FormActionVisibility Visibility { get; set; }
 

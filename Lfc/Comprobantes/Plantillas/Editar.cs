@@ -211,6 +211,13 @@ namespace Lfc.Comprobantes.Plantillas
                 }
 
 
+                public override void AfterSave(System.Data.IDbTransaction transaction)
+                {
+                        Lbl.Impresion.Plantilla.TodasPorCodigo.Clear();
+                        base.AfterSave(transaction);
+                }
+
+
                 private void ImagePreview_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
                 {
                         Lbl.Impresion.Plantilla Plantilla = this.Elemento as Lbl.Impresion.Plantilla;

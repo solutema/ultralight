@@ -604,7 +604,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                         StrCodigo = "(" + StrCodigo + ") ";
 
                                 decimal Cantidad = Detalle.Cantidad;
-                                decimal Unitario = Detalle.Unitario;
+                                decimal Unitario = Detalle.UnitarioAImprimir;
 
                                 //Si es cantidad negativa, pongo precio negativo y cantidad positiva
                                 if (Cantidad < 0) {

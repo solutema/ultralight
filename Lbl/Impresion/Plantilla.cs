@@ -347,8 +347,12 @@ namespace Lbl.Impresion
                 public void CargarXml(string defXml)
                 {
                         XmlDocument Doc = new XmlDocument();
-                        Doc.LoadXml(defXml);
-                        this.CargarXml(Doc);
+                        try {
+                                Doc.LoadXml(defXml);
+                                this.CargarXml(Doc);
+                        } catch {
+                                // No pude cargar el XML
+                        }
                 }
 
                 public void CargarXml(XmlDocument xmlDoc)
@@ -448,7 +452,7 @@ namespace Lbl.Impresion
                 {
                         get
                         {
-                                if (m_TodasPorCodigo == null) {
+                                if (m_TodasPorCodigo == null || m_TodasPorCodigo.Count == 0) {
                                         m_TodasPorCodigo = new Dictionary<string, Plantilla>();
                                         qGen.Select Sel = new qGen.Select("sys_plantillas");
                                         System.Data.DataTable Tabla = Lfx.Workspace.Master.MasterConnection.Select(Sel);

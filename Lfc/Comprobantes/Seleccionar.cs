@@ -172,7 +172,7 @@ namespace Lfc.Comprobantes
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Factura["id_cliente"].ToString())));
                                 Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Factura["total"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                                 if (System.Convert.ToDouble(Factura["cancelado"]) >= System.Convert.ToDouble(Factura["total"]))
-                                        Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, "Si"));
+                                        Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, "Sí"));
                                 else
                                         Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Factura["cancelado"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                         }
@@ -198,7 +198,7 @@ namespace Lfc.Comprobantes
                                 if (System.Convert.ToInt32(Factura["anulada"]) != 0 && AceptarAnuladas == false) {
                                         EtiquetaAviso.Text = "Este comprobante fue anulado.";
                                         OkButton.Visible = false;
-                                } else if (Itm.SubItems[6].Text == "Si" && AceptarCanceladas == false) {
+                                } else if (Itm.SubItems[6].Text == "Sí" && AceptarCanceladas == false) {
                                         EtiquetaAviso.Text = "Comprobante ya fue pagado.";
                                         OkButton.Visible = false;
                                 } else if (Lfx.Types.Parsing.ParseCurrency(Itm.SubItems[6].Text) > 0) {

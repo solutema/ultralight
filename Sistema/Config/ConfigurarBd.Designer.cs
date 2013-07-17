@@ -142,7 +142,7 @@ namespace Lazaro.WinMain.Config
                         this.EntradaConexion.Name = "EntradaConexion";
                         this.EntradaConexion.SetData = new string[] {
         "ODBC|odbc",
-        "MySQL|mysql",
+        "MySQL/MariaDB|mysql",
         "PostgreSQL|npgsql"};
                         this.EntradaConexion.Size = new System.Drawing.Size(196, 56);
                         this.EntradaConexion.TabIndex = 5;
