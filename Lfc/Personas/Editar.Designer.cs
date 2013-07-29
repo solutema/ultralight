@@ -536,8 +536,9 @@ namespace Lfc.Personas
         "Normal|0",
         "En plan de pago|5",
         "Suspendido con react. automática|10",
-        "Susp. con reactivación manual|100"};
-                        this.EntradaEstadoCredito.Size = new System.Drawing.Size(168, 74);
+        "Susp. con reactivación manual|100",
+        "Judicializado|110"};
+                        this.EntradaEstadoCredito.Size = new System.Drawing.Size(168, 91);
                         this.EntradaEstadoCredito.TabIndex = 14;
                         this.EntradaEstadoCredito.TextKey = "100";
                         // 
@@ -668,7 +669,7 @@ namespace Lfc.Personas
                         this.PanelD2.Location = new System.Drawing.Point(360, 224);
                         this.PanelD2.Margin = new System.Windows.Forms.Padding(6);
                         this.PanelD2.Name = "PanelD2";
-                        this.PanelD2.Size = new System.Drawing.Size(344, 304);
+                        this.PanelD2.Size = new System.Drawing.Size(344, 328);
                         this.PanelD2.TabIndex = 3;
                         this.PanelD2.Text = "Otros datos";
                         // 

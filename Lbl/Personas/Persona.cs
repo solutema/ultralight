@@ -662,9 +662,9 @@ namespace Lbl.Personas
 
                 public void Activar(bool activar)
                 {
-                        this.Estado = 0;
+                        this.Estado = activar ? 1 : 0;
                         qGen.Update ActCmd = new qGen.Update(this.TablaDatos);
-                        ActCmd.Fields.AddWithValue("estado", activar ? 1 : 0);
+                        ActCmd.Fields.AddWithValue("estado", this.Estado);
                         ActCmd.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
                         ActCmd.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         this.Connection.Execute(ActCmd);

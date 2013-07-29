@@ -40,6 +40,7 @@ namespace Lbl.Personas
 		Normal = 0,
 		PlanDePagos = 5,
 		Suspendido = 10,
-		SuspendidoPermanente = 100
+		SuspendidoPermanente = 100,
+                Judicializado = 110
 	}
 }
