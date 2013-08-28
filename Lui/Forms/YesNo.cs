@@ -36,11 +36,13 @@ namespace Lui.Forms
 {
         public partial class YesNo : Lui.Forms.EditableControl
         {
+                new public event System.EventHandler TextChanged;
+
                 public YesNo()
                 {
                         InitializeComponent();
 
-                        this.BorderStyle = BorderStyles.None;
+                        this.BorderStyle = BorderStyles.GenericEditable;
                 }
 
                 public bool Value
@@ -51,7 +53,8 @@ namespace Lui.Forms
                         }
                         set
                         {
-                                if(value) {
+                                this.Changed = false;
+                                if (value) {
                                         EtiquetaSi.BackColor = System.Drawing.SystemColors.Highlight;
                                         EtiquetaSi.ForeColor = System.Drawing.SystemColors.HighlightText;
                                         EtiquetaNo.BackColor = this.DisplayStyle.BackgroundColor;
@@ -73,16 +76,23 @@ namespace Lui.Forms
                                         case Keys.S:
                                         case Keys.Left:
                                                 e.Handled = true;
-                                                this.Value = true;
+                                                if (this.Value == false) {
+                                                        this.Value = true;
+                                                        this.Changed = true;
+                                                }
                                                 break;
                                         case Keys.N:
                                         case Keys.Right:
                                                 e.Handled = true;
-                                                this.Value = false;
+                                                if (this.Value == true) {
+                                                        this.Value = false;
+                                                        this.Changed = true;
+                                                }
                                                 break;
                                         case Keys.Space:
                                                 e.Handled = true;
                                                 this.Value = !this.Value;
+                                                this.Changed = true;
                                                 break;
                                         case Keys.Up:
                                                 e.Handled = true;
@@ -116,13 +126,25 @@ namespace Lui.Forms
                 private void EtiquetaSi_Click(object sender, EventArgs e)
                 {
                         this.Select();
+                        bool Was = this.Value;
                         this.Value = true;
+                        if (Was != true) {
+                                this.Changed = true;
+                                if (this.TextChanged != null)
+                                        this.TextChanged(this, e);
+                        }
                 }
 
                 private void EtiquetaNo_Click(object sender, EventArgs e)
                 {
                         this.Select();
+                        bool Was = this.Value;
                         this.Value = false;
+                        if (Was != false) {
+                                this.Changed = true;
+                                if (this.TextChanged != null)
+                                        this.TextChanged(this, e);
+                        }
                 }
         }
 }

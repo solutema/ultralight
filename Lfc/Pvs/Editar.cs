@@ -83,7 +83,7 @@ namespace Lfc.Pvs
 
                         EntradaTipo.ValueInt = (int)(Pv.Tipo);
 
-                        EntradaDeTalonario.ValueInt = Pv.UsaTalonario ? 1 : 0;
+                        EntradaDeTalonario.Value = Pv.UsaTalonario;
                         EntradaEstacion.Text = Pv.Estacion;
                         EntradaCarga.ValueInt = Pv.CargaManual ? 1 : 0;
 
@@ -109,7 +109,7 @@ namespace Lfc.Pvs
 
                         Pv.Tipo = (Lbl.Comprobantes.TipoPv)(EntradaTipo.ValueInt);
 
-                        Pv.UsaTalonario = EntradaDeTalonario.ValueInt == 1;
+                        Pv.UsaTalonario = EntradaDeTalonario.Value;
                         Pv.Estacion = EntradaEstacion.Text;
                         Pv.CargaManual = EntradaCarga.ValueInt == 1;
 

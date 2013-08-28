@@ -61,6 +61,8 @@ namespace Lui.Forms
 			None = 0,
 			Control,
 			Frame,
+                        EditableNoHightlight,
+                        GenericEditable,
 			TextBox,
 			Button
 		}
@@ -505,9 +507,19 @@ namespace Lui.Forms
 
                         switch (m_BorderStyle) {
                                 case BorderStyles.None:
+                                        break;
+                                case BorderStyles.EditableNoHightlight:
+                                        if (m_ShowChanged && m_Changed && m_ReadOnly == false) {
+                                                e.Graphics.DrawRectangle(System.Drawing.Pens.Red, new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
+                                        }
+                                        break;
+                                case BorderStyles.GenericEditable:
                                         if (m_Highlighted) {
                                                 e.Graphics.DrawRectangle(PenActiveBorderColor, new System.Drawing.Rectangle(0, 0, this.Width - 1, this.Height - 1));
                                                 e.Graphics.DrawRectangle(PenActiveBorderColor, new System.Drawing.Rectangle(1, 1, this.Width - 3, this.Height - 3));
+                                        }
+                                        if (m_ShowChanged && m_Changed && m_ReadOnly == false) {
+                                                e.Graphics.DrawRectangle(System.Drawing.Pens.Red, new System.Drawing.Rectangle(3, this.Height - 2, this.Width - 6, 1));
                                         }
                                         break;
                                 case BorderStyles.TextBox:

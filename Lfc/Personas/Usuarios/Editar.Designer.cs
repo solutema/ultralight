@@ -76,7 +76,7 @@ namespace Lfc.Personas.Usuarios
                         this.EntradaAcceso.Location = new System.Drawing.Point(128, 0);
                         this.EntradaAcceso.Name = "EntradaAcceso";
                         this.EntradaAcceso.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaAcceso.Size = new System.Drawing.Size(72, 40);
                         this.EntradaAcceso.TabIndex = 1;

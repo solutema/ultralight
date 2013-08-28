@@ -224,7 +224,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirRepetir.Location = new System.Drawing.Point(216, 272);
                         this.EntradaImprimirRepetir.Name = "EntradaImprimirRepetir";
                         this.EntradaImprimirRepetir.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 39);
                         this.EntradaImprimirRepetir.TabIndex = 13;
@@ -246,7 +246,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirModificar.Location = new System.Drawing.Point(216, 320);
                         this.EntradaImprimirModificar.Name = "EntradaImprimirModificar";
                         this.EntradaImprimirModificar.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 39);
                         this.EntradaImprimirModificar.TabIndex = 15;
@@ -268,7 +268,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirGuardar.Location = new System.Drawing.Point(216, 368);
                         this.EntradaImprimirGuardar.Name = "EntradaImprimirGuardar";
                         this.EntradaImprimirGuardar.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 39);
                         this.EntradaImprimirGuardar.TabIndex = 17;

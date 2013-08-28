@@ -12613,31 +12613,31 @@ INSERT INTO conceptos ("id_concepto","nombre","es","grupo","fijo") VALUES (26030
 INSERT INTO conceptos ("id_concepto","nombre","es","grupo","fijo") VALUES (30000,'Ajustes y movimientos',0,300,1);
 
 
-INSERT INTO "documentos_tipos" ("id_tipo", "letra", "letrasola", "nombre", "nombrelargo", "obs", "estado", "fecha", "tabla", "tipo", "venta", "compra", "permitedisciva", "siempredisciva", "cargapapel", "direc_ctacte", "mueve_stock", "situacionorigen", "situaciondestino", "numerar_guardar", "imprimir_guardar", "numerar_imprimir", "imprimir_repetir", "imprimir_modificar") VALUES
-	(1, 'FA', 'A', 'Fact. IVA discr.', 'Factura IVA discriminado', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(2, 'FB', 'B', 'Fact. IVA no discr.', 'Factura IVA no discriminado', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(3, 'FC', 'C', 'Factura C', 'Factura C', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1000, 999, 0, 0, 1, 1, 0),
-	(4, 'FE', 'E', 'Factura E', 'Factura E', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(5, 'FM', 'M', 'Factura M', 'Factura M', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(11, 'NCA', 'A', 'Nota créd. ID', 'Nota de crédito IVA discr.', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
-	(12, 'NCB', 'B', 'Nota créd. IND', 'Nota de crédito IVA no discr.', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
-	(13, 'NCC', 'C', 'Nota créd. C', 'Nota de crédito C', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
-	(14, 'NCE', 'E', 'Nota créd. E', 'Nota de crédito E', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
-	(15, 'NCM', 'M', 'Nota créd. M', 'Nota de crédito M', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
-	(21, 'NDA', 'A', 'Nota déb. ID', 'Nota de débito IVA discr.', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(22, 'NDB', 'B', 'Nota déb. IND', 'Nota de débito IVA no discr.', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(23, 'NDC', 'C', 'Nota déb. C', 'Nota de débito C', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(24, 'NDE', 'E', 'Nota déb. E', 'Nota de débito E', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(25, 'NDM', 'M', 'Nota déb. M', 'Nota de débito M', NULL, 0, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(31, 'T', '', 'Ticket', 'Ticket', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Ticket', 1, 1, 0, 0, 0, 1.0000, 1.0000, 1, 999, 0, 0, 1, 0, 0),
-	(41, 'R', '', 'Remito', 'Remito', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Remito', 1, 1, 0, 0, 1, 0.0000, -1.0000, 1, 999, 0, 0, 1, 1, 0),
-	(42, 'NV', '', 'Nota de venta', 'Nota de venta', NULL, 1, '0000-00-00 00:00:00', 'comprob', NULL, 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 1, 1, 0),
-	(51, 'PS', '', 'Presupuesto', 'Presupuesto', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Presupuesto', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 1, 0, 1, 0, 1),
-	(53, 'RC', '', 'Recibo de cobro', 'Recibo de cobro', NULL, 1, '0000-00-00 00:00:00', 'recibos', 'Lbl.Comprobantes.ReciboDeCobro', 1, 0, 0, 0, 0, -1.0000, 0.0000, NULL, NULL, 1, 1, 0, 1, 0),
-	(54, 'RCP', '', 'Recibo de pago', 'Recibo de pago', NULL, 1, '0000-00-00 00:00:00', 'recibos', 'Lbl.Comprobantes.ReciboDePago', 1, 0, 0, 0, 0, 1.0000, 0.0000, NULL, NULL, 1, 0, 0, 1, 0),
-	(55, 'NP', '', 'Nota de pedido', 'Nota de pedido', NULL, 1, '0000-00-00 00:00:00', 'comprob', NULL, 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 0, 0),
-	(56, 'PD', '', 'Pedido', 'Pedido', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Pedido', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 0, 0),
-	(58, 'Listado', '', 'Listados', 'Listados', NULL, 1, '0000-00-00 00:00:00', '', NULL, 0, 0, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 1, 0);
+INSERT INTO "documentos_tipos" ("id_tipo", "letra", "letrasola", "nombre", "nombrelargo", "obs", "estado", "fecha", "tabla", "tipo", "tipobase", "venta", "compra", "permitedisciva", "siempredisciva", "cargapapel", "direc_ctacte", "mueve_stock", "situacionorigen", "situaciondestino", "numerar_guardar", "imprimir_guardar", "numerar_imprimir", "imprimir_repetir", "imprimir_modificar") VALUES
+	(1, 'FA', 'A', 'Factura A', 'Factura A', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(2, 'FB', 'B', 'Factura B', 'Factura B', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(3, 'FC', 'C', 'Factura C', 'Factura C', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1000, 999, 0, 0, 1, 1, 0),
+	(4, 'FE', 'E', 'Factura E', 'Factura E', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(5, 'FM', 'M', 'Factura M', 'Factura M', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Factura', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(11, 'NCA', 'A', 'Nota créd. ID', 'Nota de crédito IVA discr.', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(12, 'NCB', 'B', 'Nota créd. IND', 'Nota de crédito IVA no discr.', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(13, 'NCC', 'C', 'Nota créd. C', 'Nota de crédito C', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(14, 'NCE', 'E', 'Nota créd. E', 'Nota de crédito E', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(15, 'NCM', 'M', 'Nota créd. M', 'Nota de crédito M', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeCredito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, -1.0000, 1.0000, 999, 1, 0, 0, 1, 0, 0),
+	(21, 'NDA', 'A', 'Nota déb. ID', 'Nota de débito IVA discr.', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(22, 'NDB', 'B', 'Nota déb. IND', 'Nota de débito IVA no discr.', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(23, 'NDC', 'C', 'Nota déb. C', 'Nota de débito C', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(24, 'NDE', 'E', 'Nota déb. E', 'Nota de débito E', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(25, 'NDM', 'M', 'Nota déb. M', 'Nota de débito M', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.NotaDeDebito', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 1, 1.0000, -1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(31, 'T', '', 'Ticket', 'Ticket', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Ticket', 'Lbl.Comprobantes.ComprobanteFacturable', 1, 1, 0, 0, 0, 1.0000, 1.0000, 1, 999, 0, 0, 1, 0, 0),
+	(41, 'R', '', 'Remito', 'Remito', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Remito', '', 1, 1, 0, 0, 1, 0.0000, -1.0000, 1, 999, 0, 0, 1, 1, 0),
+	(42, 'NV', '', 'Nota de venta', 'Nota de venta', NULL, 1, '0000-00-00 00:00:00', 'comprob', NULL, '', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 1, 1, 0),
+	(51, 'PS', '', 'Presupuesto', 'Presupuesto', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Presupuesto', '', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 1, 0, 1, 0, 1),
+	(53, 'RC', '', 'Recibo de cobro', 'Recibo de cobro', NULL, 1, '0000-00-00 00:00:00', 'recibos', 'Lbl.Comprobantes.ReciboDeCobro', 'Lbl.Comprobantes.Recibo', 1, 0, 0, 0, 0, -1.0000, 0.0000, NULL, NULL, 1, 1, 0, 1, 0),
+	(54, 'RCP', '', 'Recibo de pago', 'Recibo de pago', NULL, 1, '0000-00-00 00:00:00', 'recibos', 'Lbl.Comprobantes.ReciboDePago', 'Lbl.Comprobantes.Recibo', 1, 0, 0, 0, 0, 1.0000, 0.0000, NULL, NULL, 1, 0, 0, 1, 0),
+	(55, 'NP', '', 'Nota de pedido', 'Nota de pedido', NULL, 1, '0000-00-00 00:00:00', 'comprob', NULL, '', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 0, 0),
+	(56, 'PD', '', 'Pedido', 'Pedido', NULL, 1, '0000-00-00 00:00:00', 'comprob', 'Lbl.Comprobantes.Pedido', '', 1, 1, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 0, 0),
+	(58, 'Listado', '', 'Listados', 'Listados', NULL, 1, '0000-00-00 00:00:00', '', NULL, '', 0, 0, 0, 0, 0, 0.0000, 0.0000, NULL, NULL, 0, 0, 0, 1, 0);
 
 
 INSERT INTO margenes (id_margen, nombre, sumar, porcentaje, porcentaje2, porcentaje3, sumar2, predet, obs, estado) VALUES (1, '0%', 0, 0, 0, 0, 0, 0, '', 1);

@@ -45,6 +45,7 @@ namespace Lbl.Entidades
 	public class Localidad : ElementoDeDatos
 	{
                 private Localidad m_Parent = null;
+                private Pais m_Pais = null;
 
 		//Heredar constructor
 		public Localidad(Lfx.Data.Connection dataBase)
@@ -82,7 +83,30 @@ namespace Lbl.Entidades
                         set
                         {
                                 m_Parent = value;
-                                this.SetFieldValue("id_provincia", value);
+                                if (value == null)
+                                        this.SetFieldValue("id_provincia", null);
+                                else
+                                        this.SetFieldValue("id_provincia", value.Id);
+                        }
+                }
+
+
+                public Pais Pais
+                {
+                        get
+                        {
+                                if (m_Pais == null && this.Registro["id_pais"] != null)
+                                        m_Pais = new Pais(this.Connection, this.GetFieldValue<int>("id_pais"));
+
+                                return m_Pais;
+                        }
+                        set
+                        {
+                                m_Pais = value;
+                                if (value == null)
+                                        this.SetFieldValue("id_pais", null);
+                                else
+                                        this.SetFieldValue("id_pais", value.Id);
                         }
                 }
 

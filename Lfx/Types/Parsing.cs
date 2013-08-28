@@ -176,6 +176,7 @@ namespace Lfx.Types
                         string ValorMayus = valor.ToUpperInvariant();
                         switch (ValorMayus) {
                                 case "SI":
+                                case "SÍ":
                                 case "YES":
                                 case "VERDADERO":
                                 case "TRUE":

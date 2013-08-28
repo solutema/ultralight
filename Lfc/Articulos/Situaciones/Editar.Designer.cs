@@ -102,7 +102,7 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaCuentaStock.Name = "EntradaCuentaStock";
                         this.EntradaCuentaStock.ReadOnly = false;
                         this.EntradaCuentaStock.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaCuentaStock.Size = new System.Drawing.Size(88, 36);
                         this.EntradaCuentaStock.TabIndex = 3;
@@ -116,7 +116,7 @@ namespace Lfc.Articulos.Situaciones
                         this.EntradaFacturable.Name = "EntradaFacturable";
                         this.EntradaFacturable.ReadOnly = false;
                         this.EntradaFacturable.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaFacturable.Size = new System.Drawing.Size(88, 36);
                         this.EntradaFacturable.TabIndex = 5;

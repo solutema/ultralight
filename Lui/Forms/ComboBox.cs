@@ -205,6 +205,9 @@ namespace Lui.Forms
                                                 }
                                         }
                                 }
+
+                                this.Changed = false;
+                                
                                 if (EraIgual == false)
                                         this.OnTextChanged(EventArgs.Empty);
                         }
@@ -231,30 +234,11 @@ namespace Lui.Forms
                         string Buscar = ItemList.SelectedItem.ToString();
                         for (int i = 0; i < m_SetDataText.Length; i++) {
                                 if (m_SetDataText[i] == Buscar) {
-                                        this.TextKey = m_SetDataKey[i];
+                                        m_TextKey = m_SetDataKey[i];
+                                        m_SetIndex = i;
                                 }
                         }
                 }
-
-
-                /* private void DetectarSetIndex()
-                {
-                        // Detecta el SetIndex que le corresponde al TextKey actual
-                        if (m_SetData != null && m_SetDataKey.GetLength(0) > 0) {
-                                m_SetIndex = -1;
-                                for (int i = 0; i <= m_SetDataKey.GetUpperBound(0); i++) {
-                                        if (m_SetDataKey[i] == m_TextKey) {
-                                                m_SetIndex = i;
-                                                IgnoreChanges++;
-                                                this.TextRaw = m_SetDataText[m_SetIndex];
-                                                if (ItemList.Items.Count >= (i + 1))
-                                                        ItemList.SelectedIndex = i;
-                                                IgnoreChanges--;
-                                                break;
-                                        }
-                                }
-                        }
-                } */
 
 
                 private void ImagenSiguiente_Click(object sender, System.EventArgs e)
@@ -278,6 +262,8 @@ namespace Lui.Forms
 
                                 this.TextRaw = NextValueInSet();
                                 this.TextKey = m_SetDataKey[m_SetIndex];
+
+                                this.Changed = true;
 
                                 if (ItemList.Visible)
                                         ItemList.SelectedItem = this.TextRaw;
@@ -311,6 +297,8 @@ namespace Lui.Forms
 
                                 this.TextRaw = PrevValueInSet();
                                 this.TextKey = m_SetDataKey[m_SetIndex];
+
+                                this.Changed = true;
 
                                 if (ItemList.Visible)
                                         ItemList.SelectedItem = this.TextRaw;
@@ -425,6 +413,7 @@ namespace Lui.Forms
                         ImagenSiguiente.Visible = TextBox1.Visible;
                         if (ItemList.Visible) {
                                 if (m_SetDataText != null && ItemList.Items.Count != m_SetDataText.Length) {
+                                        IgnoreChanges++;
                                         ItemList.Items.Clear();
                                         for (int i = m_SetDataText.GetLowerBound(0); i <= m_SetDataText.GetUpperBound(0); i++) {
                                                 if (m_SetDataText[i] != null)
@@ -432,6 +421,7 @@ namespace Lui.Forms
                                                 if (m_SetDataText[i] == this.Text)
                                                         ItemList.SelectedIndex = ItemList.Items.Count - 1;
                                         }
+                                        IgnoreChanges--;
                                 }
 
                                 ItemList.Location = new System.Drawing.Point(3, 3);
@@ -529,12 +519,20 @@ namespace Lui.Forms
                 private void ItemList_SelectedValueChanged(object sender, EventArgs e)
                 {
                         if (ItemList.SelectedItem != null) {
+                                string ValorAnterior = m_TextKey;
+
+                                if (IgnoreChanges == 0)
+                                        this.Changed = true;
+
                                 this.DetectarTextKey();
 
                                 if (ItemList.SelectedIndex < ItemList.TopIndex)
                                         ItemList.TopIndex = ItemList.SelectedIndex;
                                 else if (ItemList.SelectedIndex >= ItemList.TopIndex + (ItemList.Height / ItemList.ItemHeight))
                                         ItemList.TopIndex = ItemList.SelectedIndex;
+
+                                if (this.TextKey != ValorAnterior)
+                                        this.OnTextChanged(EventArgs.Empty);
                         }
                 }
 

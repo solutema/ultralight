@@ -45,6 +45,7 @@ namespace Lcc.Entrada
                 public Imagen()
                 {
                         InitializeComponent();
+                        this.BorderStyle = BorderStyles.EditableNoHightlight;
                 }
 
                 public override string Text
@@ -67,6 +68,8 @@ namespace Lcc.Entrada
                                 EntradaImagen.Image = ((Lbl.IElementoConImagen)(this.Elemento)).Imagen;
                         else
                                 EntradaImagen.Image = null;
+
+                        this.Changed = false;
                 }
 
                 public override void ActualizarElemento()
@@ -78,9 +81,11 @@ namespace Lcc.Entrada
                 private void BotonQuitarImagen_Click(object sender, EventArgs e)
                 {
                         if (this.Elemento != null) {
-                                EntradaImagen.Image = null;
-                                this.Changed = true;
-                                ActualizarElemento();
+                                if (EntradaImagen.Image != null) {
+                                        EntradaImagen.Image = null;
+                                        this.Changed = true;
+                                        ActualizarElemento();
+                                }
                         }
                 }
 
@@ -114,7 +119,7 @@ namespace Lcc.Entrada
 
                 private void BotonCapturarImagen_Click(object sender, EventArgs e)
                 {
-#if WINDOWS
+//#if WINDOWS
                         try {
                                 WIA.CommonDialogClass WiaDialog = new WIA.CommonDialogClass();
                                 WIA.ImageFile WiaImage = null;
@@ -139,7 +144,7 @@ namespace Lcc.Entrada
                         } catch (Exception ex) {
                                 Lui.Forms.MessageBox.Show("No se puede conectar con el dispositivo de captura. " + ex.Message, "Error");
                         }
-#endif
+//#endif
                 }
 
                 private void GuardarEnarchivoToolStripMenuItem_Click(object sender, EventArgs e)

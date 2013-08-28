@@ -57,6 +57,7 @@ namespace Lfx
                 public bool WebAppMode { get; set; }
                 public List<Data.Connection> ActiveConnections = new List<Data.Connection>();
                 public string ServerVersion { get; set; }
+                public object MainForm { get; set; }
 
                 public Workspace()
                         : this("default")

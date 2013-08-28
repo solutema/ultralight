@@ -82,6 +82,7 @@ namespace System
                         string ValorMayus = s.ToUpperInvariant();
                         switch (ValorMayus) {
                                 case "SI":
+                                case "SÍ":
                                 case "YES":
                                 case "VERDADERO":
                                 case "TRUE":

@@ -41,7 +41,6 @@ namespace Lazaro.WinMain
 {
         public class Aplicacion
         {
-                public static Principal.Inicio FormularioPrincipal;
                 public static Lui.Forms.ProgressForm FormularioProgreso;
                 public static IList<Lfx.Types.OperationProgress> Operaciones = new List<Lfx.Types.OperationProgress>();
                 public static bool Flotante;
@@ -433,11 +432,11 @@ namespace Lazaro.WinMain
                                                                         Aplicacion.FormularioProgreso.MostrarProgreso(Operaciones, Prog);
                                                                 }
                                                         } else {
-                                                                if (FormularioPrincipal.InvokeRequired) {
-                                                                        MethodInvoker Mi = delegate { FormularioPrincipal.ShowProgress(Prog); };
-                                                                        FormularioPrincipal.Invoke(Mi);
+                                                                if (Aplicacion.FormularioPrincipal.InvokeRequired) {
+                                                                        MethodInvoker Mi = delegate { Aplicacion.FormularioPrincipal.ShowProgress(Prog); };
+                                                                        Aplicacion.FormularioPrincipal.Invoke(Mi);
                                                                 } else {
-                                                                        FormularioPrincipal.ShowProgress(Prog);
+                                                                        Aplicacion.FormularioPrincipal.ShowProgress(Prog);
                                                                 }
                                                         }
                                                 }
@@ -720,7 +719,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 }
 
                                 // Mostrar el formulario
-                                Aplicacion.FormularioPrincipal = new Principal.Inicio();
+                                Lfx.Workspace.Master.MainForm = new Principal.Inicio();
                                 Aplicacion.FormularioPrincipal.Show();
                                 if (FechaWhatsnew == "firsttime") {
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("¡Hola! ¿Le gustaría ver una página sencilla con un poco de información sobre cómo utilizar Lázaro?", "Primeros pasos");
@@ -922,6 +921,18 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         FormularioError.BotonCerrar.Enabled = true;
                         FormularioError.Refresh();
                         System.Windows.Forms.Application.DoEvents();
+                }
+
+
+                public static Principal.Inicio FormularioPrincipal
+                {
+                        get
+                        {
+                                if (Lfx.Workspace.Master == null)
+                                        return null;
+                                else
+                                        return Lfx.Workspace.Master.MainForm as Principal.Inicio;
+                        }
                 }
         }
 }

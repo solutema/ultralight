@@ -450,6 +450,7 @@ namespace Lfc
                                 } else if (this.Changed) {
                                         // Si es edición, y hay cambios, pregunto si quiere guardar
                                         using (Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog("Hay modificaciones sin guardar (subrayadas en color rojo). Antes de imprimir el ducumento se guardarán las modificaciones. ¿Desea continuar?", "Imprimir")) {
+                                                Pregunta.DialogButtons = Lui.Forms.DialogButtons.YesNo;
                                                 this.ShowChanged = true;
                                                 if (Pregunta.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                                                         Res = this.Save();

@@ -114,7 +114,7 @@ namespace Lfc.Personas.Grupos
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaPredet.Size = new System.Drawing.Size(88, 40);
                         this.EntradaPredet.TabIndex = 7;

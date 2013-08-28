@@ -447,7 +447,7 @@ namespace Lfc.Articulos
                         this.EntradaDestacado.Location = new System.Drawing.Point(104, 272);
                         this.EntradaDestacado.Name = "EntradaDestacado";
                         this.EntradaDestacado.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaDestacado.Size = new System.Drawing.Size(64, 39);
                         this.EntradaDestacado.TabIndex = 25;

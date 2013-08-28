@@ -127,7 +127,7 @@ namespace Lcc.Edicion
                                 switch (Fld.DataType) {
                                         case Lfx.Data.InputFieldTypes.Bool:
                                                 Lui.Forms.YesNo BoolField = new Lui.Forms.YesNo();
-                                                //BoolField.SetData = new string[] { "Si|1", "No|0" };
+                                                //BoolField.SetData = new string[] { "Sí|1", "No|0" };
                                                 //BoolField.AlwaysExpanded = false;
                                                 //BoolField.AutoSize = false;
                                                 BoolField.Value = m_Elemento.GetFieldValue<bool>(Fld.Name);

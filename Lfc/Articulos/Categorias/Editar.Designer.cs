@@ -227,7 +227,7 @@ namespace Lfc.Articulos.Categorias
                         this.EntradaWeb.Location = new System.Drawing.Point(144, 96);
                         this.EntradaWeb.Name = "EntradaWeb";
                         this.EntradaWeb.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaWeb.Size = new System.Drawing.Size(108, 39);
                         this.EntradaWeb.TabIndex = 7;

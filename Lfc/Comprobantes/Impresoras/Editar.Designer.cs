@@ -126,7 +126,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTalonario.Name = "EntradaTalonario";
                         this.EntradaTalonario.ReadOnly = false;
                         this.EntradaTalonario.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaTalonario.Size = new System.Drawing.Size(116, 36);
                         this.EntradaTalonario.TabIndex = 12;

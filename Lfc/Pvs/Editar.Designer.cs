@@ -70,7 +70,6 @@ namespace Lfc.Pvs
                         this.EntradaBps = new Lui.Forms.ComboBox();
                         this.EntradaTipoFac = new Lui.Forms.ComboBox();
                         this.label8 = new Lui.Forms.Label();
-                        this.EntradaDeTalonario = new Lui.Forms.ComboBox();
                         this.label9 = new Lui.Forms.Label();
                         this.label3 = new Lui.Forms.Label();
                         this.EntradaNumero = new Lui.Forms.TextBox();
@@ -79,6 +78,7 @@ namespace Lfc.Pvs
                         this.label10 = new Lui.Forms.Label();
                         this.EntradaPrefijo = new Lui.Forms.TextBox();
                         this.label12 = new Lui.Forms.Label();
+                        this.EntradaDeTalonario = new Lui.Forms.YesNo();
                         this.SuspendLayout();
                         // 
                         // EntradaTipo
@@ -147,6 +147,7 @@ namespace Lfc.Pvs
                         // BotonEstacionSeleccionar
                         // 
                         this.BotonEstacionSeleccionar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonEstacionSeleccionar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonEstacionSeleccionar.Image = null;
                         this.BotonEstacionSeleccionar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonEstacionSeleccionar.Location = new System.Drawing.Point(480, 264);
@@ -285,19 +286,6 @@ namespace Lfc.Pvs
                         this.label8.Text = "Documentos";
                         this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
-                        // EntradaDeTalonario
-                        // 
-                        this.EntradaDeTalonario.AlwaysExpanded = false;
-                        this.EntradaDeTalonario.AutoSize = true;
-                        this.EntradaDeTalonario.Location = new System.Drawing.Point(144, 296);
-                        this.EntradaDeTalonario.Name = "EntradaDeTalonario";
-                        this.EntradaDeTalonario.SetData = new string[] {
-        "Si|1",
-        "No|0"};
-                        this.EntradaDeTalonario.Size = new System.Drawing.Size(112, 24);
-                        this.EntradaDeTalonario.TabIndex = 16;
-                        this.EntradaDeTalonario.TextKey = "0";
-                        // 
                         // label9
                         // 
                         this.label9.Location = new System.Drawing.Point(0, 0);
@@ -314,7 +302,7 @@ namespace Lfc.Pvs
                         this.label3.Location = new System.Drawing.Point(8, 463);
                         this.label3.Name = "label3";
                         this.label3.Size = new System.Drawing.Size(524, 43);
-                        this.label3.TabIndex = 50;
+                        this.label3.TabIndex = 45;
                         this.label3.Text = "Si desea cambiar el punto de venta predeterminado para las facturas u otros docum" +
     "entos, utilice la opción Preferencias del menú Sistema.";
                         // 
@@ -382,10 +370,20 @@ namespace Lfc.Pvs
                         this.label12.Text = "-";
                         this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
+                        // EntradaDeTalonario
+                        // 
+                        this.EntradaDeTalonario.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+                        this.EntradaDeTalonario.Location = new System.Drawing.Point(144, 296);
+                        this.EntradaDeTalonario.Name = "EntradaDeTalonario";
+                        this.EntradaDeTalonario.Size = new System.Drawing.Size(55, 24);
+                        this.EntradaDeTalonario.TabIndex = 16;
+                        this.EntradaDeTalonario.Text = "yesNo1";
+                        this.EntradaDeTalonario.Value = true;
+                        // 
                         // Editar
                         // 
-                        this.Controls.Add(this.EntradaPrefijo);
                         this.Controls.Add(this.EntradaDeTalonario);
+                        this.Controls.Add(this.EntradaPrefijo);
                         this.Controls.Add(this.EntradaCarga);
                         this.Controls.Add(this.EntradaModelo);
                         this.Controls.Add(this.EntradaPuerto);
@@ -441,9 +439,9 @@ namespace Lfc.Pvs
                 internal Lui.Forms.ComboBox EntradaBps;
                 internal Lui.Forms.ComboBox EntradaTipoFac;
                 internal Lui.Forms.Label label8;
-                internal Lui.Forms.ComboBox EntradaDeTalonario;
                 internal Lui.Forms.Label label9;
                 internal Lui.Forms.TextBox EntradaPrefijo;
                 internal Lui.Forms.Label label12;
+                private Lui.Forms.YesNo EntradaDeTalonario;
         }
 }

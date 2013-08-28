@@ -107,7 +107,7 @@ namespace Lfc.Articulos.Margenes
                         this.EntradaPredet.Name = "EntradaPredet";
                         this.EntradaPredet.ReadOnly = false;
                         this.EntradaPredet.SetData = new string[] {
-        "Si|1",
+        "Sí|1",
         "No|0"};
                         this.EntradaPredet.Size = new System.Drawing.Size(108, 36);
                         this.EntradaPredet.TabIndex = 5;
