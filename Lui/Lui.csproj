@@ -96,6 +96,9 @@
     <Compile Include="Forms\Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\ChildDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>

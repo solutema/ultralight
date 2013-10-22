@@ -260,6 +260,16 @@ namespace Lbl.Bancos
                         }
                 }
 
+
+                public Lfx.Types.OperationResult Entregar(Lbl.Comprobantes.Recibo reciboDePago)
+                {
+                        this.Estado = 11;
+                        this.AgregarComentario("Entregado s/" + reciboDePago.ToString());
+                        this.ReciboPago = reciboDePago;
+                        return this.Guardar();
+                }
+
+
 		public override Lfx.Types.OperationResult Guardar()
 		{
 			qGen.TableCommand Comando;
@@ -356,7 +366,14 @@ namespace Lbl.Bancos
                                         UsarCliente = this.ReciboCobro.Cliente;
                                 if (UsarCliente == null && this.ReciboPago != null)
                                         UsarCliente = this.ReciboPago.Cliente;
-                                CajaCheques.Movimiento(true, this.Concepto, this.ConceptoTexto, UsarCliente, this.Importe, this.ToString(), this.Factura, this.ReciboCobro != null ? this.ReciboCobro : this.ReciboPago, "");
+                                CajaCheques.Movimiento(true, 
+                                        this.Concepto, this.ConceptoTexto, 
+                                        UsarCliente, 
+                                        this.ReciboPago != null ? -this.Importe : this.Importe,
+                                        this.ToString(), 
+                                        this.Factura, 
+                                        this.ReciboCobro != null ? this.ReciboCobro : this.ReciboPago, 
+                                        null);
                         }
 
                         return base.Guardar();
@@ -365,9 +382,18 @@ namespace Lbl.Bancos
                 public void Anular()
                 {
                         if (this.Existe && this.Anulado == false) {
-                                // Marco el cheque como anulado
-                                this.Estado = 90;
-                                this.Guardar();
+                                if (this.Estado == 11)
+                                        // Cheque entregado, lo marco de nuevo como activo
+                                        this.Estado = 0;
+                                else
+                                        // Cheque activo, lo marco como anulado
+                                        this.Estado = 90;
+
+                                // Marco el recibo como anulado
+                                qGen.Update Act = new qGen.Update(this.TablaDatos);
+                                Act.Fields.AddWithValue("estado", this.Estado);
+                                Act.WhereClause = new qGen.Where(this.CampoId, this.Id);
+                                this.Connection.Execute(Act);
 
                                 if (this.Emitido == false) {
                                         //Asiento en la cuenta cheques, sólo para cheques de cobro
@@ -379,7 +405,26 @@ namespace Lbl.Bancos
                                                 UsarCliente = this.ReciboCobro.Cliente;
                                         if (UsarCliente == null && this.ReciboPago != null)
                                                 UsarCliente = this.ReciboPago.Cliente;
-                                        CajaCheques.Movimiento(true, this.Concepto, "Anulación " + this.ToString(), UsarCliente, this.Importe, null, this.Factura, this.ReciboCobro != null ? this.ReciboCobro : this.ReciboPago, "");
+
+                                        string TextoConcepto;
+                                        if (this.ReciboCobro != null && string.IsNullOrEmpty(this.ReciboCobro.ConceptoTexto) == false)
+                                                TextoConcepto = this.ReciboCobro.ConceptoTexto;
+                                        else if (this.ReciboPago != null && string.IsNullOrEmpty(this.ReciboPago.ConceptoTexto) == false)
+                                                TextoConcepto = this.ReciboPago.ConceptoTexto;
+                                        else if (string.IsNullOrEmpty(this.ConceptoTexto) == false)
+                                                TextoConcepto = this.ConceptoTexto;
+                                        else
+                                                TextoConcepto = this.ToString();
+
+                                        CajaCheques.Movimiento(true, 
+                                                this.Concepto, 
+                                                "Anulación. " + TextoConcepto, 
+                                                UsarCliente,
+                                                this.Estado == 1 ? this.Importe : -this.Importe, 
+                                                null, 
+                                                this.Factura, 
+                                                this.ReciboCobro != null ? this.ReciboCobro : this.ReciboPago, 
+                                                null);
                                 }
 
                                 Lbl.Sys.Config.ActionLog(this.Connection, Sys.Log.Acciones.Delete, this, null);

@@ -460,7 +460,8 @@ namespace Lfx.Data
 
                                 foreach (Data.ColumnDefinition FieldDef in CurrentTableDef.Columns.Values) {
                                         if (newTableDef.Columns.ContainsKey(FieldDef.Name) == false) {
-                                                Alterations.Add("DROP COLUMN \"" + FieldDef.Name + "\"");
+                                                // TODO: que marque la columna para eliminarla en el futuro
+                                                // Alterations.Add("DROP COLUMN \"" + FieldDef.Name + "\"");
                                         }
                                 }
 

@@ -72,6 +72,7 @@ namespace Lfc.Bancos.Cheques
 			        }
                         };
 
+                        this.Limit = 20000;
                         this.Contadores.Add(new Contador("Total", Lui.Forms.DataTypes.Currency));
                         this.Contadores.Add(new Contador("Sin Cobrar", Lui.Forms.DataTypes.Currency));
 

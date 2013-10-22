@@ -409,7 +409,7 @@ namespace Lfc.Comprobantes.Recibos
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(84, 24);
                         this.label6.TabIndex = 7;
-                        this.label6.Text = "Descipción";
+                        this.label6.Text = "Descripción";
                         this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
                         // TablaCentral

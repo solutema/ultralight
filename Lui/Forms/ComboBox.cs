@@ -531,8 +531,11 @@ namespace Lui.Forms
                                 else if (ItemList.SelectedIndex >= ItemList.TopIndex + (ItemList.Height / ItemList.ItemHeight))
                                         ItemList.TopIndex = ItemList.SelectedIndex;
 
-                                if (this.TextKey != ValorAnterior)
+                                if (this.TextKey != ValorAnterior) {
+                                        if (ItemList.SelectedItem != null)
+                                                this.Text = ItemList.SelectedItem.ToString();
                                         this.OnTextChanged(EventArgs.Empty);
+                                }
                         }
                 }
 

@@ -406,13 +406,7 @@ namespace Lbl.Comprobantes
                                                 break;
                                         case Lbl.Pagos.TiposFormasDePago.ChequeTerceros:
                                                 Pg.Cheque.Connection = this.Connection;
-                                                Pg.Cheque.Estado = 11;
-                                                if (Pg.Cheque.Obs.Length > 0)
-                                                        Pg.Cheque.Obs += " /// ";
-                                                Pg.Cheque.Obs += "Entregado s/" + this.ToString();
-                                                Pg.Cheque.ReciboPago = this;
-                                                Pg.Cheque.Guardar();
-                                                Lfx.Types.OperationResult ResultadoChequeTerceros = Pg.Cheque.Guardar();
+                                                Lfx.Types.OperationResult ResultadoChequeTerceros = Pg.Cheque.Entregar(this);
                                                 if (ResultadoChequeTerceros.Success == false)
                                                         return ResultadoChequeTerceros;
                                                 break;
