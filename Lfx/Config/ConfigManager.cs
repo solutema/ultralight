@@ -115,15 +115,15 @@ namespace Lfx.Config
 
                 public void WriteLocalSetting(string sectionName, string settingName, string settingValue)
                 {
-                        lock (ConfigDocument) {
-                                if (ConfigDocument == null) {
-                                        ConfigDocument = new System.Xml.XmlDocument();
-                                        if (System.IO.File.Exists(ConfigFileName))
-                                                ConfigDocument.Load(ConfigFileName);
-                                        else
-                                                ConfigDocument.AppendChild(ConfigDocument.CreateElement("LocalConfig"));
-                                }
+                        if (ConfigDocument == null) {
+                                ConfigDocument = new System.Xml.XmlDocument();
+                                if (System.IO.File.Exists(ConfigFileName))
+                                        ConfigDocument.Load(ConfigFileName);
+                                else
+                                        ConfigDocument.AppendChild(ConfigDocument.CreateElement("LocalConfig"));
+                        }
 
+                        lock (ConfigDocument) {
                                 System.Xml.XmlAttribute Attribute;
                                 System.Xml.XmlNode SectionNode = ConfigDocument.SelectSingleNode("/LocalConfig/Section[@name='" + sectionName + "']");
                                 if (SectionNode == null) {
@@ -170,7 +170,8 @@ namespace Lfx.Config
                                         ConfigDocument = new System.Xml.XmlDocument();
                                         try {
                                                 ConfigDocument.Load(ConfigFileName);
-                                        } catch {
+                                        }
+                                        catch {
                                                 // El archivo de configuración está vacío o dañado
                                                 return null;
                                         }
@@ -233,7 +234,8 @@ namespace Lfx.Config
                                         try {
                                                 TablaSysConfig = this.DataBase.Select(SelectConfig);
                                                 break;
-                                        } catch (Exception ex) {
+                                        }
+                                        catch (Exception ex) {
                                                 Intentos--;
                                                 System.Threading.Thread.Sleep(1000);
                                                 if (Intentos <= 0)

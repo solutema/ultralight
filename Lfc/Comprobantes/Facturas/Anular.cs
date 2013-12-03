@@ -274,6 +274,11 @@ namespace Lfc.Comprobantes.Facturas
                                                 break;
                                 }
 
+                                Lfx.Types.OperationProgress Progreso = new Lfx.Types.OperationProgress("Anulando comprobantes", "Se están anulando los comprobantes seleccionados.");
+                                Progreso.Cancelable = true;
+                                Progreso.Max = Cantidad;
+                                Progreso.Begin();
+
                                 IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
                                 for (int Numero = Desde; Numero <= Hasta; Numero++) {
                                         int IdFactura = Connection.FieldInt("SELECT id_comprob FROM comprob WHERE impresa=1 AND tipo_fac IN (" + IncluyeTipos + ") AND pv=" + PV.ToString() + " AND numero=" + Numero.ToString());
@@ -301,14 +306,25 @@ namespace Lfc.Comprobantes.Facturas
                                                 if (Fac.Anulado == false)
                                                         Fac.Anular(AnularPagos);
                                         }
+
+                                        Progreso.Advance(1);
+                                        if (Progreso.Cancelar)
+                                                break;
                                 }
-                                Trans.Commit();
-                                ProximosNumeros.Clear();
 
-                                Lui.Forms.MessageBox.Show("Se anularon los comprobantes seleccionados. Recuerde archivar ambas copias.", "Aviso");
+                                Progreso.End();
 
-                                EntradaDesde.Text = "0";
-                                EntradaHasta.Text = "0";
+                                if (Progreso.Cancelar) {
+                                        Trans.Rollback();
+                                        Lfx.Workspace.Master.RunTime.Toast("La operación fue cancelada.", "Aviso");
+                                } else {
+                                        Trans.Commit();
+                                        ProximosNumeros.Clear();
+                                        Lui.Forms.MessageBox.Show("Se anularon los comprobantes seleccionados. Recuerde archivar ambas copias.", "Aviso");
+                                }
+
+                                EntradaDesde.ValueInt = 0;
+                                EntradaHasta.ValueInt = 0;
                                 EntradaDesde.Focus();
 
                                 return base.Ok(); 

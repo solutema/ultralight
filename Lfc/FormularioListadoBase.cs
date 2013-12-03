@@ -812,17 +812,21 @@ namespace Lfc
 
                 protected qGen.Select SelectCommand()
                 {
-                        return this.SelectCommand(null, null);
+                        return this.SelectCommand(null, null, null);
                 }
 
 
-                protected qGen.Select SelectCommand(bool forCount)
+                protected qGen.Select SelectCommand(bool forCount, qGen.Where additionalFilters)
                 {
-                        return this.SelectCommand("COUNT", null);
+                        return this.SelectCommand("COUNT", null, additionalFilters);
                 }
-
 
                 protected qGen.Select SelectCommand(string agrFunction, string onField)
+                {
+                        return SelectCommand(agrFunction, onField, null);
+                }
+
+                protected qGen.Select SelectCommand(string agrFunction, string onField, qGen.Where additionalFilters)
                 {
                         if (this.Connection != null && this.Definicion != null && this.Definicion.TableName != null) {
                                 qGen.Select ComandoSelect = new qGen.Select(this.Connection.SqlMode);
@@ -951,6 +955,9 @@ namespace Lfc
 
                                 if (m_CustomFilters != null && m_CustomFilters.Count > 0)
                                         WhereCompleto.AddWithValue(m_CustomFilters);
+
+                                if (additionalFilters != null && additionalFilters.Count > 0)
+                                        WhereCompleto.AddWithValue(additionalFilters);
 
                                 ComandoSelect.Tables = ListaTablas;
                                 ComandoSelect.Fields = ListaCampos;
@@ -1106,7 +1113,7 @@ namespace Lfc
                         } else if (Listado.Items.Count == m_Limit) {
                                 int Cantidad;
                                 try {
-                                        qGen.Select SelCount = this.SelectCommand(true);
+                                        qGen.Select SelCount = this.SelectCommand(true, null);
                                         Cantidad = this.Connection.FieldInt(SelCount);
                                 } catch {
                                         Cantidad = 0;

@@ -81,29 +81,21 @@ namespace Lfc.Personas.Usuarios
                         this.CheckNivelAdministrar = new System.Windows.Forms.CheckBox();
                         this.SuspendLayout();
                         // 
-                        // OkButton
-                        // 
-                        this.OkButton.Location = new System.Drawing.Point(394, 8);
-                        // 
-                        // CancelCommandButton
-                        // 
-                        this.CancelCommandButton.Location = new System.Drawing.Point(514, 8);
-                        // 
                         // EntradaObjeto
                         // 
-                        this.EntradaObjeto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaObjeto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaObjeto.AutoTab = true;
                         this.EntradaObjeto.CanCreate = true;
-                        this.EntradaObjeto.Filter = "";
                         this.EntradaObjeto.Location = new System.Drawing.Point(120, 20);
                         this.EntradaObjeto.MaxLength = 200;
                         this.EntradaObjeto.Name = "EntradaObjeto";
-                        this.EntradaObjeto.Required = false;
-                        this.EntradaObjeto.Size = new System.Drawing.Size(488, 24);
-                        this.EntradaObjeto.TabIndex = 1;
                         this.EntradaObjeto.NombreTipo = "Lbl.Sys.Permisos.Objeto";
-                        this.EntradaObjeto.Text = "0";
                         this.EntradaObjeto.PlaceholderText = "Ninguno";
+                        this.EntradaObjeto.Required = false;
+                        this.EntradaObjeto.Size = new System.Drawing.Size(660, 24);
+                        this.EntradaObjeto.TabIndex = 1;
+                        this.EntradaObjeto.Text = "0";
                         this.EntradaObjeto.TextChanged += new System.EventHandler(this.EntradaObjeto_TextChanged);
                         // 
                         // Label16
@@ -154,7 +146,7 @@ namespace Lfc.Personas.Usuarios
                         // CheckNivelCrear
                         // 
                         this.CheckNivelCrear.AutoSize = true;
-                        this.CheckNivelCrear.Location = new System.Drawing.Point(408, 60);
+                        this.CheckNivelCrear.Location = new System.Drawing.Point(464, 61);
                         this.CheckNivelCrear.Name = "CheckNivelCrear";
                         this.CheckNivelCrear.Size = new System.Drawing.Size(185, 19);
                         this.CheckNivelCrear.TabIndex = 6;
@@ -166,7 +158,7 @@ namespace Lfc.Personas.Usuarios
                         // CheckNivelEditar
                         // 
                         this.CheckNivelEditar.AutoSize = true;
-                        this.CheckNivelEditar.Location = new System.Drawing.Point(408, 80);
+                        this.CheckNivelEditar.Location = new System.Drawing.Point(464, 81);
                         this.CheckNivelEditar.Name = "CheckNivelEditar";
                         this.CheckNivelEditar.Size = new System.Drawing.Size(135, 19);
                         this.CheckNivelEditar.TabIndex = 7;
@@ -179,7 +171,7 @@ namespace Lfc.Personas.Usuarios
                         // CheckNivelEditarAvanzado
                         // 
                         this.CheckNivelEditarAvanzado.AutoSize = true;
-                        this.CheckNivelEditarAvanzado.Location = new System.Drawing.Point(408, 100);
+                        this.CheckNivelEditarAvanzado.Location = new System.Drawing.Point(464, 101);
                         this.CheckNivelEditarAvanzado.Name = "CheckNivelEditarAvanzado";
                         this.CheckNivelEditarAvanzado.Size = new System.Drawing.Size(138, 19);
                         this.CheckNivelEditarAvanzado.TabIndex = 8;
@@ -279,12 +271,11 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // EntradaItems
                         // 
-                        this.EntradaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                    | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaItems.ForceCase = Lui.Forms.TextCasing.None;
+                        this.EntradaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaItems.Location = new System.Drawing.Point(120, 272);
                         this.EntradaItems.Name = "EntradaItems";
-                        this.EntradaItems.Size = new System.Drawing.Size(488, 24);
+                        this.EntradaItems.Size = new System.Drawing.Size(660, 24);
                         this.EntradaItems.TabIndex = 20;
                         // 
                         // Label1
@@ -320,7 +311,7 @@ namespace Lfc.Personas.Usuarios
                         // CheckNivelAdministrar
                         // 
                         this.CheckNivelAdministrar.AutoSize = true;
-                        this.CheckNivelAdministrar.Location = new System.Drawing.Point(408, 136);
+                        this.CheckNivelAdministrar.Location = new System.Drawing.Point(464, 137);
                         this.CheckNivelAdministrar.Name = "CheckNivelAdministrar";
                         this.CheckNivelAdministrar.Size = new System.Drawing.Size(172, 19);
                         this.CheckNivelAdministrar.TabIndex = 11;
@@ -329,11 +320,11 @@ namespace Lfc.Personas.Usuarios
                         this.CheckNivelAdministrar.UseMnemonic = false;
                         this.CheckNivelAdministrar.UseVisualStyleBackColor = true;
                         // 
-                        // AgregarPermiso
+                        // EditarPermiso
                         // 
                         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
                         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                        this.ClientSize = new System.Drawing.Size(634, 372);
+                        this.ClientSize = new System.Drawing.Size(806, 372);
                         this.Controls.Add(this.CheckNivelAdministrar);
                         this.Controls.Add(this.label2);
                         this.Controls.Add(this.CheckNivelMover);
@@ -355,7 +346,8 @@ namespace Lfc.Personas.Usuarios
                         this.Controls.Add(this.CheckNivelListar);
                         this.Controls.Add(this.EntradaObjeto);
                         this.Controls.Add(this.Label16);
-                        this.Name = "AgregarPermiso";
+                        this.ForeColor = System.Drawing.Color.Black;
+                        this.Name = "EditarPermiso";
                         this.Text = "Permiso";
                         this.Controls.SetChildIndex(this.Label16, 0);
                         this.Controls.SetChildIndex(this.EntradaObjeto, 0);

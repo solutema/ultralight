@@ -1,20 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Rel" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sistema/Aplicacion.cs">
-    <Files>
-      <File FileName="Sistema/Aplicacion.cs" Line="724" Column="1" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="WinMain" expanded="True">
-            <Node name="Config" expanded="True" />
-            <Node name="Aplicacion.cs" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

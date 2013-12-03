@@ -103,7 +103,7 @@ namespace Lfc.Personas
                         this.label13 = new Lui.Forms.Label();
                         this.EntradaEstado = new Lui.Forms.ComboBox();
                         this.EntradaObs = new Lui.Forms.TextBox();
-                        this.frame5 = new Lui.Forms.Frame();
+                        this.PanelAbajo = new Lui.Forms.Frame();
                         this.EntradaFechaBaja = new Lui.Forms.TextBox();
                         this.EntradaFechaAlta = new Lui.Forms.TextBox();
                         this.label4 = new Lui.Forms.Label();
@@ -115,7 +115,7 @@ namespace Lfc.Personas
                         this.PanelD1.SuspendLayout();
                         this.PanelI2.SuspendLayout();
                         this.PanelD2.SuspendLayout();
-                        this.frame5.SuspendLayout();
+                        this.PanelAbajo.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // EntradaEmail
@@ -676,6 +676,7 @@ namespace Lfc.Personas
                         // EntradaTipoCuenta
                         // 
                         this.EntradaTipoCuenta.AlwaysExpanded = false;
+                        this.EntradaTipoCuenta.AutoSize = true;
                         this.EntradaTipoCuenta.Location = new System.Drawing.Point(112, 136);
                         this.EntradaTipoCuenta.Name = "EntradaTipoCuenta";
                         this.EntradaTipoCuenta.SetData = new string[] {
@@ -739,25 +740,25 @@ namespace Lfc.Personas
                         this.EntradaObs.Size = new System.Drawing.Size(232, 96);
                         this.EntradaObs.TabIndex = 7;
                         // 
-                        // frame5
+                        // PanelAbajo
                         // 
-                        this.frame5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                        this.PanelAbajo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-                        this.frame5.Controls.Add(this.EntradaEstado);
-                        this.frame5.Controls.Add(this.EntradaFechaBaja);
-                        this.frame5.Controls.Add(this.EntradaFechaAlta);
-                        this.frame5.Controls.Add(this.EntradaObs);
-                        this.frame5.Controls.Add(this.label4);
-                        this.frame5.Controls.Add(this.label24);
-                        this.frame5.Controls.Add(this.label25);
-                        this.frame5.Controls.Add(this.label26);
-                        this.frame5.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
-                        this.frame5.Location = new System.Drawing.Point(0, 528);
-                        this.frame5.Margin = new System.Windows.Forms.Padding(6);
-                        this.frame5.Name = "frame5";
-                        this.frame5.Size = new System.Drawing.Size(704, 144);
-                        this.frame5.TabIndex = 4;
-                        this.frame5.Text = "Estado";
+                        this.PanelAbajo.Controls.Add(this.EntradaEstado);
+                        this.PanelAbajo.Controls.Add(this.EntradaFechaBaja);
+                        this.PanelAbajo.Controls.Add(this.EntradaFechaAlta);
+                        this.PanelAbajo.Controls.Add(this.EntradaObs);
+                        this.PanelAbajo.Controls.Add(this.label4);
+                        this.PanelAbajo.Controls.Add(this.label24);
+                        this.PanelAbajo.Controls.Add(this.label25);
+                        this.PanelAbajo.Controls.Add(this.label26);
+                        this.PanelAbajo.Font = new System.Drawing.Font("Bitstream Vera Sans", 10F);
+                        this.PanelAbajo.Location = new System.Drawing.Point(0, 528);
+                        this.PanelAbajo.Margin = new System.Windows.Forms.Padding(6);
+                        this.PanelAbajo.Name = "PanelAbajo";
+                        this.PanelAbajo.Size = new System.Drawing.Size(704, 144);
+                        this.PanelAbajo.TabIndex = 4;
+                        this.PanelAbajo.Text = "Estado";
                         // 
                         // EntradaFechaBaja
                         // 
@@ -831,7 +832,7 @@ namespace Lfc.Personas
                         this.Controls.Add(this.PanelD1);
                         this.Controls.Add(this.PanelI1);
                         this.Controls.Add(this.PanelI2);
-                        this.Controls.Add(this.frame5);
+                        this.Controls.Add(this.PanelAbajo);
                         this.MinimumSize = new System.Drawing.Size(708, 664);
                         this.Name = "Editar";
                         this.Size = new System.Drawing.Size(708, 664);
@@ -843,8 +844,8 @@ namespace Lfc.Personas
                         this.PanelI2.PerformLayout();
                         this.PanelD2.ResumeLayout(false);
                         this.PanelD2.PerformLayout();
-                        this.frame5.ResumeLayout(false);
-                        this.frame5.PerformLayout();
+                        this.PanelAbajo.ResumeLayout(false);
+                        this.PanelAbajo.PerformLayout();
                         this.ResumeLayout(false);
 
                 }
@@ -895,7 +896,7 @@ namespace Lfc.Personas
                 private Lui.Forms.TextBox EntradaObs;
                 internal Lcc.Entrada.CodigoDetalle EntradaSubGrupo;
                 internal Lcc.Entrada.CodigoDetalle EntradaVendedor;
-                private Lui.Forms.Frame frame5;
+                private Lui.Forms.Frame PanelAbajo;
                 internal Lui.Forms.TextBox EntradaFechaBaja;
                 internal Lui.Forms.TextBox EntradaFechaAlta;
                 internal Lui.Forms.ComboBox EntradaEstado;

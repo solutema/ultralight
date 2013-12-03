@@ -55,6 +55,7 @@ namespace Lazaro.Pres
                 public Lfx.Data.Relation Relation { get; set; }
 
                 public bool Visible { get; set; }
+                public bool ReadOnly { get; set; }
                 public bool Printable { get; set; }
 
                 public Field()

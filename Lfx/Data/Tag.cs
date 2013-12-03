@@ -39,6 +39,7 @@ namespace Lfx.Data
                 public string TableName, FieldName, Label, Extra, LblType;
                 public bool Nullable { get; set; }
                 public bool Internal { get; set; }
+                public int Access { get; set; }
                 public Lfx.Data.DbTypes FieldType = Lfx.Data.DbTypes.VarChar;
                 public Lfx.Data.InputFieldTypes InputFieldType = InputFieldTypes.Text;
                 public object Value { get; set; }
@@ -89,6 +90,7 @@ namespace Lfx.Data
                                                 
                         this.Nullable = System.Convert.ToBoolean(fromRow["fieldnullable"]);
                         this.Internal = System.Convert.ToBoolean(fromRow["internal"]);
+                        this.Access = System.Convert.ToInt32(fromRow["access"]);
                         this.DefaultValue = fromRow["fielddefault"];
                         if (this.DefaultValue is DBNull)
                                 this.DefaultValue = null;
@@ -131,6 +133,7 @@ namespace Lfx.Data
                         InsertOrUpdate.Fields.AddWithValue("fieldnullable", this.Nullable ? 1 : 0);
                         InsertOrUpdate.Fields.AddWithValue("fielddefault", this.DefaultValue);
                         InsertOrUpdate.Fields.AddWithValue("internal", this.Internal ? 1 : 0);
+                        InsertOrUpdate.Fields.AddWithValue("access", this.Access);
 
                         this.DataBase.Execute(InsertOrUpdate);
                 }

@@ -1158,6 +1158,7 @@
     <Column name="fielddefault" datatype="Text" nullable="1" />
     <Column name="label" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="internal" inputtype="Bool" nullable="0" />
+    <Column name="access" inputtype="Integer" nullable="0" />
     <Column name="extra" datatype="Text" nullable="1" />
     <Index table="sys_tags" name="PRIMARY" columns="id_tag" unique="1" primary="1" />
   </Table>

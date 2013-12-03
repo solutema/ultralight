@@ -187,6 +187,7 @@ namespace Lcc.Edicion
                                                 break;
                                 }
 
+                                Ctrl.ReadOnly = Fld.ReadOnly;
                                 if (Ctrl.Size == System.Drawing.Size.Empty)
                                         Ctrl.Size = new Size(this.FieldContainer.ClientSize.Width, 24);
                                 Ctrl.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Top;

@@ -63,6 +63,12 @@ namespace Lcc.Edicion
                                                 if (string.IsNullOrEmpty(Tg.LblType) == false) {
                                                         Fld.LblType = Lbl.Instanciador.InferirTipo(Tg.LblType);
                                                 }
+                                                if (Tg.Access > 0) {
+                                                        Lbl.Sys.Permisos.Operaciones Oper = (Lbl.Sys.Permisos.Operaciones)(Tg.Access);
+                                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(m_Elemento, Oper) == false) {
+                                                                Fld.ReadOnly = true;
+                                                        }
+                                                }
                                                 Fld.Relation = Tg.Relation;
                                                 Sect.Fields.Add(Fld);
                                         }

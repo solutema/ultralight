@@ -220,7 +220,7 @@ namespace Lfc.Comprobantes.Facturas
 
                         if (Lbl.Sys.Config.Pais.Id == 1) {
                                 // Verificaciones especiales para Argentina
-                                if (Comprob.Tipo.EsFacturaNCoND && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
+                                if (Comprob.Tipo.EsFacturaNCoND && Comprob.Cliente.SituacionTributaria != null && Comprob.Tipo.Letra != Comprob.Cliente.LetraPredeterminada()) {
                                         Lui.Forms.YesNoDialog Pregunta = new Lui.Forms.YesNoDialog(@"La situación tributaria del cliente y el tipo de comprobante no se corresponden.
 Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llevar un comprobante tipo " + Comprob.Cliente.LetraPredeterminada() + @". No debería continuar con la impresión. 
 ¿Desea continuar de todos modos?", "Tipo de comprobante incorrecto");

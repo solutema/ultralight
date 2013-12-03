@@ -504,7 +504,7 @@ namespace Lazaro.WinMain
                                                                         string TipoServidor = "";
                                                                         switch (Lfx.Data.DataBaseCache.DefaultCache.AccessMode) {
                                                                                 case Lfx.Data.AccessModes.MySql:
-                                                                                        TipoServidor = "MySQL/MariaDB";
+                                                                                        TipoServidor = "MariaDB/MySQL";
                                                                                         break;
                                                                                 case Lfx.Data.AccessModes.MSSql:
                                                                                         TipoServidor = "SQL Server";

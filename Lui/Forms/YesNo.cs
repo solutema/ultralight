@@ -76,7 +76,9 @@ namespace Lui.Forms
                                         case Keys.S:
                                         case Keys.Left:
                                                 e.Handled = true;
-                                                if (this.Value == false) {
+                                                if (this.ReadOnly || this.TemporaryReadOnly) {
+                                                        // Nada
+                                                } else if (this.Value == false) {
                                                         this.Value = true;
                                                         this.Changed = true;
                                                 }
@@ -84,15 +86,21 @@ namespace Lui.Forms
                                         case Keys.N:
                                         case Keys.Right:
                                                 e.Handled = true;
-                                                if (this.Value == true) {
+                                                if (this.ReadOnly || this.TemporaryReadOnly) {
+                                                        // Nada
+                                                } else if (this.Value == true) {
                                                         this.Value = false;
                                                         this.Changed = true;
                                                 }
                                                 break;
                                         case Keys.Space:
                                                 e.Handled = true;
-                                                this.Value = !this.Value;
-                                                this.Changed = true;
+                                                if (this.ReadOnly || this.TemporaryReadOnly) {
+                                                        // Nada
+                                                } else {
+                                                        this.Value = !this.Value;
+                                                        this.Changed = true;
+                                                }
                                                 break;
                                         case Keys.Up:
                                                 e.Handled = true;
@@ -126,6 +134,8 @@ namespace Lui.Forms
                 private void EtiquetaSi_Click(object sender, EventArgs e)
                 {
                         this.Select();
+                        if (this.ReadOnly || this.TemporaryReadOnly)
+                                return;
                         bool Was = this.Value;
                         this.Value = true;
                         if (Was != true) {
@@ -138,6 +148,8 @@ namespace Lui.Forms
                 private void EtiquetaNo_Click(object sender, EventArgs e)
                 {
                         this.Select();
+                        if (this.ReadOnly || this.TemporaryReadOnly)
+                                return;
                         bool Was = this.Value;
                         this.Value = false;
                         if (Was != false) {

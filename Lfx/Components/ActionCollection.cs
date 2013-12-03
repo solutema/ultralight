@@ -69,6 +69,12 @@ namespace Lfx.Components
                         throw new IndexOutOfRangeException();
                 }
 
+                new public void AddRange(IEnumerable<Action> acciones)
+                {
+                        foreach (Action acc in acciones) {
+                                this.Add(acc);
+                        }
+                }
 
                 new public void Add(Action act)
                 {

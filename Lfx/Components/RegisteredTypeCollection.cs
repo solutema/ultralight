@@ -36,6 +36,17 @@ namespace Lfx.Components
 {
         public class RegisteredTypeCollection : List<IRegisteredType>
         {
+                new public void Add(IRegisteredType tipo)
+                {
+                        foreach (IRegisteredType ti in this) {
+                                if (ti.LblType == tipo.LblType) {
+                                        // Ya existe... lo sobreescribo
+                                        ti.Actions.AddRange(tipo.Actions);
+                                }
+                        }
+                        base.Add(tipo);
+                }
+
                 public IRegisteredType GetByLblType(Type tipo)
                 {
                         foreach (IRegisteredType ti in this) {

@@ -106,7 +106,7 @@ namespace Lui.Forms
                                 if (Pref == "$" || this.DataType == DataTypes.Currency)
                                         Pref = Lbl.Sys.Config.Moneda.Simbolo;
 				EtiquetaPrefijo.Text = Pref;
-                                EtiquetaPrefijo.Visible = Pref.Length > 0;
+                                EtiquetaPrefijo.Visible = Pref != null && Pref.Length > 0;
                                 this.ReubicarControles();
 			}
 		}
