@@ -963,7 +963,7 @@ namespace Lfc
                                 ComandoSelect.Fields = ListaCampos;
                                 ComandoSelect.WhereClause = WhereCompleto;
 
-                                if (this.Definicion.GroupBy != null)
+                                if (this.Definicion.GroupBy != null && agrFunction == null)
                                         ComandoSelect.Group = this.Definicion.GroupBy.Name;
 
                                 if (this.Definicion.Having != null)

@@ -307,6 +307,9 @@
     <Column name="id_consulta" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" label="Nombre" required="1" nullable="0" lenght="200" />
     <Column name="query" inputtype="Memo" label="Consulta SQL" required="1" nullable="0" />
+    <Column name="query_where" inputtype="Memo" label="Condición" required="0" nullable="1" />
+    <Column name="query_groupby" inputtype="Memo" label="Agrupación" required="0" nullable="1" />
+    <Column name="query_orderby" inputtype="Memo" label="Orden" required="0" nullable="1" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
     <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
