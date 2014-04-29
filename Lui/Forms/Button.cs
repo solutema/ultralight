@@ -379,5 +379,10 @@ namespace Lui.Forms
                 {
                         this.ReubicarTodo();
                 }
+
+                public override string ToString()
+                {
+                        return this.Text;
+                }
         }
 }

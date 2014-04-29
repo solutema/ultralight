@@ -464,9 +464,9 @@ namespace Lui.Forms
 		{
 			CalendarPopUp Calendario = new CalendarPopUp();
 			if (this.Text.IsDate())
-				Calendario.Calendar.CurrentDate = Lfx.Types.Parsing.ParseDate(this.Text).Value;
+				Calendario.CurrentDate = Lfx.Types.Parsing.ParseDate(this.Text).Value;
 			if (Calendario.ShowDialog() == DialogResult.OK)
-				this.Text = FormatearDatos(Calendario.Calendar.CurrentDate);
+				this.Text = FormatearDatos(Calendario.CurrentDate);
 			Calendario.Close();
 			Calendario = null;
 		}
@@ -828,6 +828,22 @@ namespace Lui.Forms
                                         default:
                                                 TextBox1.Font = Lazaro.Pres.DisplayStyles.Template.Current.DefaultFont;
                                                 break;
+                                }
+                        }
+                }
+
+                private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
+                {
+                        if (this.TemporaryReadOnly == false && this.ReadOnly == false) {
+                                if (m_DataType == DataTypes.Date) {
+                                        if (e.KeyChar == ' ') {
+                                                e.Handled = true;
+                                                MostrarCalendario();
+                                        } else if (char.IsControl(e.KeyChar)) {
+                                                // Nada... son caracteres de control
+                                        } else if ("0123456789-/".IndexOf(e.KeyChar) < 0) {
+                                                e.Handled = true;
+                                        }
                                 }
                         }
                 }

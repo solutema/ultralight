@@ -52,6 +52,7 @@ namespace Lfc
                 protected Dictionary<string, int> SubItemToFormField = new Dictionary<string, int>();
                 protected int m_Limit = 2000;
                 protected qGen.Where m_CustomFilters = new qGen.Where();
+                protected qGen.Where m_FixedFilters = new qGen.Where();
 
                 // Grouping
                 protected string m_GroupingColumnName = null;
@@ -172,6 +173,10 @@ namespace Lfc
                 }
 
 
+
+                /// <summary>
+                /// Filtros variables, que se cambian mientras el usuario está viendo el listado (por ejemplo con la tecla F2)
+                /// </summary>
                 public qGen.Where CustomFilters
                 {
                         get
@@ -181,6 +186,22 @@ namespace Lfc
                         set
                         {
                                 m_CustomFilters = value;
+                        }
+                }
+
+                
+                /// <summary>
+                /// Filtros fijos, que el usuario no puede cambiar.
+                /// </summary>
+                public qGen.Where FixedFilters
+                {
+                        get
+                        {
+                                return m_FixedFilters;
+                        }
+                        set
+                        {
+                                m_FixedFilters = value;
                         }
                 }
 
@@ -955,6 +976,9 @@ namespace Lfc
 
                                 if (m_CustomFilters != null && m_CustomFilters.Count > 0)
                                         WhereCompleto.AddWithValue(m_CustomFilters);
+
+                                if (m_FixedFilters != null && m_FixedFilters.Count > 0)
+                                        WhereCompleto.AddWithValue(m_FixedFilters);
 
                                 if (additionalFilters != null && additionalFilters.Count > 0)
                                         WhereCompleto.AddWithValue(additionalFilters);

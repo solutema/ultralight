@@ -185,27 +185,27 @@ namespace Lcc.Entrada.AuxForms
                         if (CamposExtra > 4)
                                 CamposExtra = 4;
 
-                        this.Width = 480 + (80 * CamposExtra);
+                        this.Width = 640 + (120 * CamposExtra);
                         if (Listado.Columns.Count > 0)
-                                Listado.Columns[1].Width = Listado.Width - Listado.Columns[0].Width - (80 * CamposExtra) - 20;
+                                Listado.Columns[1].Width = Listado.Width - Listado.Columns[0].Width - (120 * CamposExtra) - 20;
 
                         if (CamposExtra >= 1)
-                                extra1.Width = 80;
+                                extra1.Width = 120;
                         else
                                 extra1.Width = 0;
 
                         if (CamposExtra >= 2)
-                                extra1.Width = 80;
+                                extra1.Width = 120;
                         else
                                 extra2.Width = 0;
 
                         if (CamposExtra >= 3)
-                                extra1.Width = 80;
+                                extra1.Width = 120;
                         else
                                 extra3.Width = 0;
 
                         if (CamposExtra >= 4)
-                                extra1.Width = 80;
+                                extra1.Width = 120;
                         else
                                 extra4.Width = 0;
                 }

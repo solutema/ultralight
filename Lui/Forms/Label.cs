@@ -92,7 +92,7 @@ namespace Lui.Forms
                 }
 
 
-                [DefaultValue(Lazaro.Pres.DisplayStyles.TextStyles.Default)]
+                [DefaultValue(Lazaro.Pres.DisplayStyles.TextStyles.Default), Browsable(true)]
                 public Lazaro.Pres.DisplayStyles.TextStyles TextStyle
                 {
                         get

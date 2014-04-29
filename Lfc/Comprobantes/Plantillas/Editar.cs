@@ -140,6 +140,7 @@ namespace Lfc.Comprobantes.Plantillas
                                 EntradaMargenArriba.ValueInt = Margen.Top;
                                 EntradaMargenAbajo.ValueInt = Margen.Bottom;
                         }
+                        EntradaCopias.ValueInt = Plantilla.Copias;
 
                         EntradaFuenteFuenteTamano_TextChanged(this, null);
 

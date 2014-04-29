@@ -195,33 +195,33 @@ namespace Lbl.Cajas
                 {
                         decimal SaldoActual = this.ObtenerSaldo(true);
 
-                        qGen.TableCommand Comando; Comando = new qGen.Insert(this.Connection, "cajas_movim");
-			Comando.Fields.AddWithValue("id_caja", this.Id);
-			Comando.Fields.AddWithValue("auto", auto ? 1 : 0);
+                        qGen.TableCommand InsertarMovimiento = new qGen.Insert(this.Connection, "cajas_movim");
+			InsertarMovimiento.Fields.AddWithValue("id_caja", this.Id);
+			InsertarMovimiento.Fields.AddWithValue("auto", auto ? 1 : 0);
                         if (concepto == null)
-                                Comando.Fields.AddWithValue("id_concepto", null);
+                                InsertarMovimiento.Fields.AddWithValue("id_concepto", null);
                         else
-                                Comando.Fields.AddWithValue("id_concepto", concepto.Id);
-                        Comando.Fields.AddWithValue("concepto", textoConcepto);
-                        Comando.Fields.AddWithValue("id_persona", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
+                                InsertarMovimiento.Fields.AddWithValue("id_concepto", concepto.Id);
+                        InsertarMovimiento.Fields.AddWithValue("concepto", textoConcepto);
+                        InsertarMovimiento.Fields.AddWithValue("id_persona", Lbl.Sys.Config.Actual.UsuarioConectado.Id);
                         if (cliente == null)
-                                Comando.Fields.AddWithValue("id_cliente", null);
+                                InsertarMovimiento.Fields.AddWithValue("id_cliente", null);
                         else
-                                Comando.Fields.AddWithValue("id_cliente", cliente.Id);
-			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-			Comando.Fields.AddWithValue("importe", importe);
+                                InsertarMovimiento.Fields.AddWithValue("id_cliente", cliente.Id);
+			InsertarMovimiento.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+			InsertarMovimiento.Fields.AddWithValue("importe", importe);
                         if (factura == null)
-                                Comando.Fields.AddWithValue("id_comprob", null);
+                                InsertarMovimiento.Fields.AddWithValue("id_comprob", null);
                         else
-                                Comando.Fields.AddWithValue("id_comprob", factura.Id);
+                                InsertarMovimiento.Fields.AddWithValue("id_comprob", factura.Id);
                         if (recibo == null)
-                                Comando.Fields.AddWithValue("id_recibo", null);
+                                InsertarMovimiento.Fields.AddWithValue("id_recibo", null);
                         else
-                                Comando.Fields.AddWithValue("id_recibo", recibo.Id);
-			Comando.Fields.AddWithValue("comprob", comprobantes);
-			Comando.Fields.AddWithValue("saldo", SaldoActual + importe);
-			Comando.Fields.AddWithValue("obs", obs);
-			this.Connection.Execute(Comando);
+                                InsertarMovimiento.Fields.AddWithValue("id_recibo", recibo.Id);
+			InsertarMovimiento.Fields.AddWithValue("comprob", comprobantes);
+			InsertarMovimiento.Fields.AddWithValue("saldo", SaldoActual + importe);
+			InsertarMovimiento.Fields.AddWithValue("obs", obs);
+			this.Connection.Execute(InsertarMovimiento);
 		}
 
 

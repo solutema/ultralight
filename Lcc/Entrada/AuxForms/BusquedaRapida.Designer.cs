@@ -96,13 +96,15 @@ namespace Lcc.Entrada.AuxForms
             this.extra2,
             this.extra3,
             this.extra4});
+                        this.Listado.FieldName = null;
                         this.Listado.FullRowSelect = true;
-                        this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+                        this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.HideSelection = false;
                         this.Listado.LabelWrap = false;
                         this.Listado.Location = new System.Drawing.Point(24, 128);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
+                        this.Listado.ReadOnly = false;
                         this.Listado.Size = new System.Drawing.Size(664, 264);
                         this.Listado.TabIndex = 3;
                         this.Listado.UseCompatibleStateImageBehavior = false;
@@ -143,14 +145,14 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         // EntradaBuscar
                         // 
-                        this.EntradaBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+                        this.EntradaBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaBuscar.AutoNav = false;
                         this.EntradaBuscar.Cursor = System.Windows.Forms.Cursors.Default;
                         this.EntradaBuscar.Location = new System.Drawing.Point(104, 64);
                         this.EntradaBuscar.Name = "EntradaBuscar";
                         this.EntradaBuscar.PlaceholderText = "¿Qué está buscando?";
-                        this.EntradaBuscar.Size = new System.Drawing.Size(312, 24);
+                        this.EntradaBuscar.Size = new System.Drawing.Size(392, 24);
                         this.EntradaBuscar.TabIndex = 1;
                         this.EntradaBuscar.Text = "¿Qué está buscando?";
                         this.EntradaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaBuscar_KeyPress);
@@ -159,7 +161,7 @@ namespace Lcc.Entrada.AuxForms
                         // 
                         // BotonNuevo
                         // 
-                        this.BotonNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                        this.BotonNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonNuevo.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonNuevo.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonNuevo.Image = null;
@@ -220,7 +222,6 @@ namespace Lcc.Entrada.AuxForms
                         this.EtiquetaSeleccionar.Tag = "Pulse la tecla Entrar para seleccionar {0}.";
                         this.EtiquetaSeleccionar.Text = "Pulse la tecla Entrar para seleccionar {0}.";
                         this.EtiquetaSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        this.EtiquetaSeleccionar.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.DataEntry;
                         this.EtiquetaSeleccionar.UseMnemonic = false;
                         this.EtiquetaSeleccionar.Visible = false;
                         // 
@@ -246,7 +247,6 @@ namespace Lcc.Entrada.AuxForms
                         this.Controls.Add(this.Listado);
                         this.Controls.Add(this.EtiquetaResultados);
                         this.ForeColor = System.Drawing.SystemColors.ControlText;
-                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.Name = "BusquedaRapida";
                         this.ShowInTaskbar = false;
                         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

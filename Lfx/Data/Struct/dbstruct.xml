@@ -757,6 +757,7 @@
     <Column name="fechaalta" datatype="DateTime" nullable="1" />
     <Column name="fechabaja" datatype="DateTime" nullable="1" />
     <Column name="limitecredito" inputtype="Currency" section="Crédito" label="Límite de crédito" default="0" />
+    <Column name="saldo_ctacte" inputtype="Currency" section="Crédito" label="Saldo en cuenta corriente" default="0" />
     <Column name="estadocredito" inputtype="NumericSet" section="Crédito" label="Estado de crédito" nullable="0" default="0" />
     <Column name="tipocuenta" inputtype="NumericSet" label="Tipo de Cuenta" section="Crédito" nullable="0" default="0" />
     <Column name="numerocuenta" inputtype="Text" label="Número de Cuenta" section="Crédito" nullable="1" lenght="200" />
@@ -1133,14 +1134,7 @@
     <Index table="sys_programador" name="sys_programador_estado_estacion_componente" columns="estado,estacion,componente" unique="0" primary="0" />
   </Table>
   
-  
-  <Table name="sys_proxystatus" label="Estado del Proxy">
-    <Column name="tabla" datatype="VarChar" nullable="0" lenght="50" />
-    <Column name="id" inputtype="Relation" nullable="1" />
-    <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
-  </Table>
-
-  
+ 
   <Table name="sys_quickpaste" label="Pegádo Rápido">
     <Column name="id_paste" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="texto" datatype="Text" nullable="0" />

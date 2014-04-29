@@ -120,13 +120,18 @@ namespace Lbl.CuentasCorrientes
                         foreach (System.Data.DataRow Movim in Movims.Rows) {
                                 Saldo += System.Convert.ToDecimal(Movim["importe"]);
                                 
-                                qGen.Update Upd = new qGen.Update(this.TablaDatos);
-                                Upd.Fields.AddWithValue("saldo", Saldo);
-                                Upd.WhereClause = new qGen.Where(this.CampoId, System.Convert.ToInt32(Movim[this.CampoId]));
-                                this.Connection.Execute(Upd);
+                                qGen.Update ComandoActualizarSaldo = new qGen.Update(this.TablaDatos);
+                                ComandoActualizarSaldo.Fields.AddWithValue("saldo", Saldo);
+                                ComandoActualizarSaldo.WhereClause = new qGen.Where(this.CampoId, System.Convert.ToInt32(Movim[this.CampoId]));
+                                this.Connection.Execute(ComandoActualizarSaldo);
 
                                 Progreso.Advance(1);
                         }
+
+                        qGen.Update ComandoActualizarCliente = new qGen.Update("personas");
+                        ComandoActualizarCliente.Fields.AddWithValue("saldo_ctacte", Saldo);
+                        ComandoActualizarCliente.WhereClause = new qGen.Where("id_persona", this.Persona.Id);
+                        this.Connection.Execute(ComandoActualizarCliente);
                         Progreso.End();
                 }
 
@@ -175,35 +180,42 @@ namespace Lbl.CuentasCorrientes
                         Dictionary<string, object> extras)
                 {
                         decimal SaldoActual = this.ObtenerSaldo(true);
-                        qGen.Insert Comando= new qGen.Insert(this.Connection, this.TablaDatos);
+                        decimal NuevoSaldo = SaldoActual + importeDebito;
+
+                        qGen.Insert ComandoInsertarMovimiento = new qGen.Insert(this.Connection, this.TablaDatos);
 				
-                        Comando.Fields.AddWithValue("auto", auto ? (int)1 : (int)0);
+                        ComandoInsertarMovimiento.Fields.AddWithValue("auto", auto ? (int)1 : (int)0);
                         if (concepto == null)
-                                Comando.Fields.AddWithValue("id_concepto", null);
+                                ComandoInsertarMovimiento.Fields.AddWithValue("id_concepto", null);
                         else
-                                Comando.Fields.AddWithValue("id_concepto", concepto.Id);
-                        Comando.Fields.AddWithValue("concepto", textoConcepto);
-                        Comando.Fields.AddWithValue("id_cliente", this.Persona.Id);
-			Comando.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
-                        Comando.Fields.AddWithValue("importe", importeDebito);
+                                ComandoInsertarMovimiento.Fields.AddWithValue("id_concepto", concepto.Id);
+                        ComandoInsertarMovimiento.Fields.AddWithValue("concepto", textoConcepto);
+                        ComandoInsertarMovimiento.Fields.AddWithValue("id_cliente", this.Persona.Id);
+			ComandoInsertarMovimiento.Fields.AddWithValue("fecha", qGen.SqlFunctions.Now);
+                        ComandoInsertarMovimiento.Fields.AddWithValue("importe", importeDebito);
                         if (comprob == null)
-                                Comando.Fields.AddWithValue("id_comprob", null);
+                                ComandoInsertarMovimiento.Fields.AddWithValue("id_comprob", null);
                         else
-                                Comando.Fields.AddWithValue("id_comprob", comprob.Id);
+                                ComandoInsertarMovimiento.Fields.AddWithValue("id_comprob", comprob.Id);
                         if (recibo == null)
-                                Comando.Fields.AddWithValue("id_recibo", null);
+                                ComandoInsertarMovimiento.Fields.AddWithValue("id_recibo", null);
                         else
-                                Comando.Fields.AddWithValue("id_recibo", recibo.Id);
-                        Comando.Fields.AddWithValue("comprob", textoComprob);
-                        Comando.Fields.AddWithValue("saldo", SaldoActual + importeDebito);
-                        Comando.Fields.AddWithValue("obs", obs);
+                                ComandoInsertarMovimiento.Fields.AddWithValue("id_recibo", recibo.Id);
+                        ComandoInsertarMovimiento.Fields.AddWithValue("comprob", textoComprob);
+                        ComandoInsertarMovimiento.Fields.AddWithValue("saldo", NuevoSaldo);
+                        ComandoInsertarMovimiento.Fields.AddWithValue("obs", obs);
 
                         if (extras != null && extras.Count > 0) {
                                 foreach (KeyValuePair<string, object> extra in extras) {
-                                        Comando.Fields.AddWithValue(extra.Key, extra.Value);
+                                        ComandoInsertarMovimiento.Fields.AddWithValue(extra.Key, extra.Value);
                                 }
                         }
-                        this.Connection.Execute(Comando);
+                        this.Connection.Execute(ComandoInsertarMovimiento);
+
+                        qGen.Update ComandoActualizarCliente = new qGen.Update("personas");
+                        ComandoActualizarCliente.Fields.AddWithValue("saldo_ctacte", NuevoSaldo);
+                        ComandoActualizarCliente.WhereClause = new qGen.Where("id_persona", this.Persona.Id);
+                        this.Connection.Execute(ComandoActualizarCliente);
                 }
 
 

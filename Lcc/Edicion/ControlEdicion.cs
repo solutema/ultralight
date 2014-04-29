@@ -214,7 +214,7 @@ namespace Lcc.Edicion
                                                 System.Data.DataTable TagsTable = Lfx.Workspace.Master.MasterConnection.Select("SELECT * FROM sys_tags WHERE fieldtype IN ('action') AND tablename='" + NombreTabla + "'");
                                                 foreach (System.Data.DataRow TagRow in TagsTable.Rows) {
                                                         Lfx.Data.Row ActionRow = (Lfx.Data.Row)TagRow;
-                                                        Lazaro.Pres.Forms.FormAction NewAction = new Lazaro.Pres.Forms.FormAction(ActionRow.Fields["label"].ValueString, null, ActionRow.Fields["fieldname"].ValueString, 0);
+                                                        Lazaro.Pres.Forms.FormAction NewAction = new Lazaro.Pres.Forms.FormAction(ActionRow.Fields["label"].ValueString, null, ActionRow.Fields["label"].ValueString, 0);
                                                         switch(ActionRow.Fields["inputtype"].ValueString) {
                                                                 case "primary":
                                                                 case "pri":
@@ -240,7 +240,7 @@ namespace Lcc.Edicion
                                 }
                         }
 
-                        return m_FormActions;
+                        return m_FormActions.ShallowClone();
                 }
 
                 public virtual Lfx.Types.OperationResult PerformFormAction(string name)

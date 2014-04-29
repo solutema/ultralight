@@ -62,9 +62,17 @@ namespace Lazaro.Pres.Forms
                         this.Enabled = true;
                         this.Text = text;
                         this.SubText = subtext;
-                        this.Name = name;
+                        if (string.IsNullOrEmpty(name))
+                                this.Name = this.Text;
+                        else
+                                this.Name = name;
                         this.TabIndex = tabstop;
                         this.Visibility = visibility;
+                }
+
+                public override string ToString()
+                {
+                        return this.Text;
                 }
         }
 }

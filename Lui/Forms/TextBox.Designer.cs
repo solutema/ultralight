@@ -83,6 +83,7 @@ namespace Lui.Forms
                         this.TextBox1.ForeColor = System.Drawing.Color.Black;
                         this.TextBox1.Size = new System.Drawing.Size(376, 18);
                         this.TextBox1.FontChanged += new System.EventHandler(this.TextBox1_FontChanged);
+                        this.TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox1_KeyPress);
                         // 
                         // MiContextMenu
                         // 
