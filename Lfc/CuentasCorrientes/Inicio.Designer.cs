@@ -33,23 +33,28 @@ namespace Lfc.CuentasCorrientes
 {
         public partial class Inicio
         {
-                #region Código generado por el Diseñador de Windows Forms
-
                 private void InitializeComponent()
                 {
                         this.BotonNotaDeb = new Lui.Forms.Button();
                         this.BotonNotaCred = new Lui.Forms.Button();
                         this.BotonAjuste = new Lui.Forms.Button();
+                        this.PanelContadores.SuspendLayout();
+                        ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).BeginInit();
                         this.SuspendLayout();
                         // 
                         // BotonNotaDeb
                         // 
                         this.BotonNotaDeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonNotaDeb.AutoSize = false;
                         this.BotonNotaDeb.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonNotaDeb.ForeColor = System.Drawing.SystemColors.ControlText;
+                        this.BotonNotaDeb.Image = null;
                         this.BotonNotaDeb.ImagePos = Lui.Forms.ImagePositions.Top;
+                        this.BotonNotaDeb.Location = new System.Drawing.Point(152, 137);
+                        this.BotonNotaDeb.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+                        this.BotonNotaDeb.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.BotonNotaDeb.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonNotaDeb.Name = "BotonNotaDeb";
-                        this.BotonNotaDeb.Size = new System.Drawing.Size(100, 40);
+                        this.BotonNotaDeb.Size = new System.Drawing.Size(108, 40);
                         this.BotonNotaDeb.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonNotaDeb.Subtext = "F4";
                         this.BotonNotaDeb.TabIndex = 61;
@@ -59,13 +64,16 @@ namespace Lfc.CuentasCorrientes
                         // BotonNotaCred
                         // 
                         this.BotonNotaCred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonNotaCred.AutoSize = false;
                         this.BotonNotaCred.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonNotaCred.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonNotaCred.Image = null;
                         this.BotonNotaCred.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonNotaCred.Location = new System.Drawing.Point(120, 236);
+                        this.BotonNotaCred.Location = new System.Drawing.Point(152, 91);
+                        this.BotonNotaCred.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+                        this.BotonNotaCred.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.BotonNotaCred.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonNotaCred.Name = "BotonNotaCred";
-                        this.BotonNotaCred.Size = new System.Drawing.Size(96, 40);
+                        this.BotonNotaCred.Size = new System.Drawing.Size(108, 40);
                         this.BotonNotaCred.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonNotaCred.Subtext = "F3";
                         this.BotonNotaCred.TabIndex = 60;
@@ -75,13 +83,16 @@ namespace Lfc.CuentasCorrientes
                         // BotonAjuste
                         // 
                         this.BotonAjuste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-                        this.BotonAjuste.AutoSize = false;
                         this.BotonAjuste.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAjuste.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAjuste.Image = null;
                         this.BotonAjuste.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAjuste.Location = new System.Drawing.Point(120, 272);
+                        this.BotonAjuste.Location = new System.Drawing.Point(152, 45);
+                        this.BotonAjuste.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+                        this.BotonAjuste.MaximumSize = new System.Drawing.Size(108, 40);
+                        this.BotonAjuste.MinimumSize = new System.Drawing.Size(96, 32);
                         this.BotonAjuste.Name = "BotonAjuste";
-                        this.BotonAjuste.Size = new System.Drawing.Size(96, 40);
+                        this.BotonAjuste.Size = new System.Drawing.Size(108, 40);
                         this.BotonAjuste.SubLabelPos = Lui.Forms.SubLabelPositions.Bottom;
                         this.BotonAjuste.Subtext = "F5";
                         this.BotonAjuste.TabIndex = 62;
@@ -90,16 +101,14 @@ namespace Lfc.CuentasCorrientes
                         // 
                         // Inicio
                         // 
-                        this.PanelAcciones.Controls.Add(this.BotonNotaDeb);
-                        this.PanelAcciones.Controls.Add(this.BotonNotaCred);
-                        this.PanelAcciones.Controls.Add(this.BotonAjuste);
+                        this.ClientSize = new System.Drawing.Size(864, 441);
                         this.Name = "Inicio";
                         this.Text = "Cuenta corriente";
+                        this.PanelContadores.ResumeLayout(false);
+                        ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).EndInit();
                         this.ResumeLayout(false);
 
                 }
-
-                #endregion
                 
                 internal Lui.Forms.Button BotonNotaDeb;
                 internal Lui.Forms.Button BotonNotaCred;

@@ -1219,78 +1219,81 @@ namespace Lfc
                 {
                         Lazaro.Pres.Spreadsheet.Row Reng = new Lazaro.Pres.Spreadsheet.Row(sheet);
 
-                        if (this.Definicion.KeyColumn != null) {
+                        if (this.Definicion.KeyColumn != null && this.Definicion.KeyColumn.Printable) {
                                 Lazaro.Pres.Spreadsheet.Cell KeyCell = Reng.Cells.Add();
                                 KeyCell.Content = itemId;
                         }
 
                         for (int FieldNum = 0; FieldNum < useFields.Count; FieldNum++) {
-                                string FieldName = Lfx.Data.Field.GetNameOnly(useFields[FieldNum].Name);
+                                if (useFields[FieldNum].Printable) {
 
-                                if (FieldNum >= 0) {
-                                        Lazaro.Pres.Spreadsheet.Cell NewCell = Reng.Cells.Add();
+                                        string FieldName = Lfx.Data.Field.GetNameOnly(useFields[FieldNum].Name);
 
-                                        switch (useFields[FieldNum].DataType) {
-                                                case Lfx.Data.InputFieldTypes.Integer:
-                                                case Lfx.Data.InputFieldTypes.Serial:
-                                                        if (row[FieldName] == null || row[FieldName] is DBNull)
-                                                                NewCell.Content = null;
-                                                        else if (useFields[FieldNum].Format != null)
-                                                                NewCell.Content = System.Convert.ToInt32(row[FieldName]).ToString(useFields[FieldNum].Format);
-                                                        else
-                                                                NewCell.Content = row[FieldName].ToString();
-                                                        break;
+                                        if (FieldNum >= 0) {
+                                                Lazaro.Pres.Spreadsheet.Cell NewCell = Reng.Cells.Add();
 
-                                                case Lfx.Data.InputFieldTypes.Relation:
-                                                case Lfx.Data.InputFieldTypes.Text:
-                                                case Lfx.Data.InputFieldTypes.Memo:
-                                                        if (row[FieldName] == null)
-                                                                NewCell.Content = null;
-                                                        else if (row[FieldName] is System.Byte[])
-                                                                NewCell.Content = System.Text.Encoding.Default.GetString(((System.Byte[])(row[FieldName])));
-                                                        else
-                                                                NewCell.Content = row.Fields[FieldName].Value.ToString();
-                                                        break;
+                                                switch (useFields[FieldNum].DataType) {
+                                                        case Lfx.Data.InputFieldTypes.Integer:
+                                                        case Lfx.Data.InputFieldTypes.Serial:
+                                                                if (row[FieldName] == null || row[FieldName] is DBNull)
+                                                                        NewCell.Content = null;
+                                                                else if (useFields[FieldNum].Format != null)
+                                                                        NewCell.Content = System.Convert.ToInt32(row[FieldName]).ToString(useFields[FieldNum].Format);
+                                                                else
+                                                                        NewCell.Content = row[FieldName].ToString();
+                                                                break;
 
-                                                case Lfx.Data.InputFieldTypes.Currency:
-                                                        double ValorCur = (row[FieldName] == null || row[FieldName] is DBNull) ? 0 : System.Convert.ToDouble(row[FieldName]);
-                                                        NewCell.Content = ValorCur;
-                                                        break;
+                                                        case Lfx.Data.InputFieldTypes.Relation:
+                                                        case Lfx.Data.InputFieldTypes.Text:
+                                                        case Lfx.Data.InputFieldTypes.Memo:
+                                                                if (row[FieldName] == null)
+                                                                        NewCell.Content = null;
+                                                                else if (row[FieldName] is System.Byte[])
+                                                                        NewCell.Content = System.Text.Encoding.Default.GetString(((System.Byte[])(row[FieldName])));
+                                                                else
+                                                                        NewCell.Content = row.Fields[FieldName].Value.ToString();
+                                                                break;
 
-                                                case Lfx.Data.InputFieldTypes.Numeric:
-                                                        if (row[FieldName] == null || row[FieldName] is DBNull)
-                                                                NewCell.Content = null;
-                                                        else
-                                                                NewCell.Content = System.Convert.ToDouble(row[FieldName]);
-                                                        break;
+                                                        case Lfx.Data.InputFieldTypes.Currency:
+                                                                double ValorCur = (row[FieldName] == null || row[FieldName] is DBNull) ? 0 : System.Convert.ToDouble(row[FieldName]);
+                                                                NewCell.Content = ValorCur;
+                                                                break;
 
-                                                case Lfx.Data.InputFieldTypes.Date:
-                                                        if (row.Fields[FieldName].Value != null)
-                                                                NewCell.Content = row.Fields[FieldName].ValueDateTime;
-                                                        break;
+                                                        case Lfx.Data.InputFieldTypes.Numeric:
+                                                                if (row[FieldName] == null || row[FieldName] is DBNull)
+                                                                        NewCell.Content = null;
+                                                                else
+                                                                        NewCell.Content = System.Convert.ToDouble(row[FieldName]);
+                                                                break;
 
-                                                case Lfx.Data.InputFieldTypes.DateTime:
-                                                        NewCell.Content = row[FieldName];
-                                                        break;
+                                                        case Lfx.Data.InputFieldTypes.Date:
+                                                                if (row.Fields[FieldName].Value != null)
+                                                                        NewCell.Content = row.Fields[FieldName].ValueDateTime;
+                                                                break;
 
-                                                case Lfx.Data.InputFieldTypes.Bool:
-                                                        if (System.Convert.ToBoolean(row[FieldName]))
-                                                                NewCell.Content = "Sí";
-                                                        else
-                                                                NewCell.Content = "No";
-                                                        break;
+                                                        case Lfx.Data.InputFieldTypes.DateTime:
+                                                                NewCell.Content = row[FieldName];
+                                                                break;
 
-                                                case Lfx.Data.InputFieldTypes.Set:
-                                                        int SetValue = System.Convert.ToInt32(row[FieldName]);
-                                                        if (useFields[FieldNum] != null && useFields[FieldNum].SetValues != null & useFields[FieldNum].SetValues.ContainsKey(SetValue))
-                                                                NewCell.Content = useFields[FieldNum].SetValues[SetValue];
-                                                        else
-                                                                NewCell.Content = "???";
-                                                        break;
+                                                        case Lfx.Data.InputFieldTypes.Bool:
+                                                                if (System.Convert.ToBoolean(row[FieldName]))
+                                                                        NewCell.Content = "Sí";
+                                                                else
+                                                                        NewCell.Content = "No";
+                                                                break;
 
-                                                default:
-                                                        NewCell.Content = row[FieldName];
-                                                        break;
+                                                        case Lfx.Data.InputFieldTypes.Set:
+                                                                int SetValue = System.Convert.ToInt32(row[FieldName]);
+                                                                if (useFields[FieldNum] != null && useFields[FieldNum].SetValues != null & useFields[FieldNum].SetValues.ContainsKey(SetValue))
+                                                                        NewCell.Content = useFields[FieldNum].SetValues[SetValue];
+                                                                else
+                                                                        NewCell.Content = "???";
+                                                                break;
+
+                                                        default:
+                                                                NewCell.Content = row[FieldName];
+                                                                break;
+                                                }
                                         }
                                 }
                         }
@@ -1621,28 +1624,32 @@ namespace Lfc
                         Res.Sheets.Add(Sheet);
 
                         // Exporto los encabezados de columna
-                        Sheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader(this.Definicion.KeyColumn.Label, this.Definicion.KeyColumn.Width));
-                        Sheet.ColumnHeaders[0].DataType = this.Definicion.KeyColumn.DataType;
-                        Sheet.ColumnHeaders[0].Format = this.Definicion.KeyColumn.Format;
-                        Sheet.ColumnHeaders[0].Printable = this.Definicion.KeyColumn.Printable;
+                        if (this.Definicion.KeyColumn.Printable) {
+                                Sheet.ColumnHeaders.Add(new Lazaro.Pres.Spreadsheet.ColumnHeader(this.Definicion.KeyColumn.Label, this.Definicion.KeyColumn.Width));
+                                Sheet.ColumnHeaders[0].DataType = this.Definicion.KeyColumn.DataType;
+                                Sheet.ColumnHeaders[0].Format = this.Definicion.KeyColumn.Format;
+                                Sheet.ColumnHeaders[0].Printable = this.Definicion.KeyColumn.Printable;
+                        }
 
                         int OrderColumn = -1;
                         if (useFields != null) {
                                 for (int i = 0; i <= useFields.Count - 1; i++) {
-                                        Lazaro.Pres.Spreadsheet.ColumnHeader ColHead = new Lazaro.Pres.Spreadsheet.ColumnHeader(useFields[i].Label, useFields[i].Width);
-                                        ColHead.Name = Lfx.Data.Field.GetNameOnly(useFields[i].Name);
-                                        ColHead.TextAlignment = useFields[i].Alignment;
-                                        ColHead.DataType = useFields[i].DataType;
-                                        ColHead.Format = useFields[i].Format;
-                                        ColHead.TotalFunction = useFields[i].TotalFunction;
-                                        ColHead.Printable = useFields[i].Printable;
-                                        Sheet.ColumnHeaders.Add(ColHead);
+                                        if (useFields[i].Printable) {
+                                                Lazaro.Pres.Spreadsheet.ColumnHeader ColHead = new Lazaro.Pres.Spreadsheet.ColumnHeader(useFields[i].Label, useFields[i].Width);
+                                                ColHead.Name = Lfx.Data.Field.GetNameOnly(useFields[i].Name);
+                                                ColHead.TextAlignment = useFields[i].Alignment;
+                                                ColHead.DataType = useFields[i].DataType;
+                                                ColHead.Format = useFields[i].Format;
+                                                ColHead.TotalFunction = useFields[i].TotalFunction;
+                                                ColHead.Printable = useFields[i].Printable;
+                                                Sheet.ColumnHeaders.Add(ColHead);
 
-                                        if (ColHead.Name == this.Definicion.OrderBy)
-                                                OrderColumn = Sheet.ColumnHeaders.Count - 1;
+                                                if (ColHead.Name == this.Definicion.OrderBy)
+                                                        OrderColumn = Sheet.ColumnHeaders.Count - 1;
 
-                                        if (ColHead.Name == this.GroupingColumnName)
-                                                Sheet.ColumnHeaders.GroupingColumn = Sheet.ColumnHeaders.Count - 1;
+                                                if (ColHead.Name == this.GroupingColumnName)
+                                                        Sheet.ColumnHeaders.GroupingColumn = Sheet.ColumnHeaders.Count - 1;
+                                        }
                                 }
                         }
 

@@ -71,5 +71,21 @@ namespace Lazaro.Pres.Forms
                                         this.Add(act);
                         }
                 }
+
+                /// <summary>
+                /// Hace una copia superficial de la colección.
+                /// Clona la colección, pero no clona cada uno de sus elementos, los cuales se pasan como referencias al original.
+                /// </summary>
+                /// <returns>Una copia superficial de la colección.</returns>
+                public FormActionCollection ShallowClone()
+                {
+                        FormActionCollection Res = new FormActionCollection();
+
+                        foreach (FormAction Act in this) {
+                                Res.Add(Act);
+                        }
+
+                        return Res;
+                }
         }
 }

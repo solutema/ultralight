@@ -130,7 +130,9 @@ namespace Lfx.Data
 
 
                 /// <summary>
-                /// Toma "tabla.campo" y devulve "campo"
+                /// Devuelve de una expresión SQL el nombre del alias o el campo.
+                /// Para "tabla.campo" devulve "campo", para "tabla.campo AS alias" devuelve "alias",
+                /// para "funcion() AS alias" devuelve "alias".
                 /// </summary>
                 public static string GetNameOnly(string fieldName)
                 {
