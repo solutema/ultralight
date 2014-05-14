@@ -152,8 +152,8 @@ namespace Lfx.Data
                         DbConnection.ConnectionString = ConnectionString.ToString();
                         try {
                                 DbConnection.Open();
-                        } catch {
-                                throw;
+                        } catch (Exception ex) {
+                                throw ex;
                         }
 
                         this.SetupConnection(this.DbConnection);
@@ -1000,9 +1000,9 @@ LEFT JOIN pg_attribute
 
                                         DbConnection.Dispose();
                                         DbConnection = null;
-                                } catch {
+                                } catch (Exception ex) {
                                         if (Lfx.Workspace.Master.DebugMode)
-                                                throw;
+                                                throw ex;
                                 }
                                 m_Closing = false;
                         }

@@ -134,7 +134,6 @@ namespace Lazaro.WinMain
                                         Lfx.Lic.Licenciar(@"..\..\..\Lfc");
                                         Lfx.Lic.Licenciar(@"..\..\..\Impresion");
                                         Lfx.Lic.Licenciar(@"..\..\..\Pres");
-                                        Lfx.Lic.Licenciar(@"..\..\..\Actualizador");
                                         break;
 
                                 case "HISTORIAL":

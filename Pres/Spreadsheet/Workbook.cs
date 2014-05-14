@@ -95,11 +95,22 @@ namespace Lazaro.Pres.Spreadsheet
                 protected internal string ToHtml(Sheet sheet)
                 {
                         System.Text.StringBuilder Result = new StringBuilder();
-                        Result.AppendLine("<html>");
+                        Result.AppendLine(@"<!DOCTYPE html>");
+                        Result.AppendLine(@"<html>");
+                        Result.AppendLine(@"<head>");
+                        if (sheet == null) {
+                                if (this.Sheets.Count > 0) {
+                                        Result.AppendLine(@"<title>" + this.Sheets[0].Name + @"</title>");
+                                }
+                        } else {
+                                Result.AppendLine(@"<title>" + sheet.Name + @"</title>");
+                        }
+                        Result.AppendLine(@"<meta charset=""utf-8"" />");
+                        Result.AppendLine(@"<meta name=""generator"" content=""Lázaro (www.lazarogestion.com)"">");
                         Result.AppendLine(@"<meta http-equiv=""Content-Type"" content=""text/html; charset=UTF-8"" />");
                         Result.AppendLine(@"<style>");
                         Result.AppendLine(@"@media print { body { margin: 0; padding: 0 } }");
-                        Result.AppendLine(@"body, table, td { font-family: Segoe UI, Trebuchet MS, Helvetica, Sans Serif; font-size: 10pt; }");
+                        Result.AppendLine(@"body, table, td { font-family: Open Sans, Segoe UI, Trebuchet MS, Helvetica, Sans Serif; font-size: 10pt; }");
                         Result.AppendLine(@".StyleTable, table { border-collapse: collapse; empty-cells: show; border: none; }");
                         Result.AppendLine(@".StyleTableCaption, caption { font-size: large; background-color: #C5D900; padding: 4px; }");
                         Result.AppendLine(@".StyleTableHead, thead { display: table-header-group; }");
@@ -107,11 +118,12 @@ namespace Lazaro.Pres.Spreadsheet
                         Result.AppendLine(@".StyleDataRow, tr { page-break-inside: avoid; background-color: white; border-bottom: 1px solid silver; }");
                         Result.AppendLine(@".StyleDataCell, td { padding: 2px; }");
                         Result.AppendLine(@"</style>");
+                        Result.AppendLine(@"</head>");
 
                         Result.AppendLine("<body>");
                         if (sheet == null) {
                                 //All sheets
-                                foreach (Sheet sht in Sheets) {
+                                foreach (Sheet sht in this.Sheets) {
                                         Result.AppendLine(sht.ToHtml());
                                 }
                         } else {

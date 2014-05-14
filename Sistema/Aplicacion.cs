@@ -340,9 +340,11 @@ namespace Lazaro.WinMain
                                                         Comp.Guardar();
                                                 }
                                         } catch (Exception ex) {
-                                                if (Lfx.Workspace.Master != null) {
+                                                if (Lfx.Workspace.Master != null && Lfx.Workspace.Master.DebugMode == false) {
                                                         Lfx.Workspace.Master.RunTime.Toast("No se puede registrar el componente " + Comp.Nombre + "." + ex.Message, "Error");
                                                         UnknownExceptionHandler(ex);
+                                                } else {
+                                                        throw ex;
                                                 }
                                         }
                                 }
@@ -388,7 +390,7 @@ namespace Lazaro.WinMain
                                                 try {
                                                         Cliente.DownloadFile(@"http://www.lazarogestion.com/aslnlwc/" + Arch, ArchDestino);
                                                 } catch {
-
+                                                        // Nada
                                                 }
                                                 Progreso.Advance(1);
                                         }
@@ -453,7 +455,7 @@ namespace Lazaro.WinMain
                                                                                 Aplicacion.FormularioProgreso.Dispose();
                                                                                 Aplicacion.FormularioProgreso = null;
                                                                         } catch {
-                                                                                //
+                                                                                // Nada
                                                                         }
                                                                 }
                                                         }
@@ -860,7 +862,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                                 Texto.AppendLine("Línea   : " + Traza.GetFrame(0).GetFileLineNumber());
                                 Texto.AppendLine("Columna : " + Traza.GetFrame(0).GetFileColumnNumber());
                         } catch {
-                                //Nada
+                                // Nada
                         }
                         Texto.AppendLine("Equipo  : " + Lfx.Environment.SystemInformation.MachineName);
                         Texto.AppendLine("Plataf. : " + Lfx.Environment.SystemInformation.PlatformName);

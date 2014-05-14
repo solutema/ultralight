@@ -656,8 +656,10 @@ namespace Lfc
 
                 private void Listado_DoubleClick(object sender, System.EventArgs e)
                 {
-                        if (Listado.SelectedItems.Count > 0)
-                                this.OnItemClick(Listado.SelectedItems[0]);
+                        if (Listado.FocusedItem != null) {
+                                Listado.FocusedItem.Checked = !Listado.FocusedItem.Checked;
+                                this.OnItemClick(Listado.FocusedItem);
+                        }
                 }
 
 
