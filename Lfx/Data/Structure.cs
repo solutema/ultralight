@@ -301,7 +301,7 @@ namespace Lfx.Data
                                         } else {
                                                 switch (Columna.FieldType) {
                                                         case DbTypes.VarChar:
-                                                                Columna.DefaultValue = "";
+                                                                Columna.DefaultValue = null;
                                                                 break;
                                                         case DbTypes.Text:
                                                         case DbTypes.Blob:
@@ -318,7 +318,7 @@ namespace Lfx.Data
                                                                 if (Columna.Nullable)
                                                                         Columna.DefaultValue = "NULL";
                                                                 else
-                                                                        Columna.DefaultValue = "0";
+                                                                        Columna.DefaultValue = null;
                                                                 break;
                                                         case DbTypes.DateTime:
                                                                 Columna.DefaultValue = null;

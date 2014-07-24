@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label3.Text" xml:space="preserve">
+    <value>La versión del almacén de datos que está utilizando es antigua. Es recomendable que actualice su almacén de datos para aprovechar las ventajas de la versión nueva. La nueva versión 10 del almacén datos MariaDB es más segura y más veloz.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="PanelConsejo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACoElEQVRYR8XW
+        T0hUURTHcf9UltIf+iNlSP+MBAuhPwRtkikwF1FRy2whYpuiwggKC4KoNtWiEKJFtKpliwiKthJU1DQw
+        1RSTTGXGCEMNJqXm7XvkPrjcdybHjNeDD4/zO+fd+2bm8bQkFov9V2oYJTWMkhpGSQ2LEY/HK7EKNSjX
+        Zoqhhho2KUUzbuAzjGMET9GFZdr1haihL5FIbEYPTBF+4BLmaGv51NCVTCYPYhhmkl6hTlvTpYaBVCrV
+        CTMFWazQ1g6ooUin0y0YhZmiBKq0PYQaZjKZCryH+UdOa/sINezr6zsM4+j36snKY4G2VygQ2Wz2CYx1
+        Fo1OPYZDeORkj9Ht1CKOW/hi6zZtr1CQy+WWYgwGD1GGSozYrNPOHbN1L6qxztajOIUyO1eLftx19wmE
+        gnw+vw0GGSxy8itoder1+IQGJzuCTUHt5Cfx1s9FKBgaGmrFByzxez5minoFM7cVg1ovFBhjDuClnwfo
+        TdNyUahHvgXftV4oYHA7Bvzc9rrwrEBvHvJoVnr78M7PRShgsBZjCL3ByOqx089trxRtmK/0zuOen4tQ
+        IBh+jqNa72+wVhIdWi8UCIY7kcYMJ2tyZwphbjoanXoHBlHtzgVCgWB4Fj7iuJOdkBp/eggX4w5qbF2B
+        BM75swE1FFy0Gz8x/sk5z8QDyNcpN7MBsuFKNOMactjvrHETbzA7yHxqGODCM/iKFlvLTchGcmP+0Ytd
+        dk5+hm7IDa1x1/SpoYsF5GuXDS9irs2WowOXITe5B+PPC+eN6IE8Q2vdtTRq6GOhJrzAAK5C3hU1KEcV
+        VqMd9zGM61D/+vnUUMOCZdiL2/gGOX7ZsxyvcQH12vWFqOFE2EReOgvRgDoU/I9nImoYJTWMkhpGSQ2j
+        Eyv5DTWoXILTOrdvAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="PanelComprobantes.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAAAlwSFlzAAAO
@@ -161,25 +182,4 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="PanelConsejo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAACoElEQVRYR8XW
-        T0hUURTHcf9UltIf+iNlSP+MBAuhPwRtkikwF1FRy2whYpuiwggKC4KoNtWiEKJFtKpliwiKthJU1DQw
-        1RSTTGXGCEMNJqXm7XvkPrjcdybHjNeDD4/zO+fd+2bm8bQkFov9V2oYJTWMkhpGSQ2LEY/HK7EKNSjX
-        Zoqhhho2KUUzbuAzjGMET9GFZdr1haihL5FIbEYPTBF+4BLmaGv51NCVTCYPYhhmkl6hTlvTpYaBVCrV
-        CTMFWazQ1g6ooUin0y0YhZmiBKq0PYQaZjKZCryH+UdOa/sINezr6zsM4+j36snKY4G2VygQ2Wz2CYx1
-        Fo1OPYZDeORkj9Ht1CKOW/hi6zZtr1CQy+WWYgwGD1GGSozYrNPOHbN1L6qxztajOIUyO1eLftx19wmE
-        gnw+vw0GGSxy8itoder1+IQGJzuCTUHt5Cfx1s9FKBgaGmrFByzxez5minoFM7cVg1ovFBhjDuClnwfo
-        TdNyUahHvgXftV4oYHA7Bvzc9rrwrEBvHvJoVnr78M7PRShgsBZjCL3ByOqx089trxRtmK/0zuOen4tQ
-        IBh+jqNa72+wVhIdWi8UCIY7kcYMJ2tyZwphbjoanXoHBlHtzgVCgWB4Fj7iuJOdkBp/eggX4w5qbF2B
-        BM75swE1FFy0Gz8x/sk5z8QDyNcpN7MBsuFKNOMactjvrHETbzA7yHxqGODCM/iKFlvLTchGcmP+0Ytd
-        dk5+hm7IDa1x1/SpoYsF5GuXDS9irs2WowOXITe5B+PPC+eN6IE8Q2vdtTRq6GOhJrzAAK5C3hU1KEcV
-        VqMd9zGM61D/+vnUUMOCZdiL2/gGOX7ZsxyvcQH12vWFqOFE2EReOgvRgDoU/I9nImoYJTWMkhpGSQ2j
-        Eyv5DTWoXILTOrdvAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <metadata name="$this.DrawGrid" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
 </root>

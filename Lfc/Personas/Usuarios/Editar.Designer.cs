@@ -67,6 +67,8 @@ namespace Lfc.Personas.Usuarios
                         this.ColItems = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
                         this.BotonAgregar = new Lui.Forms.Button();
                         this.BotonQuitar = new Lui.Forms.Button();
+                        this.EntradaNombreUsuario = new Lui.Forms.TextBox();
+                        this.label2 = new Lui.Forms.Label();
                         this.SuspendLayout();
                         // 
                         // EntradaAcceso
@@ -93,18 +95,18 @@ namespace Lfc.Personas.Usuarios
                         // 
                         // EntradaContrasena
                         // 
-                        this.EntradaContrasena.Location = new System.Drawing.Point(348, 0);
+                        this.EntradaContrasena.Location = new System.Drawing.Point(500, 0);
                         this.EntradaContrasena.Name = "EntradaContrasena";
                         this.EntradaContrasena.PasswordChar = '*';
                         this.EntradaContrasena.Size = new System.Drawing.Size(132, 24);
-                        this.EntradaContrasena.TabIndex = 3;
+                        this.EntradaContrasena.TabIndex = 5;
                         // 
                         // label1
                         // 
-                        this.label1.Location = new System.Drawing.Point(220, 0);
+                        this.label1.Location = new System.Drawing.Point(412, 0);
                         this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(128, 24);
-                        this.label1.TabIndex = 2;
+                        this.label1.Size = new System.Drawing.Size(88, 24);
+                        this.label1.TabIndex = 4;
                         this.label1.Text = "Contraseña";
                         this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
                         // 
@@ -118,15 +120,17 @@ namespace Lfc.Personas.Usuarios
             this.ColCod,
             this.ColNivel,
             this.ColItems});
+                        this.Listado.FieldName = null;
                         this.Listado.FullRowSelect = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.LabelWrap = false;
                         this.Listado.Location = new System.Drawing.Point(0, 44);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
+                        this.Listado.ReadOnly = false;
                         this.Listado.Size = new System.Drawing.Size(636, 316);
                         this.Listado.Sorting = System.Windows.Forms.SortOrder.Ascending;
-                        this.Listado.TabIndex = 4;
+                        this.Listado.TabIndex = 6;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
                         this.Listado.DoubleClick += new System.EventHandler(this.Listado_DoubleClick);
@@ -150,6 +154,7 @@ namespace Lfc.Personas.Usuarios
                         // 
                         this.BotonAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonAgregar.Location = new System.Drawing.Point(532, 368);
@@ -165,6 +170,7 @@ namespace Lfc.Personas.Usuarios
                         // 
                         this.BotonQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
+                        this.BotonQuitar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonQuitar.Location = new System.Drawing.Point(420, 368);
@@ -176,8 +182,26 @@ namespace Lfc.Personas.Usuarios
                         this.BotonQuitar.Text = "Quitar";
                         this.BotonQuitar.Click += new System.EventHandler(this.BotonQuitar_Click);
                         // 
+                        // EntradaNombreUsuario
+                        // 
+                        this.EntradaNombreUsuario.Location = new System.Drawing.Point(272, 0);
+                        this.EntradaNombreUsuario.Name = "EntradaNombreUsuario";
+                        this.EntradaNombreUsuario.Size = new System.Drawing.Size(120, 24);
+                        this.EntradaNombreUsuario.TabIndex = 3;
+                        // 
+                        // label2
+                        // 
+                        this.label2.Location = new System.Drawing.Point(208, 0);
+                        this.label2.Name = "label2";
+                        this.label2.Size = new System.Drawing.Size(64, 24);
+                        this.label2.TabIndex = 2;
+                        this.label2.Text = "Usuario";
+                        this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
                         // Editar
                         // 
+                        this.Controls.Add(this.EntradaNombreUsuario);
+                        this.Controls.Add(this.label2);
                         this.Controls.Add(this.BotonQuitar);
                         this.Controls.Add(this.BotonAgregar);
                         this.Controls.Add(this.Listado);
@@ -205,5 +229,7 @@ namespace Lfc.Personas.Usuarios
                 private Lui.Forms.ListView Listado;
                 private System.Windows.Forms.ColumnHeader ColCod;
                 private System.ComponentModel.IContainer components = null;
+                private Lui.Forms.TextBox EntradaNombreUsuario;
+                private Lui.Forms.Label label2;
         }
 }

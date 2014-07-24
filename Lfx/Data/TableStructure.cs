@@ -68,12 +68,9 @@ namespace Lfx.Data
                         string FieldsSql = "", PrimaryKeys = "";
                         foreach (ColumnDefinition Col in Columns.Values) {
                                 if (FieldsSql.Length == 0)
-                                        FieldsSql = "  " + Col.Name + " " + Col.SqlDefinition();
+                                        FieldsSql = "  " + Col.Name + " " + Col.SqlDefinition(false);
                                 else
-                                        FieldsSql += "," + System.Environment.NewLine + "  " + Col.Name + " " + Col.SqlDefinition();
-
-                                // Quito el PRIMARY KEY de la definición porque ya lo pongo al final del CREATE TABLE
-                                FieldsSql = FieldsSql.Replace("PRIMARY KEY", "");
+                                        FieldsSql += "," + System.Environment.NewLine + "  " + Col.Name + " " + Col.SqlDefinition(false);
 
                                 if (Col.PrimaryKey) {
                                         if (PrimaryKeys.Length == 0)

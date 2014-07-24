@@ -7,7 +7,7 @@
     <Column name="nombre" inputtype="Text" label="Nombre" nullable="0" lenght="200" />
     <Column name="importe_minimo" inputtype="Currency" Label="Importe Mínimo" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="alicuotas" name="PRIMARY" columns="id_alicuota" unique="1" primary="1" />
   </Table>
@@ -70,7 +70,7 @@
     <Column name="stock_minimo" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Column name="imagen" datatype="Blob" nullable="1" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="web" inputtype="TinyInt" nullable="1" default="0" />
     <Column name="requierens" inputtype="Bool" nullable="0" default="0" />
@@ -129,6 +129,7 @@
 
   
   <Table name="articulos_precios" label="Precios de Artículos">
+    <Column name="id_precio" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="id_articulo" inputtype="Relation" nullable="0" default="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="costo" inputtype="Currency" default="0" />
@@ -138,6 +139,7 @@
     <Index table="articulos_precios" name="articulos_precios_id_articulo" columns="id_articulo" unique="0" primary="0" />
     <Index table="articulos_precios" name="articulos_precios_id_margen" columns="id_margen" unique="0" primary="0" />
     <Index table="articulos_precios" name="articulos_precios_id_persona" columns="id_persona" unique="0" primary="0" />
+    <Index table="articulos_precios" name="PRIMARY" columns="id_precio" unique="1" primary="1" />
   </Table>
   <Constraint name="articulos_precios_id_articulo" table="articulos_precios" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
   <Constraint name="articulos_precios_id_margen" table="articulos_precios" column="id_margen" reference_table="margenes" reference_column="id_margen" />
@@ -145,10 +147,12 @@
 
 
   <Table name="articulos_recetas" label="Recetas de Artículos">
+    <Column name="id_receta" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="id_articulo" inputtype="Relation" nullable="0" />
     <Column name="id_item" inputtype="Relation" nullable="0" />
     <Column name="cantidad" datatype="Numeric" nullable="0" lenght="14" precision="4" />
     <Index table="articulos_recetas" name="articulos_recetas_id_articulo" columns="id_articulo" unique="0" primary="0" />
+    <Index table="articulos_recetas" name="PRIMARY" columns="id_receta" unique="1" primary="1" />
   </Table>
   <Constraint name="articulos_recetas_id_articulo" table="articulos_recetas" column="id_articulo" reference_table="articulos" reference_column="id_articulo" />
 
@@ -157,7 +161,7 @@
     <Column name="id_rubro" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="id_alicuota" inputtype="Relation" nullable="1" />
     <Index table="articulos_rubros" name="articulos_rubros_id_alicuota" columns="id_alicuota" unique="0" primary="0" />
@@ -170,7 +174,7 @@
     <Column name="id_situacion" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="cuenta_stock" inputtype="Bool" nullable="0" default="0" />
     <Column name="deposito" datatype="SmallInt" nullable="0" default="0" />
@@ -210,7 +214,7 @@
     <Column name="nombre" inputtype="Text" nullable="0" lenght="50" />
     <Column name="url" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="bancos" name="PRIMARY" columns="id_banco" unique="1" primary="1" />
   </Table>
@@ -222,7 +226,7 @@
     <Column name="id_concepto" inputtype="Relation" nullable="1" />
     <Column name="concepto" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="id_banco" inputtype="Relation" nullable="1" />
     <Column name="prefijo" datatype="SmallInt" nullable="0" />
@@ -270,7 +274,7 @@
     <Column name="id_caja" inputtype="Relation" nullable="1" default="0" />
     <Column name="titular" datatype="VarChar" nullable="0" lenght="50" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="id_sucursal" inputtype="Relation" nullable="1" />
     <Index table="chequeras" name="chequeras_id_banco" columns="id_banco" unique="0" primary="0" />
@@ -294,7 +298,7 @@
     <Column name="nivel" datatype="TinyInt" nullable="0" default="0" />
     <Column name="iva" datatype="TinyInt" nullable="0" default="0" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="ciudades" name="PRIMARY" columns="id_ciudad" unique="1" primary="1" />
     <Index table="ciudades" name="ciudades_cp" columns="cp" unique="0" primary="0" />
@@ -311,7 +315,7 @@
     <Column name="query_groupby" inputtype="Memo" label="Agrupación" required="0" nullable="1" />
     <Column name="query_orderby" inputtype="Memo" label="Orden" required="0" nullable="1" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="consultas" name="PRIMARY" columns="id_consulta" unique="1" primary="1" />
   </Table>
@@ -366,7 +370,7 @@
     <Column name="id_moneda" inputtype="Relation" nullable="1" />
     <Column name="cbu" datatype="VarChar" nullable="1" lenght="50" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="cajas" name="cajas_id_banco" columns="id_banco" unique="0" primary="0" />
     <Index table="cajas" name="cajas_id_moneda" columns="id_moneda" unique="0" primary="0" />
@@ -418,7 +422,7 @@
     <Column name="grupo" datatype="SmallInt" nullable="1" />
     <Column name="fijo" inputtype="Bool" nullable="0" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="conceptos" name="PRIMARY" columns="id_concepto" unique="1" primary="1" />
   </Table>
@@ -431,7 +435,7 @@
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="nombrelargo" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tabla" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="tipo" datatype="VarChar" nullable="1" lenght="200" />
@@ -572,7 +576,7 @@
     <Column name="pagos" inputtype="Bool" nullable="0" default="0" />
     <Column name="cobros" inputtype="Bool" nullable="0" default="0" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="formaspago" name="PRIMARY" columns="id_formapago" unique="1" primary="1" />
     <Index table="formaspago" name="formaspago_id_caja" columns="id_caja" unique="0" primary="0" />
@@ -598,7 +602,7 @@
     <Column name="id_sucursal" inputtype="Relation" nullable="1" />
     <Column name="lsa" datatype="DateTime" nullable="1" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="impresoras" name="impresoras_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
     <Index table="impresoras" name="PRIMARY" columns="id_impresora" unique="1" primary="1" />
@@ -633,7 +637,7 @@
     <Column name="url" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="id_proveedor" inputtype="Relation" nullable="1" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="marcas" name="marcas_id_proveedor" columns="id_proveedor" unique="0" primary="0" />
     <Index table="marcas" name="PRIMARY" columns="id_marca" unique="1" primary="1" />
@@ -651,7 +655,7 @@
     <Column name="sumar2" inputtype="Currency" default="0" />
     <Column name="predet" inputtype="Bool" nullable="0" default="0" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="margenes" name="PRIMARY" columns="id_margen" unique="1" primary="1" />
   </Table>
@@ -661,7 +665,7 @@
     <Column name="id_moneda" datatype="Serial" label="Código" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" label="Nombre" nullable="0" lenght="50" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="signo" datatype="VarChar" label="Símbolo" nullable="0" lenght="50" />
     <Column name="iso" datatype="VarChar" label="Código ISO" nullable="0" lenght="50" />
@@ -675,7 +679,7 @@
     <Column name="id_pais" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="50" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="iso" datatype="VarChar" nullable="0" lenght="50" />
     <Column name="clavefis" inputtype="Relation" label="Clave de identificación de personas físicas" nullable="1" />
@@ -701,7 +705,7 @@
     <Column name="id_valor" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="id_formapago" inputtype="Relation" />
     <Column name="id_sucursal" inputtype="Relation" nullable="1" />
@@ -724,7 +728,7 @@
     <Column name="id_persona" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre_visible" datatype="VarChar" label="Nombre completo" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tipo" inputtype="NumericSet" label="Tipo" nullable="0" default="0" />
     <Column name="id_grupo" inputtype="Relation" label="Grupo" nullable="1"
@@ -734,6 +738,7 @@
     <Column name="nombre" inputtype="Text" section="Personas físicas" label="Nombre" nullable="1" lenght="50" />
     <Column name="apellido" inputtype="Text" section="Personas físicas" label="Apellido" nullable="1" lenght="50" />
     <Column name="razon_social" inputtype="Text" section="Personas jurídicas" label="Razón social" nullable="1" lenght="200" />
+    <Column name="nombreusuario" datatype="VarChar" nullable="1" lenght="50" />
     <Column name="contrasena" datatype="VarChar" nullable="1" lenght="200" />
     <Column name="contrasena_sal" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
     <Column name="contrasena_fecha" datatype="DateTime" nullable="1" />
@@ -800,7 +805,7 @@
     <Column name="parent" inputtype="Relation" nullable="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="descuento" datatype="Numeric" nullable="0" lenght="14" precision="4" default="0" />
     <Column name="predet" inputtype="Bool" nullable="0" default="0" />
@@ -823,7 +828,7 @@
     <Column name="id_tipo_persona" inputtype="Serial" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="personas_tipos" name="PRIMARY" columns="id_tipo_persona" unique="1" primary="1" />
   </Table>
@@ -833,7 +838,7 @@
     <Column name="id_pv" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="id_sucursal" inputtype="Relation" nullable="1" />
     <Column name="tipo" datatype="TinyInt" nullable="0" default="0" />
@@ -863,7 +868,7 @@
   <Table name="recibos" lsdet="1" label="Recibos">
     <Column name="id_recibo" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tipo_fac" datatype="VarChar" nullable="0" lenght="50" />
     <Column name="id_concepto" inputtype="Relation" nullable="1" />
@@ -883,6 +888,7 @@
     <Index table="recibos" name="recibos_pv_numero_tipo_fac" columns="pv,numero,tipo_fac" unique="0" primary="0" />
     <Index table="recibos" name="recibos_id_sucursal" columns="id_sucursal" unique="0" primary="0" />
     <Index table="recibos" name="recibos_id_concepto" columns="id_concepto" unique="0" primary="0" />
+    <Index table="recibos" name="recibos_pv_numero_estado" columns="pv,numero,estado" unique="0" primary="0" />
   </Table>
   <Constraint name="recibos_id_cliente" table="recibos" column="id_cliente" reference_table="personas" reference_column="id_persona" />
   <Constraint name="recibos_id_vendedor" table="recibos" column="id_vendedor" reference_table="personas" reference_column="id_persona" />
@@ -914,7 +920,7 @@
     <Column name="id_situacion" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="nombrecorto" datatype="VarChar" nullable="0" lenght="50" />
     <Column name="abrev" datatype="VarChar" nullable="0" lenght="2" default="0" />
@@ -928,7 +934,7 @@
     <Column name="id_sucursal" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="direccion" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="telefono" datatype="VarChar" nullable="0" lenght="200" />
@@ -963,7 +969,7 @@
     <Column name="id_objeto" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tipo" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="extra1_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
@@ -993,7 +999,7 @@
     <Column name="id_component" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="espacio" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="version" datatype="DateTime" nullable="0" />
@@ -1019,7 +1025,7 @@
     <Column name="id_label" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tablas" datatype="VarChar" nullable="1" lenght="200" />
     <Index table="sys_labels" name="PRIMARY" columns="id_label" unique="1" primary="1" />
@@ -1093,7 +1099,7 @@
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="tipo" datatype="TinyInt" nullable="0" default="0" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="codigo" datatype="VarChar" nullable="0" lenght="50" />
     <Column name="tamanopapel" datatype="VarChar" nullable="0" lenght="50" />
@@ -1167,7 +1173,7 @@
     <Column name="pv" inputtype="TinyInt" label="PV" nullable="0" />
     <Column name="desde" inputtype="Integer" label="Desde" nullable="0" />
     <Column name="hasta" inputtype="Integer" label="Hasta" nullable="0" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Index table="talonarios" name="PRIMARY" columns="id_talonario" unique="1" primary="1" />
   </Table>
 
@@ -1176,7 +1182,7 @@
     <Column name="id_cupon" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="numero" datatype="VarChar" nullable="0" lenght="30" />
     <Column name="id_concepto" inputtype="Relation" nullable="1" />
@@ -1215,7 +1221,7 @@
     <Column name="id_plan" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="100" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="id_tarjeta" inputtype="Relation" nullable="1" />
     <Column name="cuotas" datatype="TinyInt" nullable="0" default="0" />
@@ -1231,7 +1237,7 @@
     <Column name="id_ticket" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha_ingreso" datatype="DateTime" nullable="0" />
     <Column name="id_persona" inputtype="Relation" nullable="1" />
     <Column name="id_comprob" inputtype="Relation" nullable="1" />
@@ -1317,7 +1323,7 @@
     <Column name="id_tipo_ticket" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" default="0" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Index table="tickets_tipos" name="PRIMARY" columns="id_tipo_ticket" unique="1" primary="1" />
   </Table>
@@ -1328,7 +1334,7 @@
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="descripcion" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tipo" inputtype="TinyInt" label="Física/Jurídica" nullable="0" />
     <Index table="tipo_doc" name="PRIMARY" columns="id_tipo_doc" unique="1" primary="1" />
@@ -1339,7 +1345,7 @@
     <Column name="id_vencimiento" datatype="Serial" nullable="0" primary_key="1" />
     <Column name="nombre" inputtype="Text" nullable="0" lenght="200" />
     <Column name="obs" inputtype="Memo" label="Obs" nullable="1" />
-    <Column name="estado" inputtype="TinyInt" label="Estado" nullable="0" />
+    <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="fecha_inicio" datatype="DateTime" nullable="0" />
     <Column name="fecha_proxima" datatype="DateTime" nullable="1" />

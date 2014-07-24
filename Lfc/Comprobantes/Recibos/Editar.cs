@@ -145,7 +145,7 @@ namespace Lfc.Comprobantes.Recibos
                         }
 
                         if (this.Elemento.Existe == false && EntradaNumero.Text.ParseInt() != 0) {
-                                int bExiste = this.Connection.FieldInt("SELECT COUNT(id_recibo) FROM recibos WHERE numero=" + Lfx.Types.Parsing.ParseInt(EntradaNumero.Text).ToString());
+                                int bExiste = this.Connection.FieldInt("SELECT COUNT(id_recibo) FROM recibos WHERE estado<90 AND pv=" + EntradaPV.ValueInt.ToString() + " AND numero=" + EntradaNumero.ValueInt.ToString());
                                 if (bExiste != 0) {
                                         validarReturn.Success = false;
                                         validarReturn.Message = "Ya existe un Recibo con ese número." + Environment.NewLine;

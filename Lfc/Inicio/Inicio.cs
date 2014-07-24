@@ -45,6 +45,13 @@ namespace Lfc.Inicio
                 {
                         InitializeComponent();
                         this.StockImage = "inicio";
+
+                        if (string.Compare(Lfx.Workspace.Master.MasterConnection.ServerName, "localhost", true) == 0 || string.Compare(Lfx.Workspace.Master.MasterConnection.ServerName, "127.0.0.1") == 0) {
+                                if (Lfx.Workspace.Master.MasterConnection.ServerVersion.Contains("MariaDB") == false || Lfx.Workspace.Master.MasterConnection.ServerVersion.StartsWith("5.")) {
+                                        // Si estoy usando MySQL o MariaDB 5, le sugiero actualizar a MariaDB 10
+                                        PanelActualizarAlmacen.Visible = true;
+                                }
+                        }
                 }
 
 
@@ -124,6 +131,17 @@ namespace Lfc.Inicio
                                         PanelConsejo.Descripcion = "Lázaro tiene un sistema de gestión de tareas pendientes. Puede ser útil para gestionar trabajos pendientes con los clientes o para el control de quehaceres internos de su empresa. Para más información vea el menú 'Tareas'.";
                                         break;
                         }
+                }
+
+                private void BotonActualizarAlmacen_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        Help.ShowHelp(this, "http://www.lazarogestion.com/servidor/");
+                        PanelActualizarAlmacen.Visible = false;
+                }
+
+                private void BotonNoActualizarAlmacen_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+                {
+                        PanelActualizarAlmacen.Visible = false;
                 }
         }
 }

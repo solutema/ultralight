@@ -58,6 +58,18 @@ namespace Lbl.Personas
                         : base(dataBase, row) { }
 
 
+                public string NombreUsuario
+                {
+                        get
+                        {
+                                return this.GetFieldValue<string>("nombreusuario");
+                        }
+                        set
+                        {
+                                this.Registro["nombreusuario"] = value;
+                        }
+                }
+
                 public string Contrasena
                 {
                         get
@@ -135,7 +147,12 @@ namespace Lbl.Personas
                                 return this.Contrasena == contrasena;
                         } else {
                                 // Es una contraseña encriptada
-                                return Lfx.Types.Strings.SHA256(contrasena + this.ContrasenaSal) == this.Contrasena;
+                                if (Lfx.Types.Strings.SHA256(contrasena + this.ContrasenaSal) == this.Contrasena)
+                                        return true;
+                                else if (Lfx.Types.Strings.SHA256(contrasena + "{" + this.ContrasenaSal + "}") == this.Contrasena)
+                                        return true;
+                                else
+                                        return false;
                         }
                 }
 
@@ -150,6 +167,12 @@ namespace Lbl.Personas
                                 Comando.WhereClause = new qGen.Where(this.CampoId, this.Id);
                         }
 
+                        if (string.IsNullOrEmpty(this.NombreUsuario)) {
+                                Comando.Fields.AddWithValue("nombreusuario", null);
+                        } else {
+                                Comando.Fields.AddWithValue("nombreusuario", this.NombreUsuario);
+                        }
+
                         if (this.CambioContrasena) {
                                 if (this.Contrasena == null || this.Contrasena.Length < 6 || this.Contrasena.Length > 32)
                                         throw new InvalidOperationException("La contraseña debe tener entre 6 y 32 caracteres");
@@ -159,7 +182,7 @@ namespace Lbl.Personas
                                         Comando.Fields.AddWithValue("contrasena", Contrasena);
                                 } else {
                                         // Guardo un hash SHA256 de la contraseña
-                                        Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(Contrasena + this.ContrasenaSal));
+                                        Comando.Fields.AddWithValue("contrasena", Lfx.Types.Strings.SHA256(Contrasena + "{" + this.ContrasenaSal + "}"));
                                 }
                                 Comando.Fields.AddWithValue("contrasena_sal", this.ContrasenaSal);
                                 Comando.Fields.AddWithValue("contrasena_fecha", qGen.SqlFunctions.Now);

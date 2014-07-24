@@ -50,6 +50,7 @@ namespace Lfc.Personas.Usuarios
                         Lbl.Personas.Usuario Usu = this.Elemento as Lbl.Personas.Usuario;
 
                         EntradaContrasena.Text = "";
+                        EntradaNombreUsuario.Text = Usu.NombreUsuario;
 
                         TipoOriginal = Usu.Tipo;
                         if ((Usu.Tipo & 4) == 4)
@@ -113,6 +114,8 @@ namespace Lfc.Personas.Usuarios
                                 Tipo = Tipo & (~4);
 
                         Pers.Tipo = Tipo;
+
+                        Pers.NombreUsuario = EntradaNombreUsuario.Text;
 
                         if (EntradaContrasena.Text.Length > 0)
                                 Pers.Contrasena = EntradaContrasena.Text;

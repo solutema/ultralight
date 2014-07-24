@@ -121,7 +121,7 @@ namespace Lfc.Personas
                                 Lfx.Data.TagCollection Tags = this.Connection.Tables["personas"].Tags;
                                 foreach (Lfx.Data.Tag Tg in Tags) {
                                         if (Tg.FieldType == Lfx.Data.DbTypes.Text || Tg.FieldType == Lfx.Data.DbTypes.VarChar)
-                                                this.Definicion.ExtraSearchColumns.Add(new Lazaro.Pres.Field(Tg.FieldName, Tg.Label, Tg.InputFieldType));
+                                                this.Definicion.ExtraSearchColumns.Add(new Lazaro.Pres.Field(Tg.TableName + "." + Tg.FieldName, Tg.Label, Tg.InputFieldType));
                                 }
                         }
                         base.OnLoad(e);
@@ -192,10 +192,10 @@ namespace Lfc.Personas
                                 this.CustomFilters.AddWithValue("personas.estado", Estado);
 
                         if (FechaAlta.HasRange)
-                                this.CustomFilters.AddWithValue("fechaalta", FechaAlta.From, FechaAlta.To);
+                                this.CustomFilters.AddWithValue("personas.fechaalta", FechaAlta.From, FechaAlta.To);
 
                         if (FechaBaja.HasRange)
-                                this.CustomFilters.AddWithValue("fechabaja", FechaBaja.From, FechaBaja.To);
+                                this.CustomFilters.AddWithValue("personas.fechabaja", FechaBaja.From, FechaBaja.To);
 
                         // Cargo la tabla en memoria, ya que la voy a usar mucho
                         this.Connection.Tables["personas_grupos"].PreLoad();

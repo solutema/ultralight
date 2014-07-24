@@ -60,7 +60,7 @@ namespace Lfx.Data
 
                 public override string ToString()
                 {
-                        return this.Name + " " + this.SqlDefinition();
+                        return this.Name + " " + this.SqlDefinition(true);
                 }
 
                 public string SqlType()
@@ -168,7 +168,7 @@ namespace Lfx.Data
                 }
 
 
-                public string SqlDefinition()
+                public string SqlDefinition(bool specifyPrimaryKey)
                 {
                         string Def = this.SqlType();
 
@@ -185,28 +185,40 @@ namespace Lfx.Data
                                                 // No pueden tener default
                                                 break;
                                         case DbTypes.VarChar:
-                                                if (this.DefaultValue == null)
-                                                        Def += " DEFAULT ''";	//Default to empty string
-                                                else if (this.DefaultValue == "NULL")
-                                                        Def += " DEFAULT NULL";
-                                                else
-                                                        Def += " DEFAULT '" + this.DefaultValue + "'";
-                                                break;
-                                        case DbTypes.Currency:
-                                        case DbTypes.Integer:
-                                        case DbTypes.Numeric:
-                                        case DbTypes.SmallInt:
-                                        case DbTypes.MediumInt:
-                                        case DbTypes.TinyInt:
                                                 if (this.DefaultValue == null) {
-                                                        if(this.Nullable)
-                                                                Def += " DEFAULT NULL";	// Nullable columns default to null
-                                                        else
-                                                                Def += " DEFAULT 0";	// Otherwise, default to zero
+                                                        //Def += " DEFAULT ''";	//Default to empty string
                                                 } else if (this.DefaultValue == "NULL") {
                                                         Def += " DEFAULT NULL";
                                                 } else {
                                                         Def += " DEFAULT '" + this.DefaultValue + "'";
+                                                }
+                                                break;
+                                        case DbTypes.Currency:
+                                        case DbTypes.Numeric:
+                                                if (this.DefaultValue == null) {
+                                                        /* if(this.Nullable)
+                                                                Def += " DEFAULT NULL";	// Nullable columns default to null
+                                                        else
+                                                                Def += " DEFAULT 0";	// Otherwise, default to zero */
+                                                } else if (this.DefaultValue == "NULL") {
+                                                        Def += " DEFAULT NULL";
+                                                } else {
+                                                        Def += " DEFAULT " + Lfx.Types.Formatting.FormatNumberSql(Lfx.Types.Parsing.ParseDecimal(this.DefaultValue), 4) + "";
+                                                }
+                                                break;
+                                        case DbTypes.Integer:
+                                        case DbTypes.SmallInt:
+                                        case DbTypes.MediumInt:
+                                        case DbTypes.TinyInt:
+                                                if (this.DefaultValue == null) {
+                                                        /* if(this.Nullable)
+                                                                Def += " DEFAULT NULL";	// Nullable columns default to null
+                                                        else
+                                                                Def += " DEFAULT 0";	// Otherwise, default to zero */
+                                                } else if (this.DefaultValue == "NULL") {
+                                                        Def += " DEFAULT NULL";
+                                                } else {
+                                                        Def += " DEFAULT " + this.DefaultValue + "";
                                                 }
                                                 break;  
                                         default:
@@ -216,7 +228,7 @@ namespace Lfx.Data
                                 }
                         }
 
-                        if (this.PrimaryKey)
+                        if (specifyPrimaryKey && this.PrimaryKey)
                                 Def += " PRIMARY KEY";
                         return Def;
                 }

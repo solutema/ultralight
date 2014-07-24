@@ -283,15 +283,20 @@ namespace Lfx.Data
                 }
 
 
-                private string ServerVersion
+                private static string m_ServerVersion = null;
+                public string ServerVersion
                 {
                         get
                         {
-                                try {
-                                        return this.FieldString("SELECT VERSION()");
-                                } catch {
-                                        return "unknown";
+                                if (m_ServerVersion == null) {
+                                        try {
+                                                m_ServerVersion = this.FieldString("SELECT VERSION()");
+                                        }
+                                        catch {
+                                                m_ServerVersion = "unknown";
+                                        }
                                 }
+                                return m_ServerVersion;
                         }
                 }
 
@@ -402,7 +407,7 @@ namespace Lfx.Data
                                 foreach (Data.ColumnDefinition NewFieldDef in newTableDef.Columns.Values) {
                                         if (CurrentTableDef.Columns.ContainsKey(NewFieldDef.Name) == false) {
                                                 //Agregar campo a una tabla existente
-                                                string Sql = "ADD COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition();
+                                                string Sql = "ADD COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition(true);
                                                 if (this.SqlMode == qGen.SqlModes.MySql) {
                                                         if (LastColName == null)
                                                                 Sql += " FIRST";
@@ -444,7 +449,7 @@ namespace Lfx.Data
                                                                         }
                                                                 }
                                                         } else {
-                                                                string Alter = "MODIFY COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition();
+                                                                string Alter = "MODIFY COLUMN \"" + NewFieldDef.Name + "\" " + NewFieldDef.SqlDefinition(false);
                                                                 if (this.SqlMode == qGen.SqlModes.MySql) {
                                                                         if (LastColName == null)
                                                                                 Alter += " FIRST";
@@ -494,7 +499,12 @@ namespace Lfx.Data
 
                                         //Al crear la tabla, se crea la clave primaria y no necesito crearla aquí
                                         if (Create && (TablaCreada == false || NewIndex.Primary == false)) {
-                                                this.CreateIndex(NewIndex);
+                                                try {
+                                                        this.CreateIndex(NewIndex);
+                                                } catch {
+                                                        // No pude crear un índice... no importa
+                                                        // en algún momento se intentará de nuevo
+                                                }
                                         }
                                 }
                         }
@@ -625,13 +635,14 @@ namespace Lfx.Data
                                                 case DbTypes.Integer:
                                                 case DbTypes.SmallInt:
                                                 case DbTypes.MediumInt:
+                                                case DbTypes.Currency:
                                                 case DbTypes.Numeric:
                                                         if (Lfx.Types.Parsing.ParseDecimal(FieldDef.DefaultValue) == 0)
                                                                 FieldDef.DefaultValue = "0";
                                                         break;
                                                 case DbTypes.DateTime:
                                                         if (FieldDef.DefaultValue == "0000-00-00 00:00:00")
-                                                                FieldDef.DefaultValue = null;
+                                                                FieldDef.DefaultValue = "NULL";
                                                         break;
                                         }
 

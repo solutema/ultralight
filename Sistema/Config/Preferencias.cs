@@ -97,7 +97,7 @@ namespace Lazaro.WinMain.Config
 
                         string[] ListaCodigos = new string[5];
                         ListaCodigos[0] = "Código autonumérico incorporado|0";
-                        DataTable Codigos = this.Connection.Select("SELECT * FROM articulos_codigos");
+                        DataTable Codigos = this.Connection.Select("SELECT * FROM articulos_codigos ORDER BY id_codigo LIMIT 4");
                         foreach (System.Data.DataRow Codigo in Codigos.Rows) {
                                 ListaCodigos[System.Convert.ToInt32(Codigo["id_codigo"])] += System.Convert.ToString(Codigo["nombre"]) + "|" + System.Convert.ToString(Codigo["id_codigo"]);
                         }
