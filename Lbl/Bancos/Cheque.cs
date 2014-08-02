@@ -356,7 +356,7 @@ namespace Lbl.Bancos
                                 this.Connection.Execute(ActualizarChequeras);
                         }
 
-                        if (this.Emitido == false) {
+                        if (this.Existe == false && this.Emitido == false) {
                                 //Asiento en la cuenta cheques, sólo para cheques de cobro
                                 Cajas.Caja CajaCheques = new Lbl.Cajas.Caja(this.Connection, Lfx.Workspace.Master.CurrentConfig.Empresa.CajaCheques);
                                 Lbl.Personas.Persona UsarCliente = this.Cliente;

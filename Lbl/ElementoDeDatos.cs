@@ -642,7 +642,7 @@ namespace Lbl
                 /// <returns>El valor del campo.</returns>
                 public T GetFieldValue<T>(string fieldName)
                 {
-                        if (typeof(T).BaseType == typeof(Lbl.ElementoDeDatos)) {
+                        if (typeof(T).BaseType == typeof(Lbl.ElementoDeDatos) || typeof(T).GetInterface("Lbl.IElementoDeDatos") != null) {
                                 // Si intento obtener un ElementoDeDatos (por ejemplo, la propiedad Persona.Localidad)
                                 // tengo que instanciar un elemento.
                                 int ItemId = this.GetFieldValue<int>(fieldName);
