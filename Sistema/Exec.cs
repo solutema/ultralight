@@ -145,6 +145,11 @@ namespace Lazaro.WinMain
                                         His.Show();
                                         break;
 
+                                case "NAL":
+                                case "SONPESOS":
+                                        Lui.Forms.MessageBox.Show(Lfx.Types.Formatting.SpellNumber(Lfx.Types.Parsing.ParseCurrency(comando)), "Números a letras");
+                                        break;
+
                                 case "VENTRE":
                                         Lfx.Data.Connection ConexionFiltro = Lfx.Workspace.Master.GetNewConnection("Importar datos");
 

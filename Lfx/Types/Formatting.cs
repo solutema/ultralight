@@ -129,7 +129,7 @@ namespace Lfx.Types
 					break;
 			}
 
-			if(Numero.Length == 1) {
+                        if (Numero.Length == 1) {
 				switch(int.Parse(Numero)) {
 					case 1:
 						Resultado += " uno";
@@ -169,7 +169,43 @@ namespace Lfx.Types
 				}
 			} else {
 				switch(int.Parse(Numero.Substring(Numero.Length - 2, 2))) {
-					case 10:
+                                        case 1:
+                                                Resultado += " uno";
+                                                break;
+
+                                        case 2:
+                                                Resultado += " dos";
+                                                break;
+
+                                        case 3:
+                                                Resultado += " tres";
+                                                break;
+
+                                        case 4:
+                                                Resultado += " cuatro";
+                                                break;
+
+                                        case 5:
+                                                Resultado += " cinco";
+                                                break;
+
+                                        case 6:
+                                                Resultado += " seis";
+                                                break;
+
+                                        case 7:
+                                                Resultado += " siete";
+                                                break;
+
+                                        case 8:
+                                                Resultado += " ocho";
+                                                break;
+
+                                        case 9:
+                                                Resultado += " nueve";
+                                                break;
+
+                                        case 10:
 						Resultado += " diez";
 						break;
 
