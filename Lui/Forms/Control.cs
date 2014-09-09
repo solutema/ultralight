@@ -346,7 +346,7 @@ namespace Lui.Forms
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                new protected Font Font
+		new public Font Font
                 {
                         get
                         {
@@ -362,7 +362,7 @@ namespace Lui.Forms
                 [EditorBrowsable(EditorBrowsableState.Never),
                         System.ComponentModel.Browsable(false),
                         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-                new protected Color ForeColor
+		new public Color ForeColor
                 {
                         get
                         {

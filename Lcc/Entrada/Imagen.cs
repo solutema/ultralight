@@ -119,7 +119,7 @@ namespace Lcc.Entrada
 
                 private void BotonCapturarImagen_Click(object sender, EventArgs e)
                 {
-//#if WINDOWS
+#if WINDOWS
                         try {
                                 WIA.CommonDialogClass WiaDialog = new WIA.CommonDialogClass();
                                 WIA.ImageFile WiaImage = null;
@@ -144,7 +144,7 @@ namespace Lcc.Entrada
                         } catch (Exception ex) {
                                 Lui.Forms.MessageBox.Show("No se puede conectar con el dispositivo de captura. " + ex.Message, "Error");
                         }
-//#endif
+#endif
                 }
 
                 private void GuardarEnarchivoToolStripMenuItem_Click(object sender, EventArgs e)
