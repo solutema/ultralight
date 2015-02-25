@@ -190,8 +190,8 @@ namespace Lazaro.WinMain.Principal
                                                 DialogoArchivo.Multiselect = false;
                                                 DialogoArchivo.Title = "Inyectar SQL";
                                                 if (DialogoArchivo.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                                                        using(System.IO.Stream Archivo = System.IO.File.OpenRead(DialogoArchivo.FileName))
-                                                        using(System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default))
+                                                        using (System.IO.Stream Archivo = System.IO.File.OpenRead(DialogoArchivo.FileName))
+                                                        using (System.IO.StreamReader Lector = new System.IO.StreamReader(Archivo, System.Text.Encoding.Default))
                                                         using (Lfx.Data.Connection ConexionActualizar = Lfx.Workspace.Master.GetNewConnection("Inyectar SQL"))
                                                         using (IDbTransaction Trans = ConexionActualizar.BeginTransaction()) {
                                                                 string SqlActualizacion = ConexionActualizar.CustomizeSql(Lector.ReadToEnd());
@@ -535,6 +535,11 @@ namespace Lazaro.WinMain.Principal
                 }
 
 
+                /// <summary>
+                /// Procesa el resultado de una operación.
+                /// Si es un OperationResult, muestra el mensaje.
+                /// Si es un formulario, muestra el formulario.
+                /// </summary>
                 public void ProcesarObjeto(object obj)
                 {
                         if (obj is Lfx.Types.OperationResult) {
@@ -555,8 +560,13 @@ namespace Lazaro.WinMain.Principal
                                         Lfx.Workspace.Master.RunTime.Toast("No se puede tener acceso al formulario.", "Error");
                                         ResForm.Dispose();
                                 } else {
-                                        ResForm.Show();
-                                        ResForm.BringToFront();
+                                        try {
+                                                ResForm.Show();
+                                                ResForm.BringToFront();
+                                        } catch (ApplicationException ex) {
+                                                Lfx.Workspace.Master.RunTime.Toast(ex.Message, "Error");
+                                                ResForm.Dispose();
+                                        }
                                 }
                         } else if (obj != null) {
                                 Lfx.Workspace.Master.RunTime.Toast("La operación devolvió un objeto tipo " + obj.GetType().ToString(), "Aviso");

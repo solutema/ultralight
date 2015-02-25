@@ -762,6 +762,7 @@
     <Column name="fechaalta" datatype="DateTime" nullable="1" />
     <Column name="fechabaja" datatype="DateTime" nullable="1" />
     <Column name="limitecredito" inputtype="Currency" section="Crédito" label="Límite de crédito" default="0" />
+    <Column name="limitecreditofecha" inputtype="DateTime" section="Crédito" nullable="1" />
     <Column name="saldo_ctacte" inputtype="Currency" section="Crédito" label="Saldo en cuenta corriente" default="0" />
     <Column name="estadocredito" inputtype="NumericSet" section="Crédito" label="Estado de crédito" nullable="0" default="0" />
     <Column name="tipocuenta" inputtype="NumericSet" label="Tipo de Cuenta" section="Crédito" nullable="0" default="0" />
@@ -972,6 +973,7 @@
     <Column name="estado" inputtype="Integer" label="Estado" nullable="0" />
     <Column name="fecha" inputtype="DateTime" label="Fecha" nullable="1" />
     <Column name="tipo" datatype="VarChar" nullable="0" lenght="200" />
+    <Column name="clase" datatype="VarChar" nullable="0" lenght="200" />
     <Column name="extra1_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
     <Column name="extra2_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />
     <Column name="extra3_nombre" datatype="VarChar" nullable="1" lenght="200" default="NULL" />

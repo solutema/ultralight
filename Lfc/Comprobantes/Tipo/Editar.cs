@@ -113,20 +113,21 @@ namespace Lfc.Comprobantes.Tipo
                         string Key = impresora.GetHashCode().ToString();
                         ListViewItem Itm = Listado.Items.Add(Key, Key, 0);
                         Itm.Tag = impresora;
+
                         if (impresora.Sucursal == null)
                                 Itm.SubItems.Add("Todas");
                         else
                                 Itm.SubItems.Add(impresora.Sucursal.Nombre);
 
-                        if (impresora.PuntoDeVenta == null)
-                                Itm.SubItems.Add("Todos");
-                        else
-                                Itm.SubItems.Add(impresora.PuntoDeVenta.ToString());
-
                         if (impresora.Estacion == null)
                                 Itm.SubItems.Add("Todas");
                         else
                                 Itm.SubItems.Add(impresora.Estacion);
+
+                        if (impresora.PuntoDeVenta == null)
+                                Itm.SubItems.Add("Todos");
+                        else
+                                Itm.SubItems.Add(impresora.PuntoDeVenta.ToString());
 
                         Itm.SubItems.Add(impresora.Impresora.ToString());
                 }

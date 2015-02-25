@@ -68,15 +68,7 @@ namespace Lazaro.WinMain.Misc
                                 return;
                         }
 
-                        // Genero una nueva sal para la contraseña
-                        System.Random Rnd = new Random();
-                        string Sal = "";
-                        for (int i = 0; i < 100; i++) {
-                                Sal += Rnd.Next(1, 9).ToString();
-                        }
-
                         Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.Contrasena = EntradaContrasenaNueva1.Text;
-                        Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.ContrasenaSal = Sal;
                         Lbl.Sys.Config.Actual.UsuarioConectado.Usuario.Guardar();
 
                         this.Hide();

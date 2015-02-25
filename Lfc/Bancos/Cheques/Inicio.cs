@@ -49,6 +49,13 @@ namespace Lfc.Bancos.Cheques
                 {
                         InitializeComponent();
 
+                        if (this.PanelAcciones.Controls.Contains(this.DepositarPagar) == false) {
+                                this.PanelAcciones.Controls.Add(this.DepositarPagar);
+                        }
+                        if (this.PanelAcciones.Controls.Contains(this.BotonEfectivizar) == false) {
+                                this.PanelAcciones.Controls.Add(this.BotonEfectivizar);
+                        }
+
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
                         {
                                 ElementoTipo = typeof(Lbl.Bancos.Cheque),
@@ -97,7 +104,7 @@ namespace Lfc.Bancos.Cheques
 
                         decimal Importe = row.Fields["importe"].ValueDecimal;
                         this.Contadores[0].AddValue(Importe);
-                        
+
                         switch (row.Fields["estado"].ValueInt) {
                                 case 0:
                                         if (this.Emitidos)
@@ -217,7 +224,7 @@ namespace Lfc.Bancos.Cheques
                         foreach (System.Windows.Forms.ListViewItem itm in Listado.Items) {
                                 if (itm.Checked && (itm.SubItems["bancos_cheques.estado"].Text == "A cobrar" || itm.SubItems["bancos_cheques.estado"].Text == "Depositado")) {
                                         int IdCheque = Lfx.Types.Parsing.ParseInt(itm.Text);
-                                        Lbl.Bancos.Cheque Ch  =new Lbl.Bancos.Cheque(this.Connection, IdCheque);
+                                        Lbl.Bancos.Cheque Ch = new Lbl.Bancos.Cheque(this.Connection, IdCheque);
                                         Efectivizar.EntradaSubTotal.ValueDecimal = Ch.Importe;
                                         Efectivizar.Cheque = Ch;
                                         if (Efectivizar.ShowDialog() != System.Windows.Forms.DialogResult.OK) {

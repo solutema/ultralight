@@ -85,7 +85,8 @@ namespace Lbl.Sys.Permisos
                         string TipoElemento = elemento.GetType().ToString();
                         foreach (Permiso Perm in this) {
                                 if (Perm.Objeto.Tipo == TipoElemento &&
-                                        ((Perm.Operaciones & operacion) == operacion || (Perm.Operaciones & Operaciones.Total) == Operaciones.Total)) {
+                                        ((Perm.Operaciones & operacion) == operacion || (Perm.Operaciones & Operaciones.Total) == Operaciones.Total) &&
+                                        (Perm.Item == null || Perm.Item.Contains(elemento.Id))) {
                                                 return true;
                                 }
                         }

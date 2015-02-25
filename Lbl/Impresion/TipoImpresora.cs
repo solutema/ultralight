@@ -59,6 +59,13 @@ namespace Lbl.Impresion
                         : base(dataBase, row) { }
 
 
+                public override void Crear()
+                {
+                        this.Sucursal = Lbl.Sys.Config.Empresa.SucursalActual;
+                        base.Crear();
+                }
+
+
                 public override string Nombre
                 {
                         get

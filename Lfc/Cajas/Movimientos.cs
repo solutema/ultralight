@@ -48,12 +48,6 @@ namespace Lfc.Cajas
 
                 public Movimientos()
                 {
-                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Ver) == false) {
-                                this.DialogResult = System.Windows.Forms.DialogResult.Abort;
-                                this.Close();
-                                return;
-                        }
-
                         InitializeComponent();
 
                         this.Definicion = new Lazaro.Pres.Listings.Listing()
@@ -185,8 +179,12 @@ namespace Lfc.Cajas
                         {
                                 m_Caja = value;
                                 this.Definicion.Filters["cajas_movim.id_caja"].Value = value;
-                                if (m_Caja != null)
+                                if (m_Caja != null) {
                                         m_Caja.Connection = this.Connection;
+                                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(m_Caja, Lbl.Sys.Permisos.Operaciones.Ver) == false) {
+                                                throw new Lfx.Types.Exceptions.AccessDeniedException("No tiene permiso para ver la caja solicitada");
+                                        }
+                                }
                         }
                 }
 

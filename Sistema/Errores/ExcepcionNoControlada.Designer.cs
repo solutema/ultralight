@@ -99,7 +99,6 @@ namespace Lazaro.WinMain.Errores
                         this.BotonCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
                         this.BotonCerrar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonCerrar.Enabled = false;
-                        this.BotonCerrar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonCerrar.Image = null;
                         this.BotonCerrar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonCerrar.Location = new System.Drawing.Point(392, 232);
@@ -130,7 +129,7 @@ namespace Lazaro.WinMain.Errores
                         this.label2.Size = new System.Drawing.Size(432, 48);
                         this.label2.TabIndex = 3;
                         this.label2.Text = "Por favor cierre el sistema y vuelva a intentar la operación nuevamente. Si el pr" +
-    "oblema persiste, puede comunicarse con el soporte técnico en:";
+    "oblema persiste, puede ingresar al foro de soporte:";
                         // 
                         // linkLabel1
                         // 
@@ -140,10 +139,10 @@ namespace Lazaro.WinMain.Errores
                         this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
                         this.linkLabel1.Location = new System.Drawing.Point(80, 152);
                         this.linkLabel1.Name = "linkLabel1";
-                        this.linkLabel1.Size = new System.Drawing.Size(209, 17);
+                        this.linkLabel1.Size = new System.Drawing.Size(196, 17);
                         this.linkLabel1.TabIndex = 4;
                         this.linkLabel1.TabStop = true;
-                        this.linkLabel1.Text = "www.lazarogestion.com/contacto";
+                        this.linkLabel1.Text = "www.lazarogestion.com/soporte";
                         this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                         this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
                         // 

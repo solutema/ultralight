@@ -151,6 +151,16 @@ namespace Lbl.Personas
                                 // Esta dado de baja y antes no lo estaba
                                 Comando.Fields.AddWithValue("fechabaja", qGen.SqlFunctions.Now);
                         Comando.Fields.AddWithValue("limitecredito", this.LimiteCredito);
+                        if (this.Existe) {
+                                if ((decimal)this.RegistroOriginal["limitecredito"] != this.LimiteCredito) {
+                                        //Guardo la fecha en la cual se modifico el limite de credito
+                                        Comando.Fields.AddWithValue("limitecreditofecha", qGen.SqlFunctions.Now);
+                                }
+                        } else {
+                                if (this.LimiteCredito > 0) {
+                                        Comando.Fields.AddWithValue("limitecreditofecha", qGen.SqlFunctions.Now);
+                                }
+                        }
                         Comando.Fields.AddWithValue("fechanac", this.FechaNacimiento);
                         Comando.Fields.AddWithValue("tipocuenta", (int)(this.TipoCuenta));
                         Comando.Fields.AddWithValue("numerocuenta", this.NumeroCuenta);
@@ -545,6 +555,18 @@ namespace Lbl.Personas
                                 this.Registro["limitecredito"] = value;
                         }
 		}
+
+                public NullableDateTime LimiteCreditoFecha
+                {
+                        get
+                        {
+                                return this.FieldDateTime("limitecreditofecha");
+                        }
+                        set
+                        {
+                                this.Registro["limitecreditofecha"] = value;
+                        }
+                }
 
                 public Lbl.Personas.Grupo Grupo
                 {

@@ -141,7 +141,7 @@ namespace Lfc.Comprobantes.Tipo
         "Saliente|-1",
         "Entrante|1",
         "No|0"};
-                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 56);
+                        this.EntradaMueveStock.Size = new System.Drawing.Size(128, 57);
                         this.EntradaMueveStock.TabIndex = 5;
                         this.EntradaMueveStock.TextKey = "1";
                         this.EntradaMueveStock.TextChanged += new System.EventHandler(this.EntradaMueveStock_TextChanged);
@@ -159,15 +159,14 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSituacionOrigen.AutoTab = true;
                         this.EntradaSituacionOrigen.CanCreate = true;
-                        this.EntradaSituacionOrigen.Filter = "";
                         this.EntradaSituacionOrigen.Location = new System.Drawing.Point(144, 128);
                         this.EntradaSituacionOrigen.MaxLength = 200;
                         this.EntradaSituacionOrigen.Name = "EntradaSituacionOrigen";
+                        this.EntradaSituacionOrigen.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionOrigen.PlaceholderText = "Sin especificar";
                         this.EntradaSituacionOrigen.Required = true;
                         this.EntradaSituacionOrigen.Size = new System.Drawing.Size(240, 24);
                         this.EntradaSituacionOrigen.TabIndex = 7;
-                        this.EntradaSituacionOrigen.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionOrigen.Text = "0";
                         // 
                         // label3
@@ -183,15 +182,14 @@ namespace Lfc.Comprobantes.Tipo
                         // 
                         this.EntradaSituacionDestino.AutoTab = true;
                         this.EntradaSituacionDestino.CanCreate = true;
-                        this.EntradaSituacionDestino.Filter = "";
                         this.EntradaSituacionDestino.Location = new System.Drawing.Point(144, 156);
                         this.EntradaSituacionDestino.MaxLength = 200;
                         this.EntradaSituacionDestino.Name = "EntradaSituacionDestino";
+                        this.EntradaSituacionDestino.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionDestino.PlaceholderText = "Sin especificar";
                         this.EntradaSituacionDestino.Required = true;
                         this.EntradaSituacionDestino.Size = new System.Drawing.Size(240, 24);
                         this.EntradaSituacionDestino.TabIndex = 9;
-                        this.EntradaSituacionDestino.NombreTipo = "Lbl.Articulos.Situacion";
                         this.EntradaSituacionDestino.Text = "0";
                         // 
                         // EntradaNumerarAl
@@ -204,7 +202,7 @@ namespace Lfc.Comprobantes.Tipo
         "Manualmente|0",
         "Cuando se crea el comprobante|1",
         "Cuando se imprime el comprobante|2"};
-                        this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 56);
+                        this.EntradaNumerarAl.Size = new System.Drawing.Size(248, 57);
                         this.EntradaNumerarAl.TabIndex = 11;
                         this.EntradaNumerarAl.TextKey = "1";
                         // 
@@ -226,7 +224,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirRepetir.SetData = new string[] {
         "Sí|1",
         "No|0"};
-                        this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 39);
+                        this.EntradaImprimirRepetir.Size = new System.Drawing.Size(52, 40);
                         this.EntradaImprimirRepetir.TabIndex = 13;
                         this.EntradaImprimirRepetir.TextKey = "1";
                         // 
@@ -248,7 +246,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirModificar.SetData = new string[] {
         "Sí|1",
         "No|0"};
-                        this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 39);
+                        this.EntradaImprimirModificar.Size = new System.Drawing.Size(52, 40);
                         this.EntradaImprimirModificar.TabIndex = 15;
                         this.EntradaImprimirModificar.TextKey = "1";
                         // 
@@ -270,7 +268,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaImprimirGuardar.SetData = new string[] {
         "Sí|1",
         "No|0"};
-                        this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 39);
+                        this.EntradaImprimirGuardar.Size = new System.Drawing.Size(52, 40);
                         this.EntradaImprimirGuardar.TabIndex = 17;
                         this.EntradaImprimirGuardar.TextKey = "1";
                         // 
@@ -308,13 +306,15 @@ namespace Lfc.Comprobantes.Tipo
             this.ColEstacion,
             this.ColPv,
             this.ColImpresora});
+                        this.Listado.FieldName = null;
                         this.Listado.FullRowSelect = true;
                         this.Listado.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
                         this.Listado.LabelWrap = false;
                         this.Listado.Location = new System.Drawing.Point(468, 32);
                         this.Listado.MultiSelect = false;
                         this.Listado.Name = "Listado";
-                        this.Listado.Size = new System.Drawing.Size(378, 387);
+                        this.Listado.ReadOnly = false;
+                        this.Listado.Size = new System.Drawing.Size(378, 328);
                         this.Listado.TabIndex = 31;
                         this.Listado.UseCompatibleStateImageBehavior = false;
                         this.Listado.View = System.Windows.Forms.View.Details;
@@ -350,7 +350,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.BotonQuitar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonQuitar.Image = null;
                         this.BotonQuitar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonQuitar.Location = new System.Drawing.Point(618, 427);
+                        this.BotonQuitar.Location = new System.Drawing.Point(619, 374);
                         this.BotonQuitar.Name = "BotonQuitar";
                         this.BotonQuitar.Size = new System.Drawing.Size(108, 34);
                         this.BotonQuitar.SubLabelPos = Lui.Forms.SubLabelPositions.None;
@@ -365,7 +365,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.BotonAgregar.DialogResult = System.Windows.Forms.DialogResult.None;
                         this.BotonAgregar.Image = null;
                         this.BotonAgregar.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAgregar.Location = new System.Drawing.Point(738, 427);
+                        this.BotonAgregar.Location = new System.Drawing.Point(739, 374);
                         this.BotonAgregar.Name = "BotonAgregar";
                         this.BotonAgregar.Size = new System.Drawing.Size(108, 34);
                         this.BotonAgregar.SubLabelPos = Lui.Forms.SubLabelPositions.Right;
@@ -383,7 +383,7 @@ namespace Lfc.Comprobantes.Tipo
                         this.EntradaCargaPapel.SetData = new string[] {
         "Automática|0",
         "Manual|1"};
-                        this.EntradaCargaPapel.Size = new System.Drawing.Size(104, 39);
+                        this.EntradaCargaPapel.Size = new System.Drawing.Size(104, 40);
                         this.EntradaCargaPapel.TabIndex = 19;
                         this.EntradaCargaPapel.TextKey = "0";
                         // 

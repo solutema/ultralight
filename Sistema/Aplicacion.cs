@@ -818,6 +818,8 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
                         } else if (ex.Message.IndexOf("El servidor RPC no está disponible", StringComparison.CurrentCultureIgnoreCase) >= 0
                                 || ex.Message.IndexOf("RPC server unavailable", StringComparison.CurrentCultureIgnoreCase) >= 0) {
                                 KnownExceptionHandler(ex, "La impresora no está disponible");
+                        } else if (ex is Lfx.Types.Exceptions.AccessDeniedException) {
+                                KnownExceptionHandler(ex, ex.Message);
                         } else {
                                 UnknownExceptionHandler(ex);
                         }
@@ -911,7 +913,7 @@ Responda 'Sí' sólamente si es la primera vez que utiliza Lázaro o está resta
 
                         Mensaje.Body = Texto.ToString();
 
-                        SmtpClient Cliente = new SmtpClient("mail.laredintercomercial.com");
+                        SmtpClient Cliente = new SmtpClient("mail.lazarogestion.com");
                         try {
                                 Cliente.Send(Mensaje);
                                 FormularioError.EtiquetaDescripcion.Text = "Se envió un reporte de error. Haga clic en Continuar.";

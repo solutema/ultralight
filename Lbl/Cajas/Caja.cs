@@ -193,6 +193,10 @@ namespace Lbl.Cajas
                         Lbl.Personas.Persona cliente, decimal importe, string obs,
                         Lbl.Comprobantes.ComprobanteConArticulos factura, Lbl.Comprobantes.Recibo recibo, string comprobantes)
                 {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(this, Lbl.Sys.Permisos.Operaciones.Mover) == false) {
+                                throw new Lfx.Types.Exceptions.AccessDeniedException("No tiene permiso para hacer movimientos en la caja solicitada");
+                        }
+
                         decimal SaldoActual = this.ObtenerSaldo(true);
 
                         qGen.TableCommand InsertarMovimiento = new qGen.Insert(this.Connection, "cajas_movim");

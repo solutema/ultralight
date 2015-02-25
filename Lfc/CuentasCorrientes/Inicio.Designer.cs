@@ -46,7 +46,6 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.BotonNotaDeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonNotaDeb.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonNotaDeb.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonNotaDeb.Image = null;
                         this.BotonNotaDeb.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNotaDeb.Location = new System.Drawing.Point(152, 137);
@@ -65,7 +64,6 @@ namespace Lfc.CuentasCorrientes
                         // 
                         this.BotonNotaCred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonNotaCred.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonNotaCred.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonNotaCred.Image = null;
                         this.BotonNotaCred.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonNotaCred.Location = new System.Drawing.Point(152, 91);
@@ -82,12 +80,10 @@ namespace Lfc.CuentasCorrientes
                         // 
                         // BotonAjuste
                         // 
-                        this.BotonAjuste.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
                         this.BotonAjuste.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonAjuste.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonAjuste.Image = null;
                         this.BotonAjuste.ImagePos = Lui.Forms.ImagePositions.Top;
-                        this.BotonAjuste.Location = new System.Drawing.Point(152, 45);
+                        this.BotonAjuste.Location = new System.Drawing.Point(44, 252);
                         this.BotonAjuste.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
                         this.BotonAjuste.MaximumSize = new System.Drawing.Size(108, 40);
                         this.BotonAjuste.MinimumSize = new System.Drawing.Size(96, 32);
@@ -102,8 +98,14 @@ namespace Lfc.CuentasCorrientes
                         // Inicio
                         // 
                         this.ClientSize = new System.Drawing.Size(864, 441);
+                        this.Controls.Add(this.BotonAjuste);
                         this.Name = "Inicio";
                         this.Text = "Cuenta corriente";
+                        this.Controls.SetChildIndex(this.BotonAjuste, 0);
+                        this.Controls.SetChildIndex(this.PanelContadores, 0);
+                        this.Controls.SetChildIndex(this.PicEsperar, 0);
+                        this.Controls.SetChildIndex(this.EtiquetaCantidad, 0);
+                        this.Controls.SetChildIndex(this.Listado, 0);
                         this.PanelContadores.ResumeLayout(false);
                         ((System.ComponentModel.ISupportInitialize)(this.PicEsperar)).EndInit();
                         this.ResumeLayout(false);

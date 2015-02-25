@@ -38,7 +38,7 @@ namespace Lbl.Personas
 	public enum EstadoCredito
 	{
 		Normal = 0,
-		PlanDePagos = 5,
+		EnPlanDePagos = 5,
 		Suspendido = 10,
 		SuspendidoPermanente = 100,
                 Judicializado = 110

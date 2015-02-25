@@ -97,7 +97,10 @@ namespace Lfc.Bancos.Cheques
                         if (Res.Success == true) {
                                 decimal Impuestos = EntradaImpuestos.ValueDecimal;
 
-                                IDbTransaction Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
+                                IDbTransaction Trans = null;
+                                if (this.Connection.InTransaction == false) {
+                                        Trans = this.Connection.BeginTransaction(IsolationLevel.Serializable);
+                                }
 
                                 string ChequesNum = null;
                                 System.Data.DataTable TablaCheques = Connection.Select("SELECT * FROM bancos_cheques WHERE id_cheque IN (" + ChequesIds + ")");
@@ -114,7 +117,9 @@ namespace Lfc.Bancos.Cheques
                                                 -Impuestos,
                                                 "Cheques Nº " + ChequesNum, null, null, null);
 
-                                Trans.Commit();
+                                if (Trans != null) {
+                                        Trans.Commit();
+                                }
                         }
                         return Res;
                 }
