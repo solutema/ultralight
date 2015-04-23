@@ -50,6 +50,8 @@ namespace Lfc.Comprobantes.Facturas
 
                         InitializeComponent();
 
+                        this.EntradaCliente.TextChanged += new System.EventHandler(this.EntradaCliente_TextChanged);
+
                         EntradaProductos.Top = EntradaTipo.Bottom + 8;
                         EntradaProductos.Height = EntradaSubTotal.Top - 8 - EntradaProductos.Top;
                 }
@@ -142,7 +144,8 @@ namespace Lfc.Comprobantes.Facturas
                                 }
                                 EntradaTipo.SetData = NombresYTipos;
                                 EntradaFormaPago.Elemento = Res.FormaDePago;
-                                EntradaFormaPago.Visible = true;
+                                PanelFormaPago.Visible = true;
+                                PanelComprobanteOriginal.Visible = false;
                         } else if (this.Tipo.EsNotaCredito || this.Tipo.EsNotaDebito) {
                                 List<Lbl.Comprobantes.Tipo> TiposFac = new List<Lbl.Comprobantes.Tipo>();
                                 foreach (Lbl.Comprobantes.Tipo Tp in Lbl.Comprobantes.Tipo.TodosPorLetra.Values) {
@@ -156,7 +159,14 @@ namespace Lfc.Comprobantes.Facturas
                                 }
                                 EntradaTipo.SetData = NombresYTipos;
                                 EntradaFormaPago.ValueInt = 3;
-                                EntradaFormaPago.Visible = false;
+                                EntradaComprobanteOriginal.Elemento = Res.ComprobanteOriginal;
+
+                                if (Res.ComprobanteOriginal != null && Res.ComprobanteOriginal.Cliente != null) {
+                                        EntradaComprobanteOriginal.Filter = "tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM') AND numero>0 AND id_cliente=" + Res.ComprobanteOriginal.Cliente.Id.ToString();
+                                }
+
+                                PanelFormaPago.Visible = false;
+                                PanelComprobanteOriginal.Visible = true;
                         }
 
                         EntradaTipo.TextKey = Res.Tipo.Nomenclatura;
@@ -178,6 +188,10 @@ namespace Lfc.Comprobantes.Facturas
                                 Res.FormaDePago = new Lbl.Pagos.FormaDePago(Res.Connection, EntradaFormaPago.ValueInt);
                         else
                                 Res.FormaDePago = null;
+
+                        if (PanelComprobanteOriginal.Visible) {
+                                Res.ComprobanteOriginal = EntradaComprobanteOriginal.Elemento as Lbl.Comprobantes.ComprobanteFacturable;
+                        }
 
                         if (EntradaRemito.Text.Length > 0) {
                                 int RemitoNumero, RemitoPv;
@@ -347,6 +361,19 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                                 }
                         }
                 }
+
+
+                private void EntradaCliente_TextChanged(object sender, System.EventArgs e)
+                {
+                        if (PanelComprobanteOriginal.Visible) {
+                                EntradaComprobanteOriginal.Filter = "tipo_fac IN ('FA', 'FB', 'FC', 'FE', 'FM') AND numero>0 AND id_cliente=" + EntradaCliente.ValueInt.ToString();
+                                Lbl.Comprobantes.ComprobanteFacturable Comprob = EntradaComprobanteOriginal.Elemento as Lbl.Comprobantes.ComprobanteFacturable;
+                                if (Comprob == null || Comprob.Cliente == null || Comprob.Cliente.Id != EntradaComprobanteOriginal.ValueInt) {
+                                        EntradaComprobanteOriginal.ValueInt = 0;
+                                }
+                        }
+                }
+
 
                 private void EntradaTipo_TextChanged(object sender, System.EventArgs e)
                 {
@@ -535,6 +562,7 @@ Un cliente " + Comprob.Cliente.SituacionTributaria.ToString() + @" debería llev
                         {
                                 base.Tipo = value;
                                 PanelFormaPago.Visible = value.EsFactura || value.EsTicket;
+                                PanelComprobanteOriginal.Visible = value.EsNotaCredito;
                                 if (EntradaTipo.TextKey != value.Nomenclatura)
                                         EntradaTipo.TextKey = value.Nomenclatura;
                         }

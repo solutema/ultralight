@@ -70,11 +70,12 @@ namespace Lfc.Comprobantes
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaProductos.AutoScroll = true;
                         this.EntradaProductos.AutoScrollMargin = new System.Drawing.Size(4, 4);
+                        this.EntradaProductos.BloquearAtriculo = false;
+                        this.EntradaProductos.BloquearCantidad = false;
+                        this.EntradaProductos.BloquearDescuento = false;
+                        this.EntradaProductos.BloquearPrecio = false;
                         this.EntradaProductos.FreeTextCode = "*";
                         this.EntradaProductos.Location = new System.Drawing.Point(0, 32);
-                        this.EntradaProductos.BloquearPrecio = false;
-                        this.EntradaProductos.BloquearCantidad = false;
-                        this.EntradaProductos.BloquearAtriculo = false;
                         this.EntradaProductos.Name = "EntradaProductos";
                         this.EntradaProductos.Precio = Lcc.Entrada.Articulos.Precios.Pvp;
                         this.EntradaProductos.ShowStock = true;
@@ -143,6 +144,7 @@ namespace Lfc.Comprobantes
                         this.EntradaTotal.Prefijo = "$";
                         this.EntradaTotal.Size = new System.Drawing.Size(144, 32);
                         this.EntradaTotal.TabIndex = 41;
+                        this.EntradaTotal.Text = "0.00";
                         this.EntradaTotal.TextStyle = Lazaro.Pres.DisplayStyles.TextStyles.Bigger;
                         this.EntradaTotal.TextChanged += new System.EventHandler(this.EntradaTotal_TextChanged);
                         // 
@@ -178,6 +180,7 @@ namespace Lfc.Comprobantes
                         this.EntradaSubTotal.Size = new System.Drawing.Size(92, 24);
                         this.EntradaSubTotal.TabIndex = 22;
                         this.EntradaSubTotal.TabStop = false;
+                        this.EntradaSubTotal.Text = "0.00";
                         this.EntradaSubTotal.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // EntradaDescuento
@@ -256,6 +259,7 @@ namespace Lfc.Comprobantes
                         this.EntradaValorCuota.Size = new System.Drawing.Size(80, 24);
                         this.EntradaValorCuota.TabIndex = 30;
                         this.EntradaValorCuota.TabStop = false;
+                        this.EntradaValorCuota.Text = "0.00";
                         // 
                         // Label9
                         // 
@@ -319,6 +323,7 @@ namespace Lfc.Comprobantes
                         this.EntradaIva.Size = new System.Drawing.Size(92, 24);
                         this.EntradaIva.TabIndex = 54;
                         this.EntradaIva.TabStop = false;
+                        this.EntradaIva.Text = "0.00";
                         this.EntradaIva.TextChanged += new System.EventHandler(this.CambioValores);
                         // 
                         // EtiquetaIva

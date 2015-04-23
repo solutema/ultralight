@@ -811,6 +811,11 @@ namespace Lbl.Comprobantes
                                 Comando.Fields.AddWithValue("fecha", this.Fecha);
                         }
 
+                        if (this.ComprobanteOriginal == null)
+                                Comando.Fields.AddWithValue("id_comprob_orig", null);
+                        else
+                                Comando.Fields.AddWithValue("id_comprob_orig", this.ComprobanteOriginal.Id);
+
                         if(this.FormaDePago == null)
                                 Comando.Fields.AddWithValue("id_formapago", null);
                         else

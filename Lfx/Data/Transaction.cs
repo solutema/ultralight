@@ -77,8 +77,14 @@ namespace Lfx.Data
 
                 public void Dispose()
                 {
-                        if (DbTransaction != null)
+                        try {
+                                this.DataConnection.Rollback(this);
+                        } catch {
+                                // Nada
+                        }
+                        if (DbTransaction != null) {
                                 DbTransaction.Dispose();
+                        }
                         GC.SuppressFinalize(this);
                 }
         }

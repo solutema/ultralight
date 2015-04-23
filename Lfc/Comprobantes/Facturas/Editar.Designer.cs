@@ -44,7 +44,11 @@ namespace Lfc.Comprobantes.Facturas
                         this.Label11 = new Lui.Forms.Label();
                         this.EntradaRemito = new Lui.Forms.TextBox();
                         this.PanelFormaPago = new Lui.Forms.Panel();
+                        this.PanelComprobanteOriginal = new Lui.Forms.Panel();
+                        this.EtiquetaComprobanteOriginal = new Lui.Forms.Label();
+                        this.EntradaComprobanteOriginal = new Lcc.Entrada.CodigoDetalle();
                         this.PanelFormaPago.SuspendLayout();
+                        this.PanelComprobanteOriginal.SuspendLayout();
                         this.SuspendLayout();
                         // 
                         // Label2
@@ -69,7 +73,7 @@ namespace Lfc.Comprobantes.Facturas
                         this.EntradaFormaPago.Name = "EntradaFormaPago";
                         this.EntradaFormaPago.NombreTipo = "Lbl.Pagos.FormaDePago";
                         this.EntradaFormaPago.Required = true;
-                        this.EntradaFormaPago.Size = new System.Drawing.Size(88, 24);
+                        this.EntradaFormaPago.Size = new System.Drawing.Size(120, 24);
                         this.EntradaFormaPago.TabIndex = 1;
                         this.EntradaFormaPago.Text = "0";
                         this.EntradaFormaPago.Leave += new System.EventHandler(this.EntradaFormaPago_Leave);
@@ -99,7 +103,7 @@ namespace Lfc.Comprobantes.Facturas
                         // Label11
                         // 
                         this.Label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.Label11.Location = new System.Drawing.Point(408, 32);
+                        this.Label11.Location = new System.Drawing.Point(436, 32);
                         this.Label11.Name = "Label11";
                         this.Label11.Size = new System.Drawing.Size(56, 24);
                         this.Label11.TabIndex = 14;
@@ -109,7 +113,7 @@ namespace Lfc.Comprobantes.Facturas
                         // EntradaRemito
                         // 
                         this.EntradaRemito.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-                        this.EntradaRemito.Location = new System.Drawing.Point(464, 32);
+                        this.EntradaRemito.Location = new System.Drawing.Point(492, 32);
                         this.EntradaRemito.Name = "EntradaRemito";
                         this.EntradaRemito.PlaceholderText = "Ninguno";
                         this.EntradaRemito.Size = new System.Drawing.Size(144, 24);
@@ -124,24 +128,66 @@ namespace Lfc.Comprobantes.Facturas
                         this.PanelFormaPago.Controls.Add(this.EntradaFormaPago);
                         this.PanelFormaPago.Location = new System.Drawing.Point(200, 32);
                         this.PanelFormaPago.Name = "PanelFormaPago";
-                        this.PanelFormaPago.Size = new System.Drawing.Size(200, 24);
+                        this.PanelFormaPago.Size = new System.Drawing.Size(232, 24);
                         this.PanelFormaPago.TabIndex = 12;
+                        // 
+                        // PanelComprobanteOriginal
+                        // 
+                        this.PanelComprobanteOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.PanelComprobanteOriginal.Controls.Add(this.EtiquetaComprobanteOriginal);
+                        this.PanelComprobanteOriginal.Controls.Add(this.EntradaComprobanteOriginal);
+                        this.PanelComprobanteOriginal.Location = new System.Drawing.Point(200, 32);
+                        this.PanelComprobanteOriginal.Name = "PanelComprobanteOriginal";
+                        this.PanelComprobanteOriginal.Size = new System.Drawing.Size(232, 24);
+                        this.PanelComprobanteOriginal.TabIndex = 12;
+                        this.PanelComprobanteOriginal.Visible = false;
+                        // 
+                        // EtiquetaComprobanteOriginal
+                        // 
+                        this.EtiquetaComprobanteOriginal.Location = new System.Drawing.Point(0, 0);
+                        this.EtiquetaComprobanteOriginal.Name = "EtiquetaComprobanteOriginal";
+                        this.EtiquetaComprobanteOriginal.Size = new System.Drawing.Size(108, 24);
+                        this.EtiquetaComprobanteOriginal.TabIndex = 0;
+                        this.EtiquetaComprobanteOriginal.Text = "Factura";
+                        this.EtiquetaComprobanteOriginal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                        // 
+                        // EntradaComprobanteOriginal
+                        // 
+                        this.EntradaComprobanteOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+                        this.EntradaComprobanteOriginal.AutoTab = true;
+                        this.EntradaComprobanteOriginal.CanCreate = true;
+                        this.EntradaComprobanteOriginal.ExtraDetailFields = "tipo_fac,total,fecha";
+                        this.EntradaComprobanteOriginal.Filter = "tipo_fac IN (\'FA\', \'FB\', \'FC\', \'FE\', \'FM\') AND numero>0";
+                        this.EntradaComprobanteOriginal.Location = new System.Drawing.Point(112, 0);
+                        this.EntradaComprobanteOriginal.MaximumSize = new System.Drawing.Size(480, 32);
+                        this.EntradaComprobanteOriginal.MaxLength = 200;
+                        this.EntradaComprobanteOriginal.Name = "EntradaComprobanteOriginal";
+                        this.EntradaComprobanteOriginal.NombreTipo = "Lbl.Comprobantes.Factura";
+                        this.EntradaComprobanteOriginal.Required = true;
+                        this.EntradaComprobanteOriginal.Size = new System.Drawing.Size(120, 24);
+                        this.EntradaComprobanteOriginal.TabIndex = 1;
+                        this.EntradaComprobanteOriginal.Text = "0";
                         // 
                         // Editar
                         // 
+                        this.Controls.Add(this.PanelComprobanteOriginal);
                         this.Controls.Add(this.EntradaTipo);
-                        this.Controls.Add(this.PanelFormaPago);
                         this.Controls.Add(this.EntradaRemito);
                         this.Controls.Add(this.Label11);
                         this.Controls.Add(this.Label10);
+                        this.Controls.Add(this.PanelFormaPago);
                         this.MinimumSize = new System.Drawing.Size(600, 320);
                         this.Name = "Editar";
+                        this.Controls.SetChildIndex(this.PanelFormaPago, 0);
                         this.Controls.SetChildIndex(this.Label10, 0);
                         this.Controls.SetChildIndex(this.Label11, 0);
                         this.Controls.SetChildIndex(this.EntradaRemito, 0);
-                        this.Controls.SetChildIndex(this.PanelFormaPago, 0);
                         this.Controls.SetChildIndex(this.EntradaTipo, 0);
+                        this.Controls.SetChildIndex(this.PanelComprobanteOriginal, 0);
                         this.PanelFormaPago.ResumeLayout(false);
+                        this.PanelComprobanteOriginal.ResumeLayout(false);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 
@@ -156,5 +202,8 @@ namespace Lfc.Comprobantes.Facturas
                 public Lcc.Entrada.CodigoDetalle EntradaFormaPago;
                 public Lui.Forms.TextBox EntradaRemito;
                 internal Lui.Forms.Panel PanelFormaPago;
+                internal Lui.Forms.Panel PanelComprobanteOriginal;
+                internal Lui.Forms.Label EtiquetaComprobanteOriginal;
+                public Lcc.Entrada.CodigoDetalle EntradaComprobanteOriginal;
         }
 }
