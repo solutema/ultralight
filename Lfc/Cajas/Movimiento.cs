@@ -41,7 +41,7 @@ namespace Lfc.Cajas
 
                 public Movimiento()
                 {
-                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Mover) == false) {
+                        if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Cajas.Caja), Lbl.Sys.Permisos.Operaciones.Administrar) == false) {
                                 this.DialogResult = System.Windows.Forms.DialogResult.Abort;
                                 this.Close();
                                 return;

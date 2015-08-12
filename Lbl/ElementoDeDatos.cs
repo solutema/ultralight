@@ -108,7 +108,7 @@ namespace Lbl
 		{
 			get
 			{
-				return m_ItemId;
+                                return m_ItemId;
 			}
 		}
 
@@ -587,6 +587,15 @@ namespace Lbl
 		{
 			this.AgregarTags(comando, this.Registro, this.TablaDatos);
 		}
+
+                /// <summary>
+                /// Agrega los campos personalizados de las clases derivadas al comando, antes de guardar.
+                /// </summary>
+                /// <param name="comando">El parámetro al cual agregar los campos.</param>
+                protected virtual void PreGuardar(qGen.Command comando)
+                {
+                        return;
+                }
 
                 protected virtual void AgregarTags(qGen.Command comando, Lfx.Data.Row registro, string tabla)
                 {

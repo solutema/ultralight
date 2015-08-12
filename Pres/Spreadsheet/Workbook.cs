@@ -175,8 +175,10 @@ namespace Lazaro.Pres.Spreadsheet
                 public Sheet GetSheetByName(string name)
                 {
                         foreach (Sheet sht in Sheets) {
-                                if (sht.Name == name)
+
+                                if (sht.Name == name) {
                                         return sht;
+                                }
                         }
                         return null;
                 }

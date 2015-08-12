@@ -104,7 +104,14 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 		EpsonBorrarZonasDeImpresion = 0X5C,
 		EpsonBorrarPreferencias = 0X5C,
 
-		EpsonDocumentoFiscalAbrir = 0X60,
+                EpsonTiqueDocumentoFiscalAbrir = 0X40,
+                EpsonTiqueDocumentoFiscalTexto = 0X41,
+                EpsonTiqueDocumentoFiscalItem = 0X42,
+                EpsonTiqueDocumentoFiscalSubTotal = 0X43,
+                EpsonTiqueDocumentoFiscalPagoDescuentoRecargo = 0X44,
+                EpsonTiqueFiscalCerrar = 0X45,
+
+                EpsonDocumentoFiscalAbrir = 0X60,
 		EpsonDocumentoFiscalItem = 0X62,
 		EpsonDocumentoFiscalSubtotal = 0X63,
 		EpsonDocumentoFiscalPagosYDescuentos = 0X64,
@@ -115,13 +122,22 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 		HasarCierreJornada = 0X39,
 
 		HasarDocumentoFiscalAbrir = 0X40,
+                HasarDocumentoNoFiscalAbrir = 0X48,
+                HasarDocumentoNoFiscalHomologadoAbrir = 0X80,
+                HasarDocumentoNoFiscalHomologadoCerrar = 0X81,
 		HasarDocumentoSetDatosCliente = 0X62,
                 HasarDocumentoFiscalTexto = 0X41,
                 HasarDocumentoFiscalItem = 0X42,
+                HasarDocumentoEstablecerEncabezadoCola = 0X5D,
 		HasarDocumentoFiscalDescuentoGeneral = 0X54,
 		HasarDocumentoFiscalDevolucionesYRecargos = 0X6D,
 		HasarDocumentoFiscalPago = 0X44,
 		HasarDocumentoFiscalCerrar = 0X45,
+                HasarDocumentoNoFiscalCerrar = 0X4D,
 		HasarDocumentoFiscalCancelar = 0X98,
+                HasarDocumentoFiscalCargarComprobanteOriginal = 0X93,
+                HasarDocumentoFiscalNombreFantasia = 0X5F,
+                HasarDocumentoImprimirTextoDobleAncho = 0XF4,
+
 	}
 }

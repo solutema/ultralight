@@ -37,7 +37,7 @@ namespace Lbl.Entidades
 {
 
         /// <summary>
-        /// Representa una País.
+        /// Representa un País.
         /// </summary>
         [Lbl.Atributos.Nomenclatura(NombreSingular = "País")]
         [Lbl.Atributos.Datos(TablaDatos = "paises", CampoId = "id_pais")]

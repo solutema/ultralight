@@ -62,6 +62,14 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                         return this.Bit(12);
                                 }
                         }
+                        //Este bit se encuentra en 1 siempre que un documento (fiscal, no fiscal o no fiscal homologado) se encuentra abierto.(Hasar)
+                        public bool DocumentoAbierto 
+                        {
+                                get
+                                {
+                                        return this.Bit(13);
+                                }
+                        }
                         public bool HacerCierreZ
                         {
                                 get
@@ -164,11 +172,13 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                 Estado += "Bit 13;";
 
                         switch (ModeloImpresora) {
+                                case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                 case Lbl.Impresion.ModelosFiscales.Emulacion:
                                         if (Bit(EstadoImpresora.CodigoEstado, 14))
                                                 Estado += "Bit 14: Sin papel;";
                                         break;
+                                case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                         if (Bit(EstadoImpresora.CodigoEstado, 14))
                                                 Estado += "Bit 14: Cajón de dinero cerrado o ausente;";

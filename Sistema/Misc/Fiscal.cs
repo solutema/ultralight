@@ -41,6 +41,7 @@ namespace Lazaro.WinMain.Misc
         {
                 private Lbl.ColeccionGenerica<Lbl.Comprobantes.PuntoDeVenta> PuntosDeVenta = null;
                 private int Pv = 0;
+                private int Pventa = 0;
 
                 public Fiscal()
                 {
@@ -65,10 +66,11 @@ namespace Lazaro.WinMain.Misc
                                 if (EntradaPv.SetData.Length > 0) {
                                         //Busco el PV para esta estación, en esta sucursal
                                         this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " AND estacion='" + Lfx.Environment.SystemInformation.MachineName + "'");
-
+                                        this.Pventa = Connection.FieldInt("SELECT numero FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " AND estacion='" + Lfx.Environment.SystemInformation.MachineName + "'");
                                         if (this.Pv == 0)
                                                 //Busco el PV para alguna estación, en esta sucursal
                                                 this.Pv = Connection.FieldInt("SELECT id_pv FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString());
+                                                this.Pventa = Connection.FieldInt("SELECT numero FROM pvs WHERE tipo=2 AND id_sucursal=" + Lfx.Workspace.Master.CurrentConfig.Empresa.SucursalActual.ToString() + " AND estacion='" + Lfx.Environment.SystemInformation.MachineName + "'");
 
                                         if (this.Pv != 0)
                                                 EntradaPv.ValueInt = this.Pv;
@@ -140,7 +142,7 @@ namespace Lazaro.WinMain.Misc
 
                 private void BotonCierreZ_Click(object sender, System.EventArgs e)
                 {
-                        Lfx.Workspace.Master.DefaultScheduler.AddTask("CIERRE Z", "fiscal" + this.Pv.ToString(), "*");
+                        Lfx.Workspace.Master.DefaultScheduler.AddTask("CIERRE Z", "fiscal" + this.Pventa.ToString(), "*");
                         Lui.Forms.MessageBox.Show("Se envió un comando de Cierre Z al punto de venta seleccionado.", "Cierre Z");
                         BotonCierreZ.Enabled = false;
                 }
@@ -148,7 +150,7 @@ namespace Lazaro.WinMain.Misc
                 private void BotonReiniciar_Click(object sender, System.EventArgs e)
                 {
                         Lui.Forms.MessageBox.Show("Se envió un comando de Reiniciar al punto de venta seleccionado.", "Reiniciar");
-                        Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + this.Pv.ToString(), "*");
+                        Lfx.Workspace.Master.DefaultScheduler.AddTask("REBOOT", "fiscal" + this.Pventa.ToString(), "*");
                 }
 
                 private void BotonIniciarDetener_Click(object sender, System.EventArgs e)

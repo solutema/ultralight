@@ -140,6 +140,8 @@
     <Compile Include="Data\Transaction.cs" />
     <Compile Include="RuntimeServices.cs" />
     <Compile Include="Types\DomainException.cs" />
+    <Compile Include="Types\Exceptions\AccessDeniedException.cs" />
+    <Compile Include="Types\Exceptions\Exception.cs" />
     <Compile Include="Types\Ini.cs">
       <SubType>Code</SubType>
     </Compile>

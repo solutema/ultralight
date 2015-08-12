@@ -147,7 +147,6 @@ namespace Lfc.Pvs
                         // BotonEstacionSeleccionar
                         // 
                         this.BotonEstacionSeleccionar.DialogResult = System.Windows.Forms.DialogResult.None;
-                        this.BotonEstacionSeleccionar.ForeColor = System.Drawing.SystemColors.ControlText;
                         this.BotonEstacionSeleccionar.Image = null;
                         this.BotonEstacionSeleccionar.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonEstacionSeleccionar.Location = new System.Drawing.Point(480, 264);
@@ -221,7 +220,9 @@ namespace Lfc.Pvs
                         this.EntradaModelo.Name = "EntradaModelo";
                         this.EntradaModelo.SetData = new string[] {
         "Hasar|100",
+        "Hasar Tiqueadora|110",
         "Epson|300",
+        "Epson Tiqueadora|310",
         "Emulación|1"};
                         this.EntradaModelo.Size = new System.Drawing.Size(132, 24);
                         this.EntradaModelo.TabIndex = 20;
@@ -372,7 +373,6 @@ namespace Lfc.Pvs
                         // 
                         // EntradaDeTalonario
                         // 
-                        this.EntradaDeTalonario.Font = new System.Drawing.Font("Segoe UI", 9.75F);
                         this.EntradaDeTalonario.Location = new System.Drawing.Point(144, 296);
                         this.EntradaDeTalonario.Name = "EntradaDeTalonario";
                         this.EntradaDeTalonario.Size = new System.Drawing.Size(55, 24);

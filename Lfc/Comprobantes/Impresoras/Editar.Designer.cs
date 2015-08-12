@@ -86,7 +86,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaNombre.ForceCase = Lui.Forms.TextCasing.Automatic;
                         this.EntradaNombre.Location = new System.Drawing.Point(120, 0);
                         this.EntradaNombre.Name = "EntradaNombre";
-                        this.EntradaNombre.ReadOnly = false;
                         this.EntradaNombre.Size = new System.Drawing.Size(519, 24);
                         this.EntradaNombre.TabIndex = 1;
                         // 
@@ -105,7 +104,6 @@ namespace Lfc.Comprobantes.Impresoras
             | System.Windows.Forms.AnchorStyles.Right)));
                         this.EntradaUbicacion.Location = new System.Drawing.Point(120, 160);
                         this.EntradaUbicacion.Name = "EntradaUbicacion";
-                        this.EntradaUbicacion.ReadOnly = false;
                         this.EntradaUbicacion.Size = new System.Drawing.Size(519, 24);
                         this.EntradaUbicacion.TabIndex = 10;
                         // 
@@ -124,11 +122,10 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTalonario.AutoSize = true;
                         this.EntradaTalonario.Location = new System.Drawing.Point(244, 196);
                         this.EntradaTalonario.Name = "EntradaTalonario";
-                        this.EntradaTalonario.ReadOnly = false;
                         this.EntradaTalonario.SetData = new string[] {
         "Sí|1",
         "No|0"};
-                        this.EntradaTalonario.Size = new System.Drawing.Size(116, 36);
+                        this.EntradaTalonario.Size = new System.Drawing.Size(116, 40);
                         this.EntradaTalonario.TabIndex = 12;
                         this.EntradaTalonario.TextKey = "0";
                         // 
@@ -146,13 +143,12 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalBps.AlwaysExpanded = true;
                         this.EntradaFiscalBps.AutoSize = true;
                         this.EntradaFiscalBps.Enabled = false;
-                        this.EntradaFiscalBps.Location = new System.Drawing.Point(244, 392);
+                        this.EntradaFiscalBps.Location = new System.Drawing.Point(244, 412);
                         this.EntradaFiscalBps.Name = "EntradaFiscalBps";
-                        this.EntradaFiscalBps.ReadOnly = false;
                         this.EntradaFiscalBps.SetData = new string[] {
         "9600 bps|9600",
         "19200 bps|19200"};
-                        this.EntradaFiscalBps.Size = new System.Drawing.Size(136, 36);
+                        this.EntradaFiscalBps.Size = new System.Drawing.Size(136, 40);
                         this.EntradaFiscalBps.TabIndex = 20;
                         this.EntradaFiscalBps.TextKey = "9600";
                         // 
@@ -170,13 +166,12 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalPuerto.AlwaysExpanded = true;
                         this.EntradaFiscalPuerto.AutoSize = true;
                         this.EntradaFiscalPuerto.Enabled = false;
-                        this.EntradaFiscalPuerto.Location = new System.Drawing.Point(244, 344);
+                        this.EntradaFiscalPuerto.Location = new System.Drawing.Point(244, 364);
                         this.EntradaFiscalPuerto.Name = "EntradaFiscalPuerto";
-                        this.EntradaFiscalPuerto.ReadOnly = false;
                         this.EntradaFiscalPuerto.SetData = new string[] {
         "COM1|1",
         "COM2|2"};
-                        this.EntradaFiscalPuerto.Size = new System.Drawing.Size(136, 36);
+                        this.EntradaFiscalPuerto.Size = new System.Drawing.Size(136, 40);
                         this.EntradaFiscalPuerto.TabIndex = 18;
                         this.EntradaFiscalPuerto.TextKey = "1";
                         // 
@@ -187,18 +182,18 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaFiscalModelo.Enabled = false;
                         this.EntradaFiscalModelo.Location = new System.Drawing.Point(244, 284);
                         this.EntradaFiscalModelo.Name = "EntradaFiscalModelo";
-                        this.EntradaFiscalModelo.ReadOnly = false;
                         this.EntradaFiscalModelo.SetData = new string[] {
         "Hasar|100",
+        "Hasar Tiqueadora|110",
         "Epson|300",
         "Emulación|1"};
-                        this.EntradaFiscalModelo.Size = new System.Drawing.Size(136, 51);
+                        this.EntradaFiscalModelo.Size = new System.Drawing.Size(136, 74);
                         this.EntradaFiscalModelo.TabIndex = 16;
                         this.EntradaFiscalModelo.TextKey = "300";
                         // 
                         // label7
                         // 
-                        this.label7.Location = new System.Drawing.Point(120, 392);
+                        this.label7.Location = new System.Drawing.Point(120, 412);
                         this.label7.Name = "label7";
                         this.label7.Size = new System.Drawing.Size(124, 24);
                         this.label7.TabIndex = 19;
@@ -207,7 +202,7 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         // label6
                         // 
-                        this.label6.Location = new System.Drawing.Point(120, 344);
+                        this.label6.Location = new System.Drawing.Point(120, 364);
                         this.label6.Name = "label6";
                         this.label6.Size = new System.Drawing.Size(124, 24);
                         this.label6.TabIndex = 17;
@@ -229,12 +224,11 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaTipo.AutoSize = true;
                         this.EntradaTipo.Location = new System.Drawing.Point(120, 32);
                         this.EntradaTipo.Name = "EntradaTipo";
-                        this.EntradaTipo.ReadOnly = false;
                         this.EntradaTipo.SetData = new string[] {
         "Nula|0",
         "Impresora de Windows|1",
         "Controlador Fiscal|2"};
-                        this.EntradaTipo.Size = new System.Drawing.Size(208, 51);
+                        this.EntradaTipo.Size = new System.Drawing.Size(208, 57);
                         this.EntradaTipo.TabIndex = 2;
                         this.EntradaTipo.TextKey = "1";
                         this.EntradaTipo.TextChanged += new System.EventHandler(this.EntradaTipo_TextChanged);
@@ -254,11 +248,10 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaCarga.AutoSize = true;
                         this.EntradaCarga.Location = new System.Drawing.Point(244, 240);
                         this.EntradaCarga.Name = "EntradaCarga";
-                        this.EntradaCarga.ReadOnly = false;
                         this.EntradaCarga.SetData = new string[] {
         "Automática|0",
         "Manual|1"};
-                        this.EntradaCarga.Size = new System.Drawing.Size(208, 36);
+                        this.EntradaCarga.Size = new System.Drawing.Size(208, 40);
                         this.EntradaCarga.TabIndex = 14;
                         this.EntradaCarga.TextKey = "0";
                         // 
@@ -276,7 +269,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.EntradaEstacion.ForceCase = Lui.Forms.TextCasing.UpperCase;
                         this.EntradaEstacion.Location = new System.Drawing.Point(120, 96);
                         this.EntradaEstacion.Name = "EntradaEstacion";
-                        this.EntradaEstacion.ReadOnly = false;
                         this.EntradaEstacion.Size = new System.Drawing.Size(336, 24);
                         this.EntradaEstacion.TabIndex = 4;
                         this.EntradaEstacion.TextChanged += new System.EventHandler(this.EntradaEstacion_TextChanged);
@@ -288,7 +280,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.BotonSeleccionarEstacion.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSeleccionarEstacion.Location = new System.Drawing.Point(464, 96);
                         this.BotonSeleccionarEstacion.Name = "BotonSeleccionarEstacion";
-                        this.BotonSeleccionarEstacion.ReadOnly = false;
                         this.BotonSeleccionarEstacion.Size = new System.Drawing.Size(28, 24);
                         this.BotonSeleccionarEstacion.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSeleccionarEstacion.Subtext = "";
@@ -300,7 +291,6 @@ namespace Lfc.Comprobantes.Impresoras
                         // 
                         this.EntradaDispositivo.Location = new System.Drawing.Point(120, 128);
                         this.EntradaDispositivo.Name = "EntradaDispositivo";
-                        this.EntradaDispositivo.ReadOnly = false;
                         this.EntradaDispositivo.Size = new System.Drawing.Size(336, 24);
                         this.EntradaDispositivo.TabIndex = 7;
                         // 
@@ -320,7 +310,6 @@ namespace Lfc.Comprobantes.Impresoras
                         this.BotonSeleccionarDispositivo.ImagePos = Lui.Forms.ImagePositions.Top;
                         this.BotonSeleccionarDispositivo.Location = new System.Drawing.Point(464, 128);
                         this.BotonSeleccionarDispositivo.Name = "BotonSeleccionarDispositivo";
-                        this.BotonSeleccionarDispositivo.ReadOnly = false;
                         this.BotonSeleccionarDispositivo.Size = new System.Drawing.Size(28, 24);
                         this.BotonSeleccionarDispositivo.SubLabelPos = Lui.Forms.SubLabelPositions.None;
                         this.BotonSeleccionarDispositivo.Subtext = "";
@@ -355,7 +344,7 @@ namespace Lfc.Comprobantes.Impresoras
                         this.Controls.Add(this.label10);
                         this.Controls.Add(this.Label5);
                         this.Name = "Editar";
-                        this.Size = new System.Drawing.Size(640, 437);
+                        this.Size = new System.Drawing.Size(640, 482);
                         this.ResumeLayout(false);
                         this.PerformLayout();
 

@@ -596,7 +596,7 @@
     <Column name="tipo" inputtype="TinyInt" nullable="0" />
     <Column name="carga" inputtype="TinyInt" nullable="0" default="0" />
     <Column name="talonario" inputtype="Bool" nullable="0" default="0" />
-    <Column name="fiscal_modelo" datatype="TinyInt" nullable="1" default="0" />
+    <Column name="fiscal_modelo" datatype="SmallInt" nullable="1" default="0" />
     <Column name="fiscal_bps" datatype="SmallInt" nullable="1" default="0" />
     <Column name="fiscal_ultimoz" datatype="DateTime" nullable="1" />
     <Column name="id_sucursal" inputtype="Relation" nullable="1" />

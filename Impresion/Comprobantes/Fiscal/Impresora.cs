@@ -107,8 +107,10 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         get
                         {
                                 switch (this.Modelo) {
+                                        case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                                 return "Epson Genérico";
+                                        case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                 return "Hasar Genérico";
                                         case Lbl.Impresion.ModelosFiscales.Emulacion:
@@ -159,7 +161,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 PuertoSerie.Encoding = DefaultEncoding;
                                                 SeqNum = FIRST_SEQ;
 
-                                                if (Modelo != Lbl.Impresion.ModelosFiscales.HasarGenerico) {
+                                                if (Modelo != Lbl.Impresion.ModelosFiscales.HasarGenerico && Modelo != Lbl.Impresion.ModelosFiscales.HasarTiquedora) {
                                                         PuertoSerie.Handshake = System.IO.Ports.Handshake.XOnXOff;
                                                         PuertoSerie.RtsEnable = true;
                                                 }
@@ -176,13 +178,16 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 PuertoSerie.PinChanged += new System.IO.Ports.SerialPinChangedEventHandler(Impresora_PinChanged);
                                                 PuertoSerie.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(Impresora_ErrorReceived);
 
-                                                if (Modelo == Lbl.Impresion.ModelosFiscales.HasarGenerico) {
+                                                if (Modelo == Lbl.Impresion.ModelosFiscales.HasarGenerico || Modelo == Lbl.Impresion.ModelosFiscales.HasarTiquedora) {
                                                         System.Threading.Thread.Sleep(100);
                                                         //Configuración inicial Hasar
                                                         Lazaro.Impresion.Comprobantes.Fiscal.Respuesta Res = ObtenerEstadoImpresora();
 
                                                         if (Res.EstadoFiscal.DocumentoFiscalAbierto)
                                                                 Res = CancelarDocumentoFiscal();
+                                                        else if (Res.EstadoFiscal.DocumentoAbierto)
+                                                                Res = CancelarDocumentoFiscal();
+
                                                 }
 
                                                 NotificacionEventHandler NotifHandler = Notificacion;
@@ -248,6 +253,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                 public Lazaro.Impresion.Comprobantes.Fiscal.Respuesta Cierre(string Tipo, bool Imprimir)
                 {
                         switch (Modelo) {
+                                case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                 case Lbl.Impresion.ModelosFiscales.Emulacion:
                                         string ParametroImprimir = "N";
@@ -256,6 +262,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 ParametroImprimir = "P";
 
                                         return Enviar(new Comando(CodigosComandosFiscales.EpsonCierreJornada, Tipo, ParametroImprimir));
+                                case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                         return Enviar(new Comando(CodigosComandosFiscales.HasarCierreJornada, Tipo));
                         }
@@ -266,9 +273,11 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                 public Lazaro.Impresion.Comprobantes.Fiscal.Respuesta CancelarDocumentoFiscal()
                 {
                         switch (Modelo) {
+                                case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                 case Lbl.Impresion.ModelosFiscales.Emulacion:
                                         return Enviar(new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos, "Cancelando", "000010000", "C"));
+                                case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                         return Enviar(new Comando(CodigosComandosFiscales.HasarDocumentoFiscalCancelar));
                         }
@@ -306,15 +315,28 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         string TipoDocumento = null;
                         string Letra = null;
 
+                        switch (Modelo) {
+                                case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
+                                        if (Comprob.Tipo.EsNotaDebito) {
+                                                TipoDocumento = "D";
+                                        } else if (Comprob.Tipo.EsNotaCredito) {
+                                                TipoDocumento = "M";
+                                        } else {
+                                                TipoDocumento = "T";
+                                        }
+                                        break;
+                                default:
 
-                        if (Comprob.Tipo.EsNotaDebito) {
-                                TipoDocumento = "D";
-                        } else if (Comprob.Tipo.EsNotaCredito) {
-                                TipoDocumento = "C";
-                        } else if (Comprob.Tipo.EsTicket) {
-                                TipoDocumento = "T";
-                        } else {
-                                TipoDocumento = "F";
+                                        if (Comprob.Tipo.EsNotaDebito) {
+                                                TipoDocumento = "D";
+                                        } else if (Comprob.Tipo.EsNotaCredito) {
+                                                TipoDocumento = "C";
+                                        } else if (Comprob.Tipo.EsTicket) {
+                                                TipoDocumento = "T";
+                                        } else {
+                                                TipoDocumento = "F";
+                                        }
+                                        break;
                         }
 
                         switch (Comprob.Tipo.Nomenclatura) {
@@ -325,20 +347,35 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                         break;
                                 case "FA":
                                 case "NDA":
-                                case "NCA":
                                         Letra = "A";
+                                        break;
+                                case "NCA":
+                                        if (Modelo == Lbl.Impresion.ModelosFiscales.HasarTiquedora)
+                                                Letra = "R";
+                                        else
+                                                Letra = "A";
                                         break;
 
                                 case "FB":
                                 case "NDB":
-                                case "NCB":
                                         Letra = "B";
+                                        break;
+                                case "NCB":
+                                        if (Modelo == Lbl.Impresion.ModelosFiscales.HasarTiquedora)
+                                                Letra = "S";
+                                        else
+                                                Letra = "B";
                                         break;
 
                                 case "FC":
                                 case "NDC":
-                                case "NCC":
                                         Letra = "C";
+                                        break;
+                                case "NCC":
+                                        if (Modelo == Lbl.Impresion.ModelosFiscales.HasarTiquedora)
+                                                Letra = "S";
+                                        else
+                                                Letra = "C";
                                         break;
 
                                 case "FE":
@@ -412,12 +449,12 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         if (Comprob.IdRemito == 0) {
                                 if (Comprob.Obs == null) {
                                         TextoRemitoLinea1 = "";
-                                } else if (Comprob.Obs.Length > 43) {
-                                        TextoRemitoLinea1 = Comprob.Obs.Substring(0, 43);
-                                        int RestoObs = Comprob.Obs.Length - 43;
-                                        if (RestoObs > 43)
-                                                RestoObs = 43;
-                                        TextoRemitoLinea2 = Comprob.Obs.Substring(43, RestoObs);
+                                } else if (Comprob.Obs.Length > 40) {
+                                        TextoRemitoLinea1 = Comprob.Obs.Substring(0, 40);
+                                        int RestoObs = Comprob.Obs.Length - 40;
+                                        if (RestoObs > 40)
+                                                RestoObs = 40;
+                                        TextoRemitoLinea2 = Comprob.Obs.Substring(40, RestoObs);
                                 } else {
                                         TextoRemitoLinea1 = Comprob.Obs;
                                 }
@@ -430,29 +467,36 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         if (Comprob.Cliente.Localidad != null)
                                 ClienteLocalidad = Comprob.Cliente.Localidad.ToString();
 
+                        //si hay un documento abierto (fiscal, no fiscal o no fiscal homologado) lo cancelo
+                        Res = ObtenerEstadoImpresora();
+                        if (Res.EstadoFiscal.DocumentoAbierto) {
+                                Res = CancelarDocumentoFiscal();
+                                System.Threading.Thread.Sleep(500);
+                        }
                         // *** Abrir Documento
                         if (NotifHandler != null)
                                 NotifHandler(this, new ImpresoraEventArgs("Abrir documento fiscal"));
 
                         switch (Modelo) {
+                                case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                 case Lbl.Impresion.ModelosFiscales.Emulacion:
                                         string ClienteLinea1 = "";
                                         string ClienteLinea2 = "";
 
-                                        if (Comprob.Cliente.ToString().Length > 43) {
-                                                ClienteLinea1 = Comprob.Cliente.ToString().Substring(0, 43);
-                                                ClienteLinea2 = Comprob.Cliente.ToString().Substring(43, Comprob.Cliente.ToString().Length - 43);
+                                        if (Comprob.Cliente.ToString().Length > 40) {
+                                                ClienteLinea1 = Comprob.Cliente.ToString().Substring(0, 40);
+                                                ClienteLinea2 = Comprob.Cliente.ToString().Substring(40, Comprob.Cliente.ToString().Length - 40);
                                         } else {
                                                 ClienteLinea1 = Comprob.Cliente.ToString();
                                                 ClienteLinea2 = "";
                                         }
 
-                                        if (Domicilio.Length > 43)
-                                                Domicilio = Domicilio.Substring(0, 43);
+                                        if (Domicilio.Length > 40)
+                                                Domicilio = Domicilio.Substring(0, 40);
 
-                                        if (ClienteLocalidad.Length > 43)
-                                                ClienteLocalidad = ClienteLocalidad.Substring(0, 43);
+                                        if (ClienteLocalidad.Length > 40)
+                                                ClienteLocalidad = ClienteLocalidad.Substring(0, 40);
 
                                         string ClienteSituacionEpson = "";
                                         switch (Comprob.Cliente.SituacionTributaria.Id) {
@@ -475,30 +519,61 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                         ClienteSituacionEpson = "S";
                                                         break;
                                         }
-
-                                        ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalAbrir,
-                                                TipoDocumento,
-                                                "C",
-                                                Letra,
-                                                "1",
-                                                "F",
-                                                "12",
-                                                "I",
-                                                FiscalizarTexto(ClienteSituacionEpson),
-                                                FiscalizarTexto(ClienteLinea1),
-                                                FiscalizarTexto(ClienteLinea2),
-                                                FiscalizarTexto(ClienteTipoDoc),
-                                                FiscalizarTexto(ClienteNumDoc),
-                                                "N",
-                                                FiscalizarTexto(Domicilio),
-                                                FiscalizarTexto(ClienteLocalidad),
-                                                "",
-                                                FiscalizarTexto(TextoRemitoLinea1),
-                                                FiscalizarTexto(TextoRemitoLinea2),
-                                                "C");
-                                        Res = Enviar(ComandoAEnviar);
+                                        if (Modelo == Lbl.Impresion.ModelosFiscales.EpsonTiquedora) {
+                                                // La impresora epson TMU220 no acepta vacios por eso cambio por un punto.
+                                                string Vacio=".";
+                                                        if (TextoRemitoLinea1=="")
+                                                        TextoRemitoLinea1 = ".";
+                                                        if (TextoRemitoLinea2 == "")
+                                                        TextoRemitoLinea2 = ".";
+                                                
+                                                ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalAbrir,
+                                                         TipoDocumento,
+                                                         "C",
+                                                         Letra,
+                                                         "1",
+                                                         "P",
+                                                         "10",
+                                                         "I",
+                                                        FiscalizarTexto(ClienteSituacionEpson),
+                                                        FiscalizarTexto(ClienteLinea1),
+                                                        FiscalizarTexto(ClienteLinea2),
+                                                        FiscalizarTexto(ClienteTipoDoc),
+                                                        FiscalizarTexto(ClienteNumDoc),
+                                                        "N",
+                                                        FiscalizarTexto(Domicilio),
+                                                        FiscalizarTexto(ClienteLocalidad),
+                                                        Vacio,
+                                                        FiscalizarTexto(TextoRemitoLinea1),
+                                                        FiscalizarTexto(TextoRemitoLinea2),
+                                                        "C");
+                                        } else {
+                                                ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalAbrir,
+                                                        TipoDocumento,
+                                                        "C",
+                                                        Letra,
+                                                        "1",
+                                                        "F",
+                                                        "12",
+                                                        "I",
+                                                        FiscalizarTexto(ClienteSituacionEpson),
+                                                        FiscalizarTexto(ClienteLinea1),
+                                                        FiscalizarTexto(ClienteLinea2),
+                                                        FiscalizarTexto(ClienteTipoDoc),
+                                                        FiscalizarTexto(ClienteNumDoc),
+                                                        "N",
+                                                        FiscalizarTexto(Domicilio),
+                                                        FiscalizarTexto(ClienteLocalidad),
+                                                        "",
+                                                        FiscalizarTexto(TextoRemitoLinea1),
+                                                        FiscalizarTexto(TextoRemitoLinea2),
+                                                        "C");
+                                        }
+                                                Res = Enviar(ComandoAEnviar);
+                                        
                                         break;
 
+                                case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                         if (Comprob.Cliente.Id != 999) {
                                                 //Sólo envío comando SetCustomerData (HasarDocumentoSetDatosCliente)
@@ -512,9 +587,11 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                                 ClienteSituacionHasar = "I";
                                                                 break;
                                                         case 3:
+                                                                // No existente en los modelos SMH/P- 715F, SMH/P-PR5F, SMH/P-441F y SMH/P-451F 
                                                                 ClienteSituacionHasar = "N";
                                                                 break;
                                                         case 4:
+                                                                // No existente en el modelo SMH/P-PR4F
                                                                 ClienteSituacionHasar = "M";
                                                                 break;
                                                         case 5:
@@ -551,10 +628,13 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                         case "CI":
                                                                 TipoDocumentoClienteHasar = "4";
                                                                 break;
+                                                        default:
+                                                                TipoDocumentoClienteHasar = " ";// Sin clasificador
+                                                                break;
                                                 }
 
                                                 string NombreClienteHasar = Comprob.Cliente.ToString();
-
+                                                // Comando  SetCustomerData (Manual Comandos Hasar)
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoSetDatosCliente,
                                                         FiscalizarTexto(NombreClienteHasar, 30),
                                                         ClienteNumDoc,
@@ -564,10 +644,11 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 Res = Enviar(ComandoAEnviar);
                                         }
 
-                                        //Abrir documento
+                                        //Abrir documento   
+
                                         string TipoDocumentoHasar = "B";
                                         if (TipoDocumento == "D" && Letra == "A")
-                                                TipoDocumentoHasar = "E";	//ND A
+                                                TipoDocumentoHasar = "D";	//ND A
                                         else if (TipoDocumento == "D")
                                                 TipoDocumentoHasar = "E";	//ND B Y C
                                         else if (TipoDocumento == "F" && Letra == "A")
@@ -577,10 +658,78 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                         else if (TipoDocumento == "T")
                                                 TipoDocumentoHasar = "T";	//Ticket
 
-                                        ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalAbrir,
-                                                TipoDocumentoHasar,
-                                                "T");
-                                        Res = Enviar(ComandoAEnviar);
+
+                                        if (Modelo == Lbl.Impresion.ModelosFiscales.HasarTiquedora) {
+                                                string NombreFantasiaHasar = Lbl.Sys.Config.Empresa.Nombre.ToUpper();
+                                                int EspaciosParaCentrado = NombreFantasiaHasar.Length;
+                                                int EspaciosAIncertar;
+                                                Comando EstablecerTituloTiquet;
+                                                if (NombreFantasiaHasar.Length <= 20) {
+                                                        if (NombreFantasiaHasar.Length >= 19) {
+                                                                // El caracter especial ô indica que la imprecion debe ser con doble ancho, en dicho caso La cantidad maxima de caracteres se reduce de 40 a 20 
+                                                                EstablecerTituloTiquet = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalNombreFantasia,
+                                                                "2",
+                                                                'ô' + NombreFantasiaHasar);
+                                                                Res = Enviar(EstablecerTituloTiquet);
+                                                        }
+                                                        if (NombreFantasiaHasar.Length < 19) {
+                                                                EspaciosParaCentrado = (20 - NombreFantasiaHasar.Length) / 2;
+                                                                EspaciosAIncertar = NombreFantasiaHasar.Length + EspaciosParaCentrado;
+                                                                NombreFantasiaHasar = NombreFantasiaHasar.PadLeft(EspaciosAIncertar, ' ');
+                                                                // El caracter especial ô indica que la imprecion debe ser con doble ancho, en dicho caso La cantidad maxima de caracteres se reduce de 40 a 20 
+                                                                EstablecerTituloTiquet = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalNombreFantasia,
+                                                                "2",
+                                                                'ô' + NombreFantasiaHasar);
+                                                                Res = Enviar(EstablecerTituloTiquet);
+                                                        }
+
+
+                                                } else {
+                                                        EstablecerTituloTiquet = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalNombreFantasia,
+                                                                        "2",
+                                                                        NombreFantasiaHasar);
+                                                        Res = Enviar(EstablecerTituloTiquet);
+
+                                                }
+
+
+                                                //N° de línea de encabezamiento (1-10) o cola (11-20)
+                                                //0: borra encabezamiento y cola,  -1: borra encabezamiento,  -2: borra cola. 
+                                                Comando EstablecerEncabezadoCola = new Comando(CodigosComandosFiscales.HasarDocumentoEstablecerEncabezadoCola,
+                                                                "12",
+                                                                "        Muchas gracias por su compra");
+                                                Res = Enviar(EstablecerEncabezadoCola);
+                                        }
+
+                                        if (Letra == "S" || Letra == "R") {
+                                                // Para notas de Crédito primero tengo que acentar los datos del comprobante original y luego abrir el documento 
+                                                string ComprobanteOriginal = Comprob.ComprobanteOriginal.Nombre;
+                                                string[] partes = ComprobanteOriginal.Split(new char[] { '-' });
+                                                ComprobanteOriginal = partes[1];
+                                                // El segundo parámetro corresponde al numero de línea donde se va a imprimir la información del comprobante original 
+                                                // 0: Borra ambas líneas
+                                                Comando ComandoEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalCargarComprobanteOriginal, "1",
+                                                          ComprobanteOriginal);
+                                                Res = Enviar(ComandoEnviar);
+
+                                                ComandoEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoNoFiscalHomologadoAbrir, Letra, "T"
+                                                        );
+                                                Res = Enviar(ComandoEnviar);
+
+
+                                        } else {
+                                                // El segundo parámetro corresponde al numero de línea donde se va a imprimir la información del comprobante original 
+                                                // 0: Borra ambas líneas
+                                                // Borro cualquier línea que haya quedado de una nota de crédito anterior 
+                                                Comando ComandoEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalCargarComprobanteOriginal, "0",
+                                                          "1234");
+                                                Res = Enviar(ComandoEnviar);
+                                                // Comando OpenFiscalReceipt (Manual de comandos Hasar) 
+                                                ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalAbrir,
+                                                        TipoDocumentoHasar,
+                                                        "T");
+                                                Res = Enviar(ComandoAEnviar);
+                                        }
                                         break;
                         }
 
@@ -613,11 +762,32 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                 }
 
                                 string ItemNombre = Detalle.Nombre;
-
+                                string ParametroSumaResta;
                                 switch (Modelo) {
+                                        case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
+                                                ParametroSumaResta = "M";
+                                                if (Unitario < 0)
+                                                        ParametroSumaResta = "R";
+                                                
+                                                ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalItem,
+                                                        FiscalizarTexto(ItemNombre,18),
+                                                        FormatearNumeroEpson(Cantidad, 3).PadLeft(8, '0'),
+                                                        FormatearNumeroEpson(Math.Abs(Unitario), 2).PadLeft(9, '0'),
+                                                        "0000",
+                                                        ParametroSumaResta,
+                                                        "00001",
+                                                        "00000000",
+                                                        "",
+                                                        "",
+                                                        "",
+                                                        "0000",
+                                                        "000000000000000");
+                                                Res = Enviar(ComandoAEnviar);
+                                                Res = Enviar(new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalSubtotal, "P", ""));
+                                                break;
                                         case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                         case Lbl.Impresion.ModelosFiscales.Emulacion:
-                                                string ParametroSumaResta = "M";
+                                                ParametroSumaResta = "M";
                                                 if (Unitario < 0)
                                                         ParametroSumaResta = "R";
 
@@ -635,7 +805,10 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                         "0000",
                                                         "000000000000000");
                                                 Res = Enviar(ComandoAEnviar);
+                                                
                                                 break;
+
+                                        case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                 if (Detalle.DatosSeguimiento != null && Detalle.DatosSeguimiento.Count > 0) {
                                                         ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalTexto,
@@ -659,7 +832,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 } else {
                                                         ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalItem,
                                                                 FiscalizarTexto(ItemNombre, 50),
-                                                                FormatearNumeroHasar(Cantidad, 3),
+                                                                FormatearNumeroHasar(Cantidad, 2),
                                                                 FormatearNumeroHasar(Unitario, 2),
                                                                 "0.0", /* IVA */
                                                                 "M",
@@ -683,6 +856,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                 decimal MontoDescuento = Comprob.SubTotal * (Comprob.Descuento / 100);
 
                                 switch (Modelo) {
+                                        case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                         case Lbl.Impresion.ModelosFiscales.Emulacion:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
@@ -691,6 +865,8 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                         "D");
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
+
+                                        case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalDescuentoGeneral,
                                                         "Descuento " + Lfx.Types.Formatting.FormatCurrencyForPrint(Comprob.Descuento, 2) + "%",
@@ -710,6 +886,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                         if (Math.Abs(Comprob.TotalSinRedondeo - Comprob.Total) >= 0.001m) {
                                 switch (Modelo) {
+                                        case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                         case Lbl.Impresion.ModelosFiscales.Emulacion:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
@@ -718,6 +895,8 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                         "D");
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
+
+                                        case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalDescuentoGeneral,
                                                         "Ajustes por Redondeo",
@@ -740,6 +919,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                         //Recargos
                         if (Comprob.Recargo > 0) {
                                 switch (Modelo) {
+                                        case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                         case Lbl.Impresion.ModelosFiscales.Emulacion:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
@@ -748,6 +928,8 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                         "R");
                                                 Res = Enviar(ComandoAEnviar);
                                                 break;
+
+                                        case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                 ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalDevolucionesYRecargos,
                                                         "Recargo " + Lfx.Types.Formatting.FormatCurrencyForPrint(Comprob.Recargo, Lfx.Workspace.Master.CurrentConfig.Moneda.DecimalesCosto) + "%",
@@ -770,6 +952,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                         // Pago
                         switch (Modelo) {
+                                case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                 case Lbl.Impresion.ModelosFiscales.Emulacion:
                                         ComandoAEnviar = new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalPagosYDescuentos,
@@ -778,6 +961,8 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 "T");
                                         Res = Enviar(ComandoAEnviar);
                                         break;
+
+                                case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                         ComandoAEnviar = new Comando(CodigosComandosFiscales.HasarDocumentoFiscalPago,
                                                 FiscalizarTexto(Comprob.FormaDePago.ToString(), 50),
@@ -796,12 +981,25 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                         // *** Cerrar Documento
                         switch (Modelo) {
+                                case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
+                                        Res = Enviar(new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalCerrar, TipoDocumento, Letra, ""));
+                                        break;
                                 case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                 case Lbl.Impresion.ModelosFiscales.Emulacion:
-                                        Res = Enviar(new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalCerrar, "F", Letra, "Final"));
+                                        Res = Enviar(new Comando(CodigosComandosFiscales.EpsonDocumentoFiscalCerrar, TipoDocumento, Letra, "Final"));
                                         break;
+
+                                case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.HasarGenerico:
-                                        Res = Enviar(new Comando(CodigosComandosFiscales.HasarDocumentoFiscalCerrar));
+                                        if (Letra == "S" || Letra == "R") {
+                                                // Si es nota de credito cierro dicha nota 
+                                                Res = Enviar(new Comando(CodigosComandosFiscales.HasarDocumentoNoFiscalHomologadoCerrar, "1", ""));
+                                        } else {
+
+                                                // Comando CloseFiscalReceipt (Manual de comandos hasar)
+                                                Res = Enviar(new Comando(CodigosComandosFiscales.HasarDocumentoFiscalCerrar, "1"));
+
+                                        }
                                         break;
 
                         }
@@ -844,7 +1042,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                 {
                         PuertoSerie.Write(command, 0, command.Length);
                         System.Threading.Thread.Sleep(150);
-                        if (Modelo == Lbl.Impresion.ModelosFiscales.EpsonGenerico)
+                        if (Modelo == Lbl.Impresion.ModelosFiscales.EpsonGenerico || Modelo == Lbl.Impresion.ModelosFiscales.EpsonTiquedora)
                                 PuertoSerie.DtrEnable = true;
                 }
 
@@ -919,7 +1117,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                         do {
                                 try {
-                                        if (Modelo != Lbl.Impresion.ModelosFiscales.HasarGenerico) {
+                                        if (Modelo != Lbl.Impresion.ModelosFiscales.HasarGenerico && Modelo != Lbl.Impresion.ModelosFiscales.HasarTiquedora) {
                                                 PuertoSerie.DtrEnable = true;
                                                 System.Threading.Thread.Sleep(20);
                                         }
@@ -1012,6 +1210,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 //Es respuesta correcta a este comando
                                                 switch (Modelo) {
                                                         //Las fiscales Hasar esperan un ACK a la respuesta
+                                                        case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                                 string Ack = "" + (char)CaracteresDeControl.PROTO_ACK;
                                                                 SendToPrinter(Ack);
@@ -1058,8 +1257,10 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                 }
 
                                 switch (Modelo) {
+                                        case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                         case Lbl.Impresion.ModelosFiscales.Emulacion:
+                                        case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                 if (Res.Campos.Count >= 1)
                                                         Res.EstadoImpresora.CodigoEstado = int.Parse(System.Convert.ToString(Res.Campos[0]), System.Globalization.NumberStyles.AllowHexSpecifier);
@@ -1073,7 +1274,7 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
 
                                                 //FormEstado.lblEstadoFiscal.Text = "I: " + Res.EstadoImpresora.CodigoEstado.ToString("X4") + " / F: " + Res.EstadoFiscal.CodigoEstado.ToString("X4");
 
-                                                if (Modelo == Lbl.Impresion.ModelosFiscales.HasarGenerico) {
+                                                if (Modelo == Lbl.Impresion.ModelosFiscales.HasarGenerico || Modelo == Lbl.Impresion.ModelosFiscales.HasarTiquedora) {
                                                         //Hasar enciende el bit 15 (error) en caso de que no haya cajón
                                                         //de dinero. Es un error que vamos a ignorar
                                                         if (Res.EstadoImpresora.Bit(14)) {
@@ -1086,15 +1287,17 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                                                 }
 
                                                 switch (Modelo) {
+                                                        case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                                         case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                                         case Lbl.Impresion.ModelosFiscales.Emulacion:
+                                                        case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                                         case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                                                 if ((Res.EstadoImpresora.CodigoEstado & 0X8000) != 0)
                                                                         Res.Error = ErroresFiscales.ErrorImpresora;
                                                                 else if ((Res.EstadoFiscal.CodigoEstado & 0X80FF) != 0)
                                                                         Res.Error = ErroresFiscales.ErrorFiscal;
 
-                                                                if (this.Modelo == Lbl.Impresion.ModelosFiscales.EpsonGenerico && Res.EstadoFiscal.HacerCierreZ) {
+                                                                if (( this.Modelo == Lbl.Impresion.ModelosFiscales.EpsonGenerico || this.Modelo == Lbl.Impresion.ModelosFiscales.EpsonTiquedora ) && Res.EstadoFiscal.HacerCierreZ) {
                                                                         //Sólo para Epson, bit 11 indica que es necesario hacer un cierre Z
                                                                         Res.HacerCierreZ = true;
                                                                 }
@@ -1177,9 +1380,11 @@ namespace Lazaro.Impresion.Comprobantes.Fiscal
                 public Lazaro.Impresion.Comprobantes.Fiscal.Respuesta ObtenerEstadoImpresora()
                 {
                         switch (Modelo) {
+                                case Lbl.Impresion.ModelosFiscales.EpsonTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.EpsonGenerico:
                                 case Lbl.Impresion.ModelosFiscales.Emulacion:
                                         return Enviar(new Comando(CodigosComandosFiscales.EpsonSolicitudEstado, "N"));
+                                case Lbl.Impresion.ModelosFiscales.HasarTiquedora:
                                 case Lbl.Impresion.ModelosFiscales.HasarGenerico:
                                         return Enviar(new Comando(CodigosComandosFiscales.HasarSolicitudEstado));
                                 default:

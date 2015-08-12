@@ -94,7 +94,7 @@ namespace Lfc.Comprobantes.Facturas
                                                 RemitoPv = EntradaPV.ValueInt;
                                         }
 
-                                        int RemitoId = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE compra=0 AND tipo_fac='R' AND pv=" + RemitoPv.ToString() + " AND numero=" + RemitoNumero.ToString() + " AND impresa>0 AND anulada=0");
+                                        int RemitoId = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE compra=0 AND tipo_fac!='R' AND pv=" + RemitoPv.ToString() + " AND numero=" + RemitoNumero.ToString() + " AND impresa>0 AND anulada=0");
                                         if (RemitoId == 0) {
                                                 Res.Success = false;
                                                 Res.Message += "El número de remito no es válido." + Environment.NewLine;
@@ -206,7 +206,7 @@ namespace Lfc.Comprobantes.Facturas
                                         RemitoPv = EntradaPV.ValueInt;
                                 }
 
-                                Res.IdRemito = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE compra=0 AND tipo_fac='R' AND pv=" + RemitoPv.ToString() + " AND numero=" + RemitoNumero.ToString() + " AND impresa>0 AND anulada=0");
+                                Res.IdRemito = this.Connection.FieldInt("SELECT id_comprob FROM comprob WHERE compra=0 AND tipo_fac!='R' AND pv=" + RemitoPv.ToString() + " AND numero=" + RemitoNumero.ToString() + " AND impresa>0 AND anulada=0");
                         } else {
                                 Res.IdRemito = 0;
                         }

@@ -892,6 +892,8 @@ namespace Lfc
                                                 WhereBuscarTexto.AddWithValue(this.Definicion.KeyColumn.Name, Lfx.Types.Parsing.ParseInt(this.SearchText).ToString());
 
                                         if (this.Definicion.Columns != null) {
+                                                
+                                                
                                                 foreach (Lazaro.Pres.Field CurField in this.Definicion.Columns) {
                                                         if (CurField.Name.IndexOf(" AS ") == -1 && CurField.Name.IndexOf("(") == -1) {
                                                                 switch (CurField.DataType) {

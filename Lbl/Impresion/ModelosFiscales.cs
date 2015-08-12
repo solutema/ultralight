@@ -40,6 +40,8 @@ namespace Lbl.Impresion
                 Desconocido = 0,
                 Emulacion = 1,
                 HasarGenerico = 100,
-                EpsonGenerico = 300
+                HasarTiquedora = 110,
+                EpsonGenerico = 300,
+                EpsonTiquedora = 310
         }
 }
