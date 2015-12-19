@@ -10,11 +10,11 @@ using System.Security.Permissions;
 #endregion
 
 [assembly: AssemblyTitle("Componente Lázaro Servidor Fiscal")]
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("2.0.*")]
 [assembly: AssemblyDescription("Componente Lázaro Servidor Fiscal versión 1.0")]
 [assembly: AssemblyCompany("Ernesto N. Carrea")]
 [assembly: AssemblyProduct("Lázaro")]
-[assembly: AssemblyCopyright("Copyright 2004-2012 Ernesto N. Carrea")]
+[assembly: AssemblyCopyright("Copyright Ernesto N. Carrea")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]

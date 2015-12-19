@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinMain", "Sistema\WinMain.csproj", "{06B1A167-AAC4-468A-A763-9C99E52B2CB3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B} = {FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}
@@ -125,7 +127,7 @@ Global
 		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Debug|Dev.Build.0 = Debug|x86
 		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Debug|Rel.ActiveCfg = Debug|Any CPU
 		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Debug|Rel.Build.0 = Debug|Any CPU
-		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Release|Dev.ActiveCfg = Release|Any CPU
+		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Release|Dev.ActiveCfg = Release|x86
 		{FFBD7D38-FE52-4DF9-BCB1-19F004878B0B}.Release|Rel.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
