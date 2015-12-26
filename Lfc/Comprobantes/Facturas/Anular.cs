@@ -1,34 +1,3 @@
-#region License
-// Copyright 2004-2012 Ernesto N. Carrea
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-// Este programa es software libre; puede distribuirlo y/o moficiarlo de
-// acuerdo a los términos de la Licencia Pública General de GNU (GNU
-// General Public License), como la publica la Fundación para el Software
-// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
-// como (a su elección) cualquier versión posterior.
-//
-// Este programa se distribuye con la esperanza de que sea útil, pero SIN
-// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
-// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
-// Licencia Pública General de GNU para más detalles. 
-//
-// Debería haber recibido una copia de la Licencia Pública General junto
-// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -39,9 +8,28 @@ namespace Lfc.Comprobantes.Facturas
 	public partial class Anular : Lui.Forms.ChildDialogForm
 	{
                 // Caché de próximos números (PV, número)
-		Dictionary<int, int> ProximosNumeros = new Dictionary<int, int>();
+		protected Dictionary<int, int> ProximosNumeros = new Dictionary<int, int>();
+
+                public bool m_DeCompra = false;
+
+                public bool DeCompra
+                {
+                        get
+                        {
+                                return m_DeCompra;
+                        }
+                        set
+                        {
+                                m_DeCompra = value;
+                        }
+                }
 
                 public Anular()
+                        :this(null)
+                { }
+
+
+                public Anular(string tipo)
                 {
                         if (Lbl.Sys.Config.Actual.UsuarioConectado.TienePermiso(typeof(Lbl.Comprobantes.Factura), Lbl.Sys.Permisos.Operaciones.Eliminar) == false) {
                                 this.DialogResult = System.Windows.Forms.DialogResult.Abort;
@@ -50,6 +38,9 @@ namespace Lfc.Comprobantes.Facturas
                         }
                         InitializeComponent();
 
+                        if(tipo == "FP") {
+                                this.DeCompra = true;
+                        }
 
                         // Lleno el listado de tipos de factura
                         List<Lbl.Comprobantes.Tipo> TiposFacturaVenta = new List<Lbl.Comprobantes.Tipo>();
@@ -115,6 +106,7 @@ namespace Lfc.Comprobantes.Facturas
                         }
 
                         qGen.Where WhereAnular = new qGen.Where();
+                        WhereAnular.AddWithValue("compra", m_DeCompra ? 1 : 0);
                         WhereAnular.AddWithValue("impresa", qGen.ComparisonOperators.NotEqual, 0);
                         WhereAnular.AddWithValue("tipo_fac", qGen.ComparisonOperators.In, IncluyeTipos);
                         WhereAnular.AddWithValue("pv", PV);

@@ -1,34 +1,3 @@
-#region License
-// Copyright 2004-2012 Ernesto N. Carrea
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-// Este programa es software libre; puede distribuirlo y/o moficiarlo de
-// acuerdo a los términos de la Licencia Pública General de GNU (GNU
-// General Public License), como la publica la Fundación para el Software
-// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
-// como (a su elección) cualquier versión posterior.
-//
-// Este programa se distribuye con la esperanza de que sea útil, pero SIN
-// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
-// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
-// Licencia Pública General de GNU para más detalles. 
-//
-// Debería haber recibido una copia de la Licencia Pública General junto
-// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -48,14 +17,27 @@ namespace Lfc.Comprobantes
                 }
 
                 public bool AceptarAnuladas = false, AceptarNoImpresas = false, AceptarCanceladas = true, DeCompra = false;
-                public int IdComprob = 0;
-
+                private Lbl.Comprobantes.ComprobanteConArticulos m_Comprobante;
                 private TiposComprob m_TipoComprob;
 
                 public Seleccionar()
                 {
                         InitializeComponent();
                 }
+
+
+                public Lbl.Comprobantes.ComprobanteConArticulos Comprobante
+                {
+                        get
+                        {
+                                return m_Comprobante;
+                        }
+                        set
+                        {
+                                m_Comprobante = value;
+                        }
+                }
+
 
 
                 public Lbl.Personas.Persona Cliente
@@ -164,17 +146,18 @@ namespace Lfc.Comprobantes
 
                         Listado.BeginUpdate();
                         Listado.Items.Clear();
-                        foreach (System.Data.DataRow Factura in Facturas.Rows) {
-                                ListViewItem Itm = Listado.Items.Add(System.Convert.ToString(Factura["id_comprob"]));
-                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatDate(Factura["fecha"])));
-                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToString(Factura["tipo_fac"])));
-                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToInt32(Factura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(Factura["numero"]).ToString("00000000")));
-                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + Factura["id_cliente"].ToString())));
-                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Factura["total"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
-                                if (System.Convert.ToDouble(Factura["cancelado"]) >= System.Convert.ToDouble(Factura["total"]))
+                        foreach (System.Data.DataRow RowFactura in Facturas.Rows) {
+                                ListViewItem Itm = Listado.Items.Add(System.Convert.ToString(RowFactura["id_comprob"]));
+                                Itm.Tag = RowFactura;
+                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatDate(RowFactura["fecha"])));
+                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToString(RowFactura["tipo_fac"])));
+                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, System.Convert.ToInt32(RowFactura["pv"]).ToString("0000") + "-" + System.Convert.ToInt32(RowFactura["numero"]).ToString("00000000")));
+                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, this.Connection.FieldString("SELECT nombre_visible FROM personas WHERE id_persona=" + RowFactura["id_cliente"].ToString())));
+                                Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(RowFactura["total"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
+                                if (System.Convert.ToDouble(RowFactura["cancelado"]) >= System.Convert.ToDouble(RowFactura["total"]))
                                         Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, "Sí"));
                                 else
-                                        Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(Factura["cancelado"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
+                                        Itm.SubItems.Add(new ListViewItem.ListViewSubItem(Itm, Lfx.Types.Formatting.FormatCurrency(System.Convert.ToDecimal(RowFactura["cancelado"]), Lfx.Workspace.Master.CurrentConfig.Moneda.Decimales)));
                         }
                         if (Listado.Items.Count > 0) {
                                 Listado.Items[0].Selected = true;
@@ -186,22 +169,23 @@ namespace Lfc.Comprobantes
 
                 private void Listado_SelectedIndexChanged(object sender, System.EventArgs e)
                 {
-                        Lfx.Data.Row Factura = null;
+                        System.Data.DataRow RowFactura = null;
                         ListViewItem Itm = null;
                         if (Listado.SelectedItems.Count > 0) {
                                 Itm = Listado.SelectedItems[0];
-                                Factura = this.Connection.Row("comprob", "id_comprob", Lfx.Types.Parsing.ParseInt(Itm.Text));
+                                RowFactura = Listado.SelectedItems[0].Tag as System.Data.DataRow;
                         }
 
-                        if (Factura != null) {
-                                IdComprob = System.Convert.ToInt32(Factura["id_comprob"]);
-                                if (System.Convert.ToInt32(Factura["anulada"]) != 0 && AceptarAnuladas == false) {
+                        if (RowFactura != null) {
+                                Lbl.Comprobantes.ComprobanteFacturable Factura = new Lbl.Comprobantes.ComprobanteFacturable(this.Connection, (Lfx.Data.Row)RowFactura);
+                                this.Comprobante = Factura;
+                                if (this.Comprobante.Anulado && AceptarAnuladas == false) {
                                         EtiquetaAviso.Text = "Este comprobante fue anulado.";
                                         OkButton.Visible = false;
-                                } else if (Itm.SubItems[6].Text == "Sí" && AceptarCanceladas == false) {
+                                } else if (Factura.Cancelado && AceptarCanceladas == false) {
                                         EtiquetaAviso.Text = "Comprobante ya fue pagado.";
                                         OkButton.Visible = false;
-                                } else if (Lfx.Types.Parsing.ParseCurrency(Itm.SubItems[6].Text) > 0) {
+                                } else if (Factura.ImporteCancelado > 0 && Factura.Cancelado == false) {
                                         EtiquetaAviso.Text = "Este comprobante fue pagado parcialmente.";
                                         OkButton.Visible = true;
                                 } else {

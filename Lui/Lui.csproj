@@ -276,7 +276,7 @@
     <Compile Include="LogOn\FormRevalidateAccess.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LogOn\FormRevalidateAccess.designer.cs">
+    <Compile Include="LogOn\FormRevalidateAccess.Designer.cs">
       <DependentUpon>FormRevalidateAccess.cs</DependentUpon>
     </Compile>
     <Compile Include="LogOn\LogOnData.cs" />

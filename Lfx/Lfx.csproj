@@ -140,8 +140,8 @@
     <Compile Include="Data\Transaction.cs" />
     <Compile Include="RuntimeServices.cs" />
     <Compile Include="Types\DomainException.cs" />
-    <Compile Include="Types\Exceptions\AccessDeniedException.cs" />
     <Compile Include="Types\Exceptions\Exception.cs" />
+    <Compile Include="Types\Exceptions\AccessDeniedException.cs" />
     <Compile Include="Types\Ini.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -190,7 +190,6 @@
     <Compile Include="Data\TableStructure.cs" />
     <Compile Include="Data\Tag.cs" />
     <Compile Include="FileFormats\Compression\Archive.cs" />
-    <Compile Include="Lic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\Connection.cs" />

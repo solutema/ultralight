@@ -1,34 +1,3 @@
-#region License
-// Copyright 2004-2012 Ernesto N. Carrea
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-// Este programa es software libre; puede distribuirlo y/o moficiarlo de
-// acuerdo a los términos de la Licencia Pública General de GNU (GNU
-// General Public License), como la publica la Fundación para el Software
-// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
-// como (a su elección) cualquier versión posterior.
-//
-// Este programa se distribuye con la esperanza de que sea útil, pero SIN
-// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
-// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
-// Licencia Pública General de GNU para más detalles. 
-//
-// Debería haber recibido una copia de la Licencia Pública General junto
-// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
-#endregion
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -186,7 +155,7 @@ namespace Lbl.Comprobantes
 
 
                 /// <summary>
-                /// El porcentaje de descuento.
+                /// Devuelve el porcentaje de descuento que se aplicó al comprobante.
                 /// </summary>
                 public decimal Descuento
 		{
@@ -202,7 +171,7 @@ namespace Lbl.Comprobantes
 
 
                 /// <summary>
-                /// El porcentaje de recargo.
+                /// Devuelve o establece el porcentaje de recargo que se aplicó al comprobante.
                 /// </summary>
                 public decimal Recargo
 		{
@@ -216,6 +185,9 @@ namespace Lbl.Comprobantes
                         }
 		}
 
+                /// <summary>
+                /// Devuelve o establece el importe del comprobante que ya fue cancelado (pagado).
+                /// </summary>
                 public decimal ImporteCancelado
 		{
 			get
@@ -228,6 +200,9 @@ namespace Lbl.Comprobantes
 			}
 		}
 
+                /// <summary>
+                /// Devuelve o establece el importe de los gastos de envío.
+                /// </summary>
                 public decimal GastosDeEnvio
                 {
                         get
@@ -240,6 +215,9 @@ namespace Lbl.Comprobantes
                         }
                 }
 
+                /// <summary>
+                /// Devuelve o establece el importe de otros gastos.
+                /// </summary>
                 public decimal OtrosGastos
                 {
                         get
@@ -252,7 +230,9 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-
+                /// <summary>
+                /// Devuelve True si el comprobante discrimina IVA el los precios de los detalles (por ejemplo en Argentina factura A).
+                /// </summary>
                 public bool DiscriminaIva
                 {
                         get
@@ -261,7 +241,9 @@ namespace Lbl.Comprobantes
                         }
                 }
 
-
+                /// <summary>
+                /// Devuelve True si es un comprobante de compra o false si es un comprobante de venta.
+                /// </summary>
 		public bool Compra
 		{
 			get
@@ -283,6 +265,17 @@ namespace Lbl.Comprobantes
                         set
                         {
                                 Registro["cuotas"] = value;
+                        }
+                }
+
+                /// <summary>
+                /// Devuelve True si el comprobante fue cancelado (pagado) en su totalidad.
+                /// </summary>
+                public bool Cancelado
+                {
+                        get
+                        {
+                                return this.Total - this.ImporteCancelado < 0.01m;
                         }
                 }
 
@@ -676,9 +669,13 @@ namespace Lbl.Comprobantes
 
                                         case Lbl.Pagos.TiposFormasDePago.Tarjeta:
                                         case Pagos.TiposFormasDePago.OtroValor:
-                                                Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(Connection, this);
-                                                if (Cupon != null && Cupon.Existe)
-                                                        Cupon.Anular();
+                                                int IdCupon = this.Connection.FieldInt("SELECT MAX(id_cupon) FROM tarjetas_cupones WHERE id_comprob=" + this.Id.ToString());
+                                                if (IdCupon > 0) {
+                                                        Lbl.Pagos.Cupon Cupon = new Lbl.Pagos.Cupon(Connection, IdCupon);
+                                                        if (Cupon != null && Cupon.Existe) {
+                                                                Cupon.Anular();
+                                                        }
+                                                }
                                                 break;
                                 }
                         }
@@ -793,6 +790,8 @@ namespace Lbl.Comprobantes
                         this.Articulos.ElementoPadre = this;
 
 			qGen.TableCommand Comando;
+                        if (this.Total <= 0)
+                                return new Lfx.Types.FailureOperationResult("El comprobante debe tener un importe superior a $ 0.00.");
 
 			if (this.Existe == false) {
                                 Comando = new qGen.Insert(this.Connection, this.TablaDatos);

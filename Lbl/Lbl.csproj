@@ -138,6 +138,12 @@
     <Compile Include="Impuestos\SituacionIva.cs" />
     <Compile Include="ListaIds.cs" />
     <Compile Include="Notificaciones\UsuarioConectado.cs" />
+    <Compile Include="Pagos\Cupon.cs" />
+    <Compile Include="Pagos\EstadosCupones.cs" />
+    <Compile Include="Pagos\FormaDePago.cs" />
+    <Compile Include="Pagos\Plan.cs" />
+    <Compile Include="Pagos\TiposFormasDePago.cs" />
+    <Compile Include="Pagos\Valor.cs" />
     <Compile Include="Personas\Claves\Cpf.cs" />
     <Compile Include="Personas\Claves\Cuit.cs" />
     <Compile Include="IdentificadorUnico.cs" />
@@ -186,8 +192,6 @@
     <Compile Include="IElementoConImagen.cs" />
     <Compile Include="Impuestos\Alicuota.cs" />
     <Compile Include="Instanciador.cs" />
-    <Compile Include="Pagos\EstadosCupones.cs" />
-    <Compile Include="Pagos\TiposFormasDePago.cs" />
     <Compile Include="Personas\Proveedor.cs" />
     <Compile Include="Servicios\Desduplicador.cs" />
     <Compile Include="Servicios\Importar\Filtro.cs" />
@@ -197,14 +201,12 @@
     <Compile Include="Servicios\Importar\MapaDeColumnas.cs" />
     <Compile Include="Servicios\Importar\MapaDeTabla.cs" />
     <Compile Include="Servicios\Importar\Reemplazo.cs" />
-    <Compile Include="Pagos\Valor.cs" />
     <Compile Include="Comprobantes\ColeccionComprobanteConArticulos.cs" />
     <Compile Include="Comprobantes\ColeccionRecibos.cs" />
     <Compile Include="Comprobantes\ColeccionDetalleArticulo.cs" />
     <Compile Include="Comprobantes\DetalleArticulo.cs" />
     <Compile Include="Comprobantes\Comprobante.cs" />
     <Compile Include="Comprobantes\ComprobanteConArticulos.cs" />
-    <Compile Include="Pagos\FormaDePago.cs" />
     <Compile Include="Comprobantes\Numerador.cs" />
     <Compile Include="Comprobantes\Cobro.cs" />
     <Compile Include="Comprobantes\Pago.cs" />
@@ -238,8 +240,6 @@
     <Compile Include="Tareas\Novedad.cs" />
     <Compile Include="Tareas\Tarea.cs" />
     <Compile Include="Tareas\Tipo.cs" />
-    <Compile Include="Pagos\Cupon.cs" />
-    <Compile Include="Pagos\Plan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Articulos\Articulo.cs" />
     <Compile Include="Personas\Persona.cs" />

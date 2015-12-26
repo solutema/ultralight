@@ -1,34 +1,3 @@
-#region License
-// Copyright 2004-2012 Ernesto N. Carrea
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-// Este programa es software libre; puede distribuirlo y/o moficiarlo de
-// acuerdo a los términos de la Licencia Pública General de GNU (GNU
-// General Public License), como la publica la Fundación para el Software
-// Libre (Free Software Foundation), tanto la versión 3 de la Licencia
-// como (a su elección) cualquier versión posterior.
-//
-// Este programa se distribuye con la esperanza de que sea útil, pero SIN
-// GARANTÍA ALGUNA; ni siquiera la garantía MERCANTIL implícita y sin
-// garantizar su CONVENIENCIA PARA UN PROPÓSITO PARTICULAR. Véase la
-// Licencia Pública General de GNU para más detalles. 
-//
-// Debería haber recibido una copia de la Licencia Pública General junto
-// con este programa. Si no ha sido así, vea <http://www.gnu.org/licenses/>.
-#endregion
-
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -150,6 +119,28 @@ namespace Lfx.Environment
                                                         TieneDotNet4 = false;
                                                 }
 
+                                                bool TieneDotNet45 = false;
+                                                try {
+                                                        Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Client", false);
+                                                        string Installed = LocalMachine.GetValue("Version").ToString();
+                                                        if (Installed.Length > 3 && Installed.Substring(0, 3) == "4.5")
+                                                                TieneDotNet45 = true;
+                                                } catch (Exception ex) {
+                                                        System.Console.WriteLine(ex.Message);
+                                                        TieneDotNet45 = false;
+                                                }
+
+                                                bool TieneDotNet46 = false;
+                                                try {
+                                                        Microsoft.Win32.RegistryKey LocalMachine = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Client", false);
+                                                        string Installed = LocalMachine.GetValue("Version").ToString();
+                                                        if (Installed.Length > 3 && Installed.Substring(0, 3) == "4.6")
+                                                                TieneDotNet46 = true;
+                                                } catch (Exception ex) {
+                                                        System.Console.WriteLine(ex.Message);
+                                                        TieneDotNet46 = false;
+                                                }
+
                                                 string VersionesDotNet = "Microsoft .NET 2.0";
                                                 if (TieneDotNet3)
                                                         VersionesDotNet += ", 3.0";
@@ -157,10 +148,14 @@ namespace Lfx.Environment
                                                         VersionesDotNet += ", 3.5";
                                                 if (TieneDotNet4)
                                                         VersionesDotNet += ", 4.0";
+                                                if (TieneDotNet45)
+                                                        VersionesDotNet += ", 4.5";
+                                                if (TieneDotNet46)
+                                                        VersionesDotNet += ", 4.6";
 
                                                 return VersionesDotNet;
                                         case Lfx.Environment.SystemInformation.RunTimes.Mono:
-                                                return "Novell Mono";
+                                                return "Xamarin Mono";
                                         default:
                                                 return "Desconocido";
                                 }
