@@ -6,3 +6,4 @@
 bin
 obj
 *.pidb
+*.ffs_db
